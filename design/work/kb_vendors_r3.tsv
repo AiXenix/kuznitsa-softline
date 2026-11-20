@@ -1,0 +1,308 @@
+id	name	name_ru	market_status	aliases
+kaspersky	Kaspersky	Лаборатория Касперского	active	касперский; лаборатория касперского; каспер; kaspersky lab; касперски; kasperski; лк; ao kaspersky
+drweb	Dr.Web	Доктор Веб	active	доктор веб; др веб; дрвеб; dr web; dr.web; doctor web; д-р веб
+positive_technologies	Positive Technologies	Позитив Текнолоджиз	active	позитив текнолоджиз; позитив технолоджис; позитив; pt; positive; пт
+usergate	UserGate	ЮзерГейт	active	юзергейт; узергейт; user gate; юг; ug
+security_code	Security Code	Код Безопасности	active	код безопасности; код безопастности; securitycode; кб
+infotecs	InfoTeCS	ИнфоТеКС	active	инфотекс; инфотэкс; vipnet; випнет; инфотекс оао
+cryptopro	CryptoPro	КриптоПро	active	криптопро; крипто про; криптапро; crypto pro; кпро
+infowatch	InfoWatch	ИнфоВотч	active	инфовотч; инфоуотч; info watch; инфовоч
+searchinform	SearchInform	СёрчИнформ	active	серчинформ; сёрчинформ; search inform; серч информ
+solar_rt	Solar	ГК Солар	active	солар; ртк солар; rtk solar; solar security; гк солар; ростелеком солар
+bi_zone	BI.ZONE	БИ.ЗОН	active	бизон; би зон; bizone; bi zone; би.зон
+garda_technologies	Garda	Группа компаний Гарда	active	гарда; гарда технологии; garda; гарда бд
+aladdin_rd	Aladdin	Аладдин	active	аладдин; аладдин рд; aladdin rd; джакарта; jacarta
+aktiv_rutoken	Aktiv	Компания Актив	active	актив; рутокен; rutoken; aktiv; актив софт
+confidant	Confidant	Конфидент	active	конфидент; даллас лок; dallas lock; цзи конфидент
+falcongaze	Falcongaze	Фалконгейз	active	фалконгейз; фалкон; securetower; секьюртауэр
+makves	Makves	Маквес	active	маквес; makves dcap
+smart_soft	Smart-Soft	Смарт-Софт	active	смарт софт; смартсофт; traffic inspector; трафик инспектор
+ideco	Ideco	Айдеко	active	айдеко; идеко; ideco ngfw; ideco utm
+pro32	PRO32	ПРО32	active	про32; про 32; pro 32
+security_vision	Security Vision	Секьюрити Вижн	active	секьюрити вижн; securityvision; св
+indeed_identity	Indeed Identity	Индид	active	индид; indeed; indeed am; indeed pam
+multifactor	MULTIFACTOR	Мультифактор	active	мультифактор; multi factor; 2fa мультифактор
+avanpost	Avanpost	Аванпост	active	аванпост; avanpost idm; avanpost fam
+cyberpeak	CyberPeak	Киберпик	active	киберпик; спектр dcap; cyber peak
+stakhanovets	Stakhanovets	Стахановец	active	стахановец; stahanovec; программный комплекс стахановец
+kickidler	Kickidler	Кикидлер	active	кикидлер; кик идлер; kick idler
+staffcop	Staffcop	СКБ Контур (Staffcop)	active	стаффкоп; стафкоп; атом безопасность; контур staffcop
+f6_security	F6	Ф6 (ранее F.A.C.C.T.)	active	ф6; facct; f.a.c.c.t; факт иб; group-ib рф; групп айби
+esmart	ESMART	ИСБЦ (ESMART)	active	есмарт; исбц; esmart token; смарт карты esmart
+trusted_cryptoarm	Digital Technologies	Цифровые технологии	active	цифровые технологии; криптоарм; cryptoarm; trusted
+phishman	Phishman	Фишман	active	фишман; phishman training
+curator_ddos	Qrator Labs	Куратор Лабс	active	куратор; qrator; кратор; куратор лабс
+stormwall	StormWall	СтормВолл	active	стормволл; штормвол; storm wall
+ait_s_terra	S-Terra	С-Терра СиЭсПи	active	с терра; стерра; s-terra; sterracsp
+altell	ALTELL	АЛТЭЛ	active	алтэл; altell neo; алтел
+r_vision	R-Vision	Р-Вижн	active	р-вижн; рвижн; rvision; r vision
+ru_siem	RuSIEM	РуСИЕМ	active	русием; русиэм; rusiem
+redcheck_altex	Altex-Soft	Алтэкс-Софт	active	алтэкс софт; алтекс софт; редчек; redcheck
+cyberlimpha	CyberLympha	Киберлимфа	active	киберлимфа; datapk; датапк
+safe_tech	SafeTech	СэйфТех	active	сейфтех; сэйфтех; paycontrol; mypaycontrol
+axoft_skdpu	IT-Expertise	АйТи-Экспертиза	active	айти экспертиза; скдпу; скдпу нт; skdpu
+webcontrol_kryptonit	SafeInspect	Новые технологии безопасности	active	нтб; safeinspect; сейфинспект
+ucm_globaltrust	GlobalTrust	ГлобалТраст	active	глобалтраст; russian ssl; лидертелеком
+eset	ESET	ЕСЕТ	left	есет; есэт; нод32; nod32; nod 32; eset nod32
+cisco	Cisco	Циско	left	циско; сиско; cisco systems; anyconnect; firepower
+fortinet	Fortinet	Фортинет	left	фортинет; фортигейт; fortigate; forti
+palo_alto	Palo Alto Networks	Пало Альто	left	пало альто; palo alto; paloalto; pan-os; cortex
+checkpoint	Check Point	Чек Поинт	left	чекпоинт; чек поинт; check point software
+symantec_broadcom	Symantec (Broadcom)	Симантек	left	симантек; symantec; sep; broadcom security
+trellix_mcafee	Trellix (McAfee)	Макафи / Трелликс	left	макафи; mcafee; trellix; трелликс; fireeye
+crowdstrike	CrowdStrike	КраудСтрайк	left	краудстрайк; crowd strike; falcon edr
+sophos	Sophos	Софос	left	софос; sophos endpoint; sophos xg
+trend_micro	Trend Micro	Тренд Микро	left	тренд микро; trendmicro; apex one
+bitdefender	Bitdefender	Битдефендер	left	битдефендер; gravityzone
+splunk	Splunk	Спланк	left	спланк; splunk enterprise
+tenable	Tenable	Тенабл	left	тенабл; nessus; нессус; tenable sc
+qualys	Qualys	Квалис	left	квалис; qualys vmdr
+cyberark	CyberArk	КиберАрк	left	киберарк; сайберарк; cyber ark
+okta	Okta	Окта	left	окта; okta sso; auth0
+f5_networks	F5	Эф5 Нетворкс	left	f5; big-ip; f5 big ip; nginx plus
+digicert	DigiCert	ДиджиСерт	left	диджисерт; thawte; geotrust; rapidssl
+globalsign	GlobalSign	ГлобалСайн	restricted	глобалсайн; global sign
+onepassword	1Password	1Пассворд	left	1password; ванпассворд; onepassword
+passwork	Passwork	Пассворк	active	пассворк; passwork ru
+rebrain_blitz	Identity Blitz	РЕАК Софт (Blitz)	active	блитц; blitz identity; реак софт
+astra_group	Astra Group	Группа Астра	active	группа астра; астра; астра линукс; русбитех; русбитех-астра; astra; astra linux
+basealt	BaseALT	Базальт СПО	active	базальт; базальт спо; альт линукс; alt linux; alt; базальтспо
+red_soft	RED SOFT	РЕД СОФТ	active	ред софт; редсофт; redsoft; ред ос; red os
+rosa_ntc	ROSA	НТЦ ИТ РОСА	active	роса; нтц ит роса; роса линукс; rosa linux; rosa
+nppkt	NPPKT	АО НППКТ	active	нппкт; ос нова; основа; osnova linux; ао нппкт
+uncom	Uncom	Анком ОС	active	анком; uncom os; анком ос
+open_mobile_platform	Open Mobile Platform	Открытая мобильная платформа	active	омп; открытая мобильная платформа; аврора; ос аврора; aurora os
+basis_virt	Basis	Базис	active	базис; базис виртуализация; basis; тионикс; скала р; digital energy
+orion_soft	Orion soft	Орион софт	active	орион софт; орионсофт; orionsoft; zvirt; звёрт; зверт
+vstack_itglobal	vStack	вСтек	active	встек; в-стек; vstack hcp; itglobal
+ispsystem	ISPsystem	ИСПсистем	active	испсистем; исп систем; vmmanager; dcimanager; billmanager
+flant	Flant	Флант	active	флант; deckhouse; декхаус; декхауз
+laboratoria_chisl	Laboratoria Chisl	Лаборатория Числитель	active	числитель; лаборатория числитель; штурвал; shturval
+monq	MONQ	МОНК Диджитал Лаб	active	монк; monq aiops; монк мониторинг
+saymon	SAYMON	Сэймон	active	сэймон; сеймон; saymon мониторинг
+simpleone	SimpleOne	СимплВан	active	симплван; симпл ван; simple one; simpleone esm
+naumen	NAUMEN	Наумен	active	наумен; naumen smp; naumen service desk; naumen contact center
+inframanager	InfraManager	ИнфраМенеджер	active	инфраменеджер; инфра менеджер; infra manager
+web_server_angie	Web Server	Веб-Сервер (Angie)	active	веб-сервер; angie; анжи; энджи; angie pro
+etersoft	Etersoft	Этерсофт	active	этерсофт; етерсофт; wine etersoft; wine@etersoft
+colibri_arm	Sovremennye Tekhnologii	Колибри-АРМ	active	колибри; колибри арм; колибри-арм; colibri arm
+space_daac	DAAC / Space	Даком М	active	даком м; даком; spacevm; space vdi; спейс вм
+softline_msvsphere	Inferit	Инферит ОС (МСВСфера)	active	инферит; мсвсфера; msvsphere; инферит ос
+klyuch_astrom	Key Systems / ASTROM	Астром (Ключ-АСТРОМ)	active	ключ астром; астром; astrom; ключ-астром
+microsoft	Microsoft	Майкрософт	restricted	майкрософт; майкрасофт; микрософт; мс; ms; microsoft corporation
+vmware_broadcom	VMware (Broadcom)	ВМваре	left	вмваре; вмварь; vmware; вмвар; broadcom vmware
+red_hat	Red Hat	Ред Хат	left	редхат; ред хат; redhat; rhel; openshift
+suse	SUSE	Сусе	left	сусе; суся; sles; suse linux; rancher
+canonical	Canonical	Каноникал (Ubuntu)	left	каноникал; убунту; ubuntu; ubuntu pro
+citrix	Citrix	Цитрикс	left	цитрикс; ситрикс; citrix systems; xenapp; xendesktop
+parallels	Parallels	Параллелс	left	параллелс; паралелс; parallels desktop; parallels ras
+zabbix	Zabbix	Заббикс	left	заббикс; забикс; zabbix sia
+servicenow	ServiceNow	СервисНау	left	сервиснау; service now
+datadog	Datadog	Датадог	left	датадог; data dog
+finalwire	FinalWire	ФайналВайр (AIDA64)	restricted	aida64; аида64; аида 64; finalwire
+softinventive	Softinventive Lab	Софтинвентив Лаб	active	total network inventory; tni; софтинвентив
+r7_office	R7-Office	АО Р7	active	р7; р7 офис; р7-офис; р 7 офис; r7; r7 office; r7-office; нкт
+myoffice	MyOffice	МойОфис (Новые облачные технологии)	active	мойофис; мой офис; moyofis; my office; нот; новые облачные технологии
+yandex	Yandex	Яндекс	active	яндекс; яндекс 360; yandex cloud; яндекс облако; я360
+vk_tech	VK Tech	ВК Тех	active	вк тех; vk; вк; mail.ru корпоративный; vk workspace; vk cloud
+content_ai	Content AI	Контент ИИ	active	контент ии; контент аи; contentai; contentreader; преемник abbyy
+smart_engines	Smart Engines	Смарт Энджинс	active	смарт энджинс; smartengines; распознавание паспортов smart
+promt	PROMT	ПРОМТ	active	промт; promt neural; promt server; переводчик промт
+code_industry	Code Industry	Код Индастри	active	мастер pdf; master pdf editor; код индастри
+dbrain	Dbrain	Дбрейн	active	дбрейн; dbrain ocr
+paratype	ParaType	ПараТайп	active	паратайп; шрифты паратайп; pt sans
+crt_speech	CRT	Группа компаний ЦРТ	active	црт; центр речевых технологий; speechpro; smart logger
+abbyy	ABBYY	АББИИ	left	абби; аббии; эбби; finereader; файнридер; flexicapture; lingvo
+foxit	Foxit	Фоксит	restricted	фоксит; foxit pdf; phantompdf
+adobe	Adobe	Адоб	left	адоб; адобе; адоби; creative cloud; photoshop; acrobat
+deepl	DeepL	ДипЭль	left	дипл; дипэль; deepl pro
+notion	Notion	Ноушн	left	ноушн; ношен; notion labs
+miro	Miro	Миро	left	миро; realtimeboard
+ritlabs	Ritlabs	Ритлабс	active	ритлабс; the bat; зе бат; бат почта
+yonote	Yonote	Йоноут	active	йоноут; еноут; yonote ru
+teamly	Teamly	Тимли	active	тимли; teamly wiki; qsoft teamly
+holst	Holst	Холст	active	холст; holst so; доски холст
+sila_union	SILA Union	СИЛА Юнион	active	сила юнион; sila; бизнес студио аналог
+business_studio	Business Studio	ГК СТЭК (Business Studio)	active	бизнес студио; бизнес студия; business studio
+advanta	Advanta	Адванта	active	адванта; исуп адванта; advanta group
+spider_project	Spider Project	Спайдер Проджект	active	спайдер проджект; спайдер; spider management
+postgres_pro	Postgres Professional	Постгрес Профессиональный	active	постгрес про; postgres pro; pgpro; постгрес профессиональный
+tantor_labs	Tantor Labs	Тантор Лабс	active	тантор; tantor; тантор лабс; tantor db
+arenadata	Arenadata	Аренадата	active	аренадата; арена дата; arenadata db; adb; adh; adqm
+clickhouse	ClickHouse	КликХаус	restricted	кликхаус; clickhouse inc
+picodata	Picodata	Пикодата	active	пикодата; picodata io
+gazinformservice_jatoba	Gazinformservice	Газинформсервис	active	газинформсервис; гис; jatoba; джатоба; анлимитед джатоба; efros
+sber_platform_v	SberTech	СберТех	active	сбертех; platform v; платформа v; pangolin; панголин; gigaide; gitverse
+visiology	Visiology	Визиолоджи	active	визиолоджи; визиология; visiology bi
+foresight	Foresight	Форсайт	active	форсайт; форсайт аналитическая платформа; foresight bi
+polymatica	Polymatica	Полиматика (SL Soft)	active	полиматика; polymatica bi; sl soft polymatica
+modus_bi	Modus	Модус	active	модус; модус би; modus bi; modus etl
+unidata	Unidata	Юнидата	active	юнидата; unidata mdm; юнидата нси
+loginom	Loginom Company	Логином	active	логином; loginom; deductor; дедуктор
+optimacros	Optimacros	Оптимакрос	active	оптимакрос; optima cros; аналог anaplan
+oracle	Oracle	Оракл	left	оракл; оракул; oracle corporation; oracle db; primavera
+ibm	IBM	АйБиЭм	left	айбиэм; ibm corporation; qradar; db2; cognos; websphere
+mongodb	MongoDB	МонгоДБ	left	монго; монгодб; mongo db; mongo
+redis_inc	Redis	Редис	left	редис; redis enterprise
+snowflake	Snowflake	Сноуфлейк	left	сноуфлейк; snowflake db
+qlik	Qlik	Клик	left	клик; qlik sense; qlikview; клик сенс
+tableau_salesforce	Tableau	Табло	left	табло; таблеау; tableau desktop; tableau server
+dbeaver	DBeaver	ДБивер	restricted	дбивер; dbeaver pro; dbeaver enterprise
+cyberprotect	Cyberprotect	Киберпротект	active	киберпротект; кибер бэкап; кибербэкап; кибер защита; акронис инфозащита; acronis инфозащита
+rubackup	RuBackup	РуБэкап (Группа Астра)	active	рубэкап; рубекап; ру бэкап; ru backup
+novosoft_handy	Novosoft	Новософт (Handy Backup)	active	новософт; хэнди бэкап; handy backup; хенди бекап
+raidix	RAIDIX	Рэйдикс	active	рэйдикс; рейдикс; raidix sds
+baum	BAUM	Баум	active	баум; баум схд; baum storage
+veeam	Veeam	Виим	left	виим; вим; веам; veeam software; veeam backup
+acronis	Acronis	Акронис	left	акронис; acronis cyber protect; acronis true image
+commvault	Commvault	Комволт	left	комволт; комваулт; commvault complete
+veritas	Veritas	Веритас	left	веритас; netbackup; backup exec
+winrar_rarlab	win.rar GmbH	ВинРАР (RARLAB)	restricted	винрар; winrar; rarlab; rar
+ghisler	Ghisler Software	Гислер (Total Commander)	restricted	тотал коммандер; total commander; ghisler
+r_tt	R-Tools Technology	R-Tools (R-Studio)	restricted	r-studio; р-студио; r tools; r-tt
+skb_kontur	SKB Kontur	СКБ Контур	active	контур; скб контур; kontur; диадок; экстерн; контур толк; контур фокус
+mts_link	MTS Link	МТС Линк (ранее Webinar)	active	мтс линк; вебинар ру; webinar.ru; webinar; mts link; линк
+trueconf	TrueConf	Труконф	active	труконф; тру конф; true conf; trueconf server
+iva_technologies	IVA Technologies	ИВА Текнолоджис	active	ива; iva; iva mcu; ива мцу; iva one
+vinteo	Vinteo	Винтео	active	винтео; vinteo mcu
+sber_jazz	SaluteDevices / Sber Jazz	Сбер (SaluteJazz)	active	сбер джаз; джаз; salutejazz; sberjazz; салют джаз
+express_unlimited	Unlimited Production	Анлимитед Продакшен (eXpress)	active	экспресс; express; express мессенджер; eXpress
+compass_chat	Compass	Компас Мессенджер	active	компас мессенджер; compass on-premise; getcompass
+pachca	Pachca	Пачка	active	пачка; пачка мессенджер; pachka
+communigate	SBK / CommuniGate	СБК (CommuniGate Pro)	active	комьюнигейт; коммунигейт; communigate pro; cgp; сбк
+mbk_lab_tegu	MBK Lab	Лаборатория МБК (Tegu)	active	тегу; tegu; tegu enterprise; мбк лаб
+mango_office	MANGO OFFICE	Манго Телеком	active	манго офис; манго телеком; mango telecom; манго атс
+protei	PROTEI	НТЦ ПРОТЕЙ	active	протей; нтц протей; protei uc; протей вкс
+safib_assistant	SAFIB	САФИБ (Ассистент)	active	сафиб; ассистент; мойассистент; мой ассистент; assistant safib
+rudesktop	RuDesktop	РуДесктоп	active	рудесктоп; ру десктоп; rudesktop uem
+tekton_rms	TektonIT	ТектонИТ (RMS)	active	рмс; rms; remote manipulator system; тектонит
+getscreen	Getscreen	Гетскрин	active	гетскрин; getscreen me
+unisender	Unisender	Юнисендер	active	юнисендер; uni sender
+mindbox	Mindbox	Майндбокс	active	майндбокс; mind box; cdp mindbox
+zoom	Zoom	Зум	left	зум; zoom video; zoom workplace
+slack	Slack	Слак	left	слак; слэк; slack technologies
+teamviewer	TeamViewer	ТимВьювер	left	тимвьювер; тимвьюер; тимвивер; team viewer; тв
+anydesk	AnyDesk	ЭниДеск	left	анидеск; энидеск; any desk
+avaya	Avaya	Авайя	left	авайя; авая; avaya aura
+threecx	3CX	3СХ	left	3cx; 3сх; три си экс
+onec	1C	Фирма 1С	active	1с; 1c; фирма 1с; одинэс; один эс; 1с предприятие
+onec_bitrix	1C-Bitrix	1С-Битрикс	active	битрикс; 1с битрикс; 1с-битрикс; битрикс24; битрикс 24; bitrix; bitrix24
+tensor_sbis	Tensor (Saby / SBIS)	Компания Тензор (СБИС / Saby)	active	тензор; сбис; sbis; saby; саби; сбис++
+taxcom	Taxcom	Такском	active	такском; такском файлер; онлайн спринтер
+moysklad	MoySklad	МойСклад	active	мойсклад; мой склад; moysklad; логика бизнеса мойсклад
+amocrm	amoCRM	амоСРМ	active	амоцрм; амосрм; амо; amo crm; amo
+elma	ELMA	ЭЛМА	active	элма; элма365; elma365; elma bpm
+bpmsoft	BPMSoft	БПМСофт (ЛАНИТ Омни)	active	бпмсофт; ланит омни; bpmsoft crm
+directum	Directum	Директум	active	директум; directum rx; директум рх
+docsvision	Docsvision	ДоксВижн	active	доксвижн; докс вижн; docs vision
+eos_delo	EOS	ЭОС (Электронные Офисные Системы)	active	эос; сэд дело; эос дело; eos delo
+haulmont_tezis	Haulmont	Хоулмонт (ТЕЗИС)	active	хоулмонт; тезис; сэд тезис; tezis
+syntellect_tessa	Syntellect	Синтеллект (TESSA)	active	синтеллект; тесса; tessa; сэд тесса
+comindware	Comindware	Коминдвэр	active	коминдвер; коминдвэр; comindware business application platform
+pix_robotics	PIX Robotics	ПИКС Роботикс	active	пикс; пикс рпа; pix rpa; pix bi; pix process
+primo_rpa	Primo RPA	Примо РПА	active	примо; примо рпа; primo
+robin_rpa	ROBIN	РОБИН (SL Soft)	active	робин; робин рпа; robin platform
+sherpa_rpa	Sherpa Robotics	Шерпа Роботикс	active	шерпа; шерпа рпа; sherpa
+galaktika	Galaktika	Корпорация Галактика	active	галактика; галактика erp; галактика еам; галактика ам
+consyst_turbo	Consyst Business Group (TURBO)	Консист Бизнес Групп (ТУРБО)	active	турбо; турбо erp; turbo erp; консист
+kaiten	Kaiten	Кайтен	active	кайтен; кайтэн; kaiten ru
+evateam	EvaTeam	ЕваТим	active	ева; еватим; evaproject; evawiki; evaservicedesk
+yougile	YouGile	Юджайл	active	юджайл; югайл; you gile
+weeek	WEEEK	Вик	active	вик; weeek; виек
+planfix	PlanFix	ПланФикс	active	планфикс; план фикс; plan fix
+hrlink	HRlink	ЭйчАрЛинк	active	хрлинк; hr link; эйчарлинк; кэдо hrlink
+huntflow	Huntflow	Хантфлоу	active	хантфлоу; hunt flow; атс хантфлоу
+potok_hr	Potok	Поток	active	поток; поток рекрутмент; potok io
+consultant_plus	ConsultantPlus	КонсультантПлюс	active	консультант; консультант плюс; консультантплюс; к+
+garant	GARANT	Компания ГАРАНТ	active	гарант; система гарант; гарант право
+interfax_spark	Interfax (SPARK)	Интерфакс (СПАРК)	active	спарк; интерфакс спарк; spark interfax
+atol_frontol	ATOL	АТОЛ	active	атол; фронтол; frontol; атол сигма
+iiko	iiko	Айко	active	айко; иико; iiko cloud
+ucs_rkeeper	r_keeper	ЮСИЭС (r_keeper)	active	р-кипер; ркипер; r keeper; rkeeper; юсиэс
+axelot	AXELOT	АКСЕЛОТ	active	акселот; axelot wms; axelot tms
+retailcrm	RetailCRM	РитейлСРМ	active	ритейлсрм; retail crm; симилар
+expert_systems_pe	Expert Systems	Эксперт Системс	active	эксперт системс; project expert; проджект эксперт; audit expert
+sap	SAP	САП	left	сап; sap se; sap erp; s4hana; sap r3
+salesforce	Salesforce	Сейлсфорс	left	сейлсфорс; sales force
+atlassian	Atlassian	Атлассиан	left	атлассиан; атласиан; jira; джира; confluence; конфлюенс; trello; bitbucket
+uipath	UiPath	ЮайПас	left	юайпас; юипас; ui path
+nanosoft	Nanosoft	Нанософт разработка	active	нанософт; нанокад; nanocad; нано кад
+ascon	ASCON	АСКОН	active	аскон; компас; компас 3d; компас 3д; лоцман; pilot-bim; пилот бим
+top_systems	Top Systems	Топ Системы	active	топ системы; т-флекс; тфлекс; t-flex; tflex
+renga_software	Renga Software	Ренга Софтвэа	active	ренга; renga; renga bim; renga professional
+csoft_development	CSoft Development	СиСофт Девелопмент	active	сисофт; csoft; model studio; модел студио; cadlib; spotlight; technologics
+fidesys	Fidesys	Фидесис	active	фидесис; cae fidesys
+rosatom_logos	Rosatom (Logos)	Росатом (РФЯЦ-ВНИИЭФ Логос)	active	логос; росатом логос; внииэф логос; logos cae
+scad_soft	SCAD Soft	СКАД Софт	active	скад; скад софт; scad; scad office
+lira_soft	LIRA Soft	ЛИРА софт	active	лира; лира софт; лира-сапр; лира 10; lira
+eremex	EREMEX	ЭРЕМЕКС	active	эремекс; delta design; дельта дизайн; simone
+kb_panorama	KB Panorama	КБ Панорама	active	кб панорама; гис панорама; панорама; gis panorama
+axioma_gis	ESTI (Axioma GIS)	ЭСТИ (Аксиома ГИС)	active	аксиома гис; axioma; эсти; аналог mapinfo
+politerm_zulu	Politerm	Политерм (ZuluGIS)	active	политерм; зулу; zulugis; зулу гис
+credo_dialog	CREDO-DIALOGUE	Кредо-Диалог	active	кредо; кредо диалог; credo; credo дороги; credo топоплан
+agisoft	Agisoft	Агисофт	active	агисофт; metashape; меташейп; photoscan
+mgk_grand	MGK GRAND	МГК ГРАНД	active	гранд; гранд смета; гранд-смета; грандсмета; мгк гранд
+stroysoft_smeta	StroySoft	СтройСофт (Smeta.RU)	active	стройсофт; смета ру; smeta.ru; smeta ru
+bazis_center	BAZIS-Center	БАЗИС-Центр	active	базис центр; базис мебельщик; базис-мебельщик
+topomatic	Topomatic	Топоматик (Robur)	active	топоматик; робур; robur; топоматик робур
+indorsoft	IndorSoft	ИндорСофт	active	индорсофт; индоркад; indorcad
+ritm_engee	Engee / TsITM Eksponenta	ЦИТМ Экспонента (Engee)	active	экспонента; engee; энжи; инжи; аналог matlab
+3v_simintech	3V Services (SimInTech)	3В Сервис (SimInTech)	active	симинтех; simintech; 3в сервис
+sprut_cam	SPRUT Technology	СПРУТ-Технология	active	спрут; спруткам; sprutcam; спрут технология
+autodesk	Autodesk	Автодеск	left	автодеск; аутодеск; autocad; автокад; revit; ревит; civil 3d; 3ds max; inventor
+dassault_systemes	Dassault Systemes	Дассо Системс	left	дассо; solidworks; солидворкс; catia; катия
+siemens_plm	Siemens Digital Industries Software	Сименс ПЛМ	left	сименс; siemens nx; teamcenter; solid edge; simcenter
+ansys	ANSYS	Ансис	left	ансис; ansys fluent; ansys mechanical
+mathworks	MathWorks	МатВоркс (MATLAB)	left	матлаб; matlab; simulink; симулинк; mathworks
+altium	Altium	Альтиум	left	альтиум; altium designer
+eplan	EPLAN	ЕПЛАН	left	еплан; eplan electric p8
+esri	Esri	Эсри (ArcGIS)	left	эсри; аркгис; arcgis
+zwsoft	ZWSOFT	ЗВСофт (ZWCAD)	active	звсофт; zwcad; звкад; zw3d
+graphisoft	Graphisoft	Графисофт (Archicad)	left	графисофт; архикад; archicad
+akvis	AKVIS	АКВИС	active	аквис; alivecolors; алайвколорс
+movavi	Movavi	Мовави	active	мовави; movavi video editor; movavi suite
+ams_software	AMS Software	АМС Софтвэа	active	амс; фотомастер; видеомонтаж; ams
+unigine	UNIGINE	Юниджайн	active	юниджайн; юниджин; unigine engine
+corel	Corel (Alludo)	Корел	restricted	корел; корелдро; coreldraw; alludo
+figma	Figma	Фигма	left	фигма; figma inc
+pixso	Pixso	Пиксо	active	пиксо; pixso design
+maxon	Maxon	Максон (Cinema 4D)	left	максон; cinema 4d; синема 4д
+blackmagic	Blackmagic Design	Блэкмэджик (DaVinci Resolve)	restricted	блэкмэджик; давинчи; davinci resolve
+chaos_group	Chaos	Хаос Групп (V-Ray)	left	v-ray; вирей; corona renderer; chaos
+gitflic	GitFlic	ГитФлик (Группа Астра)	active	гитфлик; гит флик; resoft gitflic
+test_it	Test IT	Тест ИТ	active	тест ит; тестит; testit tms
+qameta_allure	Qameta Software	Камета Софтвэа (Allure TestOps)	active	аллюр; allure testops; qameta
+pvs_studio	PVS-Studio	ПВС-Студио	active	пвс студио; пвс-студио; pvs studio
+fast_reports	Fast Reports	Фаст Репортс	active	фастрепорт; фаст репорт; fastreport
+axiom_jdk	Axiom JDK	Аксиом ДК	active	аксиом; аксиом jdk; axiom; liberica рф
+jetbrains	JetBrains	ДжетБрейнс	left	джетбрейнс; джет брейнс; intellij; pycharm; webstorm; phpstorm; rider; datagrip
+gitlab	GitLab	ГитЛаб	left	гитлаб; гит лаб; gitlab ee
+github	GitHub	ГитХаб	left	гитхаб; гит хаб; github enterprise; copilot
+embarcadero	Embarcadero	Эмбаркадеро	left	эмбаркадеро; delphi; делфи; rad studio; c++builder
+sonarsource	SonarSource	СонарСорс (SonarQube)	left	сонаркуб; сонар; sonarqube
+postman	Postman	Постман	left	постман; postman enterprise
+selectel	Selectel	Селектел	active	селектел; selectel cloud
+cloud_ru	Cloud.ru	Клауд.ру	active	клаудру; клауд ру; sbercloud; сберклауд; cloud ru
+mts_web_services	MWS (MTS Web Services)	МТС Веб Сервисы	active	мвс; мтс клауд; cloudmts; mts cloud; mws
+softline_cloud	Softline Cloud	Софтлайн Клауд	active	софтлайн облако; софтлайн клауд; softline; гк софтлайн
+aws	Amazon Web Services	Амазон Веб Сервисез	left	авс; amazon aws; амазон облако
+google	Google	Гугл	left	гугл; google workspace; google cloud; gcp; google meet
+openai	OpenAI	ОпенАИ	left	опенаи; chatgpt; чатгпт; чат джипити; gpt-4
+visionlabs	VisionLabs	ВижнЛабс	active	вижнлабс; luna platform; луна платформ
+ntechlab	NtechLab	НтехЛаб	active	нтехлаб; findface; файндфейс
+just_ai	Just AI	Джаст АИ	active	джаст аи; jaicp; jay copilot
+macroscop	Macroscop	Макроскоп	active	макроскоп; макроскоп видеонаблюдение
+dssl_trassir	DSSL (TRASSIR)	ДССЛ (Трассир)	active	трассир; дссл; trassir; trassir os
+axxonsoft	AxxonSoft	ИТВ / AxxonSoft	active	акссонсофт; итв; интеллект; axxon one; axxon next
+ispring	iSpring	АйСпринг	active	айспринг; ispring suite; ispring learn; ричмедиа
+mirapolis	Mirapolis	Мираполис	active	мираполис; mirapolis lms; mirapolis hcm
+websoft	Websoft	Вебсофт	active	вебсофт; webtutor; вебтьютор; websoft hcm
+litres	LitRes	Литрес	active	литрес; литрес библиотека; корпоративная библиотека литрес
+alpina_digital	Alpina Digital	Альпина Диджитал	active	альпина; альпина диджитал; библиотека альпина
+infoklinika	Smart Delta Systems	Смарт Дельта Системс (Инфоклиника)	active	инфоклиника; смарт дельта; мис инфоклиника
+soft_balance_t1	T1 (Sfera)	Холдинг Т1 (Платформа Сфера)	active	т1; сфера; платформа сфера; сфера код; сфера задачи
+t1_dion	DION (T1)	ДИОН (Холдинг Т1)	active	дион; dion вкс; dion
+alteroffice	Almi Partner	Алми Партнер (AlterOffice)	active	алми партнер; альтерофис; alteroffice; альтер офис; alteros
+red_os_community_alt_extra	GetCourse	ГетКурс	active	геткурс; getcourse; гет курс
+equio	Equio	Эквио	active	эквио; e-queo; эквио lms
+idera_testrail	TestRail (Idera)	ТестРейл (Idera)	left	testrail; тестрейл; тест рейл; idera; gurock
