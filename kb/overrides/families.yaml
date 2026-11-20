@@ -1,0 +1,1917 @@
+# Витринные названия, редакции, ограничения мест и исправления фактов для 481 семейства ПО.
+# Порядок записей соответствует design/work/families_index.tsv.
+
+onec_accounting:
+  title: "1С:Бухгалтерия 8"
+  editions: {base: Базовая, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: other, low: 5400, typical: 16200, high: 43200}
+
+onec_zup:
+  title: "1С:Зарплата и управление персоналом 8"
+  editions: {base: Базовая, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: other, low: 9200, typical: 28000, high: 135000}
+
+onec_trade:
+  title: "1С:Управление торговлей 8"
+  editions: {base: Базовая, prof: ПРОФ}
+  price_rub: {unit: other, low: 8200, typical: 28000, high: 36000}
+
+onec_unf:
+  title: "1С:Управление нашей фирмой 8"
+  editions: {base: Базовая, prof: ПРОФ, pack5: На 5 пользователей}
+  price_rub: {unit: other, low: 7000, typical: 21500, high: 34000}
+
+onec_ka:
+  title: "1С:Комплексная автоматизация 8"
+  editions: {ka2: Редакция 2}
+  price_rub: {unit: other, low: 75000, typical: 90000, high: 120000}
+
+onec_bgu:
+  title: "1С:Бухгалтерия госучреждения 8"
+  editions: {base: Базовая, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: other, low: 5400, typical: 22500, high: 55000}
+
+onec_zkgu:
+  title: "1С:Зарплата и кадры госучреждения 8"
+  editions: {base: Базовая, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: other, low: 9200, typical: 28000, high: 120000}
+
+onec_retail:
+  title: "1С:Розница 8"
+  editions: {base: Базовая, prof: ПРОФ}
+  price_rub: {unit: other, low: 4500, typical: 16200, high: 22000}
+
+onec_client_license:
+  title: "1С:Предприятие 8 Клиентские лицензии"
+  editions: {prof: ПРОФ, corp: КОРП}
+
+onec_server_license:
+  title: "1С:Предприятие 8 Лицензия на сервер"
+  editions: {mini: МИНИ, x64_prof: x86-64 ПРОФ, x64_corp: x86-64 КОРП}
+
+onec_its:
+  title: "1С:ИТС"
+  editions: {base: ТЕХНО, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: pack_year, low: 19000, typical: 46000, high: 95000}
+
+onec_fresh:
+  title: "1С:Фреш"
+  editions: {base: Базовый, prof: ПРОФ, spec: Спец}
+  price_rub: {unit: pack_year, low: 17000, typical: 46000, high: 120000}
+
+onec_kedo:
+  title: "1С:Кабинет сотрудника"
+  editions: {cloud: Облачный, onprem: Локальный}
+
+onec_reporting:
+  title: 1С-Отчётность
+  editions: {main: Основной, group: Группа компаний}
+  price_rub: {unit: pack_year, low: 2500, typical: 6900, high: 12000}
+
+onec_edo:
+  title: 1С-ЭДО
+  editions: {start: Старт, packages: Пакеты документов}
+  price_rub: {unit: pack_year, low: 3000, typical: 9000, high: 35000}
+
+onec_holding:
+  title: "1С:Управление холдингом 8"
+  editions: {uh: Базовая, erp_uh: ERP}
+  price_rub: {unit: other, low: 1400000, typical: 1900000, high: 3200000}
+
+kontur_extern:
+  title: Контур.Экстерн
+  editions: {optimal: Оптимальный плюс, max: Максимальный, budget: Бюджетный плюс}
+  price_rub: {unit: pack_year, low: 6500, typical: 14000, high: 35000}
+
+kontur_diadoc:
+  title: Контур.Диадок
+  editions: {packages: Пакеты документов, module_1c: Модуль для 1С}
+  price_rub: {unit: pack_year, low: 4500, typical: 15000, high: 80000}
+
+kontur_focus:
+  title: Контур.Фокус
+  editions: {base: Базовый, premium: Премиум, api: API}
+  price_rub: {unit: pack_year, low: 25000, typical: 55000, high: 150000}
+
+kontur_elba:
+  title: Контур.Эльба
+  editions: {ekonom: Эконом, business: Бизнес, premium: Премиум}
+  price_rub: {unit: pack_year, low: 7000, typical: 16000, high: 32000}
+
+sbis_saby:
+  title: СБИС Saby
+  editions: {reporting: Отчётность, edo: ЭДО, kedo: КЭДО и Кадры, corp: Корпоративный}
+  price_rub: {unit: pack_year, low: 5500, typical: 14000, high: 60000}
+
+taxcom_sprinter:
+  title: Такском
+  editions: {online_sprinter: Онлайн-Спринтер, filer: Файлер}
+  price_rub: {unit: pack_year, low: 4500, typical: 11000, high: 30000}
+
+moysklad:
+  title: МойСклад
+  editions: {start: Базовый, prof: Профессиональный, corp: Корпоративный}
+  price_rub: {unit: pack_year, low: 14000, typical: 45000, high: 120000}
+
+hrlink_kedo:
+  title: HRlink КЭДО
+  editions: {cloud: Облачная, onprem: On-Premise}
+
+vk_hr_tek:
+  title: VK HR Tek
+  editions: {saas: SaaS, onprem: On-Premise}
+
+consultant_plus:
+  title: КонсультантПлюс
+  editions: {lawyer: Комплект Юрист, accountant: Комплект Бухгалтер, budget: Бюджетные организации}
+
+garant_system:
+  title: ГАРАНТ
+  editions: {accountant: Бухгалтер, lawyer: Юрист, enterprise: Предприятие}
+
+spark_interfax:
+  title: СПАРК-Интерфакс
+  editions: {web: Web, api: API}
+  price_rub: {unit: pack_year, low: 90000, typical: 180000, high: 450000}
+
+atol_frontol:
+  title: АТОЛ Frontol 6
+  editions: {start: Start, retail: Торговля, cafe: Кафе}
+
+iiko_rest:
+  title: iikoCloud
+  editions: {start: Start, pro: Pro, enterprise: Enterprise}
+
+r_keeper:
+  title: r_keeper
+  editions: {lite: Lite, pro: 7 Pro}
+
+gigachat_enterprise:
+  title: GigaChat
+  editions: {api: API, onprem: Enterprise On-Premise}
+  price_rub: {unit: pack_year, low: 60000, typical: 450000, high: 4500000}
+
+yandexgpt_api:
+  title: YandexGPT
+  editions: {api: Pro API, studio: AI Studio}
+  price_rub: {unit: pack_year, low: 60000, typical: 400000, high: 3500000}
+
+sber_kandinsky_api:
+  title: GigaCode
+  editions: {cloud: Cloud, onprem: On-Premise}
+
+mws_gpt_ai:
+  title: MWS GPT
+  editions: {api: API, onprem: Cotype On-Premise}
+
+cloud_ru_ml_space:
+  title: Cloud.ru Evolution
+  editions: {ml_space: ML Space}
+  price_rub: {unit: pack_year, low: 350000, typical: 1800000, high: 12000000}
+
+yandex_datasphere:
+  title: Yandex DataSphere
+  editions: {standard: Cloud}
+  price_rub: {unit: pack_year, low: 200000, typical: 1200000, high: 6000000}
+
+visionlabs_luna:
+  title: VisionLabs LUNA
+  editions: {platform: PLATFORM, cars: CARS}
+  price_rub: {unit: other, low: 35000, typical: 95000, high: 350000}
+
+ntechlab_findface:
+  title: NtechLab FindFace
+  editions: {multi: Multi}
+  price_rub: {unit: other, low: 30000, typical: 85000, high: 300000}
+
+just_ai_jaicp:
+  title: Just AI JAICP
+  editions: {cloud: Cloud, onprem: Enterprise On-Premise}
+  price_rub: {unit: pack_year, low: 180000, typical: 650000, high: 2500000}
+
+chatgpt_enterprise:
+  title: OpenAI ChatGPT
+  editions: {team: Team, enterprise: Enterprise}
+
+github_copilot:
+  title: GitHub Copilot
+  editions: {business: Business, enterprise: Enterprise}
+
+ms_copilot_365:
+  title: Microsoft 365 Copilot
+  editions: {m365: для бизнеса}
+
+cyber_backup:
+  title: Кибер Бэкап
+  editions: {standard: Стандартный, advanced: Расширенный, workstation: Для рабочих станций, virt_host: Для виртуальных хостов}
+
+cyber_infrastructure:
+  title: Кибер Инфраструктура
+
+cyber_files:
+  title: Кибер Файлы
+
+rubackup:
+  title: RuBackup
+  editions: {standard: Стандарт, enterprise: Enterprise}
+
+handy_backup:
+  title: Handy Backup
+  editions: {pro: Professional, small_business: Small Business, server_network: Server Network}
+
+raidix_sds:
+  title: RAIDIX
+  editions: {r5: "5", era: ERA}
+
+baum_storage:
+  title: BAUM STORAGE
+
+winrar:
+  title: WinRAR
+
+total_commander:
+  title: Total Commander
+
+r_studio:
+  title: R-Studio
+  editions: {standard: Standard, network: Network, technician: Technician}
+
+veeam_backup:
+  title: "Veeam Backup & Replication"
+  price_rub: {unit: pack_year, low: 120000, typical: 350000, high: 2000000}
+
+acronis_cyber_protect:
+  title: Acronis Cyber Protect
+
+commvault_complete:
+  title: Commvault Complete Data Protection
+
+veritas_netbackup:
+  title: Veritas NetBackup
+
+onec_erp:
+  title: "1С:ERP Управление предприятием 2"
+  editions: {erp2: Стандартная, erp_corp: Корпорация}
+  price_rub: {unit: other, low: 450000, typical: 510000, high: 1200000}
+
+galaktika_erp:
+  title: Галактика
+  editions: {erp: ERP, eam: EAM}
+
+turbo_erp:
+  title: ТУРБО
+  editions: {erp: ERP, toir: ТОРО}
+
+axelot_wms:
+  title: AXELOT
+  editions: {wms: WMS X5, tms: TMS X4}
+  price_rub: {unit: other, low: 350000, typical: 850000, high: 2500000}
+
+optimacros:
+  title: Optimacros
+  editions: {enterprise: Enterprise}
+
+project_expert:
+  title: Project Expert
+  editions: {standard: Standard, prof: Professional, holding: Holding}
+
+bitrix24:
+  title: Битрикс24
+  editions: {cloud_base: Облако Базовый, cloud_pro: Облако Профессиональный, box_portal: Коробочная Корпоративный портал, box_ent: Коробочная Энтерпрайз}
+  price_rub: {unit: pack_year, low: 24000, typical: 140000, high: 650000}
+
+bitrix_site_manager:
+  title: "1С-Битрикс: Управление сайтом"
+  editions: {start: Старт, standard: Стандарт, small_business: Малый бизнес, business: Бизнес}
+
+amocrm:
+  title: amoCRM
+  editions: {base: Базовый, advanced: Расширенный, pro: Профессиональный}
+
+bpmsoft_crm:
+  title: BPMSoft
+  editions: {sales: Продажи, marketing: Маркетинг, service: Сервис}
+
+retailcrm:
+  title: RetailCRM
+  editions: {pro: Профессиональный}
+
+onec_docflow:
+  title: "1С:Документооборот 8"
+  editions: {prof: ПРОФ, corp: КОРП, dgu: ДГУ}
+  price_rub: {unit: other, low: 45000, typical: 220000, high: 360000}
+
+directum_rx:
+  title: Directum RX
+  editions: {onprem: On-Premise, cloud: Cloud}
+
+docsvision:
+  title: Docsvision
+  editions: {base: Базовая платформа, enterprise: Enterprise}
+
+eos_delo:
+  title: ЭОС ДЕЛО
+  editions: {delo: Web, archive: Архив}
+
+tezis_sed:
+  title: СЭД ТЕЗИС
+  editions: {base: Базовая, standard: Стандартная, extended: Расширенная}
+
+tessa_ecm:
+  title: TESSA
+  editions: {standard: Standard, enterprise: Enterprise}
+
+elma365:
+  title: ELMA365
+  editions: {saas: SaaS, onprem_std: On-Premises Standard, onprem_ent: On-Premises Enterprise}
+
+comindware_platform:
+  title: Comindware Platform
+  editions: {standard: Standard, enterprise: Enterprise}
+
+pix_rpa:
+  title: PIX RPA
+  editions: {studio: Studio, robot: Robot, master: Master}
+  price_rub: {unit: other, low: 180000, typical: 420000, high: 900000}
+
+primo_rpa:
+  title: Primo RPA
+  editions: {studio: Studio, runner: Runner, orchestrator: Orchestrator}
+  price_rub: {unit: other, low: 180000, typical: 380000, high: 800000}
+
+robin_rpa:
+  title: ROBIN RPA
+  editions: {studio: Studio, robot: Robot, orchestrator: Orchestrator}
+  price_rub: {unit: other, low: 200000, typical: 420000, high: 850000}
+
+sherpa_rpa:
+  title: Sherpa RPA
+  editions: {designer: Designer, robot: Robot, orchestrator: Orchestrator}
+
+yandex_tracker:
+  title: Яндекс Трекер
+  editions: {standard: Стандартный}
+
+kaiten:
+  title: Kaiten
+  editions: {standard: Standard, pro: Pro, onprem: Enterprise On-Premise}
+
+evaproject:
+  title: EvaProject
+  editions: {cloud: Cloud, server: Server}
+
+evawiki:
+  title: EvaWiki
+  editions: {cloud: Cloud, server: Server}
+
+yougile:
+  title: YouGile
+  editions: {cloud: Облачная, box: Коробочная}
+
+weeek:
+  title: WEEEK
+  editions: {lite: Lite, pro: Pro, business: Business}
+
+planfix:
+  title: ПланФикс
+  editions: {pro: Профессионал, business: Бизнес, corp: Корпорация}
+
+huntflow:
+  title: Хантфлоу
+  editions: {cloud: Облачная, onprem: Коробочная}
+
+potok_hr:
+  title: Поток
+  editions: {recruiting: Рекрутмент, suite: HR-платформа}
+
+sap_s4hana:
+  title: SAP ERP
+  editions: {s4hana: S/4HANA, ecc: ECC}
+
+oracle_ebs:
+  title: Oracle ERP
+  editions: {ebs: E-Business Suite, hyperion: Hyperion EPM}
+
+salesforce_crm:
+  title: Salesforce CRM
+  editions: {sales: Sales Cloud, enterprise: Enterprise}
+
+atlassian_jira:
+  title: Atlassian Jira
+  editions: {software: Software, jsm: Service Management, dc: Data Center}
+
+atlassian_confluence:
+  title: Atlassian Confluence
+  editions: {cloud: Cloud, dc: Data Center}
+
+atlassian_trello:
+  title: Atlassian Trello
+  editions: {standard: Standard}
+
+uipath_rpa:
+  title: UiPath RPA
+  editions: {studio: Studio, unattended: Unattended Robot}
+  price_rub: {unit: other, low: 450000, typical: 850000, high: 1500000}
+
+nanocad_platform:
+  title: Платформа nanoCAD
+  editions: {base: Базовая, spds: Модуль СПДС, mechanica: Модуль Механика, topoplan: Модуль Топоплан, pro: Pro}
+  price_rub: {unit: device_year, low: 28000, typical: 52000, high: 145000}
+
+nanocad_bim:
+  title: nanoCAD BIM
+  editions: {electro: Электро, structures: Конструкции, vk: ВК, hvac: Отопление и вентиляция, ops: ОПС и СКС}
+  price_rub: {unit: device_year, low: 55000, typical: 95000, high: 190000}
+
+model_studio_cs:
+  title: Model Studio CS
+  editions: {pipelines: Трубопроводы, building: Строительные решения, cadlib: CADLib Модель и Архив}
+  price_rub: {unit: device_year, low: 110000, typical: 190000, high: 380000}
+
+zwcad:
+  title: ZWCAD
+  editions: {standard: Standard, pro: Professional, mfg: MFG}
+  price_rub: {unit: device, low: 65000, typical: 98000, high: 155000}
+
+kompas_3d:
+  title: АСКОН КОМПАС
+  editions: {grafik: График, k3d: 3D, mash: 3D Машиностроение, build: Строитель}
+  price_rub: {unit: device, low: 85000, typical: 225000, high: 480000}
+
+pilot_bim:
+  title: АСКОН Pilot
+  editions: {ice: ICE Enterprise, bim: BIM}
+  price_rub: {unit: user, low: 45000, typical: 85000, high: 160000}
+
+lotsman_plm:
+  title: АСКОН
+  editions: {lotsman: "ЛОЦМАН:PLM", vertical: ВЕРТИКАЛЬ}
+  price_rub: {unit: user, low: 95000, typical: 180000, high: 350000}
+
+t_flex_cad:
+  title: T-FLEX
+  editions: {cad2d: CAD 2D+, cad3d: CAD 3D, docs: DOCs}
+  price_rub: {unit: device, low: 120000, typical: 260000, high: 550000}
+
+renga_bim:
+  title: Renga
+  editions: {standard: Standard, professional: Professional}
+  price_rub: {unit: device, low: 95000, typical: 195000, high: 320000}
+
+sprutcam_x:
+  title: СПРУТКАМ X
+  editions: {expert: Expert, robot: Robot}
+  price_rub: {unit: device, low: 180000, typical: 380000, high: 750000}
+
+cae_fidesys:
+  title: CAE Fidesys
+  editions: {standard: Standard, professional: Professional, composite: Composite}
+  price_rub: {unit: device_year, low: 250000, typical: 550000, high: 1200000}
+
+logos_cae:
+  title: ЛОГОС
+  editions: {aerohydro: Аэро-Гидро, strength: Прочность, heat: Тепло}
+  price_rub: {unit: device_year, low: 400000, typical: 900000, high: 2500000}
+
+scad_office:
+  title: SCAD Office
+  editions: {base: Базовая, full: Полная}
+  price_rub: {unit: device, low: 140000, typical: 280000, high: 450000}
+
+lira_sapr:
+  title: ЛИРА-САПР
+  editions: {standard: Standard, pro: PRO, full: FULL}
+  price_rub: {unit: device, low: 150000, typical: 320000, high: 580000}
+
+delta_design:
+  title: Delta Design
+  editions: {standard: Standard, pro: Professional, enterprise: Enterprise}
+  price_rub: {unit: device, low: 180000, typical: 420000, high: 850000}
+
+simintech:
+  title: SimInTech
+  editions: {base: Базовая, pro: Профессиональная}
+  price_rub: {unit: device, low: 120000, typical: 280000, high: 650000}
+
+engee_platform:
+  title: Engee
+  editions: {cloud: Cloud, onprem: Enterprise}
+
+gis_panorama:
+  title: ГИС Панорама
+  editions: {mini: Мини, pro: Профессиональная, server: Сервер}
+  price_rub: {unit: device, low: 25000, typical: 95000, high: 280000}
+
+axioma_gis:
+  title: Аксиома ГИС
+  editions: {base: Базовая}
+  price_rub: {unit: device, low: 55000, typical: 95000, high: 160000}
+
+zulugis:
+  title: ZuluGIS
+  editions: {gis: Базовая, thermo: Thermo, hydro: Hydro}
+  price_rub: {unit: device, low: 45000, typical: 120000, high: 280000}
+
+credo_complex:
+  title: КРЕДО
+  editions: {topograf: ТОПОГРАФ, roads: ДОРОГИ, geology: ГЕОЛОГИЯ, dat: ДАТ}
+  price_rub: {unit: device, low: 85000, typical: 190000, high: 420000}
+
+indorcad:
+  title: IndorCAD
+  editions: {standard: Road, bim: BIM}
+  price_rub: {unit: device, low: 140000, typical: 260000, high: 480000}
+
+robur_topomatic:
+  title: Топоматик Robur
+  editions: {roads: Автомобильные дороги, rail: Железные дороги, survey: Изыскания}
+  price_rub: {unit: device, low: 150000, typical: 290000, high: 520000}
+
+agisoft_metashape:
+  title: Agisoft Metashape
+  editions: {standard: Standard, pro: Professional}
+  price_rub: {unit: device, low: 18000, typical: 320000, high: 450000}
+
+grand_smeta:
+  title: ГРАНД-Смета
+  editions: {local: Локальная, client_server: Клиент-Сервер, rfm: Обновление баз}
+  price_rub: {unit: device, low: 35000, typical: 78000, high: 165000}
+
+smeta_ru:
+  title: Smeta.RU
+  editions: {local: Локальная, network: Сетевая}
+  price_rub: {unit: device, low: 32000, typical: 70000, high: 150000}
+
+bazis_mebel:
+  title: БАЗИС
+  editions: {mebel: Мебельщик, raskroy: Раскрой}
+  price_rub: {unit: device, low: 45000, typical: 120000, high: 260000}
+
+spotlight_raster:
+  title: Spotlight
+  editions: {std: Standard, pro: Pro}
+
+autocad:
+  title: Autodesk AutoCAD
+  editions: {lt: LT, full: Full}
+  price_rub: {unit: user_year, low: 55000, typical: 210000, high: 260000}
+
+autodesk_revit:
+  title: Autodesk Revit
+  editions: {full: Commercial, aec: AEC Collection}
+  price_rub: {unit: user_year, low: 240000, typical: 300000, high: 380000}
+
+autodesk_civil_3d:
+  title: Autodesk Civil 3D
+  editions: {full: Commercial}
+  price_rub: {unit: user_year, low: 250000, typical: 290000, high: 350000}
+
+autodesk_inventor:
+  title: Autodesk Inventor
+  editions: {pro: Professional}
+  price_rub: {unit: user_year, low: 220000, typical: 260000, high: 320000}
+
+autodesk_navisworks:
+  title: Autodesk Navisworks
+  editions: {manage: Manage}
+  price_rub: {unit: user_year, low: 240000, typical: 290000, high: 340000}
+
+solidworks:
+  title: SOLIDWORKS
+  editions: {standard: Standard, pro: Professional, premium: Premium}
+  price_rub: {unit: device, low: 450000, typical: 750000, high: 1200000}
+
+catia:
+  title: Dassault Systèmes CATIA
+  editions: {v5: V5}
+
+siemens_nx:
+  title: Siemens NX
+  editions: {cad: CAD, cam: CAM}
+  price_rub: {unit: device, low: 1100000, typical: 2000000, high: 4000000}
+
+siemens_solid_edge:
+  title: Siemens Solid Edge
+  editions: {classic: Classic}
+
+archicad:
+  title: Graphisoft Archicad
+  editions: {full: Commercial}
+  price_rub: {unit: device_year, low: 220000, typical: 280000, high: 360000}
+
+ansys_suite:
+  title: Ansys
+  editions: {mechanical: Mechanical, fluent: Fluent, hfss: HFSS}
+  price_rub: {unit: device_year, low: 1500000, typical: 3200000, high: 7000000}
+
+matlab:
+  title: MathWorks
+  editions: {matlab: MATLAB, simulink: Simulink}
+  price_rub: {unit: user_year, low: 120000, typical: 350000, high: 900000}
+
+altium_designer:
+  title: Altium Designer
+  editions: {standard: Standard}
+  price_rub: {unit: user_year, low: 350000, typical: 500000, high: 800000}
+
+eplan_electric:
+  title: EPLAN
+  editions: {p8: Electric P8, pro_panel: Pro Panel}
+  price_rub: {unit: user_year, low: 400000, typical: 650000, high: 1100000}
+
+arcgis:
+  title: Esri ArcGIS
+  editions: {pro: Pro, enterprise: Enterprise}
+  price_rub: {unit: user_year, low: 250000, typical: 500000, high: 1500000}
+
+yandex_cloud:
+  title: Yandex Cloud
+  editions: {payg: Базовый, fz152: 152-ФЗ}
+  price_rub: {unit: pack_year, low: 120000, typical: 1200000, high: 12000000}
+
+vk_cloud:
+  title: VK Cloud
+  editions: {public: Public, fz152: 152-ФЗ}
+  price_rub: {unit: pack_year, low: 120000, typical: 1000000, high: 10000000}
+
+vk_private_cloud:
+  title: VK Private Cloud
+  editions: {enterprise: Enterprise}
+  price_rub: {unit: other, low: 250000, typical: 500000, high: 1200000}
+
+cloud_ru_evolution:
+  title: Cloud.ru
+  editions: {evolution: Evolution, advanced: Advanced, stack: Evolution Stack}
+  price_rub: {unit: pack_year, low: 150000, typical: 1500000, high: 15000000}
+
+selectel_cloud:
+  title: Selectel
+  editions: {cloud: Облачные серверы, dedicated: Выделенные серверы, fz152: Облако 152-ФЗ}
+  price_rub: {unit: pack_year, low: 100000, typical: 900000, high: 9000000}
+
+selectel_private_cloud:
+  title: Selectel Частное облако
+  editions: {dedicated: Dedicated}
+  price_rub: {unit: pack_year, low: 1200000, typical: 3600000, high: 12000000}
+
+mts_cloud_mws:
+  title: MWS Cloud
+  editions: {iaas: IaaS, fz152: 152-ФЗ}
+  price_rub: {unit: pack_year, low: 120000, typical: 1200000, high: 12000000}
+
+softline_cloud_iaas:
+  title: Softline Cloud
+  editions: {public: Публичное облако, secure: Защищённое облако 152-ФЗ, ru_stack: Импортонезависимое облако}
+  price_rub: {unit: pack_year, low: 100000, typical: 950000, high: 10000000}
+
+basis_cloud_platform:
+  title: Базис.Cloud
+  editions: {enterprise: Enterprise}
+  price_rub: {unit: other, low: 200000, typical: 420000, high: 900000}
+
+aws_cloud:
+  title: Amazon Web Services
+  editions: {standard: Cloud}
+  price_rub: {unit: pack_year, low: 200000, typical: 2000000, high: 20000000}
+
+microsoft_azure:
+  title: Microsoft Azure
+  editions: {standard: Cloud}
+  price_rub: {unit: pack_year, low: 200000, typical: 2000000, high: 20000000}
+
+google_cloud_platform:
+  title: Google Cloud Platform
+  editions: {standard: Cloud}
+  price_rub: {unit: pack_year, low: 200000, typical: 1800000, high: 15000000}
+
+postgres_pro:
+  title: Postgres Pro
+  editions: {standard: Standard, enterprise: Enterprise, cert: Certified}
+
+tantor_db:
+  title: СУБД Tantor
+  editions: {basic: SE, onec: SE для 1С, cert: Certified}
+
+tantor_platform:
+  title: Платформа Tantor
+
+jatoba_db:
+  title: СУБД Jatoba
+
+red_db:
+  title: РЕД База Данных
+
+pangolin_db:
+  title: Platform V Pangolin
+
+tarantool:
+  title: Tarantool Enterprise
+
+picodata:
+  title: Picodata
+
+arenadata_db:
+  title: Arenadata DB
+
+arenadata_quickmarts:
+  title: Arenadata QuickMarts
+
+arenadata_hadoop:
+  title: Arenadata
+  editions: {adh: Hadoop, ads: Streaming}
+
+visiology_bi:
+  title: Visiology
+
+foresight_analytics:
+  title: Форсайт. Аналитическая платформа
+
+polymatica_bi:
+  title: Polymatica
+  editions: {dashboards: Dashboards, analytics: Analytics, ml: ML}
+
+modus_bi:
+  title: Modus BI
+
+pix_bi:
+  title: PIX BI
+
+yandex_datalens:
+  title: Yandex DataLens
+  price_rub: {unit: pack_year, low: 120000, typical: 360000, high: 1200000}
+
+loginom:
+  title: Loginom
+  editions: {standard: Standard, enterprise: Enterprise}
+
+unidata_mdm:
+  title: Юнидата
+
+dbeaver_pro:
+  title: DBeaver
+  editions: {pro: PRO, ee: Enterprise, team: Team Edition}
+
+ms_sql_server:
+  title: Microsoft SQL Server
+  editions: {standard_core: Standard Core, standard_cal: Standard Server + CAL, enterprise: Enterprise Core}
+
+oracle_db:
+  title: Oracle Database
+  editions: {se2: Standard Edition 2, ee: Enterprise Edition}
+
+ibm_db2:
+  title: IBM Db2
+
+mongodb_enterprise:
+  title: MongoDB Enterprise Advanced
+
+redis_enterprise:
+  title: Redis Enterprise
+
+snowflake_dwh:
+  title: Snowflake Data Cloud
+
+clickhouse_cloud:
+  title: ClickHouse Cloud
+
+ms_power_bi:
+  title: Microsoft Power BI
+  editions: {pro: Pro, premium: Premium}
+
+tableau:
+  title: Tableau
+
+qlik_sense:
+  title: Qlik Sense
+
+gitflic:
+  title: GitFlic
+  editions: {cloud: Cloud, selfhosted: Self-Hosted}
+
+sourcecraft_yandex:
+  title: Yandex SourceCraft
+  editions: {standard: Enterprise}
+
+sphere_t1:
+  title: Платформа Сфера
+  editions: {tasks: Задачи и Знания, code: Код и CI/CD, full: Полный комплект}
+
+platform_v_works:
+  title: Platform V Works
+  editions: {scm: SourceControl, tracking: TaskTracker}
+
+platform_v_synapse:
+  title: Platform V
+  editions: {synapse: Synapse, corax: Corax}
+
+onec_esb:
+  title: "1С:Шина"
+  editions: {base: Сервер}
+
+test_it_tms:
+  title: Test IT
+  editions: {cloud: Cloud, enterprise: Enterprise}
+
+allure_testops:
+  title: Allure TestOps
+  editions: {server: Server, cloud: Cloud}
+
+pvs_studio:
+  title: PVS-Studio
+  editions: {team: Team, enterprise: Enterprise}
+  price_rub: {unit: pack_year, low: 350000, typical: 750000, high: 1800000}
+
+pt_application_inspector:
+  title: PT Application Inspector
+  editions: {enterprise: Enterprise}
+  price_rub: {unit: pack_year, low: 1200000, typical: 2800000, high: 6500000}
+
+solar_appscreener:
+  title: Solar appScreener
+  editions: {standard: Enterprise}
+  price_rub: {unit: pack_year, low: 900000, typical: 2200000, high: 5000000}
+
+fastreport_net:
+  title: FastReport
+  editions: {net_pro: .NET, vcl: VCL}
+  price_rub: {unit: user, low: 25000, typical: 55000, high: 180000}
+
+axiom_jdk_pro:
+  title: Axiom JDK
+  editions: {pro: Pro, certified: Certified}
+
+jetbrains_all_products:
+  title: JetBrains
+  editions: {all_products: All Products Pack, intellij: IntelliJ IDEA Ultimate, pycharm: PyCharm Professional, rider: Rider}
+
+ms_visual_studio:
+  title: Microsoft Visual Studio
+  editions: {pro: Professional, ent: Enterprise}
+
+delphi_rad_studio:
+  title: Embarcadero RAD Studio
+  editions: {pro: Professional, ent: Enterprise}
+
+gitlab_ee:
+  title: GitLab
+  editions: {premium: Premium, ultimate: Ultimate}
+
+github_enterprise:
+  title: GitHub
+  editions: {team: Team, enterprise: Enterprise}
+
+bitbucket_dc:
+  title: Atlassian Bitbucket
+  editions: {dc: Data Center}
+
+testrail:
+  title: TestRail
+  editions: {pro: Professional, enterprise: Enterprise}
+
+sonarqube:
+  title: SonarQube
+  editions: {dev: Developer Edition, ent: Enterprise Edition}
+  price_rub: {unit: pack_year, low: 250000, typical: 1500000, high: 4500000}
+
+postman_enterprise:
+  title: Postman
+  editions: {basic: Professional, enterprise: Enterprise}
+
+oracle_java_se:
+  title: Oracle Java SE
+  editions: {universal: Universal Subscription}
+
+azure_devops_server:
+  title: Microsoft Azure DevOps
+  editions: {server: Server + CAL}
+
+contentreader_pdf:
+  title: КонтентРидер PDF
+  editions: {standard: Standard, corporate: Corporate}
+  price_rub: {unit: device_year, low: 8500, typical: 16000, high: 35000}
+
+contentcapture:
+  title: ContentCapture
+  editions: {standard: Standard, invoices: Модуль счетов и УПД}
+  price_rub: {unit: pack_year, low: 350000, typical: 950000, high: 3500000}
+
+master_pdf_editor:
+  title: Master PDF Editor
+  editions: {pro: Коммерческая}
+
+smart_id_engine:
+  title: Smart Engines
+  editions: {id_engine: ID Engine, doc_engine: Document Engine}
+  price_rub: {unit: pack_year, low: 300000, typical: 850000, high: 2800000}
+
+dbrain_ocr:
+  title: Dbrain
+  editions: {cloud: Cloud API, onprem: On-Premise}
+
+promt_translation:
+  title: PROMT
+  editions: {pro: Professional NMT, server: Neural Translation Server}
+  price_rub: {unit: device, low: 14000, typical: 28000, high: 45000}
+
+paratype_fonts:
+  title: Шрифты ПараТайп
+  editions: {desktop: Desktop, web: Corporate}
+  price_rub: {unit: other, low: 5000, typical: 35000, high: 250000}
+
+crt_voice2med:
+  title: ЦРТ Речевые технологии
+  editions: {voice2med: Voice2Med, analytics: Речевая аналитика 360}
+  price_rub: {unit: user_year, low: 25000, typical: 65000, high: 250000}
+
+salutespeech:
+  title: SaluteSpeech
+  editions: {cloud: Cloud API, onprem: On-Premise}
+  price_rub: {unit: pack_year, low: 60000, typical: 250000, high: 1200000}
+
+yandex_speechkit:
+  title: Yandex SpeechKit
+  editions: {cloud: Cloud, hybrid: Hybrid}
+  price_rub: {unit: pack_year, low: 50000, typical: 200000, high: 1000000}
+
+adobe_acrobat:
+  title: Adobe Acrobat
+  editions: {standard: Standard, pro: Pro for Teams}
+
+abbyy_finereader:
+  title: ABBYY
+  editions: {pdf: FineReader PDF, flexi: FlexiCapture}
+  price_rub: {unit: device_year, low: 12000, typical: 24000, high: 45000}
+
+foxit_pdf_editor:
+  title: Foxit PDF Editor
+  editions: {std: Standard, pro: Pro}
+  price_rub: {unit: user_year, low: 14000, typical: 22000, high: 32000}
+
+deepl_pro:
+  title: DeepL Pro
+  editions: {team: Advanced}
+
+abbyy_lingvo:
+  title: ABBYY Lingvo
+  editions: {pro: Профессиональная}
+
+ispring_suite:
+  title: iSpring
+  editions: {suite: Suite, learn: Learn}
+  price_rub: {unit: pack_year, low: 35000, typical: 120000, high: 450000}
+
+mirapolis_lms:
+  title: Mirapolis
+  editions: {lms: LMS, hcm: HCM}
+  price_rub: {unit: pack_year, low: 250000, typical: 750000, high: 2500000}
+
+websoft_hcm:
+  title: Websoft HCM
+  editions: {lms: LMS, hcm: Полный комплекс}
+  price_rub: {unit: pack_year, low: 300000, typical: 900000, high: 3500000}
+
+equio_lms:
+  title: Эквио
+  editions: {cloud: Cloud, onprem: Enterprise}
+
+getcourse_platform:
+  title: GetCourse
+  editions: {start: Старт}
+  price_rub: {unit: pack_year, low: 48000, typical: 120000, high: 360000}
+
+kaspersky_asap:
+  title: Kaspersky ASAP
+  editions: {cloud: Cloud, onprem: On-Premise}
+
+phishman_awareness:
+  title: Phishman
+  editions: {cloud: Cloud, onprem: Enterprise}
+
+bizone_cymulate_awareness:
+  title: BI.ZONE Security Awareness
+  editions: {awareness: Platform}
+
+softline_academy_courses:
+  title: Курсы Учебного центра Softline
+  editions: {open: Открытые группы, corp: Корпоративное обучение}
+  registry: no
+
+astra_training_courses:
+  title: Курсы Astra Linux
+  editions: {admin: Администрирование, ald: ALD Pro и Брест}
+  registry: no
+
+basealt_training_courses:
+  title: Курсы ОС Альт
+  editions: {admin: Администрирование}
+  registry: no
+
+redos_training_courses:
+  title: Курсы РЕД ОС
+  editions: {admin: Администрирование}
+  registry: no
+
+litres_corporate:
+  title: Литрес
+  editions: {corp: Бизнес-библиотека}
+  price_rub: {unit: pack_year, low: 50000, typical: 180000, high: 900000}
+
+alpina_digital_lib:
+  title: Альпина Диджитал
+  editions: {standard: Бизнес}
+
+pixso_design:
+  title: Pixso
+  editions: {pro: Professional, enterprise: Enterprise}
+
+movavi_video_suite:
+  title: Мовавика
+  editions: {editor: Видео, suite: Видеосюита, business: Бизнес}
+
+movavi_screen_recorder:
+  title: Мовавика Запись экрана
+  editions: {business: Бизнес}
+
+ams_photomaster:
+  title: ФотоМАСТЕР
+  editions: {standard: Стандарт, pro: Профи}
+
+ams_videomontage:
+  title: ВидеоМОНТАЖ
+  editions: {pro: Профи}
+
+akvis_suite:
+  title: AKVIS
+  editions: {business: Business, alchemy: Alchemy}
+
+unigine_engine:
+  title: UNIGINE 2
+  editions: {engineering: Engineering, sim: Sim}
+  price_rub: {unit: user_year, low: 250000, typical: 650000, high: 1800000}
+
+adobe_photoshop:
+  title: Adobe Photoshop
+  editions: {teams: for Teams}
+
+adobe_illustrator:
+  title: Adobe Illustrator
+  editions: {teams: for Teams}
+
+adobe_indesign:
+  title: Adobe InDesign
+  editions: {teams: for Teams}
+
+adobe_premiere:
+  title: Adobe Premiere Pro
+  editions: {teams: for Teams}
+
+adobe_after_effects:
+  title: Adobe After Effects
+  editions: {teams: for Teams}
+
+adobe_creative_cloud:
+  title: Adobe Creative Cloud
+  editions: {teams: for Teams All Apps, enterprise: for Enterprise}
+
+coreldraw:
+  title: CorelDRAW
+  editions: {suite: Graphics Suite, technical: Technical Suite}
+  price_rub: {unit: device, low: 35000, typical: 65000, high: 110000}
+
+figma:
+  title: Figma
+  editions: {pro: Professional, org: Organization}
+
+autodesk_3ds_max:
+  title: Autodesk 3ds Max
+  editions: {full: Commercial}
+  price_rub: {unit: user_year, low: 180000, typical: 220000, high: 280000}
+
+autodesk_maya:
+  title: Autodesk Maya
+  editions: {full: Commercial}
+  price_rub: {unit: user_year, low: 180000, typical: 220000, high: 280000}
+
+cinema_4d:
+  title: Maxon Cinema 4D
+  editions: {c4d: Commercial}
+
+vray_chaos:
+  title: Chaos
+  editions: {vray: V-Ray, corona: Corona}
+  price_rub: {unit: user_year, low: 45000, typical: 75000, high: 120000}
+
+davinci_resolve_studio:
+  title: Blackmagic DaVinci Resolve
+  editions: {studio: Studio}
+  price_rub: {unit: device, low: 32000, typical: 42000, high: 55000}
+
+onec_itilium:
+  title: "1С:ITILIUM"
+  editions: {standard: Стандарт, prof: ПРОФ, corp: КОРП}
+  price_rub: {unit: other, low: 85000, typical: 220000, high: 650000}
+
+macroscop_vms:
+  title: Macroscop
+  editions: {ml: ML, ls: LS, st: ST, enterprise: Enterprise}
+  price_rub: {unit: other, low: 2500, typical: 6500, high: 19000}
+
+trassir_vms:
+  title: TRASSIR
+  editions: {anyip: AnyIP, auto: Auto, neuro: Neuro}
+  price_rub: {unit: other, low: 3000, typical: 7500, high: 25000}
+
+axxon_next_vms:
+  title: Интеллект X
+  editions: {start: Start, enterprise: Enterprise}
+  price_rub: {unit: other, low: 4000, typical: 9500, high: 28000}
+
+infoklinika_mis:
+  title: Инфоклиника
+  editions: {cloud: Cloud, onprem: On-Premise}
+  price_rub: {unit: user, low: 18000, typical: 38000, high: 75000}
+
+astra_support_pack:
+  title: Техподдержка Группы Астра
+  editions: {standard: Стандартная, privileged: Привилегированная}
+
+basealt_support_pack:
+  title: Техподдержка ОС Альт
+  editions: {standard: Стандартная, extended: Расширенная}
+
+redsoft_support_pack:
+  title: Техподдержка РЕД СОФТ
+  editions: {standard: Стандартная, priority: Приоритетная}
+
+kaspersky_msa_support:
+  title: Kaspersky MSA
+  editions: {plus: Plus, enterprise: Enterprise}
+  price_rub: {unit: pack_year, low: 350000, typical: 950000, high: 3500000}
+
+postgres_pro_support:
+  title: Техподдержка Postgres Pro
+  editions: {standard: Стандартная, extended: Расширенная}
+
+softline_managed_support:
+  title: Softline Services
+  editions: {support: Премьер-поддержка 24×7, migration: Миграция и импортозамещение, sam: SAM-аудит}
+  price_rub: {unit: pack_year, low: 250000, typical: 1200000, high: 6000000}
+  registry: no
+
+ispmanager_panel:
+  title: ispmanager 6
+  editions: {lite: Lite, pro: Pro, host: Host, business: Business}
+
+makves_dcap:
+  title: Makves DCAP
+  editions: {enterprise: Enterprise}
+
+cyberpeak_spec_dcap:
+  title: Спектр DCAP
+  editions: {base: Базовая}
+
+stormwall_ddos:
+  title: StormWall
+  editions: {web: Защита сайтов, network: Защита сетей}
+  price_rub: {unit: pack_year, low: 95000, typical: 360000, high: 2400000}
+
+infowatch_arma:
+  title: InfoWatch ARMA
+  editions: {firewall: Industrial Firewall, endpoint: Industrial Endpoint}
+  price_rub: {unit: pack_year, low: 450000, typical: 1500000, high: 6000000}
+
+bitdefender_gravityzone:
+  title: Bitdefender GravityZone
+  editions: {business: Business Security}
+
+sophos_intercept_x:
+  title: Sophos
+  editions: {intercept_x: Intercept X, firewall: Firewall}
+
+trend_micro_apex_one:
+  title: Trend Micro
+  editions: {apex: Apex One, vision: Vision One XDR}
+
+qualys_vmdr:
+  title: Qualys
+  editions: {vmdr: VMDR}
+
+cisco_firepower:
+  title: Cisco Secure Firewall
+  editions: {ftd: Threat Defense, asa: ASA}
+
+globalsign_ssl:
+  title: GlobalSign SSL
+  editions: {ov: OrganizationSSL}
+
+kontur_tolk:
+  title: Контур.Толк
+  editions: {business: Бизнес, server: Сервер, webinars: Вебинары}
+
+mts_link_meetings:
+  title: МТС Линк Встречи
+  editions: {cloud: Облачная, onprem: On-Premise}
+
+mts_link_webinars:
+  title: МТС Линк Вебинары
+  price_rub: {unit: pack_year, low: 65000, typical: 180000, high: 650000}
+
+trueconf_server:
+  title: TrueConf
+  editions: {standard: Server, enterprise: Enterprise}
+
+iva_mcu:
+  title: IVA MCU
+
+iva_one:
+  title: IVA One
+
+vinteo_mcu:
+  title: Vinteo
+
+salute_jazz:
+  title: SaluteJazz
+  editions: {cloud: Облако, onprem: On-Premise}
+
+dion_vks:
+  title: DION
+
+express_messenger:
+  title: eXpress
+
+vk_workspace:
+  title: VK WorkSpace
+  editions: {cloud: SaaS, onprem: On-Premise}
+
+vk_teams:
+  title: VK Teams
+
+compass_messenger:
+  title: Compass
+
+pachca_messenger:
+  title: Пачка
+
+myoffice_squadus:
+  title: МойОфис Squadus
+
+myoffice_mail:
+  title: МойОфис Почта 2
+
+rupost:
+  title: RuPost
+
+communigate_pro:
+  title: CommuniGate Pro
+
+tegu_mail:
+  title: Tegu Enterprise
+
+mango_vats:
+  title: MANGO OFFICE
+  price_rub: {unit: pack_year, low: 36000, typical: 120000, high: 650000}
+
+protei_uc:
+  title: ПРОТЕЙ IP-АТС
+
+naumen_contact_center:
+  title: Naumen Contact Center
+
+yandex_browser_org:
+  title: Яндекс Браузер для организаций
+
+unisender:
+  title: Unisender
+  price_rub: {unit: pack_year, low: 25000, typical: 95000, high: 450000}
+
+mindbox_cdp:
+  title: Mindbox
+  price_rub: {unit: pack_year, low: 600000, typical: 1800000, high: 6000000}
+
+ms_exchange:
+  title: Microsoft Exchange Server
+
+ms_sharepoint:
+  title: Microsoft SharePoint Server
+
+zoom_workplace:
+  title: Zoom Workplace
+
+slack:
+  title: Slack
+
+avaya_aura:
+  title: Avaya Aura
+
+threecx_pbx:
+  title: 3CX Phone System
+
+google_workspace:
+  title: Google Workspace
+
+r7_office:
+  title: Р7-Офис
+  editions: {desktop: Профессиональный, corp_server: Корпоративный сервер, edu: Для образования}
+
+myoffice_standard:
+  title: МойОфис Стандартный
+  editions: {standard_2: Для бизнеса, edu: Образование}
+
+myoffice_professional:
+  title: МойОфис Профессиональный
+  editions: {prof: Корпоративная, private_cloud: Частное облако}
+
+yandex_360:
+  title: Яндекс 360 для бизнеса
+  editions: {basic: Базовый, optimal: Оптимальный, extended: Расширенный}
+
+alteroffice:
+  title: AlterOffice
+  editions: {standard: Стандартный, pro: Профессиональный}
+
+the_bat:
+  title: The Bat!
+  editions: {pro: Professional, home: Home}
+
+sila_union:
+  title: SILA Union
+
+business_studio:
+  title: Business Studio
+  editions: {enterprise: Enterprise, portal: Portal}
+
+advanta_pm:
+  title: Адванта
+
+spider_project:
+  title: Spider Project
+  editions: {desktop: Desktop, pro: Professional}
+
+yonote:
+  title: Yonote
+
+teamly:
+  title: Teamly
+
+holst_boards:
+  title: Holst
+
+mts_link_boards:
+  title: МТС Линк Доски
+
+ms_office:
+  title: Microsoft Office
+  editions: {hb: Home and Business, pro_plus: Professional Plus}
+
+microsoft_365:
+  title: Microsoft 365
+  editions: {business_standard: Business Standard, e3: Enterprise E3}
+
+ms_visio:
+  title: Microsoft Visio
+  editions: {standard: Standard, pro: Professional}
+
+ms_project:
+  title: Microsoft Project
+  editions: {standard: Standard, pro: Professional}
+
+miro:
+  title: Miro
+
+notion:
+  title: Notion
+
+astra_linux_se:
+  title: Astra Linux Special Edition
+  editions: {orel: "«Орёл»", voronezh: "«Воронеж»", smolensk: "«Смоленск»", server: Серверная}
+
+alt_workstation:
+  title: Альт Рабочая станция
+  editions: {mate: MATE, kde: К}
+
+alt_server:
+  title: Альт Сервер
+
+alt_sp:
+  title: Альт СП
+  editions: {workstation: Рабочая станция, server: Сервер}
+
+alt_education:
+  title: Альт Образование
+
+red_os:
+  title: РЕД ОС Рабочая станция
+  editions: {standard: Стандартная, fstec: Сертифицированная ФСТЭК}
+
+red_os_server:
+  title: РЕД ОС Сервер
+  editions: {standard: Стандартная, fstec: Сертифицированная ФСТЭК}
+
+rosa_chrome:
+  title: ОС РОСА
+  editions: {chrome: Хром, cobalt: Кобальт}
+
+msvsphere_os:
+  title: МСВСфера
+  editions: {server: Сервер, arm: АРМ}
+
+osnova_linux:
+  title: "ОС «ОСнова»"
+
+uncom_os:
+  title: Uncom OS
+
+alteros:
+  title: AlterOS
+
+aurora_os:
+  title: Аврора
+  editions: {os: ОС, center: Центр}
+
+rosa_mobile:
+  title: РОСА Мобайл
+
+windows_11:
+  title: Microsoft Windows 11
+  editions: {pro: Pro, home: Home}
+
+windows_10:
+  title: Microsoft Windows 10
+  editions: {pro: Pro, ltsc: Enterprise LTSC}
+
+windows_server:
+  title: Microsoft Windows Server
+  editions: {standard: Standard, datacenter: Datacenter}
+
+windows_server_cal:
+  title: Microsoft Windows Server CAL
+  editions: {user_cal: User, device_cal: Device}
+
+windows_server_rds_cal:
+  title: Microsoft Windows Server RDS CAL
+  editions: {user_rds: User, device_rds: Device}
+
+rhel:
+  title: Red Hat Enterprise Linux
+
+suse_sles:
+  title: SUSE Linux Enterprise Server
+
+ubuntu_pro:
+  title: Canonical Ubuntu Pro
+
+assistant_remote:
+  title: Ассистент
+  editions: {standard: Стандартный, pro: Профессиональный, corp: Корпоративный}
+  price_rub: {unit: user_year, low: 14000, typical: 28000, high: 65000}
+
+rudesktop:
+  title: RuDesktop
+  editions: {standard: Standard, pro: Professional, uem: UEM}
+  extra_categories: [directory_services]
+
+rms_remote:
+  title: RMS Удалённый доступ
+  editions: {starter: Начальная, pro: Профессиональная, site: Корпоративная}
+  price_rub: {unit: user, low: 12000, typical: 29000, high: 85000}
+
+kontur_dostup:
+  title: Контур.Доступ
+  editions: {support: Поддержка, remote_work: Удалёнка}
+  price_rub: {unit: user_year, low: 9000, typical: 18000, high: 45000}
+
+pro32_connect:
+  title: PRO32 Connect
+  editions: {personal: Бизнес, enterprise: Enterprise}
+  price_rub: {unit: user_year, low: 7500, typical: 15000, high: 38000}
+
+getscreen_remote:
+  title: Getscreen.me
+  editions: {starter: Starter, selfhosted: Self-Hosted}
+
+teamviewer:
+  title: TeamViewer
+  editions: {business: Business, premium: Premium}
+  price_rub: {unit: user_year, low: 45000, typical: 95000, high: 190000}
+
+anydesk:
+  title: AnyDesk
+  editions: {standard: Standard, advanced: Advanced}
+
+kaspersky_kesb:
+  title: Kaspersky Endpoint Security для бизнеса
+  editions: {standard: Стандартный, advanced: Расширенный, total: Total}
+
+kaspersky_ksos:
+  title: Kaspersky Small Office Security
+  max_seats: 25
+  upgrade_to: kaspersky_kesb
+
+kaspersky_kes_cloud:
+  title: Kaspersky Endpoint Security Cloud
+  editions: {base: Базовый, plus: Plus, pro: Pro}
+
+kaspersky_symphony_xdr:
+  title: Kaspersky Symphony
+  editions: {security: Security, edr: EDR, xdr: XDR}
+
+kaspersky_kata:
+  title: Kaspersky Anti Targeted Attack Platform
+
+kaspersky_kuma:
+  title: Kaspersky KUMA
+
+kaspersky_kics:
+  title: Kaspersky Industrial CyberSecurity
+  editions: {nodes: for Nodes, networks: for Networks}
+
+kaspersky_ksmg:
+  title: Kaspersky Secure Mail Gateway
+
+kaspersky_standard_home:
+  title: Kaspersky
+  editions: {standard: Standard, plus: Plus, premium: Premium}
+  max_seats: 5
+  upgrade_to: kaspersky_ksos
+
+drweb_enterprise_security_suite:
+  title: Dr.Web Enterprise Security Suite
+  editions: {desktop: Защита рабочих станций, server: Защита файловых серверов, mail: Защита почтовых серверов, complex: Комплексная защита}
+
+drweb_small_business:
+  title: Dr.Web Малый бизнес
+  max_seats: 50
+  upgrade_to: drweb_enterprise_security_suite
+
+drweb_security_space:
+  title: Dr.Web Security Space
+  max_seats: 5
+  upgrade_to: drweb_small_business
+
+pro32_endpoint_security:
+  title: PRO32 Endpoint Security
+  editions: {standard: Standard, advanced: Advanced}
+
+pro32_total_security:
+  title: PRO32
+  editions: {total: Total Security, ultimate: Ultimate Security}
+  max_seats: 5
+  upgrade_to: pro32_endpoint_security
+
+pt_maxpatrol_siem:
+  title: Positive Technologies MaxPatrol SIEM
+
+pt_maxpatrol_vm:
+  title: Positive Technologies MaxPatrol VM
+
+pt_maxpatrol_edr:
+  title: Positive Technologies MaxPatrol EDR
+
+pt_nad:
+  title: PT Network Attack Discovery
+
+pt_af:
+  title: PT Application Firewall
+
+pt_ngfw:
+  title: PT NGFW
+
+bizone_edr:
+  title: BI.ZONE EDR
+
+bizone_waf:
+  title: BI.ZONE WAF
+
+f6_mxdr:
+  title: F6 Managed XDR
+
+security_vision_soar:
+  title: Security Vision
+  editions: {irp: SOAR, sgrc: SGRC}
+
+r_vision_soar:
+  title: R-Vision
+  editions: {soar: SOAR, sgrc: SGRC}
+
+rusiem:
+  title: RuSIEM
+
+redcheck:
+  title: RedCheck
+  editions: {standard: Standard, enterprise: Enterprise}
+
+datapk_ics:
+  title: DATAPK
+
+garda_db:
+  title: Гарда БД
+
+garda_waf:
+  title: Гарда WAF
+
+qrator_ddos:
+  title: Qrator Anti-DDoS
+
+usergate_ngfw:
+  title: UserGate NGFW
+  editions: {virtual: Virtual Appliance, hardware: ПАК}
+
+continent_ngfw:
+  title: АПКШ Континент 4
+  editions: {ipc: NGFW, ap: АП, tls: TLS VPN}
+
+ideco_ngfw:
+  title: Ideco NGFW
+  editions: {smb: Standard, enterprise: Enterprise}
+
+traffic_inspector_ng:
+  title: Traffic Inspector Next Generation
+
+vipnet_coordinator:
+  title: ViPNet Coordinator
+  editions: {va: VA, hw: HW}
+
+vipnet_client:
+  title: ViPNet Client
+
+s_terra_vpn:
+  title: С-Терра
+  editions: {gate: Шлюз, client: Клиент}
+
+secret_net_studio:
+  title: Secret Net Studio
+  editions: {base: Базовая, full: Полная, c: C}
+
+vgate_security_code:
+  title: vGate
+  editions: {standard: Standard, enterprise: Enterprise}
+
+sobol_mdz:
+  title: "ПАК «Соболь»"
+
+dallas_lock:
+  title: Dallas Lock
+  editions: {c: 8.0-C, k: 8.0-K, linux: Linux}
+
+cryptopro_csp:
+  title: КриптоПро CSP
+  editions: {client: Клиентская, server: Серверная}
+
+cryptopro_dss:
+  title: КриптоПро DSS
+
+cryptoarm_gost:
+  title: КриптоАРМ ГОСТ
+  editions: {standard: Стандарт, pro: Про}
+
+rutoken_ecp:
+  title: Рутокен
+  editions: {ecp3: ЭЦП 3.0, lite: Lite}
+
+aladdin_jacarta:
+  title: JaCarta-2
+  editions: {gost: ГОСТ, pki_gost: PKI/ГОСТ, se: SE}
+
+esmart_token:
+  title: ESMART Token ГОСТ
+
+globaltrust_ssl:
+  title: GlobalTrust SSL
+  editions: {dv: DV, ov: OV, wildcard: Wildcard}
+
+infowatch_traffic_monitor:
+  title: InfoWatch Traffic Monitor
+
+searchinform_kib:
+  title: СёрчИнформ КИБ
+
+searchinform_fileauditor:
+  title: СёрчИнформ FileAuditor
+
+solar_dozor:
+  title: Solar Dozor
+
+falcongaze_securetower:
+  title: Falcongaze SecureTower
+
+staffcop_enterprise:
+  title: Контур.Staffcop
+
+stakhanovets:
+  title: Стахановец
+  editions: {full: Полный, pro: ПРО}
+
+kickidler:
+  title: Kickidler
+  editions: {time: Учёт рабочего времени, monitoring: Мониторинг сотрудников}
+
+solar_inrights:
+  title: Solar inRights
+
+avanpost_idm:
+  title: Avanpost IDM
+
+avanpost_fam:
+  title: Avanpost FAM
+
+multifactor_mfa:
+  title: MULTIFACTOR
+
+indeed_am:
+  title: Indeed Access Manager
+
+indeed_pam:
+  title: Indeed Privileged Access Manager
+
+skdpu_nt:
+  title: СКДПУ НТ
+
+safeinspect_pam:
+  title: SafeInspect
+
+passwork:
+  title: Пассворк
+  editions: {standard: Стандарт, advanced: Расширенный}
+
+blitz_identity:
+  title: Blitz Identity Provider
+
+eset_protect:
+  title: ESET PROTECT
+  editions: {entry: Entry, advanced: Advanced}
+
+fortigate:
+  title: Fortinet FortiGate
+
+checkpoint_ngfw:
+  title: Check Point Quantum
+
+palo_alto_ngfw:
+  title: Palo Alto Networks NGFW
+
+cisco_anyconnect:
+  title: Cisco Secure Client
+
+symantec_endpoint_protection:
+  title: Symantec Endpoint Protection
+
+symantec_dlp:
+  title: Symantec Data Loss Prevention
+
+trellix_endpoint_security:
+  title: Trellix Endpoint Security
+
+crowdstrike_falcon:
+  title: CrowdStrike Falcon
+
+splunk_enterprise:
+  title: Splunk Enterprise
+
+ibm_qradar:
+  title: IBM QRadar SIEM
+
+tenable_nessus:
+  title: Tenable Nessus
+
+cyberark_pam:
+  title: CyberArk PAM
+
+okta_workforce_identity:
+  title: Okta Workforce Identity
+
+onepassword_business:
+  title: 1Password Business
+
+digicert_ssl:
+  title: DigiCert SSL
+
+astra_brest:
+  title: "ПК СВ «Брест»"
+
+orion_zvirt:
+  title: zVirt
+  editions: {standard: Standard, max: Max}
+
+basis_dynamix:
+  title: Basis Dynamix
+  editions: {standard: Standard, enterprise: Enterprise}
+
+basis_workplace:
+  title: Basis Workplace
+
+termidesk:
+  title: Termidesk
+
+red_virtualization:
+  title: РЕД Виртуализация
+
+alt_virtualization:
+  title: Альт Сервер Виртуализации
+
+rosa_virtualization:
+  title: РОСА Виртуализация
+
+vstack_hcp:
+  title: vStack HCP
+
+space_vm:
+  title: SpaceVM
+
+space_vdi:
+  title: Space VDI
+
+vmmanager:
+  title: ISPsystem VMmanager
+  editions: {infra: Infrastructure, hosting: Hosting}
+
+deckhouse_k8s:
+  title: Deckhouse Kubernetes Platform
+  editions: {ee: Enterprise Edition, cse: Certified Security Edition}
+
+shturval_k8s:
+  title: "Платформа контейнеризации «Штурвал»"
+
+orion_nova:
+  title: Nova Container Platform
+
+basis_digital_energy:
+  title: Basis Digital Energy
+
+ald_pro:
+  title: ALD Pro
+
+red_adm:
+  title: РЕД АДМ
+  editions: {standard: Стандартная, pro: Промышленная}
+
+alt_domain:
+  title: Альт Домен
+
+colibri_arm:
+  title: Колибри-АРМ
+
+monq_aiops:
+  title: MONQ
+
+saymon_monitoring:
+  title: SAYMON
+
+klyuch_astrom:
+  title: Ключ-АСТРОМ
+
+simpleone_itsm:
+  title: SimpleOne ITSM
+
+naumen_smp:
+  title: Naumen Service Management
+  editions: {smp: SMP, itsm365: ITSM 365}
+
+inframanager:
+  title: InfraManager
+
+angie_pro:
+  title: Angie PRO
+
+wine_etersoft:
+  title: WINE@Etersoft
+  editions: {local: Local, network: Network, cad: CAD}
+
+total_network_inventory:
+  title: Total Network Inventory
+  editions: {standard: Standard, pro: Professional}
+
+aida64_business:
+  title: AIDA64
+  editions: {extreme: Extreme, business: Business, network_audit: Network Audit}
+  price_rub: {unit: pack_year, low: 6000, typical: 28000, high: 120000}
+
+vmware_vsphere:
+  title: VMware vSphere
+  editions: {standard: Standard, vvf: Foundation}
+
+vmware_horizon:
+  title: VMware Horizon
+
+vmware_workstation:
+  title: VMware Workstation Pro
+
+citrix_virtual_apps:
+  title: Citrix Virtual Apps and Desktops
+
+redhat_openshift:
+  title: Red Hat OpenShift Container Platform
+
+parallels_desktop:
+  title: Parallels Desktop for Mac
+
+zabbix_support:
+  title: Zabbix Enterprise Support
+
+servicenow_itsm:
+  title: ServiceNow ITSM
+
+datadog_apm:
+  title: Datadog APM
+
+f5_bigip:
+  title: F5 BIG-IP

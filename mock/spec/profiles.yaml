@@ -2,8 +2,8 @@
 # Используются для демонстрации персонализации выдачи, контекстного подбора лицензий,
 # сценария продления истекающих лицензий и оценки качества поиска (eval/queries.*.jsonl).
 #
-# Поле `family`: id из kb/families/*.yaml, только если такой файл уже существует;
-# на момент создания profiles.yaml файлы kb/families/*.yaml ещё не записаны, поэтому family: null.
+# Поле `family`: id семейства из design/work/families_index.tsv (kb/families/).
+# Поле `edition`: id редакции из design/work/families_index.tsv (если редакция однозначно определяется), иначе исходное описание.
 # Поле `industry`: соответствует id из kb/industries.yaml.
 # Поле `expires_in_days`: положительное число — дней до окончания лицензии, null — бессрочная.
 
@@ -55,10 +55,10 @@ profiles:
       certs_required: []
       budget: low
     owned:
-      - {product: "Kaspersky Small Office Security", family: null, edition: "15 устройств + 1 сервер", qty: 15, metric: device, purchased_days_ago: 344, expires_in_days: 21}
-      - {product: "1С:Управление торговлей 8", family: null, edition: "ПРОФ", qty: 10, metric: user, purchased_days_ago: 420, expires_in_days: null}
-      - {product: "1С:ИТС ПРОФ", family: null, edition: "12 месяцев", qty: 1, metric: company, purchased_days_ago: 310, expires_in_days: 55}
-      - {product: "Контур.Диадок", family: null, edition: "Пакет документов", qty: 1, metric: company, purchased_days_ago: 200, expires_in_days: 165}
+      - {product: "Kaspersky Small Office Security", family: kaspersky_ksos, edition: "15 устройств + 1 сервер", qty: 15, metric: device, purchased_days_ago: 344, expires_in_days: 21}
+      - {product: "1С:Управление торговлей 8", family: onec_trade, edition: "prof", qty: 10, metric: user, purchased_days_ago: 420, expires_in_days: null}
+      - {product: "1С:ИТС ПРОФ", family: onec_its, edition: "prof", qty: 1, metric: company, purchased_days_ago: 310, expires_in_days: 55}
+      - {product: "Контур.Диадок", family: kontur_diadoc, edition: "packages", qty: 1, metric: company, purchased_days_ago: 200, expires_in_days: 165}
     orders:
       - {days_ago: 344, items: [{product: "Kaspersky Small Office Security", action: new, qty: 15, term_months: 12}]}
       - {days_ago: 310, items: [{product: "1С:ИТС ПРОФ", action: renewal, qty: 1, term_months: 12}]}
@@ -93,10 +93,10 @@ profiles:
       certs_required: [fstec]
       budget: medium
     owned:
-      - {product: "Astra Linux Special Edition", family: null, edition: "Очередное обновление, уровень Воронеж", qty: 300, metric: device, purchased_days_ago: 520, expires_in_days: null}
-      - {product: "Kaspersky Endpoint Security для Linux", family: null, edition: "Сертифицированный ФСТЭК", qty: 300, metric: device, purchased_days_ago: 337, expires_in_days: 28}
-      - {product: "КриптоПро CSP", family: null, edition: "5.0, сертификат ФСБ", qty: 120, metric: device, purchased_days_ago: 325, expires_in_days: 40}
-      - {product: "Р7-Офис. Десктоп", family: null, edition: "Государственная лицензия", qty: 300, metric: device, purchased_days_ago: 330, expires_in_days: 35}
+      - {product: "Astra Linux Special Edition", family: astra_linux_se, edition: "voronezh", qty: 300, metric: device, purchased_days_ago: 520, expires_in_days: null}
+      - {product: "Kaspersky Endpoint Security для Linux", family: kaspersky_kesb, edition: "Сертифицированный ФСТЭК", qty: 300, metric: device, purchased_days_ago: 337, expires_in_days: 28}
+      - {product: "КриптоПро CSP", family: cryptopro_csp, edition: "client", qty: 120, metric: device, purchased_days_ago: 325, expires_in_days: 40}
+      - {product: "Р7-Офис. Десктоп", family: r7_office, edition: "desktop", qty: 300, metric: device, purchased_days_ago: 330, expires_in_days: 35}
     orders:
       - {days_ago: 337, items: [{product: "Kaspersky Endpoint Security для Linux", action: renewal, qty: 300, term_months: 12}]}
       - {days_ago: 330, items: [{product: "Р7-Офис. Десктоп", action: new, qty: 300, term_months: 12}]}
@@ -131,10 +131,10 @@ profiles:
       certs_required: []
       budget: low
     owned:
-      - {product: "Альт Образование", family: null, edition: "10, образовательная лицензия", qty: 400, metric: device, purchased_days_ago: 400, expires_in_days: null}
-      - {product: "Dr.Web Enterprise Security Suite", family: null, edition: "Образовательная лицензия (EDU)", qty: 850, metric: device, purchased_days_ago: 348, expires_in_days: 17}
-      - {product: "МойОфис Образование", family: null, edition: "Академическая лицензия", qty: 850, metric: device, purchased_days_ago: 315, expires_in_days: 50}
-      - {product: "КОМПАС-3D", family: null, edition: "Учебный комплект для вузов", qty: 120, metric: device, purchased_days_ago: 320, expires_in_days: 45}
+      - {product: "Альт Образование", family: alt_education, edition: "10, образовательная лицензия", qty: 400, metric: device, purchased_days_ago: 400, expires_in_days: null}
+      - {product: "Dr.Web Enterprise Security Suite", family: drweb_enterprise_security_suite, edition: "Образовательная лицензия (EDU)", qty: 850, metric: device, purchased_days_ago: 348, expires_in_days: 17}
+      - {product: "МойОфис Образование", family: myoffice_standard, edition: "edu", qty: 850, metric: device, purchased_days_ago: 315, expires_in_days: 50}
+      - {product: "КОМПАС-3D", family: kompas_3d, edition: "k3d", qty: 120, metric: device, purchased_days_ago: 320, expires_in_days: 45}
     orders:
       - {days_ago: 348, items: [{product: "Dr.Web Enterprise Security Suite", action: renewal, qty: 850, term_months: 12}]}
       - {days_ago: 320, items: [{product: "КОМПАС-3D", action: renewal, qty: 120, term_months: 12}]}
@@ -169,11 +169,11 @@ profiles:
       certs_required: [fstec, fsb]
       budget: high
     owned:
-      - {product: "Kaspersky Endpoint Security для бизнеса", family: null, edition: "Расширенный, 5000+ узлов", qty: 5000, metric: device, purchased_days_ago: 325, expires_in_days: 40}
-      - {product: "Kaspersky Industrial CyberSecurity", family: null, edition: "Для узлов и сетей АСУ ТП", qty: 250, metric: device, purchased_days_ago: 260, expires_in_days: 105}
-      - {product: "MaxPatrol SIEM", family: null, edition: "Enterprise", qty: 1, metric: company, purchased_days_ago: 350, expires_in_days: 15}
-      - {product: "1С:ERP Управление предприятием 2", family: null, edition: "КОРП", qty: 800, metric: user, purchased_days_ago: 600, expires_in_days: null}
-      - {product: "Astra Linux Special Edition", family: null, edition: "Серверная и десктопная", qty: 1200, metric: device, purchased_days_ago: 190, expires_in_days: null}
+      - {product: "Kaspersky Endpoint Security для бизнеса", family: kaspersky_kesb, edition: "advanced", qty: 5000, metric: device, purchased_days_ago: 325, expires_in_days: 40}
+      - {product: "Kaspersky Industrial CyberSecurity", family: kaspersky_kics, edition: "Для узлов и сетей АСУ ТП", qty: 250, metric: device, purchased_days_ago: 260, expires_in_days: 105}
+      - {product: "MaxPatrol SIEM", family: pt_maxpatrol_siem, edition: "Enterprise", qty: 1, metric: company, purchased_days_ago: 350, expires_in_days: 15}
+      - {product: "1С:ERP Управление предприятием 2", family: onec_erp, edition: "erp_corp", qty: 800, metric: user, purchased_days_ago: 600, expires_in_days: null}
+      - {product: "Astra Linux Special Edition", family: astra_linux_se, edition: "Серверная и десктопная", qty: 1200, metric: device, purchased_days_ago: 190, expires_in_days: null}
     orders:
       - {days_ago: 350, items: [{product: "MaxPatrol SIEM", action: renewal, qty: 1, term_months: 12}]}
       - {days_ago: 325, items: [{product: "Kaspersky Endpoint Security для бизнеса", action: renewal, qty: 5000, term_months: 12}]}
@@ -208,10 +208,10 @@ profiles:
       certs_required: []
       budget: medium
     owned:
-      - {product: "Контур.Толк", family: null, edition: "Бизнес, 120 пользователей", qty: 120, metric: user, purchased_days_ago: 340, expires_in_days: 25}
-      - {product: "Яндекс 360 для бизнеса", family: null, edition: "Оптимальный", qty: 120, metric: user, purchased_days_ago: 318, expires_in_days: 47}
-      - {product: "Kaspersky Endpoint Security Cloud", family: null, edition: "macOS и Linux", qty: 120, metric: device, purchased_days_ago: 220, expires_in_days: 145}
-      - {product: "Kaiten", family: null, edition: "Корпоративный", qty: 120, metric: user, purchased_days_ago: 150, expires_in_days: 215}
+      - {product: "Контур.Толк", family: kontur_tolk, edition: "business", qty: 120, metric: user, purchased_days_ago: 340, expires_in_days: 25}
+      - {product: "Яндекс 360 для бизнеса", family: yandex_360, edition: "optimal", qty: 120, metric: user, purchased_days_ago: 318, expires_in_days: 47}
+      - {product: "Kaspersky Endpoint Security Cloud", family: kaspersky_kes_cloud, edition: "macOS и Linux", qty: 120, metric: device, purchased_days_ago: 220, expires_in_days: 145}
+      - {product: "Kaiten", family: kaiten, edition: "Корпоративный", qty: 120, metric: user, purchased_days_ago: 150, expires_in_days: 215}
     orders:
       - {days_ago: 340, items: [{product: "Контур.Толк", action: new, qty: 120, term_months: 12}]}
       - {days_ago: 318, items: [{product: "Яндекс 360 для бизнеса", action: renewal, qty: 120, term_months: 12}]}
@@ -246,10 +246,10 @@ profiles:
       certs_required: []
       budget: high
     owned:
-      - {product: "Платформа nanoCAD", family: null, edition: "24, сетевые (плавающие) лицензии + СПДС", qty: 80, metric: concurrent, purchased_days_ago: 345, expires_in_days: 20}
-      - {product: "Renga", family: null, edition: "Professional, BIM-проектирование", qty: 45, metric: concurrent, purchased_days_ago: 280, expires_in_days: 85}
-      - {product: "Pilot-BIM", family: null, edition: "Среда общих данных", qty: 120, metric: user, purchased_days_ago: 312, expires_in_days: 53}
-      - {product: "Гранд-Смета", family: null, edition: "Проф, сетевая", qty: 15, metric: concurrent, purchased_days_ago: 240, expires_in_days: 125}
+      - {product: "Платформа nanoCAD", family: nanocad_platform, edition: "spds", qty: 80, metric: concurrent, purchased_days_ago: 345, expires_in_days: 20}
+      - {product: "Renga", family: renga_bim, edition: "professional", qty: 45, metric: concurrent, purchased_days_ago: 280, expires_in_days: 85}
+      - {product: "Pilot-BIM", family: pilot_bim, edition: "bim", qty: 120, metric: user, purchased_days_ago: 312, expires_in_days: 53}
+      - {product: "Гранд-Смета", family: grand_smeta, edition: "client_server", qty: 15, metric: concurrent, purchased_days_ago: 240, expires_in_days: 125}
     orders:
       - {days_ago: 345, items: [{product: "Платформа nanoCAD", action: renewal, qty: 80, term_months: 12}]}
       - {days_ago: 312, items: [{product: "Pilot-BIM", action: new, qty: 120, term_months: 12}]}
@@ -284,11 +284,11 @@ profiles:
       certs_required: [fsb]
       budget: medium
     owned:
-      - {product: "1С:Бухгалтерия 8", family: null, edition: "КОРП + клиентские лицензии на 50 мест", qty: 50, metric: user, purchased_days_ago: 720, expires_in_days: null}
-      - {product: "1С:Зарплата и управление персоналом 8", family: null, edition: "ПРОФ", qty: 20, metric: user, purchased_days_ago: 500, expires_in_days: null}
-      - {product: "Контур.Экстерн", family: null, edition: "Обслуживающая бухгалтерия", qty: 1, metric: company, purchased_days_ago: 351, expires_in_days: 14}
-      - {product: "КриптоПро CSP", family: null, edition: "5.0 годовая", qty: 45, metric: device, purchased_days_ago: 320, expires_in_days: 45}
-      - {product: "Контур.Фокус", family: null, edition: "Проверка контрагентов", qty: 5, metric: user, purchased_days_ago: 210, expires_in_days: 155}
+      - {product: "1С:Бухгалтерия 8", family: onec_accounting, edition: "corp", qty: 50, metric: user, purchased_days_ago: 720, expires_in_days: null}
+      - {product: "1С:Зарплата и управление персоналом 8", family: onec_zup, edition: "prof", qty: 20, metric: user, purchased_days_ago: 500, expires_in_days: null}
+      - {product: "Контур.Экстерн", family: kontur_extern, edition: "Обслуживающая бухгалтерия", qty: 1, metric: company, purchased_days_ago: 351, expires_in_days: 14}
+      - {product: "КриптоПро CSP", family: cryptopro_csp, edition: "client", qty: 45, metric: device, purchased_days_ago: 320, expires_in_days: 45}
+      - {product: "Контур.Фокус", family: kontur_focus, edition: "Проверка контрагентов", qty: 5, metric: user, purchased_days_ago: 210, expires_in_days: 155}
     orders:
       - {days_ago: 351, items: [{product: "Контур.Экстерн", action: renewal, qty: 1, term_months: 12}]}
       - {days_ago: 320, items: [{product: "КриптоПро CSP", action: renewal, qty: 45, term_months: 12}]}
@@ -323,10 +323,10 @@ profiles:
       certs_required: [fstec, fsb]
       budget: high
     owned:
-      - {product: "InfoWatch Traffic Monitor", family: null, edition: "DLP Enterprise, сертификат ФСТЭК", qty: 1400, metric: device, purchased_days_ago: 332, expires_in_days: 33}
-      - {product: "Континент 4", family: null, edition: "АПКШ NGFW / ГОСТ VPN (ФСБ + ФСТЭК)", qty: 20, metric: server, purchased_days_ago: 410, expires_in_days: null}
-      - {product: "Postgres Pro Enterprise", family: null, edition: "Сертифицированная ФСТЭК", qty: 64, metric: core, purchased_days_ago: 315, expires_in_days: 50}
-      - {product: "Secret Net Studio", family: null, edition: "СЗИ от НСД (ФСТЭК)", qty: 1400, metric: device, purchased_days_ago: 600, expires_in_days: null}
+      - {product: "InfoWatch Traffic Monitor", family: infowatch_traffic_monitor, edition: "DLP Enterprise, сертификат ФСТЭК", qty: 1400, metric: device, purchased_days_ago: 332, expires_in_days: 33}
+      - {product: "Континент 4", family: continent_ngfw, edition: "ipc", qty: 20, metric: server, purchased_days_ago: 410, expires_in_days: null}
+      - {product: "Postgres Pro Enterprise", family: postgres_pro, edition: "cert", qty: 64, metric: core, purchased_days_ago: 315, expires_in_days: 50}
+      - {product: "Secret Net Studio", family: secret_net_studio, edition: "СЗИ от НСД (ФСТЭК)", qty: 1400, metric: device, purchased_days_ago: 600, expires_in_days: null}
     orders:
       - {days_ago: 332, items: [{product: "InfoWatch Traffic Monitor", action: renewal, qty: 1400, term_months: 12}]}
       - {days_ago: 315, items: [{product: "Postgres Pro Enterprise", action: renewal, qty: 64, term_months: 12}]}
@@ -360,10 +360,10 @@ profiles:
       certs_required: []
       budget: medium
     owned:
-      - {product: "1С:Розница 8", family: null, edition: "ПРОФ, сеть магазинов", qty: 120, metric: user, purchased_days_ago: 480, expires_in_days: null}
-      - {product: "Битрикс24", family: null, edition: "Коробочная версия, Энтерпрайз", qty: 250, metric: user, purchased_days_ago: 342, expires_in_days: 23}
-      - {product: "Кибер Бэкап", family: null, edition: "Расширенный, 18 серверов", qty: 18, metric: server, purchased_days_ago: 328, expires_in_days: 37}
-      - {product: "Kaspersky Endpoint Security для бизнеса", family: null, edition: "Стандартный", qty: 380, metric: device, purchased_days_ago: 200, expires_in_days: 165}
+      - {product: "1С:Розница 8", family: onec_retail, edition: "prof", qty: 120, metric: user, purchased_days_ago: 480, expires_in_days: null}
+      - {product: "Битрикс24", family: bitrix24, edition: "box_ent", qty: 250, metric: user, purchased_days_ago: 342, expires_in_days: 23}
+      - {product: "Кибер Бэкап", family: cyber_backup, edition: "advanced", qty: 18, metric: server, purchased_days_ago: 328, expires_in_days: 37}
+      - {product: "Kaspersky Endpoint Security для бизнеса", family: kaspersky_kesb, edition: "standard", qty: 380, metric: device, purchased_days_ago: 200, expires_in_days: 165}
     orders:
       - {days_ago: 342, items: [{product: "Битрикс24", action: renewal, qty: 250, term_months: 12}]}
       - {days_ago: 328, items: [{product: "Кибер Бэкап", action: renewal, qty: 18, term_months: 12}]}
@@ -398,8 +398,8 @@ profiles:
       certs_required: []
       budget: low
     owned:
-      - {product: "Kaspersky Plus", family: null, edition: "На 3 устройства, 1 год", qty: 3, metric: device, purchased_days_ago: 347, expires_in_days: 18}
-      - {product: "Яндекс 360", family: null, edition: "Премиум 1 ТБ", qty: 1, metric: user, purchased_days_ago: 210, expires_in_days: 155}
+      - {product: "Kaspersky Plus", family: kaspersky_standard_home, edition: "plus", qty: 3, metric: device, purchased_days_ago: 347, expires_in_days: 18}
+      - {product: "Яндекс 360", family: yandex_360, edition: "Премиум 1 ТБ", qty: 1, metric: user, purchased_days_ago: 210, expires_in_days: 155}
     orders:
       - {days_ago: 347, items: [{product: "Kaspersky Plus", action: new, qty: 3, term_months: 12}]}
     showcase:

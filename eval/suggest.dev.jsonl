@@ -1,0 +1,124 @@
+{"id": "sug-0001", "prefix": "kasp", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security", "Kaspersky Small Office Security", "Kaspersky"], "group": "products", "corrected": false}
+{"id": "sug-0002", "prefix": "kaspersky e", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security для бизнеса", "Kaspersky Endpoint Security Cloud"], "group": "products", "corrected": false}
+{"id": "sug-0003", "prefix": "астр", "profile": "gov_clinic", "expect_any": ["Astra Linux Special Edition", "Астра Линукс"], "group": "products", "corrected": false}
+{"id": "sug-0004", "prefix": "astra l", "profile": "guest", "expect_any": ["Astra Linux Special Edition", "Astra Linux"], "group": "products", "corrected": false}
+{"id": "sug-0005", "prefix": "р7", "profile": "guest", "expect_any": ["Р7-Офис", "Р7-Офис Профессиональный"], "group": "products", "corrected": false}
+{"id": "sug-0006", "prefix": "р7-оф", "profile": "smb_trade", "expect_any": ["Р7-Офис", "Р7-Офис Корпоративный сервер"], "group": "products", "corrected": false}
+{"id": "sug-0007", "prefix": "мойоф", "profile": "guest", "expect_any": ["МойОфис Стандартный", "МойОфис Профессиональный", "МойОфис Почта"], "group": "products", "corrected": false}
+{"id": "sug-0008", "prefix": "1с:бух", "profile": "accounting_firm", "expect_any": ["1С:Бухгалтерия 8", "1С:Бухгалтерия государственного учреждения 8"], "group": "products", "corrected": false}
+{"id": "sug-0009", "prefix": "1с:зу", "profile": "accounting_firm", "expect_any": ["1С:Зарплата и управление персоналом 8", "1С:ЗУП"], "group": "products", "corrected": false}
+{"id": "sug-0010", "prefix": "1с:ерп", "profile": "ent_factory", "expect_any": ["1С:ERP Управление предприятием 2", "1С:ERP"], "group": "products", "corrected": false}
+{"id": "sug-0011", "prefix": "1с:торг", "profile": "smb_trade", "expect_any": ["1С:Управление торговлей 8", "1С:УТ"], "group": "products", "corrected": false}
+{"id": "sug-0012", "prefix": "1с:итс", "profile": "smb_trade", "expect_any": ["1С:ИТС", "1С:ИТС ПРОФ"], "group": "products", "corrected": false}
+{"id": "sug-0013", "prefix": "криптоп", "profile": "accounting_firm", "expect_any": ["КриптоПро CSP", "КриптоПро DSS"], "group": "products", "corrected": false}
+{"id": "sug-0014", "prefix": "руток", "profile": "guest", "expect_any": ["Рутокен ЭЦП 3.0", "Рутокен"], "group": "products", "corrected": false}
+{"id": "sug-0015", "prefix": "nanoc", "profile": "design_bureau", "expect_any": ["Платформа nanoCAD", "nanoCAD BIM", "nanoCAD"], "group": "products", "corrected": false}
+{"id": "sug-0016", "prefix": "компас", "profile": "edu_university", "expect_any": ["КОМПАС-3D", "КОМПАС-График"], "group": "products", "corrected": false}
+{"id": "sug-0017", "prefix": "reng", "profile": "design_bureau", "expect_any": ["Renga", "Renga Professional"], "group": "products", "corrected": false}
+{"id": "sug-0018", "prefix": "гранд", "profile": "design_bureau", "expect_any": ["ГРАНД-Смета", "Гранд-Смета"], "group": "products", "corrected": false}
+{"id": "sug-0019", "prefix": "userg", "profile": "ent_factory", "expect_any": ["UserGate NGFW", "UserGate"], "group": "products", "corrected": false}
+{"id": "sug-0020", "prefix": "контин", "profile": "fin_bank", "expect_any": ["АПКШ Континент 4", "Континент 4"], "group": "products", "corrected": false}
+{"id": "sug-0021", "prefix": "vipne", "profile": "gov_clinic", "expect_any": ["ViPNet Coordinator", "ViPNet Client"], "group": "products", "corrected": false}
+{"id": "sug-0022", "prefix": "maxpat", "profile": "ent_factory", "expect_any": ["MaxPatrol SIEM", "MaxPatrol VM", "MaxPatrol EDR"], "group": "products", "corrected": false}
+{"id": "sug-0023", "prefix": "dr.w", "profile": "edu_university", "expect_any": ["Dr.Web Enterprise Security Suite", "Dr.Web Малый бизнес", "Dr.Web Security Space"], "group": "products", "corrected": false}
+{"id": "sug-0024", "prefix": "postgr", "profile": "fin_bank", "expect_any": ["Postgres Pro", "Postgres Pro Enterprise"], "group": "products", "corrected": false}
+{"id": "sug-0025", "prefix": "кибер б", "profile": "retail_logistics", "expect_any": ["Кибер Бэкап", "Cyber Backup"], "group": "products", "corrected": false}
+{"id": "sug-0026", "prefix": "zvir", "profile": "ent_factory", "expect_any": ["zVirt", "zVirt Standard", "zVirt Max"], "group": "products", "corrected": false}
+{"id": "sug-0027", "prefix": "лабор", "profile": "guest", "expect_any": ["Лаборатория Касперского", "Kaspersky"], "group": "vendors", "corrected": false}
+{"id": "sug-0028", "prefix": "базальт", "profile": "edu_university", "expect_any": ["Базальт СПО", "Альт"], "group": "vendors", "corrected": false}
+{"id": "sug-0029", "prefix": "ред со", "profile": "design_bureau", "expect_any": ["РЕД СОФТ", "РЕД ОС"], "group": "vendors", "corrected": false}
+{"id": "sug-0030", "prefix": "аско", "profile": "design_bureau", "expect_any": ["АСКОН", "КОМПАС-3D"], "group": "vendors", "corrected": false}
+{"id": "sug-0031", "prefix": "наносо", "profile": "design_bureau", "expect_any": ["Нанософт", "nanoCAD"], "group": "vendors", "corrected": false}
+{"id": "sug-0032", "prefix": "позит", "profile": "ent_factory", "expect_any": ["Positive Technologies", "Позитив Текнолоджиз"], "group": "vendors", "corrected": false}
+{"id": "sug-0033", "prefix": "positiv", "profile": "ent_factory", "expect_any": ["Positive Technologies", "MaxPatrol SIEM"], "group": "vendors", "corrected": false}
+{"id": "sug-0034", "prefix": "инфот", "profile": "gov_clinic", "expect_any": ["ИнфоТеКС", "ViPNet"], "group": "vendors", "corrected": false}
+{"id": "sug-0035", "prefix": "код без", "profile": "fin_bank", "expect_any": ["Код Безопасности", "Secret Net Studio", "Континент 4"], "group": "vendors", "corrected": false}
+{"id": "sug-0036", "prefix": "скб кон", "profile": "accounting_firm", "expect_any": ["СКБ Контур", "Контур"], "group": "vendors", "corrected": false}
+{"id": "sug-0037", "prefix": "тензо", "profile": "smb_trade", "expect_any": ["Тензор", "СБИС"], "group": "vendors", "corrected": false}
+{"id": "sug-0038", "prefix": "киберпр", "profile": "retail_logistics", "expect_any": ["Киберпротект", "Кибер Бэкап"], "group": "vendors", "corrected": false}
+{"id": "sug-0039", "prefix": "группа а", "profile": "gov_clinic", "expect_any": ["Группа Астра", "Astra Linux"], "group": "vendors", "corrected": false}
+{"id": "sug-0040", "prefix": "орион", "profile": "ent_factory", "expect_any": ["Орион софт", "zVirt"], "group": "vendors", "corrected": false}
+{"id": "sug-0041", "prefix": "базис", "profile": "ent_factory", "expect_any": ["Базис", "Basis Dynamix"], "group": "vendors", "corrected": false}
+{"id": "sug-0042", "prefix": "яндек", "profile": "it_company", "expect_any": ["Яндекс", "Яндекс 360", "Yandex Cloud"], "group": "vendors", "corrected": false}
+{"id": "sug-0043", "prefix": "каспер", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security", "Kaspersky Small Office Security", "Лаборатория Касперского"], "group": "products", "corrected": false}
+{"id": "sug-0044", "prefix": "винда", "profile": "smb_trade", "expect_any": ["Microsoft Windows 11", "Microsoft Windows 10", "Windows Server"], "group": "products", "corrected": false}
+{"id": "sug-0045", "prefix": "бух", "profile": "accounting_firm", "expect_any": ["1С:Бухгалтерия 8", "Бухгалтерский учёт", "1С:Бухгалтерия"], "group": "products", "corrected": false}
+{"id": "sug-0046", "prefix": "астра", "profile": "gov_clinic", "expect_any": ["Astra Linux Special Edition", "Астра Линукс"], "group": "products", "corrected": false}
+{"id": "sug-0047", "prefix": "крипто", "profile": "guest", "expect_any": ["КриптоПро CSP", "КриптоАРМ ГОСТ", "СКЗИ"], "group": "products", "corrected": false}
+{"id": "sug-0048", "prefix": "битрикс", "profile": "retail_logistics", "expect_any": ["Битрикс24", "1С-Битрикс"], "group": "products", "corrected": false}
+{"id": "sug-0049", "prefix": "бэкап", "profile": "retail_logistics", "expect_any": ["Кибер Бэкап", "RuBackup", "Резервное копирование"], "group": "categories", "corrected": false}
+{"id": "sug-0050", "prefix": "вкс", "profile": "edu_university", "expect_any": ["Видеоконференцсвязь", "Контур.Толк", "МТС Линк", "TrueConf"], "group": "categories", "corrected": false}
+{"id": "sug-0051", "prefix": "сэд", "profile": "gov_clinic", "expect_any": ["Directum RX", "1С:Документооборот 8", "СЭД ДЕЛО", "СЭД и ECM"], "group": "categories", "corrected": false}
+{"id": "sug-0052", "prefix": "сапр", "profile": "design_bureau", "expect_any": ["Платформа nanoCAD", "КОМПАС-3D", "САПР"], "group": "categories", "corrected": false}
+{"id": "sug-0053", "prefix": "эцп", "profile": "accounting_firm", "expect_any": ["КриптоПро CSP", "Рутокен ЭЦП 3.0", "Электронная подпись"], "group": "categories", "corrected": false}
+{"id": "sug-0054", "prefix": "адешка", "profile": "ent_factory", "expect_any": ["ALD Pro", "РЕД АДМ", "Альт Домен", "Службы каталогов"], "group": "products", "corrected": false}
+{"id": "sug-0055", "prefix": "rfcg", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security", "Лаборатория Касперского", "касперский"], "group": "products", "corrected": true}
+{"id": "sug-0056", "prefix": "fcnhf", "profile": "gov_clinic", "expect_any": ["Astra Linux Special Edition", "астра линукс"], "group": "products", "corrected": true}
+{"id": "sug-0057", "prefix": "rhbgn", "profile": "accounting_firm", "expect_any": ["КриптоПро CSP", "криптопро"], "group": "products", "corrected": true}
+{"id": "sug-0058", "prefix": "jabc", "profile": "guest", "expect_any": ["Р7-Офис", "МойОфис", "офисный пакет"], "group": "categories", "corrected": true}
+{"id": "sug-0059", "prefix": "fynbd", "profile": "smb_trade", "expect_any": ["Антивирус", "антивирус для бизнеса", "Защита рабочих станций"], "group": "categories", "corrected": true}
+{"id": "sug-0060", "prefix": "yfyjr", "profile": "design_bureau", "expect_any": ["Платформа nanoCAD", "nanoCAD"], "group": "products", "corrected": true}
+{"id": "sug-0061", "prefix": "rjyneh", "profile": "accounting_firm", "expect_any": ["Контур.Диадок", "Контур.Экстерн", "Контур.Толк", "СКБ Контур"], "group": "vendors", "corrected": true}
+{"id": "sug-0062", "prefix": "lbfljr", "profile": "smb_trade", "expect_any": ["Контур.Диадок", "диадок"], "group": "products", "corrected": true}
+{"id": "sug-0063", "prefix": "rjvgf", "profile": "edu_university", "expect_any": ["КОМПАС-3D", "компас"], "group": "products", "corrected": true}
+{"id": "sug-0064", "prefix": "uhfyl", "profile": "design_bureau", "expect_any": ["ГРАНД-Смета", "гранд-смета"], "group": "products", "corrected": true}
+{"id": "sug-0065", "prefix": "gjcnuh", "profile": "fin_bank", "expect_any": ["Postgres Pro", "постгрес"], "group": "products", "corrected": true}
+{"id": "sug-0066", "prefix": "dbylf", "profile": "smb_trade", "expect_any": ["Microsoft Windows 11", "Windows", "винда"], "group": "products", "corrected": true}
+{"id": "sug-0067", "prefix": "dbhn", "profile": "ent_factory", "expect_any": ["Виртуализация", "ПК СВ «Брест»", "zVirt"], "group": "categories", "corrected": true}
+{"id": "sug-0068", "prefix": "crpb", "profile": "gov_clinic", "expect_any": ["КриптоПро CSP", "СКЗИ", "Криптография"], "group": "categories", "corrected": true}
+{"id": "sug-0069", "prefix": "kasper", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security", "Kaspersky Small Office Security", "Лаборатория Касперского"], "group": "products", "corrected": true}
+{"id": "sug-0070", "prefix": "kriptopro", "profile": "accounting_firm", "expect_any": ["КриптоПро CSP", "КриптоПро DSS"], "group": "products", "corrected": true}
+{"id": "sug-0071", "prefix": "diadok", "profile": "smb_trade", "expect_any": ["Контур.Диадок", "Диадок"], "group": "products", "corrected": true}
+{"id": "sug-0072", "prefix": "moyofis", "profile": "gov_clinic", "expect_any": ["МойОфис Стандартный", "МойОфис Профессиональный"], "group": "products", "corrected": true}
+{"id": "sug-0073", "prefix": "kompas", "profile": "design_bureau", "expect_any": ["КОМПАС-3D", "КОМПАС-График"], "group": "products", "corrected": true}
+{"id": "sug-0074", "prefix": "bitriks", "profile": "retail_logistics", "expect_any": ["Битрикс24", "1С-Битрикс"], "group": "products", "corrected": true}
+{"id": "sug-0075", "prefix": "kiberbekap", "profile": "retail_logistics", "expect_any": ["Кибер Бэкап", "Cyber Backup"], "group": "products", "corrected": true}
+{"id": "sug-0076", "prefix": "buhgalter", "profile": "accounting_firm", "expect_any": ["1С:Бухгалтерия 8", "Бухгалтерский учёт"], "group": "products", "corrected": true}
+{"id": "sug-0077", "prefix": "antivirus", "profile": "guest", "expect_any": ["Антивирус", "Kaspersky Endpoint Security", "Dr.Web"], "group": "categories", "corrected": true}
+{"id": "sug-0078", "prefix": "udalenka", "profile": "it_company", "expect_any": ["Удалённый доступ", "RuDesktop", "Ассистент"], "group": "categories", "corrected": true}
+{"id": "sug-0079", "prefix": "касперсикй", "profile": "guest", "expect_any": ["Kaspersky Endpoint Security", "Лаборатория Касперского", "касперский"], "group": "products", "corrected": true}
+{"id": "sug-0080", "prefix": "атра", "profile": "gov_clinic", "expect_any": ["Astra Linux Special Edition", "Астра Линукс"], "group": "products", "corrected": true}
+{"id": "sug-0081", "prefix": "нанокд", "profile": "design_bureau", "expect_any": ["Платформа nanoCAD", "nanoCAD"], "group": "products", "corrected": true}
+{"id": "sug-0082", "prefix": "крипторо", "profile": "accounting_firm", "expect_any": ["КриптоПро CSP", "КриптоПро"], "group": "products", "corrected": true}
+{"id": "sug-0083", "prefix": "р7 офиз", "profile": "smb_trade", "expect_any": ["Р7-Офис", "Р7-Офис Профессиональный"], "group": "products", "corrected": true}
+{"id": "sug-0084", "prefix": "битрик24", "profile": "retail_logistics", "expect_any": ["Битрикс24", "Битрикс24 Коробка"], "group": "products", "corrected": true}
+{"id": "sug-0085", "prefix": "диреткум", "profile": "ent_factory", "expect_any": ["Directum RX", "Директум"], "group": "products", "corrected": true}
+{"id": "sug-0086", "prefix": "антивиус", "profile": "guest", "expect_any": ["Антивирус", "антивирус для бизнеса"], "group": "categories", "corrected": true}
+{"id": "sug-0087", "prefix": "бэкпа", "profile": "retail_logistics", "expect_any": ["Кибер Бэкап", "Резервное копирование", "бэкап"], "group": "categories", "corrected": true}
+{"id": "sug-0088", "prefix": "постгерс", "profile": "fin_bank", "expect_any": ["Postgres Pro", "PostgreSQL"], "group": "products", "corrected": true}
+{"id": "sug-0089", "prefix": "антив", "profile": "guest", "expect_any": ["Антивирус", "Антивирус для бизнеса", "Защита рабочих станций"], "group": "categories", "corrected": false}
+{"id": "sug-0090", "prefix": "офисн", "profile": "guest", "expect_any": ["Офисные пакеты", "офисный пакет", "Р7-Офис"], "group": "categories", "corrected": false}
+{"id": "sug-0091", "prefix": "виртуа", "profile": "ent_factory", "expect_any": ["Серверная виртуализация", "виртуализация", "VDI"], "group": "categories", "corrected": false}
+{"id": "sug-0092", "prefix": "резервн", "profile": "gov_clinic", "expect_any": ["Резервное копирование", "Кибер Бэкап", "RuBackup"], "group": "categories", "corrected": false}
+{"id": "sug-0093", "prefix": "межсет", "profile": "ent_factory", "expect_any": ["Межсетевые экраны", "NGFW", "UserGate NGFW"], "group": "categories", "corrected": false}
+{"id": "sug-0094", "prefix": "видеоконф", "profile": "edu_university", "expect_any": ["Видеоконференцсвязь", "ВКС и вебинары", "Контур.Толк"], "group": "categories", "corrected": false}
+{"id": "sug-0095", "prefix": "почтов", "profile": "gov_clinic", "expect_any": ["Почтовые серверы", "Почтовые клиенты", "RuPost", "МойОфис Почта"], "group": "categories", "corrected": false}
+{"id": "sug-0096", "prefix": "аналог aut", "profile": "design_bureau", "expect_any": ["аналог autocad", "Платформа nanoCAD", "КОМПАС-3D"], "group": "queries", "corrected": false}
+{"id": "sug-0097", "prefix": "аналог vmw", "profile": "ent_factory", "expect_any": ["аналог vmware", "ПК СВ «Брест»", "zVirt"], "group": "queries", "corrected": false}
+{"id": "sug-0098", "prefix": "аналог jir", "profile": "it_company", "expect_any": ["аналог jira", "Яндекс Трекер", "Kaiten", "EvaProject"], "group": "queries", "corrected": false}
+{"id": "sug-0099", "prefix": "комплект б", "profile": "smb_trade", "expect_any": ["комплект бухгалтера", "по для бухгалтера"], "group": "queries", "corrected": false}
+{"id": "sug-0100", "prefix": "чем открыт", "profile": "design_bureau", "expect_any": ["чем открыть dwg", "чем открыть pdf"], "group": "queries", "corrected": false}
+{"id": "sug-0101", "prefix": "сдача отч", "profile": "accounting_firm", "expect_any": ["сдача отчетности", "Контур.Экстерн", "1С-Отчётность"], "group": "queries", "corrected": false}
+{"id": "sug-0102", "prefix": "защита кии", "profile": "ent_factory", "expect_any": ["защита кии", "защита асу тп", "187-фз"], "group": "queries", "corrected": false}
+{"id": "sug-0103", "prefix": "продл", "profile": "smb_trade", "expect_any": ["Продлить Kaspersky Small Office Security", "Kaspersky Small Office Security", "1С:ИТС"], "group": "my", "corrected": false}
+{"id": "sug-0104", "prefix": "продлить к", "profile": "smb_trade", "expect_any": ["Продлить Kaspersky Small Office Security", "Kaspersky Small Office Security"], "group": "my", "corrected": false}
+{"id": "sug-0105", "prefix": "продл", "profile": "gov_clinic", "expect_any": ["Продлить Kaspersky Endpoint Security", "Продлить Р7-Офис", "Продлить КриптоПро CSP"], "group": "my", "corrected": false}
+{"id": "sug-0106", "prefix": "продлить р", "profile": "gov_clinic", "expect_any": ["Продлить Р7-Офис", "Р7-Офис"], "group": "my", "corrected": false}
+{"id": "sug-0107", "prefix": "продл", "profile": "edu_university", "expect_any": ["Продлить Dr.Web Enterprise Security Suite", "Продлить КОМПАС-3D", "Продлить МойОфис"], "group": "my", "corrected": false}
+{"id": "sug-0108", "prefix": "продл", "profile": "ent_factory", "expect_any": ["Продлить MaxPatrol SIEM", "Продлить Kaspersky Endpoint Security"], "group": "my", "corrected": false}
+{"id": "sug-0109", "prefix": "продл", "profile": "it_company", "expect_any": ["Продлить Контур.Толк", "Продлить Яндекс 360"], "group": "my", "corrected": false}
+{"id": "sug-0110", "prefix": "продл", "profile": "design_bureau", "expect_any": ["Продлить Платформа nanoCAD", "Продлить nanoCAD", "Продлить Pilot-BIM"], "group": "my", "corrected": false}
+{"id": "sug-0111", "prefix": "продл", "profile": "accounting_firm", "expect_any": ["Продлить Контур.Экстерн", "Продлить КриптоПро CSP"], "group": "my", "corrected": false}
+{"id": "sug-0112", "prefix": "продл", "profile": "fin_bank", "expect_any": ["Продлить InfoWatch Traffic Monitor", "Продлить Postgres Pro"], "group": "my", "corrected": false}
+{"id": "sug-0113", "prefix": "продл", "profile": "retail_logistics", "expect_any": ["Продлить Битрикс24", "Продлить Кибер Бэкап"], "group": "my", "corrected": false}
+{"id": "sug-0114", "prefix": "продл", "profile": "individual_freelancer", "expect_any": ["Продлить Kaspersky Plus", "Kaspersky Plus"], "group": "my", "corrected": false}
+{"id": "sug-0115", "prefix": "почему по из", "profile": "gov_clinic", "expect_any": ["Почему ПО из реестра без НДС", "НДС 0%"], "group": "answers", "corrected": false}
+{"id": "sug-0116", "prefix": "что такое ер", "profile": "guest", "expect_any": ["Что такое Единый реестр российского ПО", "ЕРРП"], "group": "answers", "corrected": false}
+{"id": "sug-0117", "prefix": "как закупить", "profile": "gov_clinic", "expect_any": ["Как закупить ПО по 44-ФЗ", "44-ФЗ и 223-ФЗ"], "group": "answers", "corrected": false}
+{"id": "sug-0118", "prefix": "как обоснова", "profile": "gov_clinic", "expect_any": ["Как обосновать НМЦК", "НМЦК"], "group": "answers", "corrected": false}
+{"id": "sug-0119", "prefix": "какой код ок", "profile": "gov_clinic", "expect_any": ["Какой код ОКПД2", "ОКПД2 и КТРУ"], "group": "answers", "corrected": false}
+{"id": "sug-0120", "prefix": "кто имеет пр", "profile": "edu_university", "expect_any": ["Кто имеет право на академическую лицензию", "EDU"], "group": "answers", "corrected": false}
+{"id": "sug-0121", "prefix": "можно ли куп", "profile": "guest", "expect_any": ["Можно ли купить Microsoft", "ушедшие вендоры"], "group": "answers", "corrected": false}
+{"id": "sug-0122", "prefix": "какое по тре", "profile": "ent_factory", "expect_any": ["Какое ПО требуется для объектов КИИ", "187-ФЗ"], "group": "answers", "corrected": false}
+{"id": "sug-0123", "prefix": "работаете ли", "profile": "smb_trade", "expect_any": ["Работаете ли вы по ЭДО", "Диадок и СБИС"], "group": "answers", "corrected": false}
+{"id": "sug-0124", "prefix": "можно ли вер", "profile": "guest", "expect_any": ["Можно ли вернуть электронную лицензию", "возврат лицензии"], "group": "answers", "corrected": false}

@@ -1675,7 +1675,7 @@
 
 - id: iva_technologies
   name: "IVA Technologies"
-  name_ru: "ИВА Технолоджис"
+  name_ru: "ИВА Текнолоджис"
   country: RU
   origin: russian
   market_status: active
@@ -3104,3 +3104,13 @@
   aliases: ["эквио", "e-queo", "эквио lms"]
   categories: [lms_elearning]
   notes: "Российская мобильная LMS-платформа для обучения линейного персонала."
+
+- id: idera_testrail
+  name: "TestRail (Idera)"
+  name_ru: "ТестРейл (Idera)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["testrail", "тестрейл", "тест рейл", "idera", "gurock"]
+  categories: [testing_qa]
+  notes: "Зарубежная система управления тестированием (TMS); в РФ замещается Test IT и Allure TestOps."
