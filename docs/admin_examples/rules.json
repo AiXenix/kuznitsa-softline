@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "id": "81b23dcd2fe84c35b95d4219c08d1450",
+      "kind": "synonym",
+      "conditions": {},
+      "action": {
+        "kind": "text",
+        "phrase": "резервилка",
+        "to": "Кибер Бэкап"
+      },
+      "enabled": true
+    },
+    {
+      "id": "c92046059c7646088dd53cc0ae858f9a",
+      "kind": "banner",
+      "conditions": {
+        "segment": "smb"
+      },
+      "action": {
+        "text": "Уточните условия лицензирования для вашей организации."
+      },
+      "enabled": true
+    }
+  ],
+  "version": 2000000
+}

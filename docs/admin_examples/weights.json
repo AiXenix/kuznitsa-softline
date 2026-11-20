@@ -1,0 +1,9 @@
+{
+  "weights": {
+    "rel": 0.5,
+    "pop": 0.2,
+    "margin": 0.15,
+    "pers": 0.15
+  },
+  "version": 4000000
+}

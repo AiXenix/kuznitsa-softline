@@ -1,0 +1,405 @@
+{
+  "search_id": "s_c40389b656414ec4ab8d12b5dc7518de",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "резервилка",
+    "normalized": "резервилка",
+    "corrected": "кибер бэкап",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "product",
+    "intent_title": "Поиск продукта",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "entities": [
+      {
+        "type": "family",
+        "id": "cyber_backup",
+        "text": "кибер бэкап",
+        "span": [
+          0,
+          2
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "family": [
+        "cyber_backup"
+      ]
+    },
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "family",
+        "label": "Кибер Бэкап (Cyber Backup)",
+        "source": "query",
+        "removable": false,
+        "remove_q": ""
+      }
+    ],
+    "subtype": null,
+    "agent_note": "Поиск продукта · Кибер Бэкап (Cyber Backup)"
+  },
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 1,
+      "items": [
+        {
+          "card_id": "cyber_backup",
+          "title": "Кибер Бэкап",
+          "vendor": {
+            "id": "cyberprotect",
+            "name": "Cyberprotect"
+          },
+          "category": {
+            "id": "backup_recovery",
+            "title": "Системы резервного копирования"
+          },
+          "summary": "",
+          "badges": [],
+          "offer": {
+            "offer_id": "o_A98C2F4A8F25",
+            "name": "Кибер Бэкап, новая лицензия, 50–99 устройств, 12 мес., для организаций, ESD",
+            "sku": "AX-A98C2F4A8F25",
+            "version": null,
+            "delivery": "esd",
+            "price": 2693.0,
+            "price_on_request": false,
+            "vat": null,
+            "available": true,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 50,
+            "qty_max": 99,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": 50,
+            "unit_price": 2693.0,
+            "total": 134650.0,
+            "text": "50 × 2 693 ₽ = 134 650 ₽"
+          },
+          "variants": [
+            {
+              "offer_id": "o_FD158312C813",
+              "name": "Кибер Бэкап, расширение, 10–14 устройств, 12 мес., для организаций, ESD",
+              "sku": "AX-FD158312C813",
+              "version": null,
+              "delivery": "esd",
+              "price": 2016.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_64C1D12B5ED6",
+              "name": "Кибер Бэкап, продление, 15–19 устройств, 36 мес., для госучреждений, ESD",
+              "sku": "AX-64C1D12B5ED6",
+              "version": null,
+              "delivery": "esd",
+              "price": 5356.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 36,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_375343F61D94",
+              "name": "Кибер Бэкап, расширение, 250–499 устройств, 12 мес., для организаций, ESD",
+              "sku": "AX-375343F61D94",
+              "version": null,
+              "delivery": "esd",
+              "price": null,
+              "price_on_request": true,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 250,
+              "qty_max": 499,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_3664F0A30A42",
+              "name": "Кибер Бэкап, новая лицензия, 50–99 устройств, 12 мес., академическая, ESD",
+              "sku": "AX-3664F0A30A42",
+              "version": null,
+              "delivery": "esd",
+              "price": 1266.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_9A3582AE44EF",
+              "name": "Кибер Бэкап, продление, 500–999 устройств, 36 мес., академическая, ESD",
+              "sku": "AX-9A3582AE44EF",
+              "version": null,
+              "delivery": "esd",
+              "price": null,
+              "price_on_request": true,
+              "vat": null,
+              "available": true,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 36,
+              "metric": "device",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "edu"
+            }
+          ],
+          "variants_count": 432,
+          "price_from": 638.0,
+          "score": {
+            "tier": 1,
+            "score": 0.61917,
+            "parts": {
+              "rel": 0.44,
+              "pop": 0.16528,
+              "margin": 0.01389,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 50 до 99 мест"
+            ]
+          },
+          "position": 1
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "cyberprotect",
+          "label": "Cyberprotect",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "backup_recovery",
+          "label": "Системы резервного копирования",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "related_queries": [],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.15,
+      "summary": "кибер бэкап",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.11,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.04,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.15,
+      "summary": "Кибер Бэкап (Cyber Backup)",
+      "detail": {
+        "residual": "",
+        "synonyms": [
+          {
+            "kind": "text",
+            "phrase": "резервилка",
+            "to": "Кибер Бэкап",
+            "rule_id": "81b23dcd2fe84c35b95d4219c08d1450"
+          }
+        ],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.15,
+      "summary": "Поиск продукта",
+      "detail": {
+        "redirect": null
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Поиск продукта",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 2.07,
+      "summary": "Подходящих карточек до проверки лицензий · 1",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.35,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 1",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.0,
+      "summary": "В этом режиме используются локальные оценки",
+      "detail": {}
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.31,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.09,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Карточек в выдаче · 1",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 0.08,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0
+  },
+  "timing_ms": {
+    "total": 3.52
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

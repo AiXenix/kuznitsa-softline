@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "q": "антивирус",
+      "before": [
+        {
+          "card_id": "pro32_endpoint",
+          "title": "PRO32 Endpoint Security",
+          "tier": 2,
+          "margin_rub": 528.94
+        },
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "tier": 2,
+          "margin_rub": 579.12
+        },
+        {
+          "card_id": "drweb_enterprise_security_suite",
+          "title": "Dr.Web Enterprise Security Suite",
+          "tier": 2,
+          "margin_rub": 325.01
+        },
+        {
+          "card_id": "kaspersky_ksos",
+          "title": "Kaspersky Small Office Security",
+          "tier": 2,
+          "margin_rub": 597.36
+        },
+        {
+          "card_id": "kaspersky_kesb:standard",
+          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
+          "tier": 2,
+          "margin_rub": 342.13
+        }
+      ],
+      "after": [
+        {
+          "card_id": "pro32_endpoint",
+          "title": "PRO32 Endpoint Security",
+          "tier": 2,
+          "margin_rub": 528.94
+        },
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "tier": 2,
+          "margin_rub": 579.12
+        },
+        {
+          "card_id": "drweb_enterprise_security_suite",
+          "title": "Dr.Web Enterprise Security Suite",
+          "tier": 2,
+          "margin_rub": 325.01
+        },
+        {
+          "card_id": "kaspersky_ksos",
+          "title": "Kaspersky Small Office Security",
+          "tier": 2,
+          "margin_rub": 597.36
+        },
+        {
+          "card_id": "kaspersky_kesb:standard",
+          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
+          "tier": 2,
+          "margin_rub": 342.13
+        }
+      ],
+      "moved": 0,
+      "band_inversions": 0,
+      "margin_delta_rub": 0.0
+    }
+  ],
+  "moved": 0,
+  "band_inversions": 0,
+  "formula": "Сумма удельной маржи первых пяти позиций с весом 1 / позиция"
+}

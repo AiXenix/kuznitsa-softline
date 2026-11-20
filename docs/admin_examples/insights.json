@@ -1,0 +1,6119 @@
+{
+  "items": [
+    {
+      "id": "add_product-158c15b7d741",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «РЕД АДМ (служба каталогов)»",
+      "status": "new",
+      "summary": "За последние 30 дней — 129 поисков в 129 сессиях.",
+      "confidence": 0.87,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 129,
+        "sessions_30d": 129,
+        "sample_queries": [
+          "ред адм контроллер домена",
+          "РЕД АДМ"
+        ],
+        "sample_sessions": [
+          "mock_000000",
+          "mock_000002",
+          "mock_000005",
+          "mock_000011",
+          "mock_000012",
+          "mock_000022"
+        ],
+        "segments": {
+          "gov": 65,
+          "enterprise": 44,
+          "mid": 20
+        },
+        "metric_before": {
+          "zero": 129,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "red_adm",
+          "category": "directory_services"
+        }
+      },
+      "impact": {
+        "expected_rub": 7998111,
+        "conservative_rub": 4362606,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-276a715ccf81",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «HRlink КЭДО»",
+      "status": "new",
+      "summary": "За последние 30 дней — 25 поисков в 25 сессиях.",
+      "confidence": 0.56,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 25,
+        "sessions_30d": 25,
+        "sample_queries": [
+          "HRlink"
+        ],
+        "sample_sessions": [
+          "mock_000201",
+          "mock_000203",
+          "mock_000212",
+          "mock_000220",
+          "mock_000221",
+          "mock_000228"
+        ],
+        "segments": {
+          "smb": 6,
+          "mid": 10,
+          "enterprise": 9
+        },
+        "metric_before": {
+          "zero": 25,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "hrlink_kedo",
+          "category": "kedo_hr_docs"
+        }
+      },
+      "impact": {
+        "expected_rub": 213050,
+        "conservative_rub": 116209,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-2e79b6a0cbdb",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «hfcibhtybt»",
+      "status": "new",
+      "summary": "За последние 30 дней — 6 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "hfcibhtybt ьшскщыщае цштвщцы 11 yf 75 gr",
+          "hfcibhtybt ьшскщыщае цштвщцы ыукмук yf 5 gr",
+          "hfcibhtybt ,htcn yf 10 gr",
+          "hfcibhtybt лфызукылн утвзщште ыусгкшен lkz ,bpytcf yf 10 gr",
+          "hfcibhtybt ьшскщыщае ыйд ыукмук yf 250 gr"
+        ],
+        "sample_sessions": [
+          "mock_007286",
+          "mock_008681",
+          "mock_009296",
+          "mock_009840",
+          "mock_011890",
+          "mock_023386"
+        ],
+        "segments": {
+          "guest": 2,
+          "mid": 2,
+          "edu": 2
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "hfcibhtybt",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 9010,
+        "conservative_rub": 3604,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-340637b1c0bb",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «kriptopro»",
+      "status": "new",
+      "summary": "За последние 30 дней — 10 поисков в 10 сессиях.",
+      "confidence": 0.33,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 10,
+        "sample_queries": [
+          "kriptopro csp na 100 pk",
+          "kriptopro csp",
+          "kriptopro",
+          "kriptopro csp fstek na 30 arm"
+        ],
+        "sample_sessions": [
+          "mock_003634",
+          "mock_004782",
+          "mock_004844",
+          "mock_006006",
+          "mock_012839",
+          "mock_016941"
+        ],
+        "segments": {
+          "guest": 3,
+          "gov": 2,
+          "mid": 3,
+          "enterprise": 1,
+          "smb": 1
+        },
+        "metric_before": {
+          "zero": 10,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "kriptopro",
+          "category": "crypto_skzi"
+        }
+      },
+      "impact": {
+        "expected_rub": 29966,
+        "conservative_rub": 11986,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-46a4eebd20d8",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «cursor»",
+      "status": "new",
+      "summary": "За последние 30 дней — 210 поисков в 210 сессиях.",
+      "confidence": 0.91,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 210,
+        "sessions_30d": 210,
+        "sample_queries": [
+          "cursor ide",
+          "cursor enterprise лицензия",
+          "купить cursor для команды",
+          "cursor ai оплата от юрлица"
+        ],
+        "sample_sessions": [
+          "mock_000424",
+          "mock_000425",
+          "mock_000426",
+          "mock_000427",
+          "mock_000428",
+          "mock_000429"
+        ],
+        "segments": {
+          "smb": 70,
+          "enterprise": 36,
+          "mid": 104
+        },
+        "metric_before": {
+          "zero": 210,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "cursor",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 596606,
+        "conservative_rub": 238643,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-4b6afdd16374",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «kaspersky»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "переход с Kaspersky на Mcirosoft Office 75 пк",
+          "Kaspersky Endpoint Securiyt для бизнеса продление",
+          "Kaspersky Endopint Security для бизнеса продление",
+          "Kaspersky Endpoint Securtiy для бизнеса на 100 пк",
+          "Kaspersky Ednpoint Security для бизнеса Стандартный"
+        ],
+        "sample_sessions": [
+          "mock_007669",
+          "mock_008635",
+          "mock_008810",
+          "mock_011238",
+          "mock_012636"
+        ],
+        "segments": {
+          "edu": 1,
+          "guest": 3,
+          "individual": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "kaspersky",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 22140,
+        "conservative_rub": 8856,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-4e2295dd929e",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «obsidian»",
+      "status": "new",
+      "summary": "За последние 30 дней — 134 поисков в 134 сессиях.",
+      "confidence": 0.87,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 134,
+        "sessions_30d": 134,
+        "sample_queries": [
+          "obsidian commercial",
+          "obsidian лицензия для бизнеса",
+          "obsidian для команды 30 мест"
+        ],
+        "sample_sessions": [
+          "mock_000849",
+          "mock_000850",
+          "mock_000851",
+          "mock_000852",
+          "mock_000853",
+          "mock_000854"
+        ],
+        "segments": {
+          "mid": 62,
+          "smb": 66,
+          "individual": 6
+        },
+        "metric_before": {
+          "zero": 134,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "obsidian",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 491218,
+        "conservative_rub": 196487,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-6de9866ef42d",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «moiofis»",
+      "status": "new",
+      "summary": "За последние 30 дней — 8 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "moiofis standartnyi",
+          "moiofis standartnyi prodlenie",
+          "moiofis standartnyi na 15 pk",
+          "moiofis standartnyi na 50 pk na 2 goda"
+        ],
+        "sample_sessions": [
+          "mock_005424",
+          "mock_006216",
+          "mock_007693",
+          "mock_010237",
+          "mock_012450",
+          "mock_013660"
+        ],
+        "segments": {
+          "smb": 1,
+          "gov": 3,
+          "enterprise": 1,
+          "guest": 3
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "moiofis",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 5858,
+        "conservative_rub": 2343,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-707ed8717974",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «Платформа nanoCAD»",
+      "status": "new",
+      "summary": "За последние 30 дней — 7 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "platforma nanocad prodlenie",
+          "Палтформа nanoCAD",
+          "Платфрома nanoCAD на 100 пк",
+          "Палтформа nanoCAD из реестра на 15 арм",
+          "Плтаформа nanoCAD на 100 пк"
+        ],
+        "sample_sessions": [
+          "mock_006408",
+          "mock_006463",
+          "mock_009113",
+          "mock_009262",
+          "mock_012750",
+          "mock_016739"
+        ],
+        "segments": {
+          "guest": 5,
+          "smb": 2
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "nanocad_platform",
+          "category": "cad_2d"
+        }
+      },
+      "impact": {
+        "expected_rub": 168681,
+        "conservative_rub": 92008,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-75a1295ff9be",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «xnj»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "xnj kexit лфызукылн ыьфдд щаашсу ыусгкшен bkb h7-jabc",
+          "xnj kexit вшкусегь кч bkb лфызукылн ыьфдд щаашсу ыусгкшен",
+          "xnj kexit ьшскщыщае цштвщцы 11 bkb лфызукылн ыьфдд щаашсу ыусгкшен",
+          "xnj kexit фдв зкщ bkb ьшскщыщае щаашсу зкщауыышщтфд",
+          "xnj kexit сщььгтшпфеу зкщ bkb е-адуч сфв"
+        ],
+        "sample_sessions": [
+          "mock_005889",
+          "mock_008043",
+          "mock_008525",
+          "mock_013544",
+          "mock_018780"
+        ],
+        "segments": {
+          "gov": 1,
+          "guest": 2,
+          "smb": 2
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "xnj",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 7481,
+        "conservative_rub": 2992,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-763b651c2539",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «fhnbrek»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "fhnbrek фч-02ф416а83с24",
+          "fhnbrek айс-1185у3и45фа8",
+          "fhnbrek фч-0у0ф25афи649",
+          "fhnbrek фч-23а545118ф14",
+          "fhnbrek фч-043674а6ааф0"
+        ],
+        "sample_sessions": [
+          "mock_004614",
+          "mock_005230",
+          "mock_007874",
+          "mock_015017",
+          "mock_016617"
+        ],
+        "segments": {
+          "smb": 3,
+          "guest": 1,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "fhnbrek",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 5432,
+        "conservative_rub": 2173,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-77568cd3aec8",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «Яндекс Трекер (Yandex Tracker)»",
+      "status": "new",
+      "summary": "За последние 30 дней — 165 поисков в 165 сессиях.",
+      "confidence": 0.89,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 165,
+        "sessions_30d": 165,
+        "sample_queries": [
+          "яндекс трекер",
+          "yandex tracker лицензии",
+          "купить яндекс трекер 50 пользователей",
+          "яндекс трекер корпоративный"
+        ],
+        "sample_sessions": [
+          "mock_000684",
+          "mock_000685",
+          "mock_000686",
+          "mock_000687",
+          "mock_000688",
+          "mock_000689"
+        ],
+        "segments": {
+          "smb": 55,
+          "mid": 75,
+          "enterprise": 35
+        },
+        "metric_before": {
+          "zero": 165,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "yandex_tracker",
+          "category": "task_project_trackers"
+        }
+      },
+      "impact": {
+        "expected_rub": 1625712,
+        "conservative_rub": 886752,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-77e50f6e5cd2",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «kiber»",
+      "status": "new",
+      "summary": "За последние 30 дней — 10 поисков в 10 сессиях.",
+      "confidence": 0.33,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 10,
+        "sample_queries": [
+          "kiber bekap",
+          "kiber bekap na 15 pk",
+          "kiber bekap kupit",
+          "kiber bekap prodlenie"
+        ],
+        "sample_sessions": [
+          "mock_005095",
+          "mock_006173",
+          "mock_006893",
+          "mock_008441",
+          "mock_010117",
+          "mock_012551"
+        ],
+        "segments": {
+          "gov": 3,
+          "guest": 3,
+          "mid": 2,
+          "edu": 2
+        },
+        "metric_before": {
+          "zero": 10,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "kiber",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 7876,
+        "conservative_rub": 3150,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-86acde4207ca",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «rjvgktrn»",
+      "status": "new",
+      "summary": "За последние 30 дней — 6 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "rjvgktrn ghjuhfvv lkz by;tythf yf 50 xtkjdtr",
+          "rjvgktrn ghjuhfvv lkz by;tythf yf 30 xtkjdtr",
+          "rjvgktrn ghjuhfvv lkz lbpfqythf yf 250 xtkjdtr",
+          "rjvgktrn ghjuhfvv lkz lbpfqythf yf 75 xtkjdtr",
+          "rjvgktrn ghjuhfvv lkz lbpfqythf yf 50 xtkjdtr"
+        ],
+        "sample_sessions": [
+          "mock_010593",
+          "mock_011057",
+          "mock_011569",
+          "mock_012362",
+          "mock_014324",
+          "mock_019416"
+        ],
+        "segments": {
+          "mid": 2,
+          "gov": 1,
+          "edu": 1,
+          "smb": 1,
+          "guest": 1
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "rjvgktrn",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 9284,
+        "conservative_rub": 3713,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-88b0b7a0604d",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «lkz»",
+      "status": "new",
+      "summary": "За последние 30 дней — 12 поисков в 12 сессиях.",
+      "confidence": 0.38,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 12,
+        "sessions_30d": 12,
+        "sample_queries": [
+          "gj lkz hf,jxtuj vtcnf by;tythf",
+          "gj lkz hf,jxtuj vtcnf ,e[ufknthf",
+          "лфызукылн утвзщште ыусгкшен lkz ,bpytcf",
+          "лфызукылн утвзщште ыусгкшен lkz ,bpytcf cnfylfhnysq",
+          "лфызукылн утвзщште ыусгкшен lkz ,bpytcf ghjlktybt"
+        ],
+        "sample_sessions": [
+          "mock_005446",
+          "mock_006861",
+          "mock_009682",
+          "mock_011626",
+          "mock_012528",
+          "mock_012905"
+        ],
+        "segments": {
+          "enterprise": 2,
+          "guest": 5,
+          "mid": 1,
+          "edu": 1,
+          "gov": 2,
+          "smb": 1
+        },
+        "metric_before": {
+          "zero": 12,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "lkz",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 12064,
+        "conservative_rub": 4826,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-8af0f1f6f4a0",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «GigaCode (ИИ-ассистент разработчика от Сбера)»",
+      "status": "new",
+      "summary": "За последние 30 дней — 67 поисков в 67 сессиях.",
+      "confidence": 0.77,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 67,
+        "sessions_30d": 67,
+        "sample_queries": [
+          "gigacode корпоративная лицензия"
+        ],
+        "sample_sessions": [
+          "mock_002758",
+          "mock_002762",
+          "mock_002766",
+          "mock_002770",
+          "mock_002774",
+          "mock_002778"
+        ],
+        "segments": {
+          "mid": 34,
+          "enterprise": 17,
+          "smb": 16
+        },
+        "metric_before": {
+          "zero": 67,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "sber_kandinsky_api",
+          "category": "llm_gen_ai"
+        }
+      },
+      "impact": {
+        "expected_rub": 615292,
+        "conservative_rub": 335614,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-9089a1e8ae05",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «dlya»",
+      "status": "new",
+      "summary": "За последние 30 дней — 8 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "po dlya rabochego mesta inzhenera",
+          "po dlya rabochego mesta dizainera",
+          "po dlya rabochego mesta bukhgaltera"
+        ],
+        "sample_sessions": [
+          "mock_007697",
+          "mock_010221",
+          "mock_014469",
+          "mock_015315",
+          "mock_017035",
+          "mock_020185"
+        ],
+        "segments": {
+          "guest": 3,
+          "enterprise": 1,
+          "smb": 1,
+          "edu": 1,
+          "mid": 2
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "dlya",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 9529,
+        "conservative_rub": 3812,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-9251a9e4d35b",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «ufknthbz»",
+      "status": "new",
+      "summary": "За последние 30 дней — 12 поисков в 12 сессиях.",
+      "confidence": 0.38,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 12,
+        "sessions_30d": 12,
+        "sample_queries": [
+          "1c:,e[ufknthbz",
+          "1c:,e[ufknthbz yf 100 gr",
+          ",e[ufknthbz ghtlghbznbz",
+          "1c:,e[ufknthbz rjhg",
+          "1c:,e[ufknthbz ghjlktybt yf 15 gr"
+        ],
+        "sample_sessions": [
+          "mock_004965",
+          "mock_007519",
+          "mock_009036",
+          "mock_010769",
+          "mock_011909",
+          "mock_015817"
+        ],
+        "segments": {
+          "enterprise": 3,
+          "guest": 4,
+          "mid": 3,
+          "smb": 2
+        },
+        "metric_before": {
+          "zero": 12,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "ufknthbz",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 31404,
+        "conservative_rub": 12562,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-9fbf261b62c1",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «microsoft»",
+      "status": "new",
+      "summary": "За последние 30 дней — 10 поисков в 10 сессиях.",
+      "confidence": 0.33,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 10,
+        "sample_queries": [
+          "Microsoft Widnows 11 на 15 пк",
+          "Microsoft Windows Srever",
+          "Microsoft Porject на 15 пк",
+          "Microsoft Windows Sevrer",
+          "Microsoft fOfice"
+        ],
+        "sample_sessions": [
+          "mock_005050",
+          "mock_006310",
+          "mock_007494",
+          "mock_012413",
+          "mock_014298",
+          "mock_015078"
+        ],
+        "segments": {
+          "guest": 3,
+          "smb": 2,
+          "enterprise": 3,
+          "gov": 2
+        },
+        "metric_before": {
+          "zero": 10,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "microsoft",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 13999,
+        "conservative_rub": 5600,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-a8d32ebc75bb",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «Vinteo (профессиональный сервер ВКС)»",
+      "status": "new",
+      "summary": "За последние 30 дней — 8 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "Vinteo Sevrer",
+          "как продлить лицензию Vinteo после окончания",
+          "Vinteo Srever",
+          "продлить Vinteo 75 пк на год",
+          "Vinteo eSrver на 100 пк"
+        ],
+        "sample_sessions": [
+          "mock_004472",
+          "mock_008104",
+          "mock_010696",
+          "mock_015633",
+          "mock_015689",
+          "mock_019305"
+        ],
+        "segments": {
+          "guest": 4,
+          "gov": 1,
+          "smb": 1,
+          "mid": 1,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "vinteo_mcu",
+          "category": "vks_webinars"
+        }
+      },
+      "impact": {
+        "expected_rub": 55509,
+        "conservative_rub": 30278,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-d68e3ec2d5ff",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «premise»",
+      "status": "new",
+      "summary": "За последние 30 дней — 67 поисков в 67 сессиях.",
+      "confidence": 0.77,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 67,
+        "sessions_30d": 67,
+        "sample_queries": [
+          "ии ассистент программиста on premise"
+        ],
+        "sample_sessions": [
+          "mock_002757",
+          "mock_002761",
+          "mock_002765",
+          "mock_002769",
+          "mock_002773",
+          "mock_002777"
+        ],
+        "segments": {
+          "mid": 28,
+          "smb": 19,
+          "enterprise": 20
+        },
+        "metric_before": {
+          "zero": 67,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "premise",
+          "category": "llm_gen_ai"
+        }
+      },
+      "impact": {
+        "expected_rub": 277014,
+        "conservative_rub": 110806,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-f4648266ca6f",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «artikul»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "artikul ax-4cef64ed0623",
+          "artikul ax-1db2217809a9",
+          "artikul ax-efcfc6eae235",
+          "artikul ax-7fedb83f4bd2",
+          "artikul fqc-023b12f862a5"
+        ],
+        "sample_sessions": [
+          "mock_004207",
+          "mock_007277",
+          "mock_008130",
+          "mock_008138",
+          "mock_008275"
+        ],
+        "segments": {
+          "guest": 1,
+          "edu": 2,
+          "mid": 1,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "artikul",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 22680,
+        "conservative_rub": 9072,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_product-f70540e2b51e",
+      "type": "add_product",
+      "role": "content_manager",
+      "title": "Проверить поставку «ghjlktybt»",
+      "status": "new",
+      "summary": "За последние 30 дней — 13 поисков в 13 сессиях.",
+      "confidence": 0.39,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 13,
+        "sessions_30d": 13,
+        "sample_queries": [
+          "вкюцуи утеукзкшыу ыусгкшен ыгшеу ghjlktybt",
+          "ыускуе туе ыегвшщ ghjlktybt",
+          "яцсфв ghjlktybt",
+          "фыекф дштгч ghjlktybt",
+          "ьшскщыщае цштвщцы ыукмук ghjlktybt"
+        ],
+        "sample_sessions": [
+          "mock_006404",
+          "mock_007274",
+          "mock_008344",
+          "mock_008424",
+          "mock_009078",
+          "mock_010102"
+        ],
+        "segments": {
+          "edu": 1,
+          "guest": 5,
+          "gov": 3,
+          "smb": 1,
+          "mid": 2,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 13,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Завести товар",
+        "payload_json": {
+          "product": "ghjlktybt",
+          "category": null
+        }
+      },
+      "impact": {
+        "expected_rub": 30412,
+        "conservative_rub": 12165,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-0d08a848e753",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «ксос» с запросом «Kaspersky Small Office Security»",
+      "status": "new",
+      "summary": "За последние 30 дней — 16 поисков в 16 сессиях.",
+      "confidence": 0.44,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 16,
+        "sessions_30d": 16,
+        "sample_queries": [
+          "ксос"
+        ],
+        "sample_sessions": [
+          "mock_003770",
+          "mock_004566",
+          "mock_004792",
+          "mock_006620",
+          "mock_007802",
+          "mock_011706"
+        ],
+        "segments": {
+          "guest": 6,
+          "smb": 4,
+          "enterprise": 2,
+          "mid": 1,
+          "gov": 2,
+          "edu": 1
+        },
+        "metric_before": {
+          "zero": 16,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Kaspersky Small Office Security": 6,
+          "Dr.Web Enterprise Security Suite": 1,
+          "Postgres Pro на 100 пк": 1,
+          "каспер эндпоинт": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "ксос",
+          "to": "Kaspersky Small Office Security"
+        }
+      },
+      "impact": {
+        "expected_rub": 66629,
+        "conservative_rub": 42833,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-1e0baf1c1052",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «ьшскщыщае» с запросом «Microsoft Windows 11»",
+      "status": "new",
+      "summary": "За последние 30 дней — 58 поисков в 58 сессиях.",
+      "confidence": 0.74,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 58,
+        "sessions_30d": 58,
+        "sample_queries": [
+          "ьшскщыщае",
+          "ьшскщыщае зкщоусе",
+          "ьшскщыщае ыйд ыукмук",
+          "ьшскщыщае мшышщ",
+          "ьшскщыщае цштвщцы 11 yf 15 gr",
+          "ьшскщыщае цштвщцы 11 зкщауыышщтфд (зкщ)",
+          "hfcibhtybt ьшскщыщае цштвщцы 11 yf 75 gr",
+          "j,kfuftncz kb ylc ьшскщыщае щаашсу bp httcnhf gj"
+        ],
+        "sample_sessions": [
+          "mock_004057",
+          "mock_004841",
+          "mock_004988",
+          "mock_005158",
+          "mock_005472",
+          "mock_005791"
+        ],
+        "segments": {
+          "smb": 6,
+          "guest": 24,
+          "enterprise": 5,
+          "mid": 6,
+          "edu": 10,
+          "gov": 7
+        },
+        "metric_before": {
+          "zero": 58,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Microsoft Windows 11": 13,
+          "Microsoft Windows Server": 11,
+          "Microsoft Project": 8,
+          "Microsoft SQL Server": 6,
+          "Microsoft Visio": 4
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "ьшскщыщае",
+          "to": "Microsoft Windows 11"
+        }
+      },
+      "impact": {
+        "expected_rub": 210923,
+        "conservative_rub": 137529,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-3082dd513fa1",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «ндв» с запросом «фстэк»",
+      "status": "new",
+      "summary": "За последние 30 дней — 92 поисков в 92 сессиях.",
+      "confidence": 0.82,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 92,
+        "sessions_30d": 92,
+        "sample_queries": [
+          "антивирус с ндв 4 уровня",
+          "контроль ндв",
+          "ндв",
+          "по с ндв фстэк"
+        ],
+        "sample_sessions": [
+          "mock_000332",
+          "mock_000333",
+          "mock_000334",
+          "mock_000335",
+          "mock_000336",
+          "mock_000337"
+        ],
+        "segments": {
+          "gov": 76,
+          "enterprise": 16
+        },
+        "metric_before": {
+          "zero": 92,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "фстэк": 32,
+          "сертифицированный фстэк": 16
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "ндв",
+          "to": "фстэк"
+        }
+      },
+      "impact": {
+        "expected_rub": 185056,
+        "conservative_rub": 127226,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-38dc648ef13a",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «astralinux» с запросом «Astra Linux»",
+      "status": "new",
+      "summary": "За последние 30 дней — 4 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "AstraLinux"
+        ],
+        "sample_sessions": [
+          "mock_005996",
+          "mock_006727",
+          "mock_021119",
+          "mock_022186"
+        ],
+        "segments": {
+          "guest": 3,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Astra Linux": 4
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "astralinux",
+          "to": "Astra Linux"
+        }
+      },
+      "impact": {
+        "expected_rub": 546,
+        "conservative_rub": 219,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-45608f779599",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «kesb» с запросом «Kaspersky Endpoint Security для бизнеса»",
+      "status": "new",
+      "summary": "За последние 30 дней — 25 поисков в 25 сессиях.",
+      "confidence": 0.56,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 25,
+        "sessions_30d": 25,
+        "sample_queries": [
+          "kesb",
+          "kesb Расширенный"
+        ],
+        "sample_sessions": [
+          "mock_005354",
+          "mock_005665",
+          "mock_006511",
+          "mock_007744",
+          "mock_008114",
+          "mock_008466"
+        ],
+        "segments": {
+          "edu": 3,
+          "enterprise": 5,
+          "guest": 12,
+          "smb": 2,
+          "mid": 1,
+          "gov": 2
+        },
+        "metric_before": {
+          "zero": 25,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Kaspersky Endpoint Security для бизнеса": 9,
+          "Secret Net Studio продление": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "kesb",
+          "to": "Kaspersky Endpoint Security для бизнеса"
+        }
+      },
+      "impact": {
+        "expected_rub": 133889,
+        "conservative_rub": 86072,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-57366363bee6",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «визио» с запросом «Microsoft Visio»",
+      "status": "new",
+      "summary": "За последние 30 дней — 22 поисков в 22 сессиях.",
+      "confidence": 0.52,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 22,
+        "sessions_30d": 22,
+        "sample_queries": [
+          "визио",
+          "визио на 100 пк"
+        ],
+        "sample_sessions": [
+          "mock_004351",
+          "mock_006655",
+          "mock_006834",
+          "mock_007891",
+          "mock_009194",
+          "mock_009622"
+        ],
+        "segments": {
+          "mid": 3,
+          "guest": 11,
+          "edu": 2,
+          "gov": 4,
+          "smb": 1,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 22,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Microsoft Visio": 12
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "визио",
+          "to": "Microsoft Visio"
+        }
+      },
+      "impact": {
+        "expected_rub": 469315,
+        "conservative_rub": 301702,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-57f1770cf0da",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
+      "status": "new",
+      "summary": "За последние 30 дней — 80 поисков в 80 сессиях.",
+      "confidence": 0.8,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 80,
+        "sessions_30d": 80,
+        "sample_queries": [
+          "лицензия резервилка",
+          "резервилка",
+          "корпоративная резервилка"
+        ],
+        "sample_sessions": [
+          "mock_003544",
+          "mock_003545",
+          "mock_003546",
+          "mock_003547",
+          "mock_003548",
+          "mock_003549"
+        ],
+        "segments": {
+          "gov": 11,
+          "guest": 21,
+          "smb": 14,
+          "mid": 12,
+          "enterprise": 15,
+          "edu": 7
+        },
+        "metric_before": {
+          "zero": 80,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Кибер Бэкап": 80
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "резервилка",
+          "to": "Кибер Бэкап"
+        }
+      },
+      "impact": {
+        "expected_rub": 375886,
+        "conservative_rub": 258422,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-649a6c43e73a",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «лфызукылн» с запросом «Kaspersky Endpoint Security для бизнеса»",
+      "status": "new",
+      "summary": "За последние 30 дней — 19 поисков в 19 сессиях.",
+      "confidence": 0.49,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 19,
+        "sessions_30d": 19,
+        "sample_queries": [
+          "лфызукылн",
+          "лфызукылн утвзщште ыусгкшен lkz ,bpytcf",
+          "1ю ьшскщыщае зкщоусе - 22 kbwtypbq\n2ю лфызукылн утвзщште ыусгкшен lkz ,bpytcf hfcibhtyysq - 30 kbwtypbq\n3ю фыекф дштгч ызусшфд увшешщт - 13 in\n4ю ьшскщыщае цштвщцы ыукмук ыефтвфкв (16 сщку) - 17 cthdthjd",
+          "hfcibhtybt лфызукылн утвзщште ыусгкшен lkz ,bpytcf yf 10 gr",
+          "xnj kexit вшкусегь кч bkb лфызукылн ыьфдд щаашсу ыусгкшен",
+          "xnj kexit лфызукылн ыьфдд щаашсу ыусгкшен bkb h7-jabc",
+          "xnj kexit ьшскщыщае мшышщ bkb лфызукылн ыьфдд щаашсу ыусгкшен",
+          "xnj kexit ьшскщыщае цштвщцы 11 bkb лфызукылн ыьфдд щаашсу ыусгкшен"
+        ],
+        "sample_sessions": [
+          "mock_004057",
+          "mock_005007",
+          "mock_005889",
+          "mock_006318",
+          "mock_006861",
+          "mock_008043"
+        ],
+        "segments": {
+          "smb": 2,
+          "edu": 2,
+          "guest": 8,
+          "gov": 4,
+          "enterprise": 3
+        },
+        "metric_before": {
+          "zero": 19,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Kaspersky Endpoint Security для бизнеса": 7,
+          "Kaspersky EDR": 3,
+          "Kaspersky Small Office Security": 2,
+          "Microsoft Project": 1,
+          "Directum RX": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "лфызукылн",
+          "to": "Kaspersky Endpoint Security для бизнеса"
+        }
+      },
+      "impact": {
+        "expected_rub": 54777,
+        "conservative_rub": 36290,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-667f09be8cfe",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «постгрес» с запросом «Postgres Pro»",
+      "status": "new",
+      "summary": "За последние 30 дней — 4 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "постгрес",
+          "постгрес для 1с",
+          "постгрес для 1с продление",
+          "постгрес проfessional"
+        ],
+        "sample_sessions": [
+          "mock_005010",
+          "mock_005798",
+          "mock_010709",
+          "mock_016491"
+        ],
+        "segments": {
+          "mid": 1,
+          "enterprise": 1,
+          "smb": 1,
+          "guest": 1
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Postgres Pro": 4
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "постгрес",
+          "to": "Postgres Pro"
+        }
+      },
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-72095d0197b6",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «редос» с запросом «РЕД ОС»",
+      "status": "new",
+      "summary": "За последние 30 дней — 34 поисков в 34 сессиях.",
+      "confidence": 0.63,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 34,
+        "sessions_30d": 34,
+        "sample_queries": [
+          "редос",
+          "редос продление"
+        ],
+        "sample_sessions": [
+          "mock_003718",
+          "mock_003922",
+          "mock_004074",
+          "mock_004806",
+          "mock_004940",
+          "mock_005499"
+        ],
+        "segments": {
+          "smb": 5,
+          "guest": 13,
+          "mid": 7,
+          "gov": 3,
+          "edu": 4,
+          "enterprise": 2
+        },
+        "metric_before": {
+          "zero": 34,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "РЕД ОС": 15,
+          "Directum RX": 1,
+          "Microsoft Windows Server продление": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "редос",
+          "to": "РЕД ОС"
+        }
+      },
+      "impact": {
+        "expected_rub": 511633,
+        "conservative_rub": 328907,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-750fda7b74e3",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «powerpoint» с запросом «Microsoft Office»",
+      "status": "new",
+      "summary": "За последние 30 дней — 17 поисков в 17 сессиях.",
+      "confidence": 0.46,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 17,
+        "sessions_30d": 17,
+        "sample_queries": [
+          "powerpoint",
+          "powerpoint на 30 пк на 2 года"
+        ],
+        "sample_sessions": [
+          "mock_004257",
+          "mock_008671",
+          "mock_010101",
+          "mock_010216",
+          "mock_010490",
+          "mock_010581"
+        ],
+        "segments": {
+          "gov": 3,
+          "enterprise": 2,
+          "guest": 6,
+          "mid": 3,
+          "smb": 3
+        },
+        "metric_before": {
+          "zero": 17,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Microsoft Office": 9,
+          "Контур.Экстерн": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "powerpoint",
+          "to": "Microsoft Office"
+        }
+      },
+      "impact": {
+        "expected_rub": 123708,
+        "conservative_rub": 79526,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-7c8ac152e78e",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «мсофис» с запросом «Microsoft Office»",
+      "status": "new",
+      "summary": "За последние 30 дней — 31 поисков в 31 сессиях.",
+      "confidence": 0.61,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 31,
+        "sessions_30d": 31,
+        "sample_queries": [
+          "мсофис",
+          "мсофис standard",
+          "мсофис на 100 пк",
+          "облагается ли ндс мсофис из реестра по"
+        ],
+        "sample_sessions": [
+          "mock_003857",
+          "mock_005032",
+          "mock_005140",
+          "mock_005169",
+          "mock_008446",
+          "mock_008516"
+        ],
+        "segments": {
+          "smb": 4,
+          "edu": 5,
+          "gov": 4,
+          "enterprise": 5,
+          "guest": 11,
+          "mid": 2
+        },
+        "metric_before": {
+          "zero": 31,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Microsoft Office": 12,
+          "InfoTeCS": 1,
+          "Postgres Pro": 1,
+          "windows server standard": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "мсофис",
+          "to": "Microsoft Office"
+        }
+      },
+      "impact": {
+        "expected_rub": 189012,
+        "conservative_rub": 121507,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-bf53ad405c36",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «вкюцуи» с запросом «Dr.Web Enterprise Security Suite»",
+      "status": "new",
+      "summary": "За последние 30 дней — 4 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "вкюцуи утеукзкшыу ыусгкшен ыгшеу ghjlktybt",
+          "вкюцуи"
+        ],
+        "sample_sessions": [
+          "mock_008424",
+          "mock_010102",
+          "mock_010778",
+          "mock_019539"
+        ],
+        "segments": {
+          "mid": 1,
+          "edu": 1,
+          "guest": 1,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Dr.Web Enterprise Security Suite": 4
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "вкюцуи",
+          "to": "Dr.Web Enterprise Security Suite"
+        }
+      },
+      "impact": {
+        "expected_rub": 4765,
+        "conservative_rub": 1906,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-c1143705b37c",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «brest» с запросом «Брест»",
+      "status": "new",
+      "summary": "За последние 30 дней — 9 поисков в 9 сессиях.",
+      "confidence": 0.31,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 9,
+        "sample_queries": [
+          "brest",
+          "brest na 15 pk",
+          "1. t-flex cad - 10 litsenzii\n2. brest - 24 litsenzii\n3. kiber bekap - 13 sht\n4. kontur.diadok - 17 serverov",
+          "brest prodlenie",
+          "brest tsena dlya yurlits",
+          "chto luchshe brest ili 1s:erp",
+          "dokupit 10 litsenzii brest"
+        ],
+        "sample_sessions": [
+          "mock_004887",
+          "mock_005539",
+          "mock_006405",
+          "mock_014074",
+          "mock_014201",
+          "mock_017639"
+        ],
+        "segments": {
+          "guest": 3,
+          "gov": 1,
+          "enterprise": 2,
+          "mid": 2,
+          "edu": 1
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Брест": 7,
+          "T-FLEX CAD": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "brest",
+          "to": "Брест"
+        }
+      },
+      "impact": {
+        "expected_rub": 32403,
+        "conservative_rub": 20907,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-c15c23e75aa3",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «яцсфв» с запросом «ZWCAD»",
+      "status": "new",
+      "summary": "За последние 30 дней — 10 поисков в 10 сессиях.",
+      "confidence": 0.33,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 10,
+        "sample_queries": [
+          "яцсфв",
+          "яцсфв ghjlktybt",
+          "яцсфв yf 30 gr"
+        ],
+        "sample_sessions": [
+          "mock_003915",
+          "mock_005578",
+          "mock_014988",
+          "mock_016687",
+          "mock_016850",
+          "mock_017984"
+        ],
+        "segments": {
+          "smb": 1,
+          "guest": 4,
+          "edu": 1,
+          "gov": 1,
+          "mid": 1,
+          "enterprise": 2
+        },
+        "metric_before": {
+          "zero": 10,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "ZWCAD": 7
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "яцсфв",
+          "to": "ZWCAD"
+        }
+      },
+      "impact": {
+        "expected_rub": 25565,
+        "conservative_rub": 14609,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-cd59f6a6a273",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «кэдо» с запросом «кадровый документооборот»",
+      "status": "new",
+      "summary": "За последние 30 дней — 118 поисков в 118 сессиях.",
+      "confidence": 0.86,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 118,
+        "sessions_30d": 118,
+        "sample_queries": [
+          "кэдо",
+          "кэдо для 1с",
+          "кэдо на 100 сотрудников",
+          "система кэдо"
+        ],
+        "sample_sessions": [
+          "mock_000184",
+          "mock_000185",
+          "mock_000187",
+          "mock_000188",
+          "mock_000189",
+          "mock_000190"
+        ],
+        "segments": {
+          "enterprise": 32,
+          "smb": 33,
+          "mid": 53
+        },
+        "metric_before": {
+          "zero": 118,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "кадровый документооборот": 29,
+          "HRlink": 21,
+          "Контур.КЭДО": 20
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "кэдо",
+          "to": "кадровый документооборот"
+        }
+      },
+      "impact": {
+        "expected_rub": 671315,
+        "conservative_rub": 461529,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-d488ca1e82e3",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «вшкусегь» с запросом «Directum RX»",
+      "status": "new",
+      "summary": "За последние 30 дней — 8 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "chfdytybt ыускуе туе ыегвшщ b вшкусегь кч lkz ,bpytcf",
+          "ghjlktybt kbwtypbb вшкусегь кч 5 in",
+          "gtht[jl c вшкусегь yf vjqjabc cnfylfhnysq 30 gr",
+          "xnj kexit вшкусегь кч bkb лфызукылн ыьфдд щаашсу ыусгкшен",
+          "вшкусегь",
+          "вшкусегь кч 17 gr\nгыукпфеу тпац 24 gr\nh7-jabc 25 in",
+          "вшкусегь кч regbnm",
+          "вшкусегь кч yf 30 gr"
+        ],
+        "sample_sessions": [
+          "mock_004280",
+          "mock_006181",
+          "mock_006634",
+          "mock_007329",
+          "mock_008043",
+          "mock_015220"
+        ],
+        "segments": {
+          "enterprise": 1,
+          "guest": 4,
+          "mid": 1,
+          "gov": 2
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "Directum RX": 6,
+          "Secret Net Studio": 1,
+          "МойОфис Стандартный": 1
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "вшкусегь",
+          "to": "Directum RX"
+        }
+      },
+      "impact": {
+        "expected_rub": 9646,
+        "conservative_rub": 6632,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "add_synonym-faa939748702",
+      "type": "add_synonym",
+      "role": "content_manager",
+      "title": "Связать «адешка» с запросом «ALD Pro»",
+      "status": "new",
+      "summary": "За последние 30 дней — 184 поисков в 184 сессиях.",
+      "confidence": 0.9,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 184,
+        "sessions_30d": 184,
+        "sample_queries": [
+          "адешка",
+          "адешка на астру",
+          "адешка под линукс",
+          "российская адешка",
+          "контроллер домена адешка"
+        ],
+        "sample_sessions": [
+          "mock_000000",
+          "mock_000001",
+          "mock_000002",
+          "mock_000003",
+          "mock_000004",
+          "mock_000005"
+        ],
+        "segments": {
+          "gov": 89,
+          "enterprise": 54,
+          "mid": 41
+        },
+        "metric_before": {
+          "zero": 184,
+          "orders": 0
+        },
+        "reformulated_to": {
+          "РЕД АДМ": 50,
+          "ALD Pro": 40,
+          "служба каталогов": 36
+        }
+      },
+      "action": {
+        "kind": "synonym",
+        "label": "Добавить синоним",
+        "conditions": {},
+        "payload_json": {
+          "kind": "text",
+          "phrase": "адешка",
+          "to": "ALD Pro"
+        }
+      },
+      "impact": {
+        "expected_rub": 5954656,
+        "conservative_rub": 4093826,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-19aaa24647df",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Межсетевые экраны, NGFW и VPN»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "ViPNet Client из реестра на 25 арм",
+          "чем заменить Palo Alto Networks NGFW (PA-Series / VM-Series) из реестра",
+          "Межсетевые экраны, NGFW и VPN под астру из реестра",
+          "облагается ли ндс випнет клиент из реестра по",
+          "Межсетевые экраны, NGFW и VPN из реестра"
+        ],
+        "sample_sessions": [
+          "mock_003988",
+          "mock_006256",
+          "mock_006281",
+          "mock_007894",
+          "mock_008047"
+        ],
+        "segments": {
+          "gov": 1,
+          "guest": 1,
+          "mid": 1,
+          "edu": 1,
+          "smb": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        },
+        "impressions": 316
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "vipnet_client",
+            "usergate_ngfw"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 94390,
+        "conservative_rub": 64074,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-29268ce809c1",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Антивирусы и защита рабочих мест»",
+      "status": "new",
+      "summary": "За последние 30 дней — 30 поисков в 30 сессиях.",
+      "confidence": 0.6,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 30,
+        "sessions_30d": 30,
+        "sample_queries": [
+          "Антивирусы и защита рабочих мест из реестра",
+          "Антивирусы и защита рабочих мест под ред ос из реестра",
+          "облагается ли ндс Dr.Web Enterprise Security Suite из реестра по",
+          "Антивирусы и защита рабочих мест под астру из реестра",
+          "облагается ли ндс Kaspersky Small Office Security из реестра по",
+          "облагается ли ндс Kaspersky Endpoint Security для бизнеса из реестра по",
+          "Dr.Web Enterprise Security Suite из реестра на 15 арм",
+          "чем заменить Symantec Endpoint Protection (Broadcom) из реестра"
+        ],
+        "sample_sessions": [
+          "mock_004783",
+          "mock_005202",
+          "mock_005574",
+          "mock_006218",
+          "mock_006350",
+          "mock_007521"
+        ],
+        "segments": {
+          "guest": 12,
+          "smb": 4,
+          "mid": 5,
+          "edu": 3,
+          "enterprise": 4,
+          "gov": 2
+        },
+        "metric_before": {
+          "zero": 30,
+          "orders": 0
+        },
+        "impressions": 1191
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "kaspersky_kesb:standard",
+            "kaspersky_kesb:advanced",
+            "kaspersky_ksos",
+            "drweb_enterprise_security_suite",
+            "pro32_endpoint"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 154977,
+        "conservative_rub": 103832,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-344a95a2d55e",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Службы каталогов, контроллеры домена и UEM»",
+      "status": "new",
+      "summary": "За последние 30 дней — 56 поисков в 56 сессиях.",
+      "confidence": 0.74,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 56,
+        "sessions_30d": 56,
+        "sample_queries": [
+          "адешка на астру",
+          "аналог active directory астра",
+          "контроллер домена астра",
+          "контроллер домена астра продление",
+          "Службы каталогов, контроллеры домена и UEM под астру фстэк",
+          "аналог active directory астра купить",
+          "1. ALD Pro - 8 лицензий\n2. Secret Net Studio - 2 лицензий\n3. Microsoft SQL Server - 28 шт\n4. Astra Linux Common Edition - 19 серверов"
+        ],
+        "sample_sessions": [
+          "mock_000002",
+          "mock_000007",
+          "mock_000012",
+          "mock_000017",
+          "mock_000022",
+          "mock_000027"
+        ],
+        "segments": {
+          "enterprise": 14,
+          "gov": 21,
+          "mid": 8,
+          "guest": 6,
+          "edu": 5,
+          "smb": 2
+        },
+        "metric_before": {
+          "zero": 56,
+          "orders": 0
+        },
+        "impressions": 189
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "ald_pro"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 1309248,
+        "conservative_rub": 871541,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-35798639e7ed",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Зарплата и кадровый учёт»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "Зарплата и кадровый учёт под ред ос из реестра",
+          "Зарплата и кадровый учёт из реестра"
+        ],
+        "sample_sessions": [
+          "mock_003772",
+          "mock_011143",
+          "mock_017909",
+          "mock_020961",
+          "mock_023229"
+        ],
+        "segments": {
+          "guest": 4,
+          "mid": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        },
+        "impressions": 190
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "onec_zup"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 2128,
+        "conservative_rub": 1463,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-44356b408f4b",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «СЭД, ECM и внутренний документооборот»",
+      "status": "new",
+      "summary": "За последние 30 дней — 9 поисков в 9 сессиях.",
+      "confidence": 0.31,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 9,
+        "sample_queries": [
+          "СЭД, ECM и внутренний документооборот под астру из реестра",
+          "СЭД, ECM и внутренний документооборот под астру фстэк",
+          "СЭД, ECM и внутренний докуемнтооборот под астру из реестра",
+          "1. Directum RX - 19 лицензий\n2. Astra Linux Special Edition - 5 лицензий\n3. Postgres Pro - 2 шт\n4. 1С:Зарплата и управление персоналом - 2 серверов",
+          "СЭД, ECM и внутренний документооборот под ред ос из реестра"
+        ],
+        "sample_sessions": [
+          "mock_005974",
+          "mock_009705",
+          "mock_014743",
+          "mock_016957",
+          "mock_018561",
+          "mock_018872"
+        ],
+        "segments": {
+          "guest": 7,
+          "gov": 1,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        },
+        "impressions": 177
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "directum_rx"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 359592,
+        "conservative_rub": 247220,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-45b47df064e5",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Зарплата и кадровый учёт»",
+      "status": "new",
+      "summary": "За последние 30 дней — 7 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "Зарплата и кадровый учёт под ред ос из реестра",
+          "1. 1С:Зарплата и управление персоналом - 25 лицензий\n2. UserGate NGFW - 21 лицензий\n3. РЕД ОС - 11 шт\n4. Dr.Web Enterprise Security Suite - 26 серверов",
+          "что лучше 1С:Зарплата и управление персоналом или Astra Linux Common Edition",
+          "1С:Зарплата и управление персоналом 18 пк\nZWCAD 14 пк\nAstra Linux Common Edition 20 шт",
+          "1С:Зарплата и управление персоналом 24 пк\nMicrosoft Windows 11 enterprise 13 пк\nAstra Linux Common Edition 30 шт"
+        ],
+        "sample_sessions": [
+          "mock_003772",
+          "mock_008655",
+          "mock_011143",
+          "mock_015552",
+          "mock_017909",
+          "mock_018185"
+        ],
+        "segments": {
+          "guest": 3,
+          "enterprise": 1,
+          "edu": 1,
+          "mid": 1,
+          "smb": 1
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        },
+        "impressions": 190
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "onec_zup"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 36427,
+        "conservative_rub": 23417,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-4ba19f63d833",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Офисные пакеты»",
+      "status": "new",
+      "summary": "За последние 30 дней — 77 поисков в 77 сессиях.",
+      "confidence": 0.79,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 77,
+        "sessions_30d": 77,
+        "sample_queries": [
+          "офисный пакет реестр по без ндс",
+          "облагается ли ндс Р7-Офис из реестра по",
+          "Офисные пакеты под ред ос из реестра",
+          "облагается ли ндс Microsoft Office из реестра по",
+          "Офисные пакеты из реестра",
+          "облагается ли ндс мсофис из реестра по",
+          "Microsoft Office из реестра на 5 арм",
+          "МойОфис Стандартный из реестра на 5 арм"
+        ],
+        "sample_sessions": [
+          "mock_001295",
+          "mock_001298",
+          "mock_001301",
+          "mock_001304",
+          "mock_001307",
+          "mock_001310"
+        ],
+        "segments": {
+          "gov": 55,
+          "edu": 6,
+          "guest": 8,
+          "smb": 5,
+          "mid": 2,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 77,
+          "orders": 0
+        },
+        "impressions": 995
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "ms_office:professional",
+            "ms_office:standard",
+            "myoffice_standard",
+            "r7_office"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 1138285,
+        "conservative_rub": 777784,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-64e668b50fff",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Антивирусы и защита рабочих мест»",
+      "status": "new",
+      "summary": "За последние 30 дней — 14 поисков в 14 сессиях.",
+      "confidence": 0.41,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 14,
+        "sessions_30d": 14,
+        "sample_queries": [
+          "Антивирусы и защита рабочих мест под ред ос фстэк",
+          "Антивирусы и защита рабочих мест под ред ос из реестра",
+          "Антивирусы и защита рабочих мест под астру фстэк",
+          "Антивирусы и защита рабочих мест под астру из реестра",
+          "замена Symantec Endpoint Protection (Broadcom) под ред ос",
+          "замена Bitdefender GravityZone под ред ос",
+          "Антивирусы и защтиа рабочих мест под астру фстэк",
+          "замена Trend Micro Apex One / Vision One под астру"
+        ],
+        "sample_sessions": [
+          "mock_004535",
+          "mock_006259",
+          "mock_007521",
+          "mock_008264",
+          "mock_009003",
+          "mock_012920"
+        ],
+        "segments": {
+          "smb": 4,
+          "guest": 4,
+          "mid": 3,
+          "enterprise": 1,
+          "edu": 2
+        },
+        "metric_before": {
+          "zero": 14,
+          "orders": 0
+        },
+        "impressions": 1191
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "kaspersky_kesb:standard",
+            "kaspersky_kesb:advanced",
+            "kaspersky_ksos",
+            "drweb_enterprise_security_suite",
+            "pro32_endpoint"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 63184,
+        "conservative_rub": 43439,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-744db08053dd",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «СЭД, ECM и внутренний документооборот»",
+      "status": "new",
+      "summary": "За последние 30 дней — 12 поисков в 12 сессиях.",
+      "confidence": 0.38,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 12,
+        "sessions_30d": 12,
+        "sample_queries": [
+          "СЭД, ECM и внутренний документооборот под астру из реестра",
+          "облагается ли ндс Directum RX из реестра по",
+          "СЭД, ECM и внутренний дкоументооборот из реестра",
+          "СЭД, ECM и внутренний докуемнтооборот под астру из реестра",
+          "СЭД,ECMивнутреннийдокументооборотподредосизреестра",
+          "СЭД, ECM и внутренний документооборот под ред ос из реестра"
+        ],
+        "sample_sessions": [
+          "mock_005974",
+          "mock_006834",
+          "mock_013468",
+          "mock_014708",
+          "mock_014743",
+          "mock_014848"
+        ],
+        "segments": {
+          "guest": 8,
+          "gov": 2,
+          "mid": 1,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 12,
+          "orders": 0
+        },
+        "impressions": 177
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "directum_rx"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 551144,
+        "conservative_rub": 370360,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-8c72a0a78b60",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Серверные операционные системы»",
+      "status": "new",
+      "summary": "За последние 30 дней — 7 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "облагается ли ндс Microsoft Windows Server из реестра по",
+          "Серверные операционные системы под ред ос из реестра",
+          "Microsoft Windows Server из реестра на 250 арм"
+        ],
+        "sample_sessions": [
+          "mock_004116",
+          "mock_005105",
+          "mock_007210",
+          "mock_008768",
+          "mock_012023",
+          "mock_017024"
+        ],
+        "segments": {
+          "guest": 3,
+          "smb": 1,
+          "enterprise": 2,
+          "edu": 1
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        },
+        "impressions": 891
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "windows_server:standard",
+            "windows_server:datacenter"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 75286,
+        "conservative_rub": 48670,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-969ee56b6e57",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Операционные системы Windows»",
+      "status": "new",
+      "summary": "За последние 30 дней — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "Операционные системы Windows из реестра",
+          "облагается ли ндс Microsoft Windows 11 из реестра по"
+        ],
+        "sample_sessions": [
+          "mock_006637",
+          "mock_006719",
+          "mock_010411",
+          "mock_018235",
+          "mock_019415"
+        ],
+        "segments": {
+          "guest": 2,
+          "gov": 1,
+          "edu": 1,
+          "mid": 1
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        },
+        "impressions": 473
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "windows_11:enterprise",
+            "windows_11:pro"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 13050,
+        "conservative_rub": 8972,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-a3db8a96f564",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Офисные пакеты»",
+      "status": "new",
+      "summary": "За последние 30 дней — 10 поисков в 10 сессиях.",
+      "confidence": 0.33,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 10,
+        "sample_queries": [
+          "Офисные пакеты под ред ос из реестра",
+          "Офисные пакеты под астру фстэк",
+          "Microsoft Office 28 пк\nРЕД ОС 23 пк\nKaspersky Endpoint Security для бизнеса Расширенный 26 шт",
+          "1. МойОфис Стандартный - 30 лицензий\n2. Альт Рабочая станция - 30 лицензий\n3. Postgres Pro - 21 шт\n4. РЕД ОС - 16 серверов",
+          "Р7-Офис 28 пк\nAstra Linux Common Edition 26 пк\nРЕД ОС 25 шт",
+          "Microsoft Office 1 пк\nРЕД ОС 29 пк\nViPNet Client 15 шт"
+        ],
+        "sample_sessions": [
+          "mock_004055",
+          "mock_005362",
+          "mock_009027",
+          "mock_010364",
+          "mock_010387",
+          "mock_011841"
+        ],
+        "segments": {
+          "guest": 3,
+          "enterprise": 2,
+          "edu": 4,
+          "mid": 1
+        },
+        "metric_before": {
+          "zero": 10,
+          "orders": 0
+        },
+        "impressions": 995
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "ms_office:professional",
+            "ms_office:standard",
+            "myoffice_standard",
+            "r7_office"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 27540,
+        "conservative_rub": 18431,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-ab196624eb38",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Российские настольные ОС»",
+      "status": "new",
+      "summary": "За последние 30 дней — 12 поисков в 12 сессиях.",
+      "confidence": 0.38,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 12,
+        "sessions_30d": 12,
+        "sample_queries": [
+          "облагается ли ндс Astra Linux из реестра по",
+          "Российские настольные ОС из реестра",
+          "Альт Рабочая станция из реестра на 100 арм",
+          "астра линукс из реестра на 30 арм",
+          "Альт Рабочая станция из реестра на 30 арм",
+          "облагается ли ндс alt workstation из реестра по",
+          "Россисйкие настольные ОС из реестра"
+        ],
+        "sample_sessions": [
+          "mock_004601",
+          "mock_008727",
+          "mock_009447",
+          "mock_010514",
+          "mock_012616",
+          "mock_012720"
+        ],
+        "segments": {
+          "guest": 6,
+          "enterprise": 1,
+          "edu": 1,
+          "smb": 1,
+          "gov": 1,
+          "mid": 2
+        },
+        "metric_before": {
+          "zero": 12,
+          "orders": 0
+        },
+        "impressions": 846
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "astra_linux:common_edition",
+            "astra_linux:special_edition",
+            "redos",
+            "alt_workstation"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 231141,
+        "conservative_rub": 153223,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-abaf6e533544",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Базовые 2D/3D САПР и черчение DWG»",
+      "status": "new",
+      "summary": "За последние 30 дней — 7 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "ZWCAD из реестра на 15 арм",
+          "Палтформа nanoCAD из реестра на 15 арм",
+          "облагается ли ндс нанокад из реестра по",
+          "облагается ли ндс Платформа nanoCAD из реестра по"
+        ],
+        "sample_sessions": [
+          "mock_006340",
+          "mock_007601",
+          "mock_008678",
+          "mock_012750",
+          "mock_013904",
+          "mock_018259"
+        ],
+        "segments": {
+          "mid": 1,
+          "smb": 1,
+          "enterprise": 1,
+          "guest": 3,
+          "edu": 1
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        },
+        "impressions": 297
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "zwcad",
+            "nanocad"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 18791,
+        "conservative_rub": 12080,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-ac0d148eaad4",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Машиностроительные САПР, 3D-моделирование и PLM/PDM»",
+      "status": "new",
+      "summary": "За последние 30 дней — 6 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "чем заменить Siemens NX (Unigraphics) из реестра",
+          "облагается ли ндс КОМПАС-3D из реестра по",
+          "Машиностроительные САПР, 3D-моделирование и PLM/PDM из реестра",
+          "чем заменить SOLIDWORKS из реестра",
+          "Машиностроительные САПР, 3D-моделирование и PLM/PDM под ред ос из реестра"
+        ],
+        "sample_sessions": [
+          "mock_003963",
+          "mock_004996",
+          "mock_008701",
+          "mock_009687",
+          "mock_013205",
+          "mock_015307"
+        ],
+        "segments": {
+          "guest": 3,
+          "gov": 2,
+          "mid": 1
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        },
+        "impressions": 295
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "kompas_3d",
+            "tflex_cad"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 5617,
+        "conservative_rub": 3861,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-ae82884e265b",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Межсетевые экраны, NGFW и VPN»",
+      "status": "new",
+      "summary": "За последние 30 дней — 85 поисков в 85 сессиях.",
+      "confidence": 0.81,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 85,
+        "sessions_30d": 85,
+        "sample_queries": [
+          "межсетевой экран под ред ос",
+          "замена Palo Alto Networks NGFW (PA-Series / VM-Series) под ред ос",
+          "Межсетевые экраны, NGFW и VPN под ред ос фстэк",
+          "Межсетевые экраны, NGFW и VPN под астру из реестра",
+          "сравнение ViPNet Client и Astra Linux Special Edition для бизнеса",
+          "1. usergate ngfw - 5 litsenzii\n2. t-flex cad - 19 litsenzii\n3. astra linux special edition - 13 sht\n4. kaspersky endpoint security dlya biznesa standartnyi - 13 serverov",
+          "ViPNet Client 2 пк\n1С:Бухгалтерия ПРОФ 20 пк\nAstra Linux Common Edition 16 шт",
+          "1. UserGate NGFW - 5 лицензий\n2. T-FLEX CAD - 19 лицензий\n3. Astra Linux Special Edition - 13 шт\n4. Kaspersky Endpoint Security для бизнеса Стандартный - 13 серверов"
+        ],
+        "sample_sessions": [
+          "mock_000985",
+          "mock_000989",
+          "mock_000993",
+          "mock_000997",
+          "mock_001001",
+          "mock_001005"
+        ],
+        "segments": {
+          "gov": 10,
+          "guest": 28,
+          "enterprise": 18,
+          "edu": 8,
+          "mid": 11,
+          "smb": 10
+        },
+        "metric_before": {
+          "zero": 85,
+          "orders": 0
+        },
+        "impressions": 316
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "vipnet_client",
+            "usergate_ngfw"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 1538278,
+        "conservative_rub": 1057530,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-be61d8976384",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить данные о реестре в категории «Видеоконференцсвязь и вебинары»",
+      "status": "new",
+      "summary": "За последние 30 дней — 6 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "чем заменить Zoom Workplace (Pro / Business / Enterprise) из реестра",
+          "TrueConf Server из реестра на 100 арм",
+          "облагается ли ндс Vinteo Server из реестра по",
+          "облагается ли ндс TrueConf Server из реестра по",
+          "Видеоконференцсвязь и вебинары из реестра"
+        ],
+        "sample_sessions": [
+          "mock_004460",
+          "mock_010040",
+          "mock_010490",
+          "mock_014370",
+          "mock_019411",
+          "mock_023438"
+        ],
+        "segments": {
+          "guest": 1,
+          "gov": 3,
+          "smb": 1,
+          "edu": 1
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        },
+        "impressions": 373
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "registry",
+          "card_ids": [
+            "trueconf_server",
+            "vinteo_server"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 17745,
+        "conservative_rub": 11420,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-cf6669b92ca1",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить диапазоны лицензирования в категории «Антивирусы и защита рабочих мест»",
+      "status": "new",
+      "summary": "За последние 30 дней — 536 поисков в 536 сессиях.",
+      "confidence": 0.96,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 536,
+        "sessions_30d": 536,
+        "sample_queries": [
+          "антивирус на 10 пк",
+          "антивирус на 15 компьютеров",
+          "антивирус на 35 пк",
+          "корпоративный антивирус 60 устройств",
+          "Kaspersky Endpoint Security для бизнеса на 15 пк",
+          "Dr.Web Enterprise Security Suite на 15 пк",
+          "Kaspersky Endpoint Security для бизнеса на 100 пк",
+          "Kaspersky Small Office Security на 30 пк"
+        ],
+        "sample_sessions": [
+          "mock_001471",
+          "mock_001472",
+          "mock_001474",
+          "mock_001475",
+          "mock_001477",
+          "mock_001478"
+        ],
+        "segments": {
+          "gov": 48,
+          "guest": 122,
+          "enterprise": 52,
+          "mid": 45,
+          "edu": 38,
+          "smb": 205,
+          "individual": 26
+        },
+        "metric_before": {
+          "zero": 536,
+          "orders": 0
+        },
+        "impressions": 210
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "qty_range",
+          "card_ids": [
+            "kaspersky_ksos"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 6958516,
+        "conservative_rub": 4747705,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-e57bd56d71e1",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Бухгалтерский и налоговый учёт»",
+      "status": "new",
+      "summary": "За последние 30 дней — 8 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "1. 1С:Бухгалтерия - 14 лицензий\n2. ALD Pro - 2 лицензий\n3. РЕД ОС - 8 шт\n4. Microsoft Visio - 30 серверов",
+          "1. 1С:Бухгалтерия - 1 лицензий\n2. РЕД ОС - 5 лицензий\n3. 1С:Бухгалтерия ПРОФ - 1 шт\n4. Microsoft Project - 12 серверов",
+          "Бухгалтерский и налоговый учёт под ред ос из реестра",
+          "сравнение 1С:Бухгалтерия и Astra Linux Common Edition для бизнеса",
+          "Бухгалтерский и налоговый учёт под астру фстэк"
+        ],
+        "sample_sessions": [
+          "mock_005047",
+          "mock_005218",
+          "mock_008628",
+          "mock_009020",
+          "mock_016605",
+          "mock_019486"
+        ],
+        "segments": {
+          "enterprise": 1,
+          "guest": 4,
+          "smb": 1,
+          "edu": 2
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        },
+        "impressions": 595
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "onec_accounting:prof",
+            "onec_accounting:corp"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 167658,
+        "conservative_rub": 113892,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "fix_card-efdd6578802c",
+      "type": "fix_card",
+      "role": "content_manager",
+      "title": "Дополнить совместимость с ОС в категории «Российские настольные ОС»",
+      "status": "new",
+      "summary": "За последние 30 дней — 425 поисков в 424 сессиях.",
+      "confidence": 0.95,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 425,
+        "sessions_30d": 424,
+        "sample_queries": [
+          "замена ad на astra linux",
+          "резервное копирование astra linux",
+          "ngfw совместимый с astra linux",
+          "астра линукс",
+          "РЕД ОС на 30 пк",
+          "Astra Linux на 100 пк",
+          "Astra Linux на 15 пк",
+          "astra linux na 15 pk"
+        ],
+        "sample_sessions": [
+          "mock_000984",
+          "mock_000986",
+          "mock_000988",
+          "mock_000990",
+          "mock_000992",
+          "mock_000994"
+        ],
+        "segments": {
+          "smb": 48,
+          "guest": 109,
+          "edu": 38,
+          "gov": 93,
+          "enterprise": 78,
+          "mid": 57,
+          "individual": 2
+        },
+        "metric_before": {
+          "zero": 425,
+          "orders": 0
+        },
+        "impressions": 846
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Поставить задачу контент-менеджеру",
+        "payload_json": {
+          "field": "platforms",
+          "card_ids": [
+            "astra_linux:common_edition",
+            "astra_linux:special_edition",
+            "redos",
+            "alt_workstation"
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 9150367,
+        "conservative_rub": 5883044,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-195136c758b1",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 10»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "Postgres Professional",
+          "Postgres Pro",
+          "ZWCAD продление",
+          "ZWCAD",
+          "1С:Бухгалтерия КОРП",
+          "Microsoft",
+          "Ansys (Mechanical / Fluent / HFSS) продление",
+          "kontur"
+        ],
+        "sample_sessions": [
+          "mock_012222",
+          "mock_014293",
+          "mock_014899",
+          "mock_018648"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_10"
+        }
+      },
+      "impact": {
+        "expected_rub": 16678,
+        "conservative_rub": 10594,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-1ff49ad6a882",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 46»",
+      "status": "new",
+      "summary": "За последние 72 часа — 8 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "ии ассистент программиста on premise",
+          "Astra Group",
+          "1С:Бухгалтерия купить",
+          "1С:Бухгалтерия",
+          "1С:Зарплата и управление персоналом",
+          "Платформа nanoCDA",
+          "Платформа nanoCAD",
+          "Брест"
+        ],
+        "sample_sessions": [
+          "mock_003013",
+          "mock_003739",
+          "mock_004977",
+          "mock_012773"
+        ],
+        "segments": {
+          "enterprise": 8
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_46"
+        }
+      },
+      "impact": {
+        "expected_rub": 13953,
+        "conservative_rub": 8545,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-2842d673085c",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 37»",
+      "status": "new",
+      "summary": "За последние 72 часа — 16 поисков в 8 сессиях.",
+      "confidence": 0.29,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 16,
+        "sessions_30d": 8,
+        "sample_queries": [
+          "Microsoft Office",
+          "CommuniGate Pro",
+          "купить cursor для команды",
+          "локальная llm для компании",
+          "как продлить лицензию Microsoft после окончания",
+          "basalt_spo",
+          "Альт Рабочая станция",
+          "касперский едр"
+        ],
+        "sample_sessions": [
+          "mock_000526",
+          "mock_003000",
+          "mock_007958",
+          "mock_010384",
+          "mock_011309",
+          "mock_013086"
+        ],
+        "segments": {
+          "enterprise": 16
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_37"
+        }
+      },
+      "impact": {
+        "expected_rub": 20612,
+        "conservative_rub": 13587,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-285134a5fad3",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 81»",
+      "status": "new",
+      "summary": "За последние 72 часа — 13 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 13,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "адешка на астру",
+          "служба каталогов",
+          "autocad",
+          "gigacode корпоративная лицензия",
+          "Видеоконференцсвязь и вебинары под ред ос фстэк",
+          "TrueConf Server",
+          "T-FLEX CAD продление",
+          "AX-07E8CCAA57FF"
+        ],
+        "sample_sessions": [
+          "mock_000167",
+          "mock_002530",
+          "mock_002882",
+          "mock_013621",
+          "mock_016541",
+          "mock_018390"
+        ],
+        "segments": {
+          "enterprise": 13
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_81"
+        }
+      },
+      "impact": {
+        "expected_rub": 20261,
+        "conservative_rub": 13162,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-31e786f6f29c",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 180»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "адешка на астру",
+          "РЕД АДМ",
+          "контроллер домена адешка",
+          "служба каталогов",
+          "cursor ide",
+          "ngfw совместимый с astra linux",
+          "autocad",
+          "AX-9126B3D9BA9A"
+        ],
+        "sample_sessions": [
+          "mock_000117",
+          "mock_000124",
+          "mock_000500",
+          "mock_001194",
+          "mock_002562",
+          "mock_016148"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_180"
+        }
+      },
+      "impact": {
+        "expected_rub": 20866,
+        "conservative_rub": 13021,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-36dd77d173a7",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 91»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "адешка на астру",
+          "ALD Pro",
+          "ngfw совместимый с astra linux",
+          "локальная llm для компании",
+          "миграция active directory на российское",
+          "картридж для принтера",
+          "AX-E014A20CF5D6",
+          "касперский расширенный Расширенный"
+        ],
+        "sample_sessions": [
+          "mock_000067",
+          "mock_001110",
+          "mock_002864",
+          "mock_003396",
+          "mock_005906",
+          "mock_009362"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_91"
+        }
+      },
+      "impact": {
+        "expected_rub": 22859,
+        "conservative_rub": 15285,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-3b015f2bb49f",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 172»",
+      "status": "new",
+      "summary": "За последние 72 часа — 5 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "резервное копирование astra linux",
+          "бэкап под астру",
+          "антивирус на 35 пк",
+          "1С:Управление торговлей",
+          "а на 15 мест?"
+        ],
+        "sample_sessions": [
+          "mock_001044",
+          "mock_001235",
+          "mock_001480",
+          "mock_017767"
+        ],
+        "segments": {
+          "enterprise": 5
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_172"
+        }
+      },
+      "impact": {
+        "expected_rub": 19845,
+        "conservative_rub": 13388,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-46e41b58e673",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 197»",
+      "status": "new",
+      "summary": "За последние 72 часа — 7 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "cursor enterprise лицензия",
+          "ред адм контроллер домена",
+          "Microsoft Windows Server продление на 5 пк",
+          "Microsoft Windows Server",
+          "proejct 2021",
+          "Microsoft Project"
+        ],
+        "sample_sessions": [
+          "mock_000429",
+          "mock_000545",
+          "mock_003291",
+          "mock_013742",
+          "mock_018730"
+        ],
+        "segments": {
+          "enterprise": 7
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_197"
+        }
+      },
+      "impact": {
+        "expected_rub": 15450,
+        "conservative_rub": 9143,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-4b3c7bc832e2",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 65»",
+      "status": "new",
+      "summary": "За последние 72 часа — 4 поисков в 3 сессиях.",
+      "confidence": 0.13,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 3,
+        "sample_queries": [
+          "миграция active directory на российское",
+          "soft dlya kliniki pod klyuch",
+          "Кибер Бэкап на 15 пк",
+          "UserGate NGFW"
+        ],
+        "sample_sessions": [
+          "mock_003288",
+          "mock_004582",
+          "mock_014635"
+        ],
+        "segments": {
+          "enterprise": 4
+        },
+        "metric_before": {
+          "zero": 3,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_65"
+        }
+      },
+      "impact": {
+        "expected_rub": 7161,
+        "conservative_rub": 4716,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-4b3fc2235adc",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 148»",
+      "status": "new",
+      "summary": "За последние 72 часа — 5 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 5,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "кэдо для 1с",
+          "кадровый эдо",
+          "корпоративный чат гпт в контуре",
+          "миграция active directory на российское",
+          "Microsoft Project"
+        ],
+        "sample_sessions": [
+          "mock_000255",
+          "mock_000291",
+          "mock_002911",
+          "mock_003276",
+          "mock_006803"
+        ],
+        "segments": {
+          "enterprise": 5
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_148"
+        }
+      },
+      "impact": {
+        "expected_rub": 12620,
+        "conservative_rub": 8676,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-56efedc87a4f",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 48»",
+      "status": "new",
+      "summary": "За последние 72 часа — 9 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "Microsoft Windows Server",
+          "яндекс трекер",
+          "autocad лицензия цена",
+          "продлить Microsoft 10 пк на 2 года",
+          "пеерход с Astra Group на Microsoft Windows Server 25 пк",
+          "Microsoft Project",
+          "Direcutm RX",
+          "Directum RX"
+        ],
+        "sample_sessions": [
+          "mock_000720",
+          "mock_002645",
+          "mock_013405",
+          "mock_019058",
+          "mock_019702"
+        ],
+        "segments": {
+          "enterprise": 9
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_48"
+        }
+      },
+      "impact": {
+        "expected_rub": 16561,
+        "conservative_rub": 9590,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-6192d17220c3",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 80»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "корпоративный антивирус 60 устройств",
+          "резервилка",
+          "Кибер Бэкап",
+          "1. 1С:Зарплата и управление персоналом - 25 лицензий\n2. UserGate NGFW - 21 лицензий\n3. РЕД ОС - 11 шт\n4. Dr.Web Enterprise Security Suite - 26 серверов",
+          "1С:Зарплата и управление персоналом",
+          "Microsoft Windows 11 Professional (Pro)",
+          "Microsoft Windows 11",
+          "redsoft"
+        ],
+        "sample_sessions": [
+          "mock_001598",
+          "mock_003580",
+          "mock_008655",
+          "mock_016066",
+          "mock_021082",
+          "mock_023156"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_80"
+        }
+      },
+      "impact": {
+        "expected_rub": 45160,
+        "conservative_rub": 29587,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-6845089706d9",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 156»",
+      "status": "new",
+      "summary": "За последние 72 часа — 7 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "ндв",
+          "сертифицированный фстэк",
+          "купить автокад 2025",
+          "локальная llm для компании",
+          "ald pro цена",
+          "ZWCAD из реестра на 15 арм",
+          "ZWCAD"
+        ],
+        "sample_sessions": [
+          "mock_000332",
+          "mock_002724",
+          "mock_002956",
+          "mock_003182",
+          "mock_008678"
+        ],
+        "segments": {
+          "enterprise": 7
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_156"
+        }
+      },
+      "impact": {
+        "expected_rub": 12666,
+        "conservative_rub": 8582,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-706b9cc37894",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 179»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "бэкап под астру",
+          "trueconf server на 30 пк",
+          "TrueConf Server",
+          "htl jc",
+          "РЕД ОС",
+          "мойофис стандартный",
+          "ghjlktybt kbwtypbb ьшскщыщае цштвщцы ыукмук 25 in",
+          "Microsoft Windows Server"
+        ],
+        "sample_sessions": [
+          "mock_000991",
+          "mock_005282",
+          "mock_005322",
+          "mock_009811",
+          "mock_013021",
+          "mock_021506"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_179"
+        }
+      },
+      "impact": {
+        "expected_rub": 21253,
+        "conservative_rub": 13446,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-76f7c8bdc89d",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 57»",
+      "status": "new",
+      "summary": "За последние 72 часа — 6 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "Postgres Pro",
+          "яндекс трекер",
+          "купить автокад 2025",
+          "Postrges Pro",
+          "расширение Postgres Pro на 15 пк"
+        ],
+        "sample_sessions": [
+          "mock_000716",
+          "mock_002380",
+          "mock_010321",
+          "mock_018070"
+        ],
+        "segments": {
+          "enterprise": 6
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_57"
+        }
+      },
+      "impact": {
+        "expected_rub": 3471,
+        "conservative_rub": 1893,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-a15b10c4f383",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 127»",
+      "status": "new",
+      "summary": "За последние 72 часа — 7 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "ald pro цена",
+          "криптопро",
+          "КриптоПро CSP",
+          "Microsoft Windows Server на 100 пк",
+          "купить Slack (Pro / Business+ / Enterprise Grid)",
+          "Vinteo eSrver на 100 пк",
+          "Vinteo Server"
+        ],
+        "sample_sessions": [
+          "mock_003246",
+          "mock_004191",
+          "mock_012683",
+          "mock_019022",
+          "mock_019750"
+        ],
+        "segments": {
+          "enterprise": 7
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_127"
+        }
+      },
+      "impact": {
+        "expected_rub": 14675,
+        "conservative_rub": 9434,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-befaed5e75d4",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 63»",
+      "status": "new",
+      "summary": "За последние 72 часа — 7 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "купить яндекс трекер 50 пользователей",
+          "ии ассистент программиста on premise",
+          "принтер для бухгалтерии",
+          "KL-2CB8AA8B08F1",
+          "Postgres Professional",
+          "Postgres Pro",
+          "Microsoft Office на 30 пк"
+        ],
+        "sample_sessions": [
+          "mock_000686",
+          "mock_002773",
+          "mock_004571",
+          "mock_005699"
+        ],
+        "segments": {
+          "enterprise": 7
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_63"
+        }
+      },
+      "impact": {
+        "expected_rub": 6040,
+        "conservative_rub": 3162,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-c3f3e6ee3693",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 97»",
+      "status": "new",
+      "summary": "За последние 72 часа — 12 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 12,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "яндекс трекер корпоративный",
+          "локальная llm для компании",
+          "gigacode корпоративная лицензия",
+          "миграция active directory на российское",
+          "Microsoft Office professional",
+          "Microsoft Office",
+          "Microsoft",
+          "что лучше ALD Pro или Microsoft Office professional"
+        ],
+        "sample_sessions": [
+          "mock_000795",
+          "mock_002972",
+          "mock_002998",
+          "mock_003240",
+          "mock_013295",
+          "mock_014523"
+        ],
+        "segments": {
+          "enterprise": 12
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_97"
+        }
+      },
+      "impact": {
+        "expected_rub": 23980,
+        "conservative_rub": 14715,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-d1cadf23b91e",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 101»",
+      "status": "new",
+      "summary": "За последние 72 часа — 10 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 10,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "чем заменить ABBYY FineReader PDF / FlexiCapture из реестра",
+          "Kaspersky Endpoint Security для бизнеса",
+          "Брест фстэк на 100 арм",
+          "Брест",
+          "po dlya rabochego mesta inzhenera",
+          "InfoTeCS",
+          "Microsoft Windows 11 продление",
+          "Microsoft Windows 11"
+        ],
+        "sample_sessions": [
+          "mock_010591",
+          "mock_013798",
+          "mock_014693",
+          "mock_017035",
+          "mock_017316",
+          "mock_019783"
+        ],
+        "segments": {
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 5,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_101"
+        }
+      },
+      "impact": {
+        "expected_rub": 11429,
+        "conservative_rub": 7497,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-e7668b8a30da",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 23»",
+      "status": "new",
+      "summary": "За последние 72 часа — 4 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "ngfw совместимый с astra linux",
+          "антивирус на 35 пк",
+          "TrueConf Server на 30 пк",
+          "чем отличается подписка от бессрочной лицензии альт линукс рабочая станция"
+        ],
+        "sample_sessions": [
+          "mock_001118",
+          "mock_001477",
+          "mock_021674",
+          "mock_023764"
+        ],
+        "segments": {
+          "enterprise": 4
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_23"
+        }
+      },
+      "impact": {
+        "expected_rub": 17993,
+        "conservative_rub": 11860,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-e789da3958ca",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 157»",
+      "status": "new",
+      "summary": "За последние 72 часа — 9 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "cursor ide",
+          "докупить 15 лицензий Dr.Web Enterprise Security Suite",
+          "Dr.Web Enterprise Security Suite",
+          "Р7-Офис продление",
+          "ZWCAD на 30 пк",
+          "AnyDesk лицензия на 250 пк",
+          "комплект программ для бухгалтера на 75 человек",
+          "Secret Net Studio на 30 пк"
+        ],
+        "sample_sessions": [
+          "mock_000464",
+          "mock_009762",
+          "mock_011119",
+          "mock_021610"
+        ],
+        "segments": {
+          "enterprise": 9
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_157"
+        }
+      },
+      "impact": {
+        "expected_rub": 7588,
+        "conservative_rub": 4495,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-eb742cf13c2c",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 86»",
+      "status": "new",
+      "summary": "За последние 72 часа — 6 поисков в 3 сессиях.",
+      "confidence": 0.13,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 3,
+        "sample_queries": [
+          "ред адм контроллер домена",
+          "Системы резервного копирования фстэк",
+          "Кибер Бэкап",
+          "pgpro",
+          "Postgres Pro",
+          "криптопро"
+        ],
+        "sample_sessions": [
+          "mock_003263",
+          "mock_009490",
+          "mock_013809"
+        ],
+        "segments": {
+          "enterprise": 6
+        },
+        "metric_before": {
+          "zero": 3,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_86"
+        }
+      },
+      "impact": {
+        "expected_rub": 7255,
+        "conservative_rub": 4674,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-f4616e3f5769",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 28»",
+      "status": "new",
+      "summary": "За последние 72 часа — 8 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 8,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "адешка на астру",
+          "РЕД АДМ",
+          "аналог SAP S/4HANA / SAP REP российский",
+          "Microsoft Visio купить",
+          "Microsoft Visio",
+          "как продлить лицензию Microsoft после окончания",
+          "Microsoft Office",
+          "1С:Зарплатаиуправлениеперсоналом"
+        ],
+        "sample_sessions": [
+          "mock_000002",
+          "mock_012932",
+          "mock_013004",
+          "mock_017991",
+          "mock_021978"
+        ],
+        "segments": {
+          "enterprise": 8
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_28"
+        }
+      },
+      "impact": {
+        "expected_rub": 11310,
+        "conservative_rub": 7421,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-f5845849e80f",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 174»",
+      "status": "new",
+      "summary": "За последние 72 часа — 9 поисков в 5 сессиях.",
+      "confidence": 0.2,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 5,
+        "sample_queries": [
+          "резервное копирование astra linux",
+          "купить автокад 2025",
+          "1С:Бухгалтерия на 100 пк",
+          "1С:Бухгалтерия",
+          "Cyberprotect",
+          "UserGate",
+          "AX-0F15AF954103",
+          "CommuniGate Pro"
+        ],
+        "sample_sessions": [
+          "mock_001200",
+          "mock_002648",
+          "mock_009279",
+          "mock_017726",
+          "mock_022907"
+        ],
+        "segments": {
+          "enterprise": 9
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_174"
+        }
+      },
+      "impact": {
+        "expected_rub": 17587,
+        "conservative_rub": 11456,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-f65c526930f9",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «Организация 173»",
+      "status": "new",
+      "summary": "За последние 72 часа — 11 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 11,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "защита рабочих станций 45 пк",
+          "автокад",
+          "замена ad на astra linux",
+          "Vinteo Server продление на 30 пк",
+          "SBK / CommuniGate",
+          "CommuniGate Pro",
+          "Microsoft Office продление",
+          "зуп корп"
+        ],
+        "sample_sessions": [
+          "mock_001506",
+          "mock_002479",
+          "mock_003321",
+          "mock_009630",
+          "mock_015974",
+          "mock_022718"
+        ],
+        "segments": {
+          "enterprise": 11
+        },
+        "metric_before": {
+          "zero": 8,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "client_173"
+        }
+      },
+      "impact": {
+        "expected_rub": 34447,
+        "conservative_rub": 22370,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-f7f29923a489",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «АО «Уралмашприбор» — машиностроительный завод, 5000 рабочих мест»",
+      "status": "new",
+      "summary": "За последние 72 часа — 6 поисков в 6 сессиях.",
+      "confidence": 0.23,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 6,
+        "sessions_30d": 6,
+        "sample_queries": [
+          "maxpatrol siem 5000 хостов",
+          "защита асу тп 187 фз",
+          "usergate кластер цена",
+          "kics for networks",
+          "pt isim внедрение",
+          "siem для завода 5000 арм"
+        ],
+        "sample_sessions": [
+          "mock_003529",
+          "mock_003530",
+          "mock_003531",
+          "mock_003532",
+          "mock_003533",
+          "mock_003534"
+        ],
+        "segments": {
+          "enterprise": 6
+        },
+        "metric_before": {
+          "zero": 6,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "ent_factory"
+        }
+      },
+      "impact": {
+        "expected_rub": 20950,
+        "conservative_rub": 13478,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "hot_lead-fafad9dda9b7",
+      "type": "hot_lead",
+      "role": "ecom_manager",
+      "title": "Связаться с клиентом «fin_bank»",
+      "status": "new",
+      "summary": "За последние 72 часа — 4 поисков в 4 сессиях.",
+      "confidence": 0.17,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 4,
+        "sessions_30d": 4,
+        "sample_queries": [
+          "postgres pro enterprise 64 ядра",
+          "dlp с интеграцией siem",
+          "infowatch traffic monitor или searchinform",
+          "postgres pro enterprise цена по запросу"
+        ],
+        "sample_sessions": [
+          "mock_003535",
+          "mock_003536",
+          "mock_003537",
+          "mock_003538"
+        ],
+        "segments": {
+          "enterprise": 4
+        },
+        "metric_before": {
+          "zero": 4,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "ticket",
+        "label": "Передать менеджеру",
+        "payload_json": {
+          "client_id": "fin_bank"
+        }
+      },
+      "impact": {
+        "expected_rub": 8519,
+        "conservative_rub": 5364,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-0e24308edcd4",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Предложить подбор замены для ABBYY",
+      "status": "new",
+      "summary": "За последние 30 дней — 9 поисков в 9 сессиях.",
+      "confidence": 0.31,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 9,
+        "sessions_30d": 9,
+        "sample_queries": [
+          "чем заменить ABBYY FineReader PDF / FlexiCapture из реестра",
+          "аналог ABBYY FineReader PDF / FlexiCapture российский",
+          "чем заменить BABYY Lingvo из реестра",
+          "ABBYY Lingvo лицензия на 25 пк",
+          "аналог ABBYY FineReadre PDF / FlexiCapture российский"
+        ],
+        "sample_sessions": [
+          "mock_004721",
+          "mock_005769",
+          "mock_006608",
+          "mock_007987",
+          "mock_010591",
+          "mock_010688"
+        ],
+        "segments": {
+          "mid": 1,
+          "edu": 2,
+          "enterprise": 3,
+          "guest": 2,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 9,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "banner",
+        "label": "Показать предложение замены",
+        "conditions": {
+          "phrase": "чем заменить ABBYY FineReader PDF / FlexiCapture из реестра"
+        },
+        "payload_json": {
+          "text": "Нужна совместимая замена? Запросите подбор у менеджера."
+        }
+      },
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-122037f6b7cf",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Поднять «Kaspersky Small Office Security» по запросу «Kaspersky»",
+      "status": "new",
+      "summary": "За последние 30 дней — 75 поисков в 75 сессиях.",
+      "confidence": 0.79,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 75,
+        "sessions_30d": 75,
+        "sample_queries": [
+          "Kaspersky"
+        ],
+        "sample_sessions": [
+          "mock_003765",
+          "mock_004072",
+          "mock_004735",
+          "mock_004837",
+          "mock_004928",
+          "mock_005092"
+        ],
+        "segments": {
+          "guest": 30,
+          "edu": 7,
+          "smb": 9,
+          "mid": 7,
+          "gov": 12,
+          "enterprise": 10
+        },
+        "metric_before": {
+          "zero": 0,
+          "orders": 1
+        },
+        "late_clicks": 4,
+        "mean_position": 8.0
+      },
+      "action": {
+        "kind": "boost",
+        "label": "Поднять внутри уровня",
+        "conditions": {
+          "phrase": "Kaspersky"
+        },
+        "payload_json": {
+          "card_id": "kaspersky_ksos",
+          "factor": 1.3
+        }
+      },
+      "impact": {
+        "expected_rub": 148332,
+        "conservative_rub": 88999,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-320d597682ed",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Предложить подбор замены для Autodesk",
+      "status": "new",
+      "summary": "За последние 30 дней — 414 поисков в 414 сессиях.",
+      "confidence": 0.95,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 414,
+        "sessions_30d": 414,
+        "sample_queries": [
+          "autocad",
+          "автокад",
+          "купить автокад 2025",
+          "autocad лицензия цена",
+          "Autodesk Revit лицензия на 250 пк"
+        ],
+        "sample_sessions": [
+          "mock_002346",
+          "mock_002347",
+          "mock_002348",
+          "mock_002349",
+          "mock_002350",
+          "mock_002351"
+        ],
+        "segments": {
+          "smb": 154,
+          "mid": 164,
+          "enterprise": 94,
+          "edu": 1,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 414,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "banner",
+        "label": "Показать предложение замены",
+        "conditions": {
+          "phrase": "autocad"
+        },
+        "payload_json": {
+          "text": "Нужна совместимая замена? Запросите подбор у менеджера."
+        }
+      },
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-6e2c2336e62d",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Поднять «Microsoft Windows Server Datacenter (16 Core)» по запросу «Microsoft»",
+      "status": "new",
+      "summary": "За последние 30 дней — 195 поисков в 193 сессиях.",
+      "confidence": 0.91,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 195,
+        "sessions_30d": 193,
+        "sample_queries": [
+          "Microsoft"
+        ],
+        "sample_sessions": [
+          "mock_003781",
+          "mock_003819",
+          "mock_003894",
+          "mock_003935",
+          "mock_003989",
+          "mock_004232"
+        ],
+        "segments": {
+          "gov": 26,
+          "edu": 19,
+          "mid": 19,
+          "guest": 79,
+          "smb": 26,
+          "enterprise": 26
+        },
+        "metric_before": {
+          "zero": 0,
+          "orders": 7
+        },
+        "late_clicks": 40,
+        "mean_position": 5.0
+      },
+      "action": {
+        "kind": "boost",
+        "label": "Поднять внутри уровня",
+        "conditions": {
+          "phrase": "Microsoft"
+        },
+        "payload_json": {
+          "card_id": "windows_server:datacenter",
+          "factor": 1.3
+        }
+      },
+      "impact": {
+        "expected_rub": 490035,
+        "conservative_rub": 294021,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-7d3194f79e64",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Предложить подбор замены для OpenAI",
+      "status": "new",
+      "summary": "За последние 30 дней — 72 поисков в 72 сессиях.",
+      "confidence": 0.78,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 72,
+        "sessions_30d": 72,
+        "sample_queries": [
+          "корпоративный чат гпт в контуре",
+          "купить OpenAI ChatGPT (Team / Enterprise / API)",
+          "чем заменить OpenAI ChatGPT (Team / Enterprise / API) из реестра",
+          "kupit openai chatgpt (team / enterprise / api)"
+        ],
+        "sample_sessions": [
+          "mock_002759",
+          "mock_002763",
+          "mock_002767",
+          "mock_002771",
+          "mock_002775",
+          "mock_002779"
+        ],
+        "segments": {
+          "mid": 33,
+          "smb": 10,
+          "enterprise": 24,
+          "guest": 2,
+          "edu": 3
+        },
+        "metric_before": {
+          "zero": 72,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "banner",
+        "label": "Показать предложение замены",
+        "conditions": {
+          "phrase": "корпоративный чат гпт в контуре"
+        },
+        "payload_json": {
+          "text": "Нужна совместимая замена? Запросите подбор у менеджера."
+        }
+      },
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-d64ed75872f2",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Поднять «Microsoft Project» по запросу «Microsoft»",
+      "status": "new",
+      "summary": "За последние 30 дней — 195 поисков в 193 сессиях.",
+      "confidence": 0.91,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 195,
+        "sessions_30d": 193,
+        "sample_queries": [
+          "Microsoft"
+        ],
+        "sample_sessions": [
+          "mock_003781",
+          "mock_003819",
+          "mock_003894",
+          "mock_003935",
+          "mock_003989",
+          "mock_004232"
+        ],
+        "segments": {
+          "gov": 26,
+          "edu": 19,
+          "mid": 19,
+          "guest": 79,
+          "smb": 26,
+          "enterprise": 26
+        },
+        "metric_before": {
+          "zero": 0,
+          "orders": 7
+        },
+        "late_clicks": 4,
+        "mean_position": 12.0
+      },
+      "action": {
+        "kind": "boost",
+        "label": "Поднять внутри уровня",
+        "conditions": {
+          "phrase": "Microsoft"
+        },
+        "payload_json": {
+          "card_id": "ms_project",
+          "factor": 1.3
+        }
+      },
+      "impact": {
+        "expected_rub": 490035,
+        "conservative_rub": 294021,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-e3dced92f4d6",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Поднять «1С:Бухгалтерия ПРОФ» по запросу «1С:Бухгалтерия продление»",
+      "status": "new",
+      "summary": "За последние 30 дней — 34 поисков в 34 сессиях.",
+      "confidence": 0.63,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 34,
+        "sessions_30d": 34,
+        "sample_queries": [
+          "1С:Бухгалтерия продление"
+        ],
+        "sample_sessions": [
+          "mock_003639",
+          "mock_004227",
+          "mock_004986",
+          "mock_005968",
+          "mock_007843",
+          "mock_008790"
+        ],
+        "segments": {
+          "guest": 11,
+          "smb": 8,
+          "gov": 4,
+          "enterprise": 8,
+          "edu": 3
+        },
+        "metric_before": {
+          "zero": 0,
+          "orders": 3
+        },
+        "late_clicks": 2,
+        "mean_position": 5.0
+      },
+      "action": {
+        "kind": "boost",
+        "label": "Поднять внутри уровня",
+        "conditions": {
+          "phrase": "1С:Бухгалтерия продление"
+        },
+        "payload_json": {
+          "card_id": "onec_accounting:prof",
+          "factor": 1.3
+        }
+      },
+      "impact": {
+        "expected_rub": 106694,
+        "conservative_rub": 64017,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "merch_rule-ee9021c84f33",
+      "type": "merch_rule",
+      "role": "ecom_manager",
+      "title": "Предложить подбор замены для Adobe",
+      "status": "new",
+      "summary": "За последние 30 дней — 7 поисков в 7 сессиях.",
+      "confidence": 0.26,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 7,
+        "sessions_30d": 7,
+        "sample_queries": [
+          "аналог Adobe Creative Cloud All Apps российский",
+          "adobe indesign prodlenie",
+          "analog adobe acrobat (pro / standard) rossiiskii",
+          "чем заменить Adobe Photoshop из реестра",
+          "замена Adobe Illustrator под ред ос"
+        ],
+        "sample_sessions": [
+          "mock_004663",
+          "mock_005552",
+          "mock_005605",
+          "mock_006248",
+          "mock_009097",
+          "mock_012753"
+        ],
+        "segments": {
+          "guest": 5,
+          "edu": 1,
+          "enterprise": 1
+        },
+        "metric_before": {
+          "zero": 7,
+          "orders": 0
+        }
+      },
+      "action": {
+        "kind": "banner",
+        "label": "Показать предложение замены",
+        "conditions": {
+          "phrase": "аналог Adobe Creative Cloud All Apps российский"
+        },
+        "payload_json": {
+          "text": "Нужна совместимая замена? Запросите подбор у менеджера."
+        }
+      },
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "renewal_campaign-e3ba17e32240",
+      "type": "renewal_campaign",
+      "role": "ecom_manager",
+      "title": "Предложить продление до окончания лицензии",
+      "status": "new",
+      "summary": "За последние 30 дней — 1497 поисков в 957 сессиях.",
+      "confidence": 0.98,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 1497,
+        "sessions_30d": 957,
+        "sample_queries": [
+          "ALD Pro",
+          "удаленный доступ",
+          "autocad лицензия цена",
+          "купить автокад 2025",
+          "антивирус для малого бизнеса",
+          "аналог teamviewer",
+          "Microsoft Project",
+          "1С:Бухгалтерия"
+        ],
+        "sample_sessions": [
+          "mock_000008",
+          "mock_000025",
+          "mock_000035",
+          "mock_000050",
+          "mock_000056",
+          "mock_000071"
+        ],
+        "segments": {
+          "mid": 301,
+          "gov": 245,
+          "enterprise": 389,
+          "smb": 509,
+          "edu": 53
+        },
+        "metric_before": {
+          "zero": 1013,
+          "orders": 30
+        }
+      },
+      "action": {
+        "kind": "campaign",
+        "label": "Сформировать список клиентов",
+        "payload_json": {
+          "clients": [
+            {
+              "client_id": "client_11",
+              "licenses": 1
+            },
+            {
+              "client_id": "gov_clinic",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_42",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_129",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_132",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_185",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_86",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_37",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_119",
+              "licenses": 1
+            },
+            {
+              "client_id": "design_bureau",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_32",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_144",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_108",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_133",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_121",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_102",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_36",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_68",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_154",
+              "licenses": 1
+            },
+            {
+              "client_id": "smb_trade",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_151",
+              "licenses": 1
+            },
+            {
+              "client_id": "client_16",
+              "licenses": 1
+            },
+            {
+              "client_id": "edu_university",
+              "licenses": 1
+            },
+            {
+              "client_id": "ent_factory",
+              "licenses": 1
+            }
+          ]
+        }
+      },
+      "impact": {
+        "expected_rub": 11756882,
+        "conservative_rub": 7506719,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-2541d0a59965",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Таск-трекеры, Agile и управление задачами»",
+      "status": "new",
+      "summary": "За последние 30 дней — 169 поисков в 169 сессиях.",
+      "confidence": 0.89,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 169,
+        "sessions_30d": 169,
+        "sample_queries": [
+          "яндекс трекер",
+          "yandex tracker лицензии",
+          "купить яндекс трекер 50 пользователей",
+          "яндекс трекер корпоративный",
+          "чем заменить Atlassian Jira из реестра",
+          "аналог Atlassian Jira российский",
+          "аналог Trello российский"
+        ],
+        "sample_sessions": [
+          "mock_000684",
+          "mock_000685",
+          "mock_000686",
+          "mock_000687",
+          "mock_000688",
+          "mock_000689"
+        ],
+        "segments": {
+          "smb": 55,
+          "mid": 75,
+          "enterprise": 36,
+          "guest": 3
+        },
+        "metric_before": {
+          "zero": 169,
+          "orders": 0
+        },
+        "previous_searches": 7,
+        "growth_pct": 2314.3
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "task_project_trackers"
+        }
+      },
+      "impact": {
+        "expected_rub": 1634269,
+        "conservative_rub": 892635,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-2a7869913019",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Системы резервного копирования»",
+      "status": "new",
+      "summary": "За последние 30 дней — 284 поисков в 239 сессиях.",
+      "confidence": 0.92,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 284,
+        "sessions_30d": 239,
+        "sample_queries": [
+          "Кибер Бэкап",
+          "Кибер Бэкап на 15 пк",
+          "Кибер Бэкап продление",
+          "кибер бэкап",
+          "Кибер Бэкап купить",
+          "срк киберпротект",
+          "купить Acronis Cyber Protect (международный)",
+          "Системы резервного копирования фстэк"
+        ],
+        "sample_sessions": [
+          "mock_003544",
+          "mock_003545",
+          "mock_003546",
+          "mock_003547",
+          "mock_003548",
+          "mock_003549"
+        ],
+        "segments": {
+          "mid": 42,
+          "guest": 89,
+          "gov": 39,
+          "smb": 40,
+          "enterprise": 46,
+          "edu": 28
+        },
+        "metric_before": {
+          "zero": 63,
+          "orders": 20
+        },
+        "previous_searches": 176,
+        "growth_pct": 61.4
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "backup_recovery"
+        }
+      },
+      "impact": {
+        "expected_rub": 1984761,
+        "conservative_rub": 1237217,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-311485c5159f",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «САПР, BIM, ГИС и инженерное ПО»",
+      "status": "new",
+      "summary": "За последние 30 дней — 67 поисков в 67 сессиях.",
+      "confidence": 0.77,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 67,
+        "sessions_30d": 67,
+        "sample_queries": [
+          "сапр 2d из реестра минцифры",
+          "Базовые 2D/3D САПР и черчение DWG под астру из реестра",
+          "Базовые 2D/3D СПАР и черчение DWG под астру из реестра",
+          "Базовые 2D/3D САПР и черчение DWG фстэк",
+          "T-FELX CAD",
+          "купить Мшаиностроительные САПР, 3D-моделирование и PLM/PDM 15 пк",
+          "Машионстроительные САПР, 3D-моделирование и PLM/PDM под ред ос фстэк",
+          "Машиностротиельные САПР, 3D-моделирование и PLM/PDM под астру из реестра"
+        ],
+        "sample_sessions": [
+          "mock_001296",
+          "mock_001299",
+          "mock_001302",
+          "mock_001305",
+          "mock_001308",
+          "mock_001311"
+        ],
+        "segments": {
+          "gov": 58,
+          "edu": 3,
+          "guest": 4,
+          "mid": 2
+        },
+        "metric_before": {
+          "zero": 67,
+          "orders": 0
+        },
+        "previous_searches": 6,
+        "growth_pct": 1016.7
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "cad_engineering"
+        }
+      },
+      "impact": {
+        "expected_rub": 635858,
+        "conservative_rub": 437153,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-635aec9c40cb",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Службы каталогов, контроллеры домена и UEM»",
+      "status": "new",
+      "summary": "За последние 30 дней — 694 поисков в 510 сессиях.",
+      "confidence": 0.96,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 694,
+        "sessions_30d": 510,
+        "sample_queries": [
+          "ALD Pro",
+          "ald pro цена",
+          "ред адм контроллер домена",
+          "РЕД АДМ",
+          "адешка",
+          "адешка под линукс",
+          "адешка на астру",
+          "российская адешка"
+        ],
+        "sample_sessions": [
+          "mock_000000",
+          "mock_000001",
+          "mock_000002",
+          "mock_000003",
+          "mock_000004",
+          "mock_000005"
+        ],
+        "segments": {
+          "gov": 263,
+          "enterprise": 189,
+          "mid": 110,
+          "edu": 35,
+          "guest": 65,
+          "smb": 32
+        },
+        "metric_before": {
+          "zero": 505,
+          "orders": 13
+        },
+        "previous_searches": 236,
+        "growth_pct": 194.1
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "directory_services"
+        }
+      },
+      "impact": {
+        "expected_rub": 27535310,
+        "conservative_rub": 17232318,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-713d677215a1",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Платформа 1С:Предприятие — клиентские и серверные лицензии»",
+      "status": "new",
+      "summary": "За последние 30 дней — 22 поисков в 22 сессиях.",
+      "confidence": 0.52,
+      "priority": "medium",
+      "evidence": {
+        "searches_30d": 22,
+        "sessions_30d": 22,
+        "sample_queries": [
+          "как продлить лицензию 1C после окончания",
+          "как пордлить лицензию 1C после окончания",
+          "пордление лицензии 1С:Управление торговлей 100 шт",
+          "продление лицензии 1С:Зарплата и упралвение персоналом 250 шт",
+          "докупить 25 лицензий 1С:Бухгалтерия",
+          "продление лицензии 1с торговля 30 шт",
+          "докупить 5 лицензий 1с erp 2.5",
+          "докупить 75 лицензий 1С:ERP"
+        ],
+        "sample_sessions": [
+          "mock_003661",
+          "mock_004109",
+          "mock_007747",
+          "mock_008860",
+          "mock_008969",
+          "mock_009646"
+        ],
+        "segments": {
+          "enterprise": 4,
+          "smb": 2,
+          "gov": 3,
+          "guest": 10,
+          "edu": 3
+        },
+        "metric_before": {
+          "zero": 22,
+          "orders": 0
+        },
+        "previous_searches": 13,
+        "growth_pct": 69.2
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "onec_platform_licenses"
+        }
+      },
+      "impact": {
+        "expected_rub": 134835,
+        "conservative_rub": 92699,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-af1894d3fdbd",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Программы удалённого доступа и поддержки»",
+      "status": "new",
+      "summary": "За последние 30 дней — 237 поисков в 237 сессиях.",
+      "confidence": 0.92,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 237,
+        "sessions_30d": 237,
+        "sample_queries": [
+          "аналог teamviewer",
+          "программа удаленного рабочего стола",
+          "аналог AnyDesk российский",
+          "AnyDesk лицензия на 250 пк",
+          "TeamViewer продление",
+          "чем заменить TeamViewer из реестра",
+          "zamena anydesk pod red os",
+          "chem zamenit teamviewer iz reestra"
+        ],
+        "sample_sessions": [
+          "mock_001717",
+          "mock_001718",
+          "mock_001720",
+          "mock_001721",
+          "mock_001723",
+          "mock_001724"
+        ],
+        "segments": {
+          "mid": 107,
+          "smb": 121,
+          "guest": 5,
+          "gov": 1,
+          "enterprise": 3
+        },
+        "metric_before": {
+          "zero": 237,
+          "orders": 0
+        },
+        "previous_searches": 7,
+        "growth_pct": 3285.7
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "remote_desktop"
+        }
+      },
+      "impact": {
+        "expected_rub": 3974056,
+        "conservative_rub": 2732164,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-af62ebcf3de3",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Среды разработки (IDE), компиляторы и SDK»",
+      "status": "new",
+      "summary": "За последние 30 дней — 59 поисков в 59 сессиях.",
+      "confidence": 0.75,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 59,
+        "sessions_30d": 59,
+        "sample_queries": [
+          "cursor ide",
+          "JetBrains (All Products Pack / IntelliJ IDEA / PyCharm / Rider / WebStorm) продление",
+          "Embarcadero RAD Studio / Delphi / C++Builder лицензия на 10 пк",
+          "JetBrains (All Prodcuts Pack / IntelliJ IDEA / PyCharm / Rider / WebStorm) продление",
+          "аналог JetBrains (lAl Products Pack / IntelliJ IDEA / PyCharm / Rider / WebStorm) российский",
+          "чем заменить Embarcadero RAD Studio / Delphi / C++Builder из реестра",
+          "купить Embarcadero RAD Studio / Delphi / C++Builder"
+        ],
+        "sample_sessions": [
+          "mock_000424",
+          "mock_000428",
+          "mock_000432",
+          "mock_000436",
+          "mock_000440",
+          "mock_000444"
+        ],
+        "segments": {
+          "smb": 17,
+          "enterprise": 10,
+          "mid": 30,
+          "guest": 2
+        },
+        "metric_before": {
+          "zero": 59,
+          "orders": 0
+        },
+        "previous_searches": 20,
+        "growth_pct": 195.0
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "ide_compilers"
+        }
+      },
+      "impact": {
+        "expected_rub": 233706,
+        "conservative_rub": 93483,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-d10b94023d9c",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Резервное копирование и работа с файлами»",
+      "status": "new",
+      "summary": "За последние 30 дней — 81 поисков в 81 сессиях.",
+      "confidence": 0.8,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 81,
+        "sessions_30d": 81,
+        "sample_queries": [
+          "бэкап под астру",
+          "киебр бэкап",
+          "икбер бэкап",
+          "иКбер Бэкап на 15 пк"
+        ],
+        "sample_sessions": [
+          "mock_000983",
+          "mock_000987",
+          "mock_000991",
+          "mock_000995",
+          "mock_000999",
+          "mock_001003"
+        ],
+        "segments": {
+          "guest": 38,
+          "enterprise": 10,
+          "edu": 6,
+          "smb": 7,
+          "gov": 10,
+          "mid": 10
+        },
+        "metric_before": {
+          "zero": 81,
+          "orders": 0
+        },
+        "previous_searches": 5,
+        "growth_pct": 1520.0
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "backup_storage"
+        }
+      },
+      "impact": {
+        "expected_rub": 827764,
+        "conservative_rub": 569088,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-e1466f06bc6d",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Базовые 2D/3D САПР и черчение DWG»",
+      "status": "new",
+      "summary": "За последние 30 дней — 838 поисков в 737 сессиях.",
+      "confidence": 0.97,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 838,
+        "sessions_30d": 737,
+        "sample_queries": [
+          "ZWCAD",
+          "Платформа nanoCAD",
+          "autocad",
+          "автокад",
+          "купить автокад 2025",
+          "autocad лицензия цена",
+          "zwcad",
+          "ZWCAD на 30 пк"
+        ],
+        "sample_sessions": [
+          "mock_002346",
+          "mock_002347",
+          "mock_002348",
+          "mock_002349",
+          "mock_002350",
+          "mock_002351"
+        ],
+        "segments": {
+          "smb": 201,
+          "enterprise": 159,
+          "mid": 209,
+          "edu": 52,
+          "guest": 170,
+          "gov": 47
+        },
+        "metric_before": {
+          "zero": 541,
+          "orders": 13
+        },
+        "previous_searches": 354,
+        "growth_pct": 136.7
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "cad_2d"
+        }
+      },
+      "impact": {
+        "expected_rub": 3376102,
+        "conservative_rub": 2090395,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "rising_demand-ed0aa2697c72",
+      "type": "rising_demand",
+      "role": "product_manager",
+      "title": "Развить подборку «Генеративный ИИ, корпоративные LLM и ИИ-ассистенты»",
+      "status": "new",
+      "summary": "За последние 30 дней — 275 поисков в 275 сессиях.",
+      "confidence": 0.93,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 275,
+        "sessions_30d": 275,
+        "sample_queries": [
+          "локальная llm для компании",
+          "ии ассистент программиста on premise",
+          "gigacode корпоративная лицензия",
+          "корпоративный чат гпт в контуре",
+          "купить OpenAI ChatGPT (Team / Enterprise / API)",
+          "чем заменить OpenAI ChatGPT (Team / Enterprise / API) из реестра",
+          "GitHub Copilot (Buisness / Enterprise) продление",
+          "купить GitHub Copilot (Business / Enterprise)"
+        ],
+        "sample_sessions": [
+          "mock_002756",
+          "mock_002757",
+          "mock_002758",
+          "mock_002759",
+          "mock_002760",
+          "mock_002761"
+        ],
+        "segments": {
+          "enterprise": 89,
+          "mid": 122,
+          "smb": 57,
+          "edu": 3,
+          "guest": 3,
+          "gov": 1
+        },
+        "metric_before": {
+          "zero": 275,
+          "orders": 0
+        },
+        "previous_searches": 78,
+        "growth_pct": 252.6
+      },
+      "action": {
+        "kind": "digest",
+        "label": "Включить в план ассортимента",
+        "payload_json": {
+          "category": "llm_gen_ai"
+        }
+      },
+      "impact": {
+        "expected_rub": 1661777,
+        "conservative_rub": 975430,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "verification": null
+    },
+    {
+      "id": "weights_advice-9a129038d9a0",
+      "type": "weights_advice",
+      "role": "head_ecom",
+      "title": "Увеличить вес маржи",
+      "status": "new",
+      "summary": "За последние 30 дней — 12563 поисков в 9133 сессиях.",
+      "confidence": 1.0,
+      "priority": "high",
+      "evidence": {
+        "searches_30d": 12563,
+        "sessions_30d": 9133,
+        "sample_queries": [
+          "1С:Бухгалтерия",
+          "Kaspersky Endpoint Security для бизнеса",
+          "Microsoft Windows Server",
+          "Microsoft Office",
+          "Astra Linux",
+          "Microsoft Windows 11",
+          "Microsoft",
+          "Кибер Бэкап"
+        ],
+        "sample_sessions": [
+          "mock_000000",
+          "mock_000001",
+          "mock_000002",
+          "mock_000003",
+          "mock_000004",
+          "mock_000005"
+        ],
+        "segments": {
+          "guest": 3654,
+          "enterprise": 1907,
+          "edu": 1035,
+          "mid": 1941,
+          "gov": 1909,
+          "smb": 2053,
+          "individual": 64
+        },
+        "metric_before": {
+          "zero": 6081,
+          "orders": 333
+        },
+        "tested_weights": {
+          "rel": 0.48,
+          "pop": 0.18000000000000002,
+          "margin": 0.19,
+          "pers": 0.15
+        },
+        "moved": 59,
+        "band_inversions": 0,
+        "margin_delta_rub": 26.45
+      },
+      "action": {
+        "kind": "weights",
+        "label": "Применить веса",
+        "payload_json": {
+          "rel": 0.48,
+          "pop": 0.18000000000000002,
+          "margin": 0.19,
+          "pers": 0.15
+        }
+      },
+      "impact": {
+        "expected_rub": 26.45,
+        "conservative_rub": 0,
+        "metric_label": "Изменение взвешенной маржи на выборке",
+        "formula_note": "Сумма удельной маржи первых пяти позиций с весом 1 / позиция"
+      },
+      "verification": null
+    }
+  ]
+}

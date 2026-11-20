@@ -1,0 +1,216 @@
+{
+  "id": "66891563d9a886a6201f2d43",
+  "note": null,
+  "status": "completed",
+  "processed": 3000,
+  "total": 3000,
+  "mode": "fast",
+  "frequency": 41672,
+  "before_zero": 22025,
+  "after_zero": 6337,
+  "improved_top3": 13712,
+  "recovered": 15688,
+  "before_top5": 19396,
+  "after_top5": 33068,
+  "labeled": 39739,
+  "estimated_rub": 110124157.73,
+  "formula": "Осторожная оценка потерь по KPI для сессий, в которых последний неудачный поиск был пуст и при повторе нашлись карточки. Прогноз, фактических заказов после повтора нет.",
+  "examples": [
+    {
+      "q": "1C",
+      "frequency": 309,
+      "before_zero": 309,
+      "after_zero": 0,
+      "recovered": 309,
+      "improved_top3": 181,
+      "before_top5": 0,
+      "after_top5": 309,
+      "labeled": 309,
+      "search_id": "s_f2bf5891136f43e5ba8d0eecd0e0a013",
+      "first": [
+        "onec_erp",
+        "onec_accounting:prof",
+        "onec_accounting:corp"
+      ]
+    },
+    {
+      "q": "Astra Group",
+      "frequency": 204,
+      "before_zero": 204,
+      "after_zero": 0,
+      "recovered": 204,
+      "improved_top3": 158,
+      "before_top5": 0,
+      "after_top5": 204,
+      "labeled": 204,
+      "search_id": "s_7b897b74e1ac4136a58f0304247debe0",
+      "first": [
+        "astra_linux:common_edition",
+        "astra_linux:special_edition",
+        "ald_pro"
+      ]
+    },
+    {
+      "q": "kontur",
+      "frequency": 119,
+      "before_zero": 119,
+      "after_zero": 0,
+      "recovered": 119,
+      "improved_top3": 119,
+      "before_top5": 0,
+      "after_top5": 119,
+      "labeled": 119,
+      "search_id": "s_80bcf1cae9eb4f2f8ac8c1eaab357818",
+      "first": [
+        "kontur_extern",
+        "kontur_diadoc"
+      ]
+    },
+    {
+      "q": "астра линукс",
+      "frequency": 113,
+      "before_zero": 113,
+      "after_zero": 0,
+      "recovered": 113,
+      "improved_top3": 113,
+      "before_top5": 0,
+      "after_top5": 113,
+      "labeled": 113,
+      "search_id": "s_23cd80e59d4d4db2ab3579532b3eb862",
+      "first": [
+        "astra_linux:common_edition",
+        "astra_linux:special_edition"
+      ]
+    },
+    {
+      "q": "Microsoft Windows 11 на 15 пк",
+      "frequency": 112,
+      "before_zero": 112,
+      "after_zero": 0,
+      "recovered": 112,
+      "improved_top3": 112,
+      "before_top5": 0,
+      "after_top5": 112,
+      "labeled": 112,
+      "search_id": "s_b0d507bb46684b24a2cfb1f1edccabf8",
+      "first": [
+        "windows_11:enterprise",
+        "windows_11:pro"
+      ]
+    },
+    {
+      "q": "миграция active directory на российское",
+      "frequency": 109,
+      "before_zero": 109,
+      "after_zero": 0,
+      "recovered": 109,
+      "improved_top3": 0,
+      "before_top5": 0,
+      "after_top5": 0,
+      "labeled": 0,
+      "search_id": "s_e93ff04da7a349d5b0dc55946c3129f2",
+      "first": [
+        "ald_pro",
+        "r7_office",
+        "windows_11:pro"
+      ]
+    },
+    {
+      "q": "ald pro цена",
+      "frequency": 108,
+      "before_zero": 108,
+      "after_zero": 0,
+      "recovered": 108,
+      "improved_top3": 108,
+      "before_top5": 0,
+      "after_top5": 108,
+      "labeled": 108,
+      "search_id": "s_f5b6bf691d7f4e4f9934ba486eadc0cd",
+      "first": [
+        "ald_pro"
+      ]
+    },
+    {
+      "q": "ред адм контроллер домена",
+      "frequency": 107,
+      "before_zero": 107,
+      "after_zero": 0,
+      "recovered": 107,
+      "improved_top3": 0,
+      "before_top5": 0,
+      "after_top5": 0,
+      "labeled": 107,
+      "search_id": "s_93b2ad8878704ad983cef6036dc06256",
+      "first": [
+        "ald_pro"
+      ]
+    },
+    {
+      "q": "Kaspersky Endpoint Security для бизнеса продление",
+      "frequency": 105,
+      "before_zero": 105,
+      "after_zero": 0,
+      "recovered": 105,
+      "improved_top3": 105,
+      "before_top5": 0,
+      "after_top5": 105,
+      "labeled": 105,
+      "search_id": "s_92287e5717c849f189232e6fae21797c",
+      "first": [
+        "kaspersky_kesb:standard",
+        "kaspersky_kesb:advanced"
+      ]
+    },
+    {
+      "q": "autocad",
+      "frequency": 103,
+      "before_zero": 103,
+      "after_zero": 0,
+      "recovered": 103,
+      "improved_top3": 0,
+      "before_top5": 0,
+      "after_top5": 0,
+      "labeled": 103,
+      "search_id": "s_aed17545736849248b9834c227c66caf",
+      "first": [
+        "kompas_3d",
+        "zwcad",
+        "nanocad"
+      ]
+    },
+    {
+      "q": "автокад",
+      "frequency": 103,
+      "before_zero": 103,
+      "after_zero": 0,
+      "recovered": 103,
+      "improved_top3": 0,
+      "before_top5": 0,
+      "after_top5": 0,
+      "labeled": 103,
+      "search_id": "s_ee016175a15742559ba5ea858de9a4c3",
+      "first": [
+        "kompas_3d",
+        "zwcad",
+        "nanocad"
+      ]
+    },
+    {
+      "q": "autocad лицензия цена",
+      "frequency": 102,
+      "before_zero": 102,
+      "after_zero": 0,
+      "recovered": 102,
+      "improved_top3": 0,
+      "before_top5": 0,
+      "after_top5": 0,
+      "labeled": 102,
+      "search_id": "s_0f19e001f93043ac8c82af09502477e9",
+      "first": [
+        "kompas_3d",
+        "zwcad",
+        "nanocad"
+      ]
+    }
+  ]
+}

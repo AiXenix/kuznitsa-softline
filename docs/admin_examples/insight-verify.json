@@ -1,0 +1,131 @@
+{
+  "id": "add_synonym-57f1770cf0da",
+  "type": "add_synonym",
+  "role": "content_manager",
+  "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
+  "status": "verified",
+  "summary": "За последние 30 дней — 80 поисков в 80 сессиях.",
+  "confidence": 0.8,
+  "priority": "high",
+  "evidence": {
+    "searches_30d": 80,
+    "sessions_30d": 80,
+    "sample_queries": [
+      "лицензия резервилка",
+      "резервилка",
+      "корпоративная резервилка"
+    ],
+    "sample_sessions": [
+      "mock_003544",
+      "mock_003545",
+      "mock_003546",
+      "mock_003547",
+      "mock_003548",
+      "mock_003549"
+    ],
+    "segments": {
+      "gov": 11,
+      "guest": 21,
+      "smb": 14,
+      "mid": 12,
+      "enterprise": 15,
+      "edu": 7
+    },
+    "metric_before": {
+      "zero": 80,
+      "orders": 0
+    },
+    "reformulated_to": {
+      "Кибер Бэкап": 80
+    }
+  },
+  "action": {
+    "kind": "synonym",
+    "label": "Добавить синоним",
+    "conditions": {},
+    "payload_json": {
+      "kind": "text",
+      "phrase": "резервилка",
+      "to": "Кибер Бэкап"
+    }
+  },
+  "impact": {
+    "expected_rub": 375886,
+    "conservative_rub": 258422,
+    "metric_label": "Оценка потенциала",
+    "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+  },
+  "verification": {
+    "before": {
+      "лицензия резервилка": {
+        "search_id": "s_721677d4be8647cdb1e86c95be5336be",
+        "cards": [],
+        "banners": []
+      },
+      "резервилка": {
+        "search_id": "s_83c04c1ea65a4c6793395075d6ea0ac4",
+        "cards": [],
+        "banners": []
+      },
+      "корпоративная резервилка": {
+        "search_id": "s_bfa50824b7c144ae832fc5b83a926d0e",
+        "cards": [
+          {
+            "card_id": "onec_accounting:corp",
+            "title": "1С:Бухгалтерия КОРП",
+            "tier": 2,
+            "position": 1
+          }
+        ],
+        "banners": []
+      }
+    },
+    "rule_id": "81b23dcd2fe84c35b95d4219c08d1450",
+    "after": {
+      "лицензия резервилка": {
+        "search_id": "s_3024578fc2e9471daf7e3f43765a7a28",
+        "cards": [
+          {
+            "card_id": "cyber_backup",
+            "title": "Кибер Бэкап",
+            "tier": 1,
+            "position": 1
+          }
+        ],
+        "banners": []
+      },
+      "резервилка": {
+        "search_id": "s_c40389b656414ec4ab8d12b5dc7518de",
+        "cards": [
+          {
+            "card_id": "cyber_backup",
+            "title": "Кибер Бэкап",
+            "tier": 1,
+            "position": 1
+          }
+        ],
+        "banners": []
+      },
+      "корпоративная резервилка": {
+        "search_id": "s_3dfbcd12e04d4aa8846286e32c27e829",
+        "cards": [
+          {
+            "card_id": "cyber_backup",
+            "title": "Кибер Бэкап",
+            "tier": 1,
+            "position": 1
+          }
+        ],
+        "banners": []
+      }
+    },
+    "changed": 3,
+    "regressions": [],
+    "recovered": [
+      "лицензия резервилка",
+      "резервилка"
+    ],
+    "verified_at": 1795212619.4703345,
+    "summary": "Повторено запросов · 3. Выдача изменилась · 3."
+  }
+}

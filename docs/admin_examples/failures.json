@@ -1,0 +1,87 @@
+{
+  "items": [
+    {
+      "reason": "vocabulary_gap",
+      "label": "Не хватает синонима",
+      "count": 10989,
+      "example": "адешка"
+    },
+    {
+      "reason": "filters_too_strict",
+      "label": "Слишком строгие условия",
+      "count": 9653,
+      "example": "резервное копирование astra linux"
+    },
+    {
+      "reason": "ambiguous",
+      "label": "Нужно уточнение",
+      "count": 5760,
+      "example": "ALD Pro"
+    },
+    {
+      "reason": "not_in_catalog_unknown",
+      "label": "Неизвестный продукт",
+      "count": 2173,
+      "example": "cursor ide"
+    },
+    {
+      "reason": "vendor_left",
+      "label": "Вендор прекратил поставки",
+      "count": 1402,
+      "example": "autocad"
+    },
+    {
+      "reason": "not_in_catalog_known",
+      "label": "Известный продукт отсутствует",
+      "count": 513,
+      "example": "РЕД АДМ"
+    },
+    {
+      "reason": "hardware",
+      "label": "Ищут оборудование",
+      "count": 239,
+      "example": "принтер для бухгалтерии"
+    },
+    {
+      "reason": "piracy",
+      "label": "Нелицензионное ПО",
+      "count": 136,
+      "example": "активатор офис"
+    },
+    {
+      "reason": "off_topic",
+      "label": "Другая тематика",
+      "count": 115,
+      "example": "рецепт борща"
+    },
+    {
+      "reason": "gibberish",
+      "label": "Неразборчивый запрос",
+      "count": 108,
+      "example": "йцукенгш"
+    },
+    {
+      "reason": "ranking_issue",
+      "label": "Подходящая позиция слишком низко",
+      "count": 35,
+      "example": "Kaspersky"
+    }
+  ],
+  "reasons": [
+    "ambiguous",
+    "content_gap",
+    "filters_too_strict",
+    "gibberish",
+    "hardware",
+    "not_in_catalog_known",
+    "not_in_catalog_unknown",
+    "off_topic",
+    "piracy",
+    "price_on_request_only",
+    "ranking_issue",
+    "sku_not_found",
+    "typo_unfixed",
+    "vendor_left",
+    "vocabulary_gap"
+  ]
+}
