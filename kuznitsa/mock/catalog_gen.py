@@ -1,5 +1,5 @@
 import hashlib
-from .pricing import price as license_price
+from .pricing import price as license_price, edition_ranks
 from .naming import sku_name
 import json
 import os
@@ -47,6 +47,7 @@ def offers_for(f,vendor,seed,limit):
         nums = [int(n) for n in re.findall(r"\d+",str(band))]
         if nums:
             sizes.append((nums[0],nums[1] if len(nums)>1 else None,None))
+    sizes.sort()
     sizes += [(None,None,int(p)) for p in lic.get("packs",[]) if str(p).isdigit() and 0<int(p)<=(f.get("max_seats") or float("inf"))]
     base = (f.get("price_rub") or {}).get("typical") or rng.randint(1500,4400)
     models = lic.get("models") or ["subscription"]
@@ -56,7 +57,7 @@ def offers_for(f,vendor,seed,limit):
                 f.get("delivery") or ["esd"],f.get("versions") or [None])
     count=prod(map(len,dimensions))
     editions = f.get("editions") or [{}]
-    for rank,ed in enumerate(editions):
+    for rank,ed in zip(edition_ranks(editions), editions):
         # Выбираем номера комбинаций. Полный декартов продукт не размещается в памяти.
         indices=rng.sample(range(count),min(count,max(12,limit//len(editions))))
         def unpack(index):
@@ -73,7 +74,7 @@ def offers_for(f,vendor,seed,limit):
         # Для каждой редакции держим базовый годовой вариант во всех аудиториях
         # и диапазонах. Сложные и популярные семейства получают больше SKU.
         budget=len(indices)
-        essential=[a for a in anchors if a[0] in ("new","renewal") and (a[3] in ("business","gov","edu"))]
+        essential=[a for a in anchors if a[0] in ("new","renewal") and (a[3] in ("business","gov","edu",dimensions[3][0]))]
         edition_text=(ed.get("title") or ed.get("name") or "").lower()
         restrict=("edu" if re.search("образован|учебн|academic",edition_text) else
                   "gov" if "государствен" in edition_text else "home" if "домашн" in edition_text else None)
@@ -83,14 +84,23 @@ def offers_for(f,vendor,seed,limit):
         options=list(dict.fromkeys([*essential,*representative,*sampled[:budget],*anchors[:2]]))
         if restrict and restrict in dimensions[3]:
             options=[a for a in options if a[3]==restrict]
+        edition_metric = next((target for target,pattern in [
+            ("device", r"рабочих станций|workstation|desktop"), ("server", r"сервер|server")
+        ] if target in dimensions[4] and re.search(pattern,edition_text)), None)
+        emitted = set()
         for action,(model,term),(lo,hi,pack),aud,metric,delivery,version in options:
+            metric = edition_metric or metric
             price=license_price(f,rank,sizes.index((lo,hi,pack)) if lo else 0,pack,term,action,aud,base)
             identity = (f["id"],ed.get("id"),action,term,model,lo,hi,pack,aud,metric,delivery,version)
+            if identity in emitted:
+                continue
+            emitted.add(identity)
             serial = hashlib.blake2s(repr(identity).encode(),digest_size=6).hexdigest().upper()
             prefix = {"kaspersky":"KL","microsoft":"FQC","drweb":"DWL"}.get(f.get("vendor"),"AX")
             sku = f"{prefix}-{serial}"
             name = sku_name(f,ed,version,action,term,lo,hi,pack,aud,metric,delivery)
-            por = price>75000 and rng.random()<.08
+            common = action in ("new","renewal") and (model,term)==preferred_term and delivery==dimensions[5][0]
+            por = price>75000 and rng.random()<.08 and not common
             platforms = list(dict.fromkeys(f.get("platforms",[])+f.get("compat_ru_os",[])+(["linux"] if f.get("compat_ru_os") else [])))
             registry = f.get("registry") if isinstance(f.get("registry"),bool) and f.get("confidence")!="low" else None
             yield Offer(offer_id="o_"+serial,sku=sku,name=name,vendor=vendor,vendor_id=f.get("vendor"),family_id=f["id"],
@@ -100,7 +110,7 @@ def offers_for(f,vendor,seed,limit):
                         metric=metric,audience=aud),price=None if por else price,attrs={"promo":"true"} if int(serial[-2:],16)%13==0 and action=="new" else {},
                         kind="course" if f.get("category")=="it_training_courses" else "service" if f.get("category")=="tech_support" else "license",
                         price_on_request=por,vat=0 if registry else None,
-                        popularity=min(1,(f.get("popularity") or 3)/6+rng.random()*.16),margin=rng.uniform(.08,.4),available=rng.random()>.015)
+                        popularity=min(1,(f.get("popularity") or 3)/6+rng.random()*.16),margin=rng.uniform(.08,.4),available=rng.random()>.015 or common)
 
 
 def seed_defects(offers):
@@ -109,6 +119,11 @@ def seed_defects(offers):
         cards[o.card_id].append(o)
     labels={}
     remove=set()
+    def missing_tier(o):
+        # Годовые ступени основных сегментов нужны для сравнения цен.
+        primary = o.lic.term_months == 12 and o.lic.audience in ("business", "gov", "edu")
+        return o.lic.qty_min in (25,50) and not primary
+
     for code,categories,limit in [("INS-07",{"backup_recovery","ngfw_vpn"},14),("INS-08",{"office_suite","cad_2d"},9),
                                   ("INS-09",{"endpoint_security"},11)]:
         eligible=[c for c,rows in cards.items() if rows[0].category_id in categories]
@@ -117,7 +132,7 @@ def seed_defects(offers):
         if code=="INS-08":
             eligible=[c for c in eligible if any(o.registry for o in cards[c])]
         if code=="INS-09":
-            eligible=[c for c in eligible if any(o.lic.qty_min in (25,50) for o in cards[c])]
+            eligible=[c for c in eligible if any(missing_tier(o) for o in cards[c])]
             eligible.sort(key=lambda c:(any(o.sku and not "-" in o.sku for o in cards[c]),"kesb" in c or "ksos" in c,c))
         for c in eligible[:limit]:
             labels[c]=code
@@ -126,7 +141,7 @@ def seed_defects(offers):
                     o.platforms=[v for v in o.platforms if v not in ("astra","redos")]
                 elif code=="INS-08":
                     o.registry,o.vat=None,22
-                elif o.lic.qty_min in (25,50):
+                elif missing_tier(o):
                     remove.add(o.offer_id)
     return [o for o in offers if o.offer_id not in remove],labels
 
@@ -149,7 +164,7 @@ def build(cfg,kb,seed=20261126,today=None):
     with TemporaryDirectory(dir=cfg.data) as temporary:
         stage=Path(temporary)
         write_lines(stage/"catalog.jsonl",(o.model_dump_json(exclude_none=True,exclude_defaults=True) for o in offers))
-        write_lines(stage/"mock_defects.jsonl",(json.dumps(dict(card_id=k,insight=v)) for k,v in defects.items()))
+        write_lines(stage/"mock_defects.jsonl",(json.dumps(dict(card_id=k,insight=v,**({"scope":"secondary_segments_or_nonannual","qty_min":[25,50]} if v=="INS-09" else {}))) for k,v in defects.items()))
         profiles=configured_clients(cfg.kb.parent/"mock/spec",offers,seed)
         write_lines(stage/"clients.jsonl",(date_client(c,today).model_dump_json() for c in profiles))
         write_lines(stage/"mock_families.jsonl",(json.dumps(f,ensure_ascii=False) for f in supplement.values()))

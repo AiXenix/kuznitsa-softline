@@ -35,3 +35,22 @@ def price(f, edition_index, band_index, pack, term, action, audience, default):
     base *= dict(edu=.4, gov=.9).get(audience, 1)
     step = 100 if base >= 20000 else 10 if base >= 200 else 1
     return max(1, round(base / step) * step)
+
+
+def edition_ranks(editions):
+    """Reorder comparable tiers only. Unclassified editions retain their slots."""
+    import re
+    tiers = (r"home|basic|base|базов\w*|домашн\w*", r"standard|std|стандарт\w*",
+             r"plus|плюс", r"pro|prof|professional|advanced|проф\w*|расширенн\w*",
+             r"enterprise|total|datacenter|корп|корпоративн\w*|универсальн\w*")
+    known = {}
+    for i, ed in enumerate(editions):
+        words = " ".join(str(x) for x in [ed.get("title", ""), ed.get("name", ""), *ed.get("aliases", [])])
+        for tier, pattern in reversed(list(enumerate(tiers))):
+            if re.search(r"\b(?:" + pattern + r")\b", words, re.I):
+                known[i] = tier
+                break
+    ranks = list(range(len(editions)))
+    for slot, i in zip(known, sorted(known, key=known.get)):
+        ranks[i] = slot
+    return ranks
