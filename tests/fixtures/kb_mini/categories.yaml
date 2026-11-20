@@ -1,0 +1,3 @@
+- {id: security, title: Безопасность}
+- {id: endpoint_security, parent: security, title: Защита рабочих станций, synonyms: [антивирус]}
+- {id: office_suite, title: Офисные пакеты, synonyms: [офис]}

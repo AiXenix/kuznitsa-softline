@@ -1,0 +1,23 @@
+- id: shield
+  vendor: north
+  name: North Shield
+  aliases: [северный щит, щит]
+  category: endpoint_security
+  summary: Защита рабочих станций организации.
+  editions: [{id: pro, name: Pro, aliases: [проф]}]
+  registry: yes
+  certs: fstec
+  compat_ru_os: [astra]
+  platforms: windows
+  license: {models: subscription, metrics: device, actions: [new, renewal], terms_months: [12, 24], bands: ["1-24", "25-49", "50-99"], audiences: [business, gov, edu]}
+  price_rub: {typical: 2400}
+- id: guard
+  vendor: east
+  name: East Guard
+  aliases: [страж]
+  category: endpoint_security
+  registry: partial
+  license: {actions: [new, renewal], metrics: [device], packs: [5, 10], audiences: [business, edu, gov]}
+- {id: old, name: Old Guard, aliases: [старая защита], catalog: no, category: endpoint_security, analogs: [guard]}
+- {id: paper, name: Paper Desk, vendor: east, category: office_suite, aliases: [офис]}
+- {id: ink, name: Ink Desk, vendor: north, category: office_suite, aliases: [офис]}

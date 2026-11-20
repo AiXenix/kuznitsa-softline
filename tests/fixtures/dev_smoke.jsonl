@@ -1,0 +1,3 @@
+{"id":"quantity","q":"антивирус на 50 пк","scenario":"category","assert":{"qty":50,"metric":"device","block_any":["products"]}}
+{"id":"renew","q":"каспер продление","scenario":"renewal","assert":{"action":"renewal","vendor":"kaspersky"}}
+{"id":"hardware","q":"купить ноутбук","scenario":"off_topic","assert":{"intent":"off_topic","zero_ok":true}}

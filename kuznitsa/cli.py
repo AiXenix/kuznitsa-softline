@@ -1,0 +1,60 @@
+import argparse
+import json
+from pathlib import Path
+from .config import Config,ROOT
+from .kb.loader import load
+from .mock.catalog_gen import build
+from .schema import Request
+
+
+def show(value):
+    print(json.dumps(value,ensure_ascii=False,indent=2))
+
+
+def main(argv=None):
+    cfg=Config()
+    parser=argparse.ArgumentParser(prog="kuznitsa")
+    sub=parser.add_subparsers(dest="cmd",required=True)
+    sub.add_parser("kb-check")
+    sub.add_parser("build-index")
+    sub.add_parser("build-mock").add_argument("--seed",type=int,default=20261126)
+    p=sub.add_parser("search")
+    p.add_argument("q")
+    p.add_argument("--profile",default="guest")
+    p.add_argument("--explain",action="store_true")
+    p.add_argument("--mode",choices=["smart","fast"],default=cfg.mode)
+    p=sub.add_parser("eval")
+    p.add_argument("file",type=Path)
+    p.add_argument("--mode",default="fast",choices=["smart","fast"])
+    p=sub.add_parser("serve")
+    p.add_argument("--host",default="127.0.0.1")
+    p.add_argument("--port",type=int,default=8097)
+    args=parser.parse_args(argv)
+    if args.cmd in ("kb-check","build-mock"):
+        kb=load(cfg.kb)
+        if args.cmd=="kb-check":
+            show(kb.report())
+            return int(bool(kb.syntax))
+        print(f"Предложений · {build(cfg,kb,args.seed)}")
+    elif args.cmd=="serve":
+        import uvicorn
+        uvicorn.run("kuznitsa.app:app",host=args.host,port=args.port)
+    else:
+        from .engine import Engine
+        engine=Engine.open(cfg)
+        if args.cmd=="build-index":
+            print(f"Карточек · {len(engine.catalog.cards)}")
+        elif args.cmd=="search":
+            show(engine.search(Request(q=args.q,profile_id=args.profile,mode=args.mode,explain=args.explain)))
+        else:
+            from .evaluation import evaluate
+            path = args.file
+            if not path.exists() and path.resolve()==ROOT/"eval/queries.dev.jsonl":
+                print("Файл dev ещё не появился. Запущена отдельная проверка на трёх демонстрационных запросах.")
+                path=ROOT/"tests/fixtures/dev_smoke.jsonl"
+            show(evaluate(engine,path,args.mode,cfg.data))
+    return 0
+
+
+if __name__=="__main__":
+    raise SystemExit(main())

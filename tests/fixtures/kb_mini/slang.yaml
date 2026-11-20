@@ -1,0 +1,1 @@
+- {term: подписочный, maps_to: {attr: license_model, value: subscription}}

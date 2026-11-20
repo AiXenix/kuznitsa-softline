@@ -1,0 +1,40 @@
+kaspersky_kesb	kaspersky	endpoint_security	Kaspersky Endpoint Security для бизнеса	кес|kesb|endpoint security	Стандартный|Расширенный
+kaspersky_ksos	kaspersky	endpoint_security	Kaspersky Small Office Security	ксос|ksos	
+drweb_enterprise_security_suite	drweb	endpoint_security	Dr.Web Enterprise Security Suite	доктор веб enterprise	
+pro32_endpoint	pro32	endpoint_security	PRO32 Endpoint Security	про32 эндпоинт	
+windows_11	microsoft	desktop_os_windows	Microsoft Windows 11	windows 11|виндовс 11|винда 11	Pro|Enterprise
+astra_linux	astra_group	desktop_os_ru	Astra Linux	астра линукс	Special Edition|Common Edition
+alt_workstation	basalt_spo	desktop_os_ru	Альт Рабочая станция	альт рабочая станция	
+redos	redsoft	desktop_os_ru	РЕД ОС	редос	
+windows_server	microsoft	server_os	Microsoft Windows Server	виндовс сервер	Standard|Datacenter
+ms_office	microsoft	office_suite	Microsoft Office	мс офис|офис	Standard|Professional
+r7_office	r7_office	office_suite	Р7-Офис	р7 офис|офис	
+myoffice_standard	myoffice	office_suite	МойОфис Стандартный	мой офис|офис	
+autocad	autodesk	cad_2d	AutoCAD	автокад	
+nanocad	nanosoft	cad_2d	Платформа nanoCAD	нанокад	
+zwcad	zwsoft	cad_2d	ZWCAD	звкад	
+kompas_3d	ascon	mcad_plm	КОМПАС-3D	компас	
+cryptopro_csp	cryptopro	crypto_skzi	КриптоПро CSP	криптопро цсп	
+onec_accounting	onec	accounting	1С:Бухгалтерия	1с бух	ПРОФ|КОРП
+onec_zup	onec	payroll_hr_1c	1С:Зарплата и управление персоналом	зуп	
+onec_erp	onec	erp_systems	1С:ERP	1с ерп	
+onec_trade	onec	trade_warehouse	1С:Управление торговлей	1с ут	
+kontur_diadoc	kontur	tax_reporting_edo	Контур.Диадок	диадок	
+kontur_extern	kontur	tax_reporting_edo	Контур.Экстерн	экстерн	
+ms_visio	microsoft	diagramming_mindmaps	Microsoft Visio	визио	
+ms_project	microsoft	project_planning	Microsoft Project	проджект	
+ms_sql	microsoft	rdbms	Microsoft SQL Server	скл сервер	
+postgres_pro	postgres_pro	rdbms	Postgres Pro	постгрес про	
+cyber_backup	cyberprotect	backup_recovery	Кибер Бэкап	кибербэкап	
+trueconf_server	trueconf	vks_webinars	TrueConf Server	труконф сервер	
+vinteo_server	vinteo	vks_webinars	Vinteo Server	винтео сервер	
+usergate_ngfw	usergate	ngfw_vpn	UserGate NGFW	юзергейт	
+secret_net_studio	security_code	nsd_access_control	Secret Net Studio	секрет нет	
+vipnet_client	infotecs	ngfw_vpn	ViPNet Client	випнет клиент	
+kaspersky_edr	kaspersky	edr_xdr	Kaspersky EDR	касперский едр	
+ald_pro	astra_group	directory_services	ALD Pro	алд про	
+brest	astra_group	server_virtualization	Брест	брест	
+communigate	communigate	mail_servers	CommuniGate Pro	коммунигейт	
+bitrix24	bitrix	crm_systems	Битрикс24	битрикс 24	
+directum_rx	directum	sed_ecm	Directum RX	директум	
+tflex_cad	top_systems	mcad_plm	T-FLEX CAD	тфлекс	
