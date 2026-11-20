@@ -1,15 +1,16 @@
+import {consolePage} from './admin/index.js';
+import {inspector} from './admin/inspect.js';
+import {about} from './about.js';
+import {address} from './address.js';
+import {mini,card} from './product.js';
 import {api} from './api.js';
-import {add,line,rows,label,details,link,num,money,stateBox} from './dom.js';
+import {add,line,rows,label,details,link,num,stateBox} from './dom.js';
 import {result} from './result.js';
 import {trace} from './trace.js';
 
 function heading(main,title) {
   document.title=title+' · Кузница Softline';
   add(main,'h1',title);
-}
-function pending(p,title) {
-  const x=add(p,'p',title+' · ожидаются данные','muted');
-  x.dataset.pending='';
 }
 async function gallery(main) {
   heading(main,'Галерея сценариев');
@@ -36,14 +37,15 @@ async function gallery(main) {
         add(box,'h3',s.title);line(box,s.user_goal,'muted');
         const examples=rows(s.examples),base='/?scenario='+encodeURIComponent(s.id);
         const first=s.demo?.q || s.demo?.chain?.[0] || examples[0];
-        if(first) link(box,first,base);
+        const launch=q=>address({q,profile_id:s.demo?.profile || 'guest',mode:'smart',category:s.demo?.category},s.demo?.compare?'profiles':'',base);
+        if(first){line(box,first);link(box,'Запустить →',launch(first)).className='launch';}
         if(examples.some(q=>q!==first)){
           const d=details(box,'Другие примеры');
-          for(const q of examples.filter(q=>q!==first)) link(d,q,base+'&q='+encodeURIComponent(q));
+          for(const q of examples.filter(q=>q!==first)) link(d,q,launch(q));
         }
         if(s.demo?.admin_tab) link(box,'К аналитике','/admin');
         const st=s.eval_status ?? checks.get(s.id) ?? s.status;
-        if(st)line(box,'Проверка · '+label(st),'muted');else pending(box,'Статус проверки');
+        if(st)line(box,'Проверка · '+label(st),'muted');
       }
     }
   }
@@ -53,48 +55,9 @@ async function gallery(main) {
     for (const row of rows(report?.rows || report?.results || report)) {
       if (row.scenario && row.status) checks.set(row.scenario,row.status);
     }
+    for(const [id,v] of Object.entries(report.scenarios || {}))if(v.total)checks.set(id,v.passed+' / '+v.total);
     if(checks.size) show();
   } catch { /* Метаданные галереи доступны независимо от журнала проверок. */ }
-}
-async function inspect(main) {
-  heading(main,'Разбор запроса');
-  const id=location.pathname.split('/').pop();
-  try {
-    const data=await api('/api/admin/search/'+id);
-    const r=data.response || data.result || data.search || data;
-    if (!r.trace && r.trace_json) r.trace=typeof r.trace_json==='string' ? JSON.parse(r.trace_json) : r.trace_json;
-    if (!r.timing_ms && r.ms!=null) r.timing_ms={total:r.ms};
-    if (!r.cost && (r.llm_calls!=null || r.llm_cost_usd!=null)) r.cost={llm_calls:r.llm_calls,usd:r.llm_cost_usd};
-    line(main,r.query?.raw || r.q_raw,null,'h2');
-    if(r.blocks || r.understood) result(main,r);
-    const t=add(main,'section',null,'trace');add(t,'h2','Как работал поиск');trace(t,r,false);
-    add(details(main,'Полная запись журнала'),'pre',JSON.stringify(data,null,2));
-  } catch {stateBox(main,'Запись недоступна. Возможно, запрос отсутствует в журнале или доступ к журналу закрыт.');}
-}
-async function about(main) {
-  heading(main,'Как устроен поиск');
-  const grid=add(main,'div',null,'gallery');
-  for(const [title,copy] of [
-    ['Понимание запроса','Поиск распознаёт продукт, действие с лицензией, количество и ограничения. Словари связывают названия с жаргоном и сокращениями.'],
-    ['Подбор лицензии','Индекс находит кандидатов по словам и смыслу. Фильтры учитывают платформу и аудиторию, а варианты одной редакции собираются в карточку.'],
-    ['Порядок выдачи','Внутри уровня релевантности порядок зависит от популярности, маржи и профиля. Вклад каждого фактора виден в карточке.']
-  ]){const p=add(grid,'article',null,'panel');add(p,'h2',title);line(p,copy);}
-  const tech=add(main,'section',null,'panel');add(tech,'h2','Модели и библиотеки');
-  line(tech,'Локальная модель multilingual MiniLM сопоставляет запросы по смыслу. В умном режиме предусмотрен категоризатор Jev через OpenRouter. Быстрый режим работает локально.');
-  line(tech,'FastAPI обслуживает запросы, RapidFuzz находит близкие написания, scikit-learn строит текстовые признаки, fastembed и ONNX Runtime выполняют локальную модель. Журнал хранится в SQLite.');
-  line(tech,'FastAPI, RapidFuzz и ONNX Runtime — MIT, scikit-learn — BSD, fastembed и multilingual MiniLM — Apache License. Jev доступен как внешний сервис.');
-  try {
-    const health=await api('/health');
-    if(typeof health.llm?.enabled==='boolean')line(tech,health.llm.enabled?'Обращения к внешней модели включены.':'Внешняя модель сейчас отключена.','badge','span');
-  }catch{pending(tech,'Состояние моделей');}
-  const p=add(main,'section',null,'panel');add(p,'h2','Стоимость запроса');
-  line(p,'Трасса каждого поиска показывает его время, число обращений к модели и стоимость.');
-  try {
-    const cost=await api('/api/admin/cost');
-    if(cost.avg_rub != null)line(p,'В среднем за запрос · '+money(cost.avg_rub),'price');
-    else if(cost.avg_usd != null)line(p,'В среднем за запрос · '+num(cost.avg_usd)+' $','price');
-    else pending(p,'Средняя стоимость');
-  }catch{pending(p,'Средняя стоимость');}
 }
 async function styleguide(main) {
   heading(main,'Образцы интерфейса');
@@ -107,6 +70,10 @@ async function styleguide(main) {
     link(nav,b?.title || id,'#'+id);
     const s=add(main,'section');s.id=id;
     result(s,r,{apply:()=>{},act:(_t,_c,b)=>{b.textContent='Демонстрационный образец';}});
+    if(id==='products'){
+      add(s,'h3','Карточка в сравнении');mini(s,r.blocks[0].items[0]);
+      add(s,'span','В реестре ПО','badge');add(s,'span','Поставки ограничены','badge warn');
+    }
     if(r.trace){const t=add(s,'section',null,'trace');add(t,'h2','Как работал поиск');trace(t,r,false);}
   }
   add(main,'h2','Состояния выдачи');
@@ -114,11 +81,17 @@ async function styleguide(main) {
   for(const [kind,text] of Object.entries(states))stateBox(main,text,kind);
 }
 export async function page(main) {
+  if(location.pathname.startsWith('/card/')){
+    const c=await api('/api/card/'+location.pathname.split('/').pop());
+    heading(main,'Карточка каталога');card(main,c,{});
+    if(c.title)link(main,'Подобрать лицензию на витрине','/?'+new URLSearchParams({q:c.title}));
+    return;
+  }
   switch(location.pathname) {
     case '/scenarios':return gallery(main);
     case '/about':return about(main);
     case '/styleguide':return styleguide(main);
-    case '/admin':heading(main,'Аналитика поиска');stateBox(main,'Консоль появится после подключения служебного API. Разбор отдельного поиска доступен из трассы на витрине.');return;
-    default:return inspect(main);
+    case '/admin':return consolePage(main);
+    default:return inspector(main);
   }
 }
