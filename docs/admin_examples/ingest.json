@@ -1,0 +1,22 @@
+{
+  "cards": 45,
+  "offers": 16836,
+  "sources": [
+    {
+      "source": "api",
+      "searches": 17
+    },
+    {
+      "source": "eval",
+      "searches": 3344
+    },
+    {
+      "source": "history",
+      "searches": 45000
+    },
+    {
+      "source": "replay",
+      "searches": 14996
+    }
+  ]
+}

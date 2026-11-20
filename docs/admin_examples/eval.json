@@ -1,0 +1,36 @@
+{
+  "file": "5d3404867aa14998a86d4dae731776ab.jsonl",
+  "items": [
+    {
+      "id": "quantity",
+      "checks": {
+        "qty": true,
+        "metric": true,
+        "block_any": true
+      },
+      "search_id": "s_fcb947d88a6a47afb0876f74811308d7"
+    },
+    {
+      "id": "renew",
+      "checks": {
+        "action": true,
+        "vendor": true
+      },
+      "search_id": "s_f426cb36903a4335a8f21f20d19da501"
+    },
+    {
+      "id": "hardware",
+      "checks": {
+        "intent": true,
+        "zero_ok": true
+      },
+      "search_id": "s_76975dd08199439393486ce9b1f23fcc"
+    }
+  ],
+  "scenarios": {
+    "unknown": {
+      "total": 3,
+      "passed": 3
+    }
+  }
+}

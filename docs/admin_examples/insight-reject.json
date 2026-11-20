@@ -1,0 +1,50 @@
+{
+  "id": "add_product-158c15b7d741",
+  "type": "add_product",
+  "role": "content_manager",
+  "title": "Проверить поставку «РЕД АДМ (служба каталогов)»",
+  "status": "rejected",
+  "summary": "За последние 30 дней — 129 поисков в 129 сессиях.",
+  "confidence": 0.87,
+  "priority": "high",
+  "evidence": {
+    "searches_30d": 129,
+    "sessions_30d": 129,
+    "sample_queries": [
+      "ред адм контроллер домена",
+      "РЕД АДМ"
+    ],
+    "sample_sessions": [
+      "mock_000000",
+      "mock_000002",
+      "mock_000005",
+      "mock_000011",
+      "mock_000012",
+      "mock_000022"
+    ],
+    "segments": {
+      "gov": 65,
+      "enterprise": 44,
+      "mid": 20
+    },
+    "metric_before": {
+      "zero": 129,
+      "orders": 0
+    }
+  },
+  "action": {
+    "kind": "ticket",
+    "label": "Завести товар",
+    "payload_json": {
+      "product": "red_adm",
+      "category": "directory_services"
+    }
+  },
+  "impact": {
+    "expected_rub": 7998111,
+    "conservative_rub": 4362606,
+    "metric_label": "Оценка потенциала",
+    "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+  },
+  "verification": {}
+}

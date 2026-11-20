@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "mode": "smart_uncached",
+      "requests": 0,
+      "rub_per_query": 0.0,
+      "rub_per_1000": 0.0,
+      "monthly_rub": 0.0
+    },
+    {
+      "mode": "smart_cached",
+      "requests": 0,
+      "rub_per_query": 0.0,
+      "rub_per_1000": 0.0,
+      "monthly_rub": 0.0
+    },
+    {
+      "mode": "fast",
+      "requests": 0,
+      "rub_per_query": 0.0,
+      "rub_per_1000": 0.0,
+      "monthly_rub": 0.0
+    }
+  ],
+  "usd_rub": 100.0,
+  "requests_per_day": 1000,
+  "cache_rate": 0.0,
+  "formula": "Средняя стоимость поиска × поиски в сутки × 30 дней",
+  "note": "Таблица вызовов LLM ещё не создана. Зарегистрированные расходы равны нулю."
+}
