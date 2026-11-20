@@ -1,0 +1,29 @@
+{
+  "blocks": [
+    {
+      "type": "crosssell",
+      "title": "С этим обычно берут",
+      "items": [
+        {
+          "card": {
+            "card_id": "service:audit",
+            "title": "Аудит корпоративных лицензий",
+            "offer": {
+              "offer_id": "audit",
+              "name": "Консультация специалиста",
+              "price_on_request": true,
+              "available": true
+            },
+            "badges": [
+              {
+                "kind": "price_request",
+                "label": "Цена по запросу"
+              }
+            ]
+          },
+          "reason": "Проверьте текущий состав лицензий перед продлением."
+        }
+      ]
+    }
+  ]
+}

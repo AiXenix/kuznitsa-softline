@@ -1,0 +1,129 @@
+{
+  "blocks": [
+    {
+      "type": "spec",
+      "title": "Спецификация закупки",
+      "lines": [
+        {
+          "n": 1,
+          "raw": "каспер продление на 30 компов",
+          "understood": "Продление",
+          "status": "matched",
+          "card": {
+            "card_id": "kaspersky_kesb:advanced",
+            "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "endpoint_security",
+              "title": "Антивирусы и защита рабочих мест"
+            },
+            "summary": "",
+            "badges": [],
+            "offer": {
+              "offer_id": "o_AE5ABBBEB28D",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 25–49 Node 1 year Renewal License BUSINESS",
+              "sku": "KL-AE5ABBBEB28D",
+              "version": null,
+              "delivery": "esd",
+              "price": 1883.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 30,
+              "unit_price": 1883.0,
+              "total": 56490.0,
+              "text": "30 × 1 883 ₽ = 56 490 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_28409DA1C19C",
+                "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 100–149 Node 3 year Support License EDU",
+                "sku": "KL-28409DA1C19C",
+                "version": null,
+                "delivery": "esd",
+                "price": 2473.0,
+                "price_on_request": false,
+                "vat": null,
+                "available": true,
+                "action": "support",
+                "model": "subscription",
+                "term_months": 36,
+                "metric": "device",
+                "qty_min": 100,
+                "qty_max": 149,
+                "pack": null,
+                "audience": "edu"
+              }
+            ],
+            "variants_count": 282,
+            "price_from": 605.0,
+            "score": {
+              "tier": 2,
+              "score": 0.61665,
+              "parts": {
+                "rel": 0.25,
+                "pop": 0.15165,
+                "margin": 0.1355,
+                "pers": 0.0795
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "У вашей организации уже есть ПО этого вендора",
+                "Подходит для закупки небольшой партией",
+                "Диапазон от 25 до 49 мест"
+              ]
+            },
+            "position": 1
+          },
+          "qty": 30,
+          "unit_price": 1883.0,
+          "total": 56490.0
+        },
+        {
+          "n": 2,
+          "raw": "Аудит",
+          "understood": "Услуга",
+          "status": "ambiguous",
+          "alternatives": [
+            {
+              "card_id": "service:audit",
+              "title": "Аудит корпоративных лицензий",
+              "offer": {
+                "offer_id": "audit",
+                "name": "Консультация специалиста",
+                "price_on_request": true,
+                "available": true
+              },
+              "badges": [
+                {
+                  "kind": "price_request",
+                  "label": "Цена по запросу"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "raw": "Архивная редакция",
+          "status": "not_found"
+        }
+      ],
+      "total": 56490.0,
+      "unresolved": 2
+    }
+  ]
+}

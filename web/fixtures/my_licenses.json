@@ -1,0 +1,34 @@
+{
+  "blocks": [
+    {
+      "type": "my_licenses",
+      "title": "Ваши лицензии",
+      "items": [
+        {
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "qty": 30,
+          "expires_in_days": 21,
+          "renew_offer": {
+            "offer_id": "o_AE5ABBBEB28D",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 25–49 Node 1 year Renewal License BUSINESS",
+            "sku": "KL-AE5ABBBEB28D",
+            "version": null,
+            "delivery": "esd",
+            "price": 1883.0,
+            "price_on_request": false,
+            "vat": null,
+            "available": true,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 25,
+            "qty_max": 49,
+            "pack": null,
+            "audience": "business"
+          }
+        }
+      ]
+    }
+  ]
+}

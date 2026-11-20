@@ -1,0 +1,609 @@
+{
+  "search_id": "s_3752a139c7004e6ab82796297e920dc9",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "каспер продление на 30 компов",
+    "normalized": "каспер продление на 30 компов",
+    "corrected": "каспер продление на 30 компов",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "renewal",
+    "intent_title": "Продление лицензии",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "entities": [
+      {
+        "type": "vendor",
+        "id": "kaspersky",
+        "text": "каспер",
+        "span": [
+          0,
+          1
+        ],
+        "source": "kb",
+        "conf": 1.0
+      },
+      {
+        "type": "action",
+        "id": "renewal",
+        "text": "продление",
+        "span": [
+          1,
+          2
+        ],
+        "source": "dictionary",
+        "conf": 1.0
+      },
+      {
+        "type": "metric",
+        "id": "device",
+        "text": "компов",
+        "span": [
+          4,
+          5
+        ],
+        "source": "dictionary",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "vendor": [
+        "kaspersky"
+      ],
+      "action": "renewal",
+      "metric": "device"
+    },
+    "exclude": {},
+    "qty": {
+      "value": 30,
+      "metric": "device"
+    },
+    "chips": [
+      {
+        "key": "vendor",
+        "label": "Kaspersky",
+        "source": "query",
+        "removable": true,
+        "remove_q": "продление на 30 компов"
+      },
+      {
+        "key": "action",
+        "label": "продление",
+        "source": "query",
+        "removable": true,
+        "remove_q": "каспер на 30 компов"
+      },
+      {
+        "key": "qty",
+        "label": "Количество устройств · 30",
+        "source": "query",
+        "removable": false
+      },
+      {
+        "key": "profile",
+        "label": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+        "source": "context",
+        "removable": false
+      }
+    ],
+    "subtype": null,
+    "agent_note": "Продление лицензии · Kaspersky, продление, Количество устройств · 30, ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК"
+  },
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 3,
+      "items": [
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "",
+          "badges": [],
+          "offer": {
+            "offer_id": "o_AE5ABBBEB28D",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 25–49 Node 1 year Renewal License BUSINESS",
+            "sku": "KL-AE5ABBBEB28D",
+            "version": null,
+            "delivery": "esd",
+            "price": 1883.0,
+            "price_on_request": false,
+            "vat": null,
+            "available": true,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 25,
+            "qty_max": 49,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": 30,
+            "unit_price": 1883.0,
+            "total": 56490.0,
+            "text": "30 × 1 883 ₽ = 56 490 ₽"
+          },
+          "variants": [
+            {
+              "offer_id": "o_28409DA1C19C",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 100–149 Node 3 year Support License EDU",
+              "sku": "KL-28409DA1C19C",
+              "version": null,
+              "delivery": "esd",
+              "price": 2473.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "support",
+              "model": "subscription",
+              "term_months": 36,
+              "metric": "device",
+              "qty_min": 100,
+              "qty_max": 149,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_C3126E333C4B",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 25–49 Node 1 year Addon License BUSINESS",
+              "sku": "KL-C3126E333C4B",
+              "version": null,
+              "delivery": "esd",
+              "price": 1883.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_E584AAF3C916",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 150–249 Node 1 year Addon License EDU",
+              "sku": "KL-E584AAF3C916",
+              "version": null,
+              "delivery": "esd",
+              "price": 789.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 150,
+              "qty_max": 249,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_4176B176B06D",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 50–99 Node 3 year Support License EDU",
+              "sku": "KL-4176B176B06D",
+              "version": null,
+              "delivery": "esd",
+              "price": 2591.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "support",
+              "model": "subscription",
+              "term_months": 36,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_67DF6FFFACF8",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 250–499 Node 1 year Support License GOV",
+              "sku": "KL-67DF6FFFACF8",
+              "version": null,
+              "delivery": "esd",
+              "price": 1374.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "support",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 250,
+              "qty_max": 499,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 282,
+          "price_from": 605.0,
+          "score": {
+            "tier": 2,
+            "score": 0.61665,
+            "parts": {
+              "rel": 0.25,
+              "pop": 0.15165,
+              "margin": 0.1355,
+              "pers": 0.0795
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "У вашей организации уже есть ПО этого вендора",
+              "Подходит для закупки небольшой партией",
+              "Диапазон от 25 до 49 мест"
+            ]
+          },
+          "position": 1
+        },
+        {
+          "card_id": "kaspersky_kesb:standard",
+          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "",
+          "badges": [],
+          "offer": {
+            "offer_id": "o_7582F1D47633",
+            "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 25–49 Node 1 year Renewal License BUSINESS",
+            "sku": "KL-7582F1D47633",
+            "version": null,
+            "delivery": "esd",
+            "price": 1883.0,
+            "price_on_request": false,
+            "vat": null,
+            "available": true,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 25,
+            "qty_max": 49,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": 30,
+            "unit_price": 1883.0,
+            "total": 56490.0,
+            "text": "30 × 1 883 ₽ = 56 490 ₽"
+          },
+          "variants": [
+            {
+              "offer_id": "o_3B735E1ED16B",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 100–149 Node 3 year Addon License BUSINESS",
+              "sku": "KL-3B735E1ED16B",
+              "version": null,
+              "delivery": "esd",
+              "price": 5263.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 36,
+              "metric": "device",
+              "qty_min": 100,
+              "qty_max": 149,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_9235DF5BF5FC",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 500–999 Node 2 year Addon License GOV",
+              "sku": "KL-9235DF5BF5FC",
+              "version": null,
+              "delivery": "esd",
+              "price": 2290.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "addon",
+              "model": "subscription",
+              "term_months": 24,
+              "metric": "device",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_7CA5353ACB9F",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 500–999 Node 2 year New License EDU",
+              "sku": "KL-7CA5353ACB9F",
+              "version": null,
+              "delivery": "esd",
+              "price": 1679.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 24,
+              "metric": "device",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_2C7B59A14CB4",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 50–99 Node 1 year New License GOV",
+              "sku": "KL-2C7B59A14CB4",
+              "version": null,
+              "delivery": "esd",
+              "price": 2272.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_3807A0B385EB",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 5–9 Node 1 year New License EDU",
+              "sku": "KL-3807A0B385EB",
+              "version": null,
+              "delivery": "esd",
+              "price": 1253.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 5,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "edu"
+            }
+          ],
+          "variants_count": 282,
+          "price_from": 605.0,
+          "score": {
+            "tier": 2,
+            "score": 0.4755,
+            "parts": {
+              "rel": 0.25,
+              "pop": 0.11069,
+              "margin": 0.03531,
+              "pers": 0.0795
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "У вашей организации уже есть ПО этого вендора",
+              "Подходит для закупки небольшой партией",
+              "Диапазон от 25 до 49 мест"
+            ]
+          },
+          "position": 2
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "kaspersky",
+          "label": "Kaspersky",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 2
+        },
+        {
+          "id": "edr_xdr",
+          "label": "EDR, XDR и защита от сложных угроз",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "Kaspersky Endpoint Security для бизнеса Расширенный",
+    "Kaspersky Endpoint Security для бизнеса Стандартный",
+    "Kaspersky EDR"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.11,
+      "summary": "каспер продление на 30 компов",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.23,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 1.04,
+      "summary": "Kaspersky, продление, Количество устройств · 30",
+      "detail": {
+        "residual": "на",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.99,
+      "summary": "Продление лицензии",
+      "detail": {
+        "redirect": null
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "fallback",
+      "ms": 0.01,
+      "summary": "Продление лицензии · использую план «Поиск по вендору»",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 1.87,
+      "summary": "Подходящих карточек до проверки лицензий · 4",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.81,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 3. Запрошено мест · 30",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.0,
+      "summary": "В этом режиме используются локальные оценки",
+      "detail": {}
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.63,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "Карточек в выдаче · 3",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 15.04,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0
+  },
+  "timing_ms": {
+    "total": 20.97
+  },
+  "profile": {
+    "id": "smb_trade",
+    "title": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+    "segment": "smb"
+  }
+}

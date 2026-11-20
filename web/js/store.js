@@ -1,128 +1,144 @@
-const byId = id => document.getElementById(id);
-const query = byId('query'), results = byId('results'), suggestions = byId('suggestions');
-const session = sessionStorage.kzSession || (sessionStorage.kzSession = crypto.randomUUID());
-const el = (tag, text, cls) => {
-  const node = document.createElement(tag);
-  if (text != null) node.textContent = text;
-  if (cls) node.className = cls;
-  return node;
-};
-const add = (parent, tag, text, cls) => parent.appendChild(el(tag,text,cls));
-const button = (parent, label, fn) => {
-  const b = add(parent,'button',label,'action');
-  b.type = 'button';
-  b.onclick = fn;
-};
-async function api(path, body) {
-  const response = await fetch(path, body ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)} : {});
-  if (!response.ok) throw Error((await response.json()).error?.message || 'Ошибка загрузки');
-  return response.status === 204 ? null : response.json();
+import {$,add,line,button,details,rows,num,stateBox,link} from './dom.js';
+import {api} from './api.js';
+import {state,segments,freshSession} from './state.js';
+import {suggestions} from './suggest.js';
+import {trace} from './trace.js';
+import {result} from './result.js';
+import {cart} from './cart.js';
+import {watch,leave} from './events.js';
+import {compare} from './comparison.js';
+import {page} from './pages.js';
+
+const main=$('main');
+for (const a of document.querySelectorAll('header nav a')) {
+  if (a.pathname===location.pathname) a.setAttribute('aria-current','page');
 }
-let searchNumber=0, suggestNumber=0, timer;
-function hideSuggestions(){++suggestNumber;suggestions.hidden=true;}
-function launch(q){query.value=q; run();}
-function event(r,type,c) {
-  return api('/api/event',{search_id:r.search_id,session_id:session,client_id:r.profile.id,type,
-    card_id:c?.card_id,offer_id:c?.offer.offer_id,position:c?.position,qty:c?.calc?.qty,value:c?.calc?.total})
-    .catch(e=>add(results,'p',e.message));
-}
-function card(parent,c,r){
-  const box=add(parent,'article');
-  add(box,'small',[c.vendor.name,c.category.title].filter(Boolean).join('  /  '));
-  add(box,'h3',c.title);
-  if(c.summary)add(box,'p',c.summary,'muted');
-  const chips=add(box,'div',null,'chips');
-  c.badges.forEach(b=>add(chips,'span',b.label,'chip'));
-  add(box,'p',c.offer.name);
-  add(box,'p',c.calc?.text || 'Цена по запросу','cost');
-  const why=add(box,'details');
-  add(why,'summary','Почему здесь');
-  why.ontoggle=()=>{if(why.open)event(r,'click',c);};
-  c.score.why.forEach(w=>add(why,'p',w));
-  const labels={rel:'Релевантность',pop:'Популярность',margin:'Маржа',pers:'Профиль'};
-  add(why,'small',Object.entries(c.score.parts).map(([k,v])=>labels[k]+' '+v.toFixed(2)).join(' · '));
-  const variants=add(box,'details');
-  add(variants,'summary','Варианты лицензии · '+c.variants_count);
-  c.variants.forEach(o=>add(variants,'p',o.name));
-  if(c.offer.available) button(box,c.calc?'В корзину':'Запросить цену',async e=>{
-    await event(r,c.calc?'cart':'lead',c);
-    e.target.disabled=true;e.target.textContent=c.calc?'Добавлено':'Запрос принят';
-    if(c.calc)button(box,'Оформить демозаказ',async ev=>{await event(r,'order',c);ev.target.disabled=true;ev.target.textContent='Заказ оформлен';});
-  });
-}
-async function run(){
-  hideSuggestions();const n=++searchNumber;if(!query.value.trim())return;
-  results.setAttribute('aria-busy','true');
-  try{
-    const r=await api('/api/search',{q:query.value,profile_id:byId('profile').value,mode:byId('mode').value,category:byId('category').value||null,session_id:session,source:'ui'});
-    if(n!==searchNumber)return;
-    results.replaceChildren();const u=add(results,'section',null,'panel');
-    add(u,'h2','Понято так');add(u,'p',r.understood.intent_title);
-    if(r.query.corrections.length)add(u,'p','Исправлено · '+r.query.corrected);
-    const chips=add(u,'div',null,'chips');
-    for(const c of r.understood.chips){
-      if(c.removable)button(chips,c.label+' ×',()=>launch(c.remove_q));
-      else add(chips,'span',c.label,'chip');
+async function store() {
+  main.append($('storefront').content.cloneNode(true));
+  const input=$('query'), results=$('results'), timeline=$('trace'), profile=$('profile'), category=$('category');
+  let version=0, chain=[], comparisonProfiles=[];
+  const spec=$('specForm'),specText=$('specText');
+  const interactions=cart();
+  $('traceWidth').onclick=e=>{
+    const expanded=timeline.closest('.workspace').classList.toggle('traceWide');
+    e.currentTarget.setAttribute('aria-pressed',String(expanded));
+    e.currentTarget.textContent=expanded ? 'Свернуть' : 'Развернуть';
+    $('traceTitle').scrollIntoView({block:'start'});
+  };
+  const params=()=>({profile_id:profile.value,category:category.value,session_id:state.session});
+  const close=suggestions(input,$('suggestions'),params,q=>run(q));
+  const currentQ=()=>spec.hidden ? input.value.trim() : specText.value.trim();
+  function settings(q) {
+    return {...params(),category:category.value || null,q,mode:$('mode').value,source:'ui',explain:true};
+  }
+  function editor(q) {
+    if(q.includes('\n')) {spec.hidden=false;specText.value=q;input.value='';}
+    else {spec.hidden=true;input.value=q;}
+    $('specMode').setAttribute('aria-expanded',String(!spec.hidden));
+  }
+  async function run(q,patch={},previous={}) {
+    if(!q.trim())return;
+    close();leave();editor(q);
+    $('comparison').hidden=true;
+    const now=++version;
+    const request={...previous,...settings(q),...patch};
+    state.request=request;
+    $('notice').textContent='Идёт поиск…';
+    results.replaceChildren();timeline.replaceChildren();
+    stateBox(results,'Подбираем предложения…','loading');
+    timeline.textContent='Ожидаем ответ движка.';
+    results.setAttribute('aria-busy','true');
+    try {
+      const r=await api('/api/search',request);
+      if(now!==version)return;
+      results.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);
+      result(results,r,{
+        apply:change=>{
+          if(change.q) return run(change.q,change);
+          const next={page:1,...change};
+          if(change.filters) next.filters={...request.filters,...change.filters};
+          if(change.ignore) {
+            next.ignore=[...new Set([...(request.ignore || []),...change.ignore])];
+            next.filters={...request.filters,...change.filters};
+            change.ignore.forEach(k=>delete next.filters[k]);
+          }
+          run(q,next,request);
+        },
+        variants:c=>api('/api/card/'+encodeURIComponent(c.card_id)+'?'+new URLSearchParams({profile_id:request.profile_id})),
+        forBlock:type=>interactions(r,type,request.session_id)
+      });
+      const products=rows(r.blocks).find(b=>b.type==='products');
+      const size=request.page_size || 20, page=request.page || 1;
+      if(page>1 || products?.total>page*size) {
+        const pages=add(results,'nav');pages.setAttribute('aria-label','Страницы выдачи');
+        if(page>1)button(pages,'← Предыдущая',()=>run(q,{page:page-1},request));
+        if(products?.total>page*size)button(pages,'Следующая →',()=>run(q,{page:page+1},request));
+      }
+      if(chain.length) button(results,'Следующий запрос · '+chain[0],()=>run(chain.shift(),{source:'gallery'}));
+      const jump=link(results,'Как работал поиск ↓','#traceTitle');
+      jump.className='traceJump';results.prepend(jump);
+      trace(timeline,r);$('notice').textContent='Поиск завершён.';
+    } catch(err) {
+      if(now!==version)return;
+      results.replaceChildren();stateBox(results,err.message,'error');button(results,'Повторить поиск',()=>run(q,patch,previous));
+      timeline.textContent='Трасса недоступна.';$('notice').textContent='Ошибка поиска.';
+    } finally {if(now===version) results.removeAttribute('aria-busy');}
+  }
+  $('search').onsubmit=e=>{e.preventDefault();chain=[];run(input.value.trim());};
+  $('specMode').onclick=()=>{spec.hidden=!spec.hidden;$('specMode').setAttribute('aria-expanded',String(!spec.hidden));if(!spec.hidden) specText.focus();};
+  spec.onsubmit=e=>{e.preventDefault();chain=[];run(specText.value.trim());};
+  function openCompare(kind) {
+    const q=currentQ();
+    compare($('comparison'),kind,{...(q===state.request.q ? state.request : {}),...settings(q)},rows(state.meta.profiles),comparisonProfiles);
+  }
+  $('profileCompare').onclick=()=>openCompare('profiles');$('modeCompare').onclick=()=>openCompare('modes');
+  async function profileInfo() {
+    const id=profile.value, container=$('profileInfo');container.replaceChildren();
+    if(id==='guest') {
+      const d=details(container,'Кто это · Гость');
+      line(d,'Посетитель без истории покупок. Поиск учитывает запрос и выбранную категорию.');
+      return;
     }
-    r.notes.forEach(text=>add(results,'p',text,'muted'));
-    for(const b of r.blocks){
-      add(results,'h2',b.title);
-      if(b.text||b.question)add(results,'p',b.text||b.question);
-      b.options?.forEach(o=>button(results,o.label,()=>launch(o.apply.q)));
-      if(b.type==='categories')b.items.forEach(item=>button(results,item.title,()=>launch(item.title)));
-      if(b.type==='my_licenses')for(const item of b.items)add(results,'p',item.title+' · '+item.qty+' мест'+(item.expires_in_days!=null?' · до окончания '+item.expires_in_days+' дн.':''));
-      if(b.type==='products'||b.type==='analogs')b.items.forEach(i=>card(results,i.card||i,r));
-      if(b.type==='lead')button(results,'Оставить запрос',async e=>{await event(r,'lead');e.target.disabled=true;e.target.textContent='Запрос принят';});
-    }
-    const facet=r.facets.find(f=>f.key==='vendor'&&f.values.length>1);
-    if(facet){
-      const group=add(results,'details');
-      add(group,'summary','Уточнить вендора');
-      for(const v of facet.values)button(group,v.label+' · '+v.count,()=>launch(r.query.corrected+' '+v.label));
-    }
-    if(r.related_queries.length)add(results,'h3','Связанные запросы');
-    r.related_queries.forEach(q=>button(results,q,()=>launch(q)));
-    const trace=byId('trace');trace.replaceChildren();
-    add(trace,'p',r.timing_ms.total+' мс · '+r.cost.rub+' ₽','muted');
-    for(const step of r.trace){
-      const d=add(trace,'details');add(d,'summary',step.title);add(d,'p',step.summary);add(d,'small',step.ms+' мс');
-    }
-  }catch(e){if(n===searchNumber)results.textContent=e.message;}
-  finally{if(n===searchNumber)results.removeAttribute('aria-busy');}
+    try {
+      const p=await api('/api/profile/'+encodeURIComponent(id));
+      if(profile.value!==id)return;
+      const d=details(container,'Кто это · '+p.title);
+      line(d,[segments[p.segment] || p.segment,p.size_seats==null?'':num(p.size_seats)+' мест',...rows(p.fleet?.os)].filter(Boolean).join(' · '));
+      for(const item of rows(p.owned)) line(d,[item.product || item.title || item.family_id,item.qty==null?'':item.qty+' мест',
+        item.expires_in_days==null?'':'До окончания '+item.expires_in_days+' дн.'].filter(Boolean).join(' · '));
+    }catch(err){if(profile.value===id)line(container,err.message);}
+  }
+  for(const field of [profile,category,$('mode')]) field.onchange=()=>{
+    close();if(field===profile){sessionStorage.kzSession=state.session=freshSession();profileInfo();}
+    if(currentQ()) run(currentQ());
+  };
+  stateBox(results,'Загружаем каталог…','loading');
+  const m=await api('/api/meta');state.meta=m;
+  for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.title,p.id));
+  for(const c of rows(m.categories)) category.add(new Option(c.title,c.id));
+  $('stats').textContent=[m.catalog?.cards==null?'':num(m.catalog.cards)+' карточек',m.catalog?.offers==null?'':num(m.catalog.offers)+' вариантов лицензий'].filter(Boolean).join(' · ');
+  const url=new URLSearchParams(location.search), scenario=rows(m.scenarios).find(s=>s.id===url.get('scenario'));
+  const demo=scenario?.demo || {};
+  if(scenario) sessionStorage.kzSession=state.session=freshSession();
+  if([...profile.options].some(o=>o.value===demo.profile)) profile.value=demo.profile;
+  if(demo.category) category.value=demo.category;
+  chain=[...rows(demo.chain)];comparisonProfiles=rows(demo.compare);
+  const example=url.get('q');
+  if(example) chain=[];
+  const q=example || demo.q || chain.shift() || (scenario && scenario.examples?.[0]);
+  profileInfo();
+  if(q){await run(q,{source:scenario?'gallery':'ui'});if(comparisonProfiles.length)openCompare('profiles');return;}
+  if(version)return;
+  results.replaceChildren();
+  add(results,'h2','Что вы подбираете?');
+  const examples=add(results,'div',null,'exampleGrid');
+  const groups=new Set();
+  for(const s of rows(m.scenarios)) {
+    if(groups.has(s.group) || !s.demo?.q)continue;
+    groups.add(s.group);
+    const a=link(examples,s.demo.q,'/?scenario='+encodeURIComponent(s.id));line(a,s.group_title,'muted','small');
+    if(groups.size===6)break;
+  }
+  link(results,'Все сценарии поиска →','/scenarios');
 }
-query.oninput=()=>{
-  clearTimeout(timer);hideSuggestions();const seq=suggestNumber;
-  if(!query.value.trim())return;
-  timer=setTimeout(async()=>{
-    try{
-      const r=await api('/api/suggest?'+new URLSearchParams({q:query.value,profile_id:byId('profile').value}));
-      if(seq!==suggestNumber)return;
-      suggestions.replaceChildren();
-      for(const g of r.groups){add(suggestions,'small',g.title);g.items.forEach(i=>button(suggestions,i.text,()=>launch(i.text)));}
-      suggestions.hidden=!r.groups.length;
-    }catch{hideSuggestions();}
-  },160);
-};
-query.onkeydown=e=>{if(e.key==='Escape')hideSuggestions();};
-document.addEventListener('click',e=>{if(!e.target.closest('.bar'))hideSuggestions();});
-byId('search').onsubmit=e=>{e.preventDefault();run();};
-for(const key of ['category','mode'])byId(key).onchange=()=>{if(query.value)run();};
-async function showProfile(){
-  const profile=byId('profile').value;
-  const p=await api('/api/profile/'+encodeURIComponent(profile));
-  if(byId('profile').value!==profile)return;
-  const info=byId('profileInfo');info.replaceChildren();
-  if(profile==='guest')return;
-  const detail=add(info,'details');
-  add(detail,'summary','Парк и лицензии клиента');
-  add(detail,'p',(p.fleet.os||[]).join(', ')+' · '+p.size_seats+' мест');
-  for(const o of p.owned)add(detail,'p',(o.product||o.family_id||'Лицензия')+' · '+o.qty+' мест'+(o.expires_in_days==null?'':' · до окончания '+o.expires_in_days+' дн.'));
-}
-byId('profile').onchange=()=>{showProfile().catch(e=>{byId('profileInfo').textContent=e.message;});if(query.value)run();};
-api('/api/meta').then(m=>{
-  for(const [id,rows] of [['profile',m.profiles],['category',m.categories]])for(const r of rows)byId(id).add(new Option(r.title,r.id));
-  byId('stats').textContent=m.catalog.cards.toLocaleString('ru')+' карточек · '+m.catalog.offers.toLocaleString('ru')+' предложений';
-  add(results,'h2','Попробуйте запрос');
-  const examples=m.scenarios.filter(s=>s.examples?.length).slice(0,4);
-  for(const s of examples)button(results,s.examples[0],()=>launch(s.examples[0]));
-}).catch(e=>{results.textContent=e.message;});
+(location.pathname==='/' ? store() : page(main)).catch(err=>stateBox(main,err.message,'error'));

@@ -1,0 +1,15 @@
+{
+  "blocks": [
+    {
+      "type": "vendors",
+      "title": "Производители",
+      "items": [
+        {
+          "id": "kaspersky",
+          "title": "Kaspersky",
+          "count": 3
+        }
+      ]
+    }
+  ]
+}

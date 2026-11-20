@@ -1,7 +1,29 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Кузница · Поиск программного обеспечения</title><link rel="stylesheet" href="/web/css/store.css"></head>
-<body><header><a class="brand" href="/"><b aria-hidden="true">К</b> Кузница</a><span>AiXenix</span></header>
-<main><section class="intro"><h1>Поиск программного<br>обеспечения</h1><div id="stats"></div></section>
-<form id="search"><div class="bar"><span aria-hidden="true">⌕</span><input id="query" aria-label="Поисковый запрос" autocomplete="off" placeholder="Название программы, задача или артикул" required maxlength="1500"><button>Найти</button><div id="suggestions" hidden></div></div>
-<div class="settings"><label>Профиль клиента<select id="profile"></select></label><label>Категория<select id="category"><option value="">Все категории</option></select></label><label>Режим<select id="mode"><option value="fast">Быстрый</option><option value="smart">Умный</option></select></label></div></form><div id="profileInfo"></div>
-<div class="workspace"><section id="results" aria-live="polite"></section><aside><h2>Как работал поиск</h2><div id="trace">Шаги появятся после поиска.</div></aside></div></main>
-<footer>Демонстрационный проект AiXenix для хакатона. Не является сайтом Softline. Каталог, цены, клиенты и журналы — вымышленные (mock).</footer><script src="/web/js/store.js" defer></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кузница Softline · Каталог программ</title>
+<link rel="stylesheet" href="/web/css/store.css">
+<script type="module" src="/web/js/store.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header><div class="wrap top"><a class="brand" href="/"><i aria-hidden="true">К</i>Кузница Softline</a>
+<nav aria-label="Разделы"><a href="/">Каталог</a><a href="/scenarios">Сценарии</a><a href="/admin">Аналитика</a><a href="/about">О решении</a></nav>
+<button id="basket" hidden>Корзина</button></div></header>
+<main class="wrap" id="main" tabindex="-1"></main>
+<footer><div class="wrap"><strong>AiXenix</strong><span>Демонстрационный стенд хакатона. Каталог, цены и клиенты — синтетические.</span><a href="/styleguide">Образцы интерфейса</a></div></footer>
+<dialog id="drawer" aria-labelledby="drawerTitle"><form method="dialog"><button autofocus>Закрыть</button></form><h2 id="drawerTitle">Корзина</h2><div id="cartBody"></div></dialog>
+<template id="storefront">
+<section class="hero"><small>Каталог для организаций</small><h1>Программное обеспечение</h1><p id="stats"></p>
+<form id="search"><div class="bar"><input type="search" id="query" aria-label="Поисковый запрос" role="combobox" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false" placeholder="Название, артикул или задача" maxlength="1500" required autocomplete="off"><button class="primary">Найти</button>
+<div id="suggestions" role="listbox" aria-label="Подсказки" hidden></div></div>
+<div class="settings"><label>Профиль клиента<select id="profile"><option value="guest">Гость</option></select></label><label>Категория<select id="category"><option value="">Все категории</option></select></label><label>Режим поиска<select id="mode"><option value="smart">Умный</option><option value="fast">Быстрый</option><option value="naive">Наивный</option></select></label></div></form>
+<div id="profileInfo"></div></section>
+<div class="tools"><button id="specMode" aria-expanded="false">Вставить спецификацию</button><button id="profileCompare">Сравнить профили</button><button id="modeCompare">Сравнить режимы</button></div>
+<form class="panel" id="specForm" hidden><label>Список закупки · каждая позиция с новой строки<textarea id="specText" rows="5" maxlength="1500" required></textarea></label><button class="primary">Подобрать лицензии</button></form>
+<section id="comparison" class="panel" hidden></section>
+<p id="notice" role="status"></p>
+<div class="workspace"><section id="results" aria-label="Выдача"></section><aside class="trace"><div class="sectionHead"><h2 id="traceTitle" tabindex="-1">Как работал поиск</h2><button id="traceWidth" aria-pressed="false">Развернуть</button></div><div id="trace">Здесь появится разбор вашего запроса.</div></aside></div>
+</template>
+</body></html>
