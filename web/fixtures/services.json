@@ -1,0 +1,26 @@
+{
+  "blocks": [
+    {
+      "type": "services",
+      "title": "Услуги для организаций",
+      "items": [
+        {
+          "card_id": "service:audit",
+          "title": "Аудит корпоративных лицензий",
+          "offer": {
+            "offer_id": "audit",
+            "name": "Консультация специалиста",
+            "price_on_request": true,
+            "available": true
+          },
+          "badges": [
+            {
+              "kind": "price_request",
+              "label": "Цена по запросу"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
