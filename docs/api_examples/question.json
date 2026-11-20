@@ -1,0 +1,936 @@
+{
+  "search_id": "s_1096da6920fc41de95f5ac7a9371de66",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "что такое cal лицензия",
+    "normalized": "что такое cal лицензия",
+    "corrected": "что такое cal лицензия",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "question",
+    "intent_title": "Вопрос о ПО",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "faq",
+        "id": "faq_what_is_cal",
+        "text": "что такое cal лицензия",
+        "span": [
+          0,
+          4
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {},
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "faq",
+        "label": "что такое cal лицензия",
+        "source": "query",
+        "removable": false,
+        "remove_q": ""
+      }
+    ],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Вопрос о ПО · что такое cal лицензия"
+  },
+  "blocks": [
+    {
+      "type": "answer",
+      "title": "Что такое cal лицензия",
+      "text": "CAL (Client Access License) — это клиентская лицензия доступа, дающая право пользователю или устройству обращаться к службам сервера (например, Windows Server, SQL Server). Она не является программой и не требует установки, но юридически обязательна в дополнение к самой серверной лицензии.",
+      "source": "faq:faq_what_is_cal",
+      "links": []
+    },
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 20,
+      "items": [
+        {
+          "card_id": "windows_server_rds_cal:device_rds",
+          "title": "Microsoft Windows Server RDS CAL Device",
+          "vendor": {
+            "id": "microsoft",
+            "name": "Microsoft"
+          },
+          "category": {
+            "id": "terminal_access",
+            "title": "Терминальный доступ и публикация приложений"
+          },
+          "summary": "Терминальные клиентские лицензии (RDS User/Device CAL) для одновременной работы пользователей на сервере удалённых рабочих столов Windows (например, для 1С).",
+          "badges": [],
+          "offer": {
+            "offer_id": "o_F6C2C1CA492A",
+            "sku": "FQC-F6C2C1CA492A",
+            "name": "Microsoft Windows Server RDS CAL 2025 Device Russian ESD 1 User BUSINESS New Perpetual",
+            "price": 32000.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": null,
+            "available": true,
+            "version": "2025",
+            "action": "new",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "user",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 32000.0,
+            "total": null,
+            "text": "от 32 000 ₽ за пользователя"
+          },
+          "variants": [
+            {
+              "offer_id": "o_07A2A0BE8AFA",
+              "sku": "FQC-07A2A0BE8AFA",
+              "name": "Microsoft Windows Server RDS CAL 2025 Device Russian ESD 5 User BUSINESS New Perpetual",
+              "price": 145300.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_FE50E4374E3C",
+              "sku": "FQC-FE50E4374E3C",
+              "name": "Microsoft Windows Server RDS CAL 2025 Device Russian ESD 10 User BUSINESS New Perpetual",
+              "price": 278700.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_06F02259C4D9",
+              "sku": "FQC-06F02259C4D9",
+              "name": "Microsoft Windows Server RDS CAL 2025 Device Russian ESD 50 User BUSINESS New Perpetual",
+              "price": null,
+              "price_on_request": true,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 50,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_69C3C6D5CDE4",
+              "sku": "FQC-69C3C6D5CDE4",
+              "name": "Microsoft Windows Server RDS CAL 2025 Device Russian ESD 1 Device BUSINESS New Perpetual",
+              "price": 32000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_B09835F7B8B4",
+              "sku": "FQC-B09835F7B8B4",
+              "name": "Microsoft Windows Server RDS CAL 2022 Device Russian ESD 50 User BUSINESS New Perpetual",
+              "price": 1265300.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2022",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 50,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 24,
+          "price_from": 32000.0,
+          "score": {
+            "tier": 1,
+            "score": 0.6427,
+            "parts": {
+              "rel": 0.325,
+              "pop": 0.19583,
+              "margin": 0.12187,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 1
+        },
+        {
+          "card_id": "alt_server",
+          "title": "Альт Сервер",
+          "vendor": {
+            "id": "basealt",
+            "name": "BaseALT"
+          },
+          "category": {
+            "id": "server_os",
+            "title": "Серверные операционные системы"
+          },
+          "summary": "Российская серверная ОС семейства «Альт» для корпоративной инфраструктуры, контроллеров домена (Альт Домен), БД и веб-сервисов.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_01E8D54F0854",
+            "sku": "AX-01E8D54F0854",
+            "name": "Альт Сервер 11, новая лицензия, 1 серверов, бессрочная, для организаций, ESD",
+            "price": 32000.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": "11",
+            "action": "new",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "server",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 32000.0,
+            "total": null,
+            "text": "от 32 000 ₽ за сервер"
+          },
+          "variants": [
+            {
+              "offer_id": "o_175A72939AD9",
+              "sku": "AX-175A72939AD9",
+              "name": "Альт Сервер 11, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+              "price": 32000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "11",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_095886595970",
+              "sku": "AX-095886595970",
+              "name": "Альт Сервер 11, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+              "price": 28800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "11",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_AAB8ACCF2A20",
+              "sku": "AX-AAB8ACCF2A20",
+              "name": "Альт Сервер 11, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+              "price": 12800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "11",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_BEBC8275D29A",
+              "sku": "AX-BEBC8275D29A",
+              "name": "Альт Сервер 11, продление, 1 серверов, 12 мес., для организаций, ESD",
+              "price": 22400.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "11",
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_2F787284057E",
+              "sku": "AX-2F787284057E",
+              "name": "Альт Сервер 11, продление, 1 серверов, 12 мес., для госучреждений, ESD",
+              "price": 20200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "11",
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 67,
+          "price_from": 6400.0,
+          "score": {
+            "tier": 1,
+            "score": 0.6345500000000001,
+            "parts": {
+              "rel": 0.325,
+              "pop": 0.19547,
+              "margin": 0.11408,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 2
+        },
+        {
+          "card_id": "tantor_db:onec",
+          "title": "СУБД Tantor SE для 1С",
+          "vendor": {
+            "id": "tantor_labs",
+            "name": "Tantor Labs"
+          },
+          "category": {
+            "id": "rdbms",
+            "title": "Реляционные СУБД"
+          },
+          "summary": "Российская СУБД на базе PostgreSQL от Группы Астра (включая специальную редакцию для 1С и сертифицированную ФСТЭК версию).",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_E9F4CB4B345E",
+            "sku": "AX-E9F4CB4B345E",
+            "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 100–249 ядер, 12 мес., для организаций, ESD",
+            "price": 441300.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": "16",
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "core",
+            "qty_min": 100,
+            "qty_max": 249,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 441300.0,
+            "total": null,
+            "text": "от 441 300 ₽ за ядро в год (при покупке от 100)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_706AAFB62D76",
+              "sku": "AX-706AAFB62D76",
+              "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 1–9 ядер, 12 мес., для организаций, ESD",
+              "price": 519600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "16",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "core",
+              "qty_min": 1,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_C14814AB498D",
+              "sku": "AX-C14814AB498D",
+              "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 1–9 ядер, 12 мес., для госучреждений, ESD",
+              "price": 467700.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "16",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "core",
+              "qty_min": 1,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_075B3238C2C8",
+              "sku": "AX-075B3238C2C8",
+              "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 10–24 ядер, 12 мес., для организаций, ESD",
+              "price": 498800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "16",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "core",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_EF4D4030ACA2",
+              "sku": "AX-EF4D4030ACA2",
+              "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 10–24 ядер, 12 мес., для госучреждений, ESD",
+              "price": 448900.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "16",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "core",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_9083949705B6",
+              "sku": "AX-9083949705B6",
+              "name": "СУБД Tantor 16 SE для 1С, новая лицензия, 25–49 ядер, 12 мес., для организаций, ESD",
+              "price": 478900.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": false,
+              "version": "16",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "core",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 46,
+          "price_from": 190700.0,
+          "score": {
+            "tier": 1,
+            "score": 0.6147,
+            "parts": {
+              "rel": 0.325,
+              "pop": 0.15318,
+              "margin": 0.13652,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 100 до 249 мест"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "windows_server_cal:user_cal",
+          "title": "Microsoft Windows Server CAL User",
+          "vendor": {
+            "id": "microsoft",
+            "name": "Microsoft"
+          },
+          "category": {
+            "id": "server_os",
+            "title": "Серверные операционные системы"
+          },
+          "summary": "Клиентские лицензии доступа (CAL) на пользователя или устройство, обязательные для подключения к серверу Windows Server.",
+          "badges": [
+            {
+              "kind": "promo",
+              "label": "Специальное предложение"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_C24DC52D6BD0",
+            "sku": "FQC-C24DC52D6BD0",
+            "name": "Microsoft Windows Server CAL 2025 User Russian ESD 1 User BUSINESS New Perpetual",
+            "price": 4000.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": null,
+            "available": true,
+            "version": "2025",
+            "action": "new",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "user",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 4000.0,
+            "total": null,
+            "text": "от 4 000 ₽ за пользователя"
+          },
+          "variants": [
+            {
+              "offer_id": "o_CCA65C7948F4",
+              "sku": "FQC-CCA65C7948F4",
+              "name": "Microsoft Windows Server CAL 2025 User Russian ESD 5 User BUSINESS New Perpetual",
+              "price": 18160.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_F7B18406113E",
+              "sku": "FQC-F7B18406113E",
+              "name": "Microsoft Windows Server CAL 2025 User Russian ESD 10 User BUSINESS New Perpetual",
+              "price": 34800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_93290249EAC6",
+              "sku": "FQC-93290249EAC6",
+              "name": "Microsoft Windows Server CAL 2025 User Russian ESD 50 User BUSINESS New Perpetual",
+              "price": 158200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 50,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_5597F305EED8",
+              "sku": "FQC-5597F305EED8",
+              "name": "Microsoft Windows Server CAL 2025 User Russian ESD 1 Device BUSINESS New Perpetual",
+              "price": 4000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2025",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_15B5197B1EA1",
+              "sku": "FQC-15B5197B1EA1",
+              "name": "Microsoft Windows Server CAL 2019 User Russian ESD 5 Device BUSINESS New Perpetual",
+              "price": 18160.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": "2019",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 24,
+          "price_from": 4000.0,
+          "score": {
+            "tier": 1,
+            "score": 0.60218,
+            "parts": {
+              "rel": 0.325,
+              "pop": 0.19417,
+              "margin": 0.08301,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 4
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "microsoft",
+          "label": "Microsoft",
+          "count": 6
+        },
+        {
+          "id": "tantor_labs",
+          "label": "Tantor Labs",
+          "count": 3
+        },
+        {
+          "id": "postgres_pro",
+          "label": "Postgres Professional",
+          "count": 3
+        },
+        {
+          "id": "red_soft",
+          "label": "RED SOFT",
+          "count": 3
+        },
+        {
+          "id": "softline_msvsphere",
+          "label": "Inferit",
+          "count": 2
+        },
+        {
+          "id": "basealt",
+          "label": "BaseALT",
+          "count": 1
+        },
+        {
+          "id": "gazinformservice_jatoba",
+          "label": "Gazinformservice",
+          "count": 1
+        },
+        {
+          "id": "sber_platform_v",
+          "label": "SberTech",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "server_os",
+          "label": "Серверные операционные системы",
+          "count": 9
+        },
+        {
+          "id": "rdbms",
+          "label": "Реляционные СУБД",
+          "count": 9
+        },
+        {
+          "id": "terminal_access",
+          "label": "Терминальный доступ и публикация приложений",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "Microsoft Windows Server RDS CAL Device",
+    "Альт Сервер",
+    "СУБД Tantor SE для 1С",
+    "Microsoft Windows Server CAL User"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.13,
+      "summary": "что такое cal лицензия",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.12,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.05,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.12,
+      "summary": "что такое cal лицензия",
+      "detail": {
+        "residual": "",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.08,
+      "summary": "Вопрос о ПО",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Вопрос о ПО",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.04,
+      "summary": "Подходящих карточек до проверки лицензий · 20",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.91,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 20",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 1.14,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.02,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "Карточек в выдаче · 20",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 4.2,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 6.93
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

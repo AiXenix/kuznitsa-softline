@@ -1,0 +1,3 @@
+- id: office_for_os
+  when: {families: [red]}
+  suggest: [{category: office_suite, families: [paper, ink], reason: Для работы с документами}]

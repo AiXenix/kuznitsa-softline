@@ -1,0 +1,299 @@
+{
+  "search_id": "s_2453901f3580450f9b9d4dded9acca9f",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "что у нас скоро истекает",
+    "normalized": "что у нас скоро истекает",
+    "corrected": "что у нас скоро истекает",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "account",
+    "intent_title": "Личный кабинет",
+    "intent_conf": 0.55,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [],
+    "filters": {},
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "profile",
+        "label": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+        "source": "context",
+        "removable": false
+      }
+    ],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Личный кабинет · ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК"
+  },
+  "blocks": [
+    {
+      "type": "my_licenses",
+      "title": "Лицензии организации",
+      "items": [
+        {
+          "title": "Kaspersky Small Office Security",
+          "qty": 15,
+          "expires_in_days": 22,
+          "renew_offer": {
+            "offer_id": "o_CD774F990085",
+            "sku": "KL-CD774F990085",
+            "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year Renewal License BUSINESS",
+            "price": 15990.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 15,
+            "audience": "business"
+          }
+        },
+        {
+          "title": "1С:ИТС ПРОФ",
+          "qty": 1,
+          "expires_in_days": 56,
+          "renew_offer": {
+            "offer_id": "o_FBD29741A879",
+            "sku": "AX-FBD29741A879",
+            "name": "1С:ИТС ПРОФ, продление, 1 организаций, 12 мес., для организаций, SERVICE",
+            "price": 29700.0,
+            "price_on_request": false,
+            "delivery": "service",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "company",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          }
+        },
+        {
+          "title": "Контур.Диадок",
+          "qty": 1,
+          "expires_in_days": 166,
+          "renew_offer": {
+            "offer_id": "o_DB6C6943BE49",
+            "sku": "AX-DB6C6943BE49",
+            "name": "Контур.Диадок Пакеты документов, продление, 1 ед., 12 мес., для организаций, SERVICE",
+            "price": 3150.0,
+            "price_on_request": false,
+            "delivery": "service",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "other",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          }
+        },
+        {
+          "title": "1С:Управление торговлей 8",
+          "qty": 10,
+          "expires_in_days": null,
+          "renew_offer": null
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": []
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": []
+    }
+  ],
+  "related_queries": [],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.18,
+      "summary": "что у нас скоро истекает",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 5.2,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.23,
+      "summary": "Явных условий нет",
+      "detail": {
+        "residual": "что у нас скоро истекает",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.13,
+      "summary": "Личный кабинет",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Личный кабинет",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "Подходящих карточек до проверки лицензий · 0",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Подобрано вариантов для карточек · 0",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 1.27,
+      "summary": "Карточек в выдаче · 0",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 10.87,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 18.17
+  },
+  "profile": {
+    "id": "smb_trade",
+    "title": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
+    "segment": "smb"
+  }
+}

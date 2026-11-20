@@ -18,7 +18,10 @@ def main(argv=None):
     sub=parser.add_subparsers(dest="cmd",required=True)
     sub.add_parser("kb-check")
     sub.add_parser("build-index")
-    sub.add_parser("build-mock").add_argument("--seed",type=int,default=20261126)
+    mock=sub.add_parser("build-mock")
+    from datetime import date
+    mock.add_argument("--today",type=date.fromisoformat)
+    mock.add_argument("--seed",type=int,default=20261126)
     p=sub.add_parser("search")
     p.add_argument("q")
     p.add_argument("--profile",default="guest")
@@ -27,6 +30,7 @@ def main(argv=None):
     p=sub.add_parser("eval")
     p.add_argument("file",type=Path)
     p.add_argument("--mode",default="fast",choices=["smart","fast","naive"])
+    p.add_argument("--budget-usd",type=float,default=cfg.daily_budget)
     p=sub.add_parser("serve")
     p.add_argument("--host",default="127.0.0.1")
     p.add_argument("--port",type=int,default=8097)
@@ -41,7 +45,7 @@ def main(argv=None):
         if args.cmd=="kb-check":
             show(kb.report())
             return int(bool(kb.syntax))
-        print(f"Предложений · {build(cfg,kb,args.seed)}")
+        print(f"Предложений · {build(cfg,kb,args.seed,args.today)}")
     elif args.cmd=="serve":
         import uvicorn
         uvicorn.run("kuznitsa.app:app",host=args.host,port=args.port)
@@ -58,7 +62,10 @@ def main(argv=None):
             if not path.exists() and path.resolve()==ROOT/"eval/queries.dev.jsonl":
                 print("Файл dev ещё не появился. Запущена отдельная проверка на трёх демонстрационных запросах.")
                 path=ROOT/"tests/fixtures/dev_smoke.jsonl"
-            show(evaluate(engine,path,args.mode,cfg.data))
+            if engine.decisions:
+                engine.decisions.run_budget=args.budget_usd
+            result=evaluate(engine,path,args.mode,cfg.data)
+            show(result)
     return 0
 
 

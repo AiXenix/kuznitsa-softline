@@ -67,6 +67,7 @@ class Client(BaseModel):
     region: str = ""
     owned: list[dict] = []
     orders: list[dict] = []
+    preferences: dict = {}
     demo: bool = False
 
 

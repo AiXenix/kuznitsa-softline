@@ -3,6 +3,7 @@ import httpx
 
 class Disabled:
     enabled = False
+    model = "typesafe/jev-1.13"
 
     def decide(self,state,questions):
         return {}
@@ -16,10 +17,17 @@ class Jev:
         self.client = httpx.Client(transport=transport,timeout=httpx.Timeout(6,connect=2),
                                    headers={"Authorization":"Bearer "+key} if key else {})
 
-    def decide(self,state,questions):
-        response = self.client.post(self.url,json=dict(model=self.model,state={"запрос":state},questions=questions))
+    def complete(self,state,questions):
+        payload=dict(model=self.model,state=state if isinstance(state,dict) else {"запрос":state},questions=questions)
+        try:
+            response=self.client.post(self.url,json=payload)
+        except (httpx.ConnectError,httpx.ConnectTimeout):
+            response=self.client.post(self.url,json=payload)
         response.raise_for_status()
-        return response.json()["answers"]
+        return response.json()
+
+    def decide(self,state,questions):
+        return self.complete(state,questions)["answers"]
 
     def close(self):
         self.client.close()

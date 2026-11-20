@@ -33,6 +33,9 @@ class Lexicon:
                     for ed in r.get("editions",[]):
                         for alias in [ed.get("name"),ed["id"],*many(ed.get("aliases"))]:
                             self.add(alias,"edition",ed["id"],"kb")
+        for row in kb.rows["analogs"].values():
+            for alias in [row.get("product"),*row.get("aliases",[])]:
+                self.add(alias,"family",row.get("family"),"kb")
         for c in catalog.cards.values():
             o = c.offers[0]
             for name,kind,ident in [(o.family_name or o.name,"family",c.family),(o.vendor,"vendor",c.vendor),(o.edition,"edition",o.edition),

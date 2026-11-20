@@ -5,7 +5,7 @@ ACTION = dict(renewal="продление",new="новая лицензия",add
 
 
 def sku_name(f,edition,version,action,term,lo,hi,pack,aud,metric,delivery):
-    title=" ".join(str(x) for x in [f["name"],version,edition.get("name")] if x)
+    title=" ".join(str(x) for x in [f.get("title",f["name"]),version if str(version) not in f.get("title",f["name"]).split() else None,edition.get("title",edition.get("name"))] if x)
     size=f"{lo}–{hi}" if lo and hi else f"{lo}+" if lo else str(pack or 1)
     if f.get("vendor")=="kaspersky":
         english_metric={"device":"Node","user":"User"}.get(metric,metric.title())
@@ -13,6 +13,6 @@ def sku_name(f,edition,version,action,term,lo,hi,pack,aud,metric,delivery):
         return f"{title} Russian Edition. {size} {english_metric} {duration} {action.title()} License {aud.upper()}"
     if f.get("vendor")=="microsoft":
         return f"{title} Russian {delivery.upper()} {size} {metric.title()} {aud.upper()} {action.title()} "+(f"{term}M" if term else "Perpetual")
-    scope=f"пакет на {pack}" if pack else size
+    scope=f"пакет на {pack}" if pack and pack>1 else size
     duration=f"{term} мес." if term else "бессрочная"
     return f"{title}, {ACTION.get(action,action)}, {scope} {METRIC.get(metric,'ед.')}, {duration}, {AUD.get(aud,aud)}, {delivery.upper()}"

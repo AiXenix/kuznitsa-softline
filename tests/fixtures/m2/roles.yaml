@@ -1,0 +1,5 @@
+- id: accountant
+  title: Бухгалтер
+  aliases: [бухгалтер]
+  slots:
+    - {category: office_suite, products: [Paper Desk], must: true}

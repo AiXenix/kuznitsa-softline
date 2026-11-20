@@ -23,6 +23,6 @@ def card(engine, offer, position):
                 vendor=dict(id=group.vendor, name=offer.vendor),
                 category=dict(id=group.category, title=engine.names["category"].get(group.category, group.category)),
                 summary=offer.description, badges=[], offer=public_offer(offer),
-                calc=calculation(offer, offer.lic.qty_min or 1), variants=[], variants_count=1,
+                calc=calculation(offer, None), variants=[], variants_count=1,
                 price_from=offer.price, score=dict(tier=0, score=offer.popularity, parts={"pop":offer.popularity},
                 why=["Все слова входят в название предложения", "Позиция определяется популярностью"]))

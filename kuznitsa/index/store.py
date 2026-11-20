@@ -40,6 +40,7 @@ class Catalog:
                     base=re.sub(r"[-/](?:ru|rus|russia|en|eu)$","",o.sku,flags=re.I)
                     if base!=o.sku:
                         regional[sku_key(base)].append(o)
+        self.sorted_codes=sorted(self.skus)
         self.regional={k:rows[0] for k,rows in regional.items() if len(rows)==1}
         self.cards = {}
         self.by = {k:defaultdict(set) for k in ("family","vendor","category")}
@@ -47,8 +48,8 @@ class Catalog:
         for ident,offers in groups.items():
             o = offers[0]
             f = kb.rows["families"].get(o.family_id,{})
-            ed = next((x.get("name") for x in f.get("editions",[]) if x["id"]==o.edition),o.edition)
-            title = " ".join(filter(None,[o.family_name or o.name,ed]))
+            ed = next((x.get("title",x.get("name")) for x in f.get("editions",[]) if x["id"]==o.edition),o.edition)
+            title = " ".join(filter(None,[f.get("title") or o.family_name or o.name,ed]))
             vendor = kb.rows["vendors"].get(o.vendor_id,{})
             card = Card(ident,title,o.family_id or ident,o.vendor_id,o.category_id,offers,f,
                         min((x.price for x in offers if x.price is not None),default=None),
@@ -66,6 +67,8 @@ class Catalog:
             margins=rankdata([o.margin for o in choices])/len(choices)
             for o,p,m in zip(choices,popular,margins):
                 self.cards[o.card_id].commercial[o.offer_id]=(float(p),float(m))
+        from functools import lru_cache
+        self.scores=lru_cache(512)(self.scores)
         self.ids = list(self.cards)
         self.bm,self.char,self.matrix = lexical(cfg,docs)
         knowledge=[]
@@ -74,6 +77,12 @@ class Catalog:
                 text=". ".join([row.get("title",ident),*map(str,row.get("phrases",[])[:3]+row.get("questions",[])[:3]+row.get("synonyms",[])[:3])])
                 knowledge.append(((kind,ident),text))
         self.dense = Dense(cfg,[". ".join(d[k] for k in ("title","vendor","category","summary","keywords")) for d in docs],knowledge)
+
+    def prefix_skus(self,text,limit=8):
+        from bisect import bisect_left
+        prefix=sku_key(text)
+        start=bisect_left(self.sorted_codes,prefix)
+        return [self.skus[key] for key in self.sorted_codes[start:start+limit] if key.startswith(prefix)]
 
     def scores(self,q):
         if self.matrix is None:

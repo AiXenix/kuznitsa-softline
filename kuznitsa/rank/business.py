@@ -10,7 +10,7 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
         pers+=.75
         why.append("Эта редакция уже куплена вашей организацией")
         badges.append(dict(kind="owned",label="У вас куплено"))
-        if o.lic.action=="renewal" and "expires_in_days" in owned:
+        if o.lic.action=="renewal" and owned.get("expires_in_days") is not None:
             why.append(f"До окончания лицензии {owned['expires_in_days']} дн.")
     if not owned and any(kb.rows["families"].get(item.get("family_id"),{}).get("vendor")==card.vendor for item in profile.owned):
         pers+=.35
@@ -25,6 +25,8 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
     if profile.segment=="gov" and o.registry:
         pers+=.35
         why.append("Учтено предпочтение госзаказчика к ПО в реестре")
+    if o.attrs.get("promo")=="true":
+        badges.append(dict(kind="promo",label="Специальное предложение"))
     if o.registry:
         badges.append(dict(kind="registry",label="В реестре ПО"))
     if o.vat==0:

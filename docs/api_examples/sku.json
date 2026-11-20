@@ -1,0 +1,1053 @@
+{
+  "search_id": "s_d3e1ddb156a04bc8aac51f5d9416f8cb",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "KL4867RAQFR",
+    "normalized": "kl4867raqfr",
+    "corrected": "kl4867raqfr",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "sku",
+    "intent_title": "Поиск по артикулу",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [],
+    "filters": {},
+    "exclude": {},
+    "qty": null,
+    "chips": [],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Поиск по артикулу"
+  },
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 1,
+      "items": [
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_B95DA5FBB234",
+            "sku": "KL4867RAQFR",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 50–99 Node 1 year Renewal License BUSINESS",
+            "price": 1660.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "renewal",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 50,
+            "qty_max": 99,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 1660.0,
+            "total": null,
+            "text": "от 1 660 ₽ за устройство в год (при покупке от 50)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_BDB4840E1C45",
+              "sku": "KL-BDB4840E1C45",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
+              "price": 2790.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_B526C5C3171A",
+              "sku": "KL-B526C5C3171A",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
+              "price": 2510.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_7ACF4C669060",
+              "sku": "KL-7ACF4C669060",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_999E93EB29D8",
+              "sku": "KL-999E93EB29D8",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
+              "price": 2680.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_CB7051802333",
+              "sku": "KL-CB7051802333",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
+              "price": 2410.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 80,
+          "price_from": 540.0,
+          "score": {
+            "tier": 0,
+            "score": 0.61999,
+            "parts": {
+              "rel": 0.5,
+              "pop": 0.09731,
+              "margin": 0.02268,
+              "pers": 0.0
+            },
+            "why": [
+              "Точное совпадение",
+              "Диапазон от 50 до 99 мест"
+            ]
+          },
+          "position": 1
+        }
+      ]
+    },
+    {
+      "type": "crosssell",
+      "title": "С этим обычно берут",
+      "items": [
+        {
+          "card": {
+            "card_id": "cyber_backup:standard",
+            "title": "Кибер Бэкап Стандартный",
+            "vendor": {
+              "id": "cyberprotect",
+              "name": "Cyberprotect"
+            },
+            "category": {
+              "id": "backup_recovery",
+              "title": "Системы резервного копирования"
+            },
+            "summary": "Ведущая российская система резервного копирования и восстановления физических, виртуальных сред (zVirt, Брест, VMware), СУБД (Postgres Pro, MS SQL) и рабочих станций.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_FECAA714F98C",
+              "sku": "AX-FECAA714F98C",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 виртуальных машин, 12 мес., для организаций, ESD",
+              "price": 28000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "vm",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 28000.0,
+              "total": null,
+              "text": "от 28 000 ₽ за лицензию в год"
+            },
+            "variants": [
+              {
+                "offer_id": "o_FD3A35C16A01",
+                "sku": "AX-FD3A35C16A01",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+                "price": 28000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_2220009C8E74",
+                "sku": "AX-2220009C8E74",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+                "price": 25200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_663B44ADB82C",
+                "sku": "AX-663B44ADB82C",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+                "price": 11200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_A2C2A2612324",
+                "sku": "AX-A2C2A2612324",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
+                "price": 127100.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_1A9E2E3D39C3",
+                "sku": "AX-1A9E2E3D39C3",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
+                "price": 114400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 40,
+            "price_from": 7840.0,
+            "score": {
+              "tier": 1,
+              "score": 0.73812,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.1901,
+                "margin": 0.14802,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 1
+          },
+          "reason": "Резервные копии с защитой от шифровальщиков гарантируют восстановление при инциденте"
+        },
+        {
+          "card": {
+            "card_id": "kaspersky_ksmg",
+            "title": "Kaspersky Secure Mail Gateway",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "mail_security",
+              "title": "Защита почты и антиспам"
+            },
+            "summary": "Защищённый почтовый шлюз (SEG) с антиспамом, антифишингом и антивирусной проверкой корпоративной переписки.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_6A5AA8BC884B",
+              "sku": "KL-6A5AA8BC884B",
+              "name": "Kaspersky Secure Mail Gateway Russian Edition. 500–999 Mailbox 1 year New License BUSINESS",
+              "price": 840.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "mailbox",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 840.0,
+              "total": null,
+              "text": "от 840 ₽ за ящик в год (при покупке от 500)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_5845CFD30A62",
+                "sku": "KL-5845CFD30A62",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License BUSINESS",
+                "price": 950.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_79D947D69F24",
+                "sku": "KL-79D947D69F24",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License GOV",
+                "price": 860.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_DF23FFE0E93E",
+                "sku": "KL-DF23FFE0E93E",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License BUSINESS",
+                "price": 910.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_CD5073B5D953",
+                "sku": "KL-CD5073B5D953",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License GOV",
+                "price": 820.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_89503D4C0A85",
+                "sku": "KL-89503D4C0A85",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 250–499 Mailbox 1 year New License BUSINESS",
+                "price": 880.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": false,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 250,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 72,
+            "price_from": 510.0,
+            "score": {
+              "tier": 1,
+              "score": 0.7208300000000001,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.18333,
+                "margin": 0.1375,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 500 до 999 мест"
+              ]
+            },
+            "position": 2
+          },
+          "reason": "Фильтрация вредоносных вложений и фишинга ещё на уровне почтового шлюза"
+        },
+        {
+          "card": {
+            "card_id": "kaspersky_asap:cloud",
+            "title": "Kaspersky ASAP Cloud",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "security_awareness",
+              "title": "Обучение сотрудников кибербезопасности"
+            },
+            "summary": "Платформа автоматического обучения сотрудников кибергигиене от «Лаборатории Касперского» с учебными фишинговыми атаками и контролем прогресса.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_FBA70992CE36",
+              "sku": "KL-FBA70992CE36",
+              "name": "Kaspersky ASAP Cloud Russian Edition. 50–99 User 1 year New License BUSINESS",
+              "price": 430.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 430.0,
+              "total": null,
+              "text": "от 430 ₽ за пользователя в год (при покупке от 50)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_BB8D1BE720FE",
+                "sku": "KL-BB8D1BE720FE",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 10–49 User 1 year New License BUSINESS",
+                "price": 450.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 10,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_6894831B22D6",
+                "sku": "KL-6894831B22D6",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 10–49 User 1 year New License GOV",
+                "price": 400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 10,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_230D74B0E18F",
+                "sku": "KL-230D74B0E18F",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 50–99 User 1 year New License GOV",
+                "price": 390.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_0262FB296933",
+                "sku": "KL-0262FB296933",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 100–249 User 1 year New License BUSINESS",
+                "price": 410.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_A38CE25BCB28",
+                "sku": "KL-A38CE25BCB28",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 100–249 User 1 year New License GOV",
+                "price": 370.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 46,
+            "price_from": 240.0,
+            "score": {
+              "tier": 1,
+              "score": 0.6995100000000001,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.17921,
+                "margin": 0.1203,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 50 до 99 мест"
+              ]
+            },
+            "position": 3
+          },
+          "reason": "Обучение сотрудников распознаванию фишинга снижает число инцидентов на рабочих местах"
+        },
+        {
+          "card": {
+            "card_id": "phishman_awareness:onprem",
+            "title": "Phishman Enterprise",
+            "vendor": {
+              "id": "phishman",
+              "name": "Phishman"
+            },
+            "category": {
+              "id": "security_awareness",
+              "title": "Обучение сотрудников кибербезопасности"
+            },
+            "summary": "Российская платформа повышения осведомлённости в ИБ: симуляции фишинга (email/мессенджеры), интерактивные курсы и аналитика рисков сотрудников.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_5DD75A839318",
+              "sku": "AX-5DD75A839318",
+              "name": "Phishman Enterprise, новая лицензия, 50–99 пользователей, 12 мес., для организаций, ESD",
+              "price": 1800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 1800.0,
+              "total": null,
+              "text": "от 1 800 ₽ за пользователя в год (при покупке от 50)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_502040948F80",
+                "sku": "AX-502040948F80",
+                "name": "Phishman Enterprise, новая лицензия, 50–99 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1620.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_856860A8C18C",
+                "sku": "AX-856860A8C18C",
+                "name": "Phishman Enterprise, новая лицензия, 100–499 пользователей, 12 мес., для организаций, ESD",
+                "price": 1730.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_300BB4CEF23E",
+                "sku": "AX-300BB4CEF23E",
+                "name": "Phishman Enterprise, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1560.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_D77C3D22A7CC",
+                "sku": "AX-D77C3D22A7CC",
+                "name": "Phishman Enterprise, новая лицензия, 500–999 пользователей, 12 мес., для организаций, ESD",
+                "price": 1660.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": false,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 500,
+                "qty_max": 999,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_FE39110FF6A7",
+                "sku": "AX-FE39110FF6A7",
+                "name": "Phishman Enterprise, новая лицензия, 500–999 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1490.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 500,
+                "qty_max": 999,
+                "pack": null,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 31,
+            "price_from": 1000.0,
+            "score": {
+              "tier": 1,
+              "score": 0.64109,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.10891,
+                "margin": 0.13218,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 50 до 99 мест"
+              ]
+            },
+            "position": 4
+          },
+          "reason": "Обучение сотрудников распознаванию фишинга снижает число инцидентов на рабочих местах"
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "kaspersky",
+          "label": "Kaspersky",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "Kaspersky Endpoint Security для бизнеса Расширенный"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.11,
+      "summary": "kl4867raqfr",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.06,
+      "summary": "KL4867RAQFR",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Явных условий нет",
+      "detail": {
+        "residual": "kl4867raqfr",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.04,
+      "summary": "Поиск по артикулу",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Поиск по артикулу",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подходящих карточек до проверки лицензий · 1",
+      "detail": {
+        "sources": [
+          "Артикул"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.22,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 1",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.0,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.08,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 2.39,
+      "summary": "Карточек в выдаче · 1",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 4.27,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 7.39
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

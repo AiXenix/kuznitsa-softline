@@ -1,0 +1,3139 @@
+{
+  "search_id": "s_80f9a78273c54158ace68866cfae9300",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "по для строительной компании",
+    "normalized": "по для строительной компании",
+    "corrected": "по для строительной компании",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "industry",
+    "intent_title": "Отраслевой подбор",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "industry",
+        "id": "construction",
+        "text": "строительной компании",
+        "span": [
+          2,
+          4
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {},
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "industry",
+        "label": "строительной компании",
+        "source": "query",
+        "removable": true,
+        "remove_q": "по для"
+      }
+    ],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Отраслевой подбор · строительной компании"
+  },
+  "blocks": [
+    {
+      "type": "kit",
+      "title": "Строительство и девелопмент",
+      "role": "construction",
+      "seats": 1,
+      "slots": [
+        {
+          "title": "Сметное ПО и ценообразование в строительстве",
+          "must": true,
+          "card": {
+            "card_id": "grand_smeta:client_server",
+            "title": "ГРАНД-Смета Клиент-Сервер",
+            "vendor": {
+              "id": "mgk_grand",
+              "name": "MGK GRAND"
+            },
+            "category": {
+              "id": "estimates_construction",
+              "title": "Сметное ПО и ценообразование в строительстве"
+            },
+            "summary": "Самый популярный в России сметный программный комплекс для составления и проверки строительных смет, КС-2/КС-3 и работы с базами ФСНБ-2022/ТЕР/ГЭСН.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_45DF1A91D8BC",
+              "sku": "AX-45DF1A91D8BC",
+              "name": "ГРАНД-Смета 2024 Клиент-Сервер, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, MEDIA",
+              "price": 76000.0,
+              "price_on_request": false,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": "2024",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 76000.0,
+              "total": 76000.0,
+              "text": "1 × 76 000 ₽ = 76 000 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_039A9F061040",
+                "sku": "AX-039A9F061040",
+                "name": "ГРАНД-Смета 2024 Клиент-Сервер, новая лицензия, 1 устройств, 12 мес., для организаций, MEDIA",
+                "price": 76000.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_E83C8D699122",
+                "sku": "AX-E83C8D699122",
+                "name": "ГРАНД-Смета 2024 Клиент-Сервер, новая лицензия, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                "price": 68400.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_C64D5451F27D",
+                "sku": "AX-C64D5451F27D",
+                "name": "ГРАНД-Смета 2024 Клиент-Сервер, новая лицензия, 1 устройств, 12 мес., академическая, MEDIA",
+                "price": 30400.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_28DAAC846F43",
+                "sku": "AX-28DAAC846F43",
+                "name": "ГРАНД-Смета 2024 Клиент-Сервер, продление, 1 устройств, 12 мес., для организаций, MEDIA",
+                "price": 53200.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_656B15F6318E",
+                "sku": "AX-656B15F6318E",
+                "name": "ГРАНД-Смета 2024 Клиент-Сервер, продление, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                "price": 47900.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 29,
+            "price_from": 21300.0,
+            "score": {
+              "tier": 1,
+              "score": 0.7559199999999999,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.19079,
+                "margin": 0.14013,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 2
+          },
+          "alternatives": [
+            {
+              "card_id": "grand_smeta:local",
+              "title": "ГРАНД-Смета Локальная",
+              "vendor": {
+                "id": "mgk_grand",
+                "name": "MGK GRAND"
+              },
+              "category": {
+                "id": "estimates_construction",
+                "title": "Сметное ПО и ценообразование в строительстве"
+              },
+              "summary": "Самый популярный в России сметный программный комплекс для составления и проверки строительных смет, КС-2/КС-3 и работы с базами ФСНБ-2022/ТЕР/ГЭСН.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_148158D5FC8D",
+                "sku": "AX-148158D5FC8D",
+                "name": "ГРАНД-Смета 2024 Локальная, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, MEDIA",
+                "price": 35000.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 35000.0,
+                "total": 35000.0,
+                "text": "1 × 35 000 ₽ = 35 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_176630155C65",
+                  "sku": "AX-176630155C65",
+                  "name": "ГРАНД-Смета 2024 Локальная, новая лицензия, 1 устройств, 12 мес., для организаций, MEDIA",
+                  "price": 35000.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_D4BBF948A92F",
+                  "sku": "AX-D4BBF948A92F",
+                  "name": "ГРАНД-Смета 2024 Локальная, новая лицензия, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                  "price": 31500.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_3C81ED6290D6",
+                  "sku": "AX-3C81ED6290D6",
+                  "name": "ГРАНД-Смета 2024 Локальная, новая лицензия, 1 устройств, 12 мес., академическая, MEDIA",
+                  "price": 14000.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_05353157ADEC",
+                  "sku": "AX-05353157ADEC",
+                  "name": "ГРАНД-Смета 2024 Локальная, продление, 1 устройств, 12 мес., для организаций, MEDIA",
+                  "price": 24500.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_511F2081B579",
+                  "sku": "AX-511F2081B579",
+                  "name": "ГРАНД-Смета 2024 Локальная, продление, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                  "price": 22000.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 28,
+              "price_from": 9800.0,
+              "score": {
+                "tier": 1,
+                "score": 0.71085,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.19605,
+                  "margin": 0.0898,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 8
+            },
+            {
+              "card_id": "grand_smeta:rfm",
+              "title": "ГРАНД-Смета Обновление баз",
+              "vendor": {
+                "id": "mgk_grand",
+                "name": "MGK GRAND"
+              },
+              "category": {
+                "id": "estimates_construction",
+                "title": "Сметное ПО и ценообразование в строительстве"
+              },
+              "summary": "Самый популярный в России сметный программный комплекс для составления и проверки строительных смет, КС-2/КС-3 и работы с базами ФСНБ-2022/ТЕР/ГЭСН.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_58C6BE499705",
+                "sku": "AX-58C6BE499705",
+                "name": "ГРАНД-Смета 2024 Обновление баз, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, MEDIA",
+                "price": 165000.0,
+                "price_on_request": false,
+                "delivery": "media",
+                "vat": 0,
+                "available": true,
+                "version": "2024",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 165000.0,
+                "total": 165000.0,
+                "text": "1 × 165 000 ₽ = 165 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_D64C837C372D",
+                  "sku": "AX-D64C837C372D",
+                  "name": "ГРАНД-Смета 2024 Обновление баз, новая лицензия, 1 устройств, 12 мес., для организаций, MEDIA",
+                  "price": 165000.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_CB728F9283B5",
+                  "sku": "AX-CB728F9283B5",
+                  "name": "ГРАНД-Смета 2024 Обновление баз, новая лицензия, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                  "price": 148500.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_F787FC482253",
+                  "sku": "AX-F787FC482253",
+                  "name": "ГРАНД-Смета 2024 Обновление баз, новая лицензия, 1 устройств, 12 мес., академическая, MEDIA",
+                  "price": 66000.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": false,
+                  "version": "2024",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_20FBF2C66FBA",
+                  "sku": "AX-20FBF2C66FBA",
+                  "name": "ГРАНД-Смета 2024 Обновление баз, продление, 1 устройств, 12 мес., для организаций, MEDIA",
+                  "price": 115500.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2024",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_3FBE8CA1CA9C",
+                  "sku": "AX-3FBE8CA1CA9C",
+                  "name": "ГРАНД-Смета 2024 Обновление баз, продление, 1 устройств, 12 мес., для госучреждений, MEDIA",
+                  "price": 103900.0,
+                  "price_on_request": false,
+                  "delivery": "media",
+                  "vat": 0,
+                  "available": false,
+                  "version": "2024",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 28,
+              "price_from": 46200.0,
+              "score": {
+                "tier": 1,
+                "score": 0.5875,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.15658,
+                  "margin": 0.00592,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 27
+            }
+          ],
+          "note": "Составление смет, КС-2 и КС-3"
+        },
+        {
+          "title": "Строительные САПР, архитектура и BIM/ТИМ",
+          "must": true,
+          "card": {
+            "card_id": "renga_bim:professional",
+            "title": "Renga Professional",
+            "vendor": {
+              "id": "renga_software",
+              "name": "Renga Software"
+            },
+            "category": {
+              "id": "bim_aec",
+              "title": "Строительные САПР, архитектура и BIM/ТИМ"
+            },
+            "summary": "Ведущая российская BIM-система для комплексного архитектурно-строительного проектирования (АР, КР, ОВ, ВК, ЭОМ) с совместной работой в реальном времени.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_1C7817B6EC63",
+              "sku": "AX-1C7817B6EC63",
+              "name": "Renga Professional, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 320000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 320000.0,
+              "total": 320000.0,
+              "text": "1 × 320 000 ₽ = 320 000 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_26E863E2BF7D",
+                "sku": "AX-26E863E2BF7D",
+                "name": "Renga Professional, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 320000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_8FEE1AF41985",
+                "sku": "AX-8FEE1AF41985",
+                "name": "Renga Professional, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 288000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_8C2660A97C35",
+                "sku": "AX-8C2660A97C35",
+                "name": "Renga Professional, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 128000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_0B87007E76A0",
+                "sku": "AX-0B87007E76A0",
+                "name": "Renga Professional, продление, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 224000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_EE301335B1D5",
+                "sku": "AX-EE301335B1D5",
+                "name": "Renga Professional, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 201600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 31,
+            "price_from": 76800.0,
+            "score": {
+              "tier": 1,
+              "score": 0.74668,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.18165,
+                "margin": 0.14003,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 3
+          },
+          "alternatives": [
+            {
+              "card_id": "nanocad_bim:vk",
+              "title": "nanoCAD BIM ВК",
+              "vendor": {
+                "id": "nanosoft",
+                "name": "Nanosoft"
+              },
+              "category": {
+                "id": "bim_aec",
+                "title": "Строительные САПР, архитектура и BIM/ТИМ"
+              },
+              "summary": "Линейка специализированных BIM-продуктов Нанософт для информационного моделирования строительных конструкций и инженерных сетей (ЭОМ, СКС, ОПС, ВК, ОВ).",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_CB7CA785F238",
+                "sku": "AX-CB7CA785F238",
+                "name": "nanoCAD BIM 24 ВК, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 102200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "24",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 102200.0,
+                "total": 102200.0,
+                "text": "1 × 102 200 ₽ = 102 200 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_940B6EEF5ABB",
+                  "sku": "AX-940B6EEF5ABB",
+                  "name": "nanoCAD BIM 24 ВК, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 102200.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_ED4071738152",
+                  "sku": "AX-ED4071738152",
+                  "name": "nanoCAD BIM 24 ВК, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 92000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_4F1BC2DC9EF0",
+                  "sku": "AX-4F1BC2DC9EF0",
+                  "name": "nanoCAD BIM 24 ВК, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                  "price": 40900.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_813443245830",
+                  "sku": "AX-813443245830",
+                  "name": "nanoCAD BIM 24 ВК, продление, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 71600.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_B551448EC83B",
+                  "sku": "AX-B551448EC83B",
+                  "name": "nanoCAD BIM 24 ВК, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 64400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 20,
+              "price_from": 28600.0,
+              "score": {
+                "tier": 1,
+                "score": 0.73117,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.19747,
+                  "margin": 0.1087,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 6
+            },
+            {
+              "card_id": "nanocad_bim:structures",
+              "title": "nanoCAD BIM Конструкции",
+              "vendor": {
+                "id": "nanosoft",
+                "name": "Nanosoft"
+              },
+              "category": {
+                "id": "bim_aec",
+                "title": "Строительные САПР, архитектура и BIM/ТИМ"
+              },
+              "summary": "Линейка специализированных BIM-продуктов Нанософт для информационного моделирования строительных конструкций и инженерных сетей (ЭОМ, СКС, ОПС, ВК, ОВ).",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_780CD8D543D2",
+                "sku": "AX-780CD8D543D2",
+                "name": "nanoCAD BIM 24 Конструкции, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 75000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "24",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 75000.0,
+                "total": 75000.0,
+                "text": "1 × 75 000 ₽ = 75 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_F6A0157895B9",
+                  "sku": "AX-F6A0157895B9",
+                  "name": "nanoCAD BIM 24 Конструкции, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 75000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_F29635AFAF63",
+                  "sku": "AX-F29635AFAF63",
+                  "name": "nanoCAD BIM 24 Конструкции, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 67500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_CFB4269D3DD9",
+                  "sku": "AX-CFB4269D3DD9",
+                  "name": "nanoCAD BIM 24 Конструкции, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                  "price": 30000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_8C020C2533FA",
+                  "sku": "AX-8C020C2533FA",
+                  "name": "nanoCAD BIM 24 Конструкции, продление, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 52500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_7F2D30C4C86D",
+                  "sku": "AX-7F2D30C4C86D",
+                  "name": "nanoCAD BIM 24 Конструкции, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 47200.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "24",
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 21,
+              "price_from": 21000.0,
+              "score": {
+                "tier": 1,
+                "score": 0.69747,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.18418,
+                  "margin": 0.08829,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 12
+            }
+          ],
+          "note": "Информационное моделирование и контроль стройки"
+        },
+        {
+          "title": "Планирование проектов и диаграммы Ганта",
+          "must": true,
+          "card": {
+            "card_id": "advanta_pm",
+            "title": "Адванта",
+            "vendor": {
+              "id": "advanta",
+              "name": "Advanta"
+            },
+            "category": {
+              "id": "project_planning",
+              "title": "Планирование проектов и диаграммы Ганта"
+            },
+            "summary": "Российская корпоративная информационная система управления портфелями и проектами (диаграммы Ганта, бюджеты, ресурсы, контрольные точки).",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_4A9E8B1D093A",
+              "sku": "AX-4A9E8B1D093A",
+              "name": "Адванта, новая лицензия, 1–9 одновременных подключений, 12 мес., для организаций, ESD",
+              "price": 32000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "concurrent",
+              "qty_min": 1,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 32000.0,
+              "total": 32000.0,
+              "text": "1 × 32 000 ₽ = 32 000 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_7C280A0FBA0C",
+                "sku": "AX-7C280A0FBA0C",
+                "name": "Адванта, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
+                "price": 32000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_684D1F33F921",
+                "sku": "AX-684D1F33F921",
+                "name": "Адванта, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 28800.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_CDFC5BB0DECE",
+                "sku": "AX-CDFC5BB0DECE",
+                "name": "Адванта, новая лицензия, 10–24 пользователей, 12 мес., для организаций, ESD",
+                "price": 30700.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_35E2790064A0",
+                "sku": "AX-35E2790064A0",
+                "name": "Адванта, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 27600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_0452072D1306",
+                "sku": "AX-0452072D1306",
+                "name": "Адванта, новая лицензия, 25–49 пользователей, 12 мес., для организаций, ESD",
+                "price": 29500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 25,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 85,
+            "price_from": 11740.0,
+            "score": {
+              "tier": 1,
+              "score": 0.67037,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.11126,
+                "margin": 0.13411,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 1 до 9 мест"
+              ]
+            },
+            "position": 17
+          },
+          "alternatives": [
+            {
+              "card_id": "spider_project:pro",
+              "title": "Spider Project Professional",
+              "vendor": {
+                "id": "spider_project",
+                "name": "Spider Project"
+              },
+              "category": {
+                "id": "project_planning",
+                "title": "Планирование проектов и диаграммы Ганта"
+              },
+              "summary": "Российский профессиональный пакет календарно-сетевого планирования с оптимизацией ресурсов, критической цепью и импортом проектов MS Project и Primavera.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_29A163E6085E",
+                "sku": "AX-29A163E6085E",
+                "name": "Spider Project Professional, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 350000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 350000.0,
+                "total": 350000.0,
+                "text": "1 × 350 000 ₽ = 350 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_35F663F19BB1",
+                  "sku": "AX-35F663F19BB1",
+                  "name": "Spider Project Professional, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 350000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_B0C4B0FDBB84",
+                  "sku": "AX-B0C4B0FDBB84",
+                  "name": "Spider Project Professional, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 315000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_958C101749F8",
+                  "sku": "AX-958C101749F8",
+                  "name": "Spider Project Professional, продление, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 245000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_D102ED029F4B",
+                  "sku": "AX-D102ED029F4B",
+                  "name": "Spider Project Professional, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 220500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_7F44B181DDD5",
+                  "sku": "AX-7F44B181DDD5",
+                  "name": "Spider Project Professional, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+                  "price": 350000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "concurrent",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 33,
+              "price_from": 157500.0,
+              "score": {
+                "tier": 1,
+                "score": 0.5154,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.07947,
+                  "margin": 0.01093,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 36
+            },
+            {
+              "card_id": "spider_project:desktop",
+              "title": "Spider Project Desktop",
+              "vendor": {
+                "id": "spider_project",
+                "name": "Spider Project"
+              },
+              "category": {
+                "id": "project_planning",
+                "title": "Планирование проектов и диаграммы Ганта"
+              },
+              "summary": "Российский профессиональный пакет календарно-сетевого планирования с оптимизацией ресурсов, критической цепью и импортом проектов MS Project и Primavera.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_0BF76A7521A0",
+                "sku": "AX-0BF76A7521A0",
+                "name": "Spider Project Desktop, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 65000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 65000.0,
+                "total": 65000.0,
+                "text": "1 × 65 000 ₽ = 65 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_372E29772F39",
+                  "sku": "AX-372E29772F39",
+                  "name": "Spider Project Desktop, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 65000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_54D6DF0EEC13",
+                  "sku": "AX-54D6DF0EEC13",
+                  "name": "Spider Project Desktop, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 58500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_1149103FA984",
+                  "sku": "AX-1149103FA984",
+                  "name": "Spider Project Desktop, продление, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 45500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_967218334B8B",
+                  "sku": "AX-967218334B8B",
+                  "name": "Spider Project Desktop, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 41000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_C212B9771320",
+                  "sku": "AX-C212B9771320",
+                  "name": "Spider Project Desktop, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                  "price": 65000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 33,
+              "price_from": 29200.0,
+              "score": {
+                "tier": 1,
+                "score": 0.5091,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.00662,
+                  "margin": 0.07748,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 37
+            }
+          ],
+          "note": "Календарно-сетевые графики строительства"
+        },
+        {
+          "title": "Бухгалтерский и налоговый учёт",
+          "must": true,
+          "card": {
+            "card_id": "onec_erp:erp2",
+            "title": "1С:ERP Управление предприятием 2 Стандартная",
+            "vendor": {
+              "id": "onec",
+              "name": "1C"
+            },
+            "category": {
+              "id": "erp_systems",
+              "title": "ERP-системы и комплексная автоматизация"
+            },
+            "summary": "Флагманская российская ERP-система для средних и крупных промышленных, торговых и многопрофильных предприятий.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_206ABF16F7BD",
+              "sku": "AX-206ABF16F7BD",
+              "name": "1С:ERP Управление предприятием 2 8.3 Стандартная, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+              "price": 450000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "8.3",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 450000.0,
+              "total": 450000.0,
+              "text": "1 × 450 000 ₽ = 450 000 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_57D22AD74CEA",
+                "sku": "AX-57D22AD74CEA",
+                "name": "1С:ERP Управление предприятием 2 8.3 Стандартная, новая лицензия, 1 организаций, бессрочная, для организаций, BOX",
+                "price": 450000.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_B7235E578FE7",
+                "sku": "AX-B7235E578FE7",
+                "name": "1С:ERP Управление предприятием 2 2.5 Стандартная, обновление, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 270000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "2.5",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_47C58C2078A8",
+                "sku": "AX-47C58C2078A8",
+                "name": "1С:ERP Управление предприятием 2 2.5 Стандартная, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 450000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "2.5",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_FCF19CD4462F",
+                "sku": "AX-FCF19CD4462F",
+                "name": "1С:ERP Управление предприятием 2 2.5 Стандартная, новая лицензия, 1 организаций, бессрочная, для организаций, BOX",
+                "price": 450000.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "2.5",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_F8FB552F066F",
+                "sku": "AX-F8FB552F066F",
+                "name": "1С:ERP Управление предприятием 2 8.3 Стандартная, обновление, 1 организаций, бессрочная, для организаций, BOX",
+                "price": 270000.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 8,
+            "price_from": 270000.0,
+            "score": {
+              "tier": 1,
+              "score": 0.74237,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.19895,
+                "margin": 0.11842,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 4
+          },
+          "alternatives": [
+            {
+              "card_id": "onec_erp:erp_corp",
+              "title": "1С:ERP Управление предприятием 2 Корпорация",
+              "vendor": {
+                "id": "onec",
+                "name": "1C"
+              },
+              "category": {
+                "id": "erp_systems",
+                "title": "ERP-системы и комплексная автоматизация"
+              },
+              "summary": "Флагманская российская ERP-система для средних и крупных промышленных, торговых и многопрофильных предприятий.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_CC1C03DADFAC",
+                "sku": "AX-CC1C03DADFAC",
+                "name": "1С:ERP Управление предприятием 2 2.5 Корпорация, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 1200000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "2.5",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 1200000.0,
+                "total": 1200000.0,
+                "text": "1 × 1 200 000 ₽ = 1 200 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_7A174BD8C5E5",
+                  "sku": "AX-7A174BD8C5E5",
+                  "name": "1С:ERP Управление предприятием 2 8.3 Корпорация, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                  "price": 1200000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": false,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_374908FF25F6",
+                  "sku": "AX-374908FF25F6",
+                  "name": "1С:ERP Управление предприятием 2 2.5 Корпорация, новая лицензия, 1 организаций, бессрочная, для организаций, BOX",
+                  "price": 1200000.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": false,
+                  "version": "2.5",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_4C026BC97911",
+                  "sku": "AX-4C026BC97911",
+                  "name": "1С:ERP Управление предприятием 2 2.5 Корпорация, обновление, 1 организаций, бессрочная, для организаций, BOX",
+                  "price": 720000.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2.5",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_10C74E2897FB",
+                  "sku": "AX-10C74E2897FB",
+                  "name": "1С:ERP Управление предприятием 2 2.5 Корпорация, обновление, 1 организаций, бессрочная, для организаций, ESD",
+                  "price": 720000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "2.5",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_07A30462432F",
+                  "sku": "AX-07A30462432F",
+                  "name": "1С:ERP Управление предприятием 2 8.3 Корпорация, новая лицензия, 1 организаций, бессрочная, для организаций, BOX",
+                  "price": 1200000.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 8,
+              "price_from": 720000.0,
+              "score": {
+                "tier": 1,
+                "score": 0.71,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.19579,
+                  "margin": 0.08921,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 9
+            },
+            {
+              "card_id": "onec_accounting:base",
+              "title": "1С:Бухгалтерия 8 Базовая",
+              "vendor": {
+                "id": "onec",
+                "name": "1C"
+              },
+              "category": {
+                "id": "accounting",
+                "title": "Бухгалтерский и налоговый учёт"
+              },
+              "summary": "Самая распространённая в России система бухгалтерского и налогового учёта для коммерческих организаций и ИП.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_B0D30A7CBA95",
+                "sku": "AX-B0D30A7CBA95",
+                "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 5400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 5400.0,
+                "total": 5400.0,
+                "text": "1 × 5 400 ₽ = 5 400 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_BEADBB55C125",
+                  "sku": "AX-BEADBB55C125",
+                  "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, 1 организаций, 12 мес., для организаций, ESD",
+                  "price": 5400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_4710671CCB42",
+                  "sku": "AX-4710671CCB42",
+                  "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, пакет на 5 организаций, 12 мес., для организаций, ESD",
+                  "price": 24500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 5,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_E2018EC68E2C",
+                  "sku": "AX-E2018EC68E2C",
+                  "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, пакет на 10 организаций, 12 мес., для организаций, ESD",
+                  "price": 47000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 10,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_D9F49908B95B",
+                  "sku": "AX-D9F49908B95B",
+                  "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, 1 пользователей, бессрочная, для организаций, ESD",
+                  "price": 5400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "user",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_BBE5E9A1CED1",
+                  "sku": "AX-BBE5E9A1CED1",
+                  "name": "1С:Бухгалтерия 8 8.3 Базовая, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
+                  "price": 5400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 25,
+              "price_from": 2700.0,
+              "score": {
+                "tier": 1,
+                "score": 0.70692,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.18122,
+                  "margin": 0.1007,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 10
+            }
+          ],
+          "note": "Пообъектный учёт затрат и подрядчиков"
+        },
+        {
+          "title": "СЭД, ECM и внутренний документооборот",
+          "must": false,
+          "card": {
+            "card_id": "onec_docflow:prof",
+            "title": "1С:Документооборот 8 ПРОФ",
+            "vendor": {
+              "id": "onec",
+              "name": "1C"
+            },
+            "category": {
+              "id": "sed_ecm",
+              "title": "СЭД, ECM и внутренний документооборот"
+            },
+            "summary": "Российская система электронного документооборота (СЭД/ECM) на платформе 1С: договоры, входящая/исходящая корреспонденция, согласование, ЭП и архив.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_646A0E75B419",
+              "sku": "AX-646A0E75B419",
+              "name": "1С:Документооборот 8 8.3 ПРОФ, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+              "price": 45000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "8.3",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 45000.0,
+              "total": 45000.0,
+              "text": "1 × 45 000 ₽ = 45 000 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_EF81FB88F3BD",
+                "sku": "AX-EF81FB88F3BD",
+                "name": "1С:Документооборот 8 8.3 ПРОФ, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
+                "price": 40500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_863D1D1F7B4E",
+                "sku": "AX-863D1D1F7B4E",
+                "name": "1С:Документооборот 8 8.3 ПРОФ, обновление, 1 организаций, бессрочная, для организаций, BOX",
+                "price": 27000.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_AA70542ADA6A",
+                "sku": "AX-AA70542ADA6A",
+                "name": "1С:Документооборот 8 3.0 ПРОФ, обновление, 1 организаций, бессрочная, для организаций, BOX",
+                "price": 27000.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "3.0",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_5944F5744037",
+                "sku": "AX-5944F5744037",
+                "name": "1С:Документооборот 8 3.0 ПРОФ, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
+                "price": 40500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "3.0",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_4DB908C2B589",
+                "sku": "AX-4DB908C2B589",
+                "name": "1С:Документооборот 8 8.3 ПРОФ, обновление, 1 организаций, бессрочная, для госучреждений, BOX",
+                "price": 24300.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 16,
+            "price_from": 24300.0,
+            "score": {
+              "tier": 1,
+              "score": 0.75895,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.19858,
+                "margin": 0.13537,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 1
+          },
+          "alternatives": [
+            {
+              "card_id": "onec_docflow:dgu",
+              "title": "1С:Документооборот 8 ДГУ",
+              "vendor": {
+                "id": "onec",
+                "name": "1C"
+              },
+              "category": {
+                "id": "sed_ecm",
+                "title": "СЭД, ECM и внутренний документооборот"
+              },
+              "summary": "Российская система электронного документооборота (СЭД/ECM) на платформе 1С: договоры, входящая/исходящая корреспонденция, согласование, ЭП и архив.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_9117A73C261F",
+                "sku": "AX-9117A73C261F",
+                "name": "1С:Документооборот 8 8.3 ДГУ, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 360000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 360000.0,
+                "total": 360000.0,
+                "text": "1 × 360 000 ₽ = 360 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_7731CE8BEB6B",
+                  "sku": "AX-7731CE8BEB6B",
+                  "name": "1С:Документооборот 8 8.3 ДГУ, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
+                  "price": 324000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_75812AE11227",
+                  "sku": "AX-75812AE11227",
+                  "name": "1С:Документооборот 8 8.3 ДГУ, обновление, 1 организаций, бессрочная, для госучреждений, ESD",
+                  "price": 194400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_4BF80FA9BD32",
+                  "sku": "AX-4BF80FA9BD32",
+                  "name": "1С:Документооборот 8 8.3 ДГУ, новая лицензия, 1 организаций, бессрочная, для госучреждений, BOX",
+                  "price": 324000.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_F36EEC10A3BA",
+                  "sku": "AX-F36EEC10A3BA",
+                  "name": "1С:Документооборот 8 3.0 ДГУ, обновление, 1 организаций, бессрочная, для госучреждений, ESD",
+                  "price": 194400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "3.0",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_A46F7CC5DCD0",
+                  "sku": "AX-A46F7CC5DCD0",
+                  "name": "1С:Документооборот 8 3.0 ДГУ, обновление, 1 организаций, бессрочная, для организаций, ESD",
+                  "price": 216000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": false,
+                  "version": "3.0",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 16,
+              "price_from": 194400.0,
+              "score": {
+                "tier": 1,
+                "score": 0.74141,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.19965,
+                  "margin": 0.11676,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 5
+            },
+            {
+              "card_id": "onec_docflow:corp",
+              "title": "1С:Документооборот 8 КОРП",
+              "vendor": {
+                "id": "onec",
+                "name": "1C"
+              },
+              "category": {
+                "id": "sed_ecm",
+                "title": "СЭД, ECM и внутренний документооборот"
+              },
+              "summary": "Российская система электронного документооборота (СЭД/ECM) на платформе 1С: договоры, входящая/исходящая корреспонденция, согласование, ЭП и архив.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_281A17E3107F",
+                "sku": "AX-281A17E3107F",
+                "name": "1С:Документооборот 8 8.3 КОРП, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
+                "price": 127300.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "8.3",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "company",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 127300.0,
+                "total": 127300.0,
+                "text": "1 × 127 300 ₽ = 127 300 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_14ED22A6639F",
+                  "sku": "AX-14ED22A6639F",
+                  "name": "1С:Документооборот 8 8.3 КОРП, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
+                  "price": 114600.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_CEFA3EF568A5",
+                  "sku": "AX-CEFA3EF568A5",
+                  "name": "1С:Документооборот 8 3.0 КОРП, обновление, 1 организаций, бессрочная, для организаций, ESD",
+                  "price": 76400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "3.0",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_9D66A3B117EB",
+                  "sku": "AX-9D66A3B117EB",
+                  "name": "1С:Документооборот 8 3.0 КОРП, обновление, 1 организаций, бессрочная, для организаций, BOX",
+                  "price": 76400.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "3.0",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_1246258A994D",
+                  "sku": "AX-1246258A994D",
+                  "name": "1С:Документооборот 8 8.3 КОРП, обновление, 1 организаций, бессрочная, для госучреждений, BOX",
+                  "price": 68700.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "upgrade",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_C7C9BE608805",
+                  "sku": "AX-C7C9BE608805",
+                  "name": "1С:Документооборот 8 8.3 КОРП, новая лицензия, 1 организаций, бессрочная, для госучреждений, BOX",
+                  "price": 114600.0,
+                  "price_on_request": false,
+                  "delivery": "box",
+                  "vat": 0,
+                  "available": true,
+                  "version": "8.3",
+                  "action": "new",
+                  "model": "perpetual",
+                  "term_months": null,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 16,
+              "price_from": 68700.0,
+              "score": {
+                "tier": 1,
+                "score": 0.72119,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.1805,
+                  "margin": 0.11569,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 7
+            }
+          ],
+          "note": "Согласование договоров подряда и исполнительной документации"
+        },
+        {
+          "title": "Антивирусы и защита рабочих мест",
+          "must": true,
+          "card": {
+            "card_id": "kaspersky_ksos",
+            "title": "Kaspersky Small Office Security",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "endpoint_security",
+              "title": "Антивирусы и защита рабочих мест"
+            },
+            "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_EC0160E7C3D8",
+              "sku": "KL-EC0160E7C3D8",
+              "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+              "price": 8500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": 1,
+              "unit_price": 8500.0,
+              "total": 8500.0,
+              "text": "1 пакет по 5 устр. × 8 500 ₽ = 8 500 ₽"
+            },
+            "variants": [
+              {
+                "offer_id": "o_39E099AE40B1",
+                "sku": "KL-39E099AE40B1",
+                "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
+                "price": 15860.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 10,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_5D49447181C5",
+                "sku": "KL-5D49447181C5",
+                "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
+                "price": 22800.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 15,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_EF4C1862F694",
+                "sku": "KL-EF4C1862F694",
+                "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
+                "price": 29600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 20,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_0C63CCEFCB2D",
+                "sku": "KL-0C63CCEFCB2D",
+                "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
+                "price": 36200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 25,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_F3692F787099",
+                "sku": "KL-F3692F787099",
+                "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year Renewal License BUSINESS",
+                "price": 5950.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 60,
+            "price_from": 5950.0,
+            "score": {
+              "tier": 1,
+              "score": 0.4887,
+              "parts": {
+                "rel": 0.325,
+                "pop": 0.13383,
+                "margin": 0.02987,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 39
+          },
+          "alternatives": [
+            {
+              "card_id": "drweb_small_business",
+              "title": "Dr.Web Малый бизнес",
+              "vendor": {
+                "id": "drweb",
+                "name": "Dr.Web"
+              },
+              "category": {
+                "id": "endpoint_security",
+                "title": "Антивирусы и защита рабочих мест"
+              },
+              "summary": "Пакетный антивирус Dr.Web для небольших офисов (5–50 ПК и файловые серверы).",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_78BDEA117944",
+                "sku": "DWL-78BDEA117944",
+                "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 5 устройств, 12 мес., для организаций, ESD",
+                "price": 7000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": 1,
+                "unit_price": 7000.0,
+                "total": 7000.0,
+                "text": "1 пакет по 5 устр. × 7 000 ₽ = 7 000 ₽"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_1E43A8CF79FB",
+                  "sku": "DWL-1E43A8CF79FB",
+                  "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 10 устройств, 12 мес., для организаций, ESD",
+                  "price": 12000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 10,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_6F27D581006D",
+                  "sku": "DWL-6F27D581006D",
+                  "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 15 устройств, 12 мес., для организаций, ESD",
+                  "price": 16460.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 15,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_6A036F52D665",
+                  "sku": "DWL-6A036F52D665",
+                  "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 20 устройств, 12 мес., для организаций, ESD",
+                  "price": 20600.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 20,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_4FCC12B5C2B7",
+                  "sku": "DWL-4FCC12B5C2B7",
+                  "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 25 устройств, 12 мес., для организаций, ESD",
+                  "price": 24500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 25,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_E745E4EEC9AC",
+                  "sku": "DWL-E745E4EEC9AC",
+                  "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 50 устройств, 12 мес., для организаций, ESD",
+                  "price": 42000.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 50,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 63,
+              "price_from": 4900.0,
+              "score": {
+                "tier": 1,
+                "score": 0.3655,
+                "parts": {
+                  "rel": 0.325,
+                  "pop": 0.02096,
+                  "margin": 0.01954,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 44
+            }
+          ],
+          "note": "Защита офиса и удалённых штабов строительства"
+        }
+      ],
+      "total": 931500.0
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "onec",
+          "label": "1C",
+          "count": 11
+        },
+        {
+          "id": "nanosoft",
+          "label": "Nanosoft",
+          "count": 5
+        },
+        {
+          "id": "mgk_grand",
+          "label": "MGK GRAND",
+          "count": 3
+        },
+        {
+          "id": "haulmont_tezis",
+          "label": "Haulmont",
+          "count": 3
+        },
+        {
+          "id": "csoft_development",
+          "label": "CSoft Development",
+          "count": 3
+        },
+        {
+          "id": "renga_software",
+          "label": "Renga Software",
+          "count": 2
+        },
+        {
+          "id": "directum",
+          "label": "Directum",
+          "count": 2
+        },
+        {
+          "id": "docsvision",
+          "label": "Docsvision",
+          "count": 2
+        },
+        {
+          "id": "ascon",
+          "label": "ASCON",
+          "count": 2
+        },
+        {
+          "id": "syntellect_tessa",
+          "label": "Syntellect",
+          "count": 2
+        },
+        {
+          "id": "eos_delo",
+          "label": "EOS",
+          "count": 2
+        },
+        {
+          "id": "stroysoft_smeta",
+          "label": "StroySoft",
+          "count": 2
+        },
+        {
+          "id": "spider_project",
+          "label": "Spider Project",
+          "count": 2
+        },
+        {
+          "id": "advanta",
+          "label": "Advanta",
+          "count": 1
+        },
+        {
+          "id": "kaspersky",
+          "label": "Kaspersky",
+          "count": 1
+        },
+        {
+          "id": "drweb",
+          "label": "Dr.Web",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "sed_ecm",
+          "label": "СЭД, ECM и внутренний документооборот",
+          "count": 14
+        },
+        {
+          "id": "bim_aec",
+          "label": "Строительные САПР, архитектура и BIM/ТИМ",
+          "count": 12
+        },
+        {
+          "id": "accounting",
+          "label": "Бухгалтерский и налоговый учёт",
+          "count": 6
+        },
+        {
+          "id": "estimates_construction",
+          "label": "Сметное ПО и ценообразование в строительстве",
+          "count": 5
+        },
+        {
+          "id": "project_planning",
+          "label": "Планирование проектов и диаграммы Ганта",
+          "count": 3
+        },
+        {
+          "id": "erp_systems",
+          "label": "ERP-системы и комплексная автоматизация",
+          "count": 2
+        },
+        {
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "1С:Документооборот 8 ПРОФ",
+    "ГРАНД-Смета Клиент-Сервер",
+    "Renga Professional",
+    "1С:ERP Управление предприятием 2 Стандартная"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.15,
+      "summary": "по для строительной компании",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 3.52,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.17,
+      "summary": "строительной компании",
+      "detail": {
+        "residual": "по для",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.18,
+      "summary": "Отраслевой подбор",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Отраслевой подбор",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.13,
+      "summary": "Подходящих карточек до проверки лицензий · 59",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 4.43,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 44. Запрошено мест · 1",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 3.97,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.04,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.16,
+      "summary": "Карточек в выдаче · 44",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 4.75,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 17.86
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

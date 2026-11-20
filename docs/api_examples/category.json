@@ -1,0 +1,912 @@
+{
+  "search_id": "s_c28de21c2cd349e1bc56a6c687523b7a",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "антивирус для организации",
+    "normalized": "антивирус для организации",
+    "corrected": "антивирус для организации",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "category",
+    "intent_title": "Подбор в категории",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "category",
+        "id": "endpoint_security",
+        "text": "антивирус для организации",
+        "span": [
+          0,
+          3
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "category": [
+        "endpoint_security"
+      ]
+    },
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "category",
+        "label": "Антивирусы и защита рабочих мест",
+        "source": "query",
+        "removable": false,
+        "remove_q": ""
+      }
+    ],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Подбор в категории · Антивирусы и защита рабочих мест"
+  },
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 14,
+      "items": [
+        {
+          "card_id": "drweb_enterprise_security_suite:desktop",
+          "title": "Dr.Web Enterprise Security Suite Защита рабочих станций",
+          "vendor": {
+            "id": "drweb",
+            "name": "Dr.Web"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Корпоративный антивирусный комплекс Dr.Web для рабочих станций, серверов, почты и интернет-шлюзов с сертификацией ФСТЭК и ФСБ.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_D64BC3DB6707",
+            "sku": "DWL-D64BC3DB6707",
+            "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 серверов, 12 мес., для организаций, ESD",
+            "price": 1430.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "server",
+            "qty_min": 5,
+            "qty_max": 9,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 1430.0,
+            "total": null,
+            "text": "от 1 430 ₽ за сервер в год (при покупке от 5)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_E0B29C44AF39",
+              "sku": "DWL-E0B29C44AF39",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., для организаций, ESD",
+              "price": 1430.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": false,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 5,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_FDF2CEEC0323",
+              "sku": "DWL-FDF2CEEC0323",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., для госучреждений, ESD",
+              "price": 1290.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 5,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_49F565EDA58C",
+              "sku": "DWL-49F565EDA58C",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., академическая, ESD",
+              "price": 570.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 5,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_24B7B7645DDD",
+              "sku": "DWL-24B7B7645DDD",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 10–24 устройств, 12 мес., для организаций, ESD",
+              "price": 1370.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_D52B57D5BDF0",
+              "sku": "DWL-D52B57D5BDF0",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 10–24 устройств, 12 мес., для госучреждений, ESD",
+              "price": 1240.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 43,
+          "price_from": 310.0,
+          "score": {
+            "tier": 2,
+            "score": 0.60606,
+            "parts": {
+              "rel": 0.275,
+              "pop": 0.1988,
+              "margin": 0.13226,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 5 до 9 мест"
+            ]
+          },
+          "position": 1
+        },
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_BDB4840E1C45",
+            "sku": "KL-BDB4840E1C45",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
+            "price": 2790.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 10,
+            "qty_max": 14,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 2790.0,
+            "total": null,
+            "text": "от 2 790 ₽ за устройство в год (при покупке от 10)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_B526C5C3171A",
+              "sku": "KL-B526C5C3171A",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
+              "price": 2510.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_7ACF4C669060",
+              "sku": "KL-7ACF4C669060",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_999E93EB29D8",
+              "sku": "KL-999E93EB29D8",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
+              "price": 2680.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_CB7051802333",
+              "sku": "KL-CB7051802333",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
+              "price": 2410.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_B003F7955E85",
+              "sku": "KL-B003F7955E85",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License EDU",
+              "price": 1070.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "edu"
+            }
+          ],
+          "variants_count": 80,
+          "price_from": 540.0,
+          "score": {
+            "tier": 2,
+            "score": 0.50464,
+            "parts": {
+              "rel": 0.275,
+              "pop": 0.18653,
+              "margin": 0.04311,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 10 до 14 мест"
+            ]
+          },
+          "position": 2
+        },
+        {
+          "card_id": "kaspersky_ksos",
+          "title": "Kaspersky Small Office Security",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_65302CDBB03A",
+            "sku": "KL-65302CDBB03A",
+            "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+            "price": 8500.0,
+            "price_on_request": false,
+            "delivery": "box",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 5,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 8500.0,
+            "total": null,
+            "text": "от 8 500 ₽ за пакет на 5 мест в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_EC0160E7C3D8",
+              "sku": "KL-EC0160E7C3D8",
+              "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+              "price": 8500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_39E099AE40B1",
+              "sku": "KL-39E099AE40B1",
+              "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
+              "price": 15860.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_5D49447181C5",
+              "sku": "KL-5D49447181C5",
+              "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
+              "price": 22800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 15,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_EF4C1862F694",
+              "sku": "KL-EF4C1862F694",
+              "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
+              "price": 29600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 20,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_0C63CCEFCB2D",
+              "sku": "KL-0C63CCEFCB2D",
+              "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
+              "price": 36200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 25,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 60,
+          "price_from": 5950.0,
+          "score": {
+            "tier": 2,
+            "score": 0.48975,
+            "parts": {
+              "rel": 0.275,
+              "pop": 0.16198,
+              "margin": 0.05277,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "drweb_small_business",
+          "title": "Dr.Web Малый бизнес",
+          "vendor": {
+            "id": "drweb",
+            "name": "Dr.Web"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Пакетный антивирус Dr.Web для небольших офисов (5–50 ПК и файловые серверы).",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_64F2A5435195",
+            "sku": "DWL-64F2A5435195",
+            "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 5 устройств, 12 мес., для организаций, BOX",
+            "price": 7000.0,
+            "price_on_request": false,
+            "delivery": "box",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 5,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 7000.0,
+            "total": null,
+            "text": "от 7 000 ₽ за пакет на 5 мест в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_78BDEA117944",
+              "sku": "DWL-78BDEA117944",
+              "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 5 устройств, 12 мес., для организаций, ESD",
+              "price": 7000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_1E43A8CF79FB",
+              "sku": "DWL-1E43A8CF79FB",
+              "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 10 устройств, 12 мес., для организаций, ESD",
+              "price": 12000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_6F27D581006D",
+              "sku": "DWL-6F27D581006D",
+              "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 15 устройств, 12 мес., для организаций, ESD",
+              "price": 16460.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 15,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_6A036F52D665",
+              "sku": "DWL-6A036F52D665",
+              "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 20 устройств, 12 мес., для организаций, ESD",
+              "price": 20600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 20,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_4FCC12B5C2B7",
+              "sku": "DWL-4FCC12B5C2B7",
+              "name": "Dr.Web Малый бизнес, новая лицензия, пакет на 25 устройств, 12 мес., для организаций, ESD",
+              "price": 24500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 25,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 63,
+          "price_from": 4900.0,
+          "score": {
+            "tier": 2,
+            "score": 0.40651000000000004,
+            "parts": {
+              "rel": 0.275,
+              "pop": 0.05269,
+              "margin": 0.07882,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 4
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "kaspersky",
+          "label": "Kaspersky",
+          "count": 7
+        },
+        {
+          "id": "drweb",
+          "label": "Dr.Web",
+          "count": 5
+        },
+        {
+          "id": "pro32",
+          "label": "PRO32",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 14
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "Dr.Web Enterprise Security Suite Защита рабочих станций",
+    "Kaspersky Endpoint Security для бизнеса Расширенный",
+    "Kaspersky Small Office Security",
+    "Dr.Web Малый бизнес"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.13,
+      "summary": "антивирус для организации",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.07,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.03,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.26,
+      "summary": "Антивирусы и защита рабочих мест",
+      "detail": {
+        "residual": "",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.21,
+      "summary": "Подбор в категории",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подбор в категории",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 15.91,
+      "summary": "Подходящих карточек до проверки лицензий · 14",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 1.15,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 14",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.92,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.04,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.02,
+      "summary": "Карточек в выдаче · 14",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 5.55,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 24.4
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

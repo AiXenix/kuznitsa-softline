@@ -1,7 +1,7 @@
 import re
 from rapidfuzz import process
 from rapidfuzz.distance import DamerauLevenshtein
-from kuznitsa.text import lemma,tokens
+from kuznitsa.text import lemma,tokens,morphology
 from .quantities import TENS,NUMBERS
 
 EN = "qwertyuiop[]asdfghjkl;'zxcvbnm,."
@@ -25,15 +25,21 @@ def repair(q,lex):
                 to,kind = layout,"layout"
             elif w in lex.compact:
                 to,kind = lex.compact[w],"split"
+            elif w in getattr(lex,"roman",{}):
+                to,kind=lex.roman[w],"translit"
             elif len(w)>=4:
+                common=morphology().word_is_known(w) and re.fullmatch("[а-я]+",w)
                 latin = "".join(TRANS.get(ch,ch) for ch in w)
                 if latin!=w and latin in lex.words:
                     to,kind = latin,"translit"
                 else:
+                    layout_hit=process.extractOne(layout,lex.spell_words,scorer=DamerauLevenshtein.distance,score_cutoff=1) if len(w)>=6 and not common else None
                     hit = process.extractOne(w,lex.spell_words,scorer=DamerauLevenshtein.distance,
                                              score_cutoff=1 if len(w)<8 else 2)
-                    if hit:
+                    if hit and (not common or sorted(w)==sorted(hit[0])):
                         to,kind = hit[0],"typo"
+                    elif layout_hit:
+                        to,kind=layout_hit[0],"layout"
         fixed.extend(to.split())
         if kind:
             changes.append({"from":w,"to":to,"kind":kind})

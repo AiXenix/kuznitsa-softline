@@ -1,0 +1,930 @@
+{
+  "search_id": "s_eda29c58e31e4a3cb077fcc8629b84e1",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "autocad купить",
+    "normalized": "autocad купить",
+    "corrected": "autocad купить",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "out_of_catalog",
+    "intent_title": "Продукта нет в продаже",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "family",
+        "id": "autocad",
+        "text": "autocad",
+        "span": [
+          0,
+          1
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "family": [
+        "autocad"
+      ]
+    },
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "family",
+        "label": "Autodesk AutoCAD",
+        "source": "query",
+        "removable": true,
+        "remove_q": "купить"
+      }
+    ],
+    "subtype": null,
+    "reason": "vendor_left",
+    "agent_note": "Продукта нет в продаже · Autodesk AutoCAD"
+  },
+  "blocks": [
+    {
+      "type": "not_in_catalog",
+      "title": "Autodesk AutoCAD",
+      "reason": "vendor_left",
+      "text": "Autodesk AutoCAD отсутствует в демокаталоге."
+    },
+    {
+      "type": "analogs",
+      "title": "Возможные замены",
+      "source": {
+        "title": "Autodesk AutoCAD",
+        "status": "unavailable",
+        "note": ""
+      },
+      "items": [
+        {
+          "card": {
+            "card_id": "kompas_3d:build",
+            "title": "АСКОН КОМПАС Строитель",
+            "vendor": {
+              "id": "ascon",
+              "name": "ASCON"
+            },
+            "category": {
+              "id": "mcad_plm",
+              "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
+            },
+            "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_DAE970924515",
+              "sku": "AX-DAE970924515",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 480000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 480000.0,
+              "total": null,
+              "text": "от 480 000 ₽ за устройство в год"
+            },
+            "variants": [
+              {
+                "offer_id": "o_19D4D47FA3BA",
+                "sku": "AX-19D4D47FA3BA",
+                "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 432000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_0BA6312D7131",
+                "sku": "AX-0BA6312D7131",
+                "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 192000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_09BE3F05D994",
+                "sku": "AX-09BE3F05D994",
+                "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 480000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_7B9BCD3E6054",
+                "sku": "AX-7B9BCD3E6054",
+                "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+                "price": 480000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_76608AD48B9B",
+                "sku": "AX-76608AD48B9B",
+                "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 480000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 21,
+            "price_from": 192000.0,
+            "score": {
+              "tier": 1,
+              "score": 0.74082,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.19796,
+                "margin": 0.11786,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 1
+          },
+          "note": "Близкий продукт по базе знаний"
+        },
+        {
+          "card": {
+            "card_id": "nanocad_platform:base",
+            "title": "Платформа nanoCAD Базовая",
+            "vendor": {
+              "id": "nanosoft",
+              "name": "Nanosoft"
+            },
+            "category": {
+              "id": "cad_2d",
+              "title": "Базовые 2D/3D САПР и черчение DWG"
+            },
+            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
+            "badges": [],
+            "offer": {
+              "offer_id": "o_1D48F8A2073F",
+              "sku": "AX-1D48F8A2073F",
+              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+              "price": 28000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 28000.0,
+              "total": null,
+              "text": "от 28 000 ₽ за устройство"
+            },
+            "variants": [
+              {
+                "offer_id": "o_81CFA883CEF8",
+                "sku": "AX-81CFA883CEF8",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 28000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_97CAE9C50B4E",
+                "sku": "AX-97CAE9C50B4E",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 25200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_A73BF7EAE0DD",
+                "sku": "AX-A73BF7EAE0DD",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 11200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_439BCE75ADBD",
+                "sku": "AX-439BCE75ADBD",
+                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 19600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_45CC2310B377",
+                "sku": "AX-45CC2310B377",
+                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 17640.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 21,
+            "price_from": 7840.0,
+            "score": {
+              "tier": 1,
+              "score": 0.73,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.17176,
+                "margin": 0.13324,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 2
+          },
+          "note": "Близкий продукт по базе знаний"
+        },
+        {
+          "card": {
+            "card_id": "kompas_3d:k3d",
+            "title": "АСКОН КОМПАС 3D",
+            "vendor": {
+              "id": "ascon",
+              "name": "ASCON"
+            },
+            "category": {
+              "id": "mcad_plm",
+              "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
+            },
+            "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_10C94CA1D923",
+              "sku": "AX-10C94CA1D923",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 151400.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 151400.0,
+              "total": null,
+              "text": "от 151 400 ₽ за устройство в год"
+            },
+            "variants": [
+              {
+                "offer_id": "o_3EEE48EBAAD4",
+                "sku": "AX-3EEE48EBAAD4",
+                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 136200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_1663272ADED2",
+                "sku": "AX-1663272ADED2",
+                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 60500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_C425AC4DBC9F",
+                "sku": "AX-C425AC4DBC9F",
+                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 151400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_8C14E86D99D7",
+                "sku": "AX-8C14E86D99D7",
+                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+                "price": 151400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_2158D5EB5F25",
+                "sku": "AX-2158D5EB5F25",
+                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 151400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "v22",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 20,
+            "price_from": 60500.0,
+            "score": {
+              "tier": 1,
+              "score": 0.68521,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.19388,
+                "margin": 0.06633,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 3
+          },
+          "note": "Близкий продукт по базе знаний"
+        },
+        {
+          "card": {
+            "card_id": "nanocad_platform:topoplan",
+            "title": "Платформа nanoCAD Модуль Топоплан",
+            "vendor": {
+              "id": "nanosoft",
+              "name": "Nanosoft"
+            },
+            "category": {
+              "id": "cad_2d",
+              "title": "Базовые 2D/3D САПР и черчение DWG"
+            },
+            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
+            "badges": [
+              {
+                "kind": "promo",
+                "label": "Специальное предложение"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_041FBF8AB975",
+              "sku": "AX-041FBF8AB975",
+              "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 96100.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 96100.0,
+              "total": null,
+              "text": "от 96 100 ₽ за лицензию"
+            },
+            "variants": [
+              {
+                "offer_id": "o_6DE5B318E012",
+                "sku": "AX-6DE5B318E012",
+                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 96100.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_C6E4394B4AFB",
+                "sku": "AX-C6E4394B4AFB",
+                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 86500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_5EDE7E47739B",
+                "sku": "AX-5EDE7E47739B",
+                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 38400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_EB6075DC35AD",
+                "sku": "AX-EB6075DC35AD",
+                "name": "Платформа nanoCAD 23 Модуль Топоплан, продление, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 67300.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_344904667274",
+                "sku": "AX-344904667274",
+                "name": "Платформа nanoCAD 23 Модуль Топоплан, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 60600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 21,
+            "price_from": 26900.0,
+            "score": {
+              "tier": 1,
+              "score": 0.68294,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.17765,
+                "margin": 0.08029,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 4
+          },
+          "note": "Близкий продукт по базе знаний"
+        }
+      ]
+    },
+    {
+      "type": "lead",
+      "title": "Запрос поставки",
+      "text": "Можно уточнить условия у менеджера.",
+      "action": "request_quote"
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "nanosoft",
+          "label": "Nanosoft",
+          "count": 5
+        },
+        {
+          "id": "ascon",
+          "label": "ASCON",
+          "count": 4
+        },
+        {
+          "id": "zwsoft",
+          "label": "ZWSOFT",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "cad_2d",
+          "label": "Базовые 2D/3D САПР и черчение DWG",
+          "count": 8
+        },
+        {
+          "id": "mcad_plm",
+          "label": "Машиностроительные САПР, 3D-моделирование и PLM/PDM",
+          "count": 4
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "АСКОН КОМПАС Строитель",
+    "Платформа nanoCAD Базовая",
+    "АСКОН КОМПАС 3D",
+    "Платформа nanoCAD Модуль Топоплан"
+  ],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.13,
+      "summary": "autocad купить",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.03,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.12,
+      "summary": "Autodesk AutoCAD",
+      "detail": {
+        "residual": "купить",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.1,
+      "summary": "Продукта нет в продаже",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Продукта нет в продаже",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.05,
+      "summary": "Подходящих карточек до проверки лицензий · 12",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.87,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 12",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 1.09,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.02,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.03,
+      "summary": "Карточек в выдаче · 12",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 8.93,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 11.59
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

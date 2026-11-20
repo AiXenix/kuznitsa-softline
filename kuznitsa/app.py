@@ -26,7 +26,11 @@ def create_app(engine=None,cfg=None):
         if rules is not None:
             core.controls = rules.RuleControls(core.journal)
         app.state.engine = core
-        yield
+        try:
+            yield
+        finally:
+            if engine is None:
+                core.close()
     app=FastAPI(lifespan=lifespan)
     def core():
         return app.state.engine
@@ -70,7 +74,7 @@ def create_app(engine=None,cfg=None):
     @app.get("/health")
     def health():
         c=core().catalog
-        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb=core().kb.report()["counts"],llm=dict(enabled=False))
+        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb=core().kb.report()["counts"],llm=dict(enabled=core().llm.enabled))
     @app.get("/api/meta")
     def meta():
         preferred=ROOT/"docs/scenarios.yaml"
@@ -115,9 +119,9 @@ def create_app(engine=None,cfg=None):
     @app.get("/api/card/{card_id}")
     def card(card_id:str,profile_id:str="guest",qty:int|None=Query(None,ge=1),term:int|None=None,action:str|None=None):
         return core().card(card_id,profile_id,qty,term,action)
-    @app.get("/api/profile/{ident}")
-    def profile(ident:str):
-        return core().clients[ident]
+    @app.get("/api/profile/{id}")
+    def profile(id:str):
+        return core().clients[id]
     @app.get("/robots.txt")
     def robots():
         return Response("User-agent: *\nDisallow: /\n",media_type="text/plain")

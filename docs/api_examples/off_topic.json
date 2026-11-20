@@ -1,0 +1,269 @@
+{
+  "search_id": "s_c1c4010acab345a1b88eee48a5386d35",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "купить ноутбук для офиса",
+    "normalized": "купить ноутбук для офиса",
+    "corrected": "купить ноутбук для офиса",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "off_topic",
+    "intent_title": "За пределами каталога",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "category",
+        "id": "office",
+        "text": "офиса",
+        "span": [
+          3,
+          4
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "category": [
+        "office_suite"
+      ]
+    },
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "category",
+        "label": "Офисные программы и продуктивность",
+        "source": "query",
+        "removable": true,
+        "remove_q": "купить ноутбук для"
+      }
+    ],
+    "subtype": "hardware",
+    "reason": "hardware",
+    "agent_note": "За пределами каталога · Офисные программы и продуктивность"
+  },
+  "blocks": [
+    {
+      "type": "categories",
+      "title": "Категории программ",
+      "items": [
+        {
+          "id": "bpm_rpa_lowcode",
+          "title": "BPM, Low-code и роботизация процессов (RPA)",
+          "count": 17
+        },
+        {
+          "id": "desktop_os_ru",
+          "title": "Российские настольные ОС",
+          "count": 16
+        },
+        {
+          "id": "tax_reporting_edo",
+          "title": "Электронная отчётность и ЭДО с контрагентами",
+          "count": 15
+        },
+        {
+          "id": "cae_simulation",
+          "title": "Инженерные расчёты, CAE и научное ПО",
+          "count": 15
+        },
+        {
+          "id": "iaas_cloud_platforms",
+          "title": "Облачные платформы IaaS/PaaS и виртуальные ЦОД",
+          "count": 15
+        }
+      ]
+    },
+    {
+      "type": "clarify",
+      "title": "Поиск программного обеспечения",
+      "question": "В каталоге представлены программы и лицензии. Для какого ПО вы подбираете устройство?",
+      "options": []
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": []
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": []
+    }
+  ],
+  "related_queries": [],
+  "notes": [],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.11,
+      "summary": "купить ноутбук для офиса",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.09,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.34,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.22,
+      "summary": "Офисные программы и продуктивность",
+      "detail": {
+        "residual": "купить ноутбук для",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.38,
+      "summary": "За пределами каталога",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "За пределами каталога",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подходящих карточек до проверки лицензий · 0",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Условия запроса сохранены",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Подобрано вариантов для карточек · 0",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.0,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.01,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.23,
+      "summary": "Карточек в выдаче · 0",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 4.04,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 5.51
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

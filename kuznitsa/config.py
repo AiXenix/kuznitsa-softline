@@ -22,3 +22,6 @@ class Config:
     rate_limit: int = field(default_factory=lambda: int(os.getenv("KZ_RATE_LIMIT", "120")))
     jev_model: str = field(default_factory=lambda: os.getenv("KZ_JEV_MODEL","typesafe/jev-1.13"))
     jev_url: str = field(default_factory=lambda: os.getenv("KZ_JEV_URL","https://openrouter.ai/api/alpha/decisions"))
+    daily_budget: float = field(default_factory=lambda: float(os.getenv("KZ_LLM_DAILY_BUDGET_USD","3")))
+    usd_rub: float = field(default_factory=lambda: float(os.getenv("KZ_USD_RUB","100")))
+    jev_price_in: float = field(default_factory=lambda: float(os.getenv("KZ_JEV_PRICE_IN","0.042")))

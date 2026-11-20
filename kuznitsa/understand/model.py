@@ -32,7 +32,10 @@ def chips_for(words,entities,names,exclude,filters,qty):
     for key,title,unit in [("price_max","Цена до","₽"),("price_min","Цена от","₽"),("term_months","Срок","мес.")]:
         if key in filters:
             chips.append(dict(key="term" if key=="term_months" else "price",label=f"{title} {filters[key]:g} {unit}",source="query",removable=False))
-    return chips
+    distinct={}
+    for chip in chips:
+        distinct.setdefault((chip["key"],chip["label"]),chip)
+    return list(distinct.values())
 
 
 def ignore_conditions(keys, words, filters, exclude, entities, qty):

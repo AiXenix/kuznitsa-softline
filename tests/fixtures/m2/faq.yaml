@@ -1,0 +1,4 @@
+- id: invoice
+  questions: [как получить счет, покупка по безналу]
+  answer: Счёт доступен в заказе.
+  related_categories: [office_suite]

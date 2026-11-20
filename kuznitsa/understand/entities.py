@@ -22,7 +22,15 @@ def extract(words,lex,kb):
     for i,end,matches in lex.match(words):
         target = exclude if i and words[i-1] in {"не","без","кроме"} else filters
         kinds = {k for k,v,s in matches}
+        if end==i+1 and words[i] in {"в","и","на","по","к","с","а","из","для","ошибка"}:
+            continue
         for k,v,source in matches:
+            if k=="edition" and number_before(words,i) and words[i].startswith("рабоч") and end>i+1 and words[i+1].startswith("мест"):
+                continue
+            if k=="edition" and kinds & {"family","vendor","category","metric","industry","compliance"}:
+                continue
+            if k=="metric" and not number_before(words,i) and not any(w in words for w in ("cal","ядерная","ядер")):
+                continue
             if k in {"category","vendor","platform"} and "family" in kinds:
                 continue
             if k=="category" and "vendor" in kinds:
@@ -40,6 +48,15 @@ def extract(words,lex,kb):
                 continue
             entities.append(dict(type=k,id=v,text=" ".join(words[i:end]),span=[i,end],source=source,conf=1.))
             used.update(range(i,end))
+    ambiguous_office=(len(filters.get("family",[]))>1 and
+                      all(e["text"]=="офис" for e in entities if e["type"]=="family") and
+                      all(kb.rows["families"].get(fid,{}).get("category")=="office_suite" for fid in filters["family"]))
+    if ambiguous_office and "офис" in words and len(words)>1:
+        filters.pop("family")
+        entities=[e for e in entities if e["type"]!="family"]
+    if "office_suite" in kb.rows["categories"] and "офис" in words and len(words)>1 and "family" not in filters and not filters.get("vendor"):
+        if not filters.get("category") or "office" in filters["category"]:
+            filters["category"]=["office_suite"]
     qty = numeric_conditions(words,filters,qty)
     for i,w in enumerate(words):
         if i and "family" in filters and re.fullmatch(r"\d+(?:\.\d+)*",w):

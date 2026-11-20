@@ -1,0 +1,5 @@
+- id: phishing
+  phrases: [защитить почту от фишинга]
+  categories: [endpoint_security]
+  families: [shield]
+  products: [Paper Desk]

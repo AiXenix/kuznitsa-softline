@@ -30,6 +30,10 @@ def suggest(engine,q,profile_id="guest",category=None):
     start=perf_counter()
     norm=normalize(q)
     groups=engine.suggestions.prefix(norm) if norm else []
+    if norm and len(norm)>=3 and any(c.isdigit() for c in norm):
+        codes=engine.catalog.prefix_skus(norm,5)
+        if codes:
+            groups.insert(0,dict(type="products",title="Артикулы",items=[dict(text=o.sku,kind="sku",meta=o.card_id) for o in codes]))
     corrected=None
     if norm and not groups:
         translated=norm.translate(LAYOUT)

@@ -1,0 +1,984 @@
+{
+  "search_id": "s_bdef845dbe894111853d2ecdb85cb904",
+  "mode": "fast",
+  "engine": "kuznitsa",
+  "relax_hints": [
+    {
+      "drop": "edition",
+      "label": "Снять условие «редакция»",
+      "count": 10,
+      "apply": {
+        "ignore": [
+          "edition"
+        ]
+      }
+    }
+  ],
+  "banners": [],
+  "engine_version": "0.1.0",
+  "query": {
+    "raw": "эдо с интеграцией в 1с",
+    "normalized": "эдо с интеграцией в 1с",
+    "corrected": "эдо с интеграцией в 1с",
+    "corrections": [],
+    "did_you_mean": null
+  },
+  "understood": {
+    "intent": "task",
+    "intent_title": "Поиск по задаче",
+    "intent_conf": 0.95,
+    "intent_source": "rules",
+    "inherited": null,
+    "entities": [
+      {
+        "type": "category",
+        "id": "tax_reporting_edo",
+        "text": "эдо",
+        "span": [
+          0,
+          1
+        ],
+        "source": "kb",
+        "conf": 1.0
+      },
+      {
+        "type": "edition",
+        "id": "api",
+        "text": "интеграцией",
+        "span": [
+          2,
+          3
+        ],
+        "source": "kb",
+        "conf": 1.0
+      },
+      {
+        "type": "vendor",
+        "id": "onec",
+        "text": "1с",
+        "span": [
+          4,
+          5
+        ],
+        "source": "kb",
+        "conf": 1.0
+      }
+    ],
+    "filters": {
+      "category": [
+        "tax_reporting_edo"
+      ],
+      "edition": [
+        "api"
+      ],
+      "vendor": [
+        "onec"
+      ],
+      "family": [
+        "onec_edo"
+      ]
+    },
+    "exclude": {},
+    "qty": null,
+    "chips": [
+      {
+        "key": "category",
+        "label": "Электронная отчётность и ЭДО с контрагентами",
+        "source": "query",
+        "removable": true,
+        "remove_q": "с интеграцией в 1с"
+      },
+      {
+        "key": "edition",
+        "label": "интеграцией",
+        "source": "query",
+        "removable": true,
+        "remove_q": "эдо с в 1с"
+      },
+      {
+        "key": "vendor",
+        "label": "1C",
+        "source": "query",
+        "removable": true,
+        "remove_q": "эдо с интеграцией в"
+      }
+    ],
+    "subtype": null,
+    "reason": null,
+    "agent_note": "Поиск по задаче · Электронная отчётность и ЭДО с контрагентами, интеграцией, 1C"
+  },
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Подходящие лицензии",
+      "total": 10,
+      "items": [
+        {
+          "card_id": "sbis_saby:edo",
+          "title": "СБИС Saby ЭДО",
+          "vendor": {
+            "id": "tensor_sbis",
+            "name": "Tensor (Saby / SBIS)"
+          },
+          "category": {
+            "id": "tax_reporting_edo",
+            "title": "Электронная отчётность и ЭДО с контрагентами"
+          },
+          "summary": "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_97365B6BABE5",
+            "sku": "AX-97365B6BABE5",
+            "name": "СБИС Saby ЭДО, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
+            "price": 12200.0,
+            "price_on_request": false,
+            "delivery": "service",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "company",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 12200.0,
+            "total": null,
+            "text": "от 12 200 ₽ за организацию в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_0CD9AF1046B7",
+              "sku": "AX-0CD9AF1046B7",
+              "name": "СБИС Saby ЭДО, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
+              "price": 10980.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_9CE85D07122A",
+              "sku": "AX-9CE85D07122A",
+              "name": "СБИС Saby ЭДО, продление, 1 организаций, 12 мес., для организаций, SERVICE",
+              "price": 8540.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_D7A7512490BE",
+              "sku": "AX-D7A7512490BE",
+              "name": "СБИС Saby ЭДО, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
+              "price": 7680.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_D346A8C33C8C",
+              "sku": "AX-D346A8C33C8C",
+              "name": "СБИС Saby ЭДО, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
+              "price": 12200.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_4BAE6D9574F1",
+              "sku": "AX-4BAE6D9574F1",
+              "name": "СБИС Saby ЭДО, новая лицензия, 1 пользователей, 24 мес., для организаций, ESD",
+              "price": 22000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 24,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 19,
+          "price_from": 7680.0,
+          "score": {
+            "tier": 1,
+            "score": 0.7634799999999999,
+            "parts": {
+              "rel": 0.425,
+              "pop": 0.19342,
+              "margin": 0.14506,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+            ]
+          },
+          "position": 1
+        },
+        {
+          "card_id": "onec_kedo:onprem",
+          "title": "1С:Кабинет сотрудника Локальный",
+          "vendor": {
+            "id": "onec",
+            "name": "1C"
+          },
+          "category": {
+            "id": "kedo_hr_docs",
+            "title": "Кадровый электронный документооборот (КЭДО)"
+          },
+          "summary": "Сервис кадрового электронного документооборота (КЭДО), встроенный в 1С:ЗУП, 1С:Бухгалтерию и 1С:ERP.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_BB4564B9F5EF",
+            "sku": "AX-BB4564B9F5EF",
+            "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 50–99 пользователей, 12 мес., для организаций, ESD",
+            "price": 670.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "user",
+            "qty_min": 50,
+            "qty_max": 99,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 670.0,
+            "total": null,
+            "text": "от 670 ₽ за пользователя в год (при покупке от 50)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_199D311CBA5E",
+              "sku": "AX-199D311CBA5E",
+              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
+              "price": 700.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 10,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_2FFD34552B21",
+              "sku": "AX-2FFD34552B21",
+              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 630.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 10,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_4192B8D9D288",
+              "sku": "AX-4192B8D9D288",
+              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 50–99 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_347DC37660F1",
+              "sku": "AX-347DC37660F1",
+              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 100–499 пользователей, 12 мес., для организаций, ESD",
+              "price": 650.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 100,
+              "qty_max": 499,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_9A22CBBD78D4",
+              "sku": "AX-9A22CBBD78D4",
+              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 580.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 100,
+              "qty_max": 499,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 53,
+          "price_from": 390.0,
+          "score": {
+            "tier": 1,
+            "score": 0.75851,
+            "parts": {
+              "rel": 0.425,
+              "pop": 0.19243,
+              "margin": 0.14108,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 50 до 99 мест",
+              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+            ]
+          },
+          "position": 2
+        },
+        {
+          "card_id": "sbis_saby:kedo",
+          "title": "СБИС Saby КЭДО и Кадры",
+          "vendor": {
+            "id": "tensor_sbis",
+            "name": "Tensor (Saby / SBIS)"
+          },
+          "category": {
+            "id": "tax_reporting_edo",
+            "title": "Электронная отчётность и ЭДО с контрагентами"
+          },
+          "summary": "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_B753CD5005FB",
+            "sku": "AX-B753CD5005FB",
+            "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
+            "price": 27100.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "user",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 27100.0,
+            "total": null,
+            "text": "от 27 100 ₽ за пользователя в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_704CA3CD1FC7",
+              "sku": "AX-704CA3CD1FC7",
+              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
+              "price": 27100.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_3176B93AA04C",
+              "sku": "AX-3176B93AA04C",
+              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
+              "price": 24300.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": false,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_A2BF4CAA0FC0",
+              "sku": "AX-A2BF4CAA0FC0",
+              "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для организаций, SERVICE",
+              "price": 18940.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_88ACC95457D6",
+              "sku": "AX-88ACC95457D6",
+              "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
+              "price": 17040.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "company",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_51402A80261C",
+              "sku": "AX-51402A80261C",
+              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
+              "price": 27100.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 18,
+          "price_from": 17040.0,
+          "score": {
+            "tier": 1,
+            "score": 0.72953,
+            "parts": {
+              "rel": 0.425,
+              "pop": 0.18107,
+              "margin": 0.12346,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "vk_hr_tek:onprem",
+          "title": "VK HR Tek On-Premise",
+          "vendor": {
+            "id": "vk_tech",
+            "name": "VK Tech"
+          },
+          "category": {
+            "id": "kedo_hr_docs",
+            "title": "Кадровый электронный документооборот (КЭДО)"
+          },
+          "summary": "Корпоративная платформа кадрового электронного документооборота и HR-сервисов от VK Tech (облако и on-premise).",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_31AE1F0DFC65",
+            "sku": "AX-31AE1F0DFC65",
+            "name": "VK HR Tek On-Premise, новая лицензия, 100–499 пользователей, 12 мес., для организаций, SERVICE",
+            "price": 1300.0,
+            "price_on_request": false,
+            "delivery": "service",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "user",
+            "qty_min": 100,
+            "qty_max": 499,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 1300.0,
+            "total": null,
+            "text": "от 1 300 ₽ за пользователя в год (при покупке от 100)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_FDDD56E3C1D1",
+              "sku": "AX-FDDD56E3C1D1",
+              "name": "VK HR Tek On-Premise, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, SERVICE",
+              "price": 1170.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 100,
+              "qty_max": 499,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_C0A12ACEF0F5",
+              "sku": "AX-C0A12ACEF0F5",
+              "name": "VK HR Tek On-Premise, новая лицензия, 500–999 пользователей, 12 мес., для организаций, SERVICE",
+              "price": 1250.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_7862C5C201B4",
+              "sku": "AX-7862C5C201B4",
+              "name": "VK HR Tek On-Premise, новая лицензия, 500–999 пользователей, 12 мес., для госучреждений, SERVICE",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_C5B2AEAB11B5",
+              "sku": "AX-C5B2AEAB11B5",
+              "name": "VK HR Tek On-Premise, новая лицензия, 1000+ пользователей, 12 мес., для организаций, SERVICE",
+              "price": 1200.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1000,
+              "qty_max": null,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_3B9A4FAF897E",
+              "sku": "AX-3B9A4FAF897E",
+              "name": "VK HR Tek On-Premise, новая лицензия, 1000+ пользователей, 12 мес., для госучреждений, SERVICE",
+              "price": 1080.0,
+              "price_on_request": false,
+              "delivery": "service",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1000,
+              "qty_max": null,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 24,
+          "price_from": 750.0,
+          "score": {
+            "tier": 1,
+            "score": 0.6923,
+            "parts": {
+              "rel": 0.425,
+              "pop": 0.16757,
+              "margin": 0.09973,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 100 до 499 мест",
+              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+            ]
+          },
+          "position": 4
+        }
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Вендор",
+      "values": [
+        {
+          "id": "tensor_sbis",
+          "label": "Tensor (Saby / SBIS)",
+          "count": 4
+        },
+        {
+          "id": "onec",
+          "label": "1C",
+          "count": 2
+        },
+        {
+          "id": "vk_tech",
+          "label": "VK Tech",
+          "count": 2
+        },
+        {
+          "id": "hrlink",
+          "label": "HRlink",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Категория",
+      "values": [
+        {
+          "id": "kedo_hr_docs",
+          "label": "Кадровый электронный документооборот (КЭДО)",
+          "count": 6
+        },
+        {
+          "id": "tax_reporting_edo",
+          "label": "Электронная отчётность и ЭДО с контрагентами",
+          "count": 4
+        }
+      ]
+    }
+  ],
+  "related_queries": [
+    "СБИС Saby ЭДО",
+    "1С:Кабинет сотрудника Локальный",
+    "СБИС Saby КЭДО и Кадры",
+    "VK HR Tek On-Premise"
+  ],
+  "notes": [
+    "Для подбора других вариантов снято условие «редакция»."
+  ],
+  "trace": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "status": "ok",
+      "ms": 0.16,
+      "summary": "эдо с интеграцией в 1с",
+      "detail": {}
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "status": "ok",
+      "ms": 0.11,
+      "summary": "Совпадений по артикулу нет",
+      "detail": {}
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "status": "ok",
+      "ms": 0.07,
+      "summary": "Запрос сохранён",
+      "detail": {}
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "status": "ok",
+      "ms": 0.31,
+      "summary": "Электронная отчётность и ЭДО с контрагентами, интеграцией, 1C",
+      "detail": {
+        "residual": "с в",
+        "synonyms": [],
+        "ignored": []
+      }
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Гость — неавторизованный посетитель без истории покупок",
+      "detail": {}
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "status": "ok",
+      "ms": 0.07,
+      "summary": "Поиск по задаче",
+      "detail": {
+        "redirect": null,
+        "calls": []
+      }
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "status": "ok",
+      "ms": 0.0,
+      "summary": "Поиск по задаче",
+      "detail": {}
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "status": "ok",
+      "ms": 0.2,
+      "summary": "Подходящих карточек до проверки лицензий · 10",
+      "detail": {
+        "sources": [
+          "Сущности",
+          "Совпадения по полям",
+          "Фрагменты слов",
+          "Смысл запроса"
+        ]
+      }
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "status": "ok",
+      "ms": 0.99,
+      "summary": "Для подбора других вариантов снято условие «редакция».",
+      "detail": {}
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Подобрано вариантов для карточек · 10",
+      "detail": {}
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "status": "skip",
+      "ms": 0.0,
+      "summary": "Использованы локальные оценки",
+      "detail": {
+        "calls": []
+      }
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "status": "ok",
+      "ms": 0.53,
+      "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
+      "detail": {
+        "weights": {
+          "rel": 0.5,
+          "pop": 0.2,
+          "margin": 0.15,
+          "pers": 0.15
+        }
+      }
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "status": "skip",
+      "ms": 0.03,
+      "summary": "Правила не сработали",
+      "detail": {
+        "fired": []
+      }
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "status": "ok",
+      "ms": 0.01,
+      "summary": "Карточек в выдаче · 10",
+      "detail": {}
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "status": "ok",
+      "ms": 3.92,
+      "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
+      "detail": {}
+    }
+  ],
+  "cost": {
+    "llm_calls": 0,
+    "cached": 0,
+    "tokens_in": 0,
+    "usd": 0,
+    "rub": 0.0
+  },
+  "timing_ms": {
+    "total": 6.49
+  },
+  "profile": {
+    "id": "guest",
+    "title": "Гость — неавторизованный посетитель без истории покупок",
+    "segment": "smb"
+  }
+}

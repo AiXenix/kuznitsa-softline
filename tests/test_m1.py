@@ -153,7 +153,8 @@ def test_quantity_phrases(engine,q,quantity,term):
 def test_full_trace_when_smart(engine):
     r=engine.search(Request(q="сравнить щит или страж",mode="smart"))
     assert r["understood"]["intent"]=="compare"
-    assert next(x for x in r["trace"] if x["step"]=="plan")["status"]=="fallback"
+    assert next(x for x in r["trace"] if x["step"]=="plan")["status"]=="ok"
+    assert any(b["type"]=="compare" and len(b["columns"])==2 for b in r["blocks"])
 
 
 def test_multiple_sku(engine):
@@ -193,7 +194,7 @@ def test_concurrent_store_and_eval(engine,cfg):
     path=cfg.data/"checks.jsonl"
     path.write_text(json.dumps(dict(q="страж",id="guard",scenario="product",
                                    **{"assert":dict(family_any=["guard"],top1_any=["Guard"])})))
-    assert evaluate(engine,path,"fast",cfg.data)["scenarios"]["product"]==dict(total=1,passed=1)
+    assert evaluate(engine,path,"fast",cfg.data)["scenarios"]["product"]==dict(total=1,passed=1,pass_rate=1.)
 
 
 def test_bad_records_are_reported(tmp_path):

@@ -1,0 +1,5 @@
+- {id: red, name: РЕД ОС, vendor: north, category: os, license: {metrics: [device], bands: ["1+"]}}
+- {id: small, name: Kaspersky Small Office Security, aliases: [ксос], vendor: lab, category: endpoint_security, max_seats: 25, upgrade_to: endpoint, license: {packs: [5, 10, 25], metrics: [device], actions: [new, renewal]}}
+- {id: endpoint, name: Kaspersky Endpoint Security, aliases: [кес], vendor: lab, category: endpoint_security, license: {metrics: [device], bands: ["1+"], actions: [new, renewal]}}
+- {id: plant, name: Kaspersky Industrial Security, vendor: lab, category: industrial}
+- {id: ms_office, name: Microsoft Office, vendor: microsoft, category: office_suite, analogs: [paper]}

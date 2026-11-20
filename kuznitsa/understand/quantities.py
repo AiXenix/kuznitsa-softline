@@ -26,10 +26,14 @@ def numeric_conditions(words,filters,qty):
     for i,word in enumerate(words):
         n=number_before(words,i)
         if n is not None:
-            if re.fullmatch(r"год\w*|лет|месяц\w*|мес",word):
+            if re.fullmatch(r"год|года|лет|месяц\w*|мес",word):
                 filters["term_months"]=n*(12 if word.startswith(("год","лет")) else 1)
             if word in ("шт","штук","лицензий","лицензии") and not qty:
                 qty=dict(value=n,metric=None)
+    workplaces=re.search(r"\b(\d{1,9})\s+рабочи[хе]\s+мест",text)
+    if workplaces:
+        qty=dict(value=int(workplaces[1]),metric="device")
+        filters["metric"]="device"
     count=re.search(r"\b[xх](\d{1,9})\b",text)
     if count and not qty:
         qty=dict(value=int(count[1]),metric=None)

@@ -8,7 +8,7 @@ def many(v):
     return v if isinstance(v,list) else [] if v is None else [v]
 
 
-GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang".split()
+GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang crosssell".split()
 
 
 
@@ -58,6 +58,9 @@ def load(root: Path):
                             raise ValueError("editions")
                     if group=="slang" and not isinstance(row.get("maps_to"),dict):
                         raise ValueError("maps_to")
+                    if group=="crosssell" and (not isinstance(row.get("when"),dict) or not isinstance(row.get("suggest"),list)
+                            or any(not isinstance(v,dict) or not v.get("reason") for v in row["suggest"])):
+                        raise ValueError("when / suggest")
                     validate(group,row)
                     if ident in kb.rows[group]:
                         kb.errors.append(f"{p.name} [{i+1}]: повтор {ident}")
@@ -65,5 +68,7 @@ def load(root: Path):
                     kb.rows[group][ident] = row
                 except (KeyError,TypeError,ValueError,AttributeError) as exc:
                     kb.errors.append(f"{p.name} [{i+1}]: {exc}")
-    kb.dangling = list(missing_references(kb))
+    from .titles import apply_titles
+    apply_titles(kb,root/"overrides/families.yaml")
+    kb.dangling.extend(missing_references(kb))
     return kb
