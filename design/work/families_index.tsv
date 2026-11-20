@@ -1,0 +1,482 @@
+id	vendor	category	catalog	name	editions (id=name; ...)
+onec_accounting	onec	accounting	yes	1С:Бухгалтерия 8	base=Базовая; prof=ПРОФ; corp=КОРП
+onec_zup	onec	payroll_hr_1c	yes	1С:Зарплата и управление персоналом 8	base=Базовая; prof=ПРОФ; corp=КОРП
+onec_trade	onec	trade_warehouse	yes	1С:Управление торговлей 8	base=Базовая; prof=ПРОФ
+onec_unf	onec	trade_warehouse	yes	1С:Управление нашей фирмой 8	base=Базовая; prof=ПРОФ; pack5=На 5 пользователей
+onec_ka	onec	erp_systems	yes	1С:Комплексная автоматизация 8	ka2=Редакция 2
+onec_bgu	onec	accounting	yes	1С:Бухгалтерия государственного учреждения 8	base=Базовая; prof=ПРОФ; corp=КОРП
+onec_zkgu	onec	payroll_hr_1c	yes	1С:Зарплата и кадры государственного учреждения 8	base=Базовая; prof=ПРОФ; corp=КОРП
+onec_retail	onec	retail_pos_cash	yes	1С:Розница 8	base=Базовая; prof=ПРОФ
+onec_client_license	onec	onec_platform_licenses	yes	1С:Предприятие 8 — Клиентские лицензии	prof=ПРОФ; corp=КОРП
+onec_server_license	onec	onec_platform_licenses	yes	1С:Предприятие 8 — Лицензия на сервер	mini=МИНИ (до 5 подключений); x64_prof=x86-64 ПРОФ; x64_corp=x86-64 КОРП
+onec_its	onec	onec_platform_licenses	yes	1С:ИТС (Информационно-технологическое сопровождение)	base=КП Базовый (ТЕХНО); prof=КП ПРОФ; corp=КП Отраслевой / КОРП
+onec_fresh	onec	accounting	yes	1С:Фреш (1С:Предприятие через Интернет)	base=Базовый; prof=ПРОФ; spec=Спец
+onec_kedo	onec	kedo_hr_docs	yes	1С:Кабинет сотрудника	cloud=Облачный сервис; onprem=Локальный (корпоративный)
+onec_reporting	onec	tax_reporting_edo	yes	1С-Отчётность	main=Основной (1 юрлицо); group=Группа компаний
+onec_edo	onec	tax_reporting_edo	yes	1С-ЭДО	start=Старт ЭДО; packages=Пакеты комплектов документов
+onec_holding	onec	finance_budgeting	yes	1С:Управление холдингом 8	uh=Управление холдингом; erp_uh=ERP. Управление холдингом
+kontur_extern	skb_kontur	tax_reporting_edo	yes	Контур.Экстерн	optimal=Оптимальный плюс; max=Максимальный; budget=Бюджетный плюс
+kontur_diadoc	skb_kontur	tax_reporting_edo	yes	Контур.Диадок	packages=Пакеты исходящих документов; module_1c=Модуль Диадок для 1С
+kontur_focus	skb_kontur	counterparty_legal_info	yes	Контур.Фокус	base=Базовый; premium=Премиум; api=Фокус.API
+kontur_elba	skb_kontur	accounting	no	Контур.Эльба	ekonom=Эконом; business=Бизнес; premium=Премиум
+sbis_saby	tensor_sbis	tax_reporting_edo	yes	СБИС (Saby) — Отчётность, ЭДО, ОФД, Бухгалтерия	reporting=Отчётность; edo=ЭДО; kedo=КЭДО и Кадры; corp=Корпоративный
+taxcom_sprinter	taxcom	tax_reporting_edo	yes	Такском-Спринтер и Такском-Файлер	online_sprinter=Онлайн-Спринтер (Отчётность); filer=Такском-Файлер (ЭДО)
+moysklad	moysklad	trade_warehouse	yes	МойСклад	start=Базовый; prof=Профессиональный; corp=Корпоративный
+hrlink_kedo	hrlink	kedo_hr_docs	yes	HRlink КЭДО	cloud=Облачная (SaaS); onprem=On-Premise
+vk_hr_tek	vk_tech	kedo_hr_docs	yes	VK HR Tek (КЭДО)	saas=SaaS; onprem=On-Premise
+consultant_plus	consultant_plus	counterparty_legal_info	no	КонсультантПлюс	lawyer=Комплект Юрист; accountant=Комплект Бухгалтер; budget=Комплект Бюджетные организации
+garant_system	garant	counterparty_legal_info	no	Информационно-правовое обеспечение ГАРАНТ	accountant=ГАРАНТ-Бухгалтер; lawyer=ГАРАНТ-Юрист; enterprise=ГАРАНТ-Предприятие
+spark_interfax	interfax_spark	counterparty_legal_info	no	СПАРК-Интерфакс	web=СПАРК Web; api=СПАРК API
+atol_frontol	atol_frontol	retail_pos_cash	yes	АТОЛ Frontol 6	start=Frontol 6 Start; retail=Frontol 6 Торговля; cafe=Frontol 6 Кафе
+iiko_rest	iiko	retail_pos_cash	no	iiko (автоматизация ресторанов)	start=iikoCloud Start; pro=iikoCloud Pro; enterprise=iikoCloud Enterprise
+r_keeper	ucs_rkeeper	retail_pos_cash	no	r_keeper (автоматизация общепита)	lite=r_keeper Lite; pro=r_keeper 7 Pro
+gigachat_enterprise	sber_jazz	llm_gen_ai	yes	GigaChat (API / Enterprise On-Premise)	api=GigaChat API (пакеты токенов); onprem=GigaChat Enterprise (On-Premise)
+yandexgpt_api	yandex	llm_gen_ai	yes	YandexGPT / Yandex AI Studio	api=YandexGPT Pro API; studio=Yandex AI Studio (агенты и RAG)
+sber_kandinsky_api	sber_jazz	llm_gen_ai	yes	GigaCode (ИИ-ассистент разработчика от Сбера)	cloud=GigaCode Cloud; onprem=GigaCode On-Premise
+mws_gpt_ai	mts_web_services	llm_gen_ai	yes	MWS GPT / Cotype (Корпоративная LLM-платформа МТС)	api=MWS GPT API; onprem=Cotype On-Premise
+cloud_ru_ml_space	cloud_ru	ml_platforms_cv	yes	Cloud.ru Evolution ML Space / AI Factory	ml_space=Evolution ML Space
+yandex_datasphere	yandex	ml_platforms_cv	yes	Yandex DataSphere	standard=DataSphere Cloud
+visionlabs_luna	visionlabs	ml_platforms_cv	yes	VisionLabs LUNA PLATFORM (Компьютерное зрение и биометрия)	platform=LUNA PLATFORM; cars=LUNA CARS (распознавание номеров и ТС)
+ntechlab_findface	ntechlab	ml_platforms_cv	yes	NtechLab FindFace Multi (Видеоаналитика ИИ)	multi=FindFace Multi
+just_ai_jaicp	just_ai	ai_speech_chatbots	yes	Just AI JAICP / Jay Copilot (Платформа чат-ботов и ИИ-агентов)	cloud=JAICP Cloud; onprem=JAICP Enterprise On-Premise
+chatgpt_enterprise	openai	llm_gen_ai	no	OpenAI ChatGPT (Team / Enterprise / API)	team=ChatGPT Team; enterprise=ChatGPT Enterprise / API
+github_copilot	github	llm_gen_ai	no	GitHub Copilot (Business / Enterprise)	business=Copilot Business; enterprise=Copilot Enterprise
+ms_copilot_365	microsoft	llm_gen_ai	no	Microsoft 365 Copilot	m365=Copilot for Microsoft 365
+cyber_backup	cyberprotect	backup_recovery	yes	Кибер Бэкап (Cyber Backup)	standard=Стандартный; advanced=Расширенный (с дедупликацией и лентами); workstation=Для рабочих станций; virt_host=Для виртуальных хостов
+cyber_infrastructure	cyberprotect	sds_storage	yes	Кибер Инфраструктура (SDS)	
+cyber_files	cyberprotect	sds_storage	yes	Кибер Файлы (корпоративный файловый обмен)	
+rubackup	rubackup	backup_recovery	yes	RuBackup (Группа Астра)	standard=Стандарт; enterprise=Enterprise
+handy_backup	novosoft_handy	backup_recovery	yes	Handy Backup (Standard / Pro / Server Network)	pro=Professional; small_business=Small Business; server_network=Server Network
+raidix_sds	raidix	sds_storage	yes	RAIDIX (ПО для высокопроизводительных СХД)	r5=RAIDIX 5 (SAN/NAS); era=RAIDIX ERA (NVMe/Flash)
+baum_storage	baum	sds_storage	yes	BAUM STORAGE (ПО управления СХД)	
+winrar	winrar_rarlab	archivers	yes	WinRAR	
+total_commander	ghisler	file_managers	yes	Total Commander	
+r_studio	r_tt	data_recovery	yes	R-Studio (восстановление данных)	standard=R-Studio (Windows / Multi); network=R-Studio Network; technician=R-Studio Technician
+veeam_backup	veeam	backup_recovery	no	Veeam Backup & Replication / Data Platform	
+acronis_cyber_protect	acronis	backup_recovery	no	Acronis Cyber Protect (международный)	
+commvault_complete	commvault	backup_recovery	no	Commvault Complete Data Protection	
+veritas_netbackup	veritas	backup_recovery	no	Veritas NetBackup / Backup Exec	
+onec_erp	onec	erp_systems	yes	1С:ERP Управление предприятием 2	erp2=1С:ERP Управление предприятием 2; erp_corp=1С:Корпорация
+galaktika_erp	galaktika	erp_systems	yes	Галактика ERP	erp=Галактика ERP; eam=Галактика EAM
+turbo_erp	consyst_turbo	erp_systems	yes	ТУРБО ERP	erp=ТУРБО ERP; toir=ТУРБО ТОРО
+axelot_wms	axelot	logistics_tms	yes	AXELOT WMS / TMS (SCAP)	wms=AXELOT WMS X5; tms=AXELOT TMS X4
+optimacros	optimacros	finance_budgeting	yes	Optimacros (EPM / IBP)	enterprise=Enterprise
+project_expert	expert_systems_pe	finance_budgeting	yes	Project Expert	standard=Standard; prof=Professional; holding=Holding
+bitrix24	onec_bitrix	crm_systems	yes	Битрикс24	cloud_base=Облако: Базовый / Стандартный; cloud_pro=Облако: Профессиональный / Энтерпрайз; box_portal=Коробка: Корпоративный портал; box_ent=Коробка: Энтерпрайз
+bitrix_site_manager	onec_bitrix	cms_ecommerce	yes	1С-Битрикс: Управление сайтом	start=Старт; standard=Стандарт; small_business=Малый бизнес; business=Бизнес
+amocrm	amocrm	crm_systems	yes	amoCRM	base=Базовый; advanced=Расширенный; pro=Профессиональный
+bpmsoft_crm	bpmsoft	crm_systems	yes	BPMSoft CRM / Low-code	sales=BPMSoft Продажи; marketing=BPMSoft Маркетинг; service=BPMSoft Сервис
+retailcrm	retailcrm	crm_systems	yes	RetailCRM	pro=Профессиональный
+onec_docflow	onec	sed_ecm	yes	1С:Документооборот 8	prof=ПРОФ; corp=КОРП; dgu=Документооборот госучреждения (ДГУ)
+directum_rx	directum	sed_ecm	yes	Directum RX	onprem=Локальная (On-Premise); cloud=Облачная (Cloud)
+docsvision	docsvision	sed_ecm	yes	Docsvision	base=Базовая платформа; enterprise=Enterprise
+eos_delo	eos_delo	sed_ecm	yes	СЭД ДЕЛО (ЭОС)	delo=ДЕЛО / ДЕЛО-Web; archive=Архивное ДЕЛО
+tezis_sed	haulmont_tezis	sed_ecm	yes	СЭД ТЕЗИС	base=Базовая; standard=Стандартная; extended=Расширенная
+tessa_ecm	syntellect_tessa	sed_ecm	yes	TESSA (Синтеллект)	standard=TESSA Standard; enterprise=TESSA Enterprise
+elma365	elma	bpm_rpa_lowcode	yes	ELMA365 (Low-code BPM / CRM / Service)	saas=ELMA365 SaaS; onprem_std=ELMA365 On-Premises Standard; onprem_ent=ELMA365 On-Premises Enterprise
+comindware_platform	comindware	bpm_rpa_lowcode	yes	Comindware Platform (BPMS / Low-code)	standard=Standard; enterprise=Enterprise
+pix_rpa	pix_robotics	bpm_rpa_lowcode	yes	PIX RPA	studio=PIX Studio; robot=PIX Robot (Attended / Unattended); master=PIX Master (Оркестратор)
+primo_rpa	primo_rpa	bpm_rpa_lowcode	yes	Primo RPA	studio=Primo RPA Studio; runner=Primo RPA Runner; orchestrator=Primo RPA Orchestrator
+robin_rpa	robin_rpa	bpm_rpa_lowcode	yes	ROBIN RPA	studio=ROBIN Studio; robot=ROBIN Robot; orchestrator=ROBIN Orchestrator
+sherpa_rpa	sherpa_rpa	bpm_rpa_lowcode	yes	Sherpa RPA	designer=Sherpa Designer; robot=Sherpa Robot; orchestrator=Sherpa Orchestrator
+yandex_tracker	yandex	task_project_trackers	yes	Яндекс Трекер (Yandex Tracker)	standard=Стандартный тариф
+kaiten	kaiten	task_project_trackers	yes	Kaiten	standard=Standard; pro=Pro; onprem=On-Premise (Enterprise)
+evaproject	evateam	task_project_trackers	yes	EvaProject (EvaTeam)	cloud=Cloud; server=Server / On-Premise
+evawiki	evateam	whiteboards_notes	yes	EvaWiki (EvaTeam)	cloud=Cloud; server=Server / On-Premise
+yougile	yougile	task_project_trackers	yes	YouGile	cloud=Облачная; box=Коробочная
+weeek	weeek	task_project_trackers	yes	WEEEK	lite=Lite; pro=Pro; business=Business
+planfix	planfix	task_project_trackers	yes	ПланФикс (Planfix)	pro=Профессионал; business=Бизнес; corp=Корпорация
+huntflow	huntflow	hrm_recruiting	yes	Хантфлоу (Huntflow)	cloud=Облачная версия; onprem=Коробочная версия
+potok_hr	potok_hr	hrm_recruiting	yes	Поток Рекрутмент (TalentTech)	recruiting=Поток Рекрутмент; suite=Поток HR-платформа
+sap_s4hana	sap	erp_systems	no	SAP S/4HANA / SAP ERP	s4hana=S/4HANA; ecc=SAP ECC (R/3)
+oracle_ebs	oracle	erp_systems	no	Oracle E-Business Suite / Fusion ERP	ebs=E-Business Suite; hyperion=Hyperion EPM
+salesforce_crm	salesforce	crm_systems	no	Salesforce CRM	sales=Sales Cloud; enterprise=Enterprise
+atlassian_jira	atlassian	task_project_trackers	no	Atlassian Jira	software=Jira Software; jsm=Jira Service Management; dc=Data Center
+atlassian_confluence	atlassian	whiteboards_notes	no	Atlassian Confluence	cloud=Cloud; dc=Data Center
+atlassian_trello	atlassian	task_project_trackers	no	Trello	standard=Standard / Premium
+uipath_rpa	uipath	bpm_rpa_lowcode	no	UiPath RPA	studio=UiPath Studio; unattended=Unattended Robot
+nanocad_platform	nanosoft	cad_2d	yes	Платформа nanoCAD	base=Платформа nanoCAD (базовая); spds=Модуль СПДС; mechanica=Модуль Механика; topoplan=Модуль Топоплан; pro=Конфигурация Pro
+nanocad_bim	nanosoft	bim_aec	yes	nanoCAD BIM (Конструкции / Электро / ВК / Отопление / Вентиляция)	electro=BIM Электро; structures=BIM Конструкции; vk=BIM ВК; hvac=BIM Отопление / Вентиляция; ops=BIM ОПС / СКС
+model_studio_cs	csoft_development	bim_aec	yes	Model Studio CS и CADLib Модель и Архив	pipelines=Трубопроводы; building=Строительные решения; cadlib=CADLib Модель и Архив
+zwcad	zwsoft	cad_2d	yes	ZWCAD	standard=ZWCAD Standard; pro=ZWCAD Professional; mfg=ZWCAD MFG (Mechanical)
+kompas_3d	ascon	mcad_plm	yes	КОМПАС-3D и КОМПАС-График	grafik=КОМПАС-График (2D); k3d=КОМПАС-3D (базовый); mash=КОМПАС-3D Машиностроительная конфигурация; build=КОМПАС-Строитель
+pilot_bim	ascon	bim_aec	yes	Pilot-BIM / Pilot-ICE	ice=Pilot-ICE Enterprise; bim=Pilot-BIM
+lotsman_plm	ascon	mcad_plm	yes	ЛОЦМАН:PLM и САПР ТП ВЕРТИКАЛЬ	lotsman=ЛОЦМАН:PLM; vertical=ВЕРТИКАЛЬ (САПР ТП)
+t_flex_cad	top_systems	mcad_plm	yes	T-FLEX CAD / T-FLEX PLM	cad2d=T-FLEX CAD 2D+; cad3d=T-FLEX CAD 3D; docs=T-FLEX DOCs (PLM/PDM)
+renga_bim	renga_software	bim_aec	yes	Renga (Professional / Standard)	standard=Renga Standard; professional=Renga Professional (совместная работа)
+sprutcam_x	sprut_cam	mcad_plm	yes	СПРУТКАМ (SprutCAM X)	expert=SprutCAM X Expert; robot=SprutCAM X Robot
+cae_fidesys	fidesys	cae_simulation	yes	CAE Fidesys (Фидесис)	standard=Fidesys Standard; professional=Fidesys Professional; composite=Fidesys Composite / Dynamics
+logos_cae	rosatom_logos	cae_simulation	yes	Пакет программ ЛОГОС (Росатом)	aerohydro=ЛОГОС Аэро-Гидро (CFD); strength=ЛОГОС Прочность; heat=ЛОГОС Тепло
+scad_office	scad_soft	cae_simulation	yes	SCAD Office	base=SCAD++ Базовая конфигурация; full=SCAD Office Полная конфигурация
+lira_sapr	lira_soft	cae_simulation	yes	ЛИРА-САПР (ЛИРА 10)	standard=Standard; pro=PRO; full=FULL
+delta_design	eremex	ecad_eda	yes	Delta Design (ЭРЕМЕКС)	standard=Delta Design Standard; pro=Delta Design Professional; enterprise=Delta Design Enterprise
+simintech	3v_simintech	cae_simulation	yes	SimInTech	base=Базовая версия; pro=Профессиональная + пакеты библиотек
+engee_platform	ritm_engee	cae_simulation	yes	Engee (Инжиниринговая платформа моделирования)	cloud=Engee Cloud; onprem=Engee Enterprise (On-Premise)
+gis_panorama	kb_panorama	gis_mapping	yes	ГИС Панорама	mini=ГИС Панорама Мини; pro=ГИС Панорама (Профессиональная); server=ГИС Сервер / GIS WebService SE
+axioma_gis	axioma_gis	gis_mapping	yes	Аксиома ГИС (Axioma GIS)	base=ГИС Аксиома
+zulugis	politerm_zulu	gis_mapping	yes	ZuluGIS / ZuluThermo (Политерм)	gis=ZuluGIS; thermo=ZuluThermo (Тепловые сети); hydro=ZuluHydro (Водопровод)
+credo_complex	credo_dialog	cad_specialized	yes	Комплекс КРЕДО (CREDO Топограф / Дороги / Геология)	topograf=КРЕДО ТОПОГРАФ; roads=КРЕДО ДОРОГИ; geology=КРЕДО ГЕОЛОГИЯ; dat=КРЕДО ДАТ
+indorcad	indorsoft	cad_specialized	yes	IndorCAD (ИндорСофт)	standard=IndorCAD/Road; bim=IndorCAD BIM
+robur_topomatic	topomatic	cad_specialized	yes	Топоматик Robur	roads=Автомобильные дороги; rail=Железные дороги; survey=Изыскания
+agisoft_metashape	agisoft	cad_specialized	yes	Agisoft Metashape (PhotoScan)	standard=Standard Edition; pro=Professional Edition
+grand_smeta	mgk_grand	estimates_construction	yes	ГРАНД-Смета	local=Локальная (Флеш / Компьютер); client_server=Клиент-Сервер (Сетевая); rfm=Обновление нормативных баз и версий
+smeta_ru	stroysoft_smeta	estimates_construction	yes	Smeta.RU (СтройСофт)	local=Локальная версия; network=Сетевая версия
+bazis_mebel	bazis_center	cad_specialized	yes	БАЗИС-Мебельщик	mebel=БАЗИС-Мебельщик; raskroy=БАЗИС-Раскрой / Смета / ЧПУ
+spotlight_raster	csoft_development	raster_vectorizers	yes	Spotlight Pro / RasterID (векторизация чертежей)	std=Spotlight; pro=Spotlight Pro
+autocad	autodesk	cad_2d	no	Autodesk AutoCAD	lt=AutoCAD LT; full=AutoCAD (with Specialized Toolsets)
+autodesk_revit	autodesk	bim_aec	no	Autodesk Revit	full=Revit; aec=AEC Collection
+autodesk_civil_3d	autodesk	cad_specialized	no	Autodesk Civil 3D	full=Civil 3D
+autodesk_inventor	autodesk	mcad_plm	no	Autodesk Inventor	pro=Inventor Professional
+autodesk_navisworks	autodesk	bim_aec	no	Autodesk Navisworks Manage	manage=Navisworks Manage
+solidworks	dassault_systemes	mcad_plm	no	SOLIDWORKS	standard=Standard; pro=Professional; premium=Premium
+catia	dassault_systemes	mcad_plm	no	Dassault Systèmes CATIA	v5=CATIA V5
+siemens_nx	siemens_plm	mcad_plm	no	Siemens NX (Unigraphics)	cad=NX CAD; cam=NX CAM
+siemens_solid_edge	siemens_plm	mcad_plm	no	Siemens Solid Edge	classic=Solid Edge Classic / Premium
+archicad	graphisoft	bim_aec	no	Graphisoft Archicad	full=Archicad Commercial
+ansys_suite	ansys	cae_simulation	no	Ansys (Mechanical / Fluent / HFSS)	mechanical=Ansys Mechanical; fluent=Ansys Fluent (CFD); hfss=Ansys HFSS
+matlab	mathworks	cae_simulation	no	MATLAB & Simulink	matlab=MATLAB; simulink=Simulink
+altium_designer	altium	ecad_eda	no	Altium Designer	standard=Altium Designer Standard / Pro
+eplan_electric	eplan	ecad_eda	no	EPLAN Electric P8 / Pro Panel	p8=EPLAN Electric P8; pro_panel=EPLAN Pro Panel
+arcgis	esri	gis_mapping	no	Esri ArcGIS (Pro / Enterprise)	pro=ArcGIS Pro; enterprise=ArcGIS Enterprise
+yandex_cloud	yandex	iaas_cloud_platforms	yes	Yandex Cloud (IaaS / PaaS / 152-ФЗ)	payg=Pay-as-you-go / Предоплаченный пакет (Commit); fz152=Аттестованный сегмент 152-ФЗ (УЗ-1)
+vk_cloud	vk_tech	iaas_cloud_platforms	yes	VK Cloud (IaaS / PaaS / 152-ФЗ)	public=VK Cloud Public; fz152=VK Cloud 152-ФЗ (УЗ-1)
+vk_private_cloud	vk_tech	private_cloud_platforms	yes	VK Private Cloud (Частное облако On-Premise)	enterprise=VK Private Cloud Enterprise
+cloud_ru_evolution	cloud_ru	iaas_cloud_platforms	yes	Cloud.ru Evolution / Advanced (IaaS / PaaS / AI)	evolution=Cloud.ru Evolution (собственная российская платформа); advanced=Cloud.ru Advanced / VMware / Bare Metal; stack=Cloud.ru Evolution Stack (частное облако)
+selectel_cloud	selectel	iaas_cloud_platforms	yes	Selectel (Облачная платформа / Выделенные серверы / S3)	cloud=Облачные серверы и Kubernetes; dedicated=Выделенные серверы (Bare Metal); fz152=Аттестованный сегмент 152-ФЗ
+selectel_private_cloud	selectel	private_cloud_platforms	yes	Selectel Частное облако (Dedicated Private Cloud)	dedicated=Частное облако на базе OpenStack / российской виртуализации
+mts_cloud_mws	mts_web_services	iaas_cloud_platforms	yes	MWS Cloud (МТС Web Services — IaaS / PaaS / 152-ФЗ)	iaas=MWS Virtual Infrastructure (IaaS); fz152=MWS Cloud 152-ФЗ (УЗ-1 / ГИС)
+softline_cloud_iaas	softline_cloud	iaas_cloud_platforms	yes	Softline Cloud (IaaS / 152-ФЗ / ГИС / Импортонезависимое облако)	public=Публичное облако IaaS; secure=Защищённое облако 152-ФЗ / ГИС; ru_stack=Облако на российском стеке виртуализации
+basis_cloud_platform	basis_virt	private_cloud_platforms	yes	Базис.Cloud (Платформа управления частным и гибридным облаком)	enterprise=Базис.Cloud Enterprise
+aws_cloud	aws	iaas_cloud_platforms	no	Amazon Web Services (AWS)	standard=AWS Cloud Services
+microsoft_azure	microsoft	iaas_cloud_platforms	no	Microsoft Azure	standard=Microsoft Azure Cloud
+google_cloud_platform	google	iaas_cloud_platforms	no	Google Cloud Platform (GCP)	standard=Google Cloud Platform
+postgres_pro	postgres_pro	rdbms	yes	Postgres Pro (Standard / Enterprise / Certified)	standard=Standard (включая оптимизацию под 1С); enterprise=Enterprise (кластер, 64-бит транзакции, сжатие); cert=Certified (сертификат ФСТЭК)
+tantor_db	tantor_labs	rdbms	yes	СУБД Tantor (Группа Астра)	basic=Tantor Basic / SE; onec=Tantor SE для 1С; cert=Tantor Certified (ФСТЭК)
+tantor_platform	tantor_labs	db_management_tools	yes	Платформа Tantor (администрирование и мониторинг PostgreSQL)	
+jatoba_db	gazinformservice_jatoba	rdbms	yes	СУБД Jatoba (Газинформсервис)	
+red_db	red_soft	rdbms	yes	РЕД База Данных	
+pangolin_db	sber_platform_v	rdbms	yes	Platform V Pangolin (СберТех)	
+tarantool	vk_tech	nosql_inmemory	yes	Tarantool Enterprise (VK Tech)	
+picodata	picodata	nosql_inmemory	yes	Picodata (распределённая СУБД)	
+arenadata_db	arenadata	dwh_olap	yes	Arenadata DB (ADB — MPP DWH)	
+arenadata_quickmarts	arenadata	dwh_olap	yes	Arenadata QuickMarts (ADQM — ClickHouse)	
+arenadata_hadoop	arenadata	big_data_streaming	yes	Arenadata Hadoop (ADH) и Streaming (ADS)	adh=Arenadata Hadoop (Data Lake); ads=Arenadata Streaming (Kafka/NiFi)
+visiology_bi	visiology	bi_analytics	yes	Visiology (BI-платформа)	
+foresight_analytics	foresight	bi_analytics	yes	Форсайт. Аналитическая платформа	
+polymatica_bi	polymatica	bi_analytics	yes	Polymatica BI / ML (SL Soft)	dashboards=Polymatica Dashboards; analytics=Polymatica Analytics (OLAP); ml=Polymatica ML
+modus_bi	modus_bi	bi_analytics	yes	Modus BI и Modus ETL	
+pix_bi	pix_robotics	bi_analytics	yes	PIX BI	
+yandex_datalens	yandex	bi_analytics	yes	Yandex DataLens (BI в облаке и Open Source)	
+loginom	loginom	big_data_streaming	yes	Loginom (Low-code аналитика и ETL)	standard=Loginom Standard; enterprise=Loginom Enterprise
+unidata_mdm	unidata	data_governance_mdm	yes	Юнидата (Платформа управления НСИ / MDM)	
+dbeaver_pro	dbeaver	db_management_tools	no	DBeaver PRO / Enterprise / Team Edition	pro=PRO; ee=Enterprise; team=Team Edition
+ms_sql_server	microsoft	rdbms	no	Microsoft SQL Server (2022 / 2019)	standard_core=Standard (Per Core); standard_cal=Standard (Server + CAL); enterprise=Enterprise (Per Core)
+oracle_db	oracle	rdbms	no	Oracle Database (Standard / Enterprise Edition)	se2=Standard Edition 2; ee=Enterprise Edition
+ibm_db2	ibm	rdbms	no	IBM Db2	
+mongodb_enterprise	mongodb	nosql_inmemory	no	MongoDB Enterprise Advanced / Atlas	
+redis_enterprise	redis_inc	nosql_inmemory	no	Redis Enterprise	
+snowflake_dwh	snowflake	dwh_olap	no	Snowflake Data Cloud	
+clickhouse_cloud	clickhouse	dwh_olap	no	ClickHouse Cloud	
+ms_power_bi	microsoft	bi_analytics	no	Microsoft Power BI (Pro / Premium)	pro=Power BI Pro; premium=Power BI Premium
+tableau	tableau_salesforce	bi_analytics	no	Tableau (Creator / Explorer / Server)	
+qlik_sense	qlik	bi_analytics	no	Qlik Sense / QlikView	
+gitflic	gitflic	git_cicd_devops	yes	GitFlic (Enterprise / Cloud)	cloud=GitFlic Cloud; selfhosted=GitFlic Self-Hosted (On-Premise)
+sourcecraft_yandex	yandex	git_cicd_devops	yes	Yandex SourceCraft (платформа разработки)	standard=SourceCraft Standard / Enterprise
+sphere_t1	soft_balance_t1	git_cicd_devops	yes	Платформа Сфера (Холдинг Т1)	tasks=Сфера.Задачи / Знания; code=Сфера.Код / CI-CD; full=Полный комплект Платформы Сфера
+platform_v_works	sber_platform_v	git_cicd_devops	yes	Platform V Works (СберТех)	scm=Works::SourceControl; tracking=Works::TaskTracker / Wiki
+platform_v_synapse	sber_platform_v	api_integration_esb	yes	Platform V Synapse / Corax (ESB, API Gateway, Kafka)	synapse=Platform V Synapse (Service Mesh / API); corax=Platform V Corax (брокер сообщений)
+onec_esb	onec	api_integration_esb	yes	1С:Шина	base=1С:Шина (Сервер)
+test_it_tms	test_it	testing_qa	yes	Test IT (TMS)	cloud=Test IT Cloud; enterprise=Test IT Enterprise (On-Premise)
+allure_testops	qameta_allure	testing_qa	yes	Allure TestOps (Qameta)	server=Allure TestOps Server; cloud=Allure TestOps Cloud
+pvs_studio	pvs_studio	code_analysis_sast	yes	PVS-Studio	team=Team; enterprise=Enterprise (SAST + MISRA/AUTOSAR)
+pt_application_inspector	positive_technologies	code_analysis_sast	yes	PT Application Inspector (PT AI)	enterprise=PT Application Inspector Enterprise
+solar_appscreener	solar_rt	code_analysis_sast	yes	Solar appScreener	standard=Standard / Enterprise
+fastreport_net	fast_reports	dev_libraries_components	yes	FastReport (.NET / VCL / Business Graphics)	net_pro=FastReport .NET Professional / Enterprise; vcl=FastReport VCL Standard / Pro / Enterprise
+axiom_jdk_pro	axiom_jdk	java_runtimes	yes	Axiom JDK Pro / Certified (BellSoft / Аксиом)	pro=Axiom JDK Pro; certified=Axiom JDK Certified (ФСТЭК)
+jetbrains_all_products	jetbrains	ide_compilers	no	JetBrains (All Products Pack / IntelliJ IDEA / PyCharm / Rider / WebStorm)	all_products=All Products Pack; intellij=IntelliJ IDEA Ultimate; pycharm=PyCharm Professional; rider=Rider / dotUltimate
+ms_visual_studio	microsoft	ide_compilers	no	Microsoft Visual Studio (Professional / Enterprise)	pro=Visual Studio Professional; ent=Visual Studio Enterprise
+delphi_rad_studio	embarcadero	ide_compilers	no	Embarcadero RAD Studio / Delphi / C++Builder	pro=Professional; ent=Enterprise / Architect
+gitlab_ee	gitlab	git_cicd_devops	no	GitLab Enterprise Edition (Premium / Ultimate)	premium=GitLab Premium; ultimate=GitLab Ultimate
+github_enterprise	github	git_cicd_devops	no	GitHub Enterprise (Team / Copilot)	team=GitHub Team; enterprise=GitHub Enterprise
+bitbucket_dc	atlassian	git_cicd_devops	no	Atlassian Bitbucket Data Center	dc=Bitbucket Data Center
+testrail	idera_testrail	testing_qa	no	TestRail	pro=TestRail Professional; enterprise=TestRail Enterprise
+sonarqube	sonarsource	code_analysis_sast	no	SonarQube (Developer / Enterprise)	dev=Developer Edition; ent=Enterprise Edition
+postman_enterprise	postman	api_integration_esb	no	Postman (Team / Business / Enterprise)	basic=Basic / Professional; enterprise=Enterprise
+oracle_java_se	oracle	java_runtimes	no	Oracle Java SE Subscription	universal=Java SE Universal Subscription
+azure_devops_server	microsoft	git_cicd_devops	no	Microsoft Azure DevOps Server (TFS)	server=Azure DevOps Server + User CAL
+contentreader_pdf	content_ai	pdf_editors	yes	КонтентРидер PDF (ContentReader PDF)	standard=ContentReader PDF Standard; corporate=ContentReader PDF Corporate (сравнение документов и пакетная обработка)
+contentcapture	content_ai	ocr_capture	yes	ContentCapture (потоковый ввод и IDP)	standard=ContentCapture Standard / Distributed; invoices=Модуль распознавания счетов и УПД
+master_pdf_editor	code_industry	pdf_editors	yes	Master PDF Editor (Редактор PDF)	pro=Master PDF Editor (Коммерческая лицензия)
+smart_id_engine	smart_engines	ocr_capture	yes	Smart ID Engine / Smart Document Engine (Smart Engines)	id_engine=Smart ID Engine (документы удостоверяющие личность); doc_engine=Smart Document Engine (первичные и деловые документы)
+dbrain_ocr	dbrain	ocr_capture	yes	Dbrain (ИИ-распознавание документов)	cloud=Dbrain Cloud API; onprem=Dbrain On-Premise
+promt_translation	promt	translation_dictionaries	yes	PROMT (Neural Translation Server / Professional NMT)	pro=PROMT Professional NMT (настольный); server=PROMT Neural Translation Server (PTS)
+paratype_fonts	paratype	text_editors	yes	Шрифты ПараТайп (ParaType Corporate / Astra Sans / PT)	desktop=Desktop-лицензия; web=Web / App / Corporate-лицензия
+crt_voice2med	crt_speech	speech_text	yes	ЦРТ Речевые технологии (Voice2Med / Smart Logger / Speech Analytics)	voice2med=Voice2Med (голосовой ввод для врачей); analytics=Речевая аналитика 360
+salutespeech	sber_jazz	speech_text	yes	SaluteSpeech (распознавание и синтез речи)	cloud=SaluteSpeech Cloud API; onprem=SaluteSpeech On-Premise
+yandex_speechkit	yandex	speech_text	yes	Yandex SpeechKit	cloud=SpeechKit Cloud; hybrid=SpeechKit Hybrid (On-Premise)
+adobe_acrobat	adobe	pdf_editors	no	Adobe Acrobat (Pro / Standard)	standard=Acrobat Standard; pro=Acrobat Pro for Teams
+abbyy_finereader	abbyy	ocr_capture	no	ABBYY FineReader PDF / FlexiCapture	pdf=FineReader PDF Standard / Corporate; flexi=FlexiCapture
+foxit_pdf_editor	foxit	pdf_editors	no	Foxit PDF Editor (Pro / PhantomPDF)	std=Foxit PDF Editor; pro=Foxit PDF Editor Pro
+deepl_pro	deepl	translation_dictionaries	no	DeepL Pro	team=DeepL Pro Advanced / Ultimate
+abbyy_lingvo	abbyy	translation_dictionaries	no	ABBYY Lingvo	pro=Lingvo x6 Профессиональная
+ispring_suite	ispring	lms_elearning	yes	iSpring Suite / iSpring Learn (Конструктор курсов и LMS)	suite=iSpring Suite / Suite Max (конструктор курсов); learn=iSpring Learn (LMS / СДО)
+mirapolis_lms	mirapolis	lms_elearning	yes	Mirapolis LMS / HCM	lms=Mirapolis LMS; hcm=Mirapolis HCM
+websoft_hcm	websoft	lms_elearning	yes	Websoft HCM (WebTutor)	lms=Модуль Дистанционное обучение (LMS); hcm=Полный комплекс Websoft HCM
+equio_lms	equio	lms_elearning	yes	Эквио (Мобильная LMS-платформа)	cloud=Эквио Cloud; onprem=Эквио Enterprise (On-Premise)
+getcourse_platform	red_os_community_alt_extra	lms_elearning	no	GetCourse (Платформа для онлайн-школ)	start=Старт / Хобби / Профи
+kaspersky_asap	kaspersky	security_awareness	yes	Kaspersky Automated Security Awareness Platform (ASAP)	cloud=ASAP Cloud; onprem=ASAP On-Premise
+phishman_awareness	phishman	security_awareness	yes	Phishman (Обучение кибербезопасности и имитация фишинга)	cloud=Phishman Cloud; onprem=Phishman Enterprise (On-Premise)
+bizone_cymulate_awareness	bi_zone	security_awareness	yes	BI.ZONE Security Awareness (Киберграмотность и киберучения)	awareness=Security Awareness Platform
+softline_academy_courses	softline_cloud	it_training_courses	yes	Учебный центр Softline (Авторизованные ИТ- и ИБ-курсы)	open=Открытые сборные группы; corp=Корпоративное обучение под заказчика
+astra_training_courses	astra_group	it_training_courses	yes	Авторизованные курсы и сертификация Astra Linux (AL-1702 / AL-1703)	admin=Базовое и расширенное администрирование Astra Linux; ald=Администрирование ALD Pro / Брест
+basealt_training_courses	basealt	it_training_courses	yes	Авторизованные курсы администрирования ОС Альт (Базальт СПО)	admin=Администрирование ОС Альт (Часть 1 / 2)
+redos_training_courses	red_soft	it_training_courses	yes	Авторизованные курсы администрирования РЕД ОС (РЕД СОФТ)	admin=Администрирование РЕД ОС (Базовый / Продвинутый)
+litres_corporate	litres	ebooks_corporate_lib	yes	Литрес: Библиотека (Корпоративная электронная библиотека)	corp=Литрес: Бизнес-библиотека
+alpina_digital_lib	alpina_digital	ebooks_corporate_lib	yes	Альпина Диджитал (Корпоративная библиотека)	standard=Альпина Диджитал Бизнес
+pixso_design	pixso	ui_ux_web_design	yes	Pixso (UI/UX-дизайн и прототипирование)	pro=Pixso Professional (Cloud); enterprise=Pixso Enterprise (On-Premise)
+movavi_video_suite	movavi	video_editing	yes	Мовавика Видеоредактор / Видеосюита (Movavi)	editor=Мовавика Видео (Видеоредактор); suite=Мовавика Видеосюита (Редактор + Конвертер + Запись экрана); business=Коммерческая лицензия для бизнеса / образования
+movavi_screen_recorder	movavi	video_editing	yes	Мовавика Запись экрана (Movavi Screen Recorder)	business=Бизнес-лицензия
+ams_photomaster	ams_software	raster_photo	yes	ФотоМАСТЕР (AMS Software)	standard=Стандарт; pro=Профи
+ams_videomontage	ams_software	video_editing	yes	ВидеоМОНТАЖ (AMS Software)	pro=Профи / Делюкс
+akvis_suite	akvis	raster_photo	yes	AKVIS (Retoucher / Enhancer / Alchemy — пакет обработки графики)	business=Business (отдельные модули); alchemy=AKVIS Alchemy (полный комплект)
+unigine_engine	unigine	3d_rendering_animation	yes	UNIGINE 2 (3D-движок реального времени и VR-тренажёры)	engineering=UNIGINE 2 Engineering; sim=UNIGINE 2 Sim
+adobe_photoshop	adobe	raster_photo	no	Adobe Photoshop	teams=Photoshop for Teams
+adobe_illustrator	adobe	vector_illustration	no	Adobe Illustrator	teams=Illustrator for Teams
+adobe_indesign	adobe	dtp_publishing	no	Adobe InDesign	teams=InDesign for Teams
+adobe_premiere	adobe	video_editing	no	Adobe Premiere Pro	teams=Premiere Pro for Teams
+adobe_after_effects	adobe	video_editing	no	Adobe After Effects	teams=After Effects for Teams
+adobe_creative_cloud	adobe	raster_photo	no	Adobe Creative Cloud All Apps	teams=Creative Cloud for Teams All Apps; enterprise=Creative Cloud for Enterprise
+coreldraw	corel	vector_illustration	no	CorelDRAW Graphics Suite	suite=CorelDRAW Graphics Suite; technical=CorelDRAW Technical Suite
+figma	figma	ui_ux_web_design	no	Figma (Professional / Organization / Enterprise)	pro=Figma Professional; org=Figma Organization / Enterprise
+autodesk_3ds_max	autodesk	3d_rendering_animation	no	Autodesk 3ds Max	full=3ds Max Commercial
+autodesk_maya	autodesk	3d_rendering_animation	no	Autodesk Maya	full=Maya Commercial
+cinema_4d	maxon	3d_rendering_animation	no	Maxon Cinema 4D	c4d=Cinema 4D / Maxon One
+vray_chaos	chaos_group	3d_rendering_animation	no	Chaos V-Ray / Corona Renderer	vray=V-Ray Solo / Premium; corona=Chaos Corona
+davinci_resolve_studio	blackmagic	video_editing	no	Blackmagic DaVinci Resolve Studio	studio=DaVinci Resolve Studio
+onec_itilium	onec	itsm_service_desk	yes	1С:ITILIUM (ITSM / Service Desk)	standard=1С:ITILIUM Стандарт; prof=1С:ITILIUM ПРОФ; corp=1С:ITILIUM КОРП
+macroscop_vms	macroscop	industry_specialized	yes	Macroscop (IP-видеонаблюдение и видеоаналитика)	ml=Macroscop ML; ls=Macroscop LS; st=Macroscop ST; enterprise=Macroscop Enterprise / Ultra
+trassir_vms	dssl_trassir	industry_specialized	yes	TRASSIR (DSSL — Видеонаблюдение и видеоаналитика)	anyip=TRASSIR AnyIP (подключение IP-камеры); auto=AutoTRASSIR (распознавание номеров); neuro=TRASSIR Neuro / Face / ActivePOS
+axxon_next_vms	axxonsoft	industry_specialized	yes	Axxon One / Интеллект X (ITV / AxxonSoft)	start=Интеллект X Start / Pro; enterprise=Интеллект X Enterprise / PSIM
+infoklinika_mis	infoklinika	industry_specialized	yes	Инфоклиника (МИС для медицинских центров)	cloud=Инфоклиника Cloud; onprem=Инфоклиника On-Premise
+astra_support_pack	astra_group	tech_support	yes	Техническая поддержка Группы Астра (Astra Linux / ALD Pro / Брест)	standard=Стандартный уровень (8x5); privileged=Привилегированный уровень (24x7)
+basealt_support_pack	basealt	tech_support	yes	Техническая поддержка ОС Альт (Базальт СПО)	standard=Стандартная ТП (8x5); extended=Расширенная ТП (24x7)
+redsoft_support_pack	red_soft	tech_support	yes	Техническая поддержка РЕД СОФТ (РЕД ОС / РЕД Виртуализация / РЕД АДМ)	standard=Стандартная ТП; priority=Приоритетная ТП (24x7)
+kaspersky_msa_support	kaspersky	tech_support	yes	Kaspersky Maintenance & Support Agreement (MSA — Премиальная поддержка)	plus=MSA Plus; enterprise=MSA Enterprise (с выделенным TAM)
+postgres_pro_support	postgres_pro	tech_support	yes	Техническая поддержка Postgres Pro и PostgreSQL (24x7)	standard=Стандартная (8x5); extended=Расширенная (24x7)
+softline_managed_support	softline_cloud	tech_support	yes	Премьер-поддержка, ИТ-аудит и импортозамещение под ключ (Softline Services)	support=Мультивендорная ИТ-поддержка 24x7; migration=Пакет миграции и импортозамещения; sam=SAM-аудит программных активов
+ispmanager_panel	ispsystem	industry_specialized	yes	ispmanager 6 (Панель управления веб-сервером и хостингом)	lite=ispmanager 6 lite (до 10 сайтов); pro=ispmanager 6 pro (до 50 сайтов); host=ispmanager 6 host (без ограничений); business=ispmanager 6 business (для хостинг-провайдеров)
+makves_dcap	makves	dlp	yes	Makves DCAP (Аудит неструктурированных данных и прав доступа)	enterprise=Makves DCAP Enterprise
+cyberpeak_spec_dcap	cyberpeak	dlp	yes	Спектр DCAP (Киберпик)	base=Спектр DCAP
+stormwall_ddos	stormwall	waf_appsec	yes	StormWall (Защита от DDoS-атак и облачный WAF)	web=Защита сайтов (L7 + WAF); network=Защита сетей (BGP L3/L4)
+infowatch_arma	infowatch	ot_ics_security	yes	InfoWatch ARMA (Защита АСУ ТП и промышленных сетей)	firewall=ARMA Industrial Firewall; endpoint=ARMA Industrial Endpoint
+bitdefender_gravityzone	bitdefender	endpoint_security	no	Bitdefender GravityZone	business=GravityZone Business Security / Enterprise
+sophos_intercept_x	sophos	endpoint_security	no	Sophos Intercept X / Sophos Firewall	intercept_x=Intercept X Advanced / XDR; firewall=Sophos Firewall (XGS)
+trend_micro_apex_one	trend_micro	endpoint_security	no	Trend Micro Apex One / Vision One	apex=Apex One / Deep Security; vision=Vision One XDR
+qualys_vmdr	qualys	vuln_mgmt_pentest	no	Qualys VMDR (Управление уязвимостями)	vmdr=Qualys VMDR
+cisco_firepower	cisco	ngfw_vpn	no	Cisco Secure Firewall (Firepower / ASA)	ftd=Firepower Threat Defense (FTD); asa=Cisco ASA
+globalsign_ssl	globalsign	ssl_certificates	no	GlobalSign SSL/TLS Certificates	ov=OrganizationSSL (OV / Wildcard)
+kontur_tolk	skb_kontur	vks_webinars	yes	Контур.Толк (ВКС и вебинары)	business=Бизнес / Бизнес Плюс; server=Толк Сервер (On-Premise); webinars=Вебинары (до 10 000 зрителей)
+mts_link_meetings	mts_link	vks_webinars	yes	МТС Линк Встречи (ранее Webinar Meetings)	cloud=Облачная версия; onprem=On-Premise (серверная)
+mts_link_webinars	mts_link	vks_webinars	yes	МТС Линк Вебинары	
+trueconf_server	trueconf	vks_webinars	yes	TrueConf Server	standard=TrueConf Server; enterprise=TrueConf Enterprise (федерация серверов)
+iva_mcu	iva_technologies	vks_webinars	yes	IVA MCU (корпоративная ВКС)	
+iva_one	iva_technologies	uc_platforms	yes	IVA One (суперапп унифицированных коммуникаций)	
+vinteo_mcu	vinteo	vks_webinars	yes	Vinteo (профессиональный сервер ВКС)	
+salute_jazz	sber_jazz	vks_webinars	yes	SaluteJazz (СберДжаз)	cloud=SaluteJazz Облако; onprem=SaluteJazz On-Premise
+dion_vks	t1_dion	vks_webinars	yes	DION (корпоративная ВКС от Холдинга Т1)	
+express_messenger	express_unlimited	corporate_messengers	yes	eXpress (защищённая корпоративная платформа коммуникаций)	
+vk_workspace	vk_tech	uc_platforms	yes	VK WorkSpace (Почта, Teams, Диск, Документы)	cloud=VK WorkSpace SaaS (облако); onprem=VK WorkSpace On-Premise
+vk_teams	vk_tech	corporate_messengers	yes	VK Teams (корпоративный мессенджер и звонки)	
+compass_messenger	compass_chat	corporate_messengers	yes	Compass (корпоративный мессенджер)	
+pachca_messenger	pachca	corporate_messengers	yes	Пачка (корпоративный мессенджер)	
+myoffice_squadus	myoffice	corporate_messengers	yes	Squadus (МойОфис)	
+myoffice_mail	myoffice	mail_servers	yes	МойОфис Почта 2	
+rupost	astra_group	mail_servers	yes	RuPost (почтовый сервер Группы Астра)	
+communigate_pro	communigate	mail_servers	yes	CommuniGate Pro	
+tegu_mail	mbk_lab_tegu	mail_servers	yes	Tegu Enterprise (почтовый сервер)	
+mango_vats	mango_office	ip_telephony	yes	MANGO OFFICE (Виртуальная АТС и Контакт-центр)	
+protei_uc	protei	ip_telephony	yes	ПРОТЕЙ IP-АТС / UC (корпоративная телефония)	
+naumen_contact_center	naumen	ip_telephony	yes	Naumen Contact Center	
+yandex_browser_org	yandex	browsers_network_utils	yes	Яндекс Браузер для организаций (Корпоративная поддержка)	
+unisender	unisender	email_marketing	yes	Unisender (Email-рассылки)	
+mindbox_cdp	mindbox	email_marketing	yes	Mindbox (CDP и автоматизация маркетинга)	
+ms_exchange	microsoft	mail_servers	no	Microsoft Exchange Server	
+ms_sharepoint	microsoft	uc_platforms	no	Microsoft SharePoint Server	
+zoom_workplace	zoom	vks_webinars	no	Zoom Workplace (Pro / Business / Enterprise)	
+slack	slack	corporate_messengers	no	Slack (Pro / Business+ / Enterprise Grid)	
+avaya_aura	avaya	ip_telephony	no	Avaya Aura / IP Office	
+threecx_pbx	threecx	ip_telephony	no	3CX Phone System	
+google_workspace	google	uc_platforms	no	Google Workspace (Business / Enterprise)	
+r7_office	r7_office	office_suite	yes	Р7-Офис (Профессиональный / Корпоративный сервер)	desktop=Профессиональный (Десктоп); corp_server=Корпоративный сервер (Десктоп + Веб); edu=Для образования
+myoffice_standard	myoffice	office_suite	yes	МойОфис Стандартный	standard_2=Стандартный 2 / 3; edu=Образование
+myoffice_professional	myoffice	office_suite	yes	МойОфис Профессиональный	prof=Профессиональный; private_cloud=Частное облако
+yandex_360	yandex	office_suite	yes	Яндекс 360 для бизнеса	basic=Базовый; optimal=Оптимальный; extended=Расширенный
+alteroffice	alteroffice	office_suite	yes	AlterOffice	standard=Стандартный; pro=Профессиональный
+the_bat	ritlabs	email_clients_calendars	yes	The Bat! (Professional / Home)	pro=Professional; home=Home
+sila_union	sila_union	diagramming_mindmaps	yes	SILA Union	
+business_studio	business_studio	diagramming_mindmaps	yes	Business Studio	enterprise=Enterprise; portal=Business Studio Portal
+advanta_pm	advanta	project_planning	yes	Адванта (ИСУП)	
+spider_project	spider_project	project_planning	yes	Spider Project	desktop=Desktop; pro=Professional
+yonote	yonote	whiteboards_notes	yes	Yonote	
+teamly	teamly	whiteboards_notes	yes	Teamly	
+holst_boards	holst	whiteboards_notes	yes	Holst (онлайн-доски)	
+mts_link_boards	mts_link	whiteboards_notes	yes	МТС Линк Доски	
+ms_office	microsoft	office_suite	yes	Microsoft Office (2021 / 2024 / LTSC)	hb=Home and Business (Для дома и бизнеса); pro_plus=Professional Plus / LTSC
+microsoft_365	microsoft	office_suite	no	Microsoft 365 (Business / Enterprise)	business_standard=Business Standard; e3=Enterprise E3 / E5
+ms_visio	microsoft	diagramming_mindmaps	no	Microsoft Visio (Standard / Professional)	standard=Standard; pro=Professional
+ms_project	microsoft	project_planning	no	Microsoft Project (Standard / Professional)	standard=Standard; pro=Professional
+miro	miro	whiteboards_notes	no	Miro (онлайн-доски)	
+notion	notion	whiteboards_notes	no	Notion	
+astra_linux_se	astra_group	desktop_os_ru	yes	Astra Linux Special Edition (1.7 / 1.8)	orel=Базовый (Орёл); voronezh=Усиленный (Воронеж); smolensk=Максимальный (Смоленск); server=Серверная (для серверов)
+alt_workstation	basealt	desktop_os_ru	yes	Альт Рабочая станция (10 / 11)	mate=Альт Рабочая станция (MATE); kde=Альт Рабочая станция К (KDE)
+alt_server	basealt	server_os	yes	Альт Сервер (10 / 11)	
+alt_sp	basealt	desktop_os_ru	yes	Альт 8 / 10 СП (Сертифицированная ФСТЭК)	workstation=Рабочая станция СП; server=Сервер СП
+alt_education	basealt	desktop_os_ru	yes	Альт Образование	
+red_os	red_soft	desktop_os_ru	yes	РЕД ОС (Рабочая станция 7.3 / 8)	standard=Стандартная редакция; fstec=Сертифицированная ФСТЭК
+red_os_server	red_soft	server_os	yes	РЕД ОС Сервер (7.3 / 8)	standard=Стандартная редакция; fstec=Сертифицированная ФСТЭК
+rosa_chrome	rosa_ntc	desktop_os_ru	yes	РОСА Хром / РОСА Кобальт	chrome=РОСА Хром (Рабочая станция / Сервер); cobalt=РОСА Кобальт (ФСТЭК)
+msvsphere_os	softline_msvsphere	server_os	yes	МСВСфера (Инферит ОС)	server=МСВСфера Сервер; arm=МСВСфера АРМ
+osnova_linux	nppkt	desktop_os_ru	yes	ОС «ОСнова»	
+uncom_os	uncom	desktop_os_ru	yes	Uncom OS	
+alteros	alteroffice	desktop_os_ru	yes	AlterOS	
+aurora_os	open_mobile_platform	mobile_os	yes	ОС «Аврора» и Аврора Центр	os=ОС Аврора (лицензия на устройство); center=Аврора Центр (EMM/MDM)
+rosa_mobile	rosa_ntc	mobile_os	yes	РОСА Мобайл	
+windows_11	microsoft	desktop_os_windows	yes	Microsoft Windows 11	pro=Professional (Pro); home=Home (Домашняя)
+windows_10	microsoft	desktop_os_windows	yes	Microsoft Windows 10 (Pro / LTSC)	pro=Professional; ltsc=Enterprise LTSC
+windows_server	microsoft	server_os	yes	Microsoft Windows Server (2022 / 2025 / 2019)	standard=Standard (16 Core); datacenter=Datacenter (16 Core)
+windows_server_cal	microsoft	server_os	yes	Microsoft Windows Server CAL (User / Device)	user_cal=User CAL (на пользователя); device_cal=Device CAL (на устройство)
+windows_server_rds_cal	microsoft	terminal_access	yes	Microsoft Windows Server RDS CAL (терминальные лицензии)	user_rds=RDS User CAL; device_rds=RDS Device CAL
+rhel	red_hat	linux_unix_os	no	Red Hat Enterprise Linux (RHEL)	
+suse_sles	suse	linux_unix_os	no	SUSE Linux Enterprise Server (SLES)	
+ubuntu_pro	canonical	linux_unix_os	no	Ubuntu Pro (Canonical)	
+assistant_remote	safib_assistant	remote_desktop	yes	Ассистент (САФИБ)	standard=Стандартный; pro=Профессиональный; corp=Корпоративный (On-Premise сервер)
+rudesktop	rudesktop	remote_desktop	yes	RuDesktop	standard=Standard (Облако); pro=Professional (On-Premise); uem=RuDesktop UEM (удалённый доступ + управление парком)
+rms_remote	tekton_rms	remote_desktop	yes	RMS — Удалённый доступ (TektonIT)	starter=Начальная; pro=Профессиональная; site=Корпоративная (Site)
+kontur_dostup	skb_kontur	remote_desktop	yes	Контур.Доступ	support=Поддержка (для ИТ-отдела); remote_work=Удалёнка (для сотрудников)
+pro32_connect	pro32	remote_desktop	yes	PRO32 Connect	personal=Персональный / Бизнес; enterprise=Enterprise (On-Premise)
+getscreen_remote	getscreen	remote_desktop	yes	Getscreen.me (удалённый доступ через браузер)	starter=Starter / Optima; selfhosted=Self-Hosted (On-Premise)
+teamviewer	teamviewer	remote_desktop	no	TeamViewer	business=Business; premium=Premium / Corporate
+anydesk	anydesk	remote_desktop	no	AnyDesk	standard=Standard; advanced=Advanced
+kaspersky_kesb	kaspersky	endpoint_security	yes	Kaspersky Endpoint Security для бизнеса	standard=Стандартный; advanced=Расширенный; total=Универсальный
+kaspersky_ksos	kaspersky	endpoint_security	yes	Kaspersky Small Office Security	
+kaspersky_kes_cloud	kaspersky	endpoint_security	yes	Kaspersky Endpoint Security Cloud	base=Cloud; plus=Cloud Plus; pro=Cloud Pro
+kaspersky_symphony_xdr	kaspersky	edr_xdr	yes	Kaspersky Symphony (EDR / XDR)	security=Symphony Security; edr=Symphony EDR; xdr=Symphony XDR
+kaspersky_kata	kaspersky	edr_xdr	yes	Kaspersky Anti Targeted Attack Platform (KATA)	
+kaspersky_kuma	kaspersky	siem_soc	yes	Kaspersky Unified Monitoring and Analysis Platform (KUMA)	
+kaspersky_kics	kaspersky	ot_ics_security	yes	Kaspersky Industrial CyberSecurity (KICS)	nodes=KICS for Nodes; networks=KICS for Networks
+kaspersky_ksmg	kaspersky	mail_security	yes	Kaspersky Secure Mail Gateway	
+kaspersky_standard_home	kaspersky	home_antivirus	yes	Kaspersky Standard / Plus / Premium	standard=Standard; plus=Plus; premium=Premium
+drweb_enterprise_security_suite	drweb	endpoint_security	yes	Dr.Web Enterprise Security Suite	desktop=Защита рабочих станций; server=Защита файловых серверов; mail=Защита почтовых серверов; complex=Комплексная защита
+drweb_small_business	drweb	endpoint_security	yes	Dr.Web Малый бизнес	
+drweb_security_space	drweb	home_antivirus	yes	Dr.Web Security Space	
+pro32_endpoint_security	pro32	endpoint_security	yes	PRO32 Endpoint Security	standard=Standard; advanced=Advanced
+pro32_total_security	pro32	home_antivirus	yes	PRO32 Total Security	total=Total Security; ultimate=Ultimate Security
+pt_maxpatrol_siem	positive_technologies	siem_soc	yes	Positive Technologies MaxPatrol SIEM	
+pt_maxpatrol_vm	positive_technologies	vuln_mgmt_pentest	yes	Positive Technologies MaxPatrol VM	
+pt_maxpatrol_edr	positive_technologies	edr_xdr	yes	Positive Technologies MaxPatrol EDR	
+pt_nad	positive_technologies	edr_xdr	yes	PT Network Attack Discovery (PT NAD)	
+pt_af	positive_technologies	waf_appsec	yes	PT Application Firewall (PT AF)	
+pt_ngfw	positive_technologies	ngfw_vpn	yes	PT NGFW	
+bizone_edr	bi_zone	edr_xdr	yes	BI.ZONE EDR	
+bizone_waf	bi_zone	waf_appsec	yes	BI.ZONE WAF	
+f6_mxdr	f6_security	edr_xdr	yes	F6 Managed XDR	
+security_vision_soar	security_vision	siem_soc	yes	Security Vision SOAR / IRP	irp=IRP / SOAR; sgrc=SGRC
+r_vision_soar	r_vision	siem_soc	yes	R-Vision SOAR / SGRC	soar=R-Vision SOAR; sgrc=R-Vision SGRC
+rusiem	ru_siem	siem_soc	yes	RuSIEM	
+redcheck	redcheck_altex	vuln_mgmt_pentest	yes	RedCheck	standard=Standard; enterprise=Enterprise
+datapk_ics	cyberlimpha	ot_ics_security	yes	DATAPK	
+garda_db	garda_technologies	dlp	yes	Гарда БД (DAM)	
+garda_waf	garda_technologies	waf_appsec	yes	Гарда WAF	
+qrator_ddos	curator_ddos	waf_appsec	yes	Qrator Anti-DDoS & WAF	
+usergate_ngfw	usergate	ngfw_vpn	yes	UserGate NGFW	virtual=Virtual Appliance; hardware=ПАК (серии C/D/E/F)
+continent_ngfw	security_code	ngfw_vpn	yes	АПКШ Континент 4 (NGFW / ГОСТ VPN)	ipc=Континент 4 NGFW; ap=Континент АП (VPN-клиент); tls=Континент TLS VPN
+ideco_ngfw	ideco	ngfw_vpn	yes	Ideco NGFW	smb=SMB / Standard; enterprise=Enterprise
+traffic_inspector_ng	smart_soft	ngfw_vpn	yes	Traffic Inspector Next Generation	
+vipnet_coordinator	infotecs	ngfw_vpn	yes	ViPNet Coordinator HW / VA (NGFW / ГОСТ VPN)	va=Coordinator VA (виртуальный); hw=Coordinator HW (ПАК)
+vipnet_client	infotecs	ngfw_vpn	yes	ViPNet Client	
+s_terra_vpn	ait_s_terra	ngfw_vpn	yes	С-Терра Шлюз / Клиент (ГОСТ VPN)	gate=С-Терра Шлюз; client=С-Терра Клиент
+secret_net_studio	security_code	nsd_access_control	yes	Secret Net Studio	base=Базовая (НСД); full=Полная (с МЭ, СОВ и контролем устройств); c=Secret Net Studio-C (с СКЗИ)
+vgate_security_code	security_code	nsd_access_control	yes	vGate	standard=Standard; enterprise=Enterprise
+sobol_mdz	security_code	nsd_access_control	yes	ПАК «Соболь» (АПМДЗ)	
+dallas_lock	confidant	nsd_access_control	yes	Dallas Lock (СЗИ от НСД)	c=Dallas Lock 8.0-C (конфиденциальная); k=Dallas Lock 8.0-K (гостайна); linux=Dallas Lock Linux
+cryptopro_csp	cryptopro	crypto_skzi	yes	КриптоПро CSP	client=Клиентская (рабочее место); server=Серверная
+cryptopro_dss	cryptopro	e_signature	yes	КриптоПро DSS	
+cryptoarm_gost	trusted_cryptoarm	e_signature	yes	КриптоАРМ ГОСТ	standard=Стандарт; pro=Про
+rutoken_ecp	aktiv_rutoken	tokens_pki	yes	Рутокен ЭЦП 3.0	ecp3=Рутокен ЭЦП 3.0 (USB / Type-C / NFC); lite=Рутокен Lite
+aladdin_jacarta	aladdin_rd	tokens_pki	yes	Токены JaCarta-2 (ГОСТ / PKI / SE)	gost=JaCarta-2 ГОСТ; pki_gost=JaCarta-2 PKI/ГОСТ; se=JaCarta-2 SE (ЕГАИС)
+esmart_token	esmart	tokens_pki	yes	ESMART Token ГОСТ	
+globaltrust_ssl	ucm_globaltrust	ssl_certificates	yes	SSL/TLS-сертификаты для доменов РФ (GlobalTrust)	dv=DV (проверка домена); ov=OV (проверка организации); wildcard=Wildcard (*.domain.ru)
+infowatch_traffic_monitor	infowatch	dlp	yes	InfoWatch Traffic Monitor	
+searchinform_kib	searchinform	dlp	yes	СёрчИнформ КИБ (DLP)	
+searchinform_fileauditor	searchinform	dlp	yes	СёрчИнформ FileAuditor (DCAP)	
+solar_dozor	solar_rt	dlp	yes	Solar Dozor	
+falcongaze_securetower	falcongaze	dlp	yes	Falcongaze SecureTower	
+staffcop_enterprise	staffcop	employee_monitoring	yes	Контур.Staffcop (Staffcop Enterprise)	
+stakhanovets	stakhanovets	employee_monitoring	yes	Стахановец	full=Стахановец (Полный); pro=Стахановец ПРО
+kickidler	kickidler	employee_monitoring	yes	Kickidler	time=Учёт рабочего времени; monitoring=Мониторинг сотрудников
+solar_inrights	solar_rt	iam_pam_mfa	yes	Solar inRights (IdM)	
+avanpost_idm	avanpost	iam_pam_mfa	yes	Avanpost IDM	
+avanpost_fam	avanpost	iam_pam_mfa	yes	Avanpost FAM (SSO / MFA)	
+multifactor_mfa	multifactor	iam_pam_mfa	yes	MULTIFACTOR (2FA / MFA / SSO)	
+indeed_am	indeed_identity	iam_pam_mfa	yes	Indeed Access Manager (AM)	
+indeed_pam	indeed_identity	iam_pam_mfa	yes	Indeed Privileged Access Manager (PAM)	
+skdpu_nt	axoft_skdpu	iam_pam_mfa	yes	СКДПУ НТ (PAM)	
+safeinspect_pam	webcontrol_kryptonit	iam_pam_mfa	yes	SafeInspect (PAM)	
+passwork	passwork	iam_pam_mfa	yes	Пассворк (Passwork)	standard=Стандарт; advanced=Расширенный
+blitz_identity	rebrain_blitz	iam_pam_mfa	yes	Blitz Identity Provider	
+eset_protect	eset	endpoint_security	no	ESET PROTECT (NOD32 Business)	entry=PROTECT Entry; advanced=PROTECT Advanced
+fortigate	fortinet	ngfw_vpn	no	Fortinet FortiGate (NGFW)	
+checkpoint_ngfw	checkpoint	ngfw_vpn	no	Check Point Quantum / NGFW	
+palo_alto_ngfw	palo_alto	ngfw_vpn	no	Palo Alto Networks NGFW (PA-Series / VM-Series)	
+cisco_anyconnect	cisco	ngfw_vpn	no	Cisco Secure Client (AnyConnect VPN)	
+symantec_endpoint_protection	symantec_broadcom	endpoint_security	no	Symantec Endpoint Protection (Broadcom)	
+symantec_dlp	symantec_broadcom	dlp	no	Symantec Data Loss Prevention (DLP)	
+trellix_endpoint_security	trellix_mcafee	endpoint_security	no	Trellix (McAfee) Endpoint Security	
+crowdstrike_falcon	crowdstrike	edr_xdr	no	CrowdStrike Falcon	
+splunk_enterprise	splunk	siem_soc	no	Splunk Enterprise / Enterprise Security	
+ibm_qradar	ibm	siem_soc	no	IBM QRadar SIEM	
+tenable_nessus	tenable	vuln_mgmt_pentest	no	Tenable Nessus / Security Center	
+cyberark_pam	cyberark	iam_pam_mfa	no	CyberArk PAM	
+okta_workforce_identity	okta	iam_pam_mfa	no	Okta Workforce Identity (SSO / MFA)	
+onepassword_business	onepassword	iam_pam_mfa	no	1Password Business	
+digicert_ssl	digicert	ssl_certificates	no	DigiCert SSL / TLS Certificates	
+astra_brest	astra_group	server_virtualization	yes	ПК СВ «Брест»	
+orion_zvirt	orion_soft	server_virtualization	yes	zVirt (Орион софт)	standard=zVirt Standard; max=zVirt Max (с геокластером и расширенной ИБ)
+basis_dynamix	basis_virt	server_virtualization	yes	Basis Dynamix (Базис Динамикс)	standard=Standard; enterprise=Enterprise
+basis_workplace	basis_virt	vdi_desktop_virt	yes	Basis Workplace (VDI)	
+termidesk	astra_group	vdi_desktop_virt	yes	Termidesk (VDI)	
+red_virtualization	red_soft	server_virtualization	yes	РЕД Виртуализация	
+alt_virtualization	basealt	server_virtualization	yes	Альт Сервер Виртуализации	
+rosa_virtualization	rosa_ntc	server_virtualization	yes	РОСА Виртуализация	
+vstack_hcp	vstack_itglobal	server_virtualization	yes	vStack HCP	
+space_vm	space_daac	server_virtualization	yes	SpaceVM (Даком М)	
+space_vdi	space_daac	vdi_desktop_virt	yes	Space VDI (Даком М)	
+vmmanager	ispsystem	server_virtualization	yes	ISPsystem VMmanager	infra=Infrastructure; hosting=Hosting
+deckhouse_k8s	flant	containers_kubernetes	yes	Deckhouse Kubernetes Platform (DKP)	ee=Enterprise Edition; cse=Certified Security Edition (ФСТЭК)
+shturval_k8s	laboratoria_chisl	containers_kubernetes	yes	Платформа контейнеризации «Штурвал»	
+orion_nova	orion_soft	containers_kubernetes	yes	Nova Container Platform (Орион софт)	
+basis_digital_energy	basis_virt	containers_kubernetes	yes	Basis Digital Energy (Kubernetes)	
+ald_pro	astra_group	directory_services	yes	ALD Pro (служба каталогов и управление ПК)	
+red_adm	red_soft	directory_services	yes	РЕД АДМ (служба каталогов)	standard=Стандартная редакция; pro=Промышленная редакция
+alt_domain	basealt	directory_services	yes	Альт Домен	
+colibri_arm	colibri_arm	directory_services	yes	Колибри-АРМ (UEM / аналог SCCM)	
+monq_aiops	monq	monitoring_apm	yes	MONQ (зонтичный мониторинг / AIOps)	
+saymon_monitoring	saymon	monitoring_apm	yes	SAYMON	
+klyuch_astrom	klyuch_astrom	monitoring_apm	yes	Ключ-АСТРОМ (APM / Observability)	
+simpleone_itsm	simpleone	itsm_service_desk	yes	SimpleOne ITSM / ESM	
+naumen_smp	naumen	itsm_service_desk	yes	Naumen Service Management Platform (SMP / ITSM 365)	smp=Naumen SMP (Enterprise On-Premise); itsm365=ITSM 365 (облачный Service Desk)
+inframanager	inframanager	itsm_service_desk	yes	InfraManager (Service Desk & ITAM)	
+angie_pro	web_server_angie	load_balancing_adc	yes	Angie PRO (веб-сервер и балансировщик)	
+wine_etersoft	etersoft	desktop_hypervisors	yes	WINE@Etersoft	local=Local (1 ПК); network=Network / SQL; cad=CAD (для САПР)
+total_network_inventory	softinventive	system_utilities	yes	Total Network Inventory (TNI)	standard=Standard; pro=Professional (с учётом лицензий SAM)
+aida64_business	finalwire	system_utilities	yes	AIDA64 Business / Network Audit	extreme=Extreme; business=Business; network_audit=Network Audit
+vmware_vsphere	vmware_broadcom	server_virtualization	no	VMware vSphere / vCenter (Broadcom)	standard=vSphere Standard; vvf=VMware vSphere Foundation
+vmware_horizon	vmware_broadcom	vdi_desktop_virt	no	VMware Horizon (Omnissa VDI)	
+vmware_workstation	vmware_broadcom	desktop_hypervisors	no	VMware Workstation Pro / Fusion	
+citrix_virtual_apps	citrix	vdi_desktop_virt	no	Citrix Virtual Apps and Desktops (XenApp / XenDesktop)	
+redhat_openshift	red_hat	containers_kubernetes	no	Red Hat OpenShift Container Platform	
+parallels_desktop	parallels	desktop_hypervisors	no	Parallels Desktop for Mac	
+zabbix_support	zabbix	monitoring_apm	no	Zabbix Enterprise Support	
+servicenow_itsm	servicenow	itsm_service_desk	no	ServiceNow ITSM	
+datadog_apm	datadog	monitoring_apm	no	Datadog Infrastructure & APM	
+f5_bigip	f5_networks	load_balancing_adc	no	F5 BIG-IP (ADC / WAF) & NGINX Plus	
