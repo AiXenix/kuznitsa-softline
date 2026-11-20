@@ -1,0 +1,1467 @@
+# Семейства продуктов: Виртуализация, VDI, контейнеры, домены, мониторинг, ITSM, системные утилиты (2026)
+
+- id: astra_brest
+  vendor: astra_group
+  name: "ПК СВ «Брест»"
+  aliases: ["брест", "пк св брест", "астра брест", "astra brest", "виртуализация астра"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Российский сертифицированный ФСТЭК программный комплекс средств виртуализации на базе KVM/OpenNebula и Astra Linux SE."
+  editions: []
+  versions: ["3"]
+  platforms: [linux]
+  compat_ru_os: [astra]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec, mo]
+  use_cases: ["построение защищённой серверной виртуализации в госсекторе и КИИ", "импортозамещение VMware vSphere"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "defense", "enterprise"]
+  formats: []
+  analogs: [orion_zvirt, basis_dynamix, red_virtualization, alt_virtualization, space_vm]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 85000, typical: 160000, high: 320000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ПК СВ Брест 3 Лицензия на 1 физический процессор + 1 год ТП"
+  confidence: high
+
+- id: orion_zvirt
+  vendor: orion_soft
+  name: "zVirt (Орион софт)"
+  aliases: ["zvirt", "звёрт", "зверт", "орион звёрт", "zvirt max"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Ведущая российская среда серверной виртуализации корпоративного класса (замена VMware vSphere, миграция без простоя, сертификат ФСТЭК)."
+  editions:
+    - {id: standard, name: "zVirt Standard", aliases: ["standard"]}
+    - {id: max, name: "zVirt Max (с геокластером и расширенной ИБ)", aliases: ["max", "макс"]}
+  versions: ["4"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["промышленное импортозамещение VMware vSphere/vCenter", "миграция ВМ с ESXi"]
+  roles: [sysadmin, devops]
+  industries: ["finance", "telecom", "enterprise", "gov"]
+  formats: []
+  analogs: [basis_dynamix, astra_brest, red_virtualization, space_vm, vstack_hcp]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 110000, typical: 190000, high: 350000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Платформа виртуализации zVirt 4 Лицензия на 1 сокет + ТП Стандартная 1 год"
+  confidence: high
+
+- id: basis_dynamix
+  vendor: basis_virt
+  name: "Basis Dynamix (Базис Динамикс)"
+  aliases: ["базис динамикс", "basis dynamix", "basis enterprise", "базис виртуализация"]
+  category: server_virtualization
+  extra_categories: [private_cloud_platforms]
+  summary: "Флагманская российская платформа виртуализации и динамической инфраструктуры (ВМ + контейнеры + SDN/SDS) для крупных ЦОД."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["standard"]}
+    - {id: enterprise, name: "Enterprise", aliases: ["enterprise"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [cpu, core]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["замена VMware vSphere и VMware Cloud Foundation в ЦОД", "объединение виртуализации и контейнеров"]
+  roles: [sysadmin, devops]
+  industries: ["enterprise", "telecom", "gov"]
+  formats: []
+  analogs: [orion_zvirt, astra_brest, vstack_hcp, space_vm]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 120000, typical: 210000, high: 380000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Basis Dynamix Enterprise Лицензия на 1 физический процессор 1 год"
+  confidence: high
+
+- id: basis_workplace
+  vendor: basis_virt
+  name: "Basis Workplace (VDI)"
+  aliases: ["базис воркплейс", "basis workplace", "тионикс vdi", "vdi базис"]
+  category: vdi_desktop_virt
+  extra_categories: [terminal_access]
+  summary: "Российская платформа виртуализации рабочих столов (VDI) и терминального доступа для крупных организаций и распределённых команд."
+  editions: []
+  versions: []
+  platforms: [linux, windows, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["виртуальные рабочие столы VDI для сотрудников и подрядчиков", "замена Citrix Virtual Apps and Desktops и VMware Horizon"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [termidesk, space_vdi]
+  replaces: [citrix_virtual_apps, vmware_horizon]
+  price_rub: {unit: user_year, low: 6500, typical: 12000, high: 22000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Basis Workplace VDI 100 конкурентных подключений Подписка 1 год"
+  confidence: high
+
+- id: termidesk
+  vendor: astra_group
+  name: "Termidesk (VDI)"
+  aliases: ["термидеск", "termidesk vdi", "астра vdi"]
+  category: vdi_desktop_virt
+  extra_categories: [terminal_access]
+  summary: "Российский диспетчер виртуальных рабочих столов (VDI) и терминальных сессий от Группы Астра с сертификацией ФСТЭК."
+  editions: []
+  versions: ["5"]
+  platforms: [linux, windows, web, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["развёртывание защищённых виртуальных рабочих мест VDI", "замена Citrix и VMware Horizon"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "finance", "enterprise"]
+  formats: []
+  analogs: [basis_workplace, space_vdi]
+  replaces: [citrix_virtual_apps, vmware_horizon]
+  price_rub: {unit: user, low: 9000, typical: 16500, high: 28000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Termidesk VDI 50 конкурентных подключений + ТП 1 год"
+  confidence: high
+
+- id: red_virtualization
+  vendor: red_soft
+  name: "РЕД Виртуализация"
+  aliases: ["ред виртуализация", "red virtualization", "ред софт виртуализация"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Российская система управления серверной виртуализацией на базе KVM с веб-порталом администрирования и высокой доступностью."
+  editions: []
+  versions: ["7.3"]
+  platforms: [linux]
+  compat_ru_os: [redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение VMware vSphere и Hyper-V в инфраструктуре РЕД ОС"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [orion_zvirt, basis_dynamix, astra_brest, alt_virtualization]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 55000, typical: 95000, high: 180000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "РЕД Виртуализация 7.3 Лицензия на 1 процессор хоста + 1 год ТП"
+  confidence: high
+
+- id: alt_virtualization
+  vendor: basealt
+  name: "Альт Сервер Виртуализации"
+  aliases: ["альт виртуализация", "alt virtualization", "базальт виртуализация"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Российский дистрибутив серверной виртуализации на базе ОС Альт с поддержкой KVM, PVE/OpenNebula и кластеризации."
+  editions: []
+  versions: ["10"]
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["бюджетная российская виртуализация для малого, среднего бизнеса и госсектора"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [red_virtualization, orion_zvirt, astra_brest]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: server, low: 35000, typical: 65000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ОС Альт Сервер Виртуализации 10 Лицензия на 1 физический сервер"
+  confidence: high
+
+- id: rosa_virtualization
+  vendor: rosa_ntc
+  name: "РОСА Виртуализация"
+  aliases: ["роса виртуализация", "rosa virtualization"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Российская платформа корпоративной виртуализации на базе KVM/oVirt от НТЦ ИТ РОСА."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["виртуализация серверов в российской инфраструктуре РОСА"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [orion_zvirt, red_virtualization, astra_brest]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 60000, typical: 110000, high: 190000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "РОСА Виртуализация 2 Лицензия на 1 сокет + 1 год ТП"
+  confidence: high
+
+- id: vstack_hcp
+  vendor: vstack_itglobal
+  name: "vStack HCP"
+  aliases: ["встек", "vstack", "vstack hcp", "в-стек"]
+  category: server_virtualization
+  extra_categories: [sds_storage]
+  summary: "Российская гиперконвергентная платформа виртуализации (вычисления + программно-определяемое хранение + сеть) на базе bhyve/ZFS."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [cpu, core]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["гиперконвергентный ЦОД без дорогой внешней СХД", "замена VMware vSAN и Nutanix"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [basis_dynamix, orion_zvirt, space_vm]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 120000, typical: 220000, high: 400000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "vStack HCP Enterprise Лицензия на 1 процессор 1 год"
+  confidence: high
+
+- id: space_vm
+  vendor: space_daac
+  name: "SpaceVM (Даком М)"
+  aliases: ["спейс вм", "spacevm", "даком spacevm"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Российская платформа серверной виртуализации и построения частных облаков от компании Даком М."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["замена VMware vSphere для корпоративных ЦОД и госсектора"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [orion_zvirt, basis_dynamix, astra_brest]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu, low: 90000, typical: 170000, high: 300000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SpaceVM Enterprise 1 физический процессор + 1 год ТП"
+  confidence: high
+
+- id: space_vdi
+  vendor: space_daac
+  name: "Space VDI (Даком М)"
+  aliases: ["спейс вди", "space vdi", "space client"]
+  category: vdi_desktop_virt
+  extra_categories: []
+  summary: "Российский программный комплекс виртуализации рабочих столов (VDI) с собственным протоколом доставки Glint."
+  editions: []
+  versions: []
+  platforms: [linux, windows, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["виртуальные рабочие места с поддержкой 3D и проброса токенов ЭЦП", "замена Citrix и VMware Horizon"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [termidesk, basis_workplace]
+  replaces: [citrix_virtual_apps, vmware_horizon]
+  price_rub: {unit: user, low: 8000, typical: 15000, high: 26000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Space VDI 100 конкурентных подключений 1 год"
+  confidence: high
+
+- id: vmmanager
+  vendor: ispsystem
+  name: "ISPsystem VMmanager"
+  aliases: ["vmmanager", "вмменеджер", "испсистем vmmanager"]
+  category: server_virtualization
+  extra_categories: [private_cloud_platforms]
+  summary: "Российская платформа управления виртуализацией (KVM/LXD) для корпоративных ИТ-инфраструктур и хостинг-провайдеров."
+  editions:
+    - {id: infra, name: "Infrastructure", aliases: ["infrastructure", "инфра"]}
+    - {id: hosting, name: "Hosting", aliases: ["hosting", "хостинг"]}
+  versions: ["6"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, core]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление кластерами KVM и самообслуживание разработчиков", "замена VMware vCenter для малого/среднего ЦОД"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [orion_zvirt, red_virtualization]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: server_year, low: 45000, typical: 95000, high: 220000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "VMmanager 6 Infrastructure 1 узел кластера на 1 год"
+  confidence: high
+
+- id: deckhouse_k8s
+  vendor: flant
+  name: "Deckhouse Kubernetes Platform (DKP)"
+  aliases: ["декхаус", "deckhouse", "флант deckhouse", "deckhouse k8s", "dkp"]
+  category: containers_kubernetes
+  extra_categories: [server_virtualization]
+  summary: "Ведущая российская сертифицированная платформа Kubernetes (ФСТЭК) для автоматизированного управления контейнерной инфраструктурой и виртуализацией."
+  editions:
+    - {id: ee, name: "Enterprise Edition", aliases: ["ee", "enterprise"]}
+    - {id: cse, name: "Certified Security Edition (ФСТЭК)", aliases: ["cse", "фстэк"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [server, core]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["промышленная оркестрация контейнеров Kubernetes в закрытом контуре", "импортозамещение Red Hat OpenShift и Rancher"]
+  roles: [devops, sysadmin, security_officer]
+  industries: ["finance", "telecom", "retail", "gov"]
+  formats: []
+  analogs: [shturval_k8s, orion_nova, basis_digital_energy]
+  replaces: [redhat_openshift]
+  price_rub: {unit: server_year, low: 150000, typical: 320000, high: 750000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Deckhouse Kubernetes Platform Enterprise Edition 10 узлов 1 год"
+  confidence: high
+
+- id: shturval_k8s
+  vendor: laboratoria_chisl
+  name: "Платформа контейнеризации «Штурвал»"
+  aliases: ["штурвал", "shturval", "штурвал k8s", "лаборатория числитель"]
+  category: containers_kubernetes
+  extra_categories: []
+  summary: "Российская корпоративная платформа управления кластерами Kubernetes с веб-интерфейсом, мультикластерностью и контролем безопасности."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Red Hat OpenShift и SUSE Rancher"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: [deckhouse_k8s, orion_nova, basis_digital_energy]
+  replaces: [redhat_openshift]
+  price_rub: {unit: server_year, low: 120000, typical: 260000, high: 600000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Штурвал Enterprise 10 узлов Подписка 1 год"
+  confidence: high
+
+- id: orion_nova
+  vendor: orion_soft
+  name: "Nova Container Platform (Орион софт)"
+  aliases: ["nova k8s", "орион nova", "nova container platform"]
+  category: containers_kubernetes
+  extra_categories: []
+  summary: "Российская платформа контейнеризации корпоративного класса от Орион софт (интеграция с zVirt)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение OpenShift в инфраструктуре zVirt"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: [deckhouse_k8s, shturval_k8s]
+  replaces: [redhat_openshift]
+  price_rub: {unit: server_year, low: 120000, typical: 250000, high: 550000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Nova Container Platform 10 узлов 1 год"
+  confidence: high
+
+- id: basis_digital_energy
+  vendor: basis_virt
+  name: "Basis Digital Energy (Kubernetes)"
+  aliases: ["базис диджитал энерджи", "digital energy", "basis k8s"]
+  category: containers_kubernetes
+  extra_categories: []
+  summary: "Российская платформа оркестрации контейнеров Kubernetes в экосистеме Базис."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["развёртывание микросервисов в защищённом контуре", "замена OpenShift"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: [deckhouse_k8s, shturval_k8s]
+  replaces: [redhat_openshift]
+  price_rub: {unit: server_year, low: 120000, typical: 260000, high: 600000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Basis Digital Energy 10 узлов Подписка 1 год"
+  confidence: high
+
+- id: ald_pro
+  vendor: astra_group
+  name: "ALD Pro (служба каталогов и управление ПК)"
+  aliases: ["алд про", "ald pro", "контроллер домена астра", "аналог active directory астра"]
+  category: directory_services
+  extra_categories: []
+  summary: "Российский программный комплекс централизованного управления ИТ-инфраструктурой, групповыми политиками и доменом на базе Astra Linux — замена Microsoft Active Directory."
+  editions: []
+  versions: ["2"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение Microsoft Active Directory и групповых политик (GPO)", "централизованное развёртывание ОС и ПО на Linux-парке"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "enterprise"]
+  formats: []
+  analogs: [red_adm, alt_domain, colibri_arm]
+  replaces: [windows_server]
+  price_rub: {unit: device, low: 3500, typical: 6500, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ALD Pro Лицензия на 1 управляемое устройство (бессрочная + 1 год ТП)"
+  confidence: high
+
+- id: red_adm
+  vendor: red_soft
+  name: "РЕД АДМ (служба каталогов)"
+  aliases: ["ред адм", "red adm", "контроллер домена ред софт"]
+  category: directory_services
+  extra_categories: []
+  summary: "Российская служба каталогов и управления парком ПК (Windows + Linux) от РЕД СОФТ — замена Microsoft Active Directory."
+  editions:
+    - {id: standard, name: "Стандартная редакция", aliases: ["стандарт"]}
+    - {id: pro, name: "Промышленная редакция", aliases: ["промышленная", "enterprise"]}
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [redos, astra, alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["управление гетерогенным доменом (Windows + РЕД ОС)", "миграция с Active Directory"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [ald_pro, alt_domain, colibri_arm]
+  replaces: [windows_server]
+  price_rub: {unit: device, low: 2500, typical: 4800, high: 9500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "РЕД АДМ Промышленная редакция Лицензия на 100 управляемых хостов"
+  confidence: high
+
+- id: alt_domain
+  vendor: basealt
+  name: "Альт Домен"
+  aliases: ["альт домен", "alt domain", "базальт домен", "gpui альт"]
+  category: directory_services
+  extra_categories: []
+  summary: "Решение Базальт СПО на базе Samba DC и GPUI для построения домена и управления групповыми политиками (аналог Active Directory)."
+  editions: []
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server, device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["миграция с Active Directory на Samba DC с сохранением групповых политик"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [ald_pro, red_adm]
+  replaces: [windows_server]
+  price_rub: {unit: server, low: 25000, typical: 48000, high: 90000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Альт Домен Лицензия на сервер контроллера домена + 1 год ТП"
+  confidence: high
+
+- id: colibri_arm
+  vendor: colibri_arm
+  name: "Колибри-АРМ (UEM / аналог SCCM)"
+  aliases: ["колибри", "колибри-арм", "колибри арм", "colibri arm", "аналог sccm"]
+  category: directory_services
+  extra_categories: []
+  summary: "Российская система централизованного управления парком рабочих станций, установки ОС/ПО, инвентаризации и патчинга (аналог Microsoft SCCM/MECM)."
+  editions: []
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизированная миграция парка ПК с Windows на Linux", "замена Microsoft SCCM / MECM"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [ald_pro, red_adm, rudesktop]
+  replaces: [windows_server]
+  price_rub: {unit: device_year, low: 1800, typical: 3200, high: 6000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Колибри-АРМ Управление 250 рабочими станциями 1 год"
+  confidence: high
+
+- id: monq_aiops
+  vendor: monq
+  name: "MONQ (зонтичный мониторинг / AIOps)"
+  aliases: ["монк", "monq", "monq aiops", "зонтичный мониторинг monq"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Российская AIOps-платформа зонтичного мониторинга ИТ-инфраструктуры, корреляции алертов и расчёта доступности бизнес-сервисов (РСМ)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["зонтичный мониторинг поверх Zabbix/Prometheus и контроль SLA бизнес-систем"]
+  roles: [sysadmin, devops]
+  industries: ["finance", "telecom", "retail"]
+  formats: []
+  analogs: [saymon_monitoring, klyuch_astrom]
+  replaces: [datadog_apm, zabbix_support]
+  price_rub: {unit: other, low: 1500000, typical: 4500000, high: 15000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "MONQ Enterprise Зонтичный мониторинг до 500 КЕ 1 год"
+  confidence: high
+
+- id: saymon_monitoring
+  vendor: saymon
+  name: "SAYMON"
+  aliases: ["сэймон", "сеймон", "saymon мониторинг"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Российская платформа мониторинга и управления ИТ-, телеком- и промышленной инфраструктурой с ресурсными моделями."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["мониторинг серверов, сетевого оборудования и ЦОД (импортозамещение Zabbix/Micro Focus)"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [monq_aiops, klyuch_astrom]
+  replaces: [zabbix_support, datadog_apm]
+  price_rub: {unit: other, low: 600000, typical: 1800000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SAYMON Базовая лицензия (до 1000 объектов мониторинга) 1 год"
+  confidence: high
+
+- id: klyuch_astrom
+  vendor: klyuch_astrom
+  name: "Ключ-АСТРОМ (APM / Observability)"
+  aliases: ["ключ астром", "ключ-астром", "астром apm", "аналог dynatrace"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Российская платформа глубокого мониторинга производительности приложений (APM) и цифровой наблюдаемости (аналог Dynatrace/Datadog)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [server, other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["трассировка микросервисов и поиск узких мест в приложениях (APM)", "замена Dynatrace и Datadog"]
+  roles: [devops, developer, sysadmin]
+  industries: ["finance", "telecom", "retail"]
+  formats: []
+  analogs: [monq_aiops, saymon_monitoring]
+  replaces: [datadog_apm]
+  price_rub: {unit: server_year, low: 90000, typical: 180000, high: 400000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Ключ-АСТРОМ APM Full-Stack 20 хостов 1 год"
+  confidence: high
+
+- id: simpleone_itsm
+  vendor: simpleone
+  name: "SimpleOne ITSM / ESM"
+  aliases: ["симплван", "simpleone", "simpleone itsm", "simpleone esm", "аналог servicenow"]
+  category: itsm_service_desk
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Российская Enterprise-платформа автоматизации ИТ-услуг (ITSM) и сервисных процессов (ESM) с low-code конструктором — замена ServiceNow."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративный Service Desk, CMDB и управление инцидентами по ITIL", "импортозамещение ServiceNow и Jira Service Management"]
+  roles: [sysadmin, manager]
+  industries: ["enterprise", "finance", "telecom"]
+  formats: []
+  analogs: [naumen_smp, inframanager, onec_itilium]
+  replaces: [servicenow_itsm]
+  price_rub: {unit: user_year, low: 45000, typical: 85000, high: 160000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "SimpleOne ITSM Платформа + 25 именованных агентов 1 год"
+  confidence: high
+
+- id: naumen_smp
+  vendor: naumen
+  name: "Naumen Service Management Platform (SMP / ITSM 365)"
+  aliases: ["наумен", "naumen smp", "naumen service desk", "itsm 365", "наумен хелпдеск"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Ведущая российская система класса Service Desk / ITSM / ESM (on-premise Naumen SMP и облачная ITSM 365) для учёта заявок, SLA и ИТ-активов."
+  editions:
+    - {id: smp, name: "Naumen SMP (Enterprise On-Premise)", aliases: ["smp", "on-premise"]}
+    - {id: itsm365, name: "ITSM 365 (облачный Service Desk)", aliases: ["itsm 365", "облако"]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация службы техподдержки, CMDB и учёта SLA", "замена ServiceNow и Jira Service Management"]
+  roles: [sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [simpleone_itsm, inframanager, onec_itilium]
+  replaces: [servicenow_itsm]
+  price_rub: {unit: user_year, low: 25000, typical: 55000, high: 120000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Naumen Service Desk 20 конкурентных лицензий специалистов 1 год"
+  confidence: high
+
+- id: inframanager
+  vendor: inframanager
+  name: "InfraManager (Service Desk & ITAM)"
+  aliases: ["инфраменеджер", "inframanager", "infra manager", "учет ит активов инфраменеджер"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Российская система управления ИТ-услугами (Service Desk) и глубокого учёта ИТ-активов, лицензий ПО и оборудования (ITAM/SAM)."
+  editions: []
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["инвентаризация компьютеров, лицензий ПО и обработка заявок Service Desk"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [naumen_smp, simpleone_itsm, total_network_inventory]
+  replaces: [servicenow_itsm]
+  price_rub: {unit: other, low: 350000, typical: 950000, high: 3000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "InfraManager Service Desk + ITAM 10 конкурентных лицензий"
+  confidence: high
+
+- id: angie_pro
+  vendor: web_server_angie
+  name: "Angie PRO (веб-сервер и балансировщик)"
+  aliases: ["анжи про", "энджи про", "angie pro", "российский nginx", "балансировщик angie"]
+  category: load_balancing_adc
+  extra_categories: []
+  summary: "Российский высокопроизводительный веб-сервер, обратный прокси и балансировщик нагрузки (ADC) от бывших разработчиков NGINX."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos, msvsphere]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["балансировка веб-трафика и замена NGINX Plus / F5 BIG-IP / Citrix ADC"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: [f5_bigip]
+  price_rub: {unit: server_year, low: 140000, typical: 280000, high: 600000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Angie PRO Подписка на 1 инстанс 1 год (с техподдержкой)"
+  confidence: high
+
+- id: wine_etersoft
+  vendor: etersoft
+  name: "WINE@Etersoft"
+  aliases: ["вайн этерсофт", "wine@etersoft", "wine etersoft", "запуск windows программ на linux"]
+  category: desktop_hypervisors
+  extra_categories: [system_utilities]
+  summary: "Российская коммерческая среда запуска Windows-приложений (1С, КонсультантПлюс, ГАРАНТ, сметные программы, САПР) на российских Linux."
+  editions:
+    - {id: local, name: "Local (1 ПК)", aliases: ["local"]}
+    - {id: network, name: "Network / SQL", aliases: ["network", "sql"]}
+    - {id: cad, name: "CAD (для САПР)", aliases: ["cad", "сапр"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["запуск Windows-программ (ГРАНД-Смета, КонсультантПлюс, старые учётки) на Astra Linux / РЕД ОС / Альт"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: [parallels_desktop, vmware_workstation]
+  price_rub: {unit: device, low: 3500, typical: 6500, high: 18000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "WINE@Etersoft Local Лицензия на 1 рабочее место (ESD)"
+  confidence: high
+
+- id: total_network_inventory
+  vendor: softinventive
+  name: "Total Network Inventory (TNI)"
+  aliases: ["tni", "total network inventory", "инвентаризация сети tni"]
+  category: system_utilities
+  extra_categories: [itsm_service_desk]
+  summary: "Инструмент автоматического аудита и инвентаризации компьютеров, серверов, сетевых устройств и установленных лицензий ПО в локальной сети."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["standard"]}
+    - {id: pro, name: "Professional (с учётом лицензий SAM)", aliases: ["pro"]}
+  versions: ["6"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: ["25", "50", "100", "250", "500", "1000+"]
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["быстрая инвентаризация железа и софта в сети без агентов"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [inframanager, aida64_business]
+  replaces: []
+  price_rub: {unit: other, low: 15000, typical: 45000, high: 180000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Total Network Inventory 6 Professional 100 узлов (ESD)"
+  confidence: high
+
+- id: aida64_business
+  vendor: finalwire
+  name: "AIDA64 Business / Network Audit"
+  aliases: ["aida64", "аида64", "аида 64", "aida64 extreme", "aida64 business"]
+  category: system_utilities
+  extra_categories: []
+  summary: "Популярная утилита диагностики оборудования, стресс-тестирования и сетевого аудита рабочих станций Windows."
+  editions:
+    - {id: extreme, name: "Extreme", aliases: ["extreme"]}
+    - {id: business, name: "Business", aliases: ["business"]}
+    - {id: network_audit, name: "Network Audit", aliases: ["network audit"]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100+"]
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["диагностика комплектующих ПК и аудит железа в корпоративной сети"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [total_network_inventory]
+  replaces: []
+  price_rub: {unit: other, low: 6000, typical: 28000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "AIDA64 Business 10 ПК 1 год (ESD)"
+  confidence: high
+
+# ============================================================================
+# УШЕДШИЕ ЗАРУБЕЖНЫЕ ПРОДУКТЫ ВИРТУАЛИЗАЦИИ И ИНФРАСТРУКТУРЫ (catalog: no)
+# ============================================================================
+
+- id: vmware_vsphere
+  vendor: vmware_broadcom
+  name: "VMware vSphere / vCenter (Broadcom)"
+  aliases: ["vmware", "вмваре", "вмварь", "vsphere", "всфера", "esxi", "vcenter", "vmware cloud foundation"]
+  category: server_virtualization
+  extra_categories: [private_cloud_platforms]
+  summary: "Зарубежная платформа серверной виртуализации (официально ушла из РФ; ключевой объект импортозамещения на zVirt, Basis Dynamix, Брест, SpaceVM)."
+  editions:
+    - {id: standard, name: "vSphere Standard", aliases: ["standard"]}
+    - {id: vvf, name: "VMware vSphere Foundation", aliases: ["vvf", "enterprise plus"]}
+  versions: ["8", "7"]
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение VMware vSphere/ESXi"]
+  roles: [sysadmin]
+  industries: []
+  formats: ["ova", "vmdk"]
+  analogs: [orion_zvirt, basis_dynamix, astra_brest, space_vm, red_virtualization, vstack_hcp]
+  replaces: []
+  price_rub: {unit: core_year, low: 12000, typical: 25000, high: 55000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "VMware vSphere Foundation 16 Cores 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: vmware_horizon
+  vendor: vmware_broadcom
+  name: "VMware Horizon (Omnissa VDI)"
+  aliases: ["vmware horizon", "вмваре хорайзон", "horizon vdi"]
+  category: vdi_desktop_virt
+  extra_categories: []
+  summary: "Зарубежная платформа VDI (недоступна в РФ; замещается Termidesk, Basis Workplace, Space VDI)."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение VMware Horizon VDI"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [termidesk, basis_workplace, space_vdi]
+  replaces: []
+  price_rub: {unit: user_year, low: 15000, typical: 28000, high: 50000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "VMware Horizon Standard 100 CCU 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: vmware_workstation
+  vendor: vmware_broadcom
+  name: "VMware Workstation Pro / Fusion"
+  aliases: ["vmware workstation", "vmware fusion", "воркстейшн"]
+  category: desktop_hypervisors
+  extra_categories: []
+  summary: "Десктопный гипервизор для Windows/Linux/macOS (коммерческие продажи в РФ прекращены)."
+  editions: []
+  versions: ["17"]
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["запуск локальных виртуальных машин на ноутбуке разработчика"]
+  roles: [developer, qa_engineer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [wine_etersoft]
+  replaces: []
+  price_rub: {unit: device, low: 15000, typical: 22000, high: 30000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "VMware Workstation 17 Pro (не поставляется в РФ)"
+  confidence: high
+
+- id: citrix_virtual_apps
+  vendor: citrix
+  name: "Citrix Virtual Apps and Desktops (XenApp / XenDesktop)"
+  aliases: ["citrix", "цитрикс", "ситрикс", "xenapp", "xendesktop", "citrix vdi"]
+  category: vdi_desktop_virt
+  extra_categories: [terminal_access]
+  summary: "Зарубежная платформа VDI и доставки приложений (ушла из РФ; замещается Termidesk, Basis Workplace, Space VDI)."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Citrix VDI и XenApp"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [termidesk, basis_workplace, space_vdi]
+  replaces: []
+  price_rub: {unit: user_year, low: 18000, typical: 32000, high: 60000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Citrix Virtual Apps and Desktops Advanced 100 Users 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: redhat_openshift
+  vendor: red_hat
+  name: "Red Hat OpenShift Container Platform"
+  aliases: ["openshift", "опеншифт", "red hat openshift", "ocp"]
+  category: containers_kubernetes
+  extra_categories: []
+  summary: "Зарубежная корпоративная платформа Kubernetes (ушла из РФ; замещается Deckhouse, Штурвал, Nova, Basis Digital Energy)."
+  editions: []
+  versions: ["4"]
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Red Hat OpenShift"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: [deckhouse_k8s, shturval_k8s, orion_nova, basis_digital_energy]
+  replaces: []
+  price_rub: {unit: server_year, low: 300000, typical: 650000, high: 1500000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Red Hat OpenShift Container Platform 2-Core Standard 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: parallels_desktop
+  vendor: parallels
+  name: "Parallels Desktop for Mac"
+  aliases: ["parallels desktop", "параллелс десктоп", "parallels mac"]
+  category: desktop_hypervisors
+  extra_categories: []
+  summary: "Зарубежный гипервизор для запуска Windows на компьютерах Mac (официальные продажи в РФ прекращены)."
+  editions: []
+  versions: ["20"]
+  platforms: [macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["запуск 1С и Windows-программ на MacBook"]
+  roles: [director, designer, developer]
+  industries: []
+  formats: []
+  analogs: [wine_etersoft]
+  replaces: []
+  price_rub: {unit: device_year, low: 10000, typical: 15000, high: 22000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Parallels Desktop Business Edition 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: zabbix_support
+  vendor: zabbix
+  name: "Zabbix Enterprise Support"
+  aliases: ["zabbix", "заббикс", "забикс", "zabbix support"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Коммерческая техподдержка Zabbix SIA (официальная поддержка вендора в РФ остановлена; сам Open Source доступен, для комплаенса заменяется SAYMON / MONQ)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12]
+    actions: [support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["замена Zabbix на реестровые системы мониторинга РФ"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [saymon_monitoring, monq_aiops]
+  replaces: []
+  price_rub: {unit: other, low: 450000, typical: 1200000, high: 4000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Zabbix Enterprise Technical Support 1 Year (недоступно от вендора в РФ)"
+  confidence: high
+
+- id: servicenow_itsm
+  vendor: servicenow
+  name: "ServiceNow ITSM"
+  aliases: ["servicenow", "сервиснау", "service now"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Зарубежная облачная ITSM/ESM-платформа (ушла из РФ; замещается SimpleOne и Naumen SMP)."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение ServiceNow"]
+  roles: [sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, inframanager]
+  replaces: []
+  price_rub: {unit: user_year, low: 100000, typical: 180000, high: 350000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "ServiceNow ITSM Standard Fulfiller User 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: datadog_apm
+  vendor: datadog
+  name: "Datadog Infrastructure & APM"
+  aliases: ["datadog", "датадог", "datadog apm"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Зарубежная облачная платформа наблюдаемости и APM (недоступна юрлицам РФ; замещается Ключ-АСТРОМ, MONQ, SAYMON)."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Datadog и Dynatrace"]
+  roles: [devops, developer]
+  industries: []
+  formats: []
+  analogs: [klyuch_astrom, monq_aiops, saymon_monitoring]
+  replaces: []
+  price_rub: {unit: server_year, low: 35000, typical: 85000, high: 200000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Datadog APM + Infrastructure Pro 1 Host 1 Year (недоступен в РФ)"
+  confidence: high
+
+- id: f5_bigip
+  vendor: f5_networks
+  name: "F5 BIG-IP (ADC / WAF) & NGINX Plus"
+  aliases: ["f5", "big-ip", "биг айпи", "f5 big-ip", "nginx plus"]
+  category: load_balancing_adc
+  extra_categories: [waf_appsec]
+  summary: "Зарубежные аппаратные/виртуальные балансировщики нагрузки F5 BIG-IP и NGINX Plus (ушли из РФ; замещаются Angie PRO, PT AF, Гарда WAF)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, media]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение F5 BIG-IP и NGINX Plus"]
+  roles: [devops, sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [angie_pro, pt_af, garda_waf]
+  replaces: []
+  price_rub: {unit: other, low: 500000, typical: 2000000, high: 12000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "F5 BIG-IP Virtual Edition 1 Gbps Best Bundle 1 Year (не поставляется в РФ)"
+  confidence: high

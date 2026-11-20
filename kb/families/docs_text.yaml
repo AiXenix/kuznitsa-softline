@@ -1,0 +1,574 @@
+# Семейства продуктов: Работа с PDF, OCR/распознавание документов, переводчики, шрифты и речевые технологии
+# Схема: kb/SCHEMA.md
+
+- id: contentreader_pdf
+  vendor: content_ai
+  name: "КонтентРидер PDF (ContentReader PDF)"
+  aliases: ["contentreader", "contentreader pdf", "контентридер", "контент ридер", "российский finereader", "новый finereader", "content ai pdf", "файл ридер рф"]
+  category: pdf_editors
+  extra_categories: [ocr_capture]
+  summary: "Российский редактор PDF и система оптического распознавания текста (OCR) от Content AI — прямой технологический преемник ABBYY FineReader PDF в России."
+  editions:
+    - {id: standard, name: "ContentReader PDF Standard", aliases: [standard, стандарт]}
+    - {id: corporate, name: "ContentReader PDF Corporate (сравнение документов и пакетная обработка)", aliases: [corporate, корп]}
+  versions: ["15"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, upgrade]
+    bands: ["1-4", "5-10", "11-25", "26-50", "51-100"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["распознавание сканов pdf в word и excel", "редактирование и подписание pdf-документов", "сравнение версий договоров", "импортозамещение abbyy finereader и adobe acrobat"]
+  roles: [legal, office_worker, accountant, sysadmin]
+  industries: [smb, mid, enterprise, gov, finance, legal]
+  formats: [pdf, docx, xlsx, tiff, jpg]
+  analogs: [master_pdf_editor, contentcapture]
+  replaces: [abbyy_finereader, adobe_acrobat, foxit_pdf_editor]
+  price_rub: {unit: seat_year, low: 8500, typical: 16000, high: 35000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ContentReader PDF 15 Standard. Подписка на 1 рабочее место (12 мес)"
+    - "ContentReader PDF 15 Corporate. Бессрочная конкурентная лицензия"
+  confidence: high
+
+- id: contentcapture
+  vendor: content_ai
+  name: "ContentCapture (потоковый ввод и IDP)"
+  aliases: ["contentcapture", "контенткэпчер", "контент капчер", "content ai capture", "российский flexicapture", "потоковое распознавание content ai"]
+  category: ocr_capture
+  extra_categories: []
+  summary: "Корпоративная российская платформа потокового ввода, классификации и интеллектуального извлечения данных из первичных документов (наследник ABBYY FlexiCapture)."
+  editions:
+    - {id: standard, name: "ContentCapture Standard / Distributed", aliases: [standard, distributed]}
+    - {id: invoices, name: "Модуль распознавания счетов и УПД", aliases: [invoices, упд, первичка]}
+  versions: []
+  platforms: [windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["потоковое распознавание упд актов счетов-фактур в 1с и сэд", "импортозамещение abbyy flexicapture", "интеллектуальная обработка анкет и договоров idp"]
+  roles: [it_director, accountant, business_analyst]
+  industries: [enterprise, finance, retail, logistics, gov]
+  formats: [pdf, tiff, jpg, xml, json]
+  analogs: [smart_id_engine, dbrain_ocr]
+  replaces: [abbyy_finereader]
+  price_rub: {unit: company_year, low: 350000, typical: 950000, high: 3500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ContentCapture Enterprise (пакет 300 000 страниц в год)"
+  confidence: high
+
+- id: master_pdf_editor
+  vendor: code_industry
+  name: "Master PDF Editor (Редактор PDF)"
+  aliases: ["master pdf", "master pdf editor", "мастер пдф", "мастер pdf", "редактор pdf на linux", "code industry pdf"]
+  category: pdf_editors
+  extra_categories: []
+  summary: "Популярный кроссплатформенный российский PDF-редактор для Windows, macOS и отечественных ОС Linux (Astra, Альт, РЕД ОС) с поддержкой криптоподписей ГОСТ."
+  editions:
+    - {id: pro, name: "Master PDF Editor (Коммерческая лицензия)", aliases: [pro, коммерческая]}
+  versions: ["5"]
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: ["1-9", "10-49", "50-99", "100+"]
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["редактирование текста и страниц pdf на astra linux и windows", "подписание pdf-документов эцп криптопро", "импортозамещение adobe acrobat pro и foxit"]
+  roles: [office_worker, legal, sysadmin]
+  industries: [smb, mid, enterprise, gov, edu]
+  formats: [pdf, xps]
+  analogs: [contentreader_pdf]
+  replaces: [adobe_acrobat, foxit_pdf_editor]
+  price_rub: {unit: device, low: 4500, typical: 6900, high: 9500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Master PDF Editor 5. Бессрочная лицензия на 1 рабочее место (Linux/Windows)"
+    - "Master PDF Editor 5 (10-49 лицензий)"
+  confidence: high
+
+- id: smart_id_engine
+  vendor: smart_engines
+  name: "Smart ID Engine / Smart Document Engine (Smart Engines)"
+  aliases: ["smart engines", "смарт энджинс", "smart id engine", "smart document engine", "распознавание паспортов рф"]
+  category: ocr_capture
+  extra_categories: []
+  summary: "Российский ИИ-движок сверхбыстрого локального распознавания паспортов, СНИЛС, ИНН, водительских прав, карт и первичных бухгалтерских документов без передачи данных в облако."
+  editions:
+    - {id: id_engine, name: "Smart ID Engine (документы удостоверяющие личность)", aliases: [id, паспорта]}
+    - {id: doc_engine, name: "Smart Document Engine (первичные и деловые документы)", aliases: [document, первичка]}
+  versions: []
+  platforms: [linux, windows, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматическое распознавание паспортов и снилс в банках и клиниках", "распознавание первичных документов на сервере заказчика", "проверка подлинности документов с ии"]
+  roles: [developer, it_director, security_officer]
+  industries: [finance, telecom, healthcare, transport, gov, retail]
+  formats: [jpg, png, pdf, tiff]
+  analogs: [contentcapture, dbrain_ocr]
+  replaces: [abbyy_finereader]
+  price_rub: {unit: company_year, low: 300000, typical: 850000, high: 2800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Smart ID Engine SDK. Годовая серверная лицензия"
+  confidence: high
+
+- id: dbrain_ocr
+  vendor: dbrain
+  name: "Dbrain (ИИ-распознавание документов)"
+  aliases: ["dbrain", "дибрейн", "дбрейн", "dbrain ocr", "dbrain idp"]
+  category: ocr_capture
+  extra_categories: [ml_platforms_cv]
+  summary: "Российская нейросетевая платформа для автоматического распознавания и верификации паспортов, накладных, счетов-фактур и неструктурированных документов."
+  editions:
+    - {id: cloud, name: "Dbrain Cloud API", aliases: [cloud, api]}
+    - {id: onprem, name: "Dbrain On-Premise", aliases: [onprem]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["распознавание первички и паспортов через api", "автоматизация бэк-офиса и банковского комплаенса"]
+  roles: [it_director, developer, business_analyst]
+  industries: [finance, logistics, retail, insurance]
+  formats: [pdf, jpg, png, json]
+  analogs: [smart_id_engine, contentcapture]
+  replaces: [abbyy_finereader]
+  price_rub: {unit: company_year, low: 240000, typical: 600000, high: 1800000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Dbrain On-Premise. Лицензия на 100 000 документов в год"
+  confidence: high
+
+- id: promt_translation
+  vendor: promt
+  name: "PROMT (Neural Translation Server / Professional NMT)"
+  aliases: ["promt", "промт", "переводчик промт", "promt neural", "promt professional", "promt translation server", "российский deepl"]
+  category: translation_dictionaries
+  extra_categories: []
+  summary: "Ведущая российская система нейронного машинного перевода (NMT) с возможностью полностью автономного развёртывания в закрытом контуре без интернета."
+  editions:
+    - {id: pro, name: "PROMT Professional NMT (настольный)", aliases: [pro, professional, desktop]}
+    - {id: server, name: "PROMT Neural Translation Server (PTS)", aliases: [server, pts, корп]}
+  versions: ["23", "24"]
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server, user]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["безопасный корпоративный перевод документов в закрытом контуре", "импортозамещение deepl и google translate", "перевод технической документации с отраслевыми глоссариями"]
+  roles: [translator, legal, office_worker, security_officer]
+  industries: [enterprise, oil_gas, manufacturing, gov, legal, finance]
+  formats: [docx, pdf, xlsx, pptx, xml]
+  analogs: []
+  replaces: [deepl_pro, abbyy_lingvo]
+  price_rub: {unit: seat, low: 14000, typical: 32000, high: 450000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "PROMT Professional NMT 24 (локальная лицензия на 1 ПК)"
+    - "PROMT Neural Translation Server 24 (корпоративная серверная лицензия)"
+  confidence: high
+
+- id: paratype_fonts
+  vendor: paratype
+  name: "Шрифты ПараТайп (ParaType Corporate / Astra Sans / PT)"
+  aliases: ["паратайп", "paratype", "шрифты paratype", "лицензия на шрифты", "российские шрифты замена times new roman", "pt astra"]
+  category: text_editors
+  extra_categories: [dtp_publishing]
+  summary: "Коммерческие лицензии на кириллические шрифты ПараТайп для десктопов, веб-сайтов, мобильных приложений и корпоративного брендинга (замена западных шрифтов Monotype)."
+  editions:
+    - {id: desktop, name: "Desktop-лицензия", aliases: [desktop, рабочие места]}
+    - {id: web, name: "Web / App / Corporate-лицензия", aliases: [web, app, корп]}
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, company]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 5, 10, 50]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["легальное лицензирование шрифтов для бренда и рекламы", "импортозамещение шрифтов monotype times new roman и arial", "веб-шрифты для корпоративных порталов"]
+  roles: [graphic_designer, marketing_manager, legal]
+  industries: [marketing, media, finance, enterprise, gov]
+  formats: [otf, ttf, woff2]
+  analogs: []
+  replaces: []
+  price_rub: {unit: pack, low: 5000, typical: 35000, high: 250000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ПараТайп. Гарнитура шрифта (Desktop-лицензия на 10 рабочих мест)"
+  confidence: high
+
+- id: crt_voice2med
+  vendor: crt_speech
+  name: "ЦРТ Речевые технологии (Voice2Med / Smart Logger / Speech Analytics)"
+  aliases: ["црт", "voice2med", "войс2мед", "речевая аналитика црт", "транскрибация црт", "crt speech"]
+  category: speech_text
+  extra_categories: [ai_speech_chatbots]
+  summary: "Российские системы распознавания речи и речевой аналитики от Группы ЦРТ для колл-центров, медицины (голосовое заполнение протоколов) и совещаний."
+  editions:
+    - {id: voice2med, name: "Voice2Med (голосовой ввод для врачей)", aliases: [voice2med, медицина]}
+    - {id: analytics, name: "Речевая аналитика 360", aliases: [аналитика, колл-центр]}
+  versions: []
+  platforms: [linux, windows, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, med, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["голосовое заполнение медицинских протоколов", "контроль качества звонков контакт-центра", "стенографирование совещаний в закрытом контуре"]
+  roles: [it_director, contact_center_head, doctor]
+  industries: [healthcare, finance, telecom, gov, retail]
+  formats: [wav, mp3, txt, json]
+  analogs: [salutespeech, yandex_speechkit]
+  replaces: []
+  price_rub: {unit: seat_year, low: 25000, typical: 65000, high: 250000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ЦРТ Voice2Med. Лицензия на 1 рабочее место врача (12 мес)"
+  confidence: high
+
+- id: salutespeech
+  vendor: sber_jazz
+  name: "SaluteSpeech (распознавание и синтез речи)"
+  aliases: ["salutespeech", "салютспич", "сбер спич", "smartspeech", "синтез речи сбер"]
+  category: speech_text
+  extra_categories: [ai_speech_chatbots]
+  summary: "Российский сервис распознавания (ASR) и естественного синтеза речи (TTS) на русском и других языках (облачный API и on-premise контур)."
+  editions:
+    - {id: cloud, name: "SaluteSpeech Cloud API", aliases: [cloud, api]}
+    - {id: onprem, name: "SaluteSpeech On-Premise", aliases: [onprem]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["голосовые роботы для колл-центра", "транскрибация звонков и совещаний", "озвучка интерактивного меню ivr"]
+  roles: [developer, contact_center_head, product_manager]
+  industries: [finance, telecom, retail, enterprise]
+  formats: [wav, mp3, opus, json]
+  analogs: [yandex_speechkit, crt_voice2med]
+  replaces: []
+  price_rub: {unit: company_year, low: 60000, typical: 250000, high: 1200000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SaluteSpeech. Пакет распознавания речи 100 000 минут (12 мес)"
+  confidence: high
+
+- id: yandex_speechkit
+  vendor: yandex
+  name: "Yandex SpeechKit"
+  aliases: ["speechkit", "спичкит", "яндекс спичкит", "yandex speechkit", "синтез речи яндекс"]
+  category: speech_text
+  extra_categories: [ai_speech_chatbots]
+  summary: "Облачный и гибридный (SpeechKit Hybrid) сервис распознавания и синтеза речи на базе Yandex Cloud для голосовых помощников и речевой аналитики."
+  editions:
+    - {id: cloud, name: "SpeechKit Cloud", aliases: [cloud]}
+    - {id: hybrid, name: "SpeechKit Hybrid (On-Premise)", aliases: [hybrid, onprem]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["голосовые ассистенты и роботы обзвона", "аналитика звонков контакт-центра", "расшифровка аудиозаписей в текст"]
+  roles: [developer, contact_center_head, data_scientist]
+  industries: [it, finance, ecommerce, telecom, retail]
+  formats: [wav, ogg, mp3, json]
+  analogs: [salutespeech, crt_voice2med]
+  replaces: []
+  price_rub: {unit: company_year, low: 50000, typical: 200000, high: 1000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Yandex SpeechKit Cloud (предоплаченный пакет потребления)"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ / УШЕДШИЕ (catalog: no) ===
+
+- id: adobe_acrobat
+  vendor: adobe
+  name: "Adobe Acrobat (Pro / Standard)"
+  aliases: ["adobe acrobat", "акробат", "акробат про", "acrobat pro", "acrobat dc", "адоб акробат", "адоб пдф"]
+  category: pdf_editors
+  extra_categories: []
+  summary: "Ведущий зарубежный редактор PDF-документов от Adobe (вендор ушёл с российского рынка и прекратил продление подписок)."
+  editions:
+    - {id: standard, name: "Acrobat Standard", aliases: [standard]}
+    - {id: pro, name: "Acrobat Pro for Teams", aliases: [pro, dc]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение adobe acrobat pro", "подбор российского редактора pdf с поддержкой эцп"]
+  roles: [legal, office_worker, accountant]
+  industries: [smb, mid, enterprise, finance]
+  formats: [pdf]
+  analogs: [contentreader_pdf, master_pdf_editor]
+  replaces: []
+  price_rub: {unit: user_year, low: 20000, typical: 32000, high: 45000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Adobe Acrobat Pro for Teams Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: abbyy_finereader
+  vendor: abbyy
+  name: "ABBYY FineReader PDF / FlexiCapture"
+  aliases: ["finereader", "файнридер", "файн ридер", "abbyy finereader", "абби файнридер", "flexicapture", "флексикэпчер", "abbyy"]
+  category: ocr_capture
+  extra_categories: [pdf_editors]
+  summary: "Знаменитое ПО для распознавания текста и работы с PDF (ABBYY ушла из РФ в 2022; в России официально развивается преемник — ContentReader PDF и ContentCapture от Content AI)."
+  editions:
+    - {id: pdf, name: "FineReader PDF Standard / Corporate", aliases: [pdf, standard, corporate]}
+    - {id: flexi, name: "FlexiCapture", aliases: [flexicapture]}
+  versions: ["15", "16"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение abbyy finereader на contentreader pdf", "замена abbyy flexicapture на contentcapture"]
+  roles: [office_worker, legal, accountant, it_director]
+  industries: [smb, mid, enterprise, gov]
+  formats: [pdf, docx, xlsx, tiff]
+  analogs: [contentreader_pdf, contentcapture, master_pdf_editor]
+  replaces: []
+  price_rub: {unit: seat_year, low: 12000, typical: 24000, high: 45000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "ABBYY FineReader PDF 15 Corporate (ушёл из РФ — прямой аналог ContentReader PDF)"
+  confidence: high
+
+- id: foxit_pdf_editor
+  vendor: foxit
+  name: "Foxit PDF Editor (Pro / PhantomPDF)"
+  aliases: ["foxit", "фоксит", "foxit pdf", "foxit phantompdf", "foxit editor"]
+  category: pdf_editors
+  extra_categories: []
+  summary: "Популярный зарубежный редактор PDF, ранее широко применявшийся как альтернатива Adobe Acrobat (официальные корпоративные продажи в РФ ограничены)."
+  editions:
+    - {id: std, name: "Foxit PDF Editor", aliases: [standard]}
+    - {id: pro, name: "Foxit PDF Editor Pro", aliases: [pro]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена foxit pdf editor на российские редакторы pdf"]
+  roles: [office_worker, legal]
+  industries: [smb, mid, enterprise]
+  formats: [pdf]
+  analogs: [master_pdf_editor, contentreader_pdf]
+  replaces: []
+  price_rub: {unit: seat_year, low: 14000, typical: 22000, high: 32000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Foxit PDF Editor Pro Annual Subscription (ограничено в РФ)"
+  confidence: high
+
+- id: deepl_pro
+  vendor: deepl
+  name: "DeepL Pro"
+  aliases: ["deepl", "дипл", "дип л", "deepl pro", "переводчик deepl"]
+  category: translation_dictionaries
+  extra_categories: []
+  summary: "Немецкий облачный сервис нейронного перевода (официально недоступен для оплаты и корпоративного использования в России)."
+  editions:
+    - {id: team, name: "DeepL Pro Advanced / Ultimate", aliases: [advanced, ultimate, team]}
+  versions: []
+  platforms: [web, windows, macos]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены deepl для корпоративного перевода документов"]
+  roles: [translator, office_worker, legal]
+  industries: [it, legal, marketing, enterprise]
+  formats: [docx, pdf, pptx]
+  analogs: [promt_translation]
+  replaces: []
+  price_rub: {unit: user_year, low: 15000, typical: 38000, high: 75000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "DeepL Pro Advanced Team Subscription (недоступно в РФ)"
+  confidence: high
+
+- id: abbyy_lingvo
+  vendor: abbyy
+  name: "ABBYY Lingvo"
+  aliases: ["lingvo", "лингво", "abbyy lingvo", "словари лингво"]
+  category: translation_dictionaries
+  extra_categories: []
+  summary: "Популярный электронный словарь от ABBYY (ушёл из РФ; в организациях замещается решениями PROMT)."
+  editions:
+    - {id: pro, name: "Lingvo x6 Профессиональная", aliases: [x6, проф]}
+  versions: ["x6"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["электронный словарь переводчика", "поиск замены abbyy lingvo"]
+  roles: [translator, office_worker]
+  industries: [legal, enterprise, edu]
+  formats: []
+  analogs: [promt_translation]
+  replaces: []
+  price_rub: {unit: device, low: 5000, typical: 9000, high: 15000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "ABBYY Lingvo x6 Профессиональная версия (вендор ушёл из РФ)"
+  confidence: high

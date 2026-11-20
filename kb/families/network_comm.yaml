@@ -1,0 +1,1168 @@
+# Семейства продуктов: ВКС, мессенджеры, почтовые серверы, UC, телефония, маркетинг, браузеры (2026)
+
+- id: kontur_tolk
+  vendor: skb_kontur
+  name: "Контур.Толк (ВКС и вебинары)"
+  aliases: ["контур толк", "толк", "kontur tolk", "вкс контур", "аналог zoom толк"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Популярный российский сервис видеоконференций, вебинаров, киосков и переговорных комнат от СКБ Контур (облако и on-premise, расшифровка речи ИИ)."
+  editions:
+    - {id: business, name: "Бизнес / Бизнес Плюс", aliases: ["бизнес", "бизнес плюс"]}
+    - {id: server, name: "Толк Сервер (On-Premise)", aliases: ["сервер", "on-premise"]}
+    - {id: webinars, name: "Вебинары (до 10 000 зрителей)", aliases: ["вебинары"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1, 10, 50]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративные видеовстречи, планёрки и онлайн-вебинары", "импортозамещение Zoom и MS Teams"]
+  roles: [office_worker, manager, hr, teacher, director]
+  industries: []
+  formats: []
+  analogs: [mts_link_meetings, trueconf_server, salute_jazz, iva_mcu, dion_vks]
+  replaces: [zoom_workplace]
+  price_rub: {unit: user_year, low: 9500, typical: 16500, high: 35000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Контур.Толк Тариф Бизнес Плюс 10 лицензий организаторов на 1 год"
+  confidence: high
+
+- id: mts_link_meetings
+  vendor: mts_link
+  name: "МТС Линк Встречи (ранее Webinar Meetings)"
+  aliases: ["мтс линк", "мтс линк встречи", "вебинар ру", "webinar.ru", "mts link meetings"]
+  category: vks_webinars
+  extra_categories: [uc_platforms]
+  summary: "Российская платформа корпоративных видеовстреч и совещаний с ИИ-саммари, интеграцией с переговорными комнатами и календарями."
+  editions:
+    - {id: cloud, name: "Облачная версия", aliases: ["облако"]}
+    - {id: onprem, name: "On-Premise (серверная)", aliases: ["сервер", "on-premise"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративные видеозвонки и онлайн-совещания", "замена Zoom и Cisco Webex"]
+  roles: [manager, office_worker, hr, teacher]
+  industries: []
+  formats: []
+  analogs: [kontur_tolk, salute_jazz, trueconf_server, dion_vks]
+  replaces: [zoom_workplace]
+  price_rub: {unit: user_year, low: 10000, typical: 18000, high: 42000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МТС Линк Встречи Бизнес (до 200 участников) 10 организаторов 1 год"
+  confidence: high
+
+- id: mts_link_webinars
+  vendor: mts_link
+  name: "МТС Линк Вебинары"
+  aliases: ["мтс линк вебинары", "вебинар ру вебинары", "webinar.ru платформа"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Ведущая российская платформа для маркетинговых и обучающих вебинаров, онлайн-конференций и прямых эфиров с аналитикой вовлечённости."
+  editions: []
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [concurrent, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["100", "300", "500", "1000", "5000"]
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["проведение вебинаров для клиентов и обучения партнёров до 10 000 зрителей"]
+  roles: [marketer, hr, teacher, sales_manager]
+  industries: []
+  formats: []
+  analogs: [kontur_tolk]
+  replaces: [zoom_workplace]
+  price_rub: {unit: other, low: 65000, typical: 180000, high: 650000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МТС Линк Вебинары Тариф до 300 участников на 12 месяцев"
+  confidence: high
+
+- id: trueconf_server
+  vendor: trueconf
+  name: "TrueConf Server"
+  aliases: ["труконф", "trueconf", "trueconf server", "вкс труконф"]
+  category: vks_webinars
+  extra_categories: [corporate_messengers]
+  summary: "Ведущая российская on-premise ВКС-система 4K с корпоративным мессенджером, шлюзом SIP/H.323 и работой в полностью закрытых сетях без интернета."
+  editions:
+    - {id: standard, name: "TrueConf Server", aliases: ["standard"]}
+    - {id: enterprise, name: "TrueConf Enterprise (федерация серверов)", aliases: ["enterprise"]}
+  versions: ["5"]
+  platforms: [windows, windows_server, linux, macos, android, ios, web, aurora]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: ["50", "100", "250", "500", "1000+"]
+    packs: []
+    audiences: [gov, business, med, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["развёртывание защищённой ВКС в закрытом контуре без доступа в интернет", "замена Cisco Meeting Server, Polycom, Zoom"]
+  roles: [sysadmin, security_officer, director]
+  industries: ["gov", "defense", "energy", "med"]
+  formats: []
+  analogs: [iva_mcu, vinteo_mcu, kontur_tolk, dion_vks]
+  replaces: [zoom_workplace]
+  price_rub: {unit: other, low: 150000, typical: 550000, high: 3500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "TrueConf Server 100 онлайн-пользователей + шлюз SIP/H.323 1 год"
+  confidence: high
+
+- id: iva_mcu
+  vendor: iva_technologies
+  name: "IVA MCU (корпоративная ВКС)"
+  aliases: ["ива мцу", "iva mcu", "iva вкс", "ива видеоконференции"]
+  category: vks_webinars
+  extra_categories: [uc_platforms]
+  summary: "Высоконагруженный российский сервер видеоконференцсвязи корпоративного класса (сертификат ФСТЭК) для крупных компаний и госорганов."
+  editions: []
+  versions: []
+  platforms: [linux, web, windows, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["замена Cisco TelePresence/Webex и Polycom в крупных госкорпорациях", "сертифицированная ФСТЭК ВКС"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "energy", "finance"]
+  formats: []
+  analogs: [trueconf_server, vinteo_mcu, dion_vks]
+  replaces: [zoom_workplace]
+  price_rub: {unit: other, low: 650000, typical: 2200000, high: 12000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "IVA MCU 50 конкурентных FullHD-портов (бессрочная + 1 год ТП)"
+  confidence: high
+
+- id: iva_one
+  vendor: iva_technologies
+  name: "IVA One (суперапп унифицированных коммуникаций)"
+  aliases: ["ива ван", "iva one", "iva connect"]
+  category: uc_platforms
+  extra_categories: [corporate_messengers, vks_webinars]
+  summary: "Российская платформа унифицированных коммуникаций (мессенджер, ВКС, корпоративная телефония, почта и календарь) в едином приложении."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена Microsoft Teams и Cisco Jabber единым российским клиентом"]
+  roles: [office_worker, sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [vk_workspace, express_messenger, myoffice_squadus]
+  replaces: [slack, microsoft_365]
+  price_rub: {unit: user_year, low: 3500, typical: 6500, high: 12000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "IVA One 100 пользователей Подписка 1 год"
+  confidence: high
+
+- id: vinteo_mcu
+  vendor: vinteo
+  name: "Vinteo (профессиональный сервер ВКС)"
+  aliases: ["винтео", "vinteo", "vinteo mcu"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Российский программный сервер ВКС телеприсутствия (SIP/H.323/WebRTC) с полной совместимостью с аппаратными кодеками Cisco, Polycom, Yealink."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["подключение существующих переговорных комнат Cisco/Polycom к российскому серверу ВКС"]
+  roles: [sysadmin]
+  industries: ["gov", "enterprise"]
+  formats: []
+  analogs: [iva_mcu, trueconf_server]
+  replaces: [zoom_workplace]
+  price_rub: {unit: other, low: 450000, typical: 1500000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Сервер ВКС Vinteo 20 конкурентных FullHD портов"
+  confidence: high
+
+- id: salute_jazz
+  vendor: sber_jazz
+  name: "SaluteJazz (СберДжаз)"
+  aliases: ["сбер джаз", "салют джаз", "salutejazz", "sberjazz", "джаз вкс"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Корпоративная платформа видеоконференций от Сбера с ИИ-расшифровкой встреч, шумоподавлением и вариантами облако/on-premise."
+  editions:
+    - {id: cloud, name: "SaluteJazz Облако", aliases: ["облако"]}
+    - {id: onprem, name: "SaluteJazz On-Premise", aliases: ["on-premise", "в контур"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративные видеовстречи с ИИ-транскрибацией и протоколом", "замена Zoom"]
+  roles: [office_worker, manager, director]
+  industries: []
+  formats: []
+  analogs: [kontur_tolk, mts_link_meetings, dion_vks]
+  replaces: [zoom_workplace]
+  price_rub: {unit: user_year, low: 7000, typical: 12000, high: 25000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "SaluteJazz Бизнес 10 лицензий организаторов 1 год"
+  confidence: high
+
+- id: dion_vks
+  vendor: t1_dion
+  name: "DION (корпоративная ВКС от Холдинга Т1)"
+  aliases: ["дион", "dion", "dion вкс", "т1 дион"]
+  category: vks_webinars
+  extra_categories: [uc_platforms]
+  summary: "Российская масштабируемая платформа ВКС, чатов и корпоративного видеохостинга для крупных организаций (облако и гибрид/on-premise)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["видеоконференции для тысяч сотрудников в крупном бизнесе", "замена Zoom и MS Teams"]
+  roles: [manager, office_worker, sysadmin]
+  industries: ["finance", "enterprise"]
+  formats: []
+  analogs: [kontur_tolk, mts_link_meetings, salute_jazz, trueconf_server]
+  replaces: [zoom_workplace]
+  price_rub: {unit: user_year, low: 6000, typical: 11000, high: 22000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "DION Enterprise 100 пользователей Подписка 1 год"
+  confidence: high
+
+- id: express_messenger
+  vendor: express_unlimited
+  name: "eXpress (защищённая корпоративная платформа коммуникаций)"
+  aliases: ["экспресс", "express мессенджер", "eXpress", "суперапп express"]
+  category: corporate_messengers
+  extra_categories: [vks_webinars, uc_platforms]
+  summary: "Российский защищённый корпоративный мессенджер, ВКС и платформа мини-приложений (SmartApps) с сертификатом ФСТЭК и федерацией между компаниями."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["замена Telegram/WhatsApp/Slack на защищённый корпоративный мессенджер с сертификатом ФСТЭК"]
+  roles: [security_officer, sysadmin, office_worker]
+  industries: ["finance", "oil_gas", "energy", "gov"]
+  formats: []
+  analogs: [vk_teams, myoffice_squadus, compass_messenger, pachca_messenger]
+  replaces: [slack]
+  price_rub: {unit: user_year, low: 3200, typical: 5800, high: 11000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "eXpress Corporate Edition (ФСТЭК) 250 пользователей 1 год"
+  confidence: high
+
+- id: vk_workspace
+  vendor: vk_tech
+  name: "VK WorkSpace (Почта, Teams, Диск, Документы)"
+  aliases: ["вк воркспейс", "vk workspace", "vk почта для бизнеса", "mail.ru для бизнеса"]
+  category: uc_platforms
+  extra_categories: [mail_servers, corporate_messengers, vks_webinars]
+  summary: "Единая российская коммуникационная платформа VK Tech (корпоративная Почта, Календарь, мессенджер и ВКС VK Teams, Диск, Задачи) в облаке и on-premise."
+  editions:
+    - {id: cloud, name: "VK WorkSpace SaaS (облако)", aliases: ["облако", "saas"]}
+    - {id: onprem, name: "VK WorkSpace On-Premise", aliases: ["on-premise", "коробка"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Microsoft Exchange + Teams + SharePoint и Google Workspace"]
+  roles: [office_worker, sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [yandex_360, myoffice_professional, rupost]
+  replaces: [microsoft_365, ms_exchange, google_workspace, slack]
+  price_rub: {unit: user_year, low: 2500, typical: 5200, high: 11500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "VK WorkSpace Тариф Выгодный 50 пользователей 1 год"
+  confidence: high
+
+- id: vk_teams
+  vendor: vk_tech
+  name: "VK Teams (корпоративный мессенджер и звонки)"
+  aliases: ["вк тимс", "vk teams", "мессенджер вк тимс"]
+  category: corporate_messengers
+  extra_categories: [vks_webinars]
+  summary: "Корпоративный мессенджер, аудио/видеозвонки и чат-боты от VK Tech с вариантом развёртывания в закрытом контуре On-Premise."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена Slack и Microsoft Teams в компании"]
+  roles: [office_worker, developer, manager]
+  industries: []
+  formats: []
+  analogs: [express_messenger, pachca_messenger, compass_messenger, myoffice_squadus]
+  replaces: [slack]
+  price_rub: {unit: user_year, low: 2400, typical: 4500, high: 8500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "VK Teams On-Premise 100 пользователей Подписка 1 год"
+  confidence: high
+
+- id: compass_messenger
+  vendor: compass_chat
+  name: "Compass (корпоративный мессенджер)"
+  aliases: ["компас мессенджер", "compass chat", "getcompass"]
+  category: corporate_messengers
+  extra_categories: []
+  summary: "Российский быстрый корпоративный мессенджер с тредами, видеозвонками, чат-ботами и возможностью установки на собственный сервер."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["перевод рабочих чатов из Telegram и Slack в контролируемый корпмессенджер"]
+  roles: [office_worker, manager, developer]
+  industries: []
+  formats: []
+  analogs: [pachca_messenger, vk_teams, express_messenger]
+  replaces: [slack]
+  price_rub: {unit: user_year, low: 2400, typical: 4200, high: 7500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Корпоративный мессенджер Compass 50 пользователей 1 год"
+  confidence: high
+
+- id: pachca_messenger
+  vendor: pachca
+  name: "Пачка (корпоративный мессенджер)"
+  aliases: ["пачка", "пачка мессенджер", "pachca", "аналог slack пачка"]
+  category: corporate_messengers
+  extra_categories: []
+  summary: "Популярный среди российских ИТ-команд и диджитал-компаний корпоративный мессенджер с каналами, тредами, звонками и API — близкий аналог Slack."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["прямая замена Slack для продуктовых и ИТ-команд"]
+  roles: [developer, manager, marketer, devops]
+  industries: ["it"]
+  formats: []
+  analogs: [compass_messenger, vk_teams, express_messenger]
+  replaces: [slack]
+  price_rub: {unit: user_year, low: 2200, typical: 4500, high: 7500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Мессенджер Пачка Тариф Корпорация 50 пользователей 1 год"
+  confidence: high
+
+- id: myoffice_squadus
+  vendor: myoffice
+  name: "Squadus (МойОфис)"
+  aliases: ["сквадус", "squadus", "мессенджер мой офис"]
+  category: corporate_messengers
+  extra_categories: [uc_platforms, vks_webinars]
+  summary: "Российское цифровое рабочее пространство от МойОфис (корпоративные чаты, каналы, видеоконференции и интеграция с документами) в закрытом контуре."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена MS Teams и Slack в закрытом корпоративном контуре"]
+  roles: [office_worker, sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [express_messenger, vk_teams, iva_one]
+  replaces: [slack, microsoft_365]
+  price_rub: {unit: user_year, low: 2800, typical: 4800, high: 8500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Squadus 100 пользователей Подписка 1 год (On-Premise)"
+  confidence: high
+
+- id: myoffice_mail
+  vendor: myoffice
+  name: "МойОфис Почта 2"
+  aliases: ["мойофис почта", "почтовый сервер мойофис", "myoffice mail"]
+  category: mail_servers
+  extra_categories: []
+  summary: "Российская корпоративная почтовая система (сервер + веб-клиент + десктоп/мобильные приложения) с высокой масштабируемостью и сертификацией ФСТЭК."
+  editions: []
+  versions: ["2"]
+  platforms: [linux, windows, macos, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [mailbox, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение Microsoft Exchange Server в госсекторе и крупном бизнесе"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "enterprise"]
+  formats: []
+  analogs: [rupost, communigate_pro, tegu_mail, vk_workspace]
+  replaces: [ms_exchange]
+  price_rub: {unit: mailbox_year, low: 2200, typical: 3800, high: 7000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МойОфис Почта 2 Лицензия на 100 пользователей 1 год"
+  confidence: high
+
+- id: rupost
+  vendor: astra_group
+  name: "RuPost (почтовый сервер Группы Астра)"
+  aliases: ["рупост", "rupost", "почта астра", "почтовый сервер астра"]
+  category: mail_servers
+  extra_categories: []
+  summary: "Корпоративная почтовая система от Группы Астра с бесшовной миграцией с Microsoft Exchange (включая работу с Outlook, календари и общие папки)."
+  editions: []
+  versions: ["3"]
+  platforms: [linux, web, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [mailbox, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["миграция с Microsoft Exchange Server с сохранением привычной работы в Outlook и ALD Pro"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [myoffice_mail, communigate_pro, tegu_mail, vk_workspace]
+  replaces: [ms_exchange]
+  price_rub: {unit: mailbox, low: 2500, typical: 4900, high: 9500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "RuPost Enterprise Лицензия на 100 почтовых ящиков + 1 год ТП"
+  confidence: high
+
+- id: communigate_pro
+  vendor: communigate
+  name: "CommuniGate Pro"
+  aliases: ["комьюнигейт", "коммунигейт", "communigate pro", "cgp", "сбк почта"]
+  category: mail_servers
+  extra_categories: [uc_platforms, ip_telephony]
+  summary: "Российская сверхнадёжная почтовая и UC-платформа (почта, календари, чаты, SIP-телефония) для крупных компаний и операторов связи."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [mailbox, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение Microsoft Exchange на десятках тысяч ящиков с минимальной нагрузкой на серверы"]
+  roles: [sysadmin]
+  industries: ["telecom", "gov", "enterprise"]
+  formats: []
+  analogs: [rupost, myoffice_mail, tegu_mail]
+  replaces: [ms_exchange]
+  price_rub: {unit: mailbox, low: 2800, typical: 5500, high: 11000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "CommuniGate Pro 100 пользователей (почта + календари + SIP) + 1 год ТП"
+  confidence: high
+
+- id: tegu_mail
+  vendor: mbk_lab_tegu
+  name: "Tegu Enterprise (почтовый сервер)"
+  aliases: ["тегу", "tegu", "tegu enterprise", "почтовый сервер тегу"]
+  category: mail_servers
+  extra_categories: []
+  summary: "Российский высокопроизводительный почтовый сервер собственной разработки на Go/PostgreSQL без Open Source почтовых движков (Postfix/Dovecot)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [mailbox]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Microsoft Exchange с простой кластеризацией и поддержкой Active Directory"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [rupost, myoffice_mail, communigate_pro]
+  replaces: [ms_exchange]
+  price_rub: {unit: mailbox, low: 2000, typical: 4200, high: 8000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Почтовый сервер Tegu Enterprise 100 почтовых ящиков (бессрочная)"
+  confidence: high
+
+- id: mango_vats
+  vendor: mango_office
+  name: "MANGO OFFICE (Виртуальная АТС и Контакт-центр)"
+  aliases: ["манго офис", "манго атс", "ватс манго", "mango office"]
+  category: ip_telephony
+  extra_categories: [ai_speech_chatbots]
+  summary: "Ведущая российская облачная АТС, контакт-центр, коллтрекинг и речевая аналитика с интеграцией в Битрикс24, amoCRM и 1С."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["облачная корпоративная телефония для отдела продаж и поддержки", "запись звонков и речевая аналитика"]
+  roles: [sales_manager, manager, director]
+  industries: []
+  formats: []
+  analogs: [naumen_contact_center, protei_uc]
+  replaces: [avaya_aura, threecx_pbx]
+  price_rub: {unit: other, low: 36000, typical: 120000, high: 650000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "MANGO OFFICE Виртуальная АТС + Контакт-центр (20 операторов, 1 год)"
+  confidence: high
+
+- id: protei_uc
+  vendor: protei
+  name: "ПРОТЕЙ IP-АТС / UC (корпоративная телефония)"
+  aliases: ["протей", "протей атс", "protei uc", "protei ims"]
+  category: ip_telephony
+  extra_categories: [uc_platforms]
+  summary: "Российская промышленная программная IP-АТС и платформа унифицированных коммуникаций для крупных предприятий и госсектора."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Avaya Aura и Cisco CUCM в крупных распределённых сетях"]
+  roles: [sysadmin]
+  industries: ["telecom", "gov", "industry"]
+  formats: []
+  analogs: [mango_vats, naumen_contact_center]
+  replaces: [avaya_aura, threecx_pbx]
+  price_rub: {unit: other, low: 500000, typical: 1800000, high: 9000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ПРОТЕЙ Программная IP-АТС на 500 абонентов"
+  confidence: high
+
+- id: naumen_contact_center
+  vendor: naumen
+  name: "Naumen Contact Center"
+  aliases: ["наумен контакт центр", "naumen cc", "колл-центр наумен"]
+  category: ip_telephony
+  extra_categories: [ai_speech_chatbots]
+  summary: "Российская омниканальная платформа для крупных контакт-центров (телефония, чаты, голосовые боты, WFM и речевая аналитика)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена Avaya Contact Center и Genesys в крупных колл-центрах"]
+  roles: [manager, sysadmin]
+  industries: ["finance", "telecom", "retail"]
+  formats: []
+  analogs: [mango_vats, protei_uc]
+  replaces: [avaya_aura]
+  price_rub: {unit: other, low: 1200000, typical: 3800000, high: 15000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Naumen Contact Center 50 одновременных операторских мест 1 год"
+  confidence: high
+
+- id: yandex_browser_org
+  vendor: yandex
+  name: "Яндекс Браузер для организаций (Корпоративная поддержка)"
+  aliases: ["яндекс браузер для организаций", "яндекс браузер корп", "яндекс браузер гост", "yandex browser enterprise"]
+  category: browsers_network_utils
+  extra_categories: []
+  summary: "Российский корпоративный браузер с поддержкой ГОСТ-криптографии (КриптоПро/ViPNet), групповыми политиками, консоль управления и ИБ-защитой."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, android, ios]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["безопасная работа с ГОСТ-порталами, банк-клиентами и ЕИС на Windows и Linux", "централизованное управление политиками браузера"]
+  roles: [sysadmin, security_officer, office_worker]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: device_year, low: 350, typical: 650, high: 1200}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Яндекс Браузер для организаций (Расширенная корпоративная поддержка) 250 ПК 1 год"
+  confidence: high
+
+- id: unisender
+  vendor: unisender
+  name: "Unisender (Email-рассылки)"
+  aliases: ["юнисендер", "unisender", "сервис рассылок unisender"]
+  category: email_marketing
+  extra_categories: []
+  summary: "Российский облачный сервис массовых email- и SMS-рассылок, триггерных цепочек и транзакционных писем с хранением баз в РФ."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["email-маркетинг и рассылки по клиентской базе с соблюдением 152-ФЗ", "замена Mailchimp"]
+  roles: [marketer]
+  industries: []
+  formats: []
+  analogs: [mindbox_cdp]
+  replaces: []
+  price_rub: {unit: other, low: 25000, typical: 95000, high: 450000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Unisender Тариф Стандарт до 25 000 контактов 1 год"
+  confidence: high
+
+- id: mindbox_cdp
+  vendor: mindbox
+  name: "Mindbox (CDP и автоматизация маркетинга)"
+  aliases: ["майндбокс", "mindbox", "cdp mindbox"]
+  category: email_marketing
+  extra_categories: [crm_systems]
+  summary: "Российская облачная CDP-платформа для омниканального маркетинга, программ лояльности, персональных рекомендаций и рассылок."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["омниканальный маркетинг, программы лояльности и персонализация в e-commerce и ритейле"]
+  roles: [marketer]
+  industries: ["retail", "ecommerce"]
+  formats: []
+  analogs: [unisender]
+  replaces: []
+  price_rub: {unit: other, low: 600000, typical: 1800000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Mindbox CDP + Рассылки (до 100 000 клиентов) 1 год"
+  confidence: high
+
+# ============================================================================
+# УШЕДШИЕ ЗАРУБЕЖНЫЕ СИСТЕМЫ КОММУНИКАЦИЙ И ПОЧТЫ (catalog: no)
+# ============================================================================
+
+- id: ms_exchange
+  vendor: microsoft
+  name: "Microsoft Exchange Server"
+  aliases: ["exchange", "эксчендж", "эксчейндж", "ms exchange", "exchange server 2019", "exchange cal"]
+  category: mail_servers
+  extra_categories: []
+  summary: "Зарубежный корпоративный почтовый сервер Microsoft (официальные поставки в РФ остановлены; замещается RuPost, МойОфис Почта, CommuniGate Pro, Tegu, VK WorkSpace)."
+  editions: []
+  versions: ["2019"]
+  platforms: [windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [server, user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Microsoft Exchange Server"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [rupost, myoffice_mail, communigate_pro, tegu_mail, vk_workspace]
+  replaces: []
+  price_rub: {unit: server, low: 90000, typical: 160000, high: 450000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Exchange Server 2019 Standard + User CAL (не поставляется в РФ)"
+  confidence: high
+
+- id: ms_sharepoint
+  vendor: microsoft
+  name: "Microsoft SharePoint Server"
+  aliases: ["sharepoint", "шарепоинт", "шерпоинт", "ms sharepoint"]
+  category: uc_platforms
+  extra_categories: [sed_ecm, whiteboards_notes]
+  summary: "Зарубежная платформа корпоративных порталов и совместной работы с документами (официально недоступна в РФ; замещается Битрикс24, Р7-Офис, МойОфис, Directum RX)."
+  editions: []
+  versions: ["2019"]
+  platforms: [windows_server, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server, user]
+    terms_months: [12]
+    actions: [new]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение корпоративного портала Microsoft SharePoint"]
+  roles: [sysadmin, manager, hr]
+  industries: []
+  formats: []
+  analogs: [bitrix24, r7_office, myoffice_professional, directum_rx]
+  replaces: []
+  price_rub: {unit: server, low: 550000, typical: 950000, high: 2500000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Microsoft SharePoint Server Subscription Edition (не поставляется в РФ)"
+  confidence: high
+
+- id: zoom_workplace
+  vendor: zoom
+  name: "Zoom Workplace (Pro / Business / Enterprise)"
+  aliases: ["zoom", "зум", "zoom pro", "zoom business", "zoom webinars"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Зарубежный облачный сервис видеоконференций (официальные корпоративные продажи в РФ прекращены; замещается Контур.Толк, МТС Линк, SaluteJazz, TrueConf, DION)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Zoom для видеовстреч и вебинаров"]
+  roles: [office_worker, manager, hr, teacher]
+  industries: []
+  formats: []
+  analogs: [kontur_tolk, mts_link_meetings, salute_jazz, trueconf_server, dion_vks]
+  replaces: []
+  price_rub: {unit: user_year, low: 15000, typical: 22000, high: 35000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Zoom Workplace Business 10 Licenses 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: slack
+  vendor: slack
+  name: "Slack (Pro / Business+ / Enterprise Grid)"
+  aliases: ["slack", "слак", "слэк", "slack business"]
+  category: corporate_messengers
+  extra_categories: []
+  summary: "Зарубежный корпоративный мессенджер (ушёл из РФ; замещается Пачка, VK Teams, Compass, eXpress, Squadus)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Slack"]
+  roles: [developer, manager, marketer]
+  industries: []
+  formats: []
+  analogs: [pachca_messenger, vk_teams, compass_messenger, express_messenger, myoffice_squadus]
+  replaces: []
+  price_rub: {unit: user_year, low: 9000, typical: 15000, high: 28000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Slack Business+ 1 User 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: avaya_aura
+  vendor: avaya
+  name: "Avaya Aura / IP Office"
+  aliases: ["avaya", "авайя", "авая", "avaya aura", "avaya ip office"]
+  category: ip_telephony
+  extra_categories: []
+  summary: "Зарубежная корпоративная IP-АТС и контакт-центр (ушла из РФ; замещается ПРОТЕЙ, Naumen Contact Center, MANGO OFFICE)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение корпоративной телефонии Avaya"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [protei_uc, naumen_contact_center, mango_vats]
+  replaces: []
+  price_rub: {unit: other, low: 500000, typical: 2000000, high: 10000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Avaya Aura Core Suite 100 Users (не поставляется в РФ)"
+  confidence: high
+
+- id: threecx_pbx
+  vendor: threecx
+  name: "3CX Phone System"
+  aliases: ["3cx", "3сх", "атс 3cx"]
+  category: ip_telephony
+  extra_categories: []
+  summary: "Зарубежная программная IP-АТС (приостановила продажи в РФ; замещается MANGO OFFICE, ПРОТЕЙ)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение программной АТС 3CX"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [mango_vats, protei_uc]
+  replaces: []
+  price_rub: {unit: other, low: 50000, typical: 150000, high: 500000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "3CX Pro 16 Simultaneous Calls 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: google_workspace
+  vendor: google
+  name: "Google Workspace (Business / Enterprise)"
+  aliases: ["google workspace", "g suite", "гугл воркспейс", "google meet", "gmail для бизнеса"]
+  category: uc_platforms
+  extra_categories: [office_suite, mail_servers, vks_webinars]
+  summary: "Зарубежный облачный пакет Gmail, Google Диск, Документы и Meet (оплата юрлицами РФ недоступна; замещается Яндекс 360, VK WorkSpace, Р7-Офис)."
+  editions: []
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["миграция с Google Workspace на российские облачные платформы"]
+  roles: [office_worker, sysadmin, manager]
+  industries: []
+  formats: []
+  analogs: [yandex_360, vk_workspace, r7_office, myoffice_professional]
+  replaces: []
+  price_rub: {unit: user_year, low: 8500, typical: 15000, high: 28000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Google Workspace Business Standard 1 User 1 Year (недоступен в РФ)"
+  confidence: high

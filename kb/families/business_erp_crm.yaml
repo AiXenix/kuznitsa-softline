@@ -1,0 +1,1512 @@
+# Семейства продуктов: ERP, CRM, СЭД/ECM, BPM/RPA, трекеры задач, HRM, бюджетирование, CMS
+# Схема: kb/SCHEMA.md
+
+- id: onec_erp
+  vendor: onec
+  name: "1С:ERP Управление предприятием 2"
+  aliases: ["1с erp", "1c erp", "1с ерп", "ерп 2", "1с erp 2.5", "1с управление предприятием"]
+  category: erp_systems
+  extra_categories: [accounting, trade_warehouse, finance_budgeting]
+  summary: "Флагманская российская ERP-система для средних и крупных промышленных, торговых и многопрофильных предприятий."
+  editions:
+    - {id: erp2, name: "1С:ERP Управление предприятием 2", aliases: ["erp 2", "2.5"]}
+    - {id: erp_corp, name: "1С:Корпорация", aliases: [корпорация]}
+  versions: ["8.3", "2.5"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация крупного производства", "планирование производства и ремонтов", "импортозамещение sap", "управленческий и регламентированный учёт"]
+  roles: [it_director, cfo, coo]
+  industries: [manufacturing, enterprise, distribution, energy, construction]
+  formats: [xml, xlsx]
+  analogs: [galaktika_erp, turbo_erp, onec_ka]
+  replaces: [sap_s4hana, oracle_ebs]
+  price_rub: {unit: company, low: 450000, typical: 510000, high: 1200000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:ERP Управление предприятием 2 (электронная поставка)"
+    - "1С:Корпорация (электронная поставка)"
+  confidence: high
+
+- id: galaktika_erp
+  vendor: galaktika
+  name: "Галактика ERP"
+  aliases: ["галактика", "галактика erp", "galaktika erp", "галактика амму", "галактика еам"]
+  category: erp_systems
+  extra_categories: [finance_budgeting]
+  summary: "Отечественная корпоративная ERP-система и EAM-решения для крупных промышленных, оборонных и нефтегазовых предприятий."
+  editions:
+    - {id: erp, name: "Галактика ERP", aliases: [erp]}
+    - {id: eam, name: "Галактика EAM", aliases: [eam, тоир]}
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["erp для опк и тяжелой промышленности", "управление активами и ремонтами тоир", "импортозамещение sap"]
+  roles: [it_director, cfo, coo]
+  industries: [manufacturing, energy, gov, enterprise]
+  formats: [xml, xlsx]
+  analogs: [onec_erp, turbo_erp]
+  replaces: [sap_s4hana, oracle_ebs]
+  price_rub: {unit: user, low: 45000, typical: 90000, high: 180000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Галактика ERP. Базовый контур (лицензия на 1 конкурентного пользователя)"
+  confidence: high
+
+- id: turbo_erp
+  vendor: consyst_turbo
+  name: "ТУРБО ERP"
+  aliases: ["турбо erp", "турбо х", "turbo erp", "консист турбо", "турбо бухгалтерия"]
+  category: erp_systems
+  extra_categories: [finance_budgeting, accounting]
+  summary: "Высокопроизводительная российская ERP-платформа (ТУРБО X) для корпоративного учёта, бюджетирования и замещения зарубежных ERP."
+  editions:
+    - {id: erp, name: "ТУРБО ERP", aliases: [erp]}
+    - {id: toir, name: "ТУРБО ТОРО", aliases: [торо, тоир]}
+  versions: []
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная erp-система", "высоконагруженный бухучёт и казначейство", "импортозамещение sap и axapta"]
+  roles: [it_director, cfo]
+  industries: [enterprise, manufacturing, finance, energy]
+  formats: [xml, xlsx]
+  analogs: [onec_erp, galaktika_erp]
+  replaces: [sap_s4hana, oracle_ebs]
+  price_rub: {unit: user, low: 40000, typical: 75000, high: 150000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ТУРБО ERP. Клиентская лицензия (бессрочная)"
+  confidence: high
+
+- id: axelot_wms
+  vendor: axelot
+  name: "AXELOT WMS / TMS (SCAP)"
+  aliases: ["axelot", "акселот", "axelot wms", "axelot tms", "1с wms логистика", "управление складом axelot"]
+  category: logistics_tms
+  extra_categories: [trade_warehouse]
+  summary: "Платформа управления цепочками поставок: адресный склад (WMS), транспортная логистика (TMS) и управление двором (YMS)."
+  editions:
+    - {id: wms, name: "AXELOT WMS X5", aliases: [wms, x5, склад]}
+    - {id: tms, name: "AXELOT TMS X4", aliases: [tms, x4, транспорт]}
+  versions: []
+  platforms: [windows_server, linux, android, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, device]
+    terms_months: [12]
+    actions: [new, addon, support]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["адресное хранение на складе", "работа с тсд на складе", "маршрутизация доставки и tms"]
+  roles: [warehouse_manager, coo, it_director]
+  industries: [logistics, retail, distribution, manufacturing]
+  formats: [xml, json]
+  analogs: [onec_trade]
+  replaces: [sap_s4hana]
+  price_rub: {unit: company, low: 350000, typical: 850000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "AXELOT WMS X5 Основная поставка"
+    - "AXELOT TMS X4 Лицензия на рабочее место диспетчера"
+  confidence: high
+
+- id: optimacros
+  vendor: optimacros
+  name: "Optimacros (EPM / IBP)"
+  aliases: ["optimacros", "оптимакрос", "российский anaplan", "ibp планирование", "epm optimacros"]
+  category: finance_budgeting
+  extra_categories: []
+  summary: "Российская мультиразмерная платформа финансового планирования, бюджетирования, S&OP и моделирования (отечественный аналог Anaplan и IBM Planning Analytics)."
+  editions:
+    - {id: enterprise, name: "Enterprise", aliases: [enterprise, корп]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["интегрированное бизнес-планирование ibp", "бюджетирование и финмоделирование", "замена anaplan и ibm tm1"]
+  roles: [cfo, financial_analyst]
+  industries: [enterprise, retail, manufacturing, finance]
+  formats: [xlsx, csv]
+  analogs: [onec_holding, foresight_analytics]
+  replaces: [sap_s4hana]
+  price_rub: {unit: user_year, low: 60000, typical: 120000, high: 250000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Optimacros Enterprise. Подписка на 1 рабочее место моделировщика (12 мес)"
+  confidence: high
+
+- id: project_expert
+  vendor: expert_systems_pe
+  name: "Project Expert"
+  aliases: ["project expert", "проджект эксперт", "бизнес план программа", "финмоделирование инвестпроектов"]
+  category: finance_budgeting
+  extra_categories: []
+  summary: "Российская программа для разработки бизнес-планов, расчёта NPV/IRR и оценки эффективности инвестиционных проектов."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard, стандарт]}
+    - {id: prof, name: "Professional", aliases: [professional, проф]}
+    - {id: holding, name: "Holding", aliases: [holding, холдинг]}
+  versions: ["7"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["разработка бизнес-плана для банка", "оценка инвестиционных проектов", "расчёт npv irr и окупаемости"]
+  roles: [financial_analyst, cfo, smb_owner]
+  industries: [smb, mid, finance, construction, edu]
+  formats: [xlsx, docx, pdf]
+  analogs: [optimacros]
+  replaces: []
+  price_rub: {unit: device, low: 55000, typical: 120000, high: 280000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Project Expert 7 Professional (1 рабочее место, электронная лицензия)"
+    - "Project Expert 7 Holding (сетевая лицензия)"
+  confidence: high
+
+- id: bitrix24
+  vendor: onec_bitrix
+  name: "Битрикс24"
+  aliases: ["битрикс24", "битрикс 24", "б24", "bitrix24", "bitrix 24", "корпоративный портал битрикс", "битрикс коробка", "битрикс облако"]
+  category: crm_systems
+  extra_categories: [task_project_trackers, corporate_messengers]
+  summary: "Популярнейшая в России корпоративная платформа: CRM, задачи и проекты, корпоративный портал, чаты, телефония и сайты (облако и коробка)."
+  editions:
+    - {id: cloud_base, name: "Облако: Базовый / Стандартный", aliases: [базовый, стандартный, облако]}
+    - {id: cloud_pro, name: "Облако: Профессиональный / Энтерпрайз", aliases: [профессиональный, энтерпрайз, enterprise]}
+    - {id: box_portal, name: "Коробка: Корпоративный портал", aliases: [коробка, корп портал, onprem, "50 пользователей", "100 пользователей", "250 пользователей", "500 пользователей"]}
+    - {id: box_ent, name: "Коробка: Энтерпрайз", aliases: [коробка энтерпрайз, "1000 пользователей"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [5, 12, 50, 100, 250, 500, 1000]
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["crm для отдела продаж", "корпоративный интранет-портал", "управление задачами и проектами", "импортозамещение salesforce и sharepoint"]
+  roles: [sales_manager, smb_owner, it_director, project_manager]
+  industries: [smb, mid, enterprise, retail, services, real_estate]
+  formats: [xlsx, pdf, csv]
+  analogs: [amocrm, bpmsoft_crm, retailcrm, vk_workspace]
+  replaces: [salesforce_crm, ms_sharepoint, atlassian_trello]
+  price_rub: {unit: company_year, low: 24000, typical: 140000, high: 650000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Битрикс24 Облако Тариф Профессиональный на 12 месяцев"
+    - "1С-Битрикс24: Корпоративный портал на 100 пользователей (новая лицензия)"
+    - "1С-Битрикс24: Корпоративный портал на 50 пользователей (продление на 12 мес)"
+  confidence: high
+
+- id: bitrix_site_manager
+  vendor: onec_bitrix
+  name: "1С-Битрикс: Управление сайтом"
+  aliases: ["1с битрикс управление сайтом", "битрикс ус", "битрикс cms", "bitrix cms", "битрикс малый бизнес", "битрикс бизнес", "1c-bitrix"]
+  category: cms_ecommerce
+  extra_categories: []
+  summary: "Ведущая коммерческая CMS в России для создания корпоративных сайтов, порталов и интернет-магазинов с нативной интеграцией с 1С."
+  editions:
+    - {id: start, name: "Старт", aliases: [старт, start]}
+    - {id: standard, name: "Стандарт", aliases: [стандарт, standard]}
+    - {id: small_business, name: "Малый бизнес", aliases: [малый бизнес, магазин]}
+    - {id: business, name: "Бизнес", aliases: [бизнес, business]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [site]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["интернет-магазин с обменом с 1с", "корпоративный сайт", "продление обновлений битрикс"]
+  roles: [web_developer, marketing_manager, smb_owner]
+  industries: [smb, mid, retail, ecommerce]
+  formats: [xml, html]
+  analogs: []
+  replaces: []
+  price_rub: {unit: site, low: 6200, typical: 41000, high: 84000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С-Битрикс: Управление сайтом — Малый бизнес (лицензия)"
+    - "1С-Битрикс: Управление сайтом — Бизнес (продление обновлений на 12 мес)"
+  confidence: high
+
+- id: amocrm
+  vendor: amocrm
+  name: "amoCRM"
+  aliases: ["amocrm", "амоцрм", "амо срм", "амо", "amo crm"]
+  category: crm_systems
+  extra_categories: []
+  summary: "Облачная CRM-система, заточенная под отделы активных продаж, воронки, мессенджеры и автоматизацию лидов."
+  editions:
+    - {id: base, name: "Базовый", aliases: [базовый]}
+    - {id: advanced, name: "Расширенный", aliases: [расширенный]}
+    - {id: pro, name: "Профессиональный", aliases: [профессиональный, проф]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [6, 12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление воронкой продаж", "сбор лидов из мессенджеров и сайта", "crm для отдела продаж"]
+  roles: [sales_manager, smb_owner]
+  industries: [smb, services, real_estate, ecommerce]
+  formats: [xlsx, csv]
+  analogs: [bitrix24, retailcrm, bpmsoft_crm]
+  replaces: [salesforce_crm]
+  price_rub: {unit: user_year, low: 7200, typical: 14400, high: 22000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "amoCRM Тариф Расширенный (1 пользователь на 12 месяцев)"
+    - "amoCRM Тариф Профессиональный (1 пользователь на 12 месяцев)"
+  confidence: high
+
+- id: bpmsoft_crm
+  vendor: bpmsoft
+  name: "BPMSoft CRM / Low-code"
+  aliases: ["bpmsoft", "бпмсофт", "ланит омни", "российский creatio", "террасофт аналог"]
+  category: crm_systems
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Корпоративная low-code платформа для автоматизации продаж, маркетинга, клиентского сервиса и сложных бизнес-процессов (наследник Creatio в РФ)."
+  editions:
+    - {id: sales, name: "BPMSoft Продажи", aliases: [продажи, sales]}
+    - {id: marketing, name: "BPMSoft Маркетинг", aliases: [маркетинг, marketing]}
+    - {id: service, name: "BPMSoft Сервис", aliases: [сервис, service]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["enterprise crm для банков и корпораций", "импортозамещение salesforce и creatio", "автоматизация бизнес-процессов продаж"]
+  roles: [sales_manager, it_director, business_analyst]
+  industries: [enterprise, finance, telecom, manufacturing]
+  formats: [xlsx, xml]
+  analogs: [elma365, bitrix24, comindware_platform]
+  replaces: [salesforce_crm]
+  price_rub: {unit: user_year, low: 25000, typical: 48000, high: 85000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "BPMSoft Продажи. Подписка на 1 пользователя (12 мес)"
+  confidence: high
+
+- id: retailcrm
+  vendor: retailcrm
+  name: "RetailCRM"
+  aliases: ["retailcrm", "ритейлцрм", "ритейл срм", "crm для интернет-магазина"]
+  category: crm_systems
+  extra_categories: [cms_ecommerce]
+  summary: "Специализированная CRM-система для e-commerce, интернет-магазинов и омниканальной розницы с обработкой заказов и доставками."
+  editions:
+    - {id: pro, name: "Профессиональный", aliases: [проф, pro]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["обработка заказов интернет-магазина", "интеграция со службами доставки и маркетплейсами", "программы лояльности ритейла"]
+  roles: [sales_manager, marketing_manager, smb_owner]
+  industries: [ecommerce, retail]
+  formats: [xml, csv]
+  analogs: [bitrix24, amocrm]
+  replaces: [salesforce_crm]
+  price_rub: {unit: user_year, low: 24000, typical: 42000, high: 75000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "RetailCRM Тариф Профессиональный на 12 месяцев"
+  confidence: high
+
+- id: onec_docflow
+  vendor: onec
+  name: "1С:Документооборот 8"
+  aliases: ["1с документооборот", "1с до", "до 3.0", "1с до корп", "1с до проф", "1с дгу", "сэд 1с"]
+  category: sed_ecm
+  extra_categories: []
+  summary: "Российская система электронного документооборота (СЭД/ECM) на платформе 1С: договоры, входящая/исходящая корреспонденция, согласование, ЭП и архив."
+  editions:
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp]}
+    - {id: dgu, name: "Документооборот госучреждения (ДГУ)", aliases: [дгу, гос, бюджет]}
+  versions: ["8.3", "3.0"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["согласование договоров и счетов", "внутренний документооборот сэд", "бесшовная интеграция с 1с бух и erp", "делопроизводство"]
+  roles: [legal, office_manager, it_director, cfo]
+  industries: [smb, mid, enterprise, gov]
+  formats: [pdf, docx, xml]
+  analogs: [directum_rx, docsvision, eos_delo, tezis_sed, tessa_ecm]
+  replaces: [ms_sharepoint]
+  price_rub: {unit: box, low: 45000, typical: 220000, high: 360000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Документооборот 8 КОРП (электронная поставка)"
+    - "1С:Документооборот 8 ПРОФ (электронная поставка)"
+    - "1С:Документооборот государственного учреждения 8"
+  confidence: high
+
+- id: directum_rx
+  vendor: directum
+  name: "Directum RX"
+  aliases: ["directum", "директум", "directum rx", "директум рх", "сэд директум", "directum hr pro"]
+  category: sed_ecm
+  extra_categories: [kedo_hr_docs, bpm_rpa_lowcode]
+  summary: "Ведущая интеллектуальная российская ECM/СЭД-платформа для управления корпоративным контентом, договорами, архивом, КЭДО и ИИ-обработкой документов."
+  editions:
+    - {id: onprem, name: "Локальная (On-Premise)", aliases: [локальная, onprem]}
+    - {id: cloud, name: "Облачная (Cloud)", aliases: [облако, cloud]}
+  versions: []
+  platforms: [web, linux, windows_server, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная сэд и электронный архив", "согласование договоров с ии", "кадровый эдо directum hr pro", "импортозамещение opentext и sharepoint"]
+  roles: [it_director, legal, hr_manager, office_manager]
+  industries: [mid, enterprise, gov, manufacturing, finance]
+  formats: [pdf, docx, xml]
+  analogs: [onec_docflow, docsvision, tessa_ecm, tezis_sed, eos_delo]
+  replaces: [ms_sharepoint]
+  price_rub: {unit: user, low: 14000, typical: 26000, high: 45000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Directum RX. Базовая клиентская лицензия (именная)"
+    - "Directum RX Cloud. Подписка на 1 пользователя на 12 мес"
+  confidence: high
+
+- id: docsvision
+  vendor: docsvision
+  name: "Docsvision"
+  aliases: ["docsvision", "доксвижн", "доксвижен", "сэд docsvision", "доквижн"]
+  category: sed_ecm
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Российская low-code платформа для построения СЭД, корпоративных электронных архивов и систем управления бизнес-процессами."
+  editions:
+    - {id: base, name: "Базовая платформа", aliases: [базовая]}
+    - {id: enterprise, name: "Enterprise", aliases: [enterprise, корп]}
+  versions: ["5.5"]
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user, server]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративный документооборот", "архив первичных документов", "замена sharepoint и documentum"]
+  roles: [it_director, legal, office_manager]
+  industries: [mid, enterprise, gov, finance]
+  formats: [pdf, docx, xml]
+  analogs: [directum_rx, onec_docflow, tessa_ecm, tezis_sed]
+  replaces: [ms_sharepoint]
+  price_rub: {unit: user, low: 12000, typical: 22000, high: 40000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Docsvision 5.5 Клиентская конкурентная лицензия"
+  confidence: high
+
+- id: eos_delo
+  vendor: eos_delo
+  name: "СЭД ДЕЛО (ЭОС)"
+  aliases: ["эос дело", "сэд дело", "дело web", "eos delo", "делопроизводство эос"]
+  category: sed_ecm
+  extra_categories: []
+  summary: "Российская система электронного документооборота и делопроизводства, широко применяемая в органах государственной власти, МЭДО и госкорпорациях."
+  editions:
+    - {id: delo, name: "ДЕЛО / ДЕЛО-Web", aliases: [дело, web]}
+    - {id: archive, name: "Архивное ДЕЛО", aliases: [архивное дело, архив]}
+  versions: []
+  platforms: [web, windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [user, concurrent]
+    terms_months: []
+    actions: [new, support, addon]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["делопроизводство в госорганах", "интеграция с мэдо и сст", "электронный архив по гост"]
+  roles: [office_manager, it_director, legal]
+  industries: [gov, enterprise, edu, healthcare]
+  formats: [pdf, xml, docx]
+  analogs: [directum_rx, onec_docflow, tezis_sed]
+  replaces: []
+  price_rub: {unit: user, low: 15000, typical: 28000, high: 50000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СЭД ДЕЛО (ЭОС) Лицензия на 1 рабочее место"
+  confidence: high
+
+- id: tezis_sed
+  vendor: haulmont_tezis
+  name: "СЭД ТЕЗИС"
+  aliases: ["тезис", "сэд тезис", "haulmont тезис", "tezis"]
+  category: sed_ecm
+  extra_categories: []
+  summary: "Кроссплатформенная российская СЭД на Java и PostgreSQL с гибкой кастомизацией процессов, канцелярии и поручений."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: standard, name: "Стандартная", aliases: [стандартная]}
+    - {id: extended, name: "Расширенная", aliases: [расширенная]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["делопроизводство и контроль поручений", "согласование договоров", "сэд на российском стеке linux + postgres"]
+  roles: [it_director, office_manager, legal]
+  industries: [mid, enterprise, gov, finance]
+  formats: [pdf, docx]
+  analogs: [directum_rx, docsvision, onec_docflow, tessa_ecm]
+  replaces: [ms_sharepoint]
+  price_rub: {unit: user, low: 11000, typical: 22000, high: 38000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СЭД ТЕЗИС. Стандартная редакция (1 конкурентная лицензия)"
+  confidence: high
+
+- id: tessa_ecm
+  vendor: syntellect_tessa
+  name: "TESSA (Синтеллект)"
+  aliases: ["tessa", "тесса", "сэд тесса", "синтеллект тесса", "tessa ecm"]
+  category: sed_ecm
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Высокопроизводительная корпоративная ECM/CSP-платформа для крупного бизнеса и банков, рассчитанная на десятки тысяч пользователей."
+  editions:
+    - {id: standard, name: "TESSA Standard", aliases: [standard]}
+    - {id: enterprise, name: "TESSA Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user, server]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["высоконагруженная ecm и архив", "автоматизация документооборота в банках", "импортозамещение opentext documentum"]
+  roles: [it_director, legal]
+  industries: [enterprise, finance, telecom, energy]
+  formats: [pdf, docx, xml]
+  analogs: [directum_rx, docsvision, onec_docflow]
+  replaces: [ms_sharepoint]
+  price_rub: {unit: user, low: 16000, typical: 30000, high: 55000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа TESSA. Конкурентная пользовательская лицензия"
+  confidence: high
+
+- id: elma365
+  vendor: elma
+  name: "ELMA365 (Low-code BPM / CRM / Service)"
+  aliases: ["elma365", "elma 365", "элма 365", "элма", "elma bpm", "elma crm", "elma csp", "elma кэдo"]
+  category: bpm_rpa_lowcode
+  extra_categories: [crm_systems, sed_ecm, itsm_service_desk]
+  summary: "Лидирующая в РФ low-code BPM-платформа с готовыми решениями: CRM, СЭД/CSP, КЭДО, Service Desk и корпоративный портал."
+  editions:
+    - {id: saas, name: "ELMA365 SaaS", aliases: [saas, облако]}
+    - {id: onprem_std, name: "ELMA365 On-Premises Standard", aliases: [standard, onprem]}
+    - {id: onprem_ent, name: "ELMA365 On-Premises Enterprise", aliases: [enterprise, k8s]}
+  versions: []
+  platforms: [web, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация бизнес-процессов bpm", "быстрая разработка корпоративных приложений low-code", "импортозамещение pega camunda и creatio"]
+  roles: [business_analyst, it_director, coo]
+  industries: [mid, enterprise, finance, retail, gov]
+  formats: [bpmn, pdf, xlsx]
+  analogs: [comindware_platform, bpmsoft_crm, directum_rx]
+  replaces: [salesforce_crm, servicenow_itsm]
+  price_rub: {unit: user_year, low: 14000, typical: 28000, high: 60000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ELMA365 Standard. Именная лицензия на 12 месяцев"
+    - "ELMA365 Enterprise. Конкурентная лицензия (бессрочная)"
+  confidence: high
+
+- id: comindware_platform
+  vendor: comindware
+  name: "Comindware Platform (BPMS / Low-code)"
+  aliases: ["comindware", "коминдуэр", "comindware business application platform", "cbap"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Российская low-code BPMS-платформа с поддержкой BPMN 2.0 для быстрой автоматизации сложных корпоративных и отраслевых процессов."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard]}
+    - {id: enterprise, name: "Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["оркестрация бизнес-процессов по bpmn 2.0", "low-code разработка внутренних систем", "замена зарубежных bpms"]
+  roles: [business_analyst, it_director]
+  industries: [enterprise, finance, manufacturing, gov]
+  formats: [bpmn]
+  analogs: [elma365, bpmsoft_crm]
+  replaces: []
+  price_rub: {unit: user_year, low: 18000, typical: 35000, high: 65000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Comindware Platform Enterprise. Лицензия на 1 пользователя (12 мес)"
+  confidence: high
+
+- id: pix_rpa
+  vendor: pix_robotics
+  name: "PIX RPA"
+  aliases: ["pix rpa", "пикс рпа", "pix robotics", "роботизация pix", "российский uipath"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Одна из ведущих российских платформ программной роботизации (RPA): студия разработки, оркестратор Master и программные роботы."
+  editions:
+    - {id: studio, name: "PIX Studio", aliases: [studio, студия]}
+    - {id: robot, name: "PIX Robot (Attended / Unattended)", aliases: [robot, робот]}
+    - {id: master, name: "PIX Master (Оркестратор)", aliases: [master, оркестратор]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["роботизация рутинных операций в 1с и excel", "импортозамещение uipath и blue prism", "автоматизация бэк-офиса"]
+  roles: [business_analyst, it_director, cfo]
+  industries: [enterprise, finance, retail, manufacturing, telecom]
+  formats: []
+  analogs: [primo_rpa, robin_rpa, sherpa_rpa]
+  replaces: [uipath_rpa]
+  price_rub: {unit: robot_year, low: 180000, typical: 420000, high: 900000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PIX RPA. Лицензия PIX Robot Unattended на 12 месяцев"
+    - "PIX RPA. Лицензия PIX Studio на 12 месяцев"
+  confidence: high
+
+- id: primo_rpa
+  vendor: primo_rpa
+  name: "Primo RPA"
+  aliases: ["primo rpa", "примо рпа", "primo studio", "primo orchestrator"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Российская кроссплатформенная RPA-платформа (Windows и Linux) с инструментами миграции роботов из UiPath."
+  editions:
+    - {id: studio, name: "Primo RPA Studio", aliases: [studio]}
+    - {id: runner, name: "Primo RPA Runner", aliases: [runner, робот]}
+    - {id: orchestrator, name: "Primo RPA Orchestrator", aliases: [orchestrator]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["миграция программных роботов с uipath", "роботизация процессов на российских ос linux", "автоматизация сверки и отчётности"]
+  roles: [business_analyst, it_director]
+  industries: [enterprise, finance, energy, retail]
+  formats: []
+  analogs: [pix_rpa, robin_rpa, sherpa_rpa]
+  replaces: [uipath_rpa]
+  price_rub: {unit: robot_year, low: 180000, typical: 380000, high: 800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Primo RPA Runner Unattended (лицензия на 12 месяцев)"
+  confidence: high
+
+- id: robin_rpa
+  vendor: robin_rpa
+  name: "ROBIN RPA"
+  aliases: ["robin rpa", "робин рпа", "робин роботизация", "robin studio"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Российская платформа RPA и интеллектуальной автоматизации (с OCR и чат-ботами) для корпоративных и государственных заказчиков."
+  editions:
+    - {id: studio, name: "ROBIN Studio", aliases: [studio]}
+    - {id: robot, name: "ROBIN Robot", aliases: [robot]}
+    - {id: orchestrator, name: "ROBIN Orchestrator", aliases: [orchestrator]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["программная роботизация бизнес-процессов", "замена uipath и automation anywhere", "роботы на astra linux"]
+  roles: [business_analyst, it_director]
+  industries: [enterprise, gov, finance, energy]
+  formats: []
+  analogs: [pix_rpa, primo_rpa, sherpa_rpa]
+  replaces: [uipath_rpa]
+  price_rub: {unit: robot_year, low: 200000, typical: 420000, high: 850000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа ROBIN. Лицензия на 1 программного робота на 12 мес"
+  confidence: high
+
+- id: sherpa_rpa
+  vendor: sherpa_rpa
+  name: "Sherpa RPA"
+  aliases: ["sherpa rpa", "шерпа рпа", "sherpa robotics"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Российская RPA-платформа с ИИ-модулями и удобным визуальным конструктором для автоматизации офисных и финансовых задач."
+  editions:
+    - {id: designer, name: "Sherpa Designer", aliases: [designer]}
+    - {id: robot, name: "Sherpa Robot", aliases: [robot]}
+    - {id: orchestrator, name: "Sherpa Orchestrator", aliases: [orchestrator]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["роботизация рутинных офисных операций", "замена uipath"]
+  roles: [business_analyst, it_director]
+  industries: [mid, enterprise, finance, retail]
+  formats: []
+  analogs: [pix_rpa, primo_rpa, robin_rpa]
+  replaces: [uipath_rpa]
+  price_rub: {unit: robot_year, low: 150000, typical: 320000, high: 650000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Sherpa RPA. Лицензия Sherpa Robot Unattended на 12 мес"
+  confidence: high
+
+- id: yandex_tracker
+  vendor: yandex
+  name: "Яндекс Трекер (Yandex Tracker)"
+  aliases: ["яндекс трекер", "yandex tracker", "я трекер", "российская jira", "яндекс вики и трекер"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Облачный корпоративный таск-трекер от Яндекса для IT-разработки (Scrum/Kanban), сервисных команд и бизнес-подразделений (аналог Jira)."
+  editions:
+    - {id: standard, name: "Стандартный тариф", aliases: [стандарт]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["1-100", "101-250", "251-500", "501+"]
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена atlassian jira", "управление спринтами agile и kanban", "трекинг задач и багов", "интеграция с яндекс 360 и вики"]
+  roles: [project_manager, developer, it_director]
+  industries: [it, smb, mid, enterprise]
+  formats: []
+  analogs: [kaiten, evaproject, yougile, weeek]
+  replaces: [atlassian_jira, atlassian_trello]
+  price_rub: {unit: user_year, low: 4500, typical: 5400, high: 7200}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Яндекс Трекер. Подписка на 1 пользователя на 12 месяцев"
+  confidence: high
+
+- id: kaiten
+  vendor: kaiten
+  name: "Kaiten"
+  aliases: ["kaiten", "кайтен", "кайтэн", "российский trello", "российская jira kaiten"]
+  category: task_project_trackers
+  extra_categories: [whiteboards_notes]
+  summary: "Российская платформа визуального управления задачами, Kanban/Scrum-досками, проектами, документами и Service Desk (облако и on-premise)."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard]}
+    - {id: pro, name: "Pro", aliases: [pro]}
+    - {id: onprem, name: "On-Premise (Enterprise)", aliases: [onprem, коробка, enterprise]}
+  versions: []
+  platforms: [web, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["замена trello и jira", "канбан-доски и скрам для команд", "управление проектами и базой знаний"]
+  roles: [project_manager, developer, it_director]
+  industries: [it, smb, mid, enterprise, finance]
+  formats: []
+  analogs: [yandex_tracker, evaproject, yougile, weeek]
+  replaces: [atlassian_jira, atlassian_trello]
+  price_rub: {unit: user_year, low: 5000, typical: 9600, high: 18000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaiten Тариф Pro (1 пользователь на 12 месяцев)"
+    - "Kaiten On-Premise (подписка на 100 пользователей на 12 месяцев)"
+  confidence: high
+
+- id: evaproject
+  vendor: evateam
+  name: "EvaProject (EvaTeam)"
+  aliases: ["evaproject", "евапроджект", "evateam", "ева тим", "evateam jira", "замена jira on-premise"]
+  category: task_project_trackers
+  extra_categories: [itsm_service_desk]
+  summary: "Российский on-premise и облачный аналог Atlassian Jira с мигратором проектов, JQL-подобным поиском и модулем EvaServiceDesk."
+  editions:
+    - {id: cloud, name: "Cloud", aliases: [cloud, облако]}
+    - {id: server, name: "Server / On-Premise", aliases: [server, onprem, коробка]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["25", "50", "100", "250", "500", "1000"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["миграция с jira server и data center", "управление разработкой и багтрекинг", "единая связка трекер + вики"]
+  roles: [project_manager, developer, it_director]
+  industries: [it, mid, enterprise, finance, gov]
+  formats: []
+  analogs: [yandex_tracker, kaiten, yougile]
+  replaces: [atlassian_jira]
+  price_rub: {unit: user_year, low: 5500, typical: 10000, high: 18000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "EvaProject Server на 100 пользователей (подписка 12 месяцев)"
+  confidence: high
+
+- id: evawiki
+  vendor: evateam
+  name: "EvaWiki (EvaTeam)"
+  aliases: ["evawiki", "евавики", "ева вики", "замена confluence", "российский confluence"]
+  category: whiteboards_notes
+  extra_categories: [task_project_trackers]
+  summary: "Российская корпоративная база знаний и вики-система с автоматическим переносом пространств из Atlassian Confluence."
+  editions:
+    - {id: cloud, name: "Cloud", aliases: [cloud]}
+    - {id: server, name: "Server / On-Premise", aliases: [server, onprem]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["25", "50", "100", "250", "500"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение atlassian confluence", "корпоративная база знаний и документация", "перенос страниц из confluence"]
+  roles: [developer, project_manager, it_director, technical_writer]
+  industries: [it, mid, enterprise, finance, gov]
+  formats: [md, html, pdf]
+  analogs: [yonote, teamly]
+  replaces: [atlassian_confluence, notion]
+  price_rub: {unit: user_year, low: 4500, typical: 8500, high: 15000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "EvaWiki Server на 100 пользователей (подписка 12 месяцев)"
+  confidence: high
+
+- id: yougile
+  vendor: yougile
+  name: "YouGile"
+  aliases: ["yougile", "юджайл", "югил", "таск трекер yougile"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Российская система управления проектами и задачами с чатом внутри каждой задачи, досками, Гантом и коробочной версией."
+  editions:
+    - {id: cloud, name: "Облачная", aliases: [облако, cloud]}
+    - {id: box, name: "Коробочная", aliases: [коробка, onprem]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["управление проектами и задачами", "замена trello и asana", "командная работа с чатами по задачам"]
+  roles: [project_manager, smb_owner, developer]
+  industries: [smb, mid, it, services]
+  formats: []
+  analogs: [kaiten, yandex_tracker, weeek, planfix]
+  replaces: [atlassian_trello, atlassian_jira]
+  price_rub: {unit: user_year, low: 4800, typical: 6500, high: 12000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "YouGile Облачная версия (1 пользователь на 12 месяцев)"
+    - "YouGile Коробочная версия на 50 пользователей на 12 месяцев"
+  confidence: high
+
+- id: weeek
+  vendor: weeek
+  name: "WEEEK"
+  aliases: ["weeek", "вик", "таск менеджер weeek", "российский notion и trello"]
+  category: task_project_trackers
+  extra_categories: [whiteboards_notes, crm_systems]
+  summary: "Российский облачный сервис для управления проектами, задачами, базой знаний и простой CRM для малого и среднего бизнеса."
+  editions:
+    - {id: lite, name: "Lite", aliases: [lite]}
+    - {id: pro, name: "Pro", aliases: [pro]}
+    - {id: business, name: "Business", aliases: [business]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление проектами и досками задач", "база знаний команды", "замена trello и notion"]
+  roles: [project_manager, marketing_manager, smb_owner]
+  industries: [smb, it, services, marketing]
+  formats: []
+  analogs: [kaiten, yougile, yonote, teamly]
+  replaces: [atlassian_trello, notion]
+  price_rub: {unit: user_year, low: 2400, typical: 4800, high: 7500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "WEEEK Тариф Business (1 пользователь на 12 месяцев)"
+  confidence: high
+
+- id: planfix
+  vendor: planfix
+  name: "ПланФикс (Planfix)"
+  aliases: ["планфикс", "planfix", "план фикс"]
+  category: task_project_trackers
+  extra_categories: [crm_systems, bpm_rpa_lowcode]
+  summary: "Гибкий конструктор бизнес-систем для управления задачами, проектами, заявками, учётом времени и CRM."
+  editions:
+    - {id: pro, name: "Профессионал", aliases: [профессионал]}
+    - {id: business, name: "Бизнес", aliases: [бизнес]}
+    - {id: corp, name: "Корпорация", aliases: [корпорация]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["конструктор управления задачами и заявками", "учёт рабочего времени и проектов", "гибкая crm"]
+  roles: [project_manager, smb_owner]
+  industries: [smb, services, it]
+  formats: []
+  analogs: [bitrix24, yougile, kaiten]
+  replaces: [atlassian_jira, atlassian_trello]
+  price_rub: {unit: user_year, low: 4200, typical: 7800, high: 12000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ПланФикс Тариф Бизнес (1 сотрудник на 12 месяцев)"
+  confidence: high
+
+- id: huntflow
+  vendor: huntflow
+  name: "Хантфлоу (Huntflow)"
+  aliases: ["хантфлоу", "huntflow", "ats хантфлоу", "crm для рекрутинга"]
+  category: hrm_recruiting
+  extra_categories: []
+  summary: "Ведущая российская ATS-система (CRM для рекрутинга) для автоматизации подбора персонала, базы резюме и интеграции с hh.ru."
+  editions:
+    - {id: cloud, name: "Облачная версия", aliases: [облако, cloud]}
+    - {id: onprem, name: "Коробочная версия", aliases: [коробка, onprem]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация подбора персонала", "воронка найма и база кандидатов", "интеграция с рабочими сайтами"]
+  roles: [hr_manager]
+  industries: [mid, enterprise, it, retail, finance]
+  formats: [pdf, docx]
+  analogs: [potok_hr, onec_zup]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 65000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Хантфлоу. Лицензия рекрутера на 12 месяцев"
+  confidence: high
+
+- id: potok_hr
+  vendor: potok_hr
+  name: "Поток Рекрутмент (TalentTech)"
+  aliases: ["поток", "поток рекрутмент", "potok", "potok hr", "ats поток"]
+  category: hrm_recruiting
+  extra_categories: []
+  summary: "Российская платформа автоматизации массового и точечного рекрутинга, адаптации, опросов и оценки персонала."
+  editions:
+    - {id: recruiting, name: "Поток Рекрутмент", aliases: [рекрутмент]}
+    - {id: suite, name: "Поток HR-платформа", aliases: [платформа, адаптация, оценка]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация подбора и адаптации персонала", "массовый найм", "оценка 360 и пульс-опросы"]
+  roles: [hr_manager]
+  industries: [mid, enterprise, retail, finance, manufacturing]
+  formats: [pdf, docx]
+  analogs: [huntflow, websoft_hcm]
+  replaces: []
+  price_rub: {unit: user_year, low: 30000, typical: 55000, high: 110000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Поток Рекрутмент. Подписка на 1 рабочее место рекрутера (12 мес)"
+  confidence: high
+
+- id: sap_s4hana
+  vendor: sap
+  name: "SAP S/4HANA / SAP ERP"
+  aliases: ["sap", "сап", "sap erp", "sap s4hana", "sap s/4hana", "sap r/3", "sap r3", "sap bpc", "sap hcm", "sap ariba", "sap successfactors"]
+  category: erp_systems
+  extra_categories: [finance_budgeting]
+  summary: "Корпоративная ERP-система немецкой компании SAP (ушла с российского рынка; один из главных объектов импортозамещения в РФ)."
+  editions:
+    - {id: s4hana, name: "S/4HANA", aliases: [s4hana, "s/4hana"]}
+    - {id: ecc, name: "SAP ECC (R/3)", aliases: [ecc, r3, "r/3"]}
+  versions: []
+  platforms: [linux, windows, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поиск аналога sap erp", "импортозамещение sap s/4hana", "замена модулей sap fi co mm sd"]
+  roles: [it_director, cfo, coo]
+  industries: [enterprise, manufacturing, energy, retail, finance]
+  formats: []
+  analogs: [onec_erp, onec_holding, galaktika_erp, turbo_erp]
+  replaces: []
+  price_rub: {unit: user, low: 150000, typical: 350000, high: 700000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "SAP S/4HANA Enterprise Management (вендор ушёл из РФ — подбирайте российские аналоги)"
+  confidence: high
+
+- id: oracle_ebs
+  vendor: oracle
+  name: "Oracle E-Business Suite / Fusion ERP"
+  aliases: ["oracle ebs", "oracle erp", "oracle e-business suite", "oracle fusion", "oracle hyperion", "оракл ерп"]
+  category: erp_systems
+  extra_categories: [finance_budgeting]
+  summary: "Корпоративные ERP- и EPM-приложения Oracle (вендор приостановил деятельность в РФ)."
+  editions:
+    - {id: ebs, name: "E-Business Suite", aliases: [ebs]}
+    - {id: hyperion, name: "Hyperion EPM", aliases: [hyperion]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение oracle ebs и hyperion", "поиск российской замены oracle erp"]
+  roles: [it_director, cfo]
+  industries: [enterprise, telecom, finance, energy]
+  formats: []
+  analogs: [onec_erp, onec_holding, galaktika_erp, optimacros]
+  replaces: []
+  price_rub: {unit: user, low: 150000, typical: 320000, high: 650000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Oracle E-Business Suite (недоступно в РФ)"
+  confidence: high
+
+- id: salesforce_crm
+  vendor: salesforce
+  name: "Salesforce CRM"
+  aliases: ["salesforce", "сейлсфорс", "сэйлсфорс", "salesforce sales cloud", "salesforce service cloud"]
+  category: crm_systems
+  extra_categories: []
+  summary: "Глобальная облачная CRM-платформа Salesforce (прекратила обслуживание российских клиентов)."
+  editions:
+    - {id: sales, name: "Sales Cloud", aliases: [sales]}
+    - {id: enterprise, name: "Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск замены salesforce", "импортозамещение корпоративной crm"]
+  roles: [sales_manager, it_director]
+  industries: [mid, enterprise, it, finance]
+  formats: []
+  analogs: [bpmsoft_crm, bitrix24, elma365, amocrm]
+  replaces: []
+  price_rub: {unit: user_year, low: 90000, typical: 180000, high: 360000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Salesforce Sales Cloud Enterprise (вендор ушёл из РФ)"
+  confidence: high
+
+- id: atlassian_jira
+  vendor: atlassian
+  name: "Atlassian Jira"
+  aliases: ["jira", "джира", "жира", "atlassian jira", "jira software", "jira service management", "jira data center", "jira server"]
+  category: task_project_trackers
+  extra_categories: [itsm_service_desk]
+  summary: "Популярный трекер задач, багов и ITSM-платформа Atlassian (вендор полностью ушёл из РФ и заблокировал облачные аккаунты)."
+  editions:
+    - {id: software, name: "Jira Software", aliases: [software, agile]}
+    - {id: jsm, name: "Jira Service Management", aliases: [jsm, service desk, service management]}
+    - {id: dc, name: "Data Center", aliases: [data center, server]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение jira", "поиск аналога jira software и service management", "миграция проектов из jira"]
+  roles: [project_manager, developer, it_director]
+  industries: [it, finance, telecom, mid, enterprise]
+  formats: []
+  analogs: [yandex_tracker, kaiten, evaproject, yougile, simpleone_itsm]
+  replaces: []
+  price_rub: {unit: user_year, low: 10000, typical: 20000, high: 45000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Atlassian Jira Software Data Center (вендор ушёл из РФ)"
+  confidence: high
+
+- id: atlassian_confluence
+  vendor: atlassian
+  name: "Atlassian Confluence"
+  aliases: ["confluence", "конфлюенс", "конфлюэнс", "конфа", "atlassian confluence"]
+  category: whiteboards_notes
+  extra_categories: []
+  summary: "Корпоративная вики и база знаний от Atlassian (вендор ушёл из РФ; один из самых частых запросов на замену)."
+  editions:
+    - {id: cloud, name: "Cloud", aliases: [cloud]}
+    - {id: dc, name: "Data Center", aliases: [data center, server]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение confluence", "перенос корпоративной базы знаний из confluence"]
+  roles: [developer, project_manager, technical_writer, it_director]
+  industries: [it, finance, enterprise]
+  formats: [html, md]
+  analogs: [evawiki, yonote, teamly]
+  replaces: []
+  price_rub: {unit: user_year, low: 8000, typical: 16000, high: 35000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Atlassian Confluence Data Center (вендор ушёл из РФ)"
+  confidence: high
+
+- id: atlassian_trello
+  vendor: atlassian
+  name: "Trello"
+  aliases: ["trello", "трелло", "канбан трелло"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Онлайн-сервис канбан-досок для управления задачами от Atlassian (официально недоступен для российских компаний)."
+  editions:
+    - {id: standard, name: "Standard / Premium", aliases: [standard, premium]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["замена trello", "перенос канбан-досок из trello в российский сервис"]
+  roles: [project_manager, marketing_manager, smb_owner]
+  industries: [smb, it, services]
+  formats: [json]
+  analogs: [kaiten, yougile, weeek, yandex_tracker, bitrix24]
+  replaces: []
+  price_rub: {unit: user_year, low: 6000, typical: 12000, high: 20000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Trello Enterprise (вендор ушёл из РФ)"
+  confidence: high
+
+- id: uipath_rpa
+  vendor: uipath
+  name: "UiPath RPA"
+  aliases: ["uipath", "юайпас", "уипат", "uipath studio", "uipath orchestrator", "uipath robot"]
+  category: bpm_rpa_lowcode
+  extra_categories: []
+  summary: "Мировой лидер рынка программной роботизации (RPA), прекративший продажи и поддержку в России."
+  editions:
+    - {id: studio, name: "UiPath Studio", aliases: [studio]}
+    - {id: unattended, name: "Unattended Robot", aliases: [unattended, robot]}
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [other, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение uipath", "миграция rpa-роботов на российские платформы"]
+  roles: [business_analyst, it_director]
+  industries: [enterprise, finance, telecom, retail]
+  formats: []
+  analogs: [pix_rpa, primo_rpa, robin_rpa, sherpa_rpa]
+  replaces: []
+  price_rub: {unit: robot_year, low: 450000, typical: 850000, high: 1500000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "UiPath Unattended Robot (вендор ушёл из РФ)"
+  confidence: high

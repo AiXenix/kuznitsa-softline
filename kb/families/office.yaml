@@ -1,0 +1,750 @@
+# Семейства продуктов: Офисные пакеты, совместная работа, диаграммы, проекты, заметки (2026)
+
+- id: r7_office
+  vendor: r7_office
+  name: "Р7-Офис (Профессиональный / Корпоративный сервер)"
+  aliases: ["р7", "р7 офис", "р7-офис", "р 7 офис", "r7 office", "r7-office", "р7 профессиональный", "р7 корпоративный"]
+  category: office_suite
+  extra_categories: [email_clients_calendars, diagramming_mindmaps]
+  summary: "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов."
+  editions:
+    - {id: desktop, name: "Профессиональный (Десктоп)", aliases: ["профессиональный", "десктоп", "desktop"]}
+    - {id: corp_server, name: "Корпоративный сервер (Десктоп + Веб)", aliases: ["корпоративный сервер", "серверный", "enterprise"]}
+    - {id: edu, name: "Для образования", aliases: ["образование", "edu"]}
+  versions: []
+  platforms: [windows, linux, macos, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, device, concurrent]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, support]
+    bands: ["1-9", "10-49", "50-99", "100-499", "500+"]
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Microsoft Office (Word, Excel, PowerPoint)", "совместное редактирование документов в браузере и на Astra/РЕД ОС/Альт"]
+  roles: [office_worker, accountant, lawyer, manager, analyst, teacher]
+  industries: []
+  formats: ["docx", "xlsx", "pptx", "odt", "ods", "pdf"]
+  analogs: [myoffice_standard, myoffice_professional, alteroffice]
+  replaces: [ms_office, microsoft_365, ms_visio]
+  price_rub: {unit: user_year, low: 2500, typical: 4800, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Р7-Офис. Профессиональный. Десктопная версия на 1 рабочее место (годовая подписка, ESD)"
+    - "Р7-Офис. Профессиональный. Бессрочная лицензия + 1 год обновлений (от 50 шт.)"
+    - "Р7-Офис. Корпоративный сервер 100 пользователей 1 год"
+  confidence: high
+
+- id: myoffice_standard
+  vendor: myoffice
+  name: "МойОфис Стандартный"
+  aliases: ["мойофис стандартный", "мой офис стандартный", "мойофис 2", "мойофис 3", "myoffice standard", "мой офис"]
+  category: office_suite
+  extra_categories: [email_clients_calendars]
+  summary: "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS."
+  editions:
+    - {id: standard_2, name: "Стандартный 2 / 3", aliases: ["стандартный", "standard"]}
+    - {id: edu, name: "Образование", aliases: ["образование", "edu"]}
+  versions: ["3", "2"]
+  platforms: [windows, linux, macos, aurora]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, support]
+    bands: ["1-24", "25-99", "100-499", "500+"]
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Microsoft Office на рабочих станциях", "закупка офисного пакета из реестра ПО по 44-ФЗ/223-ФЗ"]
+  roles: [office_worker, accountant, lawyer, manager, teacher]
+  industries: []
+  formats: ["docx", "xlsx", "pptx", "odt", "ods", "pdf"]
+  analogs: [r7_office, myoffice_professional, alteroffice]
+  replaces: [ms_office]
+  price_rub: {unit: user_year, low: 2800, typical: 4900, high: 11500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МойОфис Стандартный 2 (1 пользователь, подписка на 1 год, ESD)"
+    - "МойОфис Стандартный 2 Бессрочная лицензия для госучреждений"
+  confidence: high
+
+- id: myoffice_professional
+  vendor: myoffice
+  name: "МойОфис Профессиональный"
+  aliases: ["мойофис профессиональный", "мойофис проф", "myoffice professional", "мойофис частное облако"]
+  category: office_suite
+  extra_categories: [mail_servers, corporate_messengers]
+  summary: "Комплексная корпоративная платформа МойОфис: десктопные и веб-редакторы, частное облако для совместной работы, почтовый сервер и мессенджер Squadus."
+  editions:
+    - {id: prof, name: "Профессиональный", aliases: ["профессиональный", "проф"]}
+    - {id: private_cloud, name: "Частное облако", aliases: ["частное облако", "cloud"]}
+  versions: ["3", "2"]
+  platforms: [windows, linux, macos, web, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["полная замена Microsoft 365 и Exchange в закрытом контуре", "совместное редактирование документов с сертификацией ФСТЭК"]
+  roles: [office_worker, sysadmin, security_officer]
+  industries: ["gov", "enterprise", "energy"]
+  formats: ["docx", "xlsx", "pptx", "odt", "pdf"]
+  analogs: [r7_office, yandex_360, vk_workspace]
+  replaces: [microsoft_365, ms_office, ms_exchange]
+  price_rub: {unit: user_year, low: 5500, typical: 8900, high: 16000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МойОфис Профессиональный 2 Подписка на 1 пользователя на 1 год (от 100 шт.)"
+  confidence: high
+
+- id: yandex_360
+  vendor: yandex
+  name: "Яндекс 360 для бизнеса"
+  aliases: ["яндекс 360", "я360", "yandex 360", "телемост", "яндекс диск для бизнеса", "яндекс почта для домена", "яндекс вики"]
+  category: office_suite
+  extra_categories: [mail_servers, uc_platforms, vks_webinars]
+  summary: "Облачный виртуальный офис для компаний: корпоративная Почта на своём домене, Диск, онлайн-Документы, Телемост (ВКС), Мессенджер, Календарь и Вики."
+  editions:
+    - {id: basic, name: "Базовый", aliases: ["базовый"]}
+    - {id: optimal, name: "Оптимальный", aliases: ["оптимальный"]}
+    - {id: extended, name: "Расширенный", aliases: ["расширенный"]}
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1, 10, 50, 100]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена Google Workspace и Microsoft 365 в облаке РФ", "почта на корпоративном домене + облачное хранилище + видеозвонки Телемост"]
+  roles: [office_worker, manager, sysadmin, director]
+  industries: []
+  formats: ["docx", "xlsx", "pptx"]
+  analogs: [vk_workspace, r7_office, myoffice_professional]
+  replaces: [microsoft_365, google_workspace]
+  price_rub: {unit: user_year, low: 2900, typical: 5600, high: 14500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Яндекс 360 для бизнеса Тариф Оптимальный 1 сотрудник на 12 месяцев"
+  confidence: high
+
+- id: alteroffice
+  vendor: alteroffice
+  name: "AlterOffice"
+  aliases: ["альтерофис", "альтер офис", "alteroffice", "алми партнер офис"]
+  category: office_suite
+  extra_categories: []
+  summary: "Российский десктопный офисный пакет (AText, ACell, AConcept, AMail) с поддержкой российских ОС и реестра Минцифры."
+  editions:
+    - {id: standard, name: "Стандартный", aliases: ["стандарт"]}
+    - {id: pro, name: "Профессиональный", aliases: ["про"]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["бюджетная замена MS Office из реестра ПО"]
+  roles: [office_worker]
+  industries: []
+  formats: ["docx", "xlsx", "pptx", "odt", "ods"]
+  analogs: [r7_office, myoffice_standard]
+  replaces: [ms_office]
+  price_rub: {unit: device, low: 2500, typical: 5200, high: 9500}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "AlterOffice Стандартный Лицензия на 1 ПК (бессрочная, ESD)"
+  confidence: high
+
+- id: the_bat
+  vendor: ritlabs
+  name: "The Bat! (Professional / Home)"
+  aliases: ["зе бат", "the bat", "бат почта", "the bat professional"]
+  category: email_clients_calendars
+  extra_categories: []
+  summary: "Надёжный десктопный почтовый клиент для Windows с шифрованием базы писем, поддержкой S/MIME, PGP и работой с большими архивами."
+  editions:
+    - {id: pro, name: "Professional", aliases: ["pro", "про"]}
+    - {id: home, name: "Home", aliases: ["home"]}
+  versions: ["11"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [user, device]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: ["1-9", "10-49", "50+"]
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена Microsoft Outlook для работы с корпоративной почтой по IMAP/POP3/Exchange"]
+  roles: [office_worker, manager, accountant]
+  industries: []
+  formats: ["eml", "msg"]
+  analogs: [r7_office, myoffice_standard]
+  replaces: [ms_office]
+  price_rub: {unit: user, low: 3500, typical: 6000, high: 9000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "The Bat! Professional Edition v11 1 лицензия (ESD)"
+  confidence: high
+
+- id: sila_union
+  vendor: sila_union
+  name: "SILA Union"
+  aliases: ["сила юнион", "sila union", "система моделирования сила"]
+  category: diagramming_mindmaps
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Российская платформа моделирования бизнес-архитектуры, ИТ-архитектуры и процессов (BPMN, EPC, ArchiMate, UML) — замена ARIS и Visio."
+  editions: []
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["проектирование бизнес-процессов и корпоративной архитектуры", "замена Software AG ARIS и Microsoft Visio"]
+  roles: [analyst, manager]
+  industries: ["enterprise", "finance", "energy"]
+  formats: ["bpmn", "vsdx"]
+  analogs: [business_studio]
+  replaces: [ms_visio]
+  price_rub: {unit: user_year, low: 45000, typical: 95000, high: 220000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SILA Union Архитектор (1 именованный пользователь, 1 год)"
+  confidence: high
+
+- id: business_studio
+  vendor: business_studio
+  name: "Business Studio"
+  aliases: ["бизнес студио", "бизнес студия", "business studio 6", "бс моделирование"]
+  category: diagramming_mindmaps
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Российская система бизнес-моделирования (BPMN, IDEF0, Процедуры) с автоматическим формированием регламентов, должностных инструкций и KPI."
+  editions:
+    - {id: enterprise, name: "Enterprise", aliases: ["enterprise"]}
+    - {id: portal, name: "Business Studio Portal", aliases: ["portal", "портал"]}
+  versions: ["6"]
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1, 5]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["описание бизнес-процессов, регламентов и оргструктуры", "замена ARIS и MS Visio для бизнес-аналитиков"]
+  roles: [analyst, manager, director]
+  industries: []
+  formats: ["bpmn", "vsdx"]
+  analogs: [sila_union]
+  replaces: [ms_visio]
+  price_rub: {unit: user, low: 55000, typical: 120000, high: 280000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Business Studio 6 Enterprise 1 конкурентная лицензия + 1 год ТП"
+  confidence: high
+
+- id: advanta_pm
+  vendor: advanta
+  name: "Адванта (ИСУП)"
+  aliases: ["адванта", "advanta", "исуп адванта"]
+  category: project_planning
+  extra_categories: []
+  summary: "Российская корпоративная информационная система управления портфелями и проектами (диаграммы Ганта, бюджеты, ресурсы, контрольные точки)."
+  editions: []
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление портфелем инвестиционных и строительных проектов", "замена Microsoft Project Server и Oracle Primavera"]
+  roles: [manager, director]
+  industries: ["construction", "industry", "gov"]
+  formats: ["mpp"]
+  analogs: [spider_project]
+  replaces: [ms_project]
+  price_rub: {unit: user_year, low: 15000, typical: 32000, high: 70000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ИСУП Адванта 50 пользователей Годовая подписка"
+  confidence: high
+
+- id: spider_project
+  vendor: spider_project
+  name: "Spider Project"
+  aliases: ["спайдер проджект", "spider project", "спайдер"]
+  category: project_planning
+  extra_categories: []
+  summary: "Российский профессиональный пакет календарно-сетевого планирования с оптимизацией ресурсов, критической цепью и импортом проектов MS Project и Primavera."
+  editions:
+    - {id: desktop, name: "Desktop", aliases: ["desktop"]}
+    - {id: pro, name: "Professional", aliases: ["pro", "про"]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["сложное календарно-сетевое планирование в строительстве и инжиниринге", "замена Oracle Primavera P6 и MS Project Professional"]
+  roles: [manager, engineer_cad]
+  industries: ["construction", "energy", "oil_gas"]
+  formats: ["mpp", "xer"]
+  analogs: [advanta_pm]
+  replaces: [ms_project]
+  price_rub: {unit: device, low: 65000, typical: 160000, high: 350000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Spider Project Professional 1 рабочее место (бессрочная лицензия)"
+  confidence: high
+
+- id: yonote
+  vendor: yonote
+  name: "Yonote"
+  aliases: ["йоноут", "еноут", "yonote", "российский notion"]
+  category: whiteboards_notes
+  extra_categories: [task_project_trackers]
+  summary: "Российская база знаний, заметки и рабочее пространство для команд с импортом из Notion и Confluence (облако и on-premise)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная вики и база знаний с переносом из Notion/Confluence"]
+  roles: [manager, developer, marketer, office_worker]
+  industries: []
+  formats: ["md"]
+  analogs: [teamly, evawiki]
+  replaces: [notion, atlassian_confluence]
+  price_rub: {unit: user_year, low: 2400, typical: 4200, high: 8500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Yonote Бизнес Подписка на 25 пользователей 1 год"
+  confidence: high
+
+- id: teamly
+  vendor: teamly
+  name: "Teamly"
+  aliases: ["тимли", "teamly wiki", "teamly база знаний"]
+  category: whiteboards_notes
+  extra_categories: [lms_elearning]
+  summary: "Российская платформа управления знаниями (вики, умные таблицы, курсы и тестирование сотрудников) для среднего и крупного бизнеса."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная база знаний, регламенты и онбординг сотрудников", "замена Confluence и Notion"]
+  roles: [hr, manager, analyst, office_worker]
+  industries: []
+  formats: []
+  analogs: [yonote, evawiki]
+  replaces: [notion, atlassian_confluence]
+  price_rub: {unit: user_year, low: 2900, typical: 5200, high: 11000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Teamly Enterprise On-Premise 50 редакторов 1 год"
+  confidence: high
+
+- id: holst_boards
+  vendor: holst
+  name: "Holst (онлайн-доски)"
+  aliases: ["холст", "holst", "доски холст", "аналог miro холст"]
+  category: whiteboards_notes
+  extra_categories: []
+  summary: "Российская интерактивная онлайн-доска для совместной работы, CJM, мозговых штурмов и импорта досок из Miro."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["визуальные доски, ретроспективы и фасилитация команд", "перенос досок из ушедшего Miro"]
+  roles: [manager, designer, marketer, analyst]
+  industries: []
+  formats: []
+  analogs: [mts_link_boards]
+  replaces: [miro]
+  price_rub: {unit: user_year, low: 3500, typical: 6500, high: 12000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Holst Командный тариф 20 пользователей на 1 год"
+  confidence: high
+
+- id: mts_link_boards
+  vendor: mts_link
+  name: "МТС Линк Доски"
+  aliases: ["мтс линк доски", "линк доски", "mts link boards"]
+  category: whiteboards_notes
+  extra_categories: []
+  summary: "Российская интерактивная онлайн-доска в экосистеме МТС Линк для совместного проектирования и миграции досок Miro."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Miro в корпоративном контуре и в облаке"]
+  roles: [manager, designer, analyst, marketer]
+  industries: []
+  formats: []
+  analogs: [holst_boards]
+  replaces: [miro]
+  price_rub: {unit: user_year, low: 4000, typical: 7500, high: 15000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "МТС Линк Доски Бизнес 25 лицензий 1 год"
+  confidence: high
+
+- id: ms_office
+  vendor: microsoft
+  name: "Microsoft Office (2021 / 2024 / LTSC)"
+  aliases: ["ms office", "мсофис", "майкрософт офис", "ворд", "эксель", "excel", "word", "powerpoint", "office 2021", "office 2024", "office ltsc", "office home and business"]
+  category: office_suite
+  extra_categories: [email_clients_calendars]
+  summary: "Бессрочный офисный пакет Microsoft (Word, Excel, PowerPoint, Outlook). Официальные корпоративные поставки в РФ приостановлены; доступны ограниченные ESD-позиции."
+  editions:
+    - {id: hb, name: "Home and Business (Для дома и бизнеса)", aliases: ["home and business", "для дома и бизнеса", "hb"]}
+    - {id: pro_plus, name: "Professional Plus / LTSC", aliases: ["pro plus", "ltsc"]}
+  versions: ["2024", "2021", "2019"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd, box]
+  registry: no
+  certs: []
+  use_cases: ["работа с документами Word, сложными таблицами Excel с VBA-макросами и презентациями"]
+  roles: [office_worker, accountant, analyst, lawyer, manager]
+  industries: []
+  formats: ["docx", "xlsx", "pptx"]
+  analogs: [r7_office, myoffice_standard, myoffice_professional, alteroffice]
+  replaces: []
+  price_rub: {unit: device, low: 22000, typical: 32000, high: 48000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Office Home and Business 2024 ESD (для 1 ПК/Mac)"
+  confidence: high
+
+- id: microsoft_365
+  vendor: microsoft
+  name: "Microsoft 365 (Business / Enterprise)"
+  aliases: ["microsoft 365", "office 365", "офис 365", "m365", "o365"]
+  category: office_suite
+  extra_categories: [uc_platforms, mail_servers]
+  summary: "Облачная подписка Microsoft 365 (Office + Exchange Online + Teams + SharePoint + OneDrive). Официально недоступна для корпоративной покупки и продления в РФ."
+  editions:
+    - {id: business_standard, name: "Business Standard", aliases: ["business standard"]}
+    - {id: e3, name: "Enterprise E3 / E5", aliases: ["e3", "e5"]}
+  versions: []
+  platforms: [windows, macos, web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение подписки Microsoft 365 / Office 365"]
+  roles: [office_worker, sysadmin, manager]
+  industries: []
+  formats: ["docx", "xlsx", "pptx"]
+  analogs: [yandex_360, myoffice_professional, r7_office, vk_workspace]
+  replaces: []
+  price_rub: {unit: user_year, low: 12000, typical: 22000, high: 45000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Microsoft 365 Business Standard 1 Year (не поставляется юрлицам РФ)"
+  confidence: high
+
+- id: ms_visio
+  vendor: microsoft
+  name: "Microsoft Visio (Standard / Professional)"
+  aliases: ["визио", "ms visio", "microsoft visio", "visio pro", "visio 2021", "visio 2024"]
+  category: diagramming_mindmaps
+  extra_categories: []
+  summary: "Редактор технических схем, блок-схем, сетей и диаграмм Microsoft Visio (ограниченная доступность в РФ; замещается Р7-Графика, SILA Union, Business Studio)."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["standard", "стандарт"]}
+    - {id: pro, name: "Professional", aliases: ["pro", "про"]}
+  versions: ["2024", "2021"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["создание схем сетей, бизнес-процессов и оргструктур (VSDX)"]
+  roles: [analyst, sysadmin, manager]
+  industries: []
+  formats: ["vsdx", "vsd"]
+  analogs: [r7_office, sila_union, business_studio]
+  replaces: []
+  price_rub: {unit: device, low: 25000, typical: 45000, high: 75000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Visio Professional 2021 ESD (ограниченная доступность)"
+  confidence: high
+
+- id: ms_project
+  vendor: microsoft
+  name: "Microsoft Project (Standard / Professional)"
+  aliases: ["проджект", "ms project", "microsoft project", "project pro", "project 2021", "project 2024"]
+  category: project_planning
+  extra_categories: []
+  summary: "Инструмент календарного планирования проектов и диаграмм Ганта (ограниченная доступность в РФ; замещается Адванта, Spider Project)."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["standard"]}
+    - {id: pro, name: "Professional", aliases: ["pro"]}
+  versions: ["2024", "2021"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["календарное планирование проектов и работа с файлами MPP"]
+  roles: [manager, director]
+  industries: []
+  formats: ["mpp"]
+  analogs: [advanta_pm, spider_project]
+  replaces: []
+  price_rub: {unit: device, low: 45000, typical: 85000, high: 130000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Project Professional 2021 ESD (ограниченная доступность)"
+  confidence: high
+
+- id: miro
+  vendor: miro
+  name: "Miro (онлайн-доски)"
+  aliases: ["миро", "miro board", "realtimeboard"]
+  category: whiteboards_notes
+  extra_categories: []
+  summary: "Зарубежная интерактивная онлайн-доска для команд (ушла из РФ и отключила платные аккаунты; замещается МТС Линк Доски, Holst)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение досок Miro"]
+  roles: [manager, designer, marketer, analyst]
+  industries: []
+  formats: []
+  analogs: [mts_link_boards, holst_boards]
+  replaces: []
+  price_rub: {unit: user_year, low: 9000, typical: 16000, high: 28000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Miro Business 1 Seat 1 Year (недоступен в РФ)"
+  confidence: high
+
+- id: notion
+  vendor: notion
+  name: "Notion"
+  aliases: ["ноушн", "ношен", "notion business", "notion enterprise"]
+  category: whiteboards_notes
+  extra_categories: [task_project_trackers]
+  summary: "Зарубежное рабочее пространство и база знаний (ограничил доступ пользователей из РФ; замещается Yonote, Teamly, WEEEK)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Notion для баз знаний и командных заметок"]
+  roles: [manager, marketer, developer, analyst]
+  industries: []
+  formats: ["md"]
+  analogs: [yonote, teamly, weeek]
+  replaces: []
+  price_rub: {unit: user_year, low: 9500, typical: 16000, high: 25000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Notion Business 1 Member 1 Year (недоступен в РФ)"
+  confidence: high

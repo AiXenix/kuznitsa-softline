@@ -1,0 +1,847 @@
+# Семейства продуктов: Отраслевое ПО, видеонаблюдение, МИС, техподдержка, хостинг-панели, DCAP, ИБ-дополнения
+# Схема: kb/SCHEMA.md
+
+- id: onec_itilium
+  vendor: onec
+  name: "1С:ITILIUM (ITSM / Service Desk)"
+  aliases: ["1с itilium", "1c itilium", "итилиум", "1с итилиум", "itilium", "1с service desk", "1с хелпдеск"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Российская система управления ИТ-услугами (ITSM / Service Desk / CMDB / SLA) на платформе 1С:Предприятие 8 (объединение 1С:ITIL и Итилиум)."
+  editions:
+    - {id: standard, name: "1С:ITILIUM Стандарт", aliases: [стандарт, standard]}
+    - {id: prof, name: "1С:ITILIUM ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "1С:ITILIUM КОРП", aliases: [корп, corp]}
+  versions: ["8.3", "1.0"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual]
+    metrics: [company, concurrent]
+    terms_months: []
+    actions: [new, upgrade, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация ит-поддержки service desk по itil", "учёт ит-активов и оборудования cmdb", "импортозамещение jira service management и servicenow"]
+  roles: [it_director, helpdesk, sysadmin]
+  industries: [mid, enterprise, manufacturing, retail, gov]
+  formats: [xml, xlsx]
+  analogs: [simpleone_itsm, naumen_smp, inframanager]
+  replaces: [servicenow_itsm, atlassian_jira]
+  price_rub: {unit: company, low: 85000, typical: 220000, high: 650000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:ITILIUM ПРОФ (электронная поставка)"
+    - "1С:ITILIUM КОРП (основная поставка)"
+  confidence: high
+
+- id: macroscop_vms
+  vendor: macroscop
+  name: "Macroscop (IP-видеонаблюдение и видеоаналитика)"
+  aliases: ["macroscop", "макроскоп", "по видеонаблюдения macroscop", "лицензия macroscop"]
+  category: industry_specialized
+  extra_categories: [ml_platforms_cv]
+  summary: "Российское программное обеспечение для систем IP-видеонаблюдения с модулями нейросетевой видеоаналитики (распознавание лиц, номеров, касок, подсчёт посетителей)."
+  editions:
+    - {id: ml, name: "Macroscop ML", aliases: [ml]}
+    - {id: ls, name: "Macroscop LS", aliases: [ls]}
+    - {id: st, name: "Macroscop ST", aliases: [st, стандарт]}
+    - {id: enterprise, name: "Macroscop Enterprise / Ultra", aliases: [enterprise, ultra]}
+  versions: ["4"]
+  platforms: [windows, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [other]
+    terms_months: []
+    actions: [new, upgrade, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["ip-видеонаблюдение на предприятии и складе", "распознавание госномеров на кпп", "видеоаналитика охраны труда и касок"]
+  roles: [security_officer, sysadmin]
+  industries: [manufacturing, retail, logistics, gov, construction]
+  formats: [rtsp, onvif, mp4]
+  analogs: [trassir_vms, axxon_next_vms]
+  replaces: []
+  price_rub: {unit: camera, low: 2500, typical: 6500, high: 19000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Macroscop ST. Лицензия на 1 IP-камеру (бессрочная)"
+    - "Macroscop Ultra. Лицензия на 1 IP-камеру + пакет нейросетевой аналитики"
+  confidence: high
+
+- id: trassir_vms
+  vendor: dssl_trassir
+  name: "TRASSIR (DSSL — Видеонаблюдение и видеоаналитика)"
+  aliases: ["trassir", "трассир", "dssl trassir", "trassir auto", "trassir neuro"]
+  category: industry_specialized
+  extra_categories: [ml_platforms_cv]
+  summary: "Российская платформа видеонаблюдения и видеоаналитики TRASSIR (TRASSIR OS на Linux, AutoTRASSIR, контроль касс ActivePOS, нейросетевые детекторы)."
+  editions:
+    - {id: anyip, name: "TRASSIR AnyIP (подключение IP-камеры)", aliases: [anyip, камера]}
+    - {id: auto, name: "AutoTRASSIR (распознавание номеров)", aliases: [auto, номера]}
+    - {id: neuro, name: "TRASSIR Neuro / Face / ActivePOS", aliases: [neuro, face, activepos]}
+  versions: []
+  platforms: [linux, windows, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["видеонаблюдение в ритейле с контролем касс", "распознавание номеров на шлагбауме", "видеоаналитика безопасности периметра"]
+  roles: [security_officer, sysadmin]
+  industries: [retail, logistics, manufacturing, gov, construction]
+  formats: [rtsp, onvif]
+  analogs: [macroscop_vms, axxon_next_vms]
+  replaces: []
+  price_rub: {unit: camera, low: 3000, typical: 7500, high: 25000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "TRASSIR AnyIP. Лицензия на подключение 1 IP-камеры"
+    - "AutoTRASSIR. Лицензия на 1 канал распознавания автономеров"
+  confidence: high
+
+- id: axxon_next_vms
+  vendor: axxonsoft
+  name: "Axxon One / Интеллект X (ITV / AxxonSoft)"
+  aliases: ["axxon", "аксон", "axxon next", "axxon one", "интеллект x", "itv интеллект", "псб интеллект"]
+  category: industry_specialized
+  extra_categories: [ml_platforms_cv]
+  summary: "Российская платформа видеонаблюдения и комплексной физической безопасности (PSIM: видео + СКУД + ОПС + ИИ-аналитика) от компании ITV."
+  editions:
+    - {id: start, name: "Интеллект X Start / Pro", aliases: [start, pro]}
+    - {id: enterprise, name: "Интеллект X Enterprise / PSIM", aliases: [enterprise, psim]}
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [other]
+    terms_months: []
+    actions: [new, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["объединение видеонаблюдения скуд и пожарной сигнализации", "интеллектуальный поиск в видеоархиве"]
+  roles: [security_officer, sysadmin]
+  industries: [enterprise, gov, transport, finance, retail]
+  formats: [rtsp, onvif]
+  analogs: [macroscop_vms, trassir_vms]
+  replaces: []
+  price_rub: {unit: camera, low: 4000, typical: 9500, high: 28000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Интеллект X Pro. Лицензия на 1 видеоканал"
+  confidence: high
+
+- id: infoklinika_mis
+  vendor: infoklinika
+  name: "Инфоклиника (МИС для медицинских центров)"
+  aliases: ["инфоклиника", "infoklinika", "мис инфоклиника", "программа для клиники", "медицинская информационная система"]
+  category: industry_specialized
+  extra_categories: []
+  summary: "Одна из ведущих российских медицинских информационных систем (МИС) для частных и государственных клиник: расписание, ЭМК, ЕГИСЗ, МДЛП, лаборатория и касса."
+  editions:
+    - {id: cloud, name: "Инфоклиника Cloud", aliases: [cloud, облако]}
+    - {id: onprem, name: "Инфоклиника On-Premise", aliases: [onprem, локальная]}
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [med, business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация медцентра и стоматологии", "интеграция клиники с егисз и ремд", "электронные медицинские карты и дмс"]
+  roles: [it_director, doctor, smb_owner]
+  industries: [healthcare]
+  formats: [hl7, xml, pdf]
+  analogs: []
+  replaces: []
+  price_rub: {unit: seat, low: 18000, typical: 38000, high: 75000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "МИС Инфоклиника. Лицензия на 1 конкурентное рабочее место"
+  confidence: high
+
+- id: astra_support_pack
+  vendor: astra_group
+  name: "Техническая поддержка Группы Астра (Astra Linux / ALD Pro / Брест)"
+  aliases: ["техподдержка astra linux", "поддержка астра линукс", "сертификат тп астра", "привилегированная поддержка астра", "продление тп astra"]
+  category: tech_support
+  extra_categories: []
+  summary: "Сертификаты технической поддержки и получения обновлений безопасности для ОС Astra Linux Special Edition, ALD Pro и ПК СВ Брест (Стандартный и Привилегированный уровни)."
+  editions:
+    - {id: standard, name: "Стандартный уровень (8x5)", aliases: [стандартный, standard]}
+    - {id: privileged, name: "Привилегированный уровень (24x7)", aliases: [привилегированный, privileged, 24x7]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["продление обновлений безопасности и бду фстэк для astra linux", "круглосуточная поддержка 24/7 серверов астра"]
+  roles: [sysadmin, procurement, it_director]
+  industries: [gov, enterprise, defense, finance, energy]
+  formats: []
+  analogs: [basealt_support_pack, redsoft_support_pack]
+  replaces: []
+  price_rub: {unit: device_year, low: 2500, typical: 6500, high: 28000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Пакет технической поддержки «Стандартный» для Astra Linux Special Edition (рабочая станция, 12 мес)"
+    - "Пакет технической поддержки «Привилегированный» для Astra Linux SE (сервер, 12 мес)"
+  confidence: high
+
+- id: basealt_support_pack
+  vendor: basealt
+  name: "Техническая поддержка ОС Альт (Базальт СПО)"
+  aliases: ["техподдержка альт линукс", "поддержка ос альт", "базальт спо тп", "сертификат тп альт"]
+  category: tech_support
+  extra_categories: []
+  summary: "Сертификаты расширенной технической поддержки (Базовый, Стандартный, Расширенный 24x7) для линейки ОС Альт Рабочая станция, Альт Сервер и Альт СП."
+  editions:
+    - {id: standard, name: "Стандартная ТП (8x5)", aliases: [стандартная]}
+    - {id: extended, name: "Расширенная ТП (24x7)", aliases: [расширенная, 24x7]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["продление технической поддержки ос альт", "поддержка серверов альт в режиме 24/7"]
+  roles: [sysadmin, procurement]
+  industries: [gov, edu, enterprise]
+  formats: []
+  analogs: [astra_support_pack, redsoft_support_pack]
+  replaces: []
+  price_rub: {unit: device_year, low: 1800, typical: 4500, high: 19000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Сертификат на стандартную техническую поддержку Альт Сервер на 1 год"
+  confidence: high
+
+- id: redsoft_support_pack
+  vendor: red_soft
+  name: "Техническая поддержка РЕД СОФТ (РЕД ОС / РЕД Виртуализация / РЕД АДМ)"
+  aliases: ["техподдержка ред ос", "поддержка ред софт", "сертификат тп ред ос"]
+  category: tech_support
+  extra_categories: []
+  summary: "Сертификаты технической поддержки и сопровождения продуктов РЕД СОФТ (Стандартная и Приоритетная 24x7)."
+  editions:
+    - {id: standard, name: "Стандартная ТП", aliases: [стандартная]}
+    - {id: priority, name: "Приоритетная ТП (24x7)", aliases: [приоритетная, 24x7]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["продление техподдержки и обновлений ред ос"]
+  roles: [sysadmin, procurement]
+  industries: [gov, healthcare, enterprise]
+  formats: []
+  analogs: [astra_support_pack, basealt_support_pack]
+  replaces: []
+  price_rub: {unit: device_year, low: 1500, typical: 4000, high: 18000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Техническая поддержка РЕД ОС 8 Серверная конфигурация (Стандартная, 12 мес)"
+  confidence: high
+
+- id: kaspersky_msa_support
+  vendor: kaspersky
+  name: "Kaspersky Maintenance & Support Agreement (MSA — Премиальная поддержка)"
+  aliases: ["kaspersky msa", "касперский msa", "премиальная поддержка касперский", "kaspersky tam"]
+  category: tech_support
+  extra_categories: []
+  summary: "Расширенная корпоративная техническая поддержка «Лаборатории Касперского» с SLA, выделенным техническим менеджером (TAM) и приоритетной обработкой инцидентов."
+  editions:
+    - {id: plus, name: "MSA Plus", aliases: [plus]}
+    - {id: enterprise, name: "MSA Enterprise (с выделенным TAM)", aliases: [enterprise, tam]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["гарантированный sla по поддержке продуктов касперского", "выделенный инженер tam для крупной сети"]
+  roles: [security_officer, it_director]
+  industries: [enterprise, finance, gov, energy, telecom]
+  formats: []
+  analogs: [softline_managed_support]
+  replaces: []
+  price_rub: {unit: company_year, low: 350000, typical: 950000, high: 3500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky MSA Plus 1 Year Support Agreement"
+  confidence: high
+
+- id: postgres_pro_support
+  vendor: postgres_pro
+  name: "Техническая поддержка Postgres Pro и PostgreSQL (24x7)"
+  aliases: ["техподдержка postgres pro", "поддержка postgresql", "postgres pro 24x7", "сопровождение постгрес"]
+  category: tech_support
+  extra_categories: []
+  summary: "Круглосуточная профессиональная техническая поддержка СУБД Postgres Pro и open-source PostgreSQL напрямую от разработчиков ядра в России."
+  editions:
+    - {id: standard, name: "Стандартная (8x5)", aliases: [стандартная]}
+    - {id: extended, name: "Расширенная (24x7)", aliases: [расширенная, 24x7]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["sla 24/7 для критичных баз данных 1с и биллинга на postgresql", "продление обновлений безопасности postgres pro"]
+  roles: [dba, it_director]
+  industries: [finance, enterprise, gov, retail, telecom]
+  formats: []
+  analogs: [softline_managed_support]
+  replaces: []
+  price_rub: {unit: core_year, low: 25000, typical: 55000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Техническая поддержка Postgres Pro Enterprise (24x7, 1 ядро, 12 мес)"
+  confidence: high
+
+- id: softline_managed_support
+  vendor: softline_cloud
+  name: "Премьер-поддержка, ИТ-аудит и импортозамещение под ключ (Softline Services)"
+  aliases: ["премьер поддержка softline", "софтлайн поддержка", "миграция на российское по softline", "аудит лицензий sam", "managed services softline"]
+  category: tech_support
+  extra_categories: []
+  summary: "Комплексная мульти-вендорная техническая поддержка инфраструктуры (24x7), аудит лицензий (SAM), проектирование и миграция на отечественное ПО."
+  editions:
+    - {id: support, name: "Мультивендорная ИТ-поддержка 24x7", aliases: [поддержка, 24x7]}
+    - {id: migration, name: "Пакет миграции и импортозамещения", aliases: [миграция, импортозамещение]}
+    - {id: sam, name: "SAM-аудит программных активов", aliases: [sam, аудит]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid, cloud]
+  license:
+    models: [subscription]
+    metrics: [company, other]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["единая точка поддержки отечественной ит-инфраструктуры", "план миграции с microsoft и vmware на российский стек", "инвентаризация лицензий и оптимизация бюджета"]
+  roles: [it_director, procurement, sysadmin]
+  industries: [mid, enterprise, gov, finance, manufacturing]
+  formats: []
+  analogs: [astra_support_pack, kaspersky_msa_support]
+  replaces: []
+  price_rub: {unit: company_year, low: 250000, typical: 1200000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Softline Мультивендорная техническая поддержка (пакет 100 часов / 12 мес)"
+  confidence: high
+
+- id: ispmanager_panel
+  vendor: ispsystem
+  name: "ispmanager 6 (Панель управления веб-сервером и хостингом)"
+  aliases: ["ispmanager", "испменеджер", "isp manager", "панель хостинга рф", "замена cpanel и plesk"]
+  category: industry_specialized
+  extra_categories: []
+  summary: "Популярная российская панель управления Linux-серверами, веб-сайтами, почтой, DNS и базами данных (российский аналог cPanel и Plesk)."
+  editions:
+    - {id: lite, name: "ispmanager 6 lite (до 10 сайтов)", aliases: [lite, лайт]}
+    - {id: pro, name: "ispmanager 6 pro (до 50 сайтов)", aliases: [pro, проф]}
+    - {id: host, name: "ispmanager 6 host (без ограничений)", aliases: [host, хост]}
+    - {id: business, name: "ispmanager 6 business (для хостинг-провайдеров)", aliases: [business, бизнес]}
+  versions: ["6"]
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление веб-сервером и сайтами на vps/vds", "замена cpanel и plesk", "виртуальный хостинг и ssl-сертификаты"]
+  roles: [sysadmin, web_developer, devops]
+  industries: [it, hosting, smb, ecommerce]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: server_year, low: 5500, typical: 11000, high: 28000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ispmanager 6 pro. Годовая лицензия на 1 сервер"
+    - "ispmanager 6 host. Годовая лицензия на 1 сервер"
+  confidence: high
+
+- id: makves_dcap
+  vendor: makves
+  name: "Makves DCAP (Аудит неструктурированных данных и прав доступа)"
+  aliases: ["makves", "маквес", "makves dcap", "российский varonis", "аудит файловых серверов"]
+  category: dlp
+  extra_categories: [nsd_access_control]
+  summary: "Российская DCAP-система для классификации файлов, поиска персональных данных (152-ФЗ), аудита прав доступа в AD/файловых шарах и выявления аномалий (аналог Varonis)."
+  editions:
+    - {id: enterprise, name: "Makves DCAP Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["поиск и классификация пдн на файловых серверах", "аудит избыточных прав доступа в active directory", "импортозамещение varonis datadvantage"]
+  roles: [security_officer, sysadmin]
+  industries: [finance, enterprise, gov, energy, retail]
+  formats: []
+  analogs: [cyberpeak_spec_dcap, searchinform_fileauditor]
+  replaces: [symantec_dlp]
+  price_rub: {unit: user_year, low: 1500, typical: 3200, high: 6500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Makves DCAP. Лицензия на 250 пользователей (12 мес)"
+  confidence: high
+
+- id: cyberpeak_spec_dcap
+  vendor: cyberpeak
+  name: "Спектр DCAP (Киберпик)"
+  aliases: ["спектр dcap", "киберпик", "cyberpeak", "спектр киберпик", "dcap спектр"]
+  category: dlp
+  extra_categories: [nsd_access_control]
+  summary: "Российская система класса DCAP/DAG для контроля доступа к файловым хранилищам, почте, СУБД и защиты от программ-шифровальщиков (аналог Varonis)."
+  editions:
+    - {id: base, name: "Спектр DCAP", aliases: [базовая, dcap]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["контроль прав доступа на файловых серверах", "аудит неструктурированных данных по 152-фз", "замена varonis"]
+  roles: [security_officer, sysadmin]
+  industries: [finance, enterprise, gov, manufacturing]
+  formats: []
+  analogs: [makves_dcap, searchinform_fileauditor]
+  replaces: [symantec_dlp]
+  price_rub: {unit: user_year, low: 1400, typical: 2900, high: 6000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Спектр DCAP (Киберпик). Подписка на 250 пользователей на 12 мес"
+  confidence: high
+
+- id: stormwall_ddos
+  vendor: stormwall
+  name: "StormWall (Защита от DDoS-атак и облачный WAF)"
+  aliases: ["stormwall", "стормволл", "штормвол", "защита от ddos stormwall", "антиддос stormwall"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Российский облачный сервис круглосуточной защиты веб-сайтов, API, сетей (BGP/L3-L4) и TCP/UDP-сервисов от DDoS-атак с встроенным WAF."
+  editions:
+    - {id: web, name: "Защита сайтов (L7 + WAF)", aliases: [web, сайты, waf]}
+    - {id: network, name: "Защита сетей (BGP L3/L4)", aliases: [network, bgp]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [site, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["защита интернет-магазина и корпоративного сайта от ddos", "облачный waf и защита от ботов", "замена cloudflare и imperva"]
+  roles: [security_officer, sysadmin, devops]
+  industries: [ecommerce, finance, media, enterprise, gov]
+  formats: []
+  analogs: [qrator_ddos, bizone_waf, pt_af]
+  replaces: []
+  price_rub: {unit: company_year, low: 95000, typical: 360000, high: 2400000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "StormWall Защита сайтов (Тариф Стандарт, 12 месяцев)"
+  confidence: high
+
+- id: infowatch_arma
+  vendor: infowatch
+  name: "InfoWatch ARMA (Защита АСУ ТП и промышленных сетей)"
+  aliases: ["infowatch arma", "инфовотч арма", "арма асутп", "arma industrial firewall", "защита асу тп infowatch"]
+  category: ot_ics_security
+  extra_categories: [ngfw_vpn]
+  summary: "Российский комплекс защиты промышленных сетей и объектов КИИ: промышленный межсетевой экран ARMA Industrial Firewall и защита АРМ оператора ARMA Endpoint."
+  editions:
+    - {id: firewall, name: "ARMA Industrial Firewall", aliases: [firewall, мэ]}
+    - {id: endpoint, name: "ARMA Industrial Endpoint", aliases: [endpoint, арм]}
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита промышленных сетей асу тп по 187-фз и приказу фстэк 239", "глубокий разбор промышленных протоколов modbus iec-104"]
+  roles: [security_officer, ot_engineer]
+  industries: [energy, oil_gas, manufacturing, transport]
+  formats: []
+  analogs: [kaspersky_kics, datapk_ics]
+  replaces: []
+  price_rub: {unit: company_year, low: 450000, typical: 1500000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "InfoWatch ARMA Industrial Firewall (сертифицированная версия ФСТЭК)"
+  confidence: high
+
+# === ДОПОЛНИТЕЛЬНЫЕ УШЕДШИЕ ЗАРУБЕЖНЫЕ ИБ-ПРОДУКТЫ (catalog: no) ===
+
+- id: bitdefender_gravityzone
+  vendor: bitdefender
+  name: "Bitdefender GravityZone"
+  aliases: ["bitdefender", "битдефендер", "gravityzone", "гравитизон"]
+  category: endpoint_security
+  extra_categories: [edr_xdr]
+  summary: "Зарубежный корпоративный антивирус и EDR-платформа от Bitdefender (вендор ушёл из РФ)."
+  editions:
+    - {id: business, name: "GravityZone Business Security / Enterprise", aliases: [business, enterprise]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение bitdefender gravityzone"]
+  roles: [sysadmin, security_officer]
+  industries: [smb, mid, enterprise]
+  formats: []
+  analogs: [kaspersky_kesb, drweb_enterprise_security_suite, pro32_endpoint_security]
+  replaces: []
+  price_rub: {unit: device_year, low: 2500, typical: 4500, high: 8000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Bitdefender GravityZone Business Security (вендор ушёл из РФ)"
+  confidence: high
+
+- id: sophos_intercept_x
+  vendor: sophos
+  name: "Sophos Intercept X / Sophos Firewall"
+  aliases: ["sophos", "софос", "sophos intercept x", "sophos xg", "sophos xgs"]
+  category: endpoint_security
+  extra_categories: [ngfw_vpn]
+  summary: "Зарубежные решения защиты конечных точек и NGFW от Sophos (компания прекратила работу в России)."
+  editions:
+    - {id: intercept_x, name: "Intercept X Advanced / XDR", aliases: [intercept x, xdr]}
+    - {id: firewall, name: "Sophos Firewall (XGS)", aliases: [firewall, xgs]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение sophos intercept x и sophos firewall"]
+  roles: [security_officer, sysadmin]
+  industries: [smb, mid, enterprise]
+  formats: []
+  analogs: [kaspersky_kesb, usergate_ngfw, ideco_ngfw]
+  replaces: []
+  price_rub: {unit: device_year, low: 3000, typical: 5500, high: 12000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Sophos Intercept X Advanced (вендор ушёл из РФ)"
+  confidence: high
+
+- id: trend_micro_apex_one
+  vendor: trend_micro
+  name: "Trend Micro Apex One / Vision One"
+  aliases: ["trend micro", "тренд микро", "apex one", "vision one", "deep security"]
+  category: endpoint_security
+  extra_categories: [edr_xdr]
+  summary: "Зарубежная платформа защиты рабочих станций, серверов и виртуальных сред Trend Micro (вендор ушёл из РФ)."
+  editions:
+    - {id: apex, name: "Apex One / Deep Security", aliases: [apex one, deep security]}
+    - {id: vision, name: "Vision One XDR", aliases: [vision one, xdr]}
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение trend micro apex one и deep security"]
+  roles: [security_officer, sysadmin]
+  industries: [enterprise, finance, manufacturing]
+  formats: []
+  analogs: [kaspersky_kesb, kaspersky_symphony_xdr, drweb_enterprise_security_suite]
+  replaces: []
+  price_rub: {unit: device_year, low: 3500, typical: 6500, high: 15000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Trend Micro Apex One Enterprise (вендор ушёл из РФ)"
+  confidence: high
+
+- id: qualys_vmdr
+  vendor: qualys
+  name: "Qualys VMDR (Управление уязвимостями)"
+  aliases: ["qualys", "квалис", "qualys vmdr", "сканер qualys"]
+  category: vuln_mgmt_pentest
+  extra_categories: []
+  summary: "Зарубежная облачная платформа сканирования и управления уязвимостями Qualys (вендор прекратил обслуживание клиентов в РФ)."
+  editions:
+    - {id: vmdr, name: "Qualys VMDR", aliases: [vmdr]}
+  versions: []
+  platforms: [web, linux, windows]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение qualys vmdr на maxpatrol vm или redcheck"]
+  roles: [security_officer]
+  industries: [finance, enterprise, telecom]
+  formats: []
+  analogs: [pt_maxpatrol_vm, redcheck]
+  replaces: []
+  price_rub: {unit: company_year, low: 600000, typical: 2200000, high: 8000000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Qualys VMDR Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: cisco_firepower
+  vendor: cisco
+  name: "Cisco Secure Firewall (Firepower / ASA)"
+  aliases: ["cisco firepower", "cisco asa", "циско фаерпавер", "циско аса", "cisco secure firewall", "cisco ngfw"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Зарубежные корпоративные межсетевые экраны нового поколения Cisco ASA / Firepower (Cisco полностью ушла из РФ и прекратила продление Smart License)."
+  editions:
+    - {id: ftd, name: "Firepower Threat Defense (FTD)", aliases: [ftd, firepower]}
+    - {id: asa, name: "Cisco ASA", aliases: [asa]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение cisco asa и firepower на российские ngfw"]
+  roles: [security_officer, network_engineer]
+  industries: [enterprise, finance, telecom, energy]
+  formats: []
+  analogs: [usergate_ngfw, continent_ngfw, pt_ngfw, ideco_ngfw]
+  replaces: []
+  price_rub: {unit: device_year, low: 250000, typical: 1200000, high: 6000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Cisco Firepower Threat Defense Threat & Malware License (вендор ушёл из РФ)"
+  confidence: high
+
+- id: globalsign_ssl
+  vendor: globalsign
+  name: "GlobalSign SSL/TLS Certificates"
+  aliases: ["globalsign", "глобалсайн", "globalsign ssl", "globalsign wildcard"]
+  category: ssl_certificates
+  extra_categories: []
+  summary: "Международные коммерческие SSL/TLS-сертификаты GlobalSign (выпуск сертификатов для доменов .RU/.РФ и российских юрлиц ограничен)."
+  editions:
+    - {id: ov, name: "OrganizationSSL (OV / Wildcard)", aliases: [ov, wildcard]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [site]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поиск доступной замены зарубежным ssl-сертификатам globalsign для сайтов в рф"]
+  roles: [sysadmin, security_officer, devops]
+  industries: [finance, ecommerce, enterprise]
+  formats: [pem, crt]
+  analogs: [globaltrust_ssl]
+  replaces: []
+  price_rub: {unit: site_year, low: 15000, typical: 45000, high: 120000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "GlobalSign OrganizationSSL Wildcard 1 Year (ограничено для РФ)"
+  confidence: high

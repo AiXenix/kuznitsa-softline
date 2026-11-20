@@ -1,0 +1,914 @@
+# Семейства продуктов: Средства разработки, Git/CI-CD, QA/тестирование, SAST/SCA, ESB/API, Java JDK
+# Схема: kb/SCHEMA.md
+
+- id: gitflic
+  vendor: gitflic
+  name: "GitFlic (Enterprise / Cloud)"
+  aliases: ["gitflic", "гитфлик", "гит флик", "российский gitlab", "российский github", "астра gitflic"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Ведущий российский сервис хранения исходного кода, CI/CD-пайплайнов, реестра артефактов и трекинга задач (входит в «Группу Астра»)."
+  editions:
+    - {id: cloud, name: "GitFlic Cloud", aliases: [cloud, облако]}
+    - {id: selfhosted, name: "GitFlic Self-Hosted (On-Premise)", aliases: [self-hosted, onprem, enterprise]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100-499", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение gitlab и github", "корпоративный git-сервер в закрытом контуре", "настройка ci/cd пайплайнов и реестра пакетов"]
+  roles: [developer, devops, it_director]
+  industries: [it, finance, gov, telecom, enterprise]
+  formats: []
+  analogs: [sourcecraft_yandex, sphere_t1, platform_v_works]
+  replaces: [gitlab_ee, github_enterprise, bitbucket_dc]
+  price_rub: {unit: user_year, low: 6500, typical: 12000, high: 22000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "GitFlic Self-Hosted Enterprise. Лицензия на 1 пользователя на 12 месяцев"
+  confidence: high
+
+- id: sourcecraft_yandex
+  vendor: yandex
+  name: "Yandex SourceCraft (платформа разработки)"
+  aliases: ["sourcecraft", "сорскрафт", "yandex sourcecraft", "яндекс гит", "яндекс devops"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Облачная платформа разработки от Яндекса: Git-репозитории, CI/CD, code review, интеграция с ИИ-ассистентом и Yandex Tracker."
+  editions:
+    - {id: standard, name: "SourceCraft Standard / Enterprise", aliases: [standard, enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["облачный git-хостинг в россии", "замена github и gitlab cloud", "совместная разработка с ии-помощником"]
+  roles: [developer, devops]
+  industries: [it, smb, mid, enterprise]
+  formats: []
+  analogs: [gitflic, sphere_t1]
+  replaces: [github_enterprise, gitlab_ee]
+  price_rub: {unit: user_year, low: 6000, typical: 12000, high: 20000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Yandex SourceCraft. Корпоративная подписка на 1 пользователя (12 мес)"
+  confidence: high
+
+- id: sphere_t1
+  vendor: soft_balance_t1
+  name: "Платформа Сфера (Холдинг Т1)"
+  aliases: ["сфера т1", "платформа сфера", "нота сфера", "sphere t1", "сфера код", "сфера задачи", "сфера знания"]
+  category: git_cicd_devops
+  extra_categories: [task_project_trackers, whiteboards_notes]
+  summary: "Комплексная российская DevSecOps-платформа производства ПО от Т1: задачи, вики, Git-репозитории, CI/CD, тестирование и релизы (единая замена стека Atlassian + GitLab)."
+  editions:
+    - {id: tasks, name: "Сфера.Задачи / Знания", aliases: [задачи, знания]}
+    - {id: code, name: "Сфера.Код / CI-CD", aliases: [код, ci/cd]}
+    - {id: full, name: "Полный комплект Платформы Сфера", aliases: [полный, enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["комплексное импортозамещение jira confluence bitbucket и gitlab", "производственный конвейер разработки в банках и корпорациях"]
+  roles: [developer, devops, project_manager, it_director]
+  industries: [finance, enterprise, telecom, it, gov]
+  formats: []
+  analogs: [gitflic, platform_v_works, evaproject]
+  replaces: [atlassian_jira, atlassian_confluence, gitlab_ee, bitbucket_dc]
+  price_rub: {unit: user_year, low: 14000, typical: 28000, high: 55000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Сфера (Т1). Модуль Сфера.Код — 1 пользователь (12 мес)"
+  confidence: high
+
+- id: platform_v_works
+  vendor: sber_platform_v
+  name: "Platform V Works (СберТех)"
+  aliases: ["platform v works", "платформ в воркс", "сбертех works", "gitverse enterprise", "сбер devops"]
+  category: git_cicd_devops
+  extra_categories: [task_project_trackers]
+  summary: "Корпоративная линейка инструментов разработки ПО от СберТеха: управление исходным кодом, задачами, знаниями, сборкой и безопасностью."
+  editions:
+    - {id: scm, name: "Works::SourceControl", aliases: [sourcecontrol, git]}
+    - {id: tracking, name: "Works::TaskTracker / Wiki", aliases: [tasktracker, wiki]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user, core]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение инструментов разработки enterprise-уровня", "замена jira confluence bitbucket и bamboo"]
+  roles: [developer, devops, it_director]
+  industries: [finance, enterprise, gov, telecom]
+  formats: []
+  analogs: [sphere_t1, gitflic]
+  replaces: [gitlab_ee, bitbucket_dc, atlassian_jira, atlassian_confluence]
+  price_rub: {unit: user_year, low: 18000, typical: 35000, high: 65000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Platform V Works::SourceControl. Подписка на 1 пользователя на 12 мес"
+  confidence: high
+
+- id: platform_v_synapse
+  vendor: sber_platform_v
+  name: "Platform V Synapse / Corax (ESB, API Gateway, Kafka)"
+  aliases: ["platform v synapse", "platform v corax", "сбертех синапс", "сбертех коракc", "российский kafka", "российский esb"]
+  category: api_integration_esb
+  extra_categories: []
+  summary: "Корпоративная интеграционная платформа от СберТеха: шина данных, брокер сообщений (Corax на базе Kafka), API Management и Service Mesh."
+  editions:
+    - {id: synapse, name: "Platform V Synapse (Service Mesh / API)", aliases: [synapse, api]}
+    - {id: corax, name: "Platform V Corax (брокер сообщений)", aliases: [corax, kafka]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная шина данных esb", "управление api и микросервисами", "импортозамещение ibm mq tibco и confluent kafka"]
+  roles: [architect_it, devops, developer]
+  industries: [finance, enterprise, telecom, retail, gov]
+  formats: [json, xml, avro]
+  analogs: [onec_esb]
+  replaces: []
+  price_rub: {unit: core_year, low: 90000, typical: 180000, high: 380000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Platform V Corax. Лицензия на 2 процессорных ядра (12 мес)"
+  confidence: high
+
+- id: onec_esb
+  vendor: onec
+  name: "1С:Шина"
+  aliases: ["1с шина", "1c шина", "1с esb", "интеграционная шина 1с"]
+  category: api_integration_esb
+  extra_categories: []
+  summary: "Российский интеграционный брокер сообщений (ESB) от фирмы 1С для гарантированной асинхронной передачи данных между базами 1С и внешними системами."
+  editions:
+    - {id: base, name: "1С:Шина (Сервер)", aliases: [сервер, базовая]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [server]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["связка распределённых баз 1с erp ут и бух", "интеграция 1с с сайтами складами и внешними сервисами", "гарантированная доставка сообщений esb"]
+  roles: [architect_it, developer, sysadmin]
+  industries: [mid, enterprise, retail, manufacturing]
+  formats: [json, xml]
+  analogs: [platform_v_synapse]
+  replaces: []
+  price_rub: {unit: server, low: 180000, typical: 220000, high: 280000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Шина (электронная поставка)"
+  confidence: high
+
+- id: test_it_tms
+  vendor: test_it
+  name: "Test IT (TMS)"
+  aliases: ["test it", "тест ит", "тест ай ти", "testit", "российский testrail", "tms test it"]
+  category: testing_qa
+  extra_categories: []
+  summary: "Лидирующая российская система управления тестированием (TMS) для ручных и автоматизированных тестов с прямой миграцией из TestRail и Zephyr."
+  editions:
+    - {id: cloud, name: "Test IT Cloud", aliases: [cloud, облако]}
+    - {id: enterprise, name: "Test IT Enterprise (On-Premise)", aliases: [enterprise, onprem]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["управление тест-кейсами и тест-планами", "импортозамещение testrail и xray", "интеграция автотестов с ci/cd"]
+  roles: [qa_engineer, developer, project_manager]
+  industries: [it, finance, telecom, retail, enterprise]
+  formats: [xml, json]
+  analogs: [allure_testops]
+  replaces: [testrail]
+  price_rub: {unit: user_year, low: 18000, typical: 32000, high: 55000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Test IT Enterprise. Лицензия на 1 пользователя на 12 месяцев"
+  confidence: high
+
+- id: allure_testops
+  vendor: qameta_allure
+  name: "Allure TestOps (Qameta)"
+  aliases: ["allure testops", "аллюр тестопс", "qameta allure", "аллюр tms", "тестменеджмент allure"]
+  category: testing_qa
+  extra_categories: []
+  summary: "Платформа управления качеством и тестированием (DevOps-ready TMS) на базе популярного фреймворка Allure Report."
+  editions:
+    - {id: server, name: "Allure TestOps Server", aliases: [server, onprem]}
+    - {id: cloud, name: "Allure TestOps Cloud", aliases: [cloud]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["единый отчёт по автотестам и ручному тестированию", "импортозамещение testrail", "аналитика стабильности тестов в ci/cd"]
+  roles: [qa_engineer, devops, developer]
+  industries: [it, finance, ecommerce, telecom]
+  formats: [json, xml]
+  analogs: [test_it_tms]
+  replaces: [testrail]
+  price_rub: {unit: user_year, low: 25000, typical: 42000, high: 70000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Allure TestOps Server. Подписка на 1 пользователя на 12 месяцев"
+  confidence: high
+
+- id: pvs_studio
+  vendor: pvs_studio
+  name: "PVS-Studio"
+  aliases: ["pvs-studio", "pvs studio", "пвс студио", "статический анализатор pvs", "pvs-studio sast"]
+  category: code_analysis_sast
+  extra_categories: []
+  summary: "Российский статический анализатор исходного кода на C, C++, C# и Java для поиска ошибок, уязвимостей (OWASP/CWE/MISRA) и соответствия стандартам безопасной разработки."
+  editions:
+    - {id: team, name: "Team", aliases: [team]}
+    - {id: enterprise, name: "Enterprise (SAST + MISRA/AUTOSAR)", aliases: [enterprise, sast]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["1-9", "10-24", "25-49", "50+"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["поиск багов и уязвимостей в коде c/c++/c#/java", "выполнение требований гост р 56939 по безопасной разработке", "импортозамещение coverity и sonarqube"]
+  roles: [developer, appsec_engineer, security_officer]
+  industries: [it, defense, manufacturing, finance, automotive]
+  formats: [sarif, json, html]
+  analogs: [pt_application_inspector, solar_appscreener]
+  replaces: [sonarqube]
+  price_rub: {unit: company_year, low: 350000, typical: 750000, high: 1800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PVS-Studio Team (до 9 разработчиков, подписка на 12 месяцев)"
+  confidence: high
+
+- id: pt_application_inspector
+  vendor: positive_technologies
+  name: "PT Application Inspector (PT AI)"
+  aliases: ["pt ai", "pt application inspector", "позитив ai", "sast positive technologies", "pt blackbox"]
+  category: code_analysis_sast
+  extra_categories: []
+  summary: "Российский анализатор защищённости исходного кода приложений (SAST, DAST, SCA, IAST) от Positive Technologies для конвейеров DevSecOps."
+  editions:
+    - {id: enterprise, name: "PT Application Inspector Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["поиск уязвимостей в исходном коде sast/dast", "внедрение devsecops и рбпо по фстэк", "импортозамещение checkmarx fortify и sonarqube"]
+  roles: [appsec_engineer, security_officer, devops]
+  industries: [finance, enterprise, gov, telecom, it]
+  formats: [sarif, pdf, json]
+  analogs: [solar_appscreener, pvs_studio]
+  replaces: [sonarqube]
+  price_rub: {unit: company_year, low: 1200000, typical: 2800000, high: 6500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Positive Technologies PT Application Inspector Enterprise (подписка 12 мес)"
+  confidence: high
+
+- id: solar_appscreener
+  vendor: solar_rt
+  name: "Solar appScreener"
+  aliases: ["solar appscreener", "солар аппскринер", "аппскринер", "appscreener sast"]
+  category: code_analysis_sast
+  extra_categories: []
+  summary: "Российское решение класса SAST/SCA от ГК «Солар» для анализа исходного и бинарного кода более 35 языков программирования и проверки open-source зависимостей."
+  editions:
+    - {id: standard, name: "Standard / Enterprise", aliases: [standard, enterprise]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["анализ исходного кода и бинарников на уязвимости", "проверка open-source библиотек sca", "импортозамещение sonarqube и checkmarx"]
+  roles: [appsec_engineer, security_officer, devops]
+  industries: [finance, gov, enterprise, telecom, it]
+  formats: [sarif, pdf, xml]
+  analogs: [pt_application_inspector, pvs_studio]
+  replaces: [sonarqube]
+  price_rub: {unit: company_year, low: 900000, typical: 2200000, high: 5000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Solar appScreener. Лицензия на анализ проектов (12 месяцев)"
+  confidence: high
+
+- id: fastreport_net
+  vendor: fast_reports
+  name: "FastReport (.NET / VCL / Business Graphics)"
+  aliases: ["fastreport", "фастрепорт", "fastreport.net", "fastreport vcl", "генератор отчетов fastreport"]
+  category: dev_libraries_components
+  extra_categories: []
+  summary: "Российские библиотеки и генераторы отчётов для разработчиков на .NET, Delphi/VCL, C++, Java и кроссплатформенных веб-приложений."
+  editions:
+    - {id: net_pro, name: "FastReport .NET Professional / Enterprise", aliases: [net, ".net", pro, enterprise]}
+    - {id: vcl, name: "FastReport VCL Standard / Pro / Enterprise", aliases: [vcl, delphi]}
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["встраиваемая генерация печатных форм и pdf-отчётов в приложениях", "замена crystal reports и devexpress reporting"]
+  roles: [developer]
+  industries: [it, finance, manufacturing, gov]
+  formats: [pdf, xlsx, docx, html]
+  analogs: []
+  replaces: []
+  price_rub: {unit: developer, low: 25000, typical: 55000, high: 180000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "FastReport .NET Professional — Single Developer License"
+    - "FastReport VCL Enterprise — Single Developer License"
+  confidence: high
+
+- id: axiom_jdk_pro
+  vendor: axiom_jdk
+  name: "Axiom JDK Pro / Certified (BellSoft / Аксиом)"
+  aliases: ["axiom jdk", "аксиом ждк", "аксиом jdk", "российская java", "liberica jdk рф", "сертифицированная java"]
+  category: java_runtimes
+  extra_categories: []
+  summary: "Российская сертифицированная сборка Java (OpenJDK) с долгосрочной поддержкой безопасности, ГОСТ-криптографией и сертификацией ФСТЭК."
+  editions:
+    - {id: pro, name: "Axiom JDK Pro", aliases: [pro]}
+    - {id: certified, name: "Axiom JDK Certified (ФСТЭК)", aliases: [certified, фстэк]}
+  versions: ["8", "11", "17", "21"]
+  platforms: [linux, windows, windows_server, macos]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, core, device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение oracle java se", "запуск java-приложений в контурах кии и гис", "поддержка и патчи безопасности java 8/11/17/21"]
+  roles: [devops, sysadmin, developer, security_officer]
+  industries: [finance, gov, enterprise, telecom, it]
+  formats: []
+  analogs: []
+  replaces: [oracle_java_se]
+  price_rub: {unit: server_year, low: 18000, typical: 42000, high: 95000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Axiom JDK Pro. Подписка на 1 сервер на 12 месяцев"
+    - "Axiom JDK Certified (ФСТЭК). Лицензия на 1 сервер (12 мес)"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ / УШЕДШИЕ ИНСТРУМЕНТЫ РАЗРАБОТКИ (catalog: no) ===
+
+- id: jetbrains_all_products
+  vendor: jetbrains
+  name: "JetBrains (All Products Pack / IntelliJ IDEA / PyCharm / Rider / WebStorm)"
+  aliases: ["jetbrains", "джетбрейнс", "джетбрэинс", "intellij idea", "идея", "pycharm", "пайчарм", "webstorm", "вебшторм", "rider", "райдер", "phpstorm", "goland", "clion", "resharper", "all products pack"]
+  category: ide_compilers
+  extra_categories: []
+  summary: "Линейка популярных сред разработки IDE от JetBrains (компания прекратила продажи и продление подписок в России)."
+  editions:
+    - {id: all_products, name: "All Products Pack", aliases: [all products, пак]}
+    - {id: intellij, name: "IntelliJ IDEA Ultimate", aliases: [intellij, idea]}
+    - {id: pycharm, name: "PyCharm Professional", aliases: [pycharm]}
+    - {id: rider, name: "Rider / dotUltimate", aliases: [rider, resharper]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["профессиональная ide для java python c# go js", "запрос на продление jetbrains в рф (официально недоступно)"]
+  roles: [developer]
+  industries: [it, finance, telecom, enterprise]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: user_year, low: 25000, typical: 65000, high: 95000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "JetBrains All Products Pack Commercial Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: ms_visual_studio
+  vendor: microsoft
+  name: "Microsoft Visual Studio (Professional / Enterprise)"
+  aliases: ["visual studio", "визуал студио", "vs pro", "vs enterprise", "msdn", "вижуал студио"]
+  category: ide_compilers
+  extra_categories: []
+  summary: "Среда разработки Microsoft для .NET, C# и C++ с подпиской MSDN (официальные поставки Microsoft в РФ приостановлены)."
+  editions:
+    - {id: pro, name: "Visual Studio Professional", aliases: [pro, professional]}
+    - {id: ent, name: "Visual Studio Enterprise", aliases: [enterprise, ent]}
+  versions: ["2022"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["разработка на c# .net и c++ под windows"]
+  roles: [developer]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: user_year, low: 65000, typical: 140000, high: 550000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Visual Studio Professional 2022 (официальные поставки приостановлены)"
+  confidence: high
+
+- id: delphi_rad_studio
+  vendor: embarcadero
+  name: "Embarcadero RAD Studio / Delphi / C++Builder"
+  aliases: ["delphi", "делфи", "дельфи", "rad studio", "embarcadero", "эмбаркадеро", "c++builder"]
+  category: ide_compilers
+  extra_categories: []
+  summary: "Среда быстрой разработки на Object Pascal (Delphi) и C++ от Embarcadero (официальные продажи в РФ прекращены)."
+  editions:
+    - {id: pro, name: "Professional", aliases: [pro]}
+    - {id: ent, name: "Enterprise / Architect", aliases: [enterprise, architect]}
+  versions: ["11", "12"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поддержка legacy-приложений на delphi и c++builder"]
+  roles: [developer]
+  industries: [it, manufacturing, healthcare, finance]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: user, low: 180000, typical: 360000, high: 650000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Embarcadero RAD Studio 12 Enterprise (вендор ограничил поставки в РФ)"
+  confidence: high
+
+- id: gitlab_ee
+  vendor: gitlab
+  name: "GitLab Enterprise Edition (Premium / Ultimate)"
+  aliases: ["gitlab", "гитлаб", "гит лаб", "gitlab ee", "gitlab premium", "gitlab ultimate"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Ведущая зарубежная DevSecOps-платформа Git + CI/CD (платные подписки GitLab официально недоступны для компаний из РФ)."
+  editions:
+    - {id: premium, name: "GitLab Premium", aliases: [premium]}
+    - {id: ultimate, name: "GitLab Ultimate", aliases: [ultimate]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение gitlab premium/ultimate", "перенос репозиториев и пайплайнов в российский gitflic или сферу"]
+  roles: [developer, devops, it_director]
+  industries: [it, finance, telecom, enterprise]
+  formats: []
+  analogs: [gitflic, sourcecraft_yandex, sphere_t1, platform_v_works]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 95000, high: 120000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "GitLab Premium 1-Year Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: github_enterprise
+  vendor: github
+  name: "GitHub Enterprise (Team / Copilot)"
+  aliases: ["github", "гитхаб", "гит хаб", "github enterprise", "github team", "github actions"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Глобальная платформа хостинга кода и DevOps от Microsoft/GitHub (корпоративные аккаунты и оплаты из РФ заблокированы)."
+  editions:
+    - {id: team, name: "GitHub Team", aliases: [team]}
+    - {id: enterprise, name: "GitHub Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены github enterprise"]
+  roles: [developer, devops]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: [gitflic, sourcecraft_yandex, sphere_t1]
+  replaces: []
+  price_rub: {unit: user_year, low: 5000, typical: 25000, high: 45000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "GitHub Enterprise Cloud (ограничено в РФ)"
+  confidence: high
+
+- id: bitbucket_dc
+  vendor: atlassian
+  name: "Atlassian Bitbucket Data Center"
+  aliases: ["bitbucket", "битбакет", "бит бакет", "atlassian bitbucket"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Корпоративный Git-сервер из экосистемы Atlassian (вендор ушёл из РФ)."
+  editions:
+    - {id: dc, name: "Bitbucket Data Center", aliases: [dc, data center, server]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["миграция репозиториев с bitbucket на gitflic или platform v"]
+  roles: [developer, devops]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: [gitflic, sphere_t1, platform_v_works]
+  replaces: []
+  price_rub: {unit: user_year, low: 8000, typical: 18000, high: 35000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Atlassian Bitbucket Data Center (вендор ушёл из РФ)"
+  confidence: high
+
+- id: testrail
+  vendor: idera_testrail
+  name: "TestRail"
+  aliases: ["testrail", "тестрейл", "тест рейл", "тестреил", "tms testrail"]
+  category: testing_qa
+  extra_categories: []
+  summary: "Популярная зарубежная система управления тестированием TMS (недоступна к официальной оплате и продлению для компаний из РФ)."
+  editions:
+    - {id: pro, name: "TestRail Professional", aliases: [pro]}
+    - {id: enterprise, name: "TestRail Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение testrail", "миграция тест-кейсов из testrail в test it или allure testops"]
+  roles: [qa_engineer, project_manager]
+  industries: [it, finance, ecommerce, telecom]
+  formats: [xml, csv]
+  analogs: [test_it_tms, allure_testops]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 65000, high: 95000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "TestRail Enterprise Annual Subscription (недоступно в РФ)"
+  confidence: high
+
+- id: sonarqube
+  vendor: sonarsource
+  name: "SonarQube (Developer / Enterprise)"
+  aliases: ["sonarqube", "сонаркуб", "сонар", "sonar", "sonarsource"]
+  category: code_analysis_sast
+  extra_categories: []
+  summary: "Зарубежная платформа непрерывного контроля качества и безопасности кода (коммерческие редакции SonarSource недоступны в РФ)."
+  editions:
+    - {id: dev, name: "Developer Edition", aliases: [developer]}
+    - {id: ent, name: "Enterprise Edition", aliases: [enterprise]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение sonarqube enterprise", "подбор российского sast-анализатора кода"]
+  roles: [developer, devops, appsec_engineer]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: [pvs_studio, pt_application_inspector, solar_appscreener]
+  replaces: []
+  price_rub: {unit: company_year, low: 250000, typical: 1500000, high: 4500000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "SonarQube Enterprise Edition (вендор ушёл из РФ)"
+  confidence: high
+
+- id: postman_enterprise
+  vendor: postman
+  name: "Postman (Team / Business / Enterprise)"
+  aliases: ["postman", "постман", "постмэн", "тестирование api postman"]
+  category: api_integration_esb
+  extra_categories: [testing_qa]
+  summary: "Популярная зарубежная облачная платформа разработки и тестирования REST/GraphQL API (коммерческие подписки ограничены для РФ)."
+  editions:
+    - {id: basic, name: "Basic / Professional", aliases: [basic, pro]}
+    - {id: enterprise, name: "Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [windows, macos, linux, web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["совместное тестирование api", "запрос коммерческой подписки postman"]
+  roles: [developer, qa_engineer]
+  industries: [it, finance, ecommerce]
+  formats: [json, yaml]
+  analogs: []
+  replaces: []
+  price_rub: {unit: user_year, low: 18000, typical: 35000, high: 60000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Postman Professional Annual Subscription (ограничено в РФ)"
+  confidence: high
+
+- id: oracle_java_se
+  vendor: oracle
+  name: "Oracle Java SE Subscription"
+  aliases: ["oracle java", "java se", "oracle jdk", "оракл джава", "коммерческая java"]
+  category: java_runtimes
+  extra_categories: []
+  summary: "Коммерческая подписка на Oracle JDK (Oracle приостановила деятельность в РФ; рекомендуется переход на российскую Axiom JDK)."
+  editions:
+    - {id: universal, name: "Java SE Universal Subscription", aliases: [universal]}
+  versions: ["8", "11", "17", "21"]
+  platforms: [linux, windows, windows_server, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение oracle jdk на российскую java"]
+  roles: [devops, sysadmin, it_director]
+  industries: [finance, enterprise, gov]
+  formats: []
+  analogs: [axiom_jdk_pro]
+  replaces: []
+  price_rub: {unit: user_year, low: 15000, typical: 30000, high: 60000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Oracle Java SE Universal Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: azure_devops_server
+  vendor: microsoft
+  name: "Microsoft Azure DevOps Server (TFS)"
+  aliases: ["azure devops", "азур девопс", "tfs", "team foundation server", "azure devops server"]
+  category: git_cicd_devops
+  extra_categories: [task_project_trackers]
+  summary: "Корпоративная платформа Microsoft для управления кодом, задачами и CI/CD (официально недоступна к покупке в РФ)."
+  editions:
+    - {id: server, name: "Azure DevOps Server + User CAL", aliases: [server, cal]}
+  versions: ["2022"]
+  platforms: [windows_server, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение azure devops и tfs"]
+  roles: [devops, developer, it_director]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: [gitflic, sphere_t1, platform_v_works, evaproject]
+  replaces: []
+  price_rub: {unit: user, low: 45000, typical: 75000, high: 140000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Azure DevOps Server 2022 (официально недоступно в РФ)"
+  confidence: high

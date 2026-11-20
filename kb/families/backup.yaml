@@ -1,0 +1,520 @@
+# Семейства продуктов: Резервное копирование (СРК), СХД (SDS), архиваторы, восстановление данных (2026)
+
+- id: cyber_backup
+  vendor: cyberprotect
+  name: "Кибер Бэкап (Cyber Backup)"
+  aliases: ["кибер бэкап", "кибербэкап", "cyber backup", "кибер бэкап расширенный", "акронис", "acronis cyber backup", "срк киберпротект"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Ведущая российская система резервного копирования и восстановления физических, виртуальных сред (zVirt, Брест, VMware), СУБД (Postgres Pro, MS SQL) и рабочих станций."
+  editions:
+    - {id: standard, name: "Стандартный", aliases: ["стандарт", "standard"]}
+    - {id: advanced, name: "Расширенный (с дедупликацией и лентами)", aliases: ["расширенный", "advanced"]}
+    - {id: workstation, name: "Для рабочих станций", aliases: ["рабочие станции", "workstation"]}
+    - {id: virt_host, name: "Для виртуальных хостов", aliases: ["виртуальный хост", "virtual host"]}
+  versions: ["17", "16"]
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, device, vm, storage]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, support]
+    bands: []
+    packs: [1, 5, 10]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["бэкап физических серверов, кластеров виртуализации, баз 1С и PostgreSQL", "импортозамещение Veeam и Acronis"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [rubackup, handy_backup]
+  replaces: [veeam_backup, acronis_cyber_protect, commvault_complete, veritas_netbackup]
+  price_rub: {unit: server, low: 28000, typical: 65000, high: 165000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Кибер Бэкап 16 Расширенный Сервер (бессрочная лицензия + 1 год ТП, ESD)"
+    - "Кибер Бэкап 16 Стандартный Виртуальный хост Подписка 1 год"
+  confidence: high
+
+- id: cyber_infrastructure
+  vendor: cyberprotect
+  name: "Кибер Инфраструктура (SDS)"
+  aliases: ["кибер инфраструктура", "cyber infrastructure", "схд киберпротект", "sds киберпротект"]
+  category: sds_storage
+  extra_categories: [server_virtualization]
+  summary: "Российская программно-определяемая система хранения данных (блочное, файловое, S3-объектное) и гиперконвергентная платформа."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [storage]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение отказоустойчивого S3-хранилища и СХД для бэкапов и виртуализации на стандартных серверах x86"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [raidix_sds, baum_storage, vstack_hcp]
+  replaces: []
+  price_rub: {unit: storage, low: 15000, typical: 28000, high: 55000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Кибер Инфраструктура Лицензия за 1 ТБ хранилища 1 год"
+  confidence: high
+
+- id: cyber_files
+  vendor: cyberprotect
+  name: "Кибер Файлы (корпоративный файловый обмен)"
+  aliases: ["кибер файлы", "cyber files", "российский dropbox", "корпоративный обмен файлами"]
+  category: sds_storage
+  extra_categories: []
+  summary: "Российское защищённое решение для корпоративного хранения, синхронизации и внешнего обмена файлами (on-premise аналог Dropbox/OneDrive)."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: ["25-99", "100-499", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["безопасный корпоративный обмен файлами вместо Dropbox/Google Drive"]
+  roles: [sysadmin, office_worker, security_officer]
+  industries: []
+  formats: []
+  analogs: [yandex_360]
+  replaces: [microsoft_365]
+  price_rub: {unit: user_year, low: 1800, typical: 3200, high: 6000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Кибер Файлы 50 пользователей Подписка на 1 год (ESD)"
+  confidence: high
+
+- id: rubackup
+  vendor: rubackup
+  name: "RuBackup (Группа Астра)"
+  aliases: ["рубэкап", "рубекап", "rubackup", "срк астра", "ru backup"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Корпоративная российская СРК от Группы Астра с нативной поддержкой Astra Linux, ПК СВ Брест, zVirt, Postgres Pro, Tantor, Oracle и ленточных библиотек."
+  editions:
+    - {id: standard, name: "Стандарт", aliases: ["стандарт"]}
+    - {id: enterprise, name: "Enterprise", aliases: ["enterprise"]}
+  versions: ["2"]
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [storage, server, cpu]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["резервное копирование крупного российского ИТ-ландшафта (Astra, Postgres Pro, Брест, zVirt)", "импортозамещение Veeam, Commvault и Veritas NetBackup"]
+  roles: [sysadmin, security_officer]
+  industries: ["gov", "enterprise", "finance", "energy"]
+  formats: []
+  analogs: [cyber_backup, handy_backup]
+  replaces: [veeam_backup, commvault_complete, veritas_netbackup, acronis_cyber_protect]
+  price_rub: {unit: storage, low: 45000, typical: 95000, high: 220000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "RuBackup Enterprise Лицензия на 10 ТБ защищаемых данных + 1 год ТП"
+  confidence: high
+
+- id: handy_backup
+  vendor: novosoft_handy
+  name: "Handy Backup (Standard / Pro / Server Network)"
+  aliases: ["хэнди бэкап", "хенди бекап", "handy backup", "новософт бэкап"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Российская доступная программа резервного копирования файлов, 1С, PostgreSQL, MS SQL, Яндекс Диска и серверов для SMB и офисов."
+  editions:
+    - {id: pro, name: "Professional", aliases: ["pro", "про"]}
+    - {id: small_business, name: "Small Business", aliases: ["small business", "малый бизнес"]}
+    - {id: server_network, name: "Server Network", aliases: ["server network", "сервер"]}
+  versions: ["8"]
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["бюджетный бэкап баз 1С, общих папок и 1–5 серверов в малом бизнесе"]
+  roles: [sysadmin, accountant]
+  industries: []
+  formats: []
+  analogs: [cyber_backup, rubackup]
+  replaces: [acronis_cyber_protect, veeam_backup]
+  price_rub: {unit: server, low: 5500, typical: 16500, high: 38000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Handy Backup Small Business 8 (1 сервер + базы 1С/SQL, ESD)"
+  confidence: high
+
+- id: raidix_sds
+  vendor: raidix
+  name: "RAIDIX (ПО для высокопроизводительных СХД)"
+  aliases: ["рэйдикс", "рейдикс", "raidix 5", "raidix era", "схд raidix"]
+  category: sds_storage
+  extra_categories: []
+  summary: "Российское высокопроизводительное ПО для построения отказоустойчивых СХД (SAN/NAS/NVMe) с патентованными алгоритмами RAID 6/7.3."
+  editions:
+    - {id: r5, name: "RAIDIX 5 (SAN/NAS)", aliases: ["5"]}
+    - {id: era, name: "RAIDIX ERA (NVMe/Flash)", aliases: ["era", "nvme"]}
+  versions: ["5"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server, storage]
+    terms_months: [12, 36]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["построение высокоскоростной СХД для видеонаблюдения, ЦОД, HPC и медиапроизводства"]
+  roles: [sysadmin]
+  industries: ["media", "enterprise", "gov"]
+  formats: []
+  analogs: [cyber_infrastructure, baum_storage]
+  replaces: []
+  price_rub: {unit: server, low: 250000, typical: 750000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "RAIDIX 5.X Dual-Controller Лицензия ПО СХД (до 100 ТБ)"
+  confidence: high
+
+- id: baum_storage
+  vendor: baum
+  name: "BAUM STORAGE (ПО управления СХД)"
+  aliases: ["баум схд", "baum storage", "баум sds"]
+  category: sds_storage
+  extra_categories: []
+  summary: "Российское ПО для унифицированных систем хранения данных (блочный, файловый и объектный доступ) из реестра Минцифры."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [server, storage]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение зарубежных СХД (NetApp, Dell EMC, HPE)"]
+  roles: [sysadmin]
+  industries: ["gov", "enterprise"]
+  formats: []
+  analogs: [raidix_sds, cyber_infrastructure]
+  replaces: []
+  price_rub: {unit: server, low: 350000, typical: 950000, high: 3000000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ПО управления СХД BAUM STORAGE Базовая лицензия"
+  confidence: medium
+
+- id: winrar
+  vendor: winrar_rarlab
+  name: "WinRAR"
+  aliases: ["винрар", "winrar", "рар", "архиватор winrar"]
+  category: archivers
+  extra_categories: []
+  summary: "Популярный коммерческий архиватор для Windows с поддержкой форматов RAR и ZIP и бессрочной лицензией для организаций."
+  editions: []
+  versions: ["7"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, user]
+    terms_months: []
+    actions: [new]
+    bands: ["1", "2-9", "10-24", "25-49", "50-99", "100+"]
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["легализация архиватора WinRAR на рабочих ПК юрлица"]
+  roles: [office_worker, sysadmin]
+  industries: []
+  formats: ["rar", "zip", "7z"]
+  analogs: []
+  replaces: []
+  price_rub: {unit: device, low: 2200, typical: 3600, high: 4900}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "WinRAR Лицензия на 1 рабочее место (бессрочная, ESD)"
+  confidence: high
+
+- id: total_commander
+  vendor: ghisler
+  name: "Total Commander"
+  aliases: ["тотал коммандер", "тотал командер", "total commander", "тк"]
+  category: file_managers
+  extra_categories: []
+  summary: "Двухпанельный файловый менеджер для Windows с поддержкой FTP/SFTP, архивов, массового переименования и плагинов."
+  editions: []
+  versions: ["11"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [user, device]
+    terms_months: []
+    actions: [new]
+    bands: ["1", "2-9", "10-49", "50+"]
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["работа с файлами, сетевыми папками и FTP для админов и бухгалтеров"]
+  roles: [sysadmin, developer, office_worker]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: user, low: 3500, typical: 5200, high: 7000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Total Commander Корпоративная лицензия на 1 пользователя (ESD)"
+  confidence: high
+
+- id: r_studio
+  vendor: r_tt
+  name: "R-Studio (восстановление данных)"
+  aliases: ["r-studio", "р-студио", "восстановление данных r-studio", "r-studio technician"]
+  category: data_recovery
+  extra_categories: [disk_utilities]
+  summary: "Профессиональная утилита восстановления удалённых файлов, повреждённых разделов и RAID-массивов (Windows, Linux, macOS)."
+  editions:
+    - {id: standard, name: "R-Studio (Windows / Multi)", aliases: ["standard"]}
+    - {id: network, name: "R-Studio Network", aliases: ["network"]}
+    - {id: technician, name: "R-Studio Technician", aliases: ["technician"]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["экстренное восстановление данных с повреждённых дисков и RAID"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: device, low: 9000, typical: 22000, high: 95000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "R-Studio Network Edition для Windows (ESD)"
+  confidence: high
+
+- id: veeam_backup
+  vendor: veeam
+  name: "Veeam Backup & Replication / Data Platform"
+  aliases: ["veeam", "виим", "вим", "веам", "veeam backup", "veeam vbr"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Зарубежная корпоративная система резервного копирования виртуальных и физических сред (официально ушла из РФ; замещается Кибер Бэкап и RuBackup)."
+  editions: []
+  versions: ["12"]
+  platforms: [windows_server, linux]
+  compat_ru_os: []
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [vm, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [10]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Veeam Backup & Replication"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [cyber_backup, rubackup, handy_backup]
+  replaces: []
+  price_rub: {unit: other, low: 120000, typical: 350000, high: 2000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Veeam Data Platform Foundation Universal License 10 Instances 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: acronis_cyber_protect
+  vendor: acronis
+  name: "Acronis Cyber Protect (международный)"
+  aliases: ["acronis", "акронис тру имедж", "acronis true image", "acronis cyber protect"]
+  category: backup_recovery
+  extra_categories: [disk_utilities]
+  summary: "Международный бренд СРК Acronis (ушёл из РФ; в России развивается независимая линейка Кибер Бэкап компании Киберпротект)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена Acronis на российский Кибер Бэкап"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [cyber_backup, rubackup, handy_backup]
+  replaces: []
+  price_rub: {unit: server_year, low: 35000, typical: 75000, high: 150000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Acronis Cyber Protect Standard Server 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: commvault_complete
+  vendor: commvault
+  name: "Commvault Complete Data Protection"
+  aliases: ["commvault", "комволт", "комваулт"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Зарубежная Enterprise-система резервного копирования (ушла из РФ; замещается RuBackup и Кибер Бэкап)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [storage]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Commvault в крупных ЦОД"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [rubackup, cyber_backup]
+  replaces: []
+  price_rub: {unit: storage, low: 120000, typical: 250000, high: 600000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Commvault Complete Backup & Recovery 10 TB 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: veritas_netbackup
+  vendor: veritas
+  name: "Veritas NetBackup / Backup Exec"
+  aliases: ["veritas", "веритас", "netbackup", "backup exec"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Зарубежная корпоративная СРК Veritas (ушла из РФ; замещается RuBackup и Кибер Бэкап)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [storage, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Veritas NetBackup и Backup Exec"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [rubackup, cyber_backup]
+  replaces: []
+  price_rub: {unit: storage, low: 100000, typical: 220000, high: 550000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Veritas NetBackup Enterprise 10 TB 1 Year (не поставляется в РФ)"
+  confidence: high

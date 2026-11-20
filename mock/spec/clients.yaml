@@ -1,0 +1,215 @@
+# Спецификация генерации синтетических B2B-клиентов («Кузница Softline»)
+# Дополняет 11 демо-профилей из mock/spec/profiles.yaml до 311 аккаунтов.
+# Все industry id строго соответствуют kb/industries.yaml (28 отраслей).
+# Все названия компаний вымышленные (mock: true).
+
+meta:
+  version: "1.0"
+  author: "AiXenix (Neon-2)"
+  seed_offset: 2
+  demo_profiles_file: "mock/spec/profiles.yaml"
+  demo_profiles_count: 11
+  synthetic_clients_count: 300
+  total_clients_count: 311
+  history_months: 24
+  id_pattern: "cli_{seq:04d}"     # cli_0001 .. cli_0300
+
+# 1. Распределение 300 синтетических клиентов по сегментам (сумма = 1.00)
+segments:
+  smb:
+    share: 0.42                   # ~126 компаний
+    seats: {dist: lognormal, median: 18, min: 5, max: 49}
+    servers_ratio: 0.06           # ~1–3 сервера
+    budget_weights: {low: 0.55, medium: 0.40, high: 0.05}
+    registry_required_prob: 0.12
+    certs_required_probs: {none: 0.90, fstec: 0.06, fsb: 0.04}
+    fleet_os_weights:
+      windows_only: 0.72
+      windows_linux_mix: 0.14
+      windows_macos_mix: 0.10
+      ru_linux_only: 0.04
+    owned_products_count: {min: 2, max: 5}
+    annual_orders_count: {min: 1, max: 4}
+    industries:
+      trade: 0.24
+      retail: 0.12
+      accounting_audit: 0.12
+      construction: 0.10
+      transport_logistics: 0.10
+      ecommerce_marketplaces: 0.08
+      horeca_tourism: 0.07
+      legal_consulting: 0.07
+      real_estate: 0.05
+      media_advertising: 0.05
+
+  mid:
+    share: 0.24                   # ~72 компании
+    seats: {dist: lognormal, median: 140, min: 50, max: 499}
+    servers_ratio: 0.08
+    budget_weights: {low: 0.15, medium: 0.65, high: 0.20}
+    registry_required_prob: 0.35
+    certs_required_probs: {none: 0.68, fstec: 0.20, fsb: 0.06, fstec_fsb: 0.06}
+    fleet_os_weights:
+      windows_only: 0.44
+      windows_linux_mix: 0.28
+      windows_macos_mix: 0.12
+      ru_linux_mix: 0.16
+    owned_products_count: {min: 4, max: 9}
+    annual_orders_count: {min: 2, max: 7}
+    industries:
+      it_telecom: 0.18
+      manufacturing: 0.15
+      trade: 0.13
+      retail: 0.11
+      architecture_design: 0.10
+      transport_logistics: 0.09
+      construction: 0.08
+      pharma_biotech: 0.06
+      healthcare: 0.05
+      agriculture: 0.05
+
+  enterprise:
+    share: 0.11                   # ~33 компании
+    seats: {dist: lognormal, median: 1600, min: 500, max: 12000}
+    servers_ratio: 0.05
+    budget_weights: {low: 0.00, medium: 0.25, high: 0.75}
+    registry_required_prob: 0.78
+    certs_required_probs: {none: 0.20, fstec: 0.42, fsb: 0.10, fstec_fsb: 0.28}
+    fleet_os_weights:
+      windows_linux_mix: 0.35
+      ru_linux_mix: 0.45
+      ru_linux_only: 0.20
+    owned_products_count: {min: 8, max: 16}
+    annual_orders_count: {min: 4, max: 14}
+    industries:
+      manufacturing: 0.24
+      banking_finance: 0.16
+      oil_gas: 0.14
+      energy_utilities: 0.12
+      mining_metallurgy: 0.10
+      telecom_isp: 0.09
+      retail: 0.08
+      insurance: 0.07
+
+  gov:
+    share: 0.11                   # ~33 учреждения
+    seats: {dist: lognormal, median: 220, min: 30, max: 3000}
+    servers_ratio: 0.04
+    budget_weights: {low: 0.25, medium: 0.60, high: 0.15}
+    registry_required_prob: 1.00  # строго обязательно для 44-ФЗ/нацрежима
+    certs_required_probs: {none: 0.08, fstec: 0.52, fsb: 0.08, fstec_fsb: 0.32}
+    fleet_os_weights:
+      ru_linux_only: 0.58         # Astra Linux / РЕД ОС / Альт СП
+      ru_linux_mix: 0.42
+    owned_products_count: {min: 5, max: 11}
+    annual_orders_count: {min: 2, max: 6}
+    industries:
+      gov_public_sector: 0.40
+      healthcare: 0.32
+      science_rnd: 0.12
+      defense_aerospace: 0.10
+      energy_utilities: 0.06
+
+  edu:
+    share: 0.06                   # ~18 организаций
+    seats: {dist: lognormal, median: 180, min: 25, max: 2500}
+    servers_ratio: 0.03
+    budget_weights: {low: 0.75, medium: 0.25, high: 0.00}
+    registry_required_prob: 0.85
+    certs_required_probs: {none: 0.70, fstec: 0.25, fsb: 0.05}
+    fleet_os_weights:
+      ru_linux_mix: 0.50
+      ru_linux_only: 0.30
+      windows_linux_mix: 0.20
+    owned_products_count: {min: 3, max: 7}
+    annual_orders_count: {min: 1, max: 4}
+    industries:
+      education: 0.80
+      science_rnd: 0.15
+      nonprofit_ngo: 0.05
+
+  individual:
+    share: 0.06                   # ~18 физлиц / самозанятых / микро-ИП
+    seats: {dist: uniform, min: 1, max: 3}
+    servers_ratio: 0.0
+    budget_weights: {low: 0.80, medium: 0.20, high: 0.00}
+    registry_required_prob: 0.05
+    certs_required_probs: {none: 0.95, fsb: 0.05}
+    fleet_os_weights:
+      windows_only: 0.55
+      windows_macos_mix: 0.35
+      windows_linux_mix: 0.10
+    owned_products_count: {min: 1, max: 3}
+    annual_orders_count: {min: 1, max: 2}
+    industries:
+      freelance_individual: 0.75
+      media_advertising: 0.15
+      architecture_design: 0.10
+
+# 2. Детализация профилей парка ОС (маппинг на массив fleet.os)
+fleet_os_profiles:
+  windows_only:      {os: [windows], weights: {astra: 0, redos: 0, alt: 0}}
+  windows_linux_mix: {os: [windows, linux]}
+  windows_macos_mix: {os: [windows, macos]}
+  ru_linux_only:     {os_choices: [[astra], [redos], [alt], [astra, redos]], probs: [0.55, 0.22, 0.13, 0.10]}
+  ru_linux_mix:      {os_choices: [[astra, windows], [redos, windows], [alt, windows]], probs: [0.55, 0.28, 0.17]}
+
+# 3. Регионы (для отчётов и Метрики ym:s:regionCity)
+regions:
+  - {name: "Москва", weight: 0.34}
+  - {name: "Санкт-Петербург", weight: 0.14}
+  - {name: "Екатеринбург", weight: 0.08}
+  - {name: "Новосибирск", weight: 0.07}
+  - {name: "Казань", weight: 0.07}
+  - {name: "Нижний Новгород", weight: 0.06}
+  - {name: "Краснодар", weight: 0.05}
+  - {name: "Самара", weight: 0.05}
+  - {name: "Ростов-на-Дону", weight: 0.04}
+  - {name: "Челябинск", weight: 0.04}
+  - {name: "Красноярск", weight: 0.03}
+  - {name: "Владивосток", weight: 0.03}
+
+# 4. Шаблоны вымышленных названий (гарантированно синтетические, без совпадений с брендами)
+company_naming:
+  legal_forms:
+    smb:        ["ООО"]
+    mid:        ["ООО", "АО"]
+    enterprise: ["АО", "ПАО", "ГК"]
+    gov:        ["ГБУЗ", "ГКУ", "МКУ", "ФГБУ"]
+    edu:        ["ФГБОУ ВО", "ГАПОУ", "АНО ДПО", "МАОУ"]
+    individual: ["ИП", "Частный специалист"]
+  stems_by_industry:
+    default: ["Вектор", "Импульс", "Горизонт", "Атлант", "Меридиан", "Спектр", "Орбита", "Кварц", "Сигма", "Прогресс", "Контур-Плюс", "Сфера", "Орион", "Базис-Трейд", "Арктика", "УралТех", "ВолгаПром", "СибирьЛогистик", "БалтСтрой", "ЮгАгро"]
+    healthcare: ["Городская поликлиника", "МедЦентр", "Диагностический центр", "Клиническая больница"]
+    education: ["Политехнический колледж", "Технологический университет", "Учебный центр", "Инженерный лицей"]
+    gov_public_sector: ["Центр цифровизации", "Управление ЖКХ", "МФЦ района", "Департамент имущественных отношений"]
+
+# 5. Типовые пакеты купленного ПО (owned) и история заказов (24 месяца)
+portfolio_rules:
+  # Какой набор категорий вероятен в owned у каждого сегмента
+  core_categories_by_segment:
+    smb:        [endpoint_security, office_suite, accounting, tax_reporting_edo, crypto_skzi]
+    mid:        [endpoint_security, office_suite, backup_recovery, ngfw_vpn, accounting, remote_desktop, vks_webinars]
+    enterprise: [endpoint_security, desktop_os_ru, office_suite, server_virtualization, backup_recovery, ngfw_vpn, siem_soc, dlp, rdbms, sed_ecm]
+    gov:        [desktop_os_ru, endpoint_security, office_suite, nsd_access_control, crypto_skzi, ngfw_vpn, backup_recovery, directory_services]
+    edu:        [desktop_os_ru, office_suite, endpoint_security, vks_webinars, lms_elearning]
+    individual: [home_antivirus, office_suite, pdf_editors, raster_photo]
+
+  # Согласованность владения и заказов:
+  # - Каждая позиция в owned имеет соответствующий заказ в orders за последние 12–24 мес.
+  # - Для подписок 12 мес. purchased_days_ago = 365 - expires_in_days (плюс опциональный предыдущий заказ за 2 года до этого).
+  # - Для бессрочных лицензий expires_in_days = null, purchased_days_ago ∈ [60..700].
+  term_distribution:
+    subscription_12m: 0.68
+    subscription_24m: 0.14
+    subscription_36m: 0.06
+    perpetual: 0.12
+
+  # Когорта истекающих лицензий (синхронизировано с INS-17 в analytics.md!)
+  expiring_cohort_target:
+    # 10 из 11 демо-профилей (все кроме guest) уже имеют истекающие лицензии в окне 14..55 дней.
+    # Среди 300 синтетических клиентов ровно 24 компании получают 1–2 контракта с expires_in_days ∈ [14..45]
+    # (итого 10 демо + 24 синтетических = 34 клиента, ~48 контрактов, суммарный потенциал продления ~4.85 млн ₽).
+    synthetic_clients_in_14_45d_window: 24
+    segment_mix_in_cohort: {smb: 10, mid: 8, enterprise: 3, gov: 2, edu: 1}
+    other_subscriptions_expires_in_days: {min: 46, max: 350}

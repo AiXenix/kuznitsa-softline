@@ -1,0 +1,825 @@
+# Семейства продуктов: Операционные системы (российские и зарубежные, 2026)
+
+- id: astra_linux_se
+  vendor: astra_group
+  name: "Astra Linux Special Edition (1.7 / 1.8)"
+  aliases: ["астра линукс", "астролинукс", "astra linux se", "астра смоленск", "астра воронеж", "астра орел", "астра 1.7", "астра 1.8", "русбитех астра"]
+  category: desktop_os_ru
+  extra_categories: [server_os]
+  summary: "Ведущая российская защищённая ОС на базе Linux с тремя уровнями защищённости («Орёл», «Воронеж», «Смоленск») и сертификатами ФСТЭК, ФСБ, Минобороны."
+  editions:
+    - {id: orel, name: "Базовый (Орёл)", aliases: ["орел", "орёл", "базовый"]}
+    - {id: voronezh, name: "Усиленный (Воронеж)", aliases: ["воронеж", "усиленный"]}
+    - {id: smolensk, name: "Максимальный (Смоленск)", aliases: ["смоленск", "максимальный"]}
+    - {id: server, name: "Серверная (для серверов)", aliases: ["сервер", "server"]}
+  versions: ["1.8", "1.7"]
+  platforms: [linux]
+  compat_ru_os: [astra]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec, fsb, mo]
+  use_cases: ["импортозамещение Windows и RHEL на рабочих местах и серверах", "аттестация ГИС, ИСПДн, КИИ и гостайны (Смоленск)"]
+  roles: [sysadmin, security_officer, office_worker]
+  industries: ["gov", "defense", "enterprise", "energy"]
+  formats: []
+  analogs: [red_os, alt_workstation, alt_sp, rosa_chrome]
+  replaces: [windows_11, windows_10, windows_server, rhel]
+  price_rub: {unit: device, low: 6500, typical: 16500, high: 48000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Astra Linux Special Edition 1.8 (Воронеж) Лицензия на 1 рабочую станцию + ТП Стандартная 1 год"
+    - "Astra Linux Special Edition 1.8 (Смоленск) Серверная лицензия (формуляр ФСТЭК)"
+  confidence: high
+
+- id: alt_workstation
+  vendor: basealt
+  name: "Альт Рабочая станция (10 / 11)"
+  aliases: ["альт рабочая станция", "альт линукс рабочая станция", "alt workstation", "альт 10", "альт 11", "базальт рабочая станция"]
+  category: desktop_os_ru
+  extra_categories: []
+  summary: "Российская десктопная ОС семейства «Альт» для корпоративных рабочих мест с предустановленными офисными и сетевыми инструментами и поддержкой домена."
+  editions:
+    - {id: mate, name: "Альт Рабочая станция (MATE)", aliases: ["mate"]}
+    - {id: kde, name: "Альт Рабочая станция К (KDE)", aliases: ["к", "kde"]}
+  versions: ["11", "10"]
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Windows на офисных ПК", "работа в домене Active Directory и Альт Домен"]
+  roles: [sysadmin, office_worker]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, red_os, rosa_chrome]
+  replaces: [windows_11, windows_10]
+  price_rub: {unit: device, low: 4500, typical: 7500, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ОС Альт Рабочая станция 10 Лицензия на 1 ПК (бессрочная, ESD)"
+  confidence: high
+
+- id: alt_server
+  vendor: basealt
+  name: "Альт Сервер (10 / 11)"
+  aliases: ["альт сервер", "alt server", "базальт сервер"]
+  category: server_os
+  extra_categories: [linux_unix_os]
+  summary: "Российская серверная ОС семейства «Альт» для корпоративной инфраструктуры, контроллеров домена (Альт Домен), БД и веб-сервисов."
+  editions: []
+  versions: ["11", "10"]
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Windows Server, RHEL и CentOS", "развёртывание контроллера домена Альт Домен"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, red_os_server, msvsphere_os]
+  replaces: [windows_server, rhel, suse_sles, ubuntu_pro]
+  price_rub: {unit: server, low: 18000, typical: 32000, high: 65000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ОС Альт Сервер 10 Лицензия на 1 сервер (бессрочная, ESD)"
+  confidence: high
+
+- id: alt_sp
+  vendor: basealt
+  name: "Альт 8 / 10 СП (Сертифицированная ФСТЭК)"
+  aliases: ["альт сп", "альт 8 сп", "альт 10 сп", "alt sp", "базальт фстэк"]
+  category: desktop_os_ru
+  extra_categories: [server_os]
+  summary: "Сертифицированный ФСТЭК дистрибутив ОС «Альт СП» для обработки конфиденциальной информации, ГИС, ИСПДн и объектов КИИ."
+  editions:
+    - {id: workstation, name: "Рабочая станция СП", aliases: ["рабочая станция", "арм"]}
+    - {id: server, name: "Сервер СП", aliases: ["сервер"]}
+  versions: ["10", "8"]
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: [1]
+    audiences: [gov, business, med]
+  delivery: [paper, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аттестация рабочих станций и серверов по требованиям ФСТЭК (4 УД)", "защита объектов КИИ и ИСПДн"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "energy", "med"]
+  formats: []
+  analogs: [astra_linux_se, red_os]
+  replaces: [windows_11, windows_server, rhel]
+  price_rub: {unit: device, low: 11000, typical: 18000, high: 55000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ОС Альт 10 СП Рабочая станция (сертифицированная ФСТЭК, формуляр)"
+  confidence: high
+
+- id: alt_education
+  vendor: basealt
+  name: "Альт Образование"
+  aliases: ["альт образование", "alt education", "линукс для школ альт"]
+  category: desktop_os_ru
+  extra_categories: []
+  summary: "Российская ОС для школ, колледжей и вузов с предустановленным комплектом образовательных программ и средств разработки."
+  editions: []
+  versions: ["10"]
+  platforms: [linux]
+  compat_ru_os: [alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: [1]
+    audiences: [edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["оснащение компьютерных классов в школах и вузах по 44-ФЗ"]
+  roles: [teacher, sysadmin]
+  industries: ["edu"]
+  formats: []
+  analogs: [astra_linux_se, red_os]
+  replaces: [windows_11, windows_10]
+  price_rub: {unit: device, low: 1800, typical: 3200, high: 5000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ОС Альт Образование 10 Лицензия для образовательных учреждений на 1 ПК"
+  confidence: high
+
+- id: red_os
+  vendor: red_soft
+  name: "РЕД ОС (Рабочая станция 7.3 / 8)"
+  aliases: ["ред ос", "редос", "ред-ос", "red os", "redos 8", "ред ос 7.3", "ред ос 8", "ред софт ос"]
+  category: desktop_os_ru
+  extra_categories: []
+  summary: "Одна из ведущих российских RPM-совместимых ОС для корпоративных рабочих мест с редакциями Стандартная и Сертифицированная ФСТЭК."
+  editions:
+    - {id: standard, name: "Стандартная редакция", aliases: ["стандартная", "standard"]}
+    - {id: fstec, name: "Сертифицированная ФСТЭК", aliases: ["фстэк", "сертифицированная"]}
+  versions: ["8", "7.3"]
+  platforms: [linux]
+  compat_ru_os: [redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["массовая миграция рабочих мест с Windows на российский Linux", "аттестация ГИС, ИСПДн и КИИ"]
+  roles: [sysadmin, security_officer, office_worker]
+  industries: ["gov", "med", "enterprise"]
+  formats: []
+  analogs: [astra_linux_se, alt_workstation, alt_sp, rosa_chrome]
+  replaces: [windows_11, windows_10, rhel]
+  price_rub: {unit: device, low: 4500, typical: 9500, high: 19000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "РЕД ОС 8 Рабочая станция Стандартная редакция (бессрочная лицензия + 1 год ТП)"
+    - "РЕД ОС 7.3 Рабочая станция Сертифицированная ФСТЭК (формуляр)"
+  confidence: high
+
+- id: red_os_server
+  vendor: red_soft
+  name: "РЕД ОС Сервер (7.3 / 8)"
+  aliases: ["ред ос сервер", "red os server", "ред софт сервер"]
+  category: server_os
+  extra_categories: [linux_unix_os]
+  summary: "Российская серверная ОС семейства РЕД ОС (RPM-база) для корпоративных серверов, СУБД, 1С и контейнеров."
+  editions:
+    - {id: standard, name: "Стандартная редакция", aliases: ["стандартная"]}
+    - {id: fstec, name: "Сертифицированная ФСТЭК", aliases: ["фстэк"]}
+  versions: ["8", "7.3"]
+  platforms: [linux]
+  compat_ru_os: [redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение RHEL, CentOS и Windows Server", "хостинг 1С и Postgres Pro на российском Linux"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, alt_server, msvsphere_os]
+  replaces: [rhel, windows_server, suse_sles, ubuntu_pro]
+  price_rub: {unit: server, low: 20000, typical: 38000, high: 75000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "РЕД ОС 8 Сервер Стандартная редакция (бессрочная + 1 год ТП Стандарт)"
+  confidence: high
+
+- id: rosa_chrome
+  vendor: rosa_ntc
+  name: "РОСА Хром / РОСА Кобальт"
+  aliases: ["роса хром", "роса кобальт", "rosa chrome", "rosa cobalt", "роса линукс", "нтц ит роса"]
+  category: desktop_os_ru
+  extra_categories: [server_os]
+  summary: "Российские десктопная (РОСА Хром) и сертифицированная ФСТЭК (РОСА Кобальт) операционные системы для рабочих станций и серверов."
+  editions:
+    - {id: chrome, name: "РОСА Хром (Рабочая станция / Сервер)", aliases: ["хром", "chrome"]}
+    - {id: cobalt, name: "РОСА Кобальт (ФСТЭК)", aliases: ["кобальт", "cobalt", "фстэк"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение ОС на рабочих станциях и серверах", "аттестация по требованиям ФСТЭК"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, red_os, alt_workstation]
+  replaces: [windows_11, rhel]
+  price_rub: {unit: device, low: 5000, typical: 12000, high: 42000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ОС РОСА Кобальт Рабочая станция (сертифицированная ФСТЭК)"
+  confidence: high
+
+- id: msvsphere_os
+  vendor: softline_msvsphere
+  name: "МСВСфера (Инферит ОС)"
+  aliases: ["мсвсфера", "msvsphere", "инферит ос", "мсвсфера сервер", "мсвсфера арм", "мсвсфера 9"]
+  category: server_os
+  extra_categories: [desktop_os_ru]
+  summary: "Российская Enterprise-ОС (RPM/RHEL-совместимая, кластер Софтлайн) для серверов, высоконагруженных ИС и корпоративных рабочих мест."
+  editions:
+    - {id: server, name: "МСВСфера Сервер", aliases: ["сервер", "server"]}
+    - {id: arm, name: "МСВСфера АРМ", aliases: ["арм", "desktop"]}
+  versions: ["9"]
+  platforms: [linux]
+  compat_ru_os: [msvsphere]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["прямая миграция с Red Hat Enterprise Linux (RHEL) и CentOS", "развёртывание серверной инфраструктуры в РФ"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [red_os_server, alt_server, astra_linux_se]
+  replaces: [rhel, suse_sles, ubuntu_pro]
+  price_rub: {unit: server_year, low: 15000, typical: 32000, high: 65000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "МСВСфера Сервер 9 Подписка на 1 сервер 1 год (с техподдержкой)"
+  confidence: high
+
+- id: osnova_linux
+  vendor: nppkt
+  name: "ОС «ОСнова»"
+  aliases: ["основа", "ос основа", "osnova linux", "нппкт основа"]
+  category: desktop_os_ru
+  extra_categories: [server_os]
+  summary: "Российская защищённая операционная система на базе Debian (ФСТЭК, Минобороны) для госорганов и объектов КИИ."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: [1]
+    audiences: [gov, business]
+  delivery: [paper, media]
+  registry: yes
+  certs: [fstec, mo]
+  use_cases: ["защищённые рабочие места и серверы в госсекторе и ОПК"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "defense"]
+  formats: []
+  analogs: [astra_linux_se, alt_sp, red_os]
+  replaces: [windows_11, rhel]
+  price_rub: {unit: device, low: 9000, typical: 16000, high: 45000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ОС ОСнова Рабочая станция (сертификат ФСТЭК)"
+  confidence: high
+
+- id: uncom_os
+  vendor: uncom
+  name: "Uncom OS"
+  aliases: ["анком ос", "uncom os", "uncom"]
+  category: desktop_os_ru
+  extra_categories: []
+  summary: "Российская пользовательская и корпоративная ОС на базе Ubuntu-совместимой экосистемы с акцентом на удобство перехода с Windows."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["простая замена Windows на ноутбуках и офисных ПК"]
+  roles: [office_worker, sysadmin]
+  industries: []
+  formats: []
+  analogs: [alt_workstation, red_os, astra_linux_se]
+  replaces: [windows_11, ubuntu_pro]
+  price_rub: {unit: device, low: 3500, typical: 5900, high: 9500}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Uncom OS Business Лицензия на 1 рабочее место (ESD)"
+  confidence: high
+
+- id: alteros
+  vendor: alteroffice
+  name: "AlterOS"
+  aliases: ["альтерос", "alteros", "алми партнер ос"]
+  category: desktop_os_ru
+  extra_categories: [server_os]
+  summary: "Российская операционная система для рабочих станций и серверов от разработчика Алми Партнер (совместно с AlterOffice)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["оснащение рабочих мест российским ПО (ОС + офис)"]
+  roles: [sysadmin, office_worker]
+  industries: []
+  formats: []
+  analogs: [red_os, alt_workstation, astra_linux_se]
+  replaces: [windows_11]
+  price_rub: {unit: device, low: 4000, typical: 7000, high: 15000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "AlterOS Рабочая станция Лицензия на 1 ПК (ESD)"
+  confidence: high
+
+- id: aurora_os
+  vendor: open_mobile_platform
+  name: "ОС «Аврора» и Аврора Центр"
+  aliases: ["аврора", "ос аврора", "aurora os", "аврора центр", "омп аврора"]
+  category: mobile_os
+  extra_categories: [mobile_security_mdm]
+  summary: "Доверенная российская мобильная ОС (сертификаты ФСТЭК и ФСБ) и платформа управления мобильными устройствами (EMM) Аврора Центр."
+  editions:
+    - {id: os, name: "ОС Аврора (лицензия на устройство)", aliases: ["ос аврора"]}
+    - {id: center, name: "Аврора Центр (EMM/MDM)", aliases: ["аврора центр", "emm"]}
+  versions: ["5"]
+  platforms: [aurora]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec, fsb]
+  use_cases: ["доверенные корпоративные смартфоны и планшеты для выездных сотрудников и госсектора", "централизованное управление парком мобильных устройств"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "energy", "logistics"]
+  formats: []
+  analogs: [rosa_mobile]
+  replaces: []
+  price_rub: {unit: device, low: 6000, typical: 12000, high: 25000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ОС Аврора 5 Корпоративная лицензия на 1 мобильное устройство"
+  confidence: high
+
+- id: rosa_mobile
+  vendor: rosa_ntc
+  name: "РОСА Мобайл"
+  aliases: ["роса мобайл", "rosa mobile", "мобильная роса"]
+  category: mobile_os
+  extra_categories: []
+  summary: "Российская мобильная ОС на базе Linux с собственными драйверами и поддержкой запуска Android-приложений в изолированной среде."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["защищённая мобильная связь для госслужащих и корпоративного сектора"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "enterprise"]
+  formats: []
+  analogs: [aurora_os]
+  replaces: []
+  price_rub: {unit: device, low: 5000, typical: 10000, high: 20000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ОС РОСА Мобайл Лицензия на 1 устройство"
+  confidence: medium
+
+- id: windows_11
+  vendor: microsoft
+  name: "Microsoft Windows 11"
+  aliases: ["виндовс 11", "винда 11", "win 11", "win11", "windows 11 pro", "windows 11 home", "вин11 про", "fqc-10572"]
+  category: desktop_os_windows
+  extra_categories: []
+  summary: "Актуальная десктопная ОС Microsoft для ПК и ноутбуков (официальные корпоративные поставки в РФ ограничены; доступны отдельные ESD/OEM остатки)."
+  editions:
+    - {id: pro, name: "Professional (Pro)", aliases: ["pro", "про", "профессиональная"]}
+    - {id: home, name: "Home (Домашняя)", aliases: ["home", "домашняя"]}
+  versions: ["11"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, home]
+  delivery: [esd, box]
+  registry: no
+  certs: []
+  use_cases: ["установка Windows 11 Pro на рабочие станции", "ввод ПК в домен Active Directory (только Pro)"]
+  roles: [sysadmin, office_worker]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, red_os, alt_workstation, rosa_chrome]
+  replaces: []
+  price_rub: {unit: device, low: 14000, typical: 22000, high: 32000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Windows 11 Pro 64-bit Russian 1pk DSP OEI DVD (FQC-10572)"
+    - "Microsoft Windows 11 Professional ESD (электронный ключ)"
+  confidence: high
+
+- id: windows_10
+  vendor: microsoft
+  name: "Microsoft Windows 10 (Pro / LTSC)"
+  aliases: ["виндовс 10", "винда 10", "win 10", "win10", "windows 10 pro", "windows 10 ltsc", "вин10"]
+  category: desktop_os_windows
+  extra_categories: []
+  summary: "Корпоративная десктопная ОС Microsoft предыдущего поколения (поддержка завершена, но востребована для совместимости со старым ПО и АСУ ТП)."
+  editions:
+    - {id: pro, name: "Professional", aliases: ["pro", "про"]}
+    - {id: ltsc, name: "Enterprise LTSC", aliases: ["ltsc", "лтсц"]}
+  versions: ["10", "ltsc 2021"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: no
+  certs: []
+  use_cases: ["совместимость со специализированным Windows-оборудованием и киосками (LTSC)"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, red_os, alt_workstation]
+  replaces: []
+  price_rub: {unit: device, low: 12000, typical: 19000, high: 28000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Windows 10 Pro 64-bit Russian (ESD)"
+  confidence: high
+
+- id: windows_server
+  vendor: microsoft
+  name: "Microsoft Windows Server (2022 / 2025 / 2019)"
+  aliases: ["windows server", "виндовс сервер", "винсервер", "win server 2022", "win server 2025", "windows server standard", "windows server datacenter"]
+  category: server_os
+  extra_categories: []
+  summary: "Серверная ОС Microsoft, лицензируемая по физическим ядрам (минимум 16 ядер на сервер) и требующая клиентских лицензий CAL."
+  editions:
+    - {id: standard, name: "Standard (16 Core)", aliases: ["standard", "стандарт"]}
+    - {id: datacenter, name: "Datacenter (16 Core)", aliases: ["datacenter", "датацентр"]}
+  versions: ["2025", "2022", "2019"]
+  platforms: [windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [core]
+    terms_months: []
+    actions: [new, addon]
+    bands: []
+    packs: [2, 16]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: no
+  certs: []
+  use_cases: ["контроллер домена Active Directory, файловый сервер и сервер терминалов (1С)"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, alt_server, red_os_server, msvsphere_os]
+  replaces: []
+  price_rub: {unit: server, low: 85000, typical: 145000, high: 650000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Windows Server 2022 Standard 16 Core (ESD)"
+    - "Microsoft Windows Server 2022 Standard Add-on 2 Core"
+  confidence: high
+
+- id: windows_server_cal
+  vendor: microsoft
+  name: "Microsoft Windows Server CAL (User / Device)"
+  aliases: ["windows server cal", "кал на виндовс сервер", "клиентская лицензия windows server", "user cal", "device cal"]
+  category: server_os
+  extra_categories: []
+  summary: "Клиентские лицензии доступа (CAL) на пользователя или устройство, обязательные для подключения к серверу Windows Server."
+  editions:
+    - {id: user_cal, name: "User CAL (на пользователя)", aliases: ["user cal", "на пользователя"]}
+    - {id: device_cal, name: "Device CAL (на устройство)", aliases: ["device cal", "на устройство"]}
+  versions: ["2025", "2022", "2019"]
+  platforms: [windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [user, device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 5, 10, 50]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["легализация подключений сотрудников к контроллеру домена и файловому серверу Windows"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [ald_pro, alt_domain]
+  replaces: []
+  price_rub: {unit: user, low: 4000, typical: 6500, high: 10000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Windows Server 2022 5 User CAL (ESD)"
+  confidence: high
+
+- id: windows_server_rds_cal
+  vendor: microsoft
+  name: "Microsoft Windows Server RDS CAL (терминальные лицензии)"
+  aliases: ["rds cal", "рдс кал", "терминальная лицензия windows", "remote desktop cal", "лицензии на терминальный сервер"]
+  category: terminal_access
+  extra_categories: [server_os]
+  summary: "Терминальные клиентские лицензии (RDS User/Device CAL) для одновременной работы пользователей на сервере удалённых рабочих столов Windows (например, для 1С)."
+  editions:
+    - {id: user_rds, name: "RDS User CAL", aliases: ["user", "на пользователя"]}
+    - {id: device_rds, name: "RDS Device CAL", aliases: ["device", "на устройство"]}
+  versions: ["2025", "2022", "2019"]
+  platforms: [windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [user, device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 5, 10, 50]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["подключение пользователей по RDP к терминальному серверу 1С"]
+  roles: [sysadmin]
+  industries: []
+  formats: []
+  analogs: [termidesk, basis_workplace]
+  replaces: []
+  price_rub: {unit: user, low: 14000, typical: 22000, high: 32000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Microsoft Windows Server 2022 Remote Desktop Services 5 User CAL (ESD)"
+  confidence: high
+
+- id: rhel
+  vendor: red_hat
+  name: "Red Hat Enterprise Linux (RHEL)"
+  aliases: ["rhel", "редхат", "red hat", "ред хат линукс", "rhel server"]
+  category: linux_unix_os
+  extra_categories: [server_os]
+  summary: "Зарубежная корпоративная серверная ОС Linux (официально ушла с рынка РФ; замещается РЕД ОС Сервер, МСВСфера, Альт Сервер, Astra Linux)."
+  editions: []
+  versions: ["9", "8"]
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, cpu]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Red Hat Enterprise Linux и CentOS"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [red_os_server, msvsphere_os, alt_server, astra_linux_se]
+  replaces: []
+  price_rub: {unit: server_year, low: 80000, typical: 140000, high: 280000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Red Hat Enterprise Linux Server Standard 1-2 Sockets 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: suse_sles
+  vendor: suse
+  name: "SUSE Linux Enterprise Server (SLES)"
+  aliases: ["sles", "suse", "сусе", "суся", "suse linux"]
+  category: linux_unix_os
+  extra_categories: [server_os]
+  summary: "Зарубежная корпоративная серверная ОС Linux (официально недоступна в РФ)."
+  editions: []
+  versions: ["15"]
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение SUSE SLES (включая среды SAP)"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [alt_server, red_os_server, astra_linux_se, msvsphere_os]
+  replaces: []
+  price_rub: {unit: server_year, low: 70000, typical: 120000, high: 240000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "SUSE Linux Enterprise Server 1-2 Sockets Standard 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: ubuntu_pro
+  vendor: canonical
+  name: "Ubuntu Pro (Canonical)"
+  aliases: ["ubuntu pro", "убунту про", "canonical ubuntu", "ubuntu enterprise"]
+  category: linux_unix_os
+  extra_categories: [server_os]
+  summary: "Коммерческая подписка поддержки и безопасности для Ubuntu (официально недоступна для юрлиц в РФ)."
+  editions: []
+  versions: ["24.04", "22.04"]
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена коммерческой поддержки Ubuntu Pro на российские дистрибутивы"]
+  roles: [devops, sysadmin]
+  industries: []
+  formats: []
+  analogs: [astra_linux_se, alt_server, red_os_server, uncom_os]
+  replaces: []
+  price_rub: {unit: server_year, low: 25000, typical: 55000, high: 150000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Ubuntu Pro (Infra-only) Server 1 Year Subscription (не поставляется в РФ)"
+  confidence: high

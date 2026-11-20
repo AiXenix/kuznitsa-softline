@@ -1,0 +1,501 @@
+# Спецификация генерации 90-дневного журнала поиска («Кузница Softline»)
+# Синхронизировано с SPEC.md §14, §19, §24 и design/proposals/neon2/analytics.md (INS-01..INS-18).
+
+meta:
+  version: "1.0"
+  author: "AiXenix (Neon-2)"
+  seed_offset: 3
+  horizon_days: 90                # D-89 .. D-0 относительно --today
+  target_searches: 45000          # итоговое число строк в таблице searches
+  target_sessions: 24000          # ~1.87 поиска на сессию
+  source: "history"
+  engine: "legacy"                # исходный лог моделируется наивным поиском (SPEC §14.5, §19)
+  mode: "naive"
+  guest_session_share: 0.38       # 38% сессий от анонимных посетителей (guest), 62% — от 310 клиентов
+
+# 1. Распределение «Голова / Середина / Хвост» (Zipf)
+frequency_curve:
+  model: "zipf"
+  alpha: 1.15
+  buckets:
+    head:
+      share_of_searches: 0.38     # ~17 100 поисков
+      unique_queries_approx: 120  # топ-запросы: «касперский», «1с бухгалтерия», «astra linux», «мой офис», «антивирус»
+    torso:
+      share_of_searches: 0.40     # ~18 000 поисков
+      unique_queries_approx: 1400 # запросы с количеством, сроком, редакцией, аналогом, ОС
+    tail:
+      share_of_searches: 0.22     # ~9 900 поисков
+      unique_queries_approx: 6500 # длинные задачи своими словами, артикулы, многострочные списки, редкие опечатки
+
+# 2. Временная сезонность (90 дней + внутри недели + внутри суток)
+seasonality:
+  timezone: "Europe/Moscow"
+  day_of_week_multipliers:        # B2B-профиль: пик Вт–Чт, провал на выходных
+    mon: 1.12
+    tue: 1.24
+    wed: 1.26
+    thu: 1.22
+    fri: 1.04
+    sat: 0.22
+    sun: 0.18
+  hour_of_day_weights:            # 00..23 MSK (пик 10:00–17:00)
+    0: 0.004
+    1: 0.003
+    2: 0.002
+    3: 0.002
+    4: 0.003
+    5: 0.006
+    6: 0.012
+    7: 0.025
+    8: 0.052
+    9: 0.088
+    10: 0.112
+    11: 0.115
+    12: 0.095
+    13: 0.088
+    14: 0.104
+    15: 0.102
+    16: 0.082
+    17: 0.054
+    18: 0.024
+    19: 0.012
+    20: 0.007
+    21: 0.004
+    22: 0.002
+    23: 0.002
+  # Сезонность отчётных периодов (15–25 числа каждого месяца)
+  reporting_period:
+    days_of_month: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    category_multipliers:
+      accounting: 1.45
+      tax_reporting_edo: 1.55
+      crypto_skzi: 1.40
+      e_signature: 1.50
+      payroll_hr_1c: 1.35
+      kedo_hr_docs: 1.25
+  # Сезонность закрытия квартала / освоения бюджетов (последние 14 дней 90-дневного окна)
+  quarter_end_flush:
+    relative_days: [-14, 0]       # D-14 .. D-0
+    global_multiplier: 1.32
+    segment_multipliers:
+      gov: 1.68
+      enterprise: 1.55
+      edu: 1.40
+      mid: 1.25
+      smb: 1.10
+      individual: 1.00
+
+# 3. Распределение намерений (intents, сумма = 1.00; строго из закрытого списка SPEC §8.5)
+intent_shares:
+  product: 0.24
+  category: 0.17
+  renewal: 0.10
+  vendor: 0.07
+  analog: 0.075                   # включая ушедших вендоров (vendor_left)
+  compliance: 0.055
+  task: 0.065
+  license_ops: 0.045
+  sku: 0.040
+  out_of_catalog: 0.041           # not_in_catalog_known (0.032) + not_in_catalog_unknown (0.009)
+  role_kit: 0.022
+  spec_list: 0.015
+  question: 0.018
+  compare: 0.012
+  broad: 0.012
+  off_topic: 0.018                # piracy (0.007) + off_topic (0.006) + gibberish (0.005); hardware (0.011) в out_of_catalog/off_topic
+  industry: 0.008
+  account: 0.006
+  service: 0.005
+  promo: 0.008
+
+# 4. Доли языковых искажений и нецелевого шума
+distortions:
+  clean: 0.62                     # без искажений
+  typo: 0.11                      # перестановка, пропуск, лишняя буква, соседняя клавиша (1–2 правки)
+  wrong_layout: 0.06              # 4.5% EN→RU («rfcgth», «fnhf»), 1.5% RU→EN («фгещсфв», «зщыепкуы»)
+  translit: 0.07                  # 4.5% EN→RU («касперски», «юзергейт»), 2.5% RU→EN («kompas», «moi ofis»)
+  slang_abbr: 0.08                # «каспер», «адешка», «зуп», «скзи», «вкс», «нгфв», «кэдо», «ндв»
+  merged_tokens: 0.03             # «мойофисстандарт», «астралинукс17», «касперантивирус30пк»
+  homoglyph_sku: 0.03             # только на intent=sku: подмена A/E/O/C/P/T/X на кириллические двойники
+
+noise_and_gaps_breakdown:         # доли от общего числа 45 000 поисков (синхронизировано с fail_reason §14.3)
+  vendor_left: 0.065              # Microsoft, AutoCAD, VMware, Atlassian, Adobe, Oracle, ESET, SAP, JetBrains
+  not_in_catalog_known: 0.032     # Cursor IDE, Яндекс Трекер, Obsidian, Miro-совм. и др.
+  not_in_catalog_unknown: 0.009   # редкие нишевые названия
+  hardware: 0.011                 # серверы Dell/HP, ноутбуки, принтеры, МФУ, кабели
+  piracy: 0.007                   # «кряк», «активатор», «торрент бесплатно»
+  off_topic: 0.006                # бытовые/непрофильные запросы
+  gibberish: 0.005                # случайный набор клавиш («asdfg», «123456»)
+
+# 5. Шаблоны запросов со слотами (для генератора + скрытой разметки hidden_truth)
+# Каждый сгенерированный запрос сохраняет скрытую разметку (target_family/category, scenario, distortion)
+# для точного расчёта Top-5 Hit Rate в replay.py (SPEC §14.5).
+slots:
+  qty_smb: [5, 10, 15, 20, 25, 30, 40]
+  qty_mid: [50, 75, 100, 150, 200, 300]
+  qty_ent: [500, 1000, 2000, 3000, 5000]
+  metric_dev: ["пк", "компов", "устройств", "рабочих мест", "арм", "узлов"]
+  metric_user: ["пользователей", "юзеров", "человек", "сотрудников"]
+  term: ["на год", "на 12 месяцев", "на 2 года", "на 3 года", "бессрочно"]
+  os_ru: ["astra linux", "астру", "ред ос", "альт линукс", "linux"]
+  cert: ["фстэк", "фсб", "из реестра", "без ндс", "по 44 фз", "для 152 фз"]
+  departed: ["Microsoft Office", "AutoCAD", "Autodesk Revit", "VMware vSphere", "Atlassian Jira", "Atlassian Confluence", "Adobe Acrobat", "Adobe Photoshop", "Oracle Database", "Microsoft Exchange", "TeamViewer", "ESET NOD32", "SAP ERP", "Slack", "Zoom"]
+
+query_templates:
+  - scenario: exact_product_family
+    intent: product
+    patterns:
+      - "{product}"
+      - "{product} купить"
+      - "{product} цена для юрлиц"
+      - "{vendor} {product} {edition}"
+  - scenario: renewal_by_quantity
+    intent: renewal
+    patterns:
+      - "{product} продление на {qty} {metric_dev}"
+      - "продлить {vendor} {qty} {metric_dev} {term}"
+      - "продление лицензии {product} {qty} шт"
+  - scenario: new_license_by_quantity_and_term
+    intent: product
+    patterns:
+      - "{product} на {qty} {metric_dev} {term}"
+      - "купить {category_name} {qty} {metric_dev}"
+      - "{vendor} новая лицензия {qty} {metric_user} {term}"
+  - scenario: license_addon_expansion
+    intent: license_ops
+    patterns:
+      - "докупить {qty} лицензий {product}"
+      - "расширение {product} на {qty} {metric_dev}"
+  - scenario: license_upgrade_and_crossgrade
+    intent: license_ops
+    patterns:
+      - "переход с {vendor_alt} на {product} {qty} {metric_dev}"
+      - "апгрейд {product} со стандартного на расширенный {qty} пк"
+  - scenario: explicit_analog_query
+    intent: analog
+    patterns:
+      - "аналог {departed} российский"
+      - "чем заменить {departed} из реестра"
+      - "замена {departed} под {os_ru}"
+  - scenario: departed_vendor_direct_query
+    intent: analog
+    fail_reason_legacy: vendor_left
+    patterns:
+      - "купить {departed}"
+      - "{departed} лицензия на {qty} {metric_dev}"
+      - "{departed} продление"
+  - scenario: fstec_certified_search
+    intent: compliance
+    patterns:
+      - "{category_name} {cert}"
+      - "{category_name} под {os_ru} {cert}"
+      - "{product} {cert} на {qty} арм"
+  - scenario: role_workplace_bundle
+    intent: role_kit
+    patterns:
+      - "по для рабочего места {role_genitive}"
+      - "комплект программ для {role_genitive} на {qty} человек"
+  - scenario: industry_solution_bundle
+    intent: industry
+    patterns:
+      - "базовый набор по для {industry_genitive}"
+      - "софт для {industry_genitive} под ключ"
+  - scenario: multi_item_spec_paste
+    intent: spec_list
+    patterns:
+      - "{product_1} {qty_1} пк\n{product_2} {qty_2} пк\n{product_3} {qty_3} шт"
+      - "1. {product_1} - {qty_1} лицензий\n2. {product_2} - {qty_2} лицензий\n3. {product_3} - {qty_3} шт\n4. {product_4} - {qty_4} серверов"
+  - scenario: licensing_faq_question
+    intent: question
+    patterns:
+      - "как продлить лицензию {vendor} после окончания"
+      - "облагается ли ндс {product} из реестра по"
+      - "чем отличается подписка от бессрочной лицензии {product}"
+  - scenario: product_vs_product_comparison
+    intent: compare
+    patterns:
+      - "что лучше {product_1} или {product_2}"
+      - "сравнение {product_1} и {product_2} для бизнеса"
+  - scenario: exact_vendor_sku
+    intent: sku
+    patterns:
+      - "{sku}"
+      - "артикул {sku}"
+
+# 6. Структура сессий и моделирование воронки «старого» (naive/legacy) поиска
+session_model:
+  structure_shares:
+    single_query: 0.58            # 1 поиск в сессии
+    chain_refinement: 0.18        # 2–3 поиска с prev_search_id (уточнение кол-ва, срока, цены)
+    reformulate_after_fail: 0.24  # 2–4 поиска после пустой/неудачной выдачи (событие E(reformulate))
+  # Вероятности исходов при прогоне через naive (engine='legacy'):
+  legacy_funnel:
+    # A. Наивный поиск вернул 0 карточек (zero = 1, ~24.8% от всех 45 000 поисков)
+    when_zero:
+      reformulate_prob: 0.44      # переформулировка внутри сессии (≤ 2 повторов)
+      exit_prob: 0.54             # уход после неудачного поиска
+      lead_prob: 0.02             # редкий прямой запрос в форму обратной связи
+    # B. Наивный поиск нашёл целевой товар в топ-5
+    when_hit_top5:
+      click_prob: 0.68
+      click_pos_weights: [0.42, 0.24, 0.15, 0.11, 0.08]
+      cart_given_click:
+        smb: 0.28
+        mid: 0.22
+        enterprise: 0.14
+        gov: 0.16
+        edu: 0.20
+        individual: 0.34
+        guest: 0.15
+      order_given_cart:
+        smb: 0.58
+        mid: 0.48
+        enterprise: 0.30          # крупный бизнес чаще переходит в lead/КП
+        gov: 0.35
+        edu: 0.45
+        individual: 0.68
+        guest: 0.38
+      lead_given_click_price_on_request: 0.26
+    # C. Наивный поиск нашёл целевой товар ниже 5-й позиции (ranking_issue)
+    when_hit_below5:
+      click_prob: 0.24
+      click_pos_weights_6_10: [0.35, 0.25, 0.18, 0.12, 0.10]
+      cart_given_click: 0.14
+      order_given_cart: 0.42
+      exit_prob_no_click: 0.48
+      reformulate_prob_no_click: 0.28
+    # D. Наивный поиск вернул нерелевантный мусор (нет целевого в топ-10)
+    when_irrelevant:
+      click_prob: 0.12            # быстрый клик и pogo-sticking (выход в течение 30 сек)
+      pogo_stick_prob: 0.85
+      cart_given_click: 0.02
+      reformulate_prob: 0.40
+      exit_prob: 0.48
+
+  # Базовые параметры чека и маржи для событий order (events.value, events.margin_value)
+  order_economics:
+    margin_pct_by_top_category:
+      security: {mean: 0.24, min: 0.14, max: 0.36}
+      operating_systems: {mean: 0.20, min: 0.12, max: 0.30}
+      office: {mean: 0.22, min: 0.14, max: 0.32}
+      virtualization_infra: {mean: 0.26, min: 0.16, max: 0.38}
+      databases_data: {mean: 0.25, min: 0.15, max: 0.35}
+      backup_storage: {mean: 0.27, min: 0.18, max: 0.38}
+      communications: {mean: 0.23, min: 0.14, max: 0.34}
+      remote_access: {mean: 0.28, min: 0.18, max: 0.40}
+      accounting_1c: {mean: 0.18, min: 0.10, max: 0.28}
+      business_erp_crm: {mean: 0.22, min: 0.12, max: 0.34}
+      cad_engineering: {mean: 0.21, min: 0.12, max: 0.32}
+      graphics_media: {mean: 0.20, min: 0.12, max: 0.30}
+      docs_text: {mean: 0.26, min: 0.16, max: 0.36}
+      dev_tools: {mean: 0.21, min: 0.12, max: 0.30}
+      cloud_ai: {mean: 0.24, min: 0.14, max: 0.35}
+      services_education: {mean: 0.32, min: 0.20, max: 0.45}
+
+# 7. 18 посеянных аномалий (1-в-1 с INS-01..INS-18 в design/proposals/neon2/analytics.md!)
+# Генератор подмешивает эти кластеры поверх базового потока в окне D-29..D-0 (и D-59..D-30 для трендов роста),
+# чтобы на демо каждая из 18 находок агента стабильно срабатывала с реалистичными цифрами.
+seeded_anomalies:
+  - id: INS-01
+    type: add_synonym
+    fail_reason: vocabulary_gap
+    window_days: [-29, 0]
+    searches_30d: 184
+    sessions_30d: 112
+    queries: ["адешка", "адешка под линукс", "адешка на астру", "российская адешка", "контроллер домена адешка"]
+    legacy_zero_rate: 0.96
+    reformulate_to: ["ALD Pro", "служба каталогов", "РЕД АДМ"]
+    reformulate_share: 0.68
+    segments: {gov: 0.48, enterprise: 0.34, mid: 0.18}
+
+  - id: INS-02
+    type: add_synonym
+    fail_reason: vocabulary_gap
+    window_days: [-29, 0]
+    searches_30d: 148
+    sessions_30d: 98
+    queries: ["кэдо", "кэдо для 1с", "кадровый эдо", "кэдо на 100 сотрудников", "система кэдо"]
+    legacy_zero_rate: 0.89
+    reformulate_to: ["HRlink", "Контур.КЭДО", "кадровый документооборот"]
+    reformulate_share: 0.58
+    segments: {mid: 0.45, smb: 0.35, enterprise: 0.20}
+
+  - id: INS-03
+    type: add_synonym
+    fail_reason: vocabulary_gap
+    window_days: [-29, 0]
+    searches_30d: 92
+    sessions_30d: 64
+    queries: ["ндв", "контроль ндв", "по с ндв фстэк", "антивирус с ндв 4 уровня"]
+    legacy_zero_rate: 0.91
+    reformulate_to: ["фстэк", "сертифицированный фстэк"]
+    reformulate_share: 0.52
+    segments: {gov: 0.81, enterprise: 0.19}
+
+  - id: INS-04
+    type: add_product
+    fail_reason: not_in_catalog_known
+    window_days: [-29, 0]
+    prev_window_sessions: 50       # рост с 50 до 142 (+184%)
+    searches_30d: 210
+    sessions_30d: 142
+    queries: ["cursor ide", "cursor enterprise лицензия", "купить cursor для команды", "cursor ai оплата от юрлица"]
+    legacy_zero_rate: 1.00
+    segments: {mid: 0.52, smb: 0.30, enterprise: 0.18}
+    industries: [it_telecom, banking_finance]
+
+  - id: INS-05
+    type: add_product
+    fail_reason: not_in_catalog_known
+    window_days: [-29, 0]
+    searches_30d: 165
+    sessions_30d: 108
+    queries: ["яндекс трекер", "yandex tracker лицензии", "купить яндекс трекер 50 пользователей", "яндекс трекер корпоративный"]
+    legacy_zero_rate: 0.94
+    segments: {mid: 0.46, smb: 0.34, enterprise: 0.20}
+    industries: [it_telecom, retail, ecommerce_marketplaces]
+
+  - id: INS-06
+    type: add_product
+    fail_reason: not_in_catalog_known
+    window_days: [-29, 0]
+    searches_30d: 134
+    sessions_30d: 89
+    queries: ["obsidian commercial", "obsidian лицензия для бизнеса", "obsidian для команды 30 мест"]
+    legacy_zero_rate: 1.00
+    segments: {smb: 0.48, mid: 0.42, individual: 0.10}
+    industries: [it_telecom, media_advertising]
+
+  - id: INS-07
+    type: fix_card
+    fail_reason: content_gap
+    window_days: [-29, 0]
+    searches_30d: 312
+    sessions_30d: 196
+    affected_categories: [backup_recovery, ngfw_vpn]
+    missing_attribute: "platforms:[astra,redos]"
+    affected_cards_count: 14
+    queries: ["бэкап под астру", "резервное копирование astra linux", "межсетевой экран под ред ос", "ngfw совместимый с astra linux"]
+    relaxed_rate: 0.62
+    exit_rate: 0.48
+
+  - id: INS-08
+    type: fix_card
+    fail_reason: content_gap
+    window_days: [-29, 0]
+    searches_30d: 176
+    sessions_30d: 118
+    affected_categories: [office_suite, cad_2d]
+    missing_attribute: "registry_ru:true,vat:0"
+    affected_cards_count: 9
+    queries: ["офисный пакет реестр по без ндс", "сапр 2d из реестра минцифры", "чертежная программа по 44 фз"]
+    exit_rate: 0.71
+    segments: {gov: 0.85, edu: 0.15}
+
+  - id: INS-09
+    type: fix_card
+    fail_reason: content_gap
+    window_days: [-29, 0]
+    searches_30d: 245
+    sessions_30d: 160
+    affected_categories: [endpoint_security]
+    missing_attribute: "qty_brackets:[25-49,50-99],max_seats"
+    affected_cards_count: 11
+    queries: ["антивирус на 35 пк", "корпоративный антивирус 60 устройств", "защита рабочих станций 45 пк"]
+    cart_rate: 0.021               # в 2.4× ниже нормы категории (0.051)
+
+  - id: INS-10
+    type: merch_rule
+    fail_reason: ranking_issue
+    window_days: [-29, 0]
+    searches_30d: 340
+    sessions_30d: 225
+    queries: ["удаленный доступ", "аналог teamviewer", "программа удаленного рабочего стола"]
+    legacy_top1_mismatch: "Termidesk"
+    clicked_target_products: ["RuDesktop", "Ассистент"]
+    clicked_position_range: [5, 7]
+    ctr_top3: 0.092
+    segments: {smb: 0.55, mid: 0.45}
+
+  - id: INS-11
+    type: merch_rule
+    fail_reason: ranking_issue
+    window_days: [-29, 0]
+    searches_30d: 290
+    sessions_30d: 195
+    queries: ["антивирус для малого бизнеса", "антивирус на 10 пк", "антивирус на 15 компьютеров"]
+    clicked_target_products: ["Kaspersky Small Office Security", "Dr.Web Малый бизнес"]
+    mean_click_position: 4.8
+    segments: {smb: 0.88, individual: 0.12}
+
+  - id: INS-12
+    type: merch_rule
+    fail_reason: vendor_left
+    window_days: [-29, 0]
+    searches_30d: 410
+    sessions_30d: 260
+    queries: ["autocad", "автокад", "купить автокад 2025", "autocad лицензия цена"]
+    bridge_ctr_actual: 0.28        # ниже целевого 0.45 из-за неверного #1 аналога
+    preferred_analog_pin: "nanoCAD"
+    segments: {mid: 0.42, smb: 0.35, enterprise: 0.23}
+
+  - id: INS-13
+    type: rising_demand
+    window_days: [-29, 0]
+    prev_window_days: [-59, -30]
+    prev_sessions_30d: 72
+    sessions_30d: 190              # +164% MoM
+    searches_30d: 268
+    queries: ["локальная llm для компании", "ии ассистент программиста on premise", "gigacode корпоративная лицензия", "корпоративный чат гпт в контуре"]
+    segments: {mid: 0.45, enterprise: 0.38, smb: 0.17}
+
+  - id: INS-14
+    type: rising_demand
+    window_days: [-29, 0]
+    prev_window_days: [-59, -30]
+    prev_sessions_30d: 115
+    sessions_30d: 221              # +92% MoM
+    searches_30d: 318
+    queries: ["миграция active directory на российское", "замена ad на astra linux", "ald pro цена", "ред адм контроллер домена"]
+    segments: {gov: 0.48, enterprise: 0.39, mid: 0.13}
+
+  - id: INS-15
+    type: hot_lead
+    window_days: [-2, 0]           # последние 48 часов!
+    client_id: "ent_factory"
+    searches_count: 6
+    queries: ["maxpatrol siem 5000 хостов", "защита асу тп 187 фз", "usergate кластер цена", "kics for networks", "pt isim внедрение", "siem для завода 5000 арм"]
+    price_on_request_clicks: 4
+    cart_events: 0
+    lead_events: 0
+    estimated_deal_rub: [3200000, 5500000]
+
+  - id: INS-16
+    type: hot_lead
+    window_days: [-3, 0]           # последние 72 часа!
+    client_id: "fin_bank"
+    searches_count: 4
+    queries: ["postgres pro enterprise 64 ядра", "dlp с интеграцией siem", "infowatch traffic monitor или searchinform", "postgres pro enterprise цена по запросу"]
+    price_on_request_clicks: 3
+    cart_events: 0
+    lead_events: 0
+    estimated_deal_rub: [2400000, 4000000]
+
+  - id: INS-17
+    type: renewal_campaign
+    window_days: [-14, 0]
+    cohort_source: "clients.yaml:expiring_cohort_target" # 34 клиента (10 демо + 24 синтетических), 48 контрактов
+    clients_visited_without_renewal: 19
+    sample_queries_from_cohort: ["продление лицензии", "мои лицензии", "каспер продление", "1с отчетность продлить", "нанокад продление"]
+    renewal_potential_rub: 4850000
+
+  - id: INS-18
+    type: weights_advice
+    window_days: [-29, 0]
+    evaluated_queries_count: 200   # топ-200 коммерческих запросов (~18 400 поисков/мес.)
+    current_weights: {rel: 0.50, pop: 0.20, margin: 0.15, pers: 0.15}
+    recommended_weights: {rel: 0.48, pop: 0.18, margin: 0.19, pers: 0.15}
+    expected_margin_lift_pct: 6.4
+    expected_ndcg5_delta: -0.002
+    band_inversions: 0

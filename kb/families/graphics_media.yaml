@@ -1,0 +1,757 @@
+# Семейства продуктов: Графика, фото, вектор, UI/UX-дизайн, 3D-рендеринг, вёрстка и видеомонтаж
+# Схема: kb/SCHEMA.md
+
+- id: pixso_design
+  vendor: pixso
+  name: "Pixso (UI/UX-дизайн и прототипирование)"
+  aliases: ["pixso", "пиксо", "аналог figma", "замена фигмы", "pixso enterprise"]
+  category: ui_ux_web_design
+  extra_categories: [vector_illustration]
+  summary: "Кроссплатформенный инструмент для UI/UX-дизайна, прототипирования и дизайн-систем с прямым импортом файлов Figma (.fig) и on-premise сервером."
+  editions:
+    - {id: pro, name: "Pixso Professional (Cloud)", aliases: [pro, cloud]}
+    - {id: enterprise, name: "Pixso Enterprise (On-Premise)", aliases: [enterprise, onprem]}
+  versions: []
+  platforms: [web, windows, macos, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd, service]
+  registry: no
+  certs: []
+  use_cases: ["замена figma для дизайн-команд", "импорт макетов из figma и sketch", "развёртывание дизайн-системы в закрытом контуре"]
+  roles: [ui_ux_designer, graphic_designer, product_manager]
+  industries: [it, finance, ecommerce, marketing, enterprise]
+  formats: [fig, svg, png, pdf, sketch]
+  analogs: []
+  replaces: [figma, adobe_illustrator]
+  price_rub: {unit: user_year, low: 9500, typical: 16000, high: 38000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Pixso Professional. Подписка на 1 редактора на 12 месяцев"
+    - "Pixso Enterprise On-Premise. Лицензия на 10 пользователей (12 мес)"
+  confidence: high
+
+- id: movavi_video_suite
+  vendor: movavi
+  name: "Мовавика Видеоредактор / Видеосюита (Movavi)"
+  aliases: ["movavi", "мовави", "мовавика", "movavi video editor", "movavi video suite", "видеоредактор мовавика"]
+  category: video_editing
+  extra_categories: [audio_multimedia]
+  summary: "Популярный российский видеоредактор и мультимедиа-пакет для быстрого монтажа корпоративных роликов, обучающих видео, конвертации и работы со звуком."
+  editions:
+    - {id: editor, name: "Мовавика Видео (Видеоредактор)", aliases: [видеоредактор, editor]}
+    - {id: suite, name: "Мовавика Видеосюита (Редактор + Конвертер + Запись экрана)", aliases: [сюита, suite]}
+    - {id: business, name: "Коммерческая лицензия для бизнеса / образования", aliases: [бизнес, business, edu]}
+  versions: ["2024", "2025"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, edu, home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["монтаж корпоративных и обучающих видео", "подготовка роликов для маркетинга и соцсетей", "замена adobe premiere для базового монтажа"]
+  roles: [marketing_manager, video_editor, lms_admin]
+  industries: [smb, marketing, edu, media]
+  formats: [mp4, mov, avi, mkv, mp3]
+  analogs: [ams_videomontage]
+  replaces: [adobe_premiere]
+  price_rub: {unit: device, low: 3500, typical: 7900, high: 16000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Мовавика Видеоредактор Плюс (коммерческая лицензия на 1 ПК)"
+    - "Мовавика Видеосюита для бизнеса (бессрочная лицензия)"
+  confidence: high
+
+- id: movavi_screen_recorder
+  vendor: movavi
+  name: "Мовавика Запись экрана (Movavi Screen Recorder)"
+  aliases: ["movavi screen recorder", "мовавика запись экрана", "захват экрана мовави"]
+  category: video_editing
+  extra_categories: []
+  summary: "Российская программа для записи экрана, вебинаров, видеоинструкций и системного звука для бизнеса и учебных центров."
+  editions:
+    - {id: business, name: "Бизнес-лицензия", aliases: [бизнес, business]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["запись видеоинструкций и скринкастов", "запись онлайн-вебинаров и демонстраций по"]
+  roles: [lms_admin, marketing_manager, helpdesk]
+  industries: [edu, it, smb, marketing]
+  formats: [mp4, mkv, gif]
+  analogs: [movavi_video_suite]
+  replaces: []
+  price_rub: {unit: device, low: 2500, typical: 5200, high: 9500}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Мовавика Запись экрана (коммерческая лицензия на 1 ПК)"
+  confidence: high
+
+- id: ams_photomaster
+  vendor: ams_software
+  name: "ФотоМАСТЕР (AMS Software)"
+  aliases: ["фотомастер", "ams фотомастер", "photomaster", "российский фотошоп"]
+  category: raster_photo
+  extra_categories: []
+  summary: "Российский фоторедактор для профессиональной цветокоррекции, ретуши, удаления фона и пакетной обработки фотографий (в Реестре российского ПО)."
+  editions:
+    - {id: standard, name: "Стандарт", aliases: [стандарт]}
+    - {id: pro, name: "Профи", aliases: [профи, pro]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, edu, home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["ретушь и цветокоррекция фото для сайта и каталога", "базовая замена adobe photoshop из реестра по рф"]
+  roles: [graphic_designer, marketing_manager]
+  industries: [smb, ecommerce, marketing, edu]
+  formats: [jpg, png, raw, psd, tiff]
+  analogs: [akvis_suite]
+  replaces: [adobe_photoshop]
+  price_rub: {unit: device, low: 2500, typical: 4900, high: 9000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "AMS Software ФотоМАСТЕР Профи (коммерческая лицензия на 1 ПК)"
+  confidence: high
+
+- id: ams_videomontage
+  vendor: ams_software
+  name: "ВидеоМОНТАЖ (AMS Software)"
+  aliases: ["видеомонтаж", "ams видеомонтаж", "видеоредактор ams"]
+  category: video_editing
+  extra_categories: []
+  summary: "Российская программа видеомонтажа с хромакеем, титрами, стабилизацией и озвучкой для корпоративного маркетинга и образования."
+  editions:
+    - {id: pro, name: "Профи / Делюкс", aliases: [профи, делюкс]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, edu, home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["видеомонтаж для учебных курсов и презентаций", "российский видеоредактор из реестра по"]
+  roles: [marketing_manager, video_editor, lms_admin]
+  industries: [smb, edu, gov, marketing]
+  formats: [mp4, avi, mov, mkv]
+  analogs: [movavi_video_suite]
+  replaces: [adobe_premiere]
+  price_rub: {unit: device, low: 2900, typical: 5900, high: 11000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "AMS Software ВидеоМОНТАЖ Профи (лицензия для организаций на 1 ПК)"
+  confidence: high
+
+- id: akvis_suite
+  vendor: akvis
+  name: "AKVIS (Retoucher / Enhancer / Alchemy — пакет обработки графики)"
+  aliases: ["akvis", "аквис", "akvis alchemy", "akvis retoucher", "аквис графика"]
+  category: raster_photo
+  extra_categories: []
+  summary: "Российская линейка автономных программ и плагинов для ретуши, восстановления фотографий, повышения резкости и художественной обработки."
+  editions:
+    - {id: business, name: "Business (отдельные модули)", aliases: [business, бизнес]}
+    - {id: alchemy, name: "AKVIS Alchemy (полный комплект)", aliases: [alchemy, полный]}
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["ретушь и реставрация изображений на linux и windows", "пакетная обработка фотографий"]
+  roles: [graphic_designer, marketing_manager]
+  industries: [media, marketing, gov, edu]
+  formats: [jpg, png, tiff, bmp]
+  analogs: [ams_photomaster]
+  replaces: [adobe_photoshop]
+  price_rub: {unit: device, low: 4500, typical: 12000, high: 48000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "AKVIS Retoucher Business (лицензия на 1 ПК)"
+    - "AKVIS Alchemy Business (полный пакет программ, 1 ПК)"
+  confidence: high
+
+- id: unigine_engine
+  vendor: unigine
+  name: "UNIGINE 2 (3D-движок реального времени и VR-тренажёры)"
+  aliases: ["unigine", "юниджин", "unigine 2", "unigine sim", "российский unreal engine", "российский unity"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Российский профессиональный 3D-движок реального времени для промышленных VR/AR-тренажёров, цифровых двойников, геовизуализации и симуляторов."
+  editions:
+    - {id: engineering, name: "UNIGINE 2 Engineering", aliases: [engineering]}
+    - {id: sim, name: "UNIGINE 2 Sim", aliases: [sim, тренажеры]}
+  versions: ["2"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["создание промышленных 3d-тренажёров и vr-симуляторов", "цифровые двойники производств и городов", "импортозамещение unreal engine и unity"]
+  roles: [3d_artist, developer]
+  industries: [aerospace, energy, oil_gas, manufacturing, defense, edu]
+  formats: [fbx, obj, gltf, cad]
+  analogs: []
+  replaces: [autodesk_3ds_max, autodesk_maya]
+  price_rub: {unit: seat_year, low: 250000, typical: 650000, high: 1800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "UNIGINE 2 Engineering SDK (годовая лицензия на 1 рабочее место)"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ / УШЕДШИЕ ПРОДУКТЫ ГРАФИКИ И МЕДИА (catalog: no) ===
+
+- id: adobe_photoshop
+  vendor: adobe
+  name: "Adobe Photoshop"
+  aliases: ["photoshop", "фотошоп", "фш", "adobe photoshop", "ps", "адоб фотошоп"]
+  category: raster_photo
+  extra_categories: []
+  summary: "Мировой стандарт растровой графики и обработки фотографий (Adobe прекратила продажи и продление подписок в России)."
+  editions:
+    - {id: teams, name: "Photoshop for Teams", aliases: [teams, бизнес]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поиск замены adobe photoshop", "обработка psd-макетов и ретушь"]
+  roles: [graphic_designer, marketing_manager]
+  industries: [marketing, media, ecommerce, smb]
+  formats: [psd, jpg, png, tiff]
+  analogs: [ams_photomaster, akvis_suite]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 52000, high: 70000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Adobe Photoshop for Teams Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: adobe_illustrator
+  vendor: adobe
+  name: "Adobe Illustrator"
+  aliases: ["illustrator", "иллюстратор", "adobe illustrator", "ai вектор", "адоб иллюстратор"]
+  category: vector_illustration
+  extra_categories: []
+  summary: "Ведущий зарубежный редактор векторной графики (Adobe прекратила официальные продажи в РФ)."
+  editions:
+    - {id: teams, name: "Illustrator for Teams", aliases: [teams]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["векторная графика и фирменный стиль", "поиск аналога adobe illustrator"]
+  roles: [graphic_designer, ui_ux_designer]
+  industries: [marketing, media, printing]
+  formats: [ai, eps, svg, pdf]
+  analogs: [pixso_design]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 52000, high: 70000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Adobe Illustrator for Teams Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: adobe_indesign
+  vendor: adobe
+  name: "Adobe InDesign"
+  aliases: ["indesign", "индизайн", "adobe indesign", "адоб индизайн", "верстка indesign"]
+  category: dtp_publishing
+  extra_categories: []
+  summary: "Профессиональная зарубежная программа настольной вёрстки книг, журналов и каталогов (Adobe ушла из РФ)."
+  editions:
+    - {id: teams, name: "InDesign for Teams", aliases: [teams]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["вёрстка полиграфии и журналов", "поиск замены adobe indesign"]
+  roles: [graphic_designer]
+  industries: [publishing, media, marketing]
+  formats: [indd, idml, pdf]
+  analogs: []
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 52000, high: 70000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Adobe InDesign for Teams (вендор ушёл из РФ)"
+  confidence: high
+
+- id: adobe_premiere
+  vendor: adobe
+  name: "Adobe Premiere Pro"
+  aliases: ["premiere", "premiere pro", "премьер про", "адоб премьер", "adobe premiere"]
+  category: video_editing
+  extra_categories: []
+  summary: "Профессиональная зарубежная система нелинейного видеомонтажа (Adobe прекратила деятельность в России)."
+  editions:
+    - {id: teams, name: "Premiere Pro for Teams", aliases: [teams]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["профессиональный видеомонтаж", "поиск доступной замены adobe premiere"]
+  roles: [video_editor, marketing_manager]
+  industries: [media, marketing, edu]
+  formats: [prproj, mp4, mov]
+  analogs: [movavi_video_suite, ams_videomontage, davinci_resolve_studio]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 52000, high: 70000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Adobe Premiere Pro for Teams (вендор ушёл из РФ)"
+  confidence: high
+
+- id: adobe_after_effects
+  vendor: adobe
+  name: "Adobe After Effects"
+  aliases: ["after effects", "афтер эффектс", "ае", "adobe after effects", "моушн дизайн ae"]
+  category: video_editing
+  extra_categories: [3d_rendering_animation]
+  summary: "Зарубежная программа для моушн-дизайна, композитинга и визуальных эффектов (Adobe ушла из РФ)."
+  editions:
+    - {id: teams, name: "After Effects for Teams", aliases: [teams]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["моушн-дизайн и анимация видео", "визуальные эффекты"]
+  roles: [video_editor, 3d_artist]
+  industries: [media, marketing]
+  formats: [aep, mp4, mov]
+  analogs: [davinci_resolve_studio]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 52000, high: 70000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Adobe After Effects for Teams (вендор ушёл из РФ)"
+  confidence: high
+
+- id: adobe_creative_cloud
+  vendor: adobe
+  name: "Adobe Creative Cloud All Apps"
+  aliases: ["creative cloud", "креатив клауд", "adobe cc", "адоб сс", "adobe all apps", "полный пакет adobe"]
+  category: raster_photo
+  extra_categories: [vector_illustration, video_editing, dtp_publishing]
+  summary: "Полный пакет творческих приложений Adobe (Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Acrobat) — вендор ушёл из РФ."
+  editions:
+    - {id: teams, name: "Creative Cloud for Teams All Apps", aliases: [teams, all apps]}
+    - {id: enterprise, name: "Creative Cloud for Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["подбор альтернатив пакету adobe creative cloud"]
+  roles: [graphic_designer, video_editor, marketing_manager]
+  industries: [marketing, media, publishing, ecommerce]
+  formats: [psd, ai, indd, pdf]
+  analogs: [pixso_design, movavi_video_suite, ams_photomaster, contentreader_pdf]
+  replaces: []
+  price_rub: {unit: user_year, low: 85000, typical: 120000, high: 165000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Adobe Creative Cloud for Teams All Apps (вендор ушёл из РФ)"
+  confidence: high
+
+- id: coreldraw
+  vendor: corel
+  name: "CorelDRAW Graphics Suite"
+  aliases: ["coreldraw", "корел", "корелдро", "корел дро", "corel draw", "корел драв", "cdr редактор"]
+  category: vector_illustration
+  extra_categories: [dtp_publishing, raster_photo]
+  summary: "Популярнейший в полиграфии и наружной рекламе пакет векторной графики CorelDRAW (Alludo/Corel прекратила официальные продажи в РФ)."
+  editions:
+    - {id: suite, name: "CorelDRAW Graphics Suite", aliases: [suite]}
+    - {id: technical, name: "CorelDRAW Technical Suite", aliases: [technical]}
+  versions: ["2023", "2024"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["допечатная подготовка и работа с файлами cdr", "поиск замены coreldraw"]
+  roles: [graphic_designer]
+  industries: [printing, marketing, manufacturing, smb]
+  formats: [cdr, svg, eps, pdf]
+  analogs: [pixso_design]
+  replaces: []
+  price_rub: {unit: seat, low: 35000, typical: 65000, high: 110000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "CorelDRAW Graphics Suite Business (вендор ушёл из РФ)"
+  confidence: high
+
+- id: figma
+  vendor: figma
+  name: "Figma (Professional / Organization / Enterprise)"
+  aliases: ["figma", "фигма", "figma pro", "figma org", "figma enterprise", "дизайн интерфейсов фигма"]
+  category: ui_ux_web_design
+  extra_categories: [whiteboards_notes]
+  summary: "Ведущая облачная платформа UI/UX-дизайна и прототипирования интерфейсов (корпоративные аккаунты и оплата из РФ ограничены)."
+  editions:
+    - {id: pro, name: "Figma Professional", aliases: [pro]}
+    - {id: org, name: "Figma Organization / Enterprise", aliases: [org, enterprise]}
+  versions: []
+  platforms: [web, windows, macos]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение figma", "перенос дизайн-систем из figma в pixso"]
+  roles: [ui_ux_designer, product_manager]
+  industries: [it, finance, ecommerce, marketing]
+  formats: [fig, svg, png]
+  analogs: [pixso_design, holst_boards]
+  replaces: []
+  price_rub: {unit: user_year, low: 18000, typical: 54000, high: 90000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Figma Organization Annual Seat (ограничено в РФ)"
+  confidence: high
+
+- id: autodesk_3ds_max
+  vendor: autodesk
+  name: "Autodesk 3ds Max"
+  aliases: ["3ds max", "3д макс", "3дс макс", "тридэмакс", "autodesk 3ds max", "3d max"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Популярная зарубежная система 3D-моделирования и архитектурной визуализации (Autodesk ушла из РФ)."
+  editions:
+    - {id: full, name: "3ds Max Commercial", aliases: [commercial]}
+  versions: ["2024", "2025"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["архитектурная 3d-визуализация и интерьеры", "поиск альтернатив autodesk 3ds max"]
+  roles: [3d_artist, architect]
+  industries: [architecture, construction, media, real_estate]
+  formats: [max, fbx, obj]
+  analogs: [unigine_engine]
+  replaces: []
+  price_rub: {unit: seat_year, low: 180000, typical: 220000, high: 280000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Autodesk 3ds Max Commercial Single-user Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: autodesk_maya
+  vendor: autodesk
+  name: "Autodesk Maya"
+  aliases: ["maya", "майя", "autodesk maya", "аутодеск майя"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Профессиональная зарубежная программа 3D-анимации, моделирования и VFX для кино и игр (Autodesk ушла из РФ)."
+  editions:
+    - {id: full, name: "Maya Commercial", aliases: [commercial]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["3d-анимация персонажей и vfx"]
+  roles: [3d_artist]
+  industries: [media, gaming]
+  formats: [ma, mb, fbx, alembic]
+  analogs: [unigine_engine]
+  replaces: []
+  price_rub: {unit: seat_year, low: 180000, typical: 220000, high: 280000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Autodesk Maya Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: cinema_4d
+  vendor: maxon
+  name: "Maxon Cinema 4D"
+  aliases: ["cinema 4d", "синема 4д", "c4d", "maxon cinema 4d", "maxon one"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Зарубежный пакет 3D-графики и моушн-дизайна от Maxon (официальные продажи в России приостановлены)."
+  editions:
+    - {id: c4d, name: "Cinema 4D / Maxon One", aliases: [c4d, maxon one]}
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["3d моушн-дизайн и телеграфика"]
+  roles: [3d_artist, video_editor]
+  industries: [media, marketing]
+  formats: [c4d, fbx, obj]
+  analogs: [unigine_engine]
+  replaces: []
+  price_rub: {unit: seat_year, low: 90000, typical: 140000, high: 200000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Maxon Cinema 4D Commercial Subscription (недоступно в РФ)"
+  confidence: high
+
+- id: vray_chaos
+  vendor: chaos_group
+  name: "Chaos V-Ray / Corona Renderer"
+  aliases: ["v-ray", "vray", "вирей", "вирэй", "chaos v-ray", "corona renderer", "корона рендер"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Популярные зарубежные движки фотореалистичного рендеринга для 3ds Max, Revit, SketchUp и Cinema 4D (Chaos приостановила продажи в РФ)."
+  editions:
+    - {id: vray, name: "V-Ray Solo / Premium", aliases: [vray]}
+    - {id: corona, name: "Chaos Corona", aliases: [corona, корона]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["фотореалистичная визуализация архитектуры и интерьеров"]
+  roles: [3d_artist, architect]
+  industries: [architecture, real_estate, media]
+  formats: []
+  analogs: [unigine_engine]
+  replaces: []
+  price_rub: {unit: seat_year, low: 45000, typical: 75000, high: 120000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Chaos V-Ray Premium Annual License (недоступно в РФ)"
+  confidence: high
+
+- id: davinci_resolve_studio
+  vendor: blackmagic
+  name: "Blackmagic DaVinci Resolve Studio"
+  aliases: ["davinci resolve", "давинчи резолв", "давинчи", "davinci studio", "blackmagic davinci"]
+  category: video_editing
+  extra_categories: [audio_multimedia]
+  summary: "Профессиональный пакет для видеомонтажа, цветокоррекции, VFX (Fusion) и сведения звука Fairlight (поставки ключей в РФ ограничены)."
+  editions:
+    - {id: studio, name: "DaVinci Resolve Studio", aliases: [studio]}
+  versions: ["19"]
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, media]
+  registry: no
+  certs: []
+  use_cases: ["профессиональная цветокоррекция и монтаж видео", "альтернатива adobe premiere pro"]
+  roles: [video_editor]
+  industries: [media, marketing]
+  formats: [mp4, mov, r3d, braw]
+  analogs: [movavi_video_suite, ams_videomontage]
+  replaces: []
+  price_rub: {unit: seat, low: 32000, typical: 42000, high: 55000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Blackmagic Design DaVinci Resolve Studio Activation Card (ограниченные поставки)"
+  confidence: high

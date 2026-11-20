@@ -1,0 +1,3086 @@
+# Семейства продуктов: Информационная безопасность (РФ и ушедшие зарубежные, 2026)
+
+# ============================================================================
+# 1. АНТИВИРУСЫ, EPP, EDR/XDR И ЗАЩИТА ПОЧТЫ (РФ)
+# ============================================================================
+
+- id: kaspersky_kesb
+  vendor: kaspersky
+  name: "Kaspersky Endpoint Security для бизнеса"
+  aliases: ["kes", "кес", "kesb", "кесб", "каспер эндпоинт", "касперский для бизнеса", "endpoint security", "касперский стандартный", "касперский расширенный"]
+  category: endpoint_security
+  extra_categories: [data_wiping_encryption]
+  summary: "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center."
+  editions:
+    - {id: standard, name: "Стандартный", aliases: ["standard", "стандарт", "select"]}
+    - {id: advanced, name: "Расширенный", aliases: ["advanced", "расширенный"]}
+    - {id: total, name: "Универсальный", aliases: ["total", "тотал", "универсальный"]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android, ios]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, crossgrade, addon]
+    bands: ["10-14", "15-19", "20-24", "25-49", "50-99", "100-149", "150-249", "250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec, fsb]
+  use_cases: ["защита рабочих станций и серверов", "шифрование дисков и флешек", "контроль устройств и веб-доступа", "импортозамещение зарубежного антивируса"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [drweb_enterprise_security_suite, pro32_endpoint_security]
+  replaces: [eset_protect, symantec_endpoint_protection, trellix_endpoint_security]
+  price_rub: {unit: device_year, low: 1500, typical: 2600, high: 4500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Endpoint Security для бизнеса – Стандартный Russian Edition. 50-99 Node 1 year Base License"
+    - "Kaspersky Endpoint Security для бизнеса – Расширенный Russian Edition. 100-149 Node 1 year Renewal License"
+  confidence: high
+
+- id: kaspersky_ksos
+  vendor: kaspersky
+  name: "Kaspersky Small Office Security"
+  aliases: ["ksos", "ксос", "касперский для малого офиса", "small office security"]
+  category: endpoint_security
+  extra_categories: []
+  summary: "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, macos, android, ios]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [5, 10, 15, 20, 25, 50]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["антивирус для малого офиса без администрирования", "защита 1 файлового сервера и до 25 ПК"]
+  roles: [sysadmin, director, office_worker]
+  industries: []
+  formats: []
+  analogs: [drweb_small_business, pro32_endpoint_security]
+  replaces: [eset_protect]
+  price_rub: {unit: pack_year, low: 8500, typical: 16000, high: 48000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Small Office Security 10 Desktops + 1 File Server + 10 Mobile 1 year Base License"
+  confidence: high
+
+- id: kaspersky_kes_cloud
+  vendor: kaspersky
+  name: "Kaspersky Endpoint Security Cloud"
+  aliases: ["kes cloud", "кес клауд", "облачный касперский"]
+  category: endpoint_security
+  extra_categories: [mobile_security_mdm]
+  summary: "Облачная антивирусная защита рабочих станций и мобильных устройств без развёртывания локального сервера управления."
+  editions:
+    - {id: base, name: "Cloud", aliases: ["base", "базовый"]}
+    - {id: plus, name: "Cloud Plus", aliases: ["plus", "плюс"]}
+    - {id: pro, name: "Cloud Pro", aliases: ["pro", "про"]}
+  versions: []
+  platforms: [windows, windows_server, macos, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade]
+    bands: ["10-14", "15-19", "20-24", "25-49", "50-99", "100-249"]
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["облачное управление антивирусом для распределённых филиалов", "защита удалённых сотрудников"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [drweb_enterprise_security_suite, pro32_endpoint_security]
+  replaces: [eset_protect, crowdstrike_falcon]
+  price_rub: {unit: user_year, low: 2100, typical: 3200, high: 5000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Endpoint Security Cloud Plus Russian Edition. 25-49 User 1 year Base License"
+  confidence: high
+
+- id: kaspersky_symphony_xdr
+  vendor: kaspersky
+  name: "Kaspersky Symphony (EDR / XDR)"
+  aliases: ["kaspersky symphony", "симфони", "kaspersky edr", "kaspersky xdr", "kaspersky edr optimum", "кедр"]
+  category: edr_xdr
+  extra_categories: [endpoint_security]
+  summary: "Многоуровневая линейка Kaspersky Symphony от базовой защиты рабочих мест до EDR и расширенного XDR с расследованием инцидентов."
+  editions:
+    - {id: security, name: "Symphony Security", aliases: ["security"]}
+    - {id: edr, name: "Symphony EDR", aliases: ["edr", "edr optimum"]}
+    - {id: xdr, name: "Symphony XDR", aliases: ["xdr"]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade]
+    bands: ["50-99", "100-249", "250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["выявление и реагирование на сложные угрозы (EDR/XDR)", "расследование инцидентов ИБ на хостах"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_edr, bizone_edr, f6_mxdr]
+  replaces: [crowdstrike_falcon, trellix_endpoint_security]
+  price_rub: {unit: device_year, low: 3500, typical: 6500, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Symphony EDR Russian Edition. 250-499 Node 1 year Base License"
+  confidence: high
+
+- id: kaspersky_kata
+  vendor: kaspersky
+  name: "Kaspersky Anti Targeted Attack Platform (KATA)"
+  aliases: ["kata", "ката", "kaspersky kata", "песочница касперского", "anti targeted attack"]
+  category: edr_xdr
+  extra_categories: [mail_security]
+  summary: "Платформа защиты от целевых атак (APT) с сетевым анализом трафика, песочницей (Sandbox) и интеграцией с EDR."
+  editions: []
+  versions: []
+  platforms: [linux, windows, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита от целевых атак и угроз нулевого дня", "проверка файлов и трафика в песочнице"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_nad, bizone_edr, f6_mxdr]
+  replaces: [trellix_endpoint_security, crowdstrike_falcon]
+  price_rub: {unit: device_year, low: 4500, typical: 8000, high: 15000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Anti Targeted Attack Platform. 500-999 Node 1 year Base License"
+  confidence: high
+
+- id: kaspersky_kuma
+  vendor: kaspersky
+  name: "Kaspersky Unified Monitoring and Analysis Platform (KUMA)"
+  aliases: ["kuma", "кума", "kaspersky kuma", "kaspersky siem", "сием касперского"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Российская высоконагруженная SIEM-система для сбора, корреляции событий ИБ и работы корпоративного SOC."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["централизованный мониторинг инцидентов ИБ (SIEM)", "построение SOC и передача данных в ГосСОПКА"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_siem, rusiem, security_vision_soar]
+  replaces: [splunk_enterprise, ibm_qradar]
+  price_rub: {unit: other, low: 1200000, typical: 3500000, high: 12000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Unified Monitoring and Analysis Platform (KUMA) 1000 EPS 1 year Base License"
+  confidence: high
+
+- id: kaspersky_kics
+  vendor: kaspersky
+  name: "Kaspersky Industrial CyberSecurity (KICS)"
+  aliases: ["kics", "кикс", "kaspersky kics", "защита асу тп касперский"]
+  category: ot_ics_security
+  extra_categories: [endpoint_security]
+  summary: "Специализированная платформа защиты промышленных узлов (KICS for Nodes) и технологических сетей АСУ ТП (KICS for Networks)."
+  editions:
+    - {id: nodes, name: "KICS for Nodes", aliases: ["for nodes", "узлы"]}
+    - {id: networks, name: "KICS for Networks", aliases: ["for networks", "сети"]}
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["10-24", "25-49", "50-99", "100+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита объектов КИИ и АСУ ТП по 187-ФЗ и приказу ФСТЭК № 31", "мониторинг промышленных протоколов"]
+  roles: [security_officer]
+  industries: ["industry", "energy", "oil_gas"]
+  formats: []
+  analogs: [datapk_ics, pt_nad]
+  replaces: []
+  price_rub: {unit: device_year, low: 6000, typical: 12000, high: 25000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25-49 Node 1 year Base License"
+  confidence: high
+
+- id: kaspersky_ksmg
+  vendor: kaspersky
+  name: "Kaspersky Secure Mail Gateway"
+  aliases: ["ksmg", "ксмг", "kaspersky mail security", "защита почты касперский"]
+  category: mail_security
+  extra_categories: []
+  summary: "Защищённый почтовый шлюз (SEG) с антиспамом, антифишингом и антивирусной проверкой корпоративной переписки."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [mailbox, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["50-99", "100-249", "250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["фильтрация спама и фишинга на почтовом сервере", "защита RuPost, Exchange, CommuniGate Pro"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [drweb_enterprise_security_suite]
+  replaces: [symantec_endpoint_protection]
+  price_rub: {unit: mailbox_year, low: 500, typical: 950, high: 1800}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Security для почтовых серверов Russian Edition. 100-149 User 1 year Base License"
+  confidence: high
+
+- id: kaspersky_standard_home
+  vendor: kaspersky
+  name: "Kaspersky Standard / Plus / Premium"
+  aliases: ["касперский для дома", "kaspersky standard", "kaspersky plus", "kaspersky premium", "kav", "kis", "kts"]
+  category: home_antivirus
+  extra_categories: []
+  summary: "Домашние антивирусные подписки Kaspersky для защиты персональных компьютеров и смартфонов (пришли на смену KAV/KIS/KTS)."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["standard", "стандарт"]}
+    - {id: plus, name: "Plus", aliases: ["plus", "плюс"]}
+    - {id: premium, name: "Premium", aliases: ["premium", "премиум"]}
+  versions: []
+  platforms: [windows, macos, android, ios]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 2, 3, 5]
+    audiences: [home]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["защита личного ПК, ноутбука и смартфона"]
+  roles: []
+  industries: []
+  formats: []
+  analogs: [drweb_security_space, pro32_total_security]
+  replaces: [eset_protect]
+  price_rub: {unit: pack_year, low: 1600, typical: 2900, high: 4900}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Standard 3 устройства 1 год (ESD)"
+    - "Kaspersky Plus 5 устройств 1 год (ESD)"
+  confidence: high
+
+- id: drweb_enterprise_security_suite
+  vendor: drweb
+  name: "Dr.Web Enterprise Security Suite"
+  aliases: ["drweb ess", "dr.web ess", "доктор веб для бизнеса", "дрвеб корп", "drweb enterprise", "доктор веб корпоративный"]
+  category: endpoint_security
+  extra_categories: [mail_security]
+  summary: "Корпоративный антивирусный комплекс Dr.Web для рабочих станций, серверов, почты и интернет-шлюзов с сертификацией ФСТЭК и ФСБ."
+  editions:
+    - {id: desktop, name: "Защита рабочих станций", aliases: ["desktop", "станции"]}
+    - {id: server, name: "Защита файловых серверов", aliases: ["server", "серверы"]}
+    - {id: mail, name: "Защита почтовых серверов", aliases: ["mail", "почта"]}
+    - {id: complex, name: "Комплексная защита", aliases: ["complex", "комплекс"]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, crossgrade, addon]
+    bands: ["5-9", "10-24", "25-49", "50-99", "100-249", "250-499", "500+"]
+    packs: []
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper, media]
+  registry: yes
+  certs: [fstec, fsb, mo]
+  use_cases: ["антивирусная защита рабочих станций и серверов", "аттестация ГИС, ИСПДн и гостайны по ФСТЭК/ФСБ/МО РФ"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kesb, pro32_endpoint_security]
+  replaces: [eset_protect, symantec_endpoint_protection]
+  price_rub: {unit: device_year, low: 1400, typical: 2300, high: 3800}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Dr.Web Enterprise Security Suite (Комплексная защита) 50-99 ПК 1 год Базовая лицензия"
+  confidence: high
+
+- id: drweb_small_business
+  vendor: drweb
+  name: "Dr.Web Малый бизнес"
+  aliases: ["доктор веб малый бизнес", "drweb smb", "дрвеб малый бизнес"]
+  category: endpoint_security
+  extra_categories: []
+  summary: "Пакетный антивирус Dr.Web для небольших офисов (5–50 ПК и файловые серверы)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [5, 10, 15, 20, 25, 50]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["антивирус для малого офиса до 50 ПК"]
+  roles: [sysadmin, director]
+  industries: []
+  formats: []
+  analogs: [kaspersky_ksos, pro32_endpoint_security]
+  replaces: [eset_protect]
+  price_rub: {unit: pack_year, low: 7000, typical: 14500, high: 42000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Dr.Web Малый бизнес 10 ПК + 1 сервер 1 год (ESD)"
+  confidence: high
+
+- id: drweb_security_space
+  vendor: drweb
+  name: "Dr.Web Security Space"
+  aliases: ["доктор веб секьюрити спейс", "drweb для дома", "drweb home"]
+  category: home_antivirus
+  extra_categories: []
+  summary: "Домашний антивирус Dr.Web для защиты персональных компьютеров и мобильных устройств."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, android]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 2, 3, 5]
+    audiences: [home]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["антивирус для домашнего компьютера"]
+  roles: []
+  industries: []
+  formats: []
+  analogs: [kaspersky_standard_home, pro32_total_security]
+  replaces: [eset_protect]
+  price_rub: {unit: pack_year, low: 1500, typical: 2500, high: 4500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Dr.Web Security Space 3 ПК на 1 год (ESD)"
+  confidence: high
+
+- id: pro32_endpoint_security
+  vendor: pro32
+  name: "PRO32 Endpoint Security"
+  aliases: ["про32 корп", "pro32 для бизнеса", "pro32 endpoint"]
+  category: endpoint_security
+  extra_categories: []
+  summary: "Корпоративный антивирус PRO32 для рабочих станций и серверов с централизованной консолью управления."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["стандарт"]}
+    - {id: advanced, name: "Advanced", aliases: ["расширенный"]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, crossgrade]
+    bands: ["5-9", "10-24", "25-49", "50-99", "100-249", "250+"]
+    packs: []
+    audiences: [business, edu, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["альтернатива ESET NOD32 для малого и среднего бизнеса", "защита рабочих станций и серверов"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kesb, drweb_enterprise_security_suite]
+  replaces: [eset_protect]
+  price_rub: {unit: device_year, low: 1100, typical: 1900, high: 3000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PRO32 Endpoint Security Standard 25-49 устройств 1 год (ESD)"
+  confidence: high
+
+- id: pro32_total_security
+  vendor: pro32
+  name: "PRO32 Total Security"
+  aliases: ["про32 тотал", "pro32 ultimate", "pro32 для дома"]
+  category: home_antivirus
+  extra_categories: []
+  summary: "Антивирус PRO32 для домашних пользователей и микробизнеса (1–5 устройств)."
+  editions:
+    - {id: total, name: "Total Security", aliases: ["total"]}
+    - {id: ultimate, name: "Ultimate Security", aliases: ["ultimate"]}
+  versions: []
+  platforms: [windows, macos, android]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 3, 5]
+    audiences: [home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["домашний антивирус"]
+  roles: []
+  industries: []
+  formats: []
+  analogs: [kaspersky_standard_home, drweb_security_space]
+  replaces: [eset_protect]
+  price_rub: {unit: pack_year, low: 1400, typical: 2200, high: 3500}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "PRO32 Total Security 3 устройства 1 год (ESD)"
+  confidence: high
+
+# ============================================================================
+# 2. SIEM, SOAR, EDR, NDR, WAF, VM (POSITIVE TECHNOLOGIES, BI.ZONE, F6, R-VISION)
+# ============================================================================
+
+- id: pt_maxpatrol_siem
+  vendor: positive_technologies
+  name: "Positive Technologies MaxPatrol SIEM"
+  aliases: ["maxpatrol siem", "мп сием", "макспатрол сием", "pt siem"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Флагманская российская SIEM-система для мониторинга событий ИБ, выявления кибератак и построения центров мониторинга (SOC)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, addon, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["мониторинг событий ИБ и выявление атак в SOC", "выполнение требований КИИ и ГосСОПКА"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kuma, rusiem, security_vision_soar]
+  replaces: [splunk_enterprise, ibm_qradar]
+  price_rub: {unit: other, low: 2000000, typical: 6000000, high: 20000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Positive Technologies MaxPatrol SIEM (1000 EPS) Подписка 1 год"
+  confidence: high
+
+- id: pt_maxpatrol_vm
+  vendor: positive_technologies
+  name: "Positive Technologies MaxPatrol VM"
+  aliases: ["maxpatrol vm", "мп вм", "макспатрол вм", "maxpatrol 8", "сканер уязвимостей pt"]
+  category: vuln_mgmt_pentest
+  extra_categories: []
+  summary: "Система управления уязвимостями нового поколения для инвентаризации активов, приоритизации трендовых уязвимостей и контроля патчинга."
+  editions: []
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, addon]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["управление уязвимостями и контроль комплаенса", "замена Tenable Nessus и Qualys"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [redcheck]
+  replaces: [tenable_nessus]
+  price_rub: {unit: device_year, low: 1800, typical: 3200, high: 6000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Positive Technologies MaxPatrol VM (до 500 активов) 1 год"
+  confidence: high
+
+- id: pt_maxpatrol_edr
+  vendor: positive_technologies
+  name: "Positive Technologies MaxPatrol EDR"
+  aliases: ["maxpatrol edr", "pt edr", "макспатрол едр"]
+  category: edr_xdr
+  extra_categories: []
+  summary: "Система обнаружения и реагирования на угрозы на конечных точках (рабочих станциях и серверах) в составе экосистемы PT."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["обнаружение и блокировка атак на конечных точках", "реагирование на инциденты ИБ"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_symphony_xdr, bizone_edr, f6_mxdr]
+  replaces: [crowdstrike_falcon, trellix_endpoint_security]
+  price_rub: {unit: device_year, low: 2500, typical: 4200, high: 7500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "MaxPatrol EDR Лицензия на 500 узлов на 1 год"
+  confidence: high
+
+- id: pt_nad
+  vendor: positive_technologies
+  name: "PT Network Attack Discovery (PT NAD)"
+  aliases: ["pt nad", "пт над", "network attack discovery", "ndr positive"]
+  category: edr_xdr
+  extra_categories: [siem_soc]
+  summary: "Система поведенческого анализа сетевого трафика (NDR) для выявления атак на периметре и внутри корпоративной сети."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["глубокий анализ сетевого трафика и поиск скрытых угроз (NDR)", "ретроспективный разбор инцидентов"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kata, datapk_ics]
+  replaces: []
+  price_rub: {unit: other, low: 2500000, typical: 6500000, high: 18000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PT Network Attack Discovery (PT NAD) пропускная способность 1 Гбит/с 1 год"
+  confidence: high
+
+- id: pt_af
+  vendor: positive_technologies
+  name: "PT Application Firewall (PT AF)"
+  aliases: ["pt af", "пт аф", "application firewall", "waf positive"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Межсетевой экран уровня веб-приложений (WAF) и защита API от атак OWASP Top 10, ботов и DDoS на уровне L7."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита веб-порталов, личных кабинетов и API (WAF)", "выполнение требований ЦБ РФ и PCI DSS"]
+  roles: [security_officer, devops]
+  industries: ["finance", "retail", "gov"]
+  formats: []
+  analogs: [bizone_waf, garda_waf]
+  replaces: [f5_bigip]
+  price_rub: {unit: other, low: 1800000, typical: 4500000, high: 15000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "PT Application Firewall Pro пропускная способность до 500 Мбит/с 1 год"
+  confidence: high
+
+- id: pt_ngfw
+  vendor: positive_technologies
+  name: "PT NGFW"
+  aliases: ["пт нгфв", "positive ngfw", "фаервол позитив"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Высокопроизводительный российский межсетевой экран нового поколения (NGFW) для крупных компаний и ЦОД."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита периметра крупной компании и ЦОД", "импортозамещение Check Point, Palo Alto и Fortinet"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [usergate_ngfw, continent_ngfw, ideco_ngfw]
+  replaces: [fortigate, checkpoint_ngfw, palo_alto_ngfw]
+  price_rub: {unit: other, low: 1500000, typical: 4500000, high: 15000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PT NGFW Virtual Edition 1 год + подписка на базы угроз"
+  confidence: high
+
+- id: bizone_edr
+  vendor: bi_zone
+  name: "BI.ZONE EDR"
+  aliases: ["бизон едр", "bi.zone edr", "bizone edr"]
+  category: edr_xdr
+  extra_categories: []
+  summary: "Российская система обнаружения и реагирования на сложные угрозы на конечных точках (Windows/Linux/macOS)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["защита серверов и ПК от целевых атак", "интеграция с коммерческим SOC"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_symphony_xdr, pt_maxpatrol_edr, f6_mxdr]
+  replaces: [crowdstrike_falcon]
+  price_rub: {unit: device_year, low: 2400, typical: 4000, high: 7000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "BI.ZONE EDR Подписка на 100-499 конечных точек 1 год"
+  confidence: high
+
+- id: bizone_waf
+  vendor: bi_zone
+  name: "BI.ZONE WAF"
+  aliases: ["бизон ваф", "bi.zone waf", "облачный waf бизон"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Облачный и локальный межсетевой экран веб-приложений (WAF) для защиты сайтов и API от атак и ботов."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [site, other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["защита веб-сайтов и API от OWASP-атак и DDoS"]
+  roles: [security_officer, devops]
+  industries: []
+  formats: []
+  analogs: [pt_af, garda_waf, qrator_ddos]
+  replaces: [f5_bigip]
+  price_rub: {unit: site_year, low: 360000, typical: 900000, high: 3000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "BI.ZONE WAF Cloud до 100 Мбит/с 1 год"
+  confidence: high
+
+- id: f6_mxdr
+  vendor: f6_security
+  name: "F6 Managed XDR"
+  aliases: ["f6 xdr", "facct mxdr", "f.a.c.c.t mxdr", "group-ib tds", "ф6 xdr"]
+  category: edr_xdr
+  extra_categories: [siem_soc]
+  summary: "Платформа проактивной защиты от целевых атак, песочница, анализ сети и EDR (ранее F.A.C.C.T. Managed XDR)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["раннее выявление APT-атак и вымогателей", "защита периметра, почты и конечных точек"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kata, kaspersky_symphony_xdr, pt_maxpatrol_edr]
+  replaces: [crowdstrike_falcon, trellix_endpoint_security]
+  price_rub: {unit: device_year, low: 3500, typical: 6000, high: 11000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "F6 Managed XDR Подписка на 500 узлов 1 год"
+  confidence: high
+
+- id: security_vision_soar
+  vendor: security_vision
+  name: "Security Vision SOAR / IRP"
+  aliases: ["security vision", "секьюрити вижн", "sv soar", "sv irp", "sv sgrc"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Российская платформа автоматизации реагирования на инциденты (SOAR/IRP) и управления процессами кибербезопасности (SGRC)."
+  editions:
+    - {id: irp, name: "IRP / SOAR", aliases: ["irp", "soar"]}
+    - {id: sgrc, name: "SGRC", aliases: ["sgrc", "комплаенс"]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["оркестрация и автоматизация реагирования на инциденты в SOC", "автоматизация отчётности в ГосСОПКА и ЦБ"]
+  roles: [security_officer]
+  industries: ["finance", "gov", "enterprise"]
+  formats: []
+  analogs: [r_vision_soar, pt_maxpatrol_siem]
+  replaces: [splunk_enterprise, ibm_qradar]
+  price_rub: {unit: other, low: 2500000, typical: 6000000, high: 18000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Security Vision IRP Базовая лицензия платформы 1 год"
+  confidence: high
+
+- id: r_vision_soar
+  vendor: r_vision
+  name: "R-Vision SOAR / SGRC"
+  aliases: ["r-vision", "р-вижн", "rvision irp", "r-vision siem"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Платформа управления инцидентами ИБ (SOAR), оценки рисков (SGRC) и сбора данных об угрозах (TIP)."
+  editions:
+    - {id: soar, name: "R-Vision SOAR", aliases: ["soar", "irp"]}
+    - {id: sgrc, name: "R-Vision SGRC", aliases: ["sgrc"]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["автоматизация процессов SOC и инцидент-менеджмента", "управление комплаенсом ИБ"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [security_vision_soar, pt_maxpatrol_siem]
+  replaces: [ibm_qradar]
+  price_rub: {unit: other, low: 2000000, typical: 5000000, high: 15000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "R-Vision SOAR Подписка на платформу 1 год"
+  confidence: high
+
+- id: rusiem
+  vendor: ru_siem
+  name: "RuSIEM"
+  aliases: ["русием", "русиэм", "rusiem enterprise"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Российская SIEM-система для сбора, хранения и корреляции журналов безопасности в среднем и крупном бизнесе."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["бюджетная российская SIEM-система", "выполнение требований по сбору логов ИСПДн и КИИ"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kuma, pt_maxpatrol_siem]
+  replaces: [splunk_enterprise, ibm_qradar]
+  price_rub: {unit: other, low: 900000, typical: 2200000, high: 7000000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "RuSIEM 500 EPS Бессрочная лицензия + 1 год ТП"
+  confidence: high
+
+- id: redcheck
+  vendor: redcheck_altex
+  name: "RedCheck"
+  aliases: ["редчек", "red check", "сканер уязвимостей редчек"]
+  category: vuln_mgmt_pentest
+  extra_categories: []
+  summary: "Российский сканер уязвимостей и анализатор защищённости с сертификацией ФСТЭК и поддержкой базы БДУ ФСТЭК."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["стандарт"]}
+    - {id: enterprise, name: "Enterprise", aliases: ["энтерпрайз"]}
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["100", "250", "500", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["сканирование сети на уязвимости БДУ ФСТЭК", "аудит соответствия политикам безопасности (SCAP/OVAL)"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_vm]
+  replaces: [tenable_nessus]
+  price_rub: {unit: other, low: 350000, typical: 850000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "RedCheck Enterprise до 256 узлов (сертифицированная версия ФСТЭК)"
+  confidence: high
+
+- id: datapk_ics
+  vendor: cyberlimpha
+  name: "DATAPK"
+  aliases: ["датапк", "киберлимфа datapk", "datapk itm"]
+  category: ot_ics_security
+  extra_categories: []
+  summary: "Российский программно-аппаратный комплекс мониторинга ИБ и защиты промышленных сетей АСУ ТП и объектов КИИ."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other, device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, media, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["мониторинг кибербезопасности АСУ ТП и КИИ", "инвентаризация промышленных активов"]
+  roles: [security_officer]
+  industries: ["industry", "energy", "oil_gas"]
+  formats: []
+  analogs: [kaspersky_kics, pt_nad]
+  replaces: []
+  price_rub: {unit: other, low: 1500000, typical: 4000000, high: 12000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ПК DATAPK (версия с сертификатом ФСТЭК) до 250 объектов защиты"
+  confidence: high
+
+- id: garda_db
+  vendor: garda_technologies
+  name: "Гарда БД (DAM)"
+  aliases: ["гарда бд", "garda db", "гарда dam", "мониторинг субд гарда"]
+  category: dlp
+  extra_categories: [siem_soc]
+  summary: "Российская система защиты и аудита баз данных (DAM/DBF) для контроля действий привилегированных пользователей и предотвращения утечек из СУБД."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["мониторинг и аудит обращений к СУБД (PostgreSQL, Oracle, MS SQL)", "защита от выгрузки баз данных инсайдерами"]
+  roles: [security_officer, sysadmin]
+  industries: ["finance", "telecom", "gov"]
+  formats: []
+  analogs: [infowatch_traffic_monitor, searchinform_kib]
+  replaces: []
+  price_rub: {unit: other, low: 1500000, typical: 4200000, high: 12000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Гарда БД Базовая лицензия (до 5 серверов СУБД) 1 год"
+  confidence: high
+
+- id: garda_waf
+  vendor: garda_technologies
+  name: "Гарда WAF"
+  aliases: ["garda waf", "гарда ваф", "веб-экран гарда"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Российский межсетевой экран уровня веб-приложений (WAF) для защиты сайтов и API от атак и ботов."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["защита веб-приложений и API от атак (WAF)"]
+  roles: [security_officer, devops]
+  industries: []
+  formats: []
+  analogs: [pt_af, bizone_waf]
+  replaces: [f5_bigip]
+  price_rub: {unit: other, low: 1200000, typical: 3200000, high: 9000000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Гарда WAF Virtual пропускная способность до 500 Мбит/с 1 год"
+  confidence: high
+
+- id: qrator_ddos
+  vendor: curator_ddos
+  name: "Qrator Anti-DDoS & WAF"
+  aliases: ["qrator", "куратор", "защита от ddos qrator"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Облачный сервис фильтрации DDoS-атак (L3/L4/L7), защиты BGP и веб-приложений для высоконагруженных порталов."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [site, other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["защита сайта и инфраструктуры от DDoS-атак"]
+  roles: [security_officer, sysadmin, devops]
+  industries: ["finance", "retail", "media"]
+  formats: []
+  analogs: [bizone_waf, pt_af]
+  replaces: []
+  price_rub: {unit: site_year, low: 360000, typical: 1200000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Qrator Защита веб-ресурса от DDoS (до 50 Мбит/с легитимного трафика) 1 год"
+  confidence: high
+
+# ============================================================================
+# 3. NGFW, МЕЖСЕТЕВЫЕ ЭКРАНЫ, ГОСТ VPN И СЗИ ОТ НСД (РФ)
+# ============================================================================
+
+- id: usergate_ngfw
+  vendor: usergate
+  name: "UserGate NGFW"
+  aliases: ["юзергейт", "узергейт", "usergate utm", "usergate virtual", "usergate d200", "usergate e1000"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Один из самых популярных российских межсетевых экранов нового поколения (NGFW/UTM) в виртуальном и аппаратном исполнении с сертификатом ФСТЭК."
+  editions:
+    - {id: virtual, name: "Virtual Appliance", aliases: ["virtual", "виртуальный", "vm"]}
+    - {id: hardware, name: "ПАК (серии C/D/E/F)", aliases: ["пак", "железка", "appliance"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["25", "50", "100", "250", "500", "1000+"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, media, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита сетевого периметра и фильтрация трафика (NGFW)", "удалённый VPN-доступ сотрудников", "импортозамещение Fortinet, Check Point, Cisco"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [continent_ngfw, ideco_ngfw, pt_ngfw, traffic_inspector_ng]
+  replaces: [fortigate, checkpoint_ngfw, palo_alto_ngfw, cisco_anyconnect]
+  price_rub: {unit: other, low: 180000, typical: 650000, high: 4500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "UserGate NGFW Virtual Appliance (до 100 пользователей) + Security Updates 1 год"
+    - "UserGate NGFW Продление подписки Security Updates + Техподдержка 1 год"
+  confidence: high
+
+- id: continent_ngfw
+  vendor: security_code
+  name: "АПКШ Континент 4 (NGFW / ГОСТ VPN)"
+  aliases: ["континент", "апкш континент", "континент 4", "континент 3.9", "континент ап", "континент tls", "continent"]
+  category: ngfw_vpn
+  extra_categories: [crypto_skzi]
+  summary: "Сертифицированный ФСТЭК и ФСБ российский межсетевой экран нового поколения и ГОСТ VPN-шлюз от Кода Безопасности."
+  editions:
+    - {id: ipc, name: "Континент 4 NGFW", aliases: ["континент 4", "ngfw"]}
+    - {id: ap, name: "Континент АП (VPN-клиент)", aliases: ["континент ап", "абонентский пункт"]}
+    - {id: tls, name: "Континент TLS VPN", aliases: ["tls", "тлс"]}
+  versions: []
+  platforms: [linux, windows, macos, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other, device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [media, paper, esd]
+  registry: yes
+  certs: [fstec, fsb]
+  use_cases: ["построение защищённых ГОСТ VPN-каналов между филиалами", "аттестация ГИС, ИСПДн и КИИ по ФСТЭК и ФСБ", "удалённый доступ с ГОСТ-шифрованием"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "finance", "energy"]
+  formats: []
+  analogs: [vipnet_coordinator, s_terra_vpn, usergate_ngfw]
+  replaces: [cisco_anyconnect, checkpoint_ngfw, fortigate]
+  price_rub: {unit: other, low: 250000, typical: 1200000, high: 6500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Континент АП (версия 4) Лицензия на 1 рабочее место (СКЗИ ФСБ)"
+    - "АПКШ Континент 4 Исполнение IPC-100 (ФСТЭК + ФСБ)"
+  confidence: high
+
+- id: ideco_ngfw
+  vendor: ideco
+  name: "Ideco NGFW"
+  aliases: ["айдеко", "идеко", "ideco utm", "айдеко утм", "ideco ngfw"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Российский межсетевой экран (ранее Ideco UTM) с контролем приложений, IPS, контентной фильтрацией и VPN."
+  editions:
+    - {id: smb, name: "SMB / Standard", aliases: ["smb", "standard"]}
+    - {id: enterprise, name: "Enterprise", aliases: ["enterprise"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["20", "40", "100", "250", "500", "1000+"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["межсетевой экран и контент-фильтр для среднего бизнеса и образования", "замена Kerio Control, Fortinet, Mikrotik"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [usergate_ngfw, traffic_inspector_ng, continent_ngfw]
+  replaces: [fortigate, checkpoint_ngfw]
+  price_rub: {unit: other, low: 95000, typical: 320000, high: 1800000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Ideco NGFW до 100 пользователей Подписка на 1 год"
+  confidence: high
+
+- id: traffic_inspector_ng
+  vendor: smart_soft
+  name: "Traffic Inspector Next Generation"
+  aliases: ["трафик инспектор", "traffic inspector", "ting", "смарт-софт тинг"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Универсальный шлюз безопасности (UTM/NGFW) с сертификацией ФСТЭК для малого, среднего бизнеса и бюджетных учреждений."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, other]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["25", "50", "100", "250", "500+"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["контроль интернет-доступа и межсетевое экранирование в офисе", "аттестация по 152-ФЗ"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [ideco_ngfw, usergate_ngfw]
+  replaces: [fortigate]
+  price_rub: {unit: other, low: 70000, typical: 220000, high: 950000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Traffic Inspector Next Generation (ФСТЭК) до 100 пользователей 1 год"
+  confidence: high
+
+- id: vipnet_coordinator
+  vendor: infotecs
+  name: "ViPNet Coordinator HW / VA (NGFW / ГОСТ VPN)"
+  aliases: ["випнет координатор", "vipnet coordinator", "vipnet hw", "vipnet ngfw", "координатор инфотекс"]
+  category: ngfw_vpn
+  extra_categories: [crypto_skzi]
+  summary: "Сертифицированный ФСБ и ФСТЭК криптошлюз и межсетевой экран для построения защищённых сетей ГОСТ VPN и подключения к СМЭВ/ГИС."
+  editions:
+    - {id: va, name: "Coordinator VA (виртуальный)", aliases: ["va", "виртуальный"]}
+    - {id: hw, name: "Coordinator HW (ПАК)", aliases: ["hw", "пак"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business, med]
+  delivery: [media, paper]
+  registry: yes
+  certs: [fsb, fstec]
+  use_cases: ["подключение к государственным сетям ViPNet и СМЭВ", "ГОСТ-шифрование каналов связи между офисами и ЦОД"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "med", "finance"]
+  formats: []
+  analogs: [continent_ngfw, s_terra_vpn]
+  replaces: [cisco_anyconnect, checkpoint_ngfw]
+  price_rub: {unit: other, low: 160000, typical: 650000, high: 4500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ViPNet Coordinator VA 4 (КС3) Сертифицированная поставка"
+  confidence: high
+
+- id: vipnet_client
+  vendor: infotecs
+  name: "ViPNet Client"
+  aliases: ["випнет клиент", "vipnet client 4", "клиент випнет"]
+  category: ngfw_vpn
+  extra_categories: [crypto_skzi]
+  summary: "Программный ГОСТ VPN-клиент (СКЗИ класса КС1/КС2/КС3) для защищённого подключения рабочих станций и мобильных устройств к сети ViPNet."
+  editions: []
+  versions: ["4"]
+  platforms: [windows, linux, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1, 10, 50]
+    audiences: [gov, business, med]
+  delivery: [paper, media, esd]
+  registry: yes
+  certs: [fsb]
+  use_cases: ["защищённый доступ к государственным системам (ФСС, СМЭВ, ЕГИСЗ)", "удалённый ГОСТ VPN для сотрудников"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "med"]
+  formats: []
+  analogs: [continent_ngfw, s_terra_vpn]
+  replaces: [cisco_anyconnect]
+  price_rub: {unit: device, low: 4500, typical: 7500, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ViPNet Client 4 (КС2) Windows/Linux Лицензия на 1 рабочее место"
+  confidence: high
+
+- id: s_terra_vpn
+  vendor: ait_s_terra
+  name: "С-Терра Шлюз / Клиент (ГОСТ VPN)"
+  aliases: ["с-терра", "стерра", "s-terra gate", "s-terra client", "с-терра шлюз"]
+  category: ngfw_vpn
+  extra_categories: [crypto_skzi]
+  summary: "Сертифицированные ФСБ и ФСТЭК программные и аппаратные ГОСТ VPN-шлюзы и клиенты для защиты сетевого трафика."
+  editions:
+    - {id: gate, name: "С-Терра Шлюз", aliases: ["шлюз", "gate"]}
+    - {id: client, name: "С-Терра Клиент", aliases: ["клиент", "client"]}
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other, device]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [media, paper]
+  registry: yes
+  certs: [fsb, fstec]
+  use_cases: ["криптографическая защита каналов связи ГОСТ IPsec", "замена Cisco VPN в госсекторе и банках"]
+  roles: [security_officer, sysadmin]
+  industries: ["finance", "gov", "telecom"]
+  formats: []
+  analogs: [continent_ngfw, vipnet_coordinator]
+  replaces: [cisco_anyconnect, fortigate]
+  price_rub: {unit: other, low: 120000, typical: 550000, high: 3500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "С-Терра Шлюз ST 4.3 (виртуальное исполнение, КС1/КС2)"
+  confidence: high
+
+- id: secret_net_studio
+  vendor: security_code
+  name: "Secret Net Studio"
+  aliases: ["sns", "снс", "сикрет нет", "секрет нет студио", "сзи от нсд код безопасности"]
+  category: nsd_access_control
+  extra_categories: [endpoint_security]
+  summary: "Комплексное сертифицированное средство защиты информации от несанкционированного доступа (СЗИ от НСД) для рабочих станций и серверов."
+  editions:
+    - {id: base, name: "Базовая (НСД)", aliases: ["базовая", "нсд"]}
+    - {id: full, name: "Полная (с МЭ, СОВ и контролем устройств)", aliases: ["полная", "full"]}
+    - {id: c, name: "Secret Net Studio-C (с СКЗИ)", aliases: ["studio-c", "с скзи"]}
+  versions: ["8"]
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, support, upgrade]
+    bands: []
+    packs: [1, 10, 25]
+    audiences: [gov, business]
+  delivery: [paper, media]
+  registry: yes
+  certs: [fstec, fsb, mo]
+  use_cases: ["аттестация рабочих мест и серверов (ИСПДн, ГИС, КИИ, гостайна)", "доверенная загрузка, контроль печати, USB и мандатный доступ"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "defense", "finance"]
+  formats: []
+  analogs: [dallas_lock]
+  replaces: []
+  price_rub: {unit: device, low: 8500, typical: 16500, high: 32000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Secret Net Studio 8 для защиты рабочих станций (сертифицированная версия ФСТЭК, формуляр)"
+  confidence: high
+
+- id: vgate_security_code
+  vendor: security_code
+  name: "vGate"
+  aliases: ["вгейт", "vgate r2", "vgate для виртуализации", "сзи виртуализации код безопасности"]
+  category: nsd_access_control
+  extra_categories: [server_virtualization]
+  summary: "Сертифицированное ФСТЭК средство защиты сред виртуализации (контроль доступа администраторов, доверенная загрузка ВМ, сегментация)."
+  editions:
+    - {id: standard, name: "Standard", aliases: ["стандарт"]}
+    - {id: enterprise, name: "Enterprise", aliases: ["энтерпрайз"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [cpu, server]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [paper, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аттестация виртуальной инфраструктуры (zVirt, VMware, Брест) по требованиям ФСТЭК"]
+  roles: [security_officer, sysadmin]
+  industries: ["gov", "finance"]
+  formats: []
+  analogs: [dallas_lock]
+  replaces: []
+  price_rub: {unit: cpu, low: 65000, typical: 120000, high: 220000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "vGate R2 Enterprise Защита 1 процессора сервера виртуализации (ФСТЭК)"
+  confidence: high
+
+- id: sobol_mdz
+  vendor: security_code
+  name: "ПАК «Соболь» (АПМДЗ)"
+  aliases: ["соболь", "пак соболь", "апмдз соболь", "плата соболь", "сдз соболь"]
+  category: nsd_access_control
+  extra_categories: []
+  summary: "Аппаратно-программный модуль доверенной загрузки (АПМДЗ) для защиты ПК и серверов от загрузки посторонней ОС."
+  editions: []
+  versions: ["4"]
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: [1]
+    audiences: [gov, business]
+  delivery: [media, paper]
+  registry: yes
+  certs: [fstec, fsb]
+  use_cases: ["доверенная загрузка для аттестации объектов ГИС, КИИ и гостайны"]
+  roles: [security_officer]
+  industries: ["gov", "defense"]
+  formats: []
+  analogs: [dallas_lock]
+  replaces: []
+  price_rub: {unit: device, low: 14000, typical: 22000, high: 36000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ПАК Соболь 4.0 PCIe (сертификат ФСТЭК и ФСБ, формуляр)"
+  confidence: high
+
+- id: dallas_lock
+  vendor: confidant
+  name: "Dallas Lock (СЗИ от НСД)"
+  aliases: ["даллас лок", "dallas lock 8.0", "dallas lock linux", "конфидент сзи"]
+  category: nsd_access_control
+  extra_categories: []
+  summary: "Сертифицированная ФСТЭК и Минобороны система защиты информации от НСД для Windows и российских Linux-систем."
+  editions:
+    - {id: c, name: "Dallas Lock 8.0-C (конфиденциальная)", aliases: ["8.0-с", "8.0-c", "конфиденциальная"]}
+    - {id: k, name: "Dallas Lock 8.0-K (гостайна)", aliases: ["8.0-к", "8.0-k", "гостайна"]}
+    - {id: linux, name: "Dallas Lock Linux", aliases: ["linux", "линукс"]}
+  versions: ["8.0"]
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, support]
+    bands: []
+    packs: [1, 10]
+    audiences: [gov, business]
+  delivery: [paper, media]
+  registry: yes
+  certs: [fstec, mo]
+  use_cases: ["защита от НСД для аттестации ИСПДн, ГИС и гостайны", "контроль съёмных носителей и разграничение доступа"]
+  roles: [security_officer]
+  industries: ["gov", "defense"]
+  formats: []
+  analogs: [secret_net_studio]
+  replaces: []
+  price_rub: {unit: device, low: 7000, typical: 14000, high: 28000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "СЗИ Dallas Lock 8.0-C для Windows (1 рабочее место, формуляр ФСТЭК)"
+  confidence: high
+
+# ============================================================================
+# 4. КРИПТОГРАФИЯ (СКЗИ), ЭЦП, ТОКЕНЫ И SSL-СЕРТИФИКАТЫ (РФ)
+# ============================================================================
+
+- id: cryptopro_csp
+  vendor: cryptopro
+  name: "КриптоПро CSP"
+  aliases: ["криптопро", "крипто про", "криптапро", "cryptopro csp 5.0", "криптопро 5", "кпро", "скзи криптопро"]
+  category: crypto_skzi
+  extra_categories: [e_signature]
+  summary: "Самый распространённый в России криптопровайдер (СКЗИ, сертификат ФСБ) для работы с электронной подписью, ЭДО, ЕГАИС и порталами ФНС/ЕИС."
+  editions:
+    - {id: client, name: "Клиентская (рабочее место)", aliases: ["клиентская", "арм", "workstation"]}
+    - {id: server, name: "Серверная", aliases: ["серверная", "server"]}
+  versions: ["5.0", "4.0"]
+  platforms: [windows, windows_server, linux, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["1-9", "10-49", "50-99", "100+"]
+    packs: [1]
+    audiences: [business, gov, edu, med]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fsb]
+  use_cases: ["работа с УКЭП в 1С, Контур.Диадок, СБИС и Госуслугах", "участие в госзакупках по 44-ФЗ/223-ФЗ", "серверное подписание документов"]
+  roles: [accountant, lawyer, procurement, sysadmin, security_officer, director]
+  industries: []
+  formats: ["sig", "p7s"]
+  analogs: [vipnet_client]
+  replaces: []
+  price_rub: {unit: device, low: 1500, typical: 3200, high: 85000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "КриптоПро CSP версии 5.0 (бессрочная лицензия на 1 рабочее место, ESD)"
+    - "КриптоПро CSP версии 5.0 (годовая лицензия на 1 рабочее место)"
+    - "КриптоПро CSP версии 5.0 Серверная лицензия (бессрочная)"
+  confidence: high
+
+- id: cryptopro_dss
+  vendor: cryptopro
+  name: "КриптоПро DSS"
+  aliases: ["криптопро дсс", "облачная подпись криптопро", "cryptopro dss"]
+  category: e_signature
+  extra_categories: [crypto_skzi]
+  summary: "Сервер облачной электронной подписи (СКЗИ ФСБ) для подписания документов со смартфонов и веб-приложений без USB-токена."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [paper, esd]
+  registry: yes
+  certs: [fsb]
+  use_cases: ["массовое подписание кадровых документов (КЭДО) и договоров с телефона", "облачная УКЭП внутри компании"]
+  roles: [security_officer, hr, sysadmin]
+  industries: ["finance", "enterprise", "gov"]
+  formats: []
+  analogs: [cryptoarm_gost]
+  replaces: []
+  price_rub: {unit: other, low: 500000, typical: 1800000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "КриптоПро DSS Серверная лицензия + пакет на 500 пользователей"
+  confidence: high
+
+- id: cryptoarm_gost
+  vendor: trusted_cryptoarm
+  name: "КриптоАРМ ГОСТ"
+  aliases: ["криптоарм", "криптоарм гост 3", "cryptoarm", "подписание файлов криптоарм"]
+  category: e_signature
+  extra_categories: []
+  summary: "Программа для создания и проверки электронной подписи (УКЭП) и шифрования файлов по ГОСТ на Windows, Linux и macOS."
+  editions:
+    - {id: standard, name: "Стандарт", aliases: ["стандарт"]}
+    - {id: pro, name: "Про", aliases: ["про", "pro"]}
+  versions: ["3"]
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 5, 10]
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: []
+  use_cases: ["подписание и проверка откреплённой ЭЦП для документов и архивов", "шифрование переписки по ГОСТ"]
+  roles: [accountant, lawyer, office_worker, procurement]
+  industries: []
+  formats: ["sig", "p7s", "pdf"]
+  analogs: [cryptopro_csp]
+  replaces: []
+  price_rub: {unit: device, low: 1500, typical: 2800, high: 5500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "КриптоАРМ ГОСТ 3 (бессрочная лицензия на 1 рабочее место, ESD)"
+  confidence: high
+
+- id: rutoken_ecp
+  vendor: aktiv_rutoken
+  name: "Рутокен ЭЦП 3.0"
+  aliases: ["рутокен", "rutoken", "рутокен эцп", "рутокен 3.0", "токен для эцп", "рутокен лайт", "рутокен nfc"]
+  category: tokens_pki
+  extra_categories: [e_signature]
+  summary: "Сертифицированные ФСТЭК и ФСБ USB-токены и смарт-карты для хранения ключей электронной подписи, ФНС, ЕГАИС и двухфакторной аутентификации."
+  editions:
+    - {id: ecp3, name: "Рутокен ЭЦП 3.0 (USB / Type-C / NFC)", aliases: ["эцп 3.0", "3.0", "nfc"]}
+    - {id: lite, name: "Рутокен Lite", aliases: ["lite", "лайт"]}
+  versions: ["3.0"]
+  platforms: [windows, linux, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 10, 50]
+    audiences: [business, gov, med]
+  delivery: [media]
+  registry: yes
+  certs: [fsb, fstec]
+  use_cases: ["запись УКЭП директора в ФНС", "работа с ЕГАИС и Честный ЗНАК", "аппаратная 2FA в домене и на Linux"]
+  roles: [accountant, director, sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [aladdin_jacarta, esmart_token]
+  replaces: []
+  price_rub: {unit: device, low: 1800, typical: 2900, high: 4800}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Рутокен ЭЦП 3.0 3120 USB (сертифицированный носитель ФСБ/ФСТЭК)"
+  confidence: high
+
+- id: aladdin_jacarta
+  vendor: aladdin_rd
+  name: "Токены JaCarta-2 (ГОСТ / PKI / SE)"
+  aliases: ["джакарта", "jacarta", "jacarta 2", "jacarta гост", "jacarta se", "токен аладдин"]
+  category: tokens_pki
+  extra_categories: [e_signature, iam_pam_mfa]
+  summary: "Сертифицированные ФСБ и ФСТЭК ключевые носители JaCarta-2 для электронной подписи, ЕГАИС и строгой аутентификации."
+  editions:
+    - {id: gost, name: "JaCarta-2 ГОСТ", aliases: ["гост", "gost"]}
+    - {id: pki_gost, name: "JaCarta-2 PKI/ГОСТ", aliases: ["pki/гост"]}
+    - {id: se, name: "JaCarta-2 SE (ЕГАИС)", aliases: ["se", "егаис"]}
+  versions: []
+  platforms: [windows, linux, macos, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 10, 50]
+    audiences: [business, gov]
+  delivery: [media]
+  registry: yes
+  certs: [fsb, fstec]
+  use_cases: ["хранение ключей УКЭП и вход в ЕГАИС", "строгая двухфакторная аутентификация сотрудников"]
+  roles: [accountant, security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [rutoken_ecp, esmart_token]
+  replaces: []
+  price_rub: {unit: device, low: 2000, typical: 3200, high: 5200}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "USB-токен JaCarta-2 ГОСТ (ФСБ/ФСТЭК)"
+  confidence: high
+
+- id: esmart_token
+  vendor: esmart
+  name: "ESMART Token ГОСТ"
+  aliases: ["есмарт", "esmart token", "токен есмарт", "смарт-карта esmart"]
+  category: tokens_pki
+  extra_categories: []
+  summary: "Российские сертифицированные USB-токены и бесконтактные смарт-карты для ЭЦП и СКУД/2FA."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1, 10]
+    audiences: [business, gov]
+  delivery: [media]
+  registry: yes
+  certs: [fsb, fstec]
+  use_cases: ["ключевой носитель ЭЦП и объединённый пропуск-токен сотрудника"]
+  roles: [security_officer, accountant]
+  industries: []
+  formats: []
+  analogs: [rutoken_ecp, aladdin_jacarta]
+  replaces: []
+  price_rub: {unit: device, low: 1900, typical: 2900, high: 4500}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "ESMART Token ГОСТ USB (сертификат ФСБ/ФСТЭК)"
+  confidence: high
+
+- id: globaltrust_ssl
+  vendor: ucm_globaltrust
+  name: "SSL/TLS-сертификаты для доменов РФ (GlobalTrust)"
+  aliases: ["ssl сертификат", "ssl для сайта", "wildcard ssl", "российский ssl", "tls сертификат"]
+  category: ssl_certificates
+  extra_categories: []
+  summary: "Выпуск доверенных SSL/TLS-сертификатов (DV, OV, Wildcard, SAN) с оплатой по безналу для российских организаций."
+  editions:
+    - {id: dv, name: "DV (проверка домена)", aliases: ["dv"]}
+    - {id: ov, name: "OV (проверка организации)", aliases: ["ov"]}
+    - {id: wildcard, name: "Wildcard (*.domain.ru)", aliases: ["wildcard", "вайлдкард"]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [site]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["HTTPS-шифрование корпоративного сайта, почты и личного кабинета", "замена сертификатов DigiCert/Sectigo"]
+  roles: [sysadmin, devops, security_officer]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: [digicert_ssl]
+  price_rub: {unit: site_year, low: 4500, typical: 15000, high: 65000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SSL-сертификат Wildcard OV на 1 год (для юрлиц РФ)"
+  confidence: medium
+
+# ============================================================================
+# 5. DLP, КОНТРОЛЬ ПЕРСОНАЛА, IAM / PAM / MFA / МЕНЕДЖЕРЫ ПАРОЛЕЙ (РФ)
+# ============================================================================
+
+- id: infowatch_traffic_monitor
+  vendor: infowatch
+  name: "InfoWatch Traffic Monitor"
+  aliases: ["инфовотч", "traffic monitor", "dlp infowatch", "трафик монитор", "инфовотч длп"]
+  category: dlp
+  extra_categories: []
+  summary: "Ведущая российская корпоративная DLP-система для перехвата и блокировки утечек конфиденциальных данных по всем каналам."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["предотвращение утечек клиентских баз, ПДн и коммерческой тайны (DLP)", "расследование инцидентов и контроль инсайдеров"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [searchinform_kib, solar_dozor, falcongaze_securetower, staffcop_enterprise]
+  replaces: [symantec_dlp]
+  price_rub: {unit: device_year, low: 3500, typical: 6500, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "InfoWatch Traffic Monitor Подписка на 250 защищаемых станций 1 год"
+  confidence: high
+
+- id: searchinform_kib
+  vendor: searchinform
+  name: "СёрчИнформ КИБ (DLP)"
+  aliases: ["киб", "серчинформ киб", "searchinform kib", "контур информационной безопасности", "dlp серчинформ"]
+  category: dlp
+  extra_categories: [employee_monitoring]
+  summary: "Российская DLP-система (Контур информационной безопасности) для защиты от утечек данных, контроля мессенджеров, почты, печати и выявления рисков."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["50-99", "100-249", "250-499", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["контроль утечек данных и переписки сотрудников", "выявление коррупционных и инсайдерских рисков"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [infowatch_traffic_monitor, solar_dozor, falcongaze_securetower, staffcop_enterprise]
+  replaces: [symantec_dlp]
+  price_rub: {unit: device_year, low: 3000, typical: 5500, high: 9500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "СёрчИнформ КИБ (полный комплект модулей) 100 ПК 1 год"
+  confidence: high
+
+- id: searchinform_fileauditor
+  vendor: searchinform
+  name: "СёрчИнформ FileAuditor (DCAP)"
+  aliases: ["fileauditor", "файлаудитор", "dcap серчинформ"]
+  category: dlp
+  extra_categories: [nsd_access_control]
+  summary: "Российская DCAP-система для классификации файлов, аудита прав доступа в файловых хранилищах и предотвращения утечек неструктурированных данных."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["100-249", "250-499", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["аудит прав доступа к файловым серверам и поиск ПДн (DCAP)", "замена Varonis"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [infowatch_traffic_monitor]
+  replaces: [symantec_dlp]
+  price_rub: {unit: device_year, low: 1500, typical: 2800, high: 5000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СёрчИнформ FileAuditor 250 пользователей 1 год"
+  confidence: high
+
+- id: solar_dozor
+  vendor: solar_rt
+  name: "Solar Dozor"
+  aliases: ["солар дозор", "дозор dlp", "rtk solar dozor"]
+  category: dlp
+  extra_categories: []
+  summary: "Корпоративная DLP-система ГК Солар для крупных компаний с анализом поведения сотрудников (UBA) и защитой от утечек."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["корпоративная DLP-защита в крупных распределённых организациях"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [infowatch_traffic_monitor, searchinform_kib]
+  replaces: [symantec_dlp]
+  price_rub: {unit: device_year, low: 3500, typical: 6500, high: 12000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Solar Dozor Enterprise 500 агентов 1 год"
+  confidence: high
+
+- id: falcongaze_securetower
+  vendor: falcongaze
+  name: "Falcongaze SecureTower"
+  aliases: ["securetower", "секьюртауэр", "фалконгейз dlp"]
+  category: dlp
+  extra_categories: [employee_monitoring]
+  summary: "Система предотвращения утечек данных (DLP) и контроля эффективности работы персонала для среднего и крупного бизнеса."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["25-49", "50-99", "100-249", "250+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["DLP и контроль активности сотрудников на рабочих ПК"]
+  roles: [security_officer, hr]
+  industries: []
+  formats: []
+  analogs: [searchinform_kib, staffcop_enterprise, stakhanovets]
+  replaces: [symantec_dlp]
+  price_rub: {unit: device_year, low: 2500, typical: 4500, high: 7500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Falcongaze SecureTower 50 ПК Подписка 1 год"
+  confidence: high
+
+- id: staffcop_enterprise
+  vendor: staffcop
+  name: "Контур.Staffcop (Staffcop Enterprise)"
+  aliases: ["стаффкоп", "стафкоп", "staffcop", "контур стафкоп"]
+  category: employee_monitoring
+  extra_categories: [dlp]
+  summary: "Платформа расследования инцидентов ИБ, DLP и мониторинга продуктивности персонала (входит в экосистему СКБ Контур)."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100-249", "250+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["учёт рабочего времени и контроль удалённых сотрудников", "защита от утечек файлов и расследование инцидентов"]
+  roles: [security_officer, hr, director]
+  industries: []
+  formats: []
+  analogs: [stakhanovets, kickidler, falcongaze_securetower, searchinform_kib]
+  replaces: []
+  price_rub: {unit: device_year, low: 2200, typical: 3800, high: 6500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Staffcop Enterprise 50 агентов Лицензия на 1 год"
+  confidence: high
+
+- id: stakhanovets
+  vendor: stakhanovets
+  name: "Стахановец"
+  aliases: ["стахановец", "stakhanovets pro", "учет рабочего времени стахановец"]
+  category: employee_monitoring
+  extra_categories: [dlp]
+  summary: "Российский программный комплекс контроля продуктивности сотрудников, учёта рабочего времени и предотвращения утечек."
+  editions:
+    - {id: full, name: "Стахановец (Полный)", aliases: ["полный", "full"]}
+    - {id: pro, name: "Стахановец ПРО", aliases: ["про", "pro"]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100-249", "250+"]
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["учёт рабочего времени и анализ продуктивности персонала", "контроль переписки и скриншоты экранов"]
+  roles: [director, hr, security_officer]
+  industries: []
+  formats: []
+  analogs: [staffcop_enterprise, kickidler, falcongaze_securetower]
+  replaces: []
+  price_rub: {unit: device_year, low: 2000, typical: 3600, high: 6000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ПК Стахановец 50 пользователей Годовая лицензия (ESD)"
+  confidence: high
+
+- id: kickidler
+  vendor: kickidler
+  name: "Kickidler"
+  aliases: ["кикидлер", "kickidler time tracking", "видеомониторинг kickidler"]
+  category: employee_monitoring
+  extra_categories: []
+  summary: "Российская система учёта рабочего времени, анализа продуктивности и непрерывной видеозаписи экранов сотрудников."
+  editions:
+    - {id: time, name: "Учёт рабочего времени", aliases: ["учет времени"]}
+    - {id: monitoring, name: "Мониторинг сотрудников", aliases: ["мониторинг"]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100+"]
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["контроль удалённых сотрудников с записью экрана", "учёт отработанных часов и простоев"]
+  roles: [director, hr, manager]
+  industries: []
+  formats: []
+  analogs: [stakhanovets, staffcop_enterprise]
+  replaces: []
+  price_rub: {unit: device_year, low: 2400, typical: 4200, high: 6800}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Kickidler Мониторинг сотрудников 25 лицензий на 1 год"
+  confidence: high
+
+- id: solar_inrights
+  vendor: solar_rt
+  name: "Solar inRights (IdM)"
+  aliases: ["солар инрайтс", "inrights", "idm солар"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российская IdM/IGA-система для автоматизации управления учётными записями и правами доступа сотрудников в корпоративных ИС."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["автоматическая выдача и отзыв прав доступа при найме/увольнении (IdM/IGA)"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [avanpost_idm]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: user_year, low: 1200, typical: 2500, high: 5000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Solar inRights Enterprise 1000 пользователей 1 год"
+  confidence: high
+
+- id: avanpost_idm
+  vendor: avanpost
+  name: "Avanpost IDM"
+  aliases: ["аванпост идм", "avanpost idm"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российская система централизованного управления учётными записями и правами доступа (IdM/IGA)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["250-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление жизненным циклом учётных записей и прав доступа"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [solar_inrights]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: user_year, low: 1100, typical: 2200, high: 4500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Avanpost IDM 500 пользователей Годовая подписка"
+  confidence: high
+
+- id: avanpost_fam
+  vendor: avanpost
+  name: "Avanpost FAM (SSO / MFA)"
+  aliases: ["аванпост фам", "avanpost fam", "sso аванпост", "mfa аванпост"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российская система единого входа (SSO) и многофакторной аутентификации (MFA) для веб-приложений, VPN и рабочих станций."
+  editions: []
+  versions: []
+  platforms: [linux, windows, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["внедрение единого входа (SSO) и 2FA/MFA в компании", "замена Okta и Azure AD/Entra ID"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [multifactor_mfa, indeed_am, blitz_identity]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: user_year, low: 900, typical: 1800, high: 3500}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Avanpost FAM 250 пользователей Подписка на 1 год"
+  confidence: high
+
+- id: multifactor_mfa
+  vendor: multifactor
+  name: "MULTIFACTOR (2FA / MFA / SSO)"
+  aliases: ["мультифактор", "multifactor 2fa", "двухфакторка мультифактор"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российская система многофакторной аутентификации (Push, Telegram, OTP, токены) и единого входа (SSO) для VPN, RDP, почты и Linux."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: ["25-99", "100-499", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["быстрое подключение двухфакторной аутентификации (2FA) к VPN, RDP, OWA и VDI", "замена Duo Security и Okta"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [indeed_am, avanpost_fam, blitz_identity]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: user_year, low: 1000, typical: 1800, high: 3000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "MULTIFACTOR Облачная/On-Premise 2FA 100 пользователей 1 год"
+  confidence: high
+
+- id: indeed_am
+  vendor: indeed_identity
+  name: "Indeed Access Manager (AM)"
+  aliases: ["индид ам", "indeed am", "indeed access manager", "индид 2fa"]
+  category: iam_pam_mfa
+  extra_categories: [tokens_pki]
+  summary: "Российская система усиленной двухфакторной аутентификации (токены, смарт-карты, OTP, биометрия) и единого входа (SSO)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["строгая 2FA для корпоративных ресурсов и VPN", "управление аутентификацией по токенам Рутокен и JaCarta"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [multifactor_mfa, avanpost_fam, blitz_identity]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: user_year, low: 1200, typical: 2200, high: 4000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Indeed Access Manager 250 пользователей Подписка 1 год"
+  confidence: high
+
+- id: indeed_pam
+  vendor: indeed_identity
+  name: "Indeed Privileged Access Manager (PAM)"
+  aliases: ["индид пам", "indeed pam", "пам индид"]
+  category: iam_pam_mfa
+  extra_categories: [pam_jump_hosts]
+  summary: "Российская PAM-система для контроля, видеозаписи и аудита сессий администраторов и внешних подрядчиков."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, concurrent]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["контроль и видеозапись действий админов и подрядчиков (RDP/SSH)", "управление привилегированными паролями", "замена CyberArk"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [skdpu_nt, safeinspect_pam]
+  replaces: [cyberark_pam]
+  price_rub: {unit: other, low: 800000, typical: 2200000, high: 7500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Indeed PAM (до 100 целевых ресурсов) Подписка 1 год"
+  confidence: high
+
+- id: skdpu_nt
+  vendor: axoft_skdpu
+  name: "СКДПУ НТ (PAM)"
+  aliases: ["скдпу", "скдпу нт", "skdpu", "айти-экспертиза скдпу"]
+  category: iam_pam_mfa
+  extra_categories: [pam_jump_hosts]
+  summary: "Российская система контроля действий привилегированных пользователей (PAM) с записью сессий, контролем команд и сертификатом ФСТЭК."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, concurrent]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["контроль подрядчиков и ИТ-администраторов на объектах КИИ и в банках", "замена CyberArk и Wallix"]
+  roles: [security_officer, sysadmin]
+  industries: ["finance", "gov", "energy"]
+  formats: []
+  analogs: [indeed_pam, safeinspect_pam]
+  replaces: [cyberark_pam]
+  price_rub: {unit: other, low: 900000, typical: 2500000, high: 8000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СКДПУ НТ (до 20 одновременных сессий, версия ФСТЭК) 1 год"
+  confidence: high
+
+- id: safeinspect_pam
+  vendor: webcontrol_kryptonit
+  name: "SafeInspect (PAM)"
+  aliases: ["сейфинспект", "safeinspect", "нтб safeinspect"]
+  category: iam_pam_mfa
+  extra_categories: [pam_jump_hosts]
+  summary: "Российская PAM-система для контроля, фильтрации и записи привилегированных сессий (RDP, SSH, Web, БД)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, concurrent]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита привилегированного доступа к серверам и СУБД"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [skdpu_nt, indeed_pam]
+  replaces: [cyberark_pam]
+  price_rub: {unit: other, low: 750000, typical: 2000000, high: 6500000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "SafeInspect Базовая лицензия (до 50 серверов) 1 год"
+  confidence: high
+
+- id: passwork
+  vendor: passwork
+  name: "Пассворк (Passwork)"
+  aliases: ["пассворк", "passwork", "корпоративный менеджер паролей пассворк"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российский self-hosted корпоративный менеджер паролей с ролевым доступом, интеграцией с AD/LDAP, 2FA и аудитом."
+  editions:
+    - {id: standard, name: "Стандарт", aliases: ["стандарт", "standard"]}
+    - {id: advanced, name: "Расширенный", aliases: ["расширенный", "advanced"]}
+  versions: []
+  platforms: [linux, windows_server, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: ["25", "50", "100", "250", "500+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["безопасное хранение и обмен паролями в ИТ-командах и бизнесе", "замена 1Password, KeePass, Bitwarden"]
+  roles: [sysadmin, security_officer, devops, developer]
+  industries: []
+  formats: []
+  analogs: []
+  replaces: [onepassword_business]
+  price_rub: {unit: user_year, low: 900, typical: 1600, high: 3000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Пассворк Корпоративный менеджер паролей 50 пользователей 1 год (On-Premise)"
+  confidence: high
+
+- id: blitz_identity
+  vendor: rebrain_blitz
+  name: "Blitz Identity Provider"
+  aliases: ["блитц", "blitz idp", "blitz identity", "реак софт блитц"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Российский провайдер аутентификации, единого входа (SSO) и многофакторной аутентификации (MFA) для корпоративных и клиентских порталов."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["SSO и MFA для корпоративных и клиентских порталов", "интеграция с ЕСИА (Госуслуги)"]
+  roles: [security_officer, sysadmin, devops]
+  industries: ["finance", "gov", "telecom"]
+  formats: []
+  analogs: [avanpost_fam, multifactor_mfa, indeed_am]
+  replaces: [okta_workforce_identity]
+  price_rub: {unit: other, low: 800000, typical: 2200000, high: 7000000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Blitz Identity Provider Базовая лицензия (до 1000 пользователей) 1 год"
+  confidence: high
+
+# ============================================================================
+# 6. УШЕДШИЕ ЗАРУБЕЖНЫЕ ИБ-ПРОДУКТЫ (catalog: no — для импортозамещения)
+# ============================================================================
+
+- id: eset_protect
+  vendor: eset
+  name: "ESET PROTECT (NOD32 Business)"
+  aliases: ["eset", "есет", "нод32", "nod32", "eset endpoint", "eset protect entry", "eset protect advanced"]
+  category: endpoint_security
+  extra_categories: [home_antivirus, edr_xdr]
+  summary: "Зарубежный корпоративный антивирус (официально ушёл с рынка РФ; требуется переход на российские аналоги)."
+  editions:
+    - {id: entry, name: "PROTECT Entry", aliases: ["entry"]}
+    - {id: advanced, name: "PROTECT Advanced", aliases: ["advanced"]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["запрос на продление или замену ушедшего ESET NOD32"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kesb, drweb_enterprise_security_suite, pro32_endpoint_security]
+  replaces: []
+  price_rub: {unit: device_year, low: 1500, typical: 2500, high: 4500}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "ESET PROTECT Entry 50-99 устройств 1 год (не поставляется в РФ)"
+  confidence: high
+
+- id: fortigate
+  vendor: fortinet
+  name: "Fortinet FortiGate (NGFW)"
+  aliases: ["fortigate", "фортигейт", "fortinet", "фортинет", "forti"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Зарубежный межсетевой экран нового поколения (официальные поставки и продления подписок FortiGuard в РФ прекращены)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, media]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение межсетевого экрана FortiGate"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [usergate_ngfw, continent_ngfw, ideco_ngfw, pt_ngfw]
+  replaces: []
+  price_rub: {unit: other, low: 250000, typical: 900000, high: 5000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "FortiGate-100F Unified Threat Protection (UTP) 1 Year Renewal (не поставляется в РФ)"
+  confidence: high
+
+- id: checkpoint_ngfw
+  vendor: checkpoint
+  name: "Check Point Quantum / NGFW"
+  aliases: ["check point", "чекпоинт", "чек поинт", "checkpoint ngfw", "checkpoint quantum"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Зарубежный корпоративный NGFW (поставки и продления в РФ приостановлены)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, media]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Check Point NGFW"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [usergate_ngfw, pt_ngfw, continent_ngfw]
+  replaces: []
+  price_rub: {unit: other, low: 500000, typical: 2000000, high: 10000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Check Point Quantum Security Gateway SandBlast 1 year (не поставляется в РФ)"
+  confidence: high
+
+- id: palo_alto_ngfw
+  vendor: palo_alto
+  name: "Palo Alto Networks NGFW (PA-Series / VM-Series)"
+  aliases: ["palo alto", "пало альто", "pan-os", "palo alto ngfw"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Зарубежный NGFW корпоративного класса (официально недоступен в РФ)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, media]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Palo Alto NGFW"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_ngfw, usergate_ngfw, continent_ngfw]
+  replaces: []
+  price_rub: {unit: other, low: 800000, typical: 3000000, high: 15000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Palo Alto Networks VM-Series Threat Prevention 1 year (не поставляется в РФ)"
+  confidence: high
+
+- id: cisco_anyconnect
+  vendor: cisco
+  name: "Cisco Secure Client (AnyConnect VPN)"
+  aliases: ["anyconnect", "эниконнект", "cisco anyconnect", "cisco vpn", "cisco secure client"]
+  category: ngfw_vpn
+  extra_categories: []
+  summary: "Зарубежный корпоративный VPN-клиент Cisco (официально недоступен в РФ)."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, android, ios]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Cisco AnyConnect VPN"]
+  roles: [sysadmin, security_officer]
+  industries: []
+  formats: []
+  analogs: [continent_ngfw, vipnet_client, usergate_ngfw, s_terra_vpn]
+  replaces: []
+  price_rub: {unit: user_year, low: 1500, typical: 3000, high: 6000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Cisco AnyConnect Plus 100 Users 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: symantec_endpoint_protection
+  vendor: symantec_broadcom
+  name: "Symantec Endpoint Protection (Broadcom)"
+  aliases: ["symantec", "симантек", "sep", "symantec endpoint"]
+  category: endpoint_security
+  extra_categories: []
+  summary: "Зарубежный корпоративный антивирус (ушёл из РФ)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Symantec Endpoint Protection"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kesb, drweb_enterprise_security_suite]
+  replaces: []
+  price_rub: {unit: device_year, low: 2000, typical: 3500, high: 6000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Symantec Endpoint Security Enterprise 100 Devices 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: symantec_dlp
+  vendor: symantec_broadcom
+  name: "Symantec Data Loss Prevention (DLP)"
+  aliases: ["symantec dlp", "симантек длп"]
+  category: dlp
+  extra_categories: []
+  summary: "Зарубежная корпоративная DLP-система (ушла из РФ)."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Symantec DLP"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [infowatch_traffic_monitor, searchinform_kib, solar_dozor]
+  replaces: []
+  price_rub: {unit: user_year, low: 4500, typical: 8500, high: 15000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Symantec DLP Endpoint Prevent 500 Users 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: trellix_endpoint_security
+  vendor: trellix_mcafee
+  name: "Trellix (McAfee) Endpoint Security"
+  aliases: ["mcafee", "макафи", "trellix", "трелликс", "mcafee ens"]
+  category: endpoint_security
+  extra_categories: [edr_xdr]
+  summary: "Зарубежная платформа защиты конечных точек McAfee/Trellix (ушла из РФ)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение McAfee / Trellix"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [kaspersky_kesb, kaspersky_symphony_xdr, drweb_enterprise_security_suite]
+  replaces: []
+  price_rub: {unit: device_year, low: 2000, typical: 3800, high: 7000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Trellix Endpoint Security Complete 100 Nodes 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: crowdstrike_falcon
+  vendor: crowdstrike
+  name: "CrowdStrike Falcon"
+  aliases: ["crowdstrike", "краудстрайк", "falcon edr"]
+  category: edr_xdr
+  extra_categories: [endpoint_security]
+  summary: "Зарубежная облачная EDR/XDR-платформа (недоступна в РФ)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение CrowdStrike Falcon"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [kaspersky_symphony_xdr, pt_maxpatrol_edr, bizone_edr, f6_mxdr]
+  replaces: []
+  price_rub: {unit: device_year, low: 5000, typical: 9500, high: 18000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "CrowdStrike Falcon Enterprise 100 Endpoints 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: splunk_enterprise
+  vendor: splunk
+  name: "Splunk Enterprise / Enterprise Security"
+  aliases: ["splunk", "спланк", "splunk siem"]
+  category: siem_soc
+  extra_categories: [monitoring_apm]
+  summary: "Зарубежная платформа анализа логов и SIEM (ушла из РФ)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Splunk SIEM"]
+  roles: [security_officer, devops]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_siem, kaspersky_kuma, rusiem]
+  replaces: []
+  price_rub: {unit: other, low: 2500000, typical: 8000000, high: 30000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Splunk Enterprise 50 GB/day 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: ibm_qradar
+  vendor: ibm
+  name: "IBM QRadar SIEM"
+  aliases: ["qradar", "курадар", "ibm qradar", "кьюрадар"]
+  category: siem_soc
+  extra_categories: []
+  summary: "Зарубежная корпоративная SIEM-система IBM (ушла из РФ)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [other]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение IBM QRadar"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_siem, kaspersky_kuma, rusiem]
+  replaces: []
+  price_rub: {unit: other, low: 3000000, typical: 9000000, high: 25000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "IBM QRadar SIEM 2500 EPS 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: tenable_nessus
+  vendor: tenable
+  name: "Tenable Nessus / Security Center"
+  aliases: ["nessus", "нессус", "tenable", "тенабл", "tenable sc"]
+  category: vuln_mgmt_pentest
+  extra_categories: []
+  summary: "Зарубежный сканер уязвимостей Nessus / Tenable (ушёл из РФ)."
+  editions: []
+  versions: []
+  platforms: [linux, windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [device, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Tenable Nessus"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [pt_maxpatrol_vm, redcheck]
+  replaces: []
+  price_rub: {unit: other, low: 400000, typical: 1200000, high: 4500000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Tenable Nessus Professional 1 Year Subscription (не поставляется в РФ)"
+  confidence: high
+
+- id: cyberark_pam
+  vendor: cyberark
+  name: "CyberArk PAM"
+  aliases: ["cyberark", "киберарк", "сайберарк"]
+  category: iam_pam_mfa
+  extra_categories: [pam_jump_hosts]
+  summary: "Зарубежная корпоративная PAM-система (недоступна в РФ)."
+  editions: []
+  versions: []
+  platforms: [windows_server, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение CyberArk PAM"]
+  roles: [security_officer]
+  industries: []
+  formats: []
+  analogs: [skdpu_nt, indeed_pam, safeinspect_pam]
+  replaces: []
+  price_rub: {unit: other, low: 2000000, typical: 6000000, high: 20000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "CyberArk Privileged Access Manager Self-Hosted (не поставляется в РФ)"
+  confidence: high
+
+- id: okta_workforce_identity
+  vendor: okta
+  name: "Okta Workforce Identity (SSO / MFA)"
+  aliases: ["okta", "окта", "okta sso", "auth0"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Зарубежная облачная платформа SSO/MFA и управления идентификацией (недоступна в РФ)."
+  editions: []
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Okta SSO и MFA"]
+  roles: [security_officer, sysadmin]
+  industries: []
+  formats: []
+  analogs: [avanpost_fam, multifactor_mfa, indeed_am, blitz_identity]
+  replaces: []
+  price_rub: {unit: user_year, low: 2500, typical: 5000, high: 9000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Okta Workforce Identity Single Sign-On + Adaptive MFA 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: onepassword_business
+  vendor: onepassword
+  name: "1Password Business"
+  aliases: ["1password", "1пассворд", "ванпассворд", "onepassword"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Зарубежный облачный корпоративный менеджер паролей (прямые B2B-продажи в РФ недоступны)."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение 1Password для команд"]
+  roles: [sysadmin, developer, devops, security_officer]
+  industries: []
+  formats: []
+  analogs: [passwork]
+  replaces: []
+  price_rub: {unit: user_year, low: 6000, typical: 9500, high: 12000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "1Password Business 1 User 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: digicert_ssl
+  vendor: digicert
+  name: "DigiCert SSL / TLS Certificates"
+  aliases: ["digicert", "диджисерт", "thawte", "geotrust", "rapidssl"]
+  category: ssl_certificates
+  extra_categories: []
+  summary: "Зарубежные SSL/TLS-сертификаты (выпуск для российских доменов прекращён)."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [site]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена SSL-сертификатов DigiCert/GeoTrust/Thawte"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [globaltrust_ssl]
+  replaces: []
+  price_rub: {unit: site_year, low: 15000, typical: 45000, high: 150000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "DigiCert Secure Site OV SSL 1 Year (не поставляется в РФ)"
+  confidence: high

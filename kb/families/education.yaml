@@ -1,0 +1,529 @@
+# Семейства продуктов: LMS, корпоративное обучение, ИТ-курсы, киберграмотность и электронные библиотеки
+# Схема: kb/SCHEMA.md
+
+- id: ispring_suite
+  vendor: ispring
+  name: "iSpring Suite / iSpring Learn (Конструктор курсов и LMS)"
+  aliases: ["ispring", "айспринг", "ispring suite", "ispring learn", "конструктор курсов scorm", "lms ispring"]
+  category: lms_elearning
+  extra_categories: []
+  summary: "Лидирующий российский конструктор интерактивных электронных курсов SCORM (iSpring Suite) и облачная/коробочная СДО iSpring Learn."
+  editions:
+    - {id: suite, name: "iSpring Suite / Suite Max (конструктор курсов)", aliases: [suite, конструктор]}
+    - {id: learn, name: "iSpring Learn (LMS / СДО)", aliases: [learn, lms, сдо]}
+  versions: ["11"]
+  platforms: [windows, web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["50", "100", "300", "500", "1000"]
+    packs: [1]
+    audiences: [business, edu, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["создание интерактивных курсов и тестов scorm", "запуск корпоративного обучения и адаптации сотрудников", "аттестация и проверка знаний персонала"]
+  roles: [hr_manager, lms_admin]
+  industries: [smb, mid, enterprise, retail, finance, edu]
+  formats: [scorm, xapi, html5, mp4]
+  analogs: [websoft_hcm, mirapolis_lms, equio_lms]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 120000, high: 450000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "iSpring Suite Max. Подписка на 1 автора на 12 месяцев"
+    - "iSpring Learn LMS. Тариф 100 активных пользователей (12 мес)"
+  confidence: high
+
+- id: mirapolis_lms
+  vendor: mirapolis
+  name: "Mirapolis LMS / HCM"
+  aliases: ["mirapolis", "мираполис", "mirapolis lms", "mirapolis hcm", "сдо мираполис"]
+  category: lms_elearning
+  extra_categories: [hrm_recruiting]
+  summary: "Российская корпоративная система дистанционного обучения (СДО) и управления талантами (оценка 360, KPI, кадровый резерв, адаптация) для среднего и крупного бизнеса."
+  editions:
+    - {id: lms, name: "Mirapolis LMS", aliases: [lms, сдо]}
+    - {id: hcm, name: "Mirapolis HCM", aliases: [hcm, таланты]}
+  versions: []
+  platforms: [web, linux, windows_server, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративный университет и сдо", "оценка компетенций и тестирование сотрудников", "импортозамещение sap successfactors learning"]
+  roles: [hr_manager, lms_admin, it_director]
+  industries: [enterprise, finance, manufacturing, retail, gov]
+  formats: [scorm, xapi]
+  analogs: [websoft_hcm, ispring_suite, equio_lms]
+  replaces: [sap_s4hana]
+  price_rub: {unit: company_year, low: 250000, typical: 750000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Mirapolis LMS. Облачная подписка на 500 пользователей (12 мес)"
+  confidence: high
+
+- id: websoft_hcm
+  vendor: websoft
+  name: "Websoft HCM (WebTutor)"
+  aliases: ["websoft", "websoft hcm", "вебсофт", "webtutor", "вебтьютор", "веб тутор", "сдо webtutor"]
+  category: lms_elearning
+  extra_categories: [hrm_recruiting]
+  summary: "Одна из самых распространённых в крупном бизнесе РФ модульных платформ СДО и управления талантами (ранее WebTutor): обучение, оценка, корпоративный портал, геймификация."
+  editions:
+    - {id: lms, name: "Модуль Дистанционное обучение (LMS)", aliases: [lms, обучение]}
+    - {id: hcm, name: "Полный комплекс Websoft HCM", aliases: [hcm, портал, оценка]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная сдо в крупном предприятии и банке", "оценка персонала 360 и индивидуальные планы развития", "импортозамещение sap successfactors"]
+  roles: [hr_manager, lms_admin, it_director]
+  industries: [enterprise, finance, retail, energy, manufacturing]
+  formats: [scorm, xapi]
+  analogs: [mirapolis_lms, ispring_suite, equio_lms]
+  replaces: [sap_s4hana]
+  price_rub: {unit: company_year, low: 300000, typical: 900000, high: 3500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Websoft HCM. Базовый сервер + модуль Дистанционное обучение (12 мес)"
+  confidence: high
+
+- id: equio_lms
+  vendor: equio
+  name: "Эквио (Мобильная LMS-платформа)"
+  aliases: ["эквио", "equio", "equeo", "мобильная lms эквио"]
+  category: lms_elearning
+  extra_categories: []
+  summary: "Российская мобильная платформа для быстрого обучения, тестирования и мотивации полевого, розничного и производственного персонала со смартфонов."
+  editions:
+    - {id: cloud, name: "Эквио Cloud", aliases: [cloud]}
+    - {id: onprem, name: "Эквио Enterprise (On-Premise)", aliases: [onprem, enterprise]}
+  versions: []
+  platforms: [android, ios, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["мобильное обучение продавцов и курьеров", "микрообучение и чек-листы на производстве", "адаптация линейного персонала"]
+  roles: [hr_manager, lms_admin]
+  industries: [retail, logistics, manufacturing, horeca, pharma]
+  formats: [scorm, mp4, pdf]
+  analogs: [ispring_suite, mirapolis_lms, websoft_hcm]
+  replaces: []
+  price_rub: {unit: user_year, low: 1200, typical: 2400, high: 4800}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Эквио. Подписка на 200 пользователей (12 мес)"
+  confidence: high
+
+- id: getcourse_platform
+  vendor: red_os_community_alt_extra
+  name: "GetCourse (Платформа для онлайн-школ)"
+  aliases: ["getcourse", "геткурс", "гет курс", "платформа онлайн школ"]
+  category: lms_elearning
+  extra_categories: []
+  summary: "Крупнейшая в РФ облачная SaaS-платформа для создания, продажи и проведения онлайн-курсов, вебинаров и тренингов (прямые подписки у вендора)."
+  editions:
+    - {id: start, name: "Старт / Хобби / Профи", aliases: [старт, профи]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["запуск коммерческой онлайн-школы", "продажа и проведение онлайн-курсов"]
+  roles: [lms_admin, smb_owner]
+  industries: [edu, smb]
+  formats: []
+  analogs: [ispring_suite, mirapolis_lms]
+  replaces: []
+  price_rub: {unit: company_year, low: 48000, typical: 120000, high: 360000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "GetCourse Тариф Профи на 12 месяцев (оплачивается напрямую на платформе)"
+  confidence: high
+
+- id: kaspersky_asap
+  vendor: kaspersky
+  name: "Kaspersky Automated Security Awareness Platform (ASAP)"
+  aliases: ["kaspersky asap", "касперский асап", "asap", "обучение кибербезопасности касперский", "антифишинг обучение касперский"]
+  category: security_awareness
+  extra_categories: [lms_elearning]
+  summary: "Платформа автоматического обучения сотрудников кибергигиене от «Лаборатории Касперского» с учебными фишинговыми атаками и контролем прогресса."
+  editions:
+    - {id: cloud, name: "ASAP Cloud", aliases: [cloud]}
+    - {id: onprem, name: "ASAP On-Premise", aliases: [onprem]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100-249", "250-499", "500-999"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["обучение сотрудников защите от фишинга и соц-инженерии", "повышение киберграмотности персонала", "тренировочные фишинговые рассылки"]
+  roles: [security_officer, hr_manager, it_director]
+  industries: [smb, mid, enterprise, finance, gov]
+  formats: [scorm]
+  analogs: [phishman_awareness, bizone_cymulate_awareness]
+  replaces: []
+  price_rub: {unit: user_year, low: 450, typical: 850, high: 1600}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Kaspersky Automated Security Awareness Platform. 100-249 Users 1 Year License"
+  confidence: high
+
+- id: phishman_awareness
+  vendor: phishman
+  name: "Phishman (Обучение кибербезопасности и имитация фишинга)"
+  aliases: ["phishman", "фишман", "фишмэн", "антифишинговый тренажер phishman"]
+  category: security_awareness
+  extra_categories: []
+  summary: "Российская платформа повышения осведомлённости в ИБ: симуляции фишинга (email/мессенджеры), интерактивные курсы и аналитика рисков сотрудников."
+  editions:
+    - {id: cloud, name: "Phishman Cloud", aliases: [cloud]}
+    - {id: onprem, name: "Phishman Enterprise (On-Premise)", aliases: [onprem, enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["50-99", "100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["тестирование сотрудников на фишинг", "выполнение требований цб рф и фстэк по обучению иб", "обучение кибергигиене в закрытом контуре"]
+  roles: [security_officer, hr_manager]
+  industries: [finance, enterprise, gov, energy, retail]
+  formats: [scorm]
+  analogs: [kaspersky_asap, bizone_cymulate_awareness]
+  replaces: []
+  price_rub: {unit: user_year, low: 500, typical: 950, high: 1800}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Phishman. Лицензия на 100 пользователей на 12 месяцев"
+  confidence: high
+
+- id: bizone_cymulate_awareness
+  vendor: bi_zone
+  name: "BI.ZONE Security Awareness (Киберграмотность и киберучения)"
+  aliases: ["bi.zone security awareness", "бизон обучение иб", "bi zone киберграмотность", "bi.zone киберучения"]
+  category: security_awareness
+  extra_categories: []
+  summary: "Платформа обучения сотрудников информационной безопасности и проведения фишинговых симуляций от экспертов BI.ZONE."
+  editions:
+    - {id: awareness, name: "Security Awareness Platform", aliases: [awareness]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["регулярные фишинговые проверки сотрудников", "обучение иб для банков и корпораций"]
+  roles: [security_officer, hr_manager]
+  industries: [finance, enterprise, telecom, gov]
+  formats: []
+  analogs: [kaspersky_asap, phishman_awareness]
+  replaces: []
+  price_rub: {unit: user_year, low: 550, typical: 1000, high: 2000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "BI.ZONE Security Awareness. Подписка на 250 пользователей (12 мес)"
+  confidence: high
+
+- id: softline_academy_courses
+  vendor: softline_cloud
+  name: "Учебный центр Softline (Авторизованные ИТ- и ИБ-курсы)"
+  aliases: ["учебный центр softline", "уц софтлайн", "курсы софтлайн", "softline academy", "обучение ит специалистов"]
+  category: it_training_courses
+  extra_categories: []
+  summary: "Официальные авторизованные курсы повышения квалификации по российским ОС, виртуализации, ИБ, СУБД, 1С и разработке с выдачей удостоверений установленного образца."
+  editions:
+    - {id: open, name: "Открытые сборные группы", aliases: [открытые, группа]}
+    - {id: corp, name: "Корпоративное обучение под заказчика", aliases: [корпоративное]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [perpetual]
+    metrics: [user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["переобучение сисадминов с windows на linux", "курсы по фстэк 152-фз и кии", "повышение квалификации ит-отдела"]
+  roles: [sysadmin, security_officer, developer, it_director]
+  industries: [enterprise, gov, finance, mid, it]
+  formats: []
+  analogs: [astra_training_courses, basealt_training_courses, redos_training_courses]
+  replaces: []
+  price_rub: {unit: user, low: 18000, typical: 42000, high: 95000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Учебный центр Softline. Курс «Администрирование Astra Linux Special Edition» (1 слушатель)"
+  confidence: high
+
+- id: astra_training_courses
+  vendor: astra_group
+  name: "Авторизованные курсы и сертификация Astra Linux (AL-1702 / AL-1703)"
+  aliases: ["курсы astra linux", "обучение астра линукс", "сертификация астра линукс", "al-1702", "al-1703", "курсы ald pro"]
+  category: it_training_courses
+  extra_categories: []
+  summary: "Официальные учебные курсы и сертификационные экзамены по администрированию Astra Linux Special Edition, ALD Pro и ПК СВ Брест."
+  editions:
+    - {id: admin, name: "Базовое и расширенное администрирование Astra Linux", aliases: [администрирование, al-1702, al-1703]}
+    - {id: ald, name: "Администрирование ALD Pro / Брест", aliases: [ald pro, брест]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra]
+  deployment: [cloud, onprem]
+  license:
+    models: [perpetual]
+    metrics: [user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["подготовка администраторов при миграции на astra linux", "сертификация специалистов по продуктам группы астра"]
+  roles: [sysadmin, security_officer]
+  industries: [gov, enterprise, defense, finance, energy]
+  formats: []
+  analogs: [softline_academy_courses, basealt_training_courses, redos_training_courses]
+  replaces: []
+  price_rub: {unit: user, low: 25000, typical: 45000, high: 75000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Курс AL-1702 «Администрирование ОС Astra Linux Special Edition 1.7» (1 слушатель)"
+  confidence: high
+
+- id: basealt_training_courses
+  vendor: basealt
+  name: "Авторизованные курсы администрирования ОС Альт (Базальт СПО)"
+  aliases: ["курсы альт линукс", "обучение ос альт", "курсы базальт спо", "altadm"]
+  category: it_training_courses
+  extra_categories: []
+  summary: "Авторизованные программы обучения «Базальт СПО» по администрированию Альт Рабочая станция, Альт Сервер, Альт Домен и Альт Виртуализация."
+  editions:
+    - {id: admin, name: "Администрирование ОС Альт (Часть 1 / 2)", aliases: [администрирование, altadm]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [alt]
+  deployment: [cloud, onprem]
+  license:
+    models: [perpetual]
+    metrics: [user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["обучение ит-специалистов работе с ос альт", "подготовка к миграции домена windows на альт сервер"]
+  roles: [sysadmin]
+  industries: [gov, edu, enterprise]
+  formats: []
+  analogs: [astra_training_courses, redos_training_courses, softline_academy_courses]
+  replaces: []
+  price_rub: {unit: user, low: 22000, typical: 38000, high: 65000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Авторизованный курс «Администрирование ОС Альт» (1 слушатель)"
+  confidence: high
+
+- id: redos_training_courses
+  vendor: red_soft
+  name: "Авторизованные курсы администрирования РЕД ОС (РЕД СОФТ)"
+  aliases: ["курсы ред ос", "обучение ред ос", "курсы ред софт", "redos training"]
+  category: it_training_courses
+  extra_categories: []
+  summary: "Официальные учебные курсы по администрированию и обеспечению безопасности РЕД ОС, РЕД АДМ и РЕД Виртуализации."
+  editions:
+    - {id: admin, name: "Администрирование РЕД ОС (Базовый / Продвинутый)", aliases: [администрирование, базовый, продвинутый]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [perpetual]
+    metrics: [user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["обучение администраторов ред ос и ред адм"]
+  roles: [sysadmin]
+  industries: [gov, healthcare, enterprise]
+  formats: []
+  analogs: [astra_training_courses, basealt_training_courses, softline_academy_courses]
+  replaces: []
+  price_rub: {unit: user, low: 22000, typical: 38000, high: 65000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Курс «Администрирование РЕД ОС 8» (1 слушатель)"
+  confidence: high
+
+- id: litres_corporate
+  vendor: litres
+  name: "Литрес: Библиотека (Корпоративная электронная библиотека)"
+  aliases: ["литрес", "литрес библиотека", "корпоративная библиотека литрес", "litres для бизнеса"]
+  category: ebooks_corporate_lib
+  extra_categories: []
+  summary: "Корпоративная электронная и аудиобиблиотека деловой, профессиональной и художественной литературы для развития сотрудников."
+  editions:
+    - {id: corp, name: "Литрес: Бизнес-библиотека", aliases: [бизнес, корп]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu, gov]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративная библиотека деловых книг и аудиокниг", "соцпакет и обучение сотрудников"]
+  roles: [hr_manager, lms_admin]
+  industries: [it, finance, retail, enterprise, edu]
+  formats: [fb2, epub, mp3]
+  analogs: [alpina_digital_lib]
+  replaces: []
+  price_rub: {unit: company_year, low: 50000, typical: 180000, high: 900000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Литрес: Корпоративная библиотека. Подписка на 100 сотрудников (12 мес)"
+  confidence: high
+
+- id: alpina_digital_lib
+  vendor: alpina_digital
+  name: "Альпина Диджитал (Корпоративная библиотека)"
+  aliases: ["альпина диджитал", "альпина библиотека", "alpina digital", "библиотека альпина"]
+  category: ebooks_corporate_lib
+  extra_categories: []
+  summary: "Российская корпоративная онлайн-библиотека деловой литературы, саммари, аудиокниг и микрокурсов для компаний."
+  editions:
+    - {id: standard, name: "Альпина Диджитал Бизнес", aliases: [бизнес, стандарт]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["деловая библиотека и саммари для руководителей и персонала", "интеграция библиотеки в корпоративную lms"]
+  roles: [hr_manager, lms_admin]
+  industries: [it, finance, enterprise, retail, smb]
+  formats: [epub, mp3]
+  analogs: [litres_corporate]
+  replaces: []
+  price_rub: {unit: company_year, low: 60000, typical: 220000, high: 1000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Альпина Диджитал. Корпоративный доступ для 100 пользователей (12 мес)"
+  confidence: high

@@ -1,0 +1,313 @@
+# Семейства продуктов: Удалённый доступ к рабочему столу и администрирование
+# Схема: kb/SCHEMA.md
+
+- id: assistant_remote
+  vendor: safib_assistant
+  name: "Ассистент (САФИБ)"
+  aliases: ["ассистент", "сафиб ассистент", "мой ассистент", "assistant remote", "российский teamviewer", "ассистент удаленный доступ"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Ведущее российское решение для безопасного удалённого доступа, техподдержки и администрирования ПК и серверов (облако и собственный сервер)."
+  editions:
+    - {id: standard, name: "Стандартный", aliases: [стандарт, standard]}
+    - {id: pro, name: "Профессиональный", aliases: [проф, pro]}
+    - {id: corp, name: "Корпоративный (On-Premise сервер)", aliases: [корпоративный, корп, сервер, onprem]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, device]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1, 3, 5, 10]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["удалённая техподдержка пользователей", "импортозамещение teamviewer и anydesk", "удалённый доступ в закрытом контуре без интернета", "подключение к astra linux и windows"]
+  roles: [sysadmin, helpdesk, it_director]
+  industries: [smb, mid, enterprise, gov, finance]
+  formats: []
+  analogs: [rudesktop, rms_remote, kontur_dostup, pro32_connect]
+  replaces: [teamviewer, anydesk]
+  price_rub: {unit: channel_year, low: 14000, typical: 28000, high: 65000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Ассистент. Лицензия Профессиональный (1 подключение, подписка 12 мес)"
+    - "Ассистент. Корпоративная серверная лицензия + 10 одновременных подключений"
+  confidence: high
+
+- id: rudesktop
+  vendor: rudesktop
+  name: "RuDesktop"
+  aliases: ["rudesktop", "рудесктоп", "ру десктоп", "rudesktop uem", "российский anydesk", "рудесктоп сервер"]
+  category: remote_desktop
+  extra_categories: [endpoint_uem]
+  summary: "Российский кроссплатформенный сервис удалённого доступа и UEM-управления парком устройств (облачный и автономный корпоративный сервер)."
+  editions:
+    - {id: standard, name: "Standard (Облако)", aliases: [standard, облако]}
+    - {id: pro, name: "Professional (On-Premise)", aliases: [pro, onprem, сервер]}
+    - {id: uem, name: "RuDesktop UEM (удалённый доступ + управление парком)", aliases: [uem, управление парком]}
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android, ios, aurora]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal]
+    bands: ["10-49", "50-99", "100-499", "500+"]
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена anydesk и teamviewer", "удалённый доступ к linux и windows", "инвентаризация и массовое управление рабочими станциями"]
+  roles: [sysadmin, helpdesk, it_director]
+  industries: [smb, mid, enterprise, gov]
+  formats: []
+  analogs: [assistant_remote, rms_remote, kontur_dostup]
+  replaces: [anydesk, teamviewer]
+  price_rub: {unit: device_year, low: 600, typical: 1500, high: 3500}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "RuDesktop On-Premise. Лицензия на 100 устройств на 12 месяцев"
+    - "RuDesktop UEM. Подписка на 50 устройств на 12 месяцев"
+  confidence: high
+
+- id: rms_remote
+  vendor: tekton_rms
+  name: "RMS — Удалённый доступ (TektonIT)"
+  aliases: ["rms", "рмс", "rms удаленный доступ", "tektonit rms", "remote utilities рф"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Российская программа удалённого администрирования и поддержки рабочих станций с собственным сервером маршрутизации и записью экрана."
+  editions:
+    - {id: starter, name: "Начальная", aliases: [начальная, starter]}
+    - {id: pro, name: "Профессиональная", aliases: [проф, pro]}
+    - {id: site, name: "Корпоративная (Site)", aliases: [корп, site]}
+  versions: ["7"]
+  platforms: [windows, windows_server, linux, macos, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user, device]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1, 5, 10]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["удалённое администрирование парка пк", "работа через собственный сервер rms", "замена radmin и teamviewer"]
+  roles: [sysadmin, helpdesk]
+  industries: [smb, mid, gov]
+  formats: []
+  analogs: [assistant_remote, rudesktop, kontur_dostup]
+  replaces: [teamviewer, anydesk]
+  price_rub: {unit: operator, low: 12000, typical: 29000, high: 85000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "RMS — Удалённый доступ. Профессиональная лицензия (1 оператор, бессрочная)"
+  confidence: high
+
+- id: kontur_dostup
+  vendor: skb_kontur
+  name: "Контур.Доступ"
+  aliases: ["контур доступ", "контур.доступ", "kontur dostup", "удаленный доступ контур"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Российский сервис удалённого подключения к рабочим компьютерам и серверам от СКБ Контур для ИТ-поддержки и удалённых сотрудников."
+  editions:
+    - {id: support, name: "Поддержка (для ИТ-отдела)", aliases: [поддержка, ит]}
+    - {id: remote_work, name: "Удалёнка (для сотрудников)", aliases: [удаленка, сотрудники]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 5, 10]
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["удалённый доступ сотрудников к офисному пк", "быстрая техподдержка без сложных настроек vpn", "замена anydesk и teamviewer"]
+  roles: [sysadmin, helpdesk, office_worker]
+  industries: [smb, mid, enterprise]
+  formats: []
+  analogs: [assistant_remote, rudesktop, pro32_connect]
+  replaces: [teamviewer, anydesk]
+  price_rub: {unit: channel_year, low: 9000, typical: 18000, high: 45000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Контур.Доступ Тариф Оптимальный (подписка на 12 месяцев)"
+  confidence: high
+
+- id: pro32_connect
+  vendor: pro32
+  name: "PRO32 Connect"
+  aliases: ["pro32 connect", "про32 коннект", "про 32 коннект", "удаленный доступ pro32"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Сервис удалённого доступа от PRO32 для работы с офисными ПК из дома и оказания технической поддержки (облачный и on-premise варианты)."
+  editions:
+    - {id: personal, name: "Персональный / Бизнес", aliases: [бизнес, business]}
+    - {id: enterprise, name: "Enterprise (On-Premise)", aliases: [enterprise, onprem]}
+  versions: []
+  platforms: [windows, macos, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [concurrent, device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 3, 5, 10]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["удалённое подключение к рабочему столу", "поддержка пользователей и филиалов", "замена teamviewer"]
+  roles: [sysadmin, helpdesk, office_worker]
+  industries: [smb, mid]
+  formats: []
+  analogs: [assistant_remote, rudesktop, kontur_dostup]
+  replaces: [teamviewer, anydesk]
+  price_rub: {unit: channel_year, low: 7500, typical: 15000, high: 38000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PRO32 Connect. Лицензия на 1 оператора (12 месяцев)"
+  confidence: high
+
+- id: getscreen_remote
+  vendor: getscreen
+  name: "Getscreen.me (удалённый доступ через браузер)"
+  aliases: ["getscreen", "гетскрин", "getscreen.me", "удаленный доступ в браузере"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Облачный и self-hosted сервис удалённого доступа к компьютерам прямо из браузера без установки клиентской части оператору."
+  editions:
+    - {id: starter, name: "Starter / Optima", aliases: [starter, optima]}
+    - {id: selfhosted, name: "Self-Hosted (On-Premise)", aliases: [self-hosted, onprem]}
+  versions: []
+  platforms: [web, windows, linux, macos, android]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [device, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 10, 50]
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["подключение к рабочему столу из браузера", "быстрая поддержка клиентов по ссылке", "замена anydesk и teamviewer"]
+  roles: [helpdesk, sysadmin]
+  industries: [smb, it, services]
+  formats: []
+  analogs: [assistant_remote, rudesktop, kontur_dostup]
+  replaces: [anydesk, teamviewer]
+  price_rub: {unit: agent_year, low: 6000, typical: 16000, high: 40000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Getscreen.me Тариф Optima на 12 месяцев"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ / УШЕДШИЕ (catalog: no) ===
+
+- id: teamviewer
+  vendor: teamviewer
+  name: "TeamViewer"
+  aliases: ["teamviewer", "тимвьювер", "тимвьюер", "тимвивер", "тим вьювер", "тв удаленка"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Популярнейшая зарубежная программа удалённого доступа (вендор полностью ушёл с российского рынка и заблокировал подключения из РФ)."
+  editions:
+    - {id: business, name: "Business", aliases: [business]}
+    - {id: premium, name: "Premium / Corporate", aliases: [premium, corporate]}
+  versions: []
+  platforms: [windows, macos, linux, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение teamviewer", "замена заблокированного teamviewer в россии"]
+  roles: [sysadmin, helpdesk]
+  industries: [smb, mid, enterprise]
+  formats: []
+  analogs: [assistant_remote, rudesktop, rms_remote, kontur_dostup, pro32_connect]
+  replaces: []
+  price_rub: {unit: channel_year, low: 45000, typical: 95000, high: 190000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "TeamViewer Corporate Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: anydesk
+  vendor: anydesk
+  name: "AnyDesk"
+  aliases: ["anydesk", "энидеск", "анидеск", "эни деск", "any desk"]
+  category: remote_desktop
+  extra_categories: []
+  summary: "Немецкая программа удалённого рабочего стола (официально недоступна для покупки юрлицами в РФ, ограничивает сеансы)."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard]}
+    - {id: advanced, name: "Advanced", aliases: [advanced]}
+  versions: []
+  platforms: [windows, macos, linux, android, ios]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена anydesk в рф", "поиск российского аналога anydesk"]
+  roles: [sysadmin, helpdesk]
+  industries: [smb, mid, enterprise]
+  formats: []
+  analogs: [rudesktop, assistant_remote, kontur_dostup, pro32_connect]
+  replaces: []
+  price_rub: {unit: user_year, low: 30000, typical: 65000, high: 140000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "AnyDesk Standard Commercial (официально недоступно в РФ)"
+  confidence: high

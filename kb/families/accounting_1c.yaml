@@ -1,0 +1,1216 @@
+# Семейства продуктов: 1С, бухгалтерия, отчётность, ЭДО, КЭДО, торговля и кассы
+# Схема: kb/SCHEMA.md
+
+- id: onec_accounting
+  vendor: onec
+  name: "1С:Бухгалтерия 8"
+  aliases: ["1с бухгалтерия", "1c бухгалтерия", "1с бух", "бп 3.0", "бухгалтерия предприятия", "1с бп", "1c:бухгалтерия", "бух 1с", "1с бухгалтерия корп", "1с бухгалтерия проф"]
+  category: accounting
+  extra_categories: [tax_reporting_edo]
+  summary: "Самая распространённая в России система бухгалтерского и налогового учёта для коммерческих организаций и ИП."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая, base, ип, для одного]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp, филиалы, обособки]}
+  versions: ["8.3", "3.0"]
+  platforms: [windows, windows_server, linux, macos, web]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem, cloud, hybrid]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, upgrade, support]
+    bands: []
+    packs: [1, 5, 10]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["бухгалтерский учёт", "налоговый учёт", "сдача отчётности в фнс", "учёт осн и усн", "учёт нмц и основных средств"]
+  roles: [accountant, cfo, smb_owner]
+  industries: [smb, retail, manufacturing, services, construction]
+  formats: [xml, xls, xlsx, pdf]
+  analogs: [sbis_saby, kontur_elba, turbo_erp]
+  replaces: [sap_s4hana]
+  price_rub: {unit: box, low: 5400, typical: 16200, high: 43200}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Бухгалтерия 8 ПРОФ (электронная поставка)"
+    - "1С:Бухгалтерия 8 КОРП (электронная поставка)"
+    - "1С:Бухгалтерия 8 Базовая версия"
+  confidence: high
+
+- id: onec_zup
+  vendor: onec
+  name: "1С:Зарплата и управление персоналом 8"
+  aliases: ["1с зуп", "зуп", "зуп 3.1", "1с зарплата", "1с зарплата и кадры", "1с з и уп", "1c zup", "зуп проф", "зуп корп"]
+  category: payroll_hr_1c
+  extra_categories: [hrm_recruiting]
+  summary: "Конфигурация 1С для расчёта заработной платы, налогов с ФОТ, кадрового делопроизводства и управления персоналом."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp, hrm, дмс, подбор]}
+  versions: ["8.3", "3.1"]
+  platforms: [windows, windows_server, linux, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, upgrade, support]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["расчёт зарплаты", "кадровый учёт", "воинский учёт", "отчётность в сфр и фнс", "управление персоналом"]
+  roles: [accountant, hr_manager]
+  industries: [smb, enterprise, retail, manufacturing]
+  formats: [xml, pdf, xlsx]
+  analogs: [sbis_saby, galaktika_erp]
+  replaces: [sap_s4hana]
+  price_rub: {unit: box, low: 9200, typical: 28000, high: 135000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Зарплата и управление персоналом 8 ПРОФ (электронная поставка)"
+    - "1С:Зарплата и управление персоналом 8 КОРП"
+  confidence: high
+
+- id: onec_trade
+  vendor: onec
+  name: "1С:Управление торговлей 8"
+  aliases: ["1с ут", "ут 11", "1с управление торговлей", "1с торговля", "1с торговля и склад", "управление торговлей 11", "1c ut"]
+  category: trade_warehouse
+  extra_categories: [crm_systems]
+  summary: "Система автоматизации оптовой и розничной торговли, управления запасами, складом, закупками, ценообразованием и продажами."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+  versions: ["8.3", "11"]
+  platforms: [windows, windows_server, linux, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, upgrade, support]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["оптовая торговля", "складской учёт", "маркировка честный знак", "управление закупками и продажами", "интеграция с маркетплейсами"]
+  roles: [sales_manager, warehouse_manager, smb_owner]
+  industries: [retail, distribution, ecommerce]
+  formats: [xml, xlsx, csv]
+  analogs: [moysklad, onec_unf, onec_ka]
+  replaces: []
+  price_rub: {unit: box, low: 8200, typical: 28000, high: 36000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Управление торговлей 8 ПРОФ (электронная поставка)"
+    - "1С:Управление торговлей 8 Базовая версия"
+  confidence: high
+
+- id: onec_unf
+  vendor: onec
+  name: "1С:Управление нашей фирмой 8"
+  aliases: ["1с унф", "унф", "управление нашей фирмой", "1с малый бизнес", "управление небольшой фирмой", "1c unf"]
+  category: trade_warehouse
+  extra_categories: [erp_systems, crm_systems]
+  summary: "Комплексное решение 1С для управленческого учёта, продаж, закупок, мини-производства и CRM в малом бизнесе."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: pack5, name: "На 5 пользователей", aliases: ["на 5 пользователей", "5 пользователей"]}
+  versions: ["8.3", "3.0"]
+  platforms: [windows, windows_server, linux, macos, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, upgrade]
+    bands: []
+    packs: [1, 5]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["управленческий учёт в малом бизнесе", "учёт заказов и услуг", "небольшое производство", "продажи и склад в одном окне"]
+  roles: [smb_owner, sales_manager]
+  industries: [smb, retail, services, manufacturing]
+  formats: [xml, xlsx]
+  analogs: [moysklad, onec_trade]
+  replaces: []
+  price_rub: {unit: box, low: 7000, typical: 21500, high: 34000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Управление нашей фирмой 8 ПРОФ (электронная поставка)"
+    - "1С:Управление нашей фирмой 8 на 5 пользователей"
+  confidence: high
+
+- id: onec_ka
+  vendor: onec
+  name: "1С:Комплексная автоматизация 8"
+  aliases: ["1с ка", "ка 2", "1с ка 2", "комплексная автоматизация", "1с комплексная", "1c ka"]
+  category: erp_systems
+  extra_categories: [accounting, trade_warehouse, payroll_hr_1c]
+  summary: "Единая информационная система 1С, объединяющая бухгалтерский учёт, зарплату, торговлю, склад и базовое производство."
+  editions:
+    - {id: ka2, name: "Редакция 2", aliases: ["редакция 2", "ка 2", "2.5"]}
+  versions: ["8.3", "2.5"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["единый контур бухучёта торговли и зарплаты", "управленческий и регламентированный учёт среднего бизнеса"]
+  roles: [cfo, accountant, it_director]
+  industries: [smb, mid, distribution, manufacturing]
+  formats: [xml, xlsx]
+  analogs: [onec_erp, turbo_erp]
+  replaces: [sap_s4hana]
+  price_rub: {unit: box, low: 75000, typical: 90000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Комплексная автоматизация 8 (электронная поставка)"
+  confidence: high
+
+- id: onec_bgu
+  vendor: onec
+  name: "1С:Бухгалтерия государственного учреждения 8"
+  aliases: ["1с бгу", "бгу", "бгу 2.0", "1с бюджет", "бухгалтерия госучреждения", "1с для бюджетников", "1c bgu"]
+  category: accounting
+  extra_categories: []
+  summary: "Конфигурация 1С для бюджетного и бухгалтерского учёта в государственных, муниципальных и казённых учреждениях."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp]}
+  versions: ["8.3", "2.0"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [gov, edu, med]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["бюджетный учёт", "учёт в казённых и бюджетных учреждениях", "интеграция с казначейством"]
+  roles: [accountant, cfo]
+  industries: [gov, edu, healthcare]
+  formats: [xml, xlsx, pdf]
+  analogs: [turbo_erp]
+  replaces: []
+  price_rub: {unit: box, low: 5400, typical: 22500, high: 55000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Бухгалтерия государственного учреждения 8 ПРОФ (электронная поставка)"
+    - "1С:Бухгалтерия государственного учреждения 8 КОРП"
+  confidence: high
+
+- id: onec_zkgu
+  vendor: onec
+  name: "1С:Зарплата и кадры государственного учреждения 8"
+  aliases: ["1с зкгу", "зкгу", "зкгу 3.1", "зарплата госучреждения", "1с бюджетная зарплата"]
+  category: payroll_hr_1c
+  extra_categories: []
+  summary: "Решение 1С для расчёта денежного довольствия, зарплаты и кадрового учёта в государственных и муниципальных учреждениях."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp]}
+  versions: ["8.3", "3.1"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [gov, edu, med]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["расчёт зарплаты в госучреждениях", "тарификация учителей и врачей", "кадровый учёт госслужащих"]
+  roles: [accountant, hr_manager]
+  industries: [gov, edu, healthcare]
+  formats: [xml, xlsx]
+  analogs: [onec_zup]
+  replaces: []
+  price_rub: {unit: box, low: 9200, typical: 28000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Зарплата и кадры государственного учреждения 8 ПРОФ"
+  confidence: high
+
+- id: onec_retail
+  vendor: onec
+  name: "1С:Розница 8"
+  aliases: ["1с розница", "розница 3.0", "1с для магазина", "1с касса и магазин"]
+  category: retail_pos_cash
+  extra_categories: [trade_warehouse]
+  summary: "Решение для автоматизации розничных магазинов и торговых сетей: рабочее место кассира, ЕГАИС, Честный ЗНАК, скидки."
+  editions:
+    - {id: base, name: "Базовая", aliases: [базовая]}
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+  versions: ["8.3", "3.0"]
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация розничного магазина", "рабочее место кассира", "работа с онлайн-кассой 54-фз", "егаис и маркировка"]
+  roles: [smb_owner, sales_manager]
+  industries: [retail]
+  formats: [xml]
+  analogs: [atol_frontol, moysklad]
+  replaces: []
+  price_rub: {unit: box, low: 4500, typical: 16200, high: 22000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Розница 8 ПРОФ (электронная поставка)"
+    - "1С:Розница 8 Базовая версия"
+  confidence: high
+
+- id: onec_client_license
+  vendor: onec
+  name: "1С:Предприятие 8 — Клиентские лицензии"
+  aliases: ["клиентские лицензии 1с", "лицензии 1с на рабочие места", "доп лицензии 1с", "1с рм", "лицензия 1с на 5 пользователей", "лицензия 1с на 10 пользователей", "лицензия 1с на 20 пользователей", "лицензия 1с на 50 пользователей", "лицензия 1с на 100 пользователей", "лицензии 1с проф", "лицензии 1с корп"]
+  category: onec_platform_licenses
+  extra_categories: []
+  summary: "Дополнительные клиентские лицензии на платформу 1С:Предприятие 8 (ПРОФ и КОРП) для подключения рабочих мест к базам 1С."
+  editions:
+    - {id: prof, name: "ПРОФ", aliases: [проф, prof]}
+    - {id: corp, name: "КОРП", aliases: [корп, corp]}
+  versions: ["8.3"]
+  platforms: [windows, windows_server, linux, macos, web]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [concurrent, user]
+    terms_months: []
+    actions: [new, upgrade, addon]
+    bands: []
+    packs: [1, 5, 10, 20, 50, 100, 300, 500]
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["расширение рабочих мест 1с", "подключение новых пользователей к 1с", "апгрейд лицензий 1с проф на корп"]
+  roles: [sysadmin, it_director, accountant]
+  industries: [smb, mid, enterprise, gov]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: user, low: 5200, typical: 7800, high: 15000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Предприятие 8. Клиентская лицензия на 10 рабочих мест (электронная поставка)"
+    - "1С:Предприятие 8. Клиентская лицензия на 20 рабочих мест КОРП"
+    - "1С:Предприятие 8. Клиентская лицензия на 50 рабочих мест (USB)"
+  confidence: high
+
+- id: onec_server_license
+  vendor: onec
+  name: "1С:Предприятие 8 — Лицензия на сервер"
+  aliases: ["лицензия на сервер 1с", "сервер 1с", "сервер 1с x86-64", "сервер 1с мини", "сервер 1с корп", "1c server license", "серверная лицензия 1с"]
+  category: onec_platform_licenses
+  extra_categories: []
+  summary: "Серверные лицензии платформы 1С:Предприятие 8 (МИНИ на 5 подключений, x86-64 ПРОФ и КОРП) для клиент-серверной работы с СУБД."
+  editions:
+    - {id: mini, name: "МИНИ (до 5 подключений)", aliases: [мини, mini, "мини на 5"]}
+    - {id: x64_prof, name: "x86-64 ПРОФ", aliases: [x86-64, x64, проф, prof, 64-bit]}
+    - {id: x64_corp, name: "x86-64 КОРП", aliases: [корп, corp, кластер]}
+  versions: ["8.3"]
+  platforms: [windows_server, linux]
+  compat_ru_os: [astra, alt, redos, rosa]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [server]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["перевод 1с в клиент-серверный режим", "работа 1с с postgresql и postgres pro", "кластер серверов 1с корп"]
+  roles: [sysadmin, it_director, dba]
+  industries: [mid, enterprise, gov]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: server, low: 19500, typical: 108000, high: 230000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Предприятие 8.3. Сервер МИНИ на 5 подключений (электронная поставка)"
+    - "1С:Предприятие 8. Лицензия на сервер (x86-64) (электронная поставка)"
+    - "1С:Предприятие 8. Лицензия на сервер (x86-64) КОРП"
+  confidence: high
+
+- id: onec_its
+  vendor: onec
+  name: "1С:ИТС (Информационно-технологическое сопровождение)"
+  aliases: ["1с итс", "итс проф", "итс техно", "1с кп", "1с комплект поддержки", "кп проф", "кп базовый", "подписка итс", "обновление 1с"]
+  category: onec_platform_licenses
+  extra_categories: [tech_support]
+  summary: "Обязательный договор сопровождения (1С:КП / ИТС) для легального получения обновлений конфигураций 1С и встроенных сервисов."
+  editions:
+    - {id: base, name: "КП Базовый (ТЕХНО)", aliases: [базовый, техно, techno]}
+    - {id: prof, name: "КП ПРОФ", aliases: [проф, prof, итс проф]}
+    - {id: corp, name: "КП Отраслевой / КОРП", aliases: [отраслевой, корп, corp]}
+  versions: []
+  platforms: [web, windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [3, 6, 12, 24]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["получение обновлений 1с", "поддержка и сервисы 1с", "продление итс"]
+  roles: [accountant, sysadmin, procurement]
+  industries: [smb, mid, enterprise, gov]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: company_year, low: 19000, typical: 46000, high: 95000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Комплект поддержки ПРОФ (ИТС ПРОФ) на 12 месяцев"
+    - "1С:Комплект поддержки Базовый (ИТС ТЕХНО) на 12 месяцев"
+  confidence: high
+
+- id: onec_fresh
+  vendor: onec
+  name: "1С:Фреш (1С:Предприятие через Интернет)"
+  aliases: ["1с фреш", "1c fresh", "облачная 1с", "1с в облаке", "аренда 1с", "1с саас"]
+  category: accounting
+  extra_categories: [trade_warehouse, payroll_hr_1c]
+  summary: "Официальный облачный SaaS-сервис фирмы 1С для работы в Бухгалтерии, ЗУП, УНФ и УТ через браузер без своего сервера."
+  editions:
+    - {id: base, name: "Базовый", aliases: [базовый]}
+    - {id: prof, name: "ПРОФ", aliases: [проф]}
+    - {id: spec, name: "Спец", aliases: [спец]}
+  versions: []
+  platforms: [web, windows, macos, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [6, 12]
+    actions: [new, renewal]
+    bands: []
+    packs: [2, 5, 10]
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["аренда 1с в облаке", "удалённая работа бухгалтера без сервера", "автообновление 1с"]
+  roles: [accountant, smb_owner]
+  industries: [smb, services, retail]
+  formats: [xml, xlsx]
+  analogs: [moysklad, kontur_elba]
+  replaces: []
+  price_rub: {unit: company_year, low: 17000, typical: 46000, high: 120000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С:Предприятие 8 через Интернет (1С:Фреш) Тариф ПРОФ на 12 месяцев"
+    - "1С:Фреш Тариф Базовый на 12 месяцев (2 сеанса)"
+  confidence: high
+
+- id: onec_kedo
+  vendor: onec
+  name: "1С:Кабинет сотрудника"
+  aliases: ["1с кабинет сотрудника", "1с кэдо", "кэдо 1с", "личный кабинет сотрудника 1с"]
+  category: kedo_hr_docs
+  extra_categories: [payroll_hr_1c]
+  summary: "Сервис кадрового электронного документооборота (КЭДО), встроенный в 1С:ЗУП, 1С:Бухгалтерию и 1С:ERP."
+  editions:
+    - {id: cloud, name: "Облачный сервис", aliases: [облачный, saas]}
+    - {id: onprem, name: "Локальный (корпоративный)", aliases: [локальный, onprem, корп]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: ["10-49", "50-99", "100-499", "500-999"]
+    packs: [10, 25, 50, 100]
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["кадровый эдо с сотрудниками", "подписание отпусков и приказов онлайн", "расчётные листки в телефоне"]
+  roles: [hr_manager, accountant]
+  industries: [smb, mid, enterprise]
+  formats: [pdf, xml]
+  analogs: [hrlink_kedo, vk_hr_tek, sbis_saby]
+  replaces: []
+  price_rub: {unit: user_year, low: 300, typical: 450, high: 700}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Кабинет сотрудника на 50 сотрудников на 12 месяцев"
+    - "1С:Кабинет сотрудника на 100 сотрудников на 12 месяцев"
+  confidence: high
+
+- id: onec_reporting
+  vendor: onec
+  name: "1С-Отчётность"
+  aliases: ["1с отчетность", "1с-отчетность", "отчетность из 1с", "сдача отчетности 1с"]
+  category: tax_reporting_edo
+  extra_categories: [accounting]
+  summary: "Встроенный сервис сдачи электронной регламентированной отчётности в ФНС, СФР, Росстат и Росалкогольрегулирование напрямую из 1С."
+  editions:
+    - {id: main, name: "Основной (1 юрлицо)", aliases: [основной, юрлицо, ип]}
+    - {id: group, name: "Группа компаний", aliases: [группа, гк]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["сдача налоговой отчётности из 1с", "отчётность в фнс и сфр", "ответы на требования налоговой"]
+  roles: [accountant]
+  industries: [smb, mid, gov]
+  formats: [xml, pdf]
+  analogs: [kontur_extern, sbis_saby, taxcom_sprinter]
+  replaces: []
+  price_rub: {unit: company_year, low: 2500, typical: 6900, high: 12000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "1С-Отчётность для юридического лица на 12 месяцев"
+  confidence: high
+
+- id: onec_edo
+  vendor: onec
+  name: "1С-ЭДО"
+  aliases: ["1с эдо", "1с-эдо", "эдо в 1с", "электронный документооборот 1с", "1с такском"]
+  category: tax_reporting_edo
+  extra_categories: []
+  summary: "Сервис юридически значимого внешнего электронного документооборота (УПД, счета-фактуры, акты) с контрагентами напрямую из программ 1С."
+  editions:
+    - {id: start, name: "Старт ЭДО", aliases: [старт, start]}
+    - {id: packages, name: "Пакеты комплектов документов", aliases: [пакет, комплекты]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company, other]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["обмен упд и счетами-фактурами", "внешний эдо с контрагентами", "передача маркированных товаров по эдо"]
+  roles: [accountant, procurement]
+  industries: [smb, mid, retail, distribution]
+  formats: [xml, pdf]
+  analogs: [kontur_diadoc, sbis_saby, taxcom_sprinter]
+  replaces: []
+  price_rub: {unit: company_year, low: 3000, typical: 9000, high: 35000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Сервис 1С-ЭДО Старт на 12 месяцев"
+  confidence: high
+
+- id: onec_holding
+  vendor: onec
+  name: "1С:Управление холдингом 8"
+  aliases: ["1с ух", "управление холдингом", "1с erp ух", "1с консолидация", "1с мсфо", "1с казначейство"]
+  category: finance_budgeting
+  extra_categories: [erp_systems, accounting]
+  summary: "Корпоративная система класса CPM/ERP для бюджетирования, казначейства, консолидации МСФО и управления централизованными закупками холдингов."
+  editions:
+    - {id: uh, name: "Управление холдингом", aliases: [ух, стандарт]}
+    - {id: erp_uh, name: "ERP. Управление холдингом", aliases: [erp ух, erp управление холдингом]}
+  versions: ["8.3", "3.2"]
+  platforms: [windows, windows_server, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [company]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, box]
+  registry: yes
+  certs: []
+  use_cases: ["консолидация мсфо", "бюджетирование холдинга", "корпоративное казначейство", "импортозамещение sap bpc"]
+  roles: [cfo, financial_analyst, it_director]
+  industries: [enterprise, finance, energy, manufacturing]
+  formats: [xml, xlsx]
+  analogs: [optimacros, onec_erp]
+  replaces: [sap_s4hana, oracle_ebs]
+  price_rub: {unit: company, low: 1400000, typical: 1900000, high: 3200000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "1С:Управление холдингом 8 (электронная поставка)"
+    - "1С:ERP. Управление холдингом (электронная поставка)"
+  confidence: high
+
+- id: kontur_extern
+  vendor: skb_kontur
+  name: "Контур.Экстерн"
+  aliases: ["контур экстерн", "экстерн", "скб контур экстерн", "kontur extern", "контур отчетность"]
+  category: tax_reporting_edo
+  extra_categories: []
+  summary: "Облачный сервис СКБ Контур для сдачи электронной отчётности в ФНС, СФР, Росстат, РПН и ФСРАР."
+  editions:
+    - {id: optimal, name: "Оптимальный плюс", aliases: [оптимальный, базовый]}
+    - {id: max, name: "Максимальный", aliases: [максимальный, общий]}
+    - {id: budget, name: "Бюджетный плюс", aliases: [бюджетный, для госучреждений]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["электронная отчётность в фнс и сфр", "сверка с налоговой", "проверка ндс и контрагентов"]
+  roles: [accountant, cfo]
+  industries: [smb, mid, enterprise, gov]
+  formats: [xml, pdf]
+  analogs: [sbis_saby, onec_reporting, taxcom_sprinter]
+  replaces: []
+  price_rub: {unit: company_year, low: 6500, typical: 14000, high: 35000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Контур.Экстерн Тариф Оптимальный плюс (ОСНО) на 12 месяцев"
+    - "Контур.Экстерн для обслуживающих бухгалтерий на 12 месяцев"
+  confidence: high
+
+- id: kontur_diadoc
+  vendor: skb_kontur
+  name: "Контур.Диадок"
+  aliases: ["контур диадок", "диадок", "diadoc", "kontur diadoc", "эдо контур", "модуль диадок для 1с"]
+  category: tax_reporting_edo
+  extra_categories: [sed_ecm]
+  summary: "Ведущая в РФ система юридически значимого внешнего электронного документооборота (ЭДО) с контрагентами и модулем интеграции с 1С."
+  editions:
+    - {id: packages, name: "Пакеты исходящих документов", aliases: [пакет, "250 документов", "600 документов", "1200 документов"]}
+    - {id: module_1c, name: "Модуль Диадок для 1С", aliases: [модуль 1с, интеграция 1с]}
+  versions: []
+  platforms: [web, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company, other]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["юридически значимый эдо", "обмен упд и актами", "роуминг эдо с контрагентами", "интеграция эдо с 1с и sap"]
+  roles: [accountant, procurement, legal]
+  industries: [smb, mid, enterprise, retail, distribution]
+  formats: [xml, pdf]
+  analogs: [sbis_saby, onec_edo, taxcom_sprinter]
+  replaces: []
+  price_rub: {unit: company_year, low: 4500, typical: 15000, high: 80000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Контур.Диадок Пакет 600 исходящих документов на 12 месяцев"
+    - "Контур.Диадок Модуль для 1С на 12 месяцев"
+  confidence: high
+
+- id: kontur_focus
+  vendor: skb_kontur
+  name: "Контур.Фокус"
+  aliases: ["контур фокус", "фокус", "kontur focus", "проверка контрагентов контур"]
+  category: counterparty_legal_info
+  extra_categories: []
+  summary: "Сервис проверки благонадёжности контрагентов (ЕГРЮЛ, арбитражные дела, финансы, аффилированность, санкционные списки)."
+  editions:
+    - {id: base, name: "Базовый", aliases: [базовый]}
+    - {id: premium, name: "Премиум", aliases: [премиум, premium]}
+    - {id: api, name: "Фокус.API", aliases: [api, интеграция]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["проверка контрагентов", "должная осмотрительность", "анализ арбитражных и налоговых рисков", "скоринг поставщиков"]
+  roles: [security_officer, legal, procurement, cfo]
+  industries: [smb, mid, enterprise, finance]
+  formats: [pdf, xlsx, json]
+  analogs: [spark_interfax, sbis_saby]
+  replaces: []
+  price_rub: {unit: company_year, low: 25000, typical: 55000, high: 150000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Контур.Фокус Тариф Премиум на 12 месяцев"
+  confidence: high
+
+- id: kontur_elba
+  vendor: skb_kontur
+  name: "Контур.Эльба"
+  aliases: ["контур эльба", "эльба", "kontur elba", "онлайн бухгалтерия для ип"]
+  category: accounting
+  extra_categories: [tax_reporting_edo]
+  summary: "Простая облачная онлайн-бухгалтерия и отчётность для ИП и малых ООО на УСН и патенте."
+  editions:
+    - {id: ekonom, name: "Эконом", aliases: [эконом]}
+    - {id: business, name: "Бизнес", aliases: [бизнес]}
+    - {id: premium, name: "Премиум", aliases: [премиум]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["онлайн-бухгалтерия для ип", "расчёт усн и взносов", "выставление счетов"]
+  roles: [smb_owner, accountant]
+  industries: [smb, services]
+  formats: [pdf, xml]
+  analogs: [onec_fresh, onec_accounting]
+  replaces: []
+  price_rub: {unit: company_year, low: 7000, typical: 16000, high: 32000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Контур.Эльба Тариф Бизнес 12 мес (подписка напрямую у вендора)"
+  confidence: high
+
+- id: sbis_saby
+  vendor: tensor_sbis
+  name: "СБИС (Saby) — Отчётность, ЭДО, ОФД, Бухгалтерия"
+  aliases: ["сбис", "saby", "тензор сбис", "сбис отчетность", "сбис эдо", "сбис кэдо", "сбис офд", "сбис розница", "сбис все о компаниях", "sbis"]
+  category: tax_reporting_edo
+  extra_categories: [accounting, kedo_hr_docs, retail_pos_cash, counterparty_legal_info]
+  summary: "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница."
+  editions:
+    - {id: reporting, name: "Отчётность", aliases: [отчетность, эо]}
+    - {id: edo, name: "ЭДО", aliases: [эдо, документооборот]}
+    - {id: kedo, name: "КЭДО и Кадры", aliases: [кэдо, кадры]}
+    - {id: corp, name: "Корпоративный", aliases: [корпоративный, корп]}
+  versions: []
+  platforms: [web, windows, linux, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [company, user]
+    terms_months: [12, 24]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["сдача отчётности в госорганы", "внешний эдо и роуминг", "кадровый эдо", "подключение офд и маркировки", "проверка контрагентов"]
+  roles: [accountant, hr_manager, smb_owner]
+  industries: [smb, mid, enterprise, retail, gov]
+  formats: [xml, pdf, xlsx]
+  analogs: [kontur_extern, kontur_diadoc, onec_reporting, hrlink_kedo]
+  replaces: []
+  price_rub: {unit: company_year, low: 5500, typical: 14000, high: 60000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "СБИС Электронная отчётность Тариф Базовый на 12 месяцев"
+    - "СБИС ЭДО Тариф Корпоративный на 12 месяцев"
+  confidence: high
+
+- id: taxcom_sprinter
+  vendor: taxcom
+  name: "Такском-Спринтер и Такском-Файлер"
+  aliases: ["такском", "такском спринтер", "такском файлер", "taxcom", "онлайн спринтер", "такском эдо", "такском офд"]
+  category: tax_reporting_edo
+  extra_categories: []
+  summary: "Сервисы оператора ЭДО и отчётности Такском: сдача электронной отчётности, юридически значимый ЭДО и ОФД."
+  editions:
+    - {id: online_sprinter, name: "Онлайн-Спринтер (Отчётность)", aliases: [спринтер, отчетность]}
+    - {id: filer, name: "Такском-Файлер (ЭДО)", aliases: [файлер, эдо]}
+  versions: []
+  platforms: [web, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["сдача электронной отчётности", "обмен электронными документами с контрагентами", "офд для онлайн-касс"]
+  roles: [accountant]
+  industries: [smb, mid, retail]
+  formats: [xml, pdf]
+  analogs: [kontur_extern, kontur_diadoc, sbis_saby, onec_reporting]
+  replaces: []
+  price_rub: {unit: company_year, low: 4500, typical: 11000, high: 30000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Такском Онлайн-Спринтер Тариф Комфортный на 12 месяцев"
+  confidence: high
+
+- id: moysklad
+  vendor: moysklad
+  name: "МойСклад"
+  aliases: ["мойсклад", "мой склад", "moysklad", "облачный складской учет", "учет для маркетплейсов"]
+  category: trade_warehouse
+  extra_categories: [retail_pos_cash]
+  summary: "Облачная система управления торговлей, складом, производством, розничными точками и продажами на маркетплейсах (Ozon, Wildberries)."
+  editions:
+    - {id: start, name: "Базовый", aliases: [базовый, старт]}
+    - {id: prof, name: "Профессиональный", aliases: [профессиональный, проф]}
+    - {id: corp, name: "Корпоративный", aliases: [корпоративный, корп]}
+  versions: []
+  platforms: [web, windows, macos, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [company, user]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["складской и торговый учёт в облаке", "интеграция с wildberries и ozon", "автоматизация розницы и маркировки"]
+  roles: [smb_owner, warehouse_manager, sales_manager]
+  industries: [smb, retail, ecommerce]
+  formats: [xlsx, csv, xml]
+  analogs: [onec_trade, onec_unf, onec_retail]
+  replaces: []
+  price_rub: {unit: company_year, low: 14000, typical: 45000, high: 120000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "МойСклад Тариф Профессиональный на 12 месяцев"
+  confidence: high
+
+- id: hrlink_kedo
+  vendor: hrlink
+  name: "HRlink КЭДО"
+  aliases: ["hrlink", "hr-link", "эйчарлинк", "хрлинк", "кэдо hrlink", "кадровый эдо hrlink"]
+  category: kedo_hr_docs
+  extra_categories: []
+  summary: "Специализированная платформа кадрового электронного документооборота (КЭДО) с интеграцией с 1С:ЗУП, выпуском УНЭП и маршрутами согласования."
+  editions:
+    - {id: cloud, name: "Облачная (SaaS)", aliases: [облако, saas]}
+    - {id: onprem, name: "On-Premise", aliases: [on-premise, локальная, корп]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["50-99", "100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["перевод кадровых документов в электронный вид", "подписание трудовых договоров и приказов", "интеграция кэдо с 1с зуп"]
+  roles: [hr_manager, legal, it_director]
+  industries: [mid, enterprise, retail, it]
+  formats: [pdf, xml]
+  analogs: [vk_hr_tek, onec_kedo, sbis_saby, directum_rx]
+  replaces: []
+  price_rub: {unit: user_year, low: 450, typical: 750, high: 1200}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "HRlink КЭДО Лицензия на 100 сотрудников на 12 месяцев"
+  confidence: high
+
+- id: vk_hr_tek
+  vendor: vk_tech
+  name: "VK HR Tek (КЭДО)"
+  aliases: ["vk hr tek", "вк хр тек", "вк кэдо", "vk кэдо", "vk tech кэдо"]
+  category: kedo_hr_docs
+  extra_categories: []
+  summary: "Корпоративная платформа кадрового электронного документооборота и HR-сервисов от VK Tech (облако и on-premise)."
+  editions:
+    - {id: saas, name: "SaaS", aliases: [облако, saas]}
+    - {id: onprem, name: "On-Premise", aliases: [локальная, onprem]}
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: ["100-499", "500-999", "1000+"]
+    packs: []
+    audiences: [business, gov]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративный кэдо", "подписание кадровых документов по тк рф", "единое окно hr-заявок"]
+  roles: [hr_manager, it_director]
+  industries: [mid, enterprise, retail, finance]
+  formats: [pdf, xml]
+  analogs: [hrlink_kedo, onec_kedo, sbis_saby]
+  replaces: []
+  price_rub: {unit: user_year, low: 500, typical: 800, high: 1300}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "VK HR Tek Подписка на 250 пользователей 12 месяцев"
+  confidence: high
+
+- id: consultant_plus
+  vendor: consultant_plus
+  name: "КонсультантПлюс"
+  aliases: ["консультантплюс", "консультант плюс", "консультант", "спс консультант", "consultant plus"]
+  category: counterparty_legal_info
+  extra_categories: []
+  summary: "Крупнейшая российская справочно-правовая система: законодательство РФ, судебная практика, готовые решения для юристов и бухгалтеров."
+  editions:
+    - {id: lawyer, name: "Комплект Юрист", aliases: [юрист]}
+    - {id: accountant, name: "Комплект Бухгалтер", aliases: [бухгалтер]}
+    - {id: budget, name: "Комплект Бюджетные организации", aliases: [бюджет]}
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["проверка законов и кодексов рф", "судебная практика", "консультации по налогам и бухучёту"]
+  roles: [legal, accountant, cfo]
+  industries: [smb, mid, enterprise, gov]
+  formats: [pdf, docx, rtf]
+  analogs: [garant_system]
+  replaces: []
+  price_rub: {unit: user_year, low: 36000, typical: 96000, high: 240000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "КонсультантПлюс Комплект Оптимальный (поставляется через сеть РИЦ)"
+  confidence: high
+
+- id: garant_system
+  vendor: garant
+  name: "Информационно-правовое обеспечение ГАРАНТ"
+  aliases: ["гарант", "система гарант", "спс гарант", "garant", "гарант аэро"]
+  category: counterparty_legal_info
+  extra_categories: []
+  summary: "Российская справочно-правовая система ГАРАНТ с правовой базой, конструктором договоров и сервисом проверки контрагентов."
+  editions:
+    - {id: accountant, name: "ГАРАНТ-Бухгалтер", aliases: [бухгалтер]}
+    - {id: lawyer, name: "ГАРАНТ-Юрист", aliases: [юрист]}
+    - {id: enterprise, name: "ГАРАНТ-Предприятие", aliases: [предприятие, корп]}
+  versions: []
+  platforms: [web, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["справочно-правовая база", "конструктор правовых документов", "энциклопедия решений для бухгалтера"]
+  roles: [legal, accountant]
+  industries: [smb, mid, enterprise, gov]
+  formats: [pdf, docx]
+  analogs: [consultant_plus]
+  replaces: []
+  price_rub: {unit: user_year, low: 30000, typical: 84000, high: 200000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "ГАРАНТ-Предприятие Интернет-версия на 12 мес"
+  confidence: high
+
+- id: spark_interfax
+  vendor: interfax_spark
+  name: "СПАРК-Интерфакс"
+  aliases: ["спарк", "спарк интерфакс", "spark interfax", "проверка контрагентов спарк"]
+  category: counterparty_legal_info
+  extra_categories: []
+  summary: "Аналитическая система Группы Интерфакс для оценки кредитных, налоговых и комплаенс-рисков контрагентов и бенефициаров."
+  editions:
+    - {id: web, name: "СПАРК Web", aliases: [web, базовый]}
+    - {id: api, name: "СПАРК API", aliases: [api, интеграция]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["проверка контрагентов и бенефициаров", "комплаенс и финмониторинг", "скоринг компаний"]
+  roles: [security_officer, legal, cfo, procurement]
+  industries: [mid, enterprise, finance, gov]
+  formats: [pdf, xlsx, xml]
+  analogs: [kontur_focus, sbis_saby]
+  replaces: []
+  price_rub: {unit: company_year, low: 90000, typical: 180000, high: 450000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "СПАРК-Интерфакс Подписка на 12 мес (прямые контракты)"
+  confidence: high
+
+- id: atol_frontol
+  vendor: atol_frontol
+  name: "АТОЛ Frontol 6"
+  aliases: ["frontol", "фронтол", "фронтол 6", "атол фронтол", "frontol 6", "кассовое по атол"]
+  category: retail_pos_cash
+  extra_categories: []
+  summary: "Профессиональное кассовое ПО (Front-office) для розничных сетей, супермаркетов и HoReCa с поддержкой 54-ФЗ, ЕГАИС и маркировки."
+  editions:
+    - {id: start, name: "Frontol 6 Start", aliases: [start, старт]}
+    - {id: retail, name: "Frontol 6 Торговля", aliases: [торговля, retail]}
+    - {id: cafe, name: "Frontol 6 Кафе", aliases: [кафе, cafe]}
+  versions: ["6"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["рабочее место кассира", "работа с маркировкой и егаис", "программы лояльности на кассе"]
+  roles: [sysadmin, smb_owner]
+  industries: [retail, horeca]
+  formats: []
+  analogs: [onec_retail, iiko_rest, r_keeper]
+  replaces: []
+  price_rub: {unit: device, low: 5500, typical: 14500, high: 28000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "АТОЛ Frontol 6 Торговля (электронная лицензия на 1 рабочее место)"
+    - "АТОЛ Frontol 6 Подписка Frontol Release Updater на 12 мес"
+  confidence: high
+
+- id: iiko_rest
+  vendor: iiko
+  name: "iiko (автоматизация ресторанов)"
+  aliases: ["iiko", "айко", "айка", "iiko cloud", "по для ресторанов iiko"]
+  category: retail_pos_cash
+  extra_categories: [trade_warehouse]
+  summary: "Комплексная система автоматизации ресторанов, кафе, баров и доставки еды: касса, склад, техкарты, кухня и аналитика."
+  editions:
+    - {id: start, name: "iikoCloud Start", aliases: [start, старт]}
+    - {id: pro, name: "iikoCloud Pro", aliases: [pro, проф]}
+    - {id: enterprise, name: "iikoCloud Enterprise", aliases: [enterprise, сеть]}
+  versions: []
+  platforms: [windows, web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [site, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация кафе и ресторана", "учёт техкарт и списаний продуктов", "интеграция с доставкой еды"]
+  roles: [smb_owner]
+  industries: [horeca]
+  formats: []
+  analogs: [r_keeper, atol_frontol]
+  replaces: []
+  price_rub: {unit: site_year, low: 60000, typical: 110000, high: 240000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "iikoCloud Pro на 1 заведение на 12 месяцев (партнёрская сеть HoReCa)"
+  confidence: high
+
+- id: r_keeper
+  vendor: ucs_rkeeper
+  name: "r_keeper (автоматизация общепита)"
+  aliases: ["r_keeper", "rkeeper", "ркипер", "р-кипер", "аркипер", "ucs r_keeper"]
+  category: retail_pos_cash
+  extra_categories: [trade_warehouse]
+  summary: "Российская система автоматизации ресторанов, фастфуда и сетей общественного питания: кассы, киоски самообслуживания, склад StoreHouse."
+  editions:
+    - {id: lite, name: "r_keeper Lite", aliases: [lite, лайт]}
+    - {id: pro, name: "r_keeper 7 Pro", aliases: [pro, "7"]}
+  versions: ["7"]
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [site, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация ресторана и фастфуда", "киоски самообслуживания", "учёт кухни и бара"]
+  roles: [smb_owner]
+  industries: [horeca]
+  formats: []
+  analogs: [iiko_rest, atol_frontol]
+  replaces: []
+  price_rub: {unit: site_year, low: 55000, typical: 100000, high: 220000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "r_keeper 7 Кассовая станция (через дилеров UCS)"
+  confidence: high

@@ -1,0 +1,457 @@
+# Семейства продуктов: Облачные платформы (IaaS / PaaS / Private Cloud)
+# Схема: kb/SCHEMA.md
+
+- id: yandex_cloud
+  vendor: yandex
+  name: "Yandex Cloud (IaaS / PaaS / 152-ФЗ)"
+  aliases: ["yandex cloud", "яндекс клауд", "яндекс облако", "я.облако", "облако яндекс", "yc iaas"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Крупнейшая российская публичная облачная платформа (IaaS/PaaS): виртуальные машины, Managed Kubernetes, Managed PostgreSQL/ClickHouse, S3 и контур 152-ФЗ."
+  editions:
+    - {id: payg, name: "Pay-as-you-go / Предоплаченный пакет (Commit)", aliases: [payg, commit, предоплата]}
+    - {id: fz152, name: "Аттестованный сегмент 152-ФЗ (УЗ-1)", aliases: [152-фз, уз-1]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other, vm, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда виртуальных серверов в российском облаке", "размещение систем с персональными данными по 152-фз", "импортозамещение aws и azure", "управляемый kubernetes и бд в облаке"]
+  roles: [devops, it_director, sysadmin, architect_it]
+  industries: [it, retail, ecommerce, finance, smb, enterprise]
+  formats: []
+  analogs: [vk_cloud, cloud_ru_evolution, selectel_cloud, mts_cloud_mws, softline_cloud_iaas]
+  replaces: [aws_cloud, microsoft_azure, google_cloud_platform]
+  price_rub: {unit: company_year, low: 120000, typical: 1200000, high: 12000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Yandex Cloud. Предоплаченный пакет облачных ресурсов (12 мес)"
+  confidence: high
+
+- id: vk_cloud
+  vendor: vk_tech
+  name: "VK Cloud (IaaS / PaaS / 152-ФЗ)"
+  aliases: ["vk cloud", "вк клауд", "вк облако", "mcs", "mail cloud solutions", "облако vk"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Российская облачная платформа от VK Tech на базе OpenStack и Kubernetes: виртуальные ЦОД, DBaaS, S3, ML-инструменты и аттестованный контур 152-ФЗ."
+  editions:
+    - {id: public, name: "VK Cloud Public", aliases: [public, публичное]}
+    - {id: fz152, name: "VK Cloud 152-ФЗ (УЗ-1)", aliases: [152-фз, уз-1]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other, vm, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда облачной инфраструктуры iaas", "перенос нагрузок из aws и azure в рф", "облачный контур для 1с и корпоративных порталов"]
+  roles: [devops, it_director, sysadmin]
+  industries: [enterprise, retail, finance, it, mid]
+  formats: []
+  analogs: [yandex_cloud, cloud_ru_evolution, selectel_cloud, mts_cloud_mws]
+  replaces: [aws_cloud, microsoft_azure, google_cloud_platform]
+  price_rub: {unit: company_year, low: 120000, typical: 1000000, high: 10000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "VK Cloud. Пакет облачных вычислений IaaS/PaaS (12 мес)"
+  confidence: high
+
+- id: vk_private_cloud
+  vendor: vk_tech
+  name: "VK Private Cloud (Частное облако On-Premise)"
+  aliases: ["vk private cloud", "вк прайвет клауд", "частное облако vk", "vk cloud on-premise"]
+  category: private_cloud_platforms
+  extra_categories: []
+  summary: "Коробочная российская платформа построения частного и гибридного облака на собственных серверах заказчика (OpenStack + K8s + PaaS)."
+  editions:
+    - {id: enterprise, name: "VK Private Cloud Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription]
+    metrics: [core, cpu, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение частного корпоративного облака в своём цод", "импортозамещение vmware cloud foundation и azure stack"]
+  roles: [it_director, architect_it, devops]
+  industries: [enterprise, finance, telecom, gov, energy]
+  formats: []
+  analogs: [basis_cloud_platform, astra_brest]
+  replaces: [vmware_vsphere, microsoft_azure]
+  price_rub: {unit: cpu_year, low: 250000, typical: 500000, high: 1200000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "VK Private Cloud. Подписка на 1 физический процессор (12 мес)"
+  confidence: high
+
+- id: cloud_ru_evolution
+  vendor: cloud_ru
+  name: "Cloud.ru Evolution / Advanced (IaaS / PaaS / AI)"
+  aliases: ["cloud.ru", "клауд ру", "sbercloud", "сберклауд", "cloud ru evolution", "облако сбер"]
+  category: iaas_cloud_platforms
+  extra_categories: [private_cloud_platforms]
+  summary: "Крупнейший российский облачный провайдер корпоративного уровня (бывш. SberCloud): IaaS, GPU-кластеры для ИИ, DBaaS, Kubernetes, контуры 152-ФЗ и ГИС."
+  editions:
+    - {id: evolution, name: "Cloud.ru Evolution (собственная российская платформа)", aliases: [evolution]}
+    - {id: advanced, name: "Cloud.ru Advanced / VMware / Bare Metal", aliases: [advanced, bare metal]}
+    - {id: stack, name: "Cloud.ru Evolution Stack (частное облако)", aliases: [stack, onprem]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid, onprem]
+  license:
+    models: [subscription]
+    metrics: [other, vm, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда защищённого корпоративного облака 152-фз и гис", "облачные gpu для обучения нейросетей", "замена aws и azure для крупного бизнеса"]
+  roles: [it_director, devops, architect_it]
+  industries: [enterprise, finance, retail, gov, telecom]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, mts_cloud_mws, selectel_cloud]
+  replaces: [aws_cloud, microsoft_azure, google_cloud_platform]
+  price_rub: {unit: company_year, low: 150000, typical: 1500000, high: 15000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Cloud.ru Evolution. Контракт на облачные ресурсы IaaS/PaaS (12 мес)"
+  confidence: high
+
+- id: selectel_cloud
+  vendor: selectel
+  name: "Selectel (Облачная платформа / Выделенные серверы / S3)"
+  aliases: ["selectel", "селектел", "облако селектел", "selectel iaas", "selectel s3", "выделенные серверы selectel"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Ведущий независимый российский провайдер облачной инфраструктуры, выделенных серверов (Bare Metal), GPU, S3-хранилища и Managed Kubernetes."
+  editions:
+    - {id: cloud, name: "Облачные серверы и Kubernetes", aliases: [облако, k8s]}
+    - {id: dedicated, name: "Выделенные серверы (Bare Metal)", aliases: [dedicated, bare metal]}
+    - {id: fz152, name: "Аттестованный сегмент 152-ФЗ", aliases: [152-фз]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other, server, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда виртуальных и выделенных серверов в рф", "облачное хранилище s3 для бэкапов", "размещение информационных систем по 152-фз"]
+  roles: [sysadmin, devops, it_director]
+  industries: [it, ecommerce, smb, mid, enterprise]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, softline_cloud_iaas]
+  replaces: [aws_cloud, microsoft_azure, google_cloud_platform]
+  price_rub: {unit: company_year, low: 100000, typical: 900000, high: 9000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Selectel Облачная платформа IaaS (годовой депозит ресурсов)"
+  confidence: high
+
+- id: selectel_private_cloud
+  vendor: selectel
+  name: "Selectel Частное облако (Dedicated Private Cloud)"
+  aliases: ["selectel частное облако", "selectel private cloud", "выделенное облако selectel"]
+  category: private_cloud_platforms
+  extra_categories: []
+  summary: "Изолированный кластер частного облака на выделенных серверах Selectel в российских ЦОД Tier III с управлением и аттестацией под 152-ФЗ/PCI DSS."
+  editions:
+    - {id: dedicated, name: "Частное облако на базе OpenStack / российской виртуализации", aliases: [openstack, выделенное]}
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [hybrid, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["изолированное частное облако без капитальных затрат на железо", "аттестация по 152-фз и pci dss"]
+  roles: [it_director, architect_it]
+  industries: [finance, enterprise, healthcare, retail]
+  formats: []
+  analogs: [softline_cloud_iaas, vk_private_cloud]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: company_year, low: 1200000, typical: 3600000, high: 12000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Selectel Частное облако (кластер 3 узла, 12 мес)"
+  confidence: high
+
+- id: mts_cloud_mws
+  vendor: mts_web_services
+  name: "MWS Cloud (МТС Web Services — IaaS / PaaS / 152-ФЗ)"
+  aliases: ["mws", "mts cloud", "мтс клауд", "мтс облако", "cloudmts", "mts web services"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Облачная платформа экосистемы МТС (бывш. #CloudMTS) с сетью геораспределённых ЦОД в РФ, защищённым сегментом 152-ФЗ, GPU-облаком и DRaaS."
+  editions:
+    - {id: iaas, name: "MWS Virtual Infrastructure (IaaS)", aliases: [iaas]}
+    - {id: fz152, name: "MWS Cloud 152-ФЗ (УЗ-1 / ГИС)", aliases: [152-фз, гис]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other, vm, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда облачных ресурсов в цод мтс", "аварийное восстановление draas", "аттестованное облако 152-фз"]
+  roles: [it_director, devops, sysadmin]
+  industries: [enterprise, telecom, retail, finance, gov]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, selectel_cloud]
+  replaces: [aws_cloud, microsoft_azure]
+  price_rub: {unit: company_year, low: 120000, typical: 1200000, high: 12000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "MWS Cloud IaaS 152-ФЗ (годовой пакет ресурсов)"
+  confidence: high
+
+- id: softline_cloud_iaas
+  vendor: softline_cloud
+  name: "Softline Cloud (IaaS / 152-ФЗ / ГИС / Импортонезависимое облако)"
+  aliases: ["softline cloud", "софтлайн клауд", "облако софтлайн", "облако softline", "softline iaas"]
+  category: iaas_cloud_platforms
+  extra_categories: [private_cloud_platforms]
+  summary: "Облачная инфраструктура ГК Softline: публичное и частное облако в РФ, аттестованные сегменты 152-ФЗ (УЗ-1) и ГИС К1, облако на российской виртуализации и VDI/DRaaS."
+  editions:
+    - {id: public, name: "Публичное облако IaaS", aliases: [публичное, iaas]}
+    - {id: secure, name: "Защищённое облако 152-ФЗ / ГИС", aliases: [152-фз, гис, защищенное]}
+    - {id: ru_stack, name: "Облако на российском стеке виртуализации", aliases: [российский стек, импортонезависимое]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other, vm, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, med, edu]
+  delivery: [service]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["аренда защищённого облака 152-фз и гис под ключ", "размещение 1с и корпоративных систем в облаке", "резервная площадка draas и облачный vdi"]
+  roles: [it_director, sysadmin, security_officer]
+  industries: [mid, enterprise, gov, healthcare, retail, finance]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, selectel_cloud, mts_cloud_mws]
+  replaces: [aws_cloud, microsoft_azure, vmware_vsphere]
+  price_rub: {unit: company_year, low: 100000, typical: 950000, high: 10000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Softline Cloud. Защищённый виртуальный ЦОД 152-ФЗ (12 месяцев)"
+  confidence: high
+
+- id: basis_cloud_platform
+  vendor: basis_virt
+  name: "Базис.Cloud (Платформа управления частным и гибридным облаком)"
+  aliases: ["базис клауд", "basis cloud", "базис.cloud", "cmp базис"]
+  category: private_cloud_platforms
+  extra_categories: []
+  summary: "Российская Cloud Management Platform (CMP) для построения корпоративных и сервисных облаков с порталом самообслуживания, биллингом и мультитенантностью."
+  editions:
+    - {id: enterprise, name: "Базис.Cloud Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, hybrid]
+  license:
+    models: [subscription, perpetual]
+    metrics: [cpu, core, vm]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение частного облака с порталом самообслуживания", "импортозамещение vmware vcloud director и aria automation"]
+  roles: [it_director, architect_it, devops]
+  industries: [enterprise, telecom, finance, gov]
+  formats: []
+  analogs: [vk_private_cloud, astra_brest]
+  replaces: [vmware_vsphere]
+  price_rub: {unit: cpu_year, low: 200000, typical: 420000, high: 900000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Базис.Cloud. Лицензия на 1 процессорный сокет (12 мес)"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ ОБЛАЧНЫЕ ПЛАТФОРМЫ (catalog: no) ===
+
+- id: aws_cloud
+  vendor: aws
+  name: "Amazon Web Services (AWS)"
+  aliases: ["aws", "авс", "amazon web services", "amazon aws", "амазон облако", "aws ec2", "aws s3"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Крупнейший мировой облачный провайдер (прекратил регистрацию и обслуживание клиентов из России; не соответствует 152-ФЗ по локализации ПДн)."
+  editions:
+    - {id: standard, name: "AWS Cloud Services", aliases: [ec2, s3, rds]}
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["миграция инфраструктуры из aws в российские облака", "поиск аналога aws в россии с 152-фз"]
+  roles: [devops, it_director, architect_it]
+  industries: [it, enterprise, ecommerce]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, selectel_cloud, softline_cloud_iaas]
+  replaces: []
+  price_rub: {unit: company_year, low: 200000, typical: 2000000, high: 20000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Amazon Web Services IaaS/PaaS (недоступно для юрлиц РФ)"
+  confidence: high
+
+- id: microsoft_azure
+  vendor: microsoft
+  name: "Microsoft Azure"
+  aliases: ["azure", "азур", "ажур", "microsoft azure", "майкрософт азур", "azure cloud"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Глобальная облачная платформа Microsoft (официально недоступна для корпоративных заказчиков в России)."
+  editions:
+    - {id: standard, name: "Microsoft Azure Cloud", aliases: [iaas, paas]}
+  versions: []
+  platforms: [web, windows_server, linux]
+  compat_ru_os: []
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["миграция с microsoft azure в российские облака"]
+  roles: [devops, it_director, architect_it]
+  industries: [enterprise, it, finance]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, softline_cloud_iaas, mts_cloud_mws]
+  replaces: []
+  price_rub: {unit: company_year, low: 200000, typical: 2000000, high: 20000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Azure Enterprise Agreement (вендор ушёл из РФ)"
+  confidence: high
+
+- id: google_cloud_platform
+  vendor: google
+  name: "Google Cloud Platform (GCP)"
+  aliases: ["gcp", "google cloud", "гугл клауд", "гугл облако", "bigquery", "google cloud platform"]
+  category: iaas_cloud_platforms
+  extra_categories: []
+  summary: "Облачная платформа Google (приостановила обслуживание корпоративных аккаунтов из России)."
+  editions:
+    - {id: standard, name: "Google Cloud Platform", aliases: [gcp]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["миграция с google cloud и bigquery в российские облака"]
+  roles: [devops, data_scientist, it_director]
+  industries: [it, ecommerce, media]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, selectel_cloud]
+  replaces: []
+  price_rub: {unit: company_year, low: 200000, typical: 1800000, high: 15000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Google Cloud Platform Billing Account (недоступно в РФ)"
+  confidence: high

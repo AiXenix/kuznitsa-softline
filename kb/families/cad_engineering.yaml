@@ -1,0 +1,1666 @@
+# Семейства продуктов: САПР, 2D/3D черчение, MCAD/PLM, BIM, CAE, ECAD, ГИС, сметы и геодезия
+# Схема: kb/SCHEMA.md
+
+- id: nanocad_platform
+  vendor: nanosoft
+  name: "Платформа nanoCAD"
+  aliases: ["nanocad", "нанокад", "нано кад", "nanocad 24", "nanocad 25", "нанокад платформа", "российский autocad", "nano cad"]
+  category: cad_2d
+  extra_categories: [mcad_plm, bim_aec]
+  summary: "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр)."
+  editions:
+    - {id: base, name: "Платформа nanoCAD (базовая)", aliases: [базовая, платформа, dwg]}
+    - {id: spds, name: "Модуль СПДС", aliases: [спдс, spds]}
+    - {id: mechanica, name: "Модуль Механика", aliases: [механика, mechanica]}
+    - {id: topoplan, name: "Модуль Топоплан", aliases: [топоплан, topoplan]}
+    - {id: pro, name: "Конфигурация Pro", aliases: [pro, проф]}
+  versions: ["23", "24", "25"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, upgrade, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["открытие и редактирование dwg", "импортозамещение autocad", "выпуск чертежей по спдс и ескд", "работа с облаками точек"]
+  roles: [cad_engineer, architect, design_engineer]
+  industries: [construction, manufacturing, energy, oil_gas, gov]
+  formats: [dwg, dxf, ifc, step, pdf]
+  analogs: [zwcad, kompas_3d]
+  replaces: [autocad]
+  price_rub: {unit: seat_year, low: 28000, typical: 52000, high: 145000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Платформа nanoCAD 24. Локальная лицензия (подписка на 1 год)"
+    - "Платформа nanoCAD 24 + модуль СПДС. Сетевая лицензия (1 год)"
+    - "Платформа nanoCAD 24. Постоянная лицензия + подписка на 1 год"
+  confidence: high
+
+- id: nanocad_bim
+  vendor: nanosoft
+  name: "nanoCAD BIM (Конструкции / Электро / ВК / Отопление / Вентиляция)"
+  aliases: ["nanocad bim", "нанокад бим", "нанокад электро", "nanocad bim конструкции", "nanocad bim вк", "nanocad bim вентиляция", "нанокад опс"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Линейка специализированных BIM-продуктов Нанософт для информационного моделирования строительных конструкций и инженерных сетей (ЭОМ, СКС, ОПС, ВК, ОВ)."
+  editions:
+    - {id: electro, name: "BIM Электро", aliases: [электро, эом]}
+    - {id: structures, name: "BIM Конструкции", aliases: [конструкции, кж, км]}
+    - {id: vk, name: "BIM ВК", aliases: [вк, водоснабжение]}
+    - {id: hvac, name: "BIM Отопление / Вентиляция", aliases: [отопление, вентиляция, ов]}
+    - {id: ops, name: "BIM ОПС / СКС", aliases: [опс, скс]}
+  versions: ["24", "25"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["bim-проектирование инженерных сетей", "замена autodesk revit mep", "выпуск спецификаций и расчёты электросетей по спдс"]
+  roles: [bim_manager, architect, cad_engineer]
+  industries: [construction, energy, design_institute]
+  formats: [dwg, ifc]
+  analogs: [renga_bim, model_studio_cs]
+  replaces: [autodesk_revit]
+  price_rub: {unit: seat_year, low: 55000, typical: 95000, high: 190000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "nanoCAD BIM Электро. Локальная лицензия на 1 год"
+    - "nanoCAD BIM Конструкции. Сетевая лицензия на 1 год"
+  confidence: high
+
+- id: model_studio_cs
+  vendor: csoft_development
+  name: "Model Studio CS и CADLib Модель и Архив"
+  aliases: ["model studio cs", "модел студио", "cadlib", "кадлиб", "csoft bim", "сисофт модел студио"]
+  category: bim_aec
+  extra_categories: [cad_specialized]
+  summary: "Российский программный комплекс промышленного 3D/TIM-проектирования (трубопроводы, ЛЭП, ОРУ, строительные решения) со средой общих данных CADLib."
+  editions:
+    - {id: pipelines, name: "Трубопроводы", aliases: [трубопроводы]}
+    - {id: building, name: "Строительные решения", aliases: [строительные решения]}
+    - {id: cadlib, name: "CADLib Модель и Архив", aliases: [cadlib, сод, сводная модель]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["промышленное tim/bim-проектирование", "замена aveva pdms smartplant и navisworks", "сводная 3d-модель и проверка коллизий"]
+  roles: [bim_manager, cad_engineer]
+  industries: [oil_gas, energy, construction, design_institute]
+  formats: [dwg, ifc]
+  analogs: [nanocad_bim, renga_bim, pilot_bim]
+  replaces: [autodesk_navisworks, autodesk_revit]
+  price_rub: {unit: seat_year, low: 110000, typical: 190000, high: 380000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Model Studio CS Строительные решения (локальная лицензия на 1 год)"
+    - "CADLib Модель и Архив. Сетевая лицензия"
+  confidence: high
+
+- id: zwcad
+  vendor: zwsoft
+  name: "ZWCAD"
+  aliases: ["zwcad", "звкад", "зв кад", "zw cad", "zwcad 2025", "zwcad standard", "zwcad pro"]
+  category: cad_2d
+  extra_categories: []
+  summary: "Быстрая 2D/3D САПР-платформа от ZWSOFT с интерфейсом и командной строкой, максимально близкими к AutoCAD, и полной поддержкой DWG."
+  editions:
+    - {id: standard, name: "ZWCAD Standard", aliases: [standard, стандарт]}
+    - {id: pro, name: "ZWCAD Professional", aliases: [pro, professional, проф]}
+    - {id: mfg, name: "ZWCAD MFG (Mechanical)", aliases: [mfg, mechanical]}
+  versions: ["2024", "2025"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["доступная бессрочная замена autocad", "открытие и редактирование чертежей dwg", "работа с lisp-скриптами autocad"]
+  roles: [cad_engineer, architect]
+  industries: [construction, manufacturing, smb]
+  formats: [dwg, dxf, pdf]
+  analogs: [nanocad_platform, kompas_3d]
+  replaces: [autocad]
+  price_rub: {unit: seat, low: 65000, typical: 98000, high: 155000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ZWCAD 2025 Standard. Бессрочная локальная лицензия"
+    - "ZWCAD 2025 Professional. Сетевая бессрочная лицензия"
+  confidence: high
+
+- id: kompas_3d
+  vendor: ascon
+  name: "КОМПАС-3D и КОМПАС-График"
+  aliases: ["компас", "компас 3д", "компас 3d", "компас-3d", "компас график", "kompas 3d", "компас v22", "компас v23", "аскон компас"]
+  category: mcad_plm
+  extra_categories: [cad_2d]
+  summary: "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС."
+  editions:
+    - {id: grafik, name: "КОМПАС-График (2D)", aliases: [график, 2d]}
+    - {id: k3d, name: "КОМПАС-3D (базовый)", aliases: [3d, 3д, базовый]}
+    - {id: mash, name: "КОМПАС-3D Машиностроительная конфигурация", aliases: [машиностроительная, машконфигурация, комплекты]}
+    - {id: build, name: "КОМПАС-Строитель", aliases: [строитель, спдс]}
+  versions: ["v22", "v23"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, upgrade, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu, home]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["3d-проектирование деталей и сборок", "выпуск конструкторской документации по ескд", "импортозамещение solidworks и inventor"]
+  roles: [design_engineer, cad_engineer, technologist]
+  industries: [manufacturing, aerospace, defense, energy, edu]
+  formats: [m3d, a3d, cdw, step, iges, dwg, dxf, stl]
+  analogs: [t_flex_cad, nanocad_platform]
+  replaces: [solidworks, autodesk_inventor, siemens_solid_edge, autocad]
+  price_rub: {unit: seat, low: 85000, typical: 225000, high: 480000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "КОМПАС-3D v23. Базовая комплектация (бессрочная локальная лицензия)"
+    - "КОМПАС-График v23 (локальная лицензия)"
+    - "КОМПАС-3D v23 Машиностроительная конфигурация (сетевая лицензия)"
+  confidence: high
+
+- id: pilot_bim
+  vendor: ascon
+  name: "Pilot-BIM / Pilot-ICE"
+  aliases: ["pilot bim", "пилот бим", "pilot-ice", "пилот айс", "сод аскон", "pilot-ecm"]
+  category: bim_aec
+  extra_categories: [sed_ecm]
+  summary: "Российская среда общих данных (СОД) для проектных и строительных компаний: автоматическая сборка консолидированной BIM-модели, проверка коллизий и техдокументооборот."
+  editions:
+    - {id: ice, name: "Pilot-ICE Enterprise", aliases: [ice, enterprise]}
+    - {id: bim, name: "Pilot-BIM", aliases: [bim]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent, user]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["среда общих данных сод для стройки", "автосборка и проверка коллизий ifc", "импортозамещение autodesk bim 360 и navisworks"]
+  roles: [bim_manager, architect, project_manager]
+  industries: [construction, design_institute, gov]
+  formats: [ifc, pdf, dwg]
+  analogs: [model_studio_cs]
+  replaces: [autodesk_navisworks]
+  price_rub: {unit: seat, low: 45000, typical: 85000, high: 160000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Pilot-BIM. Рабочее место (конкурентная лицензия)"
+  confidence: high
+
+- id: lotsman_plm
+  vendor: ascon
+  name: "ЛОЦМАН:PLM и САПР ТП ВЕРТИКАЛЬ"
+  aliases: ["лоцман plm", "лоцман:plm", "lotsman plm", "аскон вертикаль", "полином мдм", "pdm аскон"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Российский комплекс управления жизненным циклом изделия (PLM/PDM) и технологической подготовки производства (CAPP) от АСКОН."
+  editions:
+    - {id: lotsman, name: "ЛОЦМАН:PLM", aliases: [лоцман, plm, pdm]}
+    - {id: vertical, name: "ВЕРТИКАЛЬ (САПР ТП)", aliases: [вертикаль, сапр тп]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [concurrent, user]
+    terms_months: []
+    actions: [new, support, addon]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["управление инженерными данными pdm/plm", "техподготовка производства по естд", "импортозамещение siemens teamcenter и ptc windchill"]
+  roles: [design_engineer, technologist, it_director]
+  industries: [manufacturing, defense, aerospace, enterprise]
+  formats: [xml, step, pdf]
+  analogs: [t_flex_cad]
+  replaces: [siemens_nx, catia]
+  price_rub: {unit: seat, low: 95000, typical: 180000, high: 350000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ЛОЦМАН:PLM. Клиентская лицензия (конкурентная)"
+  confidence: high
+
+- id: t_flex_cad
+  vendor: top_systems
+  name: "T-FLEX CAD / T-FLEX PLM"
+  aliases: ["t-flex", "т-флекс", "тфлекс", "tflex cad", "t-flex docs", "топ системы t-flex"]
+  category: mcad_plm
+  extra_categories: [cae_simulation]
+  summary: "Профессиональная российская параметрическая 3D-САПР тяжёлого/среднего класса и платформа T-FLEX PLM (DOCs, Технология, Анализ, ЧПУ)."
+  editions:
+    - {id: cad2d, name: "T-FLEX CAD 2D+", aliases: [2d]}
+    - {id: cad3d, name: "T-FLEX CAD 3D", aliases: [3d]}
+    - {id: docs, name: "T-FLEX DOCs (PLM/PDM)", aliases: [docs, plm]}
+  versions: ["17", "18"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, upgrade, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["сложное параметрическое 3d-моделирование", "импортозамещение siemens nx catia и solidworks", "комплексная plm-система предприятия"]
+  roles: [design_engineer, technologist, cad_engineer]
+  industries: [manufacturing, aerospace, defense, energy]
+  formats: [grb, step, iges, dwg, parasolid]
+  analogs: [kompas_3d, lotsman_plm]
+  replaces: [solidworks, siemens_nx, catia, autodesk_inventor]
+  price_rub: {unit: seat, low: 120000, typical: 260000, high: 550000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "T-FLEX CAD 17 (полная 3D-версия, локальная лицензия)"
+    - "T-FLEX DOCs 17. Клиентская лицензия"
+  confidence: high
+
+- id: renga_bim
+  vendor: renga_software
+  name: "Renga (Professional / Standard)"
+  aliases: ["renga", "ренга", "ренга бим", "renga professional", "renga standard", "российский revit", "российский archicad"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Ведущая российская BIM-система для комплексного архитектурно-строительного проектирования (АР, КР, ОВ, ВК, ЭОМ) с совместной работой в реальном времени."
+  editions:
+    - {id: standard, name: "Renga Standard", aliases: [standard, стандарт]}
+    - {id: professional, name: "Renga Professional (совместная работа)", aliases: [professional, проф, совместная работа]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["архитектурное и конструктивное bim-проектирование", "импортозамещение autodesk revit и archicad", "выгрузка информационной модели в ifc для экспертизы"]
+  roles: [architect, bim_manager, design_engineer]
+  industries: [construction, design_institute, real_estate, gov]
+  formats: [rnp, ifc, dwg, dxf, obj, pdf]
+  analogs: [nanocad_bim, model_studio_cs]
+  replaces: [autodesk_revit, archicad]
+  price_rub: {unit: seat, low: 95000, typical: 195000, high: 320000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Renga Professional. Постоянная сетевая лицензия"
+    - "Renga Professional. Временная лицензия на 1 год"
+  confidence: high
+
+- id: sprutcam_x
+  vendor: sprut_cam
+  name: "СПРУТКАМ (SprutCAM X)"
+  aliases: ["спруткам", "sprutcam", "sprutcam x", "cam система рф", "чпу спруткам"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Российская CAM-система для разработки управляющих программ для многоосевых станков с ЧПУ и промышленных роботов."
+  editions:
+    - {id: expert, name: "SprutCAM X Expert", aliases: [expert]}
+    - {id: robot, name: "SprutCAM X Robot", aliases: [robot, роботы]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["программирование станков с чпу", "импортозамещение mastercam powermill и nx cam", "программирование промышленных роботов"]
+  roles: [technologist, cad_engineer]
+  industries: [manufacturing, aerospace, defense]
+  formats: [step, iges, stl, nc]
+  analogs: [t_flex_cad]
+  replaces: [siemens_nx]
+  price_rub: {unit: seat, low: 180000, typical: 380000, high: 750000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СПРУТКАМ (SprutCAM X) Фрезерно-токарная обработка (локальная лицензия)"
+  confidence: high
+
+- id: cae_fidesys
+  vendor: fidesys
+  name: "CAE Fidesys (Фидесис)"
+  aliases: ["fidesys", "фидесис", "cae fidesys", "российский ansys", "прочностной анализ фидесис"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Российский программный комплекс инженерного прочностного анализа (МКЭ/МКСЭ) для линейных, нелинейных, динамических и тепловых расчётов."
+  editions:
+    - {id: standard, name: "Fidesys Standard", aliases: [standard]}
+    - {id: professional, name: "Fidesys Professional", aliases: [professional, pro]}
+    - {id: composite, name: "Fidesys Composite / Dynamics", aliases: [composite, dynamics]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, edu, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["прочностной анализ методом конечных элементов", "импортозамещение ansys mechanical и abaqus", "расчёт композитов и динамики"]
+  roles: [cae_engineer, design_engineer]
+  industries: [manufacturing, oil_gas, aerospace, energy, edu]
+  formats: [step, iges, parasolid, vtk]
+  analogs: [logos_cae, scad_office]
+  replaces: [ansys_suite]
+  price_rub: {unit: seat_year, low: 250000, typical: 550000, high: 1200000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "CAE Fidesys Standard. Годовая лицензия"
+  confidence: high
+
+- id: logos_cae
+  vendor: rosatom_logos
+  name: "Пакет программ ЛОГОС (Росатом)"
+  aliases: ["логос", "логос росатом", "логос прочность", "логос аэрогидро", "логос тепло", "rosatom logos"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Тяжёлый российский пакет инженерного 3D-анализа (CFD аэрогидродинамика, прочность, теплоперенос) от РФЯЦ-ВНИИЭФ (Росатом)."
+  editions:
+    - {id: aerohydro, name: "ЛОГОС Аэро-Гидро (CFD)", aliases: [аэро-гидро, cfd]}
+    - {id: strength, name: "ЛОГОС Прочность", aliases: [прочность]}
+    - {id: heat, name: "ЛОГОС Тепло", aliases: [тепло]}
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [core, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["численное моделирование гидродинамики и прочности", "импортозамещение ansys fluent и star-ccm+", "суперкомпьютерные инженерные расчёты"]
+  roles: [cae_engineer]
+  industries: [aerospace, energy, defense, manufacturing, oil_gas]
+  formats: [step, cgns, vtk]
+  analogs: [cae_fidesys]
+  replaces: [ansys_suite]
+  price_rub: {unit: seat_year, low: 400000, typical: 900000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Пакет программ ЛОГОС Прочность (базовая лицензия на 1 год)"
+  confidence: high
+
+- id: scad_office
+  vendor: scad_soft
+  name: "SCAD Office"
+  aliases: ["scad", "скад", "scad office", "скад офис", "scad++", "расчет строительных конструкций скад"]
+  category: cae_simulation
+  extra_categories: [bim_aec]
+  summary: "Программный комплекс для прочностного расчёта и проектирования строительных металлических, железобетонных и деревянных конструкций по СНиП/СП."
+  editions:
+    - {id: base, name: "SCAD++ Базовая конфигурация", aliases: [базовая, "scad++"]}
+    - {id: full, name: "SCAD Office Полная конфигурация", aliases: [полная, max]}
+  versions: ["21", "23"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, concurrent]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["расчёт строительных конструкций и фундаментов", "проверка армирования и металлоконструкций по сп", "расчёт зданий на сейсмику"]
+  roles: [cae_engineer, design_engineer]
+  industries: [construction, design_institute]
+  formats: [ifc, dxf, spr]
+  analogs: [lira_sapr]
+  replaces: []
+  price_rub: {unit: seat, low: 140000, typical: 280000, high: 450000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "SCAD Office 23.1 Полная конфигурация (локальный ключ)"
+  confidence: high
+
+- id: lira_sapr
+  vendor: lira_soft
+  name: "ЛИРА-САПР (ЛИРА 10)"
+  aliases: ["лира", "лира сапр", "лира 10", "lira sapr", "лира софт", "расчет конструкций лира"]
+  category: cae_simulation
+  extra_categories: [bim_aec]
+  summary: "Профессиональный программный комплекс для конечно-элементного расчёта зданий, сооружений и фундаментов по российским строительным нормам СП."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard]}
+    - {id: pro, name: "PRO", aliases: [pro, проф]}
+    - {id: full, name: "FULL", aliases: [full, полная]}
+  versions: ["2022", "2024"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["расчёт железобетонных и стальных конструкций", "взаимодействие с bim-моделями renga и revit", "расчёт на прогрессирующее обрушение"]
+  roles: [cae_engineer, design_engineer]
+  industries: [construction, design_institute]
+  formats: [ifc, dxf]
+  analogs: [scad_office]
+  replaces: []
+  price_rub: {unit: seat, low: 150000, typical: 320000, high: 580000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ЛИРА-САПР 2024 PRO (локальная лицензия)"
+  confidence: high
+
+- id: delta_design
+  vendor: eremex
+  name: "Delta Design (ЭРЕМЕКС)"
+  aliases: ["delta design", "дельта дизайн", "эремекс", "eremex", "российский altium", "сапр печатных плат рф"]
+  category: ecad_eda
+  extra_categories: []
+  summary: "Ведущая российская САПР электроники и трассировки многослойных печатных плат (ECAD) с редактором схем, SimOne и выпуском КД по ЕСКД."
+  editions:
+    - {id: standard, name: "Delta Design Standard", aliases: [standard]}
+    - {id: pro, name: "Delta Design Professional", aliases: [pro, professional]}
+    - {id: enterprise, name: "Delta Design Enterprise", aliases: [enterprise]}
+  versions: ["4.0"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, support]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["проектирование печатных плат и схем", "импортозамещение altium designer и mentor xpedition", "импорт проектов из altium и p-cad"]
+  roles: [ecad_engineer, design_engineer]
+  industries: [electronics, defense, aerospace, manufacturing]
+  formats: [gerber, odb, step, edif]
+  analogs: []
+  replaces: [altium_designer, eplan_electric]
+  price_rub: {unit: seat, low: 180000, typical: 420000, high: 850000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Delta Design 4.0 Professional (локальная бессрочная лицензия)"
+  confidence: high
+
+- id: simintech
+  vendor: 3v_simintech
+  name: "SimInTech"
+  aliases: ["simintech", "симинтех", "российский simulink", "моделирование сау simintech"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Российская среда динамического моделирования технических систем, автоматического управления и генерации кода для контроллеров (аналог MATLAB Simulink)."
+  editions:
+    - {id: base, name: "Базовая версия", aliases: [базовая]}
+    - {id: pro, name: "Профессиональная + пакеты библиотек", aliases: [проф, библиотеки]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение matlab simulink", "моделирование систем управления и асутп", "автогенерация си-кода для контроллеров"]
+  roles: [cae_engineer, control_engineer]
+  industries: [energy, aerospace, defense, manufacturing, edu]
+  formats: [prt, c]
+  analogs: [engee_platform]
+  replaces: [matlab]
+  price_rub: {unit: seat, low: 120000, typical: 280000, high: 650000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "SimInTech Базовая версия (локальная лицензия)"
+  confidence: high
+
+- id: engee_platform
+  vendor: ritm_engee
+  name: "Engee (Инжиниринговая платформа моделирования)"
+  aliases: ["engee", "энджи", "энжи", "ритм engee", "российский matlab", "замена matlab simulink"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Современная российская инженерная платформа математических вычислений и модельно-ориентированного проектирования (прямой аналог MATLAB/Simulink)."
+  editions:
+    - {id: cloud, name: "Engee Cloud", aliases: [cloud, облако]}
+    - {id: onprem, name: "Engee Enterprise (On-Premise)", aliases: [onprem, enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение matlab и simulink", "импорт моделей simulink", "инженерные вычисления и цифровая обработка сигналов"]
+  roles: [cae_engineer, control_engineer, data_scientist]
+  industries: [aerospace, manufacturing, telecom, energy, edu]
+  formats: [m, slx, jl]
+  analogs: [simintech]
+  replaces: [matlab]
+  price_rub: {unit: user_year, low: 95000, typical: 220000, high: 450000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Engee Enterprise (лицензия на 1 рабочее место на 12 мес)"
+  confidence: high
+
+- id: gis_panorama
+  vendor: kb_panorama
+  name: "ГИС Панорама"
+  aliases: ["гис панорама", "панорама", "кб панорама", "гис оператор", "gis panorama", "гис сервер панорама"]
+  category: gis_mapping
+  extra_categories: []
+  summary: "Ведущая российская геоинформационная система (ГИС) для создания цифровых карт, обработки данных ДЗЗ, кадастра и спецприменений (есть сертификация ФСТЭК/МО)."
+  editions:
+    - {id: mini, name: "ГИС Панорама Мини", aliases: [мини, mini]}
+    - {id: pro, name: "ГИС Панорама (Профессиональная)", aliases: [проф, pro]}
+    - {id: server, name: "ГИС Сервер / GIS WebService SE", aliases: [сервер, webservice]}
+  versions: ["14", "15"]
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, server]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [gov, business, edu]
+  delivery: [media, esd]
+  registry: yes
+  certs: [fstec, mo]
+  use_cases: ["создание и редактирование цифровых карт", "импортозамещение esri arcgis", "геоинформатика в госорганах и силовых ведомствах"]
+  roles: [gis_specialist, cad_engineer]
+  industries: [gov, defense, energy, oil_gas, agriculture, construction]
+  formats: [sxf, sit, shp, geotiff, kml]
+  analogs: [axioma_gis, zulugis]
+  replaces: [arcgis]
+  price_rub: {unit: seat, low: 25000, typical: 95000, high: 280000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ГИС Панорама 15 Профессиональная (1 рабочее место)"
+    - "ГИС Панорама Мини 15"
+  confidence: high
+
+- id: axioma_gis
+  vendor: axioma_gis
+  name: "Аксиома ГИС (Axioma GIS)"
+  aliases: ["аксиома", "аксиома гис", "axioma gis", "российский mapinfo", "замена mapinfo"]
+  category: gis_mapping
+  extra_categories: []
+  summary: "Российская кроссплатформенная ГИС с полной поддержкой формата TAB и рабочего процесса MapInfo Pro."
+  editions:
+    - {id: base, name: "ГИС Аксиома", aliases: [базовая, desktop]}
+  versions: ["5", "6"]
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение mapinfo и arcgis", "работа с картами tab и shp на linux", "пространственный анализ и картография"]
+  roles: [gis_specialist]
+  industries: [gov, oil_gas, telecom, construction, urban_planning]
+  formats: [tab, shp, geojson, geotiff]
+  analogs: [gis_panorama, zulugis]
+  replaces: [arcgis]
+  price_rub: {unit: seat, low: 55000, typical: 95000, high: 160000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ГИС Аксиома 6. Бессрочная локальная лицензия"
+  confidence: high
+
+- id: zulugis
+  vendor: politerm_zulu
+  name: "ZuluGIS / ZuluThermo (Политерм)"
+  aliases: ["zulugis", "зулу", "зулу гис", "zuluthermo", "зулутермо", "политерм гис", "гидравлический расчет теплосетей"]
+  category: gis_mapping
+  extra_categories: [cae_simulation]
+  summary: "Специализированная российская ГИС для ЖКХ и ресурсоснабжающих организаций с модулями гидравлического расчёта тепловых, водопроводных и газовых сетей."
+  editions:
+    - {id: gis, name: "ZuluGIS", aliases: [gis]}
+    - {id: thermo, name: "ZuluThermo (Тепловые сети)", aliases: [thermo, теплосети]}
+    - {id: hydro, name: "ZuluHydro (Водопровод)", aliases: [hydro, водоканал]}
+  versions: ["2021"]
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, concurrent]
+    terms_months: []
+    actions: [new, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["паспортизация и гидравлический расчёт теплосетей", "электронная модель водоканала и сетей жкх", "гис для энергетических компаний"]
+  roles: [gis_specialist, cae_engineer]
+  industries: [utilities, energy, gov]
+  formats: [shp, mif, dxf]
+  analogs: [gis_panorama, axioma_gis]
+  replaces: [arcgis]
+  price_rub: {unit: seat, low: 45000, typical: 120000, high: 280000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ZuluGIS 2021 + ZuluThermo (локальная лицензия)"
+  confidence: high
+
+- id: credo_complex
+  vendor: credo_dialog
+  name: "Комплекс КРЕДО (CREDO Топограф / Дороги / Геология)"
+  aliases: ["кредо", "credo", "кредо топограф", "кредо дороги", "кредо геология", "кредо дат", "кредо диалог"]
+  category: cad_specialized
+  extra_categories: [bim_aec, gis_mapping]
+  summary: "Отечественная линейка инженерного ПО для геодезических и геологических изысканий, обработки облаков точек и проектирования автодорог."
+  editions:
+    - {id: topograf, name: "КРЕДО ТОПОГРАФ", aliases: [топограф]}
+    - {id: roads, name: "КРЕДО ДОРОГИ", aliases: [дороги]}
+    - {id: geology, name: "КРЕДО ГЕОЛОГИЯ", aliases: [геология]}
+    - {id: dat, name: "КРЕДО ДАТ", aliases: [дат, геодезия]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["инженерно-геодезические изыскания", "импортозамещение autodesk civil 3d", "проектирование автомобильных дорог и генплана"]
+  roles: [cad_engineer, surveyor]
+  industries: [construction, road_building, mining, oil_gas]
+  formats: [dwg, dxf, landxml, ifc, las]
+  analogs: [indorcad, robur_topomatic]
+  replaces: [autodesk_civil_3d]
+  price_rub: {unit: seat, low: 85000, typical: 190000, high: 420000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "КРЕДО ТОПОГРАФ (локальная лицензия)"
+    - "КРЕДО ДОРОГИ (сетевая лицензия)"
+  confidence: high
+
+- id: indorcad
+  vendor: indorsoft
+  name: "IndorCAD (ИндорСофт)"
+  aliases: ["indorcad", "индоркад", "индор софт", "indorcad road", "проектирование дорог indorcad"]
+  category: cad_specialized
+  extra_categories: [bim_aec]
+  summary: "Российская BIM-система проектирования автомобильных дорог, развязок, искусственных сооружений и организации дорожного движения."
+  editions:
+    - {id: standard, name: "IndorCAD/Road", aliases: [road, дороги]}
+    - {id: bim, name: "IndorCAD BIM", aliases: [bim]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["bim-проектирование автодорог", "замена autodesk civil 3d в дорожном строительстве"]
+  roles: [cad_engineer, bim_manager]
+  industries: [road_building, construction]
+  formats: [ifc, dwg, landxml]
+  analogs: [robur_topomatic, credo_complex]
+  replaces: [autodesk_civil_3d]
+  price_rub: {unit: seat, low: 140000, typical: 260000, high: 480000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "IndorCAD (базовая поставка, сетевая лицензия)"
+  confidence: high
+
+- id: robur_topomatic
+  vendor: topomatic
+  name: "Топоматик Robur"
+  aliases: ["robur", "робур", "топоматик робур", "robur автодороги", "robur железные дороги"]
+  category: cad_specialized
+  extra_categories: [bim_aec]
+  summary: "Российская САПР для проектирования автомобильных и железных дорог, инженерных сетей, мостов и геодезических изысканий."
+  editions:
+    - {id: roads, name: "Автомобильные дороги", aliases: [автодороги]}
+    - {id: rail, name: "Железные дороги", aliases: [ж/д, железные дороги]}
+    - {id: survey, name: "Изыскания", aliases: [изыскания]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd, media]
+  registry: yes
+  certs: []
+  use_cases: ["проектирование автодорог и ж/д путей", "импортозамещение civil 3d"]
+  roles: [cad_engineer]
+  industries: [road_building, rail, construction]
+  formats: [ifc, dwg, landxml]
+  analogs: [indorcad, credo_complex]
+  replaces: [autodesk_civil_3d]
+  price_rub: {unit: seat, low: 150000, typical: 290000, high: 520000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Топоматик Robur — Автомобильные дороги (локальная лицензия)"
+  confidence: high
+
+- id: agisoft_metashape
+  vendor: agisoft
+  name: "Agisoft Metashape (PhotoScan)"
+  aliases: ["agisoft", "metashape", "агисофт", "меташейп", "photoscan", "фотограмметрия бпла"]
+  category: cad_specialized
+  extra_categories: [gis_mapping]
+  summary: "Российское программное обеспечение мирового уровня для фотограмметрической обработки снимков с БПЛА и построения 3D-моделей и ортофотопланов."
+  editions:
+    - {id: standard, name: "Standard Edition", aliases: [standard]}
+    - {id: pro, name: "Professional Edition", aliases: [pro, professional]}
+  versions: ["2"]
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device, concurrent]
+    terms_months: []
+    actions: [new, upgrade]
+    bands: []
+    packs: [1]
+    audiences: [business, edu, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["обработка аэрофотосъёмки с дронов и бпла", "создание ортофотопланов и облаков точек", "3d-сканирование и фотограмметрия"]
+  roles: [surveyor, gis_specialist, 3d_artist]
+  industries: [construction, mining, agriculture, energy, media]
+  formats: [las, obj, geotiff, kmz]
+  analogs: []
+  replaces: []
+  price_rub: {unit: seat, low: 18000, typical: 320000, high: 450000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Agisoft Metashape Professional Edition (Node-Locked License)"
+    - "Agisoft Metashape Professional Edition (Floating License)"
+  confidence: high
+
+- id: grand_smeta
+  vendor: mgk_grand
+  name: "ГРАНД-Смета"
+  aliases: ["гранд смета", "гранд-смета", "grand smeta", "грандсмета", "сметная программа гранд", "фснб", "гэсн гранд смета"]
+  category: estimates_construction
+  extra_categories: []
+  summary: "Самый популярный в России сметный программный комплекс для составления и проверки строительных смет, КС-2/КС-3 и работы с базами ФСНБ-2022/ТЕР/ГЭСН."
+  editions:
+    - {id: local, name: "Локальная (Флеш / Компьютер)", aliases: [локальная, флеш]}
+    - {id: client_server, name: "Клиент-Сервер (Сетевая)", aliases: [сетевая, клиент-сервер]}
+    - {id: rfm, name: "Обновление нормативных баз и версий", aliases: [обновление, базы, фснб]}
+  versions: ["2024", "2025"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov, edu]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["составление строительных смет и кс-2 кс-3", "ресурсно-индексный метод расчёта смет", "работа с базами фснб-2022 и тер", "прохождение госэкспертизы смет"]
+  roles: [cost_estimator, project_manager]
+  industries: [construction, design_institute, gov, oil_gas]
+  formats: [gsfx, xml, gge, xlsx]
+  analogs: [smeta_ru]
+  replaces: []
+  price_rub: {unit: seat, low: 35000, typical: 78000, high: 165000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "ПК ГРАНД-Смета (локальная лицензия + годовая подписка на обновление версий)"
+    - "Годовая подписка на обновление нормативной базы ФСНБ-2022 для ГРАНД-Смета"
+  confidence: high
+
+- id: smeta_ru
+  vendor: stroysoft_smeta
+  name: "Smeta.RU (СтройСофт)"
+  aliases: ["smeta.ru", "смета ру", "сметару", "стройсофт смета", "тсн москва смета"]
+  category: estimates_construction
+  extra_categories: []
+  summary: "Российская сметная программа от СтройСофт, широко применяемая в Москве и регионах для смет по ТСН-2001, ФСНБ-2022, СН-2012 и ГЭСН."
+  editions:
+    - {id: local, name: "Локальная версия", aliases: [локальная]}
+    - {id: network, name: "Сетевая версия", aliases: [сетевая]}
+  versions: ["11"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["строительные сметы по базам тсн москвы и фснб", "формирование актов кс-2 и кс-3", "выгрузка смет в формат gge"]
+  roles: [cost_estimator]
+  industries: [construction, gov, design_institute]
+  formats: [gge, xml, xlsx]
+  analogs: [grand_smeta]
+  replaces: []
+  price_rub: {unit: seat, low: 32000, typical: 70000, high: 150000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "ПК Smeta.RU (локальная версия на 1 рабочее место)"
+  confidence: high
+
+- id: bazis_mebel
+  vendor: bazis_center
+  name: "БАЗИС-Мебельщик"
+  aliases: ["базис мебельщик", "базис-мебельщик", "базис центр", "bazis mebel", "базис раскрой", "базис чпу"]
+  category: cad_specialized
+  extra_categories: []
+  summary: "Отраслевая российская САПР для проектирования корпусной мебели, раскроя плитных материалов, расчёта сметы и передачи программ на станки с ЧПУ."
+  editions:
+    - {id: mebel, name: "БАЗИС-Мебельщик", aliases: [мебельщик]}
+    - {id: raskroy, name: "БАЗИС-Раскрой / Смета / ЧПУ", aliases: [раскрой, смета, чпу]}
+  versions: ["2023", "2024"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal, addon]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [media, esd]
+  registry: yes
+  certs: []
+  use_cases: ["проектирование корпусной мебели и кухонь", "автоматический раскрой лдсп и мдф", "выпуск чертежей и программ чпу для мебельной фабрики"]
+  roles: [design_engineer, technologist]
+  industries: [furniture, manufacturing]
+  formats: [b3d, dxf, obj]
+  analogs: []
+  replaces: []
+  price_rub: {unit: seat, low: 45000, typical: 120000, high: 260000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "БАЗИС-Мебельщик 2024 (локальная лицензия)"
+  confidence: high
+
+- id: spotlight_raster
+  vendor: csoft_development
+  name: "Spotlight Pro / RasterID (векторизация чертежей)"
+  aliases: ["spotlight", "спотлайт", "spotlight pro", "rasterid", "векторизация сканов чертежей"]
+  category: raster_vectorizers
+  extra_categories: [cad_2d]
+  summary: "Профессиональный российский гибридный растрово-векторный редактор для очистки и векторизации отсканированных бумажных чертежей и карт."
+  editions:
+    - {id: std, name: "Spotlight", aliases: [стандарт]}
+    - {id: pro, name: "Spotlight Pro", aliases: [pro, проф]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["оцифровка бумажных архивов чертежей", "перевод сканов в формат dwg", "редактирование растровых подложек"]
+  roles: [cad_engineer, gis_specialist]
+  industries: [construction, manufacturing, design_institute, gov]
+  formats: [tif, pdf, dwg, dxf]
+  analogs: [nanocad_platform]
+  replaces: [autocad]
+  price_rub: {unit: seat_year, low: 35000, typical: 75000, high: 150000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Spotlight Pro. Локальная годовая лицензия"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ / УШЕДШИЕ САПР (catalog: no — для импортозамещения и отчёта по спросу) ===
+
+- id: autocad
+  vendor: autodesk
+  name: "Autodesk AutoCAD"
+  aliases: ["autocad", "автокад", "аутокад", "акад", "acad", "autocad lt", "автокад лт", "autodesk autocad"]
+  category: cad_2d
+  extra_categories: []
+  summary: "Самая известная зарубежная 2D/3D САПР-платформа от Autodesk (вендор ушёл из РФ в 2022 году и запретил использование продуктов в России)."
+  editions:
+    - {id: lt, name: "AutoCAD LT", aliases: [lt, лт]}
+    - {id: full, name: "AutoCAD (with Specialized Toolsets)", aliases: [full, полный]}
+  versions: ["2024", "2025"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены autocad", "открытие чертежей dwg без autocad", "импортозамещение autodesk"]
+  roles: [cad_engineer, architect, design_engineer]
+  industries: [construction, manufacturing, design_institute]
+  formats: [dwg, dxf]
+  analogs: [nanocad_platform, zwcad, kompas_3d]
+  replaces: []
+  price_rub: {unit: seat_year, low: 55000, typical: 210000, high: 260000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Autodesk AutoCAD Commercial Single-user Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: autodesk_revit
+  vendor: autodesk
+  name: "Autodesk Revit"
+  aliases: ["revit", "ревит", "autodesk revit", "ревит бим", "revit mep", "revit structure"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Ведущая зарубежная BIM-система для архитектурно-строительного проектирования (Autodesk прекратила работу в России)."
+  editions:
+    - {id: full, name: "Revit", aliases: [revit]}
+    - {id: aec, name: "AEC Collection", aliases: [aec, коллекция]}
+  versions: ["2024", "2025"]
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение autodesk revit", "переход на российские bim-системы"]
+  roles: [bim_manager, architect, design_engineer]
+  industries: [construction, design_institute, real_estate]
+  formats: [rvt, rfa, ifc, dwg]
+  analogs: [renga_bim, nanocad_bim, model_studio_cs]
+  replaces: []
+  price_rub: {unit: seat_year, low: 240000, typical: 300000, high: 380000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Autodesk Revit Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: autodesk_civil_3d
+  vendor: autodesk
+  name: "Autodesk Civil 3D"
+  aliases: ["civil 3d", "цивил 3д", "сивил 3д", "autodesk civil 3d", "сивил"]
+  category: cad_specialized
+  extra_categories: [bim_aec]
+  summary: "Зарубежная система проектирования инфраструктурных объектов, автодорог и генпланов (Autodesk ушла из РФ)."
+  editions:
+    - {id: full, name: "Civil 3D", aliases: [civil]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение civil 3d", "проектирование дорог и генпланов в российском по"]
+  roles: [cad_engineer, surveyor]
+  industries: [road_building, construction, design_institute]
+  formats: [dwg, landxml, ifc]
+  analogs: [credo_complex, indorcad, robur_topomatic, nanocad_platform]
+  replaces: []
+  price_rub: {unit: seat_year, low: 250000, typical: 290000, high: 350000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Autodesk Civil 3D Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: autodesk_inventor
+  vendor: autodesk
+  name: "Autodesk Inventor"
+  aliases: ["inventor", "инвентор", "autodesk inventor", "инвентор проф"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Зарубежная машиностроительная 3D-САПР от Autodesk (вендор ушёл из РФ)."
+  editions:
+    - {id: pro, name: "Inventor Professional", aliases: [pro]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение autodesk inventor", "переход на компас-3d или t-flex cad"]
+  roles: [design_engineer]
+  industries: [manufacturing]
+  formats: [ipt, iam, step, dwg]
+  analogs: [kompas_3d, t_flex_cad]
+  replaces: []
+  price_rub: {unit: seat_year, low: 220000, typical: 260000, high: 320000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Autodesk Inventor Professional Annual Subscription (вендор ушёл из РФ)"
+  confidence: high
+
+- id: autodesk_navisworks
+  vendor: autodesk
+  name: "Autodesk Navisworks Manage"
+  aliases: ["navisworks", "нависворкс", "нэвисворкс", "autodesk navisworks", "проверка коллизий navisworks"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Зарубежный инструмент сборки сводных BIM-моделей, проверки коллизий и 4D-календарного планирования (Autodesk ушла из РФ)."
+  editions:
+    - {id: manage, name: "Navisworks Manage", aliases: [manage]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена navisworks для проверки коллизий bim", "сводная 3d-модель в российском по"]
+  roles: [bim_manager]
+  industries: [construction, oil_gas, design_institute]
+  formats: [nwd, nwc, ifc]
+  analogs: [pilot_bim, model_studio_cs]
+  replaces: []
+  price_rub: {unit: seat_year, low: 240000, typical: 290000, high: 340000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Autodesk Navisworks Manage (вендор ушёл из РФ)"
+  confidence: high
+
+- id: solidworks
+  vendor: dassault_systemes
+  name: "SOLIDWORKS"
+  aliases: ["solidworks", "солидворкс", "солид", "солидворк", "sw", "dassault solidworks"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Популярнейшая в мире машиностроительная 3D-САПР от Dassault Systèmes (вендор приостановил продажи и поддержку в РФ)."
+  editions:
+    - {id: standard, name: "Standard", aliases: [standard]}
+    - {id: pro, name: "Professional", aliases: [professional, pro]}
+    - {id: premium, name: "Premium", aliases: [premium]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение solidworks", "перенос моделей sldprt в компас-3d и t-flex"]
+  roles: [design_engineer, cad_engineer]
+  industries: [manufacturing, aerospace, robotics]
+  formats: [sldprt, sldasm, step, iges]
+  analogs: [kompas_3d, t_flex_cad]
+  replaces: []
+  price_rub: {unit: seat, low: 450000, typical: 750000, high: 1200000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "SOLIDWORKS Professional (вендор ушёл из РФ)"
+  confidence: high
+
+- id: catia
+  vendor: dassault_systemes
+  name: "Dassault Systèmes CATIA"
+  aliases: ["catia", "катия", "катя сапр", "catia v5", "3dexperience catia"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Тяжёлая зарубежная CAD/CAM/CAE-система для авиастроения и автопрома (Dassault Systèmes ушла из РФ)."
+  editions:
+    - {id: v5, name: "CATIA V5", aliases: [v5]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение catia в авиапроме и машиностроении"]
+  roles: [design_engineer]
+  industries: [aerospace, automotive, manufacturing]
+  formats: [catpart, catproduct, step]
+  analogs: [t_flex_cad, kompas_3d, lotsman_plm]
+  replaces: []
+  price_rub: {unit: seat, low: 1200000, typical: 2200000, high: 4500000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "CATIA V5 Mechanical Design (вендор ушёл из РФ)"
+  confidence: high
+
+- id: siemens_nx
+  vendor: siemens_plm
+  name: "Siemens NX (Unigraphics)"
+  aliases: ["siemens nx", "сименс нх", "nx cad", "unigraphics", "юниграфикс", "nx cam"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Тяжёлая зарубежная CAD/CAM/CAE-система Siemens Digital Industries Software (ушла из РФ)."
+  editions:
+    - {id: cad, name: "NX CAD", aliases: [cad]}
+    - {id: cam, name: "NX CAM", aliases: [cam]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [concurrent]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение siemens nx и teamcenter", "замена nx cam для чпу"]
+  roles: [design_engineer, technologist]
+  industries: [aerospace, defense, manufacturing, energy]
+  formats: [prt, step, parasolid]
+  analogs: [t_flex_cad, kompas_3d, sprutcam_x, lotsman_plm]
+  replaces: []
+  price_rub: {unit: seat, low: 1100000, typical: 2000000, high: 4000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Siemens NX Mach 1/2/3 (вендор ушёл из РФ)"
+  confidence: high
+
+- id: siemens_solid_edge
+  vendor: siemens_plm
+  name: "Siemens Solid Edge"
+  aliases: ["solid edge", "солид эдж", "сименс солид эдж"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Зарубежная машиностроительная 3D-САПР среднего класса от Siemens (недоступна к официальной поставке в РФ)."
+  editions:
+    - {id: classic, name: "Solid Edge Classic / Premium", aliases: [classic, premium]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение solid edge"]
+  roles: [design_engineer]
+  industries: [manufacturing]
+  formats: [par, asm, step]
+  analogs: [kompas_3d, t_flex_cad]
+  replaces: []
+  price_rub: {unit: seat_year, low: 250000, typical: 420000, high: 650000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Siemens Solid Edge Classic (вендор ушёл из РФ)"
+  confidence: high
+
+- id: archicad
+  vendor: graphisoft
+  name: "Graphisoft Archicad"
+  aliases: ["archicad", "архикад", "арчикад", "graphisoft archicad", "архикад 27", "архикад 28"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Популярная архитектурная BIM-система от Graphisoft / Nemetschek (официальные поставки в РФ прекращены)."
+  editions:
+    - {id: full, name: "Archicad Commercial", aliases: [commercial, full]}
+  versions: ["27", "28"]
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["поиск замены archicad для архитекторов", "импортозамещение архитектурного bim"]
+  roles: [architect, bim_manager]
+  industries: [construction, architecture, design_institute]
+  formats: [pln, ifc, dwg]
+  analogs: [renga_bim, nanocad_bim]
+  replaces: []
+  price_rub: {unit: seat_year, low: 220000, typical: 280000, high: 360000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Graphisoft Archicad Commercial License (вендор ушёл из РФ)"
+  confidence: high
+
+- id: ansys_suite
+  vendor: ansys
+  name: "Ansys (Mechanical / Fluent / HFSS)"
+  aliases: ["ansys", "ансис", "энсис", "ansys mechanical", "ansys fluent", "ansys hfss", "ansys workbench"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Мировой лидер мультифизического инженерного моделирования CAE (Ansys полностью прекратила деятельность в России)."
+  editions:
+    - {id: mechanical, name: "Ansys Mechanical", aliases: [mechanical, прочность]}
+    - {id: fluent, name: "Ansys Fluent (CFD)", aliases: [fluent, cfd]}
+    - {id: hfss, name: "Ansys HFSS", aliases: [hfss, электромагнетизм]}
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [concurrent, core]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение ansys mechanical и fluent", "подбор российского cae-пакета"]
+  roles: [cae_engineer]
+  industries: [aerospace, energy, manufacturing, defense, oil_gas]
+  formats: [step, iges, cas, dat]
+  analogs: [cae_fidesys, logos_cae]
+  replaces: []
+  price_rub: {unit: seat_year, low: 1500000, typical: 3200000, high: 7000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Ansys Mechanical Enterprise (вендор ушёл из РФ)"
+  confidence: high
+
+- id: matlab
+  vendor: mathworks
+  name: "MATLAB & Simulink"
+  aliases: ["matlab", "матлаб", "simulink", "симулинк", "mathworks matlab"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Зарубежная среда инженерных и научных вычислений и модельно-ориентированного проектирования от MathWorks (недоступна в РФ)."
+  editions:
+    - {id: matlab, name: "MATLAB", aliases: [matlab]}
+    - {id: simulink, name: "Simulink", aliases: [simulink]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение matlab и simulink", "поиск российского аналога для моделирования систем управления"]
+  roles: [cae_engineer, control_engineer, data_scientist]
+  industries: [aerospace, manufacturing, telecom, edu, finance]
+  formats: [m, mat, slx]
+  analogs: [simintech, engee_platform]
+  replaces: []
+  price_rub: {unit: seat_year, low: 120000, typical: 350000, high: 900000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "MathWorks MATLAB Commercial Annual License (вендор ушёл из РФ)"
+  confidence: high
+
+- id: altium_designer
+  vendor: altium
+  name: "Altium Designer"
+  aliases: ["altium", "алтиум", "альтиум", "altium designer", "altium 365"]
+  category: ecad_eda
+  extra_categories: []
+  summary: "Самая популярная зарубежная САПР проектирования печатных плат и электроники (Altium прекратила работу в России)."
+  editions:
+    - {id: standard, name: "Altium Designer Standard / Pro", aliases: [standard, pro]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение altium designer", "перенос библиотек и проектов печатных плат в российскую сапр"]
+  roles: [ecad_engineer]
+  industries: [electronics, defense, aerospace, manufacturing]
+  formats: [schdoc, pcbdoc, gerber]
+  analogs: [delta_design]
+  replaces: []
+  price_rub: {unit: seat_year, low: 350000, typical: 500000, high: 800000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Altium Designer Term-Based License (вендор ушёл из РФ)"
+  confidence: high
+
+- id: eplan_electric
+  vendor: eplan
+  name: "EPLAN Electric P8 / Pro Panel"
+  aliases: ["eplan", "еплан", "эплан", "eplan p8", "eplan electric p8", "eplan pro panel"]
+  category: ecad_eda
+  extra_categories: [bim_aec]
+  summary: "Немецкая САПР для проектирования электротехнических шкафов, АСУТП и электрических схем (EPLAN ушла из РФ)."
+  editions:
+    - {id: p8, name: "EPLAN Electric P8", aliases: [p8, electric]}
+    - {id: pro_panel, name: "EPLAN Pro Panel", aliases: [pro panel, шкафы]}
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user, concurrent]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение eplan electric p8", "проектирование шкафов асутп в российском по"]
+  roles: [ecad_engineer, cad_engineer]
+  industries: [manufacturing, energy, oil_gas, automation]
+  formats: [zw1, dwg, edz]
+  analogs: [nanocad_bim, delta_design, kompas_3d]
+  replaces: []
+  price_rub: {unit: seat_year, low: 400000, typical: 650000, high: 1100000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "EPLAN Electric P8 Professional (вендор ушёл из РФ)"
+  confidence: high
+
+- id: arcgis
+  vendor: esri
+  name: "Esri ArcGIS (Pro / Enterprise)"
+  aliases: ["arcgis", "аркгис", "арк гис", "esri arcgis", "arcgis pro", "arcgis enterprise", "arcgis desktop"]
+  category: gis_mapping
+  extra_categories: []
+  summary: "Ведущая зарубежная ГИС-платформа от Esri (официальные поставки и продление в РФ прекращены)."
+  editions:
+    - {id: pro, name: "ArcGIS Pro", aliases: [pro, desktop]}
+    - {id: enterprise, name: "ArcGIS Enterprise", aliases: [enterprise, server]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение esri arcgis", "перевод геопорталов и карт на российские гис"]
+  roles: [gis_specialist]
+  industries: [oil_gas, gov, energy, agriculture, mining]
+  formats: [shp, gdb, geotiff, geojson]
+  analogs: [gis_panorama, axioma_gis, zulugis]
+  replaces: []
+  price_rub: {unit: seat_year, low: 250000, typical: 500000, high: 1500000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Esri ArcGIS Pro Advanced (вендор ушёл из РФ)"
+  confidence: high

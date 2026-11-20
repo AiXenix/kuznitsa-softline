@@ -1,0 +1,1109 @@
+# Семейства продуктов: СУБД, DWH, Big Data, BI-аналитика, MDM/НСИ и инструменты БД (2026)
+
+- id: postgres_pro
+  vendor: postgres_pro
+  name: "Postgres Pro (Standard / Enterprise / Certified)"
+  aliases: ["постгрес про", "постгрес", "pgpro", "пгпро", "postgres pro standard", "postgres pro enterprise", "postgres pro 1c", "постгрес для 1с"]
+  category: rdbms
+  extra_categories: []
+  summary: "Ведущая российская СУБД на базе PostgreSQL с оптимизациями для 1С:Предприятие, отказоустойчивым кластером BiHA, шардированием и сертификацией ФСТЭК."
+  editions:
+    - {id: standard, name: "Standard (включая оптимизацию под 1С)", aliases: ["standard", "стандарт", "для 1с"]}
+    - {id: enterprise, name: "Enterprise (кластер, 64-бит транзакции, сжатие)", aliases: ["enterprise", "энтерпрайз"]}
+    - {id: cert, name: "Certified (сертификат ФСТЭК)", aliases: ["certified", "фстэк"]}
+  versions: ["17", "16", "15"]
+  platforms: [linux, windows_server]
+  compat_ru_os: [astra, alt, redos, rosa, msvsphere]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [core, server]
+    terms_months: [12, 24, 36]
+    actions: [new, renewal, upgrade, support]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["перевод баз 1С:Предприятие с MS SQL Server на российскую СУБД", "импортозамещение Oracle DB и IBM Db2", "аттестация ГИС/ИСПДн/КИИ"]
+  roles: [sysadmin, devops, developer]
+  industries: []
+  formats: ["sql"]
+  analogs: [tantor_db, jatoba_db, pangolin_db, red_db]
+  replaces: [ms_sql_server, oracle_db, ibm_db2]
+  price_rub: {unit: server_year, low: 180000, typical: 520000, high: 2800000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Postgres Pro Standard 16 (до 2 CPU / 1 сервер) Подписка 1 год + ТП Стандарт"
+    - "Postgres Pro Enterprise 16 Лицензия на 1 ядро CPU 1 год"
+  confidence: high
+
+- id: tantor_db
+  vendor: tantor_labs
+  name: "СУБД Tantor (Группа Астра)"
+  aliases: ["тантор", "tantor", "tantor se", "tantor certified", "субд астра"]
+  category: rdbms
+  extra_categories: []
+  summary: "Российская СУБД на базе PostgreSQL от Группы Астра (включая специальную редакцию для 1С и сертифицированную ФСТЭК версию)."
+  editions:
+    - {id: basic, name: "Tantor Basic / SE", aliases: ["basic", "se"]}
+    - {id: onec, name: "Tantor SE для 1С", aliases: ["1с", "для 1с"]}
+    - {id: cert, name: "Tantor Certified (ФСТЭК)", aliases: ["фстэк", "certified"]}
+  versions: ["16", "15"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["замена MS SQL Server для 1С и Oracle DB в экосистеме Группы Астра"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: ["sql"]
+  analogs: [postgres_pro, jatoba_db, pangolin_db]
+  replaces: [ms_sql_server, oracle_db]
+  price_rub: {unit: server_year, low: 150000, typical: 420000, high: 1800000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "СУБД Tantor SE 1C Подписка на 1 сервер 1 год"
+  confidence: high
+
+- id: tantor_platform
+  vendor: tantor_labs
+  name: "Платформа Tantor (администрирование и мониторинг PostgreSQL)"
+  aliases: ["платформа тантор", "tantor platform", "мониторинг постгрес тантор"]
+  category: db_management_tools
+  extra_categories: [monitoring_apm]
+  summary: "Российская платформа визуального администрирования, глубокого мониторинга производительности и управления кластерами PostgreSQL."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, core]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["централизованное управление десятками кластеров PostgreSQL", "замена Oracle Enterprise Manager"]
+  roles: [sysadmin, devops]
+  industries: []
+  formats: []
+  analogs: [dbeaver_pro]
+  replaces: [oracle_db]
+  price_rub: {unit: server_year, low: 85000, typical: 180000, high: 450000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Tantor Управление 10 серверами БД Подписка 1 год"
+  confidence: high
+
+- id: jatoba_db
+  vendor: gazinformservice_jatoba
+  name: "СУБД Jatoba (Газинформсервис)"
+  aliases: ["джатоба", "jatoba", "субд газинформсервис"]
+  category: rdbms
+  extra_categories: []
+  summary: "Защищённая российская СУБД на базе PostgreSQL с сертификацией ФСТЭК (4 УД) для КИИ, ГИС и промышленных предприятий."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["сертифицированная СУБД для объектов КИИ и нефтегазового сектора"]
+  roles: [sysadmin, security_officer]
+  industries: ["oil_gas", "energy", "gov"]
+  formats: ["sql"]
+  analogs: [postgres_pro, tantor_db, pangolin_db]
+  replaces: [oracle_db, ms_sql_server]
+  price_rub: {unit: server_year, low: 160000, typical: 450000, high: 1800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "СУБД Jatoba 5 (сертифицированная ФСТЭК) Лицензия на 1 сервер"
+  confidence: high
+
+- id: red_db
+  vendor: red_soft
+  name: "РЕД База Данных"
+  aliases: ["ред база данных", "ред бд", "red database", "firebird рф"]
+  category: rdbms
+  extra_categories: []
+  summary: "Российская сертифицированная ФСТЭК промышленная СУБД на базе открытого кода Firebird с поддержкой ГОСТ-шифрования и аутентификации."
+  editions: []
+  versions: ["5", "3"]
+  platforms: [linux, windows_server]
+  compat_ru_os: [redos, astra, alt]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [server, user]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["встраиваемая и серверная сертифицированная СУБД в госсистемах и АСУ"]
+  roles: [sysadmin, developer]
+  industries: ["gov", "industry"]
+  formats: ["sql"]
+  analogs: [postgres_pro, tantor_db]
+  replaces: [oracle_db, ms_sql_server]
+  price_rub: {unit: server, low: 45000, typical: 120000, high: 350000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "РЕД База Данных 5 Серверная редакция (ФСТЭК)"
+  confidence: high
+
+- id: pangolin_db
+  vendor: sber_platform_v
+  name: "Platform V Pangolin (СберТех)"
+  aliases: ["панголин", "pangolin", "platform v pangolin", "субд сбертех"]
+  category: rdbms
+  extra_categories: []
+  summary: "Высоконагруженная защищённая корпоративная СУБД на базе PostgreSQL от СберТех для миссионно-критичных систем уровня Enterprise."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["импортозамещение Oracle DB в банках и высоконагруженных системах"]
+  roles: [sysadmin, devops, security_officer]
+  industries: ["finance", "telecom", "enterprise"]
+  formats: ["sql"]
+  analogs: [postgres_pro, tantor_db, jatoba_db]
+  replaces: [oracle_db, ibm_db2, ms_sql_server]
+  price_rub: {unit: core_year, low: 65000, typical: 130000, high: 280000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Platform V Pangolin DB Enterprise Подписка на 16 ядер 1 год"
+  confidence: high
+
+- id: tarantool
+  vendor: vk_tech
+  name: "Tarantool Enterprise (VK Tech)"
+  aliases: ["тарантул", "tarantool", "tarantool db", "vk tarantool"]
+  category: nosql_inmemory
+  extra_categories: []
+  summary: "Российская высокоскоростная in-memory СУБД и сервер приложений для кэширования, биллинга, цифровых витрин и обработки миллионов RPS."
+  editions: []
+  versions: ["3"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["замена Redis Enterprise, MongoDB и Oracle Coherence в highload-сервисах"]
+  roles: [developer, devops]
+  industries: ["finance", "telecom", "retail"]
+  formats: []
+  analogs: [picodata]
+  replaces: [redis_enterprise, mongodb_enterprise]
+  price_rub: {unit: core_year, low: 90000, typical: 180000, high: 380000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Tarantool Enterprise Edition 8 ядер Подписка 1 год"
+  confidence: high
+
+- id: picodata
+  vendor: picodata
+  name: "Picodata (распределённая СУБД)"
+  aliases: ["пикодата", "picodata", "picodata db"]
+  category: nosql_inmemory
+  extra_categories: [rdbms]
+  summary: "Российская распределённая SQL/NoSQL СУБД для высоконагруженных горизонтально масштабируемых систем на базе Rust и Tarantool."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [core]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["отказоустойчивые геораспределённые кластеры БД и замена MongoDB/Cassandra"]
+  roles: [devops, developer]
+  industries: ["finance", "telecom", "enterprise"]
+  formats: ["sql"]
+  analogs: [tarantool, postgres_pro]
+  replaces: [mongodb_enterprise, redis_enterprise]
+  price_rub: {unit: core_year, low: 80000, typical: 160000, high: 350000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "Picodata Enterprise Подписка на 16 ядер 1 год"
+  confidence: high
+
+- id: arenadata_db
+  vendor: arenadata
+  name: "Arenadata DB (ADB — MPP DWH)"
+  aliases: ["аренадата дб", "arenadata db", "adb", "российский greenplum", "кхд аренадата"]
+  category: dwh_olap
+  extra_categories: []
+  summary: "Ведущая российская MPP-СУБД для корпоративных хранилищ данных (КХД/DWH) на базе Greenplum с управлением через Arenadata Cluster Manager."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [core, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение корпоративного хранилища данных (DWH)", "импортозамещение Teradata, Vertica, Oracle Exadata, Snowflake"]
+  roles: [analyst, devops, sysadmin]
+  industries: ["finance", "retail", "telecom", "gov"]
+  formats: ["sql"]
+  analogs: [arenadata_quickmarts]
+  replaces: [snowflake_dwh, oracle_db]
+  price_rub: {unit: server_year, low: 450000, typical: 950000, high: 2500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Arenadata DB Enterprise Подписка на 4 узла кластера 1 год"
+  confidence: high
+
+- id: arenadata_quickmarts
+  vendor: arenadata
+  name: "Arenadata QuickMarts (ADQM — ClickHouse)"
+  aliases: ["adqm", "arenadata quickmarts", "российский clickhouse", "аренадата кликхаус"]
+  category: dwh_olap
+  extra_categories: []
+  summary: "Российская коммерческая колоночная аналитическая СУБД на базе ClickHouse для сверхбыстрых витрин данных и BI-дашбордов."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [server, core]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["аналитические витрины данных реального времени и замена ClickHouse Cloud"]
+  roles: [analyst, devops]
+  industries: []
+  formats: ["sql"]
+  analogs: [arenadata_db]
+  replaces: [clickhouse_cloud, snowflake_dwh]
+  price_rub: {unit: server_year, low: 300000, typical: 650000, high: 1600000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Arenadata QuickMarts (ADQM) Подписка на 3 узла 1 год"
+  confidence: high
+
+- id: arenadata_hadoop
+  vendor: arenadata
+  name: "Arenadata Hadoop (ADH) и Streaming (ADS)"
+  aliases: ["adh", "arenadata hadoop", "arenadata streaming", "ads", "российский hadoop", "российская kafka"]
+  category: big_data_streaming
+  extra_categories: []
+  summary: "Российские промышленные сборки экосистемы Big Data (Hadoop, Spark, Hive, NiFi, Kafka) с централизованным управлением и техподдержкой."
+  editions:
+    - {id: adh, name: "Arenadata Hadoop (Data Lake)", aliases: ["adh", "hadoop"]}
+    - {id: ads, name: "Arenadata Streaming (Kafka/NiFi)", aliases: ["ads", "kafka", "streaming"]}
+  versions: []
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение корпоративного озера данных (Data Lake) и потоковой обработки", "замена Cloudera и Confluent"]
+  roles: [devops, analyst]
+  industries: ["finance", "telecom", "retail"]
+  formats: []
+  analogs: [loginom]
+  replaces: []
+  price_rub: {unit: server_year, low: 350000, typical: 750000, high: 1800000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Arenadata Hadoop Enterprise 6 узлов 1 год"
+  confidence: high
+
+- id: visiology_bi
+  vendor: visiology
+  name: "Visiology (BI-платформа)"
+  aliases: ["визиолоджи", "visiology", "visiology 3", "аналог power bi dax"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Ведущая российская BI-платформа (Visiology 3) с нативной поддержкой языка DAX для быстрой миграции дашбордов из Microsoft Power BI."
+  editions: []
+  versions: ["3"]
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["импортозамещение Microsoft Power BI (с сохранением формул DAX), Tableau и Qlik", "создание управленческих дашбордов"]
+  roles: [analyst, director, manager]
+  industries: []
+  formats: []
+  analogs: [foresight_analytics, polymatica_bi, modus_bi, yandex_datalens, pix_bi]
+  replaces: [ms_power_bi, tableau, qlik_sense]
+  price_rub: {unit: other, low: 900000, typical: 2500000, high: 8500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Visiology 3 Базовая платформа + 50 пользователей 1 год"
+  confidence: high
+
+- id: foresight_analytics
+  vendor: foresight
+  name: "Форсайт. Аналитическая платформа"
+  aliases: ["форсайт", "форсайт bi", "foresight", "форсайт аналитическая платформа"]
+  category: bi_analytics
+  extra_categories: [finance_budgeting]
+  summary: "Российская корпоративная платформа бизнес-аналитики, регламентной отчётности, моделирования и бюджетного планирования (Enterprise/Гос)."
+  editions: []
+  versions: ["10"]
+  platforms: [web, linux, windows]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [user, concurrent]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [gov, business]
+  delivery: [esd, paper]
+  registry: yes
+  certs: [fstec]
+  use_cases: ["ситуационные центры, ведомственная аналитика и Enterprise BI", "замена SAP BusinessObjects, Qlik, Power BI"]
+  roles: [analyst, director]
+  industries: ["gov", "energy", "finance"]
+  formats: []
+  analogs: [visiology_bi, polymatica_bi, modus_bi]
+  replaces: [ms_power_bi, tableau, qlik_sense]
+  price_rub: {unit: other, low: 1500000, typical: 4500000, high: 15000000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Форсайт. Аналитическая платформа 10 (50 пользователей) + ТП 1 год"
+  confidence: high
+
+- id: polymatica_bi
+  vendor: polymatica
+  name: "Polymatica BI / ML (SL Soft)"
+  aliases: ["полиматика", "polymatica", "polymatica dashboards", "sl soft polymatica"]
+  category: bi_analytics
+  extra_categories: [ml_platforms_cv]
+  summary: "Российская аналитическая платформа (входит в SL Soft / ГК Softline): визуальные дашборды, сверхбыстрый OLAP на миллиардах строк и No-Code ML."
+  editions:
+    - {id: dashboards, name: "Polymatica Dashboards", aliases: ["dashboards", "дашборды"]}
+    - {id: analytics, name: "Polymatica Analytics (OLAP)", aliases: ["analytics", "olap"]}
+    - {id: ml, name: "Polymatica ML", aliases: ["ml"]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user, server]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["интерактивный BI-анализ больших массивов данных и предиктивная аналитика", "замена Qlik Sense и Tableau"]
+  roles: [analyst, director]
+  industries: ["retail", "finance", "gov"]
+  formats: []
+  analogs: [visiology_bi, foresight_analytics, modus_bi, pix_bi]
+  replaces: [qlik_sense, tableau, ms_power_bi]
+  price_rub: {unit: other, low: 850000, typical: 2400000, high: 8000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Polymatica Dashboards Базовый пакет 50 пользователей 1 год"
+  confidence: high
+
+- id: modus_bi
+  vendor: modus_bi
+  name: "Modus BI и Modus ETL"
+  aliases: ["модус би", "modus bi", "modus etl", "модус аналитика"]
+  category: bi_analytics
+  extra_categories: [big_data_streaming]
+  summary: "Российская BI-система со встроенным ETL-инструментом и готовыми коннекторами к 1С, Битрикс24 и корпоративным СУБД."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription, perpetual]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение отчётности и дашбордов поверх 1С и корпоративных БД", "замена Power BI и Qlik"]
+  roles: [analyst, director]
+  industries: []
+  formats: []
+  analogs: [visiology_bi, polymatica_bi, pix_bi]
+  replaces: [ms_power_bi, qlik_sense]
+  price_rub: {unit: other, low: 600000, typical: 1600000, high: 5500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Modus BI + ETL 30 пользователей Годовая подписка"
+  confidence: high
+
+- id: pix_bi
+  vendor: pix_robotics
+  name: "PIX BI"
+  aliases: ["пикс би", "pix bi", "pix robotics bi"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Российская self-service BI-платформа для быстрого перехода с Microsoft Power BI, Qlik и Tableau в среднем и крупном бизнесе."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["быстрое развёртывание BI-дашбордов и миграция с Power BI"]
+  roles: [analyst, director, manager]
+  industries: []
+  formats: []
+  analogs: [visiology_bi, modus_bi, yandex_datalens]
+  replaces: [ms_power_bi, tableau, qlik_sense]
+  price_rub: {unit: other, low: 500000, typical: 1400000, high: 4500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "PIX BI Сервер + 25 пользователей 1 год"
+  confidence: high
+
+- id: yandex_datalens
+  vendor: yandex
+  name: "Yandex DataLens (BI в облаке и Open Source)"
+  aliases: ["даталенс", "datalens", "yandex datalens", "яндекс даталенс"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Популярный российский облачный BI-сервис экосистемы Yandex Cloud для визуализации данных из ClickHouse, PostgreSQL, 1С и Метрики."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user, company]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["быстрые облачные дашборды для SMB и digital-команд", "замена Power BI и Google Looker Studio"]
+  roles: [analyst, marketer, director]
+  industries: []
+  formats: []
+  analogs: [visiology_bi, pix_bi, modus_bi]
+  replaces: [ms_power_bi, tableau]
+  price_rub: {unit: other, low: 120000, typical: 360000, high: 1200000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "Yandex DataLens Business Тариф 1 год"
+  confidence: high
+
+- id: loginom
+  vendor: loginom
+  name: "Loginom (Low-code аналитика и ETL)"
+  aliases: ["логином", "loginom", "дедуктор", "deductor", "loginom server"]
+  category: big_data_streaming
+  extra_categories: [ml_platforms_cv, bi_analytics]
+  summary: "Российская low-code платформа интеграции, очистки данных (ETL), скоринга и продвинутой аналитики без программирования."
+  editions:
+    - {id: standard, name: "Loginom Standard", aliases: ["standard"]}
+    - {id: enterprise, name: "Loginom Enterprise", aliases: ["enterprise"]}
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["построение ETL-конвейеров, прогнозирования спроса и кредитного скоринга", "замена Informatica, SAS, KNIME"]
+  roles: [analyst, developer]
+  industries: ["finance", "retail", "logistics"]
+  formats: []
+  analogs: [arenadata_hadoop, polymatica_bi]
+  replaces: []
+  price_rub: {unit: other, low: 650000, typical: 1800000, high: 6500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Loginom Standard Server Подписка на 1 год"
+  confidence: high
+
+- id: unidata_mdm
+  vendor: unidata
+  name: "Юнидата (Платформа управления НСИ / MDM)"
+  aliases: ["юнидата", "unidata", "unidata mdm", "юнидата нси"]
+  category: data_governance_mdm
+  extra_categories: []
+  summary: "Российская корпоративная платформа управления мастер-данными (MDM/НСИ), качеством данных (DQ) и каталогом данных (Data Governance)."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [server, other]
+    terms_months: [12, 36]
+    actions: [new, renewal, support]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["создание «золотой записи» контрагентов, товаров и МТР (НСИ)", "замена Informatica MDM и SAP MDG"]
+  roles: [analyst, sysadmin]
+  industries: ["retail", "industry", "finance", "oil_gas"]
+  formats: []
+  analogs: []
+  replaces: []
+  price_rub: {unit: other, low: 2500000, typical: 6500000, high: 20000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Платформа Юнидата MDM Enterprise Подписка 1 год"
+  confidence: high
+
+- id: dbeaver_pro
+  vendor: dbeaver
+  name: "DBeaver PRO / Enterprise / Team Edition"
+  aliases: ["дбивер", "dbeaver pro", "dbeaver ee", "dbeaver enterprise"]
+  category: db_management_tools
+  extra_categories: []
+  summary: "Мультиплатформенный коммерческий SQL-клиент и инструмент администрирования БД (PostgreSQL, Oracle, ClickHouse, MongoDB, MS SQL)."
+  editions:
+    - {id: pro, name: "PRO", aliases: ["pro"]}
+    - {id: ee, name: "Enterprise", aliases: ["ee", "enterprise"]}
+    - {id: team, name: "Team Edition", aliases: ["team"]}
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["разработка SQL-запросов, ER-диаграммы и администрирование гетерогенных СУБД"]
+  roles: [developer, analyst, sysadmin]
+  industries: []
+  formats: ["sql"]
+  analogs: [tantor_platform]
+  replaces: []
+  price_rub: {unit: user_year, low: 14000, typical: 28000, high: 45000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "DBeaver Enterprise 1 User 1 Year Subscription (ограниченная доступность)"
+  confidence: high
+
+# ============================================================================
+# УШЕДШИЕ ЗАРУБЕЖНЫЕ СУБД И BI-ПЛАТФОРМЫ (catalog: no)
+# ============================================================================
+
+- id: ms_sql_server
+  vendor: microsoft
+  name: "Microsoft SQL Server (2022 / 2019)"
+  aliases: ["ms sql", "mssql", "ms sql server", "сиквел сервер", "sql server standard", "sql server enterprise", "sql cal"]
+  category: rdbms
+  extra_categories: []
+  summary: "Зарубежная корпоративная СУБД Microsoft (официальные корпоративные поставки в РФ остановлены; активно замещается Postgres Pro и Tantor, особенно для 1С)."
+  editions:
+    - {id: standard_core, name: "Standard (Per Core)", aliases: ["standard core"]}
+    - {id: standard_cal, name: "Standard (Server + CAL)", aliases: ["server+cal"]}
+    - {id: enterprise, name: "Enterprise (Per Core)", aliases: ["enterprise"]}
+  versions: ["2022", "2019"]
+  platforms: [windows_server, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [core, server, user]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [2]
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение MS SQL Server (в том числе под 1С:Предприятие)"]
+  roles: [sysadmin, developer]
+  industries: []
+  formats: ["sql"]
+  analogs: [postgres_pro, tantor_db, jatoba_db]
+  replaces: []
+  price_rub: {unit: core, low: 180000, typical: 380000, high: 1400000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Microsoft SQL Server 2022 Standard 2 Core (официальные поставки в РФ остановлены)"
+  confidence: high
+
+- id: oracle_db
+  vendor: oracle
+  name: "Oracle Database (Standard / Enterprise Edition)"
+  aliases: ["oracle db", "оракл дб", "оракл", "oracle database", "oracle ee"]
+  category: rdbms
+  extra_categories: []
+  summary: "Зарубежная корпоративная СУБД Oracle (ушла из РФ; замещается Postgres Pro Enterprise, Platform V Pangolin, Tantor, Jatoba)."
+  editions:
+    - {id: se2, name: "Standard Edition 2", aliases: ["se2"]}
+    - {id: ee, name: "Enterprise Edition", aliases: ["ee"]}
+  versions: ["19c", "23ai"]
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [perpetual, subscription]
+    metrics: [cpu, user]
+    terms_months: [12]
+    actions: [new, support]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Oracle Database"]
+  roles: [sysadmin, developer]
+  industries: []
+  formats: ["sql"]
+  analogs: [postgres_pro, pangolin_db, tantor_db, jatoba_db]
+  replaces: []
+  price_rub: {unit: cpu, low: 1500000, typical: 4500000, high: 15000000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Oracle Database Enterprise Edition 1 Processor (не поставляется в РФ)"
+  confidence: high
+
+- id: ibm_db2
+  vendor: ibm
+  name: "IBM Db2"
+  aliases: ["db2", "ibm db2", "дб2"]
+  category: rdbms
+  extra_categories: []
+  summary: "Зарубежная корпоративная СУБД IBM (ушла из РФ)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [core]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение IBM Db2"]
+  roles: [sysadmin]
+  industries: []
+  formats: ["sql"]
+  analogs: [postgres_pro, pangolin_db, tantor_db]
+  replaces: []
+  price_rub: {unit: core_year, low: 200000, typical: 500000, high: 1200000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "IBM Db2 Standard Edition VPC 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: mongodb_enterprise
+  vendor: mongodb
+  name: "MongoDB Enterprise Advanced / Atlas"
+  aliases: ["mongodb", "монгодб", "монго", "mongodb enterprise", "mongodb atlas"]
+  category: nosql_inmemory
+  extra_categories: []
+  summary: "Коммерческая версия документной NoSQL СУБД MongoDB (недоступна в РФ; замещается Tarantool, Picodata, Postgres Pro JSONB)."
+  editions: []
+  versions: []
+  platforms: [linux, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение MongoDB Enterprise"]
+  roles: [developer, devops]
+  industries: []
+  formats: []
+  analogs: [tarantool, picodata, postgres_pro]
+  replaces: []
+  price_rub: {unit: server_year, low: 600000, typical: 1200000, high: 3000000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "MongoDB Enterprise Advanced 1 Server 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: redis_enterprise
+  vendor: redis_inc
+  name: "Redis Enterprise"
+  aliases: ["redis", "редис", "redis enterprise"]
+  category: nosql_inmemory
+  extra_categories: []
+  summary: "Коммерческая in-memory СУБД Redis Enterprise (недоступна в РФ; замещается Tarantool и Picodata)."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [server, storage]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Redis Enterprise"]
+  roles: [developer, devops]
+  industries: []
+  formats: []
+  analogs: [tarantool, picodata]
+  replaces: []
+  price_rub: {unit: server_year, low: 450000, typical: 1000000, high: 2500000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Redis Enterprise Software 1 Year Subscription (не поставляется в РФ)"
+  confidence: high
+
+- id: snowflake_dwh
+  vendor: snowflake
+  name: "Snowflake Data Cloud"
+  aliases: ["snowflake", "сноуфлейк"]
+  category: dwh_olap
+  extra_categories: []
+  summary: "Зарубежное облачное хранилище данных (недоступно в РФ; замещается Arenadata DB и Yandex Cloud Managed Greenplum/ClickHouse)."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Snowflake"]
+  roles: [analyst, devops]
+  industries: []
+  formats: ["sql"]
+  analogs: [arenadata_db, arenadata_quickmarts]
+  replaces: []
+  price_rub: {unit: other, low: 1000000, typical: 4000000, high: 15000000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "Snowflake Enterprise Credits 1 Year (недоступен в РФ)"
+  confidence: high
+
+- id: clickhouse_cloud
+  vendor: clickhouse
+  name: "ClickHouse Cloud"
+  aliases: ["clickhouse cloud", "кликхаус клауд"]
+  category: dwh_olap
+  extra_categories: []
+  summary: "Зарубежный облачный сервис ClickHouse Inc. (в РФ недоступен; на базе открытого движка используются Arenadata QuickMarts и Yandex Managed ClickHouse)."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["российская альтернатива ClickHouse Cloud"]
+  roles: [analyst, devops]
+  industries: []
+  formats: ["sql"]
+  analogs: [arenadata_quickmarts]
+  replaces: []
+  price_rub: {unit: other, low: 350000, typical: 1200000, high: 5000000}
+  popularity: 3
+  catalog: no
+  sku_name_examples:
+    - "ClickHouse Cloud Scale Tier (недоступен для оплаты из РФ)"
+  confidence: high
+
+- id: ms_power_bi
+  vendor: microsoft
+  name: "Microsoft Power BI (Pro / Premium)"
+  aliases: ["power bi", "пауэр биай", "повер би", "microsoft power bi", "power bi pro", "pbi"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Зарубежная BI-платформа Microsoft (официальная оплата подписок в РФ недоступна; замещается Visiology, PIX BI, Modus BI, Yandex DataLens, Форсайт)."
+  editions:
+    - {id: pro, name: "Power BI Pro", aliases: ["pro"]}
+    - {id: premium, name: "Power BI Premium", aliases: ["premium"]}
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Microsoft Power BI с переносом моделей DAX"]
+  roles: [analyst, director, manager]
+  industries: []
+  formats: ["pbix"]
+  analogs: [visiology_bi, pix_bi, modus_bi, yandex_datalens, foresight_analytics, polymatica_bi]
+  replaces: []
+  price_rub: {unit: user_year, low: 12000, typical: 18000, high: 35000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Microsoft Power BI Pro 1 User 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: tableau
+  vendor: tableau_salesforce
+  name: "Tableau (Creator / Explorer / Server)"
+  aliases: ["tableau", "табло", "таблеау", "tableau desktop", "tableau server"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Зарубежная платформа визуальной бизнес-аналитики (ушла из РФ; замещается Visiology, Polymatica, Форсайт, Modus BI, PIX BI)."
+  editions: []
+  versions: []
+  platforms: [windows, macos, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Tableau Desktop и Server"]
+  roles: [analyst, director]
+  industries: []
+  formats: ["twb", "twbx"]
+  analogs: [visiology_bi, polymatica_bi, foresight_analytics, pix_bi, yandex_datalens]
+  replaces: []
+  price_rub: {unit: user_year, low: 45000, typical: 85000, high: 120000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Tableau Creator 1 User 1 Year (не поставляется в РФ)"
+  confidence: high
+
+- id: qlik_sense
+  vendor: qlik
+  name: "Qlik Sense / QlikView"
+  aliases: ["qlik", "клик", "qlik sense", "клик сенс", "qlikview"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Зарубежная ассоциативная BI-платформа (ушла из РФ; замещается Visiology, Форсайт, Polymatica, Modus BI)."
+  editions: []
+  versions: []
+  platforms: [web, windows_server]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12, 36]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение Qlik Sense и QlikView"]
+  roles: [analyst, director]
+  industries: []
+  formats: ["qvf", "qvw"]
+  analogs: [visiology_bi, foresight_analytics, polymatica_bi, modus_bi, pix_bi]
+  replaces: []
+  price_rub: {unit: user_year, low: 40000, typical: 78000, high: 110000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "Qlik Sense Professional User 1 Year (не поставляется в РФ)"
+  confidence: high

@@ -1,0 +1,457 @@
+# Семейства продуктов: Искусственный интеллект, корпоративные LLM, компьютерное зрение и чат-боты
+# Схема: kb/SCHEMA.md
+
+- id: gigachat_enterprise
+  vendor: sber_jazz
+  name: "GigaChat (API / Enterprise On-Premise)"
+  aliases: ["gigachat", "гигачат", "гига чат", "сбер гигачат", "gigachat api", "gigachat enterprise", "российский chatgpt"]
+  category: llm_gen_ai
+  extra_categories: [ai_speech_chatbots]
+  summary: "Флагманская российская корпоративная языковая модель (LLM) от Сбера: облачный API и закрытая on-premise поставка для работы с внутренними документами и RAG."
+  editions:
+    - {id: api, name: "GigaChat API (пакеты токенов)", aliases: [api, токены, pro, max]}
+    - {id: onprem, name: "GigaChat Enterprise (On-Premise)", aliases: [onprem, enterprise, закрытый контур]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov, edu]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["корпоративный ии-ассистент и rag по базе знаний", "импортозамещение chatgpt enterprise и openai api", "суммаризация договоров и автоматизация поддержки"]
+  roles: [it_director, developer, data_scientist, product_manager]
+  industries: [finance, enterprise, retail, telecom, gov, it]
+  formats: [json, txt, pdf]
+  analogs: [yandexgpt_api, mws_gpt_ai]
+  replaces: [chatgpt_enterprise, ms_copilot_365]
+  price_rub: {unit: company_year, low: 60000, typical: 450000, high: 4500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "GigaChat Pro API. Предоплаченный пакет 50 млн токенов (12 мес)"
+    - "GigaChat Enterprise On-Premise (лицензия на 12 мес)"
+  confidence: high
+
+- id: yandexgpt_api
+  vendor: yandex
+  name: "YandexGPT / Yandex AI Studio"
+  aliases: ["yandexgpt", "яндекс гпт", "яндексгпт", "yandex ai studio", "яндекс нейросеть api", "foundation models yandex"]
+  category: llm_gen_ai
+  extra_categories: [ai_speech_chatbots]
+  summary: "Корпоративная платформа генеративного ИИ на базе Yandex Cloud: семейство моделей YandexGPT, дообучение, ИИ-агенты, поиск по документам (RAG) и контур 152-ФЗ."
+  editions:
+    - {id: api, name: "YandexGPT Pro API", aliases: [api, pro]}
+    - {id: studio, name: "Yandex AI Studio (агенты и RAG)", aliases: [studio, агенты]}
+  versions: ["4", "5"]
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, hybrid]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["создание корпоративных ии-ассистентов", "замена openai api и chatgpt", "автоматизация клиентской поддержки и генерации контента"]
+  roles: [developer, data_scientist, product_manager, it_director]
+  industries: [it, ecommerce, finance, retail, marketing, enterprise]
+  formats: [json, txt]
+  analogs: [gigachat_enterprise, mws_gpt_ai]
+  replaces: [chatgpt_enterprise, ms_copilot_365]
+  price_rub: {unit: company_year, low: 60000, typical: 400000, high: 3500000}
+  popularity: 5
+  catalog: yes
+  sku_name_examples:
+    - "YandexGPT / Yandex AI Studio (пакет токенов на 12 месяцев)"
+  confidence: high
+
+- id: sber_kandinsky_api
+  vendor: sber_jazz
+  name: "GigaCode (ИИ-ассистент разработчика от Сбера)"
+  aliases: ["gigacode", "гигакод", "гига код", "российский copilot", "ии для программистов сбер"]
+  category: llm_gen_ai
+  extra_categories: [ide_compilers]
+  summary: "Российский ИИ-ассистент для программистов (автодополнение, генерация и рефакторинг кода в IDE) с вариантом установки on-premise в закрытом контуре."
+  editions:
+    - {id: cloud, name: "GigaCode Cloud", aliases: [cloud]}
+    - {id: onprem, name: "GigaCode On-Premise", aliases: [onprem, enterprise]}
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [esd, service]
+  registry: yes
+  certs: []
+  use_cases: ["ускорение написания кода разработчиками", "импортозамещение github copilot в закрытом контуре"]
+  roles: [developer, devops, it_director]
+  industries: [it, finance, telecom, enterprise]
+  formats: []
+  analogs: [gigachat_enterprise]
+  replaces: [github_copilot]
+  price_rub: {unit: user_year, low: 12000, typical: 24000, high: 48000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "GigaCode Enterprise. Подписка на 1 разработчика на 12 месяцев"
+  confidence: high
+
+- id: mws_gpt_ai
+  vendor: mts_web_services
+  name: "MWS GPT / Cotype (Корпоративная LLM-платформа МТС)"
+  aliases: ["mws gpt", "cotype", "котайп", "мтс gpt", "mts ai", "mws ai"]
+  category: llm_gen_ai
+  extra_categories: []
+  summary: "Корпоративная российская LLM-платформа МТС (семейство моделей Cotype) для развёртывания в облаке MWS или локально в контуре заказчика."
+  editions:
+    - {id: api, name: "MWS GPT API", aliases: [api]}
+    - {id: onprem, name: "Cotype On-Premise", aliases: [onprem, cotype]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["внедрение генеративного ии в корпоративные процессы", "локальная llm для обработки внутренних документов"]
+  roles: [data_scientist, it_director, developer]
+  industries: [enterprise, telecom, finance, retail]
+  formats: [json]
+  analogs: [gigachat_enterprise, yandexgpt_api]
+  replaces: [chatgpt_enterprise]
+  price_rub: {unit: company_year, low: 120000, typical: 600000, high: 3000000}
+  popularity: 3
+  catalog: yes
+  sku_name_examples:
+    - "MWS GPT Platform (корпоративная подписка 12 мес)"
+  confidence: high
+
+- id: cloud_ru_ml_space
+  vendor: cloud_ru
+  name: "Cloud.ru Evolution ML Space / AI Factory"
+  aliases: ["ml space", "мл спейс", "cloud.ru ml", "ai factory cloud ru", "gpu кластер cloud.ru"]
+  category: ml_platforms_cv
+  extra_categories: [llm_gen_ai]
+  summary: "Облачная MLOps-платформа полного цикла на базе суперкомпьютерных GPU-кластеров Cloud.ru для обучения, дообучения и инференса нейросетей."
+  editions:
+    - {id: ml_space, name: "Evolution ML Space", aliases: [ml space, mlops]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["обучение собственных ml-моделей и llm на gpu", "mlops-инфраструктура в российском облаке", "замена aws sagemaker"]
+  roles: [data_scientist, ml_engineer, it_director]
+  industries: [finance, it, retail, enterprise, telecom, edu]
+  formats: []
+  analogs: [yandex_datasphere]
+  replaces: [aws_cloud]
+  price_rub: {unit: company_year, low: 350000, typical: 1800000, high: 12000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Cloud.ru Evolution ML Space (пакет GPU-ресурсов на 12 мес)"
+  confidence: high
+
+- id: yandex_datasphere
+  vendor: yandex
+  name: "Yandex DataSphere"
+  aliases: ["datasphere", "датасфера", "яндекс датасфера", "yandex datasphere", "ml платформа яндекс"]
+  category: ml_platforms_cv
+  extra_categories: []
+  summary: "Облачная среда разработки и запуска моделей машинного обучения от Yandex Cloud с бессерверными GPU-вычислениями и развёртыванием инференса."
+  editions:
+    - {id: standard, name: "DataSphere Cloud", aliases: [cloud]}
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, edu]
+  delivery: [service]
+  registry: yes
+  certs: []
+  use_cases: ["разработка и обучение ml-моделей в облаке", "совместная работа команды data science", "замена aws sagemaker и databricks"]
+  roles: [data_scientist, ml_engineer]
+  industries: [it, ecommerce, finance, retail, edu]
+  formats: []
+  analogs: [cloud_ru_ml_space]
+  replaces: [aws_cloud]
+  price_rub: {unit: company_year, low: 200000, typical: 1200000, high: 6000000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Yandex DataSphere (пакет облачных ML-вычислений)"
+  confidence: high
+
+- id: visionlabs_luna
+  vendor: visionlabs
+  name: "VisionLabs LUNA PLATFORM (Компьютерное зрение и биометрия)"
+  aliases: ["visionlabs", "вижнлабс", "luna platform", "луна платформ", "распознавание лиц visionlabs"]
+  category: ml_platforms_cv
+  extra_categories: []
+  summary: "Ведущая российская платформа компьютерного зрения: распознавание лиц, детекция транспорта и силуэтов, биометрический СКУД и видеоаналитика."
+  editions:
+    - {id: platform, name: "LUNA PLATFORM", aliases: [platform]}
+    - {id: cars, name: "LUNA CARS (распознавание номеров и ТС)", aliases: [cars, номера]}
+  versions: ["5"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["биометрический скуд и проходная по лицу", "банковская идентификация и антифрод", "видеоаналитика транспорта и безопасности"]
+  roles: [security_officer, it_director, developer]
+  industries: [finance, transport, retail, gov, manufacturing]
+  formats: [rtsp, jpg, json]
+  analogs: [ntechlab_findface]
+  replaces: []
+  price_rub: {unit: channel, low: 35000, typical: 95000, high: 350000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "VisionLabs LUNA PLATFORM 5. Лицензия на 1 видеопоток (канал)"
+  confidence: high
+
+- id: ntechlab_findface
+  vendor: ntechlab
+  name: "NtechLab FindFace Multi (Видеоаналитика ИИ)"
+  aliases: ["ntechlab", "нтехлаб", "findface", "файндфейс", "findface multi", "видеоаналитика ntechlab"]
+  category: ml_platforms_cv
+  extra_categories: []
+  summary: "Российская мультиобъектная платформа видеоаналитики на базе нейросетей: распознавание лиц, силуэтов, автомобилей, контроль СИЗ и «Безопасный город»."
+  editions:
+    - {id: multi, name: "FindFace Multi", aliases: [multi]}
+  versions: ["2"]
+  platforms: [linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual, subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business, gov]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["системы безопасный город и охрана периметра", "контроль доступа по лицу", "аналитика трафика в ритейле и промышленности"]
+  roles: [security_officer, it_director]
+  industries: [gov, transport, retail, manufacturing, finance]
+  formats: [rtsp, jpg]
+  analogs: [visionlabs_luna]
+  replaces: []
+  price_rub: {unit: channel, low: 30000, typical: 85000, high: 300000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "NtechLab FindFace Multi. Лицензия на 1 канал видеоаналитики"
+  confidence: high
+
+- id: just_ai_jaicp
+  vendor: just_ai
+  name: "Just AI JAICP / Jay Copilot (Платформа чат-ботов и ИИ-агентов)"
+  aliases: ["just ai", "джаст аи", "jaicp", "jay copilot", "конструктор чат ботов just ai", "aimylogic"]
+  category: ai_speech_chatbots
+  extra_categories: [llm_gen_ai]
+  summary: "Российская платформа разработки корпоративных чат-ботов, голосовых роботов для колл-центров и ИИ-агентов на базе LLM (облако и on-premise)."
+  editions:
+    - {id: cloud, name: "JAICP Cloud", aliases: [cloud]}
+    - {id: onprem, name: "JAICP Enterprise On-Premise", aliases: [onprem, enterprise]}
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [cloud, onprem]
+  license:
+    models: [subscription]
+    metrics: [other, server]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service, esd]
+  registry: yes
+  certs: []
+  use_cases: ["омниканальные чат-боты поддержки", "голосовые роботы для входящей и исходящей линии", "корпоративные ии-ассистенты на llm"]
+  roles: [contact_center_head, product_manager, it_director]
+  industries: [finance, telecom, retail, ecommerce, services]
+  formats: [json]
+  analogs: [salutespeech, yandex_speechkit]
+  replaces: []
+  price_rub: {unit: company_year, low: 180000, typical: 650000, high: 2500000}
+  popularity: 4
+  catalog: yes
+  sku_name_examples:
+    - "Just AI JAICP. Корпоративная подписка на платформу ботов (12 мес)"
+  confidence: high
+
+# === ЗАРУБЕЖНЫЕ ИИ-СЕРВИСЫ (catalog: no) ===
+
+- id: chatgpt_enterprise
+  vendor: openai
+  name: "OpenAI ChatGPT (Team / Enterprise / API)"
+  aliases: ["chatgpt", "чатгпт", "чат гпт", "openai", "опенаи", "gpt-4", "gpt-4o", "chatgpt team", "chatgpt enterprise"]
+  category: llm_gen_ai
+  extra_categories: []
+  summary: "Ведущая зарубежная платформа генеративного ИИ от OpenAI (заблокирована для пользователей и корпоративных клиентов из РФ)."
+  editions:
+    - {id: team, name: "ChatGPT Team", aliases: [team]}
+    - {id: enterprise, name: "ChatGPT Enterprise / API", aliases: [enterprise, api]}
+  versions: []
+  platforms: [web, macos, windows, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user, other]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск российской легальной замены chatgpt для компании"]
+  roles: [product_manager, developer, marketing_manager, it_director]
+  industries: [it, marketing, finance, enterprise]
+  formats: []
+  analogs: [gigachat_enterprise, yandexgpt_api, mws_gpt_ai]
+  replaces: []
+  price_rub: {unit: user_year, low: 30000, typical: 65000, high: 95000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "OpenAI ChatGPT Enterprise Seat (недоступно в РФ)"
+  confidence: high
+
+- id: github_copilot
+  vendor: github
+  name: "GitHub Copilot (Business / Enterprise)"
+  aliases: ["github copilot", "гитхаб копилот", "копилот для кода", "copilot business"]
+  category: llm_gen_ai
+  extra_categories: [ide_compilers]
+  summary: "ИИ-ассистент разработчика от GitHub/Microsoft (недоступен для оплаты и корпоративного подключения из России)."
+  editions:
+    - {id: business, name: "Copilot Business", aliases: [business]}
+    - {id: enterprise, name: "Copilot Enterprise", aliases: [enterprise]}
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены github copilot для разработчиков"]
+  roles: [developer, devops]
+  industries: [it, finance, enterprise]
+  formats: []
+  analogs: [sber_kandinsky_api, gigachat_enterprise]
+  replaces: []
+  price_rub: {unit: user_year, low: 22000, typical: 42000, high: 55000}
+  popularity: 5
+  catalog: no
+  sku_name_examples:
+    - "GitHub Copilot Business Annual Seat (недоступно в РФ)"
+  confidence: high
+
+- id: ms_copilot_365
+  vendor: microsoft
+  name: "Microsoft 365 Copilot"
+  aliases: ["microsoft copilot", "копилот 365", "m365 copilot", "ms copilot", "ии в офисе microsoft"]
+  category: llm_gen_ai
+  extra_categories: [office_suite]
+  summary: "ИИ-помощник, встроенный в приложения Microsoft 365 (вендор прекратил продажи в РФ)."
+  editions:
+    - {id: m365, name: "Copilot for Microsoft 365", aliases: [m365]}
+  versions: []
+  platforms: [windows, macos, web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: []
+    audiences: [business]
+  delivery: [service]
+  registry: no
+  certs: []
+  use_cases: ["поиск российского ии-помощника для офисных документов и почты"]
+  roles: [office_worker, project_manager, it_director]
+  industries: [enterprise, finance, it]
+  formats: []
+  analogs: [gigachat_enterprise, yandexgpt_api]
+  replaces: []
+  price_rub: {unit: user_year, low: 35000, typical: 42000, high: 55000}
+  popularity: 4
+  catalog: no
+  sku_name_examples:
+    - "Microsoft 365 Copilot Commercial Add-on (вендор ушёл из РФ)"
+  confidence: high
