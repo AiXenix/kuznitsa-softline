@@ -1,0 +1,341 @@
+# Отрасли экономики и типовые стеки ПО (Кузница Softline, поток Neon-2)
+# Соответствует схеме kb/SCHEMA.md.
+# Категории в `slots` — листовые id из kb/categories.yaml.
+# Регуляторика в `compliance` — id из kb/compliance.yaml.
+# `families` содержит только id, уже существующие в kb/families/*.yaml (сейчас []);
+# общеизвестные продукты перечислены в `products`.
+# Всего отраслей: 28.
+
+- id: trade
+  title: "Оптовая торговля и дистрибуция"
+  aliases: ["оптовая торговля", "торговый дом", "дистрибьютор", "оптовик", "торговая компания", "b2b торговля"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: trade_warehouse, must: true, families: [], products: ["1С:Управление торговлей 8", "МойСклад"], note: "Учёт закупок, продаж, взаиморасчётов и остатков"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8"], note: "Бухгалтерский и налоговый учёт"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС", "Контур.Экстерн"], note: "ЭДО с поставщиками и покупателями, отчётность в ФНС"}
+    - {category: crm_systems, must: false, families: [], products: ["Битрикс24", "amoCRM"], note: "Ведение клиентской базы и воронки продаж"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security", "Dr.Web"], note: "Защита офисных ПК и файлового сервера"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Прайс-листы, договоры, спецификации"}
+    - {category: counterparty_legal_info, must: false, families: [], products: ["Контур.Фокус", "СБИС"], note: "Проверка контрагентов перед отгрузкой с отсрочкой"}
+
+- id: retail
+  title: "Розничная торговля и торговые сети"
+  aliases: ["ритейл", "розница", "розничный магазин", "сеть магазинов", "торговая сеть", "супермаркет", "маркировка розница"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: retail_pos_cash, must: true, families: [], products: ["1С:Розница 8", "Frontol", "Set Retail"], note: "Кассовое ПО, работа с ОФД, ЕГАИС и маркировкой"}
+    - {category: trade_warehouse, must: true, families: [], products: ["1С:Управление торговлей 8", "1С:WMS"], note: "Управление ассортиментом, ценами и распределительным центром"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8"], note: "Бухгалтерия торговой сети"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "Контур.Маркировка", "СБИС"], note: "УПД с кодами маркировки и отчётность"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита кассовых узлов, серверов и офиса"}
+    - {category: remote_desktop, must: false, families: [], products: ["Ассистент", "RuDesktop"], note: "Удалённая поддержка касс и магазинов"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование баз 1С и кассовых серверов"}
+
+- id: healthcare
+  title: "Здравоохранение и медицинские учреждения"
+  aliases: ["медицина", "клиника", "поликлиника", "больница", "медцентр", "стоматология", "гбуз", "лпу", "здравоохранение"]
+  compliance: [registry_ru, fstec, fsb, fz152_pdn, fz44_223, kii_187fz, vat_exemption]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС", "Альт Рабочая станция"], note: "Доверенная ОС для АРМ врачей и регистратуры"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security для Linux", "Dr.Web Enterprise Security Suite"], note: "Антивирус с сертификатом ФСТЭК для ИСПДн"}
+    - {category: nsd_access_control, must: true, families: [], products: ["Secret Net Studio", "Dallas Lock"], note: "СЗИ от НСД для защиты персональных данных пациентов (152-ФЗ)"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP", "ViPNet Client"], note: "Подпись медицинских документов (ЭМК) и защищённый канал с ЕГИСЗ"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Реестровый офисный пакет под Linux"}
+    - {category: industry_specialized, must: true, families: [], products: ["МИС qMS", "БАРС.Здравоохранение", "1С:Медицина"], note: "Медицинская информационная система"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование баз МИС"}
+
+- id: education
+  title: "Образование: школы, колледжи и вузы"
+  aliases: ["образование", "вуз", "университет", "институт", "школа", "колледж", "техникум", "учебное заведение", "академический"]
+  compliance: [registry_ru, fz44_223, fz152_pdn, vat_exemption]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Российская ОС для компьютерных классов и кафедр"}
+    - {category: office_suite, must: true, families: [], products: ["МойОфис Образование", "Р7-Офис"], note: "Академические лицензии офисного пакета"}
+    - {category: endpoint_security, must: true, families: [], products: ["Dr.Web Enterprise Security Suite", "Kaspersky Endpoint Security"], note: "Образовательные лицензии защиты классов и серверов"}
+    - {category: vks_webinars, must: true, families: [], products: ["МТС Линк", "Контур.Толк", "TrueConf"], note: "Дистанционные лекции, вебинары и приёмные комиссии"}
+    - {category: lms_elearning, must: false, families: [], products: ["iSpring Learn", "Mirapolis LMS", "Websoft HCM"], note: "Система дистанционного обучения и тестирования"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия государственного учреждения 8", "1С:Университет"], note: "Учёт бюджетного образовательного учреждения"}
+
+- id: manufacturing
+  title: "Промышленность и машиностроение"
+  aliases: ["завод", "производство", "промышленность", "машиностроение", "приборостроение", "промышленное предприятие", "фабрика", "цех"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, asutp_31, fz152_pdn, vat_exemption]
+  slots:
+    - {category: erp_systems, must: true, families: [], products: ["1С:ERP Управление предприятием 2", "Галактика ERP"], note: "Планирование производства, снабжения и себестоимости"}
+    - {category: mcad_plm, must: true, families: [], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "Конструкторско-технологическая подготовка производства"}
+    - {category: ot_ics_security, must: true, families: [], products: ["Kaspersky Industrial CyberSecurity", "PT ISIM", "InfoWatch ARMA"], note: "Защита АСУ ТП и объектов КИИ (187-ФЗ, приказ №31)"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Корпоративная защита тысяч АРМ и серверов"}
+    - {category: siem_soc, must: false, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA", "RuSIEM"], note: "Мониторинг ИБ и взаимодействие с ГосСОПКА"}
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС", "Альт"], note: "Импортозамещение ОС на АРМ и серверах"}
+    - {category: server_virtualization, must: false, families: [], products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix"], note: "Сертифицированная виртуализация ЦОД завода"}
+
+- id: it_telecom
+  title: "ИТ-компании и разработка программного обеспечения"
+  aliases: ["ит компания", "разработка по", "софтверная компания", "стартап", "веб-студия", "интегратор", "it-компания"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: task_project_trackers, must: true, families: [], products: ["Яндекс Трекер", "Kaiten", "EvaProject", "SimpleOne SDLC"], note: "Agile-доски, спринты и бэклог разработки"}
+    - {category: git_cicd_devops, must: true, families: [], products: ["GitFlic", "SourceCraft", "GitVerse"], note: "Хранение кода и пайплайны сборки/деплоя"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк", "Яндекс Телемост"], note: "Дейли-созвоны и демонстрации клиентам"}
+    - {category: corporate_messengers, must: true, families: [], products: ["Пачка", "VK Teams", "eXpress", "Compass"], note: "Командное общение и интеграции с трекером"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security Cloud", "Dr.Web"], note: "Защита гетерогенного парка macOS и Linux"}
+    - {category: code_analysis_sast, must: false, families: [], products: ["PT Application Inspector", "Solar appScreener"], note: "Проверка безопасности исходного кода"}
+    - {category: remote_desktop, must: false, families: [], products: ["RuDesktop", "Ассистент"], note: "Кроссплатформенный удалённый доступ"}
+
+- id: architecture_design
+  title: "Проектные институты, архитектура и инжиниринг"
+  aliases: ["проектный институт", "проектное бюро", "архитектурное бюро", "инжиниринг", "проектирование", "кб", "конструкторское бюро"]
+  compliance: [registry_ru, fz152_pdn, fz44_223, vat_exemption]
+  slots:
+    - {category: cad_2d, must: true, families: [], products: ["Платформа nanoCAD"], note: "2D/3D проектирование в нативном формате DWG"}
+    - {category: bim_aec, must: true, families: [], products: ["Renga", "nanoCAD BIM", "Model Studio CS", "Pilot-BIM"], note: "Информационное моделирование зданий и среда общих данных"}
+    - {category: estimates_construction, must: true, families: [], products: ["Гранд-Смета", "Smeta.ru", "РИК"], note: "Сметная документация и проверка расценок"}
+    - {category: cae_simulation, must: false, families: [], products: ["ЛИРА-САПР", "SCAD Office", "APM Civil Engineering"], note: "Расчёт прочности и несущих конструкций"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Пояснительные записки и ведомости"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Сохранность проектных архивов и серверов лицензий"}
+    - {category: sed_ecm, must: false, families: [], products: ["Pilot-ICE", "Directum RX"], note: "Согласование и версионирование проектной документации"}
+
+- id: accounting_audit
+  title: "Бухгалтерские, аудиторские и налоговые фирмы"
+  aliases: ["бухгалтерская фирма", "аутсорсинг бухгалтерии", "аудиторская компания", "бухуслуги", "налоговый консалтинг"]
+  compliance: [fz152_pdn, fsb]
+  slots:
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8", "1С:БухОбслуживание"], note: "Многофирменный бухгалтерский учёт клиентов"}
+    - {category: payroll_hr_1c, must: true, families: [], products: ["1С:Зарплата и управление персоналом 8"], note: "Расчёт зарплаты, взносов и кадровый учёт"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "СБИС", "1С-Отчётность", "Такском"], note: "Массовая сдача отчётности и ЭДО по множеству юрлиц"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Работа с КЭП и МЧД на всех рабочих местах"}
+    - {category: tokens_pki, must: true, families: [], products: ["Рутокен ЭЦП 3.0", "JaCarta-2"], note: "Сертифицированные носители для ключей подписи"}
+    - {category: ocr_capture, must: false, families: [], products: ["1С:Распознавание первичных документов", "ContentReader PDF", "Entera"], note: "Автоматический ввод накладных, актов и УПД"}
+    - {category: counterparty_legal_info, must: false, families: [], products: ["Контур.Фокус", "СБИС", "СПАРК"], note: "Проверка благонадёжности контрагентов клиентов"}
+
+- id: banking_finance
+  title: "Банки и финансовые организации"
+  aliases: ["банк", "финансовая организация", "кредитная организация", "мфо", "инвестиционная компания", "финтех", "брокер"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, gost_719_cbr, fz152_pdn]
+  slots:
+    - {category: dlp, must: true, families: [], products: ["InfoWatch Traffic Monitor", "SearchInform КИБ", "Гарда DLP"], note: "Предотвращение утечек банковской тайны и ПДн"}
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Контроль инцидентов ИБ и отчётность в ФинЦЕРТ / ГосСОПКА"}
+    - {category: ngfw_vpn, must: true, families: [], products: ["Континент 4", "ViPNet Coordinator", "UserGate", "S-Terra"], note: "Межсетевое экранирование и ГОСТ VPN между филиалами"}
+    - {category: iam_pam_mfa, must: true, families: [], products: ["СКДПУ НТ", "Indeed PAM", "Solar SafeInspect", "Avanpost"], note: "Контроль привилегированных пользователей и 2FA по ГОСТ Р 57580"}
+    - {category: rdbms, must: true, families: [], products: ["Postgres Pro Enterprise", "Tantor"], note: "Высоконагруженные сертифицированные СУБД из ЕРРП"}
+    - {category: vuln_mgmt_pentest, must: true, families: [], products: ["MaxPatrol VM", "RedCheck"], note: "Регулярный контроль уязвимостей инфраструктуры"}
+    - {category: waf_appsec, must: false, families: [], products: ["PT Application Firewall", "SolidWall WAF"], note: "Защита ДБО, интернет-банка и публичных API"}
+
+- id: freelance_individual
+  title: "Индивидуальные предприниматели и частные специалисты"
+  aliases: ["ип", "самозанятый", "фрилансер", "частный специалист", "микробизнес", "один компьютер"]
+  compliance: []
+  slots:
+    - {category: home_antivirus, must: true, families: [], products: ["Kaspersky Standard", "Kaspersky Plus", "Dr.Web Security Space"], note: "Персональная защита на 1–3 устройства"}
+    - {category: office_suite, must: true, families: [], products: ["МойОфис для дома", "Р7-Офис"], note: "Работа с договорами, сметами и таблицами"}
+    - {category: accounting, must: false, families: [], products: ["1С:БизнесСтарт", "Контур.Эльба"], note: "Упрощённый учёт и налоги для ИП"}
+    - {category: pdf_editors, must: false, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Подготовка и правка PDF-документов"}
+    - {category: crypto_skzi, must: false, families: [], products: ["КриптоПро CSP"], note: "Электронная подпись для отчётности и ЭДО"}
+
+- id: construction
+  title: "Строительство и девелопмент"
+  aliases: ["строительство", "строительная компания", "застройщик", "девелопер", "генподрядчик", "стройфирма", "пгс"]
+  compliance: [registry_ru, fz152_pdn]
+  slots:
+    - {category: estimates_construction, must: true, families: [], products: ["Гранд-Смета", "Smeta.ru", "АДЕПТ:СМЕТА"], note: "Составление смет, КС-2 и КС-3"}
+    - {category: bim_aec, must: true, families: [], products: ["Renga", "nanoCAD BIM", "Pilot-BIM"], note: "Информационное моделирование и контроль стройки"}
+    - {category: project_planning, must: true, families: [], products: ["ПМ Форсайт", "Адванта", "1С:PM Управление проектами"], note: "Календарно-сетевые графики строительства"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия строительной организации", "1С:ERP Управление строительной организацией"], note: "Пообъектный учёт затрат и подрядчиков"}
+    - {category: sed_ecm, must: false, families: [], products: ["Directum RX", "ТЕЗИС"], note: "Согласование договоров подряда и исполнительной документации"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита офиса и удалённых штабов строительства"}
+
+- id: oil_gas
+  title: "Нефтегазовая отрасль и ТЭК"
+  aliases: ["нефтегаз", "нефтегазовая отрасль", "тэк", "добыча нефти", "нпз", "газовая отрасль", "трубопровод"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, asutp_31, fz44_223, fz152_pdn]
+  slots:
+    - {category: ot_ics_security, must: true, families: [], products: ["Kaspersky Industrial CyberSecurity", "PT ISIM", "InfoWatch ARMA"], note: "Защита распределённых АСУ ТП и объектов КИИ"}
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Мониторинг киберинцидентов и интеграция с НКЦКИ"}
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС", "Альт"], note: "Доверенная ОС для тысяч рабочих станций"}
+    - {category: gis_mapping, must: false, families: [], products: ["ГИС Панорама", "Axioma GIS"], note: "Картография месторождений и линейных объектов"}
+    - {category: erp_systems, must: true, families: [], products: ["1С:ERP Управление холдингом", "Галактика ERP"], note: "Управление активами, ТОиР и снабжением"}
+    - {category: server_virtualization, must: true, families: [], products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix"], note: "Импортонезависимые ЦОД"}
+
+- id: energy_utilities
+  title: "Энергетика, электросети и ЖКХ"
+  aliases: ["энергетика", "электросети", "тэц", "водоканал", "теплосети", "жкх", "энергосбыт", "управляющая компания жкх"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, asutp_31, fz44_223, fz152_pdn]
+  slots:
+    - {category: ot_ics_security, must: true, families: [], products: ["Kaspersky Industrial CyberSecurity", "PT ISIM"], note: "Безопасность подстанций, диспетчерских и АСУ ТП"}
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС"], note: "Реестровая ОС для диспетчерских и абонентских отделов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Сертифицированная антивирусная защита"}
+    - {category: ngfw_vpn, must: true, families: [], products: ["Континент 4", "ViPNet Coordinator", "UserGate"], note: "Защита каналов телеметрии и филиалов"}
+    - {category: accounting, must: true, families: [], products: ["1С:Учёт в управляющих компаниях ЖКХ", "1С:Бухгалтерия 8"], note: "Биллинг и регламентированный учёт"}
+
+- id: transport_logistics
+  title: "Транспорт, грузоперевозки и логистика"
+  aliases: ["логистика", "транспортная компания", "грузоперевозки", "экспедитор", "автопарк", "складская логистика", "3pl"]
+  compliance: [fz152_pdn, kii_187fz]
+  slots:
+    - {category: logistics_tms, must: true, families: [], products: ["1С:TMS Логистика. Управление перевозками", "1С:Управление автотранспортом", "Яндекс Маршрутизация"], note: "Маршрутизация, учёт ГСМ и рейсов"}
+    - {category: trade_warehouse, must: true, families: [], products: ["1С:WMS Логистика. Управление складом", "AXELOT WMS"], note: "Адресное хранение и работа с ТСД"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС"], note: "Электронные транспортные накладные (ЭТрН) и УПД"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8"], note: "Бухгалтерский учёт транспортной компании"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита офиса, складов и диспетчерской"}
+    - {category: mobile_security_mdm, must: false, families: [], products: ["Kaspersky Security для мобильных устройств", "SafeMobile"], note: "Управление корпоративными ТСД и смартфонами водителей"}
+
+- id: gov_public_sector
+  title: "Государственное и муниципальное управление"
+  aliases: ["госсектор", "госучреждение", "администрация", "министерство", "ведомство", "мфц", "муниципалитет", "бюджетная организация"]
+  compliance: [registry_ru, fstec, fsb, fz44_223, gis_17, fz152_pdn, vat_exemption]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС", "Альт СП"], note: "Сертифицированная ФСТЭК российская ОС"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Реестровый офисный пакет без НДС"}
+    - {category: sed_ecm, must: true, families: [], products: ["Directum RX", "Дело", "ТЕЗИС"], note: "Делопроизводство и межведомственный СЭД (МЭДО)"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Сертифицированный ФСТЭК антивирус"}
+    - {category: nsd_access_control, must: true, families: [], products: ["Secret Net Studio", "Dallas Lock"], note: "Защита ГИС по приказу ФСТЭК №17"}
+    - {category: directory_services, must: true, families: [], products: ["ALD Pro", "РЕД АДМ", "Альт Домен"], note: "Централизованное управление парком Linux-АРМ"}
+    - {category: vks_webinars, must: false, families: [], products: ["TrueConf Server", "IVA MCU", "Контур.Толк"], note: "Совещания в защищённом контуре"}
+
+- id: defense_aerospace
+  title: "ОПК, авиация и закрытые контуры"
+  aliases: ["опк", "оборонное предприятие", "оборонка", "авиастроение", "космонавтика", "гостайна", "закрытый контур"]
+  compliance: [registry_ru, fstec, fsb, mo_rf, state_secret, kii_187fz, fz44_223]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "Альт СП"], note: "Уровень защищённости Смоленск, сертификаты ФСТЭК и Минобороны"}
+    - {category: nsd_access_control, must: true, families: [], products: ["Secret Net Studio", "Dallas Lock", "ПАК Соболь"], note: "Доверенная загрузка и мандатный контроль доступа"}
+    - {category: mcad_plm, must: true, families: [], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "Отечественные САПР и PDM в закрытой сети"}
+    - {category: ngfw_vpn, must: true, families: [], products: ["Континент 4", "ViPNet Coordinator"], note: "Сертифицированные криптошлюзы и МЭ"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Автономное обновление баз в изолированном контуре"}
+    - {category: office_suite, must: true, families: [], products: ["МойОфис Защищённый", "Р7-Офис"], note: "Работа с конфиденциальными документами без интернета"}
+
+- id: telecom_isp
+  title: "Телекоммуникации, операторы связи и ЦОД"
+  aliases: ["телеком", "оператор связи", "провайдер", "цод", "дата-центр", "хостинг", "связь"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, fz152_pdn]
+  slots:
+    - {category: server_virtualization, must: true, families: [], products: ["zVirt", "ПК СВ «Брест»", "Basis Dynamix"], note: "Кластерная виртуализация узлов и клиентских сервисов"}
+    - {category: monitoring_apm, must: true, families: [], products: ["Saymon", "Monq", "Zabbix с российской поддержкой"], note: "Мониторинг сети, узлов связи и SLA 24/7"}
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Безопасность магистральной сети и объектов КИИ"}
+    - {category: load_balancing_adc, must: false, families: [], products: ["Angie Pro", "UserGate", "PT NAD"], note: "Балансировка трафика и анализ сетевых аномалий"}
+    - {category: rdbms, must: true, families: [], products: ["Postgres Pro Enterprise", "Arenadata DB"], note: "Биллинг, хранилища и телеметрия"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование виртуализации и баз"}
+
+- id: agriculture
+  title: "Агропромышленный комплекс и сельское хозяйство"
+  aliases: ["апк", "сельское хозяйство", "агрохолдинг", "фермерское хозяйство", "животноводство", "растениеводство", "пищевая промышленность"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: industry_specialized, must: true, families: [], products: ["1С:ERP Агропромышленный комплекс", "1С:Бухгалтерия сельскохозяйственного предприятия"], note: "Учёт полей, поголовья, техники и урожая"}
+    - {category: gis_mapping, must: false, families: [], products: ["ГИС Панорама АГРО"], note: "Картирование сельхозугодий и точное земледелие"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС", "Контур.Экстерн"], note: "Работа с ФГИС Зерно, Меркурий и отчётностью"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита офисов и удалённых хозяйств"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Офисные документы и сводные таблицы"}
+
+- id: pharma_biotech
+  title: "Фармацевтика, аптечные сети и биотехнологии"
+  aliases: ["фарма", "фармацевтика", "аптека", "аптечная сеть", "фармзавод", "биотех", "лекарства"]
+  compliance: [registry_ru, fz152_pdn, kii_187fz]
+  slots:
+    - {category: erp_systems, must: true, families: [], products: ["1С:ERP Управление предприятием 2", "1С:Аптека"], note: "Посерийный учёт, сроки годности и производство"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Маркировка", "Контур.Диадок", "СБИС"], note: "Интеграция с МДЛП (Честный ЗНАК) и ЭДО"}
+    - {category: sed_ecm, must: true, families: [], products: ["Directum RX", "ТЕЗИС"], note: "Управление СОП и документацией качества (GxP)"}
+    - {category: dlp, must: false, families: [], products: ["InfoWatch Traffic Monitor", "SearchInform КИБ"], note: "Защита рецептур, КИ и коммерческой тайны"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита лабораторий, производства и аптек"}
+
+- id: mining_metallurgy
+  title: "Горнодобывающая промышленность и металлургия"
+  aliases: ["металлургия", "горнодобывающая", "гок", "шахта", "комбинат", "добыча полезных ископаемых", "рудник"]
+  compliance: [registry_ru, fstec, fsb, kii_187fz, asutp_31, fz152_pdn]
+  slots:
+    - {category: ot_ics_security, must: true, families: [], products: ["Kaspersky Industrial CyberSecurity", "PT ISIM"], note: "Защита АСУ ТП комбинатов и рудников (приказ №31)"}
+    - {category: erp_systems, must: true, families: [], products: ["1С:ERP Управление холдингом", "Галактика ERP"], note: "Управление производством, ремонтами (ТОиР) и логистикой"}
+    - {category: bi_analytics, must: false, families: [], products: ["Visiology", "Yandex DataLens", "Форсайт. Аналитическая платформа"], note: "Производственная аналитика и KPI холдинга"}
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Централизованный SOC холдинга"}
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС"], note: "Российская ОС на рабочих станциях и серверах"}
+
+- id: ecommerce_marketplaces
+  title: "Электронная коммерция, интернет-магазины и маркетплейсы"
+  aliases: ["интернет-магазин", "ecommerce", "e-com", "маркетплейс", "селлер", "онлайн-торговля", "онлайн-ритейл"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: cms_ecommerce, must: true, families: [], products: ["1С-Битрикс: Управление сайтом", "CS-Cart"], note: "Витрина интернет-магазина и интеграция с каталогом"}
+    - {category: trade_warehouse, must: true, families: [], products: ["1С:Управление торговлей 8", "МойСклад"], note: "Синхронизация остатков с маркетплейсами и фулфилмент"}
+    - {category: crm_systems, must: true, families: [], products: ["Битрикс24", "amoCRM", "RetailCRM"], note: "Обработка заказов, чатов и повторных продаж"}
+    - {category: waf_appsec, must: false, families: [], products: ["PT Application Firewall", "SolidWall WAF"], note: "Защита сайта и личных кабинетов от атак"}
+    - {category: bi_analytics, must: false, families: [], products: ["Yandex DataLens", "PIX BI", "Visiology"], note: "Сквозная аналитика, юнит-экономика и маржа"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8"], note: "Учёт комиссионной торговли и отчётов агентов"}
+
+- id: horeca_tourism
+  title: "Гостиницы, рестораны и туризм (HoReCa)"
+  aliases: ["horeca", "ресторан", "кафе", "отель", "гостиница", "общепит", "туризм", "турагентство", "санаторий"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: industry_specialized, must: true, families: [], products: ["iiko", "r_keeper", "1С:Отель"], note: "Автоматизация зала, кухни, бронирования и номерного фонда"}
+    - {category: retail_pos_cash, must: true, families: [], products: ["Frontol", "1С:Розница 8"], note: "Кассы, ЕГАИС и маркировка напитков"}
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8", "1С:Общепит"], note: "Калькуляционные карты, списание и бухучёт"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "СБИС", "Контур.Маркет"], note: "Отчётность, ЕГАИС и Меркурий"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Small Office Security", "Dr.Web"], note: "Защита кассовых серверов и ПК ресепшена"}
+
+- id: media_advertising
+  title: "Медиа, маркетинг, дизайн-студии и издательства"
+  aliases: ["медиа", "рекламное агентство", "маркетинговое агентство", "дизайн-студия", "издательство", "типография", "продакшн", "сми"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: vector_illustration, must: true, families: [], products: ["CorelDRAW Graphics Suite", "Inkscape"], note: "Векторная графика, логотипы и макеты под печать"}
+    - {category: raster_photo, must: true, families: [], products: ["Corel PHOTO-PAINT", "AliveColors"], note: "Обработка фотографий и рекламных креативов"}
+    - {category: video_editing, must: false, families: [], products: ["Movavi Видеоредактор Бизнес"], note: "Монтаж роликов и корпоративного видео"}
+    - {category: task_project_trackers, must: true, families: [], products: ["Битрикс24", "Kaiten", "Weeek", "Яндекс Трекер"], note: "Ведение клиентских кампаний и дедлайнов"}
+    - {category: crm_systems, must: false, families: [], products: ["Битрикс24", "amoCRM"], note: "Сделки с рекламодателями и клиентами"}
+    - {category: vks_webinars, must: false, families: [], products: ["Контур.Толк", "МТС Линк"], note: "Презентации и защиты концепций"}
+
+- id: legal_consulting
+  title: "Юридические и консалтинговые компании"
+  aliases: ["юридическая фирма", "адвокатское бюро", "консалтинг", "консалтинговая компания", "юристы", "правовой консалтинг"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: counterparty_legal_info, must: true, families: [], products: ["КонсультантПлюс", "Гарант", "Контур.Фокус"], note: "Справочно-правовая система, судебная практика и проверка лиц"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Договоры, иски, рецензирование и сравнение редакций"}
+    - {category: pdf_editors, must: true, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Работа со сканами договоров, сравнение и аннотирование PDF"}
+    - {category: sed_ecm, must: false, families: [], products: ["Directum RX", "ТЕЗИС"], note: "Архив дел и согласование договоров"}
+    - {category: data_wiping_encryption, must: false, families: [], products: ["Secret Disk", "Kaspersky Endpoint Security"], note: "Шифрование ноутбуков и адвокатской тайны"}
+
+- id: insurance
+  title: "Страховые компании"
+  aliases: ["страхование", "страховая компания", "страховщик", "страховой брокер", "осаго", "дмс"]
+  compliance: [registry_ru, fstec, fsb, gost_719_cbr, fz152_pdn]
+  slots:
+    - {category: crm_systems, must: true, families: [], products: ["BPMSoft", "Битрикс24", "ELMA365 CRM"], note: "Учёт полисов, пролонгаций и урегулирования убытков"}
+    - {category: dlp, must: true, families: [], products: ["InfoWatch Traffic Monitor", "SearchInform КИБ"], note: "Защита клиентской базы от утечек"}
+    - {category: bi_analytics, must: false, families: [], products: ["Visiology", "Форсайт. Аналитическая платформа", "Yandex DataLens"], note: "Актуарная аналитика и оценка убыточности"}
+    - {category: ocr_capture, must: false, families: [], products: ["Smart Engines", "ContentReader PDF"], note: "Распознавание паспортов, ПТС и заявлений"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита филиальной сети и агентских АРМ"}
+
+- id: real_estate
+  title: "Недвижимость, брокерские агентства и управление объектами"
+  aliases: ["недвижимость", "агентство недвижимости", "риэлтор", "коммерческая недвижимость", "управление бизнес-центром", "facility"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: crm_systems, must: true, families: [], products: ["Битрикс24", "amoCRM", "BPMSoft"], note: "База объектов, показы, арендаторы и воронка сделок"}
+    - {category: accounting, must: true, families: [], products: ["1С:Аренда и управление недвижимостью", "1С:Бухгалтерия 8"], note: "Выставление арендных счетов и коммунальных услуг"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС"], note: "Массовая отправка актов и счетов арендаторам по ЭДО"}
+    - {category: ip_telephony, must: false, families: [], products: ["Манго Офис", "Телфин"], note: "Коллтрекинг, запись звонков и интеграция с CRM"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security"], note: "Защита офисных компьютеров"}
+
+- id: science_rnd
+  title: "Научно-исследовательские институты (НИИ) и R&D"
+  aliases: ["нии", "научный институт", "наука", "лаборатория", "r&d", "исследовательский центр", "ран"]
+  compliance: [registry_ru, fz44_223, fz152_pdn, vat_exemption]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux", "Альт Рабочая станция", "РЕД ОС"], note: "Рабочие станции и вычислительные узлы на Linux"}
+    - {category: cae_simulation, must: true, families: [], products: ["ЛОГОС", "APM WinMachine", "Engee"], note: "Инженерное и математическое моделирование"}
+    - {category: ml_platforms_cv, must: false, families: [], products: ["Yandex DataSphere", "ML-платформы"], note: "Анализ экспериментальных данных и машинное обучение"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Научные отчёты, грантовые заявки и публикации"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование массивов исследований"}
+
+- id: nonprofit_ngo
+  title: "Некоммерческие организации (НКО) и благотворительные фонды"
+  aliases: ["нко", "благотворительный фонд", "фонд", "общественная организация", "ассоциация", "ано", "некоммерческая"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия некоммерческой организации 8"], note: "Учёт грантов, целевого финансирования и пожертвований"}
+    - {category: office_suite, must: true, families: [], products: ["МойОфис", "Р7-Офис"], note: "Отчёты в Минюст и грантодателям"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Small Office Security", "Dr.Web"], note: "Базовая защита офисных ноутбуков"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "СБИС"], note: "Отчётность НКО и ЭДО с партнёрами"}
+    - {category: vks_webinars, must: false, families: [], products: ["Контур.Толк", "МТС Линк"], note: "Онлайн-собрания попечителей и волонтёров"}

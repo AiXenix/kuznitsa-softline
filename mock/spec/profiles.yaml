@@ -1,0 +1,417 @@
+# Демо-профили клиентов интернет-магазина ПО (Кузница Softline, поток Neon-2)
+# Используются для демонстрации персонализации выдачи, контекстного подбора лицензий,
+# сценария продления истекающих лицензий и оценки качества поиска (eval/queries.*.jsonl).
+#
+# Поле `family`: id из kb/families/*.yaml, только если такой файл уже существует;
+# на момент создания profiles.yaml файлы kb/families/*.yaml ещё не записаны, поэтому family: null.
+# Поле `industry`: соответствует id из kb/industries.yaml.
+# Поле `expires_in_days`: положительное число — дней до окончания лицензии, null — бессрочная.
+
+profiles:
+  - id: guest
+    title: "Гость — неавторизованный посетитель без истории покупок"
+    demo: true
+    segment: null
+    industry: null
+    size_seats: null
+    region: "Москва"
+    fleet:
+      os: []
+      servers: 0
+      notes: "Инфраструктура неизвестна"
+    preferences:
+      registry_required: false
+      certs_required: []
+      budget: medium
+    owned: []
+    orders: []
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Новые коммерческие лицензии (action=new) на диапазон 25–49 узлов: Kaspersky Endpoint Security, Dr.Web Enterprise Security Suite, PRO32; без домашних версий и без принудительного переключения на продление."
+        why: "У гостя нет истории владения, поэтому базовый коммерческий сценарий — первичная покупка (new) для бизнеса."
+      - q: "офисный пакет"
+        expect: "Сбалансированная выдача российских и доступных коммерческих офисных пакетов (Р7-Офис, МойОфис, Microsoft Office — если есть в каталоге) + уточняющие чипы: «Для бизнеса», «Реестр Минцифры», «Бессрочная»."
+        why: "Без профиля сегмента и ОС нельзя жёстко отсекать платформы или реестр; поиск даёт лучший базовый топ и быстрые фильтры."
+      - q: "продление касперский"
+        expect: "Позиции продления Kaspersky для бизнеса с предложением уточнить количество узлов и срок (или войти в личный кабинет, чтобы подставить текущие лицензии)."
+        why: "У гостя нет блока «Мои лицензии», поэтому система мягко предлагает указать масштаб или авторизоваться."
+      - q: "софт"
+        expect: "Навигационная витрина категорий B2B (ИБ, ОС, Офис, 1С, ВКС, Виртуализация, САПР, Бэкап) и быстрые сценарии без случайных карточек SKU."
+        why: "Слишком общий запрос от неизвестного пользователя должен вести к навигации, а не к случайному списку лицензий."
+
+  - id: smb_trade
+    title: "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК"
+    demo: true
+    segment: smb
+    industry: trade
+    size_seats: 15
+    region: "Москва"
+    fleet:
+      os: [windows]
+      servers: 1
+      notes: "15 рабочих станций на Windows 10/11 и 1 файловый/1С сервер на Windows Server"
+    preferences:
+      registry_required: false
+      certs_required: []
+      budget: low
+    owned:
+      - {product: "Kaspersky Small Office Security", family: null, edition: "15 устройств + 1 сервер", qty: 15, metric: device, purchased_days_ago: 344, expires_in_days: 21}
+      - {product: "1С:Управление торговлей 8", family: null, edition: "ПРОФ", qty: 10, metric: user, purchased_days_ago: 420, expires_in_days: null}
+      - {product: "1С:ИТС ПРОФ", family: null, edition: "12 месяцев", qty: 1, metric: company, purchased_days_ago: 310, expires_in_days: 55}
+      - {product: "Контур.Диадок", family: null, edition: "Пакет документов", qty: 1, metric: company, purchased_days_ago: 200, expires_in_days: 165}
+    orders:
+      - {days_ago: 344, items: [{product: "Kaspersky Small Office Security", action: new, qty: 15, term_months: 12}]}
+      - {days_ago: 310, items: [{product: "1С:ИТС ПРОФ", action: renewal, qty: 1, term_months: 12}]}
+      - {days_ago: 200, items: [{product: "Контур.Диадок", action: renewal, qty: 1, term_months: 12}]}
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Наверху — продление и апгрейд/переход с Kaspersky Small Office Security (максимум 25 устройств) на Kaspersky Endpoint Security для бизнеса (диапазон 25–49 узлов) с пометкой про истекающую через 21 день лицензию; альтернативы SMB (Dr.Web, PRO32) ниже."
+        why: "У клиента истекает KSOS на 15 ПК, а запрос на 30 ПК превышает лимит KSOS — умный поиск видит историю и рекомендует корректный переход на KES."
+      - q: "антивирус"
+        expect: "Блок-напоминание «Истекает через 21 день: Kaspersky Small Office Security (15 устройств)» с кнопкой быстрого продления + доступные бюджетные решения для малого бизнеса на Windows."
+        why: "Проактивное продление по профилю экономит время закупщика и удерживает клиента."
+      - q: "офисный пакет"
+        expect: "Бюджетные редакции под Windows для малого офиса (Р7-Офис Профессиональный, МойОфис Стандартный на 15 мест, расчёт суммы сразу на 15 ПК) без тяжёлых корпоративных серверных комплексов."
+        why: "Профиль SMB с budget=low и парком 15 ПК на Windows приоритизирует лёгкие настольные лицензии и ориентирует расчёт на 15 мест."
+      - q: "1с сопровождение"
+        expect: "Продление 1С:ИТС ПРОФ на 12 месяцев (истекает через 55 дней) на первом месте, а не первичное подключение."
+        why: "Клиент уже владеет 1С:ИТС ПРОФ — приоритет у продления."
+
+  - id: gov_clinic
+    title: "ГБУЗ «Городская поликлиника № 14» — здравоохранение, 300 АРМ на Astra Linux"
+    demo: true
+    segment: gov
+    industry: healthcare
+    size_seats: 300
+    region: "Санкт-Петербург"
+    fleet:
+      os: [astra, linux]
+      servers: 6
+      notes: "300 АРМ врачей и регистратуры на Astra Linux Special Edition, 6 серверов МИС и баз данных (ИСПДн, 152-ФЗ)"
+    preferences:
+      registry_required: true
+      certs_required: [fstec]
+      budget: medium
+    owned:
+      - {product: "Astra Linux Special Edition", family: null, edition: "Очередное обновление, уровень Воронеж", qty: 300, metric: device, purchased_days_ago: 520, expires_in_days: null}
+      - {product: "Kaspersky Endpoint Security для Linux", family: null, edition: "Сертифицированный ФСТЭК", qty: 300, metric: device, purchased_days_ago: 337, expires_in_days: 28}
+      - {product: "КриптоПро CSP", family: null, edition: "5.0, сертификат ФСБ", qty: 120, metric: device, purchased_days_ago: 325, expires_in_days: 40}
+      - {product: "Р7-Офис. Десктоп", family: null, edition: "Государственная лицензия", qty: 300, metric: device, purchased_days_ago: 330, expires_in_days: 35}
+    orders:
+      - {days_ago: 337, items: [{product: "Kaspersky Endpoint Security для Linux", action: renewal, qty: 300, term_months: 12}]}
+      - {days_ago: 330, items: [{product: "Р7-Офис. Десктоп", action: new, qty: 300, term_months: 12}]}
+      - {days_ago: 325, items: [{product: "КриптоПро CSP", action: new, qty: 120, term_months: 12}]}
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Наверху — дозакупка/расширение или гослицензия Kaspersky Endpoint Security для Linux с сертификатом ФСТЭК и реестром Минцифры (совместимо с Astra Linux, без НДС); Windows-only и нереестровые продукты отфильтрованы или опущены."
+        why: "Профиль gov + Astra Linux + registry_required=true + certs_required=[fstec] жёстко требует совместимость с Astra Linux, ЕРРП и ФСТЭК."
+      - q: "офисный пакет"
+        expect: "Наверху — продление Р7-Офис для госучреждений (истекает через 35 дней, 300 АРМ, совместим с Astra Linux, без НДС) и МойОфис Стандартный (ЕРРП, Linux)."
+        why: "Закупщик из госклиники должен видеть реестровое ПО под Linux и напоминание об истекающем Р7-Офис, а не Microsoft Office под Windows."
+      - q: "удалённый доступ"
+        expect: "Только реестровые решения с поддержкой Astra Linux (Ассистент, RuDesktop, СКДПУ) с бейджами «Реестр Минцифры» и «Astra Linux»; TeamViewer/AnyDesk не предлагаются к покупке."
+        why: "Для госучреждения с ИСПДн критичны реестр Минцифры и нативная работа под Astra Linux."
+      - q: "резервное копирование"
+        expect: "Кибер Бэкап (версия с ФСТЭК и поддержкой Astra Linux / PostgreSQL) и RuBackup, с пометкой про 44-ФЗ и отсутствие НДС."
+        why: "Госсектор закупает только реестровые СРК с поддержкой российских ОС и БД."
+
+  - id: edu_university
+    title: "ФГБОУ ВО «Приволжский технический университет» — вуз, 850 ПК"
+    demo: true
+    segment: edu
+    industry: education
+    size_seats: 850
+    region: "Казань"
+    fleet:
+      os: [windows, alt, linux]
+      servers: 14
+      notes: "Компьютерные классы (Windows + Альт Образование), кафедры, деканаты, 14 серверов"
+    preferences:
+      registry_required: true
+      certs_required: []
+      budget: low
+    owned:
+      - {product: "Альт Образование", family: null, edition: "10, образовательная лицензия", qty: 400, metric: device, purchased_days_ago: 400, expires_in_days: null}
+      - {product: "Dr.Web Enterprise Security Suite", family: null, edition: "Образовательная лицензия (EDU)", qty: 850, metric: device, purchased_days_ago: 348, expires_in_days: 17}
+      - {product: "МойОфис Образование", family: null, edition: "Академическая лицензия", qty: 850, metric: device, purchased_days_ago: 315, expires_in_days: 50}
+      - {product: "КОМПАС-3D", family: null, edition: "Учебный комплект для вузов", qty: 120, metric: device, purchased_days_ago: 320, expires_in_days: 45}
+    orders:
+      - {days_ago: 348, items: [{product: "Dr.Web Enterprise Security Suite", action: renewal, qty: 850, term_months: 12}]}
+      - {days_ago: 320, items: [{product: "КОМПАС-3D", action: renewal, qty: 120, term_months: 12}]}
+      - {days_ago: 315, items: [{product: "МойОфис Образование", action: new, qty: 850, term_months: 12}]}
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Академические (EDU) лицензии Dr.Web (напоминание о продлении 850 узлов через 17 дней + докупка 30 узлов) и Kaspersky для образовательных учреждений из реестра Минцифры, с льготным прайсом EDU."
+        why: "Сегмент edu автоматически включает приоритет академических лицензий (существенно дешевле коммерческих) и реестра Минцифры."
+      - q: "офисный пакет"
+        expect: "МойОфис Образование (напоминание о продлении через 50 дней) и Р7-Офис для образовательных учреждений — академические лицензии с поддержкой Альт Образование и Windows."
+        why: "Вузам положены льготные академические редакции, а не стандартные коммерческие прайсы."
+      - q: "сапр для учебных классов"
+        expect: "Учебные/академические комплекты КОМПАС-3D, nanoCAD (образовательная лицензия), T-FLEX CAD учебный с реестром Минцифры."
+        why: "Образовательный сегмент получает учебные лицензии вместо дорогих промышленных коммерческих SKU."
+      - q: "видеоконференцсвязь"
+        expect: "МТС Линк (тарифы для образования / вебинары с тестами), Контур.Толк и TrueConf с академическими условиями и реестром Минцифры."
+        why: "Для вуза важны дистанционные лекции, запись, реестр и льготный тариф."
+
+  - id: ent_factory
+    title: "АО «Уралмашприбор» — машиностроительный завод, 5000 рабочих мест"
+    demo: true
+    segment: enterprise
+    industry: manufacturing
+    size_seats: 5000
+    region: "Екатеринбург"
+    fleet:
+      os: [windows, windows_server, astra, linux]
+      servers: 180
+      notes: "5000 АРМ (цеха, КБ, заводоуправление), 180 серверов, объекты КИИ (187-ФЗ) и АСУ ТП (приказ ФСТЭК №31)"
+    preferences:
+      registry_required: true
+      certs_required: [fstec, fsb]
+      budget: high
+    owned:
+      - {product: "Kaspersky Endpoint Security для бизнеса", family: null, edition: "Расширенный, 5000+ узлов", qty: 5000, metric: device, purchased_days_ago: 325, expires_in_days: 40}
+      - {product: "Kaspersky Industrial CyberSecurity", family: null, edition: "Для узлов и сетей АСУ ТП", qty: 250, metric: device, purchased_days_ago: 260, expires_in_days: 105}
+      - {product: "MaxPatrol SIEM", family: null, edition: "Enterprise", qty: 1, metric: company, purchased_days_ago: 350, expires_in_days: 15}
+      - {product: "1С:ERP Управление предприятием 2", family: null, edition: "КОРП", qty: 800, metric: user, purchased_days_ago: 600, expires_in_days: null}
+      - {product: "Astra Linux Special Edition", family: null, edition: "Серверная и десктопная", qty: 1200, metric: device, purchased_days_ago: 190, expires_in_days: null}
+    orders:
+      - {days_ago: 350, items: [{product: "MaxPatrol SIEM", action: renewal, qty: 1, term_months: 12}]}
+      - {days_ago: 325, items: [{product: "Kaspersky Endpoint Security для бизнеса", action: renewal, qty: 5000, term_months: 12}]}
+      - {days_ago: 190, items: [{product: "Astra Linux Special Edition", action: new, qty: 1200, term_months: 0}]}
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Наверху — дозакупка (addon) к действующей enterprise-лицензии Kaspersky Endpoint Security (5000 узлов, истекает через 40 дней) с выравниванием срока (ко-терминг) и бейджем ФСТЭК; никаких SMB-редакций вроде KSOS."
+        why: "Заводу на 5000 мест не нужен отдельный ключ на 30 ПК для малого бизнеса — нужна докупка к корпоративному контракту и предупреждение о скором продлении всей базы."
+      - q: "защита сети"
+        expect: "Корпоративные сертифицированные NGFW и мониторинг для КИИ (UserGate, Континент 4, PT NGFW, ViPNet Coordinator, Kaspersky KICS) с формой проектного расчёта КП и SLA."
+        why: "Enterprise-масштаб + КИИ + ФСТЭК/ФСБ требуют промышленных решений с проектным расчётом, а не простых офисных шлюзов."
+      - q: "мониторинг событий иб"
+        expect: "Напоминание о продлении MaxPatrol SIEM (истекает через 15 дней) + корпоративные SIEM/SOAR из ЕРРП с сертификатом ФСТЭК (KUMA, RuSIEM, Комрад)."
+        why: "У завода через 15 дней истекает критичная подписка MaxPatrol SIEM — это главный приоритет."
+      - q: "виртуализация"
+        expect: "Промышленные российские платформы виртуализации из ЕРРП с сертификатом ФСТЭК (ПК СВ «Брест», zVirt, Basis Dynamix) с лицензированием по сокетам/хостам и запросом проектного КП."
+        why: "180 серверов и требования КИИ делают фокус на сертифицированной серверной виртуализации, а не десктопных гипервизорах."
+
+  - id: it_company
+    title: "ООО «Облачные системы Групп» — ИТ-компания, 120 сотрудников (macOS и Linux)"
+    demo: true
+    segment: mid
+    industry: it_telecom
+    size_seats: 120
+    region: "Москва"
+    fleet:
+      os: [macos, linux]
+      servers: 22
+      notes: "85 ноутбуков на macOS, 35 рабочих станций на Ubuntu/Linux, 22 облачных и локальных Linux-сервера, гибридная удалёнка"
+    preferences:
+      registry_required: false
+      certs_required: []
+      budget: medium
+    owned:
+      - {product: "Контур.Толк", family: null, edition: "Бизнес, 120 пользователей", qty: 120, metric: user, purchased_days_ago: 340, expires_in_days: 25}
+      - {product: "Яндекс 360 для бизнеса", family: null, edition: "Оптимальный", qty: 120, metric: user, purchased_days_ago: 318, expires_in_days: 47}
+      - {product: "Kaspersky Endpoint Security Cloud", family: null, edition: "macOS и Linux", qty: 120, metric: device, purchased_days_ago: 220, expires_in_days: 145}
+      - {product: "Kaiten", family: null, edition: "Корпоративный", qty: 120, metric: user, purchased_days_ago: 150, expires_in_days: 215}
+    orders:
+      - {days_ago: 340, items: [{product: "Контур.Толк", action: new, qty: 120, term_months: 12}]}
+      - {days_ago: 318, items: [{product: "Яндекс 360 для бизнеса", action: renewal, qty: 120, term_months: 12}]}
+      - {days_ago: 150, items: [{product: "Kaiten", action: new, qty: 120, term_months: 12}]}
+    showcase:
+      - q: "антивирус на 30 пк"
+        expect: "Кроссплатформенные бизнес-решения с поддержкой macOS и Linux (Kaspersky Endpoint Security Cloud — докупка 30 узлов, Dr.Web для macOS/Linux); решения только под Windows не попадают в топ."
+        why: "Парк ИТ-компании состоит из macOS и Linux — Windows-only антивирус полностью бесполезен."
+      - q: "удалённый доступ"
+        expect: "Кроссплатформенные средства удалённого доступа с клиентом под macOS и Linux (RuDesktop, Ассистент), без Windows-only решений."
+        why: "Учёт `fleet.os=[macos, linux]` отсекает несовместимые продукты и экономит время админа."
+      - q: "видеоконференцсвязь"
+        expect: "Напоминание о продлении Контур.Толк (120 пользователей, истекает через 25 дней) + облачные/браузерные ВКС с поддержкой macOS (МТС Линк, Яндекс Телемост Бизнес)."
+        why: "Истекающая подписка ВКС в профиле поднимается наверх с кнопкой быстрого продления."
+      - q: "аналог jira"
+        expect: "Блок аналогов для замены Jira (Яндекс Трекер, EvaProject, Kaiten — с пометкой «уже используется в вашей компании», SimpleOne SDLC) с фокусом на Agile/DevOps."
+        why: "ИТ-компании нужны именно инженерные трекеры с интеграцией Git/CI, а не базовые офисные задачники."
+
+  - id: design_bureau
+    title: "АО «Гипростройпроект» — проектный институт, САПР и BIM, 240 АРМ"
+    demo: true
+    segment: mid
+    industry: architecture_design
+    size_seats: 240
+    region: "Новосибирск"
+    fleet:
+      os: [windows, redos]
+      servers: 12
+      notes: "190 мощных рабочих станций инженеров на Windows 11, 50 офисных АРМ переведены на РЕД ОС, сервер лицензий САПР и PDM/BIM-архив"
+    preferences:
+      registry_required: true
+      certs_required: []
+      budget: high
+    owned:
+      - {product: "Платформа nanoCAD", family: null, edition: "24, сетевые (плавающие) лицензии + СПДС", qty: 80, metric: concurrent, purchased_days_ago: 345, expires_in_days: 20}
+      - {product: "Renga", family: null, edition: "Professional, BIM-проектирование", qty: 45, metric: concurrent, purchased_days_ago: 280, expires_in_days: 85}
+      - {product: "Pilot-BIM", family: null, edition: "Среда общих данных", qty: 120, metric: user, purchased_days_ago: 312, expires_in_days: 53}
+      - {product: "Гранд-Смета", family: null, edition: "Проф, сетевая", qty: 15, metric: concurrent, purchased_days_ago: 240, expires_in_days: 125}
+    orders:
+      - {days_ago: 345, items: [{product: "Платформа nanoCAD", action: renewal, qty: 80, term_months: 12}]}
+      - {days_ago: 312, items: [{product: "Pilot-BIM", action: new, qty: 120, term_months: 12}]}
+      - {days_ago: 280, items: [{product: "Renga", action: new, qty: 45, term_months: 12}]}
+    showcase:
+      - q: "autocad"
+        expect: "Честный блок о прекращении официальных поставок Autodesk в РФ + наверху Платформа nanoCAD (с пометкой: у компании уже 80 сетевых лицензий, продление через 20 дней, нативный DWG, реестр Минцифры) и Renga/КОМПАС."
+        why: "Проектный институт уже сидит на nanoCAD — при вводе «autocad» логично показать совместимую замену из текущего стека и предупредить о скором продлении."
+      - q: "сапр 10 лицензий"
+        expect: "Приоритет сетевых (плавающих, metric=concurrent) лицензий и модулей экосистемы nanoCAD / Renga из ЕРРП, а не локальных однопользовательских версий."
+        why: "В профиле института все САПР закуплены по плавающей модели (concurrent) и требуется реестр Минцифры."
+      - q: "чем открыть dwg"
+        expect: "Профессиональные DWG-САПР и просмотрщики из ЕРРП (nanoCAD, Pilot-BIM) с поддержкой СПДС и проверкой совместимости с РЕД ОС для офисных АРМ."
+        why: "Институту важна совместимость со смешанным парком Windows + РЕД ОС и стандартами СПДС/ЕСКД."
+      - q: "офисный пакет"
+        expect: "Реестровые офисные пакеты, работающие одновременно на Windows и РЕД ОС (Р7-Офис, МойОфис) в диапазоне 200–250 мест, без НДС."
+        why: "Часть парка уже на РЕД ОС, и заказчик требует ЕРРП."
+
+  - id: accounting_firm
+    title: "ООО «ФинУчёт Консалтинг» — бухгалтерская фирма (аутсорсинг), 45 ПК"
+    demo: true
+    segment: smb
+    industry: accounting_audit
+    size_seats: 45
+    region: "Краснодар"
+    fleet:
+      os: [windows, windows_server]
+      servers: 3
+      notes: "45 АРМ бухгалтеров и кадровиков на Windows, 3 терминальных сервера 1С и отчётности"
+    preferences:
+      registry_required: false
+      certs_required: [fsb]
+      budget: medium
+    owned:
+      - {product: "1С:Бухгалтерия 8", family: null, edition: "КОРП + клиентские лицензии на 50 мест", qty: 50, metric: user, purchased_days_ago: 720, expires_in_days: null}
+      - {product: "1С:Зарплата и управление персоналом 8", family: null, edition: "ПРОФ", qty: 20, metric: user, purchased_days_ago: 500, expires_in_days: null}
+      - {product: "Контур.Экстерн", family: null, edition: "Обслуживающая бухгалтерия", qty: 1, metric: company, purchased_days_ago: 351, expires_in_days: 14}
+      - {product: "КриптоПро CSP", family: null, edition: "5.0 годовая", qty: 45, metric: device, purchased_days_ago: 320, expires_in_days: 45}
+      - {product: "Контур.Фокус", family: null, edition: "Проверка контрагентов", qty: 5, metric: user, purchased_days_ago: 210, expires_in_days: 155}
+    orders:
+      - {days_ago: 351, items: [{product: "Контур.Экстерн", action: renewal, qty: 1, term_months: 12}]}
+      - {days_ago: 320, items: [{product: "КриптоПро CSP", action: renewal, qty: 45, term_months: 12}]}
+      - {days_ago: 210, items: [{product: "Контур.Фокус", action: new, qty: 5, term_months: 12}]}
+    showcase:
+      - q: "сдача отчетности"
+        expect: "На первом месте — срочное продление Контур.Экстерн (истекает через 14 дней, тариф для обслуживающей бухгалтерии) + 1С-Отчётность и СБИС."
+        why: "Для аутсорсинговой бухгалтерии просрочка Контур.Экстерн критична — остановка сдачи отчётности клиентов."
+      - q: "криптопро"
+        expect: "Продление 45 лицензий КриптоПро CSP 5.0 (истекают через 45 дней) + кросс-селл USB-токенов Рутокен ЭЦП 3.0 и напоминание о сертификате ФСБ."
+        why: "У клиента 45 годовых лицензий КриптоПро на продление — поиск сразу подставляет нужное количество и действие renewal."
+      - q: "1с лицензии на 10 человек"
+        expect: "Дополнительные клиентские лицензии 1С:Предприятие 8 на 10 рабочих мест (addon) и терминальные лицензии, а не покупка новой основной поставки 1С:Бухгалтерии."
+        why: "Основная поставка 1С:Бухгалтерия КОРП уже куплена; при запросе на 10 человек нужны именно доплицензии."
+      - q: "распознавание первички"
+        expect: "Решения OCR с готовой интеграцией в 1С:Бухгалтерию (1С:Распознавание первичных документов, ContentReader / Smart Engines, Entera)."
+        why: "Профиль бухгалтерской фирмы на 1С смещает выдачу OCR в сторону модулей ввода первички в 1С."
+
+  - id: fin_bank
+    title: "ПАО «Региональный Инвестбанк» — коммерческий банк, 1400 АРМ"
+    demo: true
+    segment: enterprise
+    industry: banking_finance
+    size_seats: 1400
+    region: "Москва"
+    fleet:
+      os: [windows, astra, linux]
+      servers: 95
+      notes: "1400 АРМ (головной офис и 18 филиалов), 95 серверов, требования ЦБ РФ (ГОСТ Р 57580, 683-П, 716-П) и КИИ"
+    preferences:
+      registry_required: true
+      certs_required: [fstec, fsb]
+      budget: high
+    owned:
+      - {product: "InfoWatch Traffic Monitor", family: null, edition: "DLP Enterprise, сертификат ФСТЭК", qty: 1400, metric: device, purchased_days_ago: 332, expires_in_days: 33}
+      - {product: "Континент 4", family: null, edition: "АПКШ NGFW / ГОСТ VPN (ФСБ + ФСТЭК)", qty: 20, metric: server, purchased_days_ago: 410, expires_in_days: null}
+      - {product: "Postgres Pro Enterprise", family: null, edition: "Сертифицированная ФСТЭК", qty: 64, metric: core, purchased_days_ago: 315, expires_in_days: 50}
+      - {product: "Secret Net Studio", family: null, edition: "СЗИ от НСД (ФСТЭК)", qty: 1400, metric: device, purchased_days_ago: 600, expires_in_days: null}
+    orders:
+      - {days_ago: 332, items: [{product: "InfoWatch Traffic Monitor", action: renewal, qty: 1400, term_months: 12}]}
+      - {days_ago: 315, items: [{product: "Postgres Pro Enterprise", action: renewal, qty: 64, term_months: 12}]}
+    showcase:
+      - q: "защита от утечек"
+        expect: "Наверху — продление InfoWatch Traffic Monitor на 1400 узлов (истекает через 33 дня, ФСТЭК) + сравнение с SearchInform КИБ и Гарда DLP с учётом ГОСТ Р 57580."
+        why: "Банку критичны сертификаты ФСТЭК и соответствие требованиям Банка России; текущая DLP истекает через месяц."
+      - q: "субд для высоконагруженной системы"
+        expect: "Postgres Pro Enterprise (напоминание о продлении 64 ядер через 50 дней, ФСТЭК, ЕРРП) и Tantor/Arenadata — без зарубежных СУБД."
+        why: "Профиль банка с КИИ и ФСТЭК отсекает несертифицированные и ушедшие СУБД (Oracle, MS SQL)."
+      - q: "vpn для филиалов"
+        expect: "ГОСТ VPN с сертификатами ФСБ и ФСТЭК (Континент АПКШ — расширение текущей сети банка, ViPNet Coordinator, S-Terra)."
+        why: "Банк обязан шифровать межфилиальные каналы сертифицированными ФСБ СКЗИ."
+      - q: "контроль привилегированных пользователей"
+        expect: "PAM-системы из ЕРРП с сертификатом ФСТЭК (СКДПУ НТ, sPACE / Indeed PAM, Solar SafeInspect) с формой проектного КП."
+        why: "ГОСТ Р 57580 прямо требует контроль действий администраторов и подрядчиков."
+
+  - id: retail_logistics
+    title: "ООО «Сеть-Логистик» — розничная сеть и распределительные центры, 380 АРМ"
+    demo: true
+    segment: mid
+    industry: retail
+    size_seats: 380
+    region: "Нижний Новгород"
+    fleet:
+      os: [windows, linux]
+      servers: 18
+      notes: "220 кассовых узлов и ТСД-серверов на Linux, 160 офисных и складских АРМ на Windows, 18 серверов"
+    preferences:
+      registry_required: false
+      certs_required: []
+      budget: medium
+    owned:
+      - {product: "1С:Розница 8", family: null, edition: "ПРОФ, сеть магазинов", qty: 120, metric: user, purchased_days_ago: 480, expires_in_days: null}
+      - {product: "Битрикс24", family: null, edition: "Коробочная версия, Энтерпрайз", qty: 250, metric: user, purchased_days_ago: 342, expires_in_days: 23}
+      - {product: "Кибер Бэкап", family: null, edition: "Расширенный, 18 серверов", qty: 18, metric: server, purchased_days_ago: 328, expires_in_days: 37}
+      - {product: "Kaspersky Endpoint Security для бизнеса", family: null, edition: "Стандартный", qty: 380, metric: device, purchased_days_ago: 200, expires_in_days: 165}
+    orders:
+      - {days_ago: 342, items: [{product: "Битрикс24", action: renewal, qty: 250, term_months: 12}]}
+      - {days_ago: 328, items: [{product: "Кибер Бэкап", action: renewal, qty: 18, term_months: 12}]}
+      - {days_ago: 200, items: [{product: "Kaspersky Endpoint Security для бизнеса", action: renewal, qty: 380, term_months: 12}]}
+    showcase:
+      - q: "резервное копирование"
+        expect: "Наверху — продление Кибер Бэкап на 18 серверов (истекает через 37 дней) с поддержкой Windows и Linux, плюс опция докупки агентов для новых серверов."
+        why: "У клиента скоро истекает лицензия Кибер Бэкап, и его инфраструктура гетерогенна (Windows + Linux)."
+      - q: "crm"
+        expect: "Напоминание о продлении коробочного Битрикс24 на 250 пользователей (истекает через 23 дня) и допмодули интеграции с 1С и телефонией."
+        why: "Владелец коробочного Битрикс24 при поиске «crm» вероятнее всего ищет продление/расширение своей системы, а не миграцию на amoCRM."
+      - q: "удалённый доступ"
+        expect: "Решения для массовой техподдержки касс и складов на Linux и Windows (Ассистент, RuDesktop) с лицензированием по одновременным сессиям (concurrent)."
+        why: "У сети 380 распределённых точек — плавающие подключения для ИТ-поддержки выгоднее именных."
+      - q: "маркировка честный знак 1с"
+        expect: "Модули и сервисы работы с Честным ЗНАКом и ЭДО с нативной интеграцией в 1С:Розницу (Контур.Маркировка, СБИС Маркировка, 1С-ЭДО)."
+        why: "Отрасль retail и владение 1С:Розницей задают точный контекст для розничной маркировки."
+
+  - id: individual_freelancer
+    title: "ИП Соколов А. В. — частный специалист (веб-дизайн и разработка), 2 ПК"
+    demo: true
+    segment: individual
+    industry: freelance_individual
+    size_seats: 2
+    region: "Екатеринбург"
+    fleet:
+      os: [macos, windows]
+      servers: 0
+      notes: "1 MacBook Pro (macOS) и 1 домашний рабочий ПК (Windows 11)"
+    preferences:
+      registry_required: false
+      certs_required: []
+      budget: low
+    owned:
+      - {product: "Kaspersky Plus", family: null, edition: "На 3 устройства, 1 год", qty: 3, metric: device, purchased_days_ago: 347, expires_in_days: 18}
+      - {product: "Яндекс 360", family: null, edition: "Премиум 1 ТБ", qty: 1, metric: user, purchased_days_ago: 210, expires_in_days: 155}
+    orders:
+      - {days_ago: 347, items: [{product: "Kaspersky Plus", action: new, qty: 3, term_months: 12}]}
+    showcase:
+      - q: "антивирус"
+        expect: "Напоминание о продлении Kaspersky Plus на 3 устройства (истекает через 18 дней) и домашние/индивидуальные лицензии (Kaspersky Standard/Plus, Dr.Web Security Space) с поддержкой macOS и Windows — без корпоративных пакетов от 10 узлов."
+        why: "Единственный профиль сегмента individual, где домашние лицензии уместны и не должны вытесняться корпоративным KES."
+      - q: "офисный пакет"
+        expect: "Домашние и персональные редакции на 1–2 устройства (МойОфис для дома/персональный, Р7-Офис Домашний) с минимальной ценой и мгновенной электронной доставкой (ESD)."
+        why: "ИП на 2 ПК не нужны корпоративные серверные пакеты или закупки от 5–10 лицензий."
+      - q: "графический редактор"
+        expect: "Индивидуальные лицензии растровой и векторной графики под macOS/Windows (CorelDRAW — если есть, аналоги Photoshop/Illustrator, честный блок по Adobe/Figma с доступными заменами) по минимальному прайсу."
+        why: "Отрасль дизайна + бюджет low + 2 ПК."
+      - q: "бухгалтерия для ип"
+        expect: "Лёгкие облачные и базовые решения для ИП (1С:Предприниматель / 1С:БизнесСтарт, Контур.Эльба) без КОРП-редакций."
+        why: "Сегмент individual/ИП отсекает тяжёлые многопользовательские конфигурации 1С:Бухгалтерия КОРП."

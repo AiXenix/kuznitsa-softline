@@ -1,0 +1,471 @@
+# Роли и типовые рабочие места (АРМ) с комплектами ПО (Кузница Softline, поток Neon-2)
+# Соответствует схеме kb/SCHEMA.md.
+# Категории в `slots` — листовые id из kb/categories.yaml.
+# `families` содержит только id, уже существующие в kb/families/*.yaml (сейчас []);
+# общеизвестные продукты перечислены в `products`.
+# Всего ролей: 46.
+
+- id: office_worker
+  title: "Новый офисный сотрудник (универсальное рабочее место)"
+  aliases: ["офисный сотрудник", "новый сотрудник", "рабочее место офиса", "базовый арм", "сотрудник офиса", "типовое рабочее место"]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux", "РЕД ОС", "Альт Рабочая станция"], note: "Российская ОС из реестра (или Windows 11 Pro при коммерческом парке)"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Редакторы текстов, таблиц и презентаций"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Антивирусная защита рабочей станции"}
+    - {category: email_clients_calendars, must: true, families: [], products: ["МойОфис Почта", "Р7-Органайзер", "Яндекс 360"], note: "Корпоративная почта и календарь"}
+    - {category: corporate_messengers, must: false, families: [], products: ["VK Teams", "eXpress", "Пачка"], note: "Корпоративный чат"}
+    - {category: pdf_editors, must: false, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Просмотр и правка PDF"}
+
+- id: remote_employee
+  title: "Удалённый сотрудник"
+  aliases: ["удаленщик", "удаленный сотрудник", "работа из дома", "гибридный сотрудник", "хоум офис"]
+  slots:
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security Cloud", "Dr.Web"], note: "Защита ноутбука за пределами офисного периметра"}
+    - {category: ngfw_vpn, must: true, families: [], products: ["ViPNet Client", "Континент АП", "UserGate Client"], note: "Защищённый VPN-доступ к корпоративной сети"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис", "Яндекс 360"], note: "Совместная работа с документами"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк", "Яндекс Телемост"], note: "Видеосовещания и демонстрация экрана"}
+    - {category: corporate_messengers, must: true, families: [], products: ["VK Teams", "eXpress", "Пачка"], note: "Оперативная связь с командой"}
+    - {category: kedo_hr_docs, must: false, families: [], products: ["HRlink", "Контур.КЭДО", "1С:Кабинет сотрудника"], note: "Дистанционное подписание кадровых документов"}
+
+- id: accountant
+  title: "Бухгалтер"
+  aliases: ["бухгалтер", "бух", "арм бухгалтера", "рабочее место бухгалтера", "бухгалтерия"]
+  slots:
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8"], note: "Ведение бухгалтерского и налогового учёта"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "Контур.Диадок", "СБИС", "1С-Отчётность"], note: "Сдача отчётности в ФНС/СФР и ЭДО с контрагентами"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Криптопровайдер для работы с КЭП"}
+    - {category: tokens_pki, must: true, families: [], products: ["Рутокен ЭЦП 3.0", "JaCarta-2"], note: "Сертифицированный носитель электронной подписи"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Таблицы, сверки и акты"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита от шифровальщиков и фишинга"}
+    - {category: ocr_capture, must: false, families: [], products: ["1С:Распознавание первичных документов", "ContentReader PDF", "Entera"], note: "Автоматический ввод первичных документов"}
+
+- id: chief_accountant
+  title: "Главный бухгалтер"
+  aliases: ["главбух", "главный бухгалтер", "руководитель бухгалтерии", "зам главбуха"]
+  slots:
+    - {category: accounting, must: true, families: [], products: ["1С:Бухгалтерия 8 КОРП"], note: "Консолидация, сложный учёт и контроль участков"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "СБИС", "1С-Отчётность"], note: "Контроль и подписание регламентированной отчётности"}
+    - {category: counterparty_legal_info, must: true, families: [], products: ["КонсультантПлюс", "Гарант", "Контур.Фокус"], note: "Изменения НК РФ, разъяснения Минфина и проверка контрагентов"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Подпись отчётности и банковских платежей"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Управленческие таблицы и пояснительные записки"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита критичного финансового АРМ"}
+
+- id: payroll_specialist
+  title: "Бухгалтер по расчёту заработной платы"
+  aliases: ["расчетчик", "бухгалтер по зарплате", "специалист по расчету зарплаты", "зуп специалист"]
+  slots:
+    - {category: payroll_hr_1c, must: true, families: [], products: ["1С:Зарплата и управление персоналом 8"], note: "Начисление зарплаты, отпусков, больничных и страховых взносов"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Экстерн", "1С-Отчётность", "СБИС"], note: "Сдача ЕФС-1, 6-НДФЛ и РСВ"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Подписание зарплатной отчётности"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Расчётные ведомости и сверки"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита персональных данных сотрудников (152-ФЗ)"}
+
+- id: economist_financier
+  title: "Экономист / финансовый менеджер"
+  aliases: ["экономист", "финансист", "финансовый директор", "финменеджер", "казначей", "бюджетирование"]
+  slots:
+    - {category: finance_budgeting, must: true, families: [], products: ["1С:Управление холдингом", "1С:ERP", "Финансист", "PlanDesigner"], note: "БДДС, БДР, платёжный календарь и план-факт"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Финансовые модели и электронные таблицы"}
+    - {category: bi_analytics, must: false, families: [], products: ["Yandex DataLens", "Visiology", "PIX BI"], note: "Дашборды маржинальности и денежного потока"}
+    - {category: accounting, must: false, families: [], products: ["1С:Бухгалтерия 8"], note: "Доступ к данным первичного и управленческого учёта"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита конфиденциальной финансовой информации"}
+
+- id: lawyer
+  title: "Юрист / корпоративный юрисконсульт"
+  aliases: ["юрист", "юрисконсульт", "юридический отдел", "договорник", "адвокат"]
+  slots:
+    - {category: counterparty_legal_info, must: true, families: [], products: ["КонсультантПлюс", "Гарант", "Контур.Фокус"], note: "Законодательство, арбитражная практика и проверка контрагентов"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Правка договоров, рецензирование и сравнение версий"}
+    - {category: sed_ecm, must: false, families: [], products: ["Directum RX", "ТЕЗИС", "1С:Документооборот"], note: "Маршруты согласования договоров и реестр доверенностей"}
+    - {category: pdf_editors, must: true, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Сравнение сканов, распознавание и аннотирование PDF"}
+    - {category: crypto_skzi, must: false, families: [], products: ["КриптоПро CSP"], note: "Подписание процессуальных документов для Мой Арбитр"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита конфиденциальных дел"}
+
+- id: hr_specialist
+  title: "Специалист по кадрам (кадровик / КДП)"
+  aliases: ["кадровик", "отдел кадров", "специалист по кадрам", "кдп", "инспектор по кадрам"]
+  slots:
+    - {category: payroll_hr_1c, must: true, families: [], products: ["1С:Зарплата и управление персоналом 8"], note: "Приём, переводы, увольнения, табели и воинский учёт"}
+    - {category: kedo_hr_docs, must: true, families: [], products: ["HRlink", "Контур.КЭДО", "1С:Кабинет сотрудника", "Directum HR Pro"], note: "Кадровый электронный документооборот с сотрудниками"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "КЭП для кадровых приказов и отчётов ЕФС-1"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Трудовые договоры, положения и графики отпусков"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита ПДн работников по 152-ФЗ"}
+
+- id: recruiter_hrbp
+  title: "Рекрутер / HR-менеджер"
+  aliases: ["рекрутер", "hr", "hr менеджер", "hrbp", "подбор персонала", "менеджер по персоналу"]
+  slots:
+    - {category: hrm_recruiting, must: true, families: [], products: ["Хантфлоу", "Talantix", "Поток Рекрутмент", "SberPulse"], note: "Воронка кандидатов, база резюме и обратная связь нанимающих"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк", "Яндекс Телемост"], note: "Онлайн-собеседования и адаптационные встречи"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Офферы, грейды и презентации"}
+    - {category: lms_elearning, must: false, families: [], products: ["iSpring Learn", "Mirapolis LMS"], note: "Онбординг и обучение новичков"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита персональных данных соискателей"}
+
+- id: secretary_office_manager
+  title: "Секретарь / делопроизводитель / офис-менеджер"
+  aliases: ["секретарь", "делопроизводитель", "офис-менеджер", "помощник руководителя", "канцелярия"]
+  slots:
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Письма, протоколы совещаний и приказы"}
+    - {category: sed_ecm, must: true, families: [], products: ["Directum RX", "ТЕЗИС", "1С:Документооборот", "Дело"], note: "Регистрация входящей/исходящей корреспонденции и контроль поручений"}
+    - {category: ocr_capture, must: false, families: [], products: ["ContentReader PDF"], note: "Оцифровка бумажных писем и договоров в PDF/DOCX"}
+    - {category: email_clients_calendars, must: true, families: [], products: ["МойОфис Почта", "Р7-Органайзер", "Яндекс 360"], note: "Календари руководителя и переговорные"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита от вредоносных вложений в письмах"}
+
+- id: procurement_specialist
+  title: "Специалист по закупкам / тендерный менеджер"
+  aliases: ["закупщик", "менеджер по закупкам", "тендерный специалист", "специалист 44 фз", "снабженец", "отдел закупок"]
+  slots:
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Работа на ЭТП и в ЕИС (zakupki.gov.ru)"}
+    - {category: tokens_pki, must: true, families: [], products: ["Рутокен ЭЦП 3.0", "JaCarta-2"], note: "Носитель для КЭП участника/заказчика"}
+    - {category: counterparty_legal_info, must: true, families: [], products: ["Контур.Закупки", "Контур.Фокус", "СБИС Торги"], note: "Поиск тендеров и проверка поставщиков"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Расчёт НМЦК, спецификации и конкурсная документация"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС"], note: "Электронное актирование и закрытие контрактов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Безопасность работы на торговых площадках"}
+
+- id: ceo_executive
+  title: "Руководитель компании / генеральный директор"
+  aliases: ["директор", "руководитель", "генеральный директор", "топ-менеджер", "собственник", "ceo"]
+  slots:
+    - {category: bi_analytics, must: false, families: [], products: ["Yandex DataLens", "Visiology", "PIX BI"], note: "Сводные дашборды выручки, маржи и KPI"}
+    - {category: sed_ecm, must: false, families: [], products: ["Directum RX", "1С:Документооборот", "ТЕЗИС"], note: "Мобильное и быстрое согласование договоров и платежей"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк", "TrueConf"], note: "Переговоры с партнёрами и советы директоров"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Презентации и стратегические документы"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "КЭП руководителя для договоров и отчётности"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Максимальная защита ноутбука и смартфона руководителя"}
+
+- id: sales_manager
+  title: "Менеджер по продажам"
+  aliases: ["продажник", "менеджер по продажам", "сейлз", "отдел продаж", "аккаунт менеджер"]
+  slots:
+    - {category: crm_systems, must: true, families: [], products: ["Битрикс24", "amoCRM", "BPMSoft", "1С:CRM"], note: "Сделки, воронка, напоминания и история клиента"}
+    - {category: ip_telephony, must: true, families: [], products: ["Манго Офис", "Телфин", "Битрикс24 Телефония"], note: "Звонки из CRM и запись переговоров"}
+    - {category: vks_webinars, must: false, families: [], products: ["Контур.Толк", "МТС Линк", "Яндекс Телемост"], note: "Онлайн-встречи и презентации клиентам"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Коммерческие предложения и расчёты"}
+    - {category: counterparty_legal_info, must: false, families: [], products: ["Контур.Фокус", "СБИС"], note: "Поиск реквизитов и проверка ЛПР перед сделкой"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочего ноутбука"}
+
+- id: sales_director
+  title: "Коммерческий директор / руководитель отдела продаж (РОП)"
+  aliases: ["роп", "коммерческий директор", "руководитель отдела продаж", "директор по продажам"]
+  slots:
+    - {category: crm_systems, must: true, families: [], products: ["Битрикс24", "BPMSoft", "amoCRM"], note: "Контроль воронки, планов и активности менеджеров"}
+    - {category: bi_analytics, must: true, families: [], products: ["Yandex DataLens", "Visiology", "PIX BI"], note: "Аналитика маржинальности, среднего чека и когорт"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Отчёты правлению и прайс-модели"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк"], note: "Планёрки с филиалами и ключевыми клиентами"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита коммерческой информации"}
+
+- id: call_center_operator
+  title: "Оператор колл-центра / специалист клиентского сервиса"
+  aliases: ["оператор колл центра", "контакт-центр", "колл центр", "оператор поддержки", "диспетчер горячей линии"]
+  slots:
+    - {category: ip_telephony, must: true, families: [], products: ["Манго Офис", "Naumen Contact Center", "Телфин"], note: "Очереди звонков, IVR, скрипты и запись диалогов"}
+    - {category: crm_systems, must: true, families: [], products: ["Битрикс24", "RetailCRM", "BPMSoft"], note: "Карточка обращения и история заказов клиента"}
+    - {category: itsm_service_desk, must: false, families: [], products: ["Naumen Service Desk", "SimpleOne", "Omnidesk"], note: "Тикет-система и контроль SLA"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита АРМ с доступом к базе клиентов"}
+
+- id: marketing_manager
+  title: "Маркетолог / интернет-маркетолог"
+  aliases: ["маркетолог", "интернет-маркетолог", "отдел маркетинга", "бренд-менеджер", "smm"]
+  slots:
+    - {category: email_marketing, must: false, families: [], products: ["Unisender", "Sendsay", "Mindbox"], note: "Email-рассылки, триггерные цепочки и CRM-маркетинг"}
+    - {category: bi_analytics, must: false, families: [], products: ["Yandex DataLens", "PIX BI"], note: "Сквозная аналитика кампаний и ROMI"}
+    - {category: whiteboards_notes, must: false, families: [], products: ["МТС Линк Доски", "Holst", "Yonote"], note: "Мозговые штурмы, CJM и контент-планы"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Медиапланы и презентации"}
+    - {category: vks_webinars, must: false, families: [], products: ["МТС Линк", "Контур.Толк"], note: "Проведение маркетинговых вебинаров"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рекламных аккаунтов и ПК"}
+
+- id: graphic_designer
+  title: "Графический дизайнер"
+  aliases: ["дизайнер", "графический дизайнер", "дизайнер рекламы", "полиграфический дизайнер"]
+  slots:
+    - {category: vector_illustration, must: true, families: [], products: ["CorelDRAW Graphics Suite", "Inkscape"], note: "Векторные иллюстрации, логотипы, фирменный стиль"}
+    - {category: raster_photo, must: true, families: [], products: ["Corel PHOTO-PAINT", "AliveColors"], note: "Ретушь, цветокоррекция и коллажи"}
+    - {category: pdf_editors, must: false, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Проверка макетов и допечатный экспорт"}
+    - {category: task_project_trackers, must: false, families: [], products: ["Kaiten", "Weeek", "Битрикс24"], note: "Задачи, брифы и согласование макетов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции (Windows/macOS)"}
+
+- id: ui_ux_designer
+  title: "UI/UX и веб-дизайнер"
+  aliases: ["ux дизайнер", "ui дизайнер", "веб дизайнер", "продуктовый дизайнер", "дизайнер интерфейсов"]
+  slots:
+    - {category: ui_ux_web_design, must: true, families: [], products: ["Pixso", "Penpot"], note: "Прототипирование интерфейсов, дизайн-системы и передача в разработку"}
+    - {category: whiteboards_notes, must: true, families: [], products: ["МТС Линк Доски", "Holst", "Yonote"], note: "User flow, исследования и CJM"}
+    - {category: vector_illustration, must: false, families: [], products: ["CorelDRAW Graphics Suite"], note: "Сложная векторная графика и иконки"}
+    - {category: task_project_trackers, must: false, families: [], products: ["Яндекс Трекер", "Kaiten", "EvaProject"], note: "Синхронизация с разработкой"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security Cloud", "Dr.Web"], note: "Защита ноутбука (macOS/Windows)"}
+
+- id: video_editor_motion
+  title: "Видеомонтажёр / специалист по корпоративному видео"
+  aliases: ["видеомонтажер", "монтажер", "видеограф", "контент-мейкер", "режиссер монтажа"]
+  slots:
+    - {category: video_editing, must: true, families: [], products: ["Movavi Видеоредактор Бизнес"], note: "Монтаж, титры, цветокоррекция и экспорт роликов"}
+    - {category: audio_multimedia, must: false, families: [], products: ["Звуковые редакторы и кодеки"], note: "Очистка звука и озвучка"}
+    - {category: raster_photo, must: false, families: [], products: ["Corel PHOTO-PAINT", "AliveColors"], note: "Обложки и графические вставки"}
+    - {category: backup_recovery, must: false, families: [], products: ["Кибер Бэкап"], note: "Резервирование больших видеопроектов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции"}
+
+- id: dtp_layout_designer
+  title: "Верстальщик / специалист издательства и допечатной подготовки"
+  aliases: ["верстальщик", "полиграфист", "специалист верстки", "препресс", "издатель"]
+  slots:
+    - {category: dtp_publishing, must: true, families: [], products: ["CorelDRAW Graphics Suite", "Scribus"], note: "Многостраничная вёрстка каталогов, брошюр и журналов"}
+    - {category: pdf_editors, must: true, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Подготовка и проверка PDF/X для типографии"}
+    - {category: raster_photo, must: true, families: [], products: ["Corel PHOTO-PAINT", "AliveColors"], note: "Цветоделение CMYK и ретушь иллюстраций"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции"}
+
+- id: cad_mechanical_engineer
+  title: "Инженер-конструктор (машиностроение / приборостроение)"
+  aliases: ["конструктор", "инженер-конструктор", "машиностроитель", "кб инженер", "технолог сапр"]
+  slots:
+    - {category: mcad_plm, must: true, families: [], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "3D-моделирование деталей, сборок и оформление чертежей по ЕСКД"}
+    - {category: cad_2d, must: false, families: [], products: ["Платформа nanoCAD", "nanoCAD Механика"], note: "Работа со смежными чертежами DWG"}
+    - {category: cae_simulation, must: false, families: [], products: ["APM WinMachine", "ЛОГОС"], note: "Прочностные расчёты узлов"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Спецификации, ведомости и пояснительные записки"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита конструкторской документации"}
+
+- id: architect_bim
+  title: "Архитектор / BIM-проектировщик"
+  aliases: ["архитектор", "bim проектировщик", "bim инженер", "проектировщик зданий", "гип", "гап"]
+  slots:
+    - {category: bim_aec, must: true, families: [], products: ["Renga", "nanoCAD BIM", "Model Studio CS", "Pilot-BIM"], note: "BIM-моделирование разделов АР/КР/ИОС и формат IFC"}
+    - {category: cad_2d, must: true, families: [], products: ["Платформа nanoCAD", "nanoCAD СПДС"], note: "Выпуск рабочей документации по СПДС в DWG"}
+    - {category: 3d_rendering_animation, must: false, families: [], products: ["Средства архитектурной визуализации"], note: "Рендеринг и презентация фасадов/интерьеров"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "ТЗ, ведомости объёмов работ"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита проектных данных"}
+
+- id: structural_engineer_cae
+  title: "Инженер-расчётчик / прочнист (CAE)"
+  aliases: ["расчетчик конструкций", "инженер расчетчик", "прочнист", "cae инженер", "конструктор кж км"]
+  slots:
+    - {category: cae_simulation, must: true, families: [], products: ["ЛИРА-САПР", "SCAD Office", "ЛОГОС", "APM Civil Engineering"], note: "МКЭ-расчёты строительных и машиностроительных конструкций"}
+    - {category: cad_2d, must: true, families: [], products: ["Платформа nanoCAD"], note: "Подготовка расчётных схем и чертежей"}
+    - {category: bim_aec, must: false, families: [], products: ["Renga", "nanoCAD BIM Конструкции"], note: "Экспорт/импорт моделей в IFC"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Расчётные записки для экспертизы"}
+
+- id: electrical_cad_engineer
+  title: "Инженер-проектировщик электрики, СКС и АСУ"
+  aliases: ["инженер электрик проектировщик", "проектировщик эом", "проектировщик скс", "инженер асу тп", "схемотехник"]
+  slots:
+    - {category: ecad_eda, must: true, families: [], products: ["nanoCAD BIM Электро", "nanoCAD BIM СКС", "КОМПАС-Электрик", "E3.series (аналоги)"], note: "Проектирование силовых сетей, щитов, кабельных журналов и АСУ"}
+    - {category: cad_2d, must: true, families: [], products: ["Платформа nanoCAD"], note: "Базовая DWG-платформа для планов и схем"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Спецификации оборудования и кабельные журналы"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции"}
+
+- id: cost_estimator
+  title: "Инженер-сметчик"
+  aliases: ["сметчик", "инженер-сметчик", "сметный отдел", "составление смет"]
+  slots:
+    - {category: estimates_construction, must: true, families: [], products: ["Гранд-Смета", "Smeta.ru", "РИК", "АДЕПТ:СМЕТА"], note: "Составление смет по ФЕР/ТЕР/ГЭСН, акты КС-2 и КС-3"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Таблицы ведомостей объёмов работ и сверки с подрядчиками"}
+    - {category: pdf_editors, must: false, families: [], products: ["ContentReader PDF", "Мастер PDF Редактор"], note: "Работа с проектными чертежами и ведомостями в PDF"}
+    - {category: cad_2d, must: false, families: [], products: ["Платформа nanoCAD"], note: "Просмотр чертежей DWG и замер объёмов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита сметных баз"}
+
+- id: gis_cartographer
+  title: "ГИС-специалист / картограф / геодезист"
+  aliases: ["геодезист", "картограф", "гис специалист", "кадастровый инженер", "маркшейдер"]
+  slots:
+    - {category: gis_mapping, must: true, families: [], products: ["ГИС Панорама", "Axioma GIS", "NextGIS"], note: "Геоинформационный анализ, слои карт и кадастровые планы"}
+    - {category: cad_specialized, must: false, families: [], products: ["nanoCAD GeoniCS", "CREDO"], note: "Топопланы, изыскания и генплан"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Координатные ведомости и отчёты"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита картографических материалов"}
+
+- id: software_developer
+  title: "Разработчик ПО / программист"
+  aliases: ["разработчик", "программист", "бэкенд разработчик", "фронтенд разработчик", "софтверный инженер", "кодер"]
+  slots:
+    - {category: ide_compilers, must: true, families: [], products: ["GigaIDE", "JetBrains (аналоги)", "Visual Studio (ограниченные поставки)"], note: "Среда разработки, отладчик и профилировщик"}
+    - {category: git_cicd_devops, must: true, families: [], products: ["GitFlic", "SourceCraft", "GitVerse"], note: "Репозитории кода, код-ревью и CI/CD"}
+    - {category: task_project_trackers, must: true, families: [], products: ["Яндекс Трекер", "Kaiten", "EvaProject"], note: "Задачи спринта и баг-трекинг"}
+    - {category: db_management_tools, must: false, families: [], products: ["DBeaver", "Postgres Pro инструменты"], note: "Работа с СУБД и отладка SQL-запросов"}
+    - {category: desktop_os_ru, must: false, families: [], products: ["Astra Linux", "Альт Рабочая станция", "РЕД ОС"], note: "Linux-среда разработки (либо macOS/Windows)"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security Cloud", "Dr.Web"], note: "Защита рабочей машины с доступом к коду"}
+
+- id: onec_developer
+  title: "Программист / разработчик 1С"
+  aliases: ["программист 1с", "разработчик 1с", "1сник", "внедренец 1с", "консультант 1с"]
+  slots:
+    - {category: onec_platform_licenses, must: true, families: [], products: ["1С:Предприятие 8.3 (технологическая платформа)", "1С:EDT"], note: "Конфигуратор, 1С:EDT и тестовый сервер 1С"}
+    - {category: rdbms, must: true, families: [], products: ["Postgres Pro для 1С"], note: "Тестовая и продуктивная СУБД для серверных баз 1С"}
+    - {category: tech_support, must: true, families: [], products: ["1С:ИТС ПРОФ"], note: "Доступ к обновлениям релизов и методическим материалам"}
+    - {category: remote_desktop, must: false, families: [], products: ["Ассистент", "RuDesktop"], note: "Подключение к серверам и базам заказчиков"}
+    - {category: task_project_trackers, must: false, families: [], products: ["Яндекс Трекер", "Kaiten", "Битрикс24"], note: "Учёт доработок и релизов"}
+
+- id: qa_tester
+  title: "Тестировщик ПО / инженер QA"
+  aliases: ["тестировщик", "qa инженер", "qa", "инженер по тестированию", "автотестировщик"]
+  slots:
+    - {category: testing_qa, must: true, families: [], products: ["Test IT", "Allure TestOps", "Яндекс Трекер"], note: "Тест-кейсы, тест-планы, отчёты прогонов и баг-репорты"}
+    - {category: desktop_hypervisors, must: false, families: [], products: ["Решения для локальных тестовых стендов"], note: "Проверка работы ПО на разных ОС"}
+    - {category: api_integration_esb, must: false, families: [], products: ["Инструменты тестирования API"], note: "Проверка REST/gRPC/SOAP контрактов"}
+    - {category: task_project_trackers, must: true, families: [], products: ["Яндекс Трекер", "Kaiten", "EvaProject"], note: "Заведение и верификация дефектов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции QA"}
+
+- id: devops_sre_engineer
+  title: "DevOps / SRE-инженер"
+  aliases: ["devops", "девопс", "sre", "инженер инфраструктуры", "облачный инженер"]
+  slots:
+    - {category: containers_kubernetes, must: true, families: [], products: ["Deckhouse Kubernetes Platform", "Боцман", "Штурвал"], note: "Оркестрация контейнеров и кластеры Kubernetes"}
+    - {category: git_cicd_devops, must: true, families: [], products: ["GitFlic", "SourceCraft", "GitVerse"], note: "CI/CD-пайплайны и артефакты"}
+    - {category: monitoring_apm, must: true, families: [], products: ["Saymon", "Monq", "Zabbix с поддержкой"], note: "Метрики, алерты, логи и трассировка"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование кластеров и БД"}
+    - {category: pam_jump_hosts, must: false, families: [], products: ["СКДПУ НТ", "Indeed PAM"], note: "Аудируемый доступ к продакшн-серверам"}
+
+- id: data_analyst_bi
+  title: "Аналитик данных / BI-аналитик"
+  aliases: ["аналитик данных", "bi аналитик", "продуктовый аналитик", "data analyst", "аналитик продаж"]
+  slots:
+    - {category: bi_analytics, must: true, families: [], products: ["Yandex DataLens", "Visiology", "PIX BI", "Форсайт. Аналитическая платформа", "Modus BI"], note: "Построение интерактивных дашбордов и регламентной отчётности"}
+    - {category: dwh_olap, must: false, families: [], products: ["Arenadata DB", "ClickHouse (коммерческая поддержка)", "Postgres Pro"], note: "Аналитические витрины и быстрые запросы"}
+    - {category: db_management_tools, must: true, families: [], products: ["DBeaver"], note: "Написание и отладка SQL-запросов"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Сводные таблицы и презентации для бизнеса"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита выгрузок с коммерческими данными"}
+
+- id: data_scientist_ml
+  title: "ML-инженер / Data Scientist"
+  aliases: ["data scientist", "ml инженер", "специалист по ии", "нейросети", "исследователь данных"]
+  slots:
+    - {category: ml_platforms_cv, must: true, families: [], products: ["Yandex DataSphere", "Отечественные ML-платформы"], note: "Обучение моделей, трекинг экспериментов и GPU-инференс"}
+    - {category: llm_gen_ai, must: false, families: [], products: ["GigaChat API", "YandexGPT API"], note: "Корпоративные языковые модели в контуре РФ"}
+    - {category: git_cicd_devops, must: true, families: [], products: ["GitFlic", "SourceCraft"], note: "Версионирование кода и пайплайнов MLOps"}
+    - {category: dwh_olap, must: false, families: [], products: ["Arenadata DB", "Arenadata Hadoop"], note: "Доступ к сырым данным и витринам"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочей станции и датасетов"}
+
+- id: dba_admin
+  title: "Администратор баз данных (DBA)"
+  aliases: ["dba", "администратор бд", "администратор субд", "админ postgres", "админ sql"]
+  slots:
+    - {category: rdbms, must: true, families: [], products: ["Postgres Pro Enterprise", "Tantor", "Jatoba", "MS SQL Server"], note: "Промышленные СУБД с техподдержкой"}
+    - {category: db_management_tools, must: true, families: [], products: ["Tantor Platform", "DBeaver"], note: "Администрирование, тюнинг запросов и мониторинг блокировок"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Горячий консистентный бэкап и PITR-восстановление БД"}
+    - {category: monitoring_apm, must: false, families: [], products: ["Saymon", "Monq"], note: "Контроль производительности и дискового пространства"}
+    - {category: pam_jump_hosts, must: false, families: [], products: ["СКДПУ НТ", "Indeed PAM"], note: "Контролируемый привилегированный доступ"}
+
+- id: sysadmin
+  title: "Системный администратор"
+  aliases: ["сисадмин", "системный администратор", "админ", "ит специалист", "инженер ит"]
+  slots:
+    - {category: directory_services, must: true, families: [], products: ["ALD Pro", "РЕД АДМ", "Альт Домен"], note: "Контроллер домена, групповые политики и управление АРМ"}
+    - {category: remote_desktop, must: true, families: [], products: ["Ассистент", "RuDesktop", "RMS"], note: "Удалённое подключение к ПК сотрудников и серверам"}
+    - {category: backup_recovery, must: true, families: [], products: ["Кибер Бэкап", "RuBackup"], note: "Резервное копирование серверов, ВМ и рабочих станций"}
+    - {category: monitoring_apm, must: true, families: [], products: ["Saymon", "Monq", "Zabbix с поддержкой"], note: "Мониторинг доступности серверов, сети и дисков"}
+    - {category: server_virtualization, must: false, families: [], products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix"], note: "Управление виртуальной инфраструктурой"}
+    - {category: itsm_service_desk, must: false, families: [], products: ["SimpleOne", "Naumen Service Desk", "Admin24"], note: "Учёт заявок пользователей и ИТ-активов (ITAM)"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Security Center / KES", "Dr.Web"], note: "Централизованная консоль антивирусной защиты"}
+
+- id: helpdesk_engineer
+  title: "Инженер технической поддержки (HelpDesk / Service Desk)"
+  aliases: ["хелпдеск", "инженер техподдержки", "эникей", "первая линия поддержки", "service desk"]
+  slots:
+    - {category: itsm_service_desk, must: true, families: [], products: ["SimpleOne", "Naumen Service Desk", "Okdesk", "ИнтраСервис"], note: "Приём обращений, база знаний и контроль SLA"}
+    - {category: remote_desktop, must: true, families: [], products: ["Ассистент", "RuDesktop"], note: "Быстрое подключение к экрану сотрудника"}
+    - {category: system_utilities, must: false, families: [], products: ["Утилиты инвентаризации и диагностики ПК"], note: "Учёт оборудования и установленного ПО"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Проверка и лечение инцидентов на АРМ"}
+
+- id: infosec_engineer
+  title: "Инженер информационной безопасности (специалист ИБ)"
+  aliases: ["безопасник", "инженер иб", "специалист иб", "специалист по кибербезопасности", "аналитик soc"]
+  slots:
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA", "RuSIEM"], note: "Сбор событий, корреляция и расследование инцидентов"}
+    - {category: vuln_mgmt_pentest, must: true, families: [], products: ["MaxPatrol VM", "RedCheck", "XSpider"], note: "Сканирование уязвимостей и контроль обновлений"}
+    - {category: dlp, must: false, families: [], products: ["InfoWatch Traffic Monitor", "SearchInform КИБ", "Гарда DLP"], note: "Контроль утечек и расследование нарушений"}
+    - {category: edr_xdr, must: true, families: [], products: ["Kaspersky Symphony EDR", "PT XDR", "BI.ZONE EDR"], note: "Обнаружение сложных угроз и реагирование на конечных точках"}
+    - {category: ngfw_vpn, must: true, families: [], products: ["UserGate", "Континент 4", "PT NGFW", "ViPNet"], note: "Контроль периметра и сетевой безопасности"}
+    - {category: nsd_access_control, must: false, families: [], products: ["Secret Net Studio", "Dallas Lock"], note: "СЗИ от НСД для аттестуемых систем"}
+
+- id: ciso_sec_director
+  title: "Руководитель информационной безопасности (CISO / директор по ИБ)"
+  aliases: ["ciso", "директор по иб", "руководитель иб", "начальник отдела иб", "начальник зи"]
+  slots:
+    - {category: siem_soc, must: true, families: [], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Обзор защищённости предприятия и взаимодействие с ГосСОПКА"}
+    - {category: vuln_mgmt_pentest, must: true, families: [], products: ["MaxPatrol VM", "RedCheck"], note: "Управление рисками и контролем уязвимостей"}
+    - {category: security_awareness, must: true, families: [], products: ["Kaspersky Automated Security Awareness Platform", "Phishman", "Киберпротект обучение"], note: "Обучение сотрудников кибергигиене и антифишинг"}
+    - {category: dlp, must: false, families: [], products: ["InfoWatch Traffic Monitor", "SearchInform КИБ"], note: "Защита коммерческой тайны и ПДн"}
+    - {category: iam_pam_mfa, must: false, families: [], products: ["СКДПУ НТ", "Indeed PAM", "Avanpost"], note: "Контроль привилегированных доступов"}
+
+- id: project_manager
+  title: "Руководитель проектов (PM)"
+  aliases: ["руководитель проектов", "проджект менеджер", "pm", "менеджер проектов", "проектный офис", "pmo"]
+  slots:
+    - {category: project_planning, must: true, families: [], products: ["ПМ Форсайт", "Адванта", "1С:PM Управление проектами", "ЛидерТаск"], note: "Диаграммы Ганта, критический путь, ресурсы и импорт MPP"}
+    - {category: task_project_trackers, must: true, families: [], products: ["Яндекс Трекер", "Kaiten", "EvaProject", "Битрикс24"], note: "Ежедневный трекинг задач и статусов"}
+    - {category: whiteboards_notes, must: false, families: [], products: ["МТС Линк Доски", "Holst", "Yonote"], note: "Дорожные карты и ретроспективы"}
+    - {category: vks_webinars, must: true, families: [], products: ["Контур.Толк", "МТС Линк"], note: "Статус-встречи со стейкхолдерами"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Уставы проектов, сметы и презентации"}
+
+- id: business_analyst
+  title: "Бизнес-аналитик / специалист по бизнес-процессам"
+  aliases: ["бизнес-аналитик", "системный аналитик", "методолог", "аналитик процессов", "bpmn"]
+  slots:
+    - {category: diagramming_mindmaps, must: true, families: [], products: ["Business Studio", "SILK", "Draw.io / российские аналоги Visio"], note: "Моделирование процессов BPMN, EPC, IDEF0 и схем архитектуры"}
+    - {category: bpm_rpa_lowcode, must: false, families: [], products: ["ELMA365", "Directum RX", "PIX RPA"], note: "Автоматизация и роботизация описанных процессов"}
+    - {category: whiteboards_notes, must: true, families: [], products: ["Yonote", "МТС Линк Доски", "Holst"], note: "База знаний, ТЗ и совместные схемы"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Функциональные требования и регламенты"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита корпоративной документации"}
+
+- id: logistics_dispatcher
+  title: "Логист / диспетчер автопарка"
+  aliases: ["логист", "диспетчер", "менеджер по логистике", "экспедитор", "транспортный отдел"]
+  slots:
+    - {category: logistics_tms, must: true, families: [], products: ["1С:TMS Логистика. Управление перевозками", "1С:Управление автотранспортом", "Яндекс Маршрутизация"], note: "Планирование рейсов, путевые листы и контроль доставки"}
+    - {category: tax_reporting_edo, must: true, families: [], products: ["Контур.Диадок", "СБИС"], note: "Электронные транспортные накладные (ЭТрН)"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Графики отгрузок и реестры заявок"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита рабочего места диспетчера"}
+
+- id: warehouse_storekeeper
+  title: "Кладовщик / оператор склада / товаровед"
+  aliases: ["кладовщик", "товаровед", "оператор склада", "заведующий складом", "комплектовщик"]
+  slots:
+    - {category: trade_warehouse, must: true, families: [], products: ["1С:Управление торговлей 8", "1С:WMS", "МойСклад"], note: "Приёмка, отгрузка, инвентаризация по штрихкодам и маркировка"}
+    - {category: office_suite, must: false, families: [], products: ["Р7-Офис", "МойОфис"], note: "Акты расхождений и ведомости"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита складских терминалов и ПК"}
+
+- id: cashier_retail
+  title: "Кассир / рабочее место розничной точки"
+  aliases: ["кассир", "арм кассира", "рабочее место кассира", "продавец кассир", "рмк"]
+  slots:
+    - {category: retail_pos_cash, must: true, families: [], products: ["1С:Розница 8", "Frontol", "Set Retail"], note: "Пробитие чеков (54-ФЗ), сканирование маркировки и ЕГАИС"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Лёгкая антивирусная защита POS-терминала"}
+    - {category: remote_desktop, must: false, families: [], products: ["Ассистент", "RuDesktop"], note: "Оперативное подключение техподдержки при сбое кассы"}
+
+- id: doctor_clinician
+  title: "Врач / АРМ медицинского работника"
+  aliases: ["врач", "арм врача", "медицинский работник", "медсестра", "регистратура"]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС"], note: "Реестровая защищённая ОС для ЛПУ"}
+    - {category: industry_specialized, must: true, families: [], products: ["МИС qMS", "БАРС.Здравоохранение", "1С:Медицина"], note: "Ведение электронной медицинской карты (ЭМК)"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP"], note: "Подпись рецептов, больничных и меддокументов КЭП"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security для Linux", "Dr.Web"], note: "Сертифицированный ФСТЭК антивирус для ИСПДн"}
+    - {category: nsd_access_control, must: true, families: [], products: ["Secret Net Studio", "Dallas Lock"], note: "Защита медицинских персональных данных (152-ФЗ)"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Справки, выписки и отчёты"}
+
+- id: teacher_lecturer
+  title: "Учитель / преподаватель вуза"
+  aliases: ["учитель", "преподаватель", "педагог", "арм учителя", "преподаватель вуза", "методист"]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Российская ОС с учебным набором"}
+    - {category: office_suite, must: true, families: [], products: ["МойОфис Образование", "Р7-Офис"], note: "Презентации, методички и ведомости (EDU-лицензия)"}
+    - {category: vks_webinars, must: true, families: [], products: ["МТС Линк", "Контур.Толк", "Сферум"], note: "Проведение онлайн-уроков и консультаций"}
+    - {category: lms_elearning, must: false, families: [], products: ["iSpring Suite", "Mirapolis LMS"], note: "Создание интерактивных курсов и тестов"}
+    - {category: endpoint_security, must: true, families: [], products: ["Dr.Web Enterprise Security Suite", "Kaspersky Endpoint Security"], note: "Образовательная антивирусная защита"}
+
+- id: civil_servant
+  title: "Государственный служащий (АРМ по 44-ФЗ / ЕРРП / ФСТЭК)"
+  aliases: ["госслужащий", "арм госслужащего", "чиновник", "сотрудник администрации", "рабочее место ведомства"]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [], products: ["Astra Linux Special Edition", "РЕД ОС", "Альт СП"], note: "Сертифицированная ОС из реестра Минцифры"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Реестровый офисный пакет без НДС"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Сертифицированный ФСТЭК антивирус"}
+    - {category: nsd_access_control, must: true, families: [], products: ["Secret Net Studio", "Dallas Lock"], note: "Защита от НСД по приказу ФСТЭК №17"}
+    - {category: sed_ecm, must: true, families: [], products: ["Directum RX", "Дело", "ТЕЗИС"], note: "Ведомственный документооборот и МЭДО"}
+    - {category: crypto_skzi, must: true, families: [], products: ["КриптоПро CSP", "ViPNet Client"], note: "СКЗИ с сертификатом ФСБ"}
+
+- id: translator_editor
+  title: "Переводчик / технический писатель / редактор"
+  aliases: ["переводчик", "технический писатель", "редактор", "корректор", "локализация"]
+  slots:
+    - {category: translation_dictionaries, must: true, families: [], products: ["PROMT Professional NMT", "Smartcat (аналоги)", "Lingvo"], note: "Корпоративный нейронный перевод, глоссарии и память переводов"}
+    - {category: office_suite, must: true, families: [], products: ["Р7-Офис", "МойОфис"], note: "Редактирование и рецензирование документации"}
+    - {category: pdf_editors, must: true, families: [], products: ["ContentReader PDF"], note: "Извлечение текста из PDF и сканов для перевода"}
+    - {category: text_editors, must: false, families: [], products: ["Технические редакторы Markdown/XML"], note: "Ведение технической и пользовательской документации"}
+    - {category: endpoint_security, must: true, families: [], products: ["Kaspersky Endpoint Security", "Dr.Web"], note: "Защита непубличных документов"}

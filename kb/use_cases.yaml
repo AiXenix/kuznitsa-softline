@@ -1,0 +1,1527 @@
+# База задач своими словами (use_cases) — 210 пользовательских формулировок (поток Neon-2)
+# Соответствует схеме kb/SCHEMA.md.
+# Категории — листовые id из kb/categories.yaml.
+# `families` пуст до появления kb/families/*.yaml; ориентиры продуктов указаны в `products`.
+
+# --- 1. ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ (36) ---
+- id: uc_ransomware_protection
+  phrases: ["защита от шифровальщиков", "чтобы не зашифровали базу 1с", "защита от вирусов вымогателей", "защитить сервер от шифровальщика"]
+  categories: [endpoint_security, edr_xdr, backup_recovery]
+  families: []
+  products: ["Kaspersky Endpoint Security", "Kaspersky Symphony EDR", "Dr.Web", "Кибер Бэкап"]
+  features: ["антишифровальщик", "неизменяемые бэкапы"]
+
+- id: uc_prevent_data_leak_dlp
+  phrases: ["чтобы сотрудники не сливали базу", "защита от утечки клиентской базы", "предотвратить утечку документов", "чтобы менеджеры не унесли клиентов"]
+  categories: [dlp]
+  families: []
+  products: ["InfoWatch Traffic Monitor", "SearchInform КИБ", "Гарда DLP", "Falcongaze SecureTower"]
+  features: ["контроль каналов утечки", "теневое копирование"]
+
+- id: uc_block_usb_drives
+  phrases: ["запретить копирование на флешки", "заблокировать usb порты сотрудникам", "контроль флешек и внешних дисков", "белый список usb устройств"]
+  categories: [endpoint_security, dlp, nsd_access_control]
+  families: []
+  products: ["Kaspersky Endpoint Security", "Secret Net Studio", "DeviceLock", "SearchInform КИБ"]
+  features: ["контроль устройств", "белые списки USB"]
+
+- id: uc_mail_phishing_spam
+  phrases: ["защита корпоративной почты от фишинга", "убрать спам на почтовом сервере", "проверка вложений в письмах на вирусы", "антиспам для почты"]
+  categories: [mail_security]
+  families: []
+  products: ["Kaspersky Secure Mail Gateway", "Dr.Web Mail Security Suite", "Solar Dozor"]
+  features: ["антифишинг", "антиспам", "проверка вложений"]
+
+- id: uc_control_admins_contractors
+  phrases: ["контроль действий админов и подрядчиков", "запись сессий администраторов", "безопасный доступ подрядчиков к серверам", "кто что делал на сервере"]
+  categories: [iam_pam_mfa, pam_jump_hosts]
+  families: []
+  products: ["СКДПУ НТ", "Indeed PAM", "Solar SafeInspect"]
+  features: ["видеозапись сессий", "контроль привилегий"]
+
+- id: uc_employee_time_tracking
+  phrases: ["контроль рабочего времени сотрудников за компьютером", "посмотреть чем сотрудники занимаются на удаленке", "скриншоты экранов сотрудников", "учет продуктивности офиса"]
+  categories: [employee_monitoring]
+  families: []
+  products: ["Стахановец", "Kickidler", "Staffcop", "CrocoTime"]
+  features: ["учёт активности", "мониторинг экранов"]
+
+- id: uc_website_ddos_waf
+  phrases: ["защита сайта от взлома и ddos", "защитить веб приложение и api", "закрыть сайт от sql инъекций", "экран веб приложений"]
+  categories: [waf_appsec]
+  families: []
+  products: ["PT Application Firewall", "SolidWall WAF", "Континент WAF"]
+  features: ["WAF", "защита API", "антибот"]
+
+- id: uc_network_vuln_scan
+  phrases: ["проверка сети на уязвимости", "просканировать серверы на дыры безопасности", "контроль обновлений и патчей иб", "аудит защищенности инфраструктуры"]
+  categories: [vuln_mgmt_pentest]
+  families: []
+  products: ["MaxPatrol VM", "RedCheck", "XSpider"]
+  features: ["сканирование уязвимостей", "комплаенс-контроль"]
+
+- id: uc_laptop_disk_encryption
+  phrases: ["зашифровать ноутбуки чтобы при краже не украли данные", "полнодисковое шифрование рабочих станций", "защитить данные на утерянном ноутбуке"]
+  categories: [data_wiping_encryption, endpoint_security]
+  families: []
+  products: ["Secret Disk", "Kaspersky Endpoint Security (шифрование)", "Dallas Lock"]
+  features: ["шифрование диска", "загрузка по токену"]
+
+- id: uc_secure_data_wiping
+  phrases: ["гарантированное удаление данных с дисков", "затирание секретных файлов перед списанием пк", "уничтожение информации без возможности восстановления"]
+  categories: [data_wiping_encryption]
+  families: []
+  products: ["Secret Net Studio", "Терьер", "Утилиты гарантированного стирания ФСТЭК"]
+  features: ["гарантированное стирание"]
+
+- id: uc_gost_vpn_branches
+  phrases: ["объединить филиалы защищенным каналом по гост", "шифрование трафика между офисами фсб", "подключить удаленщиков по гост vpn"]
+  categories: [ngfw_vpn, crypto_skzi]
+  families: []
+  products: ["Континент 4", "ViPNet Coordinator", "S-Terra", "UserGate"]
+  features: ["ГОСТ VPN", "сертификат ФСБ"]
+
+- id: uc_perimeter_ngfw
+  phrases: ["межсетевой экран на периметр офиса", "закрыть интернет по категориям сайтов", "разграничить доступ в сеть предприятия", "российский файрвол вместо cisco и fortigate"]
+  categories: [ngfw_vpn]
+  families: []
+  products: ["UserGate NGFW", "Континент 4", "PT NGFW", "Ideco NGFW", "ViPNet xFirewall"]
+  features: ["IPS/IDS", "фильтрация трафика", "L7 контроль"]
+
+- id: uc_siem_gossopka
+  phrases: ["сбор логов безопасности в одном месте", "отправлять инциденты в госсопка нкцки", "корреляция событий иб для сок", "система мониторинга кибератак"]
+  categories: [siem_soc]
+  families: []
+  products: ["MaxPatrol SIEM", "Kaspersky KUMA", "RuSIEM", "Комрад"]
+  features: ["SIEM", "ГосСОПКА", "корреляция событий"]
+
+- id: uc_nsd_attestation
+  phrases: ["защита от несанкционированного доступа для аттестации", "доверенная загрузка и разграничение прав на арм", "закрыть требования приказа 21 фстэк по нсд"]
+  categories: [nsd_access_control]
+  families: []
+  products: ["Secret Net Studio", "Dallas Lock", "ПАК Соболь"]
+  features: ["СЗИ от НСД", "сертификат ФСТЭК"]
+
+- id: uc_two_factor_mfa
+  phrases: ["двухфакторная аутентификация для входа в windows и vpn", "вход сотрудников по пуш или токену", "усилить пароли двухфакторкой", "единый вход sso в корпоративные сервисы"]
+  categories: [iam_pam_mfa]
+  families: []
+  products: ["Avanpost FAM", "Indeed AM", "MULTIFACTOR", "Рутокен"]
+  features: ["2FA/MFA", "SSO"]
+
+- id: uc_ep_signing_skzi
+  phrases: ["подписывать документы электронной подписью", "криптопровайдер для госуслуг и налоговой", "программа чтобы работала эцп на компьютере", "подпись для торгов и еис"]
+  categories: [crypto_skzi, e_signature]
+  families: []
+  products: ["КриптоПро CSP", "ViPNet CSP", "КриптоАРМ"]
+  features: ["КЭП", "ГОСТ криптография", "сертификат ФСБ"]
+
+- id: uc_mass_pdf_sign
+  phrases: ["массовое подписание документов эцп", "поставить штамп электронной подписи на pdf", "подписать пакет договоров одной кнопкой"]
+  categories: [e_signature, crypto_skzi]
+  families: []
+  products: ["КриптоАРМ ГОСТ", "КриптоПро DSS", "Контур.Крипто"]
+  features: ["визуализация штампа ЭП", "пакетное подписание"]
+
+- id: uc_usb_token_key_storage
+  phrases: ["флешка для электронной подписи налоговой", "сертифицированный носитель для ключей эцп", "токен для егаис и честного знака", "смарт карта для входа в систему"]
+  categories: [tokens_pki]
+  families: []
+  products: ["Рутокен ЭЦП 3.0", "JaCarta-2 ГОСТ", "ESMART Token"]
+  features: ["аппаратный СКЗИ", "сертификат ФСБ/ФСТЭК"]
+
+- id: uc_ssl_site_https
+  phrases: ["сделать защищенное соединение https на сайте", "купить ssl сертификат для домена компании", "сертификат безопасности для корпоративного портала и почты"]
+  categories: [ssl_certificates]
+  families: []
+  products: ["Российские и доверенные SSL-сертификаты (GlobalSign, УЦ РФ)"]
+  features: ["HTTPS", "Wildcard/OV/DV"]
+
+- id: uc_ics_ot_security
+  phrases: ["защитить промышленную сеть и контроллеры плк", "безопасность асу тп на заводе", "выполнить 31 приказ фстэк на производстве", "антивирус для станков и scada"]
+  categories: [ot_ics_security]
+  families: []
+  products: ["Kaspersky Industrial CyberSecurity", "PT ISIM", "InfoWatch ARMA"]
+  features: ["защита SCADA/АСУ ТП", "КИИ"]
+
+- id: uc_mobile_mdm_control
+  phrases: ["управление корпоративными смартфонами и планшетами", "удаленно стереть данные с потерянного рабочего телефона", "настроить планшеты на ос аврора централизованно"]
+  categories: [mobile_security_mdm]
+  families: []
+  products: ["Аврора Центр", "SafeMobile", "Kaspersky Security для мобильных устройств"]
+  features: ["MDM/EMM", "поддержка Аврора/Android/iOS"]
+
+- id: uc_edr_incident_response
+  phrases: ["расследовать сложные кибератаки на рабочих станциях", "увидеть цепочку проникновения вируса", "изолировать зараженный компьютер по сети одним кликом"]
+  categories: [edr_xdr]
+  families: []
+  products: ["Kaspersky Symphony EDR", "PT XDR", "BI.ZONE EDR"]
+  features: ["EDR/XDR", "изоляция хоста"]
+
+- id: uc_security_awareness_phishing
+  phrases: ["обучить сотрудников не кликать по фишинговым ссылкам", "провести тестовую фишинговую рассылку в компании", "курсы кибергигиены для офиса"]
+  categories: [security_awareness]
+  families: []
+  products: ["Kaspersky Automated Security Awareness Platform", "Phishman", "Киберпротект"]
+  features: ["симуляция фишинга", "микрообучение"]
+
+- id: uc_antivirus_linux_servers
+  phrases: ["антивирус на серверы linux без тормозов", "защитить серверы на астра линукс и ред ос", "проверка файлов на вирусы в линуксе"]
+  categories: [endpoint_security]
+  families: []
+  products: ["Kaspersky Endpoint Security для Linux", "Dr.Web Enterprise Security Suite"]
+  features: ["нативный агент Linux", "Astra/РЕД ОС/Альт"]
+
+- id: uc_antivirus_macos_office
+  phrases: ["корпоративный антивирус на макбуки сотрудников", "защитить ноутбуки apple в компании с единой консолью"]
+  categories: [endpoint_security]
+  families: []
+  products: ["Kaspersky Endpoint Security Cloud", "Dr.Web для macOS"]
+  features: ["поддержка macOS", "облачная консоль"]
+
+- id: uc_antivirus_small_office
+  phrases: ["простой антивирус для маленького офиса без сисадмина", "защитить 5-15 компов и файловый сервер недорого"]
+  categories: [endpoint_security]
+  families: []
+  products: ["Kaspersky Small Office Security", "PRO32", "Dr.Web"]
+  features: ["простое развёртывание", "бюджет SMB"]
+
+- id: uc_antivirus_home_ip
+  phrases: ["антивирус для личного ноутбука и телефона", "защита для ип на 1-2 компьютера дома"]
+  categories: [home_antivirus]
+  families: []
+  products: ["Kaspersky Standard", "Kaspersky Plus", "Dr.Web Security Space"]
+  features: ["персональная лицензия"]
+
+- id: uc_insider_telegram_control
+  phrases: ["контролировать отправку файлов через telegram и whatsapp", "запретить пересылку чертежей в мессенджерах", "перехват утечек в мессенджерах"]
+  categories: [dlp]
+  families: []
+  products: ["InfoWatch Traffic Monitor", "SearchInform КИБ", "Гарда DLP"]
+  features: ["контроль мессенджеров"]
+
+- id: uc_sandbox_unknown_threats
+  phrases: ["проверять подозрительные файлы в песочнице", "ловить неизвестные вирусы и атаки нулевого дня", "защита от целевых атак apt"]
+  categories: [edr_xdr, mail_security]
+  families: []
+  products: ["Kaspersky Anti Targeted Attack (KATA)", "PT Sandbox"]
+  features: ["песочница", "анти-APT"]
+
+- id: uc_airgap_antivirus
+  phrases: ["антивирус в закрытую сеть без выхода в интернет", "локальное обновление антивирусных баз в изолированном контуре"]
+  categories: [endpoint_security]
+  families: []
+  products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"]
+  features: ["офлайн-обновление баз", "закрытый контур"]
+
+- id: uc_cloud_ep_dss
+  phrases: ["облачная электронная подпись без флешки", "подписывать документы с телефона и планшета", "централизованное хранение ключей эцп на сервере"]
+  categories: [crypto_skzi, e_signature]
+  families: []
+  products: ["КриптоПро DSS", "Контур.Крипто"]
+  features: ["облачная подпись", "подпись с мобильного"]
+
+- id: uc_iam_account_lifecycle
+  phrases: ["автоматически выдавать и отзывать доступы при приеме и увольнении", "навести порядок в учетных записях и правах доступа", "управление правами idm"]
+  categories: [iam_pam_mfa]
+  families: []
+  products: ["Avanpost IDM", "Solar inRights", "1IDM"]
+  features: ["IDM", "автоотзыв прав"]
+
+- id: uc_password_vault_team
+  phrases: ["безопасное хранилище корпоративных паролей", "российский аналог 1password и keepass для команды", "делиться паролями внутри ит отдела безопасно"]
+  categories: [iam_pam_mfa]
+  families: []
+  products: ["Passwork", "Пассворк", "Indeed PAM"]
+  features: ["менеджер паролей", "ролевой доступ"]
+
+- id: uc_pdn_152fz_kit
+  phrases: ["закрыть требования 152 фз по персональным данным", "что купить для защиты испдн перед проверкой роскомнадзора", "защита персональных данных клиентов и сотрудников"]
+  categories: [nsd_access_control, endpoint_security, ngfw_vpn, crypto_skzi]
+  families: []
+  products: ["Secret Net Studio", "Kaspersky Endpoint Security (ФСТЭК)", "UserGate", "КриптоПро CSP"]
+  features: ["152-ФЗ", "сертификаты ФСТЭК/ФСБ"]
+
+- id: uc_kii_187fz_kit
+  phrases: ["обеспечить безопасность значимого объекта кии", "выполнить 187 фз и указ 250", "российские сзи для объектов критической инфраструктуры"]
+  categories: [ot_ics_security, siem_soc, ngfw_vpn, endpoint_security]
+  families: []
+  products: ["Kaspersky KICS", "MaxPatrol SIEM", "Континент 4", "Astra Linux SE"]
+  features: ["КИИ", "Указ 250", "ФСТЭК"]
+
+- id: uc_cbr_57580_kit
+  phrases: ["выполнить требования цб рф гост 57580", "защита информации для банка 683-п и 716-п", "средства иб для финансовой организации"]
+  categories: [dlp, siem_soc, iam_pam_mfa, vuln_mgmt_pentest, ngfw_vpn]
+  families: []
+  products: ["InfoWatch Traffic Monitor", "MaxPatrol SIEM", "СКДПУ НТ", "Континент 4"]
+  features: ["ГОСТ Р 57580", "ЦБ РФ"]
+
+# --- 2. ОПЕРАЦИОННЫЕ СИСТЕМЫ (12) ---
+- id: uc_replace_windows_office_ru
+  phrases: ["российская операционная система вместо windows", "перевести компьютеры офиса на отечественный линукс", "замена windows 10 на российскую ос"]
+  categories: [desktop_os_ru]
+  families: []
+  products: ["Astra Linux", "РЕД ОС", "Альт Рабочая станция", "РОСА Хром"]
+  features: ["ЕРРП", "совместимость с офисом и 1С"]
+
+- id: uc_os_state_secret
+  phrases: ["операционная система для гостайны и секретки", "ос с сертификатом минобороны и фстэк 1 уровня доверия", "защищенная ос для закрытого контура"]
+  categories: [desktop_os_ru]
+  families: []
+  products: ["Astra Linux Special Edition (Смоленск)", "Альт СП"]
+  features: ["ФСТЭК", "МО РФ", "мандатный доступ"]
+
+- id: uc_os_for_schools
+  phrases: ["российская ос для компьютерных классов в школе", "линукс для вуза с учебными программами", "образовательная операционная система"]
+  categories: [desktop_os_ru]
+  families: []
+  products: ["Альт Образование", "Astra Linux (академическая)", "РЕД ОС"]
+  features: ["академическая лицензия", "учебный пакет"]
+
+- id: uc_server_os_ru
+  phrases: ["российская серверная операционная система", "замена windows server на отечественный линукс", "серверная ос из реестра для баз данных"]
+  categories: [server_os]
+  families: []
+  products: ["Astra Linux Special Edition Сервер", "Альт Сервер", "РЕД ОС Сервер", "МСВСфера Сервер"]
+  features: ["ЕРРП", "серверные службы"]
+
+- id: uc_windows_pro_business
+  phrases: ["легализовать windows на рабочих компьютерах в офисе", "купить лицензионную windows 11 pro для юрлица", "подключить пк к домену windows"]
+  categories: [desktop_os_windows]
+  families: []
+  products: ["Microsoft Windows 11 Pro", "Windows 10 Pro"]
+  features: ["ввод в домен", "коммерческая лицензия"]
+
+- id: uc_windows_server_infra
+  phrases: ["операционная система для контроллера домена и 1с на windows", "лицензировать сервер windows по ядрам", "виндовс сервер для терминального доступа"]
+  categories: [server_os]
+  families: []
+  products: ["Microsoft Windows Server 2022 Standard", "Windows Server Datacenter"]
+  features: ["лицензирование по ядрам", "CAL"]
+
+- id: uc_os_elbrus_baikal
+  phrases: ["операционная система для процессоров эльбрус и байкал", "линукс под российские серверы arm", "ос для архитектуры arm64"]
+  categories: [desktop_os_ru, server_os]
+  families: []
+  products: ["Альт СП", "Astra Linux Special Edition", "РЕД ОС"]
+  features: ["Эльбрус/ARM"]
+
+- id: uc_mobile_os_aurora
+  phrases: ["российская мобильная ос для корпоративных планшетов", "защищенные смартфоны для выездных сотрудников и инспекторов", "ос аврора лицензия"]
+  categories: [mobile_os]
+  families: []
+  products: ["ОС Аврора"]
+  features: ["ЕРРП", "мобильная безопасность"]
+
+- id: uc_linux_commercial_support
+  phrases: ["коммерческий линукс с официальной техподдержкой и sla", "замена red hat rhel и centos в россии", "enterprise linux из реестра"]
+  categories: [server_os, linux_unix_os]
+  families: []
+  products: ["РЕД ОС", "Альт Сервер", "МСВСфера", "Astra Linux"]
+  features: ["поддержка SLA", "замена RHEL/CentOS"]
+
+- id: uc_os_kiosk_terminal
+  phrases: ["ос для инфокиосков и тонких клиентов", "минимальная защищенная система для терминала самообслуживания"]
+  categories: [desktop_os_ru]
+  families: []
+  products: ["Astra Linux", "Альт", "РЕД ОС"]
+  features: ["режим киоска"]
+
+- id: uc_os_for_1c_server
+  phrases: ["операционная система для сервера 1с предприятия на линуксе", "на какой российской ос лучше поднять сервер 1с"]
+  categories: [server_os]
+  families: []
+  products: ["Astra Linux", "РЕД ОС Сервер", "Альт Сервер"]
+  features: ["совместимость с 1С 8.3"]
+
+- id: uc_os_dual_migration_pilot
+  phrases: ["пилотный переход с windows на российский линукс", "протестировать совместимость российского линукса с нашим софтом"]
+  categories: [desktop_os_ru, tech_support]
+  families: []
+  products: ["Astra Linux", "РЕД ОС", "Альт Рабочая станция"]
+  features: ["пилотная лицензия"]
+
+# --- 3. ОФИС, ДОКУМЕНТЫ, PDF, OCR, ПЕРЕВОД (24) ---
+- id: uc_office_replace_ms
+  phrases: ["российский офисный пакет вместо word и excel", "работать с таблицами и документами docx xlsx без microsoft", "офис из реестра для компании"]
+  categories: [office_suite]
+  families: []
+  products: ["Р7-Офис", "МойОфис Стандартный", "AlterOffice"]
+  features: ["DOCX/XLSX/PPTX", "ЕРРП"]
+
+- id: uc_office_macros_vba
+  phrases: ["офис с поддержкой макросов в таблицах", "перенести сложные таблицы excel со скриптами на российский офис"]
+  categories: [office_suite, spreadsheets_bi_addons]
+  families: []
+  products: ["Р7-Офис (макросы JS)", "МойОфис (Lua)", "Microsoft Office"]
+  features: ["макросы", "сводные таблицы"]
+
+- id: uc_office_collab_online
+  phrases: ["совместное редактирование документов в браузере как google docs", "редактировать таблицу одновременно нескольким сотрудникам в контуре"]
+  categories: [office_suite]
+  families: []
+  products: ["Р7-Офис Корпоративный сервер", "МойОфис Частное Облако", "Яндекс 360"]
+  features: ["совместное редактирование", "on-premise/cloud"]
+
+- id: uc_office_perpetual_capex
+  phrases: ["купить офисный пакет навсегда без ежегодной подписки", "бессрочная лицензия текстового редактора и таблиц для юрлица"]
+  categories: [office_suite]
+  families: []
+  products: ["Р7-Офис (бессрочная)", "МойОфис Стандартный (бессрочная)"]
+  features: ["бессрочная лицензия"]
+
+- id: uc_mail_client_replace_outlook
+  phrases: ["почтовый клиент с календарем и контактами вместо outlook", "чем заменить microsoft outlook на линуксе", "настольный почтовик для корпоративной почты"]
+  categories: [email_clients_calendars]
+  families: []
+  products: ["МойОфис Почта", "Р7-Органайзер", "RuPost Desktop"]
+  features: ["календарь", "адресная книга", "Linux/Windows"]
+
+- id: uc_diagramming_replace_visio
+  phrases: ["программа для рисования блок-схем и архитектуры сети", "чем заменить microsoft visio и открыть файлы vsdx", "рисовать схемы бизнес-процессов bpmn"]
+  categories: [diagramming_mindmaps]
+  families: []
+  products: ["Business Studio", "SILK", "Р7-Графика"]
+  features: ["блок-схемы", "импорт VSDX", "BPMN"]
+
+- id: uc_project_gantt_replace_msproject
+  phrases: ["составлять календарный план и диаграмму ганта", "чем открыть и редактировать файлы mpp от ms project", "управление ресурсами и сроками стройки и проектов"]
+  categories: [project_planning]
+  families: []
+  products: ["ПМ Форсайт", "Адванта", "1С:PM Управление проектами"]
+  features: ["диаграмма Ганта", "импорт MPP"]
+
+- id: uc_online_whiteboards_replace_miro
+  phrases: ["бесконечная онлайн-доска для команды вместо miro", "проводить ретроспективы и мозговые штурмы удаленно", "российский аналог miro из реестра"]
+  categories: [whiteboards_notes]
+  families: []
+  products: ["МТС Линк Доски", "Holst", "Эсборд", "Flip"]
+  features: ["интерактивные доски", "совместная работа"]
+
+- id: uc_wiki_replace_confluence_notion
+  phrases: ["корпоративная база знаний для сотрудников вместо confluence и notion", "хранить регламенты инструкции и документацию компании", "вики для ит отдела"]
+  categories: [whiteboards_notes]
+  families: []
+  products: ["Yonote", "EvaWiki", "Яндекс Вики", "TEAMLY", "Kaiten"]
+  features: ["база знаний", "права доступа"]
+
+- id: uc_pdf_edit_replace_acrobat
+  phrases: ["редактировать текст прямо внутри pdf файла", "российский аналог adobe acrobat pro", "собрать несколько pdf в один и пронумеровать страницы", "удалить или переставить страницы в pdf"]
+  categories: [pdf_editors]
+  families: []
+  products: ["ContentReader PDF", "Мастер PDF Редактор"]
+  features: ["редактирование PDF", "аннотации", "ЕРРП"]
+
+- id: uc_pdf_to_word_convert
+  phrases: ["перевести скан pdf договора в редактируемый word", "конвертировать pdf таблицу в excel без потери форматирования"]
+  categories: [ocr_capture, pdf_editors]
+  families: []
+  products: ["ContentReader PDF"]
+  features: ["OCR", "конвертация PDF→DOCX/XLSX"]
+
+- id: uc_ocr_passports_id
+  phrases: ["автоматически распознавать паспорта и снилс с камеры или скана", "быстрый ввод данных клиентов из документов на ресепшене и в банке"]
+  categories: [ocr_capture]
+  families: []
+  products: ["Smart Engines", "ContentCapture"]
+  features: ["распознавание удостоверений", "SDK/API"]
+
+- id: uc_ocr_invoices_1c
+  phrases: ["распознавание первички для 1с", "загружать сканы накладных счетов и упд сразу в 1с бухгалтерию", "автоматический ввод актов без ручной набивки"]
+  categories: [ocr_capture, accounting]
+  families: []
+  products: ["1С:Распознавание первичных документов", "Entera", "ContentCapture"]
+  features: ["интеграция с 1С", "поточное распознавание"]
+
+- id: uc_pdf_compare_contracts
+  phrases: ["сравнить две версии договора в pdf и найти скрытые правки", "найти отличия между сканом и вордовским файлом договора"]
+  categories: [pdf_editors, ocr_capture]
+  families: []
+  products: ["ContentReader PDF"]
+  features: ["сравнение редакций"]
+
+- id: uc_pdf_redact_sensitive
+  phrases: ["надежно замазать персональные данные в pdf перед публикацией", "удалить конфиденциальные реквизиты из документа без восстановления"]
+  categories: [pdf_editors]
+  families: []
+  products: ["ContentReader PDF", "Мастер PDF Редактор"]
+  features: ["безвозвратная ретушь"]
+
+- id: uc_offline_translator_corp
+  phrases: ["переводить конфиденциальные договоры и техдокументацию без интернета", "корпоративный переводчик на свой сервер с терминологическими словарями", "перевод pdf и docx с сохранением верстки"]
+  categories: [translation_dictionaries]
+  families: []
+  products: ["PROMT Neural Translation Server", "PROMT Professional NMT"]
+  features: ["on-premise перевод", "глоссарии", "ЕРРП"]
+
+- id: uc_speech_to_text_minutes
+  phrases: ["расшифровать запись совещания в текст автоматически", "превратить аудио и звонки клиентов в протокол и текст", "транскрибация речи на русском языке"]
+  categories: [speech_text, ai_speech_chatbots]
+  families: []
+  products: ["Yandex SpeechKit", "SaluteSpeech", "Контур.Толк (расшифровка)"]
+  features: ["ASR", "разделение по спикерам"]
+
+- id: uc_text_to_speech_ivr
+  phrases: ["озвучить голосовое меню ivr и учебные ролики голосом", "синтез речи на русском языке для роботов"]
+  categories: [speech_text, ai_speech_chatbots]
+  families: []
+  products: ["Yandex SpeechKit", "SaluteSpeech"]
+  features: ["TTS"]
+
+- id: uc_spreadsheets_large_data
+  phrases: ["работать с огромными таблицами и сводными отчетами", "аналитика и консолидация excel таблиц из филиалов"]
+  categories: [spreadsheets_bi_addons, office_suite]
+  families: []
+  products: ["Р7-Офис", "МойОфис", "PlanDesigner"]
+  features: ["сводные таблицы", "консолидация"]
+
+- id: uc_mindmap_brainstorm
+  phrases: ["строить интеллект карты и деревья целей", "визуализировать структуру проекта в виде майндмэпа"]
+  categories: [diagramming_mindmaps, whiteboards_notes]
+  families: []
+  products: ["МТС Линк Доски", "Holst", "XMind (аналоги)"]
+  features: ["mindmap"]
+
+- id: uc_djvu_tiff_batch_archive
+  phrases: ["перевести старый бумажный архив из tiff и djvu в текстовый pdf с поиском", "поточное сканирование и индексация архива"]
+  categories: [ocr_capture]
+  families: []
+  products: ["ContentCapture", "ContentReader PDF"]
+  features: ["PDF/A с текстовым слоем"]
+
+- id: uc_office_linux_compat
+  phrases: ["офисный пакет который точно работает на астра линукс и ред ос", "редактировать документы на российском линуксе"]
+  categories: [office_suite]
+  families: []
+  products: ["Р7-Офис", "МойОфис Стандартный"]
+  features: ["Astra/РЕД ОС/Альт"]
+
+- id: uc_code_text_editor
+  phrases: ["продвинутый текстовый редактор для логов конфигов и json", "редактор для xml и markdown файлов"]
+  categories: [text_editors]
+  families: []
+  products: ["Sublime Text (лицензия)", "Редакторы текста"]
+  features: ["подсветка синтаксиса", "большие файлы"]
+
+- id: uc_office_secure_contour
+  phrases: ["офис для закрытого контура с сертификатом фстэк", "редактировать секретные документы без облака"]
+  categories: [office_suite]
+  families: []
+  products: ["МойОфис Защищённый", "Р7-Офис"]
+  features: ["ФСТЭК", "изолированный контур"]
+
+# --- 4. ИНФРАСТРУКТУРА, ВИРТУАЛИЗАЦИЯ, СЕТИ, МОНИТОРИНГ (24) ---
+- id: uc_ad_on_linux
+  phrases: ["адешка на линуксе", "российский контроллер домена вместо active directory", "управлять групповыми политиками на астра линукс и ред ос", "перенести домен ad на отечественное по"]
+  categories: [directory_services]
+  families: []
+  products: ["ALD Pro", "РЕД АДМ", "Альт Домен", "Dynamic Directory"]
+  features: ["замена AD", "групповые политики", "ЕРРП"]
+
+- id: uc_replace_vmware_virt
+  phrases: ["российская виртуализация серверов вместо vmware vsphere", "перенести виртуальные машины с esxi и hyper-v на отечественный гипервизор", "кластер виртуализации для цод"]
+  categories: [server_virtualization]
+  families: []
+  products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix", "РЕД Виртуализация", "Альт Виртуализация"]
+  features: ["живая миграция ВМ", "отказоустойчивость", "ЕРРП"]
+
+- id: uc_vdi_virtual_desktops
+  phrases: ["виртуальные рабочие столы vdi вместо citrix и vmware horizon", "перевести сотрудников на тонкие клиенты", "выдать удаленщикам защищенный виртуальный рабочий стол"]
+  categories: [vdi_desktop_virt]
+  families: []
+  products: ["Termidesk", "Basis Workplace", "Space VDI"]
+  features: ["VDI", "поддержка Astra/Windows", "ЕРРП"]
+
+- id: uc_k8s_enterprise_platform
+  phrases: ["российская платформа kubernetes с поддержкой", "замена openshift и rancher для контейнеров", "управлять микросервисами в корпоративном кластере k8s"]
+  categories: [containers_kubernetes]
+  families: []
+  products: ["Deckhouse Kubernetes Platform", "Боцман", "Штурвал", "Nova Container Platform"]
+  features: ["Kubernetes", "ЕРРП", "техподдержка"]
+
+- id: uc_infra_monitoring_apm
+  phrases: ["мониторинг серверов сетевого оборудования и баз данных", "узнавать о падении сервисов раньше пользователей", "российский аналог zabbix и datadog с поддержкой"]
+  categories: [monitoring_apm]
+  families: []
+  products: ["Saymon", "Monq", "Zabbix (коммерческая поддержка)", "Пульт"]
+  features: ["зонтичный мониторинг", "алерты", "APM"]
+
+- id: uc_itsm_service_desk
+  phrases: ["система заявок для ит отдела", "навести порядок в обращениях сотрудников в техподдержку", "российский service desk вместо jira service management и servicenow"]
+  categories: [itsm_service_desk]
+  families: []
+  products: ["SimpleOne ITSM", "Naumen Service Desk", "Admin24", "ИнтраСервис", "Altegio/Okdesk"]
+  features: ["тикеты", "SLA", "портал самообслуживания"]
+
+- id: uc_itam_pc_license_inventory
+  phrases: ["учет компьютеров комплектующих и лицензий в организации", "инвентаризация установленных программ по сети", "понять сколько лицензий реально используется"]
+  categories: [itsm_service_desk, system_utilities]
+  families: []
+  products: ["SimpleOne ITAM", "1С:ITILIUM", "Учёт ИТ-активов", "ALD Pro"]
+  features: ["ITAM", "инвентаризация ПО"]
+
+- id: uc_load_balancing_web
+  phrases: ["балансировка нагрузки на веб-серверы", "коммерческий nginx с российской поддержкой", "отказоустойчивость высоконагруженного портала"]
+  categories: [load_balancing_adc]
+  families: []
+  products: ["Angie Pro", "UserGate", "Гарда ADC"]
+  features: ["балансировщик L4/L7", "замена NGINX Plus"]
+
+- id: uc_linux_fleet_mgmt
+  phrases: ["централизованное управление парком рабочих станций на линукс", "удаленно раскатывать программы и обновления на 300 пк linux"]
+  categories: [directory_services, system_utilities]
+  families: []
+  products: ["ALD Pro", "РЕД АДМ", "Альт Домен", "Kaspersky Security Center"]
+  features: ["массовое развёртывание", "управление конфигурациями"]
+
+- id: uc_desktop_hypervisor_dev
+  phrases: ["запускать виртуальные машины на рабочем ноутбуке", "замена vmware workstation и parallels для разработчика"]
+  categories: [desktop_hypervisors]
+  families: []
+  products: ["Локальные гипервизоры и решения для тестовых стендов"]
+  features: ["локальные ВМ"]
+
+- id: uc_virt_certified_fstec
+  phrases: ["виртуализация с сертификатом фстэк для гис и кии", "защищенный гипервизор для аттестуемого цод"]
+  categories: [server_virtualization]
+  families: []
+  products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix", "vGate"]
+  features: ["ФСТЭК", "защита гипервизора"]
+
+- id: uc_print_management_corp
+  phrases: ["контроль печати в офисе по пропускам", "сократить расходы на бумагу и картриджи", "единый сервер печати в сети"]
+  categories: [system_utilities]
+  families: []
+  products: ["Printum", "SafeQ (аналоги)", "Катюша Мониторинг и Защита"]
+  features: ["безопасная печать", "учёт печати"]
+
+- id: uc_terminal_server_1c
+  phrases: ["поднять терминальный сервер для удаленной работы 50 бухгалтеров в 1с", "лицензии удаленных рабочих столов для терминальника"]
+  categories: [terminal_access, server_os]
+  families: []
+  products: ["Microsoft Windows Server RDS CAL", "Termidesk", "Ассистент"]
+  features: ["терминальный доступ", "многопользовательская работа"]
+
+- id: uc_os_image_deployment
+  phrases: ["быстро разворачивать одинаковые образы ос на сотни новых компьютеров", "клонирование и раскатка рабочих станций по сети"]
+  categories: [system_utilities, directory_services]
+  families: []
+  products: ["ALD Pro", "Кибер Инфраструктура", "РЕД АДМ"]
+  features: ["PXE-установка", "типовые образы"]
+
+- id: uc_network_topology_monitoring
+  phrases: ["карта сети и контроль коммутаторов и маршрутизаторов", "отслеживать загрузку каналов связи между филиалами"]
+  categories: [monitoring_apm]
+  families: []
+  products: ["Saymon", "Monq", "Zabbix с поддержкой"]
+  features: ["SNMP", "карта сети"]
+
+- id: uc_private_cloud_enterprise
+  phrases: ["построить частное облако внутри компании как aws", "самообслуживание разработчиков для выдачи серверов и ресурсов"]
+  categories: [private_cloud_platforms, server_virtualization]
+  families: []
+  products: ["VK Cloud Private", "Basis Cloud", "Т1 Облако"]
+  features: ["IaaS on-premise", "портал самообслуживания"]
+
+- id: uc_log_management_infra
+  phrases: ["централизованный сбор логов приложений и серверов", "российский аналог splunk и elastic для диагностики сбоев"]
+  categories: [monitoring_apm, siem_soc]
+  families: []
+  products: ["Monq", "OpenSearch с поддержкой РФ", "Saymon"]
+  features: ["агрегация логов"]
+
+- id: uc_disk_partition_management
+  phrases: ["разбить жесткий диск и перенести систему на ssd без переустановки", "управление разделами диска на сервере"]
+  categories: [disk_utilities]
+  families: []
+  products: ["Кибер Бэкап", "Системные дисковые утилиты"]
+  features: ["клонирование дисков"]
+
+- id: uc_dns_dhcp_ipam
+  phrases: ["управление ip адресами dns и dhcp в большой сети", "навести порядок в подсетях предприятия"]
+  categories: [directory_services, system_utilities]
+  families: []
+  products: ["ALD Pro", "РЕД АДМ", "Инфраструктурные сервисы IPAM"]
+  features: ["DNS/DHCP", "IPAM"]
+
+- id: uc_app_perf_monitoring
+  phrases: ["найти почему тормозит корпоративный портал или 1с", "мониторинг производительности приложений и транзакций apm"]
+  categories: [monitoring_apm]
+  families: []
+  products: ["Monq", "Saymon", "Инструменты APM РФ"]
+  features: ["трассировка", "APM"]
+
+- id: uc_sd_wan_branches
+  phrases: ["объединить 50 филиалов с резервированием каналов связи", "умная маршрутизация трафика sd-wan между точками"]
+  categories: [ngfw_vpn]
+  families: []
+  products: ["UserGate", "Континент 4", "Российские SD-WAN"]
+  features: ["SD-WAN", "резервирование каналов"]
+
+- id: uc_vdi_cad_gpu
+  phrases: ["виртуальные рабочие места для конструкторов с видеокартами", "удаленная работа в тяжелых сапр через vdi"]
+  categories: [vdi_desktop_virt]
+  families: []
+  products: ["Termidesk", "Basis Workplace"]
+  features: ["проброс GPU", "VDI для САПР"]
+
+- id: uc_patch_management_fleet
+  phrases: ["централизованно устанавливать обновления безопасности на все пк", "управление патчами windows и linux"]
+  categories: [directory_services, vuln_mgmt_pentest]
+  families: []
+  products: ["ALD Pro", "Kaspersky Security Center", "РЕД АДМ"]
+  features: ["патч-менеджмент"]
+
+- id: uc_browser_corp_managed
+  phrases: ["корпоративный браузер с поддержкой гост шифрования и центральными политиками", "браузер для работы с госуслугами и банками на астра линукс"]
+  categories: [browsers_network_utils]
+  families: []
+  products: ["Яндекс Браузер для организаций", "Атом / Луна", "Спутник"]
+  features: ["ГОСТ TLS", "групповые политики"]
+
+# --- 5. БАЗЫ ДАННЫХ, АНАЛИТИКА И BI (14) ---
+- id: uc_replace_oracle_mssql
+  phrases: ["российская субд вместо oracle и ms sql server", "перенести корпоративную базу данных на отечественную субд из реестра"]
+  categories: [rdbms]
+  families: []
+  products: ["Postgres Pro Enterprise", "Tantor", "Jatoba", "Ред База Данных"]
+  features: ["ЕРРП", "совместимость с Oracle/1С"]
+
+- id: uc_db_for_1c_highload
+  phrases: ["субд для высоконагруженной базы 1с на 500 пользователей", "postgres pro оптимизированный для 1с предприятия"]
+  categories: [rdbms]
+  families: []
+  products: ["Postgres Pro для 1С", "Tantor Special Edition для 1С"]
+  features: ["оптимизация под 1С", "ЕРРП"]
+
+- id: uc_postgres_commercial_support
+  phrases: ["postgresql с российской техподдержкой 24/7 и сертификатом фстэк", "коммерческий постгрес для юрлица"]
+  categories: [rdbms]
+  families: []
+  products: ["Postgres Pro Standard", "Postgres Pro Enterprise", "Tantor"]
+  features: ["ФСТЭК", "SLA 24/7"]
+
+- id: uc_bi_dashboards_director
+  phrases: ["дашборды и аналитика продаж для директора", "российский аналог power bi и tableau", "красивые интерактивные отчеты по выручке и марже"]
+  categories: [bi_analytics]
+  families: []
+  products: ["Yandex DataLens", "Visiology", "PIX BI", "Форсайт. Аналитическая платформа", "Modus BI", "FineBI"]
+  features: ["интерактивные дашборды", "ЕРРП"]
+
+- id: uc_dwh_analytical_storage
+  phrases: ["корпоративное хранилище данных для больших отчетов", "российский аналог greenplum и teradata", "хранилище dwh для аналитики"]
+  categories: [dwh_olap]
+  families: []
+  products: ["Arenadata DB", "Greengage", "ClickHouse (поддержка РФ)"]
+  features: ["MPP", "OLAP", "ЕРРП"]
+
+- id: uc_big_data_streaming
+  phrases: ["обработка потоковых данных и телеметрии в реальном времени", "российская платформа big data вместо cloudera и kafka"]
+  categories: [big_data_streaming]
+  families: []
+  products: ["Arenadata Hadoop", "Arenadata Streaming"]
+  features: ["потоковая обработка", "Big Data"]
+
+- id: uc_nosql_inmemory_cache
+  phrases: ["быстрая in-memory база данных для кэширования и витрин", "российский аналог redis и mongodb для высоконагруженного сайта"]
+  categories: [nosql_inmemory]
+  families: []
+  products: ["Tarantool", "Arenadata QuickMarts"]
+  features: ["in-memory", "высокая пропускная способность"]
+
+- id: uc_mdm_master_data
+  phrases: ["навести порядок в справочниках номенклатуры и контрагентов", "убрать дубли товаров и клиентов между 1с и crm", "управление мастер-данными mdm"]
+  categories: [data_governance_mdm]
+  families: []
+  products: ["Юнидата (Unidata)", "1С:MDM Управление нормативно-справочной информацией"]
+  features: ["MDM", "дедупликация"]
+
+- id: uc_dba_tuning_tools
+  phrases: ["инструмент администрирования и оптимизации запросов postgres", "удобный клиент для работы с разными базами данных sql"]
+  categories: [db_management_tools]
+  families: []
+  products: ["Tantor Platform", "DBeaver PRO"]
+  features: ["анализ запросов", "администрирование БД"]
+
+- id: uc_db_migration_oracle_pg
+  phrases: ["автоматически перенести хранимые процедуры и схему из oracle в postgres", "миграция баз данных без ручного переписывания"]
+  categories: [rdbms, db_management_tools]
+  families: []
+  products: ["Postgres Pro Enterprise (миграция)", "Tantor"]
+  features: ["миграция с Oracle"]
+
+- id: uc_bi_self_service_smb
+  phrases: ["простая аналитика для малого и среднего бизнеса из 1с и excel", "собрать отчеты из маркетплейсов и 1с на одном экране"]
+  categories: [bi_analytics]
+  families: []
+  products: ["Yandex DataLens", "PIX BI", "1С:Аналитика"]
+  features: ["коннекторы к 1С", "быстрый старт"]
+
+- id: uc_db_fstec_gis
+  phrases: ["сертифицированная субд для гис и персональных данных", "база данных с сертификатом фстэк 4 уровня доверия"]
+  categories: [rdbms]
+  families: []
+  products: ["Postgres Pro Certified", "Ред База Данных", "Jatoba"]
+  features: ["ФСТЭК", "ЕРРП"]
+
+- id: uc_etl_data_integration
+  phrases: ["забирать данные из 1с crm и сайта и грузить в хранилище по расписанию", "инструмент etl для инженеров данных"]
+  categories: [big_data_streaming, data_governance_mdm]
+  families: []
+  products: ["Arenadata", "Форсайт", "DataOps инструменты РФ"]
+  features: ["ETL/ELT"]
+
+- id: uc_olap_financial_planning
+  phrases: ["многомерное финансовое моделирование и сценарный анализ", "замена oracle hyperion и sap bpc"]
+  categories: [dwh_olap, finance_budgeting]
+  families: []
+  products: ["Optimacros", "Форсайт. Бюджетирование", "PlanDesigner"]
+  features: ["OLAP-моделирование"]
+
+# --- 6. БЭКАП, ВОССТАНОВЛЕНИЕ И ХРАНЕНИЕ (12) ---
+- id: uc_backup_servers_vms
+  phrases: ["резервное копирование серверов и виртуальных машин", "российский аналог veeam backup и acronis", "настроить автоматический бэкап всей инфраструктуры"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап", "RuBackup", "Киберпротект"]
+  features: ["бэкап ВМ и хостов", "ЕРРП"]
+
+- id: uc_backup_1c_postgres
+  phrases: ["резервное копирование баз 1с и postgres без остановки работы", "горячий бэкап баз данных по расписанию"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап", "RuBackup"]
+  features: ["агенты для Postgres Pro и 1С"]
+
+- id: uc_backup_workstations_laptops
+  phrases: ["резервировать файлы на ноутбуках сотрудников чтобы не потерялись при поломке", "автобэкап рабочих станций бухгалтеров и директоров"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап"]
+  features: ["бэкап АРМ", "защита от шифровальщиков"]
+
+- id: uc_backup_mail_exchange_rupost
+  phrases: ["резервное копирование корпоративной почты и почтовых ящиков", "восстановить удаленное письмо сотрудника из бэкапа"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап", "RuBackup"]
+  features: ["гранулярное восстановление почты"]
+
+- id: uc_backup_ru_hypervisors
+  phrases: ["бэкап виртуальных машин на брест zvirt и basis", "безагентное копирование российских гипервизоров"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап", "RuBackup"]
+  features: ["поддержка zVirt/Брест/Astra"]
+
+- id: uc_data_recovery_deleted
+  phrases: ["восстановить удаленные файлы с жесткого диска или флешки", "достать данные после форматирования или сбоя raid массива"]
+  categories: [data_recovery]
+  families: []
+  products: ["R-Studio", "Утилиты восстановления данных"]
+  features: ["восстановление RAID/NTFS/ext4"]
+
+- id: uc_sds_corp_storage
+  phrases: ["программно-определяемое хранилище данных на стандартных серверах", "отказоустойчивая схд на российском софте", "замена vsan и ceph с поддержкой"]
+  categories: [sds_storage]
+  families: []
+  products: ["Кибер Инфраструктура", "AERODISK", "Baum"]
+  features: ["SDS", "репликация", "ЕРРП"]
+
+- id: uc_corp_file_sync_share
+  phrases: ["корпоративный файловый обменник на своем сервере вместо dropbox и google drive", "делиться большими файлами с клиентами по защищенным ссылкам"]
+  categories: [sds_storage, office_suite]
+  families: []
+  products: ["Кибер Файлы", "Яндекс 360 Диск", "МойОфис Частное Облако", "Р7-Диск"]
+  features: ["корпоративный диск", "контроль ссылок"]
+
+- id: uc_archiver_business
+  phrases: ["лицензионный архиватор для офиса rar и zip", "сжимать и шифровать архивы для отправки контрагентам"]
+  categories: [archivers]
+  families: []
+  products: ["WinRAR (коммерческая лицензия)", "7-Zip / российские архиваторы"]
+  features: ["RAR/ZIP/7z", "шифрование архивов"]
+
+- id: uc_file_manager_pro
+  phrases: ["двухпанельный файловый менеджер для админа и офиса", "лицензия total commander для юрлица"]
+  categories: [file_managers]
+  families: []
+  products: ["Total Commander", "Double Commander"]
+  features: ["двухпанельный интерфейс", "FTP/SFTP"]
+
+- id: uc_disaster_recovery_dr
+  phrases: ["аварийное переключение цод на резервную площадку", "план восстановления после сбоя с минимальным простоем rto"]
+  categories: [backup_recovery, server_virtualization]
+  families: []
+  products: ["Кибер Бэкап", "Кибер Инфраструктура"]
+  features: ["репликация на резервную площадку"]
+
+- id: uc_backup_fstec_certified
+  phrases: ["система резервного копирования с сертификатом фстэк", "бэкап для госсектора и кии из реестра"]
+  categories: [backup_recovery]
+  families: []
+  products: ["Кибер Бэкап (сертифицированный)", "RuBackup"]
+  features: ["ФСТЭК", "ЕРРП"]
+
+# --- 7. КОММУНИКАЦИИ И УДАЛЁННЫЙ ДОСТУП (18) ---
+- id: uc_vks_replace_zoom
+  phrases: ["российский сервис видеосовещаний вместо zoom и teams", "видеоконференцсвязь на 100 человек для компании", "созвоны без ограничения по времени"]
+  categories: [vks_webinars]
+  families: []
+  products: ["Контур.Толк", "МТС Линк", "TrueConf", "IVA MCU", "Яндекс Телемост"]
+  features: ["ВКС", "запись", "ЕРРП"]
+
+- id: uc_vks_onprem_closed
+  phrases: ["видеоконференцсвязь на свой сервер в закрытый контур без интернета", "защищенные совещания внутри корпоративной сети"]
+  categories: [vks_webinars]
+  families: []
+  products: ["TrueConf Server", "IVA MCU", "Контур.Толк On-Premise", "Vinteo"]
+  features: ["on-premise", "закрытый контур"]
+
+- id: uc_webinars_training_sales
+  phrases: ["проводить вебинары для клиентов и студентов с тестами и записью", "онлайн-конференции на 500 и более слушателей с аналитикой вовлеченности"]
+  categories: [vks_webinars]
+  families: []
+  products: ["МТС Линк Вебинары", "Контур.Толк"]
+  features: ["вебинары", "опросы", "регистрация"]
+
+- id: uc_corp_messenger_replace_slack
+  phrases: ["корпоративный мессенджер для офиса вместо telegram и slack", "рабочие чаты чтобы уволенные сотрудники теряли доступ к переписке", "защищенный мессенджер на свой сервер"]
+  categories: [corporate_messengers]
+  families: []
+  products: ["VK Teams", "eXpress", "Пачка", "Compass", "Squadus"]
+  features: ["управление доступами", "on-premise/cloud", "ЕРРП"]
+
+- id: uc_mail_server_replace_exchange
+  phrases: ["корпоративный почтовый сервер вместо microsoft exchange", "поднять почту на своем сервере на линуксе", "мигрировать почтовые ящики с exchange на российское по"]
+  categories: [mail_servers]
+  families: []
+  products: ["RuPost", "Tegu", "МойОфис Почта", "VK WorkMail", "Communigate Pro"]
+  features: ["миграция с Exchange", "календари", "ЕРРП"]
+
+- id: uc_mail_cloud_smb
+  phrases: ["почта на домене компании в облаке без своего сервера", "быстро подключить рабочую почту календарь и диск для 30 сотрудников"]
+  categories: [mail_servers, office_suite]
+  families: []
+  products: ["Яндекс 360 для бизнеса", "VK WorkSpace", "Mailion Cloud"]
+  features: ["почта на домене", "SaaS"]
+
+- id: uc_uc_unified_comms
+  phrases: ["единая платформа почта чат звонки и видеосвязь в одном окне", "замена microsoft 365 и teams экосистемой"]
+  categories: [uc_platforms]
+  families: []
+  products: ["VK WorkSpace", "Яндекс 360", "Squadus + МойОфис", "IVA One"]
+  features: ["единые коммуникации"]
+
+- id: uc_ip_telephony_sales
+  phrases: ["виртуальная атс для отдела продаж с записью разговоров", "подключить многоканальный номер и интеграцию звонков с crm"]
+  categories: [ip_telephony]
+  families: []
+  products: ["Манго Офис", "Телфин", "МТС Exolve", "Битрикс24 Телефония"]
+  features: ["запись звонков", "интеграция с CRM", "IVR"]
+
+- id: uc_contact_center_omnichannel
+  phrases: ["система для контакт-центра с очередями звонков и чатами", "контроль работы операторов горячей линии и речевая аналитика"]
+  categories: [ip_telephony]
+  families: []
+  products: ["Naumen Contact Center", "Манго Офис Контакт-центр"]
+  features: ["омниканальность", "очереди", "SLA"]
+
+- id: uc_email_marketing_campaigns
+  phrases: ["сервис массовых email рассылок для клиентов компании", "настроить автоматические письма и триггеры для интернет-магазина"]
+  categories: [email_marketing]
+  families: []
+  products: ["Unisender", "Sendsay", "Mindbox", "DashaMail"]
+  features: ["рассылки", "аналитика открытий", "152-ФЗ"]
+
+- id: uc_remote_support_replace_teamviewer
+  phrases: ["российский аналог teamviewer и anydesk для техподдержки", "подключаться к компьютерам сотрудников удаленно чтобы помогать", "удаленный доступ к рабочему столу на астра линукс и windows"]
+  categories: [remote_desktop]
+  families: []
+  products: ["Ассистент", "RuDesktop", "RMS (Удалённый доступ)", "Контур.Доступ"]
+  features: ["кроссплатформенность", "on-premise/cloud", "ЕРРП"]
+
+- id: uc_remote_home_work_office_pc
+  phrases: ["подключаться из дома к своему рабочему компьютеру в офисе безопасно", "организовать удаленную работу бухгалтера из дома"]
+  categories: [remote_desktop, ngfw_vpn]
+  families: []
+  products: ["Ассистент", "RuDesktop", "Контур.Доступ", "UserGate Client"]
+  features: ["защищённый канал", "2FA"]
+
+- id: uc_remote_unattended_kiosks
+  phrases: ["круглосуточный доступ к серверам терминалам и кассам без подтверждения оператора", "подключаться к удаленным магазинам и складам"]
+  categories: [remote_desktop]
+  families: []
+  products: ["Ассистент", "RuDesktop"]
+  features: ["неконтролируемый доступ", "адресная книга"]
+
+- id: uc_remote_access_concurrent
+  phrases: ["удаленный доступ с оплатой по одновременным подключениям", "плавающие лицензии удаленки для службы поддержки из 5 инженеров"]
+  categories: [remote_desktop]
+  families: []
+  products: ["Ассистент", "RuDesktop"]
+  features: ["конкурентные сессии"]
+
+- id: uc_meeting_room_vks
+  phrases: ["оснастить переговорную комнату софтом для видеоконференций", "подключить переговорку к корпоративному серверу вкс"]
+  categories: [vks_webinars]
+  families: []
+  products: ["TrueConf Room", "Контур.Толк Киоски", "IVA Room"]
+  features: ["переговорные комнаты", "SIP/H.323"]
+
+- id: uc_pam_vendor_remote_access
+  phrases: ["дать временный доступ внешнему подрядчику к базе 1с с записью экрана", "контролируемый удаленный доступ без выдачи паролей"]
+  categories: [pam_jump_hosts, iam_pam_mfa]
+  families: []
+  products: ["СКДПУ НТ", "Indeed PAM", "Solar SafeInspect"]
+  features: ["jump-хост", "видеозапись"]
+
+- id: uc_messenger_federation_mobile
+  phrases: ["защищенный мобильный мессенджер для руководства и холдинга", "корпоративный суперэпп с почтой чатом и звонками на смартфоне"]
+  categories: [corporate_messengers]
+  families: []
+  products: ["eXpress", "VK Teams"]
+  features: ["федерация", "мобильное шифрование"]
+
+- id: uc_vks_browser_external_clients
+  phrases: ["проводить встречи с внешними клиентами по ссылке без установки программы", "быстрый созвон в браузере с демонстрацией экрана"]
+  categories: [vks_webinars]
+  families: []
+  products: ["Контур.Толк", "МТС Линк", "Яндекс Телемост"]
+  features: ["вход по ссылке в браузере"]
+
+# --- 8. БУХГАЛТЕРИЯ, 1С, КАДРЫ, ЭДО (20) ---
+- id: uc_accounting_ooo
+  phrases: ["вести бухгалтерию и налоги для ооо", "программа бухгалтерского учета 1с для компании", "учет осн и усн для юрлица"]
+  categories: [accounting]
+  families: []
+  products: ["1С:Бухгалтерия 8 ПРОФ", "1С:Бухгалтерия 8 КОРП"]
+  features: ["регламентированный учёт", "обновления ФНС"]
+
+- id: uc_accounting_ip_simple
+  phrases: ["простая бухгалтерия для ип на усн и патенте", "считать налоги и выставлять счета предпринимателю без бухгалтера"]
+  categories: [accounting]
+  families: []
+  products: ["1С:БизнесСтарт", "Контур.Эльба", "1С:Бухгалтерия Базовая"]
+  features: ["УСН/патент", "облако/базовая"]
+
+- id: uc_accounting_gov_bgu
+  phrases: ["бухгалтерский учет для бюджетного и казенного учреждения", "1с для школы больницы или администрации"]
+  categories: [accounting]
+  families: []
+  products: ["1С:Бухгалтерия государственного учреждения 8"]
+  features: ["бюджетный план счетов", "ЕРРП"]
+
+- id: uc_payroll_hr_zup
+  phrases: ["расчет зарплаты отпусков больничных и кадровый учет", "начисление зарплаты и сдача отчетов в сфр", "автоматизация отдела кадров и табелей"]
+  categories: [payroll_hr_1c]
+  families: []
+  products: ["1С:Зарплата и управление персоналом 8 ПРОФ", "1С:ЗУП КОРП"]
+  features: ["расчёт зарплаты", "воинский учёт", "кадры"]
+
+- id: uc_kedo_remote_hr
+  phrases: ["подписывать кадровые документы с удаленщиками онлайн", "перевести заявления на отпуск и приказы в электронный вид", "кадровый эдо кэдо с интеграцией в 1с зуп"]
+  categories: [kedo_hr_docs]
+  families: []
+  products: ["HRlink", "Контур.КЭДО", "1С:Кабинет сотрудника", "Directum HR Pro", "СБИС КЭДО"]
+  features: ["КЭДО", "УНЭП", "интеграция 1С:ЗУП"]
+
+- id: uc_tax_reporting_online
+  phrases: ["сдавать налоговую и бухгалтерскую отчетность через интернет", "отправлять отчеты в фнс сфр и росстат онлайн", "сверка по енс с налоговой"]
+  categories: [tax_reporting_edo]
+  families: []
+  products: ["Контур.Экстерн", "1С-Отчётность", "СБИС Отчётность", "Такском"]
+  features: ["сдача в ФНС/СФР", "сверка ЕНС"]
+
+- id: uc_edo_counterparties
+  phrases: ["обмен электронными документами упд и актами с контрагентами", "отправлять и подписывать накладные по эдо из 1с", "перейти на электронный документооборот с поставщиками"]
+  categories: [tax_reporting_edo]
+  families: []
+  products: ["Контур.Диадок", "СБИС ЭДО", "1С-ЭДО", "Такском"]
+  features: ["ЭДО", "роуминг", "модуль 1С"]
+
+- id: uc_honest_sign_marking
+  phrases: ["работа с маркировкой честный знак на складе и кассе", "заказывать коды маркировки и выводить товары из оборота", "интеграция честного знака с 1с"]
+  categories: [tax_reporting_edo, retail_pos_cash]
+  families: []
+  products: ["Контур.Маркировка", "СБИС Маркировка", "1С:Розница 8", "1С:Управление торговлей 8"]
+  features: ["Честный ЗНАК", "разрешительный режим"]
+
+- id: uc_egais_alcohol
+  phrases: ["учет алкоголя и пива в егаис для магазина и ресторана", "подтверждать накладные егаис и сдавать декларации"]
+  categories: [retail_pos_cash, tax_reporting_edo]
+  families: []
+  products: ["Контур.Маркет", "1С:Розница 8", "СБИС Розница"]
+  features: ["ЕГАИС", "54-ФЗ"]
+
+- id: uc_retail_pos_54fz
+  phrases: ["программа для розничной кассы по 54 фз", "рабочее место кассира со сканером штрихкодов и эквайрингом", "учет продаж в магазине"]
+  categories: [retail_pos_cash]
+  families: []
+  products: ["1С:Розница 8", "Frontol", "Контур.Маркет", "МойСклад"]
+  features: ["54-ФЗ", "ОФД", "маркировка"]
+
+- id: uc_trade_warehouse_barcode
+  phrases: ["учет товаров на складе по штрихкодам", "видеть реальные остатки себестоимость и закупки", "автоматизация оптовой торговли и склада"]
+  categories: [trade_warehouse]
+  families: []
+  products: ["1С:Управление торговлей 8", "МойСклад", "1С:WMS"]
+  features: ["складской учёт", "штрихкоды", "ТСД"]
+
+- id: uc_counterparty_due_diligence
+  phrases: ["проверка контрагентов на благонадежность перед оплатой", "узнать долги суды и связи компании по инн", "проявить должную осмотрительность для налоговой"]
+  categories: [counterparty_legal_info]
+  families: []
+  products: ["Контур.Фокус", "СБИС Всё о компаниях", "СПАРК"]
+  features: ["ЕГРЮЛ", "арбитраж", "скоринг рисков"]
+
+- id: uc_legal_reference_system
+  phrases: ["справочно-правовая система с актуальными законами и судебной практикой", "кодексы письма минфина и готовые решения для бухгалтера и юриста"]
+  categories: [counterparty_legal_info]
+  families: []
+  products: ["КонсультантПлюс", "Гарант", "Система Главбух"]
+  features: ["актуальное законодательство"]
+
+- id: uc_onec_client_licenses_addon
+  phrases: ["добавить новых пользователей в 1с предприятие", "купить дополнительные клиентские лицензии 1с на 5 или 10 мест", "расширить число рабочих мест 1с"]
+  categories: [onec_platform_licenses]
+  families: []
+  products: ["1С:Предприятие 8. Клиентская лицензия (5/10/20/50/100 мест)"]
+  features: ["доплицензии 1С"]
+
+- id: uc_onec_server_x64
+  phrases: ["перевести файловую базу 1с на клиент-серверный режим", "лицензия на сервер 1с предприятия x64 чтобы база не тормозила"]
+  categories: [onec_platform_licenses]
+  families: []
+  products: ["1С:Предприятие 8. Лицензия на сервер (x86-64)", "Сервер МИНИ"]
+  features: ["клиент-сервер 1С"]
+
+- id: uc_onec_its_updates
+  phrases: ["получать официальные обновления релизов и форм отчетности 1с", "продлить договор 1с итс проф на год", "сопровождение и поддержка 1с"]
+  categories: [tech_support, accounting]
+  families: []
+  products: ["1С:Комплект поддержки (ИТС ПРОФ)", "1С:ИТС Техно"]
+  features: ["обновления 1С", "сервисы ИТС"]
+
+- id: uc_onec_cloud_fresh
+  phrases: ["работать в 1с бухгалтерии через браузер без своего сервера", "облачная 1с с автообновлением и бэкапами"]
+  categories: [accounting, iaas_cloud_platforms]
+  families: []
+  products: ["1С:Фреш", "1С:ГРМ"]
+  features: ["SaaS 1С", "работа из браузера"]
+
+- id: uc_edo_transport_waybills
+  phrases: ["электронные транспортные накладные этрн и путевые листы", "перевести логистику на электронный документооборот гис эпд"]
+  categories: [tax_reporting_edo, logistics_tms]
+  families: []
+  products: ["Контур.Логистика", "СБИС ЭТрН", "1С-ЭПД"]
+  features: ["ГИС ЭПД", "ЭТрН"]
+
+- id: uc_accounting_outsourcing_multi
+  phrases: ["сдавать отчетность сразу за 50 обслуживаемых фирм", "тариф для бухгалтерской аутсорсинговой компании"]
+  categories: [tax_reporting_edo, accounting]
+  families: []
+  products: ["Контур.Экстерн (Обслуживающая бухгалтерия)", "1С:БухОбслуживание", "СБИС Уполномоченная бухгалтерия"]
+  features: ["мультикомпания"]
+
+- id: uc_accounting_small_company_unf
+  phrases: ["единая программа для малого бизнеса торговля услуги склад и мини производство", "управленческий учет для небольшой компании в 1с"]
+  categories: [trade_warehouse, accounting]
+  families: []
+  products: ["1С:Управление нашей фирмой (УНФ)", "МойСклад"]
+  features: ["управленческий учёт SMB"]
+
+# --- 9. БИЗНЕС-СИСТЕМЫ: ERP, CRM, СЭД, BPM, ПРОЕКТЫ, ЛОГИСТИКА (18) ---
+- id: uc_crm_sales_funnel
+  phrases: ["вести базу клиентов и воронку продаж", "чтобы менеджеры не забывали перезванивать и не теряли заявки", "crm система с интеграцией телефонии и мессенджеров"]
+  categories: [crm_systems]
+  families: []
+  products: ["Битрикс24", "amoCRM", "BPMSoft", "1С:CRM", "RetailCRM"]
+  features: ["воронка сделок", "интеграция с 1С и телефонией"]
+
+- id: uc_crm_onprem_box
+  phrases: ["корпоративный портал и crm на свой сервер с доработками", "коробочная crm без хранения клиентской базы в чужом облаке"]
+  categories: [crm_systems]
+  families: []
+  products: ["Битрикс24 Коробка", "BPMSoft", "ELMA365 CRM"]
+  features: ["on-premise", "кастомизация"]
+
+- id: uc_erp_manufacturing_enterprise
+  phrases: ["единая система управления заводом производством закупками и финансами", "российский аналог sap erp и microsoft dynamics", "планирование производства и расчет себестоимости"]
+  categories: [erp_systems]
+  families: []
+  products: ["1С:ERP Управление предприятием 2", "Галактика ERP", "Ма-3"]
+  features: ["ERP", "производство", "ЕРРП"]
+
+- id: uc_sed_contract_approval
+  phrases: ["система согласования договоров счетов и заявок на оплату", "перевести внутренний документооборот и приказы в электронный вид", "контроль исполнительской дисциплины и поручений"]
+  categories: [sed_ecm]
+  families: []
+  products: ["Directum RX", "ТЕЗИС", "1С:Документооборот 8", "ELMA365 ECM", "Дело"]
+  features: ["маршруты согласования", "ЭП", "ЕРРП"]
+
+- id: uc_electronic_archive_ecm
+  phrases: ["электронный архив первичных и кадровых документов с быстрым поиском", "хранить сканы договоров и выгружать подборки для налоговой проверки"]
+  categories: [sed_ecm]
+  families: []
+  products: ["Directum RX (Финансовый архив)", "1С:Архив", "ТЕЗИС"]
+  features: ["долговременный архив", "подборки для ФНС"]
+
+- id: uc_bpm_process_automation
+  phrases: ["автоматизировать нестандартные бизнес-процессы без долгого программирования", "low-code платформа для создания корпоративных приложений и заявок"]
+  categories: [bpm_rpa_lowcode]
+  families: []
+  products: ["ELMA365", "Directum RX", "SimpleOne", "Comindware"]
+  features: ["Low-code", "BPMN 2.0", "ЕРРП"]
+
+- id: uc_rpa_software_robots
+  phrases: ["роботы для автоматического переноса данных между 1с excel и сайтами", "убрать рутинную ручную сверку с помощью rpa", "российский аналог uipath"]
+  categories: [bpm_rpa_lowcode]
+  families: []
+  products: ["PIX RPA", "Primo RPA", "Sherpa RPA", "Robin RPA"]
+  features: ["RPA", "ЕРРП"]
+
+- id: uc_task_tracker_replace_jira
+  phrases: ["управление задачами проектами и спринтами команды вместо jira и trello", "канбан доска для ит и бизнеса из реестра"]
+  categories: [task_project_trackers]
+  families: []
+  products: ["Яндекс Трекер", "Kaiten", "EvaProject", "Weeek", "Битрикс24", "YouGile"]
+  features: ["Scrum/Kanban", "ЕРРП"]
+
+- id: uc_recruiting_ats_hr
+  phrases: ["автоматизация подбора персонала и ведения базы кандидатов", "система для рекрутеров чтобы не вести кандидатов в excel"]
+  categories: [hrm_recruiting]
+  families: []
+  products: ["Хантфлоу", "Talantix", "Поток Рекрутмент", "SberPulse"]
+  features: ["ATS", "интеграция с hh.ru"]
+
+- id: uc_finance_budgeting_treasury
+  phrases: ["бюджетирование казначейство платежный календарь и план-факт", "управленческий учет и консолидация отчетности по группе компаний"]
+  categories: [finance_budgeting]
+  families: []
+  products: ["1С:Управление холдингом", "Финансист", "Optimacros", "ИТАН:Управленческий баланс"]
+  features: ["БДДС/БДР", "казначейство"]
+
+- id: uc_logistics_routing_tms
+  phrases: ["планирование маршрутов доставки по городу и контроль курьеров", "оптимизация автопарка и сокращение пробега машин", "tms система для логистики"]
+  categories: [logistics_tms]
+  families: []
+  products: ["1С:TMS Логистика", "Яндекс Маршрутизация", "AXELOT TMS"]
+  features: ["маршрутизация", "контроль рейсов"]
+
+- id: uc_fleet_management_fuel
+  phrases: ["учет автопарка путевых листов гсм ремонтов и шин", "контроль расхода топлива служебных машин"]
+  categories: [logistics_tms]
+  families: []
+  products: ["1С:Управление автотранспортом ПРОФ"]
+  features: ["путевые листы", "ГСМ", "ТОиР"]
+
+- id: uc_ecommerce_store_cms
+  phrases: ["создать корпоративный сайт или интернет-магазин с интеграцией 1с", "движок для b2b личного кабинета и каталога товаров"]
+  categories: [cms_ecommerce]
+  families: []
+  products: ["1С-Битрикс: Управление сайтом", "CS-Cart"]
+  features: ["обмен с 1С", "B2B-кабинет"]
+
+- id: uc_marketplace_seller_sync
+  phrases: ["синхронизировать остатки и цены сразу на wildberries ozon и яндекс маркете", "учет продаж на маркетплейсах в 1с"]
+  categories: [trade_warehouse, cms_ecommerce]
+  families: []
+  products: ["МойСклад", "1С:Управление торговлей 8", "RetailCRM"]
+  features: ["интеграция маркетплейсов"]
+
+- id: uc_crm_ecommerce_orders
+  phrases: ["обработка заказов интернет-магазина статусы доставки и чаты с покупателями", "crm специально для онлайн-ритейла"]
+  categories: [crm_systems]
+  families: []
+  products: ["RetailCRM", "Битрикс24"]
+  features: ["обработка заказов", "службы доставки"]
+
+- id: uc_corporate_intranet_portal
+  phrases: ["внутренний корпоративный портал новости оргструктура и база сотрудников", "цифровое рабочее пространство для крупной компании"]
+  categories: [crm_systems, hrm_recruiting]
+  families: []
+  products: ["Битрикс24", "Incomand", "Mirapolis Portal", "VK Workspace"]
+  features: ["интранет", "оргструктура"]
+
+- id: uc_gov_medo_sed
+  phrases: ["межведомственный электронный документооборот мэдо для госоргана", "система делопроизводства по гост из реестра"]
+  categories: [sed_ecm]
+  families: []
+  products: ["Дело (ЭОС)", "Directum RX", "ТЕЗИС"]
+  features: ["МЭДО", "ЕРРП"]
+
+- id: uc_toir_equipment_maintenance
+  phrases: ["учет ремонтов и техобслуживания станков и оборудования на заводе", "планово-предупредительные ремонты тоир"]
+  categories: [erp_systems, industry_specialized]
+  families: []
+  products: ["1С:ТОИР Управление ремонтами и обслуживанием оборудования", "Галактика EAM"]
+  features: ["ТОиР", "учёт простоев"]
+
+# --- 10. САПР, BIM, ГИС, СМЕТЫ И ГРАФИКА/МЕДИА (21) ---
+- id: uc_open_edit_dwg
+  phrases: ["чем открыть dwg", "редактировать чертежи dwg вместо autocad", "российский 2d сапр с нативной поддержкой dwg"]
+  categories: [cad_2d]
+  families: []
+  products: ["Платформа nanoCAD", "ZWCAD", "КОМПАС-График"]
+  features: ["нативный DWG", "ЕРРП"]
+
+- id: uc_cad_3d_mechanical
+  phrases: ["3d моделирование деталей и сборок для машиностроения", "российский аналог solidworks и inventor", "оформление чертежей по ескд"]
+  categories: [mcad_plm]
+  families: []
+  products: ["КОМПАС-3D", "T-FLEX CAD"]
+  features: ["3D-моделирование", "ЕСКД", "ЕРРП"]
+
+- id: uc_plm_pdm_engineering
+  phrases: ["управление инженерными данными и составом изделия на заводе", "хранилище чертежей с версиями и согласованием вместо windchill и teamcenter"]
+  categories: [mcad_plm]
+  families: []
+  products: ["ЛОЦМАН:PLM", "T-FLEX DOCs", "Pilot-ICE"]
+  features: ["PDM/PLM", "состав изделия"]
+
+- id: uc_bim_buildings_replace_revit
+  phrases: ["информационное моделирование зданий bim вместо autodesk revit", "проектирование архитектуры и конструкций в формате ifc", "российский bim для стройки и экспертизы"]
+  categories: [bim_aec]
+  families: []
+  products: ["Renga", "nanoCAD BIM", "Model Studio CS", "Pilot-BIM"]
+  features: ["BIM", "IFC", "ЕРРП"]
+
+- id: uc_cde_bim_collaboration
+  phrases: ["среда общих данных сод для строительного проекта", "проверка коллизий bim моделей и выдача замечаний проектировщикам"]
+  categories: [bim_aec]
+  families: []
+  products: ["Pilot-BIM", "CADLib Модель и Архив", "Vitro-CAD"]
+  features: ["СОД", "коллизии IFC"]
+
+- id: uc_cae_strength_simulation
+  phrases: ["расчет прочности строительных конструкций и фундаментов", "метод конечных элементов вместо ansys и abaqus", "расчет нагрузок и устойчивости зданий"]
+  categories: [cae_simulation]
+  families: []
+  products: ["ЛИРА-САПР", "SCAD Office", "ЛОГОС", "APM WinMachine"]
+  features: ["МКЭ", "СП/СНиП", "ЕРРП"]
+
+- id: uc_ecad_electrical_panels
+  phrases: ["проектирование электрических схем щитов кабельных трасс и скс", "программа для инженера электрика и проектировщика эом"]
+  categories: [ecad_eda]
+  families: []
+  products: ["nanoCAD BIM Электро", "nanoCAD BIM СКС", "КОМПАС-Электрик"]
+  features: ["кабельные журналы", "расчёт нагрузок"]
+
+- id: uc_ecad_pcb_electronics
+  phrases: ["разводка печатных плат и электроники вместо altium designer", "российский сапр электроники"]
+  categories: [ecad_eda]
+  families: []
+  products: ["Delta Design", "ТопоР"]
+  features: ["проектирование печатных плат", "ЕРРП"]
+
+- id: uc_construction_estimates
+  phrases: ["составление строительных смет по фер тер гэсн", "программа для сметчика кс2 и кс3", "расчет стоимости строительно-монтажных работ"]
+  categories: [estimates_construction]
+  families: []
+  products: ["Гранд-Смета", "Smeta.ru", "РИК", "АДЕПТ:СМЕТА"]
+  features: ["ФЕР/ТЕР/ГЭСН", "РИМ", "КС-2/КС-3"]
+
+- id: uc_gis_mapping_analysis
+  phrases: ["создание цифровых карт и геоинформационный анализ вместо arcgis", "работа с координатами кадастром и слоями местности"]
+  categories: [gis_mapping]
+  families: []
+  products: ["ГИС Панорама", "Axioma GIS", "NextGIS"]
+  features: ["ГИС", "ЕРРП"]
+
+- id: uc_cad_survey_genplan
+  phrases: ["топографическая съемка генплан дороги и рельеф", "замена civil 3d для инженера изыскателя"]
+  categories: [cad_specialized]
+  families: []
+  products: ["nanoCAD GeoniCS", "ТИМ КРЕДО", "Robur"]
+  features: ["генплан", "изыскания"]
+
+- id: uc_cad_hvac_piping
+  phrases: ["проектирование отопления вентиляции водоснабжения и канализации", "модули ов и вк для строительного проектирования"]
+  categories: [cad_specialized, bim_aec]
+  families: []
+  products: ["nanoCAD BIM Отопление", "nanoCAD BIM Вентиляция", "nanoCAD BIM ВК", "Renga MEP"]
+  features: ["ОВ/ВК", "спецификации"]
+
+- id: uc_cad_raster_vectorize
+  phrases: ["перевести отсканированный бумажный чертеж в векторный dwg", "оцифровка старых синек и архивных чертежей"]
+  categories: [raster_vectorizers]
+  families: []
+  products: ["nanoCAD Растр", "Spotlight"]
+  features: ["векторизация сканов"]
+
+- id: uc_cad_linux_native
+  phrases: ["сапр который работает на астра линукс и ред ос", "открывать и редактировать чертежи на российском линуксе"]
+  categories: [cad_2d, mcad_plm]
+  families: []
+  products: ["Платформа nanoCAD (Linux)", "T-FLEX CAD (Linux)", "КОМПАС-3D (с поддержкой Linux)"]
+  features: ["поддержка Linux"]
+
+- id: uc_cad_furniture_design
+  phrases: ["программа для проектирования корпусной мебели и раскроя лдсп", "расчет фурнитуры и чертежи для мебельного производства"]
+  categories: [cad_specialized]
+  families: []
+  products: ["БАЗИС-Мебельщик", "bCAD Мебель"]
+  features: ["мебельное производство", "раскрой"]
+
+- id: uc_photo_retouch_replace_photoshop
+  phrases: ["редактирование и ретушь фотографий для компании вместо photoshop", "открыть и поправить файлы psd легально"]
+  categories: [raster_photo]
+  families: []
+  products: ["AliveColors", "Corel PHOTO-PAINT"]
+  features: ["работа со слоями", "PSD"]
+
+- id: uc_vector_design_logos
+  phrases: ["векторная графика логотипы макеты упаковки и баннеры", "открыть и редактировать файлы cdr и ai для типографии"]
+  categories: [vector_illustration]
+  families: []
+  products: ["CorelDRAW Graphics Suite", "Inkscape"]
+  features: ["вектор", "CDR", "CMYK"]
+
+- id: uc_ui_ux_replace_figma
+  phrases: ["проектировать интерфейсы сайтов и мобильных приложений вместо figma", "дизайн-система для команды продуктовых дизайнеров"]
+  categories: [ui_ux_web_design]
+  families: []
+  products: ["Pixso", "Penpot"]
+  features: ["UI/UX", "импорт Figma"]
+
+- id: uc_dtp_catalog_publishing
+  phrases: ["верстка многостраничных каталогов журналов буклетов и книг", "подготовка макетов в типографию вместо indesign"]
+  categories: [dtp_publishing]
+  families: []
+  products: ["CorelDRAW Graphics Suite", "Scribus"]
+  features: ["вёрстка", "допечатная подготовка"]
+
+- id: uc_video_editing_corporate
+  phrases: ["монтаж видео для корпоративного канала и обучающих роликов", "записать скринкаст с экрана и наложить субтитры"]
+  categories: [video_editing]
+  families: []
+  products: ["Movavi Видеоредактор Бизнес", "iSpring Cam Pro"]
+  features: ["видеомонтаж", "запись экрана"]
+
+- id: uc_3d_arch_visualization
+  phrases: ["фотореалистичная 3d визуализация интерьеров и зданий", "рендеринг рекламных моделей и анимации"]
+  categories: [3d_rendering_animation]
+  families: []
+  products: ["Средства 3D-моделирования и визуализации"]
+  features: ["3D-рендеринг"]
+
+# --- 11. РАЗРАБОТКА, ОБЛАКА, ИИ И ОБУЧЕНИЕ (17) ---
+- id: uc_git_cicd_replace_gitlab
+  phrases: ["российский хостинг git репозиториев и ci/cd вместо github и gitlab", "хранить исходный код внутри компании в закрытом контуре"]
+  categories: [git_cicd_devops]
+  families: []
+  products: ["GitFlic", "SourceCraft", "GitVerse", "Сфера.Код"]
+  features: ["Git", "CI/CD", "ЕРРП"]
+
+- id: uc_ide_dev_environment
+  phrases: ["среда разработки для java python и корпоративного бэкенда", "российский аналог jetbrains intellij idea"]
+  categories: [ide_compilers]
+  families: []
+  products: ["GigaIDE", "Российские IDE"]
+  features: ["IDE", "поддержка Java/Python/Kotlin"]
+
+- id: uc_tms_qa_test_management
+  phrases: ["система управления тестированием тест-кейсами и прогонами вместо testrail", "учет автотестов и отчетов qa команды"]
+  categories: [testing_qa]
+  families: []
+  products: ["Test IT", "Allure TestOps"]
+  features: ["TMS", "интеграция CI/CD", "ЕРРП"]
+
+- id: uc_sast_code_security
+  phrases: ["поиск уязвимостей и закладок в исходном коде приложений", "безопасная разработка devsecops и анализ кода sast"]
+  categories: [code_analysis_sast]
+  families: []
+  products: ["PT Application Inspector", "Solar appScreener", "AppSec.Co"]
+  features: ["SAST/DAST", "DevSecOps", "ЕРРП"]
+
+- id: uc_esb_api_integration
+  phrases: ["связать между собой 1с crm сайт и erp через интеграционную шину", "управление корпоративными api и очередями сообщений"]
+  categories: [api_integration_esb]
+  families: []
+  products: ["1С:Шина", "Datareon Platform", "Аксиома ESB"]
+  features: ["ESB", "интеграция систем", "ЕРРП"]
+
+- id: uc_java_runtime_corp
+  phrases: ["корпоративная java с российской поддержкой вместо oracle jdk", "сертифицированная jvm для банков и госсектора"]
+  categories: [java_runtimes]
+  families: []
+  products: ["Axiom JDK", "Liberica JDK"]
+  features: ["JDK/JRE", "поддержка безопасности", "ЕРРП"]
+
+- id: uc_llm_corp_replace_chatgpt
+  phrases: ["корпоративная нейросеть и ии-ассистент для сотрудников вместо chatgpt", "подключить языковую модель по api без передачи данных за рубеж", "ии в закрытом контуре компании"]
+  categories: [llm_gen_ai]
+  families: []
+  products: ["GigaChat для бизнеса", "YandexGPT API", "Локальные корпоративные LLM"]
+  features: ["LLM API", "152-ФЗ", "on-premise/cloud"]
+
+- id: uc_ai_chatbot_support
+  phrases: ["чат-бот и голосовой робот для первой линии поддержки клиентов", "автоматически отвечать на типовые вопросы в чате сайта и по телефону"]
+  categories: [ai_speech_chatbots]
+  families: []
+  products: ["Just AI", "Naumen Erudite", "Twin", "Яндекс Диалоги"]
+  features: ["NLU", "голосовые и текстовые боты"]
+
+- id: uc_ml_computer_vision
+  phrases: ["компьютерное зрение для контроля качества на производстве и видеоаналитики", "платформа обучения моделей машинного обучения с gpu"]
+  categories: [ml_platforms_cv]
+  families: []
+  products: ["Yandex DataSphere", "Платформы CV/ML РФ"]
+  features: ["MLOps", "видеоаналитика"]
+
+- id: uc_iaas_cloud_ru_152fz
+  phrases: ["арендовать виртуальные серверы в российском облаке по 152 фз", "облачная инфраструктура для размещения 1с и корпоративных сайтов"]
+  categories: [iaas_cloud_platforms]
+  families: []
+  products: ["Yandex Cloud", "VK Cloud", "Cloud.ru", "Selectel"]
+  features: ["IaaS", "аттестат 152-ФЗ"]
+
+- id: uc_lms_corp_onboarding
+  phrases: ["корпоративный портал обучения и аттестации сотрудников", "быстрый онбординг новичков и проверка знаний с тестами"]
+  categories: [lms_elearning]
+  families: []
+  products: ["iSpring Learn", "Mirapolis LMS", "Websoft HCM", "Эквио"]
+  features: ["LMS", "SCORM", "тестирование"]
+
+- id: uc_elearning_course_authoring
+  phrases: ["конструктор интерактивных электронных курсов и тренажеров из презентаций", "создавать учебные курсы и тесты внутри компании"]
+  categories: [lms_elearning]
+  families: []
+  products: ["iSpring Suite", "CourseEditor"]
+  features: ["конструктор курсов", "ЕРРП"]
+
+- id: uc_it_training_linux_migration
+  phrases: ["курсы для сисадминов по администрированию астра линукс и ред ос", "обучить пользователей работе в р7 офис и мой офис"]
+  categories: [it_training_courses]
+  families: []
+  products: ["Учебные курсы по Astra Linux, РЕД ОС, Альт, Р7-Офис, ИБ"]
+  features: ["сертификация админов", "корпоративное обучение"]
+
+- id: uc_vendor_extended_support
+  phrases: ["расширенная техподдержка вендора 24/7 с быстрым sla", "договор сопровождения и обновлений корпоративного по"]
+  categories: [tech_support]
+  families: []
+  products: ["Техподдержка Astra Linux Премиум", "Kaspersky MSA", "1С:ИТС ПРОФ", "Поддержка Postgres Pro"]
+  features: ["SLA 24/7", "приоритетные обновления"]
+
+- id: uc_migration_consulting_service
+  phrases: ["помощь с переездом с windows exchange и vmware на российское по", "услуги аудита и пилотного внедрения импортозамещения"]
+  categories: [tech_support]
+  families: []
+  products: ["Услуги миграции и внедрения ПО"]
+  features: ["миграция под ключ", "пилот"]
+
+- id: uc_corp_ebook_library
+  phrases: ["корпоративная электронная библиотека бизнес-книг и аудиокниг для сотрудников", "подписка на деловую литературу для всей компании"]
+  categories: [ebooks_corporate_lib]
+  families: []
+  products: ["Литрес Библиотека для бизнеса", "Альпина Диджитал", "МИФ Корпоративная библиотека"]
+  features: ["корпоративная подписка", "аналитика чтения"]
+
+- id: uc_dev_components_reporting
+  phrases: ["компоненты генерации отчетов и таблиц для встраивания в свое приложение", "библиотеки разработки для net и java"]
+  categories: [dev_libraries_components]
+  families: []
+  products: ["FastReport"]
+  features: ["генератор отчётов", "SDK"]
