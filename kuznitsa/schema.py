@@ -76,7 +76,10 @@ class Request(BaseModel):
     profile_id: str = "guest"
     category: str | None = None
     session_id: str = ""
-    mode: Literal["smart","fast"] = "smart"
+    ignore: list[str] = Field(default_factory=list)
+    context: Literal["on","off"] = "on"
+    verbatim: bool = False
+    mode: Literal["smart","fast","naive"] = "smart"
     page: int = Field(default=1, ge=1)
     page_size: int = Field(default=20, ge=1, le=100)
     filters: dict = {}

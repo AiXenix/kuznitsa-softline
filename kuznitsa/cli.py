@@ -5,6 +5,7 @@ from .config import Config,ROOT
 from .kb.loader import load
 from .mock.catalog_gen import build
 from .schema import Request
+from .optional import optional_module
 
 
 def show(value):
@@ -22,14 +23,19 @@ def main(argv=None):
     p.add_argument("q")
     p.add_argument("--profile",default="guest")
     p.add_argument("--explain",action="store_true")
-    p.add_argument("--mode",choices=["smart","fast"],default=cfg.mode)
+    p.add_argument("--mode",choices=["smart","fast","naive"],default=cfg.mode)
     p=sub.add_parser("eval")
     p.add_argument("file",type=Path)
-    p.add_argument("--mode",default="fast",choices=["smart","fast"])
+    p.add_argument("--mode",default="fast",choices=["smart","fast","naive"])
     p=sub.add_parser("serve")
     p.add_argument("--host",default="127.0.0.1")
     p.add_argument("--port",type=int,default=8097)
+    analytics = optional_module("kuznitsa.analytics.cli")
+    if analytics is not None:
+        analytics.register(sub)
     args=parser.parse_args(argv)
+    if analytics is not None and analytics.run(args, cfg):
+        return 0
     if args.cmd in ("kb-check","build-mock"):
         kb=load(cfg.kb)
         if args.cmd=="kb-check":

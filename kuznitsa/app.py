@@ -12,6 +12,7 @@ from starlette.exceptions import HTTPException
 import yaml
 from .config import Config,ROOT,WEIGHTS
 from .engine import Engine
+from .optional import optional_module
 from .schema import Request
 from .suggest.index import suggest
 
@@ -20,13 +21,17 @@ def create_app(engine=None,cfg=None):
     cfg=cfg or Config()
     @asynccontextmanager
     async def lifespan(app):
-        app.state.engine=engine or Engine.open(cfg)
+        core = engine or Engine.open(cfg)
+        rules = optional_module("kuznitsa.analytics.controls")
+        if rules is not None:
+            core.controls = rules.RuleControls(core.journal)
+        app.state.engine = core
         yield
     app=FastAPI(lifespan=lifespan)
     def core():
         return app.state.engine
     def error(status,code,message):
-        return JSONResponse(dict(error=dict(code=code,message=message)),status_code=status)
+        return JSONResponse(dict(error=dict(code=code,message=message)),status_code=status, headers={"X-Robots-Tag":"noindex, nofollow"})
 
     traffic={}
     next_cleanup=0.
@@ -49,6 +54,7 @@ def create_app(engine=None,cfg=None):
             recent.append(now)
         response=await call_next(req)
         response.headers["X-Content-Type-Options"]="nosniff"
+        response.headers["X-Robots-Tag"]="noindex, nofollow"
         response.headers["Referrer-Policy"]="same-origin"
         return response
 
@@ -79,7 +85,7 @@ def create_app(engine=None,cfg=None):
                     scenarios.setdefault(row["id"],row)
         return dict(profiles=[dict(id=c.client_id,title=c.title,segment=c.segment) for c in core().clients.values() if c.demo],
                     categories=[dict(id=k,title=r.get("title",k)) for k,r in core().kb.rows["categories"].items() if not r.get("parent")],
-                    modes=["fast","smart"],weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
+                    modes=["fast","smart","naive"],weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
                     disclaimer="Каталог, цены и клиенты — демонстрационные.")
     @app.post("/api/search")
     def search(req:Request):
@@ -90,6 +96,8 @@ def create_app(engine=None,cfg=None):
     def search_get(req:HttpRequest):
         try:
             data=dict(req.query_params)
+            if "ignore" in data:
+                data["ignore"]=req.query_params.getlist("ignore")
             data.setdefault("mode",cfg.mode)
             return search(Request.model_validate(data))
         except ValidationError:
@@ -110,6 +118,19 @@ def create_app(engine=None,cfg=None):
     @app.get("/api/profile/{ident}")
     def profile(ident:str):
         return core().clients[ident]
+    @app.get("/robots.txt")
+    def robots():
+        return Response("User-agent: *\nDisallow: /\n",media_type="text/plain")
+    for name in ("kuznitsa.api.admin", "kuznitsa.pages"):
+        module = optional_module(name)
+        if module is not None:
+            router = module.router
+            prefix = ""
+            if name == "kuznitsa.api.admin" and not any(
+                route.path == "/api/admin" or route.path.startswith("/api/admin/") for route in router.routes
+            ):
+                prefix = "/api/admin"
+            app.include_router(router, prefix=prefix)
     @app.get("/")
     def home():
         return FileResponse(ROOT/"web/index.html")

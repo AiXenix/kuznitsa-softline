@@ -5,6 +5,9 @@ from time import perf_counter,time
 import json
 import re
 from uuid import uuid4
+from threading import Lock
+from .controls import Controls, PhraseRules
+from .plans import naive
 from .analytics.store import Journal
 from .config import Config,WEIGHTS
 from .data_lock import snapshot_lock
@@ -17,7 +20,7 @@ from .text import normalize,sku_key,tokens
 from .understand.repair import repair
 from .understand.normalize import lookup_skus
 from .understand.entities import extract
-from .understand.model import chips_for
+from .understand.model import chips_for, ignore_conditions
 from .understand.context import fallback_plan
 from .understand.intent import scenario,base_plan,TITLES
 from .rank.variants import select,public_offer
@@ -44,11 +47,12 @@ class Trace:
 
 
 class Engine:
-    def __init__(self,cat,kb,clients,journal,clock=time,llm=None,timer=perf_counter):
+    def __init__(self,cat,kb,clients,journal,clock=time,llm=None,timer=perf_counter,controls=None):
         self.catalog,self.kb,self.clients,self.journal = cat,kb,clients,journal
         self.clock,self.llm,self.timer = clock,llm or Disabled(),timer
-        self.lex = Lexicon(kb,cat)
-        self.lex.spell_words = sorted(w for w in self.lex.words if len(w)>=4)
+        self.controls = Controls() if controls is None else controls
+        self._rules_lock = Lock()
+        self._rules_key = None
         self.names = {k:{i:r.get("name",r.get("title",i)) for i,r in kb.rows[g].items()}
                       for k,g in dict(vendor="vendors",family="families",category="categories").items()}
         for card in cat.cards.values():
@@ -57,16 +61,33 @@ class Engine:
                                  ("category",card.category,(o.category_path or [None])[-1])]:
                 if ident and name:
                     self.names[k].setdefault(ident,name)
-        self.suggestions=SuggestIndex(self.lex,self.names)
+        self._rules()
+
+    def _rules(self):
+        with self._rules_lock:
+            controls = self.controls
+            key = (controls, controls.version())
+            if self._rules_key != key:
+                lex = Lexicon(self.kb, self.catalog)
+                rules = controls.synonyms()
+                for rule in rules:
+                    if rule["kind"] != "text":
+                        lex.add(rule["phrase"], rule["kind"], rule["to"], "rule:" + rule["rule_id"])
+                lex.spell_words = sorted(w for w in lex.words if len(w)>=4)
+                self._phrases = PhraseRules(r for r in rules if r["kind"] == "text")
+                self.suggestions = SuggestIndex(lex, self.names)
+                self.lex = lex
+                self._rules_key = key
+            return self.lex, self._phrases
 
     @classmethod
-    def open(cls,cfg=None,clock=time,llm=None,journal=None):
+    def open(cls,cfg=None,clock=time,llm=None,journal=None,controls=None):
         cfg = cfg or Config()
         with snapshot_lock(cfg.data):
-            return cls._open_snapshot(cfg,clock,llm,journal)
+            return cls._open_snapshot(cfg,clock,llm,journal,controls)
 
     @classmethod
-    def _open_snapshot(cls,cfg,clock,llm,journal):
+    def _open_snapshot(cls,cfg,clock,llm,journal,controls):
         kb = load(cfg.kb)
         extra = cfg.data/"mock_families.jsonl"
         if extra.exists():
@@ -88,9 +109,14 @@ class Engine:
                     order["date"] = str(today-timedelta(days=order["days_ago"]))
             clients[c.client_id] = c
         clients.setdefault("guest",Client(client_id="guest",title="Гость",segment="smb",demo=True))
-        return cls(cat,kb,clients,journal or Journal(cfg.data/"kuznitsa.sqlite"),clock,llm)
+        return cls(cat,kb,clients,journal or Journal(cfg.data/"kuznitsa.sqlite"),clock,llm,controls=controls)
 
     def card(self,ident,profile_id="guest",qty=None,term=None,action=None):
+        if ident.startswith("sku:") and ident not in self.catalog.cards:
+            offer = self.catalog.offers_by_id[ident[4:]]
+            card = naive.card(self, offer, 1)
+            card["variants"] = [public_offer(offer)]
+            return card
         c=self.catalog.cards[ident]
         profile=self.clients[profile_id]
         f={k:v for k,v in dict(term_months=term,action=action).items() if v}
@@ -102,41 +128,74 @@ class Engine:
         return card
 
     def search(self,req: Request):
-        t=Trace(self.timer)
-        profile=self.clients[req.profile_id]
-        norm=normalize(req.q)
+        rules = self._rules()
+        profile = self.clients["guest" if "profile" in req.ignore else req.profile_id]
+        trace = Trace(self.timer)
+        if req.mode == "naive":
+            return self._naive(req, profile, trace)
+        return self._search(req, profile, trace, rules)
+
+    def _naive(self, req, profile, trace):
+        offers = naive.match(self.catalog, req.q, limit=None)
+        trace.add("retrieve","Поиск по названию",f"Все слова встретились в названиях {len(offers)} предложений")
+        start = (req.page-1)*req.page_size
+        cards = [naive.card(self,o,i) for i,o in enumerate(offers[start:start+req.page_size], start+1)]
+        trace.add("compose","Выдача по популярности",f"Предложений на странице · {len(cards)}")
+        result = dict(search_id="s_"+uuid4().hex, mode="naive", engine="naive", engine_version="0.1.0",
+                      query=dict(raw=req.q,normalized=req.q.lower(),corrected=req.q,corrections=[],did_you_mean=None),
+                      understood=dict(intent="product",intent_title="Поиск по названию",intent_conf=0.,intent_source="fallback",
+                                      filters={},exclude={},qty=None,entities=[],chips=[],agent_note="Ищу все слова в названии SKU"),
+                      blocks=[dict(type="products",title="Предложения",items=cards,total=len(offers))],
+                      banners=[],facets=[],related_queries=[],notes=[],trace=trace.steps,cost=dict(llm_calls=0,cached=0,tokens_in=0,usd=0,rub=0),
+                      timing_ms=dict(total=round((self.timer()-trace.start)*1000,2)),
+                      profile=dict(id=profile.client_id,title=profile.title,segment=profile.segment))
+        self.journal.search(self.clock(),req,result,len(offers),None if offers else "vocabulary_gap",False)
+        result["timing_ms"]["total"]=round((self.timer()-trace.start)*1000,2)
+        if not req.explain:
+            result["trace"]=[]
+        return result
+
+    def _search(self, req, profile, t, rules, redirect=None):
+        lex, phrases = rules
+        raw = redirect["q"] if redirect else req.q
+        original_norm = normalize(req.q)
+        norm, synonyms = phrases.apply(normalize(raw))
+        category = req.category if not ({"category","context"} & set(req.ignore) or req.context=="off") else None
         t.add("normalize","Нормализация",norm or "Пустой запрос")
         exact_offers=lookup_skus(self.catalog,norm)
         sku=next(iter(exact_offers.values()),None)
         t.add("sku_lookup","Точный артикул",", ".join(o.sku for o in exact_offers.values()) or "Совпадений по артикулу нет")
-        words,changes= (tokens(norm),[]) if sku else repair(norm,self.lex)
+        words,changes= (tokens(norm),[]) if sku or req.verbatim else repair(norm,lex)
         corrected=" ".join(words) if changes else norm
         t.add("repair","Проверка написания",", ".join(x["from"]+" → "+x["to"] for x in changes) or "Запрос сохранён")
-        f,exc,entities,qty,residual=extract(words,self.lex,self.kb)
+        f,exc,entities,qty,residual=extract(words,lex,self.kb)
         f.update(req.filters)
         exc.update(req.exclude)
+        synonyms += [dict(rule_id=e["source"][5:],phrase=e["text"],kind=e["type"],to=e["id"])
+                     for e in entities if e["source"].startswith("rule:")]
+        entities,qty=ignore_conditions(req.ignore,words,f,exc,entities,qty)
         chips=chips_for(words,entities,self.names,exc,f,qty)
-        t.add("entities","Сущности и параметры",", ".join(x["label"] for x in chips) or "Явных условий нет",residual=residual)
-        if req.category and not f.get("category"):
-            chips.append(dict(key="category",label=self.names["category"].get(req.category,"Категория страницы"),source="context",removable=False))
-            f["category"]=[req.category]
+        t.add("entities","Сущности и параметры",", ".join(x["label"] for x in chips) or "Явных условий нет",residual=residual,synonyms=synonyms,ignored=req.ignore)
+        if category and not f.get("category"):
+            chips.append(dict(key="category",label=self.names["category"].get(category,"Категория страницы"),source="context",removable=False))
+            f["category"]=[category]
         if profile.client_id!="guest":
             chips.append(dict(key="profile",label=profile.title,source="context",removable=False))
-        t.add("context","Контекст клиента",profile.title+(" · "+self.names["category"].get(req.category,req.category) if req.category else ""))
-        intent=scenario(req.q,words,f,entities,sku,req.category)
+        t.add("context","Контекст клиента",profile.title+(" · "+self.names["category"].get(category,category) if category else ""))
+        intent=scenario(raw,words,f,entities,sku,category)
         intent_source="rules"
         intent_conf=.95 if entities or sku else .55
         if intent=="off_topic" and not entities and len(words)>1 and not re.search("ноутбук|картридж|принтер|торрент|кряк|активатор",corrected):
             nearest=self.catalog.dense.nearest_knowledge(corrected)
-            if nearest:
+            if nearest and nearest[0] not in req.ignore:
                 kind,ident,intent_conf=nearest
                 intent_source="embed"
                 intent={"category":"category","use_case":"task","role":"role_kit","industry":"industry","faq":"question"}[kind]
                 entities.append(dict(type=kind,id=ident,text=corrected,span=[0,len(words)],source="embed",conf=intent_conf))
                 if kind=="category":
                     f["category"]=[ident]
-        plan=intent if intent in PLANS else base_plan(f,words,req.category)
-        plan=fallback_plan(intent,plan,f,words,profile,req.category,entities,self.kb)
+        plan=intent if intent in PLANS else base_plan(f,words,category)
+        plan=fallback_plan(intent,plan,f,words,profile,category,entities,self.kb)
         if plan=="product" and f.get("family") and not any(self.catalog.by["family"].get(fid) for fid in f["family"]):
             plan=intent="out_of_catalog"
         scores=None
@@ -150,7 +209,36 @@ class Engine:
             if reason=="off_topic" and max((scores or {}).values(),default=0)>=.30:
                 plan=intent="product"
                 reason=None
-        t.add("intent","Сценарий запроса",TITLES[intent])
+        ctx=dict(q_raw=req.q,q_norm=original_norm,intent=intent,category_id=next(iter(f.get("category",[])),category),
+                 segment=profile.segment,profile_id=profile.client_id,mode=req.mode)
+        if redirect is None:
+            redirect=self.controls.redirect(ctx)
+            if redirect and redirect.get("q"):
+                redirected_trace=Trace(self.timer)
+                redirected_trace.start=t.start
+                return self._search(req,profile,redirected_trace,rules,redirect)
+            if redirect and redirect.get("category"):
+                for key in ("family","vendor","edition"):
+                    f.pop(key,None)
+                f["category"]=[redirect["category"]]
+                chips=[c for c in chips if c["key"] not in {"family","vendor","edition","category"}]
+                chips.append(dict(key="category",label=self.names["category"].get(redirect["category"],redirect["category"]),
+                                  source="rule",removable=False))
+                ctx["category_id"]=redirect["category"]
+                intent=plan="category"
+                exact_offers,sku={},None
+                reason=None
+            elif redirect and redirect.get("intent") in TITLES:
+                intent=redirect["intent"]
+                plan=intent if intent in PLANS else fallback_plan(intent,base_plan(f,words,category),f,words,profile,category,entities,self.kb)
+                if plan!="sku":
+                    exact_offers,sku={},None
+                reason=None
+        ctx["intent"]=intent
+        summary=TITLES[intent]
+        if redirect:
+            summary+=" · применено перенаправление магазина"
+        t.add("intent","Сценарий запроса",summary,redirect=redirect)
         t.add("plan","План поиска",TITLES[plan] if intent==plan else f"{TITLES[intent]} · использую план «{TITLES[plan]}»","ok" if intent==plan else "fallback")
         if scores is None:
             scores={} if plan in {"off_topic","sku"} else self.catalog.scores(corrected or " ")
@@ -185,7 +273,7 @@ class Engine:
         t.add("filters","Проверка ограничений"," ".join(notes) or "Условия запроса сохранены")
         t.add("variants","Выбор лицензии",f"Подобрано вариантов для карточек · {len(selected)}"+(f". Запрошено мест · {qty['value']}" if qty else ""))
         t.add("rerank","Проверка категоризатором","В этом режиме используются локальные оценки","skip")
-        weights={**WEIGHTS,**(req.weights or {})}
+        weights={**WEIGHTS,**(self.controls.weights() or {}),**(req.weights or {})}
         cards=[ranked(self.catalog.cards[c],s,float(rel[c]),bool(sku or ("family" in f and "edition" in active)),profile,weights,self.kb) for c,s in selected.items()]
         cards.sort(key=lambda c:(c["score"]["tier"],-c["score"]["score"],c["card_id"]))
         if req.sort in ("price_asc","price_desc"):
@@ -195,7 +283,19 @@ class Engine:
         for i,c in enumerate(cards,1):
             c["position"]=i
         t.add("business","Порядок карточек","В каждой полосе учтены популярность, маржа и профиль клиента",weights=weights)
-        t.add("merch","Правила магазина","Закреплённых позиций нет","skip")
+        merch=self.controls.merch(ctx,[] if plan=="out_of_catalog" else cards)
+        if plan!="out_of_catalog":
+            cards=merch["cards"]
+        fired=merch["fired"]
+        pinned={item.get("card_id") for item in fired if item["kind"]=="pin"}
+        ordered=iter(sorted((c for c in cards if c["card_id"] not in pinned),key=lambda c:c["score"]["tier"]))
+        cards=[c if c["card_id"] in pinned else next(ordered) for c in cards]
+        for i,c in enumerate(cards,1):
+            c["position"]=i
+            if c["card_id"] in pinned:
+                c["score"]["why"].append("Закреплено правилом магазина")
+        t.add("merch","Правила магазина"," · ".join(item["summary"] for item in fired) or "Правила не сработали",
+              "ok" if fired else "skip",fired=fired)
         blocks=[]
         if plan in ("product","vendor","category") and profile.owned:
             owned_rows=[]
@@ -246,7 +346,7 @@ class Engine:
         for key,label in [("vendor","Вендор"),("category","Категория")]:
             counts=Counter(c[key]["id"] for c in cards)
             facets.append(dict(key=key,title=label,values=[dict(id=k,label=self.names[key].get(k,k),count=n) for k,n in counts.most_common() if k]))
-        result=dict(search_id="s_"+uuid4().hex,mode=req.mode,engine_version="0.1.0",query=dict(raw=req.q,normalized=norm,corrected=corrected,
+        result=dict(search_id="s_"+uuid4().hex,mode=req.mode,engine="kuznitsa",banners=merch["banners"],engine_version="0.1.0",query=dict(raw=req.q,normalized=original_norm,corrected=corrected,
                     corrections=changes,did_you_mean=None),understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=intent_conf,
                     intent_source=intent_source,entities=entities,filters=f,exclude=exc,qty=qty,chips=chips,subtype=reason if intent=="off_topic" else None,
                     agent_note=TITLES[intent]+(" · "+", ".join(x["label"] for x in chips) if chips else "")),blocks=blocks,facets=facets,

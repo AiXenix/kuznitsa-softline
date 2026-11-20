@@ -28,11 +28,13 @@ class Catalog:
     def __init__(self,cfg,kb):
         groups = defaultdict(list)
         self.skus = {}
+        self.offers_by_id = {}
         regional = defaultdict(list)
         with (cfg.data/"catalog.jsonl").open() as stream:
             for line in stream:
                 o = Offer.model_validate_json(line)
                 groups[o.card_id].append(o)
+                self.offers_by_id[o.offer_id] = o
                 if o.sku:
                     self.skus[sku_key(o.sku)] = o
                     base=re.sub(r"[-/](?:ru|rus|russia|en|eu)$","",o.sku,flags=re.I)
