@@ -1,71 +1,13 @@
+import {card} from './product.js';
 import {add, line, button, details, rows, label, money, num, counted, stateBox} from './dom.js';
 
 const titles = {products:'Подходящие лицензии',kit:'Комплект',analogs:'Варианты замены',answer:'Ответ на вопрос',
   spec:'Разбор спецификации',compare:'Сравнение программ',not_in_catalog:'Нет в каталоге',categories:'Категории',
   vendors:'Производители',my_licenses:'Ваши лицензии',clarify:'Уточните запрос',services:'Услуги',promo:'Предложения',
   lead:'Запрос поставки',crosssell:'С этим обычно берут'};
-const factors = {rel:'Релевантность',pop:'Популярность',margin:'Маржа',pers:'Персонализация'};
 
 function offerRow(parent, o) {
   line(parent, [label(o), o?.sku, o?.price_on_request ? 'Цена по запросу' : money(o?.price)].filter(Boolean).join(' · '));
-}
-function price(c) {
-  if (c.offer?.price_on_request) return 'Цена по запросу';
-  if (c.calc?.text) return c.calc.text;
-  const calc = c.calc || {};
-  if ([calc.qty,calc.unit_price,calc.total].every(n => n != null)) {
-    return num(calc.qty) + ' × ' + money(calc.unit_price) + ' = ' + money(calc.total);
-  }
-  const from = c.price_from ?? calc.unit_price;
-  return from != null ? 'от ' + money(from) : money(c.offer?.price);
-}
-function card(parent, c, ctx) {
-  if (!c) return;
-  const a = add(parent,'article',null,'product');
-  if (c.card_id) a.dataset.card = c.card_id;
-  if (c.offer?.offer_id) a.dataset.offer = c.offer.offer_id;
-  line(a,[label(c.vendor),label(c.category)].filter(Boolean).join(' / '),'eyebrow');
-  const h = add(a,'h3');
-  if (ctx.click && c.title && (c.offer || rows(c.variants).length)) {
-    button(h,c.title,() => {info.open = !info.open;},'productTitle');
-  } else line(h,c.title,null,'span');
-  line(a,c.summary,'muted');
-  const badges = add(a,'div',null,'chips');
-  rows(c.badges).forEach(b => line(badges,label(b),'badge','span'));
-  line(a,c.offer?.name,'license');
-  line(a,price(c),'price');
-  const info = details(a,'Лицензия и варианты' + (c.variants_count == null ? '' : ' · ' + num(c.variants_count)));
-  info.hidden = !c.offer && !rows(c.variants).length;
-  if (ctx.click) info.ontoggle = () => {if (info.open) ctx.click(c);};
-  if (c.offer) offerRow(info,c.offer);
-  const variants = add(info,'div',null,'variantList');
-  rows(c.variants).forEach(o => offerRow(variants,o));
-  if (ctx.variants && c.card_id && c.variants_count > variants.childElementCount + (c.offer ? 1 : 0)) {
-    const load = button(info,'Все варианты лицензии',async () => {
-      load.disabled=true;
-      try {
-        const full=await ctx.variants(c);
-        variants.replaceChildren();
-        for(const o of rows(full.variants)) if(!c.offer || o.offer_id!==c.offer.offer_id) offerRow(variants,o);
-        load.remove();
-      } catch(err) {load.disabled=false;load.textContent=err.message+' Повторить';}
-    });
-  }
-  if (c.score) {
-    const why = details(a,'Почему здесь');
-    if (ctx.click) why.ontoggle = () => {if (why.open) ctx.click(c);};
-    if (c.score.tier != null) line(why,'Уровень релевантности · ' + c.score.tier);
-    rows(c.score.why).forEach(w => line(why,label(w)));
-    const dl = add(why,'dl',null,'metrics');
-    for (const [k,title] of Object.entries(factors)) {
-      const n = c.score.parts?.[k];
-      if (n != null) {add(dl,'dt',title); add(dl,'dd',num(n));}
-    }
-  }
-  if (ctx.act && c.offer?.offer_id && c.offer.available !== false) {
-    const quote = c.offer.price_on_request;
-    button(a,quote ? 'Запросить цену' : 'В корзину',e => ctx.act(quote ? 'lead' : 'cart',c,e.currentTarget),'buy');
-  }
 }
 function alternatives(parent, options, ctx) {
   if (!rows(options).length) return;
@@ -96,7 +38,7 @@ function spec(p,b,ctx) {
     const box = add(p,'section',null,'specLine');
     line(box,[l.n,l.raw].filter(v => v != null).join('. '),null,'h3');
     line(box,statuses[l.status] || l.status,'badge','span');
-    line(box,label(l.understood)); card(box,l.card,ctx); alternatives(box,l.alternatives,ctx);
+    line(box,l.understood?.intent_title || label(l.understood)); card(box,l.card,ctx); alternatives(box,l.alternatives,ctx);
     if (l.qty != null && l.unit_price != null) line(box,num(l.qty)+' × '+money(l.unit_price));
     line(box,money(l.total),'price');
   }
@@ -133,7 +75,7 @@ function licenses(p,b,ctx) {
 export function block(parent,b,actions={}) {
   if (!b) return;
   const ctx = {...actions};
-  const p = add(parent,'section',null,'block');
+  const p = add(parent,'section',null,'block');p.dataset.type=b.type;
   add(p,'h2',counted(b.title || titles[b.type] || 'Блок не поддержан',b.type==='products' ? b.total : null));
   if (!(Object.hasOwn(titles,b.type))) {if (b.title) line(p,'Блок не поддержан'); return;}
   line(p,b.text);

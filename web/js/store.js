@@ -1,3 +1,5 @@
+import {address,readAddress} from './address.js';
+import {presentation} from './show.js';
 import {$,add,line,button,details,rows,num,stateBox,link} from './dom.js';
 import {api} from './api.js';
 import {state,segments,freshSession} from './state.js';
@@ -5,7 +7,7 @@ import {suggestions} from './suggest.js';
 import {trace} from './trace.js';
 import {result} from './result.js';
 import {cart} from './cart.js';
-import {watch,leave} from './events.js';
+import {record,watch,leave} from './events.js';
 import {compare} from './comparison.js';
 import {page} from './pages.js';
 
@@ -26,23 +28,47 @@ async function store() {
     $('traceTitle').scrollIntoView({block:'start'});
   };
   const params=()=>({profile_id:profile.value,category:category.value,session_id:state.session});
-  const close=suggestions(input,$('suggestions'),params,q=>run(q));
-  const currentQ=()=>spec.hidden ? input.value.trim() : specText.value.trim();
+  function save(req,kind='',replace=false,profiles=[]) {
+    const base=new URL(location.href);
+    if(kind==='profiles' && profiles.length)base.searchParams.set('profiles',profiles.join(','));
+    else if(kind!=='profiles')base.searchParams.delete('profiles');
+    if(!replace){base.searchParams.delete('action');base.searchParams.delete('scenario');}
+    const path=address(req,kind,base);
+    if(path!==location.pathname+location.search)history[replace?'replaceState':'pushState'](null,'',path);
+  }
+  window.addEventListener('popstate',()=>location.reload());
+  document.addEventListener('keydown',e=>{
+    if(e.key==='/' && !e.ctrlKey && !e.metaKey && !e.target.closest('input,textarea,select,dialog,[contenteditable=true]')){
+      e.preventDefault();input.focus();input.select();
+    }
+    if(e.key==='Escape') {
+      close();
+      if(document.querySelector('.traceWide')) $('traceWidth').click();
+    }
+  });
+  const close=suggestions(input,$('suggestions'),params,q=>run(q,{}, {},{suggest:true}));
+  let submittedList='';
+  const currentQ=()=>spec.hidden ? submittedList || input.value.trim() : specText.value.trim();
+  input.addEventListener('input',()=>{submittedList='';});
   function settings(q) {
     return {...params(),category:category.value || null,q,mode:$('mode').value,source:'ui',explain:true};
   }
   function editor(q) {
-    if(q.includes('\n')) {spec.hidden=false;specText.value=q;input.value='';}
-    else {spec.hidden=true;input.value=q;}
+    spec.hidden=true;submittedList=q.includes('\n') ? q : '';
+    if(submittedList)specText.value=q;
+    input.value=q.replace(/\r?\n/g,' · ');
     $('specMode').setAttribute('aria-expanded',String(!spec.hidden));
   }
-  async function run(q,patch={},previous={}) {
+  async function run(q,patch={},previous={},navigation={}) {
     if(!q.trim())return;
     close();leave();editor(q);
     $('comparison').hidden=true;
     const now=++version;
     const request={...previous,...settings(q),...patch};
     state.request=request;
+    main.classList.add('searched');
+    if(!navigation.restore)save(request);
+    window.scrollTo(0,0);
     $('notice').textContent='Идёт поиск…';
     results.replaceChildren();timeline.replaceChildren();
     stateBox(results,'Подбираем предложения…','loading');
@@ -52,7 +78,10 @@ async function store() {
       const r=await api('/api/search',request);
       if(now!==version)return;
       results.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);
+      record(r,'impression').catch(err=>line(results,err.message,'error'));
+      if(navigation.suggest)record(r,'suggest_click',{},'suggest').catch(err=>line(results,err.message,'error'));
       result(results,r,{
+        related:q=>{record(r,'reformulate',{},'related').catch(err=>line(results,err.message,'error'));run(q);},
         apply:change=>{
           if(change.q) return run(change.q,change);
           const next={page:1,...change};
@@ -84,12 +113,17 @@ async function store() {
       timeline.textContent='Трасса недоступна.';$('notice').textContent='Ошибка поиска.';
     } finally {if(now===version) results.removeAttribute('aria-busy');}
   }
-  $('search').onsubmit=e=>{e.preventDefault();chain=[];run(input.value.trim());};
+  $('search').onsubmit=e=>{e.preventDefault();chain=[];run(submittedList || input.value.trim());};
   $('specMode').onclick=()=>{spec.hidden=!spec.hidden;$('specMode').setAttribute('aria-expanded',String(!spec.hidden));if(!spec.hidden) specText.focus();};
   spec.onsubmit=e=>{e.preventDefault();chain=[];run(specText.value.trim());};
-  function openCompare(kind) {
+  async function openCompare(kind,restore=false) {
     const q=currentQ();
-    compare($('comparison'),kind,{...(q===state.request.q ? state.request : {}),...settings(q)},rows(state.meta.profiles),comparisonProfiles);
+    if(q && q!==state.request.q)await run(q);
+    const request={...(q===state.request.q ? state.request : {}),...settings(q)};
+    if(q){main.classList.add('searched');if(!restore)save(request,kind);}
+    compare($('comparison'),kind,request,rows(state.meta.profiles),comparisonProfiles,()=>save(request),ids=>{
+      comparisonProfiles=ids;save(request,kind,false,ids);
+    });
   }
   $('profileCompare').onclick=()=>openCompare('profiles');$('modeCompare').onclick=()=>openCompare('modes');
   async function profileInfo() {
@@ -102,7 +136,8 @@ async function store() {
     try {
       const p=await api('/api/profile/'+encodeURIComponent(id));
       if(profile.value!==id)return;
-      const d=details(container,'Кто это · '+p.title);
+      const d=details(container,'О профиле');
+      line(d,p.title);
       line(d,[segments[p.segment] || p.segment,p.size_seats==null?'':num(p.size_seats)+' мест',...rows(p.fleet?.os)].filter(Boolean).join(' · '));
       for(const item of rows(p.owned)) line(d,[item.product || item.title || item.family_id,item.qty==null?'':item.qty+' мест',
         item.expires_in_days==null?'':'До окончания '+item.expires_in_days+' дн.'].filter(Boolean).join(' · '));
@@ -114,20 +149,29 @@ async function store() {
   };
   stateBox(results,'Загружаем каталог…','loading');
   const m=await api('/api/meta');state.meta=m;
-  for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.title,p.id));
+  for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.title.split(/ [—–] /)[0],p.id));
   for(const c of rows(m.categories)) category.add(new Option(c.title,c.id));
   $('stats').textContent=[m.catalog?.cards==null?'':num(m.catalog.cards)+' карточек',m.catalog?.offers==null?'':num(m.catalog.offers)+' вариантов лицензий'].filter(Boolean).join(' · ');
   const url=new URLSearchParams(location.search), scenario=rows(m.scenarios).find(s=>s.id===url.get('scenario'));
-  const demo=scenario?.demo || {};
+  const demo=scenario?.demo || {}, saved=readAddress(location.search);
+  $('mode').value=saved.mode;
+  const selected=url.get('profile') || demo.profile;
   if(scenario) sessionStorage.kzSession=state.session=freshSession();
-  if([...profile.options].some(o=>o.value===demo.profile)) profile.value=demo.profile;
-  if(demo.category) category.value=demo.category;
-  chain=[...rows(demo.chain)];comparisonProfiles=rows(demo.compare);
+  if([...profile.options].some(o=>o.value===selected)) profile.value=selected;
+  category.value=saved.category || demo.category || '';
+  chain=[...rows(demo.chain)];comparisonProfiles=url.has('profiles') ? url.get('profiles').split(',') : rows(demo.compare);
   const example=url.get('q');
-  if(example) chain=[];
+  if(example && example===chain[0])chain.shift();else if(example)chain=[];
   const q=example || demo.q || chain.shift() || (scenario && scenario.examples?.[0]);
   profileInfo();
-  if(q){await run(q,{source:scenario?'gallery':'ui'});if(comparisonProfiles.length)openCompare('profiles');return;}
+  if(q){
+    if(url.get('action')==='suggest'){main.classList.add('searched');input.value=q;input.focus();input.dispatchEvent(new Event('input'));results.replaceChildren();return;}
+    const kind=saved.compare || (comparisonProfiles.length?'profiles':'');
+    save({...settings(q),...saved.criteria},kind,true);
+    await run(q,{...saved.criteria,source:scenario?'gallery':'ui'}, {},{restore:true});
+    if(kind)openCompare(kind,true);
+    return;
+  }
   if(version)return;
   results.replaceChildren();
   add(results,'h2','Что вы подбираете?');
@@ -142,3 +186,5 @@ async function store() {
   link(results,'Все сценарии поиска →','/scenarios');
 }
 (location.pathname==='/' ? store() : page(main)).catch(err=>stateBox(main,err.message,'error'));
+
+presentation().catch(err=>line(main,err.message,'error'));

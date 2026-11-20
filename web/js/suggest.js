@@ -20,7 +20,13 @@ export function suggestions(input,p,params,launch) {
           const group=add(p,'div');group.setAttribute('role','group');
           if (g.title) {group.setAttribute('aria-label',g.title);add(group,'small',g.title);}
           for(const item of rows(g.items)) {
-            const o=add(group,'div',item.text,'option');o.setAttribute('role','option');
+            const o=add(group,'div',null,'option');
+            const name=add(o,'span');
+            const query=r.corrected || input.value, idx=item.text.toLowerCase().indexOf(query.toLowerCase());
+            if(idx<0)name.textContent=item.text;
+            else {name.append(item.text.slice(0,idx));add(name,'mark',item.text.slice(idx,idx+query.length));name.append(item.text.slice(idx+query.length));}
+            add(o,'small',({products:'продукт',categories:'категория',vendors:'вендор',my:'ваша лицензия',queries:'запрос',answers:'ответ'})[g.type] || g.title);
+            o.setAttribute('role','option');
             o.id='suggest-'+options.length;o.onmousedown=e=>e.preventDefault();
             o.onclick=()=>launch(item.text);options.push(o);
           }

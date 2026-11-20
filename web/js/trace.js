@@ -10,10 +10,14 @@ export function trace(p,r,inspect=true) {
   }
   const ol = add(p,'ol',null,'steps');
   for (const s of rows(r.trace)) {
-    const li = add(ol,'li');
+    const li = add(ol,'li',null,s.status);
     const d = details(li,s.title || s.step || 'Шаг');
     if (s.detail != null) add(d,'pre',typeof s.detail === 'string' ? s.detail : JSON.stringify(s.detail,null,2));
     line(li,s.summary);
+    for(const call of rows(s.detail?.calls)){
+      if(call.sent || call.cached)line(li,['Категоризатор',call.cached?'из кэша':'',call.ms==null?'':num(call.ms)+' мс',call.usd==null?'':num(call.usd)+' $'].filter(Boolean).join(' · '),'badge','span');
+      if(call.note && !s.summary?.includes(call.note))line(li,call.note,'muted');
+    }
     line(li,[statuses[s.status] || s.status,s.ms == null ? '' : num(s.ms)+' мс'].filter(Boolean).join(' · '),'stepStatus '+s.status,'small');
   }
   if (!ol.childElementCount) line(p,'Трасса для этого запроса недоступна.');

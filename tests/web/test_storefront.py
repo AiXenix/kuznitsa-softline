@@ -90,7 +90,7 @@ def test_nested_example_contract():
 
 def test_all_module_imports_resolve(client):
     """Syntax checks alone do not catch broken static imports or missing exports."""
-    for script in (WEB / "js").glob("*.js"):
+    for script in (WEB / "js").rglob("*.js"):
         imports = re.findall(r"import\s*\{([^}]+)\}\s*from\s*'([^']+)'", script.read_text())
         for names, relative in imports:
             target = (script.parent / relative).resolve()

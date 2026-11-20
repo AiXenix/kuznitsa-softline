@@ -32,7 +32,7 @@ export function cart() {
   }
   basket.onclick=()=>{display();drawer.showModal();};
   return (r,block,session)=>({
-    click:c=>record(r,'click',c,block,session).catch(err=>{$('notice').textContent=err.message;}),
+    click:(c,action)=>record(r,'click',c,block,session,action).catch(err=>{$('notice').textContent=err.message;}),
     act:async(type,c,b)=>{
       b.disabled=true;
       try {
