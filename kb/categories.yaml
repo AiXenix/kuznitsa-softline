@@ -1,0 +1,1407 @@
+# Дерево категорий ПО для B2B-магазина (РФ, 2026)
+# 16 групп верхнего уровня + 118 листовых категорий = 134 узла.
+# Только ПО и смежное (токены, техподдержка, обучение, облака).
+
+# ============================================================================
+# 1. SECURITY — Информационная безопасность и антивирусы
+# ============================================================================
+
+- id: security
+  parent: null
+  title: "Информационная безопасность и антивирусы"
+  title_short: "Безопасность"
+  softline_path: "/antivirusi-bezopasnost/"
+  synonyms: ["информационная безопасность", "иб", "защита информации", "кибербезопасность", "сзи", "антивирусы и безопасность"]
+  slang: ["ибшка", "безопасность", "защита"]
+  description: "Все классы средств защиты информации: антивирусы, NGFW, DLP, SIEM, СЗИ от НСД, СКЗИ, токены и SSL."
+  typical_queries: ["средства защиты информации", "по для информационной безопасности", "сзи фстэк"]
+
+- id: endpoint_security
+  parent: security
+  title: "Антивирусы и защита рабочих мест"
+  title_short: "Антивирусы"
+  softline_path: "/antivirusi-bezopasnost/antivirusi-organizatsii/"
+  synonyms: ["антивирус", "антивирусная защита", "антивирус для организаций", "защита конечных точек", "endpoint protection", "epp", "савз"]
+  slang: ["антивирь", "антивирусник", "авз"]
+  description: "Корпоративные антивирусы для рабочих станций и серверов с централизованным управлением. Не включает домашние версии и чистые EDR/XDR."
+  typical_queries: ["антивирус для организации", "корпоративный антивирус на 50 пк", "российский антивирус из реестра"]
+
+- id: home_antivirus
+  parent: security
+  title: "Антивирусы для дома и микробизнеса"
+  title_short: "Домашние антивирусы"
+  softline_path: "/antivirusi-bezopasnost/antivirusi/"
+  synonyms: ["антивирус для дома", "домашний антивирус", "антивирус на 1 пк", "персональный антивирус"]
+  slang: ["антивирь домой", "личная лицензия антивируса"]
+  description: "Антивирусные решения для домашних ПК и небольших команд без выделенного сервера управления."
+  typical_queries: ["антивирус на 3 компьютера", "антивирус для ип", "касперский стандарт на 1 пк"]
+
+- id: edr_xdr
+  parent: security
+  title: "EDR, XDR и защита от сложных угроз"
+  title_short: "EDR и XDR"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["edr", "xdr", "ndr", "песочница", "sandbox", "защита от apt", "защита от целевых атак", "обнаружение и реагирование"]
+  slang: ["едр", "иксдр", "антиапт", "песочница иб"]
+  description: "Платформы обнаружения и реагирования на сложные кибератаки на конечных точках и в сети (EDR/XDR/NDR/Sandbox)."
+  typical_queries: ["edr решение российское", "защита от целевых атак apt", "песочница для анализа угроз"]
+
+- id: ngfw_vpn
+  parent: security
+  title: "Межсетевые экраны, NGFW и VPN"
+  title_short: "Межсетевые экраны"
+  softline_path: "/antivirusi-bezopasnost/mezhsetevye-ekrany/"
+  synonyms: ["межсетевой экран", "файрвол", "firewall", "ngfw", "utm", "vpn шлюз", "гост vpn", "защита периметра", "сетевой экран"]
+  slang: ["мэ", "нгфв", "фаервол", "шлюз безопасности", "впн сервер"]
+  description: "Программные и программно-аппаратные межсетевые экраны, UTM, NGFW и корпоративные VPN-шлюзы, включая ГОСТ-криптошлюзы."
+  typical_queries: ["межсетевой экран фстэк", "российский ngfw", "гост vpn для филиалов"]
+
+- id: dlp
+  parent: security
+  title: "DLP-системы и защита от утечек"
+  title_short: "DLP-системы"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["dlp", "защита от утечек", "предотвращение утечек информации", "контроль утечек", "data loss prevention"]
+  slang: ["длп", "длпшка", "защита от слива базы"]
+  description: "Системы предотвращения утечек конфиденциальной информации по почте, мессенджерам, USB и вебу."
+  typical_queries: ["dlp система российская", "защита от утечки клиентской базы", "контроль флешек и почты"]
+
+- id: siem_soc
+  parent: security
+  title: "SIEM, SOAR и мониторинг ИБ"
+  title_short: "SIEM и SOC"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["siem", "soar", "мониторинг иб", "управление инцидентами иб", "сбор событий безопасности", "soc платформа", "госсопка"]
+  slang: ["сием", "симка иб", "мониторинг инцидентов"]
+  description: "Системы сбора, корреляции событий информационной безопасности, реагирования на инциденты и взаимодействия с ГосСОПКА."
+  typical_queries: ["siem система из реестра", "мониторинг событий иб", "siem для госсопка"]
+
+- id: nsd_access_control
+  parent: security
+  title: "СЗИ от НСД и доверенная загрузка"
+  title_short: "СЗИ от НСД"
+  softline_path: "/antivirusi-bezopasnost/kontrol-dostupa/"
+  synonyms: ["сзи от нсд", "защита от несанкционированного доступа", "доверенная загрузка", "сдз", "контроль устройств", "разграничение доступа"]
+  slang: ["нсд", "сдзшка", "защита от нсд"]
+  description: "Средства защиты от несанкционированного доступа, модули доверенной загрузки и контроля целостности для ГИС, ИСПДн и КИИ."
+  typical_queries: ["сзи от нсд фстэк", "защита от нсд для 152 фз", "средство доверенной загрузки"]
+
+- id: iam_pam_mfa
+  parent: security
+  title: "Управление доступом, IAM, PAM и 2FA/MFA"
+  title_short: "IAM, PAM и 2FA"
+  softline_path: "/antivirusi-bezopasnost/kontrol-dostupa/"
+  synonyms: ["pam", "iam", "idm", "iga", "двухфакторная аутентификация", "многофакторная аутентификация", "2fa", "mfa", "sso", "контроль привилегированных пользователей", "менеджер паролей"]
+  slang: ["пам", "двухфакторка", "контроль админов", "парольник"]
+  description: "Системы управления учётными записями (IAM/IdM), контроля привилегированного доступа (PAM), единого входа (SSO) и 2FA/MFA."
+  typical_queries: ["двухфакторная аутентификация российская", "pam система контроль подрядчиков", "менеджер паролей для компании"]
+
+- id: crypto_skzi
+  parent: security
+  title: "СКЗИ и криптографическая защита"
+  title_short: "СКЗИ и криптография"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["скзи", "криптопровайдер", "криптография", "шифрование гост", "средство криптографической защиты", "csp"]
+  slang: ["крипта", "криптопровайдер гост", "кс1", "кс2"]
+  description: "Сертифицированные ФСБ криптопровайдеры и средства шифрования данных по стандартам ГОСТ."
+  typical_queries: ["криптопро csp 5.0", "скзи с сертификатом фсб", "криптопровайдер на linux"]
+
+- id: e_signature
+  parent: security
+  title: "Электронная подпись и инструменты ЭП"
+  title_short: "Электронная подпись"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["электронная подпись", "эцп", "эп", "укэп", "подписание документов", "проверка подписи", "мчд", "удостоверяющий центр"]
+  slang: ["эцпшка", "подпись для торгов", "подписалка"]
+  description: "Программные средства формирования и проверки электронной подписи, работа с МЧД и утилиты подписания файлов."
+  typical_queries: ["программа для электронной подписи", "подписание документов эцп", "криптоарм купить"]
+
+- id: tokens_pki
+  parent: security
+  title: "USB-токены, смарт-карты и PKI"
+  title_short: "Токены и смарт-карты"
+  softline_path: "/antivirusi-bezopasnost/kontrol-dostupa/"
+  synonyms: ["usb токен", "ключевой носитель", "токен для эцп", "смарт карта", "рутокен", "jacarta", "pki", "управление токенами"]
+  slang: ["флешка эцп", "токен", "ключ для егаис", "свисток эцп"]
+  description: "Сертифицированные аппаратные ключевые носители для хранения ключей ЭП и 2FA, а также ПО управления жизненным циклом токенов."
+  typical_queries: ["рутокен эцп 3.0 купить", "usb токен для криптопро", "jacarta гост"]
+
+- id: ssl_certificates
+  parent: security
+  title: "SSL/TLS-сертификаты"
+  title_short: "SSL-сертификаты"
+  softline_path: "/antivirusi-bezopasnost/ssl-sertifikati/"
+  synonyms: ["ssl сертификат", "tls сертификат", "https сертификат", "wildcard ssl", "сертификат для сайта", "гост tls"]
+  slang: ["ссл", "сертификат на домен", "хттпс"]
+  description: "Цифровые SSL/TLS-сертификаты для защиты веб-сайтов, почтовых серверов и порталов."
+  typical_queries: ["купить ssl сертификат для сайта", "wildcard ssl для юрлица", "российский ssl сертификат"]
+
+- id: mail_security
+  parent: security
+  title: "Защита почты и антиспам"
+  title_short: "Защита почты"
+  softline_path: "/antivirusi-bezopasnost/security-internet-i-set/"
+  synonyms: ["защита почты", "почтовый шлюз безопасности", "антиспам", "антифишинг", "secure email gateway", "seg"]
+  slang: ["почтовый антивирь", "фильтр спама", "защита от фишинга"]
+  description: "Шлюзы защиты корпоративной электронной почты от спама, фишинга и вредоносных вложений."
+  typical_queries: ["защита корпоративной почты от фишинга", "антиспам для exchange", "почтовый шлюз безопасности"]
+
+- id: waf_appsec
+  parent: security
+  title: "Защита веб-приложений, WAF и защита от DDoS"
+  title_short: "WAF и DDoS"
+  softline_path: "/antivirusi-bezopasnost/security-internet-i-set/"
+  synonyms: ["waf", "web application firewall", "защита веб приложений", "защита сайта", "защита от ddos", "антиддос", "защита api"]
+  slang: ["ваф", "веб фаервол", "антиддос"]
+  description: "Экраны уровня веб-приложений (WAF), защита API и сервисы фильтрации DDoS-атак."
+  typical_queries: ["waf для защиты сайта", "защита от ddos атак", "pt application firewall"]
+
+- id: vuln_mgmt_pentest
+  parent: security
+  title: "Сканеры уязвимостей и аудит ИБ"
+  title_short: "Сканеры уязвимостей"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["сканер уязвимостей", "управление уязвимостями", "vulnerability management", "пентест", "аудит безопасности", "контроль защищенности"]
+  slang: ["сканер дыр", "vm система", "сканер безопасности"]
+  description: "Инструменты выявления уязвимостей в инфраструктуре, оценки соответствия стандартам (комплаенс-аудит) и приоритизации исправлений."
+  typical_queries: ["сканер уязвимостей фстэк", "maxpatrol vm", "редчек аудит безопасности"]
+
+- id: employee_monitoring
+  parent: security
+  title: "Контроль персонала и учёт рабочего времени"
+  title_short: "Контроль персонала"
+  softline_path: "/antivirusi-bezopasnost/kontrol-personala/"
+  synonyms: ["контроль персонала", "учет рабочего времени", "мониторинг сотрудников", "контроль удаленных сотрудников", "активность за пк", "uam"]
+  slang: ["слежка за сотрудниками", "трекер времени за пк", "контроль удаленщиков"]
+  description: "ПО для учёта рабочего времени, анализа продуктивности и расследования действий сотрудников за ПК."
+  typical_queries: ["контроль рабочего времени сотрудников", "программа мониторинга удаленных работников", "стахановец лицензия"]
+
+- id: ot_ics_security
+  parent: security
+  title: "Защита АСУ ТП и промышленная ИБ"
+  title_short: "Защита АСУ ТП"
+  softline_path: "/antivirusi-bezopasnost/bezopasnost-zaschita-informatsii/"
+  synonyms: ["защита асу тп", "промышленная безопасность иб", "ot security", "ics security", "кибербезопасность производства", "защита кии асу"]
+  slang: ["иб для асу тп", "промышленный антивирус"]
+  description: "Специализированные средства защиты промышленных узлов, сетей АСУ ТП и объектов КИИ."
+  typical_queries: ["защита асу тп приказ 31 фстэк", "kaspersky industrial cybersecurity", "pt isim"]
+
+- id: mobile_security_mdm
+  parent: security
+  title: "Защита мобильных устройств и MDM/UEM"
+  title_short: "Мобильная ИБ и MDM"
+  softline_path: "/antivirusi-bezopasnost/zashchita-informatsii-dlya-smartfonov/"
+  synonyms: ["mdm", "emm", "uem", "управление мобильными устройствами", "защита смартфонов", "защита планшетов", "контейнеризация мобильных"]
+  slang: ["мдм", "управление планшетами", "защита телефонов сотрудников"]
+  description: "Системы централизованного управления и защиты корпоративных смартфонов и планшетов (Android, iOS, ОС Аврора)."
+  typical_queries: ["mdm для ос аврора", "управление корпоративными смартфонами", "защита мобильных устройств"]
+
+- id: data_wiping_encryption
+  parent: security
+  title: "Шифрование дисков и гарантированное удаление данных"
+  title_short: "Шифрование и удаление"
+  softline_path: "/antivirusi-bezopasnost/udalenie-informatsii/"
+  synonyms: ["шифрование дисков", "шифрование ноутбуков", "удаление информации", "затирание данных", "гарантированное уничтожение данных", "полнодисковое шифрование"]
+  slang: ["шредер файлов", "затирка дисков", "шифровалка диска"]
+  description: "Программные средства полнодискового шифрования рабочих станций и гарантированного уничтожения остаточной информации."
+  typical_queries: ["шифрование ноутбуков сотрудников", "программа гарантированного удаления данных фстэк"]
+
+# ============================================================================
+# 2. OPERATING_SYSTEMS — Операционные системы
+# ============================================================================
+
+- id: operating_systems
+  parent: null
+  title: "Операционные системы"
+  title_short: "ОС"
+  softline_path: "/operating-systems/"
+  synonyms: ["операционные системы", "ос", "operating systems", "os"]
+  slang: ["ось", "оси", "операционка"]
+  description: "Настольные, серверные и мобильные операционные системы — российские из реестра и зарубежные."
+  typical_queries: ["операционная система для офиса", "российские ос", "купить ос для юрлица"]
+
+- id: desktop_os_ru
+  parent: operating_systems
+  title: "Российские настольные ОС"
+  title_short: "Российские ОС"
+  softline_path: "/operating-systems/rossiyskie-operatsionnye-sistemy-importozameshchenie/"
+  synonyms: ["российская ос", "отечественная ос", "российский линукс", "ос из реестра", "импортозамещение ос", "настольная ос рф"]
+  slang: ["ру линукс", "наша ось", "линукс из реестра"]
+  description: "Отечественные операционные системы на базе Linux для рабочих станций (Astra Linux, Альт, РЕД ОС, РОСА, Uncom)."
+  typical_queries: ["российская операционная система для рабочих мест", "астра линукс купить", "ред ос 8"]
+
+- id: server_os
+  parent: operating_systems
+  title: "Серверные операционные системы"
+  title_short: "Серверные ОС"
+  softline_path: "/operating-systems/os-windows/"
+  synonyms: ["серверная ос", "операционная система для сервера", "windows server", "российская серверная ос", "cal лицензии", "rds cal"]
+  slang: ["серверная ось", "винда серверная", "серверник"]
+  description: "Серверные ОС (российские Linux и Windows Server), а также клиентские лицензии доступа (CAL / RDS CAL)."
+  typical_queries: ["серверная ос из реестра", "windows server 2022 standard", "rds cal 10 пользователей"]
+
+- id: desktop_os_windows
+  parent: operating_systems
+  title: "Операционные системы Windows"
+  title_short: "Windows"
+  softline_path: "/operating-systems/windows-11-licenzii-home-i-pro/"
+  synonyms: ["windows", "microsoft windows", "виндовс", "виндоус", "windows 11", "windows 10"]
+  slang: ["винда", "вин11", "вин10", "окна"]
+  description: "Настольные операционные системы Microsoft Windows (Pro, Home, LTSC) и электронные ключи ESD."
+  typical_queries: ["windows 11 pro электронный ключ", "купить windows для организации", "fqc-10572"]
+
+- id: linux_unix_os
+  parent: operating_systems
+  title: "Зарубежные Linux и Unix ОС"
+  title_short: "Linux & Unix"
+  softline_path: "/operating-systems/os-linux-unix/"
+  synonyms: ["linux", "unix", "red hat", "rhel", "suse", "ubuntu pro", "oracle linux", "зарубежный linux"]
+  slang: ["линукс", "линух", "редхат", "сусе"]
+  description: "Коммерческие зарубежные дистрибутивы Linux/Unix и их корпоративные подписки (в том числе ушедшие из РФ для подбора аналогов)."
+  typical_queries: ["red hat enterprise linux аналог", "suse linux", "ubuntu pro поддержка"]
+
+- id: mobile_os
+  parent: operating_systems
+  title: "Мобильные операционные системы"
+  title_short: "Мобильные ОС"
+  softline_path: "/operating-systems/rossiyskie-operatsionnye-sistemy-importozameshchenie/"
+  synonyms: ["мобильная ос", "ос аврора", "российская мобильная ос", "корпоративная мобильная ос", "роса мобайл"]
+  slang: ["аврора ос", "мобилка российская"]
+  description: "Доверенные мобильные операционные системы для корпоративных смартфонов и планшетов (ОС Аврора, РОСА Мобайл, Astra Mobile)."
+  typical_queries: ["ос аврора лицензия", "российская ос для планшетов"]
+
+# ============================================================================
+# 3. OFFICE — Офисные пакеты и личная продуктивность
+# ============================================================================
+
+- id: office
+  parent: null
+  title: "Офисные программы и продуктивность"
+  title_short: "Офисное ПО"
+  softline_path: "/ofisnie-programmi/"
+  synonyms: ["офисные программы", "офисное по", "программы для офиса", "office software"]
+  slang: ["офис", "офисняк"]
+  description: "Офисные пакеты, табличные надстройки, почтовые клиенты, планировщики, диаграммы и корпоративные доски."
+  typical_queries: ["офисные программы для юрлиц", "российское офисное по"]
+
+- id: office_suite
+  parent: office
+  title: "Офисные пакеты"
+  title_short: "Офисные пакеты"
+  softline_path: "/ofisnie-programmi/rossiyskie-ofisnoe-po-importozameshchenie/"
+  synonyms: ["офисный пакет", "текст таблицы презентации", "российский офис", "ворд эксель", "ms office", "office suite"]
+  slang: ["офис пакет", "ворд и эксель", "офисник"]
+  description: "Комплексные офисные пакеты для работы с документами, таблицами и презентациями (Р7-Офис, МойОфис, Microsoft Office, Яндекс 360)."
+  typical_queries: ["офисный пакет из реестра", "р7 офис на 50 мест", "российский аналог microsoft office"]
+
+- id: spreadsheets_bi_addons
+  parent: office
+  title: "Табличные процессоры и утилиты для Excel"
+  title_short: "Утилиты для таблиц"
+  softline_path: "/ofisnie-programmi/utiliti-dlya-excel/"
+  synonyms: ["утилиты для excel", "надстройки excel", "плагины для таблиц", "макросы excel", "электронные таблицы"]
+  slang: ["эксель плагины", "примочки для экселя"]
+  description: "Специализированные надстройки, конвертеры и утилиты для работы с электронными таблицами и финансовыми моделями."
+  typical_queries: ["утилиты для excel", "программа для работы с большими таблицами"]
+
+- id: email_clients_calendars
+  parent: office
+  title: "Почтовые клиенты и органайзеры"
+  title_short: "Почтовые клиенты"
+  softline_path: "/internet-i-set/pochtovie-programmi/"
+  synonyms: ["почтовый клиент", "почтовая программа", "органайзер", "календарь", "аналог outlook"]
+  slang: ["почтовик", "аутлук аналог", "мыльник"]
+  description: "Настольные почтовые клиенты, адресные книги и планировщики встреч (The Bat!, МойОфис Почта, Р7-Органайзер, Outlook)."
+  typical_queries: ["почтовый клиент на линукс", "замена microsoft outlook", "the bat купить лицензию"]
+
+- id: diagramming_mindmaps
+  parent: office
+  title: "Схемы, диаграммы и интеллект-карты"
+  title_short: "Схемы и диаграммы"
+  softline_path: "/grafika-i-dizayn/shemi-i-diagrammi/"
+  synonyms: ["схемы и диаграммы", "блок схемы", "интеллект карты", "mindmap", "аналог visio", "диаграммы бизнес процессов"]
+  slang: ["рисовалка схем", "визио аналог", "майндмап"]
+  description: "Редакторы блок-схем, сетевых топологий, BPMN-диаграмм и ментальных карт (Visio, Р7-Графика, Sila Union, Xmind, Draw.io)."
+  typical_queries: ["российский аналог ms visio", "программа для рисования блок схем", "открыть vsdx"]
+
+- id: project_planning
+  parent: office
+  title: "Планирование проектов и диаграммы Ганта"
+  title_short: "Управление проектами"
+  softline_path: "/delovie-programmi/vedenie-del/"
+  synonyms: ["управление проектами", "календарно сетевое планирование", "диаграмма ганта", "аналог ms project", "управление портфелем проектов", "исуп"]
+  slang: ["проджект аналог", "ганта", "планировщик проектов"]
+  description: "Системы календарно-сетевого планирования и управления проектами (MS Project, Advanta, Spider Project, Турбо Планировщик, EvaProject)."
+  typical_queries: ["российский аналог microsoft project", "открыть файлы mpp", "система управления проектами"]
+
+- id: whiteboards_notes
+  parent: office
+  title: "Интерактивные доски, заметки и базы знаний"
+  title_short: "Доски и базы знаний"
+  softline_path: "/ofisnie-programmi/drugoe-ofisnoe-po/"
+  synonyms: ["онлайн доска", "интерактивная доска", "база знаний", "корпоративная вики", "wiki", "аналог miro", "аналог notion", "аналог confluence"]
+  slang: ["миро аналог", "ноушн аналог", "конфлюенс аналог", "вики для команды"]
+  description: "Интерактивные доски для совместной работы и корпоративные базы знаний (МТС Линк Доски, Holst, Yonote, Teamly, EvaWiki, WikiWorks)."
+  typical_queries: ["российский аналог miro", "аналог confluence из реестра", "корпоративная база знаний"]
+
+# ============================================================================
+# 4. VIRTUALIZATION_INFRA — Виртуализация, контейнеры и системная инфраструктура
+# ============================================================================
+
+- id: virtualization_infra
+  parent: null
+  title: "Виртуализация и системная инфраструктура"
+  title_short: "Виртуализация и инфра"
+  softline_path: "/sistemnie-programmi/"
+  synonyms: ["системные программы", "инфраструктурное по", "виртуализация и инфраструктура", "ит инфраструктура"]
+  slang: ["инфра", "системный софт", "виртуалка"]
+  description: "Платформы виртуализации, VDI, Kubernetes, контроллеры домена, мониторинг, ITSM и системные утилиты."
+  typical_queries: ["российская виртуализация", "инфраструктурное по из реестра"]
+
+- id: server_virtualization
+  parent: virtualization_infra
+  title: "Серверная виртуализация и гипервизоры"
+  title_short: "Виртуализация"
+  softline_path: "/sistemnie-programmi/rossiyskaya-virtualizatsiya-importozameshchenie/"
+  synonyms: ["виртуализация", "гипервизор", "серверная виртуализация", "российская виртуализация", "аналог vmware", "аналог hyper-v", "управление виртуальными машинами"]
+  slang: ["виртуалка", "гипер", "замена всферы", "вмварь аналог"]
+  description: "Платформы серверной виртуализации для ЦОД и корпоративных кластеров (Брест, zVirt, vStack, РЕД Виртуализация, ROSA Virtualization, VMmanager, VMware vSphere)."
+  typical_queries: ["российский аналог vmware vsphere", "виртуализация с сертификатом фстэк", "zvirt лицензия"]
+
+- id: vdi_desktop_virt
+  parent: virtualization_infra
+  title: "Виртуализация рабочих столов (VDI)"
+  title_short: "VDI"
+  softline_path: "/sistemnie-programmi/virtualizatsiya/"
+  synonyms: ["vdi", "виртуальные рабочие столы", "виртуализация рабочих мест", "аналог citrix", "аналог vmware horizon", "брокер подключений"]
+  slang: ["вди", "виртуальный рабочий стол", "цитрикс аналог"]
+  description: "Платформы доставки виртуальных рабочих столов и приложений (Termidesk, Space VDI, Базис.WorkPlace, Скала^р ВРМ, Citrix)."
+  typical_queries: ["российский vdi", "замена citrix virtual apps", "termidesk лицензия"]
+
+- id: desktop_hypervisors
+  parent: virtualization_infra
+  title: "Настольные гипервизоры и эмуляторы"
+  title_short: "Настольная виртуализация"
+  softline_path: "/sistemnie-programmi/virtualizatsiya/"
+  synonyms: ["настольная виртуализация", "виртуальная машина на пк", "запуск windows на mac", "parallels", "vmware workstation", "wine коммерческий"]
+  slang: ["параллелс", "вайн для линукс", "запустить винду на маке"]
+  description: "ПО для запуска виртуальных машин и совместимости приложений на рабочих станциях (Parallels Desktop, WINE@Etersoft, VMware Workstation)."
+  typical_queries: ["parallels desktop для mac", "запустить 1с или windows программы на linux", "wine etersoft"]
+
+- id: containers_kubernetes
+  parent: virtualization_infra
+  title: "Контейнеризация и оркестрация Kubernetes"
+  title_short: "Контейнеры и K8s"
+  softline_path: "/sistemnie-programmi/virtualizatsiya/"
+  synonyms: ["kubernetes", "k8s", "контейнеризация", "оркестрация контейнеров", "аналог openshift", "docker enterprise", "платформа контейнеров"]
+  slang: ["кубер", "кубернетес", "опеншифт аналог", "контейнерная платформа"]
+  description: "Корпоративные платформы управления контейнерами и кластерами Kubernetes (Deckhouse, Штурвал, Боцман, Nova Container Platform, OpenShift)."
+  typical_queries: ["российский kubernetes из реестра", "аналог red hat openshift", "deckhouse платформа"]
+
+- id: directory_services
+  parent: virtualization_infra
+  title: "Службы каталогов, контроллеры домена и UEM"
+  title_short: "Домен и управление ПК"
+  softline_path: "/internet-i-set/servernoe-po/"
+  synonyms: ["контроллер домена", "служба каталогов", "аналог active directory", "управление парком пк", "групповые политики", "аналог sccm", "конфигурационный менеджмент"]
+  slang: ["адешка на линуксе", "замена ad", "доменник", "каталог пользователей"]
+  description: "Системы централизованного управления доменом, учётными записями и парком рабочих станций (ALD Pro, РЕД АДМ, Альт Домен, Dynamic Directory, Колибри-АРМ)."
+  typical_queries: ["российский аналог active directory", "ald pro лицензия", "управление рабочими станциями linux"]
+
+- id: monitoring_apm
+  parent: virtualization_infra
+  title: "Мониторинг инфраструктуры, сетей и APM"
+  title_short: "Мониторинг и APM"
+  softline_path: "/sistemnie-programmi/diagnostika-sistemi/"
+  synonyms: ["мониторинг серверов", "мониторинг ит инфраструктуры", "мониторинг сети", "apm", "observability", "аналог zabbix", "аналог dynatrace", "сбор логов"]
+  slang: ["мониторилка", "заббикс аналог", "наблюдаемость"]
+  description: "Системы мониторинга серверов, сетевого оборудования, приложений и логов (МониторЭлектрик, Пульт, Monq, WiSLA, Saymon, Ключ-АСТРОМ, Zabbix)."
+  typical_queries: ["российский мониторинг ит инфраструктуры", "аналог zabbix из реестра", "apm мониторинг приложений"]
+
+- id: itsm_service_desk
+  parent: virtualization_infra
+  title: "ITSM, Service Desk и учёт ИТ-активов (ITAM)"
+  title_short: "ITSM и ITAM"
+  softline_path: "/delovie-programmi/uchet-kompyuterov/"
+  synonyms: ["service desk", "itsm", "helpdesk", "система заявок ит", "учет компьютеров", "инвентаризация пк", "itam", "учет лицензий", "esm", "аналог jira service management"]
+  slang: ["сервисдеск", "хелпдеск", "тикетинг", "инвентаризация железа"]
+  description: "Системы управления ИТ-услугами, обработки обращений и инвентаризации оборудования и лицензий (SimpleOne, Naumen SMP, ITSM 365, Admin24, 1С:ITILIUM, ИнфраМенеджер)."
+  typical_queries: ["service desk российский", "учет компьютеров и лицензий в организации", "simpleone itsm"]
+
+- id: system_utilities
+  parent: virtualization_infra
+  title: "Системные утилиты, диагностика и настройка"
+  title_short: "Системные утилиты"
+  softline_path: "/sistemnie-programmi/nastroyka-sistemi/"
+  synonyms: ["системные утилиты", "диагностика системы", "настройка пк", "инвентаризация железа", "тестирование оборудования", "драйверы"]
+  slang: ["утилиты для админа", "диагностика железа"]
+  description: "Утилиты для диагностики, инвентаризации, обслуживания и настройки операционных систем (AIDA64, Total Network Inventory и др.)."
+  typical_queries: ["aida64 business", "диагностика компьютеров в сети"]
+
+- id: load_balancing_adc
+  parent: virtualization_infra
+  title: "Балансировщики нагрузки и контроллеры доставки (ADC)"
+  title_short: "Балансировщики ADC"
+  softline_path: "/internet-i-set/load-balancers/"
+  synonyms: ["балансировщик нагрузки", "load balancer", "adc", "контроллер доставки приложений", "веб сервер", "reverse proxy", "аналог nginx plus", "аналог f5"]
+  slang: ["балансер", "прокси сервер", "вебсервер"]
+  description: "Программные балансировщики нагрузки, веб-серверы и ADC (Angie Pro, Веб-сервер / БН от российских вендоров, F5 BIG-IP, Citrix ADC)."
+  typical_queries: ["российский балансировщик нагрузки", "angie pro лицензия", "замена nginx plus"]
+
+# ============================================================================
+# 5. DATABASES_DATA — СУБД, хранилища данных и аналитика
+# ============================================================================
+
+- id: databases_data
+  parent: null
+  title: "СУБД, хранилища данных и BI-аналитика"
+  title_short: "СУБД и данные"
+  softline_path: "/programmirovanie/rossiyskie-bazy-dannykh-importozameshchenie/"
+  synonyms: ["субд", "базы данных", "управление данными", "бизнес аналитика", "хранилища данных"]
+  slang: ["бд", "база", "сиквел", "биай"]
+  description: "Реляционные, аналитические и NoSQL СУБД, платформы больших данных, ETL и BI-системы."
+  typical_queries: ["российская субд из реестра", "аналог oracle", "bi система"]
+
+- id: rdbms
+  parent: databases_data
+  title: "Реляционные СУБД"
+  title_short: "Реляционные СУБД"
+  softline_path: "/sistemnie-programmi/sistemy-upravleniya-bazami-dannykh-importozameshchenie/"
+  synonyms: ["реляционная субд", "sql субд", "субд", "российская субд", "postgresql коммерческая", "аналог oracle", "аналог ms sql"]
+  slang: ["постгрес", "оракл аналог", "мссql", "сиквел сервер"]
+  description: "Корпоративные реляционные СУБД для транзакционных нагрузок и 1С (Postgres Pro, Tantor, Jatoba, РЕД База Данных, Pangolin, MS SQL Server, Oracle)."
+  typical_queries: ["postgres pro enterprise", "российская субд для 1с", "замена microsoft sql server"]
+
+- id: nosql_inmemory
+  parent: databases_data
+  title: "NoSQL, In-Memory и графовые СУБД"
+  title_short: "NoSQL и In-Memory"
+  softline_path: "/programmirovanie/bazi-dannih/"
+  synonyms: ["nosql", "in-memory субд", "ключ значение", "кэширование", "документная бд", "аналог redis", "аналог mongodb", "tarantool"]
+  slang: ["ноусиквел", "тарантул", "редис аналог", "монго аналог"]
+  description: "Высокопроизводительные нереляционные, резидентные (In-Memory) и документные СУБД (Tarantool, Picodata, GridGain, Tantor/YDB, MongoDB, Redis)."
+  typical_queries: ["tarantool enterprise", "российский аналог redis", "in-memory субд из реестра"]
+
+- id: dwh_olap
+  parent: databases_data
+  title: "Аналитические СУБД и хранилища данных (DWH)"
+  title_short: "DWH и аналитические БД"
+  softline_path: "/programmirovanie/rossiyskie-bazy-dannykh-importozameshchenie/"
+  synonyms: ["dwh", "хранилище данных", "mpp субд", "колоночная субд", "olap", "аналог greenplum", "аналог teradata", "clickhouse"]
+  slang: ["двх", "кхд", "гринплам аналог", "кликхаус"]
+  description: "Массивно-параллельные и колоночные аналитические СУБД для корпоративных хранилищ данных (Arenadata DB, Arenadata QuickMarts, Greengage, RT.Warehouse, ClickHouse)."
+  typical_queries: ["корпоративное хранилище данных российское", "arenadata db", "российский аналог teradata"]
+
+- id: big_data_streaming
+  parent: databases_data
+  title: "Платформы Big Data, потоковая обработка и ETL"
+  title_short: "Big Data и ETL"
+  softline_path: "/internet-i-set/analiticheskie-platformy/"
+  synonyms: ["big data", "hadoop", "kafka", "etl", "elt", "интеграция данных", "озеро данных", "data lake", "потоковая обработка"]
+  slang: ["бигдата", "кафка российская", "етл"]
+  description: "Платформы больших данных, брокеры потоковых сообщений и инструменты ETL/ELT (Arenadata Hadoop, Arenadata Streaming, DataOcean, Loginom, Форсайт, Informatica)."
+  typical_queries: ["платформа больших данных из реестра", "российский etl инструмент", "arenadata streaming"]
+
+- id: bi_analytics
+  parent: databases_data
+  title: "BI-системы и визуализация данных"
+  title_short: "BI-аналитика"
+  softline_path: "/internet-i-set/analiticheskie-platformy/"
+  synonyms: ["bi", "bi система", "бизнес аналитика", "дашборды", "визуализация данных", "аналог power bi", "аналог tableau", "аналог qlik"]
+  slang: ["биай", "биайка", "дашборды для директора", "пауэр биай аналог"]
+  description: "Платформы бизнес-аналитики, интерактивных дашбордов и регламентной отчётности (Yandex DataLens, Visiology, Форсайт, Polymatica, Modus BI, PIX BI, FineBI, Power BI)."
+  typical_queries: ["российский аналог power bi", "bi система из реестра", "visiology лицензия"]
+
+- id: db_management_tools
+  parent: databases_data
+  title: "Инструменты администрирования и миграции БД"
+  title_short: "Администрирование БД"
+  softline_path: "/programmirovanie/bazi-dannih/"
+  synonyms: ["администрирование бд", "миграция бд", "sql клиент", "проектирование бд", "мониторинг субд", "dbeaver", "pgadmin"]
+  slang: ["админка для бд", "перенос оракла на постгрес"]
+  description: "Инструменты разработки, мониторинга, администрирования и автоматизированной миграции баз данных (Tantor Платформа, DBeaver Pro, DataGrip, SQL Studio)."
+  typical_queries: ["инструмент миграции с oracle на postgres", "dbeaver enterprise", "мониторинг postgresql"]
+
+- id: data_governance_mdm
+  parent: databases_data
+  title: "Управление данными, каталоги данных и MDM/НСИ"
+  title_short: "Data Governance и НСИ"
+  softline_path: "/delovie-programmi/sistemi-avtomatizatsii/"
+  synonyms: ["mdm", "нси", "управление мастер данными", "нормативно справочная информация", "data governance", "каталог данных", "качество данных"]
+  slang: ["управление нси", "каталог данных"]
+  description: "Системы управления нормативно-справочной информацией (MDM/НСИ), качеством данных и корпоративные каталоги данных (Юнидата, Гармония MDM, Arenadata Catalog)."
+  typical_queries: ["система управления нси российская", "юнидата mdm", "каталог данных из реестра"]
+
+# ============================================================================
+# 6. BACKUP_STORAGE — Резервное копирование, хранение и файлы
+# ============================================================================
+
+- id: backup_storage
+  parent: null
+  title: "Резервное копирование и работа с файлами"
+  title_short: "Бэкап и файлы"
+  softline_path: "/diski-i-fayli/"
+  synonyms: ["резервное копирование и файлы", "диски и файлы", "хранение и бэкап"]
+  slang: ["бэкапы", "файлы и диски"]
+  description: "Системы резервного копирования, восстановления данных, программные СХД, архиваторы и файловые менеджеры."
+  typical_queries: ["система резервного копирования", "архиватор для организации"]
+
+- id: backup_recovery
+  parent: backup_storage
+  title: "Системы резервного копирования"
+  title_short: "Резервное копирование"
+  softline_path: "/diski-i-fayli/rezervnoe-kopirovanie/"
+  synonyms: ["резервное копирование", "срк", "бэкап", "backup", "восстановление после сбоев", "аналог veeam", "аналог acronis"]
+  slang: ["бэкапилка", "бекап", "бэкапер", "виим аналог", "акронис"]
+  description: "Корпоративные системы резервного копирования физических серверов, ВМ, СУБД и рабочих станций (Кибер Бэкап, RuBackup, Handy Backup, Кибер Инфраструктура, Veeam, Commvault)."
+  typical_queries: ["кибер бэкап на 5 серверов", "российский аналог veeam", "резервное копирование баз 1с и postgres"]
+
+- id: data_recovery
+  parent: backup_storage
+  title: "Восстановление удалённых данных"
+  title_short: "Восстановление данных"
+  softline_path: "/diski-i-fayli/vosstanovlenie-dannih/"
+  synonyms: ["восстановление данных", "восстановление файлов", "восстановление raid", "data recovery", "r-studio"]
+  slang: ["рекавери", "достать удаленные файлы"]
+  description: "Утилиты для восстановления случайно удалённых файлов, повреждённых разделов и RAID-массивов (R-Studio, Hetman, EaseUS)."
+  typical_queries: ["r-studio corporate лицензия", "программа восстановления удаленных файлов"]
+
+- id: sds_storage
+  parent: backup_storage
+  title: "Программно-определяемые хранилища (SDS) и корпоративные диски"
+  title_short: "СХД и файлы (SDS)"
+  softline_path: "/diski-i-fayli/diski-i-fayli-drugie-utiliti/"
+  synonyms: ["sds", "программно определяемое хранилище", "корпоративное облако файлов", "обмен файлами", "аналог nextcloud", "аналог dropbox", "s3 хранилище", "efss"]
+  slang: ["корп диск", "свой яндекс диск", "файлопомойка облачная"]
+  description: "Платформы программно-определяемого хранения (SDS) и корпоративные файлообменники (Кибер Инфраструктура, RAIDIX, Baum, МойОфис Частное Облако, Nextcloud, VK WorkDisk)."
+  typical_queries: ["корпоративное файловое хранилище в контур", "программно определяемое схд российское", "замена dropbox для бизнеса"]
+
+- id: file_managers
+  parent: backup_storage
+  title: "Файловые менеджеры"
+  title_short: "Файловые менеджеры"
+  softline_path: "/diski-i-fayli/faylovie-menedjeri/"
+  synonyms: ["файловый менеджер", "двухпанельный менеджер", "total commander", "far manager"]
+  slang: ["тотал коммандер", "файл менеджер"]
+  description: "Корпоративные лицензии на файловые менеджеры и утилиты массовых операций с файлами (Total Commander и др.)."
+  typical_queries: ["total commander лицензия для юрлиц", "файловый менеджер купить"]
+
+- id: archivers
+  parent: backup_storage
+  title: "Архиваторы и сжатие данных"
+  title_short: "Архиваторы"
+  softline_path: "/diski-i-fayli/arhivatori/"
+  synonyms: ["архиватор", "сжатие файлов", "winrar", "распаковка архивов", "rar", "zip"]
+  slang: ["винрар", "архивашка", "зиповка"]
+  description: "Лицензионные архиваторы для корпоративных рабочих мест (WinRAR и др.)."
+  typical_queries: ["winrar корпоративная лицензия", "купить архиватор на 50 пк"]
+
+- id: disk_utilities
+  parent: backup_storage
+  title: "Управление дисками, разделами и образами"
+  title_short: "Утилиты для дисков"
+  softline_path: "/diski-i-fayli/ochistka-diska/"
+  synonyms: ["управление дисками", "разметка диска", "клонирование диска", "очистка диска", "дефрагментация", "миграция ос на ssd"]
+  slang: ["клонилка дисков", "разбивка диска"]
+  description: "Утилиты для клонирования, разметки, миграции и обслуживания дисковых разделов (Кибер Диск / Acronis Disk Director, Paragon)."
+  typical_queries: ["клонирование дисков серверов", "управление разделами диска"]
+
+# ============================================================================
+# 7. COMMUNICATIONS — Коммуникации, почта, ВКС и телефония
+# ============================================================================
+
+- id: communications
+  parent: null
+  title: "Связь, почта, ВКС и коммуникации"
+  title_short: "Связь и ВКС"
+  softline_path: "/internet-i-set/"
+  synonyms: ["связь и коммуникации", "корпоративные коммуникации", "почта и вкс", "сеть и интернет"]
+  slang: ["коммуникации", "связь", "созвоны и почта"]
+  description: "Видеоконференцсвязь, корпоративные мессенджеры, почтовые серверы, UC-платформы, IP-телефония и браузеры."
+  typical_queries: ["российские средства коммуникации", "вкс и почта для офиса"]
+
+- id: vks_webinars
+  parent: communications
+  title: "Видеоконференцсвязь и вебинары"
+  title_short: "ВКС и вебинары"
+  softline_path: "/internet-i-set/obschenie/"
+  synonyms: ["вкс", "видеоконференцсвязь", "видеосовещания", "вебинары", "онлайн встречи", "аналог zoom", "аналог teams", "конференц связь"]
+  slang: ["зум аналог", "созвонилка", "видеосвязь", "вебинарка"]
+  description: "Платформы видеоконференций и вебинаров — облачные и on-premise (Контур.Толк, МТС Линк, TrueConf, IVA MCU, Vinteo, Jazz, Яндекс Телемост, Zoom)."
+  typical_queries: ["российский аналог zoom", "вкс on-premise на свой сервер", "контур толк лицензия"]
+
+- id: corporate_messengers
+  parent: communications
+  title: "Корпоративные мессенджеры и командные чаты"
+  title_short: "Мессенджеры"
+  softline_path: "/internet-i-set/rossiyskie-korporativnye-messendzhery-importozameshchenie/"
+  synonyms: ["корпоративный мессенджер", "командный чат", "защищенный мессенджер", "аналог slack", "аналог telegram для офиса", "рабочий чат"]
+  slang: ["корп чат", "слак аналог", "мессенджер в контур"]
+  description: "Безопасные корпоративные мессенджеры и суперприложения для компаний (eXpress, VK Teams, Compass, Пачка, Squadus, Frisbee, Mattermost, Slack)."
+  typical_queries: ["корпоративный мессенджер в закрытый контур", "российский аналог slack", "express мессенджер"]
+
+- id: mail_servers
+  parent: communications
+  title: "Корпоративные почтовые серверы"
+  title_short: "Почтовые серверы"
+  softline_path: "/internet-i-set/rossiyskaya-kommunikatsionnaya-platforma-importozameshchenie/"
+  synonyms: ["почтовый сервер", "корпоративная почта", "аналог exchange", "почтовая система", "почта на свой сервер"]
+  slang: ["эксчендж аналог", "почтовик серверный", "своя почта"]
+  description: "Серверные решения корпоративной электронной почты и календарей (RuPost, CommuniGate Pro, МойОфис Почта, Tegu, VK WorkMail, Яндекс 360, MS Exchange)."
+  typical_queries: ["российский аналог microsoft exchange", "почтовый сервер из реестра", "rupost лицензия"]
+
+- id: uc_platforms
+  parent: communications
+  title: "Унифицированные коммуникации и корпоративные порталы"
+  title_short: "UC и интранет"
+  softline_path: "/internet-i-set/rossiyskaya-kommunikatsionnaya-platforma-importozameshchenie/"
+  synonyms: ["унифицированные коммуникации", "uc платформа", "корпоративный портал", "интранет", "цифровое рабочее пространство", "аналог sharepoint", "аналог microsoft 365"]
+  slang: ["интранет портал", "корп портал", "шарепоинт аналог"]
+  description: "Единые коммуникационные платформы и внутренние порталы компаний (VK Workspace, Яндекс 360 для бизнеса, Битрикс24 Портал, Incomand, SharePoint)."
+  typical_queries: ["российский аналог microsoft 365", "корпоративный портал в контур", "замена sharepoint"]
+
+- id: ip_telephony
+  parent: communications
+  title: "IP-телефония, программные АТС и колл-центры"
+  title_short: "IP-телефония"
+  softline_path: "/internet-i-set/telefoniya/"
+  synonyms: ["ip телефония", "виртуальная атс", "программная атс", "воip", "колл центр", "контакт центр", "sip телефония", "аналог avaya", "аналог cisco cucm"]
+  slang: ["ватс", "айпишка", "телефония в офис", "коллцентр"]
+  description: "Программные АТС, облачная телефония и платформы контакт-центров (Манго Офис, МТС Exolve, Naumen Contact Center, Протей, РТУ, 3CX, Asterisk)."
+  typical_queries: ["российская ip атс", "платформа для колл центра", "замена avaya и cisco cucm"]
+
+- id: email_marketing
+  parent: communications
+  title: "Email-рассылки и омниканальный маркетинг"
+  title_short: "Email-рассылки"
+  softline_path: "/internet-i-set/e-mail-rassilka/"
+  synonyms: ["email рассылка", "почтовые рассылки", "cdp платформа", "маркетинговые рассылки", "триггерные рассылки", "аналог mailchimp"]
+  slang: ["рассыльщик", "мейлчимп аналог"]
+  description: "Сервисы и платформы email-маркетинга и автоматизации коммуникаций с клиентами (Unisender, Mindbox, Sendsay, Altcraft, Dashamail)."
+  typical_queries: ["сервис email рассылок российский", "mindbox лицензия", "аналог mailchimp"]
+
+- id: browsers_network_utils
+  parent: communications
+  title: "Корпоративные браузеры и сетевые утилиты"
+  title_short: "Браузеры и сеть"
+  softline_path: "/internet-i-set/brauzeri-i-utiliti/"
+  synonyms: ["корпоративный браузер", "защищенный браузер", "браузер с гост", "сетевые утилиты", "dns dhcp ipam", "управление сетью"]
+  slang: ["браузер для госуслуг", "гост браузер", "сетевые утилиты"]
+  description: "Корпоративные браузеры с централизованным управлением и ГОСТ TLS (Яндекс Браузер для организаций, Спутник, Atom) и сетевые утилиты."
+  typical_queries: ["яндекс браузер для организаций", "браузер с поддержкой гост", "сетевые утилиты для админа"]
+
+# ============================================================================
+# 8. REMOTE_ACCESS — Удалённый доступ и поддержка
+# ============================================================================
+
+- id: remote_access
+  parent: null
+  title: "Удалённый доступ и терминальные решения"
+  title_short: "Удалённый доступ"
+  softline_path: "/remote-access/"
+  synonyms: ["удаленный доступ", "программы удаленного доступа", "remote access", "удаленная поддержка"]
+  slang: ["удаленка", "удаленный стол"]
+  description: "Программы удалённого управления рабочими столами, технической поддержки пользователей и защищённого терминального доступа."
+  typical_queries: ["удаленный доступ к компьютерам", "российский аналог teamviewer"]
+
+- id: remote_desktop
+  parent: remote_access
+  title: "Программы удалённого доступа и поддержки"
+  title_short: "Удалённый рабочий стол"
+  softline_path: "/remote-access/rossiyskie-resheniya-udalennogo-dostupa-importozameshchenie/"
+  synonyms: ["удаленный рабочий стол", "удаленное администрирование", "аналог teamviewer", "аналог anydesk", "подключение к экрану", "удаленная техподдержка"]
+  slang: ["тимвьювер аналог", "анидеск аналог", "удаленка для админа", "подключалка"]
+  description: "Российские и зарубежные инструменты удалённого подключения к рабочим станциям и серверам (Ассистент, RuDesktop, RMS, Контур.Доступ, Getscreen, AnyDesk, TeamViewer)."
+  typical_queries: ["ассистент удаленный доступ", "rudesktop лицензия", "замена anydesk из реестра"]
+
+- id: terminal_access
+  parent: remote_access
+  title: "Терминальный доступ и публикация приложений"
+  title_short: "Терминальный доступ"
+  softline_path: "/remote-access/drugie-resheniya-udalennogo-dostupa/"
+  synonyms: ["терминальный сервер", "rdp сервер", "публикация приложений", "удаленный доступ к 1с", "тонкий клиент"]
+  slang: ["терминальник", "рдп сервер", "публикация 1с"]
+  description: "Решения для организации многопользовательской терминальной работы и публикации бизнес-приложений (1С, браузер, офис)."
+  typical_queries: ["терминальный сервер на linux", "публикация приложений для удаленки"]
+
+- id: pam_jump_hosts
+  parent: remote_access
+  title: "Защищённые шлюзы удалённого доступа (ZTNA / Jump Host)"
+  title_short: "Защищённый доступ ZTNA"
+  softline_path: "/remote-access/rossiyskie-resheniya-udalennogo-dostupa-importozameshchenie/"
+  synonyms: ["ztna", "zero trust", "защищенный удаленный доступ", "удаленный доступ без vpn", "шлюз удаленного доступа", "доступ подрядчиков"]
+  slang: ["зиро траст", "безопасная удаленка"]
+  description: "Платформы защищённого удалённого доступа к корпоративным ресурсам по принципу Zero Trust (СКДПУ НТ, РуПост/Астра шлюзы, UserGate ZTNA)."
+  typical_queries: ["безопасный удаленный доступ для сотрудников", "ztna решение российское"]
+
+# ============================================================================
+# 9. ACCOUNTING_1C — Бухгалтерия, 1С, торговля, склад и отчётность
+# ============================================================================
+
+- id: accounting_1c
+  parent: null
+  title: "Бухгалтерия, 1С, торговля и кадры"
+  title_short: "1С и учёт"
+  softline_path: "/buhgalteriya-sklad-kadry/"
+  synonyms: ["бухгалтерия склад кадры", "1с и учет", "учетные системы", "автоматизация учета"]
+  slang: ["1ска", "бухгалтерия и учет", "одинэс"]
+  description: "Программы бухгалтерского, налогового, кадрового, торгового и складского учёта, платформа 1С, ЭДО, КЭДО и сдача отчётности."
+  typical_queries: ["1с для организации", "программа для бухгалтерии и склада"]
+
+- id: accounting
+  parent: accounting_1c
+  title: "Бухгалтерский и налоговый учёт"
+  title_short: "Бухгалтерия"
+  softline_path: "/buhgalteriya-sklad-kadry/buhgalteriya/"
+  synonyms: ["бухгалтерия", "бухгалтерский учет", "налоговый учет", "1с бухгалтерия", "онлайн бухгалтерия", "учет для ооо и ип"]
+  slang: ["бухия", "1с бух", "бп 3.0", "бухпрограмма"]
+  description: "Программное обеспечение для ведения бухгалтерского и налогового учёта (1С:Бухгалтерия 8, Контур.Бухгалтерия, СБИС Бухгалтерия, Моё дело)."
+  typical_queries: ["1с бухгалтерия 8 проф", "бухгалтерия для госучреждения бгу", "облачная бухгалтерия 1с фреш"]
+
+- id: payroll_hr_1c
+  parent: accounting_1c
+  title: "Зарплата и кадровый учёт"
+  title_short: "Зарплата и кадры"
+  softline_path: "/buhgalteriya-sklad-kadry/kadroviy-uchet/"
+  synonyms: ["зарплата и управление персоналом", "кадровый учет", "расчет зарплаты", "зуп", "1с зуп", "табельный учет"]
+  slang: ["зуп", "зупка", "зарплатка", "кадры 1с"]
+  description: "Системы расчёта заработной платы, налогов с ФОТ и регламентированного кадрового учёта (1С:ЗУП, СБИС Зарплата, Контур.Зарплата)."
+  typical_queries: ["1с зуп проф купить", "1с зуп корп", "программа для расчета зарплаты"]
+
+- id: trade_warehouse
+  parent: accounting_1c
+  title: "Торговый и складской учёт (WMS)"
+  title_short: "Торговля и склад"
+  softline_path: "/buhgalteriya-sklad-kadry/torgovlya/"
+  synonyms: ["управление торговлей", "складской учет", "складские программы", "wms", "учет товаров", "инвентаризация склада", "1с ут", "мойсклад"]
+  slang: ["1с ут", "ут 11", "складская прога", "вмс"]
+  description: "Решения для оптовой и розничной торговли, управления запасами и автоматизации складов (1С:Управление торговлей, 1С:WMS, МойСклад, Axelot WMS)."
+  typical_queries: ["1с управление торговлей 11", "программа для склада со штрихкодами", "мойсклад тарифы"]
+
+- id: retail_pos_cash
+  parent: accounting_1c
+  title: "Автоматизация розницы, кассы и маркировка"
+  title_short: "Розница и кассы"
+  softline_path: "/buhgalteriya-sklad-kadry/torgovlya/"
+  synonyms: ["кассовое по", "розница", "1с розница", "честный знак", "маркировка", "егаис", "офд", "рмк", "фронтол", "iiko"]
+  slang: ["касса софт", "маркировка честный знак", "фронт офис магазина"]
+  description: "Кассовое ПО, учёт в розничных сетях, общепите (HoReCa) и работа с маркировкой Честный ЗНАК / ЕГАИС (1С:Розница, Frontol, Контур.Маркет, r_keeper, iiko)."
+  typical_queries: ["1с розница лицензия", "по для честного знака и кассы", "фронтол лицензия"]
+
+- id: tax_reporting_edo
+  parent: accounting_1c
+  title: "Электронная отчётность и ЭДО с контрагентами"
+  title_short: "Отчётность и ЭДО"
+  softline_path: "/delovie-programmi/rabota-s-dokumentami/"
+  synonyms: ["эдо", "электронный документооборот", "сдача отчетности", "отчетность в фнс", "диадок", "экстерн", "сбис", "1с отчетность", "обмен упд"]
+  slang: ["эдошка", "отчетка", "отчетность через интернет"]
+  description: "Сервисы юридически значимого ЭДО с контрагентами и сдачи регламентированной отчётности в ФНС, СФР, Росстат (Контур.Диадок, Контур.Экстерн, СБИС/Saby, 1С-Отчётность, Такском)."
+  typical_queries: ["контур диадок тарифы", "сдача налоговой отчетности через интернет", "эдо с интеграцией в 1с"]
+
+- id: kedo_hr_docs
+  parent: accounting_1c
+  title: "Кадровый электронный документооборот (КЭДО)"
+  title_short: "КЭДО"
+  softline_path: "/delovie-programmi/pravovoe-i-kadrovoe-obsluzivanie/"
+  synonyms: ["кэдо", "кадровый эдо", "кадровый электронный документооборот", "подписание кадровых документов", "личный кабинет сотрудника"]
+  slang: ["кедо", "кадры онлайн", "эдо с сотрудниками"]
+  description: "Платформы электронного подписания трудовых договоров, приказов и заявлений с сотрудниками (HRlink, 1С:Кабинет сотрудника, КЭДО СБИС, VK HR Tek, Directum HR Pro)."
+  typical_queries: ["кэдо для удаленных сотрудников", "hrlink лицензия", "1с кабинет сотрудника"]
+
+- id: onec_platform_licenses
+  parent: accounting_1c
+  title: "Платформа 1С:Предприятие — клиентские и серверные лицензии"
+  title_short: "Лицензии 1С"
+  softline_path: "/buhgalteriya-sklad-kadry/buhgalteriya/"
+  synonyms: ["клиентские лицензии 1с", "сервер 1с", "лицензия на сервер 1с", "1с предприятие 8.3", "ключ 1с", "доп лицензии 1с"]
+  slang: ["клиентки 1с", "серверник 1с", "лицухи 1с"]
+  description: "Клиентские лицензии на 1–500 рабочих мест и лицензии на сервер 1С:Предприятие 8 (x86-64, ПРОФ, КОРП)."
+  typical_queries: ["клиентская лицензия 1с на 10 пользователей", "лицензия на сервер 1с x64", "1с предприятие корп"]
+
+- id: counterparty_legal_info
+  parent: accounting_1c
+  title: "Проверка контрагентов и справочно-правовые системы"
+  title_short: "Право и контрагенты"
+  softline_path: "/delovie-programmi/pravovoe-i-kadrovoe-obsluzivanie/"
+  synonyms: ["проверка контрагентов", "справочно правовая система", "спс", "законодательство", "консультантплюс", "гарант", "контур фокус", "спарк"]
+  slang: ["консультант", "пробивка контрагентов", "правовая база"]
+  description: "Сервисы проверки благонадежности контрагентов (Контур.Фокус, СПАРК, СБИС) и правовые системы для юристов и бухгалтеров (КонсультантПлюс, ГАРАНТ)."
+  typical_queries: ["проверка контрагентов на благонадежность", "контур фокус лицензия", "гарант для юриста"]
+
+# ============================================================================
+# 10. BUSINESS_ERP_CRM — Управление бизнесом, ERP, CRM, СЭД и процессы
+# ============================================================================
+
+- id: business_erp_crm
+  parent: null
+  title: "Управление бизнесом, ERP, CRM и СЭД"
+  title_short: "Бизнес и ERP/CRM"
+  softline_path: "/delovie-programmi/"
+  synonyms: ["управление бизнесом", "деловые программы", "корпоративные бизнес приложения", "автоматизация бизнеса"]
+  slang: ["бизнес софт", "ерп црм"]
+  description: "ERP, CRM, СЭД/ECM, BPM/Low-code/RPA, таск-трекеры, HRM, бюджетирование, логистика и CMS."
+  typical_queries: ["системы автоматизации бизнеса", "российская erp и crm"]
+
+- id: erp_systems
+  parent: business_erp_crm
+  title: "ERP-системы и комплексная автоматизация"
+  title_short: "ERP-системы"
+  softline_path: "/delovie-programmi/crm-erp-sistemi/"
+  synonyms: ["erp", "erp система", "комплексная автоматизация", "управление предприятием", "аналог sap", "аналог microsoft dynamics", "производственный учет"]
+  slang: ["ерп", "замена сап", "1с ерп", "ка2"]
+  description: "Комплексные системы управления ресурсами предприятия (1С:ERP, 1С:КА, 1С:УНФ, Галактика ERP, Турбо ERP, Ма-3, SAP S/4HANA)."
+  typical_queries: ["российский аналог sap erp", "1с erp управление предприятием", "галактика erp"]
+
+- id: crm_systems
+  parent: business_erp_crm
+  title: "CRM-системы и управление продажами"
+  title_short: "CRM-системы"
+  softline_path: "/delovie-programmi/crm-erp-sistemi/"
+  synonyms: ["crm", "црм", "управление продажами", "воронка продаж", "база клиентов", "аналог salesforce", "аналог hubspot"]
+  slang: ["црмка", "срм", "сиэрэм"]
+  description: "Системы управления взаимоотношениями с клиентами и продажами (Битрикс24, amoCRM, BPMSoft, ELMA365 CRM, RetailCRM, SberCRM, 1С:CRM, Salesforce)."
+  typical_queries: ["crm с интеграцией 1с", "битрикс24 коробка", "amocrm лицензия"]
+
+- id: sed_ecm
+  parent: business_erp_crm
+  title: "СЭД, ECM и внутренний документооборот"
+  title_short: "СЭД и ECM"
+  softline_path: "/delovie-programmi/rabota-s-dokumentami/"
+  synonyms: ["сэд", "ecm", "csp", "внутренний документооборот", "согласование договоров", "электронный архив", "делопроизводство", "аналог documentum"]
+  slang: ["сэдка", "документооборот", "согласовалка"]
+  description: "Корпоративные системы электронного документооборота, согласования и архивного хранения (Directum RX, 1С:Документооборот, Docsvision, ТЕЗИС, ЭОС Дело, TESSA)."
+  typical_queries: ["российская сэд из реестра", "1с документооборот корп", "directum rx лицензия"]
+
+- id: bpm_rpa_lowcode
+  parent: business_erp_crm
+  title: "BPM, Low-code и роботизация процессов (RPA)"
+  title_short: "BPM, Low-code и RPA"
+  softline_path: "/delovie-programmi/sistemi-avtomatizatsii/"
+  synonyms: ["bpm", "bpms", "low-code", "no-code", "rpa", "роботизация бизнес процессов", "программные роботы", "оркестрация процессов", "аналог uipath", "аналог camunda"]
+  slang: ["лоукод", "рпа роботы", "бпмка"]
+  description: "Платформы управления бизнес-процессами, Low-code разработки и программной роботизации (ELMA365, Comindware, GreenData, PIX RPA, Primo RPA, Robin RPA, Sherpa RPA)."
+  typical_queries: ["low-code платформа российская", "rpa платформа аналог uipath", "elma365 лицензия"]
+
+- id: task_project_trackers
+  parent: business_erp_crm
+  title: "Таск-трекеры, Agile и управление задачами"
+  title_short: "Таск-трекеры"
+  softline_path: "/delovie-programmi/upravlenie-biznesom/"
+  synonyms: ["таск трекер", "управление задачами", "канбан", "scrum", "agile", "аналог jira", "аналог trello", "аналог asana", "баг трекер"]
+  slang: ["джира аналог", "трелло аналог", "тасктрекер", "задачник"]
+  description: "Системы управления задачами, спринтами и командной работой (Яндекс Трекер, Kaiten, EvaTeam, YouGile, Weeek, ПланФикс, Битрикс24 Задачи, Jira)."
+  typical_queries: ["российский аналог jira", "таск трекер on-premise", "kaiten лицензия"]
+
+- id: hrm_recruiting
+  parent: business_erp_crm
+  title: "HRM-системы, рекрутинг и управление персоналом"
+  title_short: "HRM и рекрутинг"
+  softline_path: "/buhgalteriya-sklad-kadry/kadroviy-uchet/"
+  synonyms: ["hrm", "ats", "рекрутинг", "подбор персонала", "управление талантами", "оценка персонала", "онбординг", "аналог sap successfactors"]
+  slang: ["эйчар система", "подбор кадров софт", "атс для hr"]
+  description: "Системы автоматизации подбора, адаптации, оценки и развития персонала (Хантфлоу, Potok, Mirapolis HCM, Websoft HCM, Skillaz, Talantix)."
+  typical_queries: ["система для рекрутинга российская", "аналог sap successfactors", "хантфлоу лицензия"]
+
+- id: finance_budgeting
+  parent: business_erp_crm
+  title: "Финансовое планирование, бюджетирование и казначейство"
+  title_short: "Финансы и бюджет"
+  softline_path: "/buhgalteriya-sklad-kadry/finansi/"
+  synonyms: ["бюджетирование", "казначейство", "управленческий учет", "финансовое планирование", "epm", "консолидация мсфо", "бизнес планирование", "аналог hyperion"]
+  slang: ["финмодель софт", "бюджетка", "управленка"]
+  description: "Системы бюджетирования, казначейства, финансовой консолидации и инвестпроектов (1С:Управление холдингом, Optimacros, Casplan, Project Expert, Альт-Инвест)."
+  typical_queries: ["система бюджетирования российская", "1с управление холдингом", "программа для бизнес плана"]
+
+- id: logistics_tms
+  parent: business_erp_crm
+  title: "Транспортная логистика, TMS и управление автопарком"
+  title_short: "Логистика и TMS"
+  softline_path: "/buhgalteriya-sklad-kadry/upravlenie-logistikoy/"
+  synonyms: ["tms", "логистика", "маршрутизация доставки", "управление автопарком", "управление транспортом", "мониторинг транспорта", "путевые листы"]
+  slang: ["логистическая прога", "тмс", "маршрутизатор доставки"]
+  description: "Программные решения для планирования маршрутов, управления автопарком и транспортной логистики (1С:TMS, Axelot TMS, Яндекс Маршрутизация, Wialon/российские аналоги)."
+  typical_queries: ["программа для транспортной логистики", "1с управление автотранспортом", "tms система российская"]
+
+- id: cms_ecommerce
+  parent: business_erp_crm
+  title: "CMS, создание сайтов и интернет-магазинов"
+  title_short: "CMS и сайты"
+  softline_path: "/internet-i-set/cms/"
+  synonyms: ["cms", "создание сайта", "движок сайта", "интернет магазин платформа", "1с битрикс управление сайтом", "управление контентом"]
+  slang: ["цмс", "движок для сайта", "битрикс сайт"]
+  description: "Системы управления веб-сайтами и электронной коммерцией (1С-Битрикс: Управление сайтом, NetCat, UMI.CMS, CS-Cart, Ensi)."
+  typical_queries: ["1с битрикс управление сайтом бизнес", "российская cms для интернет магазина"]
+
+# ============================================================================
+# 11. CAD_ENGINEERING — САПР, BIM, ГИС, сметы и инженерные расчёты
+# ============================================================================
+
+- id: cad_engineering
+  parent: null
+  title: "САПР, BIM, ГИС и инженерное ПО"
+  title_short: "САПР и ГИС"
+  softline_path: "/sapr/"
+  synonyms: ["сапр", "cad", "bim", "гим", "гис", "инженерное по", "проектирование", "черчение"]
+  slang: ["кад", "чертилка", "сапр софт"]
+  description: "Базовые 2D/3D САПР, машиностроительные и строительные комплексы (MCAD/BIM), CAE-расчёты, ГИС, электроника и сметное ПО."
+  typical_queries: ["российский сапр из реестра", "по для проектирования"]
+
+- id: cad_2d
+  parent: cad_engineering
+  title: "Базовые 2D/3D САПР и черчение DWG"
+  title_short: "Базовые САПР (DWG)"
+  softline_path: "/sapr/bazovie-produkti/"
+  synonyms: ["базовый сапр", "черчение", "редактор dwg", "аналог autocad", "2d сапр", "dwg сапр", "просмотр dwg"]
+  slang: ["автокад аналог", "чертилка dwg", "нанокад"]
+  description: "Универсальные платформы 2D-черчения и 3D-моделирования с нативной поддержкой DWG (Платформа nanoCAD, КОМПАС-График, ZWCAD, BricsCAD, AutoCAD)."
+  typical_queries: ["российский аналог autocad", "nanocad лицензия", "чем открыть и редактировать dwg"]
+
+- id: mcad_plm
+  parent: cad_engineering
+  title: "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
+  title_short: "Машиностроение и PLM"
+  softline_path: "/sapr/mashinostroenie/"
+  synonyms: ["машиностроительный сапр", "3d моделирование деталей", "mcad", "plm", "pdm", "cam", "чпу", "аналог solidworks", "аналог inventor", "аналог nx"]
+  slang: ["солидворкс аналог", "компас 3д", "плм", "чпу прога"]
+  description: "Тяжёлые и средние машиностроительные САПР, CAM-системы для ЧПУ и PLM/PDM-комплексы (КОМПАС-3D, ЛОЦМАН:PLM, T-FLEX CAD/PLM, АДЕМ, СПРУТКАМ, SolidWorks)."
+  typical_queries: ["компас 3d купить", "российский аналог solidworks", "t-flex cad лицензия"]
+
+- id: bim_aec
+  parent: cad_engineering
+  title: "Строительные САПР, архитектура и BIM/ТИМ"
+  title_short: "Строительство и BIM"
+  softline_path: "/sapr/stroitelstvo/"
+  synonyms: ["bim", "тим", "строительный сапр", "архитектурное проектирование", "аналог revit", "аналог archicad", "информационное моделирование зданий", "сводная модель", "среда общих данных"]
+  slang: ["бим", "ревит аналог", "архикад аналог", "сод для стройки"]
+  description: "Информационное моделирование зданий и сооружений (BIM/ТИМ), архитектура и среды общих данных (Renga, nanoCAD BIM, Model Studio CS, Pilot-BIM, Tangl, Vitro-CAD, Revit)."
+  typical_queries: ["российский аналог revit", "renga bim лицензия", "среда общих данных для строительства"]
+
+- id: cae_simulation
+  parent: cad_engineering
+  title: "Инженерные расчёты, CAE и научное ПО"
+  title_short: "Расчёты и CAE"
+  softline_path: "/sapr/science-software/"
+  synonyms: ["cae", "инженерные расчеты", "расчет прочности", "мкэ", "гидродинамика", "cfd", "аналог ansys", "аналог matlab", "математическое моделирование", "строительные расчеты"]
+  slang: ["ансис аналог", "матлаб аналог", "прочностные расчеты", "лира сапр"]
+  description: "Системы прочностного, теплового, аэродинамического и математического моделирования (Логос, Fidesys, APM WinMachine, SCAD Office, ЛИРА-САПР, Engee, SimInTech, ANSYS, MATLAB)."
+  typical_queries: ["российский аналог ansys", "замена matlab из реестра", "scad office лицензия"]
+
+- id: ecad_eda
+  parent: cad_engineering
+  title: "Проектирование электроники, печатных плат и электрики"
+  title_short: "Электроника и электрика"
+  softline_path: "/sapr/injenerniy-soft/"
+  synonyms: ["ecad", "eda", "проектирование печатных плат", "электрические схемы", "аналог altium designer", "аналог eplan", "сапр электрика", "кипиа"]
+  slang: ["альтиум аналог", "еплан аналог", "разводка плат"]
+  description: "САПР электроники, печатных плат и электротехнических систем (Delta Design, nanoCAD BIM Электро, E3.series, КОМПАС-Электрик, Altium Designer, EPLAN)."
+  typical_queries: ["российский аналог altium designer", "замена eplan", "nanocad электро"]
+
+- id: gis_mapping
+  parent: cad_engineering
+  title: "Геоинформационные системы (ГИС), кадастр и картография"
+  title_short: "ГИС и картография"
+  softline_path: "/sapr/geoinformatsionnie-sistemi/"
+  synonyms: ["гис", "геоинформационные системы", "картография", "кадастр", "фотограмметрия", "аналог arcgis", "аналог mapinfo", "геодезия"]
+  slang: ["аркгис аналог", "гиска", "кадастровая прога"]
+  description: "ГИС-платформы, ПО для геодезии, кадастра, картографии и фотограмметрии (ГИС Панорама, Axioma GIS, ZuluGIS, Полигон Про, Agisoft Metashape, Credo, ArcGIS)."
+  typical_queries: ["российский аналог arcgis", "гис панорама лицензия", "по для кадастрового инженера"]
+
+- id: estimates_construction
+  parent: cad_engineering
+  title: "Сметное ПО и ценообразование в строительстве"
+  title_short: "Сметные программы"
+  softline_path: "/sapr/stroitelstvo/"
+  synonyms: ["сметное по", "сметная программа", "составление смет", "гранд смета", "сметные базы", "гэсн", "фер", "кс-2", "кс-3"]
+  slang: ["смета прога", "грандсмета", "сметчик софт"]
+  description: "Программные комплексы для расчёта строительных смет и обновления нормативных баз (ГРАНД-Смета, Smeta.ru, РИК, АРОС, 1С:Смета)."
+  typical_queries: ["гранд смета купить лицензию", "программа для составления смет", "обновление базы гэсн"]
+
+- id: cad_specialized
+  parent: cad_engineering
+  title: "Специализированные САПР (мебель, инфраструктура, ПБ)"
+  title_short: "Отраслевые САПР"
+  softline_path: "/sapr/infrastruktura-iziskaniya-genplan-transport/"
+  synonyms: ["сапр мебели", "проектирование дорог", "генплан", "изыскания", "пожарный риск", "инженерные сети", "аналог civil 3d"]
+  slang: ["базис мебельщик", "дорожный сапр", "цивил аналог"]
+  description: "Узкопрофильные САПР для генплана, дорог, мебельного производства и расчёта пожарных рисков (Топоматик Robur, IndorCAD, Credo, БАЗИС-Мебельщик, PyroSim/Фогард)."
+  typical_queries: ["российский аналог civil 3d", "базис мебельщик лицензия", "программа для генплана и дорог"]
+
+- id: raster_vectorizers
+  parent: cad_engineering
+  title: "Векторизаторы и обработка лазерного сканирования"
+  title_short: "Векторизация и сканы"
+  softline_path: "/sapr/gibridnie-graficheskie-redaktori-i-vektorizatori/"
+  synonyms: ["векторизатор", "гибридный графический редактор", "лазерное сканирование", "облако точек", "оцифровка чертежей"]
+  slang: ["перевести скан в dwg", "облака точек софт"]
+  description: "ПО для векторизации бумажных чертежей и работы с облаками точек лазерного сканирования (Spotlight, Raster Arts, nanoCAD Облака точек)."
+  typical_queries: ["оцифровка сканов чертежей в dwg", "обработка облака точек лазерного сканирования"]
+
+# ============================================================================
+# 12. GRAPHICS_MEDIA — Графика, дизайн, видео и мультимедиа
+# ============================================================================
+
+- id: graphics_media
+  parent: null
+  title: "Графика, дизайн, видео и мультимедиа"
+  title_short: "Графика и медиа"
+  softline_path: "/grafika-i-dizayn/"
+  synonyms: ["графика и дизайн", "мультимедиа", "дизайнерское по", "графические программы"]
+  slang: ["графика", "дизайн софт", "видео и фото"]
+  description: "Растровые и векторные редакторы, UI/UX, вёрстка, 3D-визуализация, видеомонтаж и аудиоредакторы."
+  typical_queries: ["программы для дизайнера", "российские графические редакторы"]
+
+- id: raster_photo
+  parent: graphics_media
+  title: "Растровая графика и обработка фото"
+  title_short: "Растровая графика"
+  softline_path: "/grafika-i-dizayn/grafika-i-disayn-graficheskie-redaktori/"
+  synonyms: ["растровый редактор", "фоторедактор", "обработка фото", "ретушь", "аналог photoshop", "psd редактор"]
+  slang: ["фотошоп", "фш аналог", "редактор картинок"]
+  description: "Профессиональные редакторы растровой графики и фотографий (Adobe Photoshop, AliveColors, ФотоМАСТЕР, Affinity Photo, GIMP)."
+  typical_queries: ["российский аналог photoshop", "alivecolors лицензия", "редактор фото для юрлиц"]
+
+- id: vector_illustration
+  parent: graphics_media
+  title: "Векторная графика и иллюстрация"
+  title_short: "Векторная графика"
+  softline_path: "/grafika-i-dizayn/grafika-i-disayn-graficheskie-redaktori/"
+  synonyms: ["векторный редактор", "векторная графика", "аналог coreldraw", "аналог illustrator", "работа с cdr", "логотипы и макеты"]
+  slang: ["корел", "корелдро", "иллюстратор аналог", "векторка"]
+  description: "Редакторы векторной графики, полиграфических макетов и иллюстраций (CorelDRAW, Adobe Illustrator, Эллипс, Affinity Designer, Inkscape)."
+  typical_queries: ["coreldraw для бизнеса", "аналог coreldraw российский", "чем открыть cdr"]
+
+- id: ui_ux_web_design
+  parent: graphics_media
+  title: "UI/UX-дизайн, прототипирование и веб-дизайн"
+  title_short: "UI/UX-дизайн"
+  softline_path: "/grafika-i-dizayn/interfeysi/"
+  synonyms: ["ui ux дизайн", "прототипирование интерфейсов", "веб дизайн", "аналог figma", "дизайн систем"]
+  slang: ["фигма аналог", "прототипилка"]
+  description: "Инструменты проектирования пользовательских интерфейсов и дизайн-систем (Figma, Pixso, Penpot, Lunacy)."
+  typical_queries: ["аналог figma для команды", "figma enterprise", "инструмент для ui ux дизайна"]
+
+- id: dtp_publishing
+  parent: graphics_media
+  title: "Вёрстка и издательские системы"
+  title_short: "Вёрстка (DTP)"
+  softline_path: "/grafika-i-dizayn/izdatelskie-sistemi/"
+  synonyms: ["издательские системы", "верстка каталогов", "предпечатная подготовка", "dtp", "аналог indesign", "quarkxpress"]
+  slang: ["индизайн аналог", "версталка"]
+  description: "Профессиональные настольные издательские системы для вёрстки книг, каталогов и полиграфии (Adobe InDesign, QuarkXPress, Scribus)."
+  typical_queries: ["программа для верстки каталогов", "аналог adobe indesign"]
+
+- id: 3d_rendering_animation
+  parent: graphics_media
+  title: "3D-графика, визуализация и анимация"
+  title_short: "3D и визуализация"
+  softline_path: "/grafika-i-dizayn/3d-grafika/"
+  synonyms: ["3d графика", "рендеринг", "визуализация интерьеров", "3d анимация", "аналог 3ds max", "blender", "cinema 4d", "chaos v-ray"]
+  slang: ["3д макс", "рендер", "вирей", "блендер"]
+  description: "Пакеты 3D-моделирования, архитектурной визуализации и рендеринга (3ds Max, Maya, Cinema 4D, V-Ray, Corona, Blender, UNIGINE)."
+  typical_queries: ["3ds max аналог", "по для 3d визуализации", "unigine лицензия"]
+
+- id: video_editing
+  parent: graphics_media
+  title: "Видеоредакторы, монтаж и постпродакшн"
+  title_short: "Видеомонтаж"
+  softline_path: "/multimedia/videoredaktori/"
+  synonyms: ["видеоредактор", "видеомонтаж", "монтаж видео", "цветокоррекция", "моушн дизайн", "аналог premiere pro", "аналог after effects", "запись экрана"]
+  slang: ["премьер аналог", "монтажка", "запись вебинаров и экрана"]
+  description: "Программы нелинейного видеомонтажа, захвата экрана и видеографики (Movavi Видеоредактор, ВидеоМОНТАЖ, DaVinci Resolve, Adobe Premiere Pro, Camtasia)."
+  typical_queries: ["российский видеоредактор для бизнеса", "замена adobe premiere", "программа для записи экрана и монтажа"]
+
+- id: audio_multimedia
+  parent: graphics_media
+  title: "Аудиоредакторы, плееры и конвертеры медиа"
+  title_short: "Аудио и медиа"
+  softline_path: "/multimedia/audioredaktori/"
+  synonyms: ["аудиоредактор", "обработка звука", "конвертер видео", "медиаплеер", "запись дисков"]
+  slang: ["звуковой редактор", "конвертер мультимедиа"]
+  description: "ПО для записи и обработки звука, конвертации аудио/видео и воспроизведения мультимедиа."
+  typical_queries: ["аудиоредактор для студии", "конвертер видео для офиса"]
+
+# ============================================================================
+# 13. DOCS_TEXT — Работа с PDF, OCR, текстом и переводами
+# ============================================================================
+
+- id: docs_text
+  parent: null
+  title: "Работа с PDF, OCR, текстом и переводами"
+  title_short: "PDF, OCR и текст"
+  softline_path: "/text/"
+  synonyms: ["работа с текстом", "pdf и ocr", "переводчики и словари", "распознавание документов"]
+  slang: ["пдф и сканы", "текстовые утилиты"]
+  description: "PDF-редакторы, OCR-распознавание сканов и потоковый ввод документов (IDP), машинный перевод, словари и речевые технологии."
+  typical_queries: ["редактор pdf российский", "распознавание сканов в текст"]
+
+- id: pdf_editors
+  parent: docs_text
+  title: "Редакторы и конвертеры PDF"
+  title_short: "PDF-редакторы"
+  softline_path: "/text/text-konverteri/"
+  synonyms: ["pdf редактор", "редактирование pdf", "конвертер pdf", "аналог adobe acrobat", "объединить pdf", "подписать pdf"]
+  slang: ["пдфка", "пдф редактор", "акробат аналог"]
+  description: "Программы создания, редактирования, аннотирования, сравнения и конвертации PDF-документов (ContentReader PDF, Мастер PDF Редактор, PDF Commander, Foxit PDF, Adobe Acrobat)."
+  typical_queries: ["российский аналог adobe acrobat", "редактор pdf под linux", "contentreader pdf купить"]
+
+- id: ocr_capture
+  parent: docs_text
+  title: "Распознавание текста (OCR) и потоковый ввод (IDP)"
+  title_short: "OCR и IDP"
+  softline_path: "/text/raspoznavanie-teksta-i-rechi/"
+  synonyms: ["ocr", "распознавание текста", "распознавание сканов", "распознавание паспортов", "распознавание первички", "idp", "потоковый ввод документов", "аналог finereader", "аналог flexicapture"]
+  slang: ["оцр", "файнридер аналог", "распознавалка сканов"]
+  description: "Настольные и серверные системы оптического распознавания и извлечения данных из документов (ContentReader PDF, ContentCapture, Smart Engines, Dbrain, Cognitive Technologies, ABBYY)."
+  typical_queries: ["аналог abbyy finereader российский", "распознавание паспортов и накладных", "smart engines лицензия"]
+
+- id: translation_dictionaries
+  parent: docs_text
+  title: "Машинные переводчики, CAT-системы и словари"
+  title_short: "Переводчики и словари"
+  softline_path: "/text/text-perevodchiki/"
+  synonyms: ["переводчик", "корпоративный переводчик", "машинный перевод", "офлайн переводчик", "cat система", "словари", "аналог deepl", "аналог trados"]
+  slang: ["промт", "переводилка в закрытый контур", "лингво"]
+  description: "Корпоративные офлайн и облачные переводчики, словари и системы автоматизации переводов (PROMT Neural Translation Server, PROMT Professional, Smartcat, Lingvo, DeepL)."
+  typical_queries: ["корпоративный переводчик в закрытый контур", "promt server лицензия", "аналог deepl российский"]
+
+- id: text_editors
+  parent: docs_text
+  title: "Специализированные текстовые редакторы и шрифты"
+  title_short: "Текст и шрифты"
+  softline_path: "/text/tekstovie-redaktori/"
+  synonyms: ["текстовый редактор", "корпоративные шрифты", "проверка орфографии", "техническая документация", "xml редактор"]
+  slang: ["шрифты купить", "орфография"]
+  description: "Специализированные текстовые и XML-редакторы, модули проверки орфографии и лицензии на коммерческие шрифты (ПараТайп и др.)."
+  typical_queries: ["коммерческие шрифты паратайп", "текстовый редактор для технических писателей"]
+
+- id: speech_text
+  parent: docs_text
+  title: "Распознавание и синтез речи (ASR/TTS)"
+  title_short: "Распознавание речи"
+  softline_path: "/text/raspoznavanie-teksta-i-rechi/"
+  synonyms: ["распознавание речи", "транскрибация", "синтез речи", "asr", "tts", "перевод аудио в текст", "стенографирование совещаний"]
+  slang: ["расшифровка аудио", "стенограмма созвонов"]
+  description: "Движки и сервисы преобразования речи в текст и синтеза речи для протоколирования и контакт-центров (ЦРТ, SaluteSpeech, Yandex SpeechKit, 3iTech)."
+  typical_queries: ["распознавание речи в закрытом контуре", "расшифровка совещаний по", "yandex speechkit"]
+
+# ============================================================================
+# 14. DEV_TOOLS — Разработка ПО, DevOps и тестирование
+# ============================================================================
+
+- id: dev_tools
+  parent: null
+  title: "Разработка ПО, DevOps и тестирование"
+  title_short: "Разработка и DevOps"
+  softline_path: "/programmirovanie/"
+  synonyms: ["программирование", "разработка по", "инструменты разработчика", "devops", "devsecops"]
+  slang: ["девтоолс", "девопс", "проггерский софт"]
+  description: "IDE, компиляторы, Git/CI/CD-платформы, тестирование, ESB/API, анализ безопасности кода и библиотеки разработки."
+  typical_queries: ["инструменты для разработки по", "российский git и ci cd"]
+
+- id: ide_compilers
+  parent: dev_tools
+  title: "Среды разработки (IDE), компиляторы и SDK"
+  title_short: "IDE и компиляторы"
+  softline_path: "/programmirovanie/razrabotka-po/"
+  synonyms: ["ide", "среда разработки", "компилятор", "sdk", "jetbrains", "visual studio", "delphi", "rad studio", "gigaide"]
+  slang: ["айдишка", "джетбрейнс", "вижуал студия", "делфи"]
+  description: "Среды разработки, компиляторы и инструменты программистов (GigaIDE, JetBrains All Products Pack, Visual Studio, Embarcadero RAD Studio, Qt, Cursor)."
+  typical_queries: ["аналог jetbrains российский", "gigaide для корпоративной разработки", "visual studio professional"]
+
+- id: git_cicd_devops
+  parent: dev_tools
+  title: "Git-платформы, CI/CD и DevSecOps"
+  title_short: "Git и CI/CD"
+  softline_path: "/programmirovanie/razrabotka-po/"
+  synonyms: ["git сервер", "ci cd", "devops платформа", "репозиторий кода", "хранилище артефактов", "аналог gitlab", "аналог github", "аналог bitbucket", "аналог nexus"]
+  slang: ["гитлаб аналог", "сиай сиди", "репа для кода", "артифактори"]
+  description: "Платформы управления исходным кодом, сборкой, поставкой ПО и артефактами (GitFlic, SourceCraft, Сфера.Код, Mos.Hub, AppSec.Hub, GitLab, Artifactory)."
+  typical_queries: ["российский аналог gitlab", "gitflic лицензия", "репозиторий артефактов из реестра"]
+
+- id: testing_qa
+  parent: dev_tools
+  title: "Тестирование ПО, TMS и нагрузочное тестирование"
+  title_short: "Тестирование и QA"
+  softline_path: "/programmirovanie/razrabotka-po/"
+  synonyms: ["тестирование по", "tms", "управление тестированием", "автотесты", "нагрузочное тестирование", "аналог testrail", "allure testops"]
+  slang: ["тестменеджмент", "нагрузочное тестирование", "аллюр"]
+  description: "Системы управления тест-кейсами, автоматизации и нагрузочного тестирования (Allure TestOps, Test IT, DoQA, Бумк / PFLB, TestRail)."
+  typical_queries: ["test it лицензия", "российский аналог testrail", "allure testops купить"]
+
+- id: api_integration_esb
+  parent: dev_tools
+  title: "Интеграционные шины (ESB) и API-менеджмент"
+  title_short: "ESB и API"
+  softline_path: "/programmirovanie/razrabotka-po/"
+  synonyms: ["esb", "интеграционная шина", "api gateway", "api management", "управление api", "аналог postman", "аналог mulesoft", "аналог ibm mq"]
+  slang: ["шина данных", "апи шлюз", "постман аналог"]
+  description: "Корпоративные интеграционные шины, брокеры обмена и платформы управления API (1С:Шина, UseBus, Axiom/Platform V Corax, Postman, MuleSoft)."
+  typical_queries: ["интеграционная шина российская", "1с шина лицензия", "российский api gateway"]
+
+- id: code_analysis_sast
+  parent: dev_tools
+  title: "Анализ кода, SAST/DAST и контроль качества"
+  title_short: "SAST и анализ кода"
+  softline_path: "/programmirovanie/razrabotka-po/"
+  synonyms: ["sast", "dast", "sca", "статический анализ кода", "безопасная разработка", "appsec", "аналог sonarqube", "аналог checkmarx", "pvs-studio"]
+  slang: ["саст", "даст", "сонар аналог", "анализатор кода"]
+  description: "Инструменты статического и динамического анализа безопасности и качества кода (PT Application Inspector, Solar appScreener, PVS-Studio, Svace, SonarQube)."
+  typical_queries: ["статический анализатор кода фстэк", "pvs-studio лицензия", "pt application inspector"]
+
+- id: dev_libraries_components
+  parent: dev_tools
+  title: "Библиотеки компонентов и генераторы отчётов"
+  title_short: "Компоненты и отчёты"
+  softline_path: "/programmirovanie/drugie-biblioteki/"
+  synonyms: ["генератор отчетов", "библиотеки компонентов", "fastreport", "devexpress", "stimulsoft", "sdk для разработчиков"]
+  slang: ["фастрепорт", "библиотеки контролов"]
+  description: "Коммерческие библиотеки UI-компонентов, генераторы отчётов и SDK (FastReport, Stimulsoft, DevExpress, Aspose)."
+  typical_queries: ["fastreport net лицензия", "генератор отчетов для разработчиков"]
+
+- id: java_runtimes
+  parent: dev_tools
+  title: "Среды исполнения Java и корпоративные рантаймы"
+  title_short: "Java-рантаймы"
+  softline_path: "/internet-i-set/java/"
+  synonyms: ["java", "jdk", "jre", "российская java", "axiom jdk", "liberica jdk", "аналог oracle java"]
+  slang: ["джава с поддержкой", "оракл джава замена"]
+  description: "Корпоративные сертифицированные сборки Java с техподдержкой в РФ (Axiom JDK, Oracle Java SE)."
+  typical_queries: ["российская замена oracle java", "axiom jdk лицензия"]
+
+# ============================================================================
+# 15. CLOUD_AI — Облачные платформы и искусственный интеллект
+# ============================================================================
+
+- id: cloud_ai
+  parent: null
+  title: "Облачные платформы и искусственный интеллект"
+  title_short: "Облака и ИИ"
+  softline_path: "/ii/"
+  synonyms: ["облака и ии", "искусственный интеллект", "облачные решения", "ai и cloud"]
+  slang: ["облако", "иишка", "нейросети для бизнеса"]
+  description: "Российские облачные платформы IaaS/PaaS, частные облака, корпоративные LLM, ML-платформы, компьютерное зрение и речевой ИИ."
+  typical_queries: ["облачная платформа российская", "корпоративный ии для бизнеса"]
+
+- id: iaas_cloud_platforms
+  parent: cloud_ai
+  title: "Облачные платформы IaaS/PaaS и виртуальные ЦОД"
+  title_short: "Облака IaaS/PaaS"
+  softline_path: "/oblachnye-resheniya-iaas/cloud_platforms/"
+  synonyms: ["iaas", "paas", "облачная платформа", "виртуальный цод", "облачные серверы", "облако 152 фз", "аналог aws", "аналог azure"]
+  slang: ["облачные серваки", "вцод", "авс аналог"]
+  description: "Публичные и защищённые (152-ФЗ) облачные платформы IaaS/PaaS в РФ (Yandex Cloud, VK Cloud, Cloud.ru, Selectel, МТС Web Services, Softline Cloud, AWS, Azure)."
+  typical_queries: ["облако с аттестацией 152 фз", "yandex cloud для юрлиц", "cloud.ru тарифы"]
+
+- id: private_cloud_platforms
+  parent: cloud_ai
+  title: "Платформы построения частных облаков"
+  title_short: "Частные облака"
+  softline_path: "/saas/clouds/"
+  synonyms: ["частное облако", "private cloud", "гибридное облако", "облачная платформа в контур", "openstack коммерческий", "облако on-premise"]
+  slang: ["свое облако", "прайват клауд"]
+  description: "ПО для развёртывания корпоративного частного и гибридного облака на собственных серверах (VK Private Cloud, Базис.Cloud, Cloud.ru Evolution Stack, OpenStack)."
+  typical_queries: ["платформа частного облака из реестра", "vk private cloud", "свое облако на серверах"]
+
+- id: llm_gen_ai
+  parent: cloud_ai
+  title: "Генеративный ИИ, корпоративные LLM и ИИ-ассистенты"
+  title_short: "Генеративный ИИ и LLM"
+  softline_path: "/ii/gotovye-ii-modeli-i-algoritmy/"
+  synonyms: ["llm", "генеративный ии", "нейросеть для бизнеса", "корпоративный ии", "ии ассистент", "rag платформа", "аналог chatgpt", "gigachat", "yandexgpt"]
+  slang: ["чатгпт аналог", "лмм в контур", "нейронка для компании"]
+  description: "Корпоративные языковые модели, API и on-premise платформы генеративного ИИ (GigaChat Enterprise, Yandex Foundation Models, MTS AI Cotype, ChatGPT Enterprise)."
+  typical_queries: ["российский аналог chatgpt для компании", "gigachat on-premise", "yandexgpt api для юрлиц"]
+
+- id: ml_platforms_cv
+  parent: cloud_ai
+  title: "Платформы ML/DS, компьютерное зрение и видеоаналитика"
+  title_short: "ML и видеоаналитика"
+  softline_path: "/programmirovanie/mashinnoe-obuchenie/"
+  synonyms: ["машинное обучение", "ml платформа", "mlops", "компьютерное зрение", "видеоаналитика", "распознавание лиц и номеров", "cv"]
+  slang: ["мл платформа", "видеоаналитика ии", "распознавание лиц"]
+  description: "Платформы разработки и эксплуатации ML-моделей, а также системы компьютерного зрения и видеоаналитики (VisionLabs, NtechLab, Macroscop, TRASSIR, Intellect, Cloud.ru ML Space)."
+  typical_queries: ["видеоаналитика для склада и производства", "распознавание номеров авто по", "mlops платформа российская"]
+
+- id: ai_speech_chatbots
+  parent: cloud_ai
+  title: "Речевая аналитика, чат-боты и голосовые роботы"
+  title_short: "Чат-боты и речевая аналитика"
+  softline_path: "/delovie-programmi/iskusstvennyi-intellekt/"
+  synonyms: ["речевая аналитика", "чат бот платформа", "голосовой робот", "диалоговый ии", "анализ звонков"]
+  slang: ["бот для поддержки", "анализ звонков продажников"]
+  description: "Платформы создания корпоративных чат-ботов, голосовых ассистентов и речевой аналитики звонков (Just AI, ЦРТ Smart Logger, CraftTalk, Twin)."
+  typical_queries: ["речевая аналитика звонков колл центра", "платформа чат ботов российская"]
+
+# ============================================================================
+# 16. SERVICES_EDUCATION — Обучение, техподдержка и отраслевое ПО
+# ============================================================================
+
+- id: services_education
+  parent: null
+  title: "Техподдержка, обучение и отраслевое ПО"
+  title_short: "Сервисы и обучение"
+  softline_path: "/servisnye-reseniia/"
+  synonyms: ["сервисные решения", "обучение и поддержка", "образование и наука", "сопровождение по"]
+  slang: ["поддержка и курсы", "обучалки"]
+  description: "Контракты технической поддержки ПО, системы дистанционного обучения (LMS), ИТ-курсы, обучение кибербезопасности и узкоотраслевые решения."
+  typical_queries: ["техподдержка российского по", "корпоративное обучение ит"]
+
+- id: tech_support
+  parent: services_education
+  title: "Техническая поддержка ПО и ИТС"
+  title_short: "Техподдержка и ИТС"
+  softline_path: "/servisnye-reseniia/texniceskaia-podderzka-programmnogo-obespeceniia-1/"
+  synonyms: ["техническая поддержка", "техподдержка по", "сопровождение", "1с итс", "sla поддержка", "подписка на обновления", "аутсорсинг ит"]
+  slang: ["тп вендора", "итс проф", "саппорт"]
+  description: "Сертификаты расширенной техподдержки вендоров, подписки 1С:ИТС и контракты сопровождения ПО."
+  typical_queries: ["1с итс проф на 12 месяцев", "техподдержка астра линукс премиум", "расширенная поддержка касперский"]
+
+- id: lms_elearning
+  parent: services_education
+  title: "Системы дистанционного обучения (LMS) и конструкторы курсов"
+  title_short: "LMS и курсы"
+  softline_path: "/distantsionnoe-obuchenie/"
+  synonyms: ["lms", "сдо", "дистанционное обучение", "корпоративный университет", "конструктор курсов", "аналог moodle", "аналог articulate", "ispring"]
+  slang: ["лмс", "сдошка", "айспринг", "платформа для обучения сотрудников"]
+  description: "Платформы корпоративного обучения и редакторы интерактивных электронных курсов (iSpring Suite, iSpring Learn, Mirapolis LMS, Websoft, Эквио, Мотив, МТС Линк Курсы)."
+  typical_queries: ["ispring suite лицензия", "российская lms платформа", "конструктор электронных курсов"]
+
+- id: it_training_courses
+  parent: services_education
+  title: "Учебные курсы и сертификация для ИТ и бизнеса"
+  title_short: "ИТ-курсы"
+  softline_path: "/obrazovanie-i-nauka/biznes-obrazovanie/"
+  synonyms: ["курсы обучения", "курсы администрирования", "обучение сотрудников", "учебный центр", "повышение квалификации ит"]
+  slang: ["курсы по линуксу", "обучение админов"]
+  description: "Авторизованные курсы по администрированию российских ОС, СУБД, СЗИ, офисных пакетов и управлению проектами."
+  typical_queries: ["курсы администрирования astra linux", "обучение пользователей р7 офис"]
+
+- id: security_awareness
+  parent: services_education
+  title: "Обучение сотрудников кибербезопасности"
+  title_short: "Кибергигиена"
+  softline_path: "/distantsionnoe-obuchenie/infosecurity/"
+  synonyms: ["обучение кибербезопасности", "security awareness", "кибергигиена", "имитация фишинга", "обучение иб сотрудников", "антифишинговые тренинги"]
+  slang: ["тренажер фишинга", "киберграмотность"]
+  description: "Платформы повышения осведомлённости персонала в вопросах ИБ и проведения учебных фишинговых атак (Kaspersky ASAP, Phishman, Start AWR, Security Vision)."
+  typical_queries: ["обучение сотрудников информационной безопасности", "kaspersky asap лицензия", "платформа имитации фишинга"]
+
+- id: industry_specialized
+  parent: services_education
+  title: "Отраслевое ПО (видеонаблюдение, медицина, образование, АПК)"
+  title_short: "Отраслевое ПО"
+  softline_path: "/internet-i-set/videonabludenie/"
+  synonyms: ["по для видеонаблюдения", "vms", "медицинская информационная система", "мис", "по для вузов", "по для медицины", "по для сельского хозяйства"]
+  slang: ["видеонаблюдение софт", "мис для клиники"]
+  description: "Специализированное ПО для систем видеонаблюдения (VMS), медицинских клиник, учебных заведений и агропромышленности (Macroscop, TRASSIR, AxxonSoft, Инфоклиника, 1С:Медицина)."
+  typical_queries: ["по для видеонаблюдения на 32 камеры", "медицинская информационная система мис", "macroscop лицензия"]
+
+- id: ebooks_corporate_lib
+  parent: services_education
+  title: "Корпоративные электронные библиотеки"
+  title_short: "Электронные библиотеки"
+  softline_path: "/elektronnye-knigi/elektronnaya-biblioteka/"
+  synonyms: ["электронная библиотека", "корпоративная библиотека", "бизнес литература", "подписка на книги для сотрудников", "миф", "литрес", "альпина"]
+  slang: ["библиотека для компании", "книги для сотрудников"]
+  description: "Корпоративные подписки на электронные и аудиобиблиотеки деловой литературы (Литрес: Библиотека, Альпина Диджитал, МИФ)."
+  typical_queries: ["корпоративная электронная библиотека для сотрудников", "альпина диджитал подписка"]

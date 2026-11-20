@@ -1,0 +1,3106 @@
+# Вендоры программного обеспечения (РФ и мировые, актуальные и ушедшие, 2026)
+# Все ссылки в categories соответствуют листовым id из kb/categories.yaml.
+
+# ============================================================================
+# 1. ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ — РОССИЙСКИЕ ВЕНДОРЫ
+# ============================================================================
+
+- id: kaspersky
+  name: "Kaspersky"
+  name_ru: "Лаборатория Касперского"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["касперский", "лаборатория касперского", "каспер", "kaspersky lab", "касперски", "kasperski", "лк", "ao kaspersky"]
+  categories: [endpoint_security, home_antivirus, edr_xdr, mail_security, siem_soc, ot_ics_security, mobile_security_mdm, security_awareness]
+  notes: "Ведущий российский вендор ИБ, широкая линейка от SMB до Enterprise и АСУ ТП."
+
+- id: drweb
+  name: "Dr.Web"
+  name_ru: "Доктор Веб"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["доктор веб", "др веб", "дрвеб", "dr web", "dr.web", "doctor web", "д-р веб"]
+  categories: [endpoint_security, home_antivirus, mail_security, mobile_security_mdm]
+  notes: "Российский разработчик антивирусов для рабочих станций, серверов, шлюзов и мобильных ОС."
+
+- id: positive_technologies
+  name: "Positive Technologies"
+  name_ru: "Позитив Текнолоджиз"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["позитив текнолоджиз", "позитив технолоджис", "позитив", "pt", "positive", "пт"]
+  categories: [siem_soc, vuln_mgmt_pentest, waf_appsec, edr_xdr, ngfw_vpn, ot_ics_security, code_analysis_sast]
+  notes: "Крупнейший российский разработчик решений для результативной кибербезопасности (MaxPatrol, PT NAD, PT AF, PT NGFW)."
+
+- id: usergate
+  name: "UserGate"
+  name_ru: "ЮзерГейт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["юзергейт", "узергейт", "user gate", "юг", "ug"]
+  categories: [ngfw_vpn, siem_soc, edr_xdr, pam_jump_hosts]
+  notes: "Российский разработчик NGFW, систем логирования и экосистемы сетевой безопасности SUMMA."
+
+- id: security_code
+  name: "Security Code"
+  name_ru: "Код Безопасности"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["код безопасности", "код безопастности", "securitycode", "кб"]
+  categories: [nsd_access_control, ngfw_vpn, endpoint_security, server_virtualization]
+  notes: "Российский вендор сертифицированных СЗИ: Secret Net Studio, Континент, vGate, Соболь."
+
+- id: infotecs
+  name: "InfoTeCS"
+  name_ru: "ИнфоТеКС"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инфотекс", "инфотэкс", "vipnet", "випнет", "инфотекс оао"]
+  categories: [ngfw_vpn, crypto_skzi, nsd_access_control, siem_soc, ot_ics_security]
+  notes: "Разработчик линейки ViPNet (ГОСТ VPN, СКЗИ, NGFW, защита АСУ ТП)."
+
+- id: cryptopro
+  name: "CryptoPro"
+  name_ru: "КриптоПро"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["криптопро", "крипто про", "криптапро", "crypto pro", "кпро"]
+  categories: [crypto_skzi, e_signature, ssl_certificates]
+  notes: "Основной российский разработчик сертифицированных ФСБ СКЗИ (КриптоПро CSP, DSS, УЦ)."
+
+- id: infowatch
+  name: "InfoWatch"
+  name_ru: "ИнфоВотч"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инфовотч", "инфоуотч", "info watch", "инфовоч"]
+  categories: [dlp, ngfw_vpn, employee_monitoring, ot_ics_security]
+  notes: "Российский вендор DLP-систем (Traffic Monitor), анализа рисков и промышленной ИБ."
+
+- id: searchinform
+  name: "SearchInform"
+  name_ru: "СёрчИнформ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["серчинформ", "сёрчинформ", "search inform", "серч информ"]
+  categories: [dlp, siem_soc, employee_monitoring, nsd_access_control]
+  notes: "Российский разработчик КИБ (DLP), FileAuditor, SIEM и TimeInformer."
+
+- id: solar_rt
+  name: "Solar"
+  name_ru: "ГК Солар"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["солар", "ртк солар", "rtk solar", "solar security", "гк солар", "ростелеком солар"]
+  categories: [dlp, iam_pam_mfa, code_analysis_sast, ngfw_vpn, waf_appsec, siem_soc]
+  notes: "Разработчик Solar Dozor (DLP), Solar inRights (IdM), Solar appScreener, Solar NGFW, Solar WebProxy."
+
+- id: bi_zone
+  name: "BI.ZONE"
+  name_ru: "БИ.ЗОН"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["бизон", "би зон", "bizone", "bi zone", "би.зон"]
+  categories: [edr_xdr, waf_appsec, mail_security, siem_soc, security_awareness]
+  notes: "Российская компания по кибербезопасности: EDR, WAF, CESP (защита почты), Threat Intelligence."
+
+- id: garda_technologies
+  name: "Garda"
+  name_ru: "Группа компаний Гарда"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["гарда", "гарда технологии", "garda", "гарда бд"]
+  categories: [dlp, waf_appsec, edr_xdr, ngfw_vpn]
+  notes: "Разработчик Гарда БД (DAM), Гарда DLP, Гарда WAF, Гарда NDR и систем защиты от DDoS."
+
+- id: aladdin_rd
+  name: "Aladdin"
+  name_ru: "Аладдин"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аладдин", "аладдин рд", "aladdin rd", "джакарта", "jacarta"]
+  categories: [tokens_pki, iam_pam_mfa, crypto_skzi, data_wiping_encryption]
+  notes: "Производитель токенов JaCarta, системы управления PKI (JMS) и шифрования Secret Disk."
+
+- id: aktiv_rutoken
+  name: "Aktiv"
+  name_ru: "Компания Актив"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["актив", "рутокен", "rutoken", "aktiv", "актив софт"]
+  categories: [tokens_pki, iam_pam_mfa, e_signature]
+  notes: "Ведущий российский производитель ключевых носителей Рутокен ЭЦП и решений PKI."
+
+- id: confidant
+  name: "Confidant"
+  name_ru: "Конфидент"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["конфидент", "даллас лок", "dallas lock", "цзи конфидент"]
+  categories: [nsd_access_control, ngfw_vpn]
+  notes: "Разработчик сертифицированной линейки СЗИ от НСД Dallas Lock."
+
+- id: falcongaze
+  name: "Falcongaze"
+  name_ru: "Фалконгейз"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["фалконгейз", "фалкон", "securetower", "секьюртауэр"]
+  categories: [dlp, employee_monitoring]
+  notes: "Разработчик DLP и контроля персонала SecureTower."
+
+- id: makves
+  name: "Makves"
+  name_ru: "Маквес"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["маквес", "makves dcap"]
+  categories: [dlp, nsd_access_control]
+  notes: "Российский разработчик DCAP-системы Makves для аудита прав доступа и неструктурированных данных."
+
+- id: smart_soft
+  name: "Smart-Soft"
+  name_ru: "Смарт-Софт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["смарт софт", "смартсофт", "traffic inspector", "трафик инспектор"]
+  categories: [ngfw_vpn, endpoint_security]
+  notes: "Разработчик межсетевых экранов Traffic Inspector Next Generation."
+
+- id: ideco
+  name: "Ideco"
+  name_ru: "Айдеко"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["айдеко", "идеко", "ideco ngfw", "ideco utm"]
+  categories: [ngfw_vpn]
+  notes: "Российский разработчик межсетевых экранов Ideco NGFW (ранее Ideco UTM)."
+
+- id: pro32
+  name: "PRO32"
+  name_ru: "ПРО32"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["про32", "про 32", "pro 32"]
+  categories: [endpoint_security, home_antivirus, remote_desktop]
+  notes: "Российский бренд ИБ-решений (антивирус PRO32 Endpoint Security, удалённый доступ PRO32 Connect)."
+
+- id: security_vision
+  name: "Security Vision"
+  name_ru: "Секьюрити Вижн"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["секьюрити вижн", "securityvision", "св"]
+  categories: [siem_soc, vuln_mgmt_pentest, security_awareness]
+  notes: "Российская платформа SOAR/IRP, SGRC, SIEM и автоматизации кибербезопасности."
+
+- id: indeed_identity
+  name: "Indeed Identity"
+  name_ru: "Индид"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["индид", "indeed", "indeed am", "indeed pam"]
+  categories: [iam_pam_mfa, tokens_pki]
+  notes: "Разработчик систем усиленной аутентификации (Indeed AM), PAM и управления PKI (Indeed CM)."
+
+- id: multifactor
+  name: "MULTIFACTOR"
+  name_ru: "Мультифактор"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мультифактор", "multi factor", "2fa мультифактор"]
+  categories: [iam_pam_mfa]
+  notes: "Российская система многофакторной аутентификации и контроля доступа."
+
+- id: avanpost
+  name: "Avanpost"
+  name_ru: "Аванпост"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аванпост", "avanpost idm", "avanpost fam"]
+  categories: [iam_pam_mfa, tokens_pki]
+  notes: "Российский разработчик IdM/IGA, FAM (SSO/MFA) и управления инфраструктурой открытых ключей."
+
+- id: cyberpeak
+  name: "CyberPeak"
+  name_ru: "Киберпик"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["киберпик", "спектр dcap", "cyber peak"]
+  categories: [dlp, nsd_access_control]
+  notes: "Разработчик DCAP-системы Спектр для защиты файловых хранилищ и аудита прав."
+
+- id: stakhanovets
+  name: "Stakhanovets"
+  name_ru: "Стахановец"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["стахановец", "stahanovec", "программный комплекс стахановец"]
+  categories: [employee_monitoring, dlp]
+  notes: "Российская система учёта рабочего времени, анализа продуктивности и DLP."
+
+- id: kickidler
+  name: "Kickidler"
+  name_ru: "Кикидлер"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["кикидлер", "кик идлер", "kick idler"]
+  categories: [employee_monitoring]
+  notes: "Российская система учёта рабочего времени и видеомониторинга экранов сотрудников."
+
+- id: staffcop
+  name: "Staffcop"
+  name_ru: "СКБ Контур (Staffcop)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["стаффкоп", "стафкоп", "атом безопасность", "контур staffcop"]
+  categories: [employee_monitoring, dlp]
+  notes: "Платформа расследования инцидентов ИБ, DLP и контроля активности персонала (экосистема Контура)."
+
+- id: f6_security
+  name: "F6"
+  name_ru: "Ф6 (ранее F.A.C.C.T.)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ф6", "facct", "f.a.c.c.t", "факт иб", "group-ib рф", "групп айби"]
+  categories: [edr_xdr, mail_security, vuln_mgmt_pentest]
+  notes: "Российский разработчик технологий защиты от киберпреступлений (Managed XDR, Threat Intelligence, антифрод)."
+
+- id: esmart
+  name: "ESMART"
+  name_ru: "ИСБЦ (ESMART)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["есмарт", "исбц", "esmart token", "смарт карты esmart"]
+  categories: [tokens_pki]
+  notes: "Российский производитель сертифицированных USB-токенов и смарт-карт ESMART."
+
+- id: trusted_cryptoarm
+  name: "Digital Technologies"
+  name_ru: "Цифровые технологии"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["цифровые технологии", "криптоарм", "cryptoarm", "trusted"]
+  categories: [e_signature, crypto_skzi]
+  notes: "Разработчик ПО КриптоАРМ для электронной подписи и шифрования файлов."
+
+- id: phishman
+  name: "Phishman"
+  name_ru: "Фишман"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["фишман", "phishman training"]
+  categories: [security_awareness]
+  notes: "Российская платформа обучения сотрудников кибербезопасности и имитации фишинга."
+
+- id: curator_ddos
+  name: "Qrator Labs"
+  name_ru: "Куратор Лабс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["куратор", "qrator", "кратор", "куратор лабс"]
+  categories: [waf_appsec]
+  notes: "Сервисы фильтрации DDoS-атак, WAF и защиты доступности веб-приложений."
+
+- id: stormwall
+  name: "StormWall"
+  name_ru: "СтормВолл"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["стормволл", "штормвол", "storm wall"]
+  categories: [waf_appsec]
+  notes: "Российский сервис защиты от DDoS-атак и веб-угроз для бизнеса."
+
+- id: ait_s_terra
+  name: "S-Terra"
+  name_ru: "С-Терра СиЭсПи"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["с терра", "стерра", "s-terra", "sterracsp"]
+  categories: [ngfw_vpn, crypto_skzi]
+  notes: "Российский разработчик сертифицированных ФСБ и ФСТЭК ГОСТ VPN шлюзов С-Терра."
+
+- id: altell
+  name: "ALTELL"
+  name_ru: "АЛТЭЛ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["алтэл", "altell neo", "алтел"]
+  categories: [ngfw_vpn, nsd_access_control]
+  notes: "Российский разработчик межсетевых экранов ALTELL NEO и СЗИ."
+
+- id: r_vision
+  name: "R-Vision"
+  name_ru: "Р-Вижн"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["р-вижн", "рвижн", "rvision", "r vision"]
+  categories: [siem_soc, vuln_mgmt_pentest]
+  notes: "Российский разработчик R-Vision SOAR, SIEM, SGRC и Threat Intelligence Platform."
+
+- id: ru_siem
+  name: "RuSIEM"
+  name_ru: "РуСИЕМ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["русием", "русиэм", "rusiem"]
+  categories: [siem_soc]
+  notes: "Российский разработчик SIEM-системы RuSIEM."
+
+- id: redcheck_altex
+  name: "Altex-Soft"
+  name_ru: "Алтэкс-Софт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["алтэкс софт", "алтекс софт", "редчек", "redcheck"]
+  categories: [vuln_mgmt_pentest]
+  notes: "Разработчик сканера уязвимостей и анализатора защищённости RedCheck."
+
+- id: cyberlimpha
+  name: "CyberLympha"
+  name_ru: "Киберлимфа"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["киберлимфа", "datapk", "датапк"]
+  categories: [ot_ics_security, siem_soc]
+  notes: "Разработчик комплекса мониторинга и защиты АСУ ТП и объектов КИИ DATAPK."
+
+- id: safe_tech
+  name: "SafeTech"
+  name_ru: "СэйфТех"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сейфтех", "сэйфтех", "paycontrol", "mypaycontrol"]
+  categories: [iam_pam_mfa, e_signature]
+  notes: "Разработчик решений мобильной электронной подписи и 2FA (PayControl, myDSS)."
+
+- id: axoft_skdpu
+  name: "IT-Expertise"
+  name_ru: "АйТи-Экспертиза"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["айти экспертиза", "скдпу", "скдпу нт", "skdpu"]
+  categories: [iam_pam_mfa, pam_jump_hosts]
+  notes: "Разработчик PAM-системы СКДПУ НТ для контроля привилегированных пользователей и подрядчиков."
+
+- id: webcontrol_kryptonit
+  name: "SafeInspect"
+  name_ru: "Новые технологии безопасности"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["нтб", "safeinspect", "сейфинспект"]
+  categories: [iam_pam_mfa, pam_jump_hosts]
+  notes: "Разработчик российской PAM-системы SafeInspect."
+
+- id: ucm_globaltrust
+  name: "GlobalTrust"
+  name_ru: "ГлобалТраст"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["глобалтраст", "russian ssl", "лидертелеком"]
+  categories: [ssl_certificates]
+  notes: "Поставщик и интегратор SSL/TLS-сертификатов для российских юрлиц."
+
+# ============================================================================
+# 2. ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ — ЗАРУБЕЖНЫЕ ВЕНДОРЫ
+# ============================================================================
+
+- id: eset
+  name: "ESET"
+  name_ru: "ЕСЕТ"
+  country: SK
+  origin: foreign
+  market_status: left
+  aliases: ["есет", "есэт", "нод32", "nod32", "nod 32", "eset nod32"]
+  categories: [endpoint_security, home_antivirus, edr_xdr]
+  notes: "Официальные поставки в РФ прекращены; замещается Kaspersky, Dr.Web, PRO32."
+
+- id: cisco
+  name: "Cisco"
+  name_ru: "Циско"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["циско", "сиско", "cisco systems", "anyconnect", "firepower"]
+  categories: [ngfw_vpn, ip_telephony, vks_webinars, iam_pam_mfa]
+  notes: "Поставки и продления в РФ прекращены."
+
+- id: fortinet
+  name: "Fortinet"
+  name_ru: "Фортинет"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["фортинет", "фортигейт", "fortigate", "forti"]
+  categories: [ngfw_vpn, siem_soc, edr_xdr]
+  notes: "Официальные поставки и обновления подписок в РФ прекращены."
+
+- id: palo_alto
+  name: "Palo Alto Networks"
+  name_ru: "Пало Альто"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["пало альто", "palo alto", "paloalto", "pan-os", "cortex"]
+  categories: [ngfw_vpn, edr_xdr, siem_soc]
+  notes: "Официально недоступен в РФ."
+
+- id: checkpoint
+  name: "Check Point"
+  name_ru: "Чек Поинт"
+  country: IL
+  origin: foreign
+  market_status: left
+  aliases: ["чекпоинт", "чек поинт", "check point software"]
+  categories: [ngfw_vpn, endpoint_security, mobile_security_mdm]
+  notes: "Официальные поставки в РФ приостановлены."
+
+- id: symantec_broadcom
+  name: "Symantec (Broadcom)"
+  name_ru: "Симантек"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["симантек", "symantec", "sep", "broadcom security"]
+  categories: [endpoint_security, dlp, mail_security]
+  notes: "Ушёл с российского рынка."
+
+- id: trellix_mcafee
+  name: "Trellix (McAfee)"
+  name_ru: "Макафи / Трелликс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["макафи", "mcafee", "trellix", "трелликс", "fireeye"]
+  categories: [endpoint_security, dlp, siem_soc, edr_xdr]
+  notes: "Ушёл с российского рынка."
+
+- id: crowdstrike
+  name: "CrowdStrike"
+  name_ru: "КраудСтрайк"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["краудстрайк", "crowd strike", "falcon edr"]
+  categories: [edr_xdr, endpoint_security]
+  notes: "Недоступен в РФ."
+
+- id: sophos
+  name: "Sophos"
+  name_ru: "Софос"
+  country: GB
+  origin: foreign
+  market_status: left
+  aliases: ["софос", "sophos endpoint", "sophos xg"]
+  categories: [endpoint_security, ngfw_vpn]
+  notes: "Недоступен в РФ."
+
+- id: trend_micro
+  name: "Trend Micro"
+  name_ru: "Тренд Микро"
+  country: JP
+  origin: foreign
+  market_status: left
+  aliases: ["тренд микро", "trendmicro", "apex one"]
+  categories: [endpoint_security, edr_xdr, mail_security]
+  notes: "Ушёл с российского рынка."
+
+- id: bitdefender
+  name: "Bitdefender"
+  name_ru: "Битдефендер"
+  country: RO
+  origin: foreign
+  market_status: left
+  aliases: ["битдефендер", "gravityzone"]
+  categories: [endpoint_security, edr_xdr]
+  notes: "Официальные поставки в РФ прекращены."
+
+- id: splunk
+  name: "Splunk"
+  name_ru: "Спланк"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["спланк", "splunk enterprise"]
+  categories: [siem_soc, monitoring_apm]
+  notes: "Ушёл с рынка РФ; замещается MaxPatrol SIEM, KUMA, RuSIEM."
+
+- id: tenable
+  name: "Tenable"
+  name_ru: "Тенабл"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["тенабл", "nessus", "нессус", "tenable sc"]
+  categories: [vuln_mgmt_pentest]
+  notes: "Ушёл с рынка РФ; замещается MaxPatrol VM, RedCheck."
+
+- id: qualys
+  name: "Qualys"
+  name_ru: "Квалис"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["квалис", "qualys vmdr"]
+  categories: [vuln_mgmt_pentest, waf_appsec]
+  notes: "Недоступен в РФ."
+
+- id: cyberark
+  name: "CyberArk"
+  name_ru: "КиберАрк"
+  country: IL
+  origin: foreign
+  market_status: left
+  aliases: ["киберарк", "сайберарк", "cyber ark"]
+  categories: [iam_pam_mfa]
+  notes: "Недоступен в РФ; замещается СКДПУ НТ, Indeed PAM, SafeInspect."
+
+- id: okta
+  name: "Okta"
+  name_ru: "Окта"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["окта", "okta sso", "auth0"]
+  categories: [iam_pam_mfa]
+  notes: "Недоступен в РФ; замещается Avanpost FAM, MULTIFACTOR, Blitz Identity Provider."
+
+- id: f5_networks
+  name: "F5"
+  name_ru: "Эф5 Нетворкс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["f5", "big-ip", "f5 big ip", "nginx plus"]
+  categories: [load_balancing_adc, waf_appsec]
+  notes: "Ушёл с рынка РФ; замещается Angie Pro, PT AF, Гарда WAF."
+
+- id: digicert
+  name: "DigiCert"
+  name_ru: "ДиджиСерт"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["диджисерт", "thawte", "geotrust", "rapidssl"]
+  categories: [ssl_certificates]
+  notes: "Прекратил выпуск сертификатов для российских доменов."
+
+- id: globalsign
+  name: "GlobalSign"
+  name_ru: "ГлобалСайн"
+  country: BE
+  origin: foreign
+  market_status: restricted
+  aliases: ["глобалсайн", "global sign"]
+  categories: [ssl_certificates]
+  notes: "Ограниченный выпуск сертификатов для клиентов из РФ."
+
+- id: onepassword
+  name: "1Password"
+  name_ru: "1Пассворд"
+  country: CA
+  origin: foreign
+  market_status: left
+  aliases: ["1password", "ванпассворд", "onepassword"]
+  categories: [iam_pam_mfa]
+  notes: "Прямые B2B-продажи в РФ недоступны; замещается Пассворк."
+
+- id: passwork
+  name: "Passwork"
+  name_ru: "Пассворк"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["пассворк", "passwork ru"]
+  categories: [iam_pam_mfa]
+  notes: "Российский корпоративный менеджер паролей (on-premise, ЕРРП)."
+
+- id: rebrain_blitz
+  name: "Identity Blitz"
+  name_ru: "РЕАК Софт (Blitz)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["блитц", "blitz identity", "реак софт"]
+  categories: [iam_pam_mfa]
+  notes: "Российский провайдер аутентификации, SSO и MFA."
+
+# ============================================================================
+# 3. ОПЕРАЦИОННЫЕ СИСТЕМЫ И ИНФРАСТРУКТУРА — РОССИЙСКИЕ ВЕНДОРЫ
+# ============================================================================
+
+- id: astra_group
+  name: "Astra Group"
+  name_ru: "Группа Астра"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["группа астра", "астра", "астра линукс", "русбитех", "русбитех-астра", "astra", "astra linux"]
+  categories: [desktop_os_ru, server_os, server_virtualization, vdi_desktop_virt, directory_services, mail_servers, backup_recovery, mobile_os, tech_support]
+  notes: "Ведущая российская экосистема инфраструктурного ПО: Astra Linux, Брест, Termidesk, ALD Pro, RuPost, RuBackup, Tantor."
+
+- id: basealt
+  name: "BaseALT"
+  name_ru: "Базальт СПО"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["базальт", "базальт спо", "альт линукс", "alt linux", "alt", "базальтспо"]
+  categories: [desktop_os_ru, server_os, server_virtualization, directory_services, tech_support]
+  notes: "Российский разработчик семейства ОС «Альт» (Рабочая станция, Сервер, Образование, СП, Альт Виртуализация, Альт Домен)."
+
+- id: red_soft
+  name: "RED SOFT"
+  name_ru: "РЕД СОФТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ред софт", "редсофт", "redsoft", "ред ос", "red os"]
+  categories: [desktop_os_ru, server_os, server_virtualization, directory_services, rdbms, tech_support]
+  notes: "Российский разработчик РЕД ОС, РЕД Виртуализация, РЕД АДМ и РЕД База Данных."
+
+- id: rosa_ntc
+  name: "ROSA"
+  name_ru: "НТЦ ИТ РОСА"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["роса", "нтц ит роса", "роса линукс", "rosa linux", "rosa"]
+  categories: [desktop_os_ru, server_os, server_virtualization, directory_services, mobile_os]
+  notes: "Разработчик ОС РОСА Хром/Кобальт, РОСА Виртуализация, РОСА Центр Управления и РОСА Мобайл."
+
+- id: nppkt
+  name: "NPPKT"
+  name_ru: "АО НППКТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["нппкт", "ос нова", "основа", "osnova linux", "ао нппкт"]
+  categories: [desktop_os_ru, server_os]
+  notes: "Разработчик российской операционной системы ОСнова."
+
+- id: uncom
+  name: "Uncom"
+  name_ru: "Анком ОС"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["анком", "uncom os", "анком ос"]
+  categories: [desktop_os_ru]
+  notes: "Российский разработчик пользовательской и корпоративной ОС Uncom OS."
+
+- id: open_mobile_platform
+  name: "Open Mobile Platform"
+  name_ru: "Открытая мобильная платформа"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["омп", "открытая мобильная платформа", "аврора", "ос аврора", "aurora os"]
+  categories: [mobile_os, mobile_security_mdm]
+  notes: "Разработчик российской мобильной ОС Аврора и платформы управления устройствами Аврора Центр."
+
+- id: basis_virt
+  name: "Basis"
+  name_ru: "Базис"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["базис", "базис виртуализация", "basis", "тионикс", "скала р", "digital energy"]
+  categories: [server_virtualization, vdi_desktop_virt, containers_kubernetes, private_cloud_platforms, backup_recovery]
+  notes: "Крупнейший российский разработчик ПО виртуализации и облаков: Basis Dynamix, Basis Workplace, Basis Digital Energy, Basis Guard."
+
+- id: orion_soft
+  name: "Orion soft"
+  name_ru: "Орион софт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["орион софт", "орионсофт", "orionsoft", "zvirt", "звёрт", "зверт"]
+  categories: [server_virtualization, containers_kubernetes, private_cloud_platforms, rdbms]
+  notes: "Разработчик платформы виртуализации zVirt, контейнерной платформы Nova, Cloudlink и Proxima DB."
+
+- id: vstack_itglobal
+  name: "vStack"
+  name_ru: "вСтек"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["встек", "в-стек", "vstack hcp", "itglobal"]
+  categories: [server_virtualization, sds_storage]
+  notes: "Российская гиперконвергентная платформа виртуализации vStack HCP."
+
+- id: ispsystem
+  name: "ISPsystem"
+  name_ru: "ИСПсистем"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["испсистем", "исп систем", "vmmanager", "dcimanager", "billmanager"]
+  categories: [server_virtualization, private_cloud_platforms]
+  notes: "Российский разработчик платформ управления виртуализацией и ЦОД (VMmanager, DCImanager, BILLmanager)."
+
+- id: flant
+  name: "Flant"
+  name_ru: "Флант"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["флант", "deckhouse", "декхаус", "декхауз"]
+  categories: [containers_kubernetes, server_virtualization]
+  notes: "Разработчик российской контейнерной платформы Deckhouse Kubernetes Platform и Deckhouse Virtualization."
+
+- id: laboratoria_chisl
+  name: "Laboratoria Chisl"
+  name_ru: "Лаборатория Числитель"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["числитель", "лаборатория числитель", "штурвал", "shturval"]
+  categories: [containers_kubernetes]
+  notes: "Разработчик корпоративной платформы контейнеризации Штурвал."
+
+- id: monq
+  name: "MONQ"
+  name_ru: "МОНК Диджитал Лаб"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["монк", "monq aiops", "монк мониторинг"]
+  categories: [monitoring_apm]
+  notes: "Российская AIOps-платформа зонтичного мониторинга ИТ-инфраструктуры."
+
+- id: saymon
+  name: "SAYMON"
+  name_ru: "Сэймон"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сэймон", "сеймон", "saymon мониторинг"]
+  categories: [monitoring_apm]
+  notes: "Российская платформа мониторинга и управления ИТ и телеком-инфраструктурой."
+
+- id: simpleone
+  name: "SimpleOne"
+  name_ru: "СимплВан"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["симплван", "симпл ван", "simple one", "simpleone esm"]
+  categories: [itsm_service_desk, bpm_rpa_lowcode]
+  notes: "Российская ESM/ITSM-платформа для автоматизации ИТ и сервисных процессов (аналог ServiceNow)."
+
+- id: naumen
+  name: "NAUMEN"
+  name_ru: "Наумен"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["наумен", "naumen smp", "naumen service desk", "naumen contact center"]
+  categories: [itsm_service_desk, ip_telephony, ai_speech_chatbots]
+  notes: "Российский вендор ITSM (Naumen Service Management Platform), ITSM 365 и контакт-центров."
+
+- id: inframanager
+  name: "InfraManager"
+  name_ru: "ИнфраМенеджер"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инфраменеджер", "инфра менеджер", "infra manager"]
+  categories: [itsm_service_desk]
+  notes: "Российская система класса Service Desk и ITAM (учёт ИТ-активов и заявок)."
+
+- id: web_server_angie
+  name: "Web Server"
+  name_ru: "Веб-Сервер (Angie)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["веб-сервер", "angie", "анжи", "энджи", "angie pro"]
+  categories: [load_balancing_adc]
+  notes: "Российский высокопроизводительный веб-сервер и балансировщик Angie / Angie Pro от бывших разработчиков NGINX."
+
+- id: etersoft
+  name: "Etersoft"
+  name_ru: "Этерсофт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["этерсофт", "етерсофт", "wine etersoft", "wine@etersoft"]
+  categories: [desktop_hypervisors, system_utilities]
+  notes: "Разработчик WINE@Etersoft для запуска Windows-приложений на российских Linux."
+
+- id: colibri_arm
+  name: "Sovremennye Tekhnologii"
+  name_ru: "Колибри-АРМ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["колибри", "колибри арм", "колибри-арм", "colibri arm"]
+  categories: [directory_services]
+  notes: "Российская система управления парком ПК и ОС (аналог Microsoft SCCM/MECM)."
+
+- id: space_daac
+  name: "DAAC / Space"
+  name_ru: "Даком М"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["даком м", "даком", "spacevm", "space vdi", "спейс вм"]
+  categories: [server_virtualization, vdi_desktop_virt]
+  notes: "Российский разработчик платформы виртуализации SpaceVM и Space VDI."
+
+- id: softline_msvsphere
+  name: "Inferit"
+  name_ru: "Инферит ОС (МСВСфера)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инферит", "мсвсфера", "msvsphere", "инферит ос"]
+  categories: [desktop_os_ru, server_os]
+  notes: "Российский разработчик операционной системы МСВСфера (кластер Софтлайн)."
+
+- id: klyuch_astrom
+  name: "Key Systems / ASTROM"
+  name_ru: "Астром (Ключ-АСТРОМ)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ключ астром", "астром", "astrom", "ключ-астром"]
+  categories: [monitoring_apm]
+  notes: "Российская APM и Observability платформа (аналог Dynatrace)."
+
+# ============================================================================
+# 4. ОПЕРАЦИОННЫЕ СИСТЕМЫ И ИНФРАСТРУКТУРА — ЗАРУБЕЖНЫЕ ВЕНДОРЫ
+# ============================================================================
+
+- id: microsoft
+  name: "Microsoft"
+  name_ru: "Майкрософт"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["майкрософт", "майкрасофт", "микрософт", "мс", "ms", "microsoft corporation"]
+  categories: [desktop_os_windows, server_os, office_suite, rdbms, mail_servers, uc_platforms, project_planning, diagramming_mindmaps, bi_analytics, ide_compilers, iaas_cloud_platforms]
+  notes: "Официальные корпоративные продажи в РФ приостановлены; на рынке присутствуют отдельные ESD-позиции и остатки."
+
+- id: vmware_broadcom
+  name: "VMware (Broadcom)"
+  name_ru: "ВМваре"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["вмваре", "вмварь", "vmware", "вмвар", "broadcom vmware"]
+  categories: [server_virtualization, vdi_desktop_virt, desktop_hypervisors, private_cloud_platforms]
+  notes: "Официально ушёл из РФ; ключевой объект импортозамещения виртуализации."
+
+- id: red_hat
+  name: "Red Hat"
+  name_ru: "Ред Хат"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["редхат", "ред хат", "redhat", "rhel", "openshift"]
+  categories: [linux_unix_os, server_os, containers_kubernetes, server_virtualization]
+  notes: "Ушёл с российского рынка."
+
+- id: suse
+  name: "SUSE"
+  name_ru: "Сусе"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["сусе", "суся", "sles", "suse linux", "rancher"]
+  categories: [linux_unix_os, server_os, containers_kubernetes]
+  notes: "Ушёл с российского рынка."
+
+- id: canonical
+  name: "Canonical"
+  name_ru: "Каноникал (Ubuntu)"
+  country: GB
+  origin: foreign
+  market_status: left
+  aliases: ["каноникал", "убунту", "ubuntu", "ubuntu pro"]
+  categories: [linux_unix_os, server_os]
+  notes: "Коммерческая поддержка Ubuntu Pro в РФ прекращена."
+
+- id: citrix
+  name: "Citrix"
+  name_ru: "Цитрикс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["цитрикс", "ситрикс", "citrix systems", "xenapp", "xendesktop"]
+  categories: [vdi_desktop_virt, load_balancing_adc, server_virtualization]
+  notes: "Ушёл с рынка РФ; замещается Termidesk, Space VDI, Basis Workplace."
+
+- id: parallels
+  name: "Parallels"
+  name_ru: "Параллелс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["параллелс", "паралелс", "parallels desktop", "parallels ras"]
+  categories: [desktop_hypervisors, vdi_desktop_virt]
+  notes: "Официальные продажи в РФ прекращены."
+
+- id: zabbix
+  name: "Zabbix"
+  name_ru: "Заббикс"
+  country: LV
+  origin: foreign
+  market_status: left
+  aliases: ["заббикс", "забикс", "zabbix sia"]
+  categories: [monitoring_apm]
+  notes: "Open Source продукт доступен, официальная коммерческая поддержка вендора в РФ остановлена."
+
+- id: servicenow
+  name: "ServiceNow"
+  name_ru: "СервисНау"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["сервиснау", "service now"]
+  categories: [itsm_service_desk]
+  notes: "Ушёл из РФ; замещается SimpleOne, Naumen SMP."
+
+- id: datadog
+  name: "Datadog"
+  name_ru: "Датадог"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["датадог", "data dog"]
+  categories: [monitoring_apm]
+  notes: "Облачный мониторинг, недоступен для оплаты юрлицами РФ."
+
+- id: finalwire
+  name: "FinalWire"
+  name_ru: "ФайналВайр (AIDA64)"
+  country: HU
+  origin: foreign
+  market_status: restricted
+  aliases: ["aida64", "аида64", "аида 64", "finalwire"]
+  categories: [system_utilities]
+  notes: "Разработчик утилиты диагностики и аудита оборудования AIDA64."
+
+- id: softinventive
+  name: "Softinventive Lab"
+  name_ru: "Софтинвентив Лаб"
+  country: BY
+  origin: foreign
+  market_status: active
+  aliases: ["total network inventory", "tni", "софтинвентив"]
+  categories: [itsm_service_desk, system_utilities]
+  notes: "Разработчик Total Network Inventory для учёта ПК и ПО в сети."
+
+# ============================================================================
+# 5. ОФИС, ДОКУМЕНТЫ, PDF, OCR, ПЕРЕВОДЫ
+# ============================================================================
+
+- id: r7_office
+  name: "R7-Office"
+  name_ru: "АО Р7"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["р7", "р7 офис", "р7-офис", "р 7 офис", "r7", "r7 office", "r7-office", "нкт"]
+  categories: [office_suite, email_clients_calendars, diagramming_mindmaps, mail_servers, uc_platforms]
+  notes: "Один из двух лидеров российского офисного ПО (высокая совместимость с OOXML, макросы, корпоративный сервер)."
+
+- id: myoffice
+  name: "MyOffice"
+  name_ru: "МойОфис (Новые облачные технологии)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мойофис", "мой офис", "moyofis", "my office", "нот", "новые облачные технологии"]
+  categories: [office_suite, mail_servers, email_clients_calendars, corporate_messengers, sds_storage]
+  notes: "Ведущий российский офисный пакет и коммуникационная платформа (МойОфис Стандартный, Профессиональный, Почта, Squadus)."
+
+- id: yandex
+  name: "Yandex"
+  name_ru: "Яндекс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["яндекс", "яндекс 360", "yandex cloud", "яндекс облако", "я360"]
+  categories: [office_suite, mail_servers, uc_platforms, vks_webinars, task_project_trackers, iaas_cloud_platforms, bi_analytics, llm_gen_ai, speech_text, browsers_network_utils, logistics_tms, git_cicd_devops]
+  notes: "Крупнейшая российская экосистема: Яндекс 360 для бизнеса, Yandex Cloud, DataLens, Трекер, Телемост, Браузер для организаций, YandexGPT."
+
+- id: vk_tech
+  name: "VK Tech"
+  name_ru: "ВК Тех"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["вк тех", "vk", "вк", "mail.ru корпоративный", "vk workspace", "vk cloud"]
+  categories: [uc_platforms, mail_servers, corporate_messengers, vks_webinars, iaas_cloud_platforms, private_cloud_platforms, kedo_hr_docs, nosql_inmemory, sds_storage]
+  notes: "Корпоративная экосистема VK: VK Workspace (Почта, Teams, Диск), VK Cloud, VK Private Cloud, Tarantool, VK HR Tek."
+
+- id: content_ai
+  name: "Content AI"
+  name_ru: "Контент ИИ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["контент ии", "контент аи", "contentai", "contentreader", "преемник abbyy"]
+  categories: [ocr_capture, pdf_editors]
+  notes: "Российский правопреемник технологий ABBYY в РФ: ContentReader PDF, ContentCapture, Intelligent Search."
+
+- id: smart_engines
+  name: "Smart Engines"
+  name_ru: "Смарт Энджинс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["смарт энджинс", "smartengines", "распознавание паспортов smart"]
+  categories: [ocr_capture, ml_platforms_cv]
+  notes: "Российский разработчик ИИ-систем распознавания паспортов, первичных документов и банковских карт в закрытом контуре."
+
+- id: promt
+  name: "PROMT"
+  name_ru: "ПРОМТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["промт", "promt neural", "promt server", "переводчик промт"]
+  categories: [translation_dictionaries]
+  notes: "Ведущий российский разработчик нейросетевых корпоративных переводчиков (в т.ч. офлайн в закрытый контур)."
+
+- id: code_industry
+  name: "Code Industry"
+  name_ru: "Код Индастри"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мастер pdf", "master pdf editor", "код индастри"]
+  categories: [pdf_editors]
+  notes: "Разработчик кроссплатформенного Мастер PDF Редактора (Windows/Linux/macOS, совместим с российскими ОС)."
+
+- id: dbrain
+  name: "Dbrain"
+  name_ru: "Дбрейн"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["дбрейн", "dbrain ocr"]
+  categories: [ocr_capture, ml_platforms_cv]
+  notes: "Российская платформа интеллектуального распознавания и классификации документов (IDP)."
+
+- id: paratype
+  name: "ParaType"
+  name_ru: "ПараТайп"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["паратайп", "шрифты паратайп", "pt sans"]
+  categories: [text_editors]
+  notes: "Российская шрифтовая студия и поставщик корпоративных лицензий на шрифты."
+
+- id: crt_speech
+  name: "CRT"
+  name_ru: "Группа компаний ЦРТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["црт", "центр речевых технологий", "speechpro", "smart logger"]
+  categories: [speech_text, ai_speech_chatbots]
+  notes: "Российский разработчик систем распознавания и синтеза речи, речевой аналитики и протоколирования."
+
+- id: abbyy
+  name: "ABBYY"
+  name_ru: "АББИИ"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["абби", "аббии", "эбби", "finereader", "файнридер", "flexicapture", "lingvo"]
+  categories: [ocr_capture, pdf_editors, translation_dictionaries]
+  notes: "Ушёл с российского рынка; технологии в РФ развиваются компанией Content AI."
+
+- id: foxit
+  name: "Foxit"
+  name_ru: "Фоксит"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["фоксит", "foxit pdf", "phantompdf"]
+  categories: [pdf_editors]
+  notes: "Зарубежный разработчик PDF-редакторов; ограниченная доступность."
+
+- id: adobe
+  name: "Adobe"
+  name_ru: "Адоб"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["адоб", "адобе", "адоби", "creative cloud", "photoshop", "acrobat"]
+  categories: [pdf_editors, raster_photo, vector_illustration, dtp_publishing, video_editing]
+  notes: "Официально прекратил продажи и продления в РФ."
+
+- id: deepl
+  name: "DeepL"
+  name_ru: "ДипЭль"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["дипл", "дипэль", "deepl pro"]
+  categories: [translation_dictionaries]
+  notes: "Недоступен в РФ; замещается PROMT Neural Translation Server."
+
+- id: notion
+  name: "Notion"
+  name_ru: "Ноушн"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["ноушн", "ношен", "notion labs"]
+  categories: [whiteboards_notes, task_project_trackers]
+  notes: "Ограничил доступ пользователей из РФ; замещается Yonote, Teamly, Weeek."
+
+- id: miro
+  name: "Miro"
+  name_ru: "Миро"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["миро", "realtimeboard"]
+  categories: [whiteboards_notes]
+  notes: "Ушёл из РФ; замещается МТС Линк Доски, Holst, Unidraw."
+
+- id: ritlabs
+  name: "Ritlabs"
+  name_ru: "Ритлабс"
+  country: MD
+  origin: foreign
+  market_status: active
+  aliases: ["ритлабс", "the bat", "зе бат", "бат почта"]
+  categories: [email_clients_calendars]
+  notes: "Разработчик корпоративного почтового клиента The Bat!."
+
+- id: yonote
+  name: "Yonote"
+  name_ru: "Йоноут"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["йоноут", "еноут", "yonote ru"]
+  categories: [whiteboards_notes]
+  notes: "Российский аналог Notion и Confluence из реестра ПО."
+
+- id: teamly
+  name: "Teamly"
+  name_ru: "Тимли"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тимли", "teamly wiki", "qsoft teamly"]
+  categories: [whiteboards_notes, lms_elearning]
+  notes: "Российская платформа управления корпоративными знаниями и обучением."
+
+- id: holst
+  name: "Holst"
+  name_ru: "Холст"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["холст", "holst so", "доски холст"]
+  categories: [whiteboards_notes]
+  notes: "Российская онлайн-доска для командной работы (аналог Miro)."
+
+- id: sila_union
+  name: "SILA Union"
+  name_ru: "СИЛА Юнион"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сила юнион", "sila", "бизнес студио аналог"]
+  categories: [diagramming_mindmaps, bpm_rpa_lowcode]
+  notes: "Российская система моделирования бизнес-архитектуры и процессов (аналог ARIS и Visio)."
+
+- id: business_studio
+  name: "Business Studio"
+  name_ru: "ГК СТЭК (Business Studio)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["бизнес студио", "бизнес студия", "business studio"]
+  categories: [diagramming_mindmaps, bpm_rpa_lowcode]
+  notes: "Российская система бизнес-моделирования (BPMN, IDEF0, регламенты)."
+
+- id: advanta
+  name: "Advanta"
+  name_ru: "Адванта"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["адванта", "исуп адванта", "advanta group"]
+  categories: [project_planning]
+  notes: "Российская информационная система управления проектами (ИСУП)."
+
+- id: spider_project
+  name: "Spider Project"
+  name_ru: "Спайдер Проджект"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["спайдер проджект", "спайдер", "spider management"]
+  categories: [project_planning]
+  notes: "Российский профессиональный пакет календарно-сетевого планирования (аналог MS Project / Primavera)."
+
+# ============================================================================
+# 6. СУБД, ХРАНИЛИЩА ДАННЫХ, BIG DATA И BI
+# ============================================================================
+
+- id: postgres_pro
+  name: "Postgres Professional"
+  name_ru: "Постгрес Профессиональный"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["постгрес про", "postgres pro", "pgpro", "постгрес профессиональный"]
+  categories: [rdbms, tech_support]
+  notes: "Ведущий российский разработчик СУБД на базе PostgreSQL (Standard, Enterprise, Certified ФСТЭК, оптимизация под 1С)."
+
+- id: tantor_labs
+  name: "Tantor Labs"
+  name_ru: "Тантор Лабс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тантор", "tantor", "тантор лабс", "tantor db"]
+  categories: [rdbms, db_management_tools]
+  notes: "Разработчик СУБД Tantor и платформы администрирования/мониторинга PostgreSQL (входит в Группу Астра)."
+
+- id: arenadata
+  name: "Arenadata"
+  name_ru: "Аренадата"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аренадата", "арена дата", "arenadata db", "adb", "adh", "adqm"]
+  categories: [dwh_olap, big_data_streaming, rdbms, data_governance_mdm]
+  notes: "Ведущий российский разработчик платформы данных: Arenadata DB (Greenplum), Hadoop, QuickMarts, Streaming, Prospera."
+
+- id: clickhouse
+  name: "ClickHouse"
+  name_ru: "КликХаус"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["кликхаус", "clickhouse inc"]
+  categories: [dwh_olap]
+  notes: "Open Source колоночная СУБД; коммерческая облачная версия в РФ не продаётся, на базе движка работают российские сборки."
+
+- id: picodata
+  name: "Picodata"
+  name_ru: "Пикодата"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["пикодата", "picodata io"]
+  categories: [nosql_inmemory, rdbms]
+  notes: "Российская распределённая СУБД нового поколения на базе Tarantool и Rust."
+
+- id: gazinformservice_jatoba
+  name: "Gazinformservice"
+  name_ru: "Газинформсервис"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["газинформсервис", "гис", "jatoba", "джатоба", "анлимитед джатоба", "efros"]
+  categories: [rdbms, ngfw_vpn, iam_pam_mfa]
+  notes: "Разработчик сертифицированной СУБД Jatoba, средств контроля конфигураций Efros и решений ИБ."
+
+- id: sber_platform_v
+  name: "SberTech"
+  name_ru: "СберТех"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сбертех", "platform v", "платформа v", "pangolin", "панголин", "gigaide", "gitverse"]
+  categories: [rdbms, api_integration_esb, containers_kubernetes, ide_compilers, git_cicd_devops, big_data_streaming]
+  notes: "Разработчик цифровой платформы Platform V: СУБД Pangolin, Corax (Kafka), Synapse, GigaIDE, GitVerse."
+
+- id: visiology
+  name: "Visiology"
+  name_ru: "Визиолоджи"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["визиолоджи", "визиология", "visiology bi"]
+  categories: [bi_analytics]
+  notes: "Российская BI-платформа с поддержкой DAX для миграции с Microsoft Power BI."
+
+- id: foresight
+  name: "Foresight"
+  name_ru: "Форсайт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["форсайт", "форсайт аналитическая платформа", "foresight bi"]
+  categories: [bi_analytics, big_data_streaming, finance_budgeting]
+  notes: "Российская корпоративная платформа бизнес-аналитики, прогнозирования и бюджетирования."
+
+- id: polymatica
+  name: "Polymatica"
+  name_ru: "Полиматика (SL Soft)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["полиматика", "polymatica bi", "sl soft polymatica"]
+  categories: [bi_analytics, ml_platforms_cv]
+  notes: "Российская BI и ML-платформа (входит в SL Soft / ГК Softline)."
+
+- id: modus_bi
+  name: "Modus"
+  name_ru: "Модус"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["модус", "модус би", "modus bi", "modus etl"]
+  categories: [bi_analytics, big_data_streaming]
+  notes: "Российская аналитическая платформа Modus BI и инструмент ETL."
+
+- id: unidata
+  name: "Unidata"
+  name_ru: "Юнидата"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["юнидата", "unidata mdm", "юнидата нси"]
+  categories: [data_governance_mdm]
+  notes: "Российская платформа управления мастер-данными (MDM/НСИ) и качеством данных."
+
+- id: loginom
+  name: "Loginom Company"
+  name_ru: "Логином"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["логином", "loginom", "deductor", "дедуктор"]
+  categories: [big_data_streaming, ml_platforms_cv, bi_analytics]
+  notes: "Российская low-code аналитическая платформа и ETL (преемник Deductor)."
+
+- id: optimacros
+  name: "Optimacros"
+  name_ru: "Оптимакрос"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["оптимакрос", "optima cros", "аналог anaplan"]
+  categories: [finance_budgeting, bi_analytics]
+  notes: "Российская EPM/IBP-платформа финансового и операционного планирования (аналог Anaplan/IBM Planning Analytics)."
+
+- id: oracle
+  name: "Oracle"
+  name_ru: "Оракл"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["оракл", "оракул", "oracle corporation", "oracle db", "primavera"]
+  categories: [rdbms, erp_systems, java_runtimes, project_planning, linux_unix_os]
+  notes: "Приостановил деятельность в РФ; замещается Postgres Pro, Tantor, Jatoba, Axiom JDK."
+
+- id: ibm
+  name: "IBM"
+  name_ru: "АйБиЭм"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["айбиэм", "ibm corporation", "qradar", "db2", "cognos", "websphere"]
+  categories: [rdbms, siem_soc, bi_analytics, api_integration_esb]
+  notes: "Ушёл с российского рынка."
+
+- id: mongodb
+  name: "MongoDB"
+  name_ru: "МонгоДБ"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["монго", "монгодб", "mongo db", "mongo"]
+  categories: [nosql_inmemory]
+  notes: "Коммерческая версия MongoDB Enterprise недоступна в РФ."
+
+- id: redis_inc
+  name: "Redis"
+  name_ru: "Редис"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["редис", "redis enterprise"]
+  categories: [nosql_inmemory]
+  notes: "Коммерческий Redis Enterprise недоступен в РФ; замещается Tarantool."
+
+- id: snowflake
+  name: "Snowflake"
+  name_ru: "Сноуфлейк"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["сноуфлейк", "snowflake db"]
+  categories: [dwh_olap]
+  notes: "Облачное DWH, недоступно для юрлиц РФ."
+
+- id: qlik
+  name: "Qlik"
+  name_ru: "Клик"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["клик", "qlik sense", "qlikview", "клик сенс"]
+  categories: [bi_analytics]
+  notes: "Ушёл из РФ; замещается Visiology, Форсайт, Polymatica, DataLens."
+
+- id: tableau_salesforce
+  name: "Tableau"
+  name_ru: "Табло"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["табло", "таблеау", "tableau desktop", "tableau server"]
+  categories: [bi_analytics]
+  notes: "Ушёл из РФ; замещается российскими BI-платформами."
+
+- id: dbeaver
+  name: "DBeaver"
+  name_ru: "ДБивер"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["дбивер", "dbeaver pro", "dbeaver enterprise"]
+  categories: [db_management_tools]
+  notes: "Популярный мультиплатформенный SQL-клиент."
+
+# ============================================================================
+# 7. РЕЗЕРВНОЕ КОПИРОВАНИЕ, СХД И ФАЙЛЫ
+# ============================================================================
+
+- id: cyberprotect
+  name: "Cyberprotect"
+  name_ru: "Киберпротект"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["киберпротект", "кибер бэкап", "кибербэкап", "кибер защита", "акронис инфозащита", "acronis инфозащита"]
+  categories: [backup_recovery, sds_storage, disk_utilities, dlp]
+  notes: "Ведущий российский разработчик СРК Кибер Бэкап, Кибер Инфраструктура (SDS) и Кибер Файлы (преемник технологий Acronis в РФ)."
+
+- id: rubackup
+  name: "RuBackup"
+  name_ru: "РуБэкап (Группа Астра)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["рубэкап", "рубекап", "ру бэкап", "ru backup"]
+  categories: [backup_recovery]
+  notes: "Российская корпоративная СРК для гетерогенных сред, российских ОС и СУБД (входит в Группу Астра)."
+
+- id: novosoft_handy
+  name: "Novosoft"
+  name_ru: "Новософт (Handy Backup)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["новософт", "хэнди бэкап", "handy backup", "хенди бекап"]
+  categories: [backup_recovery]
+  notes: "Российский разработчик системы резервного копирования Handy Backup для малого и среднего бизнеса."
+
+- id: raidix
+  name: "RAIDIX"
+  name_ru: "Рэйдикс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["рэйдикс", "рейдикс", "raidix sds"]
+  categories: [sds_storage]
+  notes: "Российский разработчик высокопроизводительного ПО для систем хранения данных (SDS)."
+
+- id: baum
+  name: "BAUM"
+  name_ru: "Баум"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["баум", "баум схд", "baum storage"]
+  categories: [sds_storage]
+  notes: "Российский разработчик систем хранения данных и ПО управления СХД."
+
+- id: veeam
+  name: "Veeam"
+  name_ru: "Виим"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["виим", "вим", "веам", "veeam software", "veeam backup"]
+  categories: [backup_recovery]
+  notes: "Официально ушёл с рынка РФ; замещается Кибер Бэкап, RuBackup."
+
+- id: acronis
+  name: "Acronis"
+  name_ru: "Акронис"
+  country: CH
+  origin: foreign
+  market_status: left
+  aliases: ["акронис", "acronis cyber protect", "acronis true image"]
+  categories: [backup_recovery, disk_utilities]
+  notes: "Международный бренд ушёл из РФ; в России развивается независимая линейка Кибер Бэкап (Киберпротект)."
+
+- id: commvault
+  name: "Commvault"
+  name_ru: "Комволт"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["комволт", "комваулт", "commvault complete"]
+  categories: [backup_recovery]
+  notes: "Ушёл с рынка РФ."
+
+- id: veritas
+  name: "Veritas"
+  name_ru: "Веритас"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["веритас", "netbackup", "backup exec"]
+  categories: [backup_recovery]
+  notes: "Ушёл с рынка РФ."
+
+- id: winrar_rarlab
+  name: "win.rar GmbH"
+  name_ru: "ВинРАР (RARLAB)"
+  country: DE
+  origin: foreign
+  market_status: restricted
+  aliases: ["винрар", "winrar", "rarlab", "rar"]
+  categories: [archivers]
+  notes: "Популярный архиватор WinRAR."
+
+- id: ghisler
+  name: "Ghisler Software"
+  name_ru: "Гислер (Total Commander)"
+  country: CH
+  origin: foreign
+  market_status: restricted
+  aliases: ["тотал коммандер", "total commander", "ghisler"]
+  categories: [file_managers]
+  notes: "Разработчик файлового менеджера Total Commander."
+
+- id: r_tt
+  name: "R-Tools Technology"
+  name_ru: "R-Tools (R-Studio)"
+  country: CA
+  origin: foreign
+  market_status: restricted
+  aliases: ["r-studio", "р-студио", "r tools", "r-tt"]
+  categories: [data_recovery]
+  notes: "Разработчик утилиты восстановления данных R-Studio."
+
+# ============================================================================
+# 8. СВЯЗЬ, ВКС, МЕССЕНДЖЕРЫ, ПОЧТА И УДАЛЁННЫЙ ДОСТУП
+# ============================================================================
+
+- id: skb_kontur
+  name: "SKB Kontur"
+  name_ru: "СКБ Контур"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["контур", "скб контур", "kontur", "диадок", "экстерн", "контур толк", "контур фокус"]
+  categories: [tax_reporting_edo, accounting, vks_webinars, remote_desktop, counterparty_legal_info, retail_pos_cash, e_signature, kedo_hr_docs]
+  notes: "Крупнейшая российская экосистема сервисов для бизнеса: Диадок, Экстерн, Толк, Доступ, Фокус, Бухгалтерия, Маркет."
+
+- id: mts_link
+  name: "MTS Link"
+  name_ru: "МТС Линк (ранее Webinar)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мтс линк", "вебинар ру", "webinar.ru", "webinar", "mts link", "линк"]
+  categories: [vks_webinars, whiteboards_notes, corporate_messengers, lms_elearning]
+  notes: "Российская платформа деловых коммуникаций: Встречи, Вебинары, Доски, Чаты, Курсы."
+
+- id: trueconf
+  name: "TrueConf"
+  name_ru: "Труконф"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["труконф", "тру конф", "true conf", "trueconf server"]
+  categories: [vks_webinars, corporate_messengers]
+  notes: "Ведущий российский разработчик on-premise ВКС-систем и корпоративных мессенджеров."
+
+- id: iva_technologies
+  name: "IVA Technologies"
+  name_ru: "ИВА Технолоджис"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ива", "iva", "iva mcu", "ива мцу", "iva one"]
+  categories: [vks_webinars, corporate_messengers, uc_platforms, ip_telephony]
+  notes: "Российский разработчик экосистемы корпоративных коммуникаций IVA MCU, IVA One, IVA Connect."
+
+- id: vinteo
+  name: "Vinteo"
+  name_ru: "Винтео"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["винтео", "vinteo mcu"]
+  categories: [vks_webinars]
+  notes: "Российский разработчик профессиональных серверов ВКС (SIP/H.323/WebRTC) для переговорных комнат."
+
+- id: sber_jazz
+  name: "SaluteDevices / Sber Jazz"
+  name_ru: "Сбер (SaluteJazz)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сбер джаз", "джаз", "salutejazz", "sberjazz", "салют джаз"]
+  categories: [vks_webinars, llm_gen_ai, speech_text]
+  notes: "Корпоративная платформа видеовстреч SaluteJazz (облако и on-premise), а также GigaChat и SaluteSpeech."
+
+- id: express_unlimited
+  name: "Unlimited Production"
+  name_ru: "Анлимитед Продакшен (eXpress)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["экспресс", "express", "express мессенджер", "eXpress"]
+  categories: [corporate_messengers, vks_webinars, uc_platforms]
+  notes: "Российская защищённая корпоративная платформа коммуникаций eXpress (федерация, ФСТЭК, закрытый контур)."
+
+- id: compass_chat
+  name: "Compass"
+  name_ru: "Компас Мессенджер"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["компас мессенджер", "compass on-premise", "getcompass"]
+  categories: [corporate_messengers]
+  notes: "Российский корпоративный мессенджер (облако и on-premise)."
+
+- id: pachca
+  name: "Pachca"
+  name_ru: "Пачка"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["пачка", "пачка мессенджер", "pachka"]
+  categories: [corporate_messengers]
+  notes: "Российский корпоративный мессенджер для ИТ-команд и бизнеса (аналог Slack)."
+
+- id: communigate
+  name: "SBK / CommuniGate"
+  name_ru: "СБК (CommuniGate Pro)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["комьюнигейт", "коммунигейт", "communigate pro", "cgp", "сбк"]
+  categories: [mail_servers, uc_platforms, ip_telephony]
+  notes: "Российская высоконагруженная платформа корпоративной почты и унифицированных коммуникаций."
+
+- id: mbk_lab_tegu
+  name: "MBK Lab"
+  name_ru: "Лаборатория МБК (Tegu)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тегу", "tegu", "tegu enterprise", "мбк лаб"]
+  categories: [mail_servers]
+  notes: "Российский корпоративный почтовый сервер Tegu на базе Linux и PostgreSQL."
+
+- id: mango_office
+  name: "MANGO OFFICE"
+  name_ru: "Манго Телеком"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["манго офис", "манго телеком", "mango telecom", "манго атс"]
+  categories: [ip_telephony, ai_speech_chatbots]
+  notes: "Российский провайдер виртуальной АТС, контакт-центров и речевой аналитики."
+
+- id: protei
+  name: "PROTEI"
+  name_ru: "НТЦ ПРОТЕЙ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["протей", "нтц протей", "protei uc", "протей вкс"]
+  categories: [ip_telephony, vks_webinars, uc_platforms]
+  notes: "Российский разработчик телекоммуникационных платформ, программных АТС и ВКС."
+
+- id: safib_assistant
+  name: "SAFIB"
+  name_ru: "САФИБ (Ассистент)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сафиб", "ассистент", "мойассистент", "мой ассистент", "assistant safib"]
+  categories: [remote_desktop]
+  notes: "Ведущее российское решение удалённого доступа и управления ПК (ЕРРП, поддержка российских ОС)."
+
+- id: rudesktop
+  name: "RuDesktop"
+  name_ru: "РуДесктоп"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["рудесктоп", "ру десктоп", "rudesktop uem"]
+  categories: [remote_desktop, directory_services]
+  notes: "Российское решение удалённого рабочего стола и централизованного управления ПК (UEM)."
+
+- id: tekton_rms
+  name: "TektonIT"
+  name_ru: "ТектонИТ (RMS)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["рмс", "rms", "remote manipulator system", "тектонит"]
+  categories: [remote_desktop]
+  notes: "Российский инструмент удалённого администрирования RMS."
+
+- id: getscreen
+  name: "Getscreen"
+  name_ru: "Гетскрин"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["гетскрин", "getscreen me"]
+  categories: [remote_desktop]
+  notes: "Облачное и self-hosted решение удалённого доступа через браузер."
+
+- id: unisender
+  name: "Unisender"
+  name_ru: "Юнисендер"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["юнисендер", "uni sender"]
+  categories: [email_marketing]
+  notes: "Российский сервис email-рассылок и автоматизации маркетинга."
+
+- id: mindbox
+  name: "Mindbox"
+  name_ru: "Майндбокс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["майндбокс", "mind box", "cdp mindbox"]
+  categories: [email_marketing]
+  notes: "Российская облачная CDP-платформа автоматизации маркетинга и программ лояльности."
+
+- id: zoom
+  name: "Zoom"
+  name_ru: "Зум"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["зум", "zoom video", "zoom workplace"]
+  categories: [vks_webinars]
+  notes: "Официальные корпоративные продажи в РФ прекращены; замещается Контур.Толк, МТС Линк, TrueConf, SaluteJazz."
+
+- id: slack
+  name: "Slack"
+  name_ru: "Слак"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["слак", "слэк", "slack technologies"]
+  categories: [corporate_messengers]
+  notes: "Ушёл из РФ; замещается Пачка, VK Teams, eXpress, Compass."
+
+- id: teamviewer
+  name: "TeamViewer"
+  name_ru: "ТимВьювер"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["тимвьювер", "тимвьюер", "тимвивер", "team viewer", "тв"]
+  categories: [remote_desktop]
+  notes: "Ушёл из РФ и заблокировал подключения; замещается Ассистент, RuDesktop, Контур.Доступ."
+
+- id: anydesk
+  name: "AnyDesk"
+  name_ru: "ЭниДеск"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["анидеск", "энидеск", "any desk"]
+  categories: [remote_desktop]
+  notes: "Прекратил коммерческие продажи в РФ; замещается RuDesktop, Ассистент."
+
+- id: avaya
+  name: "Avaya"
+  name_ru: "Авайя"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["авайя", "авая", "avaya aura"]
+  categories: [ip_telephony]
+  notes: "Ушёл с российского рынка."
+
+- id: threecx
+  name: "3CX"
+  name_ru: "3СХ"
+  country: CY
+  origin: foreign
+  market_status: left
+  aliases: ["3cx", "3сх", "три си экс"]
+  categories: [ip_telephony]
+  notes: "Приостановил продажи в РФ."
+
+# ============================================================================
+# 9. 1С, БУХГАЛТЕРИЯ, ЭДО, ERP, CRM, СЭД, BPM/RPA, ТАСК-ТРЕКЕРЫ
+# ============================================================================
+
+- id: onec
+  name: "1C"
+  name_ru: "Фирма 1С"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["1с", "1c", "фирма 1с", "одинэс", "один эс", "1с предприятие"]
+  categories: [accounting, payroll_hr_1c, trade_warehouse, retail_pos_cash, tax_reporting_edo, kedo_hr_docs, onec_platform_licenses, erp_systems, crm_systems, sed_ecm, finance_budgeting, logistics_tms, itsm_service_desk, api_integration_esb, tech_support, industry_specialized]
+  notes: "Ведущая российская платформа и экосистема учётных и ERP-систем для бизнеса и госсектора."
+
+- id: onec_bitrix
+  name: "1C-Bitrix"
+  name_ru: "1С-Битрикс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["битрикс", "1с битрикс", "1с-битрикс", "битрикс24", "битрикс 24", "bitrix", "bitrix24"]
+  categories: [crm_systems, uc_platforms, task_project_trackers, cms_ecommerce, corporate_messengers]
+  notes: "Разработчик CRM и корппортала Битрикс24 (облако и коробка) и CMS 1С-Битрикс: Управление сайтом."
+
+- id: tensor_sbis
+  name: "Tensor (Saby / SBIS)"
+  name_ru: "Компания Тензор (СБИС / Saby)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тензор", "сбис", "sbis", "saby", "саби", "сбис++"]
+  categories: [tax_reporting_edo, accounting, payroll_hr_1c, kedo_hr_docs, crm_systems, retail_pos_cash, counterparty_legal_info, e_signature]
+  notes: "Крупная российская экосистема ЭДО, отчётности, КЭДО, бухгалтерии, автоматизации торговли и проверки контрагентов."
+
+- id: taxcom
+  name: "Taxcom"
+  name_ru: "Такском"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["такском", "такском файлер", "онлайн спринтер"]
+  categories: [tax_reporting_edo, e_signature]
+  notes: "Российский оператор ЭДО, электронной отчётности, ОФД и удостоверяющий центр."
+
+- id: moysklad
+  name: "MoySklad"
+  name_ru: "МойСклад"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мойсклад", "мой склад", "moysklad", "логика бизнеса мойсклад"]
+  categories: [trade_warehouse, retail_pos_cash]
+  notes: "Популярный российский облачный сервис складского и торгового учёта для SMB и селлеров."
+
+- id: amocrm
+  name: "amoCRM"
+  name_ru: "амоСРМ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["амоцрм", "амосрм", "амо", "amo crm", "amo"]
+  categories: [crm_systems]
+  notes: "Популярная российская CRM-система для отделов продаж и мессенджер-маркетинга."
+
+- id: elma
+  name: "ELMA"
+  name_ru: "ЭЛМА"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["элма", "элма365", "elma365", "elma bpm"]
+  categories: [bpm_rpa_lowcode, crm_systems, sed_ecm, itsm_service_desk, kedo_hr_docs]
+  notes: "Ведущая российская Low-code BPM-платформа ELMA365 (CRM, СЭД, КЭДО, Service Desk, RPA)."
+
+- id: bpmsoft
+  name: "BPMSoft"
+  name_ru: "БПМСофт (ЛАНИТ Омни)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["бпмсофт", "ланит омни", "bpmsoft crm"]
+  categories: [crm_systems, bpm_rpa_lowcode]
+  notes: "Российская enterprise low-code CRM и BPM платформа."
+
+- id: directum
+  name: "Directum"
+  name_ru: "Директум"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["директум", "directum rx", "директум рх"]
+  categories: [sed_ecm, kedo_hr_docs, bpm_rpa_lowcode]
+  notes: "Ведущая российская интеллектуальная система управления документами и процессами Directum RX и HR Pro."
+
+- id: docsvision
+  name: "Docsvision"
+  name_ru: "ДоксВижн"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["доксвижн", "докс вижн", "docs vision"]
+  categories: [sed_ecm]
+  notes: "Российская CSP/СЭД-платформа для крупного и среднего бизнеса."
+
+- id: eos_delo
+  name: "EOS"
+  name_ru: "ЭОС (Электронные Офисные Системы)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["эос", "сэд дело", "эос дело", "eos delo"]
+  categories: [sed_ecm]
+  notes: "Один из лидеров СЭД в российском госсекторе (СЭД «ДЕЛО»)."
+
+- id: haulmont_tezis
+  name: "Haulmont"
+  name_ru: "Хоулмонт (ТЕЗИС)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["хоулмонт", "тезис", "сэд тезис", "tezis"]
+  categories: [sed_ecm]
+  notes: "Разработчик российской СЭД ТЕЗИС и платформы разработки Jmix."
+
+- id: syntellect_tessa
+  name: "Syntellect"
+  name_ru: "Синтеллект (TESSA)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["синтеллект", "тесса", "tessa", "сэд тесса"]
+  categories: [sed_ecm]
+  notes: "Российская высоконагруженная платформа СЭД/ECM TESSA."
+
+- id: comindware
+  name: "Comindware"
+  name_ru: "Коминдвэр"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["коминдвер", "коминдвэр", "comindware business application platform"]
+  categories: [bpm_rpa_lowcode]
+  notes: "Российская low-code BPMS платформа."
+
+- id: pix_robotics
+  name: "PIX Robotics"
+  name_ru: "ПИКС Роботикс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["пикс", "пикс рпа", "pix rpa", "pix bi", "pix process"]
+  categories: [bpm_rpa_lowcode, bi_analytics]
+  notes: "Российский разработчик экосистемы автоматизации: PIX RPA, PIX BI, PIX Процессы."
+
+- id: primo_rpa
+  name: "Primo RPA"
+  name_ru: "Примо РПА"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["примо", "примо рпа", "primo"]
+  categories: [bpm_rpa_lowcode]
+  notes: "Российская платформа программной роботизации Primo RPA (поддержка Linux и Windows)."
+
+- id: robin_rpa
+  name: "ROBIN"
+  name_ru: "РОБИН (SL Soft)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["робин", "робин рпа", "robin platform"]
+  categories: [bpm_rpa_lowcode]
+  notes: "Российская платформа интеллектуальной роботизации ROBIN."
+
+- id: sherpa_rpa
+  name: "Sherpa Robotics"
+  name_ru: "Шерпа Роботикс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["шерпа", "шерпа рпа", "sherpa"]
+  categories: [bpm_rpa_lowcode]
+  notes: "Российская платформа RPA и ИИ-ассистентов."
+
+- id: galaktika
+  name: "Galaktika"
+  name_ru: "Корпорация Галактика"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["галактика", "галактика erp", "галактика еам", "галактика ам"]
+  categories: [erp_systems, finance_budgeting]
+  notes: "Российский разработчик тяжёлых промышленных систем Галактика ERP, EAM, AMM."
+
+- id: consyst_turbo
+  name: "Consyst Business Group (TURBO)"
+  name_ru: "Консист Бизнес Групп (ТУРБО)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["турбо", "турбо erp", "turbo erp", "консист"]
+  categories: [erp_systems, project_planning, finance_budgeting]
+  notes: "Российский разработчик платформ ТУРБО ERP, ТУРБО Бюджетирование и ТУРБО Планировщик."
+
+- id: kaiten
+  name: "Kaiten"
+  name_ru: "Кайтен"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["кайтен", "кайтэн", "kaiten ru"]
+  categories: [task_project_trackers, whiteboards_notes, itsm_service_desk]
+  notes: "Российская система управления проектами и задачами (канбан, Scrum, базы знаний, аналог Jira/Trello)."
+
+- id: evateam
+  name: "EvaTeam"
+  name_ru: "ЕваТим"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ева", "еватим", "evaproject", "evawiki", "evaservicedesk"]
+  categories: [task_project_trackers, whiteboards_notes, itsm_service_desk, project_planning]
+  notes: "Российский стек замены Atlassian: EvaProject (Jira), EvaWiki (Confluence), EvaServiceDesk."
+
+- id: yougile
+  name: "YouGile"
+  name_ru: "Юджайл"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["юджайл", "югайл", "you gile"]
+  categories: [task_project_trackers]
+  notes: "Российская система управления проектами и задачами со встроенным чатом."
+
+- id: weeek
+  name: "WEEEK"
+  name_ru: "Вик"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["вик", "weeek", "виек"]
+  categories: [task_project_trackers, whiteboards_notes, crm_systems]
+  notes: "Российский таск-трекер, база знаний и мини-CRM для команд."
+
+- id: planfix
+  name: "PlanFix"
+  name_ru: "ПланФикс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["планфикс", "план фикс", "plan fix"]
+  categories: [task_project_trackers, crm_systems, itsm_service_desk]
+  notes: "Гибкая система управления задачами, CRM и поддержкой клиентов."
+
+- id: hrlink
+  name: "HRlink"
+  name_ru: "ЭйчАрЛинк"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["хрлинк", "hr link", "эйчарлинк", "кэдо hrlink"]
+  categories: [kedo_hr_docs]
+  notes: "Ведущая российская платформа кадрового электронного документооборота (КЭДО)."
+
+- id: huntflow
+  name: "Huntflow"
+  name_ru: "Хантфлоу"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["хантфлоу", "hunt flow", "атс хантфлоу"]
+  categories: [hrm_recruiting]
+  notes: "Российская система автоматизации рекрутинга (ATS)."
+
+- id: potok_hr
+  name: "Potok"
+  name_ru: "Поток"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["поток", "поток рекрутмент", "potok io"]
+  categories: [hrm_recruiting]
+  notes: "Российская HRM-платформа для подбора, адаптации и оценки персонала."
+
+- id: consultant_plus
+  name: "ConsultantPlus"
+  name_ru: "КонсультантПлюс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["консультант", "консультант плюс", "консультантплюс", "к+"]
+  categories: [counterparty_legal_info]
+  notes: "Ведущая российская справочно-правовая система."
+
+- id: garant
+  name: "GARANT"
+  name_ru: "Компания ГАРАНТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["гарант", "система гарант", "гарант право"]
+  categories: [counterparty_legal_info]
+  notes: "Российская информационно-правовая система для юристов, бухгалтеров и госструктур."
+
+- id: interfax_spark
+  name: "Interfax (SPARK)"
+  name_ru: "Интерфакс (СПАРК)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["спарк", "интерфакс спарк", "spark interfax"]
+  categories: [counterparty_legal_info]
+  notes: "Профессиональная система проверки контрагентов и оценки рисков СПАРК."
+
+- id: atol_frontol
+  name: "ATOL"
+  name_ru: "АТОЛ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["атол", "фронтол", "frontol", "атол сигма"]
+  categories: [retail_pos_cash]
+  notes: "Разработчик кассового ПО Frontol и решений для розницы и маркировки."
+
+- id: iiko
+  name: "iiko"
+  name_ru: "Айко"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["айко", "иико", "iiko cloud"]
+  categories: [retail_pos_cash]
+  notes: "Российская система автоматизации ресторанов и общепита."
+
+- id: ucs_rkeeper
+  name: "r_keeper"
+  name_ru: "ЮСИЭС (r_keeper)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["р-кипер", "ркипер", "r keeper", "rkeeper", "юсиэс"]
+  categories: [retail_pos_cash]
+  notes: "Российская система автоматизации ресторанного бизнеса и HoReCa."
+
+- id: axelot
+  name: "AXELOT"
+  name_ru: "АКСЕЛОТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["акселот", "axelot wms", "axelot tms"]
+  categories: [trade_warehouse, logistics_tms]
+  notes: "Российский разработчик систем управления складом (WMS) и транспортом (TMS)."
+
+- id: retailcrm
+  name: "RetailCRM"
+  name_ru: "РитейлСРМ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ритейлсрм", "retail crm", "симилар"]
+  categories: [crm_systems]
+  notes: "Российская специализированная CRM для интернет-магазинов и ритейла."
+
+- id: expert_systems_pe
+  name: "Expert Systems"
+  name_ru: "Эксперт Системс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["эксперт системс", "project expert", "проджект эксперт", "audit expert"]
+  categories: [finance_budgeting]
+  notes: "Российский разработчик ПО для бизнес-планирования и финансового анализа Project Expert."
+
+- id: sap
+  name: "SAP"
+  name_ru: "САП"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["сап", "sap se", "sap erp", "s4hana", "sap r3"]
+  categories: [erp_systems, hrm_recruiting, bi_analytics]
+  notes: "Прекратил поддержку и продажи в РФ; замещается 1С:ERP, Галактика ERP, ТУРБО ERP."
+
+- id: salesforce
+  name: "Salesforce"
+  name_ru: "Сейлсфорс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["сейлсфорс", "sales force"]
+  categories: [crm_systems]
+  notes: "Ушёл из РФ; замещается BPMSoft, ELMA365 CRM, Битрикс24."
+
+- id: atlassian
+  name: "Atlassian"
+  name_ru: "Атлассиан"
+  country: AU
+  origin: foreign
+  market_status: left
+  aliases: ["атлассиан", "атласиан", "jira", "джира", "confluence", "конфлюенс", "trello", "bitbucket"]
+  categories: [task_project_trackers, whiteboards_notes, itsm_service_desk, git_cicd_devops]
+  notes: "Ушёл с рынка РФ; замещается Яндекс Трекер, Kaiten, EvaTeam, GitFlic."
+
+- id: uipath
+  name: "UiPath"
+  name_ru: "ЮайПас"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["юайпас", "юипас", "ui path"]
+  categories: [bpm_rpa_lowcode]
+  notes: "Ушёл из РФ; замещается PIX RPA, Primo RPA, ROBIN, Sherpa."
+
+# ============================================================================
+# 10. САПР, BIM, CAE, ГИС И СМЕТЫ
+# ============================================================================
+
+- id: nanosoft
+  name: "Nanosoft"
+  name_ru: "Нанософт разработка"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["нанософт", "нанокад", "nanocad", "нано кад"]
+  categories: [cad_2d, bim_aec, ecad_eda, raster_vectorizers]
+  notes: "Ведущий российский разработчик САПР с нативной поддержкой DWG (Платформа nanoCAD, nanoCAD BIM, СПДС, Механика)."
+
+- id: ascon
+  name: "ASCON"
+  name_ru: "АСКОН"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аскон", "компас", "компас 3d", "компас 3д", "лоцман", "pilot-bim", "пилот бим"]
+  categories: [mcad_plm, cad_2d, bim_aec, ecad_eda]
+  notes: "Крупнейший российский разработчик машиностроительного САПР КОМПАС-3D, ЛОЦМАН:PLM и СОД Pilot-BIM."
+
+- id: top_systems
+  name: "Top Systems"
+  name_ru: "Топ Системы"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["топ системы", "т-флекс", "тфлекс", "t-flex", "tflex"]
+  categories: [mcad_plm, cae_simulation]
+  notes: "Российский разработчик параметрической САПР и PLM-комплекса T-FLEX CAD / T-FLEX DOCs."
+
+- id: renga_software
+  name: "Renga Software"
+  name_ru: "Ренга Софтвэа"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["ренга", "renga", "renga bim", "renga professional"]
+  categories: [bim_aec]
+  notes: "Совместное предприятие АСКОН и 1С — ведущая российская BIM-система Renga (архитектура, конструкции, сети)."
+
+- id: csoft_development
+  name: "CSoft Development"
+  name_ru: "СиСофт Девелопмент"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сисофт", "csoft", "model studio", "модел студио", "cadlib", "spotlight", "technologics"]
+  categories: [bim_aec, cad_2d, raster_vectorizers]
+  notes: "Российский разработчик комплекса Model Studio CS (промышленный BIM), CADLib, Raster Arts и Spotlight."
+
+- id: fidesys
+  name: "Fidesys"
+  name_ru: "Фидесис"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["фидесис", "cae fidesys"]
+  categories: [cae_simulation]
+  notes: "Российская система прочностного инженерного анализа (аналог ANSYS Mechanical)."
+
+- id: rosatom_logos
+  name: "Rosatom (Logos)"
+  name_ru: "Росатом (РФЯЦ-ВНИИЭФ Логос)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["логос", "росатом логос", "внииэф логос", "logos cae"]
+  categories: [cae_simulation]
+  notes: "Отечественный флагманский пакет 3D инженерного анализа и математического моделирования Логос."
+
+- id: scad_soft
+  name: "SCAD Soft"
+  name_ru: "СКАД Софт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["скад", "скад софт", "scad", "scad office"]
+  categories: [cae_simulation]
+  notes: "Популярный программный комплекс расчёта строительных конструкций SCAD Office."
+
+- id: lira_soft
+  name: "LIRA Soft"
+  name_ru: "ЛИРА софт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["лира", "лира софт", "лира-сапр", "лира 10", "lira"]
+  categories: [cae_simulation]
+  notes: "Программный комплекс прочностных расчётов строительных конструкций ЛИРА 10."
+
+- id: eremex
+  name: "EREMEX"
+  name_ru: "ЭРЕМЕКС"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["эремекс", "delta design", "дельта дизайн", "simone"]
+  categories: [ecad_eda]
+  notes: "Российский разработчик САПР электроники и печатных плат Delta Design (аналог Altium Designer)."
+
+- id: kb_panorama
+  name: "KB Panorama"
+  name_ru: "КБ Панорама"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["кб панорама", "гис панорама", "панорама", "gis panorama"]
+  categories: [gis_mapping]
+  notes: "Ведущий российский разработчик ГИС Панорама, ГИС Сервер и ГИС WebServer."
+
+- id: axioma_gis
+  name: "ESTI (Axioma GIS)"
+  name_ru: "ЭСТИ (Аксиома ГИС)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аксиома гис", "axioma", "эсти", "аналог mapinfo"]
+  categories: [gis_mapping]
+  notes: "Российская геоинформационная система Axioma GIS (наследник и замена MapInfo)."
+
+- id: politerm_zulu
+  name: "Politerm"
+  name_ru: "Политерм (ZuluGIS)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["политерм", "зулу", "zulugis", "зулу гис"]
+  categories: [gis_mapping, cae_simulation]
+  notes: "Российская ГИС для инженерных сетей и гидравлических расчётов ЖКХ."
+
+- id: credo_dialog
+  name: "CREDO-DIALOGUE"
+  name_ru: "Кредо-Диалог"
+  country: BY
+  origin: foreign
+  market_status: active
+  aliases: ["кредо", "кредо диалог", "credo", "credo дороги", "credo топоплан"]
+  categories: [gis_mapping, cad_specialized]
+  notes: "Популярный комплекс ПО для инженерных изысканий, геодезии и проектирования дорог."
+
+- id: agisoft
+  name: "Agisoft"
+  name_ru: "Агисофт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["агисофт", "metashape", "меташейп", "photoscan"]
+  categories: [gis_mapping, raster_vectorizers]
+  notes: "Российский разработчик ведущего ПО для фотограмметрии и обработки данных БПЛА Agisoft Metashape."
+
+- id: mgk_grand
+  name: "MGK GRAND"
+  name_ru: "МГК ГРАНД"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["гранд", "гранд смета", "гранд-смета", "грандсмета", "мгк гранд"]
+  categories: [estimates_construction]
+  notes: "Самый распространённый в РФ программный комплекс для составления строительных смет."
+
+- id: stroysoft_smeta
+  name: "StroySoft"
+  name_ru: "СтройСофт (Smeta.RU)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["стройсофт", "смета ру", "smeta.ru", "smeta ru"]
+  categories: [estimates_construction]
+  notes: "Российский разработчик сметного комплекса Smeta.RU."
+
+- id: bazis_center
+  name: "BAZIS-Center"
+  name_ru: "БАЗИС-Центр"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["базис центр", "базис мебельщик", "базис-мебельщик"]
+  categories: [cad_specialized]
+  notes: "Российский отраслевой САПР для проектирования и производства мебели."
+
+- id: topomatic
+  name: "Topomatic"
+  name_ru: "Топоматик (Robur)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["топоматик", "робур", "robur", "топоматик робур"]
+  categories: [cad_specialized]
+  notes: "Российский САПР автомобильных и железных дорог, генплана и изысканий Topomatic Robur."
+
+- id: indorsoft
+  name: "IndorSoft"
+  name_ru: "ИндорСофт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["индорсофт", "индоркад", "indorcad"]
+  categories: [cad_specialized, bim_aec]
+  notes: "Российская BIM-система проектирования автомобильных дорог IndorCAD."
+
+- id: ritm_engee
+  name: "Engee / TsITM Eksponenta"
+  name_ru: "ЦИТМ Экспонента (Engee)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["экспонента", "engee", "энжи", "инжи", "аналог matlab"]
+  categories: [cae_simulation]
+  notes: "Российская платформа инженерных расчётов и модельно-ориентированного проектирования Engee (аналог MATLAB/Simulink)."
+
+- id: 3v_simintech
+  name: "3V Services (SimInTech)"
+  name_ru: "3В Сервис (SimInTech)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["симинтех", "simintech", "3в сервис"]
+  categories: [cae_simulation]
+  notes: "Российская среда динамического моделирования технических систем (аналог Simulink)."
+
+- id: sprut_cam
+  name: "SPRUT Technology"
+  name_ru: "СПРУТ-Технология"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["спрут", "спруткам", "sprutcam", "спрут технология"]
+  categories: [mcad_plm]
+  notes: "Российская CAM-система программирования станков с ЧПУ и промышленных роботов."
+
+- id: autodesk
+  name: "Autodesk"
+  name_ru: "Автодеск"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["автодеск", "аутодеск", "autocad", "автокад", "revit", "ревит", "civil 3d", "3ds max", "inventor"]
+  categories: [cad_2d, bim_aec, mcad_plm, cad_specialized, 3d_rendering_animation]
+  notes: "Официально ушёл из РФ; замещается nanoCAD, КОМПАС-3D, Renga, Model Studio CS, Topomatic Robur."
+
+- id: dassault_systemes
+  name: "Dassault Systemes"
+  name_ru: "Дассо Системс"
+  country: FR
+  origin: foreign
+  market_status: left
+  aliases: ["дассо", "solidworks", "солидворкс", "catia", "катия"]
+  categories: [mcad_plm, cae_simulation]
+  notes: "Ушёл из РФ; замещается КОМПАС-3D, T-FLEX CAD."
+
+- id: siemens_plm
+  name: "Siemens Digital Industries Software"
+  name_ru: "Сименс ПЛМ"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["сименс", "siemens nx", "teamcenter", "solid edge", "simcenter"]
+  categories: [mcad_plm, cae_simulation]
+  notes: "Ушёл из РФ."
+
+- id: ansys
+  name: "ANSYS"
+  name_ru: "Ансис"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["ансис", "ansys fluent", "ansys mechanical"]
+  categories: [cae_simulation]
+  notes: "Ушёл из РФ; замещается Логос, Fidesys."
+
+- id: mathworks
+  name: "MathWorks"
+  name_ru: "МатВоркс (MATLAB)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["матлаб", "matlab", "simulink", "симулинк", "mathworks"]
+  categories: [cae_simulation]
+  notes: "Ушёл из РФ; замещается Engee, SimInTech."
+
+- id: altium
+  name: "Altium"
+  name_ru: "Альтиум"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["альтиум", "altium designer"]
+  categories: [ecad_eda]
+  notes: "Ушёл из РФ; замещается Delta Design."
+
+- id: eplan
+  name: "EPLAN"
+  name_ru: "ЕПЛАН"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["еплан", "eplan electric p8"]
+  categories: [ecad_eda]
+  notes: "Ушёл из РФ; замещается nanoCAD BIM Электро, E3.series, КОМПАС-Электрик."
+
+- id: esri
+  name: "Esri"
+  name_ru: "Эсри (ArcGIS)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["эсри", "аркгис", "arcgis"]
+  categories: [gis_mapping]
+  notes: "Ушёл из РФ; замещается ГИС Панорама, Axioma GIS."
+
+- id: zwsoft
+  name: "ZWSOFT"
+  name_ru: "ЗВСофт (ZWCAD)"
+  country: CN
+  origin: foreign
+  market_status: active
+  aliases: ["звсофт", "zwcad", "звкад", "zw3d"]
+  categories: [cad_2d, mcad_plm]
+  notes: "Китайский разработчик DWG-САПР ZWCAD и 3D САПР ZW3D, доступен в РФ."
+
+- id: graphisoft
+  name: "Graphisoft"
+  name_ru: "Графисофт (Archicad)"
+  country: HU
+  origin: foreign
+  market_status: left
+  aliases: ["графисофт", "архикад", "archicad"]
+  categories: [bim_aec]
+  notes: "Официальные поставки в РФ прекращены; замещается Renga."
+
+# ============================================================================
+# 11. ГРАФИКА, ДИЗАЙН, ВИДЕО, РАЗРАБОТКА, ОБЛАКА, ИИ, ОБУЧЕНИЕ
+# ============================================================================
+
+- id: akvis
+  name: "AKVIS"
+  name_ru: "АКВИС"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аквис", "alivecolors", "алайвколорс"]
+  categories: [raster_photo]
+  notes: "Российский разработчик растрового графического редактора AliveColors (аналог Photoshop, ЕРРП)."
+
+- id: movavi
+  name: "Movavi"
+  name_ru: "Мовави"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мовави", "movavi video editor", "movavi suite"]
+  categories: [video_editing, audio_multimedia]
+  notes: "Популярный разработчик видеоредакторов, конвертеров и программ записи экрана."
+
+- id: ams_software
+  name: "AMS Software"
+  name_ru: "АМС Софтвэа"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["амс", "фотомастер", "видеомонтаж", "ams"]
+  categories: [raster_photo, video_editing]
+  notes: "Российский разработчик ФотоМАСТЕР и ВидеоМОНТАЖ."
+
+- id: unigine
+  name: "UNIGINE"
+  name_ru: "Юниджайн"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["юниджайн", "юниджин", "unigine engine"]
+  categories: [3d_rendering_animation]
+  notes: "Российский 3D-движок реального времени для промышленных тренажёров, цифровых двойников и визуализации."
+
+- id: corel
+  name: "Corel (Alludo)"
+  name_ru: "Корел"
+  country: CA
+  origin: foreign
+  market_status: restricted
+  aliases: ["корел", "корелдро", "coreldraw", "alludo"]
+  categories: [vector_illustration, raster_photo]
+  notes: "Ограниченная доступность в РФ."
+
+- id: figma
+  name: "Figma"
+  name_ru: "Фигма"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["фигма", "figma inc"]
+  categories: [ui_ux_web_design, whiteboards_notes]
+  notes: "Корпоративные закупки в РФ недоступны; альтернативы — Pixso, Penpot."
+
+- id: pixso
+  name: "Pixso"
+  name_ru: "Пиксо"
+  country: CN
+  origin: foreign
+  market_status: active
+  aliases: ["пиксо", "pixso design"]
+  categories: [ui_ux_web_design]
+  notes: "Инструмент UI/UX-дизайна и прототипирования с импортом файлов Figma."
+
+- id: maxon
+  name: "Maxon"
+  name_ru: "Максон (Cinema 4D)"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["максон", "cinema 4d", "синема 4д"]
+  categories: [3d_rendering_animation]
+  notes: "Недоступен в РФ."
+
+- id: blackmagic
+  name: "Blackmagic Design"
+  name_ru: "Блэкмэджик (DaVinci Resolve)"
+  country: AU
+  origin: foreign
+  market_status: restricted
+  aliases: ["блэкмэджик", "давинчи", "davinci resolve"]
+  categories: [video_editing]
+  notes: "Профессиональный видеомонтаж и цветокоррекция DaVinci Resolve Studio."
+
+- id: chaos_group
+  name: "Chaos"
+  name_ru: "Хаос Групп (V-Ray)"
+  country: BG
+  origin: foreign
+  market_status: left
+  aliases: ["v-ray", "вирей", "corona renderer", "chaos"]
+  categories: [3d_rendering_animation]
+  notes: "Ушёл из РФ."
+
+- id: gitflic
+  name: "GitFlic"
+  name_ru: "ГитФлик (Группа Астра)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["гитфлик", "гит флик", "resoft gitflic"]
+  categories: [git_cicd_devops]
+  notes: "Ведущая российская платформа хостинга Git-репозиториев и CI/CD (аналог GitLab/GitHub, ЕРРП)."
+
+- id: test_it
+  name: "Test IT"
+  name_ru: "Тест ИТ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тест ит", "тестит", "testit tms"]
+  categories: [testing_qa]
+  notes: "Российская система управления тестированием ПО (TMS, аналог TestRail)."
+
+- id: qameta_allure
+  name: "Qameta Software"
+  name_ru: "Камета Софтвэа (Allure TestOps)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аллюр", "allure testops", "qameta"]
+  categories: [testing_qa]
+  notes: "Платформа управления качеством и автотестированием Allure TestOps."
+
+- id: pvs_studio
+  name: "PVS-Studio"
+  name_ru: "ПВС-Студио"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["пвс студио", "пвс-студио", "pvs studio"]
+  categories: [code_analysis_sast]
+  notes: "Российский статический анализатор кода (C, C++, C#, Java) для поиска ошибок и уязвимостей SAST."
+
+- id: fast_reports
+  name: "Fast Reports"
+  name_ru: "Фаст Репортс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["фастрепорт", "фаст репорт", "fastreport"]
+  categories: [dev_libraries_components]
+  notes: "Российский разработчик генераторов отчётов FastReport (.NET, VCL, Core) и FastCube."
+
+- id: axiom_jdk
+  name: "Axiom JDK"
+  name_ru: "Аксиом ДК"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["аксиом", "аксиом jdk", "axiom", "liberica рф"]
+  categories: [java_runtimes]
+  notes: "Российская сертифицированная среда исполнения Java (ЕРРП, аналог Oracle Java SE)."
+
+- id: jetbrains
+  name: "JetBrains"
+  name_ru: "ДжетБрейнс"
+  country: CZ
+  origin: foreign
+  market_status: left
+  aliases: ["джетбрейнс", "джет брейнс", "intellij", "pycharm", "webstorm", "phpstorm", "rider", "datagrip"]
+  categories: [ide_compilers, db_management_tools, git_cicd_devops]
+  notes: "Приостановил продажи и продления в РФ."
+
+- id: gitlab
+  name: "GitLab"
+  name_ru: "ГитЛаб"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["гитлаб", "гит лаб", "gitlab ee"]
+  categories: [git_cicd_devops]
+  notes: "Коммерческие лицензии в РФ недоступны; замещается GitFlic, SourceCraft, Сфера.Код."
+
+- id: github
+  name: "GitHub"
+  name_ru: "ГитХаб"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["гитхаб", "гит хаб", "github enterprise", "copilot"]
+  categories: [git_cicd_devops, llm_gen_ai]
+  notes: "Корпоративные подписки недоступны в РФ."
+
+- id: embarcadero
+  name: "Embarcadero"
+  name_ru: "Эмбаркадеро"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["эмбаркадеро", "delphi", "делфи", "rad studio", "c++builder"]
+  categories: [ide_compilers]
+  notes: "Официальные поставки в РФ прекращены."
+
+- id: sonarsource
+  name: "SonarSource"
+  name_ru: "СонарСорс (SonarQube)"
+  country: CH
+  origin: foreign
+  market_status: left
+  aliases: ["сонаркуб", "сонар", "sonarqube"]
+  categories: [code_analysis_sast]
+  notes: "Коммерческие редакции недоступны в РФ; замещается PVS-Studio, Solar appScreener, PT AI."
+
+- id: postman
+  name: "Postman"
+  name_ru: "Постман"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["постман", "postman enterprise"]
+  categories: [api_integration_esb, testing_qa]
+  notes: "Коммерческие подписки недоступны для оплаты юрлицами РФ."
+
+- id: selectel
+  name: "Selectel"
+  name_ru: "Селектел"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["селектел", "selectel cloud"]
+  categories: [iaas_cloud_platforms, private_cloud_platforms]
+  notes: "Ведущий российский провайдер облачной инфраструктуры IaaS/PaaS и выделенных серверов."
+
+- id: cloud_ru
+  name: "Cloud.ru"
+  name_ru: "Клауд.ру"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["клаудру", "клауд ру", "sbercloud", "сберклауд", "cloud ru"]
+  categories: [iaas_cloud_platforms, private_cloud_platforms, ml_platforms_cv, llm_gen_ai]
+  notes: "Крупнейший российский провайдер облачных и AI-платформ (Evolution, ML Space)."
+
+- id: mts_web_services
+  name: "MWS (MTS Web Services)"
+  name_ru: "МТС Веб Сервисы"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мвс", "мтс клауд", "cloudmts", "mts cloud", "mws"]
+  categories: [iaas_cloud_platforms, llm_gen_ai]
+  notes: "Облачный и AI-провайдер группы МТС (IaaS, 152-ФЗ, Cotype LLM)."
+
+- id: softline_cloud
+  name: "Softline Cloud"
+  name_ru: "Софтлайн Клауд"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["софтлайн облако", "софтлайн клауд", "softline", "гк софтлайн"]
+  categories: [iaas_cloud_platforms, tech_support, it_training_courses]
+  notes: "Облачная инфраструктура, сертифицированный IaaS (152-ФЗ), техподдержка и учебный центр Softline."
+
+- id: aws
+  name: "Amazon Web Services"
+  name_ru: "Амазон Веб Сервисез"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["авс", "amazon aws", "амазон облако"]
+  categories: [iaas_cloud_platforms]
+  notes: "Недоступен в РФ; замещается Yandex Cloud, Cloud.ru, VK Cloud, Selectel."
+
+- id: google
+  name: "Google"
+  name_ru: "Гугл"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["гугл", "google workspace", "google cloud", "gcp", "google meet"]
+  categories: [iaas_cloud_platforms, uc_platforms, office_suite, vks_webinars]
+  notes: "Корпоративные продажи в РФ прекращены."
+
+- id: openai
+  name: "OpenAI"
+  name_ru: "ОпенАИ"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["опенаи", "chatgpt", "чатгпт", "чат джипити", "gpt-4"]
+  categories: [llm_gen_ai]
+  notes: "Недоступен для юрлиц РФ; замещается GigaChat, YandexGPT, MTS AI Cotype."
+
+- id: visionlabs
+  name: "VisionLabs"
+  name_ru: "ВижнЛабс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["вижнлабс", "luna platform", "луна платформ"]
+  categories: [ml_platforms_cv]
+  notes: "Российский разработчик систем компьютерного зрения, биометрии и видеоаналитики LUNA."
+
+- id: ntechlab
+  name: "NtechLab"
+  name_ru: "НтехЛаб"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["нтехлаб", "findface", "файндфейс"]
+  categories: [ml_platforms_cv]
+  notes: "Российский разработчик ИИ-платформы видеоаналитики FindFace Multi."
+
+- id: just_ai
+  name: "Just AI"
+  name_ru: "Джаст АИ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["джаст аи", "jaicp", "jay copilot"]
+  categories: [ai_speech_chatbots, llm_gen_ai]
+  notes: "Российский разработчик диалогового ИИ, чат-ботов и голосовых роботов (JAICP)."
+
+- id: macroscop
+  name: "Macroscop"
+  name_ru: "Макроскоп"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["макроскоп", "макроскоп видеонаблюдение"]
+  categories: [industry_specialized, ml_platforms_cv]
+  notes: "Ведущее российское ПО для систем IP-видеонаблюдения и видеоаналитики."
+
+- id: dssl_trassir
+  name: "DSSL (TRASSIR)"
+  name_ru: "ДССЛ (Трассир)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["трассир", "дссл", "trassir", "trassir os"]
+  categories: [industry_specialized, ml_platforms_cv]
+  notes: "Российская платформа видеонаблюдения и нейросетевой видеоаналитики TRASSIR."
+
+- id: axxonsoft
+  name: "AxxonSoft"
+  name_ru: "ИТВ / AxxonSoft"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["акссонсофт", "итв", "интеллект", "axxon one", "axxon next"]
+  categories: [industry_specialized, ml_platforms_cv]
+  notes: "Российский разработчик систем видеонаблюдения и безопасности Axxon One / Интеллект."
+
+- id: ispring
+  name: "iSpring"
+  name_ru: "АйСпринг"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["айспринг", "ispring suite", "ispring learn", "ричмедиа"]
+  categories: [lms_elearning]
+  notes: "Российский лидер в сфере корпоративного онлайн-обучения: конструктор курсов iSpring Suite и LMS iSpring Learn."
+
+- id: mirapolis
+  name: "Mirapolis"
+  name_ru: "Мираполис"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мираполис", "mirapolis lms", "mirapolis hcm"]
+  categories: [lms_elearning, hrm_recruiting]
+  notes: "Российская корпоративная платформа дистанционного обучения (LMS) и управления талантами (HCM)."
+
+- id: websoft
+  name: "Websoft"
+  name_ru: "Вебсофт"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["вебсофт", "webtutor", "вебтьютор", "websoft hcm"]
+  categories: [lms_elearning, hrm_recruiting]
+  notes: "Российская платформа корпоративного обучения и HR-автоматизации Websoft HCM (ранее WebTutor)."
+
+- id: litres
+  name: "LitRes"
+  name_ru: "Литрес"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["литрес", "литрес библиотека", "корпоративная библиотека литрес"]
+  categories: [ebooks_corporate_lib]
+  notes: "Корпоративная электронная библиотека Литрес для компаний."
+
+- id: alpina_digital
+  name: "Alpina Digital"
+  name_ru: "Альпина Диджитал"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["альпина", "альпина диджитал", "библиотека альпина"]
+  categories: [ebooks_corporate_lib]
+  notes: "Корпоративная электронная библиотека деловой литературы."
+
+- id: infoklinika
+  name: "Smart Delta Systems"
+  name_ru: "Смарт Дельта Системс (Инфоклиника)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инфоклиника", "смарт дельта", "мис инфоклиника"]
+  categories: [industry_specialized]
+  notes: "Популярная российская медицинская информационная система (МИС)."
+
+- id: soft_balance_t1
+  name: "T1 (Sfera)"
+  name_ru: "Холдинг Т1 (Платформа Сфера)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["т1", "сфера", "платформа сфера", "сфера код", "сфера задачи"]
+  categories: [git_cicd_devops, task_project_trackers, whiteboards_notes, testing_qa]
+  notes: "Российская производственная платформа разработки ПО «Сфера» (замена Atlassian + GitLab)."
+
+- id: t1_dion
+  name: "DION (T1)"
+  name_ru: "ДИОН (Холдинг Т1)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["дион", "dion вкс", "dion"]
+  categories: [vks_webinars]
+  notes: "Российская корпоративная платформа видеоконференцсвязи DION (холдинг Т1)."
+
+- id: alteroffice
+  name: "Almi Partner"
+  name_ru: "Алми Партнер (AlterOffice)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["алми партнер", "альтерофис", "alteroffice", "альтер офис", "alteros"]
+  categories: [office_suite, desktop_os_ru]
+  notes: "Российский разработчик офисного пакета AlterOffice и операционной системы AlterOS."
+
+- id: red_os_community_alt_extra
+  name: "GetCourse"
+  name_ru: "ГетКурс"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["геткурс", "getcourse", "гет курс"]
+  categories: [lms_elearning]
+  notes: "Российская платформа для создания и продажи онлайн-курсов."
+
+- id: equio
+  name: "Equio"
+  name_ru: "Эквио"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["эквио", "e-queo", "эквио lms"]
+  categories: [lms_elearning]
+  notes: "Российская мобильная LMS-платформа для обучения линейного персонала."

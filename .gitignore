@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.env
+!.env.example
+/var/
+/models/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.npy
+.pytest_cache/
+node_modules/
+/design/ref/
