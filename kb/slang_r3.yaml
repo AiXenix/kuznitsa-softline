@@ -627,16 +627,16 @@
 - {term: "дрвеб есс", type: translit, maps_to: {family: drweb_enterprise_security_suite}, note: "Dr.Web ESS"}
 - {term: "докторвеб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
 - {term: "доктор вэб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
-- {term: "позитив технолоджиз", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
-- {term: "позитив технолоджи", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
+- {term: "позитив текнолоджиз", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
+- {term: "позитив текнолоджи", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
 - {term: "пт сэндбокс", type: translit, maps_to: {vendor: positive_technologies}, note: "PT Sandbox"}
 - {term: "пт мультисканер", type: obsolete, maps_to: {vendor: positive_technologies}, note: "Прежнее название PT MultiScanner"}
-- {term: "позитив технолоджис сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
+- {term: "позитив текнолоджис сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
 - {term: "макс патрул сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
 - {term: "макспатрол 8", type: obsolete, maps_to: {family: pt_maxpatrol_vm}, note: "Прежнее поколение MaxPatrol 8"}
 - {term: "пт аппликейшн файрвол", type: translit, maps_to: {family: pt_af}, note: "PT AF"}
-- {term: "позитив технолоджис ваф", type: translit, maps_to: {family: pt_af}, note: "PT AF"}
-- {term: "позитив технолоджис нгфв", type: translit, maps_to: {family: pt_ngfw}, note: "PT NGFW"}
+- {term: "позитив текнолоджис ваф", type: translit, maps_to: {family: pt_af}, note: "PT AF"}
+- {term: "позитив текнолоджис нгфв", type: translit, maps_to: {family: pt_ngfw}, note: "PT NGFW"}
 - {term: "юзер гейт", type: translit, maps_to: {vendor: usergate}, note: "UserGate"}
 - {term: "юзергейт нгфв", type: translit, maps_to: {family: usergate_ngfw}, note: "UserGate NGFW"}
 - {term: "юзергейт утм", type: obsolete, maps_to: {family: usergate_ngfw}, note: "Прежнее позиционирование UTM"}
@@ -748,6 +748,9 @@
 - {term: "майкрософт 365 бизнес", type: translit, maps_to: {family: microsoft_365}, note: ""}
 - {term: "майкрософт визио", type: translit, maps_to: {family: ms_visio}, note: "MS Visio"}
 - {term: "визио про", type: translit, maps_to: {family: ms_visio}, note: "Visio Professional"}
+- {term: "современные технологии управления", type: slang, maps_to: {vendor: business_studio}, note: "ГК «Современные технологии управления» (Business Studio)"}
+- {term: "гк современные технологии управления", type: slang, maps_to: {vendor: business_studio}, note: "Business Studio"}
+- {term: "гк сту", type: abbr, maps_to: {vendor: business_studio}, note: "ГК «Современные технологии управления» (Business Studio)"}
 - {term: "майкрософт проджект", type: translit, maps_to: {family: ms_project}, note: "MS Project"}
 - {term: "проджект про", type: translit, maps_to: {family: ms_project}, note: "Project Professional"}
 - {term: "майкрософт эксчендж", type: translit, maps_to: {family: ms_exchange}, note: "Exchange Server"}
@@ -902,7 +905,6 @@
 - {term: "вс энтерпрайз", type: abbr, maps_to: {family: ms_visual_studio}, note: "Visual Studio Enterprise"}
 - {term: "джетбрейнс пак", type: translit, maps_to: {family: jetbrains_all_products}, note: "JetBrains All Products Pack"}
 - {term: "интеллидж идея", type: translit, maps_to: {family: jetbrains_all_products}, note: "IntelliJ IDEA"}
-- {term: "идея джетбрейнс", type: slang, maps_to: {family: jetbrains_all_products}, note: "IntelliJ IDEA"}
 - {term: "пичарм", type: translit, maps_to: {family: jetbrains_all_products}, note: "PyCharm"}
 - {term: "копайлот гитхаб", type: translit, maps_to: {family: github_copilot}, note: "GitHub Copilot"}
 - {term: "гитфлик сервер", type: slang, maps_to: {family: gitflic}, note: "GitFlic"}
