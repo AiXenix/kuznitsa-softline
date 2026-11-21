@@ -177,11 +177,22 @@ class Journal:
         if not category and cards:
             category=(cards[0].get("category") or {}).get("id")
         count=max(count,len(ids))
+        priority_ids = set()
+        for step in r.get("trace", []):
+            if step.get("step") == "business":
+                for fired in step.get("detail", {}).get("priorities", []):
+                    ident = fired.get("id") or fired.get("rule_id") if isinstance(fired, dict) else fired
+                    if isinstance(ident, str):
+                        priority_ids.add(ident)
+        metadata = None
+        if req.source in {"ui","api","widget"}:
+            metadata = dump({"priority_ids": sorted(priority_ids),
+                             "top_offers": [(c.get("offer") or {}).get("offer_id") for c in cards[:5]]})
         self.insert("searches",dict(search_id=r["search_id"],ts=ts,session_id=req.session_id,client_id=req.profile_id,
                     segment=r["profile"]["segment"],source=req.source,engine=r["engine"],mode=req.mode,q_raw=q["raw"],q_norm=q["normalized"],
                     q_corrected=q["corrected"],intent=u["intent"],intent_conf=u["intent_conf"],category_ctx=category,
                     entities_json=dump(u["entities"]),filters_json=dump(u["filters"]),n_cards=count,zero=int(not count),relaxed=int(relaxed),
                     fail_reason=classify(r,count,reason),top_cards_json=dump(ids),blocks_json=dump([b["type"] for b in r["blocks"]]),ms=r["timing_ms"]["total"],
                     llm_calls=cost.get("llm_calls",0),llm_cost_usd=cost.get("usd",0),cached=cost.get("cached",0),
-                    prev_search_id=(u.get("inherited") or {}).get("from_search_id"),trace_json=None,
+                    prev_search_id=(u.get("inherited") or {}).get("from_search_id"),trace_json=metadata,
                     response_z=zlib.compress(to_json(r),1)))

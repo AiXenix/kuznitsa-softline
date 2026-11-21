@@ -1,0 +1,81 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "id": "p_endpoint",
+      "title": "Показать выбранную линейку антивирусов",
+      "enabled": true,
+      "order": 10,
+      "target": {
+        "categories": [],
+        "vendors": [],
+        "families": [],
+        "cards": [
+          "trend_micro_apex_one:apex"
+        ],
+        "tags": [],
+        "price_rub": null
+      },
+      "scope": {
+        "segments": [],
+        "profiles": [],
+        "regions": [],
+        "intents": [],
+        "queries": [
+          "антивирусы"
+        ],
+        "channels": [],
+        "from": null,
+        "to": null
+      },
+      "action": {
+        "boost": 40,
+        "criteria": {},
+        "max_in_top": null,
+        "pin": {
+          "card_id": "trend_micro_apex_one:apex",
+          "position": 1
+        },
+        "public_label": null
+      },
+      "cross_tier": false,
+      "note": "Проверено на исторических запросах",
+      "author": "admin",
+      "created_at": 1795230624,
+      "updated_at": 1795230624,
+      "stats": {
+        "fired_24h": 1,
+        "searches_in_scope_24h": 1,
+        "share_top5": 0.2,
+        "measured_positions": 5,
+        "unknown_positions": 0
+      }
+    }
+  ],
+  "criteria": [
+    "popularity",
+    "margin",
+    "personal",
+    "stock",
+    "novelty",
+    "price_low",
+    "domestic",
+    "promo",
+    "conversion"
+  ],
+  "tags": [
+    "domestic",
+    "fstec",
+    "fsb",
+    "in_stock",
+    "promo",
+    "new",
+    "subscription",
+    "perpetual",
+    "cloud",
+    "electronic",
+    "box",
+    "edu",
+    "gov"
+  ]
+}

@@ -10,7 +10,7 @@ import re
 from time import time
 from kuznitsa.config import WEIGHTS
 from kuznitsa.schema import Request
-from kuznitsa.text import tokens
+from kuznitsa.text import normalize,tokens
 from .gaps import demand,report as gap_report
 from .kpi import facts,loss_by_search
 from .replay import compare,products,experiment_engine
@@ -58,6 +58,53 @@ def target_position(cards,targets):
     return next((i for i,c in enumerate(cards,1) if c["card_id"] in targets),None)
 
 
+def impact_order(item):
+    impact=item.get("impact") or {}
+    evidence=item.get("evidence") or {}
+    return (-(impact.get("expected_rub") or 0), -(impact.get("conservative_rub") or 0),
+            -(evidence.get("sessions_30d") or 0),item["id"])
+
+
+def foreign_shortlist(items):
+    """Один кандидат на действие; при равном эффекте выше независимый спрос."""
+    chosen={}
+    seen=set()
+    for item in sorted(items,key=impact_order):
+        action=item["action"]
+        evidence=item["evidence"]
+        if not evidence.get("examples") and not (item["type"]=="renewal_campaign" and evidence.get("licenses")):
+            continue
+        payload=action["payload_json"]
+        if item["type"]=="add_product":
+            key=("supply",normalize(payload["product"]))
+            if evidence["sessions_30d"]<2 or not any(evidence.get("checks",{}).values()):
+                continue
+        else:
+            key=(item["type"],json.dumps([action.get("conditions"),payload],sort_keys=True,ensure_ascii=False))
+        if key not in seen:
+            seen.add(key)
+            chosen[item["id"]]=item
+            if len(chosen)==30:
+                break
+    return chosen
+
+
+def supply_queries(kb, key, queries):
+    """Только явные названия: совпадение по одному слову или исправлению не доказывает спрос."""
+    entry=kb.rows["families"].get(key) or kb.rows["vendors"].get(key) or {}
+    aliases={tuple(tokens(name)) for name in [entry.get("title"),entry.get("name"),*entry.get("aliases",[]),key]
+             if isinstance(name,str) and name}
+    modifiers=re.compile(r"купить|цен[ауы]|лицензи[а-я]*|продл[а-я]*|стоимость|для|на|от|до|пк|мест[а-я]*|"
+                         r"пользовател[а-я]*|устройств[а-я]*|лет|год[а-я]*|подписк[а-я]*|"
+                         r"license[s]?|pricing|buy|renewal|users?|devices?|[0-9.]+")
+    accepted=set()
+    for q in queries:
+        words=tuple(w for w in tokens(q) if not modifiers.fullmatch(w))
+        if words in aliases:
+            accepted.add(q)
+    return accepted
+
+
 def discover(e):
     j=e.journal
     packed=bool(j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"))
@@ -80,6 +127,12 @@ def discover(e):
         return e.search(Request(q=q,source="eval",mode="fast",page_size=10))
 
     def add(kind,key,title,g,action,extra=None,impact=None):
+        if imported and kind=="add_product":
+            # Одно и то же наблюдение часто входит в несколько групп пробелов.
+            phrases=supply_queries(e.kb,key,{r["q"] for r in g})
+            g=list({r["search_id"]:r for r in g if r["q"] in phrases}.values())
+            if len({r["session_id"] for r in g})<8:
+                return
         if not g and kind!="renewal_campaign":
             return
         samples=Counter(r["q"] for r in g)
@@ -123,10 +176,23 @@ def discover(e):
             if key in e.catalog.by["family"] or key in e.catalog.by["vendor"]:
                 return
             known=key in e.kb.rows["families"] or key in e.kb.rows["vendors"]
+            if imported and not known and not any(
+                    re.search(r"купить|лицензи|продлен|закуп|стоимост|\blicen[cs]e|\bpricing",q,re.I)
+                    and str(key).casefold() in q.casefold() for q in samples):
+                return
             if not known and (len(samples)<2 or probe(str(key))["query"].get("corrections") or any(v["repaired"] for v in probes.values())):
                 return
             if not any(not v["top5"] or any(b["type"]=="not_in_catalog" for b in probe(q)["blocks"]) for q,v in probes.items()):
                 return
+            if imported:
+                unresolved={q for q,v in probes.items() if not v["top5"] or
+                            any(b["type"]=="not_in_catalog" for b in probe(q)["blocks"])}
+                g=[r for r in g if r["q"] in unresolved]
+                if len({r["session_id"] for r in g})<8:
+                    return
+                probes={q:v for q,v in probes.items() if q in unresolved}
+                samples=Counter(r["q"] for r in g)
+                extra=dict(extra or {},demand=len(g),segments_30d=dict(Counter(r["segment"] for r in g)))
         if kind=="merch_rule":
             q=action["conditions"]["phrase"]
             target=action["payload_json"].get("card_id") or (extra or {}).get("target_card")
@@ -386,6 +452,8 @@ def discover(e):
         add("weights_advice","weights","Увеличить вес маржи" if gain>0 else "Сохранить текущие веса по результату проверки", [r for q in common for r in by_q[q]],
             dict(kind="weights",label="Применить веса" if gain>0 else "Подтвердить текущие веса",payload_json=candidate if gain>0 else current),dict(tested_weights=candidate,moved=test["moved"],band_inversions=test["band_inversions"],margin_delta_rub=round(gain,2)),
             dict(expected_rub=round(max(0,gain),2),conservative_rub=0,metric_label="Изменение взвешенной маржи на выборке",formula_note=test["formula"]))
+    if imported:
+        suggestions=foreign_shortlist(suggestions.values())
     with j.transaction() as db:
         db.executemany("""INSERT INTO insights VALUES (?,?, 'new',?,NULL) ON CONFLICT(id) DO UPDATE SET body=excluded.body WHERE insights.status='new'""",
                        [(k,v["type"],dump(v)) for k,v in suggestions.items()])
@@ -418,6 +486,9 @@ def listing(j,ident=None):
             else:
                 item["impact_text"]=f"{effect.get('metric_label','Оценка эффекта')} · {effect['expected_rub']:,.0f} ₽.".replace(","," ")
         items.append(item|dict(status=row["status"],verification=json.loads(row["verification"] or "null")))
+    items.sort(key=impact_order)
+    if not ident and items and items[0].get("dataset")=="import":
+        return list(foreign_shortlist(items).values())
     return items
 
 

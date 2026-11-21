@@ -1,0 +1,343 @@
+{
+  "items": [
+    {
+      "version": 5,
+      "rule_id": "p_endpoint",
+      "operation": "import",
+      "ts": 1795230624,
+      "author": "admin",
+      "before": null,
+      "after": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": true,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "Проверено на исторических запросах",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      }
+    },
+    {
+      "version": 4,
+      "rule_id": "p_endpoint",
+      "operation": "delete",
+      "ts": 1795230624,
+      "author": "admin",
+      "before": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": false,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "Проверено на исторических запросах",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      },
+      "after": null
+    },
+    {
+      "version": 3,
+      "rule_id": "p_endpoint",
+      "operation": "toggle",
+      "ts": 1795230624,
+      "author": "admin",
+      "before": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": true,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "Проверено на исторических запросах",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      },
+      "after": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": false,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "Проверено на исторических запросах",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      }
+    },
+    {
+      "version": 2,
+      "rule_id": "p_endpoint",
+      "operation": "update",
+      "ts": 1795230624,
+      "author": "admin",
+      "before": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": true,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      },
+      "after": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": true,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "Проверено на исторических запросах",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      }
+    },
+    {
+      "version": 1,
+      "rule_id": "p_endpoint",
+      "operation": "create",
+      "ts": 1795230624,
+      "author": "admin",
+      "before": null,
+      "after": {
+        "id": "p_endpoint",
+        "title": "Показать выбранную линейку антивирусов",
+        "enabled": true,
+        "order": 10,
+        "target": {
+          "categories": [],
+          "vendors": [],
+          "families": [],
+          "cards": [
+            "trend_micro_apex_one:apex"
+          ],
+          "tags": [],
+          "price_rub": null
+        },
+        "scope": {
+          "segments": [],
+          "profiles": [],
+          "regions": [],
+          "intents": [],
+          "queries": [
+            "антивирусы"
+          ],
+          "channels": [],
+          "from": null,
+          "to": null
+        },
+        "action": {
+          "boost": 40,
+          "criteria": {},
+          "max_in_top": null,
+          "pin": {
+            "card_id": "trend_micro_apex_one:apex",
+            "position": 1
+          },
+          "public_label": null
+        },
+        "cross_tier": false,
+        "note": "",
+        "author": "admin",
+        "created_at": 1795230624,
+        "updated_at": 1795230624
+      }
+    }
+  ]
+}

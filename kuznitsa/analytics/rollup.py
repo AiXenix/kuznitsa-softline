@@ -55,7 +55,7 @@ avg(carts) cart_rate,avg(CASE WHEN clicks_known THEN clicks>0 END) ctr,avg(coale
 1.*sum(positions)/nullif(sum(clicks),0) mean_click_position,avg(coalesce(1./best_position,0)) mrr,avg(first_click_s) first_click_s,
 avg(reformulations) reformulation_rate,avg(corrected) correction_rate,1.*sum(accepted)/nullif(sum(corrected),0) accept_rate,
 avg(suggested) suggestion_rate,round(sum(revenue),2) revenue_rub,round(sum(margin),2) margin_rub,
-sum(paired) paired_searches,avg(case when paired then zero end) before_zero_rate,avg(case when paired then peer_zero end) after_zero_rate,sum(orders_known) order_denominator,sum(revenue_known) revenue_denominator,sum(clicks_known) click_denominator,sum(clicks>0) clicked,sum(carts) carts,sum(orders) orders"""
+sum(paired) paired_searches,avg(case when paired then zero end) before_zero_rate,avg(case when paired then peer_zero end) after_zero_rate,sum(orders_known) order_denominator,sum(revenue_known) revenue_denominator,sum(clicks_known) click_denominator,sum(clicks>0) clicked,sum(carts) carts,sum(orders) orders,sum(leads) leads,sum(orders OR leads) orders_or_leads"""
 
 
 def summarize(j,filters):
@@ -105,7 +105,7 @@ def summarize(j,filters):
     tiles=[dict(key=k,label=label,value=round(totals[k]*scale,2),unit=unit,note=scope["label"]) for k,label,scale,unit in [
         ("searches","Поиски",1,"шт."),("zero_rate","Без результата",100,"%"),("exit_after_failure","Уходы после неудачи",100,"%"),
         ("conversion","Из поиска в заказ",100,"%"),("revenue_rub","Выручка из поиска",1,"₽")]]
-    funnel=[dict(key=k,label=v,count=totals[k]) for k,v in [("searches","Поиски"),("clicked","С кликом"),("carts","В корзину"),("orders","Заказ")]]
+    funnel=[dict(key=k,label=v,count=totals[k]) for k,v in [("searches","Поиски"),("clicked","С кликом"),("carts","В корзину"),("orders","Заказ"),("leads","Заявка менеджеру"),("orders_or_leads","С заказом или заявкой")]]
     peer_where=" AND paired" if where else " WHERE paired"
     buckets=read("""case when zero then 'empty' when hit_before then 'hit' else 'other' end old,
            case when peer_zero then 'empty' when hit_after then 'hit' else 'other' end new,

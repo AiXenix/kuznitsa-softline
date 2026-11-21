@@ -1,0 +1,47 @@
+{
+  "id": "p_endpoint",
+  "version": 1,
+  "item": {
+    "id": "p_endpoint",
+    "title": "Показать выбранную линейку антивирусов",
+    "enabled": true,
+    "order": 10,
+    "target": {
+      "categories": [],
+      "vendors": [],
+      "families": [],
+      "cards": [
+        "trend_micro_apex_one:apex"
+      ],
+      "tags": [],
+      "price_rub": null
+    },
+    "scope": {
+      "segments": [],
+      "profiles": [],
+      "regions": [],
+      "intents": [],
+      "queries": [
+        "антивирусы"
+      ],
+      "channels": [],
+      "from": null,
+      "to": null
+    },
+    "action": {
+      "boost": 40,
+      "criteria": {},
+      "max_in_top": null,
+      "pin": {
+        "card_id": "trend_micro_apex_one:apex",
+        "position": 1
+      },
+      "public_label": null
+    },
+    "cross_tier": false,
+    "note": "",
+    "author": "admin",
+    "created_at": 1795230624,
+    "updated_at": 1795230624
+  }
+}

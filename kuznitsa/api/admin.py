@@ -1,7 +1,7 @@
 """Служебная консоль магазина."""
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from kuznitsa.analytics import dashboard
+from kuznitsa.analytics import dashboard, priorities
 import json
 import gzip
 import os
@@ -9,10 +9,10 @@ from functools import lru_cache
 from heapq import nsmallest
 from pathlib import Path
 from secrets import compare_digest
-from typing import Literal
+from typing import Literal, Any
 
 from fastapi.responses import JSONResponse
-from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Query, Request
+from fastapi import APIRouter, Body, BackgroundTasks, Depends, Header, HTTPException, Query, Request
 from pydantic import BaseModel, Field, ConfigDict
 from kuznitsa.config import WEIGHTS,ROOT
 from kuznitsa.analytics import kpi, gaps, insights, replay, cost, digest
@@ -20,7 +20,8 @@ from kuznitsa.understand.intent import TITLES
 
 
 def authorize(request:Request,x_admin_token:str=Header(default="")):
-    if request.method=="GET" and os.getenv("KZ_ADMIN_OPEN")=="1":
+    read_only = request.method=="GET" or (request.method=="POST" and request.url.path=="/api/admin/priorities/preview")
+    if read_only and os.getenv("KZ_ADMIN_OPEN")=="1":
         return
     token=os.getenv("KZ_ADMIN_TOKEN")
     if not token or not compare_digest(x_admin_token.encode(),token.encode()):
@@ -268,7 +269,10 @@ def ingestion(request:Request):
     ai_file=path.with_name("import_ai.jsonl")
     stat=ai_file.stat() if ai_file.is_file() else None
     ai=(catalog or {}).get("ai") or {}
-    return dict(catalog=catalog,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=[json.loads(r["value"]) for r in reports],cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
+    history=[json.loads(r["value"]) for r in reports]
+    external=[dict(file=r["file"],items=r.get("external_phrases",[]),metrics=r.get("report_metrics",{})) for r in history if r.get("kind")=="metrika_external_phrases"]
+    crm=[dict(file=r["file"],**r["crm"]) for r in history if r.get("crm")]
+    return dict(catalog=catalog,external_phrases=external,crm_leads=crm,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=history,cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
                 sources=sources)
 
 
@@ -279,3 +283,58 @@ def summary(request:Request,role:Literal["head_ecom","ecom_manager","product_man
         from kuznitsa.analytics.exports import export
         return export(request.app.state.engine,role or "head_ecom",format)
     return checked(digest.digest,request.app.state.engine.journal,role)
+
+
+
+def priority_result(operation, *args):
+    try:
+        return operation(*args)
+    except ValueError as exc:
+        return JSONResponse({"error":{"code":"invalid_rule","message":str(exc)}},status_code=400)
+    except NotImplementedError as exc:
+        return JSONResponse({"error":{"code":"preview_unavailable","message":str(exc)}},status_code=503)
+
+
+@router.get("/priorities")
+def priority_list(request: Request):
+    return priorities.listing(request.app.state.engine)
+
+
+@router.get("/priorities/audit")
+def priority_history(request: Request):
+    return priorities.audit(request.app.state.engine.journal)
+
+
+@router.get("/priorities/export")
+def priority_export(request: Request):
+    return priorities.export_rules(request.app.state.engine.journal)
+
+
+@router.post("/priorities/import")
+def priority_import(request: Request, body: Any = Body(None)):
+    return priority_result(priorities.import_rules,request.app.state.engine.journal,body)
+
+
+@router.post("/priorities/preview")
+def priority_preview(request: Request, body: Any = Body(None)):
+    return priority_result(priorities.preview,request.app.state.engine,body)
+
+
+@router.post("/priorities")
+def priority_create(request: Request, body: Any = Body(None)):
+    return priority_result(priorities.change,request.app.state.engine.journal,"create",body)
+
+
+@router.put("/priorities/{ident}")
+def priority_update(request: Request, ident: str, body: Any = Body(None)):
+    return priority_result(priorities.change,request.app.state.engine.journal,"update",body,ident)
+
+
+@router.delete("/priorities/{ident}")
+def priority_delete(request: Request, ident: str):
+    return priority_result(priorities.change,request.app.state.engine.journal,"delete",None,ident)
+
+
+@router.post("/priorities/{ident}/toggle")
+def priority_toggle(request: Request, ident: str):
+    return priority_result(priorities.change,request.app.state.engine.journal,"toggle",None,ident)

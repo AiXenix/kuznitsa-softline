@@ -1,0 +1,76 @@
+{
+  "queries": [
+    {
+      "q": "антивирусы",
+      "profile_id": "guest",
+      "frequency": 909,
+      "before": [
+        {
+          "card_id": "auto_f_5dadee8dee47633da625",
+          "title": "Пихтарис Контур Стандарт / Новая",
+          "tier": 1
+        },
+        {
+          "card_id": "auto_f_6a58c3fb0ed0b838f1ec:расширенный",
+          "title": "Пихтарис Контур  / Новая расширенный",
+          "tier": 1
+        },
+        {
+          "card_id": "bitdefender_gravityzone",
+          "title": "Bitdefender GravityZone",
+          "tier": 1
+        },
+        {
+          "card_id": "drweb_enterprise_security_suite",
+          "title": "Dr.Web Enterprise Security Suite",
+          "tier": 1
+        },
+        {
+          "card_id": "eset_protect",
+          "title": "ESET PROTECT",
+          "tier": 1
+        }
+      ],
+      "after": [
+        {
+          "card_id": "trend_micro_apex_one:apex",
+          "title": "Trend Micro Apex One",
+          "tier": 1
+        },
+        {
+          "card_id": "auto_f_5dadee8dee47633da625",
+          "title": "Пихтарис Контур Стандарт / Новая",
+          "tier": 1
+        },
+        {
+          "card_id": "auto_f_6a58c3fb0ed0b838f1ec:расширенный",
+          "title": "Пихтарис Контур  / Новая расширенный",
+          "tier": 1
+        },
+        {
+          "card_id": "bitdefender_gravityzone",
+          "title": "Bitdefender GravityZone",
+          "tier": 1
+        },
+        {
+          "card_id": "drweb_enterprise_security_suite",
+          "title": "Dr.Web Enterprise Security Suite",
+          "tier": 1
+        }
+      ],
+      "moved": 5
+    }
+  ],
+  "summary": {
+    "share_top5_before": 0.0,
+    "share_top5_after": 0.2,
+    "avg_margin_before": 6484.674,
+    "avg_margin_after": 10654.434,
+    "margin_unit": "₽ за единицу",
+    "searches_affected": 909,
+    "orders_estimate": 5,
+    "order_denominator": 909,
+    "effect_text": "Изменится порядок в 909 поисках выборки. Осторожный ориентир для направления — 5 заказов на 909 поисках с данными о покупке.",
+    "note": "Вес пары — число таких поисков в истории. Канал для моделирования — ui. Для фразы без истории вес показа равен 1, исторический спрос равен 0. Маржа — цена × доля маржи SKU с известной ценой. Ориентир — сумма заказавших поисков × положительное изменение доли направления в топ-5, с округлением вниз. Это модель перераспределения."
+  }
+}
