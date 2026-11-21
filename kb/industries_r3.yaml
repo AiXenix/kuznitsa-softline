@@ -1,0 +1,375 @@
+# Расширение отраслей и типов организаций с типовыми стеками ПО (Кузница Softline, раунд K2b)
+# Соответствует схеме kb/SCHEMA.md и формату kb/industries.yaml.
+# Категории в `slots` — листовые id из design/work/kb_categories_r3.tsv.
+# Регуляторика в `compliance` — id из kb/compliance.yaml и kb/compliance_r3.yaml.
+# Семейства в `families` — id из design/work/kb_families_r3.tsv (сначала catalog: yes, с российским вариантом из ЕРРП).
+# Всего записей: 30.
+
+- id: dentistry_private_clinic
+  title: "Стоматология и частная медицинская клиника"
+  aliases: ["по для стоматологии", "софт в стоматологию", "программы для стоматологической клиники", "что нужно стоматологии", "по для частной клиники", "софт в частный медцентр", "стоматологическая клиника программы", "автоматизация стоматологии по", "комплект по для стоматологии", "программы для зубной клиники"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: industry_specialized, must: true, families: [infoklinika_mis, crt_voice2med], products: ["Инфоклиника МИС", "ЦРТ Voice2Med"], note: "Электронные медкарты пациентов, расписание кресел, планы лечения и интеграция с ЕГИСЗ."}
+    - {category: crm_systems, must: false, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Обработка первичных заявок с сайта, повторные визиты и напоминания о профосмотре."}
+    - {category: ip_telephony, must: true, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС"], note: "Запись звонков администраторов, коллтрекинг и контроль пропущенных обращений."}
+    - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Фискализация оплат за приём и печать чеков по 54-ФЗ."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_zup, onec_fresh], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Бухгалтерский учёт клиники, учёт расходных материалов и расчёт зарплаты врачей."}
+    - {category: nsd_access_control, must: false, families: [secret_net_studio, dallas_lock], products: ["Secret Net Studio", "Dallas Lock"], note: "Разграничение доступа к врачебной тайне и базам пациентов по 152-ФЗ."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, kaspersky_ksos, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита компьютеров врачей, ресепшена и рентген-кабинетов."}
+
+- id: pharmacy_chain
+  title: "Аптечная сеть и фармацевтический ритейл"
+  aliases: ["софт в аптеку", "по для аптечной сети", "программы для аптеки", "что нужно аптечной сети", "автоматизация аптеки по", "по для фармритейла", "комплект по в аптечный пункт", "программы для сети аптек", "учет в аптеке программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Быстрый отпуск лекарств на кассе со сканированием кодов МДЛП «Честный ЗНАК»."}
+    - {category: trade_warehouse, must: true, families: [onec_trade, onec_unf, axelot_wms], products: ["1С:Управление торговлей 8", "AXELOT WMS"], note: "Посерийный учёт препаратов, контроль сроков годности и автозаказ дефектуры."}
+    - {category: tax_reporting_edo, must: true, families: [kontur_diadoc, sbis_saby, onec_edo], products: ["Контур.Диадок", "СБИС", "1С-ЭДО"], note: "Электронная приёмка УПД с кодами маркировки от фармдистрибьюторов."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_zup], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Регламентированный учёт аптечной сети и расчёт сменных графиков провизоров."}
+    - {category: remote_desktop, must: false, families: [assistant_remote, rudesktop, kontur_dostup], products: ["Ассистент", "RuDesktop"], note: "Удалённая техподдержка кассовых мест во всех аптеках сети."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Централизованная защита касс, серверов и офисных ПК сети."}
+
+- id: diagnostic_lab
+  title: "Медицинская и испытательная лаборатория"
+  aliases: ["по для лаборатории", "софт для медицинской лаборатории", "программы для диагностической лаборатории", "что нужно испытательной лаборатории", "автоматизация лаборатории по", "комплект по в лабораторию", "софт для клинической лаборатории", "программы в лабораторию анализов", "по для лабораторного центра"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: industry_specialized, must: true, families: [infoklinika_mis, crt_voice2med], products: ["Инфоклиника МИС"], note: "Регистрация заявок на анализы, маршрутизация биоматериала и выдача результатов."}
+    - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow, docsvision], products: ["Directum RX", "1С:Документооборот"], note: "Хранение протоколов испытаний, методик и контроль сроков поверки приборов."}
+    - {category: crypto_skzi, must: true, families: [cryptopro_csp, cryptoarm_gost], products: ["КриптоПро CSP", "КриптоАРМ ГОСТ"], note: "Электронная подпись протоколов анализов и передача сведений в государственные реестры."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, rubackup, handy_backup], products: ["Кибер Бэкап", "RuBackup"], note: "Ежедневное резервное копирование баз результатов и данных анализаторов."}
+    - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Оформление сводных отчётов, журналов контроля качества и прайс-листов."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита рабочих мест лаборантов и серверов хранения персональных данных."}
+
+- id: veterinary_clinic
+  title: "Ветеринарная клиника и ветаптека"
+  aliases: ["по для ветеринарной клиники", "софт в ветклинику", "программы для ветеринарии", "что нужно ветклинике", "автоматизация ветеринарной клиники", "комплект по для ветклиники", "софт для ветеринарного центра", "программы в ветаптеку", "ветеринарная клиника программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: crm_systems, must: true, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Запись владельцев животных на приём, история обращений и напоминания о вакцинации."}
+    - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Приём оплаты за приём врача и продажа ветпрепаратов и кормов на кассе."}
+    - {category: trade_warehouse, must: true, families: [onec_unf, moysklad, onec_trade], products: ["1С:УНФ 8", "МойСклад"], note: "Учёт расходных материалов, вакцин, сроков годности и остатков ветаптеки."}
+    - {category: ip_telephony, must: false, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС"], note: "Приём звонков на запись и оперативная связь с филиалами клиники."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_fresh], products: ["1С:Бухгалтерия 8", "1С:Фреш"], note: "Бухгалтерский учёт клиники и сдача отчётности в ФНС."}
+    - {category: endpoint_security, must: true, families: [kaspersky_ksos, drweb_small_business, kaspersky_kesb], products: ["Kaspersky Small Office Security", "Dr.Web Малый бизнес"], note: "Защита компьютеров администраторов и ветеринарных врачей."}
+
+- id: general_school
+  title: "Общеобразовательная школа, гимназия и лицей"
+  aliases: ["по для школы", "софт в общеобразовательную школу", "программы для школы по 44 фз", "что нужно школе из по", "комплект по для средней школы", "реестровое по для школы", "софт в гимназию и лицей", "закупка программ для школы", "школьное по из реестра"]
+  compliance: [registry_ru, fz44_223, fz152_pdn]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux EDU", "РЕД ОС"], note: "Реестровая российская ОС для компьютерных классов и рабочих мест учителей."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard, alteroffice], products: ["Р7-Офис Образование", "МойОфис Образование"], note: "Академические лицензии офисного пакета без НДС для учебного процесса и администрации."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security EDU", "Dr.Web EDU"], note: "Антивирусная защита и контентная фильтрация на школьных компьютерах."}
+    - {category: accounting, must: false, families: [onec_bgu, onec_zkgu], products: ["1С:БГУ 8", "1С:ЗКГУ 8"], note: "Бюджетный бухгалтерский учёт и расчёт заработной платы педагогического состава."}
+    - {category: lms_elearning, must: false, families: [ispring_suite, mirapolis_lms], products: ["iSpring Suite"], note: "Подготовка интерактивных электронных уроков и тестов для школьников."}
+    - {category: directory_services, must: false, families: [alt_domain, ald_pro, red_adm], products: ["Альт Домен", "ALD Pro", "РЕД АДМ"], note: "Централизованное управление учебными классами и правами учеников."}
+
+- id: college_spo
+  title: "Колледж, техникум и организация СПО"
+  aliases: ["по для колледжа", "софт в техникум", "программы для спо", "что нужно колледжу из по", "комплект по для техникума", "реестровое по в колледж", "программы для среднего профессионального образования", "закупка софта для колледжа", "по для училища и колледжа"]
+  compliance: [registry_ru, fz44_223, fz152_pdn]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Российская ОС для лабораторий, аудиторий и административного корпуса колледжа."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard, alteroffice], products: ["Р7-Офис Образование", "МойОфис Образование"], note: "Офисные редакторы по льготному образовательному прайсу для студентов и преподавателей."}
+    - {category: mcad_plm, must: false, families: [kompas_3d, nanocad_platform, t_flex_cad], products: ["КОМПАС-3D Учебный комплект", "Платформа nanoCAD"], note: "Учебные САПР для подготовки техников, строителей и машиностроителей."}
+    - {category: accounting, must: false, families: [onec_bgu, onec_zkgu, onec_accounting], products: ["1С:БГУ 8", "1С:ЗКГУ 8", "1С:Бухгалтерия (учебная)"], note: "Учёт деятельности учреждения и учебные классы для будущих бухгалтеров."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security EDU", "Dr.Web EDU"], note: "Защита компьютерных лабораторий и сети колледжа от угроз."}
+    - {category: lms_elearning, must: false, families: [ispring_suite, mirapolis_lms], products: ["iSpring Suite", "Mirapolis LMS"], note: "Дистанционные модули обучения и тестирование студентов СПО."}
+
+- id: higher_edu_university
+  title: "Вуз, университет и академия"
+  aliases: ["по для вуза", "софт в университет", "программы для высшего учебного заведения", "что нужно университету из по", "комплект по для вуза", "академические лицензии для вуза", "реестровое по для университета", "закупка по для института", "программы на кафедры вуза"]
+  compliance: [registry_ru, fz44_223, fz152_pdn]
+  slots:
+    - {category: lms_elearning, must: true, families: [mirapolis_lms, websoft_hcm, ispring_suite], products: ["Mirapolis LMS", "Websoft HCM", "iSpring Suite"], note: "Электронная информационно-образовательная среда и дистанционные курсы факультетов."}
+    - {category: vks_webinars, must: false, families: [mts_link_webinars, trueconf_server, kontur_tolk], products: ["МТС Линк Вебинары", "TrueConf Server", "Контур.Толк"], note: "Потоковые онлайн-лекции, научные конференции и заседания диссертационных советов."}
+    - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Массовое оснащение компьютерных классов и кафедр отечественной ОС."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard, myoffice_professional], products: ["Р7-Офис", "МойОфис"], note: "Реестровый офисный пакет по академическим лицензиям без НДС."}
+    - {category: server_virtualization, must: false, families: [astra_brest, orion_zvirt, alt_virtualization], products: ["ПК СВ «Брест»", "zVirt", "Альт Виртуализация"], note: "Учебные стенды, виртуальные лаборатории и серверный кластер ЦОД вуза."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security EDU", "Dr.Web EDU"], note: "Единая защита кампусной сети, серверов и аудиторного фонда."}
+    - {category: ebooks_corporate_lib, must: false, families: [litres_corporate, alpina_digital_lib], products: ["Литрес: Библиотека", "Альпина Диджитал"], note: "Подключение электронной библиотеки для студентов и преподавателей."}
+
+- id: kindergarten_preschool
+  title: "Детский сад и дошкольное учреждение (ДОУ)"
+  aliases: ["по для детского сада", "софт в детский сад", "программы для доу", "что нужно детскому саду из по", "комплект по для дошкольного учреждения", "реестровое по для детского сада", "закупка софта в детсад", "программы заведующей детским садом", "по для детсада по 44 фз"]
+  compliance: [registry_ru, fz44_223, fz152_pdn]
+  slots:
+    - {category: accounting, must: true, families: [onec_bgu, onec_zkgu], products: ["1С:БГУ 8", "1С:ЗКГУ 8"], note: "Бюджетный учёт ДОУ, родительская плата, учёт питания и зарплата воспитателей."}
+    - {category: tax_reporting_edo, must: true, families: [kontur_extern, sbis_saby, taxcom_sprinter], products: ["Контур.Экстерн Бюджетный", "СБИС"], note: "Сдача регламентированной отчётности бюджетного учреждения в ФНС и СФР."}
+    - {category: crypto_skzi, must: true, families: [cryptopro_csp, rutoken_ecp], products: ["КриптоПро CSP", "Рутокен ЭЦП 3.0"], note: "Работа с электронной подписью заведующей в казначействе и ЕИС."}
+    - {category: desktop_os_ru, must: false, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Российская ОС для компьютеров администрации, методиста и логопеда."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard], products: ["Р7-Офис Образование", "МойОфис Образование"], note: "Ведение журналов, образовательных программ, приказов и справок."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security EDU", "Dr.Web EDU"], note: "Защита рабочих мест с персональными данными воспитанников и родителей."}
+
+- id: training_center_dpo
+  title: "Учебный центр, ДПО и корпоративный университет"
+  aliases: ["по для учебного центра", "софт для центра дпо", "программы для курсов повышения квалификации", "что нужно учебному центру", "комплект по для корпоративного университета", "автоматизация учебного центра по", "софт для дополнительного образования", "программы для автошколы и учебного центра", "учебный центр программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: lms_elearning, must: true, families: [ispring_suite, mirapolis_lms, websoft_hcm, equio_lms], products: ["iSpring Learn / Suite", "Mirapolis LMS", "Websoft HCM"], note: "Проведение дистанционных программ ДПО, тестирование слушателей и выдача сертификатов."}
+    - {category: vks_webinars, must: true, families: [mts_link_webinars, kontur_tolk, salute_jazz], products: ["МТС Линк Вебинары", "Контур.Толк"], note: "Вебинары, онлайн-практикумы и запись занятий для личного кабинета слушателей."}
+    - {category: crm_systems, must: true, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Учёт заявок от физлиц и корпоративных заказчиков, договоры и продление обучения."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_fresh], products: ["1С:Бухгалтерия 8", "1С:Фреш"], note: "Выставление счетов, актов и бухгалтерский учёт образовательных услуг."}
+    - {category: office_suite, must: false, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "Яндекс 360"], note: "Разработка методических пособий, программ обучения и презентаций."}
+    - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security"], note: "Защита учебных классов и серверов с данными слушателей."}
+
+- id: design_institute_kb
+  title: "Проектный институт и конструкторское бюро (ПИР)"
+  aliases: ["по для проектного института", "софт в конструкторское бюро", "программы для проектного института", "что нужно проектному институту", "комплект сапр для кб", "импортозамещение в проектном институте", "софт для пир и проектирования", "автоматизация проектного института по", "проектный институт набор по"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: cad_2d, must: true, families: [nanocad_platform, zwcad], products: ["Платформа nanoCAD", "ZWCAD"], note: "Базовое 2D/3D-черчение в формате DWG для всех производственных отделов института."}
+    - {category: bim_aec, must: true, families: [renga_bim, nanocad_bim, model_studio_cs, pilot_bim], products: ["Renga", "nanoCAD BIM", "Model Studio CS", "Pilot-BIM"], note: "Коллективная работа в среде общих данных и выпуск сводных ТИМ-моделей."}
+    - {category: cae_simulation, must: false, families: [scad_office, lira_sapr, cae_fidesys], products: ["SCAD Office", "ЛИРА-САПР", "CAE Fidesys"], note: "Инженерные расчёты прочности, устойчивости и нагрузок проектируемых объектов."}
+    - {category: estimates_construction, must: true, families: [grand_smeta, smeta_ru], products: ["ГРАНД-Смета", "Smeta.RU"], note: "Подготовка сметной части проектной документации для госэкспертизы."}
+    - {category: sed_ecm, must: false, families: [directum_rx, onec_docflow, docsvision], products: ["Directum RX", "1С:Документооборот"], note: "Управление договорами ПИР, согласование замечаний экспертизы и архив проектов."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Надёжное резервирование файловых хранилищ с чертежами и базами данных проектов."}
+    - {category: desktop_os_ru, must: false, families: [astra_linux_se, red_os, alt_workstation], products: ["Astra Linux SE", "РЕД ОС", "Альт Рабочая станция"], note: "Поэтапный перевод рабочих станций проектировщиков на российские ОС."}
+
+- id: machinery_engineering
+  title: "Машиностроительное предприятие и металлообработка"
+  aliases: ["по для машиностроения", "софт для машиностроительного завода", "программы для металлообработки", "что нужно машиностроительному предприятию", "комплект сапр и erp для машиностроения", "импортозамещение в машиностроении по", "софт для машзавода", "автоматизация машиностроения программы", "машиностроительный завод софт"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: mcad_plm, must: true, families: [kompas_3d, t_flex_cad, lotsman_plm], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "Трёхмерное конструирование изделий по ЕСКД и управление конструкторским составом."}
+    - {category: cad_specialized, must: false, families: [sprutcam_x, nanocad_platform], products: ["СПРУТКАМ (SprutCAM X)"], note: "Подготовка управляющих программ для токарных, фрезерных и многоосевых станков ЧПУ."}
+    - {category: cae_simulation, must: false, families: [cae_fidesys, logos_cae, simintech], products: ["CAE Fidesys", "Логос", "SimInTech"], note: "Прочностной, тепловой и гидрогазодинамический анализ деталей до запуска в цех."}
+    - {category: erp_systems, must: true, families: [onec_erp, galaktika_erp, turbo_erp], products: ["1С:ERP 2", "Галактика ERP"], note: "Позаказное планирование производства, нормирование материалов и себестоимость."}
+    - {category: ot_ics_security, must: false, families: [kaspersky_kics, datapk_ics, infowatch_arma], products: ["Kaspersky KICS", "DATAPK"], note: "Защита цеховой сети и промышленных рабочих станций АСУ ТП."}
+    - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_workstation], products: ["Astra Linux SE", "РЕД ОС", "Альт Рабочая станция"], note: "Корпоративная ОС для офисного и инженерного контура завода."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита КБ, цеховых терминалов и серверов ERP от шифровальщиков."}
+
+- id: instrument_electronics_mfg
+  title: "Приборостроение и производство электроники"
+  aliases: ["по для приборостроения", "софт для производства электроники", "программы приборостроительному заводу", "что нужно для приборостроения", "комплект сапр для электроники", "софт для предприятия рэа", "автоматизация приборостроения по", "программы для разработчиков приборов", "приборостроение и электроника по"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: ecad_eda, must: true, families: [delta_design, nanocad_bim, eplan_electric], products: ["Delta Design"], note: "Сквозное проектирование схем, печатных плат и библиотек электронных компонентов."}
+    - {category: mcad_plm, must: true, families: [kompas_3d, t_flex_cad, lotsman_plm], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "Проектирование корпусов приборов и единое управление составом электронного изделия."}
+    - {category: cae_simulation, must: false, families: [simintech, engee_platform, cae_fidesys], products: ["SimInTech", "Engee", "CAE Fidesys"], note: "Моделирование алгоритмов управления и тепловых режимов блоков электроники."}
+    - {category: code_analysis_sast, must: false, families: [pvs_studio, solar_appscreener], products: ["PVS-Studio", "Solar appScreener"], note: "Контроль качества и безопасности встроенного ПО приборов."}
+    - {category: erp_systems, must: true, families: [onec_erp, onec_ka, galaktika_erp], products: ["1С:ERP 2", "1С:Комплексная автоматизация 8"], note: "Учёт компонентной базы, закупок ЭКБ и серийного выпуска приборов."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита конструкторских рабочих станций и производственных серверов."}
+
+- id: food_beverage_mfg
+  title: "Пищевое производство и переработка продуктов"
+  aliases: ["по для пищевого производства", "софт на пищевой комбинат", "программы для пищевой промышленности", "что нужно пищевому предприятию", "комплект по для мясокомбината и молокозавода", "автоматизация пищевого производства по", "софт для хлебозавода и кондитерской фабрики", "учет на пищевом производстве программы", "пищевка программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: erp_systems, must: true, families: [onec_erp, onec_ka, onec_unf], products: ["1С:ERP 2", "1С:Комплексная автоматизация 8"], note: "Учёт рецептур, партий сырья, сроков годности, потерь и себестоимости выпуска."}
+    - {category: logistics_tms, must: true, families: [axelot_wms, onec_trade], products: ["AXELOT WMS / TMS", "1С:Управление торговлей 8"], note: "Адресное хранение по FEFO и планирование развозки скоропортящейся продукции."}
+    - {category: tax_reporting_edo, must: true, families: [kontur_diadoc, sbis_saby, onec_edo], products: ["Контур.Диадок", "СБИС", "1С-ЭДО"], note: "Обмен УПД с торговыми сетями, маркировка молочной и питьевой продукции."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_zup], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Бухгалтерский учёт предприятия и сменный расчёт зарплаты производственного персонала."}
+    - {category: backup_recovery, must: false, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Непрерывность отгрузок и защита учётных баз 1С от сбоев."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита офисных ПК, весовых и маркировочных станций в цехах."}
+
+- id: chemical_industry
+  title: "Химическая и нефтехимическая промышленность"
+  aliases: ["по для химической промышленности", "софт на химзавод", "программы для химического предприятия", "что нужно химпредприятию", "комплект по для нефтехимии", "защита асу тп на химзаводе по", "автоматизация химического производства софт", "софт для лакокрасочного производства", "химическая отрасль программы"]
+  compliance: [fz152_pdn, kii_187fz, asutp_31]
+  slots:
+    - {category: ot_ics_security, must: true, families: [kaspersky_kics, datapk_ics, infowatch_arma], products: ["Kaspersky KICS", "DATAPK", "InfoWatch ARMA"], note: "Защита контуров АСУ ТП химического производства по требованиям 187-ФЗ и приказа ФСТЭК №31."}
+    - {category: erp_systems, must: true, families: [onec_erp, galaktika_erp, turbo_erp], products: ["1С:ERP 2", "Галактика ERP"], note: "Непрерывное и процессное планирование выпуска, учёт химического сырья и ремонтов."}
+    - {category: ngfw_vpn, must: true, families: [continent_ngfw, usergate_ngfw, vipnet_coordinator], products: ["Континент 4", "UserGate NGFW", "ViPNet Coordinator"], note: "Сертифицированное разделение корпоративной и технологической сетей завода."}
+    - {category: siem_soc, must: false, families: [pt_maxpatrol_siem, kaspersky_kuma], products: ["MaxPatrol SIEM", "Kaspersky KUMA"], note: "Централизованный мониторинг инцидентов ИБ на промышленных объектах КИИ."}
+    - {category: sed_ecm, must: false, families: [directum_rx, onec_docflow], products: ["Directum RX", "1С:Документооборот"], note: "Управление паспортами безопасности, регламентами и разрешительной документацией."}
+    - {category: desktop_os_ru, must: true, families: [astra_linux_se, alt_sp, red_os], products: ["Astra Linux SE", "Альт СП", "РЕД ОС"], note: "Сертифицированная российская ОС для инженерных и корпоративных рабочих мест."}
+
+- id: woodworking_furniture
+  title: "Деревообработка и мебельное производство"
+  aliases: ["по для мебельного производства", "софт для деревообработки", "программы на мебельную фабрику", "что нужно мебельному производству", "комплект по для лесопилки и столярки", "автоматизация мебельной фабрики по", "софт для производства корпусной мебели", "программы для деревообрабатывающего комбината", "мебельное производство софт"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: cad_specialized, must: true, families: [bazis_mebel, sprutcam_x], products: ["БАЗИС-Мебельщик", "СПРУТКАМ"], note: "Конструирование мебели, оптимизация раскроя плит, кромкооблицовка и выпуск программ для ЧПУ."}
+    - {category: trade_warehouse, must: true, families: [onec_unf, onec_erp, onec_trade], products: ["1С:УНФ 8", "1С:ERP 2"], note: "Позаказный учёт производства мебели, остатков ЛДСП, массива и фурнитуры."}
+    - {category: crm_systems, must: false, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Ведение заказов из салонов, замеры, сроки изготовления и согласование эскизов."}
+    - {category: tax_reporting_edo, must: true, families: [kontur_diadoc, sbis_saby, onec_edo], products: ["Контур.Диадок", "СБИС"], note: "Электронные накладные и учёт прослеживаемости лесоматериалов."}
+    - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Калькуляции, договоры на изготовление и коммерческие предложения."}
+    - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security"], note: "Защита рабочих станций конструкторов, цеха и бухгалтерии."}
+
+- id: printing_publishing
+  title: "Типография и издательский дом"
+  aliases: ["по для типографии", "софт в издательство", "программы для полиграфии и типографии", "что нужно типографии", "комплект по для издательского дома", "автоматизация типографии по", "софт для допечатной подготовки", "программы для печатного салона", "типография программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: pdf_editors, must: true, families: [contentreader_pdf, master_pdf_editor, adobe_acrobat], products: ["КонтентРидер PDF", "Master PDF Editor"], note: "Проверка макетов перед печатью, правка спусков и работа с многостраничными PDF."}
+    - {category: raster_photo, must: true, families: [ams_photomaster, akvis_suite, adobe_photoshop], products: ["ФотоМАСТЕР", "AKVIS", "Adobe Photoshop"], note: "Цветокоррекция иллюстраций и подготовка растровых изображений к тиражу."}
+    - {category: text_editors, must: false, families: [paratype_fonts, r7_office], products: ["Шрифты ПараТайп"], note: "Официальные лицензии на шрифты для коммерческой печати книг и упаковки."}
+    - {category: trade_warehouse, must: true, families: [onec_unf, onec_trade, moysklad], products: ["1С:УНФ 8", "1С:Управление торговлей 8"], note: "Расчёт полиграфических заказов, учёт бумаги, красок и отгрузок тиражей."}
+    - {category: crm_systems, must: false, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Сопровождение заявок на тиражи, согласование макетов и повторные заказы."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, handy_backup], products: ["Кибер Бэкап", "Handy Backup"], note: "Резервное копирование архивов макетов и учётной базы типографии."}
+
+- id: video_production_studio
+  title: "Видеопродакшн и студия постпродакшна"
+  aliases: ["по для видеопродакшна", "софт в видеостудию", "программы для продакшн студии", "что нужно студии видеомонтажа", "комплект по для видеопроизводства", "софт для постпродакшна", "программы для рекламного продакшна", "набор по видеостудии", "видеопродакшн программы"]
+  compliance: []
+  slots:
+    - {category: video_editing, must: true, families: [movavi_video_suite, ams_videomontage, movavi_screen_recorder], products: ["Мовавика Видеосюита", "ВидеоМОНТАЖ"], note: "Монтаж роликов, титрование, конвертация и подготовка версий под разные площадки."}
+    - {category: 3d_rendering_animation, must: false, families: [unigine_engine, autodesk_3ds_max, vray_chaos], products: ["UNIGINE", "Autodesk 3ds Max"], note: "Визуализация виртуальных сцен, графика и 3D-анимация для рекламных проектов."}
+    - {category: sds_storage, must: true, families: [raidix_sds, baum_storage, cyber_infrastructure], products: ["RAIDIX", "BAUM STORAGE"], note: "Высокоскоростное совместное хранилище для монтажа 4K/8K исходников несколькими станциями."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, handy_backup], products: ["Кибер Бэкап", "Handy Backup"], note: "Защита съёмочных материалов и мастер-копий проектов от потери."}
+    - {category: task_project_trackers, must: false, families: [kaiten, yougile, weeek], products: ["Kaiten", "YouGile"], note: "Контроль съёмочных графиков, этапов монтажа и правок заказчика."}
+    - {category: endpoint_security, must: false, families: [kaspersky_ksos, kaspersky_kesb], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security"], note: "Защита монтажных станций и файлового сервера студии."}
+
+- id: game_dev_studio
+  title: "Игровая студия (GameDev)"
+  aliases: ["по для игровой студии", "софт для gamedev", "программы для разработки игр", "что нужно игровой студии", "комплект по геймдев команде", "инструменты для студии разработки игр", "софт для инди студии игр", "программы в игровую компанию", "геймдев программы"]
+  compliance: []
+  slots:
+    - {category: 3d_rendering_animation, must: true, families: [unigine_engine, autodesk_3ds_max, vray_chaos], products: ["UNIGINE", "Autodesk 3ds Max"], note: "Игровой и визуализационный 3D-движок и подготовка трёхмерных ассетов."}
+    - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1], products: ["GitFlic", "Yandex SourceCraft"], note: "Хранение исходного кода игры, сборочных скриптов и автоматических билдов."}
+    - {category: code_analysis_sast, must: false, families: [pvs_studio, solar_appscreener], products: ["PVS-Studio"], note: "Поиск сложных ошибок памяти и логики в C++/C# коде игрового движка."}
+    - {category: task_project_trackers, must: true, families: [yandex_tracker, kaiten, yougile], products: ["Яндекс Трекер", "Kaiten", "YouGile"], note: "Планирование спринтов программистов, художников, геймдизайнеров и QA."}
+    - {category: testing_qa, must: false, families: [test_it_tms, allure_testops], products: ["Test IT", "Allure TestOps"], note: "Систематизация чек-листов игрового тестирования и регресса сборок."}
+    - {category: iaas_cloud_platforms, must: false, families: [yandex_cloud, selectel_cloud, vk_cloud], products: ["Yandex Cloud", "Selectel Cloud", "VK Cloud"], note: "Облачные игровые серверы, балансировка нагрузки и хранилище сборок."}
+
+- id: custom_software_dev
+  title: "Заказная разработка ПО и продуктовые студии"
+  aliases: ["по для компании заказной разработки", "софт для студии разработки по", "программы для аутсорс разработки", "что нужно компании разработчику по", "комплект для софтверной студии", "инструменты заказной разработки по", "софт для ит подрядчика разработки", "стек для веб и мобильной студии", "разработка по на заказ программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1, platform_v_works], products: ["GitFlic", "Yandex SourceCraft", "Платформа Сфера"], note: "Изолированные репозитории клиентских проектов и конвейеры CI/CD в юрисдикции РФ."}
+    - {category: task_project_trackers, must: true, families: [yandex_tracker, evaproject, kaiten, yougile], products: ["Яндекс Трекер", "EvaProject", "Kaiten"], note: "Учёт трудозатрат Time & Materials, спринтов и приёмки задач с заказчиком."}
+    - {category: testing_qa, must: true, families: [test_it_tms, allure_testops], products: ["Test IT", "Allure TestOps"], note: "Отчётность по покрытию тестами и качеству поставляемых релизов."}
+    - {category: code_analysis_sast, must: false, families: [pt_application_inspector, solar_appscreener, pvs_studio], products: ["PT Application Inspector", "Solar appScreener", "PVS-Studio"], note: "Выполнение требований заказчиков по безопасной разработке (DevSecOps)."}
+    - {category: whiteboards_notes, must: false, families: [evawiki, yonote, teamly, holst_boards], products: ["EvaWiki", "Yonote", "Holst"], note: "Архитектурные спецификации, база знаний и онбординг разработчиков в проекты."}
+    - {category: iaas_cloud_platforms, must: false, families: [yandex_cloud, vk_cloud, selectel_cloud], products: ["Yandex Cloud", "VK Cloud", "Selectel Cloud"], note: "Развёртывание тестовых и демонстрационных стендов для заказчиков."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_zup], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Учёт актов выполненных работ, налоговых льгот ИТ-компании и зарплаты."}
+
+- id: it_integrator_service
+  title: "Системный интегратор и ИТ-сервисная компания"
+  aliases: ["по для системного интегратора", "софт для сервисной ит компании", "программы для ит аутсорсера", "что нужно системному интегратору", "комплект для компании ит обслуживания", "софт для ит подрядчика и поддержки", "автоматизация системного интегратора", "программы для сервисного центра ит", "интегратор и сервисная компания по"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: itsm_service_desk, must: true, families: [simpleone_itsm, naumen_smp, inframanager, onec_itilium], products: ["SimpleOne ITSM", "Naumen SMP", "ИнфраМенеджер"], note: "Мультиклиентский Service Desk с контролем SLA, заявок и контрактов на поддержку."}
+    - {category: remote_desktop, must: true, families: [assistant_remote, rudesktop, rms_remote, kontur_dostup], products: ["Ассистент", "RuDesktop", "RMS"], note: "Удалённое подключение инженеров к серверам и ПК обслуживаемых заказчиков."}
+    - {category: monitoring_apm, must: true, families: [saymon_monitoring, monq_aiops, klyuch_astrom], products: ["SAYMON", "MONQ", "Ключ-АСТРОМ"], note: "Проактивный мониторинг инфраструктуры клиентов и автоматическое создание тикетов."}
+    - {category: crm_systems, must: false, families: [bitrix24, bpmsoft_crm, amocrm], products: ["Битрикс24", "BPMSoft CRM"], note: "Ведение проектных продаж, тендеров и продлений сервисных контрактов."}
+    - {category: project_planning, must: false, families: [advanta_pm, spider_project], products: ["Адванта", "Spider Project"], note: "Управление портфелем проектов внедрения и загрузкой инженеров."}
+    - {category: system_utilities, must: false, families: [total_network_inventory, aida64_business], products: ["Total Network Inventory", "AIDA64 Business"], note: "Быстрый аудит парка оборудования и ПО при приёме нового клиента на обслуживание."}
+
+- id: datacenter_hosting
+  title: "Дата-центр (ЦОД) и хостинг-провайдер"
+  aliases: ["по для дата центра", "софт для цод", "программы хостинг провайдеру", "что нужно дата центру и хостингу", "комплект по для облачного провайдера", "виртуализация и мониторинг для цод", "софт для коммерческого цода", "автоматизация хостинга программы", "дата центр и хостинг софт"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: server_virtualization, must: true, families: [vmmanager, astra_brest, orion_zvirt, basis_dynamix, vstack_hcp], products: ["VMmanager", "ПК СВ «Брест»", "zVirt", "Basis Dynamix"], note: "Платформа виртуализации и оркестрации облачных серверов для клиентов ЦОД."}
+    - {category: system_utilities, must: false, families: [ispmanager_panel, colibri_arm], products: ["ispmanager"], note: "Панель управления веб-хостингом и виртуальными серверами для конечных клиентов."}
+    - {category: sds_storage, must: true, families: [raidix_sds, cyber_infrastructure, baum_storage], products: ["RAIDIX", "Кибер Инфраструктура", "BAUM STORAGE"], note: "Масштабируемые кластеры хранения данных высокой доступности."}
+    - {category: waf_appsec, must: true, families: [qrator_ddos, stormwall_ddos, pt_af, bizone_waf], products: ["Qrator Anti-DDoS", "StormWall", "PT Application Firewall"], note: "Защита клиентских ресурсов и каналов ЦОД от DDoS-атак и веб-угроз."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Предоставление услуги резервного копирования (BaaS) и защита системных узлов."}
+    - {category: monitoring_apm, must: false, families: [monq_aiops, saymon_monitoring, klyuch_astrom], products: ["MONQ", "SAYMON", "Ключ-АСТРОМ"], note: "Круглосуточный мониторинг стоек, гипервизоров и соблюдения SLA."}
+    - {category: server_os, must: false, families: [msvsphere_os, red_os_server, alt_server, astra_linux_se], products: ["МСВСфера Сервер", "РЕД ОС Сервер", "Альт Сервер"], note: "Российские серверные ОС для хостов и предоставления в аренду клиентам."}
+
+- id: microfinance_org
+  title: "Микрофинансовая организация (МФО)"
+  aliases: ["по для мфо", "софт для микрофинансовой организации", "программы в мфо", "что нужно мфо по требованиям цб", "комплект по для микрозаймов", "защита информации для мфо по 757 п", "автоматизация мфо программы", "софт для нфо и мфо", "микрофинансовая организация по"]
+  compliance: [fz152_pdn, cbr_nfo_757p]
+  slots:
+    - {category: nsd_access_control, must: true, families: [secret_net_studio, dallas_lock], products: ["Secret Net Studio", "Dallas Lock"], note: "Выполнение требований положения Банка России 757-П и 152-ФЗ по защите от НСД."}
+    - {category: crypto_skzi, must: true, families: [cryptopro_csp, vipnet_client, cryptoarm_gost], products: ["КриптоПро CSP", "ViPNet Client", "КриптоАРМ ГОСТ"], note: "Криптографическая защита отчётности в ЦБ РФ и обмена с БКИ."}
+    - {category: ocr_capture, must: false, families: [smart_id_engine, dbrain_ocr], products: ["Smart ID Engine", "Dbrain"], note: "Быстрое распознавание и проверка паспортов заёмщиков при оформлении заявок."}
+    - {category: counterparty_legal_info, must: false, families: [kontur_focus, sbis_saby, spark_interfax], products: ["Контур.Фокус", "СБИС"], note: "Проверка корпоративных заёмщиков, ИП и аффилированных лиц при скоринге."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Сертифицированная антивирусная защита офисов выдачи и центральных серверов."}
+    - {category: backup_recovery, must: true, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Сохранность реестров договоров займа и клиентских баз данных."}
+
+- id: leasing_company
+  title: "Лизинговая компания"
+  aliases: ["по для лизинговой компании", "софт в лизинговую компанию", "программы для лизинга", "что нужно лизинговой компании", "автоматизация лизинга по", "комплект по для лизингового бизнеса", "crm и эдо для лизинга", "софт для лизингодателя", "лизинговая компания программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: crm_systems, must: true, families: [bpmsoft_crm, bitrix24, amocrm], products: ["BPMSoft CRM", "Битрикс24"], note: "Ведение сделок лизинга, скоринг заявок, графики платежей и работа с дилерами."}
+    - {category: counterparty_legal_info, must: true, families: [kontur_focus, sbis_saby, spark_interfax], products: ["Контур.Фокус", "СБИС", "СПАРК-Интерфакс"], note: "Комплексная проверка платёжеспособности и рисков лизингополучателей."}
+    - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow, docsvision], products: ["Directum RX", "1С:Документооборот"], note: "Согласование договоров лизинга, актов приёма-передачи и электронный архив."}
+    - {category: tax_reporting_edo, must: true, families: [kontur_diadoc, sbis_saby, onec_edo], products: ["Контур.Диадок", "СБИС"], note: "Ежемесячная рассылка закрывающих УПД и счетов-фактур лизингополучателям по ЭДО."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_holding], products: ["1С:Бухгалтерия 8 КОРП", "1С:Управление холдингом 8"], note: "Учёт лизингового имущества на балансе, расчёт амортизации и МСФО."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита рабочих станций менеджеров и финансовых серверов."}
+
+- id: recruiting_agency
+  title: "Кадровое и рекрутинговое агентство"
+  aliases: ["по для кадрового агентства", "софт для рекрутингового агентства", "программы для подбора персонала агентству", "что нужно кадровому агентству", "комплект по для рекрутеров", "автоматизация кадрового агентства по", "софт для hr агентства", "программы в агентство по подбору", "кадровое агентство программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: hrm_recruiting, must: true, families: [huntflow, potok_hr], products: ["Хантфлоу", "Поток Рекрутмент"], note: "Ведение базы кандидатов, воронки вакансий по заказчикам и история интервью."}
+    - {category: crm_systems, must: false, families: [bitrix24, amocrm], products: ["Битрикс24", "amoCRM"], note: "Работа с корпоративными клиентами, коммерческие предложения и закрытие заявок."}
+    - {category: vks_webinars, must: true, families: [kontur_tolk, mts_link_meetings, salute_jazz], products: ["Контур.Толк", "МТС Линк Встречи"], note: "Проведение видеособеседований с кандидатами и встреч с нанимающими менеджерами."}
+    - {category: ip_telephony, must: false, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС"], note: "Обзвон соискателей, запись интервью и интеграция звонков с базой."}
+    - {category: office_suite, must: true, families: [r7_office, yandex_360, myoffice_standard], products: ["Р7-Офис", "Яндекс 360"], note: "Подготовка профилей кандидатов, договоров подбора и актов."}
+    - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Kaspersky Endpoint Security"], note: "Защита базы резюме и персональных данных соискателей по 152-ФЗ."}
+
+- id: private_security_org
+  title: "Частное охранное предприятие (ЧОП)"
+  aliases: ["по для чоп", "софт для охранного предприятия", "программы в охранное агентство", "что нужно чоп из по", "комплект по для частной охраны", "видеонаблюдение и учет для чоп", "автоматизация охранного предприятия софт", "софт для службы охраны чоп", "охранное предприятие программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: industry_specialized, must: true, families: [macroscop_vms, trassir_vms, axxon_next_vms], products: ["Macroscop", "TRASSIR", "Axxon Next"], note: "Централизованный видеомониторинг охраняемых объектов на пульте оперативного дежурного."}
+    - {category: ml_platforms_cv, must: false, families: [visionlabs_luna, ntechlab_findface], products: ["VisionLabs LUNA", "NtechLab FindFace Multi"], note: "Автоматическое распознавание автономеров на КПП и контроль прохода лиц."}
+    - {category: payroll_hr_1c, must: true, families: [onec_zup, onec_accounting], products: ["1С:ЗУП 8", "1С:Бухгалтерия 8"], note: "Учёт сменных графиков охранников, подработок на постах и расчёт зарплаты."}
+    - {category: kedo_hr_docs, must: false, families: [hrlink_kedo, onec_kedo, vk_hr_tek], products: ["HRlink КЭДО", "1С:Кабинет сотрудника"], note: "Удалённое подписание графиков смен и приказов с сотрудниками на объектах."}
+    - {category: sds_storage, must: false, families: [raidix_sds, baum_storage], products: ["RAIDIX", "BAUM STORAGE"], note: "Надёжное хранение видеоархивов с охраняемых площадок за нормативный срок."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита пультовых станций и офисных компьютеров охранного предприятия."}
+
+- id: auto_dealer_service
+  title: "Автодилер и автосервис (СТО)"
+  aliases: ["по для автосервиса", "софт для автодилера", "программы для сто и автоцентра", "что нужно автосервису", "автоматизация автосервиса по", "комплект по для автосалона", "учет запчастей в сто программы", "софт для шиномонтажа и сто", "автодилер и автосервис по"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: trade_warehouse, must: true, families: [onec_unf, onec_trade, moysklad], products: ["1С:УНФ 8", "1С:Управление торговлей 8", "МойСклад"], note: "Учёт заказ-нарядов, остатков запчастей, расходников и расчёт выработки мастеров."}
+    - {category: crm_systems, must: true, families: [bitrix24, amocrm, bpmsoft_crm], products: ["Битрикс24", "amoCRM"], note: "Запись на ТО и ремонт, воронка продаж автомобилей и напоминания о сезонном сервисе."}
+    - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Приём оплаты за ремонт, запчасти и допы с печатью чеков ОФД."}
+    - {category: ip_telephony, must: false, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС"], note: "Распределение звонков между отделом продаж и сервисом с записью обращений."}
+    - {category: accounting, must: false, families: [onec_accounting, onec_zup], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Бухгалтерский учёт дилерского центра и расчёт сдельной оплаты механиков."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, kaspersky_ksos, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита компьютеров мастеров-приёмщиков, кассы и сервера 1С."}
+
+- id: housing_utilities_uk
+  title: "Управляющая компания ЖКХ и ТСЖ"
+  aliases: ["по для управляющей компании жкх", "софт для ук жкх", "программы для тсж и жкх", "что нужно управляющей компании жкх", "автоматизация ук жкх по", "комплект по для тсж", "софт для расчетного центра жкх", "программы для жилищной компании", "ук жкх программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: accounting, must: true, families: [onec_accounting, onec_zup, onec_fresh], products: ["1С:Бухгалтерия 8", "1С:ЗУП 8"], note: "Бухгалтерский учёт УК, начисления по лицевым счетам и расчёты с поставщиками ресурсов."}
+    - {category: itsm_service_desk, must: true, families: [simpleone_itsm, naumen_smp, onec_itilium], products: ["SimpleOne ITSM", "Naumen SMP"], note: "Аварийно-диспетчерская служба: приём заявок жильцов и контроль сроков их исполнения."}
+    - {category: ip_telephony, must: true, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС", "Naumen Contact Center"], note: "Круглосуточный приём и обязательная запись обращений в аварийно-диспетчерскую службу."}
+    - {category: crypto_skzi, must: true, families: [cryptopro_csp, rutoken_ecp], products: ["КриптоПро CSP", "Рутокен ЭЦП 3.0"], note: "Работа в ГИС ЖКХ, подписание отчётов и юридически значимый ЭДО."}
+    - {category: tax_reporting_edo, must: false, families: [kontur_extern, kontur_diadoc, sbis_saby], products: ["Контур.Экстерн", "Контур.Диадок", "СБИС"], note: "Электронный документооборот с подрядчиками и ресурсоснабжающими организациями."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, kaspersky_ksos, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита компьютеров с базами персональных данных собственников помещений."}
+
+- id: municipality_local_gov
+  title: "Муниципалитет и администрация муниципального образования"
+  aliases: ["по для муниципалитета", "софт в местную администрацию", "программы для муниципальной администрации", "что нужно муниципальному образованию", "реестровое по для муниципалитета", "импортозамещение в муниципалитете по", "комплект по для мэрии и сельсовета", "закупка по для администрации города", "муниципалитет программы"]
+  compliance: [registry_ru, fz44_223, fz152_pdn, gis_17, national_regime_software]
+  slots:
+    - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_sp], products: ["Astra Linux SE", "РЕД ОС ФСТЭК", "Альт СП"], note: "Сертифицированная ФСТЭК российская ОС для автоматизированных рабочих мест служащих."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard, myoffice_professional], products: ["Р7-Офис", "МойОфис"], note: "Реестровый офисный пакет без НДС для постановлений, ответов гражданам и отчётов."}
+    - {category: sed_ecm, must: true, families: [eos_delo, directum_rx, tezis_sed], products: ["ЭОС ДЕЛО", "Directum RX", "ТЕЗИС"], note: "Межведомственный электронный документооборот (МЭДО) и контроль обращений граждан."}
+    - {category: accounting, must: false, families: [onec_bgu, onec_zkgu], products: ["1С:БГУ 8", "1С:ЗКГУ 8"], note: "Бюджетный учёт администрации и расчёт денежного содержания служащих."}
+    - {category: nsd_access_control, must: true, families: [secret_net_studio, dallas_lock, sobol_mdz], products: ["Secret Net Studio", "Dallas Lock", "Соболь"], note: "Аттестация рабочих мест в ГИС по приказу ФСТЭК №17 и защита от НСД."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security ФСТЭК", "Dr.Web ФСТЭК"], note: "Сертифицированная антивирусная защита всех рабочих станций и серверов."}
+    - {category: crypto_skzi, must: false, families: [cryptopro_csp, vipnet_client], products: ["КриптоПро CSP", "ViPNet Client"], note: "Защищённое подключение к СМЭВ, ЕИС и подписание муниципальных актов."}
+
+- id: culture_institution
+  title: "Учреждение культуры (музей, театр, библиотека, ДК)"
+  aliases: ["по для учреждения культуры", "софт в музей и театр", "программы для библиотеки и дк", "что нужно учреждению культуры", "реестровое по для музея", "комплект по в дом культуры", "закупка программ для театра", "софт для концертного зала и музея", "учреждение культуры программы"]
+  compliance: [registry_ru, fz44_223, fz152_pdn]
+  slots:
+    - {category: accounting, must: true, families: [onec_bgu, onec_zkgu], products: ["1С:БГУ 8", "1С:ЗКГУ 8"], note: "Учёт бюджетных и внебюджетных средств, фондовых ценностей и зарплаты коллектива."}
+    - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_workstation], products: ["Astra Linux", "РЕД ОС", "Альт Рабочая станция"], note: "Реестровая российская ОС для административных ПК, касс и читальных залов."}
+    - {category: office_suite, must: true, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Подготовка афиш, репертуарных планов, каталогов экспонатов и отчётов учредителю."}
+    - {category: ebooks_corporate_lib, must: false, families: [litres_corporate, alpina_digital_lib], products: ["Литрес: Библиотека"], note: "Выдача электронных и аудиокниг читателям публичных и ведомственных библиотек."}
+    - {category: industry_specialized, must: false, families: [macroscop_vms, trassir_vms], products: ["Macroscop", "TRASSIR"], note: "Видеонаблюдение в выставочных залах, фондохранилищах и входных группах."}
+    - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита служебных компьютеров и публичных информационных киосков."}
+
+- id: distributed_holding
+  title: "Холдинг с распределённой филиальной сетью"
+  aliases: ["по для холдинга с филиалами", "софт для группы компаний", "программы для распределенного холдинга", "что нужно холдингу с филиальной сетью", "комплект по для крупной группы компаний", "автоматизация филиальной сети по", "единый ит стек для холдинга", "софт для корпорации с филиалами", "холдинг с филиалами программы"]
+  compliance: [fz152_pdn]
+  slots:
+    - {category: finance_budgeting, must: true, families: [onec_holding, optimacros, project_expert], products: ["1С:Управление холдингом 8", "Optimacros"], note: "Централизованное казначейство, консолидация отчётности юрлиц и единый бюджет группы."}
+    - {category: erp_systems, must: true, families: [onec_erp, galaktika_erp], products: ["1С:ERP 2", "Галактика ERP"], note: "Сквозное управление ресурсами, закупками и межфирменными операциями холдинга."}
+    - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow, docsvision], products: ["Directum RX", "1С:Документооборот"], note: "Единое согласование договоров, приказов и реестр доверенностей по всем филиалам."}
+    - {category: directory_services, must: true, families: [ald_pro, red_adm, alt_domain], products: ["ALD Pro", "РЕД АДМ", "Альт Домен"], note: "Иерархическое управление доменом, учётными записями и политиками в филиальной сети."}
+    - {category: ngfw_vpn, must: false, families: [usergate_ngfw, continent_ngfw, vipnet_coordinator], products: ["UserGate NGFW", "Континент 4", "ViPNet Coordinator"], note: "Объединение филиалов в единую защищённую корпоративную сеть VPN."}
+    - {category: bi_analytics, must: false, families: [visiology_bi, foresight_analytics, polymatica_bi], products: ["Visiology", "Форсайт", "Polymatica BI"], note: "Сводная аналитика по всем дочерним обществам и региональным подразделениям."}
+    - {category: itsm_service_desk, must: false, families: [simpleone_itsm, naumen_smp, inframanager], products: ["SimpleOne ITSM", "Naumen SMP"], note: "Единый центр ИТ-поддержки и управления заявками сотрудников по всей стране."}
+    - {category: endpoint_security, must: false, families: [kaspersky_kesb, kaspersky_symphony_xdr, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Kaspersky Symphony XDR"], note: "Централизованная консоль киберзащиты всех площадок группы компаний."}

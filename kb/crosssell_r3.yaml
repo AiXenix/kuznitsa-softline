@@ -1,0 +1,514 @@
+# Расширение правил сопутствующих товаров «С этим обычно берут» (Кузница Softline, раунд K2b)
+# Соответствует схеме kb/SCHEMA.md и формату kb/crosssell.yaml.
+# Все id категорий — листовые из design/work/kb_categories_r3.tsv; все id семейств — из design/work/kb_families_r3.tsv (catalog: yes).
+# Только реальные дополнения и связки без заменителей и конкурентов.
+# Всего новых правил: 60.
+
+# --- 1. ОС, ОФИС И РАБОЧИЕ МЕСТА (8) ---
+
+- id: cs_windows_server_rds_terminal
+  when: {categories: [], families: [windows_server_rds_cal]}
+  suggest:
+    - {category: server_os, families: [windows_server_cal], reason: "Для подключения к терминальному серверу помимо RDS CAL требуются базовые клиентские лицензии Windows Server CAL."}
+    - {category: iam_pam_mfa, families: [multifactor_mfa, indeed_am, avanpost_fam], reason: "Двухфакторная аутентификация защищает опубликованный терминальный доступ от подбора паролей."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Серверный антивирус защищает терминальные сессии от шифровальщиков и заражения общих папок."}
+  note: "Доукомплектование терминального сервера Windows RDS"
+
+- id: cs_windows_server_cal_addon
+  when: {categories: [], families: [windows_server_cal]}
+  suggest:
+    - {category: terminal_access, families: [windows_server_rds_cal], reason: "Если сотрудники работают на сервере по RDP с 1С или приложениями, дополнительно нужны терминальные лицензии RDS CAL."}
+    - {category: backup_recovery, families: [cyber_backup, handy_backup], reason: "Резервное копирование защитит файловые шары и контроллер домена Windows Server от сбоев."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Антивирусная защита сервера обязательна при росте числа подключённых пользователей."}
+  note: "Расширение клиентских подключений Windows Server"
+
+- id: cs_rosa_chrome_ecosystem
+  when: {categories: [], families: [rosa_chrome]}
+  suggest:
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Совместимый российский офисный пакет для ежедневной работы с документами в РОСА Хром."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Антивирус с поддержкой Linux защищает рабочие станции и серверы РОСА."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Регулярное резервное копирование пользовательских данных и серверов на базе РОСА."}
+  note: "Комплектование рабочих мест на ОС РОСА"
+
+- id: cs_msvsphere_server_stack
+  when: {categories: [], families: [msvsphere_os]}
+  suggest:
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Система резервного копирования обеспечивает быстрое восстановление серверов МСВСфера после сбоя."}
+    - {category: monitoring_apm, families: [monq_aiops, saymon_monitoring, klyuch_astrom], reason: "Мониторинг отслеживает нагрузку и доступность сервисов на серверах МСВСфера."}
+    - {category: rdbms, families: [postgres_pro, tantor_db], reason: "Надёжная российская СУБД для развёртывания корпоративных приложений на сервере."}
+  note: "Инфраструктурная обвязка серверов МСВСфера"
+
+- id: cs_aurora_mobile_mdm
+  when: {categories: [mobile_os], families: []}
+  suggest:
+    - {category: crypto_skzi, families: [cryptopro_csp, vipnet_client], reason: "Мобильный криптопровайдер нужен для электронной подписи и защищённого VPN на устройствах с ОС «Аврора»."}
+    - {category: corporate_messengers, families: [express_messenger, vk_teams], reason: "Защищённый корпоративный мессенджер позволяет сотрудникам в полях безопасно обмениваться данными."}
+    - {category: mail_servers, families: [rupost, myoffice_mail], reason: "Корпоративная почта интегрируется с мобильными рабочими местами в едином контуре."}
+  note: "Прикладные сервисы и защита для российских мобильных ОС"
+
+- id: cs_r7_office_addons
+  when: {categories: [], families: [r7_office]}
+  suggest:
+    - {category: pdf_editors, families: [contentreader_pdf, master_pdf_editor], reason: "Редактор PDF с OCR дополняет Р7-Офис распознаванием сканов и сборкой договоров."}
+    - {category: text_editors, families: [paratype_fonts], reason: "Официальные российские шрифты сохраняют разметку старых документов при переходе на Р7-Офис."}
+    - {category: translation_dictionaries, families: [promt_translation], reason: "Офлайн-переводчик позволяет переводить документы прямо внутри рабочего контура без утечек."}
+    - {category: e_signature, families: [cryptoarm_gost, cryptopro_dss], reason: "Подписание подготовленных в Р7-Офис документов квалифицированной электронной подписью."}
+  note: "Дополнения к офисному пакету Р7-Офис"
+
+- id: cs_myoffice_suite_addons
+  when: {categories: [], families: [myoffice_standard, myoffice_professional]}
+  suggest:
+    - {category: mail_servers, families: [myoffice_mail], reason: "Почтовый сервер МойОфис объединяет редакторы, почту и календарь в одной экосистеме."}
+    - {category: corporate_messengers, families: [myoffice_squadus], reason: "Корпоративный мессенджер Squadus добавляет чаты и видеозвонки к пакету МойОфис."}
+    - {category: pdf_editors, families: [contentreader_pdf, master_pdf_editor], reason: "Инструмент для полноценной правки PDF и распознавания сканов в дополнение к редакторам."}
+    - {category: text_editors, families: [paratype_fonts], reason: "Корпоративная лицензия на шрифты обеспечивает корректное отображение бланков и договоров."}
+  note: "Экосистема и дополнения к МойОфис"
+
+- id: cs_yandex_360_addons
+  when: {categories: [], families: [yandex_360]}
+  suggest:
+    - {category: task_project_trackers, families: [yandex_tracker], reason: "Трекер задач органично дополняет почту, диск и календарь Яндекс 360 для командной работы."}
+    - {category: bi_analytics, families: [yandex_datalens], reason: "Облачная аналитика позволяет строить дашборды по рабочим данным компании."}
+    - {category: endpoint_security, families: [kaspersky_kes_cloud, kaspersky_kesb], reason: "Антивирус защищает устройства сотрудников при работе с облачными файлами и почтой."}
+  note: "Сопутствующие сервисы для пользователей Яндекс 360"
+
+# --- 2. 1С, БУХГАЛТЕРИЯ, ЭДО И ТОРГОВЛЯ (10) ---
+
+- id: cs_onec_client_license_scale
+  when: {categories: [], families: [onec_client_license]}
+  suggest:
+    - {category: onec_platform_licenses, families: [onec_server_license], reason: "При числе пользователей от 5–10 человек файловая база 1С тормозит — потребуется лицензия на сервер 1С."}
+    - {category: rdbms, families: [postgres_pro, tantor_db], reason: "Для работы сервера 1С нужна промышленная СУБД с поддержкой конкурентной нагрузки."}
+    - {category: onec_platform_licenses, families: [onec_its], reason: "Подписка 1С:ИТС необходима для легального получения обновлений и форм отчётности."}
+  note: "Масштабирование при докупке клиентских лицензий 1С"
+
+- id: cs_onec_fresh_cloud_kit
+  when: {categories: [], families: [onec_fresh]}
+  suggest:
+    - {category: tax_reporting_edo, families: [onec_reporting, onec_edo, kontur_diadoc], reason: "Сдача отчётности и обмен электронными документами прямо из облачной базы 1С:Фреш."}
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Криптопровайдер нужен на компьютере бухгалтера для подписания отчётов и УПД в браузере."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Защищённый USB-токен для хранения ключа УКЭП руководителя или бухгалтера."}
+    - {category: counterparty_legal_info, families: [kontur_focus, sbis_saby], reason: "Проверка контрагентов перед оплатой снижает налоговые риски компании."}
+  note: "Полный комплект для облачной бухгалтерии 1С:Фреш"
+
+- id: cs_onec_unf_smb_stack
+  when: {categories: [], families: [onec_unf]}
+  suggest:
+    - {category: onec_platform_licenses, families: [onec_its, onec_client_license], reason: "Сопровождение ИТС и дополнительные рабочие места для роста отдела продаж и склада."}
+    - {category: tax_reporting_edo, families: [onec_edo, kontur_diadoc, sbis_saby], reason: "Электронный документооборот ускоряет обмен счетами и УПД с покупателями и поставщиками."}
+    - {category: retail_pos_cash, families: [atol_frontol], reason: "Кассовое ПО связывает розничную точку с учётом заказов и остатков в 1С:УНФ."}
+    - {category: backup_recovery, families: [handy_backup, cyber_backup], reason: "Автоматическое копирование базы УНФ защитит историю заказов и остатки от потери."}
+  note: "Сопутствующие модули для 1С:УНФ в малом бизнесе"
+
+- id: cs_onec_docflow_addons
+  when: {categories: [], families: [onec_docflow]}
+  suggest:
+    - {category: ocr_capture, families: [contentcapture, smart_id_engine], reason: "Потоковое распознавание автоматически переносит реквизиты бумажных договоров и счетов в 1С:Документооборот."}
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Криптопровайдер обеспечивает подписание внутренних приказов и договоров усиленной ЭП."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Носители ключей электронной подписи для руководителей и согласующих лиц."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Резервное копирование базы и файлового архива документов защищает юридически значимые тома."}
+  note: "Обвязка СЭД 1С:Документооборот"
+
+- id: cs_onec_its_companion
+  when: {categories: [], families: [onec_its]}
+  suggest:
+    - {category: tax_reporting_edo, families: [onec_reporting, onec_edo], reason: "Сервисы 1С-Отчётность и 1С-ЭДО часто продлевают одним счётом вместе с договором ИТС."}
+    - {category: onec_platform_licenses, families: [onec_client_license], reason: "При продлении ИТС удобно докупить клиентские лицензии на новых сотрудников."}
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Актуальная лицензия КриптоПро требуется для бесперебойной отправки отчётов из 1С."}
+  note: "Сопутствующие сервисы при покупке или продлении 1С:ИТС"
+
+- id: cs_kontur_extern_addons
+  when: {categories: [], families: [kontur_extern]}
+  suggest:
+    - {category: tax_reporting_edo, families: [kontur_diadoc], reason: "Контур.Диадок дополняет отчётность юридически значимым обменом накладными и актами с контрагентами."}
+    - {category: counterparty_legal_info, families: [kontur_focus], reason: "Контур.Фокус помогает проверять контрагентов для проявления должной осмотрительности перед ФНС."}
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Без лицензии КриптоПро CSP невозможно подписывать и отправлять декларации в Экстерне."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Сертифицированный USB-токен для безопасного хранения квалифицированной подписи."}
+  note: "Экосистема СКБ Контур к сервису отчётности Экстерн"
+
+- id: cs_kontur_diadoc_addons
+  when: {categories: [], families: [kontur_diadoc]}
+  suggest:
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Криптопровайдер обязателен для подписания исходящих и входящих УПД в Диадоке."}
+    - {category: tokens_pki, families: [rutoken_ecp, esmart_token], reason: "Аппаратный носитель нужен для выпуска и хранения сертификата УКЭП подписанта."}
+    - {category: ocr_capture, families: [contentcapture, contentreader_pdf], reason: "Распознавание помогает оцифровывать бумажную первичку тех поставщиков, кто ещё не перешёл на ЭДО."}
+  note: "Инструменты для работы в ЭДО Контур.Диадок"
+
+- id: cs_sbis_saby_addons
+  when: {categories: [], families: [sbis_saby]}
+  suggest:
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "КриптоПро CSP необходим для корректного подписания отчётности, УПД и кадровых документов в СБИС."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Токен обеспечивает защищённое хранение ключей электронной подписи компании."}
+    - {category: retail_pos_cash, families: [atol_frontol], reason: "Кассовое ПО синхронизирует продажи и маркировку с учётным контуром СБИС."}
+  note: "Сопутствующие компоненты для СБИС (Saby)"
+
+- id: cs_atol_frontol_pos_stack
+  when: {categories: [], families: [atol_frontol]}
+  suggest:
+    - {category: trade_warehouse, families: [onec_trade, onec_unf, moysklad], reason: "Товароучётная система передаёт на кассу Frontol номенклатуру, цены и принимает отчёты о продажах."}
+    - {category: tax_reporting_edo, families: [kontur_diadoc, sbis_saby, onec_edo], reason: "ЭДО требуется для приёмки маркированных товаров перед их реализацией на кассе."}
+    - {category: remote_desktop, families: [assistant_remote, rudesktop], reason: "Удалённый доступ позволяет ИТ-инженеру оперативно восстановить работу кассы без выезда."}
+    - {category: endpoint_security, families: [kaspersky_ksos, kaspersky_kesb], reason: "Антивирус защищает кассовый компьютер от простоев и вредоносного ПО."}
+  note: "Инфраструктура вокруг кассового ПО АТОЛ Frontol"
+
+- id: cs_moysklad_ecommerce_kit
+  when: {categories: [], families: [moysklad]}
+  suggest:
+    - {category: tax_reporting_edo, families: [kontur_diadoc, sbis_saby], reason: "Электронный документооборот нужен для отгрузок на маркетплейсы и приёмки маркированного товара."}
+    - {category: crm_systems, families: [retailcrm, bitrix24], reason: "CRM-система объединяет заявки с сайта, мессенджеров и маркетплейсов со складскими остатками."}
+    - {category: accounting, families: [onec_fresh, onec_accounting], reason: "Облачная бухгалтерия забирает данные продаж из МойСклад для расчёта налогов и отчётности."}
+  note: "Связка для торговли и маркетплейсов вокруг МойСклад"
+
+# --- 3. ВИРТУАЛИЗАЦИЯ, СЕРВЕРЫ, СХД И РЕЗЕРВНОЕ КОПИРОВАНИЕ (8) ---
+
+- id: cs_astra_brest_stack
+  when: {categories: [], families: [astra_brest]}
+  suggest:
+    - {category: backup_recovery, families: [rubackup, cyber_backup], reason: "Нативное резервное копирование виртуальных машин ПК СВ «Брест» защищает контур от сбоев."}
+    - {category: vdi_desktop_virt, families: [termidesk], reason: "Брокер Termidesk разворачивает виртуальные рабочие столы поверх кластера виртуализации Брест."}
+    - {category: directory_services, families: [ald_pro], reason: "ALD Pro управляет учётными записями и политиками гостевых машин в экосистеме Астра."}
+    - {category: nsd_access_control, families: [vgate_security_code], reason: "Средство защиты среды виртуализации закрывает требования ФСТЭК для аттестованных контуров."}
+  note: "Экосистема виртуализации ПК СВ Брест"
+
+- id: cs_orion_zvirt_stack
+  when: {categories: [], families: [orion_zvirt]}
+  suggest:
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Безагентное резервное копирование хостов и ВМ zVirt ускоряет аварийное восстановление."}
+    - {category: sds_storage, families: [raidix_sds, cyber_infrastructure], reason: "Отказоустойчивая СХД обеспечивает хранение образов дисков и живую миграцию ВМ."}
+    - {category: monitoring_apm, families: [monq_aiops, saymon_monitoring, klyuch_astrom], reason: "Мониторинг контролирует загрузку кластера zVirt и предупреждает о нехватке ресурсов."}
+  note: "Дополнения к платформе виртуализации zVirt"
+
+- id: cs_basis_dynamix_stack
+  when: {categories: [], families: [basis_dynamix]}
+  suggest:
+    - {category: vdi_desktop_virt, families: [basis_workplace], reason: "Basis Workplace позволяет выдавать сотрудникам защищённые виртуальные рабочие столы на базе Dynamix."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Система резервного копирования защищает виртуальную инфраструктуру Basis от потери данных."}
+    - {category: sds_storage, families: [raidix_sds, baum_storage], reason: "Программно-определяемое хранилище масштабирует дисковую подсистему кластера виртуализации."}
+  note: "Развитие кластера Basis Dynamix"
+
+- id: cs_termidesk_vdi_addons
+  when: {categories: [], families: [termidesk]}
+  suggest:
+    - {category: iam_pam_mfa, families: [multifactor_mfa, indeed_am, avanpost_fam], reason: "Многофакторная аутентификация усиливает безопасность внешнего входа в виртуальные рабочие столы."}
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Офисные приложения устанавливаются в золотой образ VDI для всех пользователей."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Защита виртуальных рабочих столов от угроз без перегрузки ресурсов гипервизора."}
+  note: "Компоненты защищённого VDI на базе Termidesk"
+
+- id: cs_sds_storage_stack
+  when: {categories: [sds_storage], families: []}
+  suggest:
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Отказоустойчивая СХД защищает от поломки дисков, но не от удаления файлов и шифровальщиков — нужен бэкап."}
+    - {category: monitoring_apm, families: [saymon_monitoring, monq_aiops, klyuch_astrom], reason: "Мониторинг отслеживает задержки ввода-вывода, состояние дисков и свободное место в пулах СХД."}
+    - {category: server_virtualization, families: [astra_brest, orion_zvirt, basis_dynamix], reason: "Кластеры виртуализации используют программную СХД как общее хранилище для живой миграции ВМ."}
+  note: "Обвязка программно-определяемых систем хранения данных"
+
+- id: cs_backup_recovery_addons
+  when: {categories: [backup_recovery], families: []}
+  suggest:
+    - {category: sds_storage, families: [cyber_infrastructure, raidix_sds, baum_storage], reason: "Отдельное защищённое хранилище нужно для размещения репозиториев резервных копий."}
+    - {category: monitoring_apm, families: [saymon_monitoring, monq_aiops], reason: "Автоматические уведомления о неуспешных заданиях бэкапа предотвращают тихую потерю копий."}
+    - {category: data_recovery, families: [r_studio], reason: "Инструмент аварийного восстановления помогает спасти данные с носителей, не попавших в расписание бэкапа."}
+  note: "Повышение надёжности контура резервного копирования"
+
+- id: cs_monitoring_apm_addons
+  when: {categories: [monitoring_apm], families: []}
+  suggest:
+    - {category: itsm_service_desk, families: [simpleone_itsm, naumen_smp, inframanager], reason: "Интеграция с Service Desk автоматически превращает критичные алерты мониторинга в инциденты для инженеров."}
+    - {category: siem_soc, families: [pt_maxpatrol_siem, kaspersky_kuma], reason: "Передача телеметрии в SIEM помогает отличать технические сбои от кибератак."}
+    - {category: remote_desktop, families: [assistant_remote, rudesktop], reason: "Быстрое удалённое подключение к проблемному серверу сразу после срабатывания оповещения."}
+  note: "Связка мониторинга с эксплуатацией и ИБ"
+
+- id: cs_load_balancing_adc_stack
+  when: {categories: [load_balancing_adc], families: []}
+  suggest:
+    - {category: waf_appsec, families: [pt_af, bizone_waf, qrator_ddos], reason: "Балансировщик распределяет трафик, а WAF и Anti-DDoS отсекают веб-атаки и бот-трафик на входе."}
+    - {category: ssl_certificates, families: [globaltrust_ssl], reason: "Корпоративные SSL-сертификаты необходимы для шифрования HTTPS-трафика на балансировщике."}
+    - {category: monitoring_apm, families: [klyuch_astrom, monq_aiops], reason: "Контроль времени отклика и кодов ошибок за балансировщиком гарантирует соблюдение SLA сервисов."}
+  note: "Защита и наблюдаемость опубликованных веб-сервисов"
+
+# --- 4. ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ (12) ---
+
+- id: cs_drweb_enterprise_stack
+  when: {categories: [], families: [drweb_enterprise_security_suite]}
+  suggest:
+    - {category: nsd_access_control, families: [secret_net_studio, dallas_lock], reason: "Для аттестации ИСПДн и ГИС к сертифицированному антивирусу Dr.Web добавляют СЗИ от НСД."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Резервное копирование страхует инфраструктуру при атаках новых программ-вымогателей."}
+    - {category: security_awareness, families: [phishman_awareness, kaspersky_asap], reason: "Обучение сотрудников распознавать фишинг снижает долю инцидентов, вызванных человеческим фактором."}
+  note: "Комплексное усиление защиты на базе Dr.Web Enterprise"
+
+- id: cs_kaspersky_ksos_smb_kit
+  when: {categories: [], families: [kaspersky_ksos]}
+  suggest:
+    - {category: backup_recovery, families: [handy_backup, cyber_backup], reason: "Автоматический бэкап баз 1С и документов дополняет антивирусную защиту малого офиса."}
+    - {category: remote_desktop, families: [kontur_dostup, assistant_remote, rudesktop], reason: "Безопасное удалённое подключение к офисным ПК для бухгалтера и приходящего сисадмина."}
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Легальный офисный пакет для базового оснащения рабочих мест малого бизнеса."}
+  note: "Базовая связка для малого офиса к KSOS"
+
+- id: cs_edr_xdr_soc_stack
+  when: {categories: [edr_xdr], families: []}
+  suggest:
+    - {category: siem_soc, families: [pt_maxpatrol_siem, kaspersky_kuma, security_vision_soar], reason: "Корреляция телеметрии EDR/XDR в SIEM ускоряет выявление сложных многошаговых атак."}
+    - {category: vuln_mgmt_pentest, families: [pt_maxpatrol_vm, redcheck], reason: "Сканер уязвимостей закрывает дыры, через которые злоумышленники проникают на конечные точки."}
+    - {category: iam_pam_mfa, families: [indeed_pam, skdpu_nt, multifactor_mfa], reason: "Контроль привилегированных учётных записей не даёт атакующему развить атаку по сети."}
+  note: "Развитие центра мониторинга вокруг EDR/XDR"
+
+- id: cs_vuln_mgmt_pentest_stack
+  when: {categories: [vuln_mgmt_pentest], families: []}
+  suggest:
+    - {category: siem_soc, families: [pt_maxpatrol_siem, kaspersky_kuma], reason: "Передача данных об уязвимостях активов в SIEM помогает точнее оценивать критичность инцидентов."}
+    - {category: waf_appsec, families: [pt_af, bizone_waf], reason: "Виртуальный патчинг на уровне WAF закрывает найденные веб-уязвимости до выхода исправления кода."}
+    - {category: code_analysis_sast, families: [pt_application_inspector, solar_appscreener], reason: "Анализ исходного кода устраняет уязвимости собственной разработки ещё до публикации."}
+  note: "Связка управления уязвимостями с защитой и мониторингом"
+
+- id: cs_usergate_ngfw_stack
+  when: {categories: [], families: [usergate_ngfw]}
+  suggest:
+    - {category: iam_pam_mfa, families: [multifactor_mfa, indeed_am, avanpost_fam], reason: "Двухфакторная аутентификация защищает удалённые VPN-подключения пользователей через UserGate."}
+    - {category: siem_soc, families: [kaspersky_kuma, pt_maxpatrol_siem], reason: "Отправка журналов межсетевого экрана в SIEM даёт полную картину сетевых инцидентов."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Защита рабочих станций дополняет периметровый экран контролем локальных угроз."}
+  note: "Усиление периметра на базе UserGate NGFW"
+
+- id: cs_continent_ngfw_stack
+  when: {categories: [], families: [continent_ngfw]}
+  suggest:
+    - {category: nsd_access_control, families: [secret_net_studio, vgate_security_code, sobol_mdz], reason: "Продукты Кода Безопасности образуют единый сертифицированный контур ФСТЭК от периметра до хоста."}
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "СКЗИ на рабочих станциях дополняет ГОСТ VPN для подписания документов и работы с ГИС."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Аппаратные токены используются для строгой двухфакторной аутентификации абонентов Континент АП."}
+  note: "Сертифицированный контур Кода Безопасности вокруг АПКШ Континент"
+
+- id: cs_vipnet_coordinator_stack
+  when: {categories: [], families: [vipnet_coordinator]}
+  suggest:
+    - {category: ngfw_vpn, families: [vipnet_client], reason: "Для подключения удалённых сотрудников и филиалов к Координатору нужны лицензии ViPNet Client."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta], reason: "Хранение ключевой информации ViPNet на защищённых USB-токенах повышает класс защиты."}
+    - {category: nsd_access_control, families: [secret_net_studio, dallas_lock], reason: "СЗИ от НСД закрывает требования регуляторов на конечных узлах защищённой сети ViPNet."}
+  note: "Построение защищённой сети на базе ViPNet"
+
+- id: cs_mail_security_addons
+  when: {categories: [mail_security], families: []}
+  suggest:
+    - {category: dlp, families: [infowatch_traffic_monitor, searchinform_kib, solar_dozor], reason: "Шлюз защищает от входящих угроз, а DLP контролирует утечки конфиденциальных файлов в исходящих письмах."}
+    - {category: security_awareness, families: [kaspersky_asap, phishman_awareness, bizone_cymulate_awareness], reason: "Учебные фишинговые рассылки тренируют сотрудников не открывать опасные вложения."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Архивирование и резервное копирование почтовых баз страхуют переписку от удаления."}
+  note: "Комплексная защита корпоративного почтового канала"
+
+- id: cs_tokens_pki_addons
+  when: {categories: [tokens_pki], families: []}
+  suggest:
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Для работы электронной подписи на USB-токене на компьютере должен быть установлен криптопровайдер."}
+    - {category: e_signature, families: [cryptoarm_gost], reason: "Программа подписания позволяет быстро подписывать и проверять любые файлы и договоры с токена."}
+    - {category: tax_reporting_edo, families: [kontur_extern, kontur_diadoc, sbis_saby], reason: "Подключение к ЭДО и сдаче отчётности для практического применения выпущенной УКЭП."}
+  note: "Программная часть для аппаратных USB-токенов"
+
+- id: cs_e_signature_addons
+  when: {categories: [e_signature], families: []}
+  suggest:
+    - {category: crypto_skzi, families: [cryptopro_csp], reason: "Для выполнения криптоопераций приложению электронной подписи требуется базовый криптопровайдер."}
+    - {category: tokens_pki, families: [rutoken_ecp, aladdin_jacarta, esmart_token], reason: "Сертифицированный носитель защищает закрытый ключ электронной подписи от копирования."}
+    - {category: sed_ecm, families: [directum_rx, onec_docflow], reason: "Система документооборота автоматизирует маршруты согласования и архив подписанных документов."}
+  note: "Базовые компоненты к ПО электронной подписи"
+
+- id: cs_ssl_certificates_addons
+  when: {categories: [ssl_certificates], families: []}
+  suggest:
+    - {category: waf_appsec, families: [pt_af, bizone_waf, qrator_ddos], reason: "SSL шифрует трафик, а WAF и Anti-DDoS защищают веб-сайт от взлома и отказа в обслуживании."}
+    - {category: load_balancing_adc, families: [angie_pro], reason: "Обратный прокси-сервер берёт на себя терминацию TLS и ускоряет отдачу защищённого сайта."}
+    - {category: monitoring_apm, families: [saymon_monitoring, klyuch_astrom], reason: "Мониторинг заранее предупредит об истечении срока действия SSL-сертификата до сбоя сайта."}
+  note: "Защита и контроль доступности веб-порталов с SSL"
+
+- id: cs_employee_monitoring_addons
+  when: {categories: [employee_monitoring], families: []}
+  suggest:
+    - {category: dlp, families: [infowatch_traffic_monitor, searchinform_kib, falcongaze_securetower], reason: "DLP блокирует несанкционированную передачу файлов в дополнение к учёту рабочего времени."}
+    - {category: iam_pam_mfa, families: [indeed_pam, skdpu_nt], reason: "PAM-система контролирует действия системных администраторов и подрядчиков на критичных серверах."}
+    - {category: nsd_access_control, families: [secret_net_studio, dallas_lock], reason: "Разграничение прав доступа и контроль USB-носителей предотвращают физический вынос данных."}
+  note: "Комплексный контроль внутренних рисков персонала"
+
+# --- 5. КОММУНИКАЦИИ, УДАЛЁННЫЙ ДОСТУП И СОВМЕСТНАЯ РАБОТА (7) ---
+
+- id: cs_remote_desktop_security
+  when: {categories: [remote_desktop], families: []}
+  suggest:
+    - {category: iam_pam_mfa, families: [multifactor_mfa, indeed_pam, skdpu_nt], reason: "Двухфакторная аутентификация и запись сессий исключают несанкционированный удалённый вход."}
+    - {category: itsm_service_desk, families: [simpleone_itsm, naumen_smp, inframanager], reason: "Интеграция с Service Desk позволяет подключаться к ПК пользователя прямо из карточки заявки."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Антивирус защищает удалённые рабочие станции от заражения при обмене файлами."}
+  note: "Защита и автоматизация удалённого доступа"
+
+- id: cs_terminal_access_security
+  when: {categories: [terminal_access], families: []}
+  suggest:
+    - {category: iam_pam_mfa, families: [multifactor_mfa, indeed_am, avanpost_fam], reason: "MFA закрывает главный вектор взлома терминальных серверов через украденные пароли."}
+    - {category: endpoint_security, families: [kaspersky_kesb, drweb_enterprise_security_suite], reason: "Терминальный сервер обслуживает десятки сотрудников одновременно и требует усиленной антивирусной защиты."}
+    - {category: monitoring_apm, families: [saymon_monitoring, monq_aiops], reason: "Контроль нагрузки на CPU и память предотвращает зависание всех пользовательских сессий."}
+  note: "Безопасность и стабильность терминального доступа"
+
+- id: cs_rupost_mail_ecosystem
+  when: {categories: [], families: [rupost]}
+  suggest:
+    - {category: directory_services, families: [ald_pro], reason: "ALD Pro обеспечивает единую аутентификацию и управление почтовыми учётными записями RuPost."}
+    - {category: mail_security, families: [kaspersky_ksmg], reason: "Почтовый шлюз безопасности фильтрует спам, фишинг и вредоносные вложения перед доставкой в RuPost."}
+    - {category: backup_recovery, families: [rubackup, cyber_backup], reason: "Резервное копирование почтовых хранилищ позволяет быстро восстановить удалённую переписку."}
+    - {category: dlp, families: [infowatch_traffic_monitor, searchinform_kib], reason: "Контроль исходящей почты предотвращает случайную или умышленную утечку документов."}
+  note: "Инфраструктурная связка для почтового сервера RuPost"
+
+- id: cs_trueconf_vks_addons
+  when: {categories: [], families: [trueconf_server]}
+  suggest:
+    - {category: server_os, families: [astra_linux_se, red_os_server, alt_server], reason: "Российская серверная ОС для развёртывания локального сервера TrueConf в закрытом контуре."}
+    - {category: whiteboards_notes, families: [mts_link_boards, holst_boards], reason: "Онлайн-доски дополняют видеосовещания совместной визуализацией схем и планов."}
+    - {category: speech_text, families: [salutespeech, yandex_speechkit], reason: "Распознавание речи помогает автоматически формировать текстовые протоколы совещаний."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Резервное копирование настроек сервера ВКС и архива записанных конференций."}
+  note: "Дополнения к локальной системе ВКС TrueConf Server"
+
+- id: cs_kontur_tolk_addons
+  when: {categories: [], families: [kontur_tolk]}
+  suggest:
+    - {category: whiteboards_notes, families: [holst_boards, mts_link_boards], reason: "Интерактивные доски делают онлайн-встречи и воркшопы в Контур.Толке нагляднее."}
+    - {category: corporate_messengers, families: [vk_teams, pachca_messenger, compass_messenger], reason: "Корпоративный чат дополняет видеозвонки повседневной перепиской проектных команд."}
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Совместная работа с презентациями и таблицами во время видеосовещаний."}
+  note: "Инструменты совместной работы в дополнение к Контур.Толку"
+
+- id: cs_uc_platforms_addons
+  when: {categories: [uc_platforms], families: []}
+  suggest:
+    - {category: iam_pam_mfa, families: [multifactor_mfa, avanpost_fam, blitz_identity], reason: "Единый вход SSO и двухфакторная аутентификация защищают корпоративную платформу коммуникаций."}
+    - {category: mail_security, families: [kaspersky_ksmg], reason: "Фильтрация спама и вредоносных писем на входе в объединённое рабочее пространство."}
+    - {category: directory_services, families: [ald_pro, red_adm, alt_domain], reason: "Синхронизация структуры организации и автоматическое отключение уволенных сотрудников."}
+  note: "Безопасность и каталогизация платформ унифицированных коммуникаций"
+
+- id: cs_email_marketing_addons
+  when: {categories: [email_marketing], families: []}
+  suggest:
+    - {category: crm_systems, families: [bitrix24, amocrm, retailcrm], reason: "Интеграция с CRM автоматически запускает рассылки по статусам сделок и заказов."}
+    - {category: bi_analytics, families: [yandex_datalens, pix_bi], reason: "Сквозная аналитика связывает открываемость рассылок с реальной выручкой и LTV клиентов."}
+    - {category: cms_ecommerce, families: [bitrix_site_manager], reason: "Сбор подписчиков, событий просмотра товаров и брошенных корзин прямо с витрины сайта."}
+  note: "Стек маркетинговой автоматизации вокруг рассылок и CDP"
+
+# --- 6. САПР, BIM, ГИС И ИНЖЕНЕРНОЕ ПО (5) ---
+
+- id: cs_nanocad_platform_addons
+  when: {categories: [], families: [nanocad_platform]}
+  suggest:
+    - {category: bim_aec, families: [nanocad_bim, model_studio_cs], reason: "Отраслевые BIM-модули Нанософт работают прямо поверх базовой Платформы nanoCAD."}
+    - {category: raster_vectorizers, families: [spotlight_raster], reason: "Векторизатор преобразует сканы бумажных архивных чертежей в редактируемый формат DWG."}
+    - {category: pdf_editors, families: [contentreader_pdf, master_pdf_editor], reason: "Формирование, проверка и сшивка многолистовых томов проектной документации в PDF."}
+    - {category: estimates_construction, families: [grand_smeta, smeta_ru], reason: "Передача ведомостей объёмов работ из чертежей в сметную программу."}
+  note: "Расширение рабочих мест на Платформе nanoCAD"
+
+- id: cs_kompas_3d_addons
+  when: {categories: [], families: [kompas_3d]}
+  suggest:
+    - {category: mcad_plm, families: [lotsman_plm], reason: "ЛОЦМАН:PLM организует защищённый архив чертежей, версии сборок и маршруты согласования КБ."}
+    - {category: cad_specialized, families: [sprutcam_x], reason: "CAM-система принимает 3D-модели из КОМПАС-3D для написания программ станков с ЧПУ."}
+    - {category: cae_simulation, families: [cae_fidesys, logos_cae], reason: "Инженерный расчёт прочности и тепловых режимов моделей до изготовления опытного образца."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Резервное копирование сервера с 3D-моделями и библиотеками стандартных изделий."}
+  note: "Инженерная экосистема вокруг КОМПАС-3D"
+
+- id: cs_renga_bim_addons
+  when: {categories: [], families: [renga_bim]}
+  suggest:
+    - {category: bim_aec, families: [pilot_bim], reason: "Среда общих данных Pilot-BIM собирает разделы из Renga в сводную модель и ведёт замечания."}
+    - {category: cae_simulation, families: [scad_office, lira_sapr], reason: "Расчётные комплексы проверяют несущую способность строительных конструкций, созданных в Renga."}
+    - {category: estimates_construction, families: [grand_smeta, smeta_ru], reason: "Расчёт сметной стоимости строительства на основе спецификаций из BIM-модели."}
+  note: "Полный ТИМ/BIM-контур вокруг Renga"
+
+- id: cs_cae_simulation_addons
+  when: {categories: [cae_simulation], families: []}
+  suggest:
+    - {category: mcad_plm, families: [kompas_3d, t_flex_cad, lotsman_plm], reason: "Подготовка и правка расчётной геометрии изделий в 3D-САПР с хранением версий в PLM."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Сохранение тяжёлых расчётных моделей и результатов многочасовых вычислений."}
+    - {category: pdf_editors, families: [contentreader_pdf, master_pdf_editor], reason: "Оформление расчётных пояснительных записок и отчётов для экспертизы."}
+  note: "Сопутствующие инструменты для инженерных расчётов CAE"
+
+- id: cs_ecad_eda_addons
+  when: {categories: [ecad_eda], families: []}
+  suggest:
+    - {category: mcad_plm, families: [kompas_3d, t_flex_cad, lotsman_plm], reason: "Передача 3D-модели печатной платы в механический САПР для компоновки в корпусе прибора."}
+    - {category: cae_simulation, families: [simintech, engee_platform], reason: "Моделирование алгоритмов и динамики работы разрабатываемого электронного узла."}
+    - {category: pdf_editors, families: [contentreader_pdf, master_pdf_editor], reason: "Выпуск комплекта сборочной документации и сверка перечней элементов по ЕСКД."}
+  note: "Междисциплинарная связка для проектирования электроники"
+
+# --- 7. РАЗРАБОТКА, БАЗЫ ДАННЫХ И АНАЛИТИКА (6) ---
+
+- id: cs_postgres_pro_stack
+  when: {categories: [], families: [postgres_pro]}
+  suggest:
+    - {category: tech_support, families: [postgres_pro_support], reason: "Расширенная техническая поддержка вендора гарантирует быстрое решение инцидентов на продуктивных базах."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Консистентное резервное копирование баз Postgres Pro и журналов WAL с восстановлением на момент времени."}
+    - {category: db_management_tools, families: [tantor_platform], reason: "Визуальный мониторинг запросов, блокировок и состояния кластеров PostgreSQL."}
+    - {category: server_os, families: [astra_linux_se, red_os_server, alt_server], reason: "Реестровая серверная Linux-ОС с подтверждённой совместимостью с Postgres Pro."}
+  note: "Эксплуатация и сопровождение СУБД Postgres Pro"
+
+- id: cs_tantor_db_stack
+  when: {categories: [], families: [tantor_db]}
+  suggest:
+    - {category: db_management_tools, families: [tantor_platform], reason: "Платформа Tantor автоматизирует развёртывание, мониторинг и диагностику производительности СУБД Tantor."}
+    - {category: backup_recovery, families: [rubackup, cyber_backup], reason: "Регулярное резервное копирование продуктивных баз данных в едином контуре Группы Астра."}
+    - {category: dlp, families: [garda_db], reason: "Аудит и контроль обращений к конфиденциальным таблицам СУБД для требований ИБ."}
+  note: "Полный стек администрирования и защиты СУБД Tantor"
+
+- id: cs_testing_qa_addons
+  when: {categories: [testing_qa], families: []}
+  suggest:
+    - {category: git_cicd_devops, families: [gitflic, sourcecraft_yandex, sphere_t1], reason: "Интеграция TMS с конвейерами CI/CD автоматически загружает результаты автотестов после каждого билда."}
+    - {category: task_project_trackers, families: [yandex_tracker, kaiten, evaproject], reason: "Прямое создание баг-репортов из упавших тест-кейсов ускоряет исправление дефектов."}
+    - {category: code_analysis_sast, families: [pvs_studio, pt_application_inspector, solar_appscreener], reason: "Автоматический анализ кода дополняет функциональное тестирование проверкой безопасности."}
+  note: "Интеграция тест-менеджмента в конвейер разработки"
+
+- id: cs_code_analysis_sast_addons
+  when: {categories: [code_analysis_sast], families: []}
+  suggest:
+    - {category: git_cicd_devops, families: [gitflic, sourcecraft_yandex, sphere_t1], reason: "Встраивание анализатора в пайплайн блокирует попадание уязвимого кода в релизную ветку."}
+    - {category: waf_appsec, families: [pt_af, bizone_waf, garda_waf], reason: "WAF прикрывает работающее веб-приложение в промышленной среде в дополнение к проверке исходников."}
+    - {category: testing_qa, families: [test_it_tms, allure_testops], reason: "Сводный контроль качества и безопасности релизов в едином процессе разработки."}
+  note: "Замыкание цикла безопасной разработки DevSecOps"
+
+- id: cs_api_integration_esb_addons
+  when: {categories: [api_integration_esb], families: []}
+  suggest:
+    - {category: monitoring_apm, families: [klyuch_astrom, monq_aiops, saymon_monitoring], reason: "Трейсинг и мониторинг интеграционной шины выявляют задержки обмена между сервисами."}
+    - {category: waf_appsec, families: [pt_af, bizone_waf], reason: "Защита опубликованных API-шлюзов от инъекций, подбора токенов и злоупотреблений."}
+    - {category: load_balancing_adc, families: [angie_pro], reason: "Балансировка входящих API-запросов обеспечивает отказоустойчивость интеграционного слоя."}
+  note: "Надёжность и защита интеграционных шин и API"
+
+- id: cs_nosql_inmemory_addons
+  when: {categories: [nosql_inmemory], families: []}
+  suggest:
+    - {category: monitoring_apm, families: [monq_aiops, klyuch_astrom], reason: "Контроль потребления оперативной памяти и задержек критичен для in-memory баз данных."}
+    - {category: backup_recovery, families: [cyber_backup, rubackup], reason: "Резервное копирование снапшотов защищает кластер от потери данных при перезапуске узлов."}
+    - {category: server_os, families: [astra_linux_se, red_os_server, msvsphere_os], reason: "Оптимизированная серверная Linux-ОС для высоконагруженных узлов NoSQL-кластера."}
+  note: "Эксплуатация высоконагруженных NoSQL и in-memory СУБД"
+
+# --- 8. УПРАВЛЕНИЕ ПРОЕКТАМИ, ПРОЦЕССАМИ И ДОКУМЕНТАМИ (4) ---
+
+- id: cs_task_project_trackers_addons
+  when: {categories: [task_project_trackers], families: []}
+  suggest:
+    - {category: whiteboards_notes, families: [yonote, evawiki, teamly, holst_boards], reason: "База знаний и онлайн-доски хранят спецификации и регламенты рядом с досками задач."}
+    - {category: corporate_messengers, families: [vk_teams, pachca_messenger, compass_messenger], reason: "Уведомления о смене статусов задач и быстрое обсуждение тикетов в командном чате."}
+    - {category: vks_webinars, families: [kontur_tolk, mts_link_meetings], reason: "Проведение ежедневных стендапов и планирований спринтов с распределённой командой."}
+  note: "Единое рабочее пространство проектной команды"
+
+- id: cs_project_planning_addons
+  when: {categories: [project_planning], families: []}
+  suggest:
+    - {category: bi_analytics, families: [visiology_bi, foresight_analytics, pix_bi], reason: "Руководители получают сводные дашборды по срокам, освоенному объёму и бюджетам портфеля проектов."}
+    - {category: sed_ecm, families: [directum_rx, onec_docflow], reason: "Согласование проектных договоров, актов КС-2/КС-3 и приказов по контрольным точкам графика."}
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Экспорт календарных графиков и подготовка презентаций для проектного комитета."}
+  note: "Отчётность и документооборот для проектного офиса"
+
+- id: cs_bpm_rpa_lowcode_addons
+  when: {categories: [bpm_rpa_lowcode], families: []}
+  suggest:
+    - {category: ocr_capture, families: [contentcapture, smart_id_engine, dbrain_ocr], reason: "Распознавание сканов подаёт структурированные данные на вход программным роботам и BPM-процессам."}
+    - {category: api_integration_esb, families: [platform_v_synapse, onec_esb], reason: "Шина данных надёжно связывает low-code процессы с ERP, CRM и учётными системами."}
+    - {category: e_signature, families: [cryptopro_dss, cryptoarm_gost], reason: "Облачная электронная подпись завершает сквозные цифровые процессы юридически значимым подписанием."}
+  note: "Автоматизация сквозных бизнес-процессов вокруг BPM и RPA"
+
+- id: cs_pdf_editors_addons
+  when: {categories: [pdf_editors], families: []}
+  suggest:
+    - {category: office_suite, families: [r7_office, myoffice_standard], reason: "Офисные редакторы дополняют работу с PDF созданием и правкой исходных документов DOCX и XLSX."}
+    - {category: e_signature, families: [cryptoarm_gost, cryptopro_dss], reason: "Наложение визуального штампа и усиленной электронной подписи прямо на готовый PDF-документ."}
+    - {category: translation_dictionaries, families: [promt_translation], reason: "Перевод распознанных иностранных PDF-договоров и инструкций с сохранением структуры."}
+  note: "Сопутствующие инструменты для работы с документами PDF"

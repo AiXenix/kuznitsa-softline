@@ -1,0 +1,274 @@
+{"q": "софт для учителя школы", "kind": "role", "expect": "school_teacher", "seen": true}
+{"q": "какие проги поставить училке в школьный класс на 2 компа", "kind": "role", "expect": "school_teacher", "seen": false}
+{"q": "софт для преподавателя вуза", "kind": "role", "expect": "university_professor", "seen": true}
+{"q": "программы на кафедру преподам универа 10 лицензий", "kind": "role", "expect": "university_professor", "seen": false}
+{"q": "софт для регистратора клиники", "kind": "role", "expect": "clinic_registrar", "seen": true}
+{"q": "чо поставить девочкам на ресепшн в поликлинике на 4 места", "kind": "role", "expect": "clinic_registrar", "seen": false}
+{"q": "софт для провизора", "kind": "role", "expect": "pharmacist", "seen": true}
+{"q": "по для фармацевта за первый стол в аптеку 3 пк", "kind": "role", "expect": "pharmacist", "seen": false}
+{"q": "софт для аналитика soc", "kind": "role", "expect": "soc_analyst", "seen": true}
+{"q": "инструменты для дежурного аналитика сок в мониторинг", "kind": "role", "expect": "soc_analyst", "seen": false}
+{"q": "софт для сетевого инженера", "kind": "role", "expect": "network_engineer", "seen": true}
+{"q": "проги нашему сетевику для настройки фаерволов и мониторинга", "kind": "role", "expect": "network_engineer", "seen": false}
+{"q": "софт для менеджера продукта", "kind": "role", "expect": "product_manager", "seen": true}
+{"q": "что купить продакт-менеджеру для бэклога и досок на 5 чел", "kind": "role", "expect": "product_manager", "seen": false}
+{"q": "софт для системного аналитика", "kind": "role", "expect": "system_analyst", "seen": true}
+{"q": "набор по системному аналитику для схем и спецификаций", "kind": "role", "expect": "system_analyst", "seen": false}
+{"q": "софт для технического писателя", "kind": "role", "expect": "technical_writer", "seen": true}
+{"q": "программы техписателю чтобы писать инструкции и доки на 2 места", "kind": "role", "expect": "technical_writer", "seen": false}
+{"q": "софт для фотографа", "kind": "role", "expect": "photographer", "seen": true}
+{"q": "чем обрабатывать фотки в штатной фотостудии компании", "kind": "role", "expect": "photographer", "seen": false}
+{"q": "софт для 3d художника", "kind": "role", "expect": "artist_3d", "seen": true}
+{"q": "проги для 3д моделлера и рендера на 4 рабочих станции", "kind": "role", "expect": "artist_3d", "seen": false}
+{"q": "софт для звукорежиссера", "kind": "role", "expect": "sound_engineer", "seen": true}
+{"q": "по для звукоинженера в корпоративную студию записи", "kind": "role", "expect": "sound_engineer", "seen": false}
+{"q": "софт для веб разработчика", "kind": "role", "expect": "web_developer", "seen": true}
+{"q": "что поставить нашим веб-программистам для сайта и гита на 6 мест", "kind": "role", "expect": "web_developer", "seen": false}
+{"q": "софт для мобильного разработчика", "kind": "role", "expect": "mobile_developer", "seen": true}
+{"q": "комплект программистам мобильных приложений под аврору 8 мест", "kind": "role", "expect": "mobile_developer", "seen": false}
+{"q": "софт для embedded разработчика", "kind": "role", "expect": "embedded_developer", "seen": true}
+{"q": "по разработчику прошивок микроконтроллеров и плат на 3 пк", "kind": "role", "expect": "embedded_developer", "seen": false}
+{"q": "софт для администратора 1с", "kind": "role", "expect": "onec_administrator", "seen": true}
+{"q": "что нужно админу который держит сервер 1с на 50 юзеров", "kind": "role", "expect": "onec_administrator", "seen": false}
+{"q": "софт для инженера технолога", "kind": "role", "expect": "process_engineer", "seen": true}
+{"q": "программы технологам в цех на 12 рабочих мест", "kind": "role", "expect": "process_engineer", "seen": false}
+{"q": "софт для инженера чпу", "kind": "role", "expect": "cnc_engineer", "seen": true}
+{"q": "cam софт программисту чпу станков для фрезеровки", "kind": "role", "expect": "cnc_engineer", "seen": false}
+{"q": "софт для конструктора печатных плат", "kind": "role", "expect": "pcb_designer", "seen": true}
+{"q": "программы инженеру для трассировки плат электроники 4 места", "kind": "role", "expect": "pcb_designer", "seen": false}
+{"q": "софт для специалиста по охране труда", "kind": "role", "expect": "occupational_safety_specialist", "seen": true}
+{"q": "что поставить инженеру по охране труда для инструктажей", "kind": "role", "expect": "occupational_safety_specialist", "seen": false}
+{"q": "софт для эколога", "kind": "role", "expect": "ecologist_engineer", "seen": true}
+{"q": "проги штатному экологу завода для отчетов и карт", "kind": "role", "expect": "ecologist_engineer", "seen": false}
+{"q": "софт для архивариуса", "kind": "role", "expect": "archivist_records_manager", "seen": true}
+{"q": "по в архив компании чтобы сканировать и хранить дела", "kind": "role", "expect": "archivist_records_manager", "seen": false}
+{"q": "софт для финансового директора", "kind": "role", "expect": "cfo_finance_director", "seen": true}
+{"q": "инструменты финдиру для бюджетов и дашбордов по холдингу", "kind": "role", "expect": "cfo_finance_director", "seen": false}
+{"q": "софт для внутреннего аудитора", "kind": "role", "expect": "internal_auditor", "seen": true}
+{"q": "программы для ревизора и проверки бухгалтерии внутри компании", "kind": "role", "expect": "internal_auditor", "seen": false}
+{"q": "софт для администратора гостиницы", "kind": "role", "expect": "hotel_administrator", "seen": true}
+{"q": "что поставить на ресепшн гостиницы на 2 рабочих места", "kind": "role", "expect": "hotel_administrator", "seen": false}
+{"q": "софт для закупщика по 44 фз", "kind": "role", "expect": "fz44_procurement_officer", "seen": true}
+{"q": "программы контрактному управляющему для работы в еис 44-фз", "kind": "role", "expect": "fz44_procurement_officer", "seen": false}
+{"q": "софт для тендерного специалиста", "kind": "role", "expect": "tender_specialist", "seen": true}
+{"q": "что купить тендерщику для участия в аукционах на 3 пк", "kind": "role", "expect": "tender_specialist", "seen": false}
+{"q": "софт для smm специалиста", "kind": "role", "expect": "smm_specialist", "seen": true}
+{"q": "проги сммщице для картинок и постов в соцсети", "kind": "role", "expect": "smm_specialist", "seen": false}
+{"q": "софт для копирайтера", "kind": "role", "expect": "copywriter", "seen": true}
+{"q": "по автору текстов и редактору блога компании", "kind": "role", "expect": "copywriter", "seen": false}
+{"q": "софт для методиста дистанционного обучения", "kind": "role", "expect": "elearning_methodologist", "seen": true}
+{"q": "программы педдизайнеру чтобы верстать scorm курсы на 2 места", "kind": "role", "expect": "elearning_methodologist", "seen": false}
+{"q": "софт для научного сотрудника", "kind": "role", "expect": "research_scientist", "seen": true}
+{"q": "по ученому в лабораторию нии для расчетов и статей", "kind": "role", "expect": "research_scientist", "seen": false}
+{"q": "софт для лаборанта", "kind": "role", "expect": "lab_technician", "seen": true}
+{"q": "что поставить лаборанту для протоколов испытаний 3 пк", "kind": "role", "expect": "lab_technician", "seen": false}
+{"q": "софт для администратора виртуализации", "kind": "role", "expect": "virtualization_admin", "seen": true}
+{"q": "программы админу гипервизоров и кластеров вм", "kind": "role", "expect": "virtualization_admin", "seen": false}
+{"q": "софт для администратора резервного копирования", "kind": "role", "expect": "backup_admin", "seen": true}
+{"q": "что нужно инженеру по бэкапам и схд в цод", "kind": "role", "expect": "backup_admin", "seen": false}
+{"q": "софт для администратора почты", "kind": "role", "expect": "mail_admin", "seen": true}
+{"q": "по почтовому админу на замену exchange на 300 ящиков", "kind": "role", "expect": "mail_admin", "seen": false}
+{"q": "софт для администратора вкс", "kind": "role", "expect": "vks_telephony_admin", "seen": true}
+{"q": "инструменты инженеру видеосвязи и корпоративной атс", "kind": "role", "expect": "vks_telephony_admin", "seen": false}
+{"q": "софт для студента", "kind": "role", "expect": "student_learner", "seen": true}
+{"q": "какие проги поставить студенту для диплома и курсовых", "kind": "role", "expect": "student_learner", "seen": false}
+{"q": "софт для ответственного за пдн", "kind": "role", "expect": "security_officer_pdn", "seen": true}
+{"q": "по специалисту который отвечает за 152-фз в фирме", "kind": "role", "expect": "security_officer_pdn", "seen": false}
+{"q": "софт для инженера kubernetes", "kind": "role", "expect": "k8s_platform_engineer", "seen": true}
+{"q": "что нужно админу кубера для промышленного кластера", "kind": "role", "expect": "k8s_platform_engineer", "seen": false}
+{"q": "софт для менеджера ит активов", "kind": "role", "expect": "it_asset_manager", "seen": true}
+{"q": "программы sam специалисту для учета всех лицензий на 500 пк", "kind": "role", "expect": "it_asset_manager", "seen": false}
+{"q": "софт для специалиста по цепям поставок", "kind": "role", "expect": "supply_chain_planner", "seen": true}
+{"q": "по менеджеру вэд для планирования импорта и склада", "kind": "role", "expect": "supply_chain_planner", "seen": false}
+{"q": "софт для менеджера маркетплейсов", "kind": "role", "expect": "marketplace_manager", "seen": true}
+{"q": "проги менеджеру который ведет озон и вб на 3 компа", "kind": "role", "expect": "marketplace_manager", "seen": false}
+{"q": "софт для rpa разработчика", "kind": "role", "expect": "rpa_developer", "seen": true}
+{"q": "чем делать программных роботов rpa в банке", "kind": "role", "expect": "rpa_developer", "seen": false}
+{"q": "софт для bi архитектора", "kind": "role", "expect": "bi_architect", "seen": true}
+{"q": "инструменты дата-инженеру для построения кхд и bi витрин", "kind": "role", "expect": "bi_architect", "seen": false}
+{"q": "софт для администратора crm", "kind": "role", "expect": "crm_administrator", "seen": true}
+{"q": "по специалисту по настройке црм и телефонии отдела продаж", "kind": "role", "expect": "crm_administrator", "seen": false}
+{"q": "софт для оператора видеонаблюдения", "kind": "role", "expect": "video_surveillance_operator", "seen": true}
+{"q": "что поставить на пост охраны для 30 камер наблюдения", "kind": "role", "expect": "video_surveillance_operator", "seen": false}
+{"q": "софт для главного врача", "kind": "role", "expect": "medical_director", "seen": true}
+{"q": "программы главврачу частной клиники для контроля приема", "kind": "role", "expect": "medical_director", "seen": false}
+{"q": "софт для проектировщика дорог", "kind": "role", "expect": "road_civil_engineer", "seen": true}
+{"q": "сапр инженерам-дорожникам для трасс и генплана 5 мест", "kind": "role", "expect": "road_civil_engineer", "seen": false}
+{"q": "софт для конструктора мебели", "kind": "role", "expect": "furniture_designer", "seen": true}
+{"q": "проги технологу мебельного цеха для раскроя лдсп на 2 пк", "kind": "role", "expect": "furniture_designer", "seen": false}
+{"q": "софт для комплаенс менеджера", "kind": "role", "expect": "compliance_dpo_lawyer", "seen": true}
+{"q": "по в службу экономической безопасности проверять поставщиков", "kind": "role", "expect": "compliance_dpo_lawyer", "seen": false}
+{"q": "софт для нового филиала", "kind": "role", "expect": "kit_new_branch", "seen": true}
+{"q": "открываем филиал в казани на 15 человек какое по купить", "kind": "role", "expect": "kit_new_branch", "seen": false}
+{"q": "комплект для нового сотрудника", "kind": "role", "expect": "kit_new_employee", "seen": true}
+{"q": "берем новичка в офис с понедельника какие лицензии докупить", "kind": "role", "expect": "kit_new_employee", "seen": false}
+{"q": "перевод отдела на удаленку по", "kind": "role", "expect": "kit_remote_department", "seen": true}
+{"q": "отправляем 30 человек на удаленную работу что нужно из софта", "kind": "role", "expect": "kit_remote_department", "seen": false}
+{"q": "переход с windows на российскую ос", "kind": "role", "expect": "kit_windows_to_ru_os", "seen": true}
+{"q": "переводим 100 компов с винды на отечественный линукс под ключ", "kind": "role", "expect": "kit_windows_to_ru_os", "seen": false}
+{"q": "замена ушедшего офисного пакета", "kind": "role", "expect": "kit_replace_office_suite", "seen": true}
+{"q": "нужно срочно заменить майкрософт офис и визио на 40 пк", "kind": "role", "expect": "kit_replace_office_suite", "seen": false}
+{"q": "комплект для 152 фз", "kind": "role", "expect": "kit_pdn_152fz", "seen": true}
+{"q": "грядет проверка роскомнадзора по 152-фз что поставить на 20 пк", "kind": "role", "expect": "kit_pdn_152fz", "seen": false}
+{"q": "комплект по для объекта кии", "kind": "role", "expect": "kit_kii_object", "seen": true}
+{"q": "защита значимого объекта кии 2 категории какие средства нужны", "kind": "role", "expect": "kit_kii_object", "seen": false}
+{"q": "по для серверной малого офиса", "kind": "role", "expect": "kit_small_office_server", "seen": true}
+{"q": "купили один сервер в офис на 25 человек какой софт туда нужен", "kind": "role", "expect": "kit_small_office_server", "seen": false}
+{"q": "софт для компьютерного класса", "kind": "role", "expect": "kit_computer_class", "seen": true}
+{"q": "оснащаем класс информатики на 16 ученических компов по 44-фз", "kind": "role", "expect": "kit_computer_class", "seen": false}
+{"q": "софт для переговорной комнаты", "kind": "role", "expect": "kit_meeting_room", "seen": true}
+{"q": "оборудуем большую переговорку для совещаний с филиалами по вкс", "kind": "role", "expect": "kit_meeting_room", "seen": false}
+{"q": "софт для стартапа разработки", "kind": "role", "expect": "kit_dev_startup", "seen": true}
+{"q": "собрали команду из 8 разрабов делаем свой продукт что нужно из по", "kind": "role", "expect": "kit_dev_startup", "seen": false}
+{"q": "софт для онлайн школы", "kind": "role", "expect": "kit_online_school", "seen": true}
+{"q": "запускаем онлайн-курсы с вебинарами на 200 учеников какой стек по", "kind": "role", "expect": "kit_online_school", "seen": false}
+{"q": "софт для контакт центра", "kind": "role", "expect": "kit_contact_center", "seen": true}
+{"q": "организуем горячую линию на 20 операторов какие проги нужны", "kind": "role", "expect": "kit_contact_center", "seen": false}
+{"q": "софт для дизайн студии", "kind": "role", "expect": "kit_design_studio", "seen": true}
+{"q": "открываем студию графического и веб-дизайна на 6 человек софт", "kind": "role", "expect": "kit_design_studio", "seen": false}
+{"q": "софт для проектного бюро", "kind": "role", "expect": "kit_design_bureau", "seen": true}
+{"q": "нужен комплект сапр и бим в проектную контору на 12 инженеров", "kind": "role", "expect": "kit_design_bureau", "seen": false}
+{"q": "софт для бухгалтерской фирмы на аутсорсинге", "kind": "role", "expect": "kit_accounting_outsource", "seen": true}
+{"q": "ведем бухгалтерию 40 фирм клиентов что купить из софта", "kind": "role", "expect": "kit_accounting_outsource", "seen": false}
+{"q": "софт для магазина с кассами", "kind": "role", "expect": "kit_retail_pos_store", "seen": true}
+{"q": "открываем продуктовый магазин на 2 кассы с маркировкой какое по", "kind": "role", "expect": "kit_retail_pos_store", "seen": false}
+{"q": "комплект для интернет магазина", "kind": "role", "expect": "kit_ecommerce_store", "seen": true}
+{"q": "запускаем свой онлайн-магазин с обменом с 1с какой софт взять", "kind": "role", "expect": "kit_ecommerce_store", "seen": false}
+{"q": "комплект для медицинской клиники", "kind": "role", "expect": "kit_medical_clinic", "seen": true}
+{"q": "открываем частный медцентр на 10 кабинетов какие программы нужны", "kind": "role", "expect": "kit_medical_clinic", "seen": false}
+{"q": "подготовка к проверке лицензий по", "kind": "role", "expect": "kit_license_audit_prep", "seen": true}
+{"q": "хотим проверить весь офис на пиратку и легализовать по на 60 пк", "kind": "role", "expect": "kit_license_audit_prep", "seen": false}
+{"q": "по для стоматологии", "kind": "industry", "expect": "dentistry_private_clinic", "seen": true}
+{"q": "чо нужно в стоматологию на 5 кресел из программ", "kind": "industry", "expect": "dentistry_private_clinic", "seen": false}
+{"q": "софт в аптеку", "kind": "industry", "expect": "pharmacy_chain", "seen": true}
+{"q": "программы для сети из 8 аптек с честным знаком", "kind": "industry", "expect": "pharmacy_chain", "seen": false}
+{"q": "по для лаборатории", "kind": "industry", "expect": "diagnostic_lab", "seen": true}
+{"q": "какое по нужно в диагностическую лабораторию анализов", "kind": "industry", "expect": "diagnostic_lab", "seen": false}
+{"q": "по для ветеринарной клиники", "kind": "industry", "expect": "veterinary_clinic", "seen": true}
+{"q": "проги для ветклиники с ветаптекой и записью на прием", "kind": "industry", "expect": "veterinary_clinic", "seen": false}
+{"q": "по для школы", "kind": "industry", "expect": "general_school", "seen": true}
+{"q": "реестровый софт в общеобразовательную школу на 50 компов", "kind": "industry", "expect": "general_school", "seen": false}
+{"q": "по для колледжа", "kind": "industry", "expect": "college_spo", "seen": true}
+{"q": "что закупить в политехнический техникум по учебным лицензиям", "kind": "industry", "expect": "college_spo", "seen": false}
+{"q": "по для вуза", "kind": "industry", "expect": "higher_edu_university", "seen": true}
+{"q": "комплект академического софта для университета на 300 мест", "kind": "industry", "expect": "higher_edu_university", "seen": false}
+{"q": "по для детского сада", "kind": "industry", "expect": "kindergarten_preschool", "seen": true}
+{"q": "программы в муниципальный детсад бухгалтерия и офис", "kind": "industry", "expect": "kindergarten_preschool", "seen": false}
+{"q": "по для учебного центра", "kind": "industry", "expect": "training_center_dpo", "seen": true}
+{"q": "автоматизация центра повышения квалификации и курсов дпо", "kind": "industry", "expect": "training_center_dpo", "seen": false}
+{"q": "по для проектного института", "kind": "industry", "expect": "design_institute_kb", "seen": true}
+{"q": "импортозамещение сапр в проектном институте на 80 человек", "kind": "industry", "expect": "design_institute_kb", "seen": false}
+{"q": "по для машиностроения", "kind": "industry", "expect": "machinery_engineering", "seen": true}
+{"q": "какой стек сапр и ерп нужен машиностроительному заводу", "kind": "industry", "expect": "machinery_engineering", "seen": false}
+{"q": "по для приборостроения", "kind": "industry", "expect": "instrument_electronics_mfg", "seen": true}
+{"q": "софт на завод электроники и приборостроения платы и 3д", "kind": "industry", "expect": "instrument_electronics_mfg", "seen": false}
+{"q": "по для пищевого производства", "kind": "industry", "expect": "food_beverage_mfg", "seen": true}
+{"q": "программы на молокозавод учет партий и маркировка", "kind": "industry", "expect": "food_beverage_mfg", "seen": false}
+{"q": "по для химической промышленности", "kind": "industry", "expect": "chemical_industry", "seen": true}
+{"q": "софт для химпредприятия с защитой асу тп по 187-фз", "kind": "industry", "expect": "chemical_industry", "seen": false}
+{"q": "по для мебельного производства", "kind": "industry", "expect": "woodworking_furniture", "seen": true}
+{"q": "автоматизация мебельной фабрики раскрой и учет заказов", "kind": "industry", "expect": "woodworking_furniture", "seen": false}
+{"q": "по для типографии", "kind": "industry", "expect": "printing_publishing", "seen": true}
+{"q": "какие проги нужны в офсетную типографию и издательство", "kind": "industry", "expect": "printing_publishing", "seen": false}
+{"q": "по для видеопродакшна", "kind": "industry", "expect": "video_production_studio", "seen": true}
+{"q": "софт и хранилище для студии рекламного видеомонтажа", "kind": "industry", "expect": "video_production_studio", "seen": false}
+{"q": "по для игровой студии", "kind": "industry", "expect": "game_dev_studio", "seen": true}
+{"q": "что нужно геймдев студии на 25 человек из лицензий", "kind": "industry", "expect": "game_dev_studio", "seen": false}
+{"q": "по для компании заказной разработки", "kind": "industry", "expect": "custom_software_dev", "seen": true}
+{"q": "набор инструментов для аутсорсинговой ит студии на 40 разрабов", "kind": "industry", "expect": "custom_software_dev", "seen": false}
+{"q": "по для системного интегратора", "kind": "industry", "expect": "it_integrator_service", "seen": true}
+{"q": "программы для сервисной ит компании обслуживаем 30 клиентов", "kind": "industry", "expect": "it_integrator_service", "seen": false}
+{"q": "по для дата центра", "kind": "industry", "expect": "datacenter_hosting", "seen": true}
+{"q": "виртуализация и защита от ддос для хостинг-провайдера", "kind": "industry", "expect": "datacenter_hosting", "seen": false}
+{"q": "по для мфо", "kind": "industry", "expect": "microfinance_org", "seen": true}
+{"q": "что поставить в микрофинансовую организацию по 757-п цб", "kind": "industry", "expect": "microfinance_org", "seen": false}
+{"q": "по для лизинговой компании", "kind": "industry", "expect": "leasing_company", "seen": true}
+{"q": "софт для лизинга спецтехники црм скоринг и эдо", "kind": "industry", "expect": "leasing_company", "seen": false}
+{"q": "по для кадрового агентства", "kind": "industry", "expect": "recruiting_agency", "seen": true}
+{"q": "проги в рекрутинговое агентство на 10 рекрутеров", "kind": "industry", "expect": "recruiting_agency", "seen": false}
+{"q": "по для чоп", "kind": "industry", "expect": "private_security_org", "seen": true}
+{"q": "софт в охранное предприятие для пульта видео и смен", "kind": "industry", "expect": "private_security_org", "seen": false}
+{"q": "по для автосервиса", "kind": "industry", "expect": "auto_dealer_service", "seen": true}
+{"q": "программы в автосервис на 4 подъемника заказ-наряды и склад", "kind": "industry", "expect": "auto_dealer_service", "seen": false}
+{"q": "по для управляющей компании жкх", "kind": "industry", "expect": "housing_utilities_uk", "seen": true}
+{"q": "какие проги нужны в ук жкх для диспетчерской и гис жкх", "kind": "industry", "expect": "housing_utilities_uk", "seen": false}
+{"q": "по для муниципалитета", "kind": "industry", "expect": "municipality_local_gov", "seen": true}
+{"q": "реестровый софт в администрацию района на 45 арм", "kind": "industry", "expect": "municipality_local_gov", "seen": false}
+{"q": "по для учреждения культуры", "kind": "industry", "expect": "culture_institution", "seen": true}
+{"q": "что закупить по 44-фз в краеведческий музей и библиотеку", "kind": "industry", "expect": "culture_institution", "seen": false}
+{"q": "по для холдинга с филиалами", "kind": "industry", "expect": "distributed_holding", "seen": true}
+{"q": "единый стек ерп сэд и домена для группы компаний с 12 филиалами", "kind": "industry", "expect": "distributed_holding", "seen": false}
+{"q": "офисный сотрудник", "kind": "role", "expect": "office_worker", "seen": true}
+{"q": "что поставить удаленщику на рабочий ноут домой", "kind": "role", "expect": "remote_employee", "seen": false}
+{"q": "бухгалтерше программы на новый комп", "kind": "role", "expect": "accountant", "seen": false}
+{"q": "главный бухгалтер", "kind": "role", "expect": "chief_accountant", "seen": true}
+{"q": "софт расчетчику зарплаты на 200 сотрудников", "kind": "role", "expect": "payroll_specialist", "seen": false}
+{"q": "экономист", "kind": "role", "expect": "economist_financier", "seen": true}
+{"q": "какие проги нужны юрисконсульту в договорной отдел", "kind": "role", "expect": "lawyer", "seen": false}
+{"q": "софт в отдел кадров для кэдо и 1с на 3 места", "kind": "role", "expect": "hr_specialist", "seen": false}
+{"q": "рекрутер", "kind": "role", "expect": "recruiter_hrbp", "seen": true}
+{"q": "программы секретарю в приемную и канцелярию", "kind": "role", "expect": "secretary_office_manager", "seen": false}
+{"q": "по для менеджера по закупкам и снабженца", "kind": "role", "expect": "procurement_specialist", "seen": false}
+{"q": "генеральный директор", "kind": "role", "expect": "ceo_executive", "seen": true}
+{"q": "проги менеджерам по продажам црм и телефония 15 мест", "kind": "role", "expect": "sales_manager", "seen": false}
+{"q": "что поставить ропу для контроля воронки продаж", "kind": "role", "expect": "sales_director", "seen": false}
+{"q": "оператор колл центра", "kind": "role", "expect": "call_center_operator", "seen": true}
+{"q": "софт маркетологу для рассылок и аналитики", "kind": "role", "expect": "marketing_manager", "seen": false}
+{"q": "программы графическому дизайнеру на 2 рабочих места", "kind": "role", "expect": "graphic_designer", "seen": false}
+{"q": "ux дизайнер", "kind": "role", "expect": "ui_ux_designer", "seen": true}
+{"q": "чем монтировать ролики штатному видеографу", "kind": "role", "expect": "video_editor_motion", "seen": false}
+{"q": "по для верстальщика каталогов и препресса", "kind": "role", "expect": "dtp_layout_designer", "seen": false}
+{"q": "софт нашим конструкторам в кб на 10 мест", "kind": "role", "expect": "cad_mechanical_engineer", "seen": false}
+{"q": "bim проектировщик", "kind": "role", "expect": "architect_bim", "seen": true}
+{"q": "расчетные проги прочнисту для кж и км", "kind": "role", "expect": "structural_engineer_cae", "seen": false}
+{"q": "сапр проектировщикам электрики и скс на 4 места", "kind": "role", "expect": "electrical_cad_engineer", "seen": false}
+{"q": "прога для сметчика на 3 места", "kind": "role", "expect": "cost_estimator", "seen": false}
+{"q": "геодезист", "kind": "role", "expect": "gis_cartographer", "seen": true}
+{"q": "инструменты бэкенд программистам в команду 10 чел", "kind": "role", "expect": "software_developer", "seen": false}
+{"q": "софт 1снику для доработки конфигураций", "kind": "role", "expect": "onec_developer", "seen": false}
+{"q": "qa инженер", "kind": "role", "expect": "qa_tester", "seen": true}
+{"q": "что нужно девопсу для ci/cd и мониторинга", "kind": "role", "expect": "devops_sre_engineer", "seen": false}
+{"q": "проги bi аналитику для отчетов по продажам", "kind": "role", "expect": "data_analyst_bi", "seen": false}
+{"q": "ml инженер", "kind": "role", "expect": "data_scientist_ml", "seen": true}
+{"q": "инструменты админу субд постгрес на 5 серверов", "kind": "role", "expect": "dba_admin", "seen": false}
+{"q": "набор по сисадмину для удаленки и бэкапов", "kind": "role", "expect": "sysadmin", "seen": false}
+{"q": "инженер техподдержки", "kind": "role", "expect": "helpdesk_engineer", "seen": true}
+{"q": "софт инженеру иб для защиты сети и рабочих мест", "kind": "role", "expect": "infosec_engineer", "seen": false}
+{"q": "что нужно директору по информационной безопасности", "kind": "role", "expect": "ciso_sec_director", "seen": false}
+{"q": "руководитель проектов", "kind": "role", "expect": "project_manager", "seen": true}
+{"q": "программы бизнес аналитику для описания процессов bpmn", "kind": "role", "expect": "business_analyst", "seen": false}
+{"q": "по логисту и диспетчеру автопарка", "kind": "role", "expect": "logistics_dispatcher", "seen": false}
+{"q": "кладовщик", "kind": "role", "expect": "warehouse_storekeeper", "seen": true}
+{"q": "софт кассиру на рабочее место с оффлайн кассой", "kind": "role", "expect": "cashier_retail", "seen": false}
+{"q": "по на арм врача в государственную поликлинику", "kind": "role", "expect": "doctor_clinician", "seen": false}
+{"q": "преподаватель", "kind": "role", "expect": "teacher_lecturer", "seen": true}
+{"q": "реестровый комплект на арм госслужащего", "kind": "role", "expect": "civil_servant", "seen": false}
+{"q": "проги переводчику технической документации в закрытой сети", "kind": "role", "expect": "translator_editor", "seen": false}
+{"q": "оптовая торговля", "kind": "industry", "expect": "trade", "seen": true}
+{"q": "софт для розничной торговой сети из 15 магазинов", "kind": "industry", "expect": "retail", "seen": false}
+{"q": "программы в государственную больницу гбуз", "kind": "industry", "expect": "healthcare", "seen": false}
+{"q": "образование", "kind": "industry", "expect": "education", "seen": true}
+{"q": "автоматизация промышленного завода на 200 рабочих мест", "kind": "industry", "expect": "manufacturing", "seen": false}
+{"q": "ит компания", "kind": "industry", "expect": "it_telecom", "seen": true}
+{"q": "по для архитектурного бюро на 15 проектировщиков", "kind": "industry", "expect": "architecture_design", "seen": false}
+{"q": "софт аудиторской фирме на 20 человек", "kind": "industry", "expect": "accounting_audit", "seen": false}
+{"q": "банк", "kind": "industry", "expect": "banking_finance", "seen": true}
+{"q": "какие программы взять ипшнику на один ноутбук", "kind": "industry", "expect": "freelance_individual", "seen": false}
+{"q": "строительная компания", "kind": "industry", "expect": "construction", "seen": true}
+{"q": "защищенный стек по для нефтегазового предприятия тэк", "kind": "industry", "expect": "oil_gas", "seen": false}
+{"q": "софт в электросетевую энергетическую компанию", "kind": "industry", "expect": "energy_utilities", "seen": false}
+{"q": "транспортная компания", "kind": "industry", "expect": "transport_logistics", "seen": true}
+{"q": "реестровое по для федерального ведомства и мфц", "kind": "industry", "expect": "gov_public_sector", "seen": false}
+{"q": "закрытый контур с гостайной для оборонного предприятия опк", "kind": "industry", "expect": "defense_aerospace", "seen": false}
+{"q": "оператор связи", "kind": "industry", "expect": "telecom_isp", "seen": true}
+{"q": "по для агрохолдинга и фермерского хозяйства", "kind": "industry", "expect": "agriculture", "seen": false}
+{"q": "фармзавод", "kind": "industry", "expect": "pharma_biotech", "seen": true}
+{"q": "автоматизация и защита асу тп на горно-обогатительном комбинате", "kind": "industry", "expect": "mining_metallurgy", "seen": false}
+{"q": "проги для онлайн-ритейла и торговли через сайт", "kind": "industry", "expect": "ecommerce_marketplaces", "seen": false}
+{"q": "ресторан", "kind": "industry", "expect": "horeca_tourism", "seen": true}
+{"q": "софт в рекламное и маркетинговое агентство 12 пк", "kind": "industry", "expect": "media_advertising", "seen": false}
+{"q": "что поставить в адвокатское бюро на 8 юристов", "kind": "industry", "expect": "legal_consulting", "seen": false}
+{"q": "страховая компания", "kind": "industry", "expect": "insurance", "seen": true}
+{"q": "црм и учет в агентство недвижимости и риэлторам", "kind": "industry", "expect": "real_estate", "seen": false}
+{"q": "программы для исследовательского института ран", "kind": "industry", "expect": "science_rnd", "seen": false}
+{"q": "льготный софт для благотворительного фонда и нко", "kind": "industry", "expect": "nonprofit_ngo", "seen": false}
