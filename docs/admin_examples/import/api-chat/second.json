@@ -1,0 +1,44 @@
+{
+  "query": {
+    "ids": [
+      73
+    ],
+    "dimensions": [
+      "ym:s:searchPhrase"
+    ],
+    "metrics": [
+      "ym:s:visits"
+    ],
+    "date1": "2026-11-01",
+    "date2": "2026-11-15",
+    "offset": 2,
+    "limit": 2
+  },
+  "data": [
+    {
+      "dimensions": [
+        {
+          "name": "лицензия"
+        }
+      ],
+      "metrics": [
+        4
+      ]
+    },
+    {
+      "dimensions": [
+        {
+          "name": "архив"
+        }
+      ],
+      "metrics": [
+        3
+      ]
+    }
+  ],
+  "total_rows": 3,
+  "totals": [
+    15
+  ],
+  "sampled": true
+}

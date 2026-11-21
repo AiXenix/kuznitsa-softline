@@ -273,6 +273,12 @@ def source_counts(journal):
         "SELECT source,count(*) searches,source IN ('eval','replay') service FROM searches GROUP BY source"))
 
 
+@router.get("/support")
+def support_questions(request:Request):
+    from kuznitsa.analytics.support import overview
+    return overview(request.app.state.engine.journal)
+
+
 @router.get("/ingest")
 def ingestion(request:Request):
     e=request.app.state.engine
@@ -284,7 +290,9 @@ def ingestion(request:Request):
     stat=ai_file.stat() if ai_file.is_file() else None
     ai=(catalog or {}).get("ai") or {}
     history=[json.loads(r["value"]) for r in reports]
-    external=[dict(file=r["file"],items=r.get("external_phrases",[]),metrics=r.get("report_metrics",{})) for r in history if r.get("kind")=="metrika_external_phrases"]
+    external = [dict(file=r["file"],items=r.get("external_phrases",[]),metrics=r.get("report_metrics",{}),
+                     engines=r.get("external_engines",[])) for r in history
+                if r.get("kind")=="metrika_external_phrases" or r.get("scope") in {"external","mixed"}]
     crm=[dict(file=r["file"],**r["crm"]) for r in history if r.get("crm")]
     return json_report(request,dict(catalog=catalog,external_phrases=external,crm_leads=crm,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=history,cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
                 sources=sources))

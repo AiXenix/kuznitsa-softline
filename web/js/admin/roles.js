@@ -46,6 +46,23 @@ export function ecom(p,params){
   findings(p,params,'ecom_manager');rules(p);
 }
 const searchColumns=[['Поиски','searches'],['Пустые','zero_rate',pct],['Конверсия','conversion',pct]];
+function supportQuestions(p){
+  loadBox(section(p,'Обращения покупателей'),async box=>{
+    const data=await adminApi('support');
+    if(!data.messages){empty(box,'Загрузите CSV обращений с датой, клиентом и текстом вопроса.');return;}
+    line(box,'Обращений · '+fmt(data.messages)+'. Клиентов с идентификатором · '+fmt(data.clients)+'.','roleLead');
+    for(const [title,items,key,label] of [
+      ['Темы обращений',data.topics,'topic','Тема'],
+      ['Упомянутые товары',data.products,'product','Товар'],
+      ['Вопросы без совпадения в FAQ · '+fmt(data.unanswered_count),data.unanswered,'question','Вопрос']
+    ]){
+      add(box,'h3',title);
+      if(key==='question')line(box,data.note);
+      table(box,items,[[label,key],['Обращения','messages',v=>fmt(v)]],{limit:12});
+    }
+  });
+}
+
 export function product(p,params){
   const pulse=section(p,'Пульс спроса');
   const split=add(pulse,'div',null,'adminSplit');
@@ -62,7 +79,7 @@ export function product(p,params){
     for(const [key,title] of [['impressions','Показы замен'],['clicks','Клики'],['carts','Корзины']])if(valid(g.bridge?.[key]))tile(tiles,title,fmt(g.bridge[key]));
     table(box,g.departed,[['Исходный продукт','title'],['Вендор','vendor',v=>caption('vendor',v)],['Поиски','searches'],['Сессии','sessions'],['Предыдущее окно','previous'],['Изменение','change']]);
   });
-  findings(p,params,'product_manager');
+  supportQuestions(p);findings(p,params,'product_manager');
 }
 export function content(p,params){
   loadBox(section(p,'Каких товаров не хватает'),async box=>{
@@ -76,7 +93,7 @@ export function content(p,params){
   });
   loadBox(section(p,'Дефекты карточек'),async box=>{
     const g=await adminApi('gaps');table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || caption('family',r.card_id);return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
-  });catalogImport(p);review(p);findings(p,params,'content_manager');
+  });supportQuestions(p);catalogImport(p);review(p);findings(p,params,'content_manager');
 }
 export function log(p){
   const panel=section(p,'Журнал поисков'),control=add(panel,'label','Обновлять каждые 5 с ','pollControl');

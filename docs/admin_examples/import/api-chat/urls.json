@@ -1,0 +1,44 @@
+{
+  "query": {
+    "ids": [
+      73
+    ],
+    "dimensions": [
+      "ym:pv:URL"
+    ],
+    "metrics": [
+      "ym:pv:pageviews"
+    ],
+    "date1": "2026-11-01",
+    "date2": "2026-11-15",
+    "offset": 1,
+    "limit": 2
+  },
+  "data": [
+    {
+      "dimensions": [
+        {
+          "name": "https://shop.test/search?q=backup+pro"
+        }
+      ],
+      "metrics": [
+        10
+      ]
+    },
+    {
+      "dimensions": [
+        {
+          "name": "https://shop.test/card/12"
+        }
+      ],
+      "metrics": [
+        3
+      ]
+    }
+  ],
+  "total_rows": 2,
+  "totals": [
+    13
+  ],
+  "sampled": true
+}
