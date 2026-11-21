@@ -1,0 +1,45 @@
+{
+  "title": "Кузница Softline · финальный показ",
+  "images": [
+    {
+      "file": "store.jpg",
+      "label": "Подбор лицензий на 30 ПК"
+    },
+    {
+      "file": "understood.jpg",
+      "label": "Запрос «каспер для хоума»"
+    },
+    {
+      "file": "trace.jpg",
+      "label": "Уточнение в трассе запроса"
+    },
+    {
+      "file": "quote.jpg",
+      "label": "Спецификация файлом и скачивание КП"
+    },
+    {
+      "file": "widget.jpg",
+      "label": "Быстрый поиск у партнёра"
+    },
+    {
+      "file": "head.jpg",
+      "label": "Руководитель · парное сравнение"
+    },
+    {
+      "file": "agent.jpg",
+      "label": "Агент · проверка синонима"
+    },
+    {
+      "file": "priority.jpg",
+      "label": "Акция RuBackup · предпросмотр для гостя"
+    },
+    {
+      "file": "flows.jpg",
+      "label": "Схема поиска продукта"
+    },
+    {
+      "file": "docs.jpg",
+      "label": "Документы для жюри"
+    }
+  ]
+}

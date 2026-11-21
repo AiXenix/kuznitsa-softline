@@ -61,4 +61,5 @@ export function mount(root,origin,options){
   form.onsubmit=e=>{e.preventDefault();search(input.value);};
   voice(bar,input,q=>search(q),notice);
   window.addEventListener('pagehide',leave);
+  if(options.initialQuery)search(options.initialQuery);
 }

@@ -12,7 +12,7 @@ import {result} from './result.js';
 import {cart} from './cart.js';
 import {record,watch,leave} from './events.js';
 import {compare} from './comparison.js';
-import {page} from './pages.js';
+
 
 const main=$('main');
 for (const a of document.querySelectorAll('header nav a')) {
@@ -212,6 +212,12 @@ async function store() {
   if(example && example===chain[0])chain.shift();else if(example)chain=[];
   const q=example || demo.q || chain.shift() || (scenario && scenario.examples?.[0]);
   profileInfo();
+  if(url.get('show')==='1' && url.get('action')==='upload'){
+    const sample=await fetch('/web/demo/specification.csv');
+    if(!sample.ok)throw Error('Не удалось открыть файл спецификации для показа.');
+    const file=new File([await sample.blob()],'Спецификация.csv',{type:'text/csv'});
+    await run(file.name,{}, {},{file,restore:true});return;
+  }
   if(url.has('upload')){
     const saved=history.state?.fileResult || await api('/api/admin/search/'+encodeURIComponent(url.get('upload')));
     const r=saved.response || saved.result || saved;
@@ -240,6 +246,6 @@ async function store() {
   }
   link(results,'Все сценарии поиска →','/scenarios');
 }
-(location.pathname==='/' ? store() : page(main)).catch(err=>stateBox(main,err.message,'error'));
+(location.pathname==='/' ? store() : import('./pages.js').then(({page})=>page(main))).catch(err=>stateBox(main,err.message,'error'));
 
 presentation().catch(err=>line(main,err.message,'error'));

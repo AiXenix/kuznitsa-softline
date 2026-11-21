@@ -22,7 +22,18 @@ export function setMeta(meta={}){
 }
 let request;
 export function loadMeta(){
-  return request ||= api('/api/meta').then(m=>{setMeta(m);return m;}).catch(e=>{request=null;throw e;});
+  return request ||= readMeta().then(m=>{setMeta(m);return m;}).catch(e=>{request=null;throw e;});
+}
+async function readMeta(){
+  const key='kzPublicMeta.v1';
+  try{
+    const cached=JSON.parse(sessionStorage.getItem(key));
+    if(cached?.expires>Date.now() && cached.data?.catalog)return cached.data;
+  }catch{ /* Storage is optional for embedded or private sessions. */ }
+  const data=await api('/api/meta');
+  try{sessionStorage.setItem(key,JSON.stringify({expires:Date.now()+120000,data}));}
+  catch{ /* Use the response even if the browser has no storage space. */ }
+  return data;
 }
 export function caption(kind,id,title){
   if(id==null || id==='')id=title || '';

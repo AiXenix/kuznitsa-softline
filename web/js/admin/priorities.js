@@ -27,21 +27,26 @@ function tags(p,key,values,choices){
   control.onchange=commit;control.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};
   paint();return ()=>{commit();return [...selected];};
 }
-function preview(p,r){
+function preview(p,r,sceneRule){
   p.replaceChildren();add(p,'h3','Было → стало');const s=r.summary || {};
-  line(p,s.effect_text,'roleLead');line(p,s.note);
+  const summary=sceneRule ? details(p,'Оценка по истории поисков') : p;
+  line(summary,s.effect_text,'roleLead');line(summary,s.note);
   for(const [key,title,format] of [['share_top5','Доля в первой пятёрке',pct],['avg_margin','Средняя маржа',rub]]){
-    if(s[key+'_before']!=null && s[key+'_after']!=null)line(p,title+' · '+format(s[key+'_before'])+' → '+format(s[key+'_after']));
+    if(s[key+'_before']!=null && s[key+'_after']!=null)line(summary,title+' · '+format(s[key+'_before'])+' → '+format(s[key+'_after']));
   }
-  if(s.searches_affected!=null)line(p,'Затронуто поисков · '+s.searches_affected);
+  if(s.searches_affected!=null)line(summary,'Затронуто поисков · '+s.searches_affected);
   for(const q of rows(r.queries)){
-    add(p,'h4',q.q);if(q.moved!=null)line(p,'Сдвинуто позиций · '+q.moved);
+    add(p,'h4',q.q);if(q.moved!=null)line(p,'Сдвинуто позиций · '+q.moved,sceneRule?'roleLead':'');
     const cols=add(p,'div',null,'adminSplit');
     for(const [key,title] of [['before','Было'],['after','Стало']]){
-      const col=add(cols,'section');add(col,'b',title);const list=add(col,'ol');
+      const col=add(cols,'section');
+      const enabled=key==='before'?sceneRule?.enabled:!sceneRule?.enabled;
+      add(col,'b',sceneRule?title+' · '+(enabled?'с акцией':'без акции'):title);
+      const list=add(col,'ol');
       for(const c of rows(q[key]))add(list,'li',[c.title,c.tier!=null?caption('tier',c.tier,'Уровень '+c.tier):''].filter(Boolean).join(' · '));
     }
   }
+  if(sceneRule)p.append(summary);
 }
 function editor(p,rule,meta,catalog,reload){
   p.replaceChildren();add(p,'h3',rule.id?'Изменить правило':'Новое правило');
@@ -124,6 +129,27 @@ export function settings(p,params){
     area.replaceChildren();add(area,'h2','Приоритеты направлений');
     loadBox(area,async box=>{
       const [catalog,meta]=await Promise.all([adminApi('priorities'),loadMeta()]);
+      const phase=params.get('phase');
+      if(params.get('scene')==='backup' && ['enable','preview','disable'].includes(phase)){
+        const rule=rows(catalog.items).find(r=>r.id==='seed-backup-promo');
+        if(!rule){line(box,'Пример акции RuBackup отсутствует в этом снимке.');return;}
+        add(box,'h3',rule.title);
+        line(box,rule.enabled?'Правило включено':'Правило выключено','badge');
+        if(phase==='preview'){
+          const out=add(box,'section');
+          line(out,rule.enabled?'Слева правило действует, справа показана выдача без него.':'Слева текущая выдача, справа показана выдача с правилом.');
+          const {id,title,order,target,scope,action,cross_tier}=rule;
+          const draft={id,title,order,target,scope:{...scope,profiles:['guest']},action,cross_tier,enabled:!rule.enabled};
+          const data=await adminApi('priorities/preview','POST',{rule:draft,queries:['резервное копирование'],limit:1});
+          preview(add(out,'div'),data,rule);
+        }else{
+          const enable=phase==='enable';
+          if(Boolean(rule.enabled)!==enable)taskButton(box,enable?'Включить пример':'Выключить пример',async()=>{
+            await adminApi('priorities/'+encodeURIComponent(rule.id)+'/toggle','POST',{});render();
+          });
+        }
+        return;
+      }
       const ed=add(box,'section',null,'ruleEditor');
       const edit=r=>{editor(ed,r,meta,catalog,render);ed.scrollIntoView({block:'start'});};
       button(box,'Создать правило',()=>edit({}));box.append(ed);

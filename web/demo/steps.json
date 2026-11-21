@@ -69,12 +69,23 @@
     "id": "short-7",
     "route": "short",
     "title": "Агент",
-    "page": "/admin#agent?type=add_synonym&status=new&first=1",
+    "page": "/admin#agent?type=add_synonym&example=резервилка&first=1",
     "profile": "guest",
     "mode": "smart",
     "q": "",
     "action": "open",
-    "say": "Открываем предложение по словарю и его доказательства."
+    "say": "Откройте доказательства. После применения предложения нажмите «Проверить»."
+  },
+  {
+    "id": "short-replay",
+    "route": "short",
+    "title": "Проверка словаря на витрине",
+    "page": "/",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "резервилка",
+    "action": "search",
+    "say": "Проверяем, какой ответ получает покупатель по фразе из сценария."
   },
   {
     "id": "short-8",
@@ -165,6 +176,52 @@
     "say": "Сравниваем лицензии для разных организаций."
   },
   {
+    "id": "long-home-fast",
+    "route": "long",
+    "title": "Для дома · быстрый",
+    "page": "/",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "каспер для хоума",
+    "action": "search",
+    "say": "Смотрим метку назначения и решение шага «Уточнение назначения».",
+    "traceStep": "refine"
+  },
+  {
+    "id": "long-home-smart",
+    "route": "long",
+    "title": "Для дома · умный",
+    "page": "/",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "каспер для хоума",
+    "action": "search",
+    "say": "Смотрим метку назначения и решение шага «Уточнение назначения».",
+    "traceStep": "refine"
+  },
+  {
+    "id": "long-unavailable",
+    "route": "long",
+    "title": "Условия покупки и замены",
+    "page": "/",
+    "profile": "smb_trade",
+    "mode": "smart",
+    "q": "касперский для дома в офис",
+    "action": "search",
+    "say": "Читаем условия поставки и проверяем варианты для организации."
+  },
+  {
+    "id": "long-backup",
+    "route": "long",
+    "title": "Резервное копирование 1С",
+    "page": "/",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "резервное копирование 1с",
+    "action": "search",
+    "say": "Проверяем, какие решения предложены для защиты системы 1С."
+  },
+  {
     "id": "long-6",
     "route": "long",
     "title": "ИТ-компания",
@@ -220,15 +277,37 @@
     "say": "Подбираем лицензии по задаче отдела."
   },
   {
+    "id": "long-okved",
+    "route": "long",
+    "title": "Подбор по ОКВЭД",
+    "page": "/",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "оквэд 86.23 что нужно из программ",
+    "action": "search",
+    "say": "Проверяем отрасль и комплект для стоматологии."
+  },
+  {
     "id": "long-11",
     "route": "long",
-    "title": "Спецификация",
+    "title": "Спецификация файлом",
     "page": "/",
     "profile": "gov_clinic",
     "mode": "smart",
     "q": "Астра Линукс 50 шт\nР7-Офис 50 шт\nКасперский на 50 пк\nКриптоПро CSP 10 шт",
-    "action": "spec",
-    "say": "Разбираем закупку построчно."
+    "action": "upload",
+    "say": "Откройте расчёт по файлу и скачайте КП в Excel."
+  },
+  {
+    "id": "long-widget",
+    "route": "long",
+    "title": "Виджет · быстрый режим",
+    "page": "/embed?q=р7+офис+20+лицензий&mode=fast",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "",
+    "action": "open",
+    "say": "Поиск работает на странице партнёра. Переход в каталог сохраняет режим."
   },
   {
     "id": "long-12",
@@ -240,6 +319,17 @@
     "q": "почему по из реестра без ндс",
     "action": "search",
     "say": "Проверяем ответ и раскрываем трассу."
+  },
+  {
+    "id": "long-flow",
+    "route": "long",
+    "title": "Как работает поиск",
+    "page": "/flows#flow=product",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "",
+    "action": "open",
+    "say": "Ветви схемы объясняют путь запроса. Выберите режим для просмотра времени."
   },
   {
     "id": "long-13",
@@ -256,12 +346,23 @@
     "id": "long-14",
     "route": "long",
     "title": "Агент",
-    "page": "/admin#agent?type=add_synonym&status=new&first=1",
+    "page": "/admin#agent?type=add_synonym&example=резервилка&first=1",
     "profile": "guest",
     "mode": "smart",
     "q": "",
     "action": "open",
-    "say": "Открываем предложение по словарю и его доказательства."
+    "say": "Откройте доказательства. После применения предложения нажмите «Проверить»."
+  },
+  {
+    "id": "long-replay",
+    "route": "long",
+    "title": "Проверка словаря на витрине",
+    "page": "/",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "резервилка",
+    "action": "search",
+    "say": "Проверяем, какой ответ получает покупатель по фразе из сценария."
   },
   {
     "id": "long-15",
@@ -297,6 +398,17 @@
     "say": "Сравниваем растущие и популярные запросы."
   },
   {
+    "id": "long-data",
+    "route": "long",
+    "title": "Импорт данных",
+    "page": "/admin#data",
+    "profile": "guest",
+    "mode": "smart",
+    "q": "",
+    "action": "open",
+    "say": "Проверяем состав источников и замечания к каталогу."
+  },
+  {
     "id": "long-18",
     "route": "long",
     "title": "Маржа",
@@ -306,6 +418,61 @@
     "q": "",
     "action": "open",
     "say": "Проверяем порядок релевантности при изменении весов."
+  },
+  {
+    "id": "long-backup-enable",
+    "route": "long",
+    "title": "Включить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=enable",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "",
+    "action": "open",
+    "say": "Включите правило «Акция на резервное копирование до 31.12»."
+  },
+  {
+    "id": "long-backup-preview",
+    "route": "long",
+    "title": "Предпросмотр для гостя",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=preview",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "",
+    "action": "open",
+    "say": "Слева показана действующая акция. Справа — порядок после её выключения."
+  },
+  {
+    "id": "long-backup-guest",
+    "route": "long",
+    "title": "Акция на витрине · гость",
+    "page": "/",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Смотрите позиции RuBackup Стандарт и RuBackup Enterprise и метки «Акция»."
+  },
+  {
+    "id": "long-backup-gov_clinic",
+    "route": "long",
+    "title": "Тот же запрос · госклиника",
+    "page": "/",
+    "profile": "gov_clinic",
+    "mode": "fast",
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Сравните место RuBackup Enterprise с гостевой выдачей."
+  },
+  {
+    "id": "long-backup-disable",
+    "route": "long",
+    "title": "Выключить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=disable",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "",
+    "action": "open",
+    "say": "Выключите правило, чтобы вернуть исходный порядок."
   },
   {
     "id": "long-19",
@@ -319,47 +486,69 @@
     "say": "Смотрим стоимость и долю кэша."
   },
   {
-    "id": "priority-1",
-    "route": "priority",
-    "title": "Правило и предпросмотр",
-    "page": "/admin#settings?section=priorities&scene=gov",
-    "q": "",
+    "id": "long-docs",
+    "route": "long",
+    "title": "Документы для жюри",
+    "page": "/docs",
     "profile": "guest",
+    "mode": "smart",
+    "q": "",
     "action": "open",
-    "mode": "fast",
-    "say": "Сравните выдачу в предпросмотре и сохраните выключенное правило."
+    "say": "Откройте итог проекта или памятку дня показа. Документы можно распечатать."
   },
   {
-    "id": "priority-2",
+    "id": "priority-backup-enable",
     "route": "priority",
-    "title": "Включение правила",
-    "page": "/admin#settings?section=priorities",
-    "q": "",
+    "title": "Включить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=enable",
     "profile": "guest",
-    "action": "open",
     "mode": "fast",
-    "say": "Включите сохранённое правило в таблице."
+    "q": "",
+    "action": "open",
+    "say": "Включите правило «Акция на резервное копирование до 31.12»."
   },
   {
-    "id": "priority-3",
+    "id": "priority-backup-preview",
     "route": "priority",
-    "title": "Госзаказчик",
+    "title": "Предпросмотр для гостя",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=preview",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "",
+    "action": "open",
+    "say": "Слева показана действующая акция. Справа — порядок после её выключения."
+  },
+  {
+    "id": "priority-backup-guest",
+    "route": "priority",
+    "title": "Акция на витрине · гость",
     "page": "/",
-    "q": "антивирус на 30 пк",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Смотрите позиции RuBackup Стандарт и RuBackup Enterprise и метки «Акция»."
+  },
+  {
+    "id": "priority-backup-gov_clinic",
+    "route": "priority",
+    "title": "Тот же запрос · госклиника",
+    "page": "/",
     "profile": "gov_clinic",
-    "action": "search",
     "mode": "fast",
-    "say": "Раскройте шаг правил магазина и проверьте срабатывание приоритета."
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Сравните место RuBackup Enterprise с гостевой выдачей."
   },
   {
-    "id": "priority-4",
+    "id": "priority-backup-disable",
     "route": "priority",
-    "title": "Гость",
-    "page": "/",
-    "q": "антивирус на 30 пк",
+    "title": "Выключить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=disable",
     "profile": "guest",
-    "action": "search",
     "mode": "fast",
-    "say": "У гостя правило для госзаказчиков не действует."
+    "q": "",
+    "action": "open",
+    "say": "Выключите правило, чтобы вернуть исходный порядок."
   }
 ]

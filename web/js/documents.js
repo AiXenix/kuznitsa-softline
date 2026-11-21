@@ -2,6 +2,7 @@ import {add,link,button} from './dom.js';
 import {diagram} from './diagram.js';
 
 const catalog={
+  DAYX:['День показа','Порядок загрузки данных и проверки стенда перед защитой.'],
   GUIDE:['Руководство','Как искать ПО, разбирать выдачу и работать с консолью.'],
   FLOWS:['Схемы поиска','Пути запроса, решения движка и измерения времени.'],
   DEMO:['Сценарий показа','Маршруты демонстрации для ведущего.'],
@@ -64,7 +65,9 @@ function markdown(p,lines){
       const slug=h.textContent.toLowerCase().replace(/[^\p{L}\p{N}\s_-]/gu,'').trim().replace(/\s+/g,'-');
       const n=ids.get(slug)||0;ids.set(slug,n+1);if(!document.getElementById(slug))h.id=n?slug+'-'+n:slug;else if(n)h.id=slug+'-'+n;
     }else if(t.includes('|') && /^\s*\|?\s*:?-{3,}/.test(lines[i] || '')){
-      const table=add(add(p,'div',null,'docTable'),'table'),row=add(add(table,'thead'),'tr');
+      const wrap=add(p,'div',null,'docTable');
+      wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label',t.replace(/\|/g,' ').trim());
+      const table=add(wrap,'table'),row=add(add(table,'thead'),'tr');
       cells(t).forEach(x=>inline(add(row,'th'),x));i++;
       const body=add(table,'tbody');while(i<lines.length && lines[i].includes('|') && lines[i].trim()){
         const r=add(body,'tr');cells(lines[i++]).forEach(x=>inline(add(r,'td'),x));
