@@ -116,13 +116,29 @@ class SupplierNames:
                         self.names[(kind,normalize(name))].add(card.id)
         for kind, name in self.names:
             self.forms[name].add((kind,name))
-            for variant in (name.translate(LAYOUT),roman(name),cyrillic(name)):
+            for variant in (name.translate(LAYOUT),roman(name),roman(name.replace("й","y")),cyrillic(name)):
                 self.forms[normalize(variant)].add((kind,name))
                 self.forms[normalize(re.sub(r"[-‐‑–]"," ",variant))].add((kind,name))
         for task in self.tasks:
             words=self.task_words[task]=self.terms(task)
             for w in words:
                 self.by_word[w].add(task)
+        self.series_by_head=defaultdict(set)
+        self.qualifiers={}
+        for (kind,name),card_ids in self.names.items():
+            words=tokens(name)
+            if kind!="family" or not words or len(words[0])<4 or words[0] in {"office","studio","server","standard","professional","software","enterprise"}:
+                continue
+            for cid in card_ids:
+                card=cards[cid]
+                # Название общего производителя не свидетельствует о родстве его серий.
+                if words[0] in tokens(card.offers[0].vendor or "") and len(words)>1 and not card.offers[0].attrs.get("series"):
+                    continue
+                self.series_by_head[words[0]].add(cid)
+                if cid not in self.qualifiers:
+                    self.qualifiers[cid]={frozenset(tokens(" ".join(str(v or "") for v in
+                        (o.name,o.family_name,o.attrs.get("series"),o.attrs.get("edition"),o.edition,o.version,o.delivery))))
+                        for o in card.offers if o.available}
         self.nearest = typo_matcher({name for _,name in self.names})
 
     @staticmethod
@@ -144,6 +160,18 @@ class SupplierNames:
                 best=max(best,(score,task))
         return best[1] if best else None
 
+    def nearby_variant(self,q):
+        words=tokens(q)
+        if not 2<=len(words)<=7 or not re.fullmatch(r"[a-z0-9. -]+",q):
+            return
+        ids=self.series_by_head.get(words[0])
+        if not ids:return
+        requested=set(words[1:])
+        variant=r"\d+(?:\.\d+)*|[a-z]{1,3}|box|esd|server|desktop|professional|standard|enterprise|cloud|premium|business|ultimate"
+        if not all(re.fullmatch(variant,w) for w in requested):return
+        if not any(requested<=facts for cid in ids for facts in self.qualifiers[cid]):
+            return ids
+
     def lookup(self, q, verbatim):
         if not self.forms and not self.tasks:
             return
@@ -151,6 +179,12 @@ class SupplierNames:
         boundary=r"^(?:купить|продлить|продление)\s+|\s+(?:продление|на \d+\s*(?:мест\w*|пк|пользовател\w*|компьютер\w*))$"
         key=re.sub(boundary,"",q)
         options=self.forms.get(key) or self.forms.get(key.replace("-"," "))
+        if not options:
+            # Адресат уточняет класс, но не является частью названия раздела.
+            stem=re.split(r"\s+(?:(?:для|в) (?:мал\w* |небольш\w* )?(?:офис|дом|семь|сервер|компани)|маме\b|папе\b)",key,maxsplit=1)[0]
+            if stem!=key:
+                matches={entry for entry in self.forms.get(stem,()) if entry[0]=="category"}
+                if matches:key,options=stem,matches
         # Назначение из прайса бывает также названием раздела. По точной фразе
         # подбираем варианты с подтверждённой задачей внутри этого ассортимента.
         if q in self.tasks and not any(kind!="category" for kind,_ in options or ()):

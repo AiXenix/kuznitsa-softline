@@ -25,8 +25,12 @@ def spell_terms(lex):
             if len(word)>=4 and word.isalpha() and word!=roman(word):
                 key=roman(word)
                 index[key].add(word)
+                index[roman(word.replace("й","y"))].add(word)
                 if key.endswith("yi"):
                     index[key[:-1]].add(word)
+    for word in lex.words:
+        if re.fullmatch(r"[а-я]{4,}",word):
+            index[roman(word.replace("й","y"))].add(word)
     return {key:min(words) for key,words in index.items()}
 
 # Графемная транскрипция для поиска названий, включая английские сочетания.

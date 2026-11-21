@@ -18,8 +18,10 @@ def reference(engine,kind,text,entities):
 
 
 def spec_lines(raw):
-    from .specification import supplier_pattern
-    if "/" in raw and supplier_pattern.fullmatch(raw):
+    from .specification import structured_line
+    if "\n" in raw:
+        return [item for line in raw.splitlines() for item in spec_lines(line)]
+    if structured_line(raw.strip()):
         lines=[raw]
     elif re.search(r"(?:расчет|рассчитать|подбор) кп",raw,re.I) and " и " in raw:
         lines=re.split(r"\s+и\s+",re.sub(r"^.*?\bкп\s*", "",raw,flags=re.I))
@@ -70,6 +72,11 @@ def scope(engine,intent,f,entities,text,profile,qty):
             category=Counter(r.get("category") for r in related).most_common(1)[0][0]
             f["category"]=[category]
             return ids("family",[r["id"] for r in related if r.get("category")==category],.85) or ids("category",[category],.57)
+    if intent=="analog" and re.search(r"откры(?:ва)?ть",text):
+        words=set(re.findall(r"[\w]+",text.casefold()))
+        formats={cid:.98 for cid,card in c.cards.items() if words.intersection(
+            str(fmt).casefold().strip(".*") for fmt in card.kb.get("formats",[]))}
+        if formats:return formats
     if intent=="analog":
         source=f.get("family",[]) or [fid for fid,r in engine.kb.rows["families"].items() if r.get("vendor") in f.get("vendor",[])]
         result={}
@@ -201,6 +208,16 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         src=", ".join(engine.names["family"].get(k,k) for k in f.get("family",[])) or req.q
         notes={a["family"]:a.get("note","Аналог из базы знаний") for fid in f.get("family",[])
                for a in engine.kb.rows["analogs"].get(fid,{}).get("russian_analogs",[])}
+        requested=re.search(r"\bкп\s+на\s+(\d{1,3})\s+аналог",req.q,re.I)
+        if requested:
+            seen=set()
+            distinct=[]
+            for card in cards:
+                family=engine.catalog.cards[card["card_id"]].family
+                if family not in seen:
+                    seen.add(family)
+                    distinct.append(card)
+            cards=distinct[:int(requested[1])]
         return [dict(type="analogs",title="Варианты замены",source=dict(title=src,status="available" if any(engine.catalog.by["family"].get(k) for k in f.get("family",[])) else "unavailable",note=""),
                      items=[dict(card=c,note=notes.get(engine.catalog.cards[c["card_id"]].family,"Альтернатива по назначению")) for c in cards[:req.page_size]])]
     if intent=="question" or intent=="license_ops" and re.search("можно ли|разрешен",req.q,re.I):
@@ -214,6 +231,10 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
             return [dict(type="answer",title=row["questions"][0].capitalize(),text=row["answer"],source="faq:"+row["id"],links=[]),*by_type("products")]
         if intent=="question" and re.search(r"перенести|активировать|зарегистрировать|восстановить",req.q,re.I):
             return [dict(type="answer",title="Действия с лицензией",text="Порядок зависит от продукта и типа ключа. Укажите программу и редакцию, чтобы уточнить порядок у поставщика.",source="catalog",links=[])]
+        if re.search(r"^(?:нужен ли сертификат|можно ли)",req.q,re.I):
+            rule=engine.kb.rows["compliance"].get(entity(entities,"compliance"),{})
+            return [dict(type="answer",title="Условия применения",source="kb",links=[],
+                         text=rule.get("explain") or "Для точного ответа укажите продукт, назначение и требования вашей организации. Условия зависят от редакции и области применения."),*by_type("products")]
     if intent=="compliance":
         row=engine.kb.rows["compliance"].get(entity(entities,"compliance"),{})
         return [dict(type="answer",title=row.get("title","Условия закупки"),text=row.get("explain") or "Проверены явно указанные характеристики предложений.",source="kb",links=[]),*blocks]

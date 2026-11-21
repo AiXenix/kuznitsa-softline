@@ -10,9 +10,9 @@ LABELS=dict(home="для дома",micro_office="для малого офиса"
             server="для серверов",mobile="для мобильных устройств",industrial="для промышленности")
 PATTERNS={
     "home":r"хоум|домик|домашн|для (?:дома|семьи)|маме|папе|родител|ребенк|себе|личн(?:ого|ый|ых|ое)|\bhome\b",
-    "micro_office":r"маленьк\w* фирм|для ип\b|микроофис|микробизнес|мал(?:ого|ый|еньк\w*) (?:офис|бизнес)|небольш\w* офис",
+    "micro_office":r"(?:маленьк|небольш)\w* (?:фирм|контор)|для ип\b|микроофис|микробизнес|мал(?:ого|ый|еньк\w*) (?:офис|бизнес)|небольш\w* офис",
     "mobile":r"мобил|телефон|смартфон|планшет|андроид|android|айфон|iphone",
-    "server":r"\bсервер", "industrial":r"промышлен|асу тп|завод",
+    "server":r"файлопомойк|\bсервер", "industrial":r"промышлен|асу тп|завод",
     "edu":r"для школ|для вуз|студент|учебн|образоват", "gov":r"госучрежд|госсектор",
     "enterprise":r"крупн\w* (?:предприят|компани)", "business":r"для (?:офиса|компании|бизнеса)|корпоративн"}
 PLATFORMS={"android":r"андроид|android","ios":r"айфон|iphone|\bios\b","macos":r"макбук|\bмак(?:а|е|и)?\b|macos",
@@ -34,7 +34,7 @@ class Lines:
             row=self.rows.setdefault(c.family,dict(title=c.kb.get("title") or c.offers[0].family_name or c.title,
                 desc=c.kb.get("for_whom") or c.kb.get("summary",""), popularity=c.kb.get("popularity") or 0,audiences=set()))
             row["audiences"].update(o.lic.audience for o in available)
-            targets=c.kb.get("target_audiences") or []
+            targets=c.kb.get("target_audiences") or (["home"] if row["audiences"]=={"home"} else [])
             row.update(targets=set(targets),primary=next(iter(targets),None),category=c.category)
             row.setdefault("terms",set(map(lemma,tokens(row["title"]))))
             row.setdefault("details",set(map(lemma,tokens(str(row["desc"])))))
@@ -66,6 +66,10 @@ def resolve(engine,req,intent,text,residual,f,smart,deadline,sid,calls,trace,ent
     rows=[families.get(fid,{}) for fid in f.get("family",[])]
     a=audience(text) or f.get("audience")
     if not a and rows and all("home" in row.get("target_audiences",[]) and row.get("for_sale_b2b") is False for row in rows):a="home"
+    if not a and len(rows)==1 and rows[0].get("target_audiences",[])[:1]==["home"]:
+        family_words=set(tokens(rows[0].get("name","")))
+        if len(family_words.intersection(tokens(text)))>=2 or any(e["type"]=="family" and len(e["text"].split())>1 for e in entities):
+            a="home"
     if a!="home" and f.get("audience") in ("gov","edu","enterprise","industrial","micro_office"):a=f["audience"]
     if a in (None,"server","business") and re.search("министерств|госсектор|госучрежд",text):a="gov"
     if a in (None,"server","business") and re.search(r"\bцод\b|холдинг",text):a="enterprise"
@@ -99,6 +103,14 @@ def resolve(engine,req,intent,text,residual,f,smart,deadline,sid,calls,trace,ent
     else:
         stated=[row for row in rows if any(len(alias)>2 and alias.casefold() in text for alias in [row.get("name",""),row.get("title","")])]
         flexible=bool(a and (not stated or any(row.get("target_audiences") and a not in row["target_audiences"] for row in stated)))
+    if a=="industrial" and f.get("vendor") and not named and "category" not in req.filters:
+        # Разбор общей рубрики мог выбрать её первый раздел. Назначение уточняет раздел.
+        broad={e["id"] for e in entities if e["type"]=="category"}
+        specialized=[fid for vendor in f["vendor"] for fid in engine.lines.vendors[vendor]
+                     if engine.lines.rows[fid]["primary"]==a and
+                     engine.kb.rows["categories"].get(engine.lines.rows[fid]["category"],{}).get("parent") in broad]
+        if specialized:
+            f["category"]=sorted({engine.lines.rows[fid]["category"] for fid in specialized})
     opts=engine.lines.options(engine,f,a,text)
     if flexible and a!="home" and opts and rows:
         scope=set(f.get("vendor",[])) or {r.get("vendor") for r in rows}
@@ -143,6 +155,23 @@ def resolve(engine,req,intent,text,residual,f,smart,deadline,sid,calls,trace,ent
         f.pop("audience")
     if result["audience"] in ("home","gov","edu","business") and "audience" not in req.filters:
         f["audience"]=result["audience"]
+    if a=="home" and "family" not in req.ignore:
+        vendors=set(f.get("vendor",[]))
+        categories=set(f.get("category",[]))
+        requested=set(f.get("family",[]))
+        if "endpoint_security" in categories:
+            categories.add("home_antivirus")
+        pool={fid for fid,row in engine.lines.rows.items() if row["primary"]=="home" and "home" in row["audiences"]
+              and (not categories or row["category"] in categories)
+              and (not vendors or any(fid in engine.lines.vendors[v] for v in vendors))}
+        if requested:
+            if requested & pool or req.filters.get("family") or named:
+                pool &= requested
+        if pool and (vendors or categories or requested):
+            f["family"]=sorted(pool)
+            if f.get("category")==["endpoint_security"]:
+                f["category"]=sorted({engine.lines.rows[fid]["category"] for fid in pool})
+            result["line"]=next(iter(pool)) if len(pool)==1 else None
     trace.add("refine","Уточнение назначения",LABELS.get(result["audience"],"Назначение не уточнено"),
               "fallback" if meta and not meta["ok"] else "ok" if a or meta else "skip",questions=questions,
               choices=result.copy(),calls=[meta] if meta else [],usd=(meta or {}).get("usd",0),

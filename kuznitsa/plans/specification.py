@@ -1,6 +1,6 @@
 """Быстрый подбор строки ведомости по артикулу, полному имени или текстовому индексу."""
 import re
-from kuznitsa.text import normalize
+from kuznitsa.text import normalize, tokens
 from kuznitsa.understand.normalize import lookup_skus
 from kuznitsa.rank.variants import select
 from kuznitsa.rank.business import ranked
@@ -9,11 +9,32 @@ from kuznitsa.rank.business import ranked
 supplier_pattern=re.compile(r"(.+?)\s*[,;]\s*(?:кол[- ]во\s*[:=]?\s*)?(\d{1,9})\s*(ед|шт|мест\w*|уз(?:ел|ла|лов)|устройств\w*|пк)[.]?",re.I)
 
 
+# Структурная граница строки сохраняется до нормализации текста запроса.
+csv_quantity=re.compile(r'([^;|\t\n]+?)\s*[,;|\t]\s*([1-9]\d{0,8})\s*')
+lot_pattern=re.compile(r'(.+?)\s*[;|\t]\s*партия\s+([1-9]\d{0,8})\s*(?:рабочи[хе]\s+)?([\w.]+)',re.I)
+standard_line=re.compile(r"(.*?)\s*(?:\[([^\[\]]+)\])?\s*[—–-]\s*(\d{1,9})\s*шт[.]?",re.I)
+service_words=re.compile(r"поддержк|сопровожд|обучен|курс|установк|внедрен|support|training",re.I)
+
+
+def structured_line(line):
+    return (standard_line.fullmatch(line) or csv_quantity.fullmatch(line) or lot_pattern.fullmatch(line)
+            or "/" in line and supplier_pattern.fullmatch(line))
+
+
 def file_line(engine,line,profile,req,weights,inherited_filters):
     structured=supplier_pattern.fullmatch(line)
     if structured and "/" in structured[1]:
         return supplier_line(engine,structured[1],int(structured[2]),profile,req,weights,inherited_filters,structured[3])
-    match=re.fullmatch(r"(.*?)\s*(?:\[([^\[\]]+)\])?\s*[—–-]\s*(\d{1,9})\s*шт[.]?",line,re.I)
+    lot=lot_pattern.fullmatch(line)
+    if lot:
+        fields=[field.strip() for field in re.split(r"[;|\t]",lot[1])]
+        if len(fields)==3:
+            return supplier_line(engine," / ".join(fields),int(lot[2]),profile,req,weights,inherited_filters,lot[3],has_vendor=False)
+    csv=csv_quantity.fullmatch(line)
+    if csv:
+        name=csv[1].strip().strip('"').replace('""','"')
+        line=f"{name} — {csv[2]} шт"
+    match=standard_line.fullmatch(line)
     if not match:return None
     name,article,n=match.groups()
     # Семейство и редакция определяются заново в каждой строке.
@@ -35,12 +56,27 @@ def file_line(engine,line,profile,req,weights,inherited_filters):
         ids=[(offer.card_id,1.)] if offer else []
     else:
         scores=catalog.bm.scores(name)
-        ids=[(catalog.ids[i],float(scores[i])) for i in scores.argsort()[::-1][:10] if scores[i]>=.22]
+        words=tokens(name)
+        families={fid for start,end,matches in engine.lex.match(words) if start==0 and end==len(words)
+                  for kind,fid,_ in matches if kind=="family"}
+        scoped=set().union(*(catalog.by["family"].get(fid,()) for fid in families))
+        ids=[(catalog.ids[i],max(.95,float(scores[i])) if scoped else float(scores[i])) for i in scores.argsort()[::-1]
+             if (catalog.ids[i] in scoped if scoped else scores[i]>=.22)][:30]
     qty=dict(value=int(n),metric=offer.lic.metric if offer else None)
+    main_license=not (article or offer or service_words.search(name))
     hits=[]
     for cid,score in ids:
         card=catalog.cards[cid]
-        found=select(card,profile,filters,req.exclude,qty,offer)
+        row_filters=filters
+        if main_license:
+            action="renewal" if re.search(r"продл|renew",name,re.I) else filters.get("action","new")
+            if card.category in ("tech_support","it_training_courses") or service_words.search(card.title):
+                continue
+            if any(o.lic.action for o in card.offers):
+                row_filters={**filters,"action":action}
+        found=select(card,profile,row_filters,req.exclude,qty,offer)
+        if found and main_license and found[0].kind in ("service","course"):
+            continue
         if found:hits.append(ranked(card,found,score,bool(offer),profile,weights,engine.kb))
         if len(hits)==3:break
     for position,card in enumerate(hits,1):card["position"]=position
@@ -48,29 +84,36 @@ def file_line(engine,line,profile,req,weights,inherited_filters):
                 blocks=[dict(type="products",items=hits)])
 
 
-def supplier_line(engine,text,count,profile,req,weights,inherited,unit="ед"):
+def supplier_line(engine,text,count,profile,req,weights,inherited,unit="ед",has_vendor=True):
     parts=[normalize(s) for s in text.split("/") if s.strip()]
     vendor=parts[0]
-    attributes=parts[1:]
-    device=unit.lower().startswith(("уз","устройств","пк"))
+    attributes=parts[1:] if has_vendor else parts
+    from kuznitsa.ingest.source_fields import supplier_metric
     seat=unit.lower().startswith("мест")
-    qty=dict(value=count,metric="device" if device else None)
+    metric=None if seat else "device" if unit.lower().startswith(("уз","устройств","пк")) else supplier_metric(unit)
+    qty=dict(value=count,metric=metric)
     filters={k:v for k,v in inherited.items() if k in ("certs","registry","platform")}
     filters.update(req.filters)
     hits=[]
-    for cid in engine.catalog.by["vendor"].get(engine.source_vendors.get(vendor),()):
+    if has_vendor:
+        candidates=engine.catalog.by["vendor"].get(engine.source_vendors.get(vendor),())
+    else:
+        candidates=engine.catalog.supplier.names.get(("family",parts[0]),set())
+        if not candidates:
+            candidates={cid for fid in engine.catalog.source_names.get(parts[0],()) for cid in engine.catalog.by["family"].get(fid,())}
+    for cid in candidates:
         card=engine.catalog.cards[cid]
         for offer in card.offers:
-            if device and offer.lic.metric!="device" or seat and offer.lic.metric not in ("device","user","seat"):
+            if metric and offer.lic.metric!=metric or seat and offer.lic.metric not in ("device","user","seat","concurrent"):
                 continue
             name=normalize(offer.name)
             # Когда исполнение содержит косую черту, проверяем весь исходный фрагмент.
             fields=("series","edition","operation")
-            match=all(s==normalize(offer.attrs[field]) if offer.attrs.get(field) else s in name
+            match=all(s==normalize(offer.attrs[field]) if offer.attrs.get(field) else s in name or (field=="series" and s==normalize(offer.family_name or ""))
                       for s,field in zip(attributes,fields)) if len(attributes)==3 else all(s in name for s in attributes)
             if not match and len(attributes)==3:
                 series,edition,op=attributes
-                operation=next((v for pattern,v in ((r"образоват|академ","edu"),(r"госучреж|государств","gov"),(r"миграц|переход","crossgrade")) if re.search(pattern,op)),None)
+                operation=next((v for pattern,v in ((r"образоват|академ","edu"),(r"госучреж|государств","gov"),(r"миграц|переход","crossgrade"),(r"покупк|новая","new"),(r"продл","renewal")) if re.search(pattern,op)),None)
                 match=bool(operation and operation in (offer.lic.audience,offer.lic.action) and
                            all(normalize(offer.attrs.get(k) or "")==v or v in name for k,v in (("series",series),("edition",edition))))
             if match and (offer.lic.qty_min or 1)<=count<=(offer.lic.qty_max or 10**10):

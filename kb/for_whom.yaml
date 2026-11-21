@@ -75,10 +75,10 @@ families:
 
   - id: kaspersky_standard_home
     vendor: kaspersky
-    catalog: no
+    catalog: yes
     audiences: [home, mobile]
     seats: "1–5 личных устройств"
-    for_whom: "Kaspersky Standard / Plus / Premium — домашний антивирус для 1–5 личных устройств (нет в B2B-продаже; ближайший бизнес-аналог — KSOS)."
+    for_whom: "Kaspersky Standard / Plus / Premium — домашний антивирус для 1–5 личных устройств (для организаций проверьте EULA; бизнес-аналог — KSOS)."
     analogs: [kaspersky_ksos, kaspersky_kesb]
 
   # =========================================================================
@@ -100,10 +100,10 @@ families:
 
   - id: drweb_security_space
     vendor: drweb
-    catalog: no
+    catalog: yes
     audiences: [home, mobile]
     seats: "1–5 личных устройств"
-    for_whom: "Dr.Web Security Space — домашний антивирус для 1–5 личных ПК и смартфонов (нет в B2B-продаже; ближайший бизнес-аналог — Dr.Web Малый бизнес)."
+    for_whom: "Dr.Web Security Space — домашний антивирус для 1–5 личных ПК и смартфонов (для организаций проверьте EULA; бизнес-аналог — Dr.Web Малый бизнес)."
     analogs: [drweb_small_business, drweb_enterprise_security_suite]
 
   # =========================================================================
@@ -144,10 +144,10 @@ families:
 
   - id: pro32_total_security
     vendor: pro32
-    catalog: no
+    catalog: yes
     audiences: [home, mobile]
     seats: "1–5 личных устройств"
-    for_whom: "PRO32 Total Security — домашний антивирус на 1–5 устройств (нет в B2B-продаже; ближайшая продаваемая линейка PRO32 — PRO32 Endpoint Security)."
+    for_whom: "PRO32 Total Security — домашний антивирус на 1–5 устройств (для организаций проверьте EULA; бизнес-линейка PRO32 — PRO32 Endpoint Security)."
     analogs: [pro32_endpoint_security]
 
   # =========================================================================

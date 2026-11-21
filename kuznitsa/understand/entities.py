@@ -20,7 +20,7 @@ def extract(words,lex,kb):
     qty = None
     used = set()
     for i,end,matches in lex.match(words):
-        target = exclude if i and words[i-1] in {"не","без","кроме"} else filters
+        target = exclude if i and words[i-1] in {"не","без","кроме","исключая"} else filters
         kinds = {k for k,v,s in matches}
         if end==i+1 and words[i] in {"в","и","на","по","к","с","а","из","для","ошибка"}:
             continue

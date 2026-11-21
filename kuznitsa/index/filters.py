@@ -27,7 +27,10 @@ class OfferFilters:
         self.unit_prices=self.price/np.array([o.lic.pack or 1 for o in offers])
         self.minimum=np.array([o.lic.qty_min or 1 for o in offers])
         self.maximum=np.array([o.lic.qty_max or np.inf for o in offers])
-        self.sets={}
+        self.package_capacity=np.array([bool(o.lic.pack and o.lic.qty_max==o.lic.pack) for o in offers])
+        domestic=np.array([bool(o.domestic or o.registry or (o.attrs.get("country") or "").lower() in ("россия","рф","ru","russia") or
+                                not o.attrs.get("country") and vendor.get("origin")=="russian") for o in offers])
+        self.sets={"domestic_supply":{True:domestic}}
         from .source import strings
         from kuznitsa.text import normalize
         for field in ("aliases","task"):
@@ -82,7 +85,7 @@ class OfferFilters:
     def indices(self,filters,exclude,audience,action,n,upper):
         mask=self.mask("audience",[None,audience,"business"]) & self.mask("action",[action,None])
         if n:
-            mask &= (self.minimum<=n) & (self.maximum>=upper)
+            mask &= ((self.minimum<=n) & (self.maximum>=upper)) | self.package_capacity
         for key,expected in filters.items():
             mask &= self.mask(key,expected)
         for key,expected in exclude.items():

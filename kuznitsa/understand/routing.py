@@ -135,3 +135,47 @@ def software_like_unknown(raw,words,entities):
     return (len(words)>=2 and bool(generic.intersection(words)) and
             not any(e["type"] in ("family","vendor","category") and
                     set(e["text"].split())-generic for e in entities))
+
+
+def explicit_request(engine, text, filters, intent):
+    """Явная операция и предмет покупки имеют приоритет перед адресатом программы."""
+    families=engine.kb.rows["families"]
+    named=[families[fid] for fid in filters.get("family",[]) if fid in families]
+    if re.search(r"купленн\w* лиценз\w* .*?(?:моей|нашей)|(?:моей|нашей) компани\w* .*лиценз",text):
+        return "account"
+    if re.search(r"^(?:нужен ли сертификат|нужна ли сертификац|можно ли)\b",text):
+        return "question"
+    if re.search(r"^(?:нужн\w* )?(?:курсы|обучение|внедрение)\s",text) and (named or filters.get("vendor")):
+        if named and not filters.get("vendor"):
+            filters["vendor"]=list(dict.fromkeys(r["vendor"] for r in named if r.get("vendor")))
+        return "service"
+    if re.search(r"нужн\w* лицензи\w+ ",text) and named and re.search(r"упал|сбой|отказал|сломал",text):
+        return "product"
+    quote=re.search(r"\bкп\b.*\bаналог",text)
+    if quote or intent=="renewal":
+        from kuznitsa.text import lemma,tokens
+        words=tuple(map(lemma,tokens(text)))
+        aliases=[(end-start,fid) for start in range(len(words))
+                 for end in range(start+1,min(len(words),start+engine.lex.max_length)+1)
+                 for kind,fid,_ in engine.lex.entries.get(words[start:end],()) if kind=="family" and fid in families
+                 and (quote or engine.kb.rows["vendors"].get(families[fid].get("vendor"),{}).get("market_status")=="left")]
+        if aliases:
+            fid=max(aliases)[1]
+            if quote or not families[fid].get("catalog",True):
+                filters["family"]=[fid]
+                filters.pop("action",None)
+                return "analog"
+    if quote:return "analog"
+    if re.search(r"переход с .+? на .+? на \d+|(?:клиентские|сетевые|плавающие) лицензии",text) or not named and re.search(r"(?:клиентск|сетев|плавающ)\w* лицензи",text):
+        return "license_ops"
+    if intent=="renewal":
+        brands=set(filters.get("vendor",[]))|{r.get("vendor") for r in named}
+        if any(engine.kb.rows["vendors"].get(v,{}).get("market_status")=="left" for v in brands):
+            filters.pop("action",None)
+            return "analog"
+    if re.search(r"(?:в чем|чем|как) откры(?:ва)?ть .*файл",text):
+        words=set(re.findall(r"[\w]+",text))
+        formats={cid for cid,card in engine.catalog.cards.items()
+                 if words.intersection(str(fmt).casefold().strip(".*") for fmt in card.kb.get("formats",[]))}
+        if formats:
+            return "analog"

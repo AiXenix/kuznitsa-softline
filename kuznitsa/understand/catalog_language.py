@@ -1,22 +1,37 @@
 """Лексические признаки класса, операции и количества для запросов без названия продукта."""
 import re
 
-ENGLISH=(
+CLASSES=(
+    (r"антивирь|от вирусов|защит[ауы] (?:телефон|смартфон)\w*","endpoint_security","антивирус","category"),
+    (r"резервировани\w*|резервн\w+ копи[яюи]","backup_recovery","резервное копирование","category"),
+    (r"архиватор\w*","archivers","архиватор","category"),
+    (r"менеджер\w* парол\w*","iam_pam_mfa","менеджеры паролей","category"),
     (r"antivirus|endpoint (?:security|protection)","endpoint_security","антивирус","category"),
     (r"(?:file |data )?compression|archiv(?:e|er|ing)","archivers","архиватор","category"),
     (r"(?:software )?(?:setup|install(?:ation)?|support) service","tech_support","техническая поддержка","service"),
-    (r"office suite|spreadsheet|word processor","office_suite","офисный пакет","category"),
+    (r"translation (?:tool|software|suite)s?","translation_dictionaries","переводчики словари","category"),
+    (r"office (?:productivity )?suites?|spreadsheet|word processor","office_suite","офисный пакет","category"),
     (r"backup|disaster recovery","backup_recovery","резервное копирование","category"),
 )
 TASKS=(
+    (r"(?:метрик\w*|мониторинг)\s+(?:pgsql|postgres\w*|постгрес\w*)","db_management_tools","мониторинг субд"),
+    (r"(?:провер\w*|измер\w*|анализ\w*).*покрыти\w*.*(?:вайф|wi[ -]?fi|беспроводн)","wireless_survey","замер покрытия wifi беспроводная сеть"),
+    (r"восстановлени\w* носител","data_recovery","восстановление данных"),
     (r"(?:сохран|восстанов|скопир)\w* .*(?:баз|данны|виртуальн|машин|файл)","backup_recovery","резервное копирование"),
     (r"(?:заполн|созда|состав|рассчит)\w* .*таблиц","office_suite","электронные таблицы"),
 )
 
 
 def domain_request(text):
-    for pattern,category,label,intent in ENGLISH:
+    from .audience import audience
+    if text.startswith("антивирус ") and audience(text)=="home":
+        return "endpoint_security","антивирус","category"
+    for pattern,category,label,intent in CLASSES:
         if re.search(r"\b(?:"+pattern+r")\b",text):
+            if re.fullmatch("[a-z0-9 -]+",text):
+                tail=re.sub(pattern,"",text,count=1)
+                if set(re.findall(r"[a-z]+",tail))-{"for","a","the","software","tools","program","seats","seat","users","user","devices","device","licenses","license"}:
+                    continue
             return category,label,intent
     for pattern,category,label in TASKS:
         if re.search(pattern,text):
@@ -24,10 +39,21 @@ def domain_request(text):
 
 
 def mapped_class(engine,category,label):
-    if category in engine.catalog.by["category"]:return category
+    from kuznitsa.text import lemma,tokens
+    if engine.catalog.by["category"].get(category):return category
+    # На чужом дереве выбираем наиболее близкий продаваемый лист.
+    hints={"archivers":"сжатие архиватор архивация файлов","tech_support":"услуги установка настройка поддержка",
+           "office_suite":"офисный пакет текст таблица","translation_dictionaries":"перевод переводчик словарь",
+           "endpoint_security":"антивирус антивирусный","wireless_survey":"беспроводной wifi вайфай",
+           "db_management_tools":"мониторинг субд серверов","backup_recovery":"резервный копирование"}
+    terms={lemma(w)[:5] for w in tokens(label+" "+hints.get(category,"")) if len(w)>2}
+    scored=[]
     for title,ids in engine.catalog.source_classes.items():
-        if any(w[:5] in title.lower() for w in label.split() if len(w)>4):
-            return next(iter(sorted(ids)),None)
+        words={lemma(w)[:5] for w in tokens(title.replace("Wi-Fi","wifi").replace("wi-fi","wifi"))}
+        overlap=terms & words
+        if overlap:
+            scored.extend((len(overlap)/len(words),len(overlap),cid) for cid in ids if cid)
+    return max(scored)[2] if scored else None
 
 
 def descriptive_class(catalog,text):

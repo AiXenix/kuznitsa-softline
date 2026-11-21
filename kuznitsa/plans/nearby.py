@@ -42,7 +42,7 @@ def alternative_blocks(engine,f,profile,exc,qty,weights,home,office):
         seen.add(card.family)
         if len(found)==3:break
     title=next((engine.names["vendor"][v] for v in sorted(v for v in vendors if v) if v in engine.names["vendor"]),"")
-    text=("Для офиса подберём коммерческую редакцию. Условия использования Home уточняются по соглашению продукта." if office else
+    text=("Для организации проверьте право на использование домашней редакции по лицензионному соглашению (EULA). Ниже — коммерческие варианты." if office else
           f"Для домашнего использования {title} в этой подборке магазина для организаций подходящей лицензии нет.".replace("  "," ") if home else
           "Предложения с запрошенным сочетанием условий сейчас нет.")
     blocks=[dict(type="not_in_catalog",title="Условия покупки",text=text,reason="gap")]

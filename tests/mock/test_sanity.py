@@ -44,11 +44,10 @@ def test_full_catalog_invariants(tmp_path):
                     (lic.qty_min or lic.pack,o.price/(lic.pack or 1)))
             ranks[base+(size,lic.action,lic.audience)].append((o.edition,o.price))
     sold_families={rows[0].family_id for rows in cards.values()}
-    retired_home={"kaspersky_standard_home","drweb_security_space","pro32_total_security"}
-    assert not sold_families.intersection(retired_home)
-    assert all(families[fid].get("catalog") is False for fid in retired_home)
-    # В исходном снимке было 660 карточек и 352 линейки. Снято шесть редакций.
-    assert len(cards)>=654 and len(sold_families)>=349
+    home_families={"kaspersky_standard_home","drweb_security_space","pro32_total_security"}
+    assert home_families <= sold_families
+    assert all(families[fid].get("catalog") is True for fid in home_families)
+    assert len(cards)>=660 and len(sold_families)>=352
     assert 0<sum(not o.available for rows in cards.values() for o in rows)/sum(map(len,cards.values()))<.02
     labels=Counter(r["insight"] for r in map(json.loads,(cfg.data/"mock_defects.jsonl").read_text().splitlines()))
     assert labels=={"INS-07":14,"INS-08":9,"INS-09":11}
@@ -86,25 +85,12 @@ def test_full_catalog_invariants(tmp_path):
     for profile in profiles:
         client=by_client[profile["id"]]
         for spec,owned in zip(profile.get("owned",[]),client["owned"],strict=True):
-            if spec["family"] in retired_home:
-                assert owned["offer_id"] is None and owned["card_id"] is None
-                assert owned["family_id"]==spec["family"]
-                for key in ("product","edition","qty","metric","expires_in_days"):
-                    assert owned.get(key)==spec.get(key)
-                continue
             assert by_offer[owned["offer_id"]].family_id==spec["family"]
             lic=by_offer[owned["offer_id"]].lic
             assert owned["metric"]==lic.metric and owned["qty"]%(lic.pack or 1)==0
             assert (owned.get("requested_qty",owned["qty"]),owned.get("expires_in_days"))==(spec["qty"],spec.get("expires_in_days"))
-        historical={spec["product"] for spec in profile.get("owned",[]) if spec["family"] in retired_home}
         for order in client["orders"]:
-            for item in order["items"]:
-                if item["product"] in historical:
-                    assert item["offer_id"] is None and item["card_id"] is None
-                    assert any(source=={k:item[k] for k in source}
-                               for old_order in profile["orders"] for source in old_order["items"])
-                else:
-                    assert item["offer_id"] in by_offer
+            assert all(item["offer_id"] in by_offer for item in order["items"])
     own=by_client["smb_trade"]["owned"][0]
     assert by_offer[own["offer_id"]].lic.pack==15
     assert (own["family_id"],own["qty"],own["expires_in_days"])==("kaspersky_ksos",15,21)

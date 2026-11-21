@@ -59,6 +59,22 @@ def repair(q,lex):
                 changes.append({"from":fragment,"to":target,"kind":kind,"candidates":[target]})
                 continue
         for w in tokens(fragment):
+            # Склейка известных слов перед тиражом. Не разделяем артикулы и версии.
+            combined=re.fullmatch(r"([а-я]{9,64})([0-9]{1,7})?",w)
+            if combined and w not in lex.words:
+                body,n=combined.groups()
+                parts={0:[]}
+                for end in range(3,len(body)+1):
+                    for start in sorted(parts):
+                        piece=body[start:end]
+                        if len(piece)>=3 and piece in lex.words:
+                            parts[end]=parts[start]+[piece]
+                            break
+                if len(parts.get(len(body),[]))>=2:
+                    split=parts[len(body)]+([n] if n else [])
+                    fixed.extend(split)
+                    changes.append({"from":w,"to":" ".join(split),"kind":"split","candidates":[" ".join(split)]})
+                    continue
             options={}
             def add(word,kind,base):
                 if word!=w:

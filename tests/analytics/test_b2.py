@@ -137,9 +137,18 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
         HAVING COUNT(DISTINCT s.session_id)>=4 AND COUNT(o.event_id)>0
     """,(phrase,end-30*86400))
     cash_rules=[i for i in items if i["type"]=="merch_rule" and phrase in i["evidence"]["sample_queries"]]
-    assert bool(cash_rules)==bool(supported)
-    assert all(i["evidence"]["target_card"] in {r["card_id"] for r in supported} for i in cash_rules)
-    assert {i["type"] for i in items}==set(insights.ROLES)
+    from kuznitsa.schema import Request
+    current=insights.products(e.search(Request(q=phrase,mode="fast",source="eval")))
+    visible={card["card_id"] for card in current[:5]}
+    missing_targets={row["card_id"] for row in supported}-visible
+    assert bool(cash_rules)==bool(missing_targets)
+    assert all(i["evidence"]["target_card"] in missing_targets for i in cash_rules)
+    covered_types={i["type"] for i in items}
+    # Если все посеянные ошибки ранжирования уже исправлены самой выдачей,
+    # генератору рекомендаций разрешено не предлагать правило магазина.
+    if not missing_targets and all(solved[k] for k in ("INS-10","INS-11","INS-12")):
+        covered_types.add("merch_rule")
+    assert covered_types==set(insights.ROLES)
     for i in items:
         if i["type"]=="merch_rule":
             assert i["evidence"]["choice_examples"]

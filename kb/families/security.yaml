@@ -339,7 +339,7 @@
   price_rub: {unit: pack_year, low: 1600, typical: 2900, high: 4900}
   popularity: 5
   upgrade_to: kaspersky_ksos
-  catalog: no
+  catalog: yes
   sku_name_examples:
     - "Kaspersky Standard 3 устройства 1 год (ESD)"
     - "Kaspersky Plus 5 устройств 1 год (ESD)"
@@ -453,7 +453,7 @@
   price_rub: {unit: pack_year, low: 1500, typical: 2500, high: 4500}
   popularity: 4
   upgrade_to: drweb_small_business
-  catalog: no
+  catalog: yes
   sku_name_examples:
     - "Dr.Web Security Space 3 ПК на 1 год (ESD)"
   confidence: high
@@ -530,7 +530,7 @@
   price_rub: {unit: pack_year, low: 1400, typical: 2200, high: 3500}
   popularity: 3
   upgrade_to: pro32_endpoint_security
-  catalog: no
+  catalog: yes
   sku_name_examples:
     - "PRO32 Total Security 3 устройства 1 год (ESD)"
   confidence: high

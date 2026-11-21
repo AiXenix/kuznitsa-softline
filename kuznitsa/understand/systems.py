@@ -2,7 +2,7 @@ import re
 
 # Названия систем встречаются в родительном падеже и после названия класса ПО.
 SYSTEMS={
-    "1С":r"1[сc](?:\b|[- ])","PostgreSQL":r"постгрес\w*|postgres\w*",
+    "1С":r"1[сc](?:\b|[- ])","PostgreSQL":r"постгрес\w*|postgres\w*|\bpgsql\b",
     "Exchange":r"exchange|эксчейндж\w*","Active Directory":r"active directory"}
 def system_record(engine,text,categories):
     for label,row in engine.kb.systems.items():
@@ -30,7 +30,7 @@ def target_system(engine,text,f,entities,exclude=None):
         system=system_record(engine,text,cats) or next((s for s,pat in SYSTEMS.items() if re.search(pat,text)),None)
         if system and system in engine.kb.systems:
             lookup=engine.kb.systems[system]["compatible"]
-            group="monitoring" if "монитор" in text else "security" if re.search("защит|аудит|утеч|антивирус|антиспам|двухфактор",text) else None
+            group="monitoring" if re.search("монитор|метрик",text) else "security" if re.search("защит|аудит|утеч|антивирус|антиспам|двухфактор",text) else None
             related=lookup.get(group,{}).get("categories",[])
             if related:
                 specific=[cid for cid in cats if cid in related and cid not in ("endpoint_security","monitoring_apm")]
@@ -61,7 +61,8 @@ def target_system(engine,text,f,entities,exclude=None):
         ids={cid for cat in cats for cid in engine.catalog.by["category"].get(cat,())}
         products=set(f.get("family",[])) | set(f.get("vendor",[]))
         products.update(engine.kb.systems.get(system,{}).get("system_vendors",[]))
-        if products and any({engine.catalog.cards[c].vendor,engine.catalog.cards[c].family}.intersection(products) for c in ids):return
+        explicit_monitor=system=="PostgreSQL" and re.search(r"метрик\w*|мониторинг",text)
+        if not explicit_monitor and products and any({engine.catalog.cards[c].vendor,engine.catalog.cards[c].family}.intersection(products) for c in ids):return
     for key in ("family","vendor","action","edition","version"):f.pop(key,None)
     entities[:]=[e for e in entities if e["type"] not in ("family","vendor","action","edition")]
     return system

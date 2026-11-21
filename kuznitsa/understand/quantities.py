@@ -30,7 +30,7 @@ def numeric_conditions(words,filters,qty):
                 filters["term_months"]=n*(12 if word.startswith(("год","лет")) else 1)
             if word in ("шт","штук","лицензий","лицензии") and not qty:
                 qty=dict(value=n,metric=None)
-    extra=re.search(r"\b(\d{1,9})\s*(?:удал[её]нн\w* )?(pk|пк|сотрудник\w*|процессор\w*|ядер|ядра|хост\w*)\b",text)
+    extra=re.search(r"\b(\d{1,9})\s*(?:(?:удал[её]нн|физическ)\w* )?(pk|пк|сотрудник\w*|процессор\w*|ядер|ядра|хост\w*)\b",text)
     if extra and not qty:
         unit=extra[2]
         metric="cpu" if unit.startswith("процессор") else "server" if unit.startswith("хост") else "user" if unit.startswith("сотрудник") else "core" if unit.startswith("яд") else "device"
