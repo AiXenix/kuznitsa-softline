@@ -59,6 +59,10 @@ ALIASES["revenue"] += ["сумма RUB","доход RUB"]
 ALIASES["q"] += ["поисковые фразы","ym:s:searchPhrase","ym:s:siteSearchPhrase"]
 ALIASES["lead_id"] = ["идентификатор заявки","номер заявки","lead id","request id","crm id"]
 ALIASES["product"] = ["товар","продукт","product","product name","номенклатура"]
+ALIASES["question"] = ["вопрос", "текст вопроса", "текст обращения", "вопрос покупателя", "вопрос клиента", "сообщение клиента", "сообщение", "question", "текст сообщения", "обращение", "question text", "customer question", "message", "chat message", "message text", "message body"]
+ALIASES["product"] += ["упомянутый товар", "название товара", "mentioned product"]
+ALIASES["target"] += ["код товара", "артикул товара", "sku", "product code"]
+ALIASES["ts"] += ["дата обращения"]
 ALIASES["search_id"] = ["search id","идентификатор поиска"]
 ALIASES["client_id"] += ["client","компания","покупатель","заказчик","customer","customer id"]
 ALIASES["revenue"] += ["сумма","сумма заявки","amount","deal amount"]
@@ -192,17 +196,30 @@ def records(path,aliases,metadata=None):
 
 
 def sniff(path):
-    """Распознаёт содержание небольшой выборки, без загрузки файла целиком."""
+    """Читает заголовки таблицы либо структуру страницы API отчётов."""
     path=Path(path)
     unknown=dict(kind="unknown",confidence=0.0,columns={},reason="Нет признаков журнала, заказов или отчёта Метрики")
     if not path.is_file() or path.suffix.lower() not in {".csv",".tsv",".txt",".xlsx",".jsonl",".ndjson",".json"}:
         return unknown
+    if path.suffix.lower() == ".json":
+        from kuznitsa.analytics.metrika_api import page_columns
+        stat = path.stat()
+        columns = page_columns(path,stat.st_mtime_ns,stat.st_size)
+        if columns is not None:
+            return dict(kind="metrika_api",confidence=1.0,columns=columns,
+                        reason="Ответ API отчётов Метрики с измерениями и показателями")
     aliases={header(a):k for k,opts in ALIASES.items() for a in [k,*opts]}
     metadata={"capture_headers":True}
     rows=records(path,aliases,metadata)
     try:
         if path.suffix.lower() in {".jsonl",".ndjson",".json"}:
-            r={k:None for row in islice(rows,20) if isinstance(row,dict) for k in row}
+            sample=[row for row in islice(rows,64) if isinstance(row,dict)]
+            r={k:None for row in sample for k in row}
+            if not {"event_name","event_params","user_pseudo_id"}<=r.keys():
+                from kuznitsa.analytics.site_events import sniff_rows
+                site_hint=sniff_rows(sample)
+                if site_hint:
+                    return site_hint
         else:
             r=next((r for r in islice(rows,20) if isinstance(r,dict) and r),{})
     except (BadZipFile,UnicodeError,csv.Error,ValueError) as exc:
@@ -224,6 +241,8 @@ def sniff(path):
     if goals and not fields.intersection({"q", "session_id", "order_id", "search_id", "client_id"}):
         return dict(kind="metrika_goals", confidence=.99, columns=goals,
                     reason="Дата и количество достижений целей Метрики")
+    if {"ts","client_id","question"} <= fields:
+        return dict(kind="support_chat",confidence=.98,columns=columns,reason="Дата, клиент и текст вопроса покупателя")
     if any(k.startswith("ym:pv:") for k in columns) and fields & {"hit_id","search_url"}:
         kind,confidence,reason="metrika_hits",1., "Поля хита Logs API"
     elif "ym:s:visitID" in columns:
@@ -389,7 +408,14 @@ def ingest_files(engine,files,mapping=None):
     files=ordered_files(files)
     hits=any(log_kind(f)=="hits" for f in files)
     results=[]
+    api_paths = dict.fromkeys(Path(f) for f in files if sniff(f)["kind"] == "metrika_api")
+    api_receipts = {}
     for f in files:
+        if Path(f) in api_paths:
+            if not api_receipts:
+                _,api_receipts = ingest_api_pages(engine.journal,api_paths)
+            results.append(api_receipts[Path(f)])
+            continue
         summary_only=False
         if results and sniff(f)["kind"]=="metrika_report":
             # Сводку того же трафика нельзя прибавлять к поисковым событиям.
@@ -507,6 +533,19 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
     raw=path.is_dir()
     hint=sniff(path)
     file_kind=hint["kind"]
+    if file_kind == "metrika_api":
+        reports,_ = ingest_api_pages(engine.journal,[path])
+        return reports[0]
+    if file_kind == "support_chat":
+        from kuznitsa.analytics.support import import_chat
+        j = engine.journal
+        aliases = {header(a): k for k,opts in ALIASES.items() for a in [k,*opts]}
+        with j.transaction() as db:
+            key, report = import_chat(engine,db,path,records(path,aliases),hint["columns"],
+                                      timestamp,offer_resolver(engine.catalog))
+            db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:import-report:"+key,dump(report),time()))
+            publish_reports(j)
+        return report
     external_counts=Counter()
     goals_by_day = {}
     if file_kind in {"metrika_external_phrases", "metrika_goals"}:
@@ -546,6 +585,8 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
         db.execute("INSERT OR REPLACE INTO analytics_observation VALUES (?,?,?,?)",(ident,*flags))
         added=db.execute("INSERT OR IGNORE INTO analytics_import_ids VALUES (?)",(ident,))
         new_members|=bool(added.rowcount)
+    site_events = hint.get("format") == "site_events"
+    site_stats = {}
     has=set()
     log_flags=set()
     log_targets=0
@@ -664,6 +705,75 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                     q TEXT,product TEXT,amount REAL,explicit_search TEXT,search_id TEXT)""")
         for f in files:
             default=f.stat().st_mtime
+            if site_events:
+                from kuznitsa.analytics.site_events import ordered_events,record_impression
+                db.execute("""CREATE INDEX IF NOT EXISTS site_session_time ON searches(session_id,ts)
+                           WHERE search_id GLOB 'site_search_*'""")
+                db.execute("""CREATE TABLE IF NOT EXISTS site_result_sizes(
+                           search_id TEXT PRIMARY KEY, size INTEGER, from_search INTEGER)""")
+                db.execute("CREATE TEMP TABLE site_file_sizes(id TEXT PRIMARY KEY)")
+                for r in ordered_events(db,records(f,aliases),site_stats,timestamp,amount,number):
+                    kind,ts,sid = r["kind"],r["ts"],r["sid"]
+                    card_ids = [o.card_id if (o:=resolve(code)) else code for code in r["ids"]]
+                    if kind == "search":
+                        ident = r["id"]
+                        if save(ident,r["q"],ts,sid,r["client"],r["segment"],r["size"],card_ids or None):
+                            observe(ident,(False,False,False))
+                            site_stats["inserted"][kind] += 1
+                        if r["size"] is not None:
+                            db.execute("""INSERT INTO site_result_sizes VALUES (?,?,1) ON CONFLICT(search_id)
+                                DO UPDATE SET size=excluded.size,from_search=1 WHERE from_search=0""",(ident,r["size"]))
+                    else:
+                        search = db.execute("""SELECT search_id,q_raw,client_id,n_cards,top_cards_json FROM searches
+                                WHERE search_id GLOB 'site_search_*' AND session_id=? AND ts<=?
+                                ORDER BY ts DESC,rowid DESC LIMIT 1""",(sid,ts)).fetchone()
+                        if search is None:
+                            site_stats["errors"]["Нет предшествующего поиска в сессии"] += 1
+                            continue
+                        ident = search["search_id"]
+                        code = r["item"]
+                        offer = resolve(code)
+                        card = offer.card_id if offer else code if code in engine.catalog.cards else None
+                        fields = dict(offer_id=offer.offer_id if offer else code,card_id=card,
+                                      position=r["position"],qty=r["qty"],value=r["value"])
+                        if kind == "impression":
+                            if not card_ids and code:
+                                card_ids = [card or code]
+                            fields["payload"] = dict(cards=card_ids)
+                            record_impression(db,search,r["size"],card_ids)
+                        else:
+                            log_flags.add(kind)
+                            if kind == "click":
+                                log_has_position |= r["position"] is not None
+                            if kind in {"click","order"} and card:
+                                log_targets += 1
+                            if r["value"] is not None:
+                                log_flags.add("revenue")
+                                if offer:
+                                    fields["margin_value"]=round(r["value"]*offer.margin,2)
+                        before = stats["events"]
+                        event(r["id"],kind,ident,ts,sid,search["client_id"],**fields)
+                        site_stats["inserted"][kind] += stats["events"]-before
+                    imported = True
+                    track(ts,None,0,0)
+                    db.execute("INSERT OR IGNORE INTO imported_log_search VALUES (?)",(ident,))
+                    if r["size"] is not None:
+                        db.execute("INSERT OR IGNORE INTO site_file_sizes VALUES (?)",(ident,))
+                    site_stats["counts"][kind] += 1
+                reasons.update(site_stats["errors"])
+                stats["skipped"] = sum(reasons.values())
+                stats["duplicates"] += site_stats["repeated"]
+                stats["rows"] = sum(site_stats["counts"].values())+stats["skipped"]+site_stats["repeated"]
+                columns.update(site_stats["columns"])
+                known.update(columns)
+                unknown.update(site_stats["ignored"])
+                observed,zero=db.execute("""SELECT count(*),coalesce(sum(size=0),0) FROM site_result_sizes
+                         JOIN site_file_sizes ON id=search_id""").fetchone()
+                db.execute("DROP TABLE site_file_sizes")
+                has.update({"ts","q","session_id"} | log_flags)
+                if observed:
+                    has.add("n_cards")
+                continue
             for i,r in timed_records(db,f,aliases,default,report_metadata):
                 stats["rows"]=stats.get("rows",0)+1
                 if not isinstance(r,dict):
@@ -1082,6 +1192,13 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
         report=dict(report_metadata=report_metadata,summary_only=summary_only,report_metrics=dict(report_metrics),kind=sniff(path)["kind"] if not raw else "metrika_hits",columns=columns,rows_read=stats["rows"] if stats["rows"] else 0,rows_accepted=stats["rows"]-stats["skipped"],
                     period=period,observed_searches=observed,observed_empty=zero,zero_rate=zero/observed if observed else None,availability=availability,file=path.name,source_type="Logs API" if logs or any(str(k).startswith("ym:s:") for k in known) else "Отчёт Метрики" if has.intersection({"visits","bounce"}) else "Журнал поиска",**stats,skip_reasons=dict(reasons),recognized=sorted(known),ignored=sorted(unknown),
                     visits=len(visits),fields=sorted(has),logs=logs,missing=missing)
+        if site_events:
+            report.update(format="site_events",source_type="События поиска сайта",
+                          rows_accepted=sum(site_stats["counts"].values()),repeated_rows=site_stats["repeated"],
+                          inserted_by_type=dict(site_stats["inserted"]),
+                          events_by_type={kind:site_stats["counts"][kind] for kind in
+                                          ("search","impression","click","cart","order")})
+            report["missing"].append("Показ, клик, корзина и заказ отнесены к последнему поиску в той же сессии по времени события.")
         if file_kind=="crm_leads":
             crm=dict(db.execute("""SELECT count(*) records,count(search_id) linked,count(*)-count(search_id) unlinked,
                        sum(amount) pipeline_rub FROM analytics_crm_leads WHERE file=?""",(path.name,)).fetchone())
@@ -1126,12 +1243,50 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                 if "crm" in prior and prior["crm"]["linked"]!=row["linked"]:
                     prior["crm"].update(linked=row["linked"],unlinked=row["unlinked"])
                     j.db.execute("UPDATE kv SET value=? WHERE key=?",(dump(prior),"settings:import-report:"+row["file"]))
-        reports=[json.loads(r["value"]) for r in j.rows("SELECT value FROM kv WHERE key GLOB 'settings:import-report:*' ORDER BY updated,key")]
-        from kuznitsa.analytics.goals import reconcile
-        reconcile(j, reports)
-        report = next(r for r in reports if r["file"] == path.name)
-        dest=Path(j.path).parent/"history_report.json"
-        with NamedTemporaryFile("w",dir=dest.parent,delete=False) as out:
-            json.dump({"files":reports},out,ensure_ascii=False,indent=2)
-        Path(out.name).replace(dest)
-    return report
+        reports = publish_reports(j)
+        return next(r for r in reports if r["file"] == path.name and r.get("kind") == report["kind"])
+
+
+def publish_reports(j):
+    reports = [json.loads(r["value"]) for r in j.rows(
+        "SELECT value FROM kv WHERE key GLOB 'settings:import-report:*' ORDER BY updated,key")]
+    from kuznitsa.analytics.goals import reconcile
+    reconcile(j, reports)
+    dest = Path(j.path).parent / "history_report.json"
+    with NamedTemporaryFile("w", dir=dest.parent, delete=False, encoding="utf-8") as out:
+        json.dump({"files": reports}, out, ensure_ascii=False, indent=2)
+    Path(out.name).replace(dest)
+    return reports
+
+
+def ingest_api_pages(journal, paths):
+    from kuznitsa.analytics.metrika_api import save_page, read_page, combine
+    groups, reports, receipts = {}, [], {}
+    owners = {}
+    with journal.transaction() as db:
+        for path in paths:
+            page = read_page(path)
+            ident, query, key = save_page(db,path,page)
+            groups[ident] = query
+            previous = owners.get((ident,key))
+            if previous:
+                previous_path,n = previous
+                receipts[previous_path] = dict(kind="metrika_api", file=previous_path.name, report_id=ident,
+                    rows_read=n, rows_accepted=0, duplicates=0, skipped=n,
+                    skip_reasons={"Заменено следующей версией страницы":n})
+            owners[ident,key] = path,len(page["data"])
+        for ident,query in groups.items():
+            report, per_page = combine(db,ident,query,search_phrase)
+            try:
+                start, end = (timestamp(query[k],None) for k in ("date1","date2"))
+                report["period"] = [start,end+86400-1] if start is not None and end is not None else None
+            except (ValueError,KeyError):
+                report["period"] = None
+            db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",
+                       ("settings:import-report:metrika-api:"+ident,dump(report),time()))
+            reports.append(report)
+            for (group,key),(path,_) in owners.items():
+                if group == ident:
+                    receipts[path] = dict(kind="metrika_api",report_id=ident,**per_page[key])
+        publish_reports(journal)
+    return reports,receipts

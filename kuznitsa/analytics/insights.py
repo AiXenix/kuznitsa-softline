@@ -62,7 +62,7 @@ def impact_order(item):
     impact=item.get("impact") or {}
     evidence=item.get("evidence") or {}
     return (-(impact.get("expected_rub") or 0), -(impact.get("conservative_rub") or 0),
-            -(evidence.get("sessions_30d") or 0),item["id"])
+            -(evidence.get("sessions_30d") or evidence.get("clients") or 0),item["id"])
 
 
 def foreign_shortlist(items):
@@ -75,13 +75,15 @@ def foreign_shortlist(items):
         if not evidence.get("examples") and not (item["type"]=="renewal_campaign" and evidence.get("licenses")):
             continue
         payload=action["payload_json"]
-        if item["type"] == "fix_card" and item.get("status", "new") == "new" and not evidence.get("shown_defects"):
-            continue
+        if item["type"] == "fix_card" and item.get("status", "new") == "new":
+            missed_card = evidence.get("source") == "support_chat" and evidence.get("target_card_ids") and evidence.get("checks")
+            if not evidence.get("shown_defects") and not missed_card:
+                continue
         if item["type"] == "rising_demand" and item.get("status", "new") == "new" and evidence.get("unresolved_sessions", 0) < 2:
             continue
         if item["type"]=="add_product":
             key=("supply",normalize(payload["product"]))
-            if evidence["sessions_30d"]<2 or not any(evidence.get("checks",{}).values()):
+            if evidence.get("sessions_30d",evidence.get("clients",0))<2 or not any(evidence.get("checks",{}).values()):
                 continue
         else:
             key=(item["type"],json.dumps([action.get("conditions"),payload],sort_keys=True,ensure_ascii=False))
@@ -505,6 +507,9 @@ def discover(e):
         add("weights_advice","weights","Увеличить вес маржи" if gain>0 else "Сохранить текущие веса по результату проверки", [r for q in common for r in by_q[q]],
             dict(kind="weights",label="Применить веса" if gain>0 else "Подтвердить текущие веса",payload_json=candidate if gain>0 else current),dict(tested_weights=candidate,moved=test["moved"],band_inversions=test["band_inversions"],margin_delta_rub=round(gain,2)),
             dict(expected_rub=round(max(0,gain),2),conservative_rub=0,metric_label="Изменение взвешенной маржи на выборке",formula_note=test["formula"]))
+    from .support import proposals
+    for item in proposals(e,probe,"import" if imported else "mock"):
+        suggestions[item["id"]] = item
     if imported:
         suggestions=foreign_shortlist(suggestions.values())
     with j.transaction() as db:

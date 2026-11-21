@@ -1,0 +1,60 @@
+{
+  "messages": 7,
+  "clients": 3,
+  "unanswered_count": 6,
+  "topics": [
+    {
+      "topic": "Другие вопросы",
+      "messages": 3
+    },
+    {
+      "topic": "Поставка и наличие",
+      "messages": 2
+    },
+    {
+      "topic": "Как активировать электронный ключ?",
+      "messages": 1
+    },
+    {
+      "topic": "Лицензирование",
+      "messages": 1
+    }
+  ],
+  "products": [
+    {
+      "product": "North Shield",
+      "messages": 4
+    },
+    {
+      "product": "Zorbium",
+      "messages": 2
+    }
+  ],
+  "unanswered": [
+    {
+      "question": "Где найти эту поставку?",
+      "messages": 1
+    },
+    {
+      "question": "Есть ли North Shield?",
+      "messages": 1
+    },
+    {
+      "question": "Есть ли у вас Zorbium?",
+      "messages": 1
+    },
+    {
+      "question": "Лицензия North Shield доступна?",
+      "messages": 1
+    },
+    {
+      "question": "Можно заказать по старому коду?",
+      "messages": 1
+    },
+    {
+      "question": "Поставляете Zorbium?",
+      "messages": 1
+    }
+  ],
+  "note": "Вопрос попадает в список, если в базе FAQ не найден близкий по словам вопрос с ответом."
+}
