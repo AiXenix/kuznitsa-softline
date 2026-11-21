@@ -420,59 +420,59 @@
     "say": "Проверяем порядок релевантности при изменении весов."
   },
   {
-    "id": "long-gov-enable",
+    "id": "long-backup-enable",
     "route": "long",
-    "title": "Включение приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=enable",
+    "title": "Включить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=enable",
     "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Включите пример для госзаказчиков кнопкой в карточке."
+    "say": "Включите правило «Акция на резервное копирование до 31.12»."
   },
   {
-    "id": "long-gov-preview",
+    "id": "long-backup-preview",
     "route": "long",
-    "title": "Предпросмотр приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=preview",
+    "title": "Предпросмотр для гостя",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=preview",
     "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Сравните действующую выдачу с предпросмотром без правила."
+    "say": "Слева показана действующая акция. Справа — порядок после её выключения."
   },
   {
-    "id": "long-gov-gov_clinic",
+    "id": "long-backup-guest",
     "route": "long",
-    "title": "Приоритет · госклиника",
+    "title": "Акция на витрине · гость",
+    "page": "/",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Смотрите позиции RuBackup Стандарт и RuBackup Enterprise и метки «Акция»."
+  },
+  {
+    "id": "long-backup-gov_clinic",
+    "route": "long",
+    "title": "Тот же запрос · госклиника",
     "page": "/",
     "profile": "gov_clinic",
-    "mode": "smart",
-    "q": "антивирус на 30 пк",
+    "mode": "fast",
+    "q": "резервное копирование",
     "action": "search",
-    "say": "Смотрите порядок карточек и шаг «Порядок карточек»."
+    "say": "Сравните место RuBackup Enterprise с гостевой выдачей."
   },
   {
-    "id": "long-gov-guest",
+    "id": "long-backup-disable",
     "route": "long",
-    "title": "Тот же запрос · гость",
-    "page": "/",
+    "title": "Выключить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=disable",
     "profile": "guest",
-    "mode": "smart",
-    "q": "антивирус на 30 пк",
-    "action": "search",
-    "say": "Смотрите порядок карточек и шаг «Порядок карточек»."
-  },
-  {
-    "id": "long-gov-end",
-    "route": "long",
-    "title": "Выключение приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=disable",
-    "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Выключите пример. Следующий показ начнётся с исходного состояния."
+    "say": "Выключите правило, чтобы вернуть исходный порядок."
   },
   {
     "id": "long-19",
@@ -497,58 +497,58 @@
     "say": "Откройте итог проекта или памятку дня показа. Документы можно распечатать."
   },
   {
-    "id": "priority-gov-enable",
+    "id": "priority-backup-enable",
     "route": "priority",
-    "title": "Включение приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=enable",
+    "title": "Включить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=enable",
     "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Включите пример для госзаказчиков кнопкой в карточке."
+    "say": "Включите правило «Акция на резервное копирование до 31.12»."
   },
   {
-    "id": "priority-gov-preview",
+    "id": "priority-backup-preview",
     "route": "priority",
-    "title": "Предпросмотр приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=preview",
+    "title": "Предпросмотр для гостя",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=preview",
     "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Сравните действующую выдачу с предпросмотром без правила."
+    "say": "Слева показана действующая акция. Справа — порядок после её выключения."
   },
   {
-    "id": "priority-gov-gov_clinic",
+    "id": "priority-backup-guest",
     "route": "priority",
-    "title": "Приоритет · госклиника",
+    "title": "Акция на витрине · гость",
+    "page": "/",
+    "profile": "guest",
+    "mode": "fast",
+    "q": "резервное копирование",
+    "action": "search",
+    "say": "Смотрите позиции RuBackup Стандарт и RuBackup Enterprise и метки «Акция»."
+  },
+  {
+    "id": "priority-backup-gov_clinic",
+    "route": "priority",
+    "title": "Тот же запрос · госклиника",
     "page": "/",
     "profile": "gov_clinic",
-    "mode": "smart",
-    "q": "антивирус на 30 пк",
+    "mode": "fast",
+    "q": "резервное копирование",
     "action": "search",
-    "say": "Смотрите порядок карточек и шаг «Порядок карточек»."
+    "say": "Сравните место RuBackup Enterprise с гостевой выдачей."
   },
   {
-    "id": "priority-gov-guest",
+    "id": "priority-backup-disable",
     "route": "priority",
-    "title": "Тот же запрос · гость",
-    "page": "/",
+    "title": "Выключить акцию RuBackup",
+    "page": "/admin#settings?section=priorities&scene=backup&phase=disable",
     "profile": "guest",
-    "mode": "smart",
-    "q": "антивирус на 30 пк",
-    "action": "search",
-    "say": "Смотрите порядок карточек и шаг «Порядок карточек»."
-  },
-  {
-    "id": "priority-gov-end",
-    "route": "priority",
-    "title": "Выключение приоритета",
-    "page": "/admin#settings?section=priorities&scene=gov&phase=disable",
-    "profile": "guest",
-    "mode": "smart",
+    "mode": "fast",
     "q": "",
     "action": "open",
-    "say": "Выключите пример. Следующий показ начнётся с исходного состояния."
+    "say": "Выключите правило, чтобы вернуть исходный порядок."
   }
 ]

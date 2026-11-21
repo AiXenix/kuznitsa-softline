@@ -4,13 +4,15 @@ const p=document.querySelector('main'),status=document.querySelector('output');
 const tick=()=>new Promise(resolve=>setTimeout(resolve,30));
 const click=t=>[...p.querySelectorAll('button')].find(b=>b.textContent===t).click();
 const rule={id:'demo',title:'Правило для клиник',enabled:false,order:10,target:{tags:['domestic']},scope:{segments:['gov']},action:{criteria:{margin:.6},boost:40}};
+const promo={id:'seed-backup-promo',title:'Акция на резервное копирование до 31.12',enabled:true,
+  target:{families:['rubackup']},scope:{to:'2026-12-31'},action:{boost:20}};
 const requests=[];
 window.fetch=async(path,opts={})=>{
   requests.push([path,opts]);
   if(path==='/api/meta')return Response.json({labels:{tags:{domestic:'Из реестра'},criteria:{margin:'Маржа сегмента'}}});
   if(path.endsWith('/preview'))return Response.json({queries:[{q:'антивирус',before:[{title:'Карточка А'}],after:[{title:'Карточка Б'}]}],summary:{effect_text:'Изменение состава первой пятёрки'}});
   if(path.endsWith('/audit'))return Response.json({items:[{operation:'toggle',after:rule,ts:1,author:'Менеджер'}]});
-  return Response.json({items:[rule],criteria:['margin'],tags:['domestic']});
+  return Response.json({items:[rule,promo],criteria:['margin'],tags:['domestic']});
 };
 try{
   settings(p,new URLSearchParams());await tick();click(rule.title);
@@ -25,5 +27,11 @@ try{
   click('Включить');await tick();if(!requests.some(([url])=>url.endsWith('/demo/toggle')))throw Error('Включение правила');
   p.replaceChildren();settings(p,new URLSearchParams({section:'audit'}));await tick();
   if(!p.innerText.includes('Переключение') || !p.innerText.includes('Менеджер'))throw Error('Журнал изменений');
+  p.replaceChildren();settings(p,new URLSearchParams({scene:'backup',phase:'preview'}));await tick();
+  const body=JSON.parse(requests.findLast(([url])=>url.endsWith('/preview'))[1].body);
+  if(body.rule.id!==promo.id || body.rule.enabled!==false || body.limit!==1 ||
+     JSON.stringify(body.queries)!==JSON.stringify(['резервное копирование']) ||
+     JSON.stringify(body.rule.scope.profiles)!==JSON.stringify(['guest']) || body.rule.scope.to!==promo.scope.to)
+    throw Error('Предпросмотр выключения акции для гостя');
   status.textContent='passed';
 }catch(e){status.textContent=e.stack;}

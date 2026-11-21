@@ -29,8 +29,14 @@ def test_show_steps_use_catalog_profiles(cfg, tmp_path):
     assert len({s["id"] for s in steps}) == len(steps)
     final = [s for s in steps if s["route"] == "long"]
     assert [s["mode"] for s in final if s["q"] == "каспер для хоума"] == ["fast", "smart"]
-    assert [s["id"] for s in final if s["id"].startswith("long-gov-")] == [
-        "long-gov-enable", "long-gov-preview", "long-gov-gov_clinic", "long-gov-guest", "long-gov-end"]
+    for route in ("long", "priority"):
+        prefix = route + "-backup-"
+        scene = [s for s in steps if s["id"].startswith(prefix)]
+        assert [s["id"][len(prefix):] for s in scene] == ["enable", "preview", "guest", "gov_clinic", "disable"]
+        assert [s["page"] for s in scene if s["action"] == "open"] == [
+            "/admin#settings?section=priorities&scene=backup&phase=" + phase for phase in ("enable", "preview", "disable")]
+        assert [(s["q"], s["profile"], s["mode"]) for s in scene if s["action"] == "search"] == [
+            ("резервное копирование", profile, "fast") for profile in ("guest", "gov_clinic")]
     assert any(s["action"] == "upload" for s in final) and final[-1]["page"] == "/docs"
     for step in steps:
         assert step["profile"] in {p["id"] for p in meta["profiles"]}
