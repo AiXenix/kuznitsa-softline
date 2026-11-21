@@ -8,6 +8,11 @@ from pathlib import Path
 from time import time
 from kuznitsa.schema import Request
 from .store import dump,result_cards
+from .priorities import active_rules
+
+
+def rules_revision(engine):
+    return engine.controls.version(),active_rules(engine.journal)[0]
 
 
 def experiment_engine(engine):
@@ -71,7 +76,7 @@ def prepare(engine,mode,limit):
         groups[r["q_raw"]].append(r)
         digest.update(dump([r,labels.get(r["search_id"])]).encode())
     catalog=data/"catalog.jsonl"
-    revision=engine.controls.version()
+    revision=rules_revision(engine)
     digest.update(dump([stamp,mode,limit,revision,catalog.stat().st_mtime_ns if catalog.exists() else 0]).encode())
     ident=digest.hexdigest()[:24]
     selected=sorted(groups,key=lambda q:(-len(groups[q]),q))[:limit]
@@ -82,63 +87,78 @@ def prepare(engine,mode,limit):
     return ident,selected,groups,labels,revision,dataset
 
 
-def execute(engine,mode,plan):
+def execute(engine,mode,plan,cfg=None):
     engine=experiment_engine(engine)
     j=engine.journal
     ident,selected,groups,labels,revision,dataset=plan
     done={r["q"] for r in j.rows("SELECT q FROM replay_results WHERE run_id=?",(ident,))}
-    for q in selected:
-        if q in done:
-            continue
+    remaining=[q for q in selected if q not in done]
+    from .replay_workers import batches
+    from kuznitsa.controls import Controls
+    from .controls import RuleControls
+    # Для conversion требуется полный журнал событий для расчёта индивидуальных долей.
+    conversion=any("conversion" in r["action"]["criteria"] for r in active_rules(j)[1])
+    parallel=not conversion and cfg is not None and mode=="fast" and len(remaining)>=4000 and type(engine.controls) in (Controls,RuleControls)
+    work=batches(engine,cfg,remaining) if parallel else ([(q,None,None,None)] for q in remaining)
+    for batch in work:
         with j.transaction() as db:
-            if engine.controls.version()!=revision:
+            if rules_revision(engine)!=revision:
                 db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:replay:"+ident,
                            "Правила изменились во время сравнения. Запустите новый прогон с текущей версией.",time()))
                 return
-            if db.execute("SELECT 1 FROM replay_results WHERE run_id=? AND q=?",(ident,q)).fetchone():
-                continue
-            response=engine.search(Request(q=q,source="replay",mode=mode,page_size=10))
-            cards=[c["card_id"] for c in products(response)]
-            rows=groups[q]
-            oldzero=sum(r["n_cards"]==0 for r in rows)
-            hit3=before5=after5=labeled=0
-            cases={}
-            for r in rows:
-                target=labels.get(r["search_id"],{})
-                family=target.get("target_family")
-                category=target.get("target_category")
-                if not (family or category or target.get("target_card")):
+            for q,archived,items,analogs in batch:
+                if db.execute("SELECT 1 FROM replay_results WHERE run_id=? AND q=?",(ident,q)).fetchone():
                     continue
-                wanted=engine.catalog.by["family"].get(family,set()) if family else engine.catalog.by["category"].get(category,set())
-                if target.get("target_card"):
-                    wanted={target["target_card"]}
-                labeled+=1
-                before=json.loads(r["top_cards_json"] or "[]")
-                def correct(ids,offer_ids):
-                    if not target.get("retail"):
-                        return bool(wanted.intersection(ids))
-                    for oid in offer_ids:
-                        o=engine.catalog.offers_by_id.get(oid)
-                        if o and o.available and not o.price_on_request and o.price and o.card_id in wanted and o.lic.action=="new" and o.lic.audience=="business" and o.lic.term_months in (12,None):
-                            return True
-                    return False
-                old=correct(before[:5],target.get("legacy_offers",[]))
-                if target.get("position") and target.get("target_card"):
-                    old=1<=target["position"]<=5
-                new=correct(cards[:5],[c.get("offer",{}).get("offer_id") for c in products(response)[:5]])
-                cases[r["search_id"]]=[old,new]
-                before5+=old
-                after5+=new
-                hit3+=int(not correct(before[:3],target.get("legacy_offers",[])[:3]) and correct(cards[:3],[c.get("offer",{}).get("offer_id") for c in products(response)[:3]]))
-            result=dict(q=q,cases=cases,recovered_rub=sum(r["session_loss_low"] for r in rows if r["n_cards"]==0 and cards),analogs=any(b["type"]=="analogs" and b.get("items") for b in response["blocks"]),frequency=len(rows),before_zero=oldzero,after_zero=0 if cards else len(rows),
-                        recovered=oldzero if cards else 0,improved_top3=hit3,before_top5=before5,after_top5=after5,
-                        labeled=labeled,search_id=response["search_id"],first=cards[:3])
-            db.execute("INSERT INTO replay_results VALUES (?,?,?)",(ident,q,dump(result)))
+                if archived:
+                    j.insert("searches",archived)
+                    search_id=archived["search_id"]
+                else:
+                    response=engine.search(Request(q=q,source="replay",mode=mode,page_size=10))
+                    search_id=response["search_id"]
+                    items=products(response)
+                    analogs=any(b["type"]=="analogs" and b.get("items") for b in response["blocks"])
+                cards=[c["card_id"] for c in items]
+                offers=[(c.get("offer") or {}).get("offer_id") for c in items]
+                rows=groups[q]
+                oldzero=sum(r["n_cards"]==0 for r in rows)
+                hit3=before5=after5=labeled=0
+                cases={}
+                for r in rows:
+                    target=labels.get(r["search_id"],{})
+                    family=target.get("target_family")
+                    category=target.get("target_category")
+                    if not (family or category or target.get("target_card")):
+                        continue
+                    wanted=engine.catalog.by["family"].get(family,set()) if family else engine.catalog.by["category"].get(category,set())
+                    if target.get("target_card"):
+                        wanted={target["target_card"]}
+                    labeled+=1
+                    before=json.loads(r["top_cards_json"] or "[]")
+                    def correct(ids,offer_ids):
+                        if not target.get("retail"):
+                            return bool(wanted.intersection(ids))
+                        for oid in offer_ids:
+                            o=engine.catalog.offers_by_id.get(oid)
+                            if o and o.available and not o.price_on_request and o.price and o.card_id in wanted and o.lic.action=="new" and o.lic.audience=="business" and o.lic.term_months in (12,None):
+                                return True
+                        return False
+                    old=correct(before[:5],target.get("legacy_offers",[]))
+                    if target.get("position") and target.get("target_card"):
+                        old=1<=target["position"]<=5
+                    new=correct(cards[:5],offers[:5])
+                    cases[r["search_id"]]=[old,new]
+                    before5+=old
+                    after5+=new
+                    hit3+=int(not correct(before[:3],target.get("legacy_offers",[])[:3]) and correct(cards[:3],offers[:3]))
+                result=dict(q=q,cases=cases,recovered_rub=sum(r["session_loss_low"] for r in rows if r["n_cards"]==0 and cards),analogs=analogs,frequency=len(rows),before_zero=oldzero,after_zero=0 if cards else len(rows),
+                            recovered=oldzero if cards else 0,improved_top3=hit3,before_top5=before5,after_top5=after5,
+                            labeled=labeled,search_id=search_id,first=cards[:3])
+                db.execute("INSERT INTO replay_results VALUES (?,?,?)",(ident,q,dump(result)))
 
 
     with j.transaction() as db:
         from .lineage import warning
-        if warning(j,ident) or dataset!=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'") or engine.controls.version()!=revision:
+        if warning(j,ident) or dataset!=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'") or rules_revision(engine)!=revision:
             db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:replay:"+ident,
                        "Во время прогона изменилась история или правила. Запустите сравнение для нового снимка.",time()))
             return
@@ -150,9 +170,9 @@ def execute(engine,mode,plan):
             db.execute("UPDATE analytics_revision SET revision=revision+1")
 
 
-def run(engine,mode="fast",limit=None):
+def run(engine,mode="fast",limit=None,*,cfg=None):
     plan=prepare(engine,mode,limit)
-    execute(engine,mode,plan)
+    execute(engine,mode,plan,cfg)
     return summary(engine.journal,plan[0])
 
 

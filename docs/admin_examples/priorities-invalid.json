@@ -1,0 +1,6 @@
+{
+  "error": {
+    "code": "invalid_rule",
+    "message": "Ограничение k должно быть не больше n"
+  }
+}

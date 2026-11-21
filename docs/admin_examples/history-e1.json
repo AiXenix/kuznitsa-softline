@@ -1,0 +1,312 @@
+{
+  "files": [
+    {
+      "report_metadata": {},
+      "summary_only": false,
+      "report_metrics": {},
+      "kind": "search_log",
+      "columns": {
+        "момент": "ts",
+        "визит": "session_id",
+        "cookie": "client_id",
+        "фраза": "q",
+        "найдено": "n_cards",
+        "клик_код": "target",
+        "место": "position",
+        "в_корзину": "cart_product",
+        "заказ": "order",
+        "сумма_RUB": "revenue"
+      },
+      "rows_read": 135361,
+      "rows_accepted": 135361,
+      "period": [
+        1787432886.0,
+        1795206653.0
+      ],
+      "observed_searches": 135361,
+      "observed_empty": 33428,
+      "zero_rate": 0.2469544403484017,
+      "availability": {
+        "zero_rate": "наблюдение",
+        "orders": "наблюдение",
+        "revenue": "наблюдение",
+        "ctr": "наблюдение",
+        "click_position": "по событиям",
+        "exit_after_fail": "нет отказов",
+        "top5_hit": "по целевому товару в кликах и заказах",
+        "reformulation": "нет последовательности событий"
+      },
+      "file": "Поиск магазина.tsv",
+      "source_type": "Журнал поиска",
+      "searches": 135361,
+      "events": 62927,
+      "skipped": 0,
+      "duplicates": 0,
+      "rows": 135361,
+      "skip_reasons": {},
+      "recognized": [
+        "cookie",
+        "в_корзину",
+        "визит",
+        "заказ",
+        "клик_код",
+        "место",
+        "момент",
+        "найдено",
+        "сумма_RUB",
+        "фраза"
+      ],
+      "ignored": [
+        "контрагент",
+        "профиль",
+        "регион"
+      ],
+      "visits": 0,
+      "fields": [
+        "cart_product",
+        "click",
+        "client_id",
+        "n_cards",
+        "order",
+        "order_id",
+        "position",
+        "q",
+        "revenue",
+        "session_id",
+        "target",
+        "ts"
+      ],
+      "logs": false,
+      "missing": []
+    },
+    {
+      "report_metadata": {},
+      "summary_only": false,
+      "report_metrics": {},
+      "kind": "metrika_hits",
+      "columns": {
+        "ym:pv:watchID": "hit_id",
+        "ym:pv:clientID": "client_id",
+        "ym:pv:dateTime": "ts",
+        "ym:pv:URL": "search_url",
+        "ym:pv:referer": "referrer"
+      },
+      "rows_read": 198288,
+      "rows_accepted": 198288,
+      "period": [
+        1787432886.0,
+        1795206653.0
+      ],
+      "observed_searches": 0,
+      "observed_empty": 0,
+      "zero_rate": null,
+      "availability": {
+        "zero_rate": "модель поиска по словам",
+        "orders": "наблюдение",
+        "revenue": "наблюдение",
+        "ctr": "наблюдение",
+        "click_position": "нет позиций клика",
+        "exit_after_fail": "по событиям",
+        "top5_hit": "по целевому товару в кликах и заказах",
+        "reformulation": "по визитам и хитам"
+      },
+      "file": "hits.tsv",
+      "source_type": "Logs API",
+      "searches": 0,
+      "events": 84633,
+      "skipped": 0,
+      "duplicates": 50728,
+      "rows": 198288,
+      "linked_searches": 135361,
+      "pageviews_without_search_event": 12199,
+      "skip_reasons": {},
+      "recognized": [
+        "ym:pv:URL",
+        "ym:pv:clientID",
+        "ym:pv:dateTime",
+        "ym:pv:referer",
+        "ym:pv:watchID"
+      ],
+      "ignored": [],
+      "visits": 89647,
+      "fields": [
+        "click",
+        "order",
+        "revenue",
+        "ts"
+      ],
+      "logs": true,
+      "missing": [
+        "Покупки из сводки визита при отсутствии заказов в хитах отнесены к последнему поиску этого визита.",
+        "Нет размеров исходной выдачи. Обычный поиск по словам воспроизведён по каталогу."
+      ]
+    },
+    {
+      "report_metadata": {
+        "report_title": "Отчёт Поиск по сайту",
+        "declared_period": [
+          1787432400.0,
+          1795208399.0
+        ],
+        "totals": {
+          "visits": 89647.0,
+          "count": 135361.0,
+          "depth": 2.21,
+          "bounce": 0.4092
+        }
+      },
+      "summary_only": true,
+      "report_metrics": {
+        "visits": 135349,
+        "searches": 135361,
+        "estimated_bounces": 36687,
+        "pageviews_estimate": 382427.2300000002,
+        "avg_depth": 2.8255
+      },
+      "kind": "metrika_report",
+      "columns": {
+        "Фраза внутреннего поиска": "q",
+        "Визиты": "visits",
+        "Поиски": "count",
+        "Отказы": "bounce",
+        "Глубина просмотра": "depth"
+      },
+      "rows_read": 29076,
+      "rows_accepted": 29075,
+      "period": [
+        1787432400.0,
+        1795208399.0
+      ],
+      "observed_searches": 0,
+      "observed_empty": 0,
+      "zero_rate": null,
+      "availability": {
+        "zero_rate": "модель поиска по словам",
+        "orders": "нет цели заказа",
+        "revenue": "нет суммы заказа",
+        "ctr": "нет кликов",
+        "click_position": "нет позиций клика",
+        "exit_after_fail": "приближение по отказам",
+        "top5_hit": "нет разметки целевого товара",
+        "reformulation": "нет последовательности событий"
+      },
+      "file": "Поиск по сайту.csv",
+      "source_type": "Отчёт Метрики",
+      "searches": 0,
+      "events": 0,
+      "skipped": 1,
+      "duplicates": 0,
+      "rows": 29076,
+      "skip_reasons": {
+        "Итоговая строка отчёта": 1
+      },
+      "recognized": [
+        "Визиты",
+        "Глубина просмотра",
+        "Отказы",
+        "Поиски",
+        "Фраза внутреннего поиска"
+      ],
+      "ignored": [
+        "Время на сайте",
+        "Посетители"
+      ],
+      "visits": 0,
+      "fields": [
+        "bounce",
+        "count",
+        "depth",
+        "q",
+        "visits"
+      ],
+      "logs": false,
+      "missing": [
+        "Нет данных о заказах: конверсия недоступна.",
+        "Нет сумм заказов: выручка и потери не оценены.",
+        "Нет кликов: CTR недоступен.",
+        "Нет дат: используется дата файла.",
+        "Нет размеров исходной выдачи. Обычный поиск по словам воспроизведён по каталогу.",
+        "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога.",
+        "Частоты всех фраз совпали с журналом. Сводка Метрики сохранена отдельно, поиски повторно не добавлены."
+      ]
+    },
+    {
+      "report_metadata": {},
+      "summary_only": false,
+      "report_metrics": {},
+      "kind": "metrika_visits",
+      "columns": {
+        "ym:s:visitID": "session_id",
+        "ym:s:clientID": "client_id",
+        "ym:s:dateTime": "ts",
+        "ym:s:watchIDs": "hit_ids",
+        "ym:s:startURL": "start_url",
+        "ym:s:purchaseID": "order_ids",
+        "ym:s:purchaseRevenue": "order_values",
+        "ym:s:purchaseCurrency": "order_currencies",
+        "ym:s:purchasedProductID": "purchased_products",
+        "ym:s:purchasedProductQuantity": "purchased_quantities"
+      },
+      "rows_read": 89647,
+      "rows_accepted": 89647,
+      "period": [
+        1787432886.0,
+        1795206626.0
+      ],
+      "observed_searches": 0,
+      "observed_empty": 0,
+      "zero_rate": null,
+      "availability": {
+        "zero_rate": "по связанным поисковым хитам",
+        "orders": "наблюдение",
+        "revenue": "наблюдение",
+        "ctr": "нет кликов",
+        "click_position": "нет позиций клика",
+        "exit_after_fail": "нет отказов",
+        "top5_hit": "нет разметки целевого товара",
+        "reformulation": "нет последовательности событий"
+      },
+      "file": "visits.tsv",
+      "source_type": "Logs API",
+      "searches": 0,
+      "events": 0,
+      "skipped": 0,
+      "duplicates": 0,
+      "rows": 89647,
+      "skip_reasons": {},
+      "recognized": [
+        "ym:s:clientID",
+        "ym:s:dateTime",
+        "ym:s:purchaseCurrency",
+        "ym:s:purchaseID",
+        "ym:s:purchaseRevenue",
+        "ym:s:purchasedProductID",
+        "ym:s:purchasedProductQuantity",
+        "ym:s:startURL",
+        "ym:s:visitID",
+        "ym:s:watchIDs"
+      ],
+      "ignored": [
+        "ym:s:bounce",
+        "ym:s:endURL",
+        "ym:s:pageViews",
+        "ym:s:visitDuration"
+      ],
+      "visits": 89647,
+      "fields": [
+        "order",
+        "revenue",
+        "ts"
+      ],
+      "logs": false,
+      "missing": [
+        "Визиты дают связь с хитами и данные электронной коммерции. Размер выдачи, клики и последовательность запросов определяются по хитам."
+      ],
+      "visit_purchases": {
+        "orders": 4025,
+        "priced_orders": 4025,
+        "revenue_rub": 5553944355.02
+      }
+    }
+  ]
+}

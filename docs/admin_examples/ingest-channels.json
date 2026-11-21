@@ -1,0 +1,248 @@
+{
+  "catalog": null,
+  "external_phrases": [
+    {
+      "file": "external-acquisition.csv",
+      "items": [
+        {
+          "q": "интернет магазин софта",
+          "visits": 600
+        },
+        {
+          "q": "магазин софта для бизнеса",
+          "visits": 330
+        }
+      ],
+      "metrics": {
+        "visits": 930,
+        "searches": 930,
+        "estimated_bounces": 94,
+        "pageviews_estimate": 2127.0,
+        "avg_depth": 2.2871
+      }
+    }
+  ],
+  "crm_leads": [
+    {
+      "file": "crm-requests.csv",
+      "records": 3,
+      "linked": 2,
+      "unlinked": 1,
+      "pipeline_rub": 235000.0
+    }
+  ],
+  "classification_usd": null,
+  "forecast_usd": null,
+  "review": [],
+  "history": [
+    {
+      "report_metadata": {},
+      "summary_only": false,
+      "report_metrics": {},
+      "kind": "crm_leads",
+      "columns": {
+        "Номер заявки": "lead_id",
+        "Дата": "ts",
+        "Клиент": "client_id",
+        "Фраза": "q",
+        "Продукт": "product",
+        "Сумма заявки": "revenue"
+      },
+      "rows_read": 3,
+      "rows_accepted": 3,
+      "period": [
+        1794909960.0,
+        1795035599.0
+      ],
+      "observed_searches": 0,
+      "observed_empty": 0,
+      "zero_rate": null,
+      "availability": {
+        "funnel": "Учитываются связанные заявки",
+        "revenue": "Сумма заявки — потенциальная продажа"
+      },
+      "file": "crm-requests.csv",
+      "source_type": "CRM · заявки менеджеру",
+      "searches": 0,
+      "events": 2,
+      "skipped": 0,
+      "duplicates": 0,
+      "rows": 3,
+      "skip_reasons": {},
+      "recognized": [
+        "Дата",
+        "Клиент",
+        "Номер заявки",
+        "Продукт",
+        "Сумма заявки",
+        "Фраза"
+      ],
+      "ignored": [],
+      "visits": 0,
+      "fields": [],
+      "logs": false,
+      "missing": [
+        "Заявка привязана к последнему поиску того же клиента с той же фразой или показанным товаром за 7 дней; при наличии search_id проверяется этот поиск. Сумма заявки учитывается отдельно от выручки."
+      ],
+      "crm": {
+        "records": 3,
+        "linked": 2,
+        "unlinked": 1,
+        "pipeline_rub": 235000.0
+      }
+    },
+    {
+      "report_metadata": {
+        "report_title": "Отчёт Поисковые фразы",
+        "declared_period": [
+          1793480400.0,
+          1796072399.0
+        ],
+        "totals": {
+          "visits": 930.0,
+          "depth": 2.3,
+          "bounce": 0.1
+        }
+      },
+      "summary_only": true,
+      "report_metrics": {
+        "visits": 930,
+        "searches": 930,
+        "estimated_bounces": 94,
+        "pageviews_estimate": 2127.0,
+        "avg_depth": 2.2871
+      },
+      "kind": "metrika_external_phrases",
+      "columns": {
+        "Поисковая фраза": "q",
+        "Визиты": "visits",
+        "Отказы": "bounce",
+        "Глубина": "depth"
+      },
+      "rows_read": 3,
+      "rows_accepted": 2,
+      "period": [
+        1793480400.0,
+        1796072399.0
+      ],
+      "observed_searches": 0,
+      "observed_empty": 0,
+      "zero_rate": null,
+      "availability": {
+        "acquisition": "Наблюдаемые визиты из внешних поисковых систем"
+      },
+      "file": "external-acquisition.csv",
+      "source_type": "Метрика · внешние поисковые фразы",
+      "searches": 0,
+      "events": 0,
+      "skipped": 1,
+      "duplicates": 0,
+      "rows": 3,
+      "skip_reasons": {
+        "Итоговая строка отчёта": 1
+      },
+      "recognized": [
+        "Визиты",
+        "Глубина",
+        "Отказы",
+        "Поисковая фраза"
+      ],
+      "ignored": [
+        "Поисковая система"
+      ],
+      "visits": 0,
+      "fields": [
+        "bounce",
+        "depth",
+        "q",
+        "visits"
+      ],
+      "logs": false,
+      "missing": [
+        "Фразы относятся к привлечению посетителей из поисковых систем. Внутренних поисков добавлено 0."
+      ],
+      "external_phrases": [
+        {
+          "q": "интернет магазин софта",
+          "visits": 600
+        },
+        {
+          "q": "магазин софта для бизнеса",
+          "visits": 330
+        }
+      ]
+    },
+    {
+      "report_metadata": {},
+      "summary_only": false,
+      "report_metrics": {},
+      "kind": "ga4_events",
+      "columns": {
+        "event_name": "event_name",
+        "event_timestamp": "event_timestamp",
+        "event_params": "event_params",
+        "user_pseudo_id": "user_pseudo_id",
+        "items": "items",
+        "ecommerce": "ecommerce"
+      },
+      "rows_read": 4,
+      "rows_accepted": 4,
+      "period": [
+        1794909600.0,
+        1794910080.0
+      ],
+      "observed_searches": 2,
+      "observed_empty": 0,
+      "zero_rate": 0.0,
+      "availability": {
+        "zero_rate": "наблюдение",
+        "orders": "наблюдение",
+        "revenue": "наблюдение",
+        "ctr": "наблюдение",
+        "click_position": "нет позиций клика",
+        "exit_after_fail": "по событиям",
+        "top5_hit": "нет разметки целевого товара",
+        "reformulation": "по визитам и хитам"
+      },
+      "file": "ga4-bigquery.jsonl",
+      "source_type": "GA4 · события BigQuery",
+      "searches": 2,
+      "events": 3,
+      "skipped": 0,
+      "duplicates": 0,
+      "rows": 4,
+      "skip_reasons": {},
+      "recognized": [
+        "ecommerce",
+        "event_name",
+        "event_params",
+        "event_timestamp",
+        "items",
+        "user_pseudo_id"
+      ],
+      "ignored": [],
+      "visits": 1,
+      "fields": [
+        "click",
+        "n_cards",
+        "order",
+        "revenue",
+        "ts"
+      ],
+      "logs": true,
+      "missing": [
+        "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога.",
+        "Суммы покупок показаны в рублях при валюте RUB. Исходная сумма, валюта и позиции сохранены в событии."
+      ]
+    }
+  ],
+  "cards": 660,
+  "offers": 23538,
+  "sources": [
+    {
+      "source": "history",
+      "searches": 2,
+      "service": false
+    }
+  ]
+}

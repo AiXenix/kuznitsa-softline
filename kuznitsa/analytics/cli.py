@@ -41,7 +41,7 @@ def run(args,cfg):
             out=discover(e)
         else:
             from .replay import run
-            out=run(e,args.mode,args.limit)
+            out=run(e,args.mode,args.limit,cfg=cfg)
         if name in ("gen-history","import-history","insights","replay"):
             from .dashboard import warm
             warm(e)
