@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "href": "https://api.moysklad.ru/api/remap/1.2/entity/assortment?limit=2&offset=0",
+    "type": "assortment",
+    "limit": 2,
+    "offset": 0,
+    "size": 3
+  },
+  "rows": [
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000003",
+        "type": "product",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000003",
+      "code": "MS-03",
+      "article": "AR-MS-03",
+      "externalCode": "EXT-MS-03",
+      "name": "Карта",
+      "productFolder": {
+        "meta": {
+          "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder/00000000-0000-0000-0000-000000000002",
+          "type": "productfolder",
+          "mediaType": "application/json"
+        }
+      },
+      "salePrices": [
+        {
+          "priceType": {
+            "name": "Для госзаказчиков"
+          },
+          "value": 60001
+        },
+        {
+          "priceType": {
+            "name": "Розничная"
+          },
+          "value": 70001
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Производитель",
+          "value": "Сфера"
+        }
+      ],
+      "country": {
+        "name": "Россия"
+      },
+      "uom": {
+        "name": "пользователь"
+      },
+      "variants": {
+        "rows": [
+          {
+            "meta": {
+              "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant/00000000-0000-0000-0000-000000000004",
+              "type": "variant",
+              "mediaType": "application/json"
+            },
+            "id": "00000000-0000-0000-0000-000000000004",
+            "code": "MS-04",
+            "article": "AR-MS-04",
+            "externalCode": "EXT-MS-04",
+            "name": "Карта Проф",
+            "product": {
+              "meta": {
+                "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000003",
+                "type": "product",
+                "mediaType": "application/json"
+              }
+            },
+            "characteristics": [
+              {
+                "name": "Редакция",
+                "value": "Проф"
+              },
+              {
+                "name": "Срок",
+                "value": "24 мес."
+              },
+              {
+                "name": "Количество",
+                "value": "5"
+              }
+            ],
+            "salePrices": [
+              {
+                "priceType": {
+                  "name": "Для госзаказчиков"
+                },
+                "value": 40000
+              },
+              {
+                "priceType": {
+                  "name": "Розничная"
+                },
+                "value": 40055
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000006",
+        "type": "product",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000006",
+      "code": "MS-06",
+      "article": "AR-MS-06",
+      "externalCode": "EXT-MS-06",
+      "name": "Почта",
+      "productFolder": {
+        "meta": {
+          "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder/00000000-0000-0000-0000-000000000002",
+          "type": "productfolder",
+          "mediaType": "application/json"
+        }
+      },
+      "salePrices": [
+        {
+          "priceType": {
+            "name": "Для госзаказчиков"
+          },
+          "value": 60001
+        },
+        {
+          "priceType": {
+            "name": "Розничная"
+          },
+          "value": 70001
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Производитель",
+          "value": "Сфера"
+        }
+      ],
+      "country": {
+        "name": "Россия"
+      },
+      "uom": {
+        "name": "пользователь"
+      }
+    }
+  ]
+}

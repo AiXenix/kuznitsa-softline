@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "href": "https://api.moysklad.ru/api/remap/1.2/report/stock/all?limit=4&offset=0",
+    "type": "all",
+    "limit": 4,
+    "offset": 0,
+    "size": 4
+  },
+  "rows": [
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant/00000000-0000-0000-0000-000000000004",
+        "type": "variant",
+        "mediaType": "application/json"
+      },
+      "name": "Остаток 4",
+      "stock": 10,
+      "quantity": 0
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant/00000000-0000-0000-0000-000000000005",
+        "type": "variant",
+        "mediaType": "application/json"
+      },
+      "name": "Остаток 5",
+      "stock": 7,
+      "quantity": 4
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000006",
+        "type": "product",
+        "mediaType": "application/json"
+      },
+      "name": "Остаток 6",
+      "stock": 1,
+      "quantity": 1
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000063",
+        "type": "product",
+        "mediaType": "application/json"
+      },
+      "name": "Остаток 99",
+      "stock": 3,
+      "quantity": 3
+    }
+  ]
+}

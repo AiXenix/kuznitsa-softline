@@ -6,11 +6,12 @@ from collections import Counter
 from itertools import chain, islice
 from pathlib import Path
 from zipfile import ZipFile
-from openpyxl.utils.cell import range_boundaries
+from openpyxl.utils.cell import column_index_from_string, range_boundaries
+from .ut_tables import TOTAL,hierarchy,price_types
 from lxml import etree
 from openpyxl import load_workbook
 
-from .mapping import field_for
+from .mapping import field_for,retail_header
 
 
 def encoding(path):
@@ -70,7 +71,7 @@ def csv_rows(stream, delimiter):
             yield row
 
 
-def spreadsheet(rows, explicit):
+def spreadsheet(rows, explicit, layout=None, sheet=""):
     prefix=list(islice(rows,50))
     explicit_headers=set(explicit.values())
     def recognized(h):
@@ -83,7 +84,8 @@ def spreadsheet(rows, explicit):
     unit_row=re.compile(r"руб[.]?|₽|шт[.]?|ед[.]?|usd|rub|eur|%|мес[.]?|дн[.]?",re.I)
     def tier(line):
         cells=[str(v).strip() for v in line or () if v is not None and str(v).strip()]
-        return cells and (all(unit_row.fullmatch(v) for v in cells) or
+        return cells and (any(retail_header(v) for v in cells) and all(isinstance(v,str) for v in line if v is not None) or
+                all(unit_row.fullmatch(v) for v in cells) or
                 score(cells)>=2 and all(recognized(v) or unit_row.fullmatch(v) for v in cells))
     start=idx+1
     while start<min(idx+4,len(prefix)) and tier(prefix[start]):
@@ -95,6 +97,11 @@ def spreadsheet(rows, explicit):
         candidates=[" ".join(parts[-n:]) for n in (2,3) if len(parts)>=n]
         candidates+=list(reversed(parts))
         label=next((v for v in candidates if recognized(v)),None)
+        if label and field_for(label)=="prices":
+            # A merged “Виды цен” heading belongs to all columns underneath it.
+            leaf=next((v for v in reversed(parts) if not unit_row.fullmatch(v)),label)
+            if leaf!=label:
+                label=leaf
         header.append(label or next((v for v in reversed(parts) if not unit_row.fullmatch(v)),""))
     # Retain the leaf labels of unknown columns, even underneath a merged group.
     for j,label in enumerate(header):
@@ -102,6 +109,16 @@ def spreadsheet(rows, explicit):
             leaf=(prefix[idx] or [])[j]
             if leaf and str(leaf)!=label:
                 header[j]=str(leaf)
+    records=sheet_records(rows,prefix,start,header,score,layout,sheet,explicit)
+    if layout is None:
+        yield from records
+    else:
+        yield from hierarchy(records,header,explicit,layout,sheet)
+
+
+def sheet_records(rows,prefix,start,header,score,layout,sheet,explicit):
+    retail,alternatives=price_types(header,prefix[start:],sheet,explicit)
+    name_idx=next((i for i,h in enumerate(header) if field_for(h)=="name" or h==explicit.get("name")),None)
     group=[]
     for num,row in enumerate(chain(prefix[start:],rows),start+1):
         if row is None:
@@ -109,18 +126,24 @@ def spreadsheet(rows, explicit):
         elif any(v is not None and v!="" for v in row):
             values=list(dict.fromkeys(str(v).strip() for v in row if v is not None and str(v).strip()))
             first=values[0].casefold() if values else ""
-            if re.fullmatch(r"(?:итого|всего|grand total|total)(?: по .*)?[:.]?",first):
+            if TOTAL.fullmatch(first) or (name_idx is not None and name_idx<len(row) and TOTAL.fullmatch(str(row[name_idx]).strip())):
                 continue
             if first in {"группа","раздел","подраздел","подгруппа","section","subsection"} and len(values)==2:
                 group=(group[:1] if first in {"подраздел","подгруппа","subsection"} else [])+[values[1]]
                 continue
-            if len(values)==1 and row.count(values[0])>1:
+            if len(values)==1 and row.count(values[0])>1 and not (layout and any(layout.values()) and name_idx is not None):
                 level=next(i for i,v in enumerate(row) if v not in (None,""))
                 group=group[:level]+[values[0]]
                 continue
             if score(row)>=2 and sum(str(v).strip() in header for v in row if v is not None)>=2:
                 continue
             data=dict(zip(header,row)) if len(row)<=len(header) else None
+            if alternatives and data:
+                data["prices"]={h:data[h] for h in alternatives if data.get(h) not in (None,"")}
+                for label in alternatives:
+                    if field_for(label)!="cost":
+                        data.pop(label,None)
+                data["_retail_price"]=retail
             if group and data and not any(field_for(k)=="category_path" and v for k,v in data.items()):
                 data["category_path"]="/".join(group)
             yield num,data
@@ -153,15 +176,26 @@ def json_tables(obj, label):
                 yield from json_tables(v,label+"/"+k)
 
 
-def xlsx_rows(path, sheet):
+def xlsx_rows(path, sheet,layout):
     # read_only worksheets stream cell values but omit merge metadata. Read only
     # the range references, then propagate the top-left value inside each range.
     starts={}
+    indents={i:sheet.parent._alignments[style.alignmentId].indent
+             for i,style in enumerate(sheet.parent._cell_styles) if sheet.parent._alignments[style.alignmentId].indent}
     with ZipFile(path) as book, book.open(sheet._worksheet_path) as xml:
         for _,node in etree.iterparse(xml,events=("end",),tag=("{*}mergeCell","{*}row"),resolve_entities=False,no_network=True):
             if etree.QName(node).localname=="mergeCell":
                 left,top,right,bottom=range_boundaries(node.get("ref"))
                 starts.setdefault(top,[]).append((left,right,bottom))
+            else:
+                num=int(node.get("r","0"))
+                if node.get("outlineLevel"):
+                    layout["outline"][num]=int(node.get("outlineLevel"))
+                for cell in node.iterfind("{*}c[@s]") if indents else ():
+                    indent=indents.get(int(cell.get("s")))
+                    if indent and cell.get("r"):
+                        col=column_index_from_string(re.match(r"[A-Z]+",cell.get("r"))[0])
+                        layout["indent"][num,col]=indent
             node.clear()
             while node.getprevious() is not None:
                 del node.getparent()[0]
@@ -190,7 +224,8 @@ def tables(path, explicit, commerce=None):
         wb=load_workbook(path,data_only=True,read_only=True)
         try:
             for ws in wb:
-                yield f"{path}/{ws.title}",spreadsheet(xlsx_rows(path,ws),explicit)
+                layout={"indent":{},"outline":{}}
+                yield f"{path}/{ws.title}",spreadsheet(xlsx_rows(path,ws,layout),explicit,layout,ws.title)
         finally:
             wb.close()
     elif ext in (".jsonl",".ndjson"):
