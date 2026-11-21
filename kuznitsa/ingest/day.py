@@ -148,8 +148,8 @@ def coverage(engine,cfg):
 def markdown(r):
     lines=["# День данных","",f"Каталог данных — `{r['out']}`. Время — {r['seconds']:.2f} с.","",
            "| Файл | Назначение | Принято строк | Пропущено |","|---|---|---:|---:|"]
-    roles=dict(ga4_events="События GA4",crm_leads="Заявки CRM",metrika_external_phrases="Внешние поисковые фразы",orders="Заказы",prices="Таблица цен",stock="Остатки",documentation="Сопроводительный текст",catalog="Каталог",categories="Справочник категорий",history="История запросов",
-               metrika="Отчёт Метрики",metrika_hits="Хиты Метрики",metrika_visits="Визиты Метрики",
+    roles=dict(ga4_events="События GA4",crm_leads="Заявки CRM",metrika_external_phrases="Метрика · фразы из поисковиков",orders="Заказы",prices="Таблица цен",stock="Остатки",documentation="Сопроводительный текст",catalog="Каталог",categories="Справочник категорий",history="История запросов",
+               metrika="Метрика · поиск по сайту",metrika_hits="Хиты Метрики",metrika_visits="Визиты Метрики",
                unknown="Не распознан")
     for f in r["files"]:
         lines.append(f"| {f['file']} | {roles[f['role']]} | {f.get('accepted','—')} | {f.get('skipped','—')} |")
