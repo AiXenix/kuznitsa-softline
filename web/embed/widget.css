@@ -4,3 +4,5 @@
 .widget .bar {border:1px solid var(--line)}
 .widget .notice:empty {display:none}
 .widget .understood {margin-top:.65rem}
+.widget form>label:has(select){font-size:.87rem;font-weight:500;margin:.5rem 0}
+.widget select{font:inherit;padding:.24rem .45rem;border:1px solid var(--line);border-radius:5px}

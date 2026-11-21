@@ -5,7 +5,7 @@ const pending=new Map();
 export function resetData(path){if(path)pending.delete(path);else pending.clear();}
 export async function adminApi(path,method='GET',body){
   const token=sessionStorage.getItem('kzAdminKey');
-  if(method!=='GET' && !token)throw Error('Нужен ключ доступа. Введите его в шапке консоли.');
+  if(method!=='GET' && path!=='priorities/preview' && !token)throw Error('Нужен ключ доступа. Введите его в шапке консоли.');
   const cached=pending.get(path);
   if(method==='GET' && cached)return cached;
   const load=async()=>{

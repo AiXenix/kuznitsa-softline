@@ -42,6 +42,7 @@ try{
   const complete=new Promise(resolve=>fileReader.onload=resolve);fileReader.send();await complete;
   check(btoa(String.fromCharCode(...new Uint8Array(fileReader.response)))===workbook,'Целостность файла КП');
   const partner=document.createElement('div'),root=partner.attachShadow({mode:'open'});
+  let expectedMode='fast';
   const sent=[],origin='https://partner-api.invalid';
   window.fetch=async(url,opts)=>{
     check(url.startsWith(origin+'/api/'),'Виджет должен обращаться к серверу скрипта');
@@ -49,15 +50,19 @@ try{
     if(url.includes('/suggest?'))return Response.json({groups:[{type:'queries',title:'Запросы',items:[{text:'Астра',q:'Astra Linux'}]}]});
     const body=JSON.parse(opts.body);
     if(url.endsWith('/event')){sent.push(body.type);return new Response(null,{status:204});}
-    check(url.endsWith('/search') && body.q==='Astra Linux' && body.profile_id==='gov_clinic' && body.mode==='fast','Поиск из подсказки виджета');
+    check(url.endsWith('/search') && body.q==='Astra Linux' && body.profile_id==='gov_clinic' && body.mode===expectedMode,'Поиск из подсказки виджета');
     return Response.json({search_id:'embedded',understood:{intent_title:'Поиск продукта'},blocks:[{type:'products',items:[{title:'Astra Linux',card_id:'astra',offer:{price:513}}]}]});
   };
   const shown=new Promise(resolve=>partner.addEventListener('kuznitsa:results',resolve,{once:true}));
-  mount(root,origin,{profile:'gov_clinic',mode:'fast'});
+  mount(root,origin,{profile:'gov_clinic',mode:'fast',modeSwitch:'1'});
   const i=root.querySelector('input');i.value='Аст';i.dispatchEvent(new Event('input'));
   await new Promise(resolve=>setTimeout(resolve,200));root.querySelector('.option').click();
   check((await shown).detail.search_id==='embedded' && root.querySelector('.purchase').textContent.includes('513'),'Цена и событие партнёра');
   root.querySelector('.productTitle').click();
   check(['impression','suggest_click','click'].every(v=>sent.includes(v)),'События виджета');
+  const picker=root.querySelector('select');check(picker.value==='fast','Начальный режим');
+  expectedMode='smart';const next=new Promise(resolve=>partner.addEventListener('kuznitsa:results',resolve,{once:true}));
+  picker.value='smart';picker.dispatchEvent(new Event('change'));await next;
+  check(new URL(root.querySelector('a').href).searchParams.get('mode')==='smart','Переход в выбранный режим');
   status.textContent='passed';
 }catch(e){status.textContent=e.stack;}

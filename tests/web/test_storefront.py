@@ -99,3 +99,14 @@ def test_all_module_imports_resolve(client):
             assert response.status_code == 200 and "javascript" in response.headers["Content-Type"]
             exports = re.findall(r"export (?:async )?(?:function|const) ([\w$]+)", response.text)
             assert set(name.strip() for name in names.split(",")) <= set(exports)
+
+
+def test_flow_documents(client, tmp_path, monkeypatch):
+    from kuznitsa import pages
+    monkeypatch.setattr(pages, "FLOW_DOCS", tmp_path)
+    assert client.get("/flows").status_code == 200
+    assert client.get("/web-data/flows/flows").json()["sample"]
+    (tmp_path / "flows.json").write_text('{"version":1,"flows":[]}')
+    assert client.get("/web-data/flows/flows").json()["flows"] == []
+    assert client.get("/web-data/flows/examples").status_code == 404
+    assert client.get("/web-data/flows/unpublished").status_code == 404

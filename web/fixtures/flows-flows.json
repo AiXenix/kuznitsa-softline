@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "sample": true,
+  "pipeline": [
+    {
+      "step": "normalize",
+      "title": "Нормализация"
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул"
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания"
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры"
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента"
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса"
+    },
+    {
+      "step": "plan",
+      "title": "План поиска"
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов"
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений"
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии"
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором"
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек"
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина"
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа"
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость"
+    }
+  ],
+  "flows": [
+    {
+      "id": "sku",
+      "kind": "intent",
+      "title": "Поиск по артикулу",
+      "summary": "Как код из прайса приводит к варианту лицензии.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Запрос покупателя",
+          "detail": "Артикул из прайса или заказа.",
+          "code": null
+        },
+        {
+          "id": "1",
+          "type": "step",
+          "title": "Нормализация",
+          "detail": "Приведение текста к форме поиска.",
+          "code": "kuznitsa/text.py:normalize"
+        },
+        {
+          "id": "2",
+          "type": "decision",
+          "title": "Артикул найден?",
+          "detail": "Поиск предложения по коду.",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "3",
+          "type": "data",
+          "title": "Предложение каталога",
+          "detail": "Лицензия, цена и условия поставки.",
+          "code": null
+        },
+        {
+          "id": "4",
+          "type": "fallback",
+          "title": "Поиск по тексту",
+          "detail": "Движок продолжает разбор запроса.",
+          "code": null
+        },
+        {
+          "id": "5",
+          "type": "output",
+          "title": "Выдача и трасса",
+          "detail": "Карточки с разбором подбора.",
+          "code": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": "Да"
+        },
+        {
+          "from": "2",
+          "to": "4",
+          "label": "Нет"
+        },
+        {
+          "from": "3",
+          "to": "5",
+          "label": ""
+        },
+        {
+          "from": "4",
+          "to": "5",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Точное совпадение проверяется по индексу артикулов."
+      ],
+      "business": [
+        "Покупатель получает цену конкретного варианта лицензии."
+      ]
+    }
+  ]
+}

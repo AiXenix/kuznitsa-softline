@@ -317,5 +317,49 @@
     "q": "",
     "action": "open",
     "say": "Смотрим стоимость и долю кэша."
+  },
+  {
+    "id": "priority-1",
+    "route": "priority",
+    "title": "Правило и предпросмотр",
+    "page": "/admin#settings?section=priorities&scene=gov",
+    "q": "",
+    "profile": "guest",
+    "action": "open",
+    "mode": "fast",
+    "say": "Сравните выдачу в предпросмотре и сохраните выключенное правило."
+  },
+  {
+    "id": "priority-2",
+    "route": "priority",
+    "title": "Включение правила",
+    "page": "/admin#settings?section=priorities",
+    "q": "",
+    "profile": "guest",
+    "action": "open",
+    "mode": "fast",
+    "say": "Включите сохранённое правило в таблице."
+  },
+  {
+    "id": "priority-3",
+    "route": "priority",
+    "title": "Госзаказчик",
+    "page": "/",
+    "q": "антивирус на 30 пк",
+    "profile": "gov_clinic",
+    "action": "search",
+    "mode": "fast",
+    "say": "Раскройте шаг правил магазина и проверьте срабатывание приоритета."
+  },
+  {
+    "id": "priority-4",
+    "route": "priority",
+    "title": "Гость",
+    "page": "/",
+    "q": "антивирус на 30 пк",
+    "profile": "guest",
+    "action": "search",
+    "mode": "fast",
+    "say": "У гостя правило для госзаказчиков не действует."
   }
 ]

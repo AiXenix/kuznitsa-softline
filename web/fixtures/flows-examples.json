@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "by_flow": {
+    "sku": [
+      {
+        "q": "KL4867RAQFR",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.8
+      }
+    ]
+  }
+}

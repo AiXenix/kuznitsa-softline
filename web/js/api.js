@@ -7,7 +7,8 @@ export async function api(url, body, options={}) {
   } catch { throw Error('Нет связи с сервером. Повторите попытку.'); }
   if (!response.ok) {
     const error = await response.json().catch(() => null);
-    throw Error(error?.error?.message || 'Не удалось загрузить данные.');
+    const failure=Error(error?.error?.message || 'Не удалось загрузить данные.');
+    failure.status=response.status;failure.code=error?.error?.code;throw failure;
   }
   return response.status === 204 ? null : response.json();
 }

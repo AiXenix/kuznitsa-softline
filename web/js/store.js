@@ -42,7 +42,7 @@ async function store() {
     e.currentTarget.textContent=expanded ? 'Свернуть' : 'Развернуть';
     if(expanded)$('traceWidth').focus({preventScroll:true});
   };
-  const params=()=>({profile_id:profile.value,category:category.value,session_id:state.session});
+  const params=()=>({profile_id:profile.value,mode:$('mode').value,category:category.value,session_id:state.session});
   function save(req,kind='',replace=false,profiles=[]) {
     const base=new URL(location.href);
     if(kind==='profiles' && profiles.length)base.searchParams.set('profiles',profiles.join(','));

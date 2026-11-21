@@ -9,7 +9,7 @@ export async function record(r, type, card={}, block, session=state.session,acti
   if (active?.r === r && ['click','cart','lead','order','reformulate'].includes(type)) active = null;
   const body = {type,search_id:r.search_id,session_id:session,client_id:r.profile?.id,
     card_id:card.card_id,offer_id:card.offer?.offer_id,position:card.position,qty:card.calc?.qty,
-    value:card.calc?.total,payload:{block,action}};
+    value:card.calc?.total,payload:{block,action,...(card.action?.type==='repeat_order'?{action:card.action.type,order_id:card.action.order_id}:{})}};
   if(type==='impression')body.payload.cards=(r.blocks || []).flatMap(b=>(b.items || []).map(i=>(i.card || i).offer?.offer_id)).filter(Boolean);
   await api('/api/event',body,{keepalive:true});
 }

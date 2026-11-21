@@ -81,6 +81,7 @@ async function styleguide(main) {
   const states=await api('/web/fixtures/states.json');
   for(const [kind,text] of Object.entries(states))stateBox(main,text,kind);
 }
+import {flows} from './flows.js';
 export async function page(main) {
   if(location.pathname.startsWith('/card/')){
     const c=await api('/api/card/'+location.pathname.split('/').pop());
@@ -91,6 +92,7 @@ export async function page(main) {
   if(location.pathname==='/admin' || location.pathname.startsWith('/inspect/'))await loadMeta().catch(()=>null);
   switch(location.pathname) {
     case '/scenarios':return gallery(main);
+    case '/flows':return flows(main);
     case '/about':return about(main);
     case '/styleguide':return styleguide(main);
     case '/admin':return consolePage(main);
