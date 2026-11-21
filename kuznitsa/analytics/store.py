@@ -51,6 +51,10 @@ class Journal:
               margin_value REAL,payload_json TEXT);
             CREATE TABLE IF NOT EXISTS kv(key TEXT PRIMARY KEY, value TEXT, updated REAL);
             CREATE TABLE IF NOT EXISTS rules(id TEXT PRIMARY KEY, kind TEXT, conditions TEXT, action TEXT, enabled INTEGER);
+            CREATE TABLE IF NOT EXISTS priorities(id TEXT PRIMARY KEY, body TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS priorities_audit(
+              version INTEGER PRIMARY KEY AUTOINCREMENT, rule_id TEXT, operation TEXT, ts INTEGER,
+              author TEXT, before_json TEXT, after_json TEXT);
             CREATE TABLE IF NOT EXISTS insights(id TEXT PRIMARY KEY, type TEXT, status TEXT, body TEXT, verification TEXT);
             CREATE TABLE IF NOT EXISTS replays(id TEXT PRIMARY KEY, mode TEXT, fingerprint TEXT, limit_n INTEGER, created REAL);
             CREATE TABLE IF NOT EXISTS replay_results(run_id TEXT, q TEXT, result TEXT, PRIMARY KEY(run_id,q));

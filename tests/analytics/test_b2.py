@@ -93,6 +93,16 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
     assert sum(bool(ids) or solved.get(story,False) for story,ids in stories.items())>=15
     assert all(stories[k] or solved.get(k) for k in ("INS-10","INS-11","INS-12","INS-17"))
     items=insights.listing(j)
+    # INS-08: подтверждение относится к SKU именно из проверенной пятёрки.
+    for item in items:
+        proof=item["evidence"]
+        for q,cards in proof.get("shown_defects",{}).items():
+            top=insights.products(j.detail(proof["checks"][q]["search_id"]))[:5]
+            displayed={(c["card_id"],c["offer"]["offer_id"]) for c in top}
+            assert item["action"]["payload_json"]["field"]=="registry"
+            for c in cards:
+                assert (c["card_id"],c["offer_id"]) in displayed
+                assert e.catalog.offers_by_id[c["offer_id"]].registry is None
     end=j.rows("SELECT max(ts) ts FROM active_history")[0]["ts"]
     turnover=j.rows("""SELECT sum(value) rub FROM events JOIN active_history s USING(search_id)
                        WHERE type='order' AND s.ts>?""",(end-30*86400,))[0]["rub"]
