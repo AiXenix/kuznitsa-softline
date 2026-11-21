@@ -112,6 +112,16 @@ class Parser:
                     for ed in row.get("editions",[]):
                         for alias in [ed["id"],ed.get("title",""),ed.get("name",""),*ed.get("aliases",[])]:
                             editions.add(alias,ed["id"])
+        # A legal name can be followed by its brand in parentheses. Add only
+        # unambiguous derived names after *all* curated aliases have priority.
+        legal_names=defaultdict(set)
+        for ident,row in self.kb["vendors"].items():
+            name,separator,_=str(row.get("name_ru") or "").partition("(")
+            if separator and len(normalize(name).split())>=2:
+                legal_names[normalize(name)].add(ident)
+        for name,owners in legal_names.items():
+            if len(owners)==1:
+                self.index["vendors"].add(name,next(iter(owners)))
         for alias,(fid,_) in SKU_PREFIXES.items():
             if fid in self.editions:
                 self.index["families"].add(alias,fid)

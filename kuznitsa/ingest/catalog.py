@@ -29,7 +29,7 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     files=list(map(Path,files))
     out=Path(out)
     if report_path and Path(report_path).resolve() in {
-        *(p.resolve() for p in files), (out/"catalog.jsonl").resolve(), (out/"kb_auto.yaml").resolve(), (out/"import_ai.sqlite").resolve(), (out/"import_ai.jsonl").resolve()
+        *(p.resolve() for p in files), (out/"catalog.jsonl").resolve(), (out/"kb_auto.yaml").resolve(), (out/"inactive_offers.jsonl").resolve(), (out/"import_ai.sqlite").resolve(), (out/"import_ai.jsonl").resolve()
     }:
         raise ValueError("Путь отчёта совпадает с каталогом или входным файлом")
     explicit=yaml.safe_load(Path(mapping).read_text()) if mapping else {}
@@ -138,9 +138,9 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
         out.mkdir(parents=True,exist_ok=True)
     with TemporaryDirectory(dir=None if dry_run else out) as tmp:
         stage=Path(tmp)
-        with (stage/"catalog.jsonl").open("w",encoding="utf8") as stream:
-            from .join import merge
-            from .source_fields import decorate,wire_attrs
+        with (stage/"catalog.jsonl").open("w",encoding="utf8") as stream, (stage/"inactive_offers.jsonl").open("w",encoding="utf8") as archive:
+            from .join import identifiers,merge
+            from .source_fields import decorate,wire_attrs,withdrawal
             rows=scan(False)
             if len(files)>1 or commerce_files or any(p.suffix.lower()==".xlsx" for p in files):
                 rows=merge(rows,merge_stats)
@@ -149,7 +149,15 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                 example=dict(file=label,row=num,name=str(row.get("name",""))[:220])
                 source=sources[label]
                 source["rows"]=source.get("rows",0)+1
-                if str(row.get("status","")).strip().casefold() in {"снято","снят с продажи","архив","discontinued","inactive"}:
+                reason=withdrawal(row)
+                if reason:
+                    ids=identifiers(row)
+                    attrs=dict(row["attrs"]) if isinstance(row.get("attrs"),dict) else {}
+                    archived={**example,"name":row.get("name"),"sku":row.get("sku"),"vendor":row.get("vendor"),
+                              "source_id":next(iter(ids),None),"source_ids":ids,
+                              "attrs":{**attrs,"active":False,"sold":False},"reason":{reason[0]:reason[1]}}
+                    archive.write(json.dumps(archived,ensure_ascii=False,default=str)+"\n")
+                    counts["inactive"]+=1
                     counts["rejected"]+=1
                     issue("inactive",example)
                     continue
@@ -181,6 +189,9 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                             attrs.setdefault("source_id",extension["source_id"])
                     if not native:
                         extension=decorate(row)
+                        # A flat price table can repeat an article for several licensing bands.
+                        if row.get("sku") and not row.get("source_id") and ("qty_min" in row or "qty_max" in row):
+                            row["_tier"]=True
                         if extra:
                             row["attrs"]["extra"]=json.dumps(extra,ensure_ascii=False,default=str)
                     offer,evidence,pending=enricher.convert(row)
@@ -191,6 +202,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                             identity=row["_variant_identity"]
                         if row.get("_tier"):
                             identity+=f"|qty={row.get('qty_min','')}-{row.get('qty_max','')}"
+                            if offer.lic.metric:
+                                identity+="|metric="+offer.lic.metric
                         offer.offer_id=stable("o_",identity)
                 except (ValueError,TypeError,AttributeError,OverflowError) as exc:
                     counts["rejected"]+=1
@@ -309,16 +322,16 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
         if signals["margin"]<counts["offers"]:
             notes.append("Для части товаров маржа нейтральна. Загрузите маржу или закупочную цену.")
         report=dict(merge=merge_stats,currency=dict(usd_rub=rates.get("USD") or cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,exchange_rates=rates,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
-                    **{k:counts[k] for k in ("rows","offers","duplicates","rejected")},columns=columns,sources=sources,
+                    **{k:counts[k] for k in ("rows","offers","duplicates","rejected","inactive")},columns=columns,sources=sources,
                     recognized={k:recognized[k]/max(1,counts["offers"]) for k in ("vendor","family","edition","category","licence")},
                     auto={g:len(vals) for g,vals in auto.items()},issues=list(issues.values()),notes=notes,examples=examples,
                     unmatched={g:[dict(name=n,rows=c) for n,c in cnt.most_common()] for g,cnt in unmatched.items()})
         body=json.dumps(report,ensure_ascii=False,indent=2,default=str)
-        if not dry_run and counts["offers"]:
+        if not dry_run and (counts["offers"] or counts["inactive"] and (counts["inactive"]==counts["rows"] or not (out/"catalog.jsonl").exists())):
             (stage/"kb_auto.yaml").write_text(yaml.safe_dump(auto,allow_unicode=True,sort_keys=False))
             (stage/"import_report.json").write_text(body)
             with snapshot_lock(out,write=True):
-                for name in ("catalog.jsonl","kb_auto.yaml","import_ai.jsonl","import_report.json"):
+                for name in ("catalog.jsonl","inactive_offers.jsonl","kb_auto.yaml","import_ai.jsonl","import_report.json"):
                     os.replace(stage/name,out/name)
         if report_path:
             Path(report_path).write_text(body)

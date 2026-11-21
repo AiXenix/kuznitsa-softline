@@ -10,6 +10,7 @@ from fastapi.responses import JSONResponse
 from pydantic_core import to_json
 
 from kuznitsa.analytics.store import result_cards
+from kuznitsa.ingest.source_fields import supplier_metric
 from kuznitsa.config import WEIGHTS
 from kuznitsa.rank.business import ranked
 from kuznitsa.quote.parse import FileError, LIMIT, parse
@@ -47,6 +48,11 @@ def search_file(engine,data,name,profile_id,mode,session_id):
                     for key in {str(v).casefold() for v in (offer.sku,*codes(offer)) if v}:
                         supplier_codes[key].append(offer)
             candidates=supplier_codes.get(p["sku"].casefold(),[])
+            requested_metric=supplier_metric(p["unit"])
+            metric_conflict=False
+            if candidates and requested_metric:
+                candidates=[o for o in candidates if o.lic.metric==requested_metric]
+                metric_conflict=not candidates
             exact=None
             if len({o.family_id or o.offer_id for o in candidates})==1:
                 def preference(o):
@@ -63,6 +69,9 @@ def search_file(engine,data,name,profile_id,mode,session_id):
                 calc=card.get("calc") or {}
                 line={**line,"card":card,"status":"matched","total":calc.get("total"),
                       "unit_price":calc.get("unit_price"),"alternatives":[]}
+            elif metric_conflict:
+                line={**line,"card":None,"status":"not_found","total":None,"unit_price":None,"alternatives":[],
+                      "note":"У артикула нет предложения с указанной единицей лицензирования."}
             elif line.get("card"):
                 line={**line,"card":None,"status":"not_found","total":None,"unit_price":None,
                       "alternatives":[line["card"],*line["alternatives"]][:3],

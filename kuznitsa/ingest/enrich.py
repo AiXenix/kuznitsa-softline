@@ -129,17 +129,25 @@ class Enricher:
             offer=Offer.model_validate(columns)
             if (offer.price is None or offer.price > 0) and all(math.isfinite(n) for n in (offer.price or 0,offer.margin,offer.popularity)):
                 return offer,evidence,[]
-        vendor=str(raw("vendor_id") or raw("vendor") or "").strip()
-        hit=self.parser.lookup("vendors",vendor) if vendor else None
-        vid=hit.value if hit else stable("auto_v_",normalize(vendor)) if vendor else None
-        family=str(raw("family_id") or raw("family_name") or "")
+        kb=self.parser.kb
+        vendor_ref=str(raw("vendor_id") or "").strip()
+        vendor=str(raw("vendor") or "").strip()
+        vid=vendor_ref if vendor_ref in kb["vendors"] else None
+        if not vid and vendor_ref and not vendor:
+            vid=self.parser.index["vendors"].aliases.get(normalize(vendor_ref))
+        if not vid and vendor:
+            hit=self.parser.lookup("vendors",vendor)
+            vid=hit.value if hit else stable("auto_v_",normalize(vendor))
+        family_ref=str(raw("family_id") or "")
+        family=family_ref if family_ref in kb["families"] else str(raw("family_name") or family_ref)
         parsed=self.parser.parse(name,vid,family)
         base={**parsed,**evidence}
-        kb=self.parser.kb
         fid=parsed["family_id"].value if "family_id" in parsed else None
         f=kb["families"].get(fid,{})
         vid=vid or f.get("vendor") or (parsed["vendor_id"].value if "vendor_id" in parsed else None)
-        vendor_name=raw("vendor") or kb["vendors"].get(vid,{}).get("name") or vendor
+        if not vid and vendor_ref:
+            vid=stable("auto_v_",normalize(vendor_ref))
+        vendor_name=vendor or kb["vendors"].get(vid,{}).get("name") or vendor_ref
         path=sequence(raw("category_path",[]))
         ref=str(raw("category_id",""))
         path=path or category_path(self.categories,ref) or category_path(self.categories,str(raw("category_path","")))
