@@ -1,0 +1,300 @@
+{"id": "dev-0001", "q": "антивирус на 30 пк", "profile": "guest", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 16.29}
+{"id": "dev-0002", "q": "антивирус на 30 пк", "profile": "smb_trade", "intent": "category", "first": "У вашей лицензии Kaspersky Small Office Security предел 25 мест. Для 30 мест нужен переход на Kaspersky Endpoint Security для бизнеса.", "blocks": ["my_licenses", "products"], "ms": 5.06}
+{"id": "dev-0003", "q": "антивирус на 30 пк", "profile": "gov_clinic", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Total", "blocks": ["products"], "ms": 8.32}
+{"id": "dev-0004", "q": "антивирус на 30 пк", "profile": "edu_university", "intent": "category", "first": "Dr.Web Enterprise Security Suite Комплексная защита", "blocks": ["products"], "ms": 6.59}
+{"id": "dev-0006", "q": "офисный пакет", "profile": "guest", "intent": "category", "first": "Microsoft Office Home and Business", "blocks": ["products"], "ms": 18.19}
+{"id": "dev-0007", "q": "офисный пакет", "profile": "smb_trade", "intent": "category", "first": "Р7-Офис Профессиональный", "blocks": ["products"], "ms": 4.65}
+{"id": "dev-0008", "q": "офисный пакет", "profile": "gov_clinic", "intent": "category", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["products"], "ms": 4.97}
+{"id": "dev-0009", "q": "офисный пакет", "profile": "edu_university", "intent": "category", "first": "МойОфис Стандартный Образование", "blocks": ["products"], "ms": 5.23}
+{"id": "dev-0011", "q": "удаленный доступ", "profile": "guest", "intent": "category", "first": "Ассистент Стандартный", "blocks": ["products"], "ms": 11.14}
+{"id": "dev-0012", "q": "удаленный доступ", "profile": "gov_clinic", "intent": "category", "first": "RuDesktop Standard", "blocks": ["products"], "ms": 8.44}
+{"id": "dev-0013", "q": "удаленный доступ", "profile": "it_company", "intent": "category", "first": "RuDesktop Standard", "blocks": ["products"], "ms": 5.15}
+{"id": "dev-0014", "q": "удаленный доступ", "profile": "retail_logistics", "intent": "category", "first": "RuDesktop Standard", "blocks": ["products"], "ms": 5.02}
+{"id": "dev-0015", "q": "удаленный доступ", "profile": "fin_bank", "intent": "category", "first": "RuDesktop Standard", "blocks": ["products"], "ms": 6.4}
+{"id": "dev-0016", "q": "резервное копирование", "profile": "guest", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 9.48}
+{"id": "dev-0017", "q": "резервное копирование", "profile": "gov_clinic", "intent": "category", "first": "RuBackup Стандарт", "blocks": ["products"], "ms": 5.45}
+{"id": "dev-0018", "q": "резервное копирование", "profile": "ent_factory", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 4.03}
+{"id": "dev-0019", "q": "резервное копирование", "profile": "retail_logistics", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 4.07}
+{"id": "dev-0020", "q": "резервное копирование", "profile": "design_bureau", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 4.37}
+{"id": "dev-0021", "q": "видеоконференцсвязь", "profile": "guest", "intent": "category", "first": "IVA MCU", "blocks": ["products"], "ms": 9.3}
+{"id": "dev-0022", "q": "видеоконференцсвязь", "profile": "edu_university", "intent": "category", "first": "МТС Линк Встречи Облачная", "blocks": ["products"], "ms": 5.39}
+{"id": "dev-0023", "q": "видеоконференцсвязь", "profile": "it_company", "intent": "category", "first": "Контур.Толк Бизнес", "blocks": ["products"], "ms": 6.82}
+{"id": "dev-0024", "q": "видеоконференцсвязь", "profile": "gov_clinic", "intent": "category", "first": "IVA MCU", "blocks": ["products"], "ms": 6.84}
+{"id": "dev-0025", "q": "видеоконференцсвязь", "profile": "ent_factory", "intent": "category", "first": "IVA MCU", "blocks": ["products"], "ms": 4.92}
+{"id": "dev-0026", "q": "антивирус", "profile": "smb_trade", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 7.94}
+{"id": "dev-0027", "q": "антивирус", "profile": "individual_freelancer", "intent": "category", "first": "Kaspersky Plus", "blocks": ["products"], "ms": 4.18}
+{"id": "dev-0028", "q": "антивирус", "profile": "it_company", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 4.75}
+{"id": "dev-0029", "q": "антивирус", "profile": "gov_clinic", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products"], "ms": 4.2}
+{"id": "dev-0030", "q": "антивирус", "profile": "edu_university", "intent": "category", "first": "Dr.Web Enterprise Security Suite Комплексная защита", "blocks": ["products"], "ms": 5.49}
+{"id": "dev-0031", "q": "защита от утечек", "profile": "guest", "intent": "category", "first": "InfoWatch Traffic Monitor", "blocks": ["products"], "ms": 10.89}
+{"id": "dev-0032", "q": "защита от утечек", "profile": "fin_bank", "intent": "category", "first": "InfoWatch Traffic Monitor", "blocks": ["my_licenses", "products"], "ms": 4.85}
+{"id": "dev-0033", "q": "защита от утечек", "profile": "ent_factory", "intent": "category", "first": "InfoWatch Traffic Monitor", "blocks": ["products"], "ms": 4.41}
+{"id": "dev-0034", "q": "защита от утечек", "profile": "smb_trade", "intent": "category", "first": "InfoWatch Traffic Monitor", "blocks": ["products"], "ms": 4.73}
+{"id": "dev-0035", "q": "защита от утечек", "profile": "gov_clinic", "intent": "category", "first": "СёрчИнформ КИБ", "blocks": ["products"], "ms": 5.21}
+{"id": "dev-0036", "q": "субд для сервера", "profile": "guest", "intent": "category", "first": "Postgres Pro Standard", "blocks": ["products"], "ms": 8.71}
+{"id": "dev-0037", "q": "субд для сервера", "profile": "fin_bank", "intent": "category", "first": "Postgres Pro Certified", "blocks": ["products"], "ms": 4.55}
+{"id": "dev-0038", "q": "субд для сервера", "profile": "ent_factory", "intent": "category", "first": "Postgres Pro Standard", "blocks": ["products"], "ms": 4.45}
+{"id": "dev-0039", "q": "субд для сервера", "profile": "gov_clinic", "intent": "category", "first": "Postgres Pro Standard", "blocks": ["products"], "ms": 4.47}
+{"id": "dev-0040", "q": "субд для сервера", "profile": "it_company", "intent": "category", "first": "Postgres Pro Standard", "blocks": ["products"], "ms": 3.66}
+{"id": "dev-0041", "q": "1с лицензии на 10 человек", "profile": "guest", "intent": "product", "first": "1С:Предприятие 8 Клиентские лицензии КОРП", "blocks": ["products", "crosssell"], "ms": 9.25}
+{"id": "dev-0042", "q": "1с лицензии на 10 человек", "profile": "accounting_firm", "intent": "product", "first": "1С:Предприятие 8 Клиентские лицензии КОРП", "blocks": ["products", "crosssell"], "ms": 6.41}
+{"id": "dev-0043", "q": "1с лицензии на 10 человек", "profile": "smb_trade", "intent": "product", "first": "1С:Предприятие 8 Клиентские лицензии КОРП", "blocks": ["products", "crosssell"], "ms": 4.64}
+{"id": "dev-0044", "q": "1с лицензии на 10 человек", "profile": "ent_factory", "intent": "product", "first": "1С:Предприятие 8 Клиентские лицензии КОРП", "blocks": ["products", "crosssell"], "ms": 7.05}
+{"id": "dev-0045", "q": "1с лицензии на 10 человек", "profile": "retail_logistics", "intent": "product", "first": "1С:Предприятие 8 Клиентские лицензии КОРП", "blocks": ["products", "crosssell"], "ms": 6.04}
+{"id": "dev-0046", "q": "сапр 10 лицензий", "profile": "guest", "intent": "category", "first": "Платформа nanoCAD Базовая", "blocks": ["products"], "ms": 10.79}
+{"id": "dev-0047", "q": "сапр 10 лицензий", "profile": "design_bureau", "intent": "category", "first": "Платформа nanoCAD Модуль СПДС", "blocks": ["products"], "ms": 4.25}
+{"id": "dev-0048", "q": "сапр 10 лицензий", "profile": "edu_university", "intent": "category", "first": "Платформа nanoCAD Базовая", "blocks": ["products"], "ms": 6.38}
+{"id": "dev-0049", "q": "сапр 10 лицензий", "profile": "ent_factory", "intent": "category", "first": "СПРУТКАМ X Expert", "blocks": ["products"], "ms": 8.09}
+{"id": "dev-0050", "q": "сапр 10 лицензий", "profile": "gov_clinic", "intent": "category", "first": "Платформа nanoCAD Базовая", "blocks": ["products"], "ms": 5.98}
+{"id": "dev-0051", "q": "Kaspersky Endpoint Security для бизнеса", "profile": "guest", "intent": "product", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products", "crosssell"], "ms": 12.71}
+{"id": "dev-0052", "q": "Astra Linux Special Edition", "profile": "guest", "intent": "product", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["products", "crosssell"], "ms": 12.18}
+{"id": "dev-0053", "q": "1С:Бухгалтерия 8", "profile": "guest", "intent": "product", "first": "1С:Бухгалтерия 8 Базовая", "blocks": ["products", "crosssell"], "ms": 10.5}
+{"id": "dev-0054", "q": "все продукты Лаборатории Касперского", "profile": "guest", "intent": "vendor", "first": "Kaspersky ASAP Cloud", "blocks": ["products"], "ms": 12.31}
+{"id": "dev-0055", "q": "продукты СКБ Контур", "profile": "guest", "intent": "vendor", "first": "Контур.Экстерн Оптимальный плюс", "blocks": ["products"], "ms": 7.85}
+{"id": "dev-0056", "q": "Positive Technologies", "profile": "ent_factory", "intent": "vendor", "first": "Positive Technologies MaxPatrol SIEM", "blocks": ["my_licenses", "products"], "ms": 7.62}
+{"id": "dev-0057", "q": "МойОфис Стандартный 2", "profile": "guest", "intent": "product", "first": "МойОфис Стандартный 2 Для бизнеса", "blocks": ["products", "crosssell"], "ms": 9.08}
+{"id": "dev-0058", "q": "Kaspersky Endpoint Security Расширенный", "profile": "guest", "intent": "product", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products", "crosssell"], "ms": 8.41}
+{"id": "dev-0059", "q": "КриптоПро CSP 5.0", "profile": "guest", "intent": "product", "first": "КриптоПро CSP 5.0 Клиентская", "blocks": ["products", "crosssell"], "ms": 8.23}
+{"id": "dev-0060", "q": "Windows Server 2022 Standard", "profile": "guest", "intent": "product", "first": "Microsoft Windows Server 2022 Standard", "blocks": ["products", "analogs", "crosssell"], "ms": 13.97}
+{"id": "dev-0061", "q": "межсетевые экраны NGFW", "profile": "guest", "intent": "category", "first": "Ideco NGFW Standard", "blocks": ["products"], "ms": 12.03}
+{"id": "dev-0062", "q": "системы электронного документооборота СЭД", "profile": "guest", "intent": "category", "first": "1С:Документооборот 8 ПРОФ", "blocks": ["products"], "ms": 11.14}
+{"id": "dev-0063", "q": "модуль 1С-Отчетность", "profile": "accounting_firm", "intent": "product", "first": "1С-Отчётность Основной", "blocks": ["products", "crosssell"], "ms": 4.7}
+{"id": "dev-0066", "q": "KL4867RAQFR", "profile": "guest", "intent": "sku", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products", "crosssell"], "ms": 6.36}
+{"id": "dev-0067", "q": "FQC-10572", "profile": "guest", "intent": "sku", "first": "Microsoft Windows 11 Pro", "blocks": ["products", "crosssell"], "ms": 4.99}
+{"id": "dev-0068", "q": "KL4867", "profile": "guest", "intent": "sku", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products", "crosssell"], "ms": 6.36}
+{"id": "dev-0069", "q": "артикул 4601546092816", "profile": "accounting_firm", "intent": "sku", "first": "1С:Бухгалтерия 8 Базовая", "blocks": ["products", "crosssell"], "ms": 4.23}
+{"id": "dev-0070", "q": "номер в реестре 369", "profile": "gov_clinic", "intent": "sku", "first": "Техподдержка Группы Астра Стандартная", "blocks": ["not_in_catalog", "products"], "ms": 85.66}
+{"id": "dev-0071", "q": "окпд2 58.29.11", "profile": "gov_clinic", "intent": "compliance", "first": "Astra Linux Special Edition «Смоленск»", "blocks": ["answer", "products"], "ms": 5.5}
+{"id": "dev-0072", "q": "ктру 58.29.29.000", "profile": "gov_clinic", "intent": "compliance", "first": "ГИС Панорама Мини", "blocks": ["answer", "products"], "ms": 34.82}
+{"id": "dev-0073", "q": "КL4867RАQFR", "profile": "guest", "intent": "sku", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products", "crosssell"], "ms": 6.88}
+{"id": "dev-0074", "q": "FQС-10572", "profile": "guest", "intent": "sku", "first": "Microsoft Windows 11 Pro", "blocks": ["products", "crosssell"], "ms": 4.13}
+{"id": "dev-0075", "q": "Р7-ОFFIСЕ", "profile": "guest", "intent": "product", "first": "Р7-Офис Профессиональный", "blocks": ["products", "crosssell"], "ms": 6.94}
+{"id": "dev-0076", "q": "каспер продление на 30 компов", "profile": "smb_trade", "intent": "renewal", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products", "crosssell"], "ms": 65.95}
+{"id": "dev-0077", "q": "продлёнка др веб 100 пк", "profile": "guest", "intent": "renewal", "first": "Dr.Web Enterprise Security Suite Защита рабочих станций", "blocks": ["products", "crosssell"], "ms": 25.76}
+{"id": "dev-0078", "q": "продлить р7 офис на 25 пользователей", "profile": "guest", "intent": "renewal", "first": "Р7-Офис Профессиональный", "blocks": ["products", "crosssell"], "ms": 7.21}
+{"id": "dev-0079", "q": "пролонгация кибер бэкап 5 серверов", "profile": "retail_logistics", "intent": "renewal", "first": "Кибер Бэкап Расширенный", "blocks": ["products", "crosssell"], "ms": 20.88}
+{"id": "dev-0080", "q": "продлить 1с итс проф на год", "profile": "smb_trade", "intent": "renewal", "first": "1С:ИТС ПРОФ", "blocks": ["products", "crosssell"], "ms": 5.25}
+{"id": "dev-0081", "q": "антивирус на 100 компьютеров на 2 года", "profile": "guest", "intent": "category", "first": "Kaspersky Endpoint Security Cloud Pro", "blocks": ["products", "lead"], "ms": 8.05}
+{"id": "dev-0082", "q": "мойофис стандартный 30 мест бессрочно", "profile": "guest", "intent": "product", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["products", "lead", "crosssell"], "ms": 18.09}
+{"id": "dev-0083", "q": "р7 офис бессрочный на 50 пк", "profile": "guest", "intent": "product", "first": "Р7-Офис Профессиональный", "blocks": ["products", "lead", "crosssell"], "ms": 7.52}
+{"id": "dev-0084", "q": "криптопро 5 годовая лицензия на 20 пк", "profile": "accounting_firm", "intent": "product", "first": "КриптоПро CSP Клиентская", "blocks": ["my_licenses", "products", "crosssell"], "ms": 5.08}
+{"id": "dev-0085", "q": "долицензирование kes на 15 пк", "profile": "ent_factory", "intent": "license_ops", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products"], "ms": 4.68}
+{"id": "dev-0086", "q": "докупить 5 мест мой офис", "profile": "guest", "intent": "license_ops", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["products"], "ms": 15.31}
+{"id": "dev-0087", "q": "апгрейд 1с бухгалтерия базовая на проф", "profile": "guest", "intent": "license_ops", "first": "1С:Бухгалтерия 8 Базовая", "blocks": ["products"], "ms": 4.12}
+{"id": "dev-0088", "q": "переход с eset на касперский со скидкой 50 пк", "profile": "guest", "intent": "license_ops", "first": "Kaspersky Symphony Security", "blocks": ["products"], "ms": 24.37}
+{"id": "dev-0089", "q": "миграция с microsoft office на р7 со скидкой", "profile": "guest", "intent": "license_ops", "first": "Р7-Офис Профессиональный", "blocks": ["products"], "ms": 4.29}
+{"id": "dev-0090", "q": "windows server 16 ядер", "profile": "guest", "intent": "product", "first": "Microsoft Windows Server Standard", "blocks": ["products", "analogs", "crosssell"], "ms": 11.28}
+{"id": "dev-0091", "q": "postgres pro на 8 ядер", "profile": "guest", "intent": "product", "first": "Postgres Pro Certified", "blocks": ["products", "crosssell"], "ms": 8.28}
+{"id": "dev-0092", "q": "виртуализация на 4 сокета", "profile": "ent_factory", "intent": "category", "first": "РЕД Виртуализация", "blocks": ["products"], "ms": 10.51}
+{"id": "dev-0093", "q": "кибер бэкап на 10 виртуальных машин", "profile": "guest", "intent": "product", "first": "Кибер Бэкап Стандартный", "blocks": ["products", "crosssell"], "ms": 6.22}
+{"id": "dev-0094", "q": "почтовый сервер на 200 почтовых ящиков", "profile": "guest", "intent": "category", "first": "RuPost", "blocks": ["products"], "ms": 7.27}
+{"id": "dev-0095", "q": "нанокад сетевая плавающая лицензия", "profile": "design_bureau", "intent": "product", "first": "Платформа nanoCAD Модуль СПДС", "blocks": ["my_licenses", "products", "crosssell"], "ms": 11.17}
+{"id": "dev-0096", "q": "компас 3d плавающая лицензия 5 шт", "profile": "ent_factory", "intent": "product", "first": "АСКОН КОМПАС 3D", "blocks": ["products", "crosssell"], "ms": 10.69}
+{"id": "dev-0097", "q": "rds cal 10 пользователей", "profile": "accounting_firm", "intent": "product", "first": "Microsoft Windows Server RDS CAL Device", "blocks": ["products", "analogs", "crosssell"], "ms": 9.49}
+{"id": "dev-0098", "q": "windows server device cal 25", "profile": "guest", "intent": "product", "first": "Microsoft Windows Server CAL Device", "blocks": ["products", "analogs", "crosssell"], "ms": 13.8}
+{"id": "dev-0099", "q": "астра линукс для вуза 100 пк", "profile": "edu_university", "intent": "product", "first": "Astra Linux Special Edition «Смоленск»", "blocks": ["products", "crosssell"], "ms": 9.79}
+{"id": "dev-0100", "q": "антивирус для школы на 40 компов", "profile": "guest", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Расширенный", "blocks": ["products"], "ms": 10.67}
+{"id": "dev-0101", "q": "офис без ндс из реестра", "profile": "guest", "intent": "compliance", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["answer", "products"], "ms": 9.11}
+{"id": "dev-0102", "q": "антивирус без ндс для юрлиц", "profile": "smb_trade", "intent": "compliance", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["answer", "products"], "ms": 8.72}
+{"id": "dev-0103", "q": "мои лицензии", "profile": "smb_trade", "intent": "account", "first": "Kaspersky Small Office Security", "blocks": ["my_licenses"], "ms": 3.26}
+{"id": "dev-0104", "q": "что у нас скоро истекает", "profile": "gov_clinic", "intent": "account", "first": "Kaspersky Endpoint Security для Linux", "blocks": ["my_licenses"], "ms": 14.37}
+{"id": "dev-0105", "q": "история заказов", "profile": "guest", "intent": "account", "first": null, "blocks": ["answer", "clarify"], "ms": 1.63}
+{"id": "dev-0106", "q": "повторить прошлый заказ антивируса", "profile": "edu_university", "intent": "account", "first": "Dr.Web Enterprise Security Suite Комплексная защита", "blocks": ["products", "answer", "my_licenses"], "ms": 12.66}
+{"id": "dev-0107", "q": "такая же лицензия кибер бэкап еще на 5 серверов", "profile": "retail_logistics", "intent": "license_ops", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 22.94}
+{"id": "dev-0108", "q": "сдача отчетности", "profile": "accounting_firm", "intent": "category", "first": "Контур.Экстерн Оптимальный плюс", "blocks": ["products"], "ms": 11.72}
+{"id": "dev-0109", "q": "криптопро", "profile": "accounting_firm", "intent": "product", "first": "КриптоПро CSP Клиентская", "blocks": ["my_licenses", "products", "crosssell"], "ms": 4.51}
+{"id": "dev-0110", "q": "kaspersky small office security на 40 пк", "profile": "guest", "intent": "product", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products", "crosssell"], "ms": 7.12}
+{"id": "dev-0111", "q": "российский аналог microsoft office", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 6.11}
+{"id": "dev-0112", "q": "замена autocad из реестра", "profile": "design_bureau", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 4.78}
+{"id": "dev-0113", "q": "аналог vmware vsphere российский", "profile": "ent_factory", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 6.86}
+{"id": "dev-0114", "q": "чем заменить zoom для компании", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 5.79}
+{"id": "dev-0115", "q": "российский аналог jira и confluence", "profile": "it_company", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 7.99}
+{"id": "dev-0116", "q": "замена teamviewer для юрлиц", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 6.5}
+{"id": "dev-0117", "q": "autocad купить", "profile": "design_bureau", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 3.86}
+{"id": "dev-0118", "q": "vmware vsphere лицензия", "profile": "guest", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 5.43}
+{"id": "dev-0119", "q": "adobe photoshop для юрлиц", "profile": "guest", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 4.55}
+{"id": "dev-0120", "q": "veeam backup enterprise", "profile": "guest", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 5.12}
+{"id": "dev-0121", "q": "microsoft windows 11 pro", "profile": "guest", "intent": "product", "first": "Microsoft Windows 11 Pro", "blocks": ["products", "analogs", "crosssell"], "ms": 11.12}
+{"id": "dev-0122", "q": "импортозамещение microsoft под ключ", "profile": "ent_factory", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 7.8}
+{"id": "dev-0123", "q": "замена active directory и exchange", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 9.91}
+{"id": "dev-0124", "q": "российский аналог автокада с поддержкой dwg", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 4.04}
+{"id": "dev-0125", "q": "российский аналог ms project файлы mpp", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 3.64}
+{"id": "dev-0126", "q": "отечественная операционная система", "profile": "guest", "intent": "category", "first": "РЕД ОС Рабочая станция Стандартная", "blocks": ["products"], "ms": 9.34}
+{"id": "dev-0127", "q": "postgresql с техподдержкой для юрлиц", "profile": "guest", "intent": "product", "first": "СУБД Tantor SE для 1С", "blocks": ["products", "crosssell"], "ms": 9.48}
+{"id": "dev-0128", "q": "nginx коммерческая версия рф", "profile": "it_company", "intent": "product", "first": "Angie PRO", "blocks": ["products", "crosssell"], "ms": 8.8}
+{"id": "dev-0129", "q": "антивирус из реестра минцифры", "profile": "guest", "intent": "compliance", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["answer", "products"], "ms": 7.1}
+{"id": "dev-0130", "q": "астра линукс с сертификатом фстэк", "profile": "gov_clinic", "intent": "compliance", "first": "Astra Linux Special Edition «Смоленск»", "blocks": ["answer", "products"], "ms": 3.87}
+{"id": "dev-0131", "q": "межсетевой экран фстэк 4 класс", "profile": "ent_factory", "intent": "compliance", "first": "АПКШ Континент 4 АП", "blocks": ["answer", "products"], "ms": 8.04}
+{"id": "dev-0132", "q": "криптопро с сертификатом фсб", "profile": "accounting_firm", "intent": "compliance", "first": "КриптоПро CSP Клиентская", "blocks": ["answer", "products"], "ms": 3.17}
+{"id": "dev-0133", "q": "vpn гост фсб для филиалов", "profile": "fin_bank", "intent": "compliance", "first": "АПКШ Континент 4 NGFW", "blocks": ["answer", "products"], "ms": 7.91}
+{"id": "dev-0136", "q": "офис для закупки по 44 фз", "profile": "gov_clinic", "intent": "compliance", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["answer", "products"], "ms": 9.3}
+{"id": "dev-0137", "q": "ос для гостайны сертификат минобороны", "profile": "guest", "intent": "compliance", "first": "Astra Linux Special Edition «Орёл»", "blocks": ["answer", "products"], "ms": 9.61}
+{"id": "dev-0138", "q": "требования 683-п цб рф гост 57580 программное обеспечение", "profile": "fin_bank", "intent": "compliance", "first": "InfoWatch Traffic Monitor", "blocks": ["answer", "products"], "ms": 68.55}
+{"id": "dev-0139", "q": "входит ли р7 офис в реестр российского по", "profile": "gov_clinic", "intent": "question", "first": "Р7-Офис Профессиональный", "blocks": ["answer", "products"], "ms": 5.98}
+{"id": "dev-0140", "q": "бэкап для альт линукс", "profile": "edu_university", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 10.21}
+{"id": "dev-0141", "q": "офис для macos", "profile": "it_company", "intent": "category", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["products"], "ms": 9.1}
+{"id": "dev-0142", "q": "ос для процессоров эльбрус", "profile": "guest", "intent": "category", "first": "РЕД ОС Рабочая станция Стандартная", "blocks": ["products"], "ms": 7.96}
+{"id": "dev-0143", "q": "корпоративный мессенджер в закрытый контур", "profile": "ent_factory", "intent": "category", "first": "VK Teams", "blocks": ["products"], "ms": 8.08}
+{"id": "dev-0144", "q": "эдо с интеграцией в 1с", "profile": "smb_trade", "intent": "category", "first": "1С-ЭДО Пакеты документов", "blocks": ["products"], "ms": 3.26}
+{"id": "dev-0145", "q": "чем открыть dwg", "profile": "guest", "intent": "task", "first": "Платформа nanoCAD Базовая", "blocks": ["products"], "ms": 4.27}
+{"id": "dev-0146", "q": "чтобы сотрудники не сливали базу клиентов", "profile": "smb_trade", "intent": "task", "first": "InfoWatch Traffic Monitor", "blocks": ["products"], "ms": 4.35}
+{"id": "dev-0147", "q": "запретить копирование на флешки", "profile": "guest", "intent": "task", "first": "Dallas Lock 8.0-C", "blocks": ["products"], "ms": 9.76}
+{"id": "dev-0148", "q": "подписывать кадровые документы с удаленщиками", "profile": "it_company", "intent": "task", "first": "СБИС Saby ЭДО", "blocks": ["products"], "ms": 6.82}
+{"id": "dev-0149", "q": "распознать сканы паспортов и накладных в текст", "profile": "guest", "intent": "task", "first": "ContentCapture Standard", "blocks": ["products"], "ms": 12.3}
+{"id": "dev-0150", "q": "программа для видеосовещаний на 100 человек", "profile": "guest", "intent": "task", "first": "МТС Линк Встречи Облачная", "blocks": ["products"], "ms": 6.21}
+{"id": "dev-0151", "q": "подключаться к компьютерам сотрудников для помощи", "profile": "guest", "intent": "task", "first": "RuDesktop Standard", "blocks": ["products"], "ms": 8.96}
+{"id": "dev-0152", "q": "учет компьютеров и лицензий в организации", "profile": "ent_factory", "intent": "task", "first": "ALD Pro", "blocks": ["products"], "ms": 6.27}
+{"id": "dev-0153", "q": "система заявок для ит отдела", "profile": "guest", "intent": "task", "first": "1С:ITILIUM Стандарт", "blocks": ["products"], "ms": 4.38}
+{"id": "dev-0154", "q": "вести базу клиентов и воронку продаж", "profile": "smb_trade", "intent": "task", "first": "amoCRM Базовый", "blocks": ["products"], "ms": 4.1}
+{"id": "dev-0155", "q": "проверка контрагентов на благонадежность", "profile": "accounting_firm", "intent": "task", "first": "СБИС Saby ЭДО", "blocks": ["products"], "ms": 3.83}
+{"id": "dev-0156", "q": "дашборды и аналитика продаж для директора", "profile": "guest", "intent": "task", "first": "Форсайт. Аналитическая платформа", "blocks": ["products"], "ms": 5.24}
+{"id": "dev-0157", "q": "составление строительных смет фэр тэр", "profile": "guest", "intent": "task", "first": "ГРАНД-Смета Локальная", "blocks": ["products"], "ms": 5.02}
+{"id": "dev-0158", "q": "3d моделирование деталей машин по ескд", "profile": "ent_factory", "intent": "task", "first": "СПРУТКАМ X Expert", "blocks": ["products"], "ms": 5.87}
+{"id": "dev-0159", "q": "что поставить чтобы менеджеры не теряли заявки", "profile": "smb_trade", "intent": "task", "first": "amoCRM Базовый", "blocks": ["products"], "ms": 5.42}
+{"id": "dev-0160", "q": "как проверить чем сотрудники занимаются на удаленке", "profile": "smb_trade", "intent": "task", "first": "Стахановец Полный", "blocks": ["products"], "ms": 3.65}
+{"id": "dev-0161", "q": "комплект по для бухгалтера", "profile": "guest", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 26.81}
+{"id": "dev-0162", "q": "рабочее место госслужащего из реестра", "profile": "gov_clinic", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 33.86}
+{"id": "dev-0163", "q": "набор программ для конструктора", "profile": "ent_factory", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 23.78}
+{"id": "dev-0164", "q": "базовый набор по для офиса на 20 человек", "profile": "guest", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 21.84}
+{"id": "dev-0165", "q": "по для строительной компании", "profile": "guest", "intent": "industry", "first": null, "blocks": ["kit"], "ms": 12.05}
+{"id": "dev-0167", "q": "астра линукс 20 шт\nр7 офис 20 шт\nкасперский 20 узлов", "profile": "guest", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 16.03}
+{"id": "dev-0168", "q": "1. криптопро 5.0 - 5 шт\n2. рутокен эцп 3.0 - 5 шт\n3. контур диадок - 1 шт\n4. 1с бухгалтерия проф - 1 шт", "profile": "smb_trade", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 5.15}
+{"id": "dev-0169", "q": "Добрый день! Выставьте счет:\n- Astra Linux SE Воронеж 25 шт\n- Р7-Офис Проф 25 лицензий\n- Kaspersky Endpoint Security продление 25 узлов", "profile": "gov_clinic", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 24.67}
+{"id": "dev-0170", "q": "КL4867RАQFR 30 шт\nМойОфис Стандартный 30 мест\nКибер Бэкап 2 сервера", "profile": "guest", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 7.54}
+{"id": "dev-0171", "q": "1. nanoCAD 24 сетевая - 4 шт\n2. Renga Professional - 2 шт\n3. Гранд-Смета - 1 шт\n4. Р7-Офис - 10 шт\n5. Кибер Бэкап - 1 сервер", "profile": "design_bureau", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 8.92}
+{"id": "dev-0172", "q": "Средство антивирусной защиты конечных точек, наличие в ЕРРП, сертификат ФСТЭК, поддержка ОС Astra Linux, 100 узлов", "profile": "gov_clinic", "intent": "compliance", "first": "Astra Linux Special Edition «Смоленск»", "blocks": ["answer", "products"], "ms": 12.11}
+{"id": "dev-0173", "q": "Программный комплекс видеоконференцсвязи, развертывание on-premise, не менее 100 участников, запись, ЕРРП", "profile": "ent_factory", "intent": "compliance", "first": "TrueConf Enterprise", "blocks": ["answer", "products"], "ms": 14.72}
+{"id": "dev-0174", "q": "рутокен эцп 3.0 10 штук", "profile": "accounting_firm", "intent": "product", "first": "Рутокен ЭЦП 3.0", "blocks": ["products", "crosssell"], "ms": 5.44}
+{"id": "dev-0175", "q": "курсы администрирования ред ос", "profile": "guest", "intent": "service", "first": "Курсы РЕД ОС Администрирование", "blocks": ["services"], "ms": 3.28}
+{"id": "dev-0176", "q": "техподдержка астра линукс премиум", "profile": "gov_clinic", "intent": "service", "first": "Техподдержка Группы Астра Стандартная", "blocks": ["services"], "ms": 5.25}
+{"id": "dev-0177", "q": "обучение по информационной безопасности для сотрудников", "profile": "ent_factory", "intent": "service", "first": "Kaspersky ASAP Cloud", "blocks": ["products"], "ms": 4.0}
+{"id": "dev-0178", "q": "антивирус до 1500 рублей за пк", "profile": "smb_trade", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 6.68}
+{"id": "dev-0179", "q": "сапр до 50000 рублей", "profile": "guest", "intent": "category", "first": "Платформа nanoCAD Базовая", "blocks": ["products"], "ms": 5.49}
+{"id": "dev-0181", "q": "касперский esd электронный ключ сегодня", "profile": "smb_trade", "intent": "product", "first": "Kaspersky Small Office Security", "blocks": ["my_licenses", "products", "crosssell"], "ms": 28.53}
+{"id": "dev-0182", "q": "криптопро с бумажным формуляром", "profile": "gov_clinic", "intent": "product", "first": "КриптоПро CSP Серверная", "blocks": ["products", "crosssell"], "ms": 11.6}
+{"id": "dev-0183", "q": "антивирус не касперский", "profile": "guest", "intent": "category", "first": "Dr.Web Enterprise Security Suite Защита рабочих станций", "blocks": ["products"], "ms": 9.94}
+{"id": "dev-0184", "q": "российская ос кроме астра линукс", "profile": "guest", "intent": "category", "first": "ОС РОСА Хром", "blocks": ["products"], "ms": 10.02}
+{"id": "dev-0185", "q": "crm не битрикс", "profile": "guest", "intent": "category", "first": "amoCRM Базовый", "blocks": ["products"], "ms": 12.22}
+{"id": "dev-0186", "q": "maxpatrol siem цена", "profile": "ent_factory", "intent": "product", "first": "Positive Technologies MaxPatrol SIEM", "blocks": ["my_licenses", "products", "crosssell"], "ms": 5.84}
+{"id": "dev-0187", "q": "пилот астра линукс бесплатно", "profile": "guest", "intent": "promo", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["answer", "products"], "ms": 10.94}
+{"id": "dev-0188", "q": "скидки на антивирусы для юрлиц", "profile": "smb_trade", "intent": "promo", "first": "Kaspersky Small Office Security", "blocks": ["promo"], "ms": 23.37}
+{"id": "dev-0189", "q": "срочно продлить контур экстерн счет сегодня с упд", "profile": "accounting_firm", "intent": "renewal", "first": "Контур.Экстерн Оптимальный плюс", "blocks": ["products", "crosssell"], "ms": 7.08}
+{"id": "dev-0190", "q": "сколько стоит перевести офис на 50 пк на российское по", "profile": "guest", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 15.95}
+{"id": "dev-0191", "q": "rfcgthcrbq", "profile": "guest", "intent": "vendor", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 16.82}
+{"id": "dev-0192", "q": "fcnhf kbyerc", "profile": "guest", "intent": "product", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["products", "crosssell"], "ms": 19.97}
+{"id": "dev-0193", "q": "fynbdibhec", "profile": "guest", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 25.45}
+{"id": "dev-0194", "q": "rhbgnjghj 5", "profile": "guest", "intent": "product", "first": "КриптоПро CSP Клиентская", "blocks": ["products", "crosssell"], "ms": 10.22}
+{"id": "dev-0195", "q": "1c ,e[ufknthbz", "profile": "guest", "intent": "product", "first": "1С:Бухгалтерия 8 Базовая", "blocks": ["products", "crosssell"], "ms": 6.33}
+{"id": "dev-0196", "q": "дштгч", "profile": "guest", "intent": "category", "first": "РЕД ОС Рабочая станция Стандартная", "blocks": ["products"], "ms": 10.79}
+{"id": "dev-0197", "q": "цштвщцы 11 зкщ", "profile": "guest", "intent": "product", "first": "Microsoft Windows 11 Pro", "blocks": ["products", "analogs", "crosssell"], "ms": 13.56}
+{"id": "dev-0198", "q": "фдв зкщ", "profile": "guest", "intent": "product", "first": "ALD Pro", "blocks": ["products", "crosssell"], "ms": 5.25}
+{"id": "dev-0199", "q": "уыукпфеу", "profile": "guest", "intent": "vendor", "first": "UserGate NGFW ПАК", "blocks": ["products"], "ms": 11.87}
+{"id": "dev-0200", "q": "зщыепкуы зкщ", "profile": "guest", "intent": "product", "first": "Postgres Pro Certified", "blocks": ["products", "crosssell"], "ms": 15.27}
+{"id": "dev-0201", "q": "юзергейт", "profile": "guest", "intent": "product", "first": "UserGate NGFW ПАК", "blocks": ["products", "crosssell"], "ms": 5.53}
+{"id": "dev-0202", "q": "позитив текнолоджиз", "profile": "guest", "intent": "vendor", "first": "PT NGFW", "blocks": ["products"], "ms": 6.98}
+{"id": "dev-0203", "q": "випнет клиент", "profile": "guest", "intent": "product", "first": "ViPNet Client", "blocks": ["products", "crosssell"], "ms": 4.29}
+{"id": "dev-0204", "q": "постгрес про", "profile": "guest", "intent": "product", "first": "Postgres Pro Certified", "blocks": ["products", "crosssell"], "ms": 8.83}
+{"id": "dev-0205", "q": "moyofis standartny", "profile": "guest", "intent": "product", "first": "МойОфис Стандартный Для бизнеса", "blocks": ["products", "crosssell"], "ms": 10.41}
+{"id": "dev-0206", "q": "kiber bekap", "profile": "guest", "intent": "product", "first": "Кибер Бэкап Стандартный", "blocks": ["products", "crosssell"], "ms": 4.41}
+{"id": "dev-0207", "q": "эксчейндж аналог", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 3.3}
+{"id": "dev-0208", "q": "каспэрский эндпоинт", "profile": "guest", "intent": "product", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products", "crosssell"], "ms": 14.04}
+{"id": "dev-0209", "q": "астролинукс", "profile": "guest", "intent": "product", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["products", "crosssell"], "ms": 7.47}
+{"id": "dev-0210", "q": "1cбухгалтерия 10юзеров", "profile": "guest", "intent": "product", "first": "1С:Бухгалтерия 8 Базовая", "blocks": ["products", "crosssell"], "ms": 5.9}
+{"id": "dev-0211", "q": "win11pro", "profile": "guest", "intent": "product", "first": "Microsoft Windows 11 Pro", "blocks": ["products", "analogs", "crosssell"], "ms": 8.1}
+{"id": "dev-0212", "q": "криптапро 50пк", "profile": "guest", "intent": "product", "first": "КриптоПро CSP Клиентская", "blocks": ["products", "crosssell"], "ms": 4.55}
+{"id": "dev-0213", "q": "р 7 офис", "profile": "guest", "intent": "product", "first": "Р7-Офис Профессиональный", "blocks": ["products", "crosssell"], "ms": 7.24}
+{"id": "dev-0214", "q": "адешка на линуксе", "profile": "guest", "intent": "category", "first": "ALD Pro", "blocks": ["products"], "ms": 7.38}
+{"id": "dev-0215", "q": "кес 50 узлов продлёнка", "profile": "guest", "intent": "renewal", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products", "crosssell"], "ms": 8.12}
+{"id": "dev-0216", "q": "мэ фстэк", "profile": "ent_factory", "intent": "compliance", "first": "Ideco NGFW Standard", "blocks": ["answer", "products"], "ms": 6.95}
+{"id": "dev-0217", "q": "терминальник на 30 юзеров", "profile": "guest", "intent": "category", "first": "Microsoft Windows Server RDS CAL Device", "blocks": ["products"], "ms": 5.92}
+{"id": "dev-0218", "q": "сзи от нсд фстэк", "profile": "gov_clinic", "intent": "compliance", "first": "Secret Net Studio Базовая", "blocks": ["answer", "products"], "ms": 5.87}
+{"id": "dev-0219", "q": "савз для сервера", "profile": "gov_clinic", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Total", "blocks": ["my_licenses", "products"], "ms": 7.13}
+{"id": "dev-0221", "q": "бэкапилка для гипервизора", "profile": "guest", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 9.88}
+{"id": "dev-0222", "q": "акронис бэкап", "profile": "guest", "intent": "product", "first": "Кибер Бэкап Стандартный", "blocks": ["products", "crosssell"], "ms": 4.47}
+{"id": "dev-0223", "q": "webinar ru на 100 участников", "profile": "guest", "intent": "product", "first": "МТС Линк Встречи Облачная", "blocks": ["products", "crosssell"], "ms": 5.19}
+{"id": "dev-0224", "q": "abbyy finereader купить", "profile": "guest", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 6.04}
+{"id": "dev-0225", "q": "сертификат", "profile": "guest", "intent": "broad", "first": "Техподдержка Группы Астра Стандартная", "blocks": ["clarify", "products", "vendors"], "ms": 17.06}
+{"id": "dev-0226", "q": "ключ", "profile": "guest", "intent": "broad", "first": "Ключ-АСТРОМ", "blocks": ["clarify", "products", "vendors"], "ms": 15.27}
+{"id": "dev-0227", "q": "контур", "profile": "accounting_firm", "intent": "vendor", "first": "Контур.Экстерн Оптимальный плюс", "blocks": ["my_licenses", "products"], "ms": 7.95}
+{"id": "dev-0228", "q": "кума", "profile": "ent_factory", "intent": "product", "first": "Kaspersky KUMA", "blocks": ["products", "crosssell"], "ms": 4.84}
+{"id": "dev-0229", "q": "брест", "profile": "ent_factory", "intent": "product", "first": "ПК СВ «Брест»", "blocks": ["products", "crosssell"], "ms": 5.42}
+{"id": "dev-0230", "q": "соболь", "profile": "gov_clinic", "intent": "product", "first": "ПАК «Соболь»", "blocks": ["products", "crosssell"], "ms": 5.18}
+{"id": "dev-0231", "q": "гарда", "profile": "fin_bank", "intent": "vendor", "first": "Гарда БД", "blocks": ["products"], "ms": 5.12}
+{"id": "dev-0232", "q": "кас", "profile": "smb_trade", "intent": "vendor", "first": "Kaspersky Small Office Security", "blocks": ["my_licenses", "products"], "ms": 14.13}
+{"id": "dev-0233", "q": "fcnh", "profile": "guest", "intent": "product", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["products", "crosssell"], "ms": 11.96}
+{"id": "dev-0234", "q": "UserGate", "profile": "guest", "intent": "vendor", "first": "UserGate NGFW ПАК", "blocks": ["products"], "ms": 2.33}
+{"id": "dev-0235", "q": "криптопро csp 5.0", "profile": "guest", "intent": "product", "first": "КриптоПро CSP 5.0 Клиентская", "blocks": ["products", "crosssell"], "ms": 4.04}
+{"id": "dev-0236", "q": "что такое cal лицензия", "profile": "guest", "intent": "question", "first": "СУБД Tantor SE", "blocks": ["answer", "products"], "ms": 7.62}
+{"id": "dev-0237", "q": "чем отличается oem от box и esd", "profile": "guest", "intent": "question", "first": "Microsoft Office Home and Business", "blocks": ["answer", "products"], "ms": 6.26}
+{"id": "dev-0238", "q": "нужна ли лицензия фсб чтобы купить криптопро", "profile": "smb_trade", "intent": "question", "first": "КриптоПро CSP Клиентская", "blocks": ["answer", "products"], "ms": 4.26}
+{"id": "dev-0239", "q": "чем отличается астра орел воронеж смоленск", "profile": "gov_clinic", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 3.29}
+{"id": "dev-0240", "q": "почему по из реестра без ндс", "profile": "accounting_firm", "intent": "question", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["answer", "products"], "ms": 10.52}
+{"id": "dev-0241", "q": "р7 офис или мой офис что лучше", "profile": "guest", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 4.02}
+{"id": "dev-0242", "q": "astra linux vs ред ос", "profile": "gov_clinic", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 5.97}
+{"id": "dev-0243", "q": "dr web против касперского для бизнеса", "profile": "guest", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 4.09}
+{"id": "dev-0244", "q": "битрикс24 или amocrm", "profile": "smb_trade", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 4.18}
+{"id": "dev-0245", "q": "работает ли 1с на астра линукс", "profile": "gov_clinic", "intent": "question", "first": "1С:ITILIUM Стандарт", "blocks": ["answer", "products"], "ms": 14.54}
+{"id": "dev-0246", "q": "совместим ли касперский с альт линукс", "profile": "edu_university", "intent": "question", "first": "Альт Рабочая станция MATE", "blocks": ["answer", "products"], "ms": 15.58}
+{"id": "dev-0247", "q": "какие закрывающие документы при покупке электронной лицензии по эдо", "profile": "accounting_firm", "intent": "question", "first": "Контур.Диадок Пакеты документов", "blocks": ["answer", "products"], "ms": 8.61}
+{"id": "dev-0248", "q": "можно ли использовать домашний касперский в офисе ооо", "profile": "smb_trade", "intent": "question", "first": "Kaspersky Industrial CyberSecurity for Nodes", "blocks": ["answer", "products"], "ms": 7.14}
+{"id": "dev-0249", "q": "как перейти с eset на касперский со скидкой какие документы нужны", "profile": "guest", "intent": "question", "first": null, "blocks": ["answer"], "ms": 3.94}
+{"id": "dev-0250", "q": "можно ли вернуть электронную лицензию после покупки", "profile": "guest", "intent": "question", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["answer", "products"], "ms": 9.91}
+{"id": "dev-0251", "q": "фстэк 50 пк", "profile": "guest", "intent": "compliance", "first": "DATAPK", "blocks": ["answer", "products"], "ms": 32.07}
+{"id": "dev-0252", "q": "бессрочная на 20 мест", "profile": "guest", "intent": "category", "first": "Master PDF Editor Коммерческая", "blocks": ["products"], "ms": 47.06}
+{"id": "dev-0253", "q": "под астра линукс", "profile": "guest", "intent": "category", "first": null, "blocks": ["clarify", "lead"], "ms": 4.03}
+{"id": "dev-0254", "q": "продление 10 серверов", "profile": "guest", "intent": "renewal", "first": "GigaChat API", "blocks": ["products", "crosssell"], "ms": 45.96}
+{"id": "dev-0255", "q": "а на 50 пк?", "profile": "guest", "intent": "category", "first": "DATAPK", "blocks": ["products"], "ms": 43.66}
+{"id": "dev-0256", "q": "подешевле", "profile": "smb_trade", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify", "lead"], "ms": 8.05}
+{"id": "dev-0257", "q": "а из реестра с фстэк", "profile": "gov_clinic", "intent": "compliance", "first": "МойОфис Почта 2", "blocks": ["answer", "products"], "ms": 33.97}
+{"id": "dev-0258", "q": "а на 3 года?", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 13.27}
+{"id": "dev-0259", "q": "межсетевой экран", "profile": "guest", "intent": "category", "first": "Ideco NGFW Standard", "blocks": ["products"], "ms": 6.81}
+{"id": "dev-0260", "q": "другой производитель из реестра", "profile": "guest", "intent": "compliance", "first": "Кибер Бэкап Стандартный", "blocks": ["answer", "products"], "ms": 53.84}
+{"id": "dev-0261", "q": "российское по -> операционная система -> астра линукс", "profile": "gov_clinic", "intent": "product", "first": "Astra Linux Special Edition «Смоленск»", "blocks": ["products", "crosssell"], "ms": 6.84}
+{"id": "dev-0262", "q": "токен к криптопро", "profile": "accounting_firm", "intent": "category", "first": "Рутокен Lite", "blocks": ["products"], "ms": 6.89}
+{"id": "dev-0263", "q": "microsoft office из реестра минцифры", "profile": "gov_clinic", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 5.2}
+{"id": "dev-0264", "q": "бессрочная лицензия антивируса касперского навсегда", "profile": "guest", "intent": "product", "first": "Kaspersky Small Office Security", "blocks": ["products", "crosssell"], "ms": 9.18}
+{"id": "dev-0265", "q": "компас 3d для macos", "profile": "it_company", "intent": "product", "first": "АСКОН КОМПАС Строитель", "blocks": ["products", "crosssell"], "ms": 11.45}
+{"id": "dev-0266", "q": "антивирус для астра линукс до 300 рублей", "profile": "gov_clinic", "intent": "category", "first": null, "blocks": ["clarify", "lead"], "ms": 8.08}
+{"id": "dev-0267", "q": "защита сети", "profile": "guest", "intent": "broad", "first": "Kaspersky Industrial CyberSecurity for Nodes", "blocks": ["clarify", "products", "vendors"], "ms": 29.49}
+{"id": "dev-0268", "q": "3 аналога офисного пакета из реестра для нмцк", "profile": "gov_clinic", "intent": "compare", "first": null, "blocks": ["compare"], "ms": 7.61}
+{"id": "dev-0269", "q": "нужен расчет кп на 2000 рабочих мест астра линукс и ald pro", "profile": "ent_factory", "intent": "spec_list", "first": null, "blocks": ["spec"], "ms": 39.28}
+{"id": "dev-0270", "q": "сегодня кончается лицензия касперский срочно ключ 20 пк", "profile": "smb_trade", "intent": "renewal", "first": "Kaspersky Small Office Security", "blocks": ["products", "crosssell"], "ms": 17.41}
+{"id": "dev-0271", "q": "софт", "profile": "guest", "intent": "broad", "first": "Техподдержка РЕД СОФТ Стандартная", "blocks": ["clarify", "products", "vendors"], "ms": 17.12}
+{"id": "dev-0272", "q": "программы для бизнеса", "profile": "guest", "intent": "broad", "first": "Project Expert Professional", "blocks": ["clarify", "products", "vendors"], "ms": 65.02}
+{"id": "dev-0273", "q": "российское по", "profile": "gov_clinic", "intent": "broad", "first": "Техподдержка Группы Астра Стандартная", "blocks": ["clarify", "products", "vendors"], "ms": 54.74}
+{"id": "dev-0274", "q": "figma для команды", "profile": "it_company", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 3.31}
+{"id": "dev-0275", "q": "miro enterprise", "profile": "it_company", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 3.69}
+{"id": "dev-0276", "q": "notion business", "profile": "guest", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 4.37}
+{"id": "dev-0277", "q": "chatgpt для компании", "profile": "it_company", "intent": "out_of_catalog", "first": null, "blocks": ["not_in_catalog", "analogs", "lead"], "ms": 5.97}
+{"id": "dev-0278", "q": "купить ноутбук для офиса", "profile": "smb_trade", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 2.49}
+{"id": "dev-0279", "q": "принтер лазерный hp", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 9.64}
+{"id": "dev-0280", "q": "пак континент 4", "profile": "fin_bank", "intent": "product", "first": "АПКШ Континент 4 NGFW", "blocks": ["products", "crosssell"], "ms": 7.86}
+{"id": "dev-0281", "q": "скачать windows 11 бесплатно с ключом", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["answer", "categories"], "ms": 9.25}
+{"id": "dev-0282", "q": "активатор kms office", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["answer", "categories"], "ms": 9.2}
+{"id": "dev-0283", "q": "кряк для автокада", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["answer", "categories"], "ms": 3.48}
+{"id": "dev-0284", "q": "asdfghjkl", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 10.57}
+{"id": "dev-0285", "q": "доставка пиццы москва", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 20.02}
+{"id": "dev-0286", "q": "купить спецодежду и каску", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 23.98}
+{"id": "dev-0287", "q": "123456", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify", "lead"], "ms": 1.83}
+{"id": "dev-0288", "q": "зимняя резина r16", "profile": "guest", "intent": "off_topic", "first": "BPM, Low-code и роботизация процессов (RPA)", "blocks": ["categories", "clarify"], "ms": 19.72}
+{"id": "dev-0289", "q": "astra linux 1000 рабочих мест", "profile": "ent_factory", "intent": "product", "first": "Astra Linux Special Edition «Воронеж»", "blocks": ["products", "crosssell"], "ms": 20.24}
+{"id": "dev-0290", "q": "infowatch dlp 1500 пользователей", "profile": "fin_bank", "intent": "product", "first": "InfoWatch Traffic Monitor", "blocks": ["my_licenses", "products", "crosssell"], "ms": 5.19}
+{"id": "dev-0291", "q": "gigachat корпоративный api", "profile": "it_company", "intent": "product", "first": "GigaChat API", "blocks": ["products", "crosssell"], "ms": 5.1}
+{"id": "dev-0292", "q": "deckhouse kubernetes лицензия", "profile": "it_company", "intent": "product", "first": "Deckhouse Kubernetes Platform Enterprise Edition", "blocks": ["products", "crosssell"], "ms": 6.39}
+{"id": "dev-0293", "q": "российский bi вместо power bi", "profile": "retail_logistics", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 7.05}
+{"id": "dev-0294", "q": "passwork корпоративный", "profile": "it_company", "intent": "product", "first": "Пассворк Расширенный", "blocks": ["products", "crosssell"], "ms": 6.53}
+{"id": "dev-0295", "q": "yonote корпоративный", "profile": "it_company", "intent": "product", "first": "Yonote", "blocks": ["products"], "ms": 3.41}
+{"id": "dev-0296", "q": "holst доски корпоративный тариф", "profile": "it_company", "intent": "product", "first": "Holst", "blocks": ["products"], "ms": 3.9}
+{"id": "dev-0297", "q": "файрволл фстэк", "profile": "gov_clinic", "intent": "compliance", "first": "Ideco NGFW Enterprise", "blocks": ["answer", "products"], "ms": 14.03}
+{"id": "dev-0298", "q": "почтовик в контур", "profile": "ent_factory", "intent": "category", "first": "RuPost", "blocks": ["products"], "ms": 5.99}
+{"id": "dev-0299", "q": "бэкап для postgres", "profile": "fin_bank", "intent": "category", "first": "Кибер Бэкап Стандартный", "blocks": ["products"], "ms": 7.69}
+{"id": "dev-0300", "q": "антивирус не касперский 300 пк", "profile": "gov_clinic", "intent": "category", "first": "Dr.Web Enterprise Security Suite Комплексная защита", "blocks": ["products"], "ms": 8.07}
+{"id": "dev-0301", "q": "замена битрикс24 на 250 пользователей", "profile": "retail_logistics", "intent": "analog", "first": null, "blocks": ["analogs"], "ms": 6.6}
+{"id": "dev-0302", "q": "российский антивирус для бизнеса", "profile": "guest", "intent": "category", "first": "Kaspersky Endpoint Security для бизнеса Стандартный", "blocks": ["products"], "ms": 8.82}
+{"id": "dev-0303", "q": "отечественный офисный пакет", "profile": "guest", "intent": "category", "first": "МойОфис Профессиональный Корпоративная", "blocks": ["products"], "ms": 7.36}
+{"id": "dev-0304", "q": "система резервного копирования из реестра", "profile": "guest", "intent": "compliance", "first": "Кибер Бэкап Стандартный", "blocks": ["answer", "products"], "ms": 8.59}
+{"id": "dev-0306", "q": "1с бухгалтерия 8 корп на 50 пользователей", "profile": "accounting_firm", "intent": "product", "first": "1С:Бухгалтерия 8 КОРП", "blocks": ["products", "crosssell"], "ms": 6.91}
+{"id": "dev-0307", "q": "pdf редактор для ред ос", "profile": "design_bureau", "intent": "category", "first": "Master PDF Editor Коммерческая", "blocks": ["products"], "ms": 7.98}
+{"id": "dev-0308", "q": "зашифровать ноутбуки чтобы при краже не украли данные", "profile": "fin_bank", "intent": "task", "first": "Secret Net Studio Базовая", "blocks": ["products"], "ms": 8.23}
+{"id": "dev-0309", "q": "электронный документооборот с контрагентами", "profile": "smb_trade", "intent": "task", "first": "Контур.Диадок Пакеты документов", "blocks": ["products"], "ms": 6.71}
+{"id": "dev-0310", "q": "набор программ для сисадмина", "profile": "it_company", "intent": "role_kit", "first": null, "blocks": ["kit", "crosssell"], "ms": 26.03}

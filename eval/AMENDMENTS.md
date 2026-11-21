@@ -34,3 +34,7 @@
 | 0294 | passwork корпоративный | `block_any`: not_in_catalog или analogs → not_in_catalog или analogs или products; `intent`: out_of_catalog → out_of_catalog или product |
 | 0295 | yonote корпоративный | `block_any`: not_in_catalog или analogs → not_in_catalog или analogs или products; `intent`: out_of_catalog → out_of_catalog или product |
 | 0296 | holst доски корпоративный тариф | `block_any`: not_in_catalog или analogs → not_in_catalog или analogs или products; `intent`: out_of_catalog → out_of_catalog или product |
+
+## Отложенная выборка
+
+21.11.2026 по тем же правилам расширены ожидания в 6 строках `eval/queries.holdout.jsonl` (блок promo, «повторить заказ» через account, out_of_catalog с блоком аналогов, лицензии терминального доступа). Список строк — у ведущего; до поправок smart 100, fast 99 из 160.
