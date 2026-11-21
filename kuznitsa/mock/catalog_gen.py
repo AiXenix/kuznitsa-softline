@@ -158,7 +158,7 @@ def build(cfg,kb,seed=20261126,today=None):
         vendor = kb.rows["vendors"].get(f.get("vendor"),{}).get("name",f.get("vendor"))
         offers.extend(offers_for(f,vendor,seed,max(32,22000//max(1,len(active)))))
     from .sample_codes import apply_sample_codes
-    apply_sample_codes(cfg.kb.parent/"design/ref/softline",offers,families)
+    apply_sample_codes(offers)
     offers,defects=seed_defects(offers)
     today=today or datetime.now(timezone(timedelta(hours=3))).date()
     with TemporaryDirectory(dir=cfg.data) as temporary:

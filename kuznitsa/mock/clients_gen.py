@@ -19,15 +19,16 @@ def clients(offers, seed):
     security = sorted(choices["endpoint_security"],key=lambda o:(o.vendor_id!="kaspersky",o.offer_id))
     for i in range(200):
         ident,title,segment = DEMOS[i] if i<len(DEMOS) else (f"client_{i}",f"Организация {i}",rng.choice(["smb","gov","mid","edu","enterprise"]))
+        seats=30 if i==1 else rng.randint(20,900)
         owned, orders = [], []
         if i and offers:
             pool = security if i in (1,2,3) and security else offers
             o = pool[0] if i==1 else rng.choice(pool)
-            qty = max(o.lic.qty_min or 1,min(30,o.lic.qty_max or 30))
+            qty = portfolio_qty(o,seats,i%17)
             owned.append(dict(family_id=o.family_id,edition=o.edition,qty=qty,metric=o.lic.metric,
                               expires_in_days=21 if i==1 else rng.randint(10,270),purchased_days_ago=344,offer_id=o.offer_id))
             orders.append(dict(order_id=f"order_{i}",days_ago=344,items=[dict(offer_id=o.offer_id,qty=qty,price=o.price)]))
-        yield Client(client_id=ident,title=title,segment=segment,size_seats=30 if i==1 else rng.randint(20,900),
+        yield Client(client_id=ident,title=title,segment=segment,size_seats=seats,
                      industry=["","trade","healthcare","education","industry","it","design","accounting"][i%8],
                      fleet=dict(os=["linux"] if segment=="gov" else ["windows"],servers=i%17),owned=owned,orders=orders,demo=i<8)
 
@@ -53,7 +54,7 @@ def demo_overrides(path,offers,defaults):
         options=options or groups.get(fid,[])
         return max(options,key=lambda o:(o.edition==row.get("edition"),o.lic.audience==audience,
                                          o.lic.metric==row.get("metric"),o.lic.term_months==row.get("term_months",12),
-                                         o.available,-abs(qty-(o.lic.pack or qty)),o.popularity),default=None)
+                                         o.available,-(-qty%(o.lic.pack or 1)),-abs(qty-(o.lic.pack or qty)),o.popularity),default=None)
     for product_info in source.values():
         for own in product_info.get("owned",[]):
             if own.get("family") in groups:
@@ -70,7 +71,16 @@ def demo_overrides(path,offers,defaults):
         c.owned=[]
         for row in s.get("owned",[]):
             o=resolve(row,aud)
-            c.owned.append({**row,"family_id":o.family_id if o else row.get("family"),"edition":o.edition if o else row.get("edition"),
+            allocation={}
+            if o:
+                requested=row.get("qty") or 1
+                target=requested
+                if o.lic.metric in {"company","site"} and row.get("metric")!=o.lic.metric:
+                    target=1
+                allocation=dict(metric=o.lic.metric,qty=licensed_qty(o,target))
+                if allocation["qty"]!=requested:
+                    allocation["requested_qty"]=requested
+            c.owned.append({**row,**allocation,"family_id":o.family_id if o else row.get("family"),"edition":o.edition if o else row.get("edition"),
                             "card_id":o.card_id if o else None,"offer_id":o.offer_id if o else None})
         c.orders=[]
         for i,order in enumerate(s.get("orders",[])):
@@ -81,6 +91,24 @@ def demo_overrides(path,offers,defaults):
                 items.append({**row,"offer_id":o.offer_id if o else None,"card_id":o.card_id if o else None,"price":o.price if o else None})
             c.orders.append(dict(order_id=f"{c.client_id}_{i}",days_ago=order["days_ago"],items=items))
         yield c
+
+
+def metric_target(metric,seats,servers):
+    return {"server":servers,"core":16*servers,"cpu":2*servers,"vm":2*servers,
+            "site":1,"company":1,"other":1,"concurrent":max(1,seats//3)}.get(metric,seats)
+
+
+def portfolio_qty(offer,seats,servers):
+    lic=offer.lic
+    target=max(1,metric_target(lic.metric,seats,servers))
+    return licensed_qty(offer,target)
+
+
+def licensed_qty(offer,target):
+    lic=offer.lic
+    qty=max(lic.qty_min or 1,min(target,lic.qty_max or max(1,target)))
+    pack=lic.pack or 1
+    return ((qty+pack-1)//pack)*pack
 
 
 def configured_clients(spec,offers,seed):
@@ -113,6 +141,7 @@ def configured_clients(spec,offers,seed):
             title=f"{legal} «{rng.choice(stems.get(industry,stems['default']))} {seq}»"
             sizes=rule["seats"]
             seats=draw(sizes) if sizes["dist"]=="uniform" else min(sizes["max"],max(sizes["min"],round(rng.lognormvariate(log(sizes["median"]),.65))))
+            servers=round(seats*rule["servers_ratio"])
             fleet=data["fleet_os_profiles"][weighted(rule["fleet_os_weights"])]
             os_list=fleet["os"] if "os" in fleet else rng.choices(fleet["os_choices"],weights=fleet["probs"])[0]
             cats=portfolio["core_categories_by_segment"][segment]
@@ -132,18 +161,19 @@ def configured_clients(spec,offers,seed):
                     term=12
                 o=max(variants,key=lambda o:(not (cohort and n==0) or o.lic.model=="subscription",
                                               o.lic.term_months==term,
-                                              (o.lic.qty_min or 1)<=seats<=(o.lic.qty_max or seats),
-                                              o.lic.audience==segment))
+                                              (o.lic.qty_min or 1)<=max(1,metric_target(o.lic.metric,seats,servers))<=(o.lic.qty_max or float("inf")),
+                                              o.lic.audience==segment,
+                                              -abs(portfolio_qty(o,seats,servers)-metric_target(o.lic.metric,seats,servers))))
 
                 exp=(rng.randint(14,45) if cohort and n==0 else draw(portfolio["expiring_cohort_target"]["other_subscriptions_expires_in_days"])) if o.lic.model=="subscription" else None
                 ago=max(1,round((o.lic.term_months or 12)*365/12)-exp) if exp else rng.randint(60,700)
-                qty=max(o.lic.qty_min or 1,min(seats,o.lic.qty_max or seats))
+                qty=portfolio_qty(o,seats,servers)
                 owned.append(dict(family_id=o.family_id,edition=o.edition,metric=o.lic.metric,qty=qty,offer_id=o.offer_id,
                                   card_id=o.card_id,product=o.family_name,purchased_days_ago=ago,expires_in_days=exp))
                 orders.append(dict(order_id=f"{ident}_{n}",days_ago=ago,items=[dict(offer_id=o.offer_id,card_id=o.card_id,qty=qty,price=o.price)]))
             region=weighted({r["name"]:r["weight"] for r in data["regions"]})
             yield Client(client_id=ident,title=title,segment=segment,industry=industry,size_seats=seats,region=region,
-                         fleet=dict(os=os_list,servers=round(seats*rule["servers_ratio"])),owned=owned,orders=orders,
+                         fleet=dict(os=os_list,servers=servers),owned=owned,orders=orders,
                          preferences=dict(budget=weighted(rule["budget_weights"]),registry_required=rng.random()<rule["registry_required_prob"],
                                           certs_required=[v for v in weighted(rule["certs_required_probs"]).split("_") if v!="none"]))
 

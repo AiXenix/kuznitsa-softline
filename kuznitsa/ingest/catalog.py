@@ -25,7 +25,7 @@ TITLES = dict(bad_row="Строка пропущена: проверьте фо�
               no_category="Не указана категория", price_outlier="Цена отличается от медианы семейства более чем в 10 раз")
 
 
-def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False, *, ai="embed", ai_budget_usd=.5, transport=None):
+def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False, *, ai="embed", ai_budget_usd=.5, transport=None, config=None):
     files=list(map(Path,files))
     out=Path(out)
     if report_path and Path(report_path).resolve() in {
@@ -37,7 +37,7 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     from math import isfinite
     if ai not in {"off","embed","jev"} or not isfinite(ai_budget_usd) or ai_budget_usd<0:
         raise ValueError("Проверьте режим и бюджет раскладки")
-    cfg=Config(data=out,kb=kb)
+    cfg=config or Config(data=out,kb=kb)
     from .product_rules import apply as product_rules
     observations={}
     other_categories=set()
@@ -91,8 +91,10 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                         if fields[h] and v is not None and v!="":
                             data[fields[h]]=v
                     if ref:
+                        used["reference_rows"]=used.get("reference_rows",0)+1
                         ident=data.get("id",data.get("category_id"))
                         if ident is not None:
+                            used["references"]=used.get("references",0)+1
                             categories[str(ident)]=(data.get("name") or data.get("category_path"),str(data.get("parent","")))
                     else:
                         yield label,num,data
@@ -107,6 +109,19 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
             for label,num,row in scan(False):
                 counts["rows"]+=1
                 example=dict(file=label,row=num,name=str(row.get("name",""))[:220])
+                source=sources[label]
+                source["rows"]=source.get("rows",0)+1
+                converted=False
+                for key in ("price","cost"):
+                    value=row.get(key)
+                    header=source["columns"].get(key,"")
+                    if value is not None and ("usd" in header.casefold() or "$" in header or
+                            str(row.get("currency","")).upper() in ("USD","840") or
+                            "$" in str(value) or "usd" in str(value).lower()):
+                        amount=number(str(value).replace("$","").upper().replace("USD",""))
+                        if amount is not None:
+                            row[key]=round(amount*cfg.usd_rub,2)
+                            converted=True
                 try:
                     offer,evidence,pending=enricher.convert(row)
                 except (ValueError,TypeError,AttributeError,OverflowError) as exc:
@@ -148,6 +163,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                         if field in evidence and evidence[field].source not in ("column","attribute"):
                             setattr(offer,field,empty)
                             evidence.pop(field,None)
+                source["offers"]=source.get("offers",0)+1
+                counts["usd_rows"]+=converted
                 counts["offers"]+=1
                 stream.write(offer.model_dump_json(exclude_none=True)+"\n")
                 for key,val in [("vendor",offer.vendor_id),("family",offer.family_id),("edition",offer.edition),("category",offer.category_id)]:
@@ -210,7 +227,7 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
             notes.append("Для части товаров популярность нейтральна. Загрузите продажи, рейтинг, остатки или историю заказов.")
         if signals["margin"]<counts["offers"]:
             notes.append("Для части товаров маржа нейтральна. Загрузите маржу или закупочную цену.")
-        report=dict(ai=ai_report,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
+        report=dict(currency=dict(usd_rub=cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
                     **{k:counts[k] for k in ("rows","offers","duplicates","rejected")},columns=columns,sources=sources,
                     recognized={k:recognized[k]/max(1,counts["offers"]) for k in ("vendor","family","edition","category","licence")},
                     auto={g:len(vals) for g,vals in auto.items()},issues=list(issues.values()),notes=notes,examples=examples,

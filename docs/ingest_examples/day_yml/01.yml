@@ -1,0 +1,4 @@
+<yml_catalog><shop><categories><category id="1">ПО</category><category id="2" parentId="1">Антивирусы</category></categories><offers>
+<offer id="201"><name>Kaspersky Small Office Security 10 ПК</name><price>3400</price><vendor>Kaspersky</vendor><categoryId>2</categoryId></offer>
+<offer id="202"><name>Прибой Страж 1 год</name><price>1950</price><vendor>Прибой Лаб</vendor><categoryId>2</categoryId><param name="Метрика">device</param></offer>
+</offers></shop></yml_catalog>

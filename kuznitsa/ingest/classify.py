@@ -62,7 +62,7 @@ def classify(kb,auto,observations,stage,cfg,mode,budget,dry,transport=None):
             state["товары"]=list(dict.fromkeys(state["товары"]+obs["names"]))[:3]
         key=("path",path) if path and path[-1].casefold() not in GENERIC else ("family",fid)
         explicit=obs["explicit_category"]
-        if not explicit and key[0]=="family" and fid not in families:
+        if not explicit and fid not in families:
             explicit=kb["families"][fid].get("category")
         if explicit in groups["category"]:
             keys[fid,path]=("explicit",explicit)
@@ -193,6 +193,7 @@ def classify(kb,auto,observations,stage,cfg,mode,budget,dry,transport=None):
                           accepted=bool(ranked),source="embed",usd=0))
     with log.open("w") as stream:
         for d in audit:
+            d.setdefault("confidence","low" if d["source"]=="embed" else d["source"])
             stream.write(json.dumps(d,ensure_ascii=False)+"\n")
             stats["accepted" if d["accepted"] else "rejected"]+=1
             if d["question"] in KINDS:

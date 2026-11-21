@@ -85,14 +85,15 @@ def card_ids(response):
     return result
 
 
-def selfcheck(cfg,n,mode,seed):
+def selfcheck(cfg,n,mode,seed,engine=None):
     if n<=0:
         raise ValueError("Размер выборки должен быть положительным")
     rng=random.Random(seed)
     kb=load(cfg.kb).rows
     from .ai_backend import search_client
-    client=search_client(mode)
-    engine=Engine.open(cfg,llm=client)
+    owns_engine=engine is None
+    if owns_engine:
+        engine=Engine.open(cfg,llm=search_client(mode))
     if engine.decisions:
         engine.decisions.run_budget=cfg.daily_budget
     with (cfg.data/"catalog.jsonl").open() as stream:
@@ -122,8 +123,8 @@ def selfcheck(cfg,n,mode,seed):
         pos,times=map(np.array,zip(*values))
         return dict(n=len(pos),top3=float(np.mean(pos<=3)),top5=float(np.mean(pos<=5)),
                     p50_ms=round(float(np.percentile(times,50)),2),p95_ms=round(float(np.percentile(times,95)),2))
-    if mode=="smart":
-        client.close()
+    if owns_engine:
+        engine.close()
     all_results=[v for values in groups["all"].values() for v in values]
     return dict(overall=stats(all_results) if all_results else {},n=len(selection),mode=mode,seed=seed,groups={g:{k:stats(v) for k,v in groups[g].items()} for g in ("all","known","unknown")},
                 worst=worst)

@@ -82,9 +82,17 @@ def test_full_catalog_invariants(tmp_path):
         client=by_client[profile["id"]]
         for spec,owned in zip(profile.get("owned",[]),client["owned"],strict=True):
             assert by_offer[owned["offer_id"]].family_id==spec["family"]
-            assert (owned["qty"],owned.get("expires_in_days"))==(spec["qty"],spec.get("expires_in_days"))
+            lic=by_offer[owned["offer_id"]].lic
+            assert owned["metric"]==lic.metric and owned["qty"]%(lic.pack or 1)==0
+            assert (owned.get("requested_qty",owned["qty"]),owned.get("expires_in_days"))==(spec["qty"],spec.get("expires_in_days"))
         for order in client["orders"]:
             assert all(item["offer_id"] in by_offer for item in order["items"])
     own=by_client["smb_trade"]["owned"][0]
     assert by_offer[own["offer_id"]].lic.pack==15
     assert (own["family_id"],own["qty"],own["expires_in_days"])==("kaspersky_ksos",15,21)
+
+    for sku,family in [("KL4867RAQFR","kaspersky_kesb"),("FQC-10572","windows_11"),("4601546092816","onec_accounting")]:
+        matches=[o for o in by_offer.values() if o.sku==sku]
+        assert len(matches)==1 and matches[0].family_id==family
+        if sku.isdigit():
+            assert matches[0].delivery=="box"
