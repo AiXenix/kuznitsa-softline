@@ -85,7 +85,7 @@
 
 - id: architecture_design
   title: "Проектные институты, архитектура и инжиниринг"
-  aliases: ["проектный институт", "проектное бюро", "архитектурное бюро", "инжиниринг", "проектирование", "кб", "конструкторское бюро"]
+  aliases: ["проектный институт", "архитектурное бюро", "инжиниринг", "проектирование", "кб", "конструкторское бюро"]
   compliance: [registry_ru, fz152_pdn, fz44_223, vat_exemption]
   slots:
     - {category: cad_2d, must: true, families: [nanocad_platform, zwcad], products: ["Платформа nanoCAD"], note: "2D/3D проектирование в нативном формате DWG"}
@@ -320,7 +320,7 @@
 
 - id: science_rnd
   title: "Научно-исследовательские институты (НИИ) и R&D"
-  aliases: ["нии", "научный институт", "наука", "лаборатория", "r&d", "исследовательский центр", "ран"]
+  aliases: ["нии", "научный институт", "наука", "научная лаборатория", "r&d", "исследовательский центр", "ран"]
   compliance: [registry_ru, fz44_223, fz152_pdn, vat_exemption]
   slots:
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, alt_workstation, red_os, alt_sp], products: ["Astra Linux", "Альт Рабочая станция", "РЕД ОС"], note: "Рабочие станции и вычислительные узлы на Linux"}

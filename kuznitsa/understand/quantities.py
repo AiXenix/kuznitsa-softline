@@ -30,6 +30,12 @@ def numeric_conditions(words,filters,qty):
                 filters["term_months"]=n*(12 if word.startswith(("год","лет")) else 1)
             if word in ("шт","штук","лицензий","лицензии") and not qty:
                 qty=dict(value=n,metric=None)
+    extra=re.search(r"\b(\d{1,9})\s*(?:удал[её]нн\w* )?(pk|пк|сотрудник\w*|процессор\w*|ядер|ядра|хост\w*)\b",text)
+    if extra and not qty:
+        unit=extra[2]
+        metric="cpu" if unit.startswith("процессор") else "server" if unit.startswith("хост") else "user" if unit.startswith("сотрудник") else "core" if unit.startswith("яд") else "device"
+        qty=dict(value=int(extra[1]),metric=metric)
+        filters["metric"]=metric
     cal=re.search(r"\b(device|user) cal (\d{1,8})\b",text)
     if cal:
         filters["metric"]=cal[1]
@@ -52,6 +58,7 @@ def numeric_conditions(words,filters,qty):
         if 0<low<=high:
             qty=dict(value=low,max=high,metric=filters.get("metric"))
             text=text[:band.start()]+text[band.end():]
+    text=re.sub(r"(?<=\d) (?=\d{3}(?:\D|$))","",text)
     for m in re.finditer(r"\b(не дороже|в пределах|до|от|дешевле|дороже)\s+(\d{1,12}(?:[.,]\d{1,2})?)\s*(млн|миллион\w*|тыс\w*|[kк]\b)?",text):
         filters["price_max" if m[1] in ("до","дешевле","не дороже","в пределах") else "price_min"]=float(m[2].replace(",","."))*(1_000_000 if (m[3] or "").startswith(("млн","миллион")) else 1000 if m[3] else 1)
     return qty
@@ -60,6 +67,10 @@ def numeric_conditions(words,filters,qty):
 def spoken_numbers(text):
     vocab={**NUMBERS,**TENS,"полсотни":50,"двести":200,"триста":300,"четыреста":400,"пятьсот":500,
            "шестьсот":600,"семьсот":700,"восемьсот":800,"девятьсот":900}
+    from kuznitsa.text import lemma
+    text=re.sub(r"\bполутор[аы] сот(?:ни|ен|ням)\b","150",text)
+    text=re.sub(r"\bсорока\b","сорок",text)
+    text=re.sub(r"\bполутор[аы] год\w*", "18 мес",text)
     text=re.sub(r"\bполтор[аы] год\w*", "18 мес",text)
     parts=text.split()
     result=[]
@@ -69,6 +80,9 @@ def spoken_numbers(text):
         value=total=0
         while i<len(parts):
             w=parts[i]
+            if w not in vocab and w.endswith(("ти","ми","ех","ых","ум","ью","ста","сот","сти","и")):
+                base=lemma(w)
+                if base in vocab:w=base
             if w in vocab:value+=vocab[w]
             elif w in ("сотня","сотни","сотен"):value=(value or 1)*100
             elif w in ("тысяча","тысячи","тысяч"):total+=(value or 1)*1000;value=0

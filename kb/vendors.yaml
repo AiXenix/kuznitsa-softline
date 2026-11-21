@@ -1263,7 +1263,7 @@
 
 - id: business_studio
   name: "Business Studio"
-  name_ru: "ГК СТЭК (Business Studio)"
+  name_ru: "ГК «Современные технологии управления» (Business Studio)"
   country: RU
   origin: russian
   market_status: active

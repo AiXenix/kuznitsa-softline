@@ -11,7 +11,7 @@ from .bm25 import BM25F
 
 def lexical(cfg,docs):
     digest=hashlib.sha256(json.dumps(docs,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
-    path=cfg.cache/f"lex-v1-{digest}.npz"
+    path=cfg.cache/f"lex-v3-{digest}.npz"
     char=TfidfVectorizer(analyzer="char_wb",ngram_range=(3,5),dtype=np.float32)
     if path.exists():
         try:

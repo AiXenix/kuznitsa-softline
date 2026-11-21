@@ -81,7 +81,8 @@ def test_budget_covers_entire_order(engine):
     assert result["understood"]["qty"]["value"]==30
     assert result["understood"]["filters"]["price_max"]==500000
     assert any(c.get("calc",{}).get("total") for c in cards_from(result["blocks"]))
-    assert not cards_from(engine.search(Request(q=q+" не дороже 3 руб",mode="fast"))["blocks"])
+    over=cards_from(engine.search(Request(q=q+" не дороже 3 руб",mode="fast"))["blocks"])
+    assert over and all(c["calc"]["over_budget_rub"]==c["calc"]["total"]-3 for c in over)
 
 
 @pytest.mark.parametrize("mode",["fast","smart"])
@@ -117,7 +118,7 @@ def test_embed_and_eval_http_contract(cfg,engine,monkeypatch):
     with TestClient(create_app(engine,cfg)) as api:
         assert api.options("/api/search",headers={"Origin":"https://shop.example","Access-Control-Request-Method":"POST"}).headers["access-control-allow-origin"]=="https://shop.example"
         label=api.get("/api/meta").json()["labels"]
-        assert set(label)==set("categories vendors roles industries segments intents zero_reasons blocks tiers".split())
+        assert set(label)==set("categories vendors roles industries segments intents zero_reasons blocks tiers criteria tags".split())
         assert label["categories"]["endpoint_security"]["parent"]=="security"
         monkeypatch.setattr(engine,"search",lambda req:dict(source=req.model_source))
         data=dict(q="поиск",source="eval")

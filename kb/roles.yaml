@@ -113,7 +113,7 @@
 
 - id: procurement_specialist
   title: "Специалист по закупкам / тендерный менеджер"
-  aliases: ["закупщик", "менеджер по закупкам", "тендерный специалист", "специалист 44 фз", "снабженец", "отдел закупок"]
+  aliases: ["закупщик", "менеджер по закупкам", "тендерный специалист", "снабженец", "отдел закупок"]
   slots:
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, cryptoarm_gost], products: ["КриптоПро CSP"], note: "Работа на ЭТП и в ЕИС (zakupki.gov.ru)"}
     - {category: tokens_pki, must: true, families: [rutoken_ecp, aladdin_jacarta, esmart_token], products: ["Рутокен ЭЦП 3.0", "JaCarta-2"], note: "Носитель для КЭП участника/заказчика"}

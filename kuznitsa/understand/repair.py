@@ -41,6 +41,7 @@ def typo_matcher(words):
 
 def repair(q,lex):
     known=lambda w:w in lex.words or (lemma(w),) in lex.entries or w in STOP or w in NUMBERS or w in TENS
+    q=re.sub(r"(\d)(?=(?:pk|gr|ядра|ядер|хост|процессор|rjvg|gjkmp))",r"\1 ",q)
     fixed=[]
     changes=[]
     for fragment in q.split():
@@ -63,6 +64,8 @@ def repair(q,lex):
                         base=w[:-len(ending)]
                         if any(k in ("family","vendor") for k,_,_ in lex.entries.get((lemma(base),),())):
                             add(base,"inflection",1.0)
+            if w=="pk" and fixed and fixed[-1].isdigit():add("пк","translit",1.1)
+            if any(c.isdigit() for c in w) and w.translate(LAYOUT) in lex.words:add(w.translate(LAYOUT),"layout",1.)
             if w in lex.typos:
                 add(lex.typos[w],"typo",1.2)
             if not known(w) and w.isalpha():

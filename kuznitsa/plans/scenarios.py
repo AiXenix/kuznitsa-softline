@@ -23,6 +23,8 @@ def spec_lines(raw):
         seats=re.search(r"\d+\s+рабочих мест",raw,re.I)
         if seats:
             lines=[line if seats[0] in line else line+" "+seats[0] for line in lines]
+    elif re.search(r"\s(?:плюс|\+)\s|^связка ",raw,re.I) and not re.search(r"[;\n]",raw):
+        lines=re.split(r"\s+(?:плюс|и|\+)\s+",re.sub(r"^связка\s+","",raw,flags=re.I),flags=re.I)
     elif re.search(r"[;\n]",raw):
         lines=re.split(r"[;\n]+",raw)
     elif len(re.findall(r"\d+\s*(?:шт|пк|узл|мест|лиценз)",raw,re.I))>=2:
@@ -199,9 +201,16 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         return [dict(type="analogs",title="Варианты замены",source=dict(title=src,status="available" if any(engine.catalog.by["family"].get(k) for k in f.get("family",[])) else "unavailable",note=""),
                      items=[dict(card=c,note=notes.get(engine.catalog.cards[c["card_id"]].family,"Альтернатива по назначению")) for c in cards[:req.page_size]])]
     if intent=="question" or intent=="license_ops" and re.search("можно ли|разрешен",req.q,re.I):
+        from .license_help import operation,answer
+        verb=operation(req.q)
+        if verb:
+            title=next((engine.names["family"].get(fid) for fid in f.get("family",[])),None)
+            return [answer(verb,title),*by_type("products")]
         row=reference(engine,"faq",req.q,entities)
         if row and row["id"] in engine.knowledge.nearest("faq",req.q):
             return [dict(type="answer",title=row["questions"][0].capitalize(),text=row["answer"],source="faq:"+row["id"],links=[]),*by_type("products")]
+        if intent=="question" and re.search(r"перенести|активировать|зарегистрировать|восстановить",req.q,re.I):
+            return [dict(type="answer",title="Действия с лицензией",text="Порядок зависит от продукта и типа ключа. Укажите программу и редакцию, чтобы уточнить порядок у поставщика.",source="catalog",links=[])]
     if intent=="compliance":
         row=engine.kb.rows["compliance"].get(entity(entities,"compliance"),{})
         return [dict(type="answer",title=row.get("title","Условия закупки"),text=row.get("explain") or "Проверены явно указанные характеристики предложений.",source="kb",links=[]),*blocks]

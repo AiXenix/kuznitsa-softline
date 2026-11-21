@@ -3,7 +3,7 @@ from .fit import TIERS
 from kuznitsa.rank.variants import AUD_LABEL, public_offer, calculation
 
 
-def ranked(card,selection,rel,exact,profile,weights,kb,ignored=()):
+def ranked(card,selection,rel,exact,profile,weights,kb,ignored=(),signals=None):
     o,count,owned = selection
     why = []
     badges = []
@@ -41,6 +41,8 @@ def ranked(card,selection,rel,exact,profile,weights,kb,ignored=()):
     if o.lic.qty_min:
         why.append(f"Диапазон от {o.lic.qty_min}"+(f" до {o.lic.qty_max}" if o.lic.qty_max else "")+" мест")
     pop,margin = card.commercial[o.offer_id]
+    if signals is not None:
+        signals[card.id]=min(1,pers) if profile.client_id!="guest" else 0.
     parts = {k:round(weights[k]*v,5) for k,v in dict(rel=rel,pop=pop,margin=margin,
              pers=min(1,pers) if profile.client_id!="guest" else 0).items()}
     tier = 0 if exact else 1 if rel>=.62 else 2 if rel>=.4 else 3

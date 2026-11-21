@@ -8,7 +8,7 @@ def values(v):
     return v if isinstance(v,list) else [v]
 
 
-def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
+def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False,prefer_lowest=False):
     owned = next((p for p in profile.owned if p.get("family_id")==card.family and
                   (not p.get("edition") or p["edition"]==card.offers[0].edition)),{})
     audience = filters.get("audience") or AUDIENCE.get(profile.segment,"business")
@@ -19,7 +19,7 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
         return None
     best,best_key = None,None
     eligible_packs=[]
-    budget=filters.get("price_max") if n else None
+    budget=(float("inf") if prefer_lowest else filters.get("price_max")) if n else None
     upper = qty.get("max",n) if qty else n
     if exact:
         index=card.offers.index(exact)
@@ -49,6 +49,9 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
             continue
         key = (o.available,lic.action==action,lic.audience==audience,lic.term_months in (None,12),not o.price_on_request,
                -abs(count*(lic.pack or 1)-(n or count)), -(count*(o.price or 0)) if lic.pack and n else 0, o.popularity,-(o.price or 0))
+        if prefer_lowest:
+            if o.price is None or o.price_on_request:continue
+            key=(-(count*o.price),*key)
         if best_key is None or key>best_key:
             best_key,best = key,(o,count if n else None,owned)
     if budget is not None and eligible_packs and not exact:
@@ -69,6 +72,7 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
             covered=sum(item.lic.pack*m for item,m in packages)
             key=(o.available,o.lic.action==action,o.lic.audience==audience,o.lic.term_months in (None,12),
                  True,-abs(covered-n),-total,o.popularity,-o.price)
+            if prefer_lowest:key=(-total,*key)
             if best_key is None or key>best_key:
                 best_key,best=key,(o,packages,owned)
         return best
@@ -95,7 +99,8 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
 
 def public_offer(o):
     lic=o.lic
-    return dict(offer_id=o.offer_id,sku=o.sku,name=o.name,price=o.price,price_on_request=o.price_on_request,
+    return dict(offer_id=o.offer_id,sku=o.sku,source_id=o.source_id,source_ids=o.source_ids.copy(),
+                name=o.name,price=o.price,price_on_request=o.price_on_request,
                 delivery=o.delivery,vat=o.vat,available=o.available,version=o.version,action=lic.action,model=lic.model,
                 term_months=lic.term_months,metric=lic.metric,qty_min=lic.qty_min,qty_max=lic.qty_max,pack=lic.pack,audience=lic.audience)
 

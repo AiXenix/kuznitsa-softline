@@ -12,6 +12,14 @@ def route(raw,words,f,entities,sku,category):
     def has(pattern):
         return re.search(pattern,original) is not None or re.search(pattern,text) is not None
     types={e["type"] for e in entities}
+    from kuznitsa.plans.license_help import operation
+    if operation(raw):return "question"
+    if has(r"как (?:перенести|активировать|зарегистрировать|восстановить|переоформить).*(?:ключ|лиценз)|как .*ключ.*активир"):
+        return "question"
+    if has(r"(?:мои|наши|моих|наших|у меня|у нас).*(?:срок|лиценз|куплен)|(?:срок|остаток|список).*наших лиценз|что (?:мы|я) (?:купили|купил)"):
+        return "account"
+    if len({e["id"] for e in entities if e["type"]=="family"})>=2 and has(r"\b(?:связка|плюс)\b|\s\+\s"):
+        return "spec_list"
     if has(PIRACY) or has(HARDWARE) and not has(r"драйвер|защит|шифр|антивирус"):
         return "off_topic"
     lines=[s for s in re.split("[;\n]",raw) if s.strip()]
@@ -29,6 +37,8 @@ def route(raw,words,f,entities,sku,category):
         return "question" if has("можно ли|разрешен") else "license_ops"
     if has(r"гостайн|по гост \d"):
         return "compliance"
+    if has(r"\b(?:гос)?закуп(?:к|очн)|\bтендер") and has(r"\b\d+[ -]?фз\b"):
+        return "compliance"
     if has(r"для нмцк") and has("аналог|сравн"):
         return "compare"
     if any(e["type"]=="role" and e["id"].startswith("kit_") for e in entities) and not has(r"^(как|почему|можно ли|сравн)"):
@@ -43,7 +53,7 @@ def route(raw,words,f,entities,sku,category):
         return "account"
     if has("отлич|разниц") and (len(f.get("family",[]))>=2 or len(f.get("edition",[]))>=2):
         return "compare"
-    if has(r"\b(vs|против|сравн\w*|или)\b|что лучше") and ("family" in types or "vendor" in types):
+    if has(r"\b(vs|против|сравн\w*)\b|что лучше" if len(f.get("family",[]))<2 else r"\b(vs|против|сравн\w*|или)\b|что лучше") and ("family" in types or "vendor" in types):
         return "compare"
     if has(r"\bаналог\w*|альтернатив\w*|дешевле [а-яa-z]|чем замен|\bзамен[ауы]|\bвместо|импортозамещ") and not has(r"как (?:перейти|заменить)"):
         return "analog"
@@ -86,3 +96,29 @@ def route(raw,words,f,entities,sku,category):
     if f.get("vendor") and ("delivery" in f or f.get("model")=="perpetual"):
         return "product"
     return base_plan(f,words,category)
+
+
+def procurement_subject(text,words,entities,filters,intent):
+    """Предмет покупки может иметь адресата, цену и формат поставки."""
+    if filters.get("price_max") or filters.get("price_min"):
+        return True
+    if intent=="compliance" and not re.search(r"комплект|набор",text):
+        return True
+    supplied=[e for e in entities if e["type"] in ("vendor","category","family")]
+    named_first=any(e["span"][0]==0 for e in supplied)
+    beneficiary=re.search(r"\bдля (?:\w+ )?(?:сотрудник|пользоват|сисадмин|удаленщик)|рабочи[ех] мест",text)
+    if named_first and (beneficiary or "набор" in words):
+        return True
+    if supplied and re.search(r"^(?:недорог|бюджетн|дешев|доступн|купить набор лиценз)",text):
+        return True
+    return bool(intent in ("service","task") and re.search(r"^(?:внедрени|обучени|настро|чем |как )",text))
+
+
+def software_name(query):
+    """Признаки названия ПО или явного запроса покупки лицензии."""
+    if re.search(r"\b(?:программ[уа]|software|редактор|платформу|enterprise|studio|suite|professional|pro)\b|[a-z][A-Z]|^[A-Z][a-z]{3,}\b",query):
+        return True
+    text=query.lower()
+    if re.search(r"\b[a-z][a-z0-9.-]{3,}\b",text) and re.search(r"лиценз|подписк|софт|купить",text):
+        return True
+    return bool(re.search(r"\b[a-z]{3,}(?:desk|flow|cad|sync|cloud|docs|soft|suite)\b",text))

@@ -29,13 +29,40 @@ class Catalog:
     def __init__(self,cfg,kb):
         groups = defaultdict(list)
         self.offer_names={}
+        self.source_codes={}
+        self.source_variants={}
+        source_offers=defaultdict(dict)
+        self.registry_codes=defaultdict(dict)
+        self.replacements=defaultdict(set)
+        self.source_classes=defaultdict(set)
+        self.source_names=defaultdict(set)
+        from .source import read_offer,identifiers,replacements,strings,source_key
         self.procurement=defaultdict(set)
         self.skus = {}
         self.offers_by_id = {}
         regional = defaultdict(list)
         with (cfg.data/"catalog.jsonl").open() as stream:
             for line in stream:
-                o = Offer.model_validate_json(line)
+                o = read_offer(line)
+                for code in o.source_ids:
+                    source_offers[code.casefold()][o.offer_id]=o
+                for code in identifiers(o):
+                    if code:
+                        self.source_codes.setdefault(str(code).casefold(),o)
+                        key=source_key(str(code))
+                        previous=self.source_variants.setdefault(key,o)
+                        if previous is not o:self.source_variants[key]=None
+                if o.attrs.get("registry_no"):
+                    self.registry_codes[o.attrs["registry_no"]][o.card_id]=o
+                for name in replacements(o):self.replacements[name].add(o.card_id)
+                if o.category_id:
+                    for name in o.category_path:self.source_classes[name].add(o.category_id)
+                for alias in strings(o.attrs.get("aliases")):
+                    self.source_names[alias].add(o.family_id)
+                if o.attrs.get("series"):self.source_names[o.attrs["series"]].add(o.family_id)
+                if " / " in o.name and "," in o.name:
+                    base=o.name.partition(",")[0].split("(")[0].strip()
+                    if base:self.source_names[base].add(o.family_id)
                 for key in offer_codes(o):
                     self.procurement[key].add(o.card_id)
                 self.offer_names.setdefault(normalize(o.name),o)
@@ -46,7 +73,16 @@ class Catalog:
                     base=re.sub(r"[-/](?:ru|rus|russia|en|eu)$","",o.sku,flags=re.I)
                     if base!=o.sku:
                         regional[sku_key(base)].append(o)
+        # Один родительский код может обозначать несколько редакций или ступеней.
+        self.shared_sources={}
+        for key, variants in source_offers.items():
+            if len(variants)>1:
+                ordered=sorted(variants.values(),key=lambda v:(not v.available,v.lic.qty_min or 1,
+                               v.price is None,v.price or 0,v.offer_id))
+                self.shared_sources[key]=ordered
+                self.source_codes[key]=ordered[0]
         self.sorted_codes=sorted(self.skus)
+        self.sorted_source_codes=sorted(self.source_codes)
         self.regional={k:rows[0] for k,rows in regional.items() if len(rows)==1}
         self.cards = {}
         self.by = {k:defaultdict(set) for k in ("family","vendor","category")}
@@ -63,10 +99,14 @@ class Catalog:
             self.cards[ident] = card
             for key in self.by:
                 self.by[key][getattr(card,key)].add(ident)
-            docs.append(dict(title=title,aliases=" ".join(map(str,f.get("aliases",[]))),vendor=o.vendor or "",
+            aliases=dict.fromkeys([*map(str,f.get("aliases",[])),*(s for x in offers for s in strings(x.attrs.get("aliases")))])
+            tasks=dict.fromkeys(s for x in offers for s in strings(x.attrs.get("task")))
+            docs.append(dict(title=title,aliases=" ".join(aliases),vendor=o.vendor or "",
                              category=kb.rows["categories"].get(o.category_id,{}).get("title",""),
-                             keywords=" ".join(map(str,f.get("use_cases",[])+f.get("roles",[])+f.get("formats",[]))),
+                             keywords=" ".join(map(str,f.get("use_cases",[])+f.get("roles",[])+f.get("formats",[])+list(tasks))),
                              summary=o.description,names=" ".join(dict.fromkeys(w for x in offers for w in x.name.split()))))
+        from .source import SupplierNames
+        self.supplier = SupplierNames(self.cards)
         for ids in self.by["category"].values():
             choices=[o for ident in sorted(ids) for o in self.cards[ident].offers]
             popular=rankdata([o.popularity for o in choices])/len(choices)

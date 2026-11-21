@@ -33,7 +33,14 @@ class Offer(BaseModel):
     category_path: list[str] = []
     category_id: str | None = None
     description: str = ""
-    attrs: dict[str,str] = {}
+    source_id: str | None = None
+    source_ids: list[str] = Field(default_factory=list)
+    in_stock: bool | None = None
+    delivery_days: int | None = None
+    added_at: str | None = None
+    promo: bool | None = None
+    domestic: bool | None = None
+    attrs: dict[str,str | list[str] | dict[str,object]] = Field(default_factory=dict)
     kind: Literal["license","service","course","hardware","other"] = "license"
     lic: License = Field(default_factory=License)
     platforms: list[str] = []
@@ -100,7 +107,7 @@ class Request(BaseModel):
     exclude: dict = {}
     weights: dict[str,float] | None = None
     sort: str | None = None
-    source: Literal["ui","gallery","compare","api","replay","eval","history"] = "api"
+    source: Literal["ui","widget","gallery","compare","api","replay","eval","history"] = "api"
     explain: bool = True
 
     @classmethod

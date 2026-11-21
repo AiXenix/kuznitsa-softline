@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from kuznitsa.text import tokens
+from kuznitsa.text import tokens,lemma
 
 LATIN = str.maketrans(dict(zip("абвгдезийклмнопрстуфхыэ", "abvgdeziiklmnoprstufhye"),
                            ж="zh", ц="ts", ч="ch", ш="sh", щ="sch", ю="yu", я="ya", ь="", ъ=""))
@@ -66,6 +66,7 @@ def phonetics(lex,kb):
                 for alt in {cyrillic(form),roman(form)}-{form}:
                     lex.add(alt,kind,ident,"phonetic")
     lex.primary_words={w for row in kb.rows["vendors"].values() for s in [row.get("name",""),*row.get("aliases",[])[:2]] for w in tokens(s)}
+    lex.primary_words.update(w for key,items in lex.entries.items() if any(src=="catalog" for _,_,src in items) for w in key)
     lex.headwords=sorted({w for w in lex.phrases if w.isalpha() and len(w)>=3})
 
 
@@ -106,7 +107,7 @@ def leading_product(engine,word,vendors=()):
         for fid in engine.vendor_families.get(vendor,()):
             candidates.setdefault(fid,1000)
     def rank(fid):
-        row=engine.kb.rows["families"][fid]
+        row=engine.kb.rows["families"].get(fid,{})
         brand=engine.kb.rows["vendors"].get(row.get("vendor"),{})
         primary=next(iter(brand.get("categories",[])),None)
         return (row.get("category")==primary,row.get("popularity",0),-candidates[fid],fid)

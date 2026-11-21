@@ -1,6 +1,6 @@
 """Поиск адресата комплекта по названиям, речевым вариантам и назначению слотов."""
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from functools import lru_cache
 from math import log1p
 import numpy as np
@@ -9,10 +9,11 @@ from kuznitsa.text import tokens,lemma,normalize
 from kuznitsa.llm.decisions import choice
 
 STOP=set("по для на в из и к с под программа программный обеспечение софт прога лицензия рабочий место комплект набор стек арм бизнес нужно нужный какой что поставить взять купить закупить человек пользователь сотрудник пк компьютер автоматизация организация это мы наш новый хотеть подобрать".split())
-CUE=re.compile(r"\b(комплект|набор|софт|прог[аиуы]|программы|арм|стек|оснастить|автоматизация|какие|закупить|что нужно|что поставить|рабочее место|по для|по в|из программ|из лицензий|инструмент\w*|открыва\w*|запуска\w*|организовать|оснаща\w*|оборуду\w*|переход\w*|стек|чем оснастить|что закупить|какое по|какой софт|что (?:ставить|купить|взять)|рабоч\w* мест\w*)\b")
+CUE=re.compile(r"\b(комплект|набор|софт|прог[аиуы]|программы|арм|стек|оснастить|автоматизация|какие|закупить|что нужно|что поставить|рабочее место|по для|по в|из программ|из лицензий|инструмент\w*|открыва\w*|запуска\w*|организовать|оснаща\w*|оборуду\w*|переход\w*|перевод\w*|перевести|замен\w*|импортозамещ\w*|по$|чем оснастить|что закупить|какое по|какой софт|что (?:ставить|купить|взять)|рабоч\w* мест\w*)\b")
 
 
 def terms(s):
+    s=re.sub(r"\b(\d+)\s+фз\b",r"\1-фз",s,flags=re.I)
     return {v for w in tokens(s) if (v:=lemma(w)) not in STOP and not v.isdigit() and len(v)>1}
 
 
@@ -46,10 +47,21 @@ class KitIndex:
                     self.owners.append(key)
         self.vocabulary={k:set.union(*phrases) for k,phrases in self.phrases.items()}
         self.rarity={w:log1p(len(self.rows)/(1+count)) for w,count in self.df.items()}
-        self.denominators={k:[(2+sum(self.rarity[w] for w in phrase))**.65 for phrase in phrases]
-                           for k,phrases in self.phrases.items()}
+        self.postings=defaultdict(list)
+        for key,phrases in self.phrases.items():
+            for index,phrase in enumerate(phrases):
+                denominator=(2+sum(self.rarity[w] for w in phrase))**.65
+                for w in phrase:
+                    self.postings[w].append((key,index,self.rarity[w]/denominator))
         self.candidates=lru_cache(512)(self.candidates)
         self.vocab=sorted(self.df)
+        self.addresses={}
+        for key,row in self.rows.items():
+            for label in [row["title"].partition(":")[0],*row.get("aliases",[])]:
+                signature=frozenset(terms(label))
+                if signature:self.addresses.setdefault(signature,[]).append(key)
+        self.kit_titles={key:terms(row["title"].partition("(")[0]) for key,row in self.rows.items() if key[1].startswith("kit_")}
+        self.industry_titles={k:terms(r["title"]) for k,r in self.rows.items() if k[0]=="industry"}
         self.matrix=None
 
     def attach(self,dense,cfg):
@@ -71,14 +83,16 @@ class KitIndex:
             sims=np.einsum("ij,j->i",self.matrix,dense.encode(" ".join(sorted(q))))
             for k,v in zip(self.owners,sims):
                 semantic[k]=max(semantic.get(k,0),float(v))
+        scores_by_phrase=defaultdict(float)
+        for word,weight in weights.items():
+            for key,index,rarity in self.postings.get(word,()):
+                scores_by_phrase[key,index]+=weight*rarity
+        lexical=defaultdict(float)
+        for (key,_),score in scores_by_phrase.items():
+            lexical[key]=max(lexical[key],score)
         rank=[]
         for k in self.rows:
-            best=0.
-            for phrase,denominator in zip(self.phrases[k],self.denominators[k]):
-                hits=weights.keys() & phrase
-                if hits:
-                    overlap=sum(weights[w]*self.rarity[w] for w in hits)
-                    best=max(best,overlap/denominator)
+            best=lexical[k]
             exact=text in self.exact[k]
             score=best+.85*semantic.get(k,0)+.08*min(4,len(q & self.notes[k]))+6*exact
             if len(q)>=2 and q<=self.vocabulary[k]:
@@ -103,6 +117,9 @@ class KitIndex:
                 prefix=prefix[:-1].rstrip(".")
             return None,[],("okved",code[1],None),0.
         words=tokens(text)
+        # Одна характеристика ассортимента не задаёт адресата комплекта.
+        if words[-1:]==["по"] and not matched and terms(text) <= {"российский","отечественный","зарубежный","бесплатный","платный"}:
+            return None,[],None,0.
         if len(entities)==2 and {e["type"] for e in entities}=={"category","vendor"}:
             first,last=sorted(e["span"] for e in entities)
             if first[0]==0 and first[1]==last[0] and last[1]==len(words):
@@ -117,11 +134,45 @@ class KitIndex:
             key=matched[0]
             if terms(text)<=self.vocabulary[key]:
                 return key,[],None,.98
+        wrapper=re.match(r"^(?:комплект|набор|софт|по|программы|проги)(?: программ)? (?:для |в )?",text)
+        if not wrapper and re.match(r"^(перевод|замена|переход|оснащение|открытие) ",text) and not f.get("family"):
+            signature=terms(text)
+            for key,label in self.kit_titles.items():
+                if len(signature)>=3 and len(signature & label)>=3 and len(signature-label)<=1:
+                    return key,[],None,.97
+            ranked=self.candidates(text,engine.catalog.dense)
+            if len(ranked)>=2 and ranked[0][1] in self.kit_titles and ranked[0][0]>=2 and ranked[0][0]-ranked[1][0]>=1.:
+                return ranked[0][1],[],None,.96
+        if wrapper:
+            subject=text[wrapper.end():]
+            signature=frozenset(terms(subject))
+            exact=self.addresses.get(signature,[])
+            if not exact:
+                from kuznitsa.text import morphology
+                for w in tokens(subject):
+                    for alternative in morphology().parse(w)[1:4]:
+                        alternate=signature-{lemma(w)}|{alternative.normal_form}
+                        if alternate in self.addresses:
+                            exact=self.addresses[alternate]
+                            break
+                    if exact:break
+            if not exact and len(signature)==1:
+                specific=[k for k,title in self.industry_titles.items() if signature<=title]
+                if len(specific)==1:exact=specific
+            laws=re.findall(r"\b(\d+)[ -]?фз\b",subject)
+            if laws:
+                specific=[key for key,row in self.rows.items() if any(re.search(r"\b"+n+r"[ -]?фз",re.split(r"[:(]",row["title"].lower())[0]) for n in laws)]
+                if len(specific)==1:exact=specific
+            if exact:
+                best=max(exact,key=lambda k:(k[1].startswith("kit_"),bool(self.rows[k].get("parent"))))
+                return best,[],None,.99
         beneficiary=len(words)>=3 and any(len(w)>4 and w.isalpha() and dative(w) for w in words)
         cue=CUE.search(text)
         if intent in ("question","account","compare","sku") or f.get("action") and (f.get("family") or f.get("vendor")):
             return None,[],None,0.
         if intent=="compliance" and any(e["type"]=="compliance" for e in entities) and not re.search(r"комплект|оснастить|набор|открыва",text):
+            return None,[],None,0.
+        if intent=="analog" and (f.get("family") or f.get("vendor")):
             return None,[],None,0.
         if intent=="task" and not cue:
             return None,[],None,0.
@@ -144,13 +195,6 @@ class KitIndex:
             return None,[],None,0.
         if not matched and re.match(r"^(?:софт|программы?|по) для ",text) and any(e["type"] in ("family","category","use_case") for e in entities) and score<1.55:
             return None,[],None,0.
-        if best[1].startswith("kit_") and re.match(r"^(софт|по|программы) (для|в) ",text):
-            industry=next(((s,k) for s,k in ranked if k[0]=="industry" and s>=score-.65),None)
-            if industry:
-                score,best=industry
-                # Покупатель назвал организацию. Похожий комплект её открытия
-                # подходит только при явном запросе на открытие или оснащение.
-                ranked=[(s,k) for s,k in ranked if not k[1].startswith("kit_")]
         if score<.62:
             return None,[],None,0.
         confidence=min(.99,.48+.11*score+.20*gap)

@@ -101,6 +101,11 @@ def refine(engine,words,f,exc,entities,qty):
         f["registry"]=True
     if "без ндс" in text:
         exc.pop("registry",None)
+    for key in ("family","vendor","category"):
+        if exc.get(key) and f.get(key):
+            retained=[ident for ident in f[key] if ident not in exc[key]]
+            if retained:f[key]=retained
+            else:f.pop(key)
     return qty
 
 

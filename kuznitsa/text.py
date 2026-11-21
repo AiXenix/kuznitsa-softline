@@ -32,7 +32,18 @@ def morphology():
 @lru_cache(60000)
 def lemma(w):
     if re.fullmatch("[а-я]+",w) and len(w)>2:
-        return morphology().parse(w)[0].normal_form.replace("ё","е")
+        parses=morphology().parse(w)
+        best=parses[0]
+        if best.tag.POS=="NOUN" and best.normal_form.endswith(("ое","ее","ая","яя")):
+            # Род и падеж делят вес одной леммы между несколькими разборами.
+            adjectives=[p for p in parses if p.tag.POS=="ADJF"]
+            if adjectives:
+                candidate=adjectives[0]
+                support=sum(p.score for p in adjectives if p.normal_form==candidate.normal_form)
+                noun_support=sum(p.score for p in parses if p.normal_form==best.normal_form)
+                if support>noun_support:
+                    best=candidate
+        return best.normal_form.replace("ё","е")
     return w
 
 

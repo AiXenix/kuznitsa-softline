@@ -42,6 +42,10 @@ class Lexicon:
             for name,kind,ident in [(o.family_name or o.name,"family",c.family),(o.vendor,"vendor",c.vendor),(o.edition,"edition",o.edition),
                                     ((o.category_path or [None])[-1],"category",c.category)]:
                 self.add(name,kind,ident,"catalog")
+        for group,kind in ((catalog.source_classes,"category"),(catalog.source_names,"family")):
+            for phrase,ids in group.items():
+                for ident in sorted(v for v in ids if v):
+                    self.add(phrase,kind,ident,"catalog")
         for k,values in BUILTIN.items():
             for v,aliases in values.items():
                 for alias in aliases.split("|"):
