@@ -431,3 +431,55 @@ body.presenting {height:100dvh;display:flex;flex-direction:column;overflow:hidde
 }
 .flowGraph {grid-column:1/-1;display:block;width:min(100%,42rem);height:auto;break-inside:avoid}
 @media print {.flowGraph{width:13cm;max-width:100%}}
+
+.docLibrary {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:.8rem}
+.docLibrary article,.docBody {border:1px solid var(--line);border-radius:var(--radius);background:white}
+.docLibrary article {padding:1rem 1.15rem}
+.docLibrary article a {font-size:1.15rem;font-weight:700}
+.docLibrary article p {margin:.35rem 0 0;color:var(--muted)}
+.docTools,.docBody {max-width:68rem;margin:0 auto 1rem}
+.docBody {padding:clamp(1rem,3vw,2.5rem);line-height:1.58}
+.docBody h1 {font-size:clamp(1.9rem,4vw,3rem)}
+.docBody :is(h2,h3,h4){margin-top:1.5em}
+.docBody :is(a[id],h1,h2,h3,h4){scroll-margin-top:5rem}
+.docBody blockquote {margin:1rem 0;padding:.6rem 1rem;border-left:4px solid var(--teal);background:var(--paper)}
+.docBody ol,.docBody ul {padding-inline-start:1.6rem}
+.docTable,.docBody pre {overflow:auto;max-width:100%;margin:1rem 0}
+.docTable table {width:100%;border-collapse:collapse}
+.docTable :is(th,td) {padding:.45rem .65rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.docTable th,.docBody pre {background:var(--paper)}
+.docBody pre {padding:1rem}
+.availabilityNote {padding:.85rem 1rem;margin-bottom:.8rem;border-left:4px solid var(--teal);background:#eff6f2}
+.availabilityNote p:last-child {margin:0}
+.flowLegend {display:flex;gap:.35rem .8rem;align-items:center;flex-wrap:wrap;font-size:.84rem;margin:.6rem 0}
+.flowLegend span::before {content:'';display:inline-block;width:.7rem;height:.7rem;border-radius:3px;border:1px solid var(--stroke);background:var(--fill);margin-right:.3rem}
+:is(.juryGraph,.flowLegend) [data-type] {--fill:#eef4f8;--stroke:#517389}
+:is(.juryGraph,.flowLegend) [data-type=input] {--fill:#e8f5ef;--stroke:#357565}
+:is(.juryGraph,.flowLegend) [data-type=data] {--fill:#f0ecf9;--stroke:#78699a}
+:is(.juryGraph,.flowLegend) [data-type=decision] {--fill:#fff2dd;--stroke:#996922}
+:is(.juryGraph,.flowLegend) [data-type=llm] {--fill:#e9ecff;--stroke:#606fa6}
+:is(.juryGraph,.flowLegend) [data-type=fallback] {--fill:#fcece6;--stroke:#aa6a53}
+:is(.juryGraph,.flowLegend) [data-type=output] {--fill:#d8f1e5;--stroke:#21684f}
+.juryGraph {display:block;max-width:100%;height:auto;margin:.8rem auto;font-family:inherit}
+.juryGraph g rect {fill:var(--fill);stroke:var(--stroke);stroke-width:1.5}
+.juryGraph text {fill:var(--ink)}
+.juryGraph .nodeTitle {font-size:16px;font-weight:650}
+.juryGraph .nodeKind {font-size:12px;font-weight:650;fill:var(--stroke)}
+.juryGraph .nodeTime,.juryGraph .edgeLabel {font-size:13px}
+.juryGraph .edgeLabel {fill:#385d56}
+.printSheets {display:none}
+@media print {
+ @page {size:A4;margin:12mm}
+ body:has(.documentPage),body:has(.documentPage) #pageScroll {display:block!important;height:auto!important;overflow:visible!important}
+ body:has(.documentPage) :is(header,footer,.docTools,.showBar,.skip),.flowPage>:not(.printSheets) {display:none!important}
+ .documentPage,.docBody,.flowPage {width:100%;max-width:none;margin:0;border:none;padding:0}
+ .docTable,.docBody pre {overflow:visible}
+ .docBody pre {white-space:pre-wrap;overflow-wrap:anywhere}
+ .docTable tr,.docBody .juryGraph {break-inside:avoid}
+ .docBody .juryGraph {max-height:240mm}
+ .printSheets {display:block}
+ .printSheets section {height:263mm;break-inside:avoid;break-after:page}
+ .printSheets section:last-child {break-after:auto}
+ .printSheets .juryGraph {width:100%;height:230mm;margin:0}
+ .printSheets h2 {margin:0}
+}

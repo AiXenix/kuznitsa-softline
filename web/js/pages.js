@@ -81,8 +81,10 @@ async function styleguide(main) {
   const states=await api('/web/fixtures/states.json');
   for(const [kind,text] of Object.entries(states))stateBox(main,text,kind);
 }
+import {documents} from './documents.js';
 import {flows} from './flows.js';
 export async function page(main) {
+  if(location.pathname==='/docs' || location.pathname.startsWith('/docs/'))return documents(main);
   if(location.pathname.startsWith('/card/')){
     const c=await api('/api/card/'+location.pathname.split('/').pop());
     heading(main,'Карточка каталога');card(main,c,{});

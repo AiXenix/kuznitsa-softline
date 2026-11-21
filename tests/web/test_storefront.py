@@ -110,3 +110,28 @@ def test_flow_documents(client, tmp_path, monkeypatch):
     assert client.get("/web-data/flows/flows").json()["flows"] == []
     assert client.get("/web-data/flows/examples").status_code == 404
     assert client.get("/web-data/flows/unpublished").status_code == 404
+
+
+def test_document_routes(client, monkeypatch, tmp_path):
+    import kuznitsa.pages as pages
+    library = tmp_path / "docs"
+    library.mkdir()
+    text = "# Руководство\n\n| Колонка |\n| --- |\n| Строка |"
+    (library / "GUIDE.md").write_text(text)
+    (library / "index.json").write_text("{}")
+    (tmp_path / "private.md").write_text("Вне библиотеки")
+    (library / "external.md").symlink_to(tmp_path / "private.md")
+    (library / "masked.md").symlink_to(library / "index.json")
+    nested = library / "examples"
+    nested.mkdir()
+    (nested / "report.md").write_text(text)
+    monkeypatch.setattr(pages, "DOCS", library)
+    assert 'id="storefront"' in client.get("/docs").text
+    assert "SwaggerUIBundle" in client.get("/api/docs").text
+    assert client.get("/docs/GUIDE.md").status_code == 200
+    assert client.get("/web-data/documents").json() == ["GUIDE.md"]
+    assert client.get("/web-data/documents/GUIDE.md").text == text
+    assert client.get("/web-data/documents/examples/report.md").text == text
+    for prefix in ("/docs/", "/web-data/documents/"):
+        for name in ("external.md", "masked.md", "%2e%2e%2fprivate.md", "index.json", "missing.md"):
+            assert client.get(prefix + name).status_code == 404

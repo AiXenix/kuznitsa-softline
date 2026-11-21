@@ -28,7 +28,7 @@ export function inspector(main){
       const products=rows(r.blocks).find(b=>b.type==='products');
       const n=r.n_cards ?? data.n_cards ?? products?.total;
       const stats=add(p,'div',null,'adminTiles');
-      for(const [title,value] of [['Карточки',n],['Время, мс',r.timing_ms?.total ?? r.ms],['Вызовы модели',r.cost?.llm_calls ?? r.llm_calls],['Стоимость',r.cost?.rub!=null || data.cost_rub!=null?money(r.cost?.rub ?? data.cost_rub):null]]){
+      for(const [title,value] of [['Карточки',n],['Время, мс',r.timing_ms?.total ?? r.ms],['Вызовы модели',r.cost?.llm_calls ?? r.llm_calls],['Стоимость',r.cost?.pending?'Уточняется':r.cost?.rub!=null || data.cost_rub!=null?money(r.cost?.rub ?? data.cost_rub):null]]){
         if(value!=null)tile(stats,title,typeof value==='number'?fmt(value,2):value);
       }
       if(q){

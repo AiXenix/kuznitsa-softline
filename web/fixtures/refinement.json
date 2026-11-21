@@ -1,0 +1,135 @@
+{
+  "query": {
+    "raw": "Касперский для дома"
+  },
+  "profile": {
+    "id": "guest"
+  },
+  "mode": "smart",
+  "understood": {
+    "intent_title": "Поиск по вендору",
+    "refined": {
+      "audience": "home",
+      "line": null,
+      "source": "jev",
+      "probability": 0.85
+    },
+    "chips": [
+      {
+        "key": "audience",
+        "label": "Понято: для дома",
+        "removable": true
+      }
+    ],
+    "zero_reason": "not_in_catalog"
+  },
+  "blocks": [
+    {
+      "type": "not_in_catalog",
+      "text": "Домашних лицензий Kaspersky в этой подборке нет. Магазин предлагает лицензии для организаций."
+    },
+    {
+      "type": "analogs",
+      "title": "Варианты замены",
+      "source": {
+        "title": "Корпоративный антивирус",
+        "status": "unavailable",
+        "note": "Домашних лицензий Kaspersky в этой подборке нет. Магазин предлагает лицензии для организаций."
+      },
+      "items": [
+        {
+          "card": {
+            "card_id": "kaspersky_kesb:advanced",
+            "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "endpoint_security",
+              "title": "Антивирусы и защита рабочих мест"
+            },
+            "summary": "",
+            "badges": [],
+            "offer": {
+              "offer_id": "o_AE5ABBBEB28D",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 25–49 Node 1 year Renewal License BUSINESS",
+              "sku": "KL-AE5ABBBEB28D",
+              "version": null,
+              "delivery": "esd",
+              "price": 1883.0,
+              "price_on_request": false,
+              "vat": null,
+              "available": true,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 1883.0,
+              "text": "от 1 883 ₽ за устройство в год · при покупке от 25"
+            },
+            "variants": [
+              {
+                "offer_id": "o_28409DA1C19C",
+                "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 100–149 Node 3 year Support License EDU",
+                "sku": "KL-28409DA1C19C",
+                "version": null,
+                "delivery": "esd",
+                "price": 2473.0,
+                "price_on_request": false,
+                "vat": null,
+                "available": true,
+                "action": "support",
+                "model": "subscription",
+                "term_months": 36,
+                "metric": "device",
+                "qty_min": 100,
+                "qty_max": 149,
+                "pack": null,
+                "audience": "edu"
+              }
+            ],
+            "variants_count": 282,
+            "price_from": 605.0,
+            "score": {
+              "tier": 2,
+              "score": 0.61665,
+              "parts": {
+                "rel": 0.25,
+                "pop": 0.15165,
+                "margin": 0.1355,
+                "pers": 0.0795
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "У вашей организации уже есть ПО этого вендора",
+                "Подходит для закупки небольшой партией",
+                "Диапазон от 25 до 49 мест"
+              ]
+            },
+            "position": 1
+          },
+          "note": "Для защиты рабочих станций"
+        }
+      ]
+    },
+    {
+      "type": "answer",
+      "title": "Вопрос о лицензировании",
+      "source": "faq:example",
+      "links": [
+        {
+          "q": "Можно ли использовать домашнюю лицензию в офисе?",
+          "label": "Можно ли использовать домашнюю лицензию в офисе?"
+        }
+      ]
+    }
+  ]
+}
