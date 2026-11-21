@@ -149,7 +149,7 @@ def test_verified_contracts_promote_their_own_drafts(tmp_path, monkeypatch):
     monkeypatch.setattr(runner, "ROOT", tmp_path)
     monkeypatch.setattr(runner, "OUT", out)
     result = dict(understood=dict(refined=dict(audience="home", line=None, source="jev", probability=.8),
-                                 chips=[dict(key="audience", removable=True)]),
+                                 chips=[dict(key="refined", removable=True)]),
                   trace=[dict(step="refine")], blocks=[])
     evidence = runner.contract_evidence("refine", result, "smart")
     assert evidence and not runner.contract_evidence("refine", result, "fast")
@@ -192,7 +192,7 @@ def test_gallery_skips_pending_and_checks_active_contract(tmp_path, monkeypatch)
         refined = {}
 
         def search(self, req):
-            return dict(understood=dict(intent="vendor", chips=[dict(key="audience", removable=True)],
+            return dict(understood=dict(intent="vendor", chips=[dict(key="refined", removable=True)],
                                         refined=self.refined), blocks=[{"type": "products", "items": ["item"]}],
                         mode=req.mode, timing_ms={"total": 1}, trace=[])
 

@@ -248,7 +248,7 @@ def file_examples(client):
 
 
 CONTRACT_QUERIES = {
-    "refine": ["каспер для хоума", "касперский для домика", "антивирус маме на ноут"],
+    "refine": ["каспер для хоума", "касперский для домика", "каспер для серверов", "антивирус маме на ноут"],
     "not_sold": ["касперский для дома", "антивирус для дома на 3 устройства", "домашняя лицензия касперского"],
 }
 
@@ -279,19 +279,23 @@ def priority_examples(engine):
 
 def contract_examples(engine, path):
     rows = []
+    demo_ok = False
     for index, q in enumerate(CONTRACT_QUERIES[path]):
         pair = []
         for mode in ("fast", "smart"):
             result = request(engine, {"q": q}, mode)
-            evidence = contract_evidence(path, result, mode)
+            audience = "server" if q == "каспер для серверов" else "home"
+            evidence = contract_evidence(path, result, mode, audience)
             if evidence and result["mode"] == mode:
                 pair.append(dict(**result_example(q, result), **evidence,
                                  steps={s["step"]: s["ms"] for s in result["trace"]}))
-            elif index == 0:
-                # The gallery demo is the acceptance probe in both modes.
-                return []
+            else:
+                print(f"{path} {q!r} ({mode}): mode={result['mode']} "
+                      f"refined={result['understood'].get('refined')}, blocks={[b['type'] for b in result['blocks']]}", flush=True)
+        if index == 0:
+            demo_ok = len(pair) == 2
         rows.extend(pair)
-    return rows
+    return rows if demo_ok else []
 
 
 def sync_gallery(examples):
@@ -327,7 +331,7 @@ def update_contracts(examples):
         pos = sum(p["step"] in before for p in doc["pipeline"])
         doc["pipeline"].insert(pos, dict(step="refine", title="Уточнение аудитории и линейки",
                                          what="Проверить назначение продукта и подходящую линейку.",
-                                         code="kuznitsa/engine.py:Engine._search"))
+                                         code="kuznitsa/understand/audience.py:resolve"))
     write("flows.json", doc)
     sync_gallery(examples)
 
@@ -430,7 +434,7 @@ def path_caption(ident, r):
     if ident == "refine":
         return f'{r["mode"]} · {r["refined"]["audience"]} · {r["refined"]["source"]}'
     if ident == "not_sold":
-        return r["explanation"] + " " + ", ".join(r["alternatives"][:3])
+        return r["mode"] + " · " + r["explanation"] + " " + ", ".join(r["alternatives"][:3])
     if ident == "suggest":
         return " · ".join(r["suggestions"])
     if ident == "spec_file":
@@ -569,7 +573,8 @@ def render():
             table = ["| Режим | Запросов | Граница замера | p50, мс | p95, мс |", "|---|---:|---|---:|---:|"]
             for mode, stats in timings["by_flow"][ident].items():
                 bounds = {"Полный предпросмотр" if ident == "priorities" else "Полный поиск": stats["total"]}
-                bounds.update((key, stats["steps"][key]) for key in ("business", "refine") if key in stats["steps"])
+                step_names = {"priorities": ("business",), "refine": ("refine",), "not_sold": ("refine", "business", "compose")}
+                bounds.update((key, stats["steps"][key]) for key in step_names[ident] if key in stats["steps"])
                 for label, pair in bounds.items():
                     table.append(f'| {mode} | {stats["n"]} | {label} | {pair["p50"]} | {pair["p95"]} |')
             doc.append("\n".join(table))
