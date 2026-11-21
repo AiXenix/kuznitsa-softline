@@ -5,24 +5,6 @@ from datetime import datetime
 from functools import lru_cache
 
 
-HEADERS={
-    "source_id":"code|код|код ут|номенклатура код|код учетной системы|код учётной системы|код 1с|erp id|item id|internal code|erpId|код элемента|внутренний код",
-    "description":"detail text|preview text|детальное описание|описание для анонса","name":"display name|displayName|label|caption","guid":"uuid|uid|ид guid","store_id":"код витрины|store id|web id|storefront code|storeCode|storefrontId|код сайта","supplier_sku":"артикул поставщика|supplier sku|supplier part number|supplierSku",
-    "active":"активность|активен|is active|активность элемента","sold":"продается|в продаже|is sold",
-    "withdrawn":"снят с продажи|снята с продажи|снято с продажи|discontinued",
-    "source_ids":"source ids","aliases":"также ищут|жаргон|синонимы|ключевые слова|keywords|synonyms|search tag|tags",
-    "task":"назначение|решаемая задача|задача|purpose|use case","sku":"артикул изготовителя|manufacturer part number|artnumber", "price":"прайс|цена дилера",
-    "currency":"вал", "category_path":"путь группы|group path|разделы|путь разделов|путь раздела|section path|разделы каталога", "stock":"свободно|доступно",
-    "series":"серия|product series","edition":"исполнение","operation":"операция|license operation",
-    "period":"период|license period","unit":"единица|ед изм|за единицу|ед лицензирования|единица измерения|uom",
-    "qty_min":"нижний порог","qty_max":"верхний порог","delivery":"вариант поставки",
-    "country":"страна|страна происхождения|страна разработки|country of origin","registry_no":"запись рпо|номер в реестре",
-    "analog_of":"альтернатива|замена для|аналог для|alternative to","fstec":"фстэк","fsb":"фсб",
-    "delivery_days":"отгрузка|срок поставки|lead time","barcode":"ean 13|ean|штрихкод",
-    "status":"состояние|статус|статус товара|product status","warehouse":"склад|warehouse","promo":"акция","added_at":"дата добавления|дата поступления","domestic":"отечественное по",
-    "in_stock":"в наличии на складе"
-}
-
 def alias_list(values):
     if isinstance(values,str):
         if values.lstrip().startswith("["):
@@ -102,18 +84,49 @@ def supplier_metric(unit):
     return metric if any(key==metric for key,_ in PATTERNS["metric"]) else None
 
 
-def decorate(row):
-    from .enrich import number
-    from .enrich import attributes
-    attrs=dict(attributes(row.get("attrs")))
-    from .mapping import field_for
-    quantity=None
-    for header,value in list(attrs.items()):
-        key=field_for(header)
-        if header.strip().casefold() in ("количество","кол-во","количество лицензий"):
-            quantity=re.sub(r"\s*(?:шт|лиц)\.?$", "", str(value).strip(), flags=re.I).strip()
+# Explicit offer properties which are copied from columns to attrs.
+SUPPLIER_ATTRS = ("status","warehouse","stock","period","country","analog_of","registry_no","certs",
+                  "operation","unit","qty_min","qty_max","term_months","delivery","series","edition",
+                  "fstec","fsb","barcode")
+
+
+def attribute_usage(row,attrs,extra):
+    """Count populated input names before decorate adds canonical copies."""
+    from .mapping import attribute_key
+    mapped=[]
+    unknown=set(extra)
+    for name,value in attrs.items():
+        if value in (None,"",[],{}):
+            continue
+        key=attribute_key(name)
         if key:
+            mapped.append(key)
+        elif row.get("prices") and (name=="Тип цены" or name.startswith("Цена · ")):
+            continue
+        else:
+            unknown.add(name)
+    # Some adapters also expose the same attribute as a top-level column.
+    columns=(k for k in (*SUPPLIER_ATTRS,"task","aliases","prices") if row.get(k) not in (None,"",[],{}))
+    mapped.extend(set(columns).difference(mapped))
+    return mapped,unknown
+
+
+def decorate(row,raw_attrs):
+    from .enrich import number
+    attrs=dict(raw_attrs)
+    from .mapping import attribute_key
+    quantity=None
+    tags=[]
+    for header,value in list(attrs.items()):
+        key=attribute_key(header)
+        if key=="quantity":
+            quantity=re.sub(r"\s*(?:шт|лиц)\.?$", "", str(value).strip(), flags=re.I).strip()
+        elif key=="aliases" and value:
+            tags.extend(alias_list(value))
+        elif key and value not in (None,"",[]):
             row.setdefault(key,value)
+    if tags:
+        row.setdefault("aliases",list(dict.fromkeys(tags)))
     if quantity and not any(k in row for k in ("pack","qty_min","qty_max")):
         band=re.fullmatch(r"(?:от\s+)?(\d+)\s*(?:[-–—]|до)\s*(\d+)",quantity,re.I)
         if band:
@@ -146,6 +159,14 @@ def decorate(row):
             ("новая","action","new"),("первич","action","new"),("академ","audience","edu"),("госучреж","audience","gov")]:
         if fragment in operation:
             row.setdefault(key,value)
+    if operation and "action" not in row:
+        from .enrich import enum_value
+        from .nameparse import RULES
+        action=enum_value("action",operation)
+        if action in RULES["action"]:
+            row["action"]=action
+    if isinstance(row.get("analog_of"),list):
+        row["analog_of"]="; ".join(map(str,row["analog_of"]))
     if row.get("unit"):
         metric=supplier_metric(str(row["unit"]))
         if metric:
@@ -175,7 +196,7 @@ def decorate(row):
         for key in ("vendor","registry","metric","pack"):
             if key in row:
                 attrs[key]=row[key]
-    for k in ("status","warehouse","stock","period","country","analog_of","registry_no","certs","operation","unit","qty_min","qty_max","term_months","delivery","series","edition","fstec","fsb","barcode"):
+    for k in SUPPLIER_ATTRS:
         if k in row:
             attrs[k]=row[k]
     if "term_months" in attrs:
@@ -207,6 +228,19 @@ def decorate(row):
     return dict(source_id=ids[0] if ids else None,source_ids=ids,**priority)
 
 
+def prices_with_keys(named):
+    from .mapping import price_key,primary_retail
+    result=dict(named)
+    retail=primary_retail(named)
+    if retail is not None:
+        result.setdefault("retail",named[retail])
+    for label,amount in named.items():
+        key=price_key(label)
+        if key:
+            result.setdefault(key,amount)
+    return result
+
+
 def wire_attrs(attrs):
     """Use structured values as soon as the shared Offer reader supports them."""
     from kuznitsa.schema import Offer
@@ -222,4 +256,6 @@ def wire_attrs(attrs):
                 continue
             if isinstance(parsed,(list,dict)):
                 result[key]=parsed
+    if isinstance(result.get("prices"),dict):
+        result["prices"]=prices_with_keys(result["prices"])
     return result

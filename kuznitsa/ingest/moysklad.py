@@ -3,7 +3,7 @@ import json
 from collections import defaultdict
 
 from .enrich import number
-from .mapping import field_for, retail_header
+from .mapping import attribute_key, primary_retail
 
 
 ITEM_TYPES = {"product", "service", "bundle", "variant"}
@@ -107,7 +107,7 @@ def offer_fields(item):
         if isinstance(title,str) and title and amount is not None:
             prices[title] = round(amount / 100, 2)
     if prices:
-        retail = next((title for title in prices if retail_header(title)), None)
+        retail = primary_retail(prices)
         default = next((title for title in prices if title.casefold() in {"цена продажи","основная","базовая","sale price"}),None)
         if retail or default:
             row["price"] = prices[retail or default]
@@ -220,8 +220,8 @@ def prepare(files):
                 parent = {}
 
             inherited = offer_fields(parent)
-            overridden = {field_for(k) or k for k in row["attrs"]}
-            base_attrs = {k:v for k,v in inherited["attrs"].items() if (field_for(k) or k) not in overridden}
+            overridden = {attribute_key(k) or k for k in row["attrs"]}
+            base_attrs = {k:v for k,v in inherited["attrs"].items() if (attribute_key(k) or k) not in overridden}
             row = {**inherited, **row, "attrs": {**base_attrs, **row["attrs"]},
                    "source_ids": list(dict.fromkeys(row["source_ids"] + inherited["source_ids"] + [parents[key]]))}
             row["family_name"] = parent.get("name") or parent_names.get(parents[key]) or parents[key]

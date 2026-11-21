@@ -2,30 +2,28 @@
 import re
 from itertools import chain, pairwise
 
-from .mapping import field_for, retail_header
+from .mapping import field_for, price_key, primary_retail
 from .nameparse import normalize
 
 
 TOTAL = re.compile(r"(?:итого|всего|общий итог|grand total|total)(?: по .*)?[:.]?", re.I)
-OTHER_PRICE = re.compile(r"(?:цена )?(?:оптовая|дилерская|партнерская|закупочная|специальная|wholesale)(?: (?:цена|price))?|для .+")
+OTHER_PRICE = re.compile(r"(?:цена )?(?:дилерская|закупочная|специальная)(?: (?:цена|price))?|для .+")
 FOLDER = {"да", "true", "1", "группа", "папка"}
 
 
 def price_types(headers, sample, sheet, explicit):
     """A retail column anchors a price matrix. Keep supplier labels as keys."""
     from .enrich import number
-    retail = next((h for h in headers if retail_header(h)), None)
-    if not retail:
-        return None, []
+    retail = primary_retail(headers)
     prices_only = ("цен" in sheet.casefold() or "price" in sheet.casefold()
                    or not any(field_for(h) == "name" for h in headers))
     others = []
     for idx, label in enumerate(headers):
         if not label or label == retail or label in explicit.values():
             continue
-        if OTHER_PRICE.fullmatch(normalize(label)):
+        if price_key(label) or retail and OTHER_PRICE.fullmatch(normalize(label)):
             others.append(label)
-        elif prices_only and not field_for(label):
+        elif retail and prices_only and not field_for(label):
             cells = [r[idx] for r in sample if r and idx < len(r) and r[idx] not in (None, "")]
             if cells and all(number(str(v).replace("$", "")) is not None for v in cells):
                 others.append(label)

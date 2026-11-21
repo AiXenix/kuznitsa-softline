@@ -193,6 +193,13 @@ def markdown(r):
         ai=r["catalog"]["ai"]
         lines+=["",f"Снято с продажи — {r['catalog'].get('inactive',0)}.",f"Совмещено строк — {sum(merge['matched'].values())}. Расхождений значений — {sum(merge['conflicts'].values())}.",
                 f"Раскладка добавила класс основной БЗ для {ai.get('coverage_gain_offers',0)} предложений. Расход — ${ai['usd']:.5f}."]
+        attributes=r["catalog"].get("attributes",{})
+        lines+=["","## Имена атрибутов","",
+                "| Стандартный ключ | Заполненных атрибутов |","|---|---:|"]
+        for key,n in attributes.get("by_key",{}).items():
+            lines.append(f"| {key} | {n} |")
+        unmatched=attributes.get("unmatched",{})
+        lines+=["","Несопоставленные имена — "+(", ".join(f"{name} ({n})" for name,n in unmatched.items()) or "нет")+"."]
         lines+=["","[Качество каталога и соответствие столбцов](import_report.json) · [Решения раскладки](import_ai.jsonl)"]
     if r.get("error"):
         lines+=["","Остановка — "+r["error"]]
@@ -264,7 +271,7 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
             raise ValueError("Не удалось распознать каталог по столбцам товаров")
         stage("detect")
         catalog=import_catalog(cats,out,cfg.kb,mapping=mapping,ai=ai,ai_budget_usd=budget,config=cfg)
-        report["catalog"]={k:catalog[k] for k in ("rows","offers","inactive","rejected","duplicates","ai","currency","merge")}
+        report["catalog"]={k:catalog[k] for k in ("rows","offers","inactive","rejected","duplicates","ai","currency","merge","attributes")}
         if not catalog["offers"]:
             raise ValueError("Нет пригодных предложений. Проверьте признаки снятия с продажи, заголовки и цены.")
         stage("catalog")

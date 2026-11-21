@@ -47,6 +47,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     issues={}
     counts=Counter()
     recognized=Counter()
+    mapped_attrs=Counter()
+    unknown_attrs=Counter()
     unmatched={g:Counter() for g in ("vendors","families")}
     examples=[]
     prices=defaultdict(list)
@@ -82,12 +84,12 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
             for label,rows in source_tables:
                 first=list(islice(rows,25))
                 sample=[row for _,row in first if row]
-                headers=list(dict.fromkeys(k for row in sample for k in row if k!="_retail_price"))
+                headers=list(dict.fromkeys(k for row in sample for k in row if k not in ("_retail_price","_field_currency")))
                 fields=infer(headers,sample,explicit,parser)
                 ref=bool({"id","category_id"}.intersection(fields.values()) and
                          ("parent" in fields.values() or label.rsplit("/",1)[-1].split(".")[0].lower() in ("categories","категории"))
                          and "price" not in fields.values() and "sku" not in fields.values())
-                if ref!=reference_pass:
+                if reference_pass is not None and ref!=reference_pass:
                     continue
                 used=sources.setdefault(label,dict(columns={},unused=[]))
                 def remember(h,key):
@@ -102,7 +104,7 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     data={}
                     extra={}
                     for h,v in (row or {}).items():
-                        if h=="_retail_price":
+                        if h in ("_retail_price","_field_currency"):
                             continue
                         if h not in fields:
                             fields[h]=field_for(h)
@@ -142,26 +144,31 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                                     currency=str(data.get("currency") or "").upper()
                                     units[key]="USD" if "usd" in header or "$" in header else currency
                             if isinstance(data.get("prices"),dict):
+                                declared=row.get("_field_currency")
+                                if not isinstance(declared,dict):
+                                    declared={}
                                 for price_type in data["prices"]:
-                                    units[price_type]="USD" if "usd" in price_type.lower() or "$" in price_type else str(data.get("currency") or "").upper()
+                                    units[price_type]=declared.get(price_type) or ("USD" if "usd" in price_type.lower() or "$" in price_type else str(data.get("currency") or "").upper())
                             if units:
                                 data["_field_currency"]=units
                         if data.get("currency_rate") and data.get("currency"):
                             rates[str(data["currency"]).upper()]=number(data["currency_rate"])
                         yield label,num,data
 
-    for _ in scan(True):
-        pass
+    # merge consumes all input before enrichment, including reference tables appearing last.
+    merge_sources=len(files)>1 or commerce_files or any(p.suffix.lower()==".xlsx" for p in files)
+    if not merge_sources:
+        for _ in scan(True):
+            pass
     if not dry_run:
         out.mkdir(parents=True,exist_ok=True)
     with TemporaryDirectory(dir=None if dry_run else out) as tmp:
         stage=Path(tmp)
         with (stage/"catalog.jsonl").open("w",encoding="utf8") as stream, (stage/"inactive_offers.jsonl").open("w",encoding="utf8") as archive:
             from .join import identifiers,merge
-            from .source_fields import decorate,wire_attrs,withdrawal
-            rows=scan(False)
-            if len(files)>1 or commerce_files or any(p.suffix.lower()==".xlsx" for p in files):
-                rows=merge(rows,merge_stats)
+            from .source_fields import attribute_usage,decorate,wire_attrs,withdrawal
+            from .enrich import attributes
+            rows=merge(scan(None),merge_stats) if merge_sources else scan(False)
             for label,num,row in rows:
                 counts["rows"]+=1
                 example=dict(file=label,row=num,name=str(row.get("name",""))[:220])
@@ -211,13 +218,15 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     native="offer_id" in row and isinstance(row.get("lic"),dict)
                     extension={k:row.pop(k) for k in ("source_ids","source_id","in_stock","delivery_days","added_at","promo","domestic") if native and k in row}
                     extra=row.pop("_extra",{})
+                    raw_attrs=attributes(row.get("attrs"))
+                    mapped,unknown=attribute_usage(row,raw_attrs,extra)
                     if native and extension.get("source_ids"):
                         attrs=row.setdefault("attrs",{})
                         attrs.setdefault("source_ids",json.dumps(extension["source_ids"],ensure_ascii=False))
                         if extension.get("source_id"):
                             attrs.setdefault("source_id",extension["source_id"])
                     if not native:
-                        extension=decorate(row)
+                        extension=decorate(row,raw_attrs)
                         # A flat price table can repeat an article for several licensing bands.
                         if row.get("sku") and not row.get("source_id") and ("qty_min" in row or "qty_max" in row):
                             row["_tier"]=True
@@ -243,6 +252,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     counts["duplicates"]+=1
                     issue("duplicate",example)
                     continue
+                mapped_attrs.update(mapped)
+                unknown_attrs.update(unknown)
                 seen.add(offer.offer_id)
                 if sku:
                     skus.add(sku)
@@ -279,7 +290,7 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                 counts["usd_rows"]+=converted
                 counts["offers"]+=1
                 record={**offer.model_dump(exclude_none=True),**extension}
-                if not native:
+                if not native or "prices" in offer.attrs:
                     record["attrs"]=wire_attrs(offer.attrs)
                 stream.write(json.dumps(record,ensure_ascii=False,separators=(",",":"))+"\n")
                 for key,val in [("vendor",offer.vendor_id),("family",offer.family_id),("edition",offer.edition),("category",offer.category_id)]:
@@ -354,7 +365,9 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
             notes.append("Для части товаров маржа нейтральна. Загрузите маржу или закупочную цену.")
         for source in ms_sources.values():
             source["page"]["accepted"]=len(source.pop("linked_rows"))
-        report=dict(merge=merge_stats,currency=dict(usd_rub=rates.get("USD") or cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,exchange_rates=rates,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
+        attribute_counts=dict(by_key=dict(sorted(mapped_attrs.items())),
+                              unmatched=dict(sorted(unknown_attrs.items(),key=lambda pair:(-pair[1],pair[0]))))
+        report=dict(attributes=attribute_counts,merge=merge_stats,currency=dict(usd_rub=rates.get("USD") or cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,exchange_rates=rates,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
                     **{k:counts[k] for k in ("rows","offers","duplicates","rejected","inactive")},columns=columns,sources=sources,
                     recognized={k:recognized[k]/max(1,counts["offers"]) for k in ("vendor","family","edition","category","licence")},
                     auto={g:len(vals) for g,vals in auto.items()},issues=list(issues.values()),notes=notes,examples=examples,
