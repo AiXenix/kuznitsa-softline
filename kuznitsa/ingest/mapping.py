@@ -7,7 +7,7 @@ from kuznitsa.schema import Offer, License
 NAMES = {
     "currency_rate":"курс валюты|exchange rate","currency":"валюта|currency code|currencyId", "name":"номенклатура|наименование|название|наименование товара|название товара|товар|product name|product|title|model name",
     "sku":"артикул|арт|код товара|код номенклатуры|код производителя|part number|vendorCode|product code|pn",
-    "price":"цена|стоимость|цена руб|цена с ндс|розничная цена|розница|цена продажи|price rub|retail price|price usd|unit price usd|цена usd|unit price",
+    "price":"цена|стоимость|цена руб|цена с ндс|розничная цена|розница|цена продажи|price rub|retail price|price usd|unit price usd|цена usd|unit price|розничная",
     "vendor":"вендор|производитель|бренд|brand|manufacturer", "category_path":"категория|category|раздел|путь категории|группа товаров|категория товара|категории",
     "description":"описание|описание товара|аннотация|описание продукта", "attrs":"атрибуты|характеристики|attributes|params|param",
     "available":"доступен|наличие|в наличии|availability|in stock", "stock":"остатки|остаток|количество на складе|stock quantity",
@@ -17,12 +17,13 @@ NAMES = {
     "sales_90d":"продажи|продано|sales", "views_90d":"просмотры|views", "rating":"рейтинг",
     "cost":"закупка|закупочная цена|себестоимость|purchase price", "margin":"маржа|маржинальность|margin percent",
     "popularity":"популярность", "action":"действие|тип лицензии", "model":"модель лицензии",
-    "metric":"метрика|единица лицензирования", "term_months":"срок|срок мес|срок в месяцах|duration",
+    "metric":"метрика|единица лицензирования", "term_months":"срок|срок действия|срок лицензии|срок мес|срок в месяцах|duration",
     "qty_min":"от|минимальное количество|minQuantity", "qty_max":"до|максимальное количество|maxQuantity",
     "pack":"пакет|размер пакета", "delivery":"поставка|тип поставки", "registry":"реестр|реестр по",
     "audience":"аудитория|сегмент", "certs":"сертификаты", "language":"язык", "platforms":"платформы",
 }
-NAMES.update(kind="тип товара|вид товара", image="изображение|картинка|picture",
+NAMES.update(prices="виды цен",is_group="это группа|этогруппа|это папка|тип строки",
+             kind="тип товара|вид товара", image="изображение|картинка|picture",
              price_on_request="цена по запросу|по запросу", sku=NAMES["sku"]+"|article| артикул поставщика|product sku")
 from .source_fields import HEADERS
 for key, names in HEADERS.items():
@@ -30,6 +31,14 @@ for key, names in HEADERS.items():
 ALIASES = {normalize(k):k for k in {*Offer.model_fields,*License.model_fields,*NAMES}}
 for field, aliases in NAMES.items():
     ALIASES.update({normalize(alias):field for alias in aliases.split("|")})
+
+
+RETAIL = re.compile(r"(?:цена )?(?:розничная|розница|retail)(?: (?:цена|price|руб|rub|usd))*")
+
+
+@lru_cache(1024)
+def retail_header(label):
+    return bool(RETAIL.fullmatch(normalize(label)))
 
 
 @lru_cache(4096)
@@ -42,6 +51,8 @@ def field_for(header):
     direct=ALIASES.get(key)
     if direct:
         return direct
+    if retail_header(header):
+        return "price"
     if key.startswith("lic ") and key[4:] in ALIASES:
         return ALIASES[key[4:]]
     return None

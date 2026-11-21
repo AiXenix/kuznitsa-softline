@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant?limit=2&offset=0",
+    "type": "variant",
+    "limit": 2,
+    "offset": 0,
+    "size": 2
+  },
+  "rows": [
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant/00000000-0000-0000-0000-000000000004",
+        "type": "variant",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000004",
+      "code": "MS-04",
+      "article": "AR-MS-04",
+      "externalCode": "EXT-MS-04",
+      "name": "Карта Проф",
+      "product": {
+        "meta": {
+          "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000003",
+          "type": "product",
+          "mediaType": "application/json"
+        }
+      },
+      "characteristics": [
+        {
+          "name": "Редакция",
+          "value": "Проф"
+        },
+        {
+          "name": "Срок",
+          "value": "24 мес."
+        },
+        {
+          "name": "Количество",
+          "value": "5"
+        }
+      ],
+      "salePrices": [
+        {
+          "priceType": {
+            "name": "Для госзаказчиков"
+          },
+          "value": 40000
+        },
+        {
+          "priceType": {
+            "name": "Розничная"
+          },
+          "value": 40055
+        }
+      ]
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/variant/00000000-0000-0000-0000-000000000005",
+        "type": "variant",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000005",
+      "code": "MS-05",
+      "article": "AR-MS-05",
+      "externalCode": "EXT-MS-05",
+      "name": "Карта Стандарт",
+      "product": {
+        "meta": {
+          "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000003",
+          "type": "product",
+          "mediaType": "application/json"
+        }
+      },
+      "characteristics": [
+        {
+          "name": "Редакция",
+          "value": "Стандарт"
+        },
+        {
+          "name": "Срок",
+          "value": "12 мес."
+        },
+        {
+          "name": "Количество",
+          "value": "5"
+        }
+      ],
+      "salePrices": [
+        {
+          "priceType": {
+            "name": "Для госзаказчиков"
+          },
+          "value": 50000
+        },
+        {
+          "priceType": {
+            "name": "Розничная"
+          },
+          "value": 50055
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "href": "https://api.moysklad.ru/api/remap/1.2/entity/assortment?limit=2&offset=2",
+    "type": "assortment",
+    "limit": 2,
+    "offset": 2,
+    "size": 3
+  },
+  "rows": [
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/product/00000000-0000-0000-0000-000000000007",
+        "type": "product",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000007",
+      "code": "MS-07",
+      "article": "AR-MS-07",
+      "externalCode": "EXT-MS-07",
+      "name": "Планер",
+      "productFolder": {
+        "meta": {
+          "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder/00000000-0000-0000-0000-000000000002",
+          "type": "productfolder",
+          "mediaType": "application/json"
+        }
+      },
+      "salePrices": [
+        {
+          "priceType": {
+            "name": "Для госзаказчиков"
+          },
+          "value": 60001
+        },
+        {
+          "priceType": {
+            "name": "Розничная"
+          },
+          "value": 70001
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Производитель",
+          "value": "Сфера"
+        }
+      ],
+      "country": {
+        "name": "Россия"
+      },
+      "uom": {
+        "name": "пользователь"
+      }
+    }
+  ]
+}

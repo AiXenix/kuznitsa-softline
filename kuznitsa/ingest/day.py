@@ -41,12 +41,19 @@ def identify(path,explicit=None,parser=None,diagnostics=None):
         return role,list(columns)
     if path.suffix.lower() in {".md",".rst"}:
         return decision("documentation",[],"Сопроводительный текст",.95)
+    if path.suffix.lower()==".json":
+        from . import moysklad
+        payload=moysklad.read(path)
+        if payload is not None:
+            endpoint,records,_=payload
+            columns=dict.fromkeys(k for r in records[:25] if isinstance(r,dict) for k in r)
+            return decision(moysklad.ROLES.get(endpoint,"catalog"),columns,"МойСклад · "+endpoint,.99)
     sniff=getattr(history,"sniff",None)
     if sniff is not None and path.suffix.lower() in FORMATS:
         hint=sniff(path)
         roles={"search_log":"history","metrika_report":"metrika","metrika_hits":"metrika_hits","metrika_visits":"metrika_visits","orders":"orders"}
         roles.update(ga4_events="ga4_events", crm_leads="crm_leads", metrika_external_phrases="metrika_external_phrases")
-        roles["metrika_goals"]="metrika_goals"
+        roles.update(metrika_goals="metrika_goals",metrika_api="metrika_api",support_chat="support_chat")
         if hint["kind"] in roles:
             if diagnostics is not None:
                 diagnostics.update(confidence=hint["confidence"],reason=hint["reason"])
@@ -77,7 +84,7 @@ def identify(path,explicit=None,parser=None,diagnostics=None):
             return role,list(sample)
     for _, rows in tables(path,explicit):
         values=[r for _,r in islice(rows,25) if r]
-        sample=dict.fromkeys(h for r in values for h in r)
+        sample=dict.fromkeys(h for r in values for h in r if h!="_retail_price")
         keys={field_for(h) for h in sample} | {k for k,h in explicit.items() if h in sample}
         role=history_role(sample) if sniff is None or any(str(k).lower().startswith("ym:") for k in sample) else None
         if role:
@@ -89,8 +96,12 @@ def identify(path,explicit=None,parser=None,diagnostics=None):
         if parser and "parent" not in keys and ("name" not in keys or not keys.intersection({"sku","price","vendor"})):
             keys=set(infer(sample,values,explicit,parser()).values())
         identifiers={"source_id","sku","id","guid","store_id","supplier_sku"}
-        if not keys & {"name","family_name"} and keys & identifiers and keys & {"price","stock"}:
-            return decision("stock" if "stock" in keys else "prices",sample,"Идентификаторы и коммерческие условия",.90)
+        if not keys & {"name","family_name"} and keys & identifiers and keys & {"price","prices","stock"}:
+            columns=list(sample)
+            if any("_retail_price" in row for row in values):
+                columns=[h for h in columns if h!="prices"]
+                columns.extend(dict.fromkeys(h for row in values for h in row.get("prices",{})))
+            return decision("stock" if "stock" in keys else "prices",columns,"Идентификаторы и коммерческие условия",.90)
         if keys & {"name","family_name"} and keys & {"price","vendor","lic","family_id","category_path",*identifiers}:
             populated=sum(any(str(v or "").strip() for v in row.values()) for row in values)
             confidence=min(.99,.64+.075*len(keys-{None})+.05*populated/max(1,len(values)))
@@ -150,6 +161,7 @@ def markdown(r):
     lines=["# День данных","",f"Каталог данных — `{r['out']}`. Время — {r['seconds']:.2f} с.","",
            "| Файл | Назначение | Принято строк | Пропущено |","|---|---|---:|---:|"]
     roles=dict(ga4_events="События GA4",crm_leads="Заявки CRM",metrika_external_phrases="Метрика · фразы из поисковиков",orders="Заказы",prices="Таблица цен",stock="Остатки",documentation="Сопроводительный текст",catalog="Каталог",categories="Справочник категорий",history="История запросов",
+               metrika_api="Метрика · API отчётов",support_chat="Обращения в чат поддержки",
                metrika="Метрика · поиск по сайту",metrika_goals="Метрика · достижение целей",metrika_hits="Хиты Метрики",metrika_visits="Визиты Метрики",
                unknown="Не распознан")
     for f in r["files"]:
@@ -263,6 +275,8 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
                 matched=sum(catalog["merge"]["matched"].get(k,0) for k in catalog["sources"] if k==str(p) or k.startswith(str(p)+"/"))
                 f["accepted"]=matched+sum(s.get("offers",0)+s.get("references",0) for s in sources)
                 f["skipped"]=matched+sum(s.get("rows",0)+s.get("reference_rows",0) for s in sources)-f["accepted"]
+                if (page:=catalog["sources"].get(str(p),{}).get("page")) is not None:
+                    f.update(page=page,accepted=page["accepted"],skipped=page["rows"]-page["accepted"])
             elif f["role"] not in {"unknown","documentation"}:
                 history_inputs.append((p,f))
         # B owns ordering and deduplication across visits, hits, the store log and aggregates.

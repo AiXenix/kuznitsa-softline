@@ -14,9 +14,9 @@ HEADERS={
     "task":"назначение|решаемая задача|задача|purpose|use case","sku":"артикул изготовителя|manufacturer part number|artnumber", "price":"прайс|цена дилера",
     "currency":"вал", "category_path":"путь группы|group path|разделы|путь разделов|путь раздела|section path|разделы каталога", "stock":"свободно|доступно",
     "series":"серия|product series","edition":"исполнение","operation":"операция|license operation",
-    "period":"период|license period","unit":"за единицу|ед лицензирования|единица измерения|uom",
+    "period":"период|license period","unit":"единица|ед изм|за единицу|ед лицензирования|единица измерения|uom",
     "qty_min":"нижний порог","qty_max":"верхний порог","delivery":"вариант поставки",
-    "country":"страна разработки|country of origin","registry_no":"запись рпо|номер в реестре",
+    "country":"страна|страна происхождения|страна разработки|country of origin","registry_no":"запись рпо|номер в реестре",
     "analog_of":"альтернатива|замена для|аналог для|alternative to","fstec":"фстэк","fsb":"фсб",
     "delivery_days":"отгрузка|срок поставки|lead time","barcode":"ean 13|ean|штрихкод",
     "status":"состояние|статус|статус товара|product status","warehouse":"склад|warehouse","promo":"акция","added_at":"дата добавления|дата поступления","domestic":"отечественное по",
@@ -107,16 +107,28 @@ def decorate(row):
     from .enrich import attributes
     attrs=dict(attributes(row.get("attrs")))
     from .mapping import field_for
+    quantity=None
     for header,value in list(attrs.items()):
         key=field_for(header)
+        if header.strip().casefold() in ("количество","кол-во","количество лицензий"):
+            quantity=re.sub(r"\s*(?:шт|лиц)\.?$", "", str(value).strip(), flags=re.I).strip()
         if key:
             row.setdefault(key,value)
+    if quantity and not any(k in row for k in ("pack","qty_min","qty_max")):
+        band=re.fullmatch(r"(?:от\s+)?(\d+)\s*(?:[-–—]|до)\s*(\d+)",quantity,re.I)
+        if band:
+            row.update(qty_min=band[1],qty_max=band[2])
+        elif quantity.isdecimal() and int(quantity)>0:
+            row["pack"]=quantity
+    if "registry" in row and flag(row["registry"]) is None and re.fullmatch(r"№?\s*\d[\d./-]*",str(row["registry"])):
+        row.setdefault("registry_no",str(row["registry"]))
+        row["registry"]=True
     if isinstance(row.get("description"),str):
         row["description"]=description_text(row["description"])
     if row.get("series"):
         row.setdefault("family_name",row["series"])
     period=str(row.get("period","")).casefold()
-    if "бессроч" in period:
+    if "бессроч" in period or "бессроч" in str(row.get("term_months","")).casefold():
         row.setdefault("model","perpetual")
     else:
         months=re.search(r"(\d+)\s*(мес|год|лет|year|month)",period)
@@ -159,9 +171,22 @@ def decorate(row):
     ids=identifiers(row)
     if not row.get("sku") and ids:
         row["sku"]=row.get("supplier_sku") or ids[0]
+    if attrs:
+        for key in ("vendor","registry","metric","pack"):
+            if key in row:
+                attrs[key]=row[key]
     for k in ("status","warehouse","stock","period","country","analog_of","registry_no","certs","operation","unit","qty_min","qty_max","term_months","delivery","series","edition","fstec","fsb","barcode"):
         if k in row:
             attrs[k]=row[k]
+    if "term_months" in attrs:
+        from .enrich import explicit_value
+        term=explicit_value("term_months",attrs["term_months"])
+        if term is None:
+            attrs.pop("term_months")
+        else:
+            attrs["term_months"]=term
+    if row.get("prices"):
+        attrs["prices"]=row["prices"]
     if row.get("task"):
         attrs["task"]=row["task"]
         row.setdefault("description",row["task"])
@@ -188,7 +213,7 @@ def wire_attrs(attrs):
     if Offer.model_fields["attrs"].annotation==dict[str,str]:
         return attrs
     result=dict(attrs)
-    for key in ("extra","aliases","certs","source_ids"):
+    for key in ("extra","aliases","certs","source_ids","prices"):
         value=result.get(key)
         if isinstance(value,str):
             try:

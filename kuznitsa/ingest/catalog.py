@@ -68,12 +68,21 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     commerce_files=[p for p in files if is_commerce(p)]
     for path in commerce_files:
         list(commerce.read(path,metadata_only=True))
+    from . import moysklad
+    ms_tables, ms_sources = moysklad.prepare(files)
+    sources.update(ms_sources)
     def scan(reference_pass):
         for path in files:
-            for label,rows in tables(path,explicit,commerce):
+            if path in ms_tables:
+                if reference_pass:
+                    continue
+                source_tables=[(str(path), iter(ms_tables[path]))]
+            else:
+                source_tables=tables(path,explicit,commerce)
+            for label,rows in source_tables:
                 first=list(islice(rows,25))
                 sample=[row for _,row in first if row]
-                headers=list(dict.fromkeys(k for row in sample for k in row))
+                headers=list(dict.fromkeys(k for row in sample for k in row if k!="_retail_price"))
                 fields=infer(headers,sample,explicit,parser)
                 ref=bool({"id","category_id"}.intersection(fields.values()) and
                          ("parent" in fields.values() or label.rsplit("/",1)[-1].split(".")[0].lower() in ("categories","категории"))
@@ -93,6 +102,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     data={}
                     extra={}
                     for h,v in (row or {}).items():
+                        if h=="_retail_price":
+                            continue
                         if h not in fields:
                             fields[h]=field_for(h)
                             remember(h,fields[h])
@@ -121,11 +132,18 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     else:
                         if not data.get("offer_id"):
                             units={}
+                            retail_header=(row or {}).get("_retail_price")
+                            if retail_header and "price" not in explicit:
+                                data["_retail_price"]=row.get(retail_header)
+                                units["_retail_price"]="USD" if "usd" in retail_header.casefold() or "$" in retail_header else str(data.get("currency") or "").upper()
                             for key in ("price","cost"):
                                 if key in data:
                                     header=used["columns"].get(key,"").casefold()
                                     currency=str(data.get("currency") or "").upper()
                                     units[key]="USD" if "usd" in header or "$" in header else currency
+                            if isinstance(data.get("prices"),dict):
+                                for price_type in data["prices"]:
+                                    units[price_type]="USD" if "usd" in price_type.lower() or "$" in price_type else str(data.get("currency") or "").upper()
                             if units:
                                 data["_field_currency"]=units
                         if data.get("currency_rate") and data.get("currency"):
@@ -163,21 +181,32 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     continue
                 converted=False
                 units=row.pop("_field_currency",{})
-                for key in ("price","cost"):
-                    value=row.get(key)
-                    currency=units.get(key,str(row.get("currency") or "").upper())
+                if "_retail_price" in row:
+                    row["price"]=row.pop("_retail_price")
+                    units["price"]=units.get("_retail_price","")
+                named=row.get("prices") if isinstance(row.get("prices"),dict) else {}
+                for key in ("price","cost",*named):
+                    target=named if key in named else row
+                    value=target.get(key)
                     if value is None:
                         continue
+                    currency=units.get(key,str(row.get("currency") or "").upper())
                     if "$" in str(value) or "usd" in str(value).casefold():
                         currency="USD"
                     if currency in ("","RUB","RUR","643"):
+                        if key in named:
+                            target[key]=number(value)
                         continue
                     usd=currency in ("USD","840")
                     rate=(rates.get("USD") or cfg.usd_rub) if usd else rates.get(currency)
                     amount=number(str(value).replace("$","").upper().replace("USD",""))
                     if amount is not None:
-                        row[key]=round(amount*rate,2) if rate and rate>0 else None
+                        target[key]=round(amount*rate,2) if rate and rate>0 else None
                         converted|=usd
+                    elif key in named:
+                        target[key]=None
+                if named:
+                    row["prices"]={k:v for k,v in named.items() if v is not None and v>0}
                 try:
                     native="offer_id" in row and isinstance(row.get("lic"),dict)
                     extension={k:row.pop(k) for k in ("source_ids","source_id","in_stock","delivery_days","added_at","promo","domestic") if native and k in row}
@@ -244,6 +273,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                         if field in evidence and evidence[field].source not in ("column","attribute"):
                             setattr(offer,field,empty)
                             evidence.pop(field,None)
+                if "linked_rows" in source:
+                    source["linked_rows"].add(num)
                 source["offers"]=source.get("offers",0)+1
                 counts["usd_rows"]+=converted
                 counts["offers"]+=1
@@ -321,6 +352,8 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
             notes.append("Для части товаров популярность нейтральна. Загрузите продажи, рейтинг, остатки или историю заказов.")
         if signals["margin"]<counts["offers"]:
             notes.append("Для части товаров маржа нейтральна. Загрузите маржу или закупочную цену.")
+        for source in ms_sources.values():
+            source["page"]["accepted"]=len(source.pop("linked_rows"))
         report=dict(merge=merge_stats,currency=dict(usd_rub=rates.get("USD") or cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,exchange_rates=rates,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
                     **{k:counts[k] for k in ("rows","offers","duplicates","rejected","inactive")},columns=columns,sources=sources,
                     recognized={k:recognized[k]/max(1,counts["offers"]) for k in ("vendor","family","edition","category","licence")},

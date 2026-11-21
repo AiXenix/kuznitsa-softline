@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder?limit=2&offset=0",
+    "type": "productfolder",
+    "limit": 2,
+    "offset": 0,
+    "size": 2
+  },
+  "rows": [
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder/00000000-0000-0000-0000-000000000002",
+        "type": "productfolder",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000002",
+      "name": "Проектирование",
+      "pathName": "Программы"
+    },
+    {
+      "meta": {
+        "href": "https://api.moysklad.ru/api/remap/1.2/entity/productfolder/00000000-0000-0000-0000-000000000001",
+        "type": "productfolder",
+        "mediaType": "application/json"
+      },
+      "id": "00000000-0000-0000-0000-000000000001",
+      "name": "Программы",
+      "pathName": ""
+    }
+  ]
+}

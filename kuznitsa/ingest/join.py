@@ -116,6 +116,11 @@ def merge(rows,stats):
                             and not any(result[i][2].get("_tier") for i in primary)):
                         candidates={min(primary)}
                         break
+            # Modifications share parent article and code, but have distinct UUIDs.
+            identity=str(row.get("_variant_identity",""))
+            if identity.startswith("moysklad:"):
+                candidates={i for i in candidates if not str(result[i][2].get("_variant_identity","")).startswith("moysklad:")
+                            or result[i][2]["_variant_identity"]==identity}
             if len(candidates)==1 and row.get("name"):
                 previous,_,record=result[next(iter(candidates))]
                 if (".xlsx/" in label.lower() and previous.rpartition("/")[0]==label.rpartition("/")[0]
@@ -130,7 +135,7 @@ def merge(rows,stats):
                         continue
                     if field not in primary:
                         primary[field]=value
-                    elif field in ("attrs","_extra","_field_currency") and isinstance(primary[field],dict) and isinstance(value,dict):
+                    elif field in ("attrs","_extra","_field_currency","prices") and isinstance(primary[field],dict) and isinstance(value,dict):
                         primary[field]={**value,**primary[field]}
                     elif str(primary[field])!=str(value):
                         stats["conflicts"][field]+=1

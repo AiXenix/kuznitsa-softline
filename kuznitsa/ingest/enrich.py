@@ -61,6 +61,8 @@ def explicit_value(k,v):
     if k=="vat":
         v=re.sub("ндс|vat","",str(v),flags=re.I)
     if k=="term_months":
+        if "бессроч" in str(v).casefold():
+            return None
         m=TERM.fullmatch(str(v).strip())
         if m:
             return int(m[1])*(1 if m[2].lower().startswith(("m","мес")) else 12)
@@ -92,7 +94,7 @@ def attributes(attrs):
         if attrs.lstrip().startswith(("{","[")):
             attrs=json.loads(attrs)
         else:
-            attrs=dict(re.split(r"\s*[:=]\s*",part,maxsplit=1) for part in attrs.split(";") if re.search("[:=]",part))
+            attrs=dict(re.split(r"\s*[:=]\s*",part.strip(),maxsplit=1) for part in attrs.split(";") if re.search("[:=]",part))
     if isinstance(attrs,list):
         attrs={item["name"]:item.get("value") for item in attrs if isinstance(item,dict) and item.get("name")}
     if not isinstance(attrs,dict):

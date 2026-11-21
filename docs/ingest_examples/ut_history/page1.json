@@ -1,0 +1,43 @@
+{
+  "query": {
+    "ids": [
+      123
+    ],
+    "dimensions": [
+      "ym:s:searchPhrase"
+    ],
+    "metrics": [
+      "ym:s:visits"
+    ],
+    "date1": "2026-11-01",
+    "date2": "2026-11-07",
+    "limit": 2,
+    "offset": 1
+  },
+  "data": [
+    {
+      "dimensions": [
+        {
+          "name": "фраза 1"
+        }
+      ],
+      "metrics": [
+        1
+      ]
+    },
+    {
+      "dimensions": [
+        {
+          "name": "фраза 2"
+        }
+      ],
+      "metrics": [
+        2
+      ]
+    }
+  ],
+  "total_rows": 4,
+  "totals": [
+    10
+  ]
+}
