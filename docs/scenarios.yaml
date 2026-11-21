@@ -3683,8 +3683,8 @@
   surface: search
   contract: not_sold
   pending: false
-  examples: [касперский для дома, антивирус для дома на 3 устройства, домашняя лицензия касперского]
-  demo: {q: касперский для дома, profile: guest}
+  examples: [NOD32 для дома, Р7-Офис для дома, Кибер Бэкап для дома]
+  demo: {q: NOD32 для дома, profile: guest}
   detection: Понятны вендор и домашнее назначение, но подходящей линейки в продаже нет.
   behaviour: Объяснить отсутствие и сохранить zero_reason. В analogs подобрать доступные замены по связям базы знаний, затем по младшей бизнес-линейке вендора и разделу. Дать ссылку на FAQ о домашней лицензии.
   data_needed: [understood.zero_reason, blocks.analogs, faq]
