@@ -14,7 +14,7 @@ function verification(p,v){
     if(rows(v.recovered).includes(q))line(row,'Выдача восстановлена','badge','span');
     const split=add(row,'div',null,'adminSplit');
     for(const [title,side] of [['Было',b],['Стало',a]]){
-      const cell=add(split,'div');add(cell,'b',title+' · '+(valid(side?.n_cards)?fmt(side.n_cards)+' карточек':Array.isArray(side?.cards)?fmt(side.cards.length)+' в сохранённом списке':'нет записи'));
+      const cell=add(split,'div');add(cell,'b',title+' · '+(valid(side?.n_cards)?'карточек · '+fmt(side.n_cards):Array.isArray(side?.cards)?fmt(side.cards.length)+' в сохранённом списке':'нет записи'));
       const ol=add(cell,'ol');for(const c of rows(side?.cards).slice(0,5))add(ol,'li',c.title || c.card_id || c);
       for(const banner of rows(side?.banners))line(cell,banner.text || banner);
       if(side?.search_id)link(cell,'Трасса →','/inspect/'+encodeURIComponent(side.search_id));
@@ -27,8 +27,10 @@ function card(p,i,change,expanded){
   line(meta,roles[i.role] || i.role,'muted','small');line(meta,priorities[i.priority]?'Приоритет · '+priorities[i.priority]:i.priority,'muted','small');
   const h=add(box,'h3');link(h,readable(i.title) || types[i.type],'#agent?id='+encodeURIComponent(i.id));
   line(box,readable(i.summary));
+  if(i.evidence_text && i.evidence_text!==i.summary)line(box,i.evidence_text,'muted');
   const impact=i.impact || {};
-  if(valid(impact.expected_rub)||valid(impact.conservative_rub)){
+  if(i.impact_text)line(box,i.impact_text,'impact');
+  else if(valid(impact.expected_rub)||valid(impact.conservative_rub)){
     const e=add(box,'p',null,'impact');line(e,impact.metric_label,'muted','small');
     add(e,'strong',[valid(impact.conservative_rub)?'Осторожно · '+shortRub(impact.conservative_rub):'',valid(impact.expected_rub)?'Ожидаемо · '+shortRub(impact.expected_rub):''].filter(Boolean).join('   /   '));
     e.title=[rub(impact.conservative_rub),rub(impact.expected_rub)].join(' / ');
@@ -40,7 +42,7 @@ function card(p,i,change,expanded){
   }
   const d=details(box,'Доказательства и действие');d.open=expanded;
   const ev=i.evidence || {};
-  line(d,[valid(ev.searches_30d)?fmt(ev.searches_30d)+' поисков':'',valid(ev.sessions_30d)?fmt(ev.sessions_30d)+' сессий':'',groupText(ev.segments)].filter(Boolean).join(' · '));
+  if(!i.evidence_text)line(d,[valid(ev.searches_30d)?fmt(ev.searches_30d)+' поисков':'',valid(ev.sessions_30d)?fmt(ev.sessions_30d)+' сессий':'',groupText(ev.segments)].filter(Boolean).join(' · '));
   for(const q of rows(ev.examples || ev.sample_queries)){
     const text=typeof q==='string'?q:q.q;
     const row=add(d,'div');row.append(phrase(text,q.search_id || ev.search_ids?.[text] || i.verification?.before?.[text]?.search_id));

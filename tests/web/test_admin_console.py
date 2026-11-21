@@ -1,3 +1,5 @@
+import base64
+from io import BytesIO
 import json
 from pathlib import Path
 import re
@@ -6,6 +8,7 @@ import subprocess
 
 from fastapi.testclient import TestClient
 import pytest
+from openpyxl import Workbook
 
 from kuznitsa.app import create_app
 
@@ -16,10 +19,11 @@ EXAMPLES = ROOT / "docs/admin_examples"
 def test_console_http_contract(cfg, monkeypatch):
     monkeypatch.setenv("KZ_ADMIN_OPEN", "1")
     with TestClient(create_app(cfg=cfg)) as api:
+        assert 'src="/web/embed/widget.js"' in api.get("/embed").text
         paths = api.get("/openapi.json").json()["paths"]
         for method, suffixes in {
             "get": ("kpi", "queries", "failures", "gaps", "insights", "rules", "weights",
-                    "replay/{ident}", "search/{search_id}", "cost", "eval", "ingest"),
+                    "replay/{ident}", "search/{search_id}", "cost", "eval", "ingest", "digest"),
             "post": ("preview", "rules", "weights", "insights/refresh", "insights/{ident}/{operation}"),
             "put": ("rules/{ident}",), "delete": ("rules/{ident}",)
         }.items():
@@ -43,7 +47,7 @@ def test_console_http_contract(cfg, monkeypatch):
         assert api.get(period).status_code == 403
 
 
-@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js"])
+@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js", "c4_render.browser.js"])
 def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
     chrome = shutil.which("google-chrome") or shutil.which("chromium")
     if not chrome:
@@ -53,8 +57,18 @@ def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
     js = (Path(__file__).parent / fixture_script).read_text()
     js = js.replace("./admin/", (ROOT / "web/js/admin").as_uri() + "/")
     js = js.replace("./store/", (ROOT / "web/js").as_uri() + "/")
+    js = js.replace("./embed/", (ROOT / "web/embed").as_uri() + "/")
     if fixture_script == "c3_render.browser.js":
         data = [json.loads(p.read_text()) for p in sorted((ROOT / "docs/api_examples").glob("*.json"))]
+    if fixture_script == "c4_render.browser.js":
+        book = Workbook()
+        book.active.title = "Коммерческое предложение"
+        book.active.append(["Наименование", "Количество"])
+        book.active.append(["Астра", 50])
+        book.create_sheet("Не найдено")
+        content = BytesIO()
+        book.save(content)
+        data = {"xlsx": base64.b64encode(content.getvalue()).decode("ascii")}
     html = tmp_path / "console.html"
     html.write_text('<body><output></output><main></main><script id="fixtures" type="application/json">'
                     + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + '</script><script type="module">'

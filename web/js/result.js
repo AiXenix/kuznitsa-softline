@@ -3,7 +3,7 @@ import {add,line,button,details,rows,label,counted,stateBox} from './dom.js';
 import {block} from './blocks.js';
 
 export function result(p,r,ctx={}) {
-  ctx={...ctx,weights:rows(r.trace).find(s=>s.detail?.weights)?.detail.weights || ctx.weights};
+  ctx={profile:r.profile?.id,mode:r.mode,...ctx,weights:rows(r.trace).find(s=>s.detail?.weights)?.detail.weights || ctx.weights};
   const u=r.understood || {};
   function action(parent,title,patch) {
     if (ctx.apply) button(parent,title,()=>ctx.apply(patch),'chip');
@@ -19,6 +19,9 @@ export function result(p,r,ctx={}) {
       if(c.removable && c.key) action(chips,title+' ×',{ignore:[c.key]});
       else line(chips,title,'badge','span');
       if(c.key==='profile' && chips.lastChild)chips.lastChild.title=r.profile?.title || c.label;
+    }
+    for(const e of rows(u.entities).filter(e=>e.type==='okved')){
+      if(!rows(u.chips).some(c=>c.label?.includes(e.id)))line(chips,['ОКВЭД '+e.id,e.title || e.name].filter(Boolean).join(' · '),'badge','span');
     }
     if(r.query?.corrected && rows(r.query.corrections).length) {
       line(panel,'Показаны результаты по «'+r.query.corrected+'»');

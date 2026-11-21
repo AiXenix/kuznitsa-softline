@@ -51,7 +51,9 @@ export function mini(p,c) {
   const a=add(p,'article',null,'mini');
   line(a,c.position,'rank','span');const text=add(a,'div');
   const name=line(text,c.title,null,'strong');if(name)name.title=c.title;
-  const lic=line(text,conditions(c.offer).join(' · ') || c.offer?.name,'license');if(lic)lic.title=c.offer.name;priceLine(text,c,'miniPrice');
+  const lic=line(text,conditions(c.offer).join(' · ') || c.offer?.name,'license');if(lic)lic.title=c.offer.name;
+  const full=price(c);
+  if(full)line(text,!c.offer?.price_on_request && c.calc?.total!=null?money(c.calc.total):full,'miniPrice').title=full;
   return a;
 }
 export function card(p,c,ctx) {
@@ -78,7 +80,7 @@ export function card(p,c,ctx) {
   else button(h,c.title,()=>{viaTitle=true;ctx.click?.(c,'card');info.open=!info.open;},'productTitle');
   if(ctx.click)info.ontoggle=()=>{if(info.open && !viaTitle)ctx.click(c,'variants');viaTitle=false;};
   h.title=c.title || '';
-  line(h,c.score?.tier_label,'badge','span');
+  line(h,c.score?.tier_label || (c.score?.tier!=null?caption('tier',c.score.tier,'Уровень '+c.score.tier):''),'badge','span');
   const whyFirst=line(head,readable(label(rows(c.score?.why)[0])),'whyFirst');if(whyFirst)whyFirst.title=whyFirst.textContent;
   const tags=add(body,'div',null,'conditions');
   for(const term of conditions(c.offer))add(tags,'span',term);

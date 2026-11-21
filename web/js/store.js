@@ -1,3 +1,5 @@
+import {spreadsheet} from './download.js';
+import {upload,voice} from './input.js';
 import {caption,loadMeta} from './labels.js';
 import {address,readAddress} from './address.js';
 import {presentation} from './show.js';
@@ -80,7 +82,7 @@ async function store() {
     const request={...previous,...settings(q),...patch};
     state.request=request;
     main.classList.add('searched');
-    if(!navigation.restore)save(request);
+    if(!navigation.restore && !navigation.file)save(request);
     window.scrollTo(0,0);document.getElementById('pageScroll')?.scrollTo(0,0);
     $('notice').textContent='Идёт поиск…';
     results.replaceChildren();timeline.replaceChildren();
@@ -88,10 +90,20 @@ async function store() {
     timeline.textContent='Ожидаем ответ движка.';
     results.setAttribute('aria-busy','true');
     try {
-      const r=await api('/api/search',request);
+      const r=navigation.saved || (navigation.file?await upload(navigation.file,request):await api('/api/search',request));
       if(now!==version)return;
       results.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);
       if(r.profile?.short || r.profile?.segment_title){responseProfiles.set(profile.value,r.profile);profileInfo();}
+      if(r.upload){
+        const u=r.upload, skipped=rows(u.skipped);
+        const caption='Из файла '+u.name+' · позиций '+u.positions+', пропущено '+skipped.length;
+        if(skipped.length){const d=details(results,caption);for(const row of skipped)line(d,'Строка '+row.row+' · '+row.reason);}
+        else line(results,caption,'banner');
+        q=r.query?.raw || q;request.q=q;editor(q);
+        request.mode=r.mode || (request.mode==='smart'?'smart':'fast');$('mode').value=request.mode;
+        category.value='';request.category=null;
+        if(r.search_id && !navigation.restore){const url=new URL(location.href);url.search='';url.searchParams.set('upload',r.search_id);try{history.pushState({fileResult:r},'',url);}catch{history.pushState(null,'',url);}}
+      }
       record(r,'impression').catch(err=>line(results,err.message,'error'));
       if(navigation.suggest)record(r,'suggest_click',{},'suggest').catch(err=>line(results,err.message,'error'));
       result(results,r,{categories:state.meta.categories,
@@ -113,6 +125,12 @@ async function store() {
         variants:c=>api('/api/card/'+encodeURIComponent(c.card_id)+'?'+new URLSearchParams({profile_id:request.profile_id})),
         forBlock:type=>interactions(r,type,request.session_id)
       });
+      if(r.search_id){
+        const target=results.querySelector('[data-type="spec"],[data-type="kit"],[data-type="products"]');
+        const row=add(target || results,'div',null,'exportRow');
+        if(target)target.querySelector('h2')?.after(row);
+        spreadsheet(row,'Скачать КП (XLSX)','/api/export/'+encodeURIComponent(r.search_id)+'?format=xlsx','КП.xlsx');
+      }
       const products=rows(r.blocks).find(b=>b.type==='products');
       const size=request.page_size || 20, page=request.page || 1;
       if(page>1 || products?.total>page*size) {
@@ -126,10 +144,17 @@ async function store() {
       trace(timeline,r);$('notice').textContent='';
     } catch(err) {
       if(now!==version)return;
-      results.replaceChildren();stateBox(results,err.message,'error');button(results,'Повторить поиск',()=>run(q,patch,previous));
+      results.replaceChildren();stateBox(results,err.message,'error');button(results,'Повторить поиск',()=>run(q,patch,previous,navigation));
       timeline.textContent='Трасса недоступна.';$('notice').textContent='Ошибка поиска.';
     } finally {if(now===version) results.removeAttribute('aria-busy');}
   }
+  voice(input.closest('.bar'),input,q=>run(q),$('notice'));
+  const fileInput=$('uploadFile'),bar=input.closest('.bar');
+  $('uploadButton').onclick=()=>fileInput.click();
+  fileInput.onchange=()=>{const file=fileInput.files[0];if(file)run(file.name,{},{},{file});fileInput.value='';};
+  bar.ondragover=e=>{if(e.dataTransfer.types.includes('Files')){e.preventDefault();bar.classList.add('dropReady');}};
+  bar.ondragleave=()=>bar.classList.remove('dropReady');
+  bar.ondrop=e=>{e.preventDefault();bar.classList.remove('dropReady');const file=e.dataTransfer.files[0];if(file)run(file.name,{},{},{file});};
   $('search').onsubmit=e=>{e.preventDefault();chain=[];run(submittedList || input.value.trim());};
   $('specMode').onclick=()=>{spec.hidden=!spec.hidden;$('specMode').setAttribute('aria-expanded',String(!spec.hidden));if(!spec.hidden) specText.focus();};
   spec.onsubmit=e=>{e.preventDefault();chain=[];run(specText.value.trim());};
@@ -179,7 +204,7 @@ async function store() {
   const demo=scenario?.demo || {}, saved=readAddress(location.search);
   $('mode').value=saved.mode;
   const selected=url.get('profile') || demo.profile;
-  if(scenario) sessionStorage.kzSession=state.session=freshSession();
+  if(scenario || url.has('step')) sessionStorage.kzSession=state.session=freshSession();
   if([...profile.options].some(o=>o.value===selected)) profile.value=selected;
   category.value=saved.category || demo.category || '';
   chain=[...rows(demo.chain)];comparisonProfiles=url.has('profiles') ? url.get('profiles').split(',') : rows(demo.compare);
@@ -187,6 +212,13 @@ async function store() {
   if(example && example===chain[0])chain.shift();else if(example)chain=[];
   const q=example || demo.q || chain.shift() || (scenario && scenario.examples?.[0]);
   profileInfo();
+  if(url.has('upload')){
+    const saved=history.state?.fileResult || await api('/api/admin/search/'+encodeURIComponent(url.get('upload')));
+    const r=saved.response || saved.result || saved;
+    if(r.profile?.id)profile.value=r.profile.id;
+    if(r.mode)$('mode').value=r.mode;
+    profileInfo();await run(r.query?.raw || 'Спецификация',{}, {},{saved:r,restore:true});return;
+  }
   if(q){
     if(url.get('action')==='suggest'){main.classList.add('searched');input.value=q;input.focus();input.dispatchEvent(new Event('input'));results.replaceChildren();return;}
     const kind=saved.compare || (comparisonProfiles.length?'profiles':'');

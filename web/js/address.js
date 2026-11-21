@@ -1,6 +1,7 @@
 const extraKeys=['ignore','filters','verbatim','context','page'];
 export function address(req,compare='',base='/') {
   const url=new URL(base,location.href);
+  url.searchParams.delete('upload');
   const view={q:req.q,profile:req.profile_id,mode:req.mode,category:req.category,compare};
   const criteria=Object.fromEntries(extraKeys.filter(k=>req[k]!=null).map(k=>[k,req[k]]));
   if(Object.keys(criteria).length)view.criteria=JSON.stringify(criteria);
