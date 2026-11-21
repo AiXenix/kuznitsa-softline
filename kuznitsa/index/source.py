@@ -29,17 +29,17 @@ def read_offer(line):
     for field in ("source_id","added_at","domestic","in_stock","delivery_days","promo"):
         if row.get(field) is not None:
             attrs[field]=row[field]
-    for key in ("aliases","certs","extra"):
+    for key in ("aliases","certs","extra","prices"):
         value=attrs.get(key)
         if isinstance(value,str) and value.lstrip().startswith(("[","{")):
             try:
                 decoded=json.loads(value)
             except ValueError:
                 continue
-            if isinstance(decoded,dict if key=="extra" else list):
+            if isinstance(decoded,dict if key in ("extra","prices") else list):
                 attrs[key]=decoded
     for k,v in attrs.items():
-        if not isinstance(v,str) and k not in {"aliases","source_ids","certs","extra"}:
+        if not isinstance(v,str) and k not in {"aliases","source_ids","certs","extra","prices"}:
             attrs[k]=json.dumps(v,ensure_ascii=False)
     return declared_offer(Offer.model_validate({**row,"attrs":attrs}))
 
@@ -105,7 +105,7 @@ class SupplierNames:
                 series = o.attrs.get("series")
                 if not series and " / " in o.name and "," in o.name:
                     series = normalize(o.name.partition(",")[0]).removeprefix(normalize(o.vendor or "")+" ")
-                entries = [("family", series), ("family", o.family_name), ("vendor", o.vendor)]
+                entries = [("family", o.name), ("family", series), ("family", o.family_name), ("vendor", o.vendor)]
                 for category in o.category_path:
                     entries.append(("category", category))
                     if o.vendor:
@@ -114,7 +114,9 @@ class SupplierNames:
                 for kind, name in entries:
                     if name:
                         self.names[(kind,normalize(name))].add(card.id)
+        self.compact=defaultdict(set)
         for kind, name in self.names:
+            self.compact[name.replace(" ","")].add((kind,name))
             self.forms[name].add((kind,name))
             for variant in (name.translate(LAYOUT),roman(name),roman(name.replace("й","y")),cyrillic(name)):
                 self.forms[normalize(variant)].add((kind,name))
@@ -161,6 +163,11 @@ class SupplierNames:
         return best[1] if best else None
 
     def nearby_variant(self,q):
+        version=re.fullmatch(r"(.+?) (?:v|версия )?(\d+(?:\.\d+)*)",q)
+        if version:
+            ids=self.names.get(("family",version[1]),set())
+            if ids and not any(version[2] in facts for cid in ids for facts in self.qualifiers.get(cid,())):
+                return ids
         words=tokens(q)
         if not 2<=len(words)<=7 or not re.fullmatch(r"[a-z0-9. -]+",q):
             return
@@ -190,10 +197,18 @@ class SupplierNames:
         if q in self.tasks and not any(kind!="category" for kind,_ in options or ()):
             return "task",self.tasks[q],q,q
         if not options and not verbatim:
+            options=self.compact.get(key.replace(" ",""))
+            parts=key.split()
+            for i,part in enumerate(parts):
+                if options:break
+                mixed=" ".join([*parts[:i],part.translate(self.layout),*parts[i+1:]])
+                options=self.forms.get(mixed) or self.compact.get(mixed.replace(" ",""))
             layout=normalize(q.translate(self.layout))
             other=re.sub(boundary,"",layout)
-            if other!=layout and other in self.forms:
-                q,key,options=layout,other,self.forms[other]
+            if not options:
+                options=self.forms.get(other) or self.compact.get(other.replace(" ",""))
+                if options:q,key=layout,other
+        if not options and self.nearby_variant(key):return
         if not options and not verbatim and 5 <= len(key) <= 100:
             near = self.nearest(key, 2, 2 if len(key)>=9 else 1)
             if near and (len(near)==1 or near[0][1]<near[1][1]):

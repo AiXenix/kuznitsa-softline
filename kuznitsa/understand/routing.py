@@ -139,6 +139,11 @@ def software_like_unknown(raw,words,entities):
 
 def explicit_request(engine, text, filters, intent):
     """Явная операция и предмет покупки имеют приоритет перед адресатом программы."""
+    from kuznitsa.plans.license_help import operation
+    if operation(text):return "question"
+    if re.search(r"(?:еще|следующ)\w* .*год.*действующ\w* подписк",text):
+        filters["action"]="renewal"
+        return "renewal"
     families=engine.kb.rows["families"]
     named=[families[fid] for fid in filters.get("family",[]) if fid in families]
     if re.search(r"купленн\w* лиценз\w* .*?(?:моей|нашей)|(?:моей|нашей) компани\w* .*лиценз",text):

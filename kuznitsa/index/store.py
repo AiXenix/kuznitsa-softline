@@ -140,6 +140,9 @@ class Catalog:
                 knowledge.append(((kind,ident),text))
         self.dense = Dense(cfg,[". ".join(d[k] for k in ("title","vendor","category","summary","keywords")) for d in docs],knowledge)
 
+        from .sections import Sections
+        self.sections=Sections(self,cfg)
+
     def prefix_skus(self,text,limit=8):
         from bisect import bisect_left
         prefix=sku_key(text)

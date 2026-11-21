@@ -281,14 +281,16 @@ class Engine:
         t.add("sku_lookup","Точный артикул",", ".join(o.sku or o.source_id or o.name for o in exact_offers.values()) or "Совпадений по артикулу нет")
         from .understand.quantities import spoken_numbers
         norm=spoken_numbers(norm) if not sku else norm
-        supplier = self.catalog.supplier.lookup(norm,req.verbatim) if not sku and not multiline else None
+        from .rank.price_types import split_tariff, PriceView, LABELS as PRICE_LABELS
+        tariff, query_without_tariff = split_tariff(norm)
+        supplier = self.catalog.supplier.lookup(query_without_tariff,req.verbatim) if not sku and not multiline else None
         if supplier:
             source_kind, supplier_cards, literal, supplier_key = supplier
             entity_kind = "family" if source_kind in ("alias","task") else source_kind
             words=tokens(literal)
-            changes=[{"from":norm,"to":literal,"kind":"catalog"}] if literal!=norm else []
+            changes=[{"from":query_without_tariff,"to":literal,"kind":"catalog"}] if literal!=query_without_tariff else []
         else:
-            words,changes= (tokens(norm),[]) if sku or req.verbatim else repair(norm,lex)
+            words,changes= (tokens(query_without_tariff),[]) if sku or req.verbatim else repair(query_without_tariff,lex)
         weak_name=False
         if re.fullmatch(r"[a-z]{5,}",norm) and changes and changes[0]["kind"]=="typo":
             from rapidfuzz.distance import DamerauLevenshtein
@@ -527,7 +529,15 @@ class Engine:
             subject=re.sub(r"\s+в россии\b","",subject)
             subject=re.sub(r"^(?:замена|аналог|чем заменить)\s+","",subject)
             alt_term=re.sub(r"\s+на\s+\d+[\s\w-]*$","",subject).strip()
+        from .index.sections import REPLACEMENT,TASK
+        alternative=REPLACEMENT.match(original_norm)
         supplied=self.catalog.replacements.get(alt_term)
+        if alternative:
+            supplied=supplied or self.catalog.replacements.get(original_norm[alternative.end():])
+            if supplied or re.match(r"российск",original_norm):
+                intent="analog"
+                domestic_analog=True
+                f.setdefault("origin","russian")
         if supplied and not supplier and intent not in ("sku","spec_list"):
             intent="analog" if domestic_analog or alt_term!=original_norm and re.match(r"аналог|альтернатив|замен|вместо|чем замен",original_norm) else "out_of_catalog"
         related_variant=self.catalog.supplier.nearby_variant(original_norm) if not sku and not supplied and not retired and not multiline and not self.catalog.offer_names.get(original_norm) else None
@@ -549,6 +559,40 @@ class Engine:
         state={"запрос":original_norm,"понимание":corrected,"условия":dict(f),"исключения":exc,"количество":qty,
                "сегмент":profile.segment,"раздел":category}
         smart=req.mode=="smart" and self.decisions is not None and not prior_calls
+        tree=self.catalog.sections
+        section_options=[]
+        section_note=""
+        section_pick=None
+        scopes=[set().union(*(self.catalog.by[key].get(v,()) for v in f[key]))
+                for key in ("family","vendor","category") if f.get(key)] if tree.labels else []
+        empty_scope=not scopes or not set.intersection(*scopes)
+        linked_replacement=any(self.catalog.by["family"].get(target)
+            for fid in f.get("family",[]) for target in self.kb.rows["families"].get(fid,{}).get("analogs",[])) if tree.labels and intent in ("analog","out_of_catalog") else False
+        section_query=bool(alternative or TASK.search(original_norm) or re.fullmatch(r"[a-z][a-z -]+ [a-z-]+",original_norm)
+                           or len(words)>=2 or len(original_norm)>=5 and original_norm.isalpha())
+        attempt=(tree.labels and section_query and not (sku or multiline or supplier or related_variant or retired or supplied or linked_replacement or category or req.verbatim or {"category","family","vendor"}.intersection(req.filters))
+                 and not re.search(HARDWARE+"|"+PIRACY,original_norm)
+                 and (intent in ("off_topic","out_of_catalog") or empty_scope and intent in ("category","broad","task","analog","product","vendor")
+                      or intent in ("role_kit","industry") and TASK.search(original_norm) and not re.search(r"комплект|софт для",original_norm)))
+        if attempt:
+            section_pick,section_options,decision,confidence=tree.resolve(original_norm,self.decisions if smart else None,deadline,sid,req,calls,t)
+        if section_options:
+            kit=None
+            kit_options=[]
+            unlisted_task=False
+            intent="analog" if alternative else "category" if section_pick else "broad"
+            for key in ("family","vendor","category","edition","version"):
+                if key not in req.filters:f.pop(key,None)
+            if section_pick:
+                f["category"]=[tree.category[section_pick]]
+                if alternative:
+                    domestic_analog=True
+                    f["origin"]="russian"
+                label=tree.labels[section_pick]
+                section_note=f"Понято: {label} (умный режим)" if decision=="jev" else f"Похоже, вы ищете раздел «{label}»."
+                chips.append(dict(key="category",label=section_note,source="query",removable=True))
+            intent_source,intent_conf=decision,confidence
+            smart=False
         rejected=[]
         rules_intent=intent
         evidence=bool(entities or category or inherited or domain_cat or intent_source=="embed")
@@ -589,8 +633,8 @@ class Engine:
                 if classes:f["category"]=classes
         from .understand.audience import resolve,LABELS
         refined=None
-        if "refined" not in req.ignore and not sku and (not supplier or source_kind in ("category","vendor")) and not kit_options and intent in ("product","vendor","category","broad","out_of_catalog","compliance","task") and (f.get("family") or f.get("vendor") or f.get("category")):
-            refined=resolve(self,req,intent,original_norm,residual,f,smart and not system,deadline,sid,calls,t,entities)
+        if not related_variant and not section_options and "refined" not in req.ignore and not sku and (not supplier or source_kind in ("category","vendor")) and not kit_options and intent in ("product","vendor","category","broad","out_of_catalog","compliance","task") and (f.get("family") or f.get("vendor") or f.get("category")):
+            refined=resolve(self,req,intent,query_without_tariff if tariff else original_norm,residual,f,smart and not system,deadline,sid,calls,t,entities)
             if refined["audience"]:
                 chips=[c for c in chips if c.get("key")!="audience"]
                 chips.append(dict(key="refined",label="Понято: "+LABELS[refined["audience"]],removable=True,source=refined["source"]))
@@ -734,6 +778,8 @@ class Engine:
             rel=dict.fromkeys(related_variant,.72)
             for key in ("vendor","family"):
                 if key not in req.exclude:exc.pop(key,None)
+        if section_options:
+            rel=dict.fromkeys(tree.members.get(section_pick,()),.85)
         if supplied and plan in ("analog","out_of_catalog"):
             rel={cid:1. for cid in supplied}
         t.add("retrieve","Отбор кандидатов",f"Подходящих карточек до проверки лицензий · {len(rel)}",
@@ -885,7 +931,14 @@ class Engine:
                 finally:
                     variant_seconds+=self.timer()-begin
             return call
-        pick=timed_pick(select)
+        prices=PriceView(tariff) if tariff else None
+        def choose(card,profile,criteria,exclude,qty,exact=None,*args,**kwargs):
+            if prices:
+                priced=prices.card(card)
+                if exact:exact=priced.offers[card.offers.index(exact)]
+                card=priced
+            return select(card,profile,criteria,exclude,qty,exact,*args,**kwargs)
+        pick=timed_pick(choose if prices else select)
         pick_workplaces=timed_pick(select_for_workplaces)
         relaxed_qty=False
         def collect():
@@ -911,6 +964,11 @@ class Engine:
                     selected[cid]=selection
             return selected
         selected=collect()
+        class_home=bool(supplier and source_kind=="category" and active.get("audience")=="home" and not selected and "audience" not in req.filters)
+        if class_home:
+            active.pop("audience")
+            selected=collect()
+            notes.append("В разделе нет подтверждённых домашних редакций. Проверьте условия использования показанных лицензий.")
         other_terms=set()
         if (plan=="category" and qty and active.get("term_months") and
                 "term_months" not in req.filters and len(selected)<3 and not active.get("action")):
@@ -1153,7 +1211,13 @@ class Engine:
         if profile.client_id=="guest":
             weights["pers"]=0.
         signals={} if priorities else None
-        cards=[ranked(self.catalog.cards[c],s,preference(self.catalog.cards[c],corrected,f,float(rel[c])),bool(sku or ("family" in f and "edition" in active)),profile,weights,self.kb,req.ignore,signals) for c,s in selected.items()]
+        cards=[ranked(prices.card(self.catalog.cards[c]) if prices else self.catalog.cards[c],s,preference(self.catalog.cards[c],corrected,f,float(rel[c])),bool(sku or ("family" in f and "edition" in active)),profile,weights,self.kb,req.ignore,signals) for c,s in selected.items()]
+        if prices:
+            for item in cards:
+                fallback=item["offer"]["offer_id"] in prices.fallback
+                info="Запрошенный вид цены отсутствует. Использована розничная цена." if fallback else "Вид цены — "+PRICE_LABELS[tariff]+"."
+                item["score"]["why"].append(info)
+                if info not in notes:notes.append(info)
         owned_families={p.get("family_id"):p for p in profile.owned}
         industry_record=self.kb.rows["industries"].get(profile.industry,{})
         industry_priority={}
@@ -1280,7 +1344,7 @@ class Engine:
                                    for c in cards)
         nearby=[]
         policy_note=office and (home_for_sale or home_line)
-        if not related_variant and (office or home and not home_for_sale or plan=="out_of_catalog" and any(self.kb.rows["families"].get(fid,{}).get("for_sale_b2b") is False for fid in f.get("family",[])) or not cards and plan in ("product","category","vendor") and any(f.get(k) for k in ("category","vendor","family"))):
+        if not class_home and not related_variant and (office or home and not home_for_sale or plan=="out_of_catalog" and any(self.kb.rows["families"].get(fid,{}).get("for_sale_b2b") is False for fid in f.get("family",[])) or not cards and plan in ("product","category","vendor") and any(f.get(k) for k in ("category","vendor","family"))):
             nearby=alternative_blocks(self,f,profile,exc,qty,weights,home,office)
             if home or len(nearby)>1:
                 cards=[item["card"] for block in nearby if block["type"]=="analogs" for item in block["items"]]
@@ -1338,6 +1402,11 @@ class Engine:
             if related_variant:
                 reason="not_in_catalog_known"
                 blocks[-1].update(reason="gap",text="Запрошенного варианта нет в продаже. Ниже доступные редакции этой линейки.")
+                version=re.search(r" (\d+(?:\.\d+)*)$",original_norm)
+                if version:
+                    message=f"Версии {version[1]} нет в продаже. Показана доступная версия."
+                    blocks[-1]["text"]=message
+                    for item in cards:item["score"]["why"].append(message)
         if plan=="sku" and registry and not sku:
             blocks.append(dict(type="answer",title="Проверка реестровой записи",text="В загруженных данных нет связи с реестровым номером "+registry[1]+". Уточните название продукта или проверьте запись в реестре.",source="catalog",links=[]))
         elif plan=="sku" and not sku:
@@ -1376,6 +1445,9 @@ class Engine:
             child=req.model_copy(update=dict(q=line.replace(","," "),mode="fast",page=1,page_size=3,session_id=""))
             return self._search(child,profile,Trace(self.timer),rules,persist=False)
         blocks=scenarios.compose(self,intent,req,f,entities,qty,cards,profile,blocks,run_line,reason)
+        if section_options and not section_pick:
+            blocks=[dict(type="clarify",title="Уточните раздел",question="Какой раздел вам подходит?",options=[
+                dict(label=tree.labels[k],apply=dict(q=tree.labels[k])) for k in section_options[:3]])]
         if kit_options or code and not kit:
             blocks=[dict(type="clarify",title="Уточните профиль",question="Для кого подобрать программы?",options=[
                 dict(label=self.names[k][v],apply=dict(q=self.names[k][v])) for k,v in kit_options] or [dict(label=r["title"],apply=dict(q=r["title"])) for r in list(self.kb.rows["industries"].values())[:3]])]
@@ -1459,7 +1531,7 @@ class Engine:
         result=dict(search_id=sid,mode="fast" if failed else req.mode,engine="kuznitsa",relax_hints=relax_hints,banners=merch["banners"],engine_version="0.1.0",query=dict(raw=req.q,normalized=original_norm,corrected=corrected,
                     corrections=changes,did_you_mean=None),understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=intent_conf,
                     **({"refined":refined} if refined else {}),zero_reason=zero,intent_source=intent_source,inherited=inherited,entities=entities,filters=f,exclude=exc,qty=requested_qty,chips=chips,subtype=reason if intent=="off_topic" else None,reason=(next((b["reason"] for b in blocks if b["type"]=="not_in_catalog"),reason) if intent=="out_of_catalog" else reason),
-                    agent_note=nearby[0]["text"] if policy_note and nearby else unavailable["text"] if unavailable else TITLES[intent]+(" · "+", ".join(x["label"] for x in chips) if chips else "")),blocks=blocks,facets=facets,
+                    agent_note=section_note if section_note else nearby[0]["text"] if policy_note and nearby else unavailable["text"] if unavailable else TITLES[intent]+(" · "+", ".join(x["label"] for x in chips) if chips else "")),blocks=blocks,facets=facets,
                     related_queries=next_queries(self,cards,norm,blocks),notes=notes,trace=t.steps,
                     cost=cost_summary(calls,self.usd_rub),timing_ms=dict(total=round((self.timer()-t.start)*1000,2)),
                     profile=profile_info(profile))

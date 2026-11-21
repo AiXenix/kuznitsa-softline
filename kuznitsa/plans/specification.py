@@ -84,6 +84,25 @@ def file_line(engine,line,profile,req,weights,inherited_filters):
                 blocks=[dict(type="products",items=hits)])
 
 
+def field_key(value,field):
+    text=normalize(str(value or ""))
+    patterns=(("base",r"базов|basic|base"),("standard",r"стандарт|standard"),("pro",r"профессион|professional|^pro$")) if field=="edition" else (
+        ("edu",r"образоват|академ|edu"),("gov",r"госучреж|государств|gov"),("crossgrade",r"миграц|переход|crossgrade"),
+        ("renewal",r"продл|renew"),("new",r"новая|покупк|^new$"))
+    return next((key for key,pattern in patterns if re.search(pattern,text)),text)
+
+
+def matches_fields(offer,parts,name):
+    series,edition,operation=parts
+    supplied=offer.attrs
+    return (series in (normalize(supplied.get("series","")),normalize(offer.family_name or "")) or
+            not supplied.get("series") and series in name) and (
+        field_key(edition,"edition")==field_key(supplied.get("edition") or offer.edition,"edition") or
+        not supplied.get("edition") and edition in name) and (
+        field_key(operation,"operation")==field_key(supplied.get("operation") or offer.lic.action,"operation") or
+        field_key(operation,"operation")==offer.lic.audience or not supplied.get("operation") and operation in name)
+
+
 def supplier_line(engine,text,count,profile,req,weights,inherited,unit="ед",has_vendor=True):
     parts=[normalize(s) for s in text.split("/") if s.strip()]
     vendor=parts[0]
@@ -108,14 +127,7 @@ def supplier_line(engine,text,count,profile,req,weights,inherited,unit="ед",ha
                 continue
             name=normalize(offer.name)
             # Когда исполнение содержит косую черту, проверяем весь исходный фрагмент.
-            fields=("series","edition","operation")
-            match=all(s==normalize(offer.attrs[field]) if offer.attrs.get(field) else s in name or (field=="series" and s==normalize(offer.family_name or ""))
-                      for s,field in zip(attributes,fields)) if len(attributes)==3 else all(s in name for s in attributes)
-            if not match and len(attributes)==3:
-                series,edition,op=attributes
-                operation=next((v for pattern,v in ((r"образоват|академ","edu"),(r"госучреж|государств","gov"),(r"миграц|переход","crossgrade"),(r"покупк|новая","new"),(r"продл","renewal")) if re.search(pattern,op)),None)
-                match=bool(operation and operation in (offer.lic.audience,offer.lic.action) and
-                           all(normalize(offer.attrs.get(k) or "")==v or v in name for k,v in (("series",series),("edition",edition))))
+            match=matches_fields(offer,attributes,name) if len(attributes)==3 else all(s in name for s in attributes)
             if match and (offer.lic.qty_min or 1)<=count<=(offer.lic.qty_max or 10**10):
                 chosen=select(card,profile,filters,req.exclude,qty,offer)
                 if chosen:hits.append(ranked(card,chosen,1.,True,profile,weights,engine.kb))
