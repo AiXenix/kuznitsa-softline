@@ -11,3 +11,5 @@ onnxruntime
 httpx
 PyYAML
 pytest
+openpyxl
+lxml
