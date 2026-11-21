@@ -5,7 +5,7 @@
   "role": "content_manager",
   "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
   "status": "new",
-  "summary": "За последние 30 дней — 80 поисков в 80 сессиях.",
+  "summary": "Поисков за 30 дней — 80. Сессий — 80. «резервилка» до правила. Карточек — 0, «Кибер Бэкап» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
   "confidence": 0.8,
   "priority": "high",
   "evidence": {
@@ -18,19 +18,31 @@
     ],
     "checks": {
       "лицензия резервилка": {
-        "search_id": "s_955fa64ee6ca424794aa06802dd174a0",
+        "search_id": "s_3898eb8374594f2daefac02ea008f1f9",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_9fc62365b5d940868dadd2f09b412bc2",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       },
       "резервилка": {
-        "search_id": "s_124d59190a7f485e8254c4e704187b3e",
+        "search_id": "s_a1e6edf5f5ae4de9824997e2d6358480",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_05a1345b2ad441cc9ef1ce0ac9bea821",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       },
       "корпоративная резервилка": {
-        "search_id": "s_8214d0a2af4b43b3b6b218d44ff4b894",
+        "search_id": "s_3dc65e849c184aa880ba27052d158a2b",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_1c2189170c2d4499b41a401ba094a364",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       }
     },
     "search_ids": {
@@ -62,6 +74,12 @@
     "reformulated_to": {
       "Кибер Бэкап": 80
     },
+    "target_card_ids": [
+      "cyber_backup:advanced",
+      "cyber_backup:standard",
+      "cyber_backup:virt_host",
+      "cyber_backup:workstation"
+    ],
     "examples": [
       {
         "q": "лицензия резервилка",
@@ -88,10 +106,12 @@
     }
   },
   "impact": {
-    "expected_rub": 140474,
-    "conservative_rub": 96576,
+    "expected_rub": 297295,
+    "conservative_rub": 204391,
     "metric_label": "Оценка потенциала",
     "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
   },
+  "evidence_text": "Поисков за 30 дней — 80. Сессий — 80. «резервилка» до правила. Карточек — 0, «Кибер Бэкап» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
+  "impact_text": "Оценка потенциала · 297 295 ₽. Осторожная оценка · 204 391 ₽.",
   "verification": null
 }

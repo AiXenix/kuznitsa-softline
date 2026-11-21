@@ -12,8 +12,7 @@ FORMULA = ("Одна неудачная сессия без корзины, за
            "затем по сегменту и категории, сегменту или всему журналу. Для ушедших вендоров используется положительная разница конверсий показов аналогов в категории; без обеих групп оценка равна нулю.")
 
 
-def facts(j):
-    return j.read_report("""SELECT s.search_id,s.ts,coalesce(nullif(s.session_id,''),s.search_id) session_id,s.client_id,
+FACT_SQL="""SELECT s.search_id,s.ts,coalesce(nullif(s.session_id,''),s.search_id) session_id,s.client_id,
         s.segment,s.source,s.engine,s.intent,s.category_ctx category,s.q_raw q,coalesce(s.fail_reason,case
         when min(case when e.type='click' then e.position end)>5 then 'ranking_issue' end) reason,s.zero,
         s.q_corrected normalized_query,s.q_corrected!=s.q_norm corrected,s.blocks_json,s.filters_json,s.top_cards_json,
@@ -31,7 +30,12 @@ def facts(j):
         sum(case when e.type='order' then coalesce(e.value,0) else 0 end) revenue,
         sum(case when e.type='order' then coalesce(e.margin_value,0) else 0 end) margin
         FROM active_history s LEFT JOIN events e USING(search_id)
-        GROUP BY s.search_id""")
+        GROUP BY s.search_id"""
+
+
+def facts(j):
+    packed=j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'")
+    return j.read_report("SELECT * FROM analytics_detail" if packed else FACT_SQL)
 
 
 def failed(r):
@@ -43,14 +47,18 @@ def loss_by_search(rows):
     for r in rows:
         if r["source"]!="replay":
             sessions[r["session_id"]].append(r)
+    return loss_by_session(sessions.values())
+
+
+def loss_by_session(groups):
     bridge=defaultdict(lambda:[0,0,0,0])
     benchmarks=defaultdict(lambda:[0,[]])
     losses=[]
     excluded=0
-    for group in sessions.values():
+    for group in groups:
         r=max(group,key=lambda x:x["ts"])
         key=(r["segment"],r["category"],r["intent"])
-        if any('"analogs"' in (x["blocks_json"] or "") for x in group if "blocks_json" in x):
+        if any('"analogs"' in (x["blocks_json"] or "") for x in group if "blocks_json" in x.keys()):
             index=2 if any(x["reason"]=="vendor_left" for x in group) else 0
             bridge[r["category"]][index]+=1
             bridge[r["category"]][index+1]+=int(any(x["orders"] for x in group))
@@ -68,19 +76,17 @@ def loss_by_search(rows):
         failures=[x for x in group if failed(x)]
         if failures and not converted:
             r=max(failures,key=lambda x:x["ts"])
-            losses.append(r)
+            losses.append((r["search_id"],(r["segment"],r["category"],r["intent"]),r["reason"] or "ambiguous"))
     rates={key:(n,len(checks)/n*(median(checks) if checks else 0)) for key,(n,checks) in benchmarks.items()}
     result={}
-    for r in losses:
-        key=(r["segment"],r["category"],r["intent"])
+    for ident,key,reason in losses:
         rate=next((rates[key[:n]][1] for n in (3,2,1) if rates.get(key[:n],(0,))[0]>=20),rates.get((),(0,0))[1])
-        reason=r["reason"] or "ambiguous"
         factors=RECOVERY.get(reason,(0,0))
         if reason=="vendor_left":
-            total,ordered,left,left_ordered=bridge[r["category"]]
+            total,ordered,left,left_ordered=bridge[key[1]]
             checks=benchmarks[key[:1]][1]
             rate=max(0,ordered/total-left_ordered/left)*median(checks) if total and left and checks else 0
-        result[r["search_id"]]=tuple(rate*k for k in factors)
+        result[ident]=tuple(rate*k for k in factors)
     return result,excluded
 
 
@@ -88,10 +94,17 @@ def report(j, **filters):
     import json
     from .cache import cached
     from .rollup import summarize,DIMENSIONS
+    from .lineage import warning
+    note=warning(j)
+    if note:
+        scope=dict(label="Сравнение ожидает согласованной сборки",start=None,end=None)
+        return dict(data_status="incompatible",scope=scope,scope_text=scope["label"],note=note,coverage_notes=[note],
+                    pairs=[],comparison=None,tiles=[],funnel=[],slices={k:[] for k in DIMENSIONS},totals={},
+                    lost_orders=dict(available=False),order_amounts={})
     filters={k:v for k,v in filters.items() if v and k in DIMENSIONS}
     if filters.get("engine")=="legacy":
         del filters["engine"]
-    return cached(j,"kpi-b2.1:"+json.dumps(filters,sort_keys=True),lambda:summarize(j,filters))
+    return cached(j,"kpi-proof:"+json.dumps(filters,sort_keys=True),lambda:summarize(j,filters))
 
 
 def queries(rows,kind,limit=50):

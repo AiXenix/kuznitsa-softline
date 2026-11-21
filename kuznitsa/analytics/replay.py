@@ -29,11 +29,15 @@ def compare(engine, q, **kwargs):
 
 
 def prepare(engine,mode,limit):
-    if not 1<=limit<=3000:
-        raise ValueError("Размер прогона от 1 до 3000 фраз")
+    if limit is not None and limit<1:
+        raise ValueError("Укажите положительное число фраз")
     j=engine.journal
     data=Path(j.path).parent
     dataset=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'")
+    from .lineage import snapshot
+    stamp,note=snapshot(j)
+    if note:
+        raise ValueError(note)
     labels={}
     path=data/"mock_truth.jsonl"
     if path.exists() and (not dataset or dataset[0]["value"]=="mock"):
@@ -41,8 +45,25 @@ def prepare(engine,mode,limit):
             for line in stream:
                 t=json.loads(line)
                 labels[t["search_id"]]=t
+    if dataset and dataset[0]["value"]=="import":
+        for event in j.rows("""SELECT e.search_id,e.type,e.card_id,e.offer_id,e.position FROM events e JOIN active_history s USING(search_id)
+                               WHERE e.type IN ('click','order') ORDER BY e.type='order',e.ts"""):
+            offer=engine.catalog.offers_by_id.get(event["offer_id"])
+            card=offer.card_id if offer else event["card_id"]
+            if card in engine.catalog.cards:
+                previous=labels.get(event["search_id"],{})
+                position=event["position"]
+                if position is None and previous.get("target_card")==card:
+                    position=previous.get("position")
+                labels[event["search_id"]]=dict(target_card=card,position=position)
+        if j.rows("SELECT 1 FROM sqlite_master WHERE name='analytics_targets'"):
+            for r in j.rows("SELECT t.* FROM analytics_targets t JOIN active_history s ON s.search_id=t.id"):
+                labels[r["id"]]=dict(target_card=r["card_id"],position=r["position"])
     from .kpi import facts,loss_by_search
-    losses,_=loss_by_search(facts(j))
+    if j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"):
+        losses={r["id"]:(0,r["low"]) for r in j.rows("SELECT search_id id,low FROM analytics_fact WHERE low>0")}
+    else:
+        losses,_=loss_by_search(facts(j))
     groups=defaultdict(list)
     digest=hashlib.sha256()
     for r in j.rows("SELECT search_id,q_raw,top_cards_json,n_cards FROM active_history ORDER BY search_id"):
@@ -51,11 +72,12 @@ def prepare(engine,mode,limit):
         digest.update(dump([r,labels.get(r["search_id"])]).encode())
     catalog=data/"catalog.jsonl"
     revision=engine.controls.version()
-    digest.update(dump(["paired-b2",mode,limit,revision,catalog.stat().st_mtime_ns if catalog.exists() else 0]).encode())
+    digest.update(dump([stamp,mode,limit,revision,catalog.stat().st_mtime_ns if catalog.exists() else 0]).encode())
     ident=digest.hexdigest()[:24]
     selected=sorted(groups,key=lambda q:(-len(groups[q]),q))[:limit]
     with j.transaction() as db:
         db.execute("""INSERT OR IGNORE INTO kv SELECT 'settings:active_replay',coalesce((SELECT id FROM replays ORDER BY created DESC LIMIT 1),''),?""",(time(),))
+        db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:paired_build:"+ident,dump(stamp),time()))
         db.execute("INSERT OR IGNORE INTO replays VALUES (?,?,?,?,?)",(ident,mode,digest.hexdigest(),len(selected),time()))
     return ident,selected,groups,labels,revision,dataset
 
@@ -85,9 +107,11 @@ def execute(engine,mode,plan):
                 target=labels.get(r["search_id"],{})
                 family=target.get("target_family")
                 category=target.get("target_category")
-                if not (family or category):
+                if not (family or category or target.get("target_card")):
                     continue
                 wanted=engine.catalog.by["family"].get(family,set()) if family else engine.catalog.by["category"].get(category,set())
+                if target.get("target_card"):
+                    wanted={target["target_card"]}
                 labeled+=1
                 before=json.loads(r["top_cards_json"] or "[]")
                 def correct(ids,offer_ids):
@@ -99,6 +123,8 @@ def execute(engine,mode,plan):
                             return True
                     return False
                 old=correct(before[:5],target.get("legacy_offers",[]))
+                if target.get("position") and target.get("target_card"):
+                    old=1<=target["position"]<=5
                 new=correct(cards[:5],[c.get("offer",{}).get("offer_id") for c in products(response)[:5]])
                 cases[r["search_id"]]=[old,new]
                 before5+=old
@@ -111,7 +137,8 @@ def execute(engine,mode,plan):
 
 
     with j.transaction() as db:
-        if dataset!=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'") or engine.controls.version()!=revision:
+        from .lineage import warning
+        if warning(j,ident) or dataset!=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'") or engine.controls.version()!=revision:
             db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:replay:"+ident,
                        "Во время прогона изменилась история или правила. Запустите сравнение для нового снимка.",time()))
             return
@@ -123,7 +150,7 @@ def execute(engine,mode,plan):
             db.execute("UPDATE analytics_revision SET revision=revision+1")
 
 
-def run(engine,mode="fast",limit=3000):
+def run(engine,mode="fast",limit=None):
     plan=prepare(engine,mode,limit)
     execute(engine,mode,plan)
     return summary(engine.journal,plan[0])
@@ -131,6 +158,13 @@ def run(engine,mode="fast",limit=3000):
 
 def summary(j,ident):
     from .cache import cached
+    from .lineage import warning
+    runs=j.rows("SELECT mode,limit_n FROM replays WHERE id=?",(ident,))
+    if not runs:
+        raise KeyError(ident)
+    note=warning(j,ident)
+    if note:
+        return dict(id=ident,status="incompatible",note=note,mode=runs[0]["mode"],total=runs[0]["limit_n"],examples=[])
     return cached(j,"summary:" + ident,lambda:_summary(j,ident))
 
 

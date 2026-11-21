@@ -4,7 +4,7 @@
       "engine": "legacy",
       "reason": "unknown_term",
       "label": "Термин не распознан",
-      "count": 13434,
+      "count": 13184,
       "example": "адешка",
       "search_id": "s_mock_000000_0",
       "examples": [
@@ -19,22 +19,7 @@
       "engine": "legacy",
       "reason": "ambiguous",
       "label": "Уход или уточнение без установленной причины",
-      "count": 12725,
-      "example": "служба каталогов",
-      "search_id": "s_mock_000010_1",
-      "examples": [
-        {
-          "q": "служба каталогов",
-          "search_id": "s_mock_000010_1"
-        }
-      ],
-      "scope": "history"
-    },
-    {
-      "engine": "legacy",
-      "reason": "ranking_issue",
-      "label": "Подходящая позиция слишком низко",
-      "count": 1460,
+      "count": 12448,
       "example": "служба каталогов",
       "search_id": "s_mock_000004_1",
       "examples": [
@@ -47,15 +32,15 @@
     },
     {
       "engine": "legacy",
-      "reason": "vendor_left",
-      "label": "Вендор прекратил поставки",
-      "count": 783,
-      "example": "cursor ai оплата от юрлица",
-      "search_id": "s_mock_000277_0",
+      "reason": "ranking_issue",
+      "label": "Подходящая позиция слишком низко",
+      "count": 1384,
+      "example": "служба каталогов",
+      "search_id": "s_mock_000054_1",
       "examples": [
         {
-          "q": "cursor ai оплата от юрлица",
-          "search_id": "s_mock_000277_0"
+          "q": "служба каталогов",
+          "search_id": "s_mock_000054_1"
         }
       ],
       "scope": "history"
@@ -64,13 +49,28 @@
       "engine": "legacy",
       "reason": "off_topic",
       "label": "Другая тематика",
-      "count": 672,
+      "count": 689,
       "example": "принтер для бухгалтерии",
-      "search_id": "s_mock_002550_0",
+      "search_id": "s_mock_002551_0",
       "examples": [
         {
           "q": "принтер для бухгалтерии",
-          "search_id": "s_mock_002550_0"
+          "search_id": "s_mock_002551_0"
+        }
+      ],
+      "scope": "history"
+    },
+    {
+      "engine": "legacy",
+      "reason": "vendor_left",
+      "label": "Вендор прекратил поставки",
+      "count": 682,
+      "example": "autocad",
+      "search_id": "s_mock_001557_0",
+      "examples": [
+        {
+          "q": "autocad",
+          "search_id": "s_mock_001557_0"
         }
       ],
       "scope": "history"
@@ -79,13 +79,13 @@
       "engine": "legacy",
       "reason": "not_in_catalog",
       "label": "Нет в ассортименте",
-      "count": 110,
-      "example": "яндекс трекер",
-      "search_id": "s_mock_000466_0",
+      "count": 301,
+      "example": "cursor ide",
+      "search_id": "s_mock_000274_0",
       "examples": [
         {
-          "q": "яндекс трекер",
-          "search_id": "s_mock_000466_0"
+          "q": "cursor ide",
+          "search_id": "s_mock_000274_0"
         }
       ],
       "scope": "history"
@@ -94,13 +94,13 @@
       "engine": "legacy",
       "reason": "no_available_offer",
       "label": "Нет доступной лицензии",
-      "count": 59,
-      "example": "AX-DA17C1C35C75",
-      "search_id": "s_mock_002619_2",
+      "count": 37,
+      "example": "AX-2B2A33D82921",
+      "search_id": "s_mock_002933_0",
       "examples": [
         {
-          "q": "AX-DA17C1C35C75",
-          "search_id": "s_mock_002619_2"
+          "q": "AX-2B2A33D82921",
+          "search_id": "s_mock_002933_0"
         }
       ],
       "scope": "history"
@@ -112,7 +112,7 @@
         "engine": "legacy",
         "reason": "unknown_term",
         "label": "Термин не распознан",
-        "count": 13434,
+        "count": 13184,
         "example": "адешка",
         "search_id": "s_mock_000000_0",
         "examples": [
@@ -127,22 +127,7 @@
         "engine": "legacy",
         "reason": "ambiguous",
         "label": "Уход или уточнение без установленной причины",
-        "count": 12725,
-        "example": "служба каталогов",
-        "search_id": "s_mock_000010_1",
-        "examples": [
-          {
-            "q": "служба каталогов",
-            "search_id": "s_mock_000010_1"
-          }
-        ],
-        "scope": "history"
-      },
-      {
-        "engine": "legacy",
-        "reason": "ranking_issue",
-        "label": "Подходящая позиция слишком низко",
-        "count": 1460,
+        "count": 12448,
         "example": "служба каталогов",
         "search_id": "s_mock_000004_1",
         "examples": [
@@ -155,15 +140,15 @@
       },
       {
         "engine": "legacy",
-        "reason": "vendor_left",
-        "label": "Вендор прекратил поставки",
-        "count": 783,
-        "example": "cursor ai оплата от юрлица",
-        "search_id": "s_mock_000277_0",
+        "reason": "ranking_issue",
+        "label": "Подходящая позиция слишком низко",
+        "count": 1384,
+        "example": "служба каталогов",
+        "search_id": "s_mock_000054_1",
         "examples": [
           {
-            "q": "cursor ai оплата от юрлица",
-            "search_id": "s_mock_000277_0"
+            "q": "служба каталогов",
+            "search_id": "s_mock_000054_1"
           }
         ],
         "scope": "history"
@@ -172,13 +157,28 @@
         "engine": "legacy",
         "reason": "off_topic",
         "label": "Другая тематика",
-        "count": 672,
+        "count": 689,
         "example": "принтер для бухгалтерии",
-        "search_id": "s_mock_002550_0",
+        "search_id": "s_mock_002551_0",
         "examples": [
           {
             "q": "принтер для бухгалтерии",
-            "search_id": "s_mock_002550_0"
+            "search_id": "s_mock_002551_0"
+          }
+        ],
+        "scope": "history"
+      },
+      {
+        "engine": "legacy",
+        "reason": "vendor_left",
+        "label": "Вендор прекратил поставки",
+        "count": 682,
+        "example": "autocad",
+        "search_id": "s_mock_001557_0",
+        "examples": [
+          {
+            "q": "autocad",
+            "search_id": "s_mock_001557_0"
           }
         ],
         "scope": "history"
@@ -187,13 +187,13 @@
         "engine": "legacy",
         "reason": "not_in_catalog",
         "label": "Нет в ассортименте",
-        "count": 110,
-        "example": "яндекс трекер",
-        "search_id": "s_mock_000466_0",
+        "count": 301,
+        "example": "cursor ide",
+        "search_id": "s_mock_000274_0",
         "examples": [
           {
-            "q": "яндекс трекер",
-            "search_id": "s_mock_000466_0"
+            "q": "cursor ide",
+            "search_id": "s_mock_000274_0"
           }
         ],
         "scope": "history"
@@ -202,13 +202,13 @@
         "engine": "legacy",
         "reason": "no_available_offer",
         "label": "Нет доступной лицензии",
-        "count": 59,
-        "example": "AX-DA17C1C35C75",
-        "search_id": "s_mock_002619_2",
+        "count": 37,
+        "example": "AX-2B2A33D82921",
+        "search_id": "s_mock_002933_0",
         "examples": [
           {
-            "q": "AX-DA17C1C35C75",
-            "search_id": "s_mock_002619_2"
+            "q": "AX-2B2A33D82921",
+            "search_id": "s_mock_002933_0"
           }
         ],
         "scope": "history"
@@ -219,13 +219,13 @@
         "engine": "kuznitsa",
         "reason": "unknown_term",
         "label": "Термин не распознан",
-        "count": 1031,
-        "example": ",fpjdsq yf,jh gj lkz ,fyrf",
-        "search_id": "s_c8a19dd030f64572a56ebf44691564f4",
+        "count": 777,
+        "example": "'y;b",
+        "search_id": "s_51b697c84c224737b11d598d1eb77895",
         "examples": [
           {
-            "q": ",fpjdsq yf,jh gj lkz ,fyrf",
-            "search_id": "s_c8a19dd030f64572a56ebf44691564f4"
+            "q": "'y;b",
+            "search_id": "s_51b697c84c224737b11d598d1eb77895"
           }
         ],
         "scope": "paired"
@@ -234,28 +234,28 @@
         "engine": "kuznitsa",
         "reason": "off_topic",
         "label": "Другая тематика",
-        "count": 647,
-        "example": "ATLO",
-        "search_id": "s_bd9cfd17a2064efa989b926f3e1babfa",
+        "count": 726,
+        "example": "1s:bukhgalteriya 8 na god",
+        "search_id": "s_68a2da5802334d3182630bdc51e7a552",
         "examples": [
           {
-            "q": "ATLO",
-            "search_id": "s_bd9cfd17a2064efa989b926f3e1babfa"
+            "q": "1s:bukhgalteriya 8 na god",
+            "search_id": "s_68a2da5802334d3182630bdc51e7a552"
           }
         ],
         "scope": "paired"
       },
       {
         "engine": "kuznitsa",
-        "reason": "filters_too_strict",
-        "label": "Слишком строгие условия",
-        "count": 103,
-        "example": "1C-Bitrix новая лицензия 25 пользователей на 2 года",
-        "search_id": "s_2036350484e94d608f93b7f8afe58e7a",
+        "reason": "not_in_catalog",
+        "label": "Нет в ассортименте",
+        "count": 684,
+        "example": ",bnhbrc24 ghjlktybt",
+        "search_id": "s_f2a8874970284ea491afd7edc53bbf48",
         "examples": [
           {
-            "q": "1C-Bitrix новая лицензия 25 пользователей на 2 года",
-            "search_id": "s_2036350484e94d608f93b7f8afe58e7a"
+            "q": ",bnhbrc24 ghjlktybt",
+            "search_id": "s_f2a8874970284ea491afd7edc53bbf48"
           }
         ],
         "scope": "paired"
@@ -264,13 +264,13 @@
         "engine": "kuznitsa",
         "reason": "vendor_left",
         "label": "Вендор прекратил поставки",
-        "count": 14,
-        "example": "GitHub Enterprise (Team / Copilot) лицензия на 75 пк",
-        "search_id": "s_261a3754d215486f8af2836cc70eba8d",
+        "count": 1,
+        "example": "купить Embarcadero RAD Studio / Delphi / C++Builder",
+        "search_id": "s_90107398a9134dfebf49251825da1e6a",
         "examples": [
           {
-            "q": "GitHub Enterprise (Team / Copilot) лицензия на 75 пк",
-            "search_id": "s_261a3754d215486f8af2836cc70eba8d"
+            "q": "купить Embarcadero RAD Studio / Delphi / C++Builder",
+            "search_id": "s_90107398a9134dfebf49251825da1e6a"
           }
         ],
         "scope": "paired"

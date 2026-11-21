@@ -1,49 +1,22 @@
 [
   {
-    "availability": {
-      "zero_rate": "наблюдение",
-      "orders": "наблюдение",
-      "revenue": "наблюдение",
-      "ctr": "нет кликов",
-      "click_position": "нет позиций клика",
-      "exit_after_fail": "нет отказов",
-      "top5_hit": "нет разметки целевого товара",
-      "reformulation": "нет последовательности событий"
+    "columns": {
+      "ym:s:visitID": "session_id",
+      "ym:s:clientID": "client_id",
+      "ym:s:dateTime": "ts",
+      "ym:s:watchIDs": "hit_ids",
+      "ym:s:parsedParamsKey1": "visit_parameter_names",
+      "ym:s:parsedParamsKey2": "visit_parameter_values"
     },
-    "file": "legacy.csv",
-    "searches": 3,
-    "events": 1,
-    "skipped": 1,
-    "duplicates": 0,
-    "skip_reasons": {
-      "Пустая фраза или неверное числовое поле": 1
-    },
-    "recognized": [
-      "Выручка",
-      "Дата",
-      "Заказы",
-      "Поиски",
-      "Поисковый запрос",
-      "Результаты"
+    "rows_read": 1,
+    "rows_accepted": 1,
+    "period": [
+      1794387600.0,
+      1794387600.0
     ],
-    "ignored": [
-      "Примечание"
-    ],
-    "visits": 0,
-    "fields": [
-      "count",
-      "n_cards",
-      "order",
-      "q",
-      "revenue",
-      "ts"
-    ],
-    "logs": false,
-    "missing": [
-      "Нет кликов: CTR недоступен."
-    ]
-  },
-  {
+    "observed_searches": 0,
+    "observed_empty": 0,
+    "zero_rate": null,
     "availability": {
       "zero_rate": "модель поиска по словам",
       "orders": "нет цели заказа",
@@ -54,35 +27,49 @@
       "top5_hit": "нет разметки целевого товара",
       "reformulation": "нет последовательности событий"
     },
-    "file": "weekly.xlsx",
-    "searches": 4,
+    "file": "vendor-traffic.tsv",
+    "source_type": "Logs API",
+    "searches": 0,
     "events": 0,
     "skipped": 0,
     "duplicates": 0,
+    "rows": 1,
     "skip_reasons": {},
     "recognized": [
-      "Дата",
-      "Запрос",
-      "Поиски"
+      "ym:s:clientID",
+      "ym:s:dateTime",
+      "ym:s:parsedParamsKey1",
+      "ym:s:parsedParamsKey2",
+      "ym:s:visitID",
+      "ym:s:watchIDs"
     ],
     "ignored": [],
-    "visits": 0,
-    "fields": [
-      "count",
-      "q",
-      "ts"
-    ],
+    "visits": 1,
+    "fields": [],
     "logs": false,
     "missing": [
-      "Нет данных о заказах: конверсия недоступна.",
-      "Нет сумм заказов: выручка и потери не оценены.",
-      "Нет кликов: CTR недоступен.",
-      "Нет размеров исходной выдачи. Обычный поиск по словам воспроизведён по каталогу."
+      "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога."
     ]
   },
   {
+    "columns": {
+      "Дата": "ts",
+      "Поисковая фраза на сайте": "q",
+      "Визиты": "visits",
+      "Отказы, %": "bounce",
+      "Доля пустых выдач": "zero_rate"
+    },
+    "rows_read": 3,
+    "rows_accepted": 2,
+    "period": [
+      1794344400.0,
+      1794344400.0
+    ],
+    "observed_searches": 14,
+    "observed_empty": 8,
+    "zero_rate": 0.5714285714285714,
     "availability": {
-      "zero_rate": "модель поиска по словам",
+      "zero_rate": "наблюдение",
       "orders": "нет цели заказа",
       "revenue": "нет суммы заказа",
       "ctr": "нет кликов",
@@ -91,17 +78,22 @@
       "top5_hit": "нет разметки целевого товара",
       "reformulation": "нет последовательности событий"
     },
-    "file": "metrika.tsv",
-    "searches": 10,
+    "file": "onsite-report.xlsx",
+    "source_type": "Отчёт Метрики",
+    "searches": 14,
     "events": 3,
-    "skipped": 0,
+    "skipped": 1,
     "duplicates": 0,
-    "skip_reasons": {},
+    "rows": 3,
+    "skip_reasons": {
+      "Итоговая строка отчёта": 1
+    },
     "recognized": [
       "Визиты",
       "Дата",
+      "Доля пустых выдач",
       "Отказы, %",
-      "Поисковая фраза"
+      "Поисковая фраза на сайте"
     ],
     "ignored": [],
     "visits": 0,
@@ -109,58 +101,137 @@
       "bounce",
       "q",
       "ts",
-      "visits"
+      "visits",
+      "zero_rate"
     ],
     "logs": false,
     "missing": [
       "Нет данных о заказах: конверсия недоступна.",
       "Нет сумм заказов: выручка и потери не оценены.",
       "Нет кликов: CTR недоступен.",
-      "Нет размеров исходной выдачи. Обычный поиск по словам воспроизведён по каталогу.",
-      "Агрегаты Метрики распределены по визитам. Отказ в визите служит приближением ухода."
+      "Агрегаты Метрики распределены по визитам. Отказ в визите служит приближением ухода.",
+      "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога."
     ]
   },
   {
+    "columns": {
+      "Дата создания": "ts",
+      "Фраза поиска": "q",
+      "Найдено товаров": "n_cards",
+      "Количество кликов": "click",
+      "Покупки": "order",
+      "Сумма заказа": "revenue"
+    },
+    "rows_read": 3,
+    "rows_accepted": 2,
+    "period": [
+      1794430800.0,
+      1794517200.0
+    ],
+    "observed_searches": 2,
+    "observed_empty": 1,
+    "zero_rate": 0.5,
     "availability": {
       "zero_rate": "наблюдение",
-      "orders": "нет цели заказа",
-      "revenue": "нет суммы заказа",
+      "orders": "наблюдение",
+      "revenue": "наблюдение",
       "ctr": "наблюдение",
       "click_position": "нет позиций клика",
       "exit_after_fail": "нет отказов",
       "top5_hit": "нет разметки целевого товара",
       "reformulation": "нет последовательности событий"
     },
-    "file": "events.jsonl",
-    "searches": 1,
-    "events": 1,
+    "file": "supplier-search.csv",
+    "source_type": "Журнал поиска",
+    "searches": 2,
+    "events": 2,
     "skipped": 1,
     "duplicates": 0,
+    "rows": 3,
     "skip_reasons": {
       "Пустая фраза или неверное числовое поле": 1
     },
     "recognized": [
-      "click",
-      "n_cards",
-      "query",
-      "segment",
-      "timestamp",
-      "visit_id"
+      "Дата создания",
+      "Количество кликов",
+      "Найдено товаров",
+      "Покупки",
+      "Сумма заказа",
+      "Фраза поиска"
     ],
-    "ignored": [],
+    "ignored": [
+      "Регион склада"
+    ],
     "visits": 0,
     "fields": [
       "click",
       "n_cards",
+      "order",
       "q",
-      "segment",
-      "session_id",
+      "revenue",
       "ts"
     ],
     "logs": false,
     "missing": [
-      "Нет данных о заказах: конверсия недоступна.",
-      "Нет сумм заказов: выручка и потери не оценены."
+      "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога."
+    ]
+  },
+  {
+    "columns": {
+      "ym:pv:watchID": "hit_id",
+      "ym:pv:clientID": "client_id",
+      "ym:pv:dateTime": "ts",
+      "ym:pv:URL": "search_url",
+      "ym:pv:params": "search_and_ecommerce"
+    },
+    "rows_read": 4,
+    "rows_accepted": 3,
+    "period": [
+      1794387605.0,
+      1794387605.0
+    ],
+    "observed_searches": 1,
+    "observed_empty": 0,
+    "zero_rate": 0.0,
+    "availability": {
+      "zero_rate": "наблюдение",
+      "orders": "наблюдение",
+      "revenue": "наблюдение",
+      "ctr": "наблюдение",
+      "click_position": "по событиям",
+      "exit_after_fail": "по событиям",
+      "top5_hit": "нет разметки целевого товара",
+      "reformulation": "по визитам и хитам"
+    },
+    "file": "vendor-actions.tsv",
+    "source_type": "Logs API",
+    "searches": 1,
+    "events": 2,
+    "skipped": 1,
+    "duplicates": 0,
+    "rows": 4,
+    "skip_reasons": {
+      "Не распознаны время или параметры хита": 1
+    },
+    "recognized": [
+      "ym:pv:URL",
+      "ym:pv:clientID",
+      "ym:pv:dateTime",
+      "ym:pv:params",
+      "ym:pv:watchID"
+    ],
+    "ignored": [],
+    "visits": 2,
+    "fields": [
+      "click",
+      "n_cards",
+      "order",
+      "revenue",
+      "ts"
+    ],
+    "logs": true,
+    "missing": [
+      "Для цели в топ-5 нужен идентификатор товара либо товар клика или заказа из каталога."
     ]
   }
 ]

@@ -1,0 +1,56 @@
+{
+  "card_id": "sku:o_611991DAA29E",
+  "card_ref": "drweb_enterprise_security_suite:complex",
+  "position": 1,
+  "title": "Dr.Web Enterprise Security Suite Комплексная защита, продление, 10–24 устройства, 12 мес., для организаций, ESD",
+  "vendor": {
+    "id": "drweb",
+    "name": "Dr.Web"
+  },
+  "category": {
+    "id": "endpoint_security",
+    "title": "Антивирусы и защита рабочих мест"
+  },
+  "summary": "Корпоративный антивирусный комплекс Dr.Web для рабочих станций, серверов, почты и интернет-шлюзов с сертификацией ФСТЭК и ФСБ.",
+  "badges": [],
+  "offer": {
+    "offer_id": "o_611991DAA29E",
+    "sku": "DWL-611991DAA29E",
+    "name": "Dr.Web Enterprise Security Suite Комплексная защита, продление, 10–24 устройства, 12 мес., для организаций, ESD",
+    "price": 2550.0,
+    "price_on_request": false,
+    "delivery": "esd",
+    "vat": 0,
+    "available": true,
+    "version": null,
+    "action": "renewal",
+    "model": "subscription",
+    "term_months": 12,
+    "metric": "device",
+    "qty_min": 10,
+    "qty_max": 24,
+    "pack": null,
+    "audience": "business"
+  },
+  "calc": {
+    "qty": null,
+    "unit_price": 2550.0,
+    "total": null,
+    "text": "от 2 550 ₽ за устройство в год (при покупке от 10)"
+  },
+  "variants": [],
+  "variants_count": 1,
+  "price_from": 2550.0,
+  "score": {
+    "tier": 0,
+    "score": 0.9931312090478329,
+    "parts": {
+      "pop": 0.9931312090478329
+    },
+    "why": [
+      "Совпадение слов в названии, категории, вендоре или артикуле",
+      "Позиция определяется популярностью"
+    ],
+    "tier_label": "Точное соответствие"
+  }
+}

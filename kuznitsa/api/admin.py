@@ -5,6 +5,8 @@ from kuznitsa.analytics import dashboard
 import json
 import gzip
 import os
+from functools import lru_cache
+from heapq import nsmallest
 from pathlib import Path
 from secrets import compare_digest
 from typing import Literal
@@ -25,7 +27,20 @@ def authorize(request:Request,x_admin_token:str=Header(default="")):
         raise HTTPException(403,"Требуется токен администратора")
 
 
-router=APIRouter(prefix="/api/admin",dependencies=[Depends(authorize)])
+from contextlib import asynccontextmanager
+from kuznitsa.plans import naive
+
+
+@asynccontextmanager
+async def warm_search(app):
+    engine=app.state.engine
+    engine.catalog.legacy_category_names=engine.names["category"]
+    naive.prepare(engine.catalog)
+    engine._rules()
+    yield
+
+
+router=APIRouter(prefix="/api/admin",dependencies=[Depends(authorize)],lifespan=warm_search)
 
 
 class Rule(BaseModel):
@@ -44,7 +59,7 @@ class Preview(BaseModel):
 
 class Replay(BaseModel):
     mode:Literal["fast","smart"]="fast"
-    limit:int=Field(100,ge=1,le=3000)
+    limit:int|None=Field(None,ge=1)
 
 
 def checked(fn,*args,**kwargs):
@@ -72,7 +87,7 @@ def indicators(request:Request,segment:str|None=None,category:str|None=None,inte
     if view=="overview":
         result.pop("slices",None)
     elif view=="slices":
-        result={k:result[k] for k in ("scope","slices")}
+        result={k:result[k] for k in ("scope","scope_text","note","slices")}
     for key,group in result.get("slices",{}).items():
         for item in group:
             item["label"]=labels.get(key,{}).get(item["key"],"Не определено" if item["key"]=="unknown" else item["key"])
@@ -105,7 +120,7 @@ def assortment(request:Request):
 def proposals(request:Request,role:str|None=None,status:str|None=None,view:Literal["full","list"]="full"):
     items=[r for r in insights.listing(request.app.state.engine.journal) if (not role or r["role"]==role) and (not status or r["status"]==status)]
     if view=="list":
-        items=[{k:r[k] for k in ("id","type","title","role","status","confidence","impact")} for r in items]
+        items=[{k:r[k] for k in ("id","type","title","role","status","confidence","impact","evidence_text","impact_text") if k in r} for r in items]
     return json_report(request,dict(items=items))
 
 
@@ -180,7 +195,7 @@ def preview(request:Request,body:Preview):
 @router.post("/replay",status_code=202)
 def start_replay(request:Request,body:Replay,background:BackgroundTasks):
     e=request.app.state.engine
-    plan=replay.prepare(e,body.mode,body.limit)
+    plan=checked(replay.prepare,e,body.mode,body.limit)
     ident,selected,*_=plan
     done=e.journal.rows("SELECT count(*) n FROM replay_results WHERE run_id=?",(ident,))[0]["n"]
     active=e.journal.rows("SELECT id FROM active_replay")
@@ -229,6 +244,18 @@ def evaluation(request:Request):
     return dict(file=path.name if path else None,items=items,scenarios=groups)
 
 
+@lru_cache(8)
+def review_rows(path,mtime,size):
+    def decisions():
+        with path.open() as stream:
+            for line in stream:
+                if line.strip():
+                    row=json.loads(line)
+                    if row.get("fallback") or not row.get("accepted") or row.get("confidence")=="low":
+                        yield row
+    return nsmallest(50,decisions(),key=lambda r:(not bool(r.get("fallback")),bool(r.get("accepted")),r.get("probability") or 0))
+
+
 @router.get("/ingest")
 def ingestion(request:Request):
     e=request.app.state.engine
@@ -237,10 +264,18 @@ def ingestion(request:Request):
     for r in sources:
         r["service"]=r["source"] in ("eval","replay")
     reports=e.journal.rows("SELECT value FROM kv WHERE key LIKE 'settings:import-report:%' ORDER BY updated DESC")
-    return dict(catalog=json.loads(path.read_text()) if path.is_file() else None,history=[json.loads(r["value"]) for r in reports],cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
+    catalog=json.loads(path.read_text()) if path.is_file() else None
+    ai_file=path.with_name("import_ai.jsonl")
+    stat=ai_file.stat() if ai_file.is_file() else None
+    ai=(catalog or {}).get("ai") or {}
+    return dict(catalog=catalog,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=[json.loads(r["value"]) for r in reports],cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
                 sources=sources)
 
 
 @router.get("/digest")
-def summary(request:Request,role:Literal["head_ecom","ecom_manager","product_manager","content_manager","customer"]|None=None):
+def summary(request:Request,role:Literal["head_ecom","ecom_manager","product_manager","content_manager","customer"]|None=None,
+            format:Literal["json","md","xlsx"]="json"):
+    if format!="json":
+        from kuznitsa.analytics.exports import export
+        return export(request.app.state.engine,role or "head_ecom",format)
     return checked(digest.digest,request.app.state.engine.journal,role)

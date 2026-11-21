@@ -1,81 +1,81 @@
 {
-  "id": "1ed944dfea1e57ffc672f0ad",
+  "id": "7643302bb0d2b4aed488af3e",
   "note": null,
   "status": "completed",
-  "processed": 3000,
-  "total": 3000,
+  "processed": 7653,
+  "total": 7653,
   "mode": "fast",
-  "frequency": 39755,
-  "before_zero": 10786,
-  "after_zero": 1795,
-  "improved_top3": 18259,
-  "recovered": 9288,
-  "before_top5": 21099,
-  "after_top5": 34999,
-  "labeled": 38616,
-  "estimated_rub": 38509768.25,
+  "frequency": 45000,
+  "before_zero": 14856,
+  "after_zero": 2653,
+  "improved_top3": 21312,
+  "recovered": 12820,
+  "before_top5": 22601,
+  "after_top5": 39130,
+  "labeled": 43922,
+  "estimated_rub": 66589543.21,
   "formula": "Осторожная оценка потерь по KPI для сессий, в которых последний неудачный поиск был пуст и при повторе нашлись карточки. Прогноз, фактических заказов после повтора нет.",
   "examples": [
     {
-      "q": "а на 30 мест?",
-      "recovered_rub": 392418.1176,
+      "q": "а на 50 мест?",
+      "recovered_rub": 634000.1352,
       "analogs": false,
-      "frequency": 221,
-      "before_zero": 221,
+      "frequency": 204,
+      "before_zero": 204,
       "after_zero": 0,
-      "recovered": 221,
+      "recovered": 204,
       "improved_top3": 2,
       "before_top5": 0,
-      "after_top5": 2,
-      "labeled": 221,
-      "search_id": "s_0c369d4a5a3c488c8344025595d22e72",
+      "after_top5": 6,
+      "labeled": 204,
+      "search_id": "s_1f52c19d228d419e90d5f653e1e77bec",
       "first": [
-        "amocrm:base",
-        "ispring_suite:suite",
-        "astra_training_courses:ald"
+        "datapk_ics",
+        "astra_support_pack:standard",
+        "alt_sp:workstation"
       ]
     },
     {
       "q": "а на 15 мест?",
-      "recovered_rub": 357990.5852,
+      "recovered_rub": 713671.1689,
       "analogs": false,
-      "frequency": 215,
-      "before_zero": 215,
+      "frequency": 203,
+      "before_zero": 203,
       "after_zero": 0,
-      "recovered": 215,
+      "recovered": 203,
       "improved_top3": 0,
       "before_top5": 0,
       "after_top5": 0,
-      "labeled": 215,
-      "search_id": "s_d0cc4414d4374c41992fa1b9370e1244",
+      "labeled": 203,
+      "search_id": "s_cef20020683c4ae0921e90e66a61dfc6",
       "first": [
-        "foresight_analytics",
-        "amocrm:pro",
-        "ispring_suite:suite"
+        "kaspersky_kics:nodes",
+        "ald_pro",
+        "astra_support_pack:standard"
       ]
     },
     {
-      "q": "а на 50 мест?",
-      "recovered_rub": 369079.7025,
+      "q": "а на 30 мест?",
+      "recovered_rub": 584682.0958,
       "analogs": false,
-      "frequency": 207,
-      "before_zero": 207,
+      "frequency": 178,
+      "before_zero": 178,
       "after_zero": 0,
-      "recovered": 207,
-      "improved_top3": 1,
+      "recovered": 178,
+      "improved_top3": 0,
       "before_top5": 0,
       "after_top5": 1,
-      "labeled": 207,
-      "search_id": "s_d44d0a1ed005401084f8493d385c6350",
+      "labeled": 178,
+      "search_id": "s_672bafa9c2eb48028c30c3bf4820f82f",
       "first": [
-        "directum_rx:cloud",
-        "ideco_ngfw:smb",
-        "elma365:onprem_ent"
+        "infowatch_arma:firewall",
+        "kaspersky_kics:nodes",
+        "kaspersky_kesb:standard"
       ]
     },
     {
       "q": "миграция active directory на российское",
-      "recovered_rub": 401098.9705,
+      "recovered_rub": 316101.7956,
       "analogs": false,
       "frequency": 85,
       "before_zero": 85,
@@ -85,7 +85,7 @@
       "before_top5": 0,
       "after_top5": 85,
       "labeled": 85,
-      "search_id": "s_bfb4e20e92884b3cadc538a09fbb50b5",
+      "search_id": "s_bda95f2db9fd465bbff90ffd05af5245",
       "first": [
         "windows_server:datacenter",
         "windows_server:standard"
@@ -93,7 +93,7 @@
     },
     {
       "q": "замена ad на astra linux",
-      "recovered_rub": 387988.8567,
+      "recovered_rub": 46890.0814,
       "analogs": true,
       "frequency": 84,
       "before_zero": 84,
@@ -103,7 +103,7 @@
       "before_top5": 0,
       "after_top5": 84,
       "labeled": 84,
-      "search_id": "s_022264ee831140c49e17516936da49b3",
+      "search_id": "s_410d8749d95841358a39c06d2e0a291f",
       "first": [
         "ald_pro",
         "colibri_arm",
@@ -112,7 +112,7 @@
     },
     {
       "q": "аналог teamviewer",
-      "recovered_rub": 716845.346,
+      "recovered_rub": 564759.5025000001,
       "analogs": true,
       "frequency": 75,
       "before_zero": 75,
@@ -122,45 +122,45 @@
       "before_top5": 0,
       "after_top5": 75,
       "labeled": 75,
-      "search_id": "s_061b2dd1a45c4779bea323fe1e1c4366",
+      "search_id": "s_92f96a3ab96f4eda997e7a7bc7444874",
       "first": [
         "rudesktop:standard",
         "rudesktop:pro",
-        "assistant_remote:pro"
+        "assistant_remote:standard"
       ]
     },
     {
       "q": "программа удаленного рабочего стола",
-      "recovered_rub": 612967.4301,
+      "recovered_rub": 542913.5968,
       "analogs": false,
       "frequency": 75,
       "before_zero": 75,
       "after_zero": 0,
       "recovered": 75,
-      "improved_top3": 75,
+      "improved_top3": 0,
       "before_top5": 0,
       "after_top5": 75,
       "labeled": 75,
-      "search_id": "s_c7a84601c8774a18b95562aaf3178157",
+      "search_id": "s_275b7978c73e4e77b75b4f43954f05b0",
       "first": [
-        "rudesktop:pro",
-        "assistant_remote:pro",
-        "kontur_dostup:remote_work"
+        "rms_remote:starter",
+        "pro32_connect:personal",
+        "getscreen_remote:starter"
       ]
     },
     {
       "q": "1c fresh",
-      "recovered_rub": 618938.4064,
+      "recovered_rub": 795421.5824000001,
       "analogs": false,
-      "frequency": 67,
-      "before_zero": 67,
+      "frequency": 69,
+      "before_zero": 69,
       "after_zero": 0,
-      "recovered": 67,
-      "improved_top3": 67,
+      "recovered": 69,
+      "improved_top3": 69,
       "before_top5": 0,
-      "after_top5": 67,
-      "labeled": 67,
-      "search_id": "s_de45dd5d6c4b483aa48fc355bcbbd767",
+      "after_top5": 69,
+      "labeled": 69,
+      "search_id": "s_9343f34cb5404280b10477a58f395d31",
       "first": [
         "onec_fresh:base",
         "onec_fresh:prof",
@@ -169,26 +169,7 @@
     },
     {
       "q": "ии ассистент программиста on premise",
-      "recovered_rub": 54508.422399999996,
-      "analogs": false,
-      "frequency": 66,
-      "before_zero": 66,
-      "after_zero": 0,
-      "recovered": 66,
-      "improved_top3": 0,
-      "before_top5": 0,
-      "after_top5": 0,
-      "labeled": 66,
-      "search_id": "s_5278b52fe5f345df829dbe2ff76f6ba8",
-      "first": [
-        "sphere_t1:full",
-        "kaiten:onprem",
-        "tantor_platform"
-      ]
-    },
-    {
-      "q": "локальная llm для компании",
-      "recovered_rub": 286202.3927,
+      "recovered_rub": 524161.3924,
       "analogs": false,
       "frequency": 66,
       "before_zero": 66,
@@ -198,7 +179,26 @@
       "before_top5": 0,
       "after_top5": 66,
       "labeled": 66,
-      "search_id": "s_c6e26c1da8df4df0bfd0a3ea57ecff8d",
+      "search_id": "s_0181fb81602d492a9c8cf19f380555ce",
+      "first": [
+        "sber_kandinsky_api:onprem",
+        "sber_kandinsky_api:cloud",
+        "yandexgpt_api:api"
+      ]
+    },
+    {
+      "q": "локальная llm для компании",
+      "recovered_rub": 511591.1476,
+      "analogs": false,
+      "frequency": 66,
+      "before_zero": 66,
+      "after_zero": 0,
+      "recovered": 66,
+      "improved_top3": 66,
+      "before_top5": 0,
+      "after_top5": 66,
+      "labeled": 66,
+      "search_id": "s_eefc87998773403e8a151e2422246824",
       "first": [
         "yandexgpt_api:api",
         "gigachat_enterprise:onprem",
@@ -217,11 +217,11 @@
       "before_top5": 0,
       "after_top5": 0,
       "labeled": 65,
-      "search_id": "s_bbff1d5a306e4461b5770c98c64f50c4",
+      "search_id": "s_b00d71f38ffb4d559bfcafb65645be46",
       "first": [
-        "kompas_3d:build",
         "nanocad_platform:base",
-        "kompas_3d:k3d"
+        "nanocad_platform:pro",
+        "kompas_3d:build"
       ]
     },
     {
@@ -236,11 +236,11 @@
       "before_top5": 0,
       "after_top5": 0,
       "labeled": 65,
-      "search_id": "s_995242334ead4e4798e05e2ff06bee21",
+      "search_id": "s_1cade216b6774c49a467664a44626739",
       "first": [
-        "kompas_3d:build",
         "nanocad_platform:base",
-        "kompas_3d:k3d"
+        "nanocad_platform:pro",
+        "kompas_3d:build"
       ]
     }
   ]

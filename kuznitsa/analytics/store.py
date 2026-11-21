@@ -38,6 +38,8 @@ class Journal:
             db.executescript("""
             PRAGMA journal_mode=WAL;
             PRAGMA synchronous=NORMAL;
+            PRAGMA cache_size=-98304;
+            PRAGMA mmap_size=268435456;
             PRAGMA wal_autocheckpoint=0;
             PRAGMA foreign_keys=ON;
             CREATE TABLE IF NOT EXISTS searches(search_id TEXT PRIMARY KEY,ts REAL,session_id TEXT,client_id TEXT,segment TEXT,
@@ -53,6 +55,7 @@ class Journal:
             CREATE TABLE IF NOT EXISTS replays(id TEXT PRIMARY KEY, mode TEXT, fingerprint TEXT, limit_n INTEGER, created REAL);
             CREATE TABLE IF NOT EXISTS replay_results(run_id TEXT, q TEXT, result TEXT, PRIMARY KEY(run_id,q));
             CREATE INDEX IF NOT EXISTS searches_source ON searches(source,q_raw);
+            CREATE INDEX IF NOT EXISTS searches_query_ts ON searches(q_raw,ts DESC,search_id DESC);
             CREATE INDEX IF NOT EXISTS events_search ON events(search_id,type);
             CREATE INDEX IF NOT EXISTS searches_session ON searches(session_id,ts);
             """)
@@ -77,6 +80,9 @@ class Journal:
                     expr=condition.replace("NEW.","OLD.") if op=="DELETE" else condition
                     db.execute(f"""CREATE TRIGGER IF NOT EXISTS invalidate_{table}_{op} AFTER {op} ON {table} WHEN {expr}
                         BEGIN DELETE FROM analytics_reports; UPDATE analytics_revision SET revision=revision+1; END""")
+            for op,ref in (("INSERT","NEW"),("UPDATE","OLD"),("DELETE","OLD")):
+                db.execute(f"""CREATE TRIGGER IF NOT EXISTS mock_build_{op} AFTER {op} ON searches
+                    WHEN {ref}.search_id GLOB 's_mock_*' BEGIN DELETE FROM kv WHERE key='settings:mock_build'; END""")
             for old in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND (name GLOB 'invalidate_replays_*' OR name GLOB 'invalidate_replay_results_*')").fetchall():
                 db.execute(f'DROP TRIGGER "{old[0]}"')
             db.execute("""CREATE TRIGGER IF NOT EXISTS replay_progress AFTER INSERT ON replay_results

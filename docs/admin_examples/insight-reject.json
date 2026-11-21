@@ -1,79 +1,85 @@
 {
-  "id": "add_product-46a4eebd20d8",
+  "id": "add_product-4e2295dd929e",
   "dataset": "mock",
   "type": "add_product",
   "role": "content_manager",
-  "title": "Проверить поставку · Лицензии Cursor",
+  "title": "Проверить поставку · Лицензии Obsidian",
   "status": "rejected",
-  "summary": "За последние 30 дней — 107 поисков в 107 сессиях.",
-  "confidence": 0.84,
+  "summary": "Поисков за 30 дней — 89. Сессий — 89.",
+  "confidence": 0.82,
   "priority": "high",
   "evidence": {
-    "searches_30d": 107,
-    "sessions_30d": 107,
+    "searches_30d": 89,
+    "sessions_30d": 89,
     "sample_queries": [
-      "cursor ide",
-      "cursor enterprise лицензия",
-      "купить cursor для команды"
+      "obsidian commercial",
+      "obsidian лицензия для бизнеса",
+      "obsidian для команды 30 мест"
     ],
     "checks": {
-      "cursor ide": {
-        "search_id": "s_76c99541e38c4bb3be84e2f3ec9a4fa4",
+      "obsidian commercial": {
+        "search_id": "s_814233527d6d460388a272cd64bd8c5c",
         "top5": [],
         "repaired": false
       },
-      "cursor enterprise лицензия": {
-        "search_id": "s_4250f6b2a468499fa4abc69d8e137c57",
+      "obsidian лицензия для бизнеса": {
+        "search_id": "s_2c98b321ccb843309fd1d897e09e900e",
         "top5": [],
         "repaired": false
       },
-      "купить cursor для команды": {
-        "search_id": "s_ecaa6c86c2944e18b803664d3fb00802",
-        "top5": [],
+      "obsidian для команды 30 мест": {
+        "search_id": "s_5c411424c71543489b591ccba85ae917",
+        "top5": [
+          "infowatch_arma:firewall",
+          "kaspersky_kics:nodes",
+          "kaspersky_kesb:standard",
+          "ald_pro",
+          "astra_support_pack:standard"
+        ],
         "repaired": false
       }
     },
     "search_ids": {
-      "cursor ide": "s_mock_000274_0",
-      "cursor enterprise лицензия": "s_mock_000275_0",
-      "купить cursor для команды": "s_mock_000276_0"
+      "obsidian commercial": "s_mock_000574_0",
+      "obsidian лицензия для бизнеса": "s_mock_000575_0",
+      "obsidian для команды 30 мест": "s_mock_000576_0"
     },
     "sample_sessions": [
-      "mock_000274",
-      "mock_000275",
-      "mock_000276",
-      "mock_000278",
-      "mock_000279",
-      "mock_000280"
+      "mock_000574",
+      "mock_000575",
+      "mock_000576",
+      "mock_000577",
+      "mock_000578",
+      "mock_000579"
     ],
     "segments": {
-      "enterprise": 14,
-      "smb": 25,
-      "mid": 68
+      "mid": 37,
+      "smb": 43,
+      "individual": 9
     },
     "metric_before": {
-      "zero": 107,
+      "zero": 89,
       "orders": 0
     },
     "alternatives": {},
-    "demand": 107,
+    "demand": 89,
     "segments_30d": {
-      "enterprise": 14,
-      "mid": 68,
-      "smb": 25
+      "mid": 37,
+      "smb": 43,
+      "individual": 9
     },
     "examples": [
       {
-        "q": "cursor ide",
-        "search_id": "s_mock_000274_0"
+        "q": "obsidian commercial",
+        "search_id": "s_mock_000574_0"
       },
       {
-        "q": "cursor enterprise лицензия",
-        "search_id": "s_mock_000275_0"
+        "q": "obsidian лицензия для бизнеса",
+        "search_id": "s_mock_000575_0"
       },
       {
-        "q": "купить cursor для команды",
-        "search_id": "s_mock_000276_0"
+        "q": "obsidian для команды 30 мест",
+        "search_id": "s_mock_000576_0"
       }
     ]
   },
@@ -81,15 +87,17 @@
     "kind": "ticket",
     "label": "Завести товар",
     "payload_json": {
-      "product": "cursor",
+      "product": "obsidian",
       "category": null
     }
   },
   "impact": {
-    "expected_rub": 598475,
-    "conservative_rub": 411451,
+    "expected_rub": 287257,
+    "conservative_rub": 114903,
     "metric_label": "Оценка потенциала",
     "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
   },
+  "evidence_text": "Поисков за 30 дней — 89. Сессий — 89.",
+  "impact_text": "Оценка потенциала · 287 257 ₽. Осторожная оценка · 114 903 ₽.",
   "verification": {}
 }

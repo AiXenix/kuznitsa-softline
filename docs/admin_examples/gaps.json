@@ -1,6 +1,62 @@
 {
   "items": [
     {
+      "key": "cursor_ide",
+      "title": "Cursor",
+      "vendor": "anysphere",
+      "family": "cursor_ide",
+      "category": "ide_compilers",
+      "searches": 142,
+      "sessions": 142,
+      "previous": 50,
+      "change": 92,
+      "segments": {
+        "enterprise": 19,
+        "mid": 87,
+        "smb": 36
+      },
+      "queries": [
+        "cursor ide",
+        "cursor enterprise лицензия",
+        "купить cursor для команды",
+        "cursor ai оплата от юрлица"
+      ],
+      "expected_rub": 1044828,
+      "examples": [
+        {
+          "q": "cursor ide",
+          "normalized": "cursor ide",
+          "search_id": "s_mock_000274_0"
+        },
+        {
+          "q": "cursor enterprise лицензия",
+          "normalized": "cursor",
+          "search_id": "s_mock_000275_0"
+        },
+        {
+          "q": "купить cursor для команды",
+          "normalized": "cursor для",
+          "search_id": "s_mock_000276_0"
+        },
+        {
+          "q": "cursor ai оплата от юрлица",
+          "normalized": "cursor ai от",
+          "search_id": "s_mock_000277_0"
+        }
+      ],
+      "search_id": "s_mock_000274_0",
+      "search_ids": {
+        "cursor ide": "s_mock_000274_0",
+        "cursor enterprise лицензия": "s_mock_000275_0",
+        "купить cursor для команды": "s_mock_000276_0",
+        "cursor ai оплата от юрлица": "s_mock_000277_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 569906,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
       "key": "yandex_tracker",
       "title": "Яндекс Трекер",
       "vendor": "yandex",
@@ -21,7 +77,7 @@
         "купить яндекс трекер 50 пользователей",
         "яндекс трекер корпоративный"
       ],
-      "expected_rub": 830883,
+      "expected_rub": 860621,
       "examples": [
         {
           "q": "яндекс трекер",
@@ -53,56 +109,7 @@
       },
       "alternatives": {},
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 453209,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "cursor",
-      "title": "Лицензии Cursor",
-      "vendor": null,
-      "family": null,
-      "category": null,
-      "searches": 107,
-      "sessions": 107,
-      "previous": 38,
-      "change": 69,
-      "segments": {
-        "enterprise": 14,
-        "mid": 68,
-        "smb": 25
-      },
-      "queries": [
-        "cursor ide",
-        "cursor enterprise лицензия",
-        "купить cursor для команды"
-      ],
-      "expected_rub": 598475,
-      "examples": [
-        {
-          "q": "cursor ide",
-          "normalized": "cursor ide",
-          "search_id": "s_mock_000274_0"
-        },
-        {
-          "q": "cursor enterprise лицензия",
-          "normalized": "cursor",
-          "search_id": "s_mock_000275_0"
-        },
-        {
-          "q": "купить cursor для команды",
-          "normalized": "cursor для",
-          "search_id": "s_mock_000276_0"
-        }
-      ],
-      "search_id": "s_mock_000274_0",
-      "search_ids": {
-        "cursor ide": "s_mock_000274_0",
-        "cursor enterprise лицензия": "s_mock_000275_0",
-        "купить cursor для команды": "s_mock_000276_0"
-      },
-      "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 411451,
+      "conservative_rub": 469430,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
@@ -125,7 +132,7 @@
         "obsidian лицензия для бизнеса",
         "obsidian для команды 30 мест"
       ],
-      "expected_rub": 102205,
+      "expected_rub": 287257,
       "examples": [
         {
           "q": "obsidian commercial",
@@ -151,91 +158,57 @@
       },
       "alternatives": {},
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 40882,
+      "conservative_rub": 114903,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "mongodb",
-      "title": "MongoDB",
+      "key": "mailchimp",
+      "title": "Mailchimp",
       "vendor": null,
       "family": null,
-      "category": "nosql_inmemory",
+      "category": "email_marketing",
       "searches": 2,
       "sessions": 2,
       "previous": 0,
       "change": 2,
       "segments": {
-        "mid": 1,
-        "guest": 1
+        "smb": 2
       },
       "queries": [
-        "аналог MongoDB Enterprise Advanecd / Atlas российский",
-        "аналог MongoDB Enterprise Advanced / Atlas российский"
+        "аналог Mailchimp российский",
+        "замена Mailchimp пдо ред ос"
       ],
-      "expected_rub": 4630,
+      "expected_rub": 9874,
       "examples": [
         {
-          "q": "аналог MongoDB Enterprise Advanecd / Atlas российский",
-          "normalized": "аналог mongodb advanced atlas российский",
-          "search_id": "s_mock_004361_0"
+          "q": "аналог Mailchimp российский",
+          "normalized": "аналог mailchimp российский",
+          "search_id": "s_mock_005983_0"
         },
         {
-          "q": "аналог MongoDB Enterprise Advanced / Atlas российский",
-          "normalized": "аналог mongodb advanced atlas российский",
-          "search_id": "s_mock_007874_0"
+          "q": "замена Mailchimp пдо ред ос",
+          "normalized": "замена mailchimp пдо ред ос",
+          "search_id": "s_mock_016117_0"
         }
       ],
-      "search_id": "s_mock_004361_0",
+      "search_id": "s_mock_005983_0",
       "search_ids": {
-        "аналог MongoDB Enterprise Advanecd / Atlas российский": "s_mock_004361_0",
-        "аналог MongoDB Enterprise Advanced / Atlas российский": "s_mock_007874_0"
+        "аналог Mailchimp российский": "s_mock_005983_0",
+        "замена Mailchimp пдо ред ос": "s_mock_016117_0"
       },
       "alternatives": {
-        "Такском на год": 1
+        "ЛИРА-САПР": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 3183,
+      "conservative_rub": 6788,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "sonarqube",
-      "title": "SonarQube",
+      "key": "solidworks",
+      "title": "SOLIDWORKS",
       "vendor": null,
       "family": null,
-      "category": "code_analysis_sast",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "аналог SonarQube (Developer / Enterprise) российский"
-      ],
-      "expected_rub": 11845,
-      "examples": [
-        {
-          "q": "аналог SonarQube (Developer / Enterprise) российский",
-          "normalized": "аналог sonarqube developer российский",
-          "search_id": "s_mock_020472_0"
-        }
-      ],
-      "search_id": "s_mock_020472_0",
-      "search_ids": {
-        "аналог SonarQube (Developer / Enterprise) российский": "s_mock_020472_0"
-      },
-      "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 8144,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "avaya",
-      "title": "Avaya",
-      "vendor": null,
-      "family": null,
-      "category": "ip_telephony",
+      "category": "mcad_plm",
       "searches": 1,
       "sessions": 1,
       "previous": 0,
@@ -244,122 +217,225 @@
         "guest": 1
       },
       "queries": [
-        "аналог Avaya Aura / IP Office российский"
+        "аналог SOLIDWORKS российский"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "аналог Avaya Aura / IP Office российский",
-          "normalized": "аналог avaya aura ip office российский",
-          "search_id": "s_mock_016137_0"
+          "q": "аналог SOLIDWORKS российский",
+          "normalized": "аналог solidworks российский",
+          "search_id": "s_mock_005812_0"
         }
       ],
-      "search_id": "s_mock_016137_0",
+      "search_id": "s_mock_005812_0",
       "search_ids": {
-        "аналог Avaya Aura / IP Office российский": "s_mock_016137_0"
+        "аналог SOLIDWORKS российский": "s_mock_005812_0"
       },
       "alternatives": {
-        "купить stakhanovets pro": 1
+        "1C-Bitrix": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "hubspot",
+      "title": "HubSpot",
+      "vendor": null,
+      "family": null,
+      "category": "crm_systems",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "gov": 1
+      },
+      "queries": [
+        "аналог HubSpot CRM российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог HubSpot CRM российский",
+          "normalized": "аналог hubspot crm российский",
+          "search_id": "s_mock_005697_0"
+        }
+      ],
+      "search_id": "s_mock_005697_0",
+      "search_ids": {
+        "аналог HubSpot CRM российский": "s_mock_005697_0"
+      },
+      "alternatives": {
+        "ELMA365 на год": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "adobe",
+      "title": "Adobe",
+      "vendor": null,
+      "family": null,
+      "category": "pdf_editors",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "аналог Adobe Acrobat (Pro / Standard) российский"
+      ],
+      "expected_rub": 4374,
+      "examples": [
+        {
+          "q": "аналог Adobe Acrobat (Pro / Standard) российский",
+          "normalized": "аналог adobe acrobat standard российский",
+          "search_id": "s_mock_007891_0"
+        }
+      ],
+      "search_id": "s_mock_007891_0",
+      "search_ids": {
+        "аналог Adobe Acrobat (Pro / Standard) российский": "s_mock_007891_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 3007,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     }
   ],
   "breakdown": {
     "family": [
       {
-        "key": "unknown",
-        "searches": 200,
-        "previous": 38,
-        "expected_rub": 717155,
+        "key": "cursor_ide",
+        "searches": 142,
+        "previous": 50,
+        "expected_rub": 1044828,
         "clusters": [
-          "cursor",
-          "obsidian",
-          "mongodb",
-          "sonarqube",
-          "avaya"
+          "cursor_ide"
         ]
       },
       {
         "key": "yandex_tracker",
         "searches": 108,
         "previous": 0,
-        "expected_rub": 830883,
+        "expected_rub": 860621,
         "clusters": [
           "yandex_tracker"
+        ]
+      },
+      {
+        "key": "unknown",
+        "searches": 94,
+        "previous": 1,
+        "expected_rub": 301505,
+        "clusters": [
+          "obsidian",
+          "solidworks",
+          "hubspot",
+          "mailchimp",
+          "adobe"
         ]
       }
     ],
     "vendor": [
       {
-        "key": "unknown",
-        "searches": 200,
-        "previous": 38,
-        "expected_rub": 717155,
+        "key": "anysphere",
+        "searches": 142,
+        "previous": 50,
+        "expected_rub": 1044828,
         "clusters": [
-          "cursor",
-          "obsidian",
-          "mongodb",
-          "sonarqube",
-          "avaya"
+          "cursor_ide"
         ]
       },
       {
         "key": "yandex",
         "searches": 108,
         "previous": 0,
-        "expected_rub": 830883,
+        "expected_rub": 860621,
         "clusters": [
           "yandex_tracker"
+        ]
+      },
+      {
+        "key": "unknown",
+        "searches": 94,
+        "previous": 1,
+        "expected_rub": 301505,
+        "clusters": [
+          "obsidian",
+          "solidworks",
+          "hubspot",
+          "mailchimp",
+          "adobe"
         ]
       }
     ],
     "category": [
       {
-        "key": "unknown",
-        "searches": 196,
-        "previous": 38,
-        "expected_rub": 700680,
+        "key": "ide_compilers",
+        "searches": 142,
+        "previous": 50,
+        "expected_rub": 1044828,
         "clusters": [
-          "cursor",
-          "obsidian"
+          "cursor_ide"
         ]
       },
       {
         "key": "task_project_trackers",
         "searches": 108,
         "previous": 0,
-        "expected_rub": 830883,
+        "expected_rub": 860621,
         "clusters": [
           "yandex_tracker"
         ]
       },
       {
-        "key": "nosql_inmemory",
+        "key": "unknown",
+        "searches": 89,
+        "previous": 0,
+        "expected_rub": 287257,
+        "clusters": [
+          "obsidian"
+        ]
+      },
+      {
+        "key": "email_marketing",
         "searches": 2,
         "previous": 0,
-        "expected_rub": 4630,
+        "expected_rub": 9874,
         "clusters": [
-          "mongodb"
+          "mailchimp"
         ]
       },
       {
-        "key": "code_analysis_sast",
-        "searches": 1,
-        "previous": 0,
-        "expected_rub": 11845,
-        "clusters": [
-          "sonarqube"
-        ]
-      },
-      {
-        "key": "ip_telephony",
+        "key": "mcad_plm",
         "searches": 1,
         "previous": 0,
         "expected_rub": 0,
         "clusters": [
-          "avaya"
+          "solidworks"
+        ]
+      },
+      {
+        "key": "crm_systems",
+        "searches": 1,
+        "previous": 0,
+        "expected_rub": 0,
+        "clusters": [
+          "hubspot"
+        ]
+      },
+      {
+        "key": "pdf_editors",
+        "searches": 1,
+        "previous": 1,
+        "expected_rub": 4374,
+        "clusters": [
+          "adobe"
         ]
       }
     ]
@@ -371,23 +447,23 @@
       "vendor": "autodesk",
       "family": "autocad",
       "category": "cad_2d",
-      "searches": 270,
-      "sessions": 270,
-      "previous": 11,
-      "change": 259,
+      "searches": 269,
+      "sessions": 269,
+      "previous": 9,
+      "change": 260,
       "segments": {
         "enterprise": 57,
-        "mid": 107,
-        "smb": 103,
-        "guest": 1,
-        "individual": 2
+        "mid": 106,
+        "smb": 100,
+        "guest": 5,
+        "gov": 1
       },
       "queries": [
         "autocad",
         "автокад",
         "купить автокад 2025",
         "autocad лицензия цена",
-        "чем заменить Autodesk Maya из реестра"
+        "купить Autodesk Inventor"
       ],
       "expected_rub": 0,
       "examples": [
@@ -412,9 +488,9 @@
           "search_id": "s_mock_001560_0"
         },
         {
-          "q": "чем заменить Autodesk Maya из реестра",
-          "normalized": "чем заменить autodesk maya из реестр",
-          "search_id": "s_mock_003404_0"
+          "q": "купить Autodesk Inventor",
+          "normalized": "autodesk inventor",
+          "search_id": "s_mock_003212_0"
         }
       ],
       "search_id": "s_mock_001557_0",
@@ -423,7 +499,7 @@
         "автокад": "s_mock_001558_0",
         "купить автокад 2025": "s_mock_001559_0",
         "autocad лицензия цена": "s_mock_001560_0",
-        "чем заменить Autodesk Maya из реестра": "s_mock_003404_0"
+        "купить Autodesk Inventor": "s_mock_003212_0"
       },
       "alternatives": {
         "nanoCAD BIM ВК": 40,
@@ -435,155 +511,129 @@
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "openai",
-      "title": "OpenAI",
-      "vendor": "openai",
-      "family": "chatgpt_enterprise",
-      "category": "llm_gen_ai",
-      "searches": 48,
-      "sessions": 48,
-      "previous": 18,
-      "change": 30,
-      "segments": {
-        "smb": 10,
-        "enterprise": 19,
-        "mid": 19
-      },
-      "queries": [
-        "корпоративный чат гпт в контуре",
-        "чем заменить OpenAI ChatGPT (Team / Enterprise / API) из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "корпоративный чат гпт в контуре",
-          "normalized": "чат гпт в контур",
-          "search_id": "s_mock_001820_0"
-        },
-        {
-          "q": "чем заменить OpenAI ChatGPT (Team / Enterprise / API) из реестра",
-          "normalized": "чем заменить openai chatgpt api из реестр",
-          "search_id": "s_mock_009765_0"
-        }
-      ],
-      "search_id": "s_mock_001820_0",
-      "search_ids": {
-        "корпоративный чат гпт в контуре": "s_mock_001820_0",
-        "чем заменить OpenAI ChatGPT (Team / Enterprise / API) из реестра": "s_mock_009765_0"
-      },
-      "alternatives": {
-        "EvaWiki продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "github",
-      "title": "GitHub",
-      "vendor": "github",
-      "family": "github_copilot",
-      "category": "llm_gen_ai",
-      "searches": 36,
-      "sessions": 36,
-      "previous": 16,
-      "change": 20,
-      "segments": {
-        "mid": 19,
-        "smb": 11,
-        "enterprise": 5,
-        "guest": 1
-      },
-      "queries": [
-        "cursor ai оплата от юрлица",
-        "чем заменить GitHub Enterprise (Team / Copilot) из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "cursor ai оплата от юрлица",
-          "normalized": "cursor ai от",
-          "search_id": "s_mock_000277_0"
-        },
-        {
-          "q": "чем заменить GitHub Enterprise (Team / Copilot) из реестра",
-          "normalized": "чем заменить github copilot из реестр",
-          "search_id": "s_mock_022881_0"
-        }
-      ],
-      "search_id": "s_mock_000277_0",
-      "search_ids": {
-        "cursor ai оплата от юрлица": "s_mock_000277_0",
-        "чем заменить GitHub Enterprise (Team / Copilot) из реестра": "s_mock_022881_0"
-      },
-      "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
       "key": "adobe",
       "title": "Adobe",
       "vendor": "adobe",
       "family": "adobe_creative_cloud",
-      "category": "pdf_editors",
-      "searches": 8,
-      "sessions": 8,
-      "previous": 12,
-      "change": -4,
+      "category": "raster_photo",
+      "searches": 14,
+      "sessions": 14,
+      "previous": 9,
+      "change": 5,
       "segments": {
-        "guest": 5,
-        "individual": 1,
-        "smb": 1,
-        "mid": 1
+        "guest": 7,
+        "smb": 5,
+        "mid": 1,
+        "individual": 1
       },
       "queries": [
-        "чем заменить Adobe Acrobat (Pro / Standard) из реестра",
-        "аналог Adobe After Effects российский",
-        "Adobe Acrobat (Pro / Standard) продление",
-        "Adobe Creative Cloud All Apps лицензия на 5 пк",
-        "чем замениьт Adobe Acrobat (Pro / Standard) из реестра"
+        "чем заменить Adobe Premiere Pro из реестра",
+        "огые фш",
+        "купить Adobe Creative Cloud All Apps",
+        "фвщиу скуфешму сдщгв фдд фззы ghjlktybt",
+        "xtv pfvtybnm фвщиу зкуьшуку зкщ bp httcnhf"
+      ],
+      "expected_rub": 3205,
+      "examples": [
+        {
+          "q": "чем заменить Adobe Premiere Pro из реестра",
+          "normalized": "чем заменить adobe premiere из реестр",
+          "search_id": "s_mock_008205_0"
+        },
+        {
+          "q": "огые фш",
+          "normalized": "just фш",
+          "search_id": "s_mock_012664_0"
+        },
+        {
+          "q": "купить Adobe Creative Cloud All Apps",
+          "normalized": "adobe creative cloud all apps",
+          "search_id": "s_mock_015758_0"
+        },
+        {
+          "q": "фвщиу скуфешму сдщгв фдд фззы ghjlktybt",
+          "normalized": "adobe creative cloud all apps",
+          "search_id": "s_mock_005087_0"
+        },
+        {
+          "q": "xtv pfvtybnm фвщиу зкуьшуку зкщ bp httcnhf",
+          "normalized": "чем заменить adobe premiere bp реестр",
+          "search_id": "s_mock_007136_0"
+        }
+      ],
+      "search_id": "s_mock_008205_0",
+      "search_ids": {
+        "чем заменить Adobe Premiere Pro из реестра": "s_mock_008205_0",
+        "огые фш": "s_mock_012664_0",
+        "купить Adobe Creative Cloud All Apps": "s_mock_015758_0",
+        "фвщиу скуфешму сдщгв фдд фззы ghjlktybt": "s_mock_005087_0",
+        "xtv pfvtybnm фвщиу зкуьшуку зкщ bp httcnhf": "s_mock_007136_0"
+      },
+      "alternatives": {
+        "Tegu Enterprise": 1,
+        "FastReport на год": 1,
+        "DWL-6791D3E59630": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 1282,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "google",
+      "title": "Google",
+      "vendor": "google",
+      "family": "google_cloud_platform",
+      "category": "uc_platforms",
+      "searches": 4,
+      "sessions": 4,
+      "previous": 3,
+      "change": 1,
+      "segments": {
+        "individual": 1,
+        "enterprise": 1,
+        "guest": 1,
+        "smb": 1
+      },
+      "queries": [
+        "чем заменить Google Clodu Platform (GCP) из реестра",
+        "чем заменить Google Workspace (Business / Enterprise) из реестра",
+        "Google Workspace (Business / Enterprise) лицензия на 5 пк",
+        "аналог Google Gemini российский"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "чем заменить Adobe Acrobat (Pro / Standard) из реестра",
-          "normalized": "чем заменить adobe acrobat standard из реестр",
-          "search_id": "s_mock_007397_0"
+          "q": "чем заменить Google Clodu Platform (GCP) из реестра",
+          "normalized": "чем заменить google cloud platform gcp из реестр",
+          "search_id": "s_mock_002892_0"
         },
         {
-          "q": "аналог Adobe After Effects российский",
-          "normalized": "аналог adobe after effects российский",
-          "search_id": "s_mock_004479_0"
+          "q": "чем заменить Google Workspace (Business / Enterprise) из реестра",
+          "normalized": "чем заменить google workspace из реестр",
+          "search_id": "s_mock_003353_0"
         },
         {
-          "q": "Adobe Acrobat (Pro / Standard) продление",
-          "normalized": "adobe acrobat standard",
-          "search_id": "s_mock_005656_0"
+          "q": "Google Workspace (Business / Enterprise) лицензия на 5 пк",
+          "normalized": "google workspace на 5 пк",
+          "search_id": "s_mock_009565_0"
         },
         {
-          "q": "Adobe Creative Cloud All Apps лицензия на 5 пк",
-          "normalized": "adobe creative cloud all apps на 5 пк",
-          "search_id": "s_mock_008778_0"
-        },
-        {
-          "q": "чем замениьт Adobe Acrobat (Pro / Standard) из реестра",
-          "normalized": "чем заменить adobe acrobat standard из реестр",
-          "search_id": "s_mock_010480_0"
+          "q": "аналог Google Gemini российский",
+          "normalized": "аналог google gemini российский",
+          "search_id": "s_mock_013841_0"
         }
       ],
-      "search_id": "s_mock_007397_0",
+      "search_id": "s_mock_002892_0",
       "search_ids": {
-        "чем заменить Adobe Acrobat (Pro / Standard) из реестра": "s_mock_007397_0",
-        "аналог Adobe After Effects российский": "s_mock_004479_0",
-        "Adobe Acrobat (Pro / Standard) продление": "s_mock_005656_0",
-        "Adobe Creative Cloud All Apps лицензия на 5 пк": "s_mock_008778_0",
-        "чем замениьт Adobe Acrobat (Pro / Standard) из реестра": "s_mock_010480_0"
+        "чем заменить Google Clodu Platform (GCP) из реестра": "s_mock_002892_0",
+        "чем заменить Google Workspace (Business / Enterprise) из реестра": "s_mock_003353_0",
+        "Google Workspace (Business / Enterprise) лицензия на 5 пк": "s_mock_009565_0",
+        "аналог Google Gemini российский": "s_mock_013841_0"
       },
       "alternatives": {
-        "Spider Project": 1,
-        "AX-3A56F5C1F9E0": 1,
-        "CAE Fidesys на 100 пк": 1
+        "купить renga": 1,
+        "PIX RPA": 1,
+        "ELMA": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -593,299 +643,161 @@
       "key": "atlassian",
       "title": "Atlassian",
       "vendor": "atlassian",
-      "family": "atlassian_jira",
+      "family": "atlassian_confluence",
       "category": "whiteboards_notes",
-      "searches": 8,
-      "sessions": 8,
-      "previous": 2,
-      "change": 6,
-      "segments": {
-        "guest": 4,
-        "mid": 1,
-        "smb": 2,
-        "gov": 1
-      },
-      "queries": [
-        "Atlassian Confluence продление",
-        "Atlassian Confluenec продление",
-        "купить Atlassian Confluence",
-        "аналог Atlassian Jira российский",
-        "замена Atlassian Jira под ред ос"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Atlassian Confluence продление",
-          "normalized": "atlassian confluence",
-          "search_id": "s_mock_011384_0"
-        },
-        {
-          "q": "Atlassian Confluenec продление",
-          "normalized": "atlassian confluence",
-          "search_id": "s_mock_004046_0"
-        },
-        {
-          "q": "купить Atlassian Confluence",
-          "normalized": "atlassian confluence",
-          "search_id": "s_mock_014036_0"
-        },
-        {
-          "q": "аналог Atlassian Jira российский",
-          "normalized": "аналог atlassian jira российский",
-          "search_id": "s_mock_016170_0"
-        },
-        {
-          "q": "замена Atlassian Jira под ред ос",
-          "normalized": "замена atlassian jira под ред ос",
-          "search_id": "s_mock_018446_0"
-        }
-      ],
-      "search_id": "s_mock_011384_0",
-      "search_ids": {
-        "Atlassian Confluence продление": "s_mock_011384_0",
-        "Atlassian Confluenec продление": "s_mock_004046_0",
-        "купить Atlassian Confluence": "s_mock_014036_0",
-        "аналог Atlassian Jira российский": "s_mock_016170_0",
-        "замена Atlassian Jira под ред ос": "s_mock_018446_0"
-      },
-      "alternatives": {
-        "KL-48CB83821A48": 1,
-        "Selectel Частное облако продление": 1,
-        "PRO32 Connect": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "siemens_plm",
-      "title": "Siemens Digital Industries Software",
-      "vendor": "siemens_plm",
-      "family": "siemens_nx",
-      "category": "mcad_plm",
-      "searches": 7,
-      "sessions": 7,
-      "previous": 3,
-      "change": 4,
-      "segments": {
-        "guest": 4,
-        "enterprise": 1,
-        "edu": 1,
-        "smb": 1
-      },
-      "queries": [
-        "замена Siemens NX (Unigraphics) под ред ос",
-        "чем заменить Siemens Solid Edge из реестра",
-        "Siemens NX (Unigraphics) продление",
-        "чем заменить Siemens NX (Ungiraphics) из реестра",
-        "купить Siemens NX (Unigraphics)"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "замена Siemens NX (Unigraphics) под ред ос",
-          "normalized": "замена siemens nx unigraphics под ред ос",
-          "search_id": "s_mock_006262_0"
-        },
-        {
-          "q": "чем заменить Siemens Solid Edge из реестра",
-          "normalized": "чем заменить siemens solid edge из реестр",
-          "search_id": "s_mock_012241_0"
-        },
-        {
-          "q": "Siemens NX (Unigraphics) продление",
-          "normalized": "siemens nx unigraphics",
-          "search_id": "s_mock_013446_0"
-        },
-        {
-          "q": "чем заменить Siemens NX (Ungiraphics) из реестра",
-          "normalized": "чем заменить siemens nx unigraphics из реестр",
-          "search_id": "s_mock_018230_0"
-        },
-        {
-          "q": "купить Siemens NX (Unigraphics)",
-          "normalized": "siemens nx unigraphics",
-          "search_id": "s_mock_019542_0"
-        }
-      ],
-      "search_id": "s_mock_006262_0",
-      "search_ids": {
-        "замена Siemens NX (Unigraphics) под ред ос": "s_mock_006262_0",
-        "чем заменить Siemens Solid Edge из реестра": "s_mock_012241_0",
-        "Siemens NX (Unigraphics) продление": "s_mock_013446_0",
-        "чем заменить Siemens NX (Ungiraphics) из реестра": "s_mock_018230_0",
-        "купить Siemens NX (Unigraphics)": "s_mock_019542_0"
-      },
-      "alternatives": {
-        "ispmanager 6": 1,
-        "FQC-81A260020613": 1,
-        "Kaspersky Symphony на год": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "tenable",
-      "title": "Tenable",
-      "vendor": "tenable",
-      "family": "tenable_nessus",
-      "category": "vuln_mgmt_pentest",
-      "searches": 5,
-      "sessions": 5,
-      "previous": 4,
-      "change": 1,
-      "segments": {
-        "guest": 2,
-        "smb": 1,
-        "mid": 1,
-        "gov": 1
-      },
-      "queries": [
-        "чем заменить Tenable Nessus / Security Center из реестра",
-        "замена Tenable Nessus / Securiyt Center под ред ос",
-        "analog tenable nessus / security center rossiiskii",
-        "аналог Tenable Nessus / Security Center российский"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "чем заменить Tenable Nessus / Security Center из реестра",
-          "normalized": "чем заменить tenable nessus security center из реестр",
-          "search_id": "s_mock_005128_0"
-        },
-        {
-          "q": "замена Tenable Nessus / Securiyt Center под ред ос",
-          "normalized": "замена tenable nessus security center под ред ос",
-          "search_id": "s_mock_005649_0"
-        },
-        {
-          "q": "analog tenable nessus / security center rossiiskii",
-          "normalized": "аналог tenable nessus security center российский",
-          "search_id": "s_mock_012898_0"
-        },
-        {
-          "q": "аналог Tenable Nessus / Security Center российский",
-          "normalized": "аналог tenable nessus security center российский",
-          "search_id": "s_mock_020138_0"
-        }
-      ],
-      "search_id": "s_mock_005128_0",
-      "search_ids": {
-        "чем заменить Tenable Nessus / Security Center из реестра": "s_mock_005128_0",
-        "замена Tenable Nessus / Securiyt Center под ред ос": "s_mock_005649_0",
-        "analog tenable nessus / security center rossiiskii": "s_mock_012898_0",
-        "аналог Tenable Nessus / Security Center российский": "s_mock_020138_0"
-      },
-      "alternatives": {
-        "VK WorkSpace SaaS": 1,
-        "scad office": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "dassault_systemes",
-      "title": "Dassault Systemes",
-      "vendor": "dassault_systemes",
-      "family": "catia",
-      "category": "mcad_plm",
       "searches": 4,
       "sessions": 4,
       "previous": 4,
       "change": 0,
       "segments": {
         "smb": 1,
-        "individual": 2,
-        "guest": 1
+        "enterprise": 1,
+        "guest": 2
       },
       "queries": [
-        "чем заменить Dassault Systèmes CATIA из реестра",
-        "замена SOLIDWORKS под ред ос",
-        "Dassault Systèmes CATIA лицензия на 100 пк",
-        "замена Dassault Systèmes CATIA под астру"
+        "аналог Atlassian Confluence российский",
+        "замена Atlassian Confluence под астру",
+        "чем заменить Atlassian Jira из реестра",
+        "чем заменить Atlassian Bitbucket Data Center из реестра"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "чем заменить Dassault Systèmes CATIA из реестра",
-          "normalized": "чем заменить dassault systèmes catia из реестр",
-          "search_id": "s_mock_002522_0"
+          "q": "аналог Atlassian Confluence российский",
+          "normalized": "аналог atlassian confluence российский",
+          "search_id": "s_mock_015404_0"
         },
         {
-          "q": "замена SOLIDWORKS под ред ос",
-          "normalized": "замена solidworks под ред ос",
-          "search_id": "s_mock_010211_0"
+          "q": "замена Atlassian Confluence под астру",
+          "normalized": "замена atlassian confluence под астр",
+          "search_id": "s_mock_015468_0"
         },
         {
-          "q": "Dassault Systèmes CATIA лицензия на 100 пк",
-          "normalized": "dassault systèmes catia на 100 пк",
-          "search_id": "s_mock_014042_0"
+          "q": "чем заменить Atlassian Jira из реестра",
+          "normalized": "чем заменить atlassian jira из реестр",
+          "search_id": "s_mock_020680_0"
         },
         {
-          "q": "замена Dassault Systèmes CATIA под астру",
-          "normalized": "замена dassault systèmes catia под астр",
-          "search_id": "s_mock_017795_0"
+          "q": "чем заменить Atlassian Bitbucket Data Center из реестра",
+          "normalized": "чем заменить atlassian bitbucket data center из реестр",
+          "search_id": "s_mock_023690_0"
         }
       ],
-      "search_id": "s_mock_002522_0",
+      "search_id": "s_mock_015404_0",
       "search_ids": {
-        "чем заменить Dassault Systèmes CATIA из реестра": "s_mock_002522_0",
-        "замена SOLIDWORKS под ред ос": "s_mock_010211_0",
-        "Dassault Systèmes CATIA лицензия на 100 пк": "s_mock_014042_0",
-        "замена Dassault Systèmes CATIA под астру": "s_mock_017795_0"
+        "аналог Atlassian Confluence российский": "s_mock_015404_0",
+        "замена Atlassian Confluence под астру": "s_mock_015468_0",
+        "чем заменить Atlassian Jira из реестра": "s_mock_020680_0",
+        "чем заменить Atlassian Bitbucket Data Center из реестра": "s_mock_023690_0"
       },
       "alternatives": {
-        "купить trassir auto": 1,
-        "CyberLympha": 1,
-        "DATAPK на год": 1
+        "купить интеллект x": 1,
+        "MONQ на год": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "deepl",
-      "title": "DeepL",
-      "vendor": "deepl",
-      "family": "deepl_pro",
-      "category": "translation_dictionaries",
+      "key": "abbyy",
+      "title": "ABBYY",
+      "vendor": "abbyy",
+      "family": "abbyy_finereader",
+      "category": "ocr_capture",
       "searches": 4,
       "sessions": 4,
       "previous": 3,
       "change": 1,
       "segments": {
-        "guest": 2,
-        "individual": 1,
-        "smb": 1
+        "mid": 2,
+        "smb": 1,
+        "guest": 1
       },
       "queries": [
-        "чем заменить DeepL Pro из реестра",
-        "DeepL Pro продление"
+        "замена ABBYY FineReader PDF / FlexiCapture под астру",
+        "kupit abbyy finereader pdf / flexicapture",
+        "купить ABBYY FineReader PDF / FlexiCapture",
+        "аналог ABBYY FineReader PDF / FlexiCapture российский"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "чем заменить DeepL Pro из реестра",
-          "normalized": "чем заменить deepl из реестр",
-          "search_id": "s_mock_004275_0"
+          "q": "замена ABBYY FineReader PDF / FlexiCapture под астру",
+          "normalized": "замена abbyy finereader pdf flexicapture под астр",
+          "search_id": "s_mock_004108_0"
         },
         {
-          "q": "DeepL Pro продление",
-          "normalized": "deepl",
-          "search_id": "s_mock_011483_0"
+          "q": "kupit abbyy finereader pdf / flexicapture",
+          "normalized": "abbyy finereader pdf flexicapture",
+          "search_id": "s_mock_007815_0"
+        },
+        {
+          "q": "купить ABBYY FineReader PDF / FlexiCapture",
+          "normalized": "abbyy finereader pdf flexicapture",
+          "search_id": "s_mock_012002_0"
+        },
+        {
+          "q": "аналог ABBYY FineReader PDF / FlexiCapture российский",
+          "normalized": "аналог abbyy finereader pdf flexicapture российский",
+          "search_id": "s_mock_019936_0"
         }
       ],
-      "search_id": "s_mock_004275_0",
+      "search_id": "s_mock_004108_0",
       "search_ids": {
-        "чем заменить DeepL Pro из реестра": "s_mock_004275_0",
-        "DeepL Pro продление": "s_mock_011483_0"
+        "замена ABBYY FineReader PDF / FlexiCapture под астру": "s_mock_004108_0",
+        "kupit abbyy finereader pdf / flexicapture": "s_mock_007815_0",
+        "купить ABBYY FineReader PDF / FlexiCapture": "s_mock_012002_0",
+        "аналог ABBYY FineReader PDF / FlexiCapture российский": "s_mock_019936_0"
       },
       "alternatives": {
-        "КРЕДО": 1,
-        "Техподдержка ОС Альт на 100 пк": 1,
-        "Топоматик Robur на год": 1
+        "Мовавика Видео": 1,
+        "AX-0F54E99468A1": 1,
+        "купить БАЗИС-Мебельщик": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "freshworks",
+      "title": "Freshworks",
+      "vendor": "freshworks",
+      "family": "freshdesk",
+      "category": "itsm_service_desk",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 2,
+      "change": 1,
+      "segments": {
+        "guest": 1,
+        "smb": 1,
+        "individual": 1
+      },
+      "queries": [
+        "замена Freshdesk / Freshservice под астру",
+        "купить Freshdesk / Freshservice"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "замена Freshdesk / Freshservice под астру",
+          "normalized": "замена freshdesk freshservice под астр",
+          "search_id": "s_mock_002672_0"
+        },
+        {
+          "q": "купить Freshdesk / Freshservice",
+          "normalized": "freshdesk freshservice",
+          "search_id": "s_mock_015331_0"
+        }
+      ],
+      "search_id": "s_mock_002672_0",
+      "search_ids": {
+        "замена Freshdesk / Freshservice под астру": "s_mock_002672_0",
+        "купить Freshdesk / Freshservice": "s_mock_015331_0"
+      },
+      "alternatives": {
+        "Basis Workplace продление": 1,
+        "Indeed Access Manager": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -897,191 +809,89 @@
       "vendor": "f5_networks",
       "family": "f5_bigip",
       "category": "load_balancing_adc",
-      "searches": 4,
-      "sessions": 4,
-      "previous": 2,
-      "change": 2,
-      "segments": {
-        "mid": 1,
-        "smb": 3
-      },
-      "queries": [
-        "чем заменить F5 BIG-IP (ADC / WAF) & NGINX Plus из реестра",
-        "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос",
-        "F5 BIG-IP (ADC / WAF) & NGINX Plus продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "чем заменить F5 BIG-IP (ADC / WAF) & NGINX Plus из реестра",
-          "normalized": "чем заменить f5 big-ip adc waf nginx plus из реестр",
-          "search_id": "s_mock_010437_0"
-        },
-        {
-          "q": "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос",
-          "normalized": "замена f5 big-ip adc waf nginx plus под ред ос",
-          "search_id": "s_mock_016610_0"
-        },
-        {
-          "q": "F5 BIG-IP (ADC / WAF) & NGINX Plus продление",
-          "normalized": "f5 big-ip adc waf nginx plus",
-          "search_id": "s_mock_020265_0"
-        }
-      ],
-      "search_id": "s_mock_010437_0",
-      "search_ids": {
-        "чем заменить F5 BIG-IP (ADC / WAF) & NGINX Plus из реестра": "s_mock_010437_0",
-        "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос": "s_mock_016610_0",
-        "F5 BIG-IP (ADC / WAF) & NGINX Plus продление": "s_mock_020265_0"
-      },
-      "alternatives": {
-        "MULTIFACTOR": 1,
-        "купить spotlight pro": 1,
-        "купить мсофис": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "checkpoint",
-      "title": "Check Point",
-      "vendor": "checkpoint",
-      "family": "checkpoint_ngfw",
-      "category": "ngfw_vpn",
       "searches": 3,
       "sessions": 3,
       "previous": 2,
       "change": 1,
       "segments": {
-        "smb": 2,
-        "enterprise": 1
+        "guest": 2,
+        "mid": 1
       },
       "queries": [
-        "Check Point Quantum / NGFW лицензия на 250 пк",
-        "купить Check Point Quantum / NGFW",
-        "Check Point Quantum / NGFW лицензия на 25 пк"
+        "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос",
+        "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 75 пк",
+        "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 100 пк"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "Check Point Quantum / NGFW лицензия на 250 пк",
-          "normalized": "check point quantum ngfw на 250 пк",
-          "search_id": "s_mock_005457_0"
+          "q": "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос",
+          "normalized": "замена f5 big-ip adc waf nginx plus под ред ос",
+          "search_id": "s_mock_010567_0"
         },
         {
-          "q": "купить Check Point Quantum / NGFW",
-          "normalized": "check point quantum ngfw",
-          "search_id": "s_mock_008932_0"
+          "q": "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 75 пк",
+          "normalized": "f5 big-ip adc waf nginx plus на 75 пк",
+          "search_id": "s_mock_015753_0"
         },
         {
-          "q": "Check Point Quantum / NGFW лицензия на 25 пк",
-          "normalized": "check point quantum ngfw на 25 пк",
-          "search_id": "s_mock_013489_0"
+          "q": "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 100 пк",
+          "normalized": "f5 big-ip adc waf nginx plus на 100 пк",
+          "search_id": "s_mock_018704_0"
         }
       ],
-      "search_id": "s_mock_005457_0",
+      "search_id": "s_mock_010567_0",
       "search_ids": {
-        "Check Point Quantum / NGFW лицензия на 250 пк": "s_mock_005457_0",
-        "купить Check Point Quantum / NGFW": "s_mock_008932_0",
-        "Check Point Quantum / NGFW лицензия на 25 пк": "s_mock_013489_0"
+        "замена F5 BIG-IP (ADC / WAF) & NGINX Plus под ред ос": "s_mock_010567_0",
+        "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 75 пк": "s_mock_015753_0",
+        "F5 BIG-IP (ADC / WAF) & NGINX Plus лицензия на 100 пк": "s_mock_018704_0"
       },
       "alternatives": {
-        "р7 профессиональный": 1,
-        "AX-73D333CBD172": 1
+        "купить р7": 1,
+        "купить assistant remote": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "ansys",
-      "title": "ANSYS",
-      "vendor": "ansys",
-      "family": "ansys_suite",
-      "category": "cae_simulation",
+      "key": "oracle",
+      "title": "Oracle",
+      "vendor": "oracle",
+      "family": "oracle_ebs",
+      "category": "erp_systems",
       "searches": 3,
       "sessions": 3,
-      "previous": 3,
-      "change": 0,
+      "previous": 5,
+      "change": -2,
       "segments": {
         "guest": 2,
-        "gov": 1
+        "smb": 1
       },
       "queries": [
-        "чем заменить Ansys (Mechanical / Fluent / HFSS) из реестра",
-        "Ansys (Mechanical / Fluent / HFSS) лицензия на 15 пк"
+        "замена Oracle E-Business Suite / Fusion ERP под астру",
+        "купить Oracle Primavera P6"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "чем заменить Ansys (Mechanical / Fluent / HFSS) из реестра",
-          "normalized": "чем заменить ansys mechanical fluent hfss из реестр",
-          "search_id": "s_mock_002794_0"
+          "q": "замена Oracle E-Business Suite / Fusion ERP под астру",
+          "normalized": "замена oracle e-business suite fusion erp под астр",
+          "search_id": "s_mock_009915_0"
         },
         {
-          "q": "Ansys (Mechanical / Fluent / HFSS) лицензия на 15 пк",
-          "normalized": "ansys mechanical fluent hfss на 15 пк",
-          "search_id": "s_mock_021058_0"
+          "q": "купить Oracle Primavera P6",
+          "normalized": "oracle primavera p6",
+          "search_id": "s_mock_013707_0"
         }
       ],
-      "search_id": "s_mock_002794_0",
+      "search_id": "s_mock_009915_0",
       "search_ids": {
-        "чем заменить Ansys (Mechanical / Fluent / HFSS) из реестра": "s_mock_002794_0",
-        "Ansys (Mechanical / Fluent / HFSS) лицензия на 15 пк": "s_mock_021058_0"
+        "замена Oracle E-Business Suite / Fusion ERP под астру": "s_mock_009915_0",
+        "купить Oracle Primavera P6": "s_mock_013707_0"
       },
       "alternatives": {
-        "Yandex DataSphere": 1,
-        "Р7-Офис на 15 пк": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "canonical",
-      "title": "Canonical",
-      "vendor": "canonical",
-      "family": "ubuntu_pro",
-      "category": "linux_unix_os",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "guest": 3
-      },
-      "queries": [
-        "аналог Ubuntu Pro (Canonical) российский",
-        "купить Ubuntu Pro (Canonical)",
-        "Ubuntu Pro (Canonical) лицензия на 10 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "аналог Ubuntu Pro (Canonical) российский",
-          "normalized": "аналог ubuntu canonical российский",
-          "search_id": "s_mock_002900_0"
-        },
-        {
-          "q": "купить Ubuntu Pro (Canonical)",
-          "normalized": "ubuntu canonical",
-          "search_id": "s_mock_002938_0"
-        },
-        {
-          "q": "Ubuntu Pro (Canonical) лицензия на 10 пк",
-          "normalized": "ubuntu canonical на 10 пк",
-          "search_id": "s_mock_015992_0"
-        }
-      ],
-      "search_id": "s_mock_002900_0",
-      "search_ids": {
-        "аналог Ubuntu Pro (Canonical) российский": "s_mock_002900_0",
-        "купить Ubuntu Pro (Canonical)": "s_mock_002938_0",
-        "Ubuntu Pro (Canonical) лицензия на 10 пк": "s_mock_015992_0"
-      },
-      "alternatives": {
-        "ald pro": 1
+        "Agisoft Metashape": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -1095,654 +905,46 @@
       "category": "remote_desktop",
       "searches": 3,
       "sessions": 3,
-      "previous": 4,
-      "change": -1,
-      "segments": {
-        "guest": 1,
-        "gov": 1,
-        "edu": 1
-      },
-      "queries": [
-        "замена TeamViewer под ред ос",
-        "чем заментиь TeamViewer из реестра",
-        "TeamViewer лицензия на 15 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "замена TeamViewer под ред ос",
-          "normalized": "замена teamviewer под ред ос",
-          "search_id": "s_mock_004513_0"
-        },
-        {
-          "q": "чем заментиь TeamViewer из реестра",
-          "normalized": "чем заменить teamviewer из реестр",
-          "search_id": "s_mock_009383_0"
-        },
-        {
-          "q": "TeamViewer лицензия на 15 пк",
-          "normalized": "teamviewer на 15 пк",
-          "search_id": "s_mock_019619_0"
-        }
-      ],
-      "search_id": "s_mock_004513_0",
-      "search_ids": {
-        "замена TeamViewer под ред ос": "s_mock_004513_0",
-        "чем заментиь TeamViewer из реестра": "s_mock_009383_0",
-        "TeamViewer лицензия на 15 пк": "s_mock_019619_0"
-      },
-      "alternatives": {
-        "Альпина Диджитал на год": 1,
-        "AX-7D3C5457F2AD": 1,
-        "Axiom JDK продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "abbyy",
-      "title": "ABBYY",
-      "vendor": "abbyy",
-      "family": "abbyy_finereader",
-      "category": "translation_dictionaries",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "smb": 3
-      },
-      "queries": [
-        "abbyy lingvo litsenziya na 5 pk",
-        "ABBYY Lingvo лицензия на 5 пк",
-        "замена ABBYY FineReader PDF / FlexiCapture под астру"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "abbyy lingvo litsenziya na 5 pk",
-          "normalized": "abbyy lingvo na 5 pk",
-          "search_id": "s_mock_013486_0"
-        },
-        {
-          "q": "ABBYY Lingvo лицензия на 5 пк",
-          "normalized": "abbyy lingvo на 5 пк",
-          "search_id": "s_mock_015102_0"
-        },
-        {
-          "q": "замена ABBYY FineReader PDF / FlexiCapture под астру",
-          "normalized": "замена abbyy finereader pdf flexicapture под астр",
-          "search_id": "s_mock_019689_0"
-        }
-      ],
-      "search_id": "s_mock_013486_0",
-      "search_ids": {
-        "abbyy lingvo litsenziya na 5 pk": "s_mock_013486_0",
-        "ABBYY Lingvo лицензия на 5 пк": "s_mock_015102_0",
-        "замена ABBYY FineReader PDF / FlexiCapture под астру": "s_mock_019689_0"
-      },
-      "alternatives": {
-        "вк прайвет клауд": 1,
-        "SKB Kontur": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "maxon",
-      "title": "Maxon",
-      "vendor": "maxon",
-      "family": "cinema_4d",
-      "category": "3d_rendering_animation",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "enterprise": 1,
-        "smb": 2
-      },
-      "queries": [
-        "купить Maxon Cinema 4D",
-        "Maxon Cinema 4D лицензия на 75 пк",
-        "чем заменить Maxon Cinema 4D из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "купить Maxon Cinema 4D",
-          "normalized": "maxon cinema 4d",
-          "search_id": "s_mock_003750_0"
-        },
-        {
-          "q": "Maxon Cinema 4D лицензия на 75 пк",
-          "normalized": "maxon cinema 4d на 75 пк",
-          "search_id": "s_mock_004915_0"
-        },
-        {
-          "q": "чем заменить Maxon Cinema 4D из реестра",
-          "normalized": "чем заменить maxon cinema 4d из реестр",
-          "search_id": "s_mock_019765_0"
-        }
-      ],
-      "search_id": "s_mock_003750_0",
-      "search_ids": {
-        "купить Maxon Cinema 4D": "s_mock_003750_0",
-        "Maxon Cinema 4D лицензия на 75 пк": "s_mock_004915_0",
-        "чем заменить Maxon Cinema 4D из реестра": "s_mock_019765_0"
-      },
-      "alternatives": {
-        "МТС Линк Встречи": 1,
-        "купить кикидлер": 1,
-        "Docsvision Базовая платформа": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "symantec_broadcom",
-      "title": "Symantec (Broadcom)",
-      "vendor": "symantec_broadcom",
-      "family": "symantec_dlp",
-      "category": "endpoint_security",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 2,
-      "change": 1,
-      "segments": {
-        "guest": 1,
-        "smb": 1,
-        "mid": 1
-      },
-      "queries": [
-        "замена Symantec Endpoint Protection (Broadcom) под астру",
-        "Symantec Data Loss Prevention (DLP) продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "замена Symantec Endpoint Protection (Broadcom) под астру",
-          "normalized": "замена symantec endpoint protection broadcom под астр",
-          "search_id": "s_mock_006608_0"
-        },
-        {
-          "q": "Symantec Data Loss Prevention (DLP) продление",
-          "normalized": "symantec data loss prevention dlp",
-          "search_id": "s_mock_004544_0"
-        }
-      ],
-      "search_id": "s_mock_006608_0",
-      "search_ids": {
-        "замена Symantec Endpoint Protection (Broadcom) под астру": "s_mock_006608_0",
-        "Symantec Data Loss Prevention (DLP) продление": "s_mock_004544_0"
-      },
-      "alternatives": {
-        "Platform V на год": 1,
-        "Smart Engines": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "cisco",
-      "title": "Cisco",
-      "vendor": "cisco",
-      "family": "cisco_firepower",
-      "category": "ngfw_vpn",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 2,
-      "change": 1,
-      "segments": {
-        "mid": 1,
-        "individual": 1,
-        "guest": 1
-      },
-      "queries": [
-        "Cisco Secure Firewall (Firepower / ASA) продление",
-        "купить Cisco Secure Client (AnyConnect VPN)",
-        "чем заменить Cisco Secure Client (AnyConnect VPN) из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Cisco Secure Firewall (Firepower / ASA) продление",
-          "normalized": "cisco secure firewall firepower asa",
-          "search_id": "s_mock_005577_0"
-        },
-        {
-          "q": "купить Cisco Secure Client (AnyConnect VPN)",
-          "normalized": "cisco secure client anyconnect vpn",
-          "search_id": "s_mock_007390_0"
-        },
-        {
-          "q": "чем заменить Cisco Secure Client (AnyConnect VPN) из реестра",
-          "normalized": "чем заменить cisco secure client anyconnect vpn из реестр",
-          "search_id": "s_mock_021987_0"
-        }
-      ],
-      "search_id": "s_mock_005577_0",
-      "search_ids": {
-        "Cisco Secure Firewall (Firepower / ASA) продление": "s_mock_005577_0",
-        "купить Cisco Secure Client (AnyConnect VPN)": "s_mock_007390_0",
-        "чем заменить Cisco Secure Client (AnyConnect VPN) из реестра": "s_mock_021987_0"
-      },
-      "alternatives": {
-        "AX-1FC2E19105E5": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "zabbix",
-      "title": "Zabbix",
-      "vendor": "zabbix",
-      "family": "zabbix_support",
-      "category": "monitoring_apm",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "smb": 2,
-        "mid": 1
-      },
-      "queries": [
-        "Zabbix Enterprise Support продление",
-        "замена Zabbix Enterprise Support под ред ос",
-        "замена Zabbix Enterprise Support под астру"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Zabbix Enterprise Support продление",
-          "normalized": "zabbix support",
-          "search_id": "s_mock_005716_0"
-        },
-        {
-          "q": "замена Zabbix Enterprise Support под ред ос",
-          "normalized": "замена zabbix support под ред ос",
-          "search_id": "s_mock_020284_0"
-        },
-        {
-          "q": "замена Zabbix Enterprise Support под астру",
-          "normalized": "замена zabbix support под астр",
-          "search_id": "s_mock_020613_0"
-        }
-      ],
-      "search_id": "s_mock_005716_0",
-      "search_ids": {
-        "Zabbix Enterprise Support продление": "s_mock_005716_0",
-        "замена Zabbix Enterprise Support под ред ос": "s_mock_020284_0",
-        "замена Zabbix Enterprise Support под астру": "s_mock_020613_0"
-      },
-      "alternatives": {
-        "Cyberprotect": 1,
-        "Delta Design (ЭРЕМЕКС)": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "commvault",
-      "title": "Commvault",
-      "vendor": "commvault",
-      "family": "commvault_complete",
-      "category": "backup_recovery",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "smb": 1,
-        "individual": 1,
-        "gov": 1
-      },
-      "queries": [
-        "купить Commvault Complete Data Protection",
-        "Commvault Complete Data Protection лицензия на 5 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "купить Commvault Complete Data Protection",
-          "normalized": "commvault complete data protection",
-          "search_id": "s_mock_008528_0"
-        },
-        {
-          "q": "Commvault Complete Data Protection лицензия на 5 пк",
-          "normalized": "commvault complete data protection на 5 пк",
-          "search_id": "s_mock_015176_0"
-        }
-      ],
-      "search_id": "s_mock_008528_0",
-      "search_ids": {
-        "купить Commvault Complete Data Protection": "s_mock_008528_0",
-        "Commvault Complete Data Protection лицензия на 5 пк": "s_mock_015176_0"
-      },
-      "alternatives": {
-        "1С:Бухгалтерия 8 на год": 1,
-        "InfoWatch Traffic Monitor на год": 1,
-        "AX-46BF08B28CED": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "servicenow",
-      "title": "ServiceNow",
-      "vendor": "servicenow",
-      "family": "servicenow_itsm",
-      "category": "itsm_service_desk",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 0,
-      "change": 3,
-      "segments": {
-        "smb": 2,
-        "mid": 1
-      },
-      "queries": [
-        "ServiceNow ITSM лицензия на 75 пк",
-        "ServiceNow ITSM лицензия на 250 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "ServiceNow ITSM лицензия на 75 пк",
-          "normalized": "servicenow itsm на 75 пк",
-          "search_id": "s_mock_006217_0"
-        },
-        {
-          "q": "ServiceNow ITSM лицензия на 250 пк",
-          "normalized": "servicenow itsm на 250 пк",
-          "search_id": "s_mock_010364_0"
-        }
-      ],
-      "search_id": "s_mock_006217_0",
-      "search_ids": {
-        "ServiceNow ITSM лицензия на 75 пк": "s_mock_006217_0",
-        "ServiceNow ITSM лицензия на 250 пк": "s_mock_010364_0"
-      },
-      "alternatives": {
-        "МойСклад на год": 1,
-        "сфера код": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "palo_alto",
-      "title": "Palo Alto Networks",
-      "vendor": "palo_alto",
-      "family": "palo_alto_ngfw",
-      "category": "ngfw_vpn",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 5,
-      "change": -2,
-      "segments": {
-        "smb": 2,
-        "guest": 1
-      },
-      "queries": [
-        "аналог Palo Alto Networks NGFW (PA-Series / VM-Series) российский",
-        "купить Palo Alto Networks NGFW (PA-Series / MV-Series)",
-        "замена Palo Alto Networks NGFW (PA-Series / VM-Series) под астру"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "аналог Palo Alto Networks NGFW (PA-Series / VM-Series) российский",
-          "normalized": "аналог palo alto networks ngfw pa-series vm-series российский",
-          "search_id": "s_mock_007236_0"
-        },
-        {
-          "q": "купить Palo Alto Networks NGFW (PA-Series / MV-Series)",
-          "normalized": "palo alto networks ngfw pa-series mv-series",
-          "search_id": "s_mock_015496_0"
-        },
-        {
-          "q": "замена Palo Alto Networks NGFW (PA-Series / VM-Series) под астру",
-          "normalized": "замена palo alto networks ngfw pa-series vm-series под астр",
-          "search_id": "s_mock_017400_0"
-        }
-      ],
-      "search_id": "s_mock_007236_0",
-      "search_ids": {
-        "аналог Palo Alto Networks NGFW (PA-Series / VM-Series) российский": "s_mock_007236_0",
-        "купить Palo Alto Networks NGFW (PA-Series / MV-Series)": "s_mock_015496_0",
-        "замена Palo Alto Networks NGFW (PA-Series / VM-Series) под астру": "s_mock_017400_0"
-      },
-      "alternatives": {
-        "ПланФикс продление": 1,
-        "sherpa robotics": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "embarcadero",
-      "title": "Embarcadero",
-      "vendor": "embarcadero",
-      "family": "delphi_rad_studio",
-      "category": "ide_compilers",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 1,
-      "change": 2,
-      "segments": {
-        "smb": 1,
-        "guest": 1,
-        "mid": 1
-      },
-      "queries": [
-        "купить Embarcadero RAD Studio / Delphi / C++Builder",
-        "Embarcadero RAD Studio / Delphi / C++Builder лицензия на 30 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "купить Embarcadero RAD Studio / Delphi / C++Builder",
-          "normalized": "embarcadero rad studio delphi c++ builder",
-          "search_id": "s_mock_008364_0"
-        },
-        {
-          "q": "Embarcadero RAD Studio / Delphi / C++Builder лицензия на 30 пк",
-          "normalized": "embarcadero rad studio delphi c++ builder на 30 пк",
-          "search_id": "s_mock_011167_0"
-        }
-      ],
-      "search_id": "s_mock_008364_0",
-      "search_ids": {
-        "купить Embarcadero RAD Studio / Delphi / C++Builder": "s_mock_008364_0",
-        "Embarcadero RAD Studio / Delphi / C++Builder лицензия на 30 пк": "s_mock_011167_0"
-      },
-      "alternatives": {
-        "eXpress продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "mongodb",
-      "title": "MongoDB",
-      "vendor": "mongodb",
-      "family": "mongodb_enterprise",
-      "category": "nosql_inmemory",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 1,
-      "change": 2,
-      "segments": {
-        "guest": 1,
-        "gov": 1,
-        "mid": 1
-      },
-      "queries": [
-        "замена MongoDB Enterprise Advanced / Atlas под ред ос",
-        "купить MongoDB Enterprise Advanced / Atlas"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "замена MongoDB Enterprise Advanced / Atlas под ред ос",
-          "normalized": "замена mongodb advanced atlas под ред ос",
-          "search_id": "s_mock_017193_0"
-        },
-        {
-          "q": "купить MongoDB Enterprise Advanced / Atlas",
-          "normalized": "mongodb advanced atlas",
-          "search_id": "s_mock_016242_0"
-        }
-      ],
-      "search_id": "s_mock_017193_0",
-      "search_ids": {
-        "замена MongoDB Enterprise Advanced / Atlas под ред ос": "s_mock_017193_0",
-        "купить MongoDB Enterprise Advanced / Atlas": "s_mock_016242_0"
-      },
-      "alternatives": {
-        "Sherpa RPA Designer": 1,
-        "SimpleOne ITSM продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "bitdefender",
-      "title": "Bitdefender",
-      "vendor": "bitdefender",
-      "family": "bitdefender_gravityzone",
-      "category": "endpoint_security",
-      "searches": 3,
-      "sessions": 3,
-      "previous": 1,
-      "change": 2,
-      "segments": {
-        "guest": 1,
-        "mid": 1,
-        "enterprise": 1
-      },
-      "queries": [
-        "Bitdefender GravityZone продление",
-        "Bitdefender GravityZone лицензия на 15 пк",
-        "чем заменить Bitdefender GravityZone из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Bitdefender GravityZone продление",
-          "normalized": "bitdefender gravityzone",
-          "search_id": "s_mock_015644_0"
-        },
-        {
-          "q": "Bitdefender GravityZone лицензия на 15 пк",
-          "normalized": "bitdefender gravityzone на 15 пк",
-          "search_id": "s_mock_016698_0"
-        },
-        {
-          "q": "чем заменить Bitdefender GravityZone из реестра",
-          "normalized": "чем заменить bitdefender gravityzone из реестр",
-          "search_id": "s_mock_022926_0"
-        }
-      ],
-      "search_id": "s_mock_015644_0",
-      "search_ids": {
-        "Bitdefender GravityZone продление": "s_mock_015644_0",
-        "Bitdefender GravityZone лицензия на 15 пк": "s_mock_016698_0",
-        "чем заменить Bitdefender GravityZone из реестра": "s_mock_022926_0"
-      },
-      "alternatives": {
-        "купить энджи": 1,
-        "Dr.Web Enterprise Security Suite продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "miro",
-      "title": "Miro",
-      "vendor": "miro",
-      "family": "miro",
-      "category": "whiteboards_notes",
-      "searches": 2,
-      "sessions": 2,
       "previous": 3,
-      "change": -1,
+      "change": 0,
       "segments": {
-        "smb": 1,
-        "guest": 1
+        "guest": 1,
+        "mid": 1,
+        "smb": 1
       },
       "queries": [
-        "Miro(онлайн-доски)продление",
-        "miro (onlain-doski) litsenziya na 30 pk"
+        "купить TeamViewer",
+        "чем заменить TeamViewer из реестра",
+        "замена TeamViewer под астру"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "Miro(онлайн-доски)продление",
-          "normalized": "miro онлайн-доски",
-          "search_id": "s_mock_015353_0"
+          "q": "купить TeamViewer",
+          "normalized": "teamviewer",
+          "search_id": "s_mock_005123_0"
         },
         {
-          "q": "miro (onlain-doski) litsenziya na 30 pk",
-          "normalized": "miro onlain-doski na 30 pk",
-          "search_id": "s_mock_016455_0"
+          "q": "чем заменить TeamViewer из реестра",
+          "normalized": "чем заменить teamviewer из реестр",
+          "search_id": "s_mock_009756_0"
+        },
+        {
+          "q": "замена TeamViewer под астру",
+          "normalized": "замена teamviewer под астр",
+          "search_id": "s_mock_019761_0"
         }
       ],
-      "search_id": "s_mock_015353_0",
+      "search_id": "s_mock_005123_0",
       "search_ids": {
-        "Miro(онлайн-доски)продление": "s_mock_015353_0",
-        "miro (onlain-doski) litsenziya na 30 pk": "s_mock_016455_0"
+        "купить TeamViewer": "s_mock_005123_0",
+        "чем заменить TeamViewer из реестра": "s_mock_009756_0",
+        "замена TeamViewer под астру": "s_mock_019761_0"
       },
       "alternatives": {
-        "Галактика": 1
+        "аксиом jdk": 1,
+        "купить интеллект x": 1
       },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "esri",
-      "title": "Esri",
-      "vendor": "esri",
-      "family": "arcgis",
-      "category": "gis_mapping",
-      "searches": 2,
-      "sessions": 2,
-      "previous": 1,
-      "change": 1,
-      "segments": {
-        "individual": 2
-      },
-      "queries": [
-        "Esri ArcGIS (Pro / Enterprise) продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Esri ArcGIS (Pro / Enterprise) продление",
-          "normalized": "esri arcgis",
-          "search_id": "s_mock_002610_0"
-        }
-      ],
-      "search_id": "s_mock_002610_0",
-      "search_ids": {
-        "Esri ArcGIS (Pro / Enterprise) продление": "s_mock_002610_0"
-      },
-      "alternatives": {},
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
@@ -1752,169 +954,900 @@
       "title": "VMware (Broadcom)",
       "vendor": "vmware_broadcom",
       "family": "vmware_workstation",
+      "category": "server_virtualization",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 8,
+      "change": -5,
+      "segments": {
+        "smb": 1,
+        "mid": 2
+      },
+      "queries": [
+        "купить VMware vSphere / vCenter (Broadcom)",
+        "kupit vmware vsphere / vcenter (broadcom)",
+        "fyfkju мьцфку мызруку / мсутеук (икщфвсщь) hjccbqcrbq"
+      ],
+      "expected_rub": 5227,
+      "examples": [
+        {
+          "q": "купить VMware vSphere / vCenter (Broadcom)",
+          "normalized": "vmware vsphere vcenter broadcom",
+          "search_id": "s_mock_012109_0"
+        },
+        {
+          "q": "kupit vmware vsphere / vcenter (broadcom)",
+          "normalized": "vmware vsphere vcenter broadcom",
+          "search_id": "s_mock_016951_0"
+        },
+        {
+          "q": "fyfkju мьцфку мызруку / мсутеук (икщфвсщь) hjccbqcrbq",
+          "normalized": "аналог vmware vsphere vcenter broadcom российский",
+          "search_id": "s_mock_018447_0"
+        }
+      ],
+      "search_id": "s_mock_012109_0",
+      "search_ids": {
+        "купить VMware vSphere / vCenter (Broadcom)": "s_mock_012109_0",
+        "kupit vmware vsphere / vcenter (broadcom)": "s_mock_016951_0",
+        "fyfkju мьцфку мызруку / мсутеук (икщфвсщь) hjccbqcrbq": "s_mock_018447_0"
+      },
+      "alternatives": {
+        "Kickidler": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 2091,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "esri",
+      "title": "Esri",
+      "vendor": "esri",
+      "family": "arcgis",
+      "category": "gis_mapping",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 0,
+      "change": 3,
+      "segments": {
+        "guest": 1,
+        "smb": 2
+      },
+      "queries": [
+        "Esri ArcGIS (Pro / Enterprise) продление",
+        "чем заменить Esri ArcGIS (Pro / Enterprise) из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Esri ArcGIS (Pro / Enterprise) продление",
+          "normalized": "esri arcgis",
+          "search_id": "s_mock_008799_0"
+        },
+        {
+          "q": "чем заменить Esri ArcGIS (Pro / Enterprise) из реестра",
+          "normalized": "чем заменить esri arcgis из реестр",
+          "search_id": "s_mock_009665_0"
+        }
+      ],
+      "search_id": "s_mock_008799_0",
+      "search_ids": {
+        "Esri ArcGIS (Pro / Enterprise) продление": "s_mock_008799_0",
+        "чем заменить Esri ArcGIS (Pro / Enterprise) из реестра": "s_mock_009665_0"
+      },
+      "alternatives": {
+        "AX-E62CCC5B2C0C": 1,
+        "Cloud.ru продление": 1,
+        "Пассворк на год": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "unity_technologies",
+      "title": "Unity Technologies",
+      "vendor": "unity_technologies",
+      "family": "unity_engine",
+      "category": "3d_rendering_animation",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 0,
+      "change": 3,
+      "segments": {
+        "smb": 2,
+        "mid": 1
+      },
+      "queries": [
+        "чем заменить Unity (Unity Pro / Industry) из реестра",
+        "Unity (Unity Pro / Industry) продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Unity (Unity Pro / Industry) из реестра",
+          "normalized": "чем заменить unity unity industry из реестр",
+          "search_id": "s_mock_012943_0"
+        },
+        {
+          "q": "Unity (Unity Pro / Industry) продление",
+          "normalized": "unity unity industry",
+          "search_id": "s_mock_022751_0"
+        }
+      ],
+      "search_id": "s_mock_012943_0",
+      "search_ids": {
+        "чем заменить Unity (Unity Pro / Industry) из реестра": "s_mock_012943_0",
+        "Unity (Unity Pro / Industry) продление": "s_mock_022751_0"
+      },
+      "alternatives": {
+        "esmart token": 1,
+        "ГРАНД-Смета": 1,
+        "SaluteJazz (СберДжаз)": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "docusign_inc",
+      "title": "DocuSign",
+      "vendor": "docusign_inc",
+      "family": "docusign",
+      "category": "tax_reporting_edo",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 1,
+      "change": 2,
+      "segments": {
+        "gov": 1,
+        "smb": 1,
+        "edu": 1
+      },
+      "queries": [
+        "DocuSign продление",
+        "купить DocuSign",
+        "аналог DocuSign российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "DocuSign продление",
+          "normalized": "docusign",
+          "search_id": "s_mock_015289_0"
+        },
+        {
+          "q": "купить DocuSign",
+          "normalized": "docusign",
+          "search_id": "s_mock_017034_0"
+        },
+        {
+          "q": "аналог DocuSign российский",
+          "normalized": "аналог docusign российский",
+          "search_id": "s_mock_017276_0"
+        }
+      ],
+      "search_id": "s_mock_015289_0",
+      "search_ids": {
+        "DocuSign продление": "s_mock_015289_0",
+        "купить DocuSign": "s_mock_017034_0",
+        "аналог DocuSign российский": "s_mock_017276_0"
+      },
+      "alternatives": {
+        "AX-8EA7FE2F3A7A": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "parallels",
+      "title": "Parallels",
+      "vendor": "parallels",
+      "family": "parallels_desktop",
       "category": "desktop_hypervisors",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 0,
+      "change": 3,
+      "segments": {
+        "individual": 1,
+        "guest": 1,
+        "mid": 1
+      },
+      "queries": [
+        "Parallels Desktop for Mac лицензия на 50 пк",
+        "аналог Parallels Desktop for Mac российский",
+        "Parallels eDsktop for Mac продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Parallels Desktop for Mac лицензия на 50 пк",
+          "normalized": "parallels desktop for mac на 50 пк",
+          "search_id": "s_mock_007581_0"
+        },
+        {
+          "q": "аналог Parallels Desktop for Mac российский",
+          "normalized": "аналог parallels desktop for mac российский",
+          "search_id": "s_mock_012147_0"
+        },
+        {
+          "q": "Parallels eDsktop for Mac продление",
+          "normalized": "parallels desktop for mac",
+          "search_id": "s_mock_013698_0"
+        }
+      ],
+      "search_id": "s_mock_007581_0",
+      "search_ids": {
+        "Parallels Desktop for Mac лицензия на 50 пк": "s_mock_007581_0",
+        "аналог Parallels Desktop for Mac российский": "s_mock_012147_0",
+        "Parallels eDsktop for Mac продление": "s_mock_013698_0"
+      },
+      "alternatives": {
+        "Альт СП": 1,
+        "Спектр DCAP Базовая": 1,
+        "AX-840DC93A4A77": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "acronis",
+      "title": "Acronis",
+      "vendor": "acronis",
+      "family": "acronis_cyber_protect",
+      "category": "backup_recovery",
+      "searches": 3,
+      "sessions": 3,
+      "previous": 1,
+      "change": 2,
+      "segments": {
+        "guest": 1,
+        "individual": 2
+      },
+      "queries": [
+        "Acronis Cyber Protect (международный) лицензия на 30 пк",
+        "чем заменить Acronis Cyber Protect (международный) из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Acronis Cyber Protect (международный) лицензия на 30 пк",
+          "normalized": "acronis cyber protect международный на 30 пк",
+          "search_id": "s_mock_009681_0"
+        },
+        {
+          "q": "чем заменить Acronis Cyber Protect (международный) из реестра",
+          "normalized": "чем заменить acronis cyber protect международный из реестр",
+          "search_id": "s_mock_013971_0"
+        }
+      ],
+      "search_id": "s_mock_009681_0",
+      "search_ids": {
+        "Acronis Cyber Protect (международный) лицензия на 30 пк": "s_mock_009681_0",
+        "чем заменить Acronis Cyber Protect (международный) из реестра": "s_mock_013971_0"
+      },
+      "alternatives": {
+        "Phishman на год": 1,
+        "РЕД ОС Рабочая станция на 15 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "hubspot",
+      "title": "HubSpot",
+      "vendor": "hubspot",
+      "family": "hubspot_crm",
+      "category": "crm_systems",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 3,
+      "change": -1,
+      "segments": {
+        "guest": 1,
+        "mid": 1
+      },
+      "queries": [
+        "HubSpot CRM лицензия на 15 пк",
+        "купить HubSpot CRM"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "HubSpot CRM лицензия на 15 пк",
+          "normalized": "hubspot crm на 15 пк",
+          "search_id": "s_mock_015496_0"
+        },
+        {
+          "q": "купить HubSpot CRM",
+          "normalized": "hubspot crm",
+          "search_id": "s_mock_017695_0"
+        }
+      ],
+      "search_id": "s_mock_015496_0",
+      "search_ids": {
+        "HubSpot CRM лицензия на 15 пк": "s_mock_015496_0",
+        "купить HubSpot CRM": "s_mock_017695_0"
+      },
+      "alternatives": {
+        "Kaspersky Industrial CyberSecurity на 100 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "snowflake",
+      "title": "Snowflake",
+      "vendor": "snowflake",
+      "family": "snowflake_dwh",
+      "category": "dwh_olap",
       "searches": 2,
       "sessions": 2,
       "previous": 1,
       "change": 1,
       "segments": {
-        "guest": 2
+        "guest": 1,
+        "smb": 1
       },
       "queries": [
-        "купить VMware Workstation Pro / Fusion",
-        "чем заменить VMware Workstation Pro / Fusion из реестра"
+        "купить Snowflake Data Cloud"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "купить VMware Workstation Pro / Fusion",
-          "normalized": "vmware workstation fusion",
-          "search_id": "s_mock_002837_0"
-        },
-        {
-          "q": "чем заменить VMware Workstation Pro / Fusion из реестра",
-          "normalized": "чем заменить vmware workstation fusion из реестр",
-          "search_id": "s_mock_007870_0"
+          "q": "купить Snowflake Data Cloud",
+          "normalized": "snowflake data cloud",
+          "search_id": "s_mock_002693_0"
         }
       ],
-      "search_id": "s_mock_002837_0",
+      "search_id": "s_mock_002693_0",
       "search_ids": {
-        "купить VMware Workstation Pro / Fusion": "s_mock_002837_0",
-        "чем заменить VMware Workstation Pro / Fusion из реестра": "s_mock_007870_0"
+        "купить Snowflake Data Cloud": "s_mock_002693_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "openai",
+      "title": "OpenAI",
+      "vendor": "openai",
+      "family": "chatgpt_enterprise",
+      "category": "llm_gen_ai",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 2,
+      "change": 0,
+      "segments": {
+        "gov": 1,
+        "guest": 1
+      },
+      "queries": [
+        "аналог OpenAI ChatGPT (Team / Enterprise / API) российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог OpenAI ChatGPT (Team / Enterprise / API) российский",
+          "normalized": "аналог openai chatgpt api российский",
+          "search_id": "s_mock_003059_0"
+        }
+      ],
+      "search_id": "s_mock_003059_0",
+      "search_ids": {
+        "аналог OpenAI ChatGPT (Team / Enterprise / API) российский": "s_mock_003059_0"
       },
       "alternatives": {
-        "в-стек": 1,
-        "kontur diadoc": 1
+        "Etersoft": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "sap",
-      "title": "SAP",
-      "vendor": "sap",
-      "family": "sap_s4hana",
-      "category": "erp_systems",
+      "key": "suse",
+      "title": "SUSE",
+      "vendor": "suse",
+      "family": "suse_sles",
+      "category": null,
+      "searches": 2,
+      "sessions": 2,
+      "previous": 2,
+      "change": 0,
+      "segments": {
+        "smb": 1,
+        "mid": 1
+      },
+      "queries": [
+        "fyfkju ыгыу дштгч утеукзкшыу ыукмук (ыдуы) hjccbqcrbq",
+        "аналог SUES Linux Enterprise Server (SLES) российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "fyfkju ыгыу дштгч утеукзкшыу ыукмук (ыдуы) hjccbqcrbq",
+          "normalized": "аналог suse sles российский",
+          "search_id": "s_mock_003000_0"
+        },
+        {
+          "q": "аналог SUES Linux Enterprise Server (SLES) российский",
+          "normalized": "аналог suse sles российский",
+          "search_id": "s_mock_004674_0"
+        }
+      ],
+      "search_id": "s_mock_003000_0",
+      "search_ids": {
+        "fyfkju ыгыу дштгч утеукзкшыу ыукмук (ыдуы) hjccbqcrbq": "s_mock_003000_0",
+        "аналог SUES Linux Enterprise Server (SLES) российский": "s_mock_004674_0"
+      },
+      "alternatives": {
+        "купить pgpro": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "chaos_group",
+      "title": "Chaos",
+      "vendor": "chaos_group",
+      "family": "vray_chaos",
+      "category": null,
+      "searches": 2,
+      "sessions": 2,
+      "previous": 2,
+      "change": 0,
+      "segments": {
+        "guest": 2
+      },
+      "queries": [
+        "срфщы м-кфн / сщкщтф кутвукук kbwtypbz yf 75 gr",
+        "Chaos V-Ray / Corona Renderer лицензия на 75 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "срфщы м-кфн / сщкщтф кутвукук kbwtypbz yf 75 gr",
+          "normalized": "chaos м-кфн corona renderer на 75 пк",
+          "search_id": "s_mock_009445_0"
+        },
+        {
+          "q": "Chaos V-Ray / Corona Renderer лицензия на 75 пк",
+          "normalized": "chaos v-ray corona renderer на 75 пк",
+          "search_id": "s_mock_010072_0"
+        }
+      ],
+      "search_id": "s_mock_009445_0",
+      "search_ids": {
+        "срфщы м-кфн / сщкщтф кутвукук kbwtypbz yf 75 gr": "s_mock_009445_0",
+        "Chaos V-Ray / Corona Renderer лицензия на 75 пк": "s_mock_010072_0"
+      },
+      "alternatives": {
+        "Directum RX на год": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "canonical",
+      "title": "Canonical",
+      "vendor": "canonical",
+      "family": "ubuntu_pro",
+      "category": null,
+      "searches": 2,
+      "sessions": 2,
+      "previous": 1,
+      "change": 1,
+      "segments": {
+        "smb": 2
+      },
+      "queries": [
+        "regbnm гигтег зкщ (сфтщтшсфд)",
+        "чем заменить Ubuntu Pro (Canonical) из реестра"
+      ],
+      "expected_rub": 1719,
+      "examples": [
+        {
+          "q": "regbnm гигтег зкщ (сфтщтшсфд)",
+          "normalized": "ubuntu canonical",
+          "search_id": "s_mock_022069_0"
+        },
+        {
+          "q": "чем заменить Ubuntu Pro (Canonical) из реестра",
+          "normalized": "чем заменить ubuntu canonical из реестр",
+          "search_id": "s_mock_022332_0"
+        }
+      ],
+      "search_id": "s_mock_022069_0",
+      "search_ids": {
+        "regbnm гигтег зкщ (сфтщтшсфд)": "s_mock_022069_0",
+        "чем заменить Ubuntu Pro (Canonical) из реестра": "s_mock_022332_0"
+      },
+      "alternatives": {
+        "Softline Services": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 688,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "eset",
+      "title": "ESET",
+      "vendor": "eset",
+      "family": "eset_protect",
+      "category": "endpoint_security",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 2,
+      "change": 0,
+      "segments": {
+        "enterprise": 1,
+        "guest": 1
+      },
+      "queries": [
+        "ESET PROTECT (NOD32 Business) продление",
+        "chem zamenit eset protect (nod32 business) iz reestra"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "ESET PROTECT (NOD32 Business) продление",
+          "normalized": "eset protect nod32",
+          "search_id": "s_mock_014326_0"
+        },
+        {
+          "q": "chem zamenit eset protect (nod32 business) iz reestra",
+          "normalized": "chek zamenit eset protect nod32 iz реестр",
+          "search_id": "s_mock_016704_0"
+        }
+      ],
+      "search_id": "s_mock_014326_0",
+      "search_ids": {
+        "ESET PROTECT (NOD32 Business) продление": "s_mock_014326_0",
+        "chem zamenit eset protect (nod32 business) iz reestra": "s_mock_016704_0"
+      },
+      "alternatives": {
+        "Адванта на год": 1,
+        "Dallas Lock на 30 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "notion",
+      "title": "Notion",
+      "vendor": "notion",
+      "family": "notion",
+      "category": "whiteboards_notes",
       "searches": 2,
       "sessions": 2,
       "previous": 4,
       "change": -2,
       "segments": {
-        "guest": 1,
-        "smb": 1
+        "guest": 2
       },
       "queries": [
-        "SAP S/4HANA / SAP ERP продление",
-        "замена SAP S/4HANA / SAP ERP под ред ос"
+        "замена Notion под астру"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "SAP S/4HANA / SAP ERP продление",
-          "normalized": "sap s 4hana sap erp",
-          "search_id": "s_mock_009654_0"
-        },
-        {
-          "q": "замена SAP S/4HANA / SAP ERP под ред ос",
-          "normalized": "замена sap s 4hana sap erp под ред ос",
-          "search_id": "s_mock_022387_0"
+          "q": "замена Notion под астру",
+          "normalized": "замена notion под астр",
+          "search_id": "s_mock_012020_0"
         }
       ],
-      "search_id": "s_mock_009654_0",
+      "search_id": "s_mock_012020_0",
       "search_ids": {
-        "SAP S/4HANA / SAP ERP продление": "s_mock_009654_0",
-        "замена SAP S/4HANA / SAP ERP под ред ос": "s_mock_022387_0"
+        "замена Notion под астру": "s_mock_012020_0"
       },
       "alternatives": {
-        "Holst на год": 1,
-        "ZuluGIS на 30 пк": 1
+        "PRO32 продление": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "google",
-      "title": "Google",
-      "vendor": "google",
-      "family": "google_workspace",
-      "category": "uc_platforms",
+      "key": "trimble",
+      "title": "Trimble",
+      "vendor": "trimble",
+      "family": "sketchup",
+      "category": null,
       "searches": 2,
       "sessions": 2,
-      "previous": 2,
-      "change": 0,
+      "previous": 0,
+      "change": 2,
       "segments": {
-        "mid": 1,
+        "individual": 1,
         "guest": 1
       },
       "queries": [
-        "чем заменить Google Workspace (Business / Enterprise) из реестра",
-        "купить Google Workspace (Business / Enterprise)"
+        "regbnm dr [h ntr",
+        "аналог Trimble Tekla Structures российский"
       ],
-      "expected_rub": 0,
+      "expected_rub": 2216,
       "examples": [
         {
-          "q": "чем заменить Google Workspace (Business / Enterprise) из реестра",
-          "normalized": "чем заменить google workspace из реестр",
-          "search_id": "s_mock_004121_0"
+          "q": "regbnm dr [h ntr",
+          "normalized": "dr хр течь",
+          "search_id": "s_mock_017491_0"
         },
         {
-          "q": "купить Google Workspace (Business / Enterprise)",
-          "normalized": "google workspace",
-          "search_id": "s_mock_013249_0"
+          "q": "аналог Trimble Tekla Structures российский",
+          "normalized": "аналог trimble tekla structures российский",
+          "search_id": "s_mock_018019_0"
         }
       ],
-      "search_id": "s_mock_004121_0",
+      "search_id": "s_mock_017491_0",
       "search_ids": {
-        "чем заменить Google Workspace (Business / Enterprise) из реестра": "s_mock_004121_0",
-        "купить Google Workspace (Business / Enterprise)": "s_mock_013249_0"
+        "regbnm dr [h ntr": "s_mock_017491_0",
+        "аналог Trimble Tekla Structures российский": "s_mock_018019_0"
       },
       "alternatives": {
-        "Compass (корпоративный мессенджер)": 1
+        "VK HR Tek": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
+      "conservative_rub": 886,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "red_hat",
-      "title": "Red Hat",
-      "vendor": "red_hat",
-      "family": "redhat_openshift",
-      "category": "containers_kubernetes",
+      "key": "ibm",
+      "title": "IBM",
+      "vendor": "ibm",
+      "family": "ibm_db2",
+      "category": "bi_analytics",
       "searches": 2,
       "sessions": 2,
-      "previous": 2,
-      "change": 0,
+      "previous": 3,
+      "change": -1,
       "segments": {
         "edu": 1,
         "smb": 1
       },
       "queries": [
-        "купить Red Hat OpenShift Container Platform",
-        "Red Hat OpenShift Container Platform лицензия на 75 пк"
+        "IBM SPSS Statistics лицензия на 100 пк",
+        "купить IBM QRadar SIEM"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "купить Red Hat OpenShift Container Platform",
-          "normalized": "red hat openshift container platform",
-          "search_id": "s_mock_006422_0"
+          "q": "IBM SPSS Statistics лицензия на 100 пк",
+          "normalized": "ibm spss statistics на 100 пк",
+          "search_id": "s_mock_021788_0"
         },
         {
-          "q": "Red Hat OpenShift Container Platform лицензия на 75 пк",
-          "normalized": "red hat openshift container platform на 75 пк",
-          "search_id": "s_mock_018587_0"
+          "q": "купить IBM QRadar SIEM",
+          "normalized": "ibm qradar siem",
+          "search_id": "s_mock_022131_0"
         }
       ],
-      "search_id": "s_mock_006422_0",
+      "search_id": "s_mock_021788_0",
       "search_ids": {
-        "купить Red Hat OpenShift Container Platform": "s_mock_006422_0",
-        "Red Hat OpenShift Container Platform лицензия на 75 пк": "s_mock_018587_0"
+        "IBM SPSS Statistics лицензия на 100 пк": "s_mock_021788_0",
+        "купить IBM QRadar SIEM": "s_mock_022131_0"
       },
       "alternatives": {
-        "Галактика на год": 1
+        "Directum RX на год": 1,
+        "купить курсы ред ос": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "techsmith",
+      "title": "TechSmith",
+      "vendor": "techsmith",
+      "family": "techsmith_camtasia",
+      "category": "video_editing",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 1,
+      "change": 1,
+      "segments": {
+        "gov": 1,
+        "smb": 1
+      },
+      "queries": [
+        "купить TechSmith Camtasia",
+        "замена TechSmith Camtasia под ред ос"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить TechSmith Camtasia",
+          "normalized": "techsmith camtasia",
+          "search_id": "s_mock_004043_0"
+        },
+        {
+          "q": "замена TechSmith Camtasia под ред ос",
+          "normalized": "замена techsmith camtasia под ред ос",
+          "search_id": "s_mock_016804_0"
+        }
+      ],
+      "search_id": "s_mock_004043_0",
+      "search_ids": {
+        "купить TechSmith Camtasia": "s_mock_004043_0",
+        "замена TechSmith Camtasia под ред ос": "s_mock_016804_0"
+      },
+      "alternatives": {
+        "AlterOffice на год": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "anaplan_inc",
+      "title": "Anaplan",
+      "vendor": "anaplan_inc",
+      "family": "anaplan",
+      "category": "finance_budgeting",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 0,
+      "change": 2,
+      "segments": {
+        "guest": 2
+      },
+      "queries": [
+        "Anaplan лицензия на 100 пк",
+        "Anaplan продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Anaplan лицензия на 100 пк",
+          "normalized": "anaplan на 100 пк",
+          "search_id": "s_mock_004100_0"
+        },
+        {
+          "q": "Anaplan продление",
+          "normalized": "anaplan",
+          "search_id": "s_mock_008439_0"
+        }
+      ],
+      "search_id": "s_mock_004100_0",
+      "search_ids": {
+        "Anaplan лицензия на 100 пк": "s_mock_004100_0",
+        "Anaplan продление": "s_mock_008439_0"
+      },
+      "alternatives": {
+        "nanocad bim": 1,
+        "Kaspersky Symphony продление": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "github",
+      "title": "GitHub",
+      "vendor": "github",
+      "family": "github_copilot",
+      "category": "llm_gen_ai",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 0,
+      "change": 2,
+      "segments": {
+        "guest": 1,
+        "individual": 1
+      },
+      "queries": [
+        "аналог GitHub Copilot (Business / Enterprise) российский",
+        "замена GitHub Copilot (Business / Enterprise) под ред ос"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог GitHub Copilot (Business / Enterprise) российский",
+          "normalized": "аналог github copilot российский",
+          "search_id": "s_mock_004111_0"
+        },
+        {
+          "q": "замена GitHub Copilot (Business / Enterprise) под ред ос",
+          "normalized": "замена github copilot под ред ос",
+          "search_id": "s_mock_006158_0"
+        }
+      ],
+      "search_id": "s_mock_004111_0",
+      "search_ids": {
+        "аналог GitHub Copilot (Business / Enterprise) российский": "s_mock_004111_0",
+        "замена GitHub Copilot (Business / Enterprise) под ред ос": "s_mock_006158_0"
+      },
+      "alternatives": {
+        "Websoft HCM": 1,
+        "Альт СП Рабочая станция": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "splunk",
+      "title": "Splunk",
+      "vendor": "splunk",
+      "family": "splunk_enterprise",
+      "category": "siem_soc",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 3,
+      "change": -1,
+      "segments": {
+        "gov": 1,
+        "guest": 1
+      },
+      "queries": [
+        "чем заменить Splunk Enterprise / Enterprise Security из реестра",
+        "Splunk Enterprise / Enterprise Security продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Splunk Enterprise / Enterprise Security из реестра",
+          "normalized": "чем заменить splunk security из реестр",
+          "search_id": "s_mock_008340_0"
+        },
+        {
+          "q": "Splunk Enterprise / Enterprise Security продление",
+          "normalized": "splunk security",
+          "search_id": "s_mock_009461_0"
+        }
+      ],
+      "search_id": "s_mock_008340_0",
+      "search_ids": {
+        "чем заменить Splunk Enterprise / Enterprise Security из реестра": "s_mock_008340_0",
+        "Splunk Enterprise / Enterprise Security продление": "s_mock_009461_0"
+      },
+      "alternatives": {
+        "IVA One": 1,
+        "AX-72ED7221576C": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "tableau_salesforce",
+      "title": "Tableau",
+      "vendor": "tableau_salesforce",
+      "family": "tableau",
+      "category": "bi_analytics",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 3,
+      "change": -1,
+      "segments": {
+        "guest": 1,
+        "mid": 1
+      },
+      "queries": [
+        "Tableau (Creator / Explorer / Server) продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Tableau (Creator / Explorer / Server) продление",
+          "normalized": "tableau creator explorer",
+          "search_id": "s_mock_004531_0"
+        }
+      ],
+      "search_id": "s_mock_004531_0",
+      "search_ids": {
+        "Tableau (Creator / Explorer / Server) продление": "s_mock_004531_0"
+      },
+      "alternatives": {
+        "СУБД Tantor Certified": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -1928,93 +1861,6 @@
       "category": "crm_systems",
       "searches": 2,
       "sessions": 2,
-      "previous": 3,
-      "change": -1,
-      "segments": {
-        "edu": 1,
-        "guest": 1
-      },
-      "queries": [
-        "Salesforce CRM продление",
-        "купить Salesforce CRM"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Salesforce CRM продление",
-          "normalized": "salesforce crm",
-          "search_id": "s_mock_010949_0"
-        },
-        {
-          "q": "купить Salesforce CRM",
-          "normalized": "salesforce crm",
-          "search_id": "s_mock_010950_0"
-        }
-      ],
-      "search_id": "s_mock_010949_0",
-      "search_ids": {
-        "Salesforce CRM продление": "s_mock_010949_0",
-        "купить Salesforce CRM": "s_mock_010950_0"
-      },
-      "alternatives": {
-        "AX-EC61DE299219": 1,
-        "VK HR Tek SaaS": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "veritas",
-      "title": "Veritas",
-      "vendor": "veritas",
-      "family": "veritas_netbackup",
-      "category": "backup_recovery",
-      "searches": 2,
-      "sessions": 2,
-      "previous": 3,
-      "change": -1,
-      "segments": {
-        "guest": 2
-      },
-      "queries": [
-        "купить Veritas NetBackup / Backup Exec",
-        "veritas netbackup / backup exec litsenziya na 10 pk"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "купить Veritas NetBackup / Backup Exec",
-          "normalized": "veritas netbackup backup exec",
-          "search_id": "s_mock_006512_0"
-        },
-        {
-          "q": "veritas netbackup / backup exec litsenziya na 10 pk",
-          "normalized": "veritas netbackup backup exec na 10 pk",
-          "search_id": "s_mock_009206_0"
-        }
-      ],
-      "search_id": "s_mock_006512_0",
-      "search_ids": {
-        "купить Veritas NetBackup / Backup Exec": "s_mock_006512_0",
-        "veritas netbackup / backup exec litsenziya na 10 pk": "s_mock_009206_0"
-      },
-      "alternatives": {
-        "Yandex": 1,
-        "рмс": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "ibm",
-      "title": "IBM",
-      "vendor": "ibm",
-      "family": "ibm_db2",
-      "category": "rdbms",
-      "searches": 2,
-      "sessions": 2,
       "previous": 1,
       "change": 1,
       "segments": {
@@ -2022,116 +1868,99 @@
         "guest": 1
       },
       "queries": [
-        "аналог IBM Db2 российский",
-        "замена IBM Db2 под ред ос"
+        "замена Salesforce CRM под астру"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "аналог IBM Db2 российский",
-          "normalized": "аналог ibm db2 российский",
-          "search_id": "s_mock_014712_0"
-        },
-        {
-          "q": "замена IBM Db2 под ред ос",
-          "normalized": "замена ibm db2 под ред ос",
-          "search_id": "s_mock_022904_0"
+          "q": "замена Salesforce CRM под астру",
+          "normalized": "замена salesforce crm под астр",
+          "search_id": "s_mock_014000_0"
         }
       ],
-      "search_id": "s_mock_014712_0",
+      "search_id": "s_mock_014000_0",
       "search_ids": {
-        "аналог IBM Db2 российский": "s_mock_014712_0",
-        "замена IBM Db2 под ред ос": "s_mock_022904_0"
+        "замена Salesforce CRM под астру": "s_mock_014000_0"
       },
       "alternatives": {
-        "Topomatic": 1
+        "aida64 extreme": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "mathworks",
-      "title": "MathWorks",
-      "vendor": "mathworks",
-      "family": "matlab",
-      "category": "cae_simulation",
+      "key": "jetbrains",
+      "title": "JetBrains",
+      "vendor": "jetbrains",
+      "family": "jetbrains_teamcity",
+      "category": "task_project_trackers",
       "searches": 2,
       "sessions": 2,
-      "previous": 6,
-      "change": -4,
+      "previous": 1,
+      "change": 1,
       "segments": {
-        "individual": 1,
-        "guest": 1
+        "guest": 1,
+        "smb": 1
       },
       "queries": [
-        "MATLAB & Simulink лицензия на 100 пк",
-        "аналог MATLAB & Simulink российский"
+        "куипть JetBrains YouTrack",
+        "замена JetBarins YouTrack под ред ос"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "MATLAB & Simulink лицензия на 100 пк",
-          "normalized": "matlab simulink на 100 пк",
-          "search_id": "s_mock_007788_0"
+          "q": "куипть JetBrains YouTrack",
+          "normalized": "jetbrains youtrack",
+          "search_id": "s_mock_008473_0"
         },
         {
-          "q": "аналог MATLAB & Simulink российский",
-          "normalized": "аналог matlab simulink российский",
-          "search_id": "s_mock_012696_0"
+          "q": "замена JetBarins YouTrack под ред ос",
+          "normalized": "замена jetbrains youtrack под ред ос",
+          "search_id": "s_mock_016173_0"
         }
       ],
-      "search_id": "s_mock_007788_0",
+      "search_id": "s_mock_008473_0",
       "search_ids": {
-        "MATLAB & Simulink лицензия на 100 пк": "s_mock_007788_0",
-        "аналог MATLAB & Simulink российский": "s_mock_012696_0"
+        "куипть JetBrains YouTrack": "s_mock_008473_0",
+        "замена JetBarins YouTrack под ред ос": "s_mock_016173_0"
       },
-      "alternatives": {
-        "Платформа nanoCAD продление": 1,
-        "AX-EC24FB628D41": 1
-      },
+      "alternatives": {},
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "sber_jazz",
-      "title": "SaluteDevices / Sber Jazz",
-      "vendor": "sber_jazz",
-      "family": "sber_kandinsky_api",
-      "category": null,
+      "key": "onepassword",
+      "title": "1Password",
+      "vendor": "onepassword",
+      "family": "onepassword_business",
+      "category": "iam_pam_mfa",
       "searches": 2,
       "sessions": 2,
       "previous": 0,
       "change": 2,
       "segments": {
         "smb": 1,
-        "guest": 1
+        "gov": 1
       },
       "queries": [
-        "kupit rossiiskii copilot",
-        "rossiiskii copilot"
+        "1Password Business лицензия на 30 пк"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "kupit rossiiskii copilot",
-          "normalized": "российский copilot",
-          "search_id": "s_mock_009750_0"
-        },
-        {
-          "q": "rossiiskii copilot",
-          "normalized": "российский copilot",
-          "search_id": "s_mock_018330_0"
+          "q": "1Password Business лицензия на 30 пк",
+          "normalized": "1password на 30 пк",
+          "search_id": "s_mock_005933_0"
         }
       ],
-      "search_id": "s_mock_009750_0",
+      "search_id": "s_mock_005933_0",
       "search_ids": {
-        "kupit rossiiskii copilot": "s_mock_009750_0",
-        "rossiiskii copilot": "s_mock_018330_0"
+        "1Password Business лицензия на 30 пк": "s_mock_005933_0"
       },
       "alternatives": {
-        "GigaCode": 1
+        "гарда ваф": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -2145,451 +1974,167 @@
       "category": "raster_photo",
       "searches": 2,
       "sessions": 2,
-      "previous": 0,
-      "change": 2,
+      "previous": 2,
+      "change": 0,
       "segments": {
-        "mid": 1,
-        "guest": 1
+        "guest": 2
       },
       "queries": [
         "огые фш офшсз ghjlktybt",
-        "огые фш офшсз"
+        "огые фш офшсз утеукзкшыу щт-зкуьшыу"
       ],
       "expected_rub": 0,
       "examples": [
         {
           "q": "огые фш офшсз ghjlktybt",
           "normalized": "just фш jaicp",
-          "search_id": "s_mock_016374_0"
+          "search_id": "s_mock_006488_0"
         },
         {
-          "q": "огые фш офшсз",
-          "normalized": "just фш jaicp",
-          "search_id": "s_mock_023829_0"
+          "q": "огые фш офшсз утеукзкшыу щт-зкуьшыу",
+          "normalized": "just фш jaicp щт-зкуьшыу",
+          "search_id": "s_mock_022734_0"
         }
       ],
-      "search_id": "s_mock_016374_0",
+      "search_id": "s_mock_006488_0",
       "search_ids": {
-        "огые фш офшсз ghjlktybt": "s_mock_016374_0",
-        "огые фш офшсз": "s_mock_023829_0"
+        "огые фш офшсз ghjlktybt": "s_mock_006488_0",
+        "огые фш офшсз утеукзкшыу щт-зкуьшыу": "s_mock_022734_0"
       },
-      "alternatives": {},
+      "alternatives": {
+        "Just AI JAICP": 1
+      },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "splunk",
-      "title": "Splunk",
-      "vendor": "splunk",
-      "family": "splunk_enterprise",
-      "category": "siem_soc",
-      "searches": 1,
-      "sessions": 1,
+      "key": "gitlab",
+      "title": "GitLab",
+      "vendor": "gitlab",
+      "family": "gitlab_ee",
+      "category": "git_cicd_devops",
+      "searches": 2,
+      "sessions": 2,
       "previous": 1,
-      "change": 0,
+      "change": 1,
       "segments": {
+        "smb": 1,
         "guest": 1
       },
       "queries": [
-        "analog splunk enterprise / enterprise security rossiiskii"
+        "GitLab Enterprise Edition (Premium / Ultimate) продление",
+        "купить GitLab Enterprise Edition (Premium / Ultimate)"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "analog splunk enterprise / enterprise security rossiiskii",
-          "normalized": "аналог splunk security российский",
-          "search_id": "s_mock_002865_0"
+          "q": "GitLab Enterprise Edition (Premium / Ultimate) продление",
+          "normalized": "gitlab premium ultimate",
+          "search_id": "s_mock_017595_0"
+        },
+        {
+          "q": "купить GitLab Enterprise Edition (Premium / Ultimate)",
+          "normalized": "gitlab premium ultimate",
+          "search_id": "s_mock_020210_0"
         }
       ],
-      "search_id": "s_mock_002865_0",
+      "search_id": "s_mock_017595_0",
       "search_ids": {
-        "analog splunk enterprise / enterprise security rossiiskii": "s_mock_002865_0"
+        "GitLab Enterprise Edition (Premium / Ultimate) продление": "s_mock_017595_0",
+        "купить GitLab Enterprise Edition (Premium / Ultimate)": "s_mock_020210_0"
       },
-      "alternatives": {},
+      "alternatives": {
+        "AX-BE16CF55B91C": 1
+      },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "fortinet",
-      "title": "Fortinet",
-      "vendor": "fortinet",
-      "family": "fortigate",
-      "category": "ngfw_vpn",
-      "searches": 1,
-      "sessions": 1,
+      "key": "dassault_systemes",
+      "title": "Dassault Systemes",
+      "vendor": "dassault_systemes",
+      "family": "solidworks",
+      "category": "mcad_plm",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 0,
+      "change": 2,
+      "segments": {
+        "enterprise": 1,
+        "guest": 1
+      },
+      "queries": [
+        "замена SOLIDWORKS под астру",
+        "аналог Dassault Systèmes CATIA российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "замена SOLIDWORKS под астру",
+          "normalized": "замена solidworks под астр",
+          "search_id": "s_mock_008435_0"
+        },
+        {
+          "q": "аналог Dassault Systèmes CATIA российский",
+          "normalized": "аналог dassault systèmes catia российский",
+          "search_id": "s_mock_012341_0"
+        }
+      ],
+      "search_id": "s_mock_008435_0",
+      "search_ids": {
+        "замена SOLIDWORKS под астру": "s_mock_008435_0",
+        "аналог Dassault Systèmes CATIA российский": "s_mock_012341_0"
+      },
+      "alternatives": {
+        "купить рутокен 3.0": 1,
+        "Security Vision продление": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "zoom",
+      "title": "Zoom",
+      "vendor": "zoom",
+      "family": "zoom_workplace",
+      "category": "vks_webinars",
+      "searches": 2,
+      "sessions": 2,
       "previous": 1,
-      "change": 0,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "аналог Fortinet FortiGate (NGFW) российский"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "аналог Fortinet FortiGate (NGFW) российский",
-          "normalized": "аналог fortinet fortigate ngfw российский",
-          "search_id": "s_mock_002925_0"
-        }
-      ],
-      "search_id": "s_mock_002925_0",
-      "search_ids": {
-        "аналог Fortinet FortiGate (NGFW) российский": "s_mock_002925_0"
-      },
-      "alternatives": {
-        "проджект эксперт": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "snowflake",
-      "title": "Snowflake",
-      "vendor": "snowflake",
-      "family": "snowflake_dwh",
-      "category": null,
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
       "change": 1,
       "segments": {
-        "individual": 1
+        "mid": 2
       },
       "queries": [
-        "аналог Snowlfake Data Cloud российский"
+        "Zoom Workplace (Pro / Business / Enterprise) лицензия на 25 пк",
+        "pfvtyf ящщь цщклздфсу (зкщ / игыштуыы / утеукзкшыу) gjl fcnhe"
       ],
-      "expected_rub": 0,
+      "expected_rub": 5227,
       "examples": [
         {
-          "q": "аналог Snowlfake Data Cloud российский",
-          "normalized": "аналог snowflake data cloud российский",
-          "search_id": "s_mock_015671_0"
+          "q": "Zoom Workplace (Pro / Business / Enterprise) лицензия на 25 пк",
+          "normalized": "zoom workplace на 25 пк",
+          "search_id": "s_mock_018617_0"
+        },
+        {
+          "q": "pfvtyf ящщь цщклздфсу (зкщ / игыштуыы / утеукзкшыу) gjl fcnhe",
+          "normalized": "замена zoom workplace под астр",
+          "search_id": "s_mock_019282_0"
         }
       ],
-      "search_id": "s_mock_015671_0",
+      "search_id": "s_mock_018617_0",
       "search_ids": {
-        "аналог Snowlfake Data Cloud российский": "s_mock_015671_0"
+        "Zoom Workplace (Pro / Business / Enterprise) лицензия на 25 пк": "s_mock_018617_0",
+        "pfvtyf ящщь цщклздфсу (зкщ / игыштуыы / утеукзкшыу) gjl fcnhe": "s_mock_019282_0"
       },
       "alternatives": {
-        "Selectel Частное облако": 1
+        "IVA One на год": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "cyberark",
-      "title": "CyberArk",
-      "vendor": "cyberark",
-      "family": "cyberark_pam",
-      "category": "iam_pam_mfa",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 3,
-      "change": -2,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "аналог CyberArk PAM российский"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "аналог CyberArk PAM российский",
-          "normalized": "аналог cyberark pam российский",
-          "search_id": "s_mock_020140_0"
-        }
-      ],
-      "search_id": "s_mock_020140_0",
-      "search_ids": {
-        "аналог CyberArk PAM российский": "s_mock_020140_0"
-      },
-      "alternatives": {
-        "AX-93D93E7FBD3B": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "uipath",
-      "title": "UiPath",
-      "vendor": "uipath",
-      "family": "uipath_rpa",
-      "category": "bpm_rpa_lowcode",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 2,
-      "change": -1,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "analog uipath rpa rossiiskii"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "analog uipath rpa rossiiskii",
-          "normalized": "аналог uipath rpa российский",
-          "search_id": "s_mock_004349_0"
-        }
-      ],
-      "search_id": "s_mock_004349_0",
-      "search_ids": {
-        "analog uipath rpa rossiiskii": "s_mock_004349_0"
-      },
-      "alternatives": {
-        "AX-FCC6A439A189": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "notion",
-      "title": "Notion",
-      "vendor": "notion",
-      "family": "notion",
-      "category": null,
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "regbnm тщешщт"
-      ],
-      "expected_rub": 705,
-      "examples": [
-        {
-          "q": "regbnm тщешщт",
-          "normalized": "notion",
-          "search_id": "s_mock_020578_0"
-        }
-      ],
-      "search_id": "s_mock_020578_0",
-      "search_ids": {
-        "regbnm тщешщт": "s_mock_020578_0"
-      },
-      "alternatives": {
-        "Р7-Офис": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 282,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "suse",
-      "title": "SUSE",
-      "vendor": "suse",
-      "family": "suse_sles",
-      "category": "linux_unix_os",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "аналог SUSE Linux Enterprise Server (SLES) российский"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "аналог SUSE Linux Enterprise Server (SLES) российский",
-          "normalized": "аналог suse sles российский",
-          "search_id": "s_mock_012713_0"
-        }
-      ],
-      "search_id": "s_mock_012713_0",
-      "search_ids": {
-        "аналог SUSE Linux Enterprise Server (SLES) российский": "s_mock_012713_0"
-      },
-      "alternatives": {
-        "Microsoft Windows Server CAL User": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "okta",
-      "title": "Okta",
-      "vendor": "okta",
-      "family": "okta_workforce_identity",
-      "category": "iam_pam_mfa",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "Okta Workforce Identity (SSO / MFA) лицензия на 30 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Okta Workforce Identity (SSO / MFA) лицензия на 30 пк",
-          "normalized": "okta workforce identity sso mfa на 30 пк",
-          "search_id": "s_mock_014083_0"
-        }
-      ],
-      "search_id": "s_mock_014083_0",
-      "search_ids": {
-        "Okta Workforce Identity (SSO / MFA) лицензия на 30 пк": "s_mock_014083_0"
-      },
-      "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "onepassword",
-      "title": "1Password",
-      "vendor": "onepassword",
-      "family": "onepassword_business",
-      "category": "iam_pam_mfa",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 2,
-      "change": -1,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "1Password Business продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "1Password Business продление",
-          "normalized": "1password",
-          "search_id": "s_mock_021475_0"
-        }
-      ],
-      "search_id": "s_mock_021475_0",
-      "search_ids": {
-        "1Password Business продление": "s_mock_021475_0"
-      },
-      "alternatives": {
-        "Allure TestOps продление": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "parallels",
-      "title": "Parallels",
-      "vendor": "parallels",
-      "family": "parallels_desktop",
-      "category": "desktop_hypervisors",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 1,
-      "change": 0,
-      "segments": {
-        "enterprise": 1
-      },
-      "queries": [
-        "Parallels Desktop for Mac продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Parallels Desktop for Mac продление",
-          "normalized": "parallels desktop for mac",
-          "search_id": "s_mock_007832_0"
-        }
-      ],
-      "search_id": "s_mock_007832_0",
-      "search_ids": {
-        "Parallels Desktop for Mac продление": "s_mock_007832_0"
-      },
-      "alternatives": {
-        "Total Network Inventory Standard": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "oracle",
-      "title": "Oracle",
-      "vendor": "oracle",
-      "family": "oracle_java_se",
-      "category": "java_runtimes",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 3,
-      "change": -2,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "купить Oracle Java SE Subscription"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "купить Oracle Java SE Subscription",
-          "normalized": "oracle java se subscription",
-          "search_id": "s_mock_008307_0"
-        }
-      ],
-      "search_id": "s_mock_008307_0",
-      "search_ids": {
-        "купить Oracle Java SE Subscription": "s_mock_008307_0"
-      },
-      "alternatives": {
-        "Qrator Anti-DDoS на год": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "threecx",
-      "title": "3CX",
-      "vendor": "threecx",
-      "family": "threecx_pbx",
-      "category": "ip_telephony",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 3,
-      "change": -2,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "чем заменить 3CX Phone System из реестра"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "чем заменить 3CX Phone System из реестра",
-          "normalized": "чем заменить 3cx phone system из реестр",
-          "search_id": "s_mock_014832_0"
-        }
-      ],
-      "search_id": "s_mock_014832_0",
-      "search_ids": {
-        "чем заменить 3CX Phone System из реестра": "s_mock_014832_0"
-      },
-      "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
+      "conservative_rub": 2091,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
@@ -2598,6 +2143,217 @@
       "vendor": "digicert",
       "family": "digicert_ssl",
       "category": "ssl_certificates",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 1,
+      "change": 1,
+      "segments": {
+        "smb": 1,
+        "individual": 1
+      },
+      "queries": [
+        "аналог DigiCert SSL / TLS Certificates российский",
+        "DigiCert SSL / TLS Certificates продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог DigiCert SSL / TLS Certificates российский",
+          "normalized": "аналог digicert ssl tls certificates российский",
+          "search_id": "s_mock_011011_0"
+        },
+        {
+          "q": "DigiCert SSL / TLS Certificates продление",
+          "normalized": "digicert ssl tls certificates",
+          "search_id": "s_mock_022569_0"
+        }
+      ],
+      "search_id": "s_mock_011011_0",
+      "search_ids": {
+        "аналог DigiCert SSL / TLS Certificates российский": "s_mock_011011_0",
+        "DigiCert SSL / TLS Certificates продление": "s_mock_022569_0"
+      },
+      "alternatives": {
+        "купить сзи от нсд код безопасности": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "symantec_broadcom",
+      "title": "Symantec (Broadcom)",
+      "vendor": "symantec_broadcom",
+      "family": "symantec_dlp",
+      "category": "dlp",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 1,
+      "change": 1,
+      "segments": {
+        "gov": 1,
+        "mid": 1
+      },
+      "queries": [
+        "Symantec Data Loss Prevention (DLP) лицензия на 25 пк",
+        "купить Symanetc Data Loss Prevention (DLP)"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Symantec Data Loss Prevention (DLP) лицензия на 25 пк",
+          "normalized": "symantec data loss prevention dlp на 25 пк",
+          "search_id": "s_mock_009593_0"
+        },
+        {
+          "q": "купить Symanetc Data Loss Prevention (DLP)",
+          "normalized": "symantec data loss prevention dlp",
+          "search_id": "s_mock_020493_0"
+        }
+      ],
+      "search_id": "s_mock_009593_0",
+      "search_ids": {
+        "Symantec Data Loss Prevention (DLP) лицензия на 25 пк": "s_mock_009593_0",
+        "купить Symanetc Data Loss Prevention (DLP)": "s_mock_020493_0"
+      },
+      "alternatives": {
+        "ОС РОСА Кобальт": 1,
+        "CAE Fidesys на 100 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "zabbix",
+      "title": "Zabbix",
+      "vendor": "zabbix",
+      "family": "zabbix_support",
+      "category": "monitoring_apm",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 1,
+      "change": 1,
+      "segments": {
+        "edu": 1,
+        "smb": 1
+      },
+      "queries": [
+        "чем заменить Zabbix Enterprise Support из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Zabbix Enterprise Support из реестра",
+          "normalized": "чем заменить zabbix support из реестр",
+          "search_id": "s_mock_014932_0"
+        }
+      ],
+      "search_id": "s_mock_014932_0",
+      "search_ids": {
+        "чем заменить Zabbix Enterprise Support из реестра": "s_mock_014932_0"
+      },
+      "alternatives": {
+        "Compass": 1,
+        "купить Test IT (TMS)": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "tenable",
+      "title": "Tenable",
+      "vendor": "tenable",
+      "family": "tenable_nessus",
+      "category": "vuln_mgmt_pentest",
+      "searches": 2,
+      "sessions": 2,
+      "previous": 2,
+      "change": 0,
+      "segments": {
+        "smb": 1,
+        "mid": 1
+      },
+      "queries": [
+        "чем заменить Tenable Nessus / Security Center из реестра",
+        "купить Tenable Nessus / Security Center"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Tenable Nessus / Security Center из реестра",
+          "normalized": "чем заменить tenable nessus security center из реестр",
+          "search_id": "s_mock_010507_0"
+        },
+        {
+          "q": "купить Tenable Nessus / Security Center",
+          "normalized": "tenable nessus security center",
+          "search_id": "s_mock_015617_0"
+        }
+      ],
+      "search_id": "s_mock_010507_0",
+      "search_ids": {
+        "чем заменить Tenable Nessus / Security Center из реестра": "s_mock_010507_0",
+        "купить Tenable Nessus / Security Center": "s_mock_015617_0"
+      },
+      "alternatives": {
+        "С-Терра на 100 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "dropbox",
+      "title": "Dropbox",
+      "vendor": "dropbox",
+      "family": "dropbox_business",
+      "category": null,
+      "searches": 2,
+      "sessions": 2,
+      "previous": 0,
+      "change": 2,
+      "segments": {
+        "guest": 1,
+        "smb": 1
+      },
+      "queries": [
+        "вкщзищч игыштуыы ghjlktybt",
+        "чем заменить Dropbox Business из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "вкщзищч игыштуыы ghjlktybt",
+          "normalized": "dropbox",
+          "search_id": "s_mock_012774_0"
+        },
+        {
+          "q": "чем заменить Dropbox Business из реестра",
+          "normalized": "чем заменить dropbox из реестр",
+          "search_id": "s_mock_019688_0"
+        }
+      ],
+      "search_id": "s_mock_012774_0",
+      "search_ids": {
+        "вкщзищч игыштуыы ghjlktybt": "s_mock_012774_0",
+        "чем заменить Dropbox Business из реестра": "s_mock_019688_0"
+      },
+      "alternatives": {
+        "КриптоАРМ ГОСТ на 15 пк": 1,
+        "GigaChat": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "canva_pty",
+      "title": "Canva",
+      "vendor": "canva_pty",
+      "family": "canva",
+      "category": "ui_ux_web_design",
       "searches": 1,
       "sessions": 1,
       "previous": 2,
@@ -2606,161 +2362,21 @@
         "guest": 1
       },
       "queries": [
-        "купить DigiCert SSL / TLS Certificates"
+        "чем заменить Canva из реестра"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "купить DigiCert SSL / TLS Certificates",
-          "normalized": "digicert ssl tls certificates",
-          "search_id": "s_mock_013072_0"
+          "q": "чем заменить Canva из реестра",
+          "normalized": "чем заменить canva из реестр",
+          "search_id": "s_mock_002987_0"
         }
       ],
-      "search_id": "s_mock_013072_0",
+      "search_id": "s_mock_002987_0",
       "search_ids": {
-        "купить DigiCert SSL / TLS Certificates": "s_mock_013072_0"
-      },
-      "alternatives": {
-        "купить Р7-Офис": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "microsoft",
-      "title": "Microsoft",
-      "vendor": "microsoft",
-      "family": "ms_office",
-      "category": "backup_recovery",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "Veritas NetBackup / Backup Exce продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Veritas NetBackup / Backup Exce продление",
-          "normalized": "veritas netbackup backup excel",
-          "search_id": "s_mock_009675_0"
-        }
-      ],
-      "search_id": "s_mock_009675_0",
-      "search_ids": {
-        "Veritas NetBackup / Backup Exce продление": "s_mock_009675_0"
-      },
-      "alternatives": {
-        "купить курсы альт линукс": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "tableau_salesforce",
-      "title": "Tableau",
-      "vendor": "tableau_salesforce",
-      "family": "tableau",
-      "category": "bi_analytics",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "mid": 1
-      },
-      "queries": [
-        "Tableau (Creator / Explorer / Server) лицензия на 30 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Tableau (Creator / Explorer / Server) лицензия на 30 пк",
-          "normalized": "tableau creator explorer на 30 пк",
-          "search_id": "s_mock_012335_0"
-        }
-      ],
-      "search_id": "s_mock_012335_0",
-      "search_ids": {
-        "Tableau (Creator / Explorer / Server) лицензия на 30 пк": "s_mock_012335_0"
-      },
-      "alternatives": {
-        "AX-3ADE86EEF807": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "chaos_group",
-      "title": "Chaos",
-      "vendor": "chaos_group",
-      "family": "vray_chaos",
-      "category": "3d_rendering_animation",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 1,
-      "change": 0,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "Chaos V-Ray / Corona Renderer продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Chaos V-Ray / Corona Renderer продление",
-          "normalized": "chaos v-ray corona renderer",
-          "search_id": "s_mock_013104_0"
-        }
-      ],
-      "search_id": "s_mock_013104_0",
-      "search_ids": {
-        "Chaos V-Ray / Corona Renderer продление": "s_mock_013104_0"
+        "чем заменить Canva из реестра": "s_mock_002987_0"
       },
       "alternatives": {},
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "slack",
-      "title": "Slack",
-      "vendor": "slack",
-      "family": "slack",
-      "category": "corporate_messengers",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "замена Slack (Pro / Business+ / Enterprise Grid) под астру"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "замена Slack (Pro / Business+ / Enterprise Grid) под астру",
-          "normalized": "замена slack grid под астр",
-          "search_id": "s_mock_013141_0"
-        }
-      ],
-      "search_id": "s_mock_013141_0",
-      "search_ids": {
-        "замена Slack (Pro / Business+ / Enterprise Grid) под астру": "s_mock_013141_0"
-      },
-      "alternatives": {
-        "AX-B5A3EC810DCD": 1
-      },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
@@ -2773,60 +2389,987 @@
       "category": "endpoint_security",
       "searches": 1,
       "sessions": 1,
-      "previous": 4,
-      "change": -3,
+      "previous": 1,
+      "change": 0,
       "segments": {
-        "mid": 1
+        "guest": 1
       },
       "queries": [
-        "чем заменить Trellix (McAfee) Endpoint Security из реестра"
+        "Trellix (McAfee) Endpoint Security лицензия на 15 пк"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "чем заменить Trellix (McAfee) Endpoint Security из реестра",
-          "normalized": "чем заменить trellix mcafee endpoint security из реестр",
-          "search_id": "s_mock_021261_0"
+          "q": "Trellix (McAfee) Endpoint Security лицензия на 15 пк",
+          "normalized": "trellix mcafee endpoint security на 15 пк",
+          "search_id": "s_mock_003132_0"
         }
       ],
-      "search_id": "s_mock_021261_0",
+      "search_id": "s_mock_003132_0",
       "search_ids": {
-        "чем заменить Trellix (McAfee) Endpoint Security из реестра": "s_mock_021261_0"
+        "Trellix (McAfee) Endpoint Security лицензия на 15 пк": "s_mock_003132_0"
       },
       "alternatives": {
-        "КРЕДО продление": 1
+        "купить скад офис": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "cyberprotect",
-      "title": "Cyberprotect",
-      "vendor": "cyberprotect",
-      "family": "cyber_backup",
-      "category": "backup_recovery",
+      "key": "confluent",
+      "title": "Confluent",
+      "vendor": "confluent",
+      "family": "confluent_kafka",
+      "category": "big_data_streaming",
       "searches": 1,
       "sessions": 1,
       "previous": 1,
       "change": 0,
       "segments": {
-        "mid": 1
+        "smb": 1
       },
       "queries": [
-        "acronis cybre backup"
+        "купить Confluent Platform (Apache Kafka)"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "acronis cybre backup",
-          "normalized": "acronis cyber backup",
-          "search_id": "s_mock_023985_0"
+          "q": "купить Confluent Platform (Apache Kafka)",
+          "normalized": "confluent platform apache kafka",
+          "search_id": "s_mock_017776_0"
         }
       ],
-      "search_id": "s_mock_023985_0",
+      "search_id": "s_mock_017776_0",
       "search_ids": {
-        "acronis cybre backup": "s_mock_023985_0"
+        "купить Confluent Platform (Apache Kafka)": "s_mock_017776_0"
+      },
+      "alternatives": {
+        "f6 xdr": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "altium",
+      "title": "Altium",
+      "vendor": "altium",
+      "family": "altium_designer",
+      "category": "ecad_eda",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "купить Altium Designer"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить Altium Designer",
+          "normalized": "altium designer",
+          "search_id": "s_mock_008368_0"
+        }
+      ],
+      "search_id": "s_mock_008368_0",
+      "search_ids": {
+        "купить Altium Designer": "s_mock_008368_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "zendesk",
+      "title": "Zendesk",
+      "vendor": "zendesk",
+      "family": "zendesk_support",
+      "category": null,
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "smb": 1
+      },
+      "queries": [
+        "яутвуыл ыгззщке kbwtypbz yf 50 gr"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "яутвуыл ыгззщке kbwtypbz yf 50 gr",
+          "normalized": "zendesk support на 50 пк",
+          "search_id": "s_mock_018678_0"
+        }
+      ],
+      "search_id": "s_mock_018678_0",
+      "search_ids": {
+        "яутвуыл ыгззщке kbwtypbz yf 50 gr": "s_mock_018678_0"
+      },
+      "alternatives": {
+        "ZuluGIS на 30 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "hashicorp",
+      "title": "HashiCorp",
+      "vendor": "hashicorp",
+      "family": "hashicorp_terraform",
+      "category": "iam_pam_mfa",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "HashiCorp Vault лицензия на 15 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "HashiCorp Vault лицензия на 15 пк",
+          "normalized": "hashicorp vault на 15 пк",
+          "search_id": "s_mock_015110_0"
+        }
+      ],
+      "search_id": "s_mock_015110_0",
+      "search_ids": {
+        "HashiCorp Vault лицензия на 15 пк": "s_mock_015110_0"
+      },
+      "alternatives": {
+        "AX-589B286E8BC5": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "ptc",
+      "title": "PTC",
+      "vendor": "ptc",
+      "family": "ptc_creo",
+      "category": "mcad_plm",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 4,
+      "change": -3,
+      "segments": {
+        "enterprise": 1
+      },
+      "queries": [
+        "аналог PTC Creo (Pro/ENGINEER) российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог PTC Creo (Pro/ENGINEER) российский",
+          "normalized": "аналог ptc creo engineer российский",
+          "search_id": "s_mock_007091_0"
+        }
+      ],
+      "search_id": "s_mock_007091_0",
+      "search_ids": {
+        "аналог PTC Creo (Pro/ENGINEER) российский": "s_mock_007091_0"
+      },
+      "alternatives": {
+        "StroySoft": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "deepl",
+      "title": "DeepL",
+      "vendor": "deepl",
+      "family": "deepl_pro",
+      "category": "translation_dictionaries",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "DeepL Pro продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "DeepL Pro продление",
+          "normalized": "deepl",
+          "search_id": "s_mock_004903_0"
+        }
+      ],
+      "search_id": "s_mock_004903_0",
+      "search_ids": {
+        "DeepL Pro продление": "s_mock_004903_0"
+      },
+      "alternatives": {
+        "InfoWatch": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "graphisoft",
+      "title": "Graphisoft",
+      "vendor": "graphisoft",
+      "family": "archicad",
+      "category": "bim_aec",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 2,
+      "change": -1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "аналог Graphisoft Archicad российский"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "аналог Graphisoft Archicad российский",
+          "normalized": "аналог graphisoft archicad российский",
+          "search_id": "s_mock_019864_0"
+        }
+      ],
+      "search_id": "s_mock_019864_0",
+      "search_ids": {
+        "аналог Graphisoft Archicad российский": "s_mock_019864_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "red_hat",
+      "title": "Red Hat",
+      "vendor": "red_hat",
+      "family": "rhel",
+      "category": "linux_unix_os",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "Red Hat Enterprise Linux (RHEL) продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Red Hat Enterprise Linux (RHEL) продление",
+          "normalized": "red hat rhel",
+          "search_id": "s_mock_005059_0"
+        }
+      ],
+      "search_id": "s_mock_005059_0",
+      "search_ids": {
+        "Red Hat Enterprise Linux (RHEL) продление": "s_mock_005059_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "idera_testrail",
+      "title": "TestRail (Idera)",
+      "vendor": "idera_testrail",
+      "family": "testrail",
+      "category": "testing_qa",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "замена TestRail под астру"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "замена TestRail под астру",
+          "normalized": "замена testrail под астр",
+          "search_id": "s_mock_021332_0"
+        }
+      ],
+      "search_id": "s_mock_021332_0",
+      "search_ids": {
+        "замена TestRail под астру": "s_mock_021332_0"
+      },
+      "alternatives": {
+        "Tantor Labs": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "miro",
+      "title": "Miro",
+      "vendor": "miro",
+      "family": "miro",
+      "category": "whiteboards_notes",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "Miro (онлайн-доски) лицензия на 10 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Miro (онлайн-доски) лицензия на 10 пк",
+          "normalized": "miro онлайн-доски на 10 пк",
+          "search_id": "s_mock_005157_0"
+        }
+      ],
+      "search_id": "s_mock_005157_0",
+      "search_ids": {
+        "Miro (онлайн-доски) лицензия на 10 пк": "s_mock_005157_0"
+      },
+      "alternatives": {
+        "СУБД Jatoba": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "intuit_mailchimp",
+      "title": "Mailchimp (Intuit)",
+      "vendor": "intuit_mailchimp",
+      "family": "mailchimp",
+      "category": "email_marketing",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "купить Mailchimp"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить Mailchimp",
+          "normalized": "mailchimp",
+          "search_id": "s_mock_005849_0"
+        }
+      ],
+      "search_id": "s_mock_005849_0",
+      "search_ids": {
+        "купить Mailchimp": "s_mock_005849_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "palo_alto",
+      "title": "Palo Alto Networks",
+      "vendor": "palo_alto",
+      "family": "palo_alto_ngfw",
+      "category": "ngfw_vpn",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "чем заменить Palo Alto Networks NGFW (PA-Series / VM-Series) из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Palo Alto Networks NGFW (PA-Series / VM-Series) из реестра",
+          "normalized": "чем заменить palo alto networks ngfw pa-series vm-series из реестр",
+          "search_id": "s_mock_005942_0"
+        }
+      ],
+      "search_id": "s_mock_005942_0",
+      "search_ids": {
+        "чем заменить Palo Alto Networks NGFW (PA-Series / VM-Series) из реестра": "s_mock_005942_0"
+      },
+      "alternatives": {
+        "1с до": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "commvault",
+      "title": "Commvault",
+      "vendor": "commvault",
+      "family": "commvault_complete",
+      "category": "backup_recovery",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 2,
+      "change": -1,
+      "segments": {
+        "mid": 1
+      },
+      "queries": [
+        "замена Commvault Complete Data Protection под ред ос"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "замена Commvault Complete Data Protection под ред ос",
+          "normalized": "замена commvault complete data protection под ред ос",
+          "search_id": "s_mock_011880_0"
+        }
+      ],
+      "search_id": "s_mock_011880_0",
+      "search_ids": {
+        "замена Commvault Complete Data Protection под ред ос": "s_mock_011880_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "grammarly_inc",
+      "title": "Grammarly",
+      "vendor": "grammarly_inc",
+      "family": "grammarly",
+      "category": "translation_dictionaries",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 3,
+      "change": -2,
+      "segments": {
+        "mid": 1
+      },
+      "queries": [
+        "чем заменить Grammarly из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Grammarly из реестра",
+          "normalized": "чем заменить grammarly из реестр",
+          "search_id": "s_mock_021482_0"
+        }
+      ],
+      "search_id": "s_mock_021482_0",
+      "search_ids": {
+        "чем заменить Grammarly из реестра": "s_mock_021482_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "databricks_inc",
+      "title": "Databricks",
+      "vendor": "databricks_inc",
+      "family": "databricks",
+      "category": "big_data_streaming",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "gov": 1
+      },
+      "queries": [
+        "Databricks лицензия на 30 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Databricks лицензия на 30 пк",
+          "normalized": "databricks на 30 пк",
+          "search_id": "s_mock_008314_0"
+        }
+      ],
+      "search_id": "s_mock_008314_0",
+      "search_ids": {
+        "Databricks лицензия на 30 пк": "s_mock_008314_0"
+      },
+      "alternatives": {
+        "AKVIS на 30 пк": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "anthropic",
+      "title": "Anthropic",
+      "vendor": "anthropic",
+      "family": "anthropic_claude",
+      "category": "llm_gen_ai",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 4,
+      "change": -3,
+      "segments": {
+        "mid": 1
+      },
+      "queries": [
+        "Anthropic Claude лицензия на 5 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Anthropic Claude лицензия на 5 пк",
+          "normalized": "anthropic claude на 5 пк",
+          "search_id": "s_mock_021796_0"
+        }
+      ],
+      "search_id": "s_mock_021796_0",
+      "search_ids": {
+        "Anthropic Claude лицензия на 5 пк": "s_mock_021796_0"
+      },
+      "alternatives": {
+        "GlobalTrust": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "postman",
+      "title": "Postman",
+      "vendor": "postman",
+      "family": "postman_enterprise",
+      "category": "api_integration_esb",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "купить Postman (Team / Business / Enterprise)"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить Postman (Team / Business / Enterprise)",
+          "normalized": "postman",
+          "search_id": "s_mock_014078_0"
+        }
+      ],
+      "search_id": "s_mock_014078_0",
+      "search_ids": {
+        "купить Postman (Team / Business / Enterprise)": "s_mock_014078_0"
+      },
+      "alternatives": {
+        "Test IT": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "mongodb",
+      "title": "MongoDB",
+      "vendor": "mongodb",
+      "family": "mongodb_enterprise",
+      "category": "nosql_inmemory",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "smb": 1
+      },
+      "queries": [
+        "MongoDB Enterprise Advanced / Atlas продление"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "MongoDB Enterprise Advanced / Atlas продление",
+          "normalized": "mongodb advanced atlas",
+          "search_id": "s_mock_008696_0"
+        }
+      ],
+      "search_id": "s_mock_008696_0",
+      "search_ids": {
+        "MongoDB Enterprise Advanced / Atlas продление": "s_mock_008696_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "veeam",
+      "title": "Veeam",
+      "vendor": "veeam",
+      "family": "veeam_backup",
+      "category": "backup_recovery",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "чем заменить Veeam Backup & Replication / Data Platform из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Veeam Backup & Replication / Data Platform из реестра",
+          "normalized": "чем заменить veeam backup replication data platform из реестр",
+          "search_id": "s_mock_013839_0"
+        }
+      ],
+      "search_id": "s_mock_013839_0",
+      "search_ids": {
+        "чем заменить Veeam Backup & Replication / Data Platform из реестра": "s_mock_013839_0"
+      },
+      "alternatives": {
+        "Platform V Works продление": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "veritas",
+      "title": "Veritas",
+      "vendor": "veritas",
+      "family": "veritas_netbackup",
+      "category": "backup_recovery",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "gov": 1
+      },
+      "queries": [
+        "чем заменить Veritas NetBackup / Backup Exec из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить Veritas NetBackup / Backup Exec из реестра",
+          "normalized": "чем заменить veritas netbackup backup exec из реестр",
+          "search_id": "s_mock_009114_0"
+        }
+      ],
+      "search_id": "s_mock_009114_0",
+      "search_ids": {
+        "чем заменить Veritas NetBackup / Backup Exec из реестра": "s_mock_009114_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "eplan",
+      "title": "EPLAN",
+      "vendor": "eplan",
+      "family": "eplan_electric",
+      "category": "ecad_eda",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 3,
+      "change": -2,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "EPLAN Electric P8 / Pro Panel лицензия на 100 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "EPLAN Electric P8 / Pro Panel лицензия на 100 пк",
+          "normalized": "eplan electric p8 panel на 100 пк",
+          "search_id": "s_mock_009283_0"
+        }
+      ],
+      "search_id": "s_mock_009283_0",
+      "search_ids": {
+        "EPLAN Electric P8 / Pro Panel лицензия на 100 пк": "s_mock_009283_0"
+      },
+      "alternatives": {
+        "купить SAYMON": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "sap",
+      "title": "SAP",
+      "vendor": "sap",
+      "family": "sap_s4hana",
+      "category": "erp_systems",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 1,
+      "change": 0,
+      "segments": {
+        "individual": 1
+      },
+      "queries": [
+        "чем заменить SAP S/4HANA / SAP ERP из реестра"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "чем заменить SAP S/4HANA / SAP ERP из реестра",
+          "normalized": "чем заменить sap s 4hana sap erp из реестр",
+          "search_id": "s_mock_009958_0"
+        }
+      ],
+      "search_id": "s_mock_009958_0",
+      "search_ids": {
+        "чем заменить SAP S/4HANA / SAP ERP из реестра": "s_mock_009958_0"
+      },
+      "alternatives": {},
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "zscaler_inc",
+      "title": "Zscaler",
+      "vendor": "zscaler_inc",
+      "family": "zscaler",
+      "category": "pam_jump_hosts",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 2,
+      "change": -1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "kupit zscaler zero trust"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "kupit zscaler zero trust",
+          "normalized": "zscaler zero trust",
+          "search_id": "s_mock_013279_0"
+        }
+      ],
+      "search_id": "s_mock_013279_0",
+      "search_ids": {
+        "kupit zscaler zero trust": "s_mock_013279_0"
+      },
+      "alternatives": {
+        "АТОЛ Frontol 6 Кафе": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "servicenow",
+      "title": "ServiceNow",
+      "vendor": "servicenow",
+      "family": "servicenow_itsm",
+      "category": "itsm_service_desk",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "guest": 1
+      },
+      "queries": [
+        "ServiceNow ITSM лицензия на 30 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "ServiceNow ITSM лицензия на 30 пк",
+          "normalized": "servicenow itsm на 30 пк",
+          "search_id": "s_mock_010302_0"
+        }
+      ],
+      "search_id": "s_mock_010302_0",
+      "search_ids": {
+        "ServiceNow ITSM лицензия на 30 пк": "s_mock_010302_0"
+      },
+      "alternatives": {
+        "vmmanager": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "citrix",
+      "title": "Citrix",
+      "vendor": "citrix",
+      "family": "citrix_virtual_apps",
+      "category": "vdi_desktop_virt",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "gov": 1
+      },
+      "queries": [
+        "купить Citrix Virtual Apps and Desktops (XenApp / XenDesktop)"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить Citrix Virtual Apps and Desktops (XenApp / XenDesktop)",
+          "normalized": "citrix virtual apps and desktops xenapp xendesktop",
+          "search_id": "s_mock_022819_0"
+        }
+      ],
+      "search_id": "s_mock_022819_0",
+      "search_ids": {
+        "купить Citrix Virtual Apps and Desktops (XenApp / XenDesktop)": "s_mock_022819_0"
+      },
+      "alternatives": {
+        "SearchInform": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "crowdstrike",
+      "title": "CrowdStrike",
+      "vendor": "crowdstrike",
+      "family": "crowdstrike_falcon",
+      "category": "edr_xdr",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 0,
+      "change": 1,
+      "segments": {
+        "smb": 1
+      },
+      "queries": [
+        "замена CrowdStrike Falcon под ред ос"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "замена CrowdStrike Falcon под ред ос",
+          "normalized": "замена crowdstrike falcon под ред ос",
+          "search_id": "s_mock_014759_0"
+        }
+      ],
+      "search_id": "s_mock_014759_0",
+      "search_ids": {
+        "замена CrowdStrike Falcon под ред ос": "s_mock_014759_0"
+      },
+      "alternatives": {
+        "kaspersky edr": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "anydesk",
+      "title": "AnyDesk",
+      "vendor": "anydesk",
+      "family": "anydesk",
+      "category": "remote_desktop",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 2,
+      "change": -1,
+      "segments": {
+        "mid": 1
+      },
+      "queries": [
+        "купить AnyDesk"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "купить AnyDesk",
+          "normalized": "anydesk",
+          "search_id": "s_mock_021548_0"
+        }
+      ],
+      "search_id": "s_mock_021548_0",
+      "search_ids": {
+        "купить AnyDesk": "s_mock_021548_0"
+      },
+      "alternatives": {
+        "Мовавика продление": 1
+      },
+      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
+      "conservative_rub": 0,
+      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
+    },
+    {
+      "key": "asana_inc",
+      "title": "Asana",
+      "vendor": "asana_inc",
+      "family": "asana",
+      "category": "task_project_trackers",
+      "searches": 1,
+      "sessions": 1,
+      "previous": 2,
+      "change": -1,
+      "segments": {
+        "mid": 1
+      },
+      "queries": [
+        "Asana лицензия на 5 пк"
+      ],
+      "expected_rub": 0,
+      "examples": [
+        {
+          "q": "Asana лицензия на 5 пк",
+          "normalized": "asana на 5 пк",
+          "search_id": "s_mock_019444_0"
+        }
+      ],
+      "search_id": "s_mock_019444_0",
+      "search_ids": {
+        "Asana лицензия на 5 пк": "s_mock_019444_0"
       },
       "alternatives": {},
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
@@ -2841,109 +3384,39 @@
       "category": "endpoint_security",
       "searches": 1,
       "sessions": 1,
-      "previous": 1,
-      "change": 0,
-      "segments": {
-        "guest": 1
-      },
-      "queries": [
-        "Sophos Intercept X / Sophos Firewall продление"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "Sophos Intercept X / Sophos Firewall продление",
-          "normalized": "sophos intercept x sophos firewall",
-          "search_id": "s_mock_016906_0"
-        }
-      ],
-      "search_id": "s_mock_016906_0",
-      "search_ids": {
-        "Sophos Intercept X / Sophos Firewall продление": "s_mock_016906_0"
-      },
-      "alternatives": {
-        "Phishman на год": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "postman",
-      "title": "Postman",
-      "vendor": "postman",
-      "family": "postman_enterprise",
-      "category": "api_integration_esb",
-      "searches": 1,
-      "sessions": 1,
       "previous": 0,
       "change": 1,
       "segments": {
         "smb": 1
       },
       "queries": [
-        "купить Postman (Team / Business / Enterprise)"
+        "аналог Sophos Intercept X / Sophos Firewall российский"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "купить Postman (Team / Business / Enterprise)",
-          "normalized": "postman",
-          "search_id": "s_mock_018126_0"
+          "q": "аналог Sophos Intercept X / Sophos Firewall российский",
+          "normalized": "аналог sophos intercept x sophos firewall российский",
+          "search_id": "s_mock_023705_0"
         }
       ],
-      "search_id": "s_mock_018126_0",
+      "search_id": "s_mock_023705_0",
       "search_ids": {
-        "купить Postman (Team / Business / Enterprise)": "s_mock_018126_0"
+        "аналог Sophos Intercept X / Sophos Firewall российский": "s_mock_023705_0"
       },
       "alternatives": {
-        "Axiom JDK Certified": 1
+        "поток рекрутмент": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
       "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
     },
     {
-      "key": "sonarsource",
-      "title": "SonarSource",
-      "vendor": "sonarsource",
-      "family": "sonarqube",
-      "category": "code_analysis_sast",
-      "searches": 1,
-      "sessions": 1,
-      "previous": 0,
-      "change": 1,
-      "segments": {
-        "smb": 1
-      },
-      "queries": [
-        "SonarQube (Developer / Enterprise) лицензия на 30 пк"
-      ],
-      "expected_rub": 0,
-      "examples": [
-        {
-          "q": "SonarQube (Developer / Enterprise) лицензия на 30 пк",
-          "normalized": "sonarqube developer на 30 пк",
-          "search_id": "s_mock_019540_0"
-        }
-      ],
-      "search_id": "s_mock_019540_0",
-      "search_ids": {
-        "SonarQube (Developer / Enterprise) лицензия на 30 пк": "s_mock_019540_0"
-      },
-      "alternatives": {
-        "Галактика на год": 1
-      },
-      "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
-      "conservative_rub": 0,
-      "formula": "Сумма потерь уникальных сессий этого кластера по формуле KPI"
-    },
-    {
-      "key": "zoom",
-      "title": "Zoom",
-      "vendor": "zoom",
-      "family": "zoom_workplace",
-      "category": "vks_webinars",
+      "key": "cyberark",
+      "title": "CyberArk",
+      "vendor": "cyberark",
+      "family": "cyberark_pam",
+      "category": "iam_pam_mfa",
       "searches": 1,
       "sessions": 1,
       "previous": 1,
@@ -2952,22 +3425,22 @@
         "guest": 1
       },
       "queries": [
-        "замена Zoom Workplace (Pro / Business / Enterprise) под астру"
+        "купить CyberArk PAM"
       ],
       "expected_rub": 0,
       "examples": [
         {
-          "q": "замена Zoom Workplace (Pro / Business / Enterprise) под астру",
-          "normalized": "замена zoom workplace под астр",
-          "search_id": "s_mock_022520_0"
+          "q": "купить CyberArk PAM",
+          "normalized": "cyberark pam",
+          "search_id": "s_mock_019388_0"
         }
       ],
-      "search_id": "s_mock_022520_0",
+      "search_id": "s_mock_019388_0",
       "search_ids": {
-        "замена Zoom Workplace (Pro / Business / Enterprise) под астру": "s_mock_022520_0"
+        "купить CyberArk PAM": "s_mock_019388_0"
       },
       "alternatives": {
-        "VK Private Cloud Enterprise": 1
+        "ZWCAD на год": 1
       },
       "alternatives_note": "Следующие фразы, зарегистрированные событием переформулировки.",
       "conservative_rub": 0,
@@ -2982,52 +3455,7 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 419
-    },
-    {
-      "card_id": "cyber_backup:workstation",
-      "title": "Кибер Бэкап Для рабочих станций",
-      "category": "backup_recovery",
-      "fields": [
-        "platforms"
-      ],
-      "impressions": 380
-    },
-    {
-      "card_id": "rubackup:standard",
-      "title": "RuBackup Стандарт",
-      "category": "backup_recovery",
-      "fields": [
-        "platforms"
-      ],
-      "impressions": 156
-    },
-    {
-      "card_id": "rubackup:enterprise",
-      "title": "RuBackup Enterprise",
-      "category": "backup_recovery",
-      "fields": [
-        "platforms"
-      ],
-      "impressions": 155
-    },
-    {
-      "card_id": "kaspersky_kesb:total",
-      "title": "Kaspersky Endpoint Security для бизнеса Total",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 33
-    },
-    {
-      "card_id": "continent_ngfw:ap",
-      "title": "АПКШ Континент 4 АП",
-      "category": "ngfw_vpn",
-      "fields": [
-        "platforms"
-      ],
-      "impressions": 31
+      "impressions": 385
     },
     {
       "card_id": "cyber_backup:virt_host",
@@ -3036,14 +3464,50 @@
       "fields": [
         "platforms"
       ],
+      "impressions": 373
+    },
+    {
+      "card_id": "rubackup:standard",
+      "title": "RuBackup Стандарт",
+      "category": "backup_recovery",
+      "fields": [
+        "platforms"
+      ],
+      "impressions": 136
+    },
+    {
+      "card_id": "rubackup:enterprise",
+      "title": "RuBackup Enterprise",
+      "category": "backup_recovery",
+      "fields": [
+        "platforms"
+      ],
+      "impressions": 134
+    },
+    {
+      "card_id": "continent_ngfw:ap",
+      "title": "АПКШ Континент 4 АП",
+      "category": "ngfw_vpn",
+      "fields": [
+        "platforms"
+      ],
       "impressions": 28
     },
     {
-      "card_id": "nanocad_platform:base",
-      "title": "Платформа nanoCAD Базовая",
+      "card_id": "nanocad_platform:mechanica",
+      "title": "Платформа nanoCAD Модуль Механика",
       "category": "cad_2d",
       "fields": [
         "registry"
+      ],
+      "impressions": 27
+    },
+    {
+      "card_id": "continent_ngfw:tls",
+      "title": "АПКШ Континент 4 TLS VPN",
+      "category": "ngfw_vpn",
+      "fields": [
+        "platforms"
       ],
       "impressions": 27
     },
@@ -3054,61 +3518,16 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 27
+      "impressions": 26
     },
     {
-      "card_id": "nanocad_platform:mechanica",
-      "title": "Платформа nanoCAD Модуль Механика",
+      "card_id": "nanocad_platform:base",
+      "title": "Платформа nanoCAD Базовая",
       "category": "cad_2d",
       "fields": [
         "registry"
       ],
-      "impressions": 26
-    },
-    {
-      "card_id": "continent_ngfw:tls",
-      "title": "АПКШ Континент 4 TLS VPN",
-      "category": "ngfw_vpn",
-      "fields": [
-        "platforms"
-      ],
-      "impressions": 26
-    },
-    {
-      "card_id": "pro32_endpoint_security:standard",
-      "title": "PRO32 Endpoint Security Standard",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 24
-    },
-    {
-      "card_id": "r7_office:desktop",
-      "title": "Р7-Офис Профессиональный",
-      "category": "office_suite",
-      "fields": [
-        "registry"
-      ],
-      "impressions": 20
-    },
-    {
-      "card_id": "r7_office:corp_server",
-      "title": "Р7-Офис Корпоративный сервер",
-      "category": "office_suite",
-      "fields": [
-        "registry"
-      ],
-      "impressions": 20
-    },
-    {
-      "card_id": "drweb_enterprise_security_suite:complex",
-      "title": "Dr.Web Enterprise Security Suite Комплексная защита",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 19
+      "impressions": 25
     },
     {
       "card_id": "nanocad_platform:pro",
@@ -3117,7 +3536,7 @@
       "fields": [
         "registry"
       ],
-      "impressions": 16
+      "impressions": 17
     },
     {
       "card_id": "cyber_backup:standard",
@@ -3126,7 +3545,7 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 13
+      "impressions": 16
     },
     {
       "card_id": "handy_backup:pro",
@@ -3135,7 +3554,7 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 12
+      "impressions": 13
     },
     {
       "card_id": "handy_backup:small_business",
@@ -3144,16 +3563,7 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 12
-    },
-    {
-      "card_id": "drweb_enterprise_security_suite:desktop",
-      "title": "Dr.Web Enterprise Security Suite Защита рабочих станций",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 12
+      "impressions": 13
     },
     {
       "card_id": "handy_backup:server_network",
@@ -3162,25 +3572,25 @@
       "fields": [
         "platforms"
       ],
-      "impressions": 11
+      "impressions": 13
     },
     {
-      "card_id": "kaspersky_kes_cloud:base",
-      "title": "Kaspersky Endpoint Security Cloud Базовый",
-      "category": "endpoint_security",
+      "card_id": "s_terra_vpn:gate",
+      "title": "С-Терра Шлюз",
+      "category": "ngfw_vpn",
       "fields": [
-        "qty_range"
+        "platforms"
       ],
-      "impressions": 11
+      "impressions": 13
     },
     {
-      "card_id": "kaspersky_kes_cloud:pro",
-      "title": "Kaspersky Endpoint Security Cloud Pro",
-      "category": "endpoint_security",
+      "card_id": "r7_office:corp_server",
+      "title": "Р7-Офис Корпоративный сервер",
+      "category": "office_suite",
       "fields": [
-        "qty_range"
+        "registry"
       ],
-      "impressions": 11
+      "impressions": 12
     },
     {
       "card_id": "vipnet_client",
@@ -3188,6 +3598,15 @@
       "category": "ngfw_vpn",
       "fields": [
         "platforms"
+      ],
+      "impressions": 12
+    },
+    {
+      "card_id": "r7_office:desktop",
+      "title": "Р7-Офис Профессиональный",
+      "category": "office_suite",
+      "fields": [
+        "registry"
       ],
       "impressions": 10
     },
@@ -3198,34 +3617,16 @@
       "fields": [
         "registry"
       ],
-      "impressions": 9
+      "impressions": 10
     },
     {
-      "card_id": "kaspersky_kesb:standard",
-      "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 9
-    },
-    {
-      "card_id": "s_terra_vpn:gate",
-      "title": "С-Терра Шлюз",
-      "category": "ngfw_vpn",
+      "card_id": "cyber_backup:workstation",
+      "title": "Кибер Бэкап Для рабочих станций",
+      "category": "backup_recovery",
       "fields": [
         "platforms"
       ],
-      "impressions": 8
-    },
-    {
-      "card_id": "drweb_enterprise_security_suite:server",
-      "title": "Dr.Web Enterprise Security Suite Защита файловых серверов",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 7
+      "impressions": 9
     },
     {
       "card_id": "nanocad_platform:spds",
@@ -3234,16 +3635,7 @@
       "fields": [
         "registry"
       ],
-      "impressions": 4
-    },
-    {
-      "card_id": "pro32_endpoint_security:advanced",
-      "title": "PRO32 Endpoint Security Advanced",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 4
+      "impressions": 6
     },
     {
       "card_id": "nanocad_platform:topoplan",
@@ -3252,7 +3644,7 @@
       "fields": [
         "registry"
       ],
-      "impressions": 3
+      "impressions": 1
     },
     {
       "card_id": "r7_office:edu",
@@ -3261,38 +3653,20 @@
       "fields": [
         "registry"
       ],
-      "impressions": 3
-    },
-    {
-      "card_id": "drweb_enterprise_security_suite:mail",
-      "title": "Dr.Web Enterprise Security Suite Защита почтовых серверов",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 3
-    },
-    {
-      "card_id": "kaspersky_kes_cloud:plus",
-      "title": "Kaspersky Endpoint Security Cloud Plus",
-      "category": "endpoint_security",
-      "fields": [
-        "qty_range"
-      ],
-      "impressions": 2
+      "impressions": 0
     }
   ],
   "period_days": 30,
   "through": 1795277608.0,
   "bridge": {
-    "searched": 514,
-    "impressions": 457,
-    "run_id": "1ed944dfea1e57ffc672f0ad",
-    "start": 1787551530.0,
+    "searched": 682,
+    "impressions": 602,
+    "run_id": "7643302bb0d2b4aed488af3e",
+    "start": 1787555381.0,
     "end": 1795277498.0,
-    "clicks": 251,
-    "carts": 40,
-    "orders": 19,
+    "clicks": 338,
+    "carts": 55,
+    "orders": 26,
     "note": "Показы блоков аналогов измерены в парном прогоне. Клики, корзины и заказы — прогноз по частотам непустой исторической выдачи."
   }
 }

@@ -341,6 +341,6 @@ def generate(engine, seed=20261126, today=None):
                         event("reformulate",payload={"to":seq[k+1][0]})
                 else:
                     event("exit")
-    path=Path(journal.path).parent/"mock_truth.jsonl"
-    path.write_text("\n".join(truth)+"\n")
+        from kuznitsa.analytics.lineage import save_mock
+        save_mock(db,Path(journal.path).parent,truth,seed,anchor)
     return dict(author="AiXenix",searches=len(truth),sessions=len(seeded),today=str(anchor),seed=seed)

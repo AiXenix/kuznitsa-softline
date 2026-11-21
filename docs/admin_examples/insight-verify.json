@@ -5,7 +5,7 @@
   "role": "content_manager",
   "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
   "status": "verified",
-  "summary": "За последние 30 дней — 80 поисков в 80 сессиях.",
+  "summary": "Поисков за 30 дней — 80. Сессий — 80. «резервилка» до правила. Карточек — 0, «Кибер Бэкап» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
   "confidence": 0.8,
   "priority": "high",
   "evidence": {
@@ -18,19 +18,31 @@
     ],
     "checks": {
       "лицензия резервилка": {
-        "search_id": "s_955fa64ee6ca424794aa06802dd174a0",
+        "search_id": "s_3898eb8374594f2daefac02ea008f1f9",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_9fc62365b5d940868dadd2f09b412bc2",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       },
       "резервилка": {
-        "search_id": "s_124d59190a7f485e8254c4e704187b3e",
+        "search_id": "s_a1e6edf5f5ae4de9824997e2d6358480",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_05a1345b2ad441cc9ef1ce0ac9bea821",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       },
       "корпоративная резервилка": {
-        "search_id": "s_8214d0a2af4b43b3b6b218d44ff4b894",
+        "search_id": "s_3dc65e849c184aa880ba27052d158a2b",
         "top5": [],
-        "repaired": false
+        "repaired": false,
+        "n_cards": 0,
+        "trial_search_id": "s_1c2189170c2d4499b41a401ba094a364",
+        "trial_n_cards": 4,
+        "trial_target_position": 1
       }
     },
     "search_ids": {
@@ -62,6 +74,12 @@
     "reformulated_to": {
       "Кибер Бэкап": 80
     },
+    "target_card_ids": [
+      "cyber_backup:advanced",
+      "cyber_backup:standard",
+      "cyber_backup:virt_host",
+      "cyber_backup:workstation"
+    ],
     "examples": [
       {
         "q": "лицензия резервилка",
@@ -88,37 +106,45 @@
     }
   },
   "impact": {
-    "expected_rub": 140474,
-    "conservative_rub": 96576,
+    "expected_rub": 297295,
+    "conservative_rub": 204391,
     "metric_label": "Оценка потенциала",
     "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
   },
+  "evidence_text": "Поисков за 30 дней — 80. Сессий — 80. «резервилка» до правила. Карточек — 0, «Кибер Бэкап» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
+  "impact_text": "Оценка потенциала · 297 295 ₽. Осторожная оценка · 204 391 ₽.",
   "verification": {
     "before": {
       "лицензия резервилка": {
         "n_cards": 0,
-        "search_id": "s_dbff94407b9b4b0e858843324bcc2394",
+        "search_id": "s_031619274d9044e5b9023a89a199c875",
         "cards": [],
         "banners": []
       },
       "резервилка": {
         "n_cards": 0,
-        "search_id": "s_b1cdb36532a34f499fa2f3323f7ba2fd",
+        "search_id": "s_3f9c1bf753494b0e84da7391e3ab3efa",
         "cards": [],
         "banners": []
       },
       "корпоративная резервилка": {
         "n_cards": 0,
-        "search_id": "s_3f0a2b31fcd84737bcd8a1035544824c",
+        "search_id": "s_cd84c5621c0f48e8b4dcc6a72cb6abf4",
         "cards": [],
         "banners": []
       }
     },
-    "rule_id": "6f59b1d69cda4a57b8bf5354cd3add9c",
+    "target_card_ids": [
+      "cyber_backup:advanced",
+      "cyber_backup:standard",
+      "cyber_backup:virt_host",
+      "cyber_backup:workstation"
+    ],
+    "rule_id": "bd14e8a5b50c45a69dd8a1f207062036",
     "after": {
       "лицензия резервилка": {
         "n_cards": 4,
-        "search_id": "s_3171f825bfcd44aebdcbc43bd2616b84",
+        "search_id": "s_99404ba14a944c53af700e7cae56c77f",
         "cards": [
           {
             "card_id": "cyber_backup:standard",
@@ -127,20 +153,20 @@
             "position": 1
           },
           {
-            "card_id": "cyber_backup:workstation",
-            "title": "Кибер Бэкап Для рабочих станций",
+            "card_id": "cyber_backup:advanced",
+            "title": "Кибер Бэкап Расширенный",
             "tier": 1,
             "position": 2
           },
           {
-            "card_id": "cyber_backup:advanced",
-            "title": "Кибер Бэкап Расширенный",
+            "card_id": "cyber_backup:virt_host",
+            "title": "Кибер Бэкап Для виртуальных хостов",
             "tier": 1,
             "position": 3
           },
           {
-            "card_id": "cyber_backup:virt_host",
-            "title": "Кибер Бэкап Для виртуальных хостов",
+            "card_id": "cyber_backup:workstation",
+            "title": "Кибер Бэкап Для рабочих станций",
             "tier": 1,
             "position": 4
           }
@@ -149,7 +175,7 @@
       },
       "резервилка": {
         "n_cards": 4,
-        "search_id": "s_10a2436219a540f2b69a0eedd4c1a188",
+        "search_id": "s_34fc0ee7153f4efa9f777b78212e1822",
         "cards": [
           {
             "card_id": "cyber_backup:standard",
@@ -158,20 +184,20 @@
             "position": 1
           },
           {
-            "card_id": "cyber_backup:workstation",
-            "title": "Кибер Бэкап Для рабочих станций",
+            "card_id": "cyber_backup:advanced",
+            "title": "Кибер Бэкап Расширенный",
             "tier": 1,
             "position": 2
           },
           {
-            "card_id": "cyber_backup:advanced",
-            "title": "Кибер Бэкап Расширенный",
+            "card_id": "cyber_backup:virt_host",
+            "title": "Кибер Бэкап Для виртуальных хостов",
             "tier": 1,
             "position": 3
           },
           {
-            "card_id": "cyber_backup:virt_host",
-            "title": "Кибер Бэкап Для виртуальных хостов",
+            "card_id": "cyber_backup:workstation",
+            "title": "Кибер Бэкап Для рабочих станций",
             "tier": 1,
             "position": 4
           }
@@ -180,7 +206,7 @@
       },
       "корпоративная резервилка": {
         "n_cards": 4,
-        "search_id": "s_94902643e06b41308e4ed688add3d678",
+        "search_id": "s_a79dcce807804c46ab3bf1001ca8bd51",
         "cards": [
           {
             "card_id": "cyber_backup:standard",
@@ -189,20 +215,20 @@
             "position": 1
           },
           {
-            "card_id": "cyber_backup:workstation",
-            "title": "Кибер Бэкап Для рабочих станций",
+            "card_id": "cyber_backup:advanced",
+            "title": "Кибер Бэкап Расширенный",
             "tier": 1,
             "position": 2
           },
           {
-            "card_id": "cyber_backup:advanced",
-            "title": "Кибер Бэкап Расширенный",
+            "card_id": "cyber_backup:virt_host",
+            "title": "Кибер Бэкап Для виртуальных хостов",
             "tier": 1,
             "position": 3
           },
           {
-            "card_id": "cyber_backup:virt_host",
-            "title": "Кибер Бэкап Для виртуальных хостов",
+            "card_id": "cyber_backup:workstation",
+            "title": "Кибер Бэкап Для рабочих станций",
             "tier": 1,
             "position": 4
           }
@@ -217,7 +243,36 @@
       "резервилка",
       "корпоративная резервилка"
     ],
-    "verified_at": 1795218905.2475996,
-    "summary": "Повторено запросов · 3. Выдача изменилась · 3."
+    "verified_at": 1795226463.3647327,
+    "summary": "«лицензия резервилка» · карточек 0 → 4. Цель на позиции 1. «резервилка» · карточек 0 → 4. Цель на позиции 1. «корпоративная резервилка» · карточек 0 → 4. Цель на позиции 1.",
+    "outcomes": [
+      {
+        "q": "лицензия резервилка",
+        "before_search_id": "s_031619274d9044e5b9023a89a199c875",
+        "after_search_id": "s_99404ba14a944c53af700e7cae56c77f",
+        "before_n_cards": 0,
+        "after_n_cards": 4,
+        "target_position": 1,
+        "text": "«лицензия резервилка» · карточек 0 → 4. Цель на позиции 1."
+      },
+      {
+        "q": "резервилка",
+        "before_search_id": "s_3f9c1bf753494b0e84da7391e3ab3efa",
+        "after_search_id": "s_34fc0ee7153f4efa9f777b78212e1822",
+        "before_n_cards": 0,
+        "after_n_cards": 4,
+        "target_position": 1,
+        "text": "«резервилка» · карточек 0 → 4. Цель на позиции 1."
+      },
+      {
+        "q": "корпоративная резервилка",
+        "before_search_id": "s_cd84c5621c0f48e8b4dcc6a72cb6abf4",
+        "after_search_id": "s_a79dcce807804c46ab3bf1001ca8bd51",
+        "before_n_cards": 0,
+        "after_n_cards": 4,
+        "target_position": 1,
+        "text": "«корпоративная резервилка» · карточек 0 → 4. Цель на позиции 1."
+      }
+    ]
   }
 }
