@@ -14,7 +14,7 @@ def is_module(card):
     return bool(re.search(r"\b(?:модуль|плагин|надстройка|дополнение)\b", " ".join([card.title,edition.get("name","")]),re.I))
 
 
-def analog_scope(engine,rel,f,exc,cheaper):
+def analog_scope(engine,rel,f,exc,cheaper,query=""):
     families=engine.kb.rows["families"]
     anchors=[families[fid] for fid in f.get("family",[]) if fid in families]
     vendors=set(f.get("vendor",[]))|{r.get("vendor") for r in anchors}
@@ -29,11 +29,21 @@ def analog_scope(engine,rel,f,exc,cheaper):
     targets={v for r in anchors for v in r.get("analogs",[])}
     for r in anchors:
         targets.update(a["family"] for a in engine.kb.rows["analogs"].get(r["id"],{}).get("russian_analogs",[]))
+    for row in anchors:targets.update(engine.kb.import_links["analogs"].get(row["id"],[]))
+    # Название преемника в описании связи позволяет различить семейства одного производителя.
+    direct=set()
+    for row in anchors:
+        vendor=engine.kb.rows["vendors"].get(row.get("vendor"),{})
+        vendor_words={word.casefold() for field in ("name","name_ru") for word in (vendor.get(field) or "").split()}
+        names={w.lower() for w in row.get("name","").split() if len(w)>4 and w.lower() in query and w.lower() not in vendor_words}
+        for link in engine.kb.rows["analogs"].get(row["id"],{}).get("russian_analogs",[]):
+            if any(w in link.get("note","").lower() for w in names):
+                direct.add(link["family"])
     if cheaper:
         prices=[r.get("price_rub",{}).get("typical") for r in anchors]
         if any(prices):
             f["price_max"]=median(v for v in prices if v)-.01
-    return {cid:(.97 if card.family in targets and card.category in cats else .84 if card.family in targets else .54)
+    return {cid:(1. if card.family in direct else .58 if direct and card.family in targets else .97 if card.family in targets and card.category in cats else .84 if card.family in targets else .54)
             for cid in rel if (card:=engine.catalog.cards[cid]).vendor not in vendors and not is_module(card)
             and (not cats or card.family in targets or card.category in cats)}
 

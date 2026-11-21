@@ -50,12 +50,15 @@ def create_app(engine=None,cfg=None):
                     if not traffic[key] or traffic[key][-1]<=now-60:
                         del traffic[key]
                 next_cleanup=now+60
-            key=req.client.host if req.client else ""
+            key=(req.client.host if req.client else "",req.url.path)
             recent=traffic.setdefault(key,deque())
             while recent and recent[0]<=now-60:
                 recent.popleft()
             if len(recent)>=cfg.rate_limit:
-                return error(429,"rate_limit","Слишком много запросов. Повторите через минуту.")
+                response=error(429,"rate_limit","Слишком много запросов. Повторите через минуту.")
+                from math import ceil
+                response.headers["Retry-After"]=str(max(1,ceil(60-now+recent[0])))
+                return response
             recent.append(now)
         response=await call_next(req)
         response.headers["X-Content-Type-Options"]="nosniff"
@@ -88,12 +91,20 @@ def create_app(engine=None,cfg=None):
             for row in data or []:
                 if isinstance(row,dict) and row.get("id"):
                     scenarios.setdefault(row["id"],row)
-        return dict(profiles=[profile_info(c) for c in core().clients.values() if c.demo],
+        from .plans.presentation import labels
+        return dict(labels=labels(core()),profiles=[profile_info(c) for c in core().clients.values() if c.demo],
                     categories=[dict(id=k,title=r.get("title",k)) for k,r in core().kb.rows["categories"].items() if not r.get("parent")],
                     modes=["fast","smart","naive"],mode_titles=MODE_TITLES,weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
                     disclaimer="Каталог, цены и клиенты — демонстрационные.")
     @app.post("/api/search")
-    def search(req:Request):
+    def search(req:Request,request:HttpRequest):
+        if req.source=="eval" and request.headers.get("X-Admin-Token"):
+            from secrets import compare_digest
+            import os
+            configured=os.getenv("KZ_ADMIN_TOKEN")
+            if not configured or not compare_digest(request.headers["X-Admin-Token"].encode(),configured.encode()):
+                return error(403,"invalid_token","Требуется токен администратора")
+            req._authorized_eval=True
         if "mode" not in req.model_fields_set:
             req=req.model_copy(update={"mode":cfg.mode})
         return core().search(req)
@@ -104,7 +115,7 @@ def create_app(engine=None,cfg=None):
             if "ignore" in data:
                 data["ignore"]=req.query_params.getlist("ignore")
             data.setdefault("mode",cfg.mode)
-            return search(Request.model_validate(data))
+            return search(Request.model_validate(data),req)
         except ValidationError:
             return error(422,"invalid_request","Проверьте параметры запроса.")
     @app.get("/api/suggest")
@@ -141,6 +152,9 @@ def create_app(engine=None,cfg=None):
     def home():
         return FileResponse(ROOT/"web/index.html")
     app.mount("/web",StaticFiles(directory=ROOT/"web"),name="web")
+    if cfg.cors_origins:
+        from fastapi.middleware.cors import CORSMiddleware
+        app.add_middleware(CORSMiddleware,allow_origins=cfg.cors_origins,allow_methods=["GET","POST"],allow_headers=["Content-Type"],expose_headers=["Retry-After"])
     return app
 
 

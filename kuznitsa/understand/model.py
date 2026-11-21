@@ -67,3 +67,13 @@ def ignore_conditions(keys, words, filters, exclude, entities, qty):
         if key not in dropped:
             kept.append(e)
     return kept, qty
+
+
+def profile_chips(filters,explicit):
+    names={"astra":"Astra Linux","alt":"Альт","redos":"РЕД ОС","fstec":"ФСТЭК","fsb":"ФСБ","mo":"Минобороны"}
+    chips=[]
+    for key,title in (("platform","ОС"),("certs","Сертификат"),("registry","Реестр отечественного ПО")):
+        if key in filters and key not in explicit:
+            label=title if key=="registry" else title+" · "+", ".join(names.get(v,v) for v in filters[key])
+            chips.append(dict(key=key,label=label,source="context",removable=True))
+    return chips

@@ -52,6 +52,32 @@ def numeric_conditions(words,filters,qty):
         if 0<low<=high:
             qty=dict(value=low,max=high,metric=filters.get("metric"))
             text=text[:band.start()]+text[band.end():]
-    for m in re.finditer(r"\b(до|от|дешевле|дороже)\s+(\d{1,12}(?:[.,]\d{1,2})?)\s*(тыс\w*|к\b)?",text):
-        filters["price_max" if m[1] in ("до","дешевле") else "price_min"]=float(m[2].replace(",","."))*(1000 if m[3] else 1)
+    for m in re.finditer(r"\b(не дороже|в пределах|до|от|дешевле|дороже)\s+(\d{1,12}(?:[.,]\d{1,2})?)\s*(млн|миллион\w*|тыс\w*|[kк]\b)?",text):
+        filters["price_max" if m[1] in ("до","дешевле","не дороже","в пределах") else "price_min"]=float(m[2].replace(",","."))*(1_000_000 if (m[3] or "").startswith(("млн","миллион")) else 1000 if m[3] else 1)
     return qty
+
+
+def spoken_numbers(text):
+    vocab={**NUMBERS,**TENS,"полсотни":50,"двести":200,"триста":300,"четыреста":400,"пятьсот":500,
+           "шестьсот":600,"семьсот":700,"восемьсот":800,"девятьсот":900}
+    text=re.sub(r"\bполтор[аы] год\w*", "18 мес",text)
+    parts=text.split()
+    result=[]
+    i=0
+    while i<len(parts):
+        start=i
+        value=total=0
+        while i<len(parts):
+            w=parts[i]
+            if w in vocab:value+=vocab[w]
+            elif w in ("сотня","сотни","сотен"):value=(value or 1)*100
+            elif w in ("тысяча","тысячи","тысяч"):total+=(value or 1)*1000;value=0
+            else:break
+            i+=1
+        if i>start:
+            # Числовой множитель после цифры обрабатывается вместе с ценой.
+            result.extend(parts[start:i] if start and parts[start-1].isdigit() and parts[start].startswith("тыс") else [str(total+value)])
+        else:
+            result.append(parts[i])
+            i+=1
+    return " ".join(result)

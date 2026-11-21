@@ -22,6 +22,19 @@ def refine(engine,words,f,exc,entities,qty):
                     del f[e["type"]]
                 f["platform"]=[os_id]
                 entities.remove(e)
+    if f.get("category") and not f.get("platform"):
+        # Склонённое название ОС может иметь несколько словарных основ.
+        from kuznitsa.text import morphology
+        for i,word in enumerate(words[1:],1):
+            if words[i-1] not in ("на","под","для") or not word.isalpha():
+                continue
+            for parse in morphology().parse(word):
+                matches=engine.lex.entries.get((parse.normal_form,),())
+                platforms=[v for k,v,_ in matches if k=="platform"]
+                if platforms:
+                    f["platform"]=platforms
+                    entities.append(dict(type="platform",id=platforms[0],span=[i,i+1],source="kb",text=word,conf=.85))
+                    break
     if "category" in f:
         cats=engine.kb.rows["categories"]
         for i,c in enumerate(f["category"]):
@@ -99,7 +112,7 @@ def apply_profile(profile,f,intent):
         certs=[v for v in profile.preferences["certs_required"] if v in ("fstec","fsb","mo")]
         if certs:
             f.setdefault("certs",certs)
-    if profile.segment=="gov" and intent in ("category","task","compliance") and any(os in profile.fleet.get("os",[]) for os in ("astra","alt","redos")):
+    if profile.segment=="gov" and not {"ngfw_vpn","network_security"}.intersection(f.get("category",[])) and intent in ("category","task","compliance") and any(os in profile.fleet.get("os",[]) for os in ("astra","alt","redos")):
         f.setdefault("platform",[next(os for os in profile.fleet["os"] if os in ("astra","alt","redos"))])
     if profile.segment=="individual" and f.get("category")==["endpoint_security"]:
         f["category"]=["home_antivirus"]
@@ -165,6 +178,23 @@ def resolve_details(engine,lex,words,f,entities,qty):
         f["category"]=list(dict.fromkeys(f["category"]+[row["category"] for row in families.values()
                        if row.get("category") and "linux" in row.get("platforms",[]) and row.get("category","").endswith("_os_ru")]))
 
+    # Если запрос целиком состоит из класса и марки, оставляем оба фильтра.
+    if len(entities)!=2 or not f.get("category"):
+        return
+    cat=next((e for e in entities if e["type"]=="category"),None)
+    if not cat:
+        return
+    brand=next(e for e in entities if e is not cat)
+    spans=sorted([cat["span"],brand["span"]])
+    if spans[0][0]!=0 or spans[0][1]!=spans[1][0] or spans[1][1]!=len(words):
+        return
+    vendors=[v for kind,v,_ in lex.entries.get(tuple(map(lemma,words[slice(*brand["span"])])),()) if kind=="vendor"]
+    if vendors:
+        f["vendor"]=list(dict.fromkeys(vendors))
+        f.pop("family",None)
+        f.pop("edition",None)
+        brand.update(type="vendor",id=vendors[0])
+
 
 def nested_family(lex,words,entities):
     if any(e["type"] in ("family","vendor","category") for e in entities):
@@ -176,3 +206,22 @@ def nested_family(lex,words,entities):
             for kind,ident,src in lex.entries.get(tuple(keys[i:end]),()):
                 if kind=="family":
                     return dict(type=kind,id=ident,text=" ".join(words[i:end]),span=[i,end],source=src,conf=.92)
+
+
+def resolve_brand_quantity(engine,profile,words,residual,entities,filters):
+    """Для марки с тиражом выбираем установленную линейку, если товар ещё не указан."""
+    vendors=filters.get("vendor",[])
+    if not vendors or filters.get("action") or any(e["type"] in ("family","category","edition") for e in entities):
+        return
+    families=engine.kb.rows["families"]
+    if any(lemma(w)=="лицензия" for w in words) and any(
+            "клиентск" in families[fid]["name"].lower() for fid in filters.get("family",[]) if fid in families):
+        return
+    quantity_words={"на","для","лицензия","шт","штука","место","по","рабочий","пк","компьютер","устройство","пользователь","узел","человек"}
+    if any(not w.isdigit() and lemma(w) not in quantity_words for w in residual.split()):
+        return
+    owned=[item["family_id"] for item in profile.owned if families.get(item.get("family_id"),{}).get("vendor") in vendors]
+    if owned:
+        filters["family"]=list(dict.fromkeys(owned))
+    elif profile.segment!="individual" and all(families.get(v,{}).get("category")=="home_antivirus" for v in filters.get("family",[])):
+        filters.pop("family",None)

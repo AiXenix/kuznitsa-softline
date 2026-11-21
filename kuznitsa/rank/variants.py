@@ -19,6 +19,7 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
         return None
     best,best_key = None,None
     eligible_packs=[]
+    budget=filters.get("price_max") if n else None
     upper = qty.get("max",n) if qty else n
     if exact:
         index=card.offers.index(exact)
@@ -38,13 +39,39 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
         lic=o.lic
         if n and lic.pack:
             eligible_packs.append(o)
+            if budget is not None and not exact:
+                # Стоимость одного размера пакета не ограничивает смешанный набор.
+                continue
         count = ceil((n or 1)/lic.pack) if lic.pack else max(n or 1,lic.qty_min or 1)
         if lic.qty_max and count>lic.qty_max and not lic.pack:
             count = lic.qty_max
+        if budget is not None and (o.price is None or o.price_on_request or count*o.price>budget):
+            continue
         key = (o.available,lic.action==action,lic.audience==audience,lic.term_months in (None,12),not o.price_on_request,
                -abs(count*(lic.pack or 1)-(n or count)), -(count*(o.price or 0)) if lic.pack and n else 0, o.popularity,-(o.price or 0))
         if best_key is None or key>best_key:
             best_key,best = key,(o,count if n else None,owned)
+    if budget is not None and eligible_packs and not exact:
+        from .packs import bundle
+        groups={}
+        for o in eligible_packs:
+            lic=o.lic
+            key=(lic.action,lic.audience,lic.term_months,lic.metric,lic.model,o.version,o.delivery)
+            groups.setdefault(key,[]).append(o)
+        for group in groups.values():
+            base_required=card.family=="windows_server" and group[0].lic.metric=="core"
+            base=max(card.kb.get("license",{}).get("packs",[]) or [o.lic.pack for o in group])
+            packages=bundle(group,n,base_required,base)
+            total=sum(o.price*m for o,m in packages)
+            if not packages or total>budget:
+                continue
+            o=packages[0][0]
+            covered=sum(item.lic.pack*m for item,m in packages)
+            key=(o.available,o.lic.action==action,o.lic.audience==audience,o.lic.term_months in (None,12),
+                 True,-abs(covered-n),-total,o.popularity,-o.price)
+            if best_key is None or key>best_key:
+                best_key,best=key,(o,packages,owned)
+        return best
     if best and eligible_packs and best[0].lic.pack and not exact:
         from .packs import bundle
         chosen=best[0]

@@ -1,5 +1,6 @@
 import re
 from bisect import bisect_left
+from functools import lru_cache
 from rapidfuzz import process
 from rapidfuzz.distance import DamerauLevenshtein
 from kuznitsa.text import lemma,tokens,morphology
@@ -19,6 +20,23 @@ def completions(prefix,lex):
         return []
     start=bisect_left(lex.headwords,prefix)
     return [w for w in lex.headwords[start:start+40] if w.startswith(prefix) and len(w)<=len(prefix)+6]
+
+
+def typo_matcher(words):
+    """Длина ограничивает расстояние Дамерау. Порядок при равенстве сохраняется."""
+    by_length={}
+    for word in words:
+        by_length.setdefault(len(word),[]).append(word)
+
+    @lru_cache(128)
+    def candidates(size,distance):
+        return sorted(word for n in range(size-distance,size+distance+1) for word in by_length.get(n,()))
+
+    @lru_cache(4096)
+    def nearest(text,limit,distance):
+        return process.extract(text,candidates(len(text),distance),scorer=DamerauLevenshtein.distance,
+                               limit=limit,score_cutoff=distance)
+    return nearest
 
 
 def repair(q,lex):
@@ -63,11 +81,11 @@ def repair(q,lex):
                         for cand in completions(prefix,lex):
                             add(cand,kind,.89-.018*(len(cand)-len(w)))
                 if len(w)>=4:
-                    for cand,dist,_ in process.extract(w,lex.spell_words,scorer=DamerauLevenshtein.distance,limit=12,score_cutoff=1 if len(w)<8 else 2):
-                        if not common or sorted(w)==sorted(cand) or cand in lex.headwords and (w.startswith(cand) or cand.startswith(w)) and len(w)>=5:
+                    for cand,dist,_ in lex.nearest_typo(w,12,1 if len(w)<8 else 2):
+                        if not common or sorted(w)==sorted(cand) or cand in lex.headword_set and (w.startswith(cand) or cand.startswith(w)) and len(w)>=5:
                             add(cand,"typo",.94-.06*dist+.045*(cand in lex.phrases)+.035*(cand in lex.primary_words))
                     if not common and len(w)>=6:
-                        for cand,_,_ in process.extract(layout,lex.spell_words,scorer=DamerauLevenshtein.distance,limit=4,score_cutoff=1):
+                        for cand,_,_ in lex.nearest_typo(layout,4,1):
                             add(cand,"layout",.86)
             if options:
                 choices=sorted(options,key=lambda k:(-options[k][0],k))

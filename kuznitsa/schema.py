@@ -1,5 +1,5 @@
 from typing import Literal
-from pydantic import BaseModel, Field, ConfigDict, field_validator
+from pydantic import BaseModel, Field, ConfigDict, field_validator, PrivateAttr
 
 
 Action = Literal["new","renewal","upgrade","crossgrade","addon","support"]
@@ -73,7 +73,20 @@ class Client(BaseModel):
 
 class Request(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    q: str = Field(max_length=1500)
+    q: str = Field(max_length=300200)
+    _authorized_eval: bool = PrivateAttr(default=False)
+
+    @property
+    def model_source(self):
+        return "authorized_eval" if self.source=="eval" and self._authorized_eval else self.source
+
+    @field_validator("q")
+    @classmethod
+    def bounded_lines(cls,q):
+        lines=q.splitlines()
+        if len(lines)>200 or any(len(line)>1500 for line in lines):
+            raise ValueError("Допускается до 200 строк длиной до 1500 символов")
+        return q
     profile_id: str = "guest"
     category: str | None = None
     session_id: str = ""

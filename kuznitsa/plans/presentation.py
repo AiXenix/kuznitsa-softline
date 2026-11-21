@@ -40,3 +40,13 @@ def next_queries(engine,cards,query,blocks=()):
             queries.append(f"{category} на {offer.lic.qty_min} {unit}")
         queries.append(category)
     return list(dict.fromkeys(q for q in queries if q.casefold()!=query))[:6]
+
+
+def labels(engine):
+    from kuznitsa.understand.intent import TITLES
+    from kuznitsa.rank.fit import TIERS
+    return dict(categories={k:dict(title=r["title"],parent=r.get("parent")) for k,r in engine.kb.rows["categories"].items()},
+                vendors=engine.names["vendor"],roles=engine.names["role"],industries=engine.names["industry"],
+                intents=TITLES,tiers=dict(enumerate(TIERS)),segments=dict(smb="Малый бизнес",mid="Средний бизнес",enterprise="Крупный бизнес",gov="Госсектор",edu="Образование",individual="Частный клиент"),
+                zero_reasons=dict(off_topic="Вне ассортимента",unknown_term="Неизвестное название",not_in_catalog="Нет в каталоге",vendor_left="Поставки прекращены",filters_too_strict="Строгие условия",qty_out_of_range="Нет диапазона количества",no_available_offer="Нет доступного предложения"),
+                blocks=dict(products="Продукты",kit="Комплект",spec="Спецификация",compare="Сравнение",answer="Ответ",services="Услуги",promo="Акции",lead="Заявка",analogs="Замены",my_licenses="Ваши лицензии",clarify="Уточнение",vendors="Вендоры",categories="Категории",crosssell="Сопутствующие товары",not_in_catalog="Нет в каталоге"))

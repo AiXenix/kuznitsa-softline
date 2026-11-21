@@ -1,8 +1,9 @@
+from itertools import islice
 from .fit import TIERS
 from kuznitsa.rank.variants import AUD_LABEL, public_offer, calculation
 
 
-def ranked(card,selection,rel,exact,profile,weights,kb):
+def ranked(card,selection,rel,exact,profile,weights,kb,ignored=()):
     o,count,owned = selection
     why = []
     badges = []
@@ -23,7 +24,7 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
         pers+=.55
         why.append("Лицензия для "+AUD_LABEL[o.lic.audience])
         badges.append(dict(kind="edu_only" if o.lic.audience=="edu" else "audience",label=why[-1]))
-    if profile.segment=="gov" and o.registry:
+    if "registry" not in ignored and profile.segment=="gov" and o.registry:
         pers+=.35
         why.append("Учтено предпочтение госзаказчика к ПО в реестре")
     if o.attrs.get("promo")=="true":
@@ -34,7 +35,7 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
             why.append("Включение в реестр указано в базе знаний для всего семейства")
     if o.vat==0:
         badges.append(dict(kind="vat",label="Без НДС"))
-    if profile.client_id!="guest" and set(profile.fleet.get("os",[])).intersection(o.platforms):
+    if "platform" not in ignored and profile.client_id!="guest" and set(profile.fleet.get("os",[])).intersection(o.platforms):
         pers+=.18
         why.append("Подходит для парка ОС клиента")
     if o.lic.qty_min:
@@ -45,8 +46,9 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
     tier = 0 if exact else 1 if rel>=.62 else 2 if rel>=.4 else 3
     why.insert(0,"Точное совпадение" if exact else "Совпадает с условиями поиска")
     score = sum(parts.values())*(1 if o.available else .6)*(.95 if o.price_on_request else 1)
+    audiences={None,"business",o.lic.audience,profile.segment}
     return dict(card_id=card.id,title=card.title,vendor=dict(id=card.vendor,name=o.vendor),category=dict(id=card.category,
                 title=kb.rows["categories"].get(card.category,{}).get("title", (o.category_path or ["ПО"])[-1])),
                 summary=o.description,badges=badges,offer=public_offer(o),calc=calculation(o,count),
-                variants=[public_offer(x) for x in card.offers[:6] if x!=o][:5],variants_count=len(card.offers),
+                variants=[public_offer(x) for x in islice((v for v in card.offers if v!=o and v.lic.audience in audiences),5)],variants_count=len(card.offers),
                 price_from=card.price_from,score=dict(tier=tier,tier_label=TIERS[tier],score=score,parts=parts,why=why))

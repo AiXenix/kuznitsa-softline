@@ -10,7 +10,7 @@ def many(v):
     return v if isinstance(v,list) else [] if v is None else [v]
 
 
-GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang crosssell".split()
+GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang crosssell okved".split()
 
 
 
@@ -21,6 +21,7 @@ class Knowledge:
     syntax: list = field(default_factory=list)
     warnings: list = field(default_factory=list)
     auto: dict = field(default_factory=lambda: dict(vendors=0,categories=0,families=0))
+    import_links: dict = field(default_factory=lambda: {g:{} for g in ("roles","industries","analogs","use_cases")})
     dangling: list = field(default_factory=list)
 
     sources: dict = field(default_factory=lambda: {g:dict(base=0,extensions=0,auto=0) for g in GROUPS})
@@ -39,7 +40,7 @@ def _read(kb,path):
 
 def _merge(kb,group,p,data,source,origins):
     for i,row in enumerate(many(data)):
-        key = {"slang":"term","analogs":"family"}.get(group,"id")
+        key = {"slang":"term","analogs":"family","okved":"code"}.get(group,"id")
         try:
             ident = row[key]
             if not isinstance(ident,str):
@@ -116,4 +117,20 @@ def load(root: Path, data_dir=None):
     kb.dangling.extend(v for v in missing_references(kb) if v not in kb.dangling)
     kb.warnings.extend("Ссылка отсутствует: "+v for v in kb.dangling)
     kb.auto={g:kb.sources[g]["auto"] for g in kb.auto}
+    for group in ("roles","industries"):
+        for row in kb.rows[group].values():
+            if row.get("parent") and row["parent"] not in kb.rows[group]:
+                kb.warnings.append(f"{row['id']}: неизвестный parent {row.pop('parent')}")
+        for row in kb.rows[group].values():
+            parent=kb.rows[group].get(row.get("parent"))
+            if parent and parent.get("aliases"):
+                shared={str(phrase).casefold() for phrase in row.get("aliases",[])}
+                parent["aliases"]=[phrase for phrase in parent["aliases"] if str(phrase).casefold() not in shared]
+    for code,row in list(kb.rows["okved"].items()):
+        if row.get("industry") not in kb.rows["industries"] or not row.get("title"):
+            kb.warnings.append(f"ОКВЭД {code}: отсутствует отрасль или название")
+            del kb.rows["okved"][code]
+            kb.sources["okved"][origins["okved"][code]]-=1
+    from kuznitsa.ingest.auto import reverse_links
+    kb.import_links=reverse_links(kb.rows["families"])
     return kb

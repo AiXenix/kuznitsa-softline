@@ -6,7 +6,7 @@ def ask_recovery(engine,deadline,sid,req,state,calls,steps,options,examples):
     if not options:
         criteria["unavailable"]="Сообщить об отсутствии подходящего предложения"
     facts={**state,"доступные_варианты":examples,"строго_подходящих":0}
-    answers,meta=engine.decisions.decide_before(deadline,sid,req.source,"intent",facts,{
+    answers,meta=engine.decisions.decide_before(deadline,sid,req.model_source,"intent",facts,{
         "recovery":choice("Выберите следующий шаг поиска. Показывайте только подтверждённые варианты.",criteria)})
     meta["probabilities"]={k:v["probabilities"] for k,v in answers.items()}
     calls.append(meta)

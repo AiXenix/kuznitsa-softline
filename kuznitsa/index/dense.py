@@ -18,10 +18,10 @@ class Dense:
         self.model=TextEmbedding(model_name=cfg.embed,cache_dir=str(cfg.models),threads=2,local_files_only=True)
         self.lock=Lock()
         self.encode=lru_cache(256)(self._query)
-        self.matrix=self._cached(cfg,texts)
-        self.knowledge_matrix=self._cached(cfg,[text for key,text in knowledge])
+        self.matrix=self.cached_embeddings(cfg,texts)
+        self.knowledge_matrix=self.cached_embeddings(cfg,[text for key,text in knowledge])
 
-    def _cached(self,cfg,texts):
+    def cached_embeddings(self,cfg,texts):
         if not texts:
             return None
         key=hashlib.sha256(("\0".join([cfg.embed,*texts])).encode()).hexdigest()

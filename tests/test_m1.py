@@ -56,12 +56,12 @@ def test_repair(engine,q,w):
 
 
 def test_filters(engine):
-    r=ask(engine,"север продление на 30 компов на 2 года до 6000")
+    r=ask(engine,"север продление на 30 компов на 2 года до 180 тысяч")
     c=cards(r)[0]
     assert r["understood"]["qty"]==dict(value=30,metric="device")
     assert c["offer"]["term_months"]==24 and c["offer"]["action"]=="renewal"
     assert c["offer"]["qty_min"]==25 and c["calc"]["total"]==30*c["offer"]["price"]
-    assert not r["notes"] and c["offer"]["price"]<=6000
+    assert not r["notes"] and c["calc"]["total"]<=180000
 
 
 def test_pack_and_exclude(engine):
@@ -184,9 +184,13 @@ def test_cache_warm(cfg,engine):
 
 def test_rate_limit(engine,cfg):
     from dataclasses import replace
-    with TestClient(create_app(engine,replace(cfg,rate_limit=1))) as api:
+    with TestClient(create_app(engine,replace(cfg,rate_limit=1,cors_origins=["https://shop.example"]))) as api:
         assert api.get("/api/search?q=щит").status_code==200
-        assert api.get("/api/suggest?q=щ").json()["error"]["code"]=="rate_limit"
+        assert api.get("/api/suggest?q=щ").status_code==200
+        for path in ("search","suggest"):
+            limited=api.get(f"/api/{path}?q=щит",headers={"Origin":"https://shop.example"})
+            assert limited.headers["access-control-allow-origin"]=="https://shop.example"
+            assert limited.status_code==429 and int(limited.headers["Retry-After"])>0
 
 
 def test_concurrent_store_and_eval(engine,cfg):

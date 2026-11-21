@@ -32,7 +32,7 @@ class SuggestIndex:
                 vendor=kb.rows["vendors"].get(row.get("vendor"),{})
                 core=(vendor.get("categories") or [None])[0]==row.get("category")
                 self.family_rank[fid]=(row.get("popularity",3),max((o.popularity for o in offers),default=0),core,
-                                       row.get("category","").startswith("home_") or audiences=={"home"})
+                                       (row.get("category") or "").startswith("home_") or audiences=={"home"})
 
         def add(phrase,kind,ident,title,rank):
             term=key(phrase)
@@ -159,7 +159,9 @@ def suggest(engine,q,profile_id="guest",category=None):
         renewal="продлить".startswith(norm) or norm.startswith("продлить ")
         prefix=norm.partition(" ")[2] if renewal else corrected or norm
         items=[]
-        for owned in profile.owned:
+        for owned in sorted(profile.owned,key=lambda row:row.get("expires_in_days") if row.get("expires_in_days") is not None else float("inf")):
+            if renewal and owned.get("expires_in_days") is None:
+                continue
             fid=owned.get("family_id")
             title=owned.get("product") or engine.names["family"].get(fid)
             row=engine.kb.rows["families"].get(fid,{})

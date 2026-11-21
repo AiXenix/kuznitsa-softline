@@ -18,12 +18,21 @@ EXPECTED=dict(product="products",vendor="products",category="products",sku="prod
 
 def gallery(engine,mode,page_size=20):
     run_id=uuid4().hex
+    admin_items=None
     for row in yaml.load((ROOT/"docs/scenarios.yaml").read_text(),Loader=yaml.CSafeLoader):
         demo=row["demo"]
         intent=row.get("intent")
         record=dict(id=row["id"],expected=intent,surface=row["surface"])
         if row["surface"]=="admin":
-            yield {**record,"ok":False,"reason":"Проверяется административный интерфейс потока B"},None
+            if admin_items is None:
+                from kuznitsa.analytics.insights import listing
+                admin_items=listing(engine.journal)
+            required={kind for value in row["data_needed"] if value.startswith("agent.insight:")
+                      for kind in value.split(":",1)[1].split(",")}
+            found=next((item for item in admin_items if item["type"] in required
+                        and item.get("evidence") and item.get("action",{}).get("label") and item.get("impact")),None)
+            yield {**record,"ok":bool(found),"insight_id":found["id"] if found else None,
+                   "reason":"" if found else "В текущей истории нет предложения агента с обоснованием: "+", ".join(sorted(required))},None
             continue
         profile=demo.get("profile") or "guest"
         if row["surface"]=="suggest":

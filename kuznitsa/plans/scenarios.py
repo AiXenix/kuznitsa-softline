@@ -1,6 +1,8 @@
 import re
 from .knowledge import GROUPS
-from kuznitsa.rank.variants import public_offer
+from kuznitsa.config import WEIGHTS
+from kuznitsa.rank.business import ranked
+from kuznitsa.rank.variants import public_offer,select
 
 
 def entity(entities,kind):
@@ -45,8 +47,12 @@ def scope(engine,intent,f,entities,text,profile,qty):
         result={}
         for slot in row.get("slots",[row]):
             cats=slot.get("categories",[]) + slot.get("related_categories",[])+([slot["category"]] if slot.get("category") else [])
-            result.update(ids("category",cats,.65))
-            result.update(ids("family",slot.get("families",[])+slot.get("related_families",[]),.85))
+            families=ids("family",slot.get("families",[])+slot.get("related_families",[]),.85)
+            if not families or kind not in ("role","industry"):
+                result.update(ids("category",cats,.65))
+            result.update(families)
+        links=engine.kb.import_links.get(GROUPS[kind],{})
+        result.update(ids("family",links.get(row.get("id"),[]),.85))
         if intent=="question":
             explicit=ids("family",f.get("family",[]),.98) or ids("vendor",f.get("vendor",[]),.96)
             return explicit or result
@@ -66,7 +72,7 @@ def scope(engine,intent,f,entities,text,profile,qty):
             row=engine.kb.rows["families"].get(fid,{})
             result.update(ids("category",[row.get("category")],.55))
             analogs=row.get("analogs",[])+[v["family"] for v in engine.kb.rows["analogs"].get(fid,{}).get("russian_analogs",[])]
-            result.update(ids("family",analogs,.85))
+            result.update(ids("family",analogs+engine.kb.import_links["analogs"].get(fid,[]),.85))
         for cid in ids("family",source,1):
             result.pop(cid,None)
         return result or ids("category",f.get("category",[]),.7)
@@ -87,13 +93,15 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
     by_type=lambda key: [b for b in blocks if b["type"]==key]
     def options(row):
         by_family=[c for c in cards if engine.catalog.cards[c["card_id"]].family in row.get("families",[])]
-        return by_family or [c for c in cards if c["category"]["id"]==row.get("category")]
+        priority={fid:i for i,fid in enumerate(row.get("families",[]))}
+        by_family.sort(key=lambda c:priority[engine.catalog.cards[c["card_id"]].family])
+        imported=[c for c in cards if c["category"]["id"]==row.get("category") and engine.catalog.cards[c["card_id"]].family in imported_matches and c not in by_family]
+        return by_family+imported or [c for c in cards if c["category"]["id"]==row.get("category")]
     if intent=="account":
         items=[]
         for p in sorted(profile.owned,key=lambda p:p.get("expires_in_days") if p.get("expires_in_days") is not None else float("inf")):
             renewal=None
             if p.get("card_id") in engine.catalog.cards and p.get("expires_in_days") is not None:
-                from kuznitsa.rank.variants import select
                 found=select(engine.catalog.cards[p["card_id"]],profile,{"action":"renewal"},{},dict(value=p["qty"]) if p.get("qty") else None)
                 renewal=public_offer(found[0]) if found else None
             title=p.get("product") or engine.names["family"].get(p.get("family_id"),"Лицензия")
@@ -104,6 +112,22 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         if re.search("заказ",req.q,re.I) and profile.orders:
             last=max(profile.orders,key=lambda o:o.get("date",""))
             result.insert(0,dict(type="answer",title="Заказы организации",text=f"Заказов в истории: {len(profile.orders)}. Дата последнего заказа: {last.get('date','не указана')}.",source="profile",links=[]))
+        if re.search("повтор",req.q,re.I):
+            for order in sorted(profile.orders,key=lambda v:v.get("date",""),reverse=True):
+                items=[]
+                for line in order.get("items",[]):
+                    o=engine.catalog.offers_by_id.get(line.get("offer_id"))
+                    if not o or f.get("category") and o.category_id not in f["category"]:continue
+                    product=engine.catalog.cards[o.card_id]
+                    quantity={"value":line["qty"]} if line.get("qty") else None
+                    selection=select(product,profile,{}, {},quantity,exact=o)
+                    card=ranked(product,selection,1.,True,profile,WEIGHTS,engine.kb)
+                    card["action"]={"type":"repeat_order","label":"Повторить","order_id":order.get("order_id")}
+                    card["position"]=len(items)+1
+                    items.append(card)
+                if items:
+                    result.insert(0,dict(type="products",title="Повторить прошлый заказ",action="repeat_order",order_id=order.get("order_id"),items=items,total=len(items)))
+                    break
         return result
     if intent=="spec_list":
         lines=[]
@@ -117,9 +141,18 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         return [dict(type="spec",title="Подбор по спецификации",lines=lines,total=sum(x["total"] for x in lines) if lines and all(x["total"] is not None for x in lines) else None,unresolved=[x["n"] for x in lines if not x["card"]])]
     if intent in ("role_kit","industry"):
         row=reference(engine,"role" if intent=="role_kit" else "industry",req.q,entities)
+        group="roles" if intent=="role_kit" else "industries"
+        imported_matches=engine.kb.import_links[group].get(row.get("id"),[])
+        parent=engine.kb.rows[group].get(row.get("parent"))
+        parent_field={"parent":dict(id=parent["id"],title=parent["title"],q=parent["title"])} if parent else {}
+        industry_families={fid for e in entities if e["type"]=="industry" and intent=="role_kit"
+                           for slot in engine.kb.rows["industries"].get(e["id"],{}).get("slots",[])
+                           for fid in slot.get("families",[])}
         slots=[]
         for spec in row.get("slots",[]):
             found=options(spec)
+            if industry_families:
+                found.sort(key=lambda c:engine.catalog.cards[c["card_id"]].family not in industry_families)
             if qty:
                 found=sorted(found,key=lambda c:(
                     (c.get("calc") or {}).get("total") is None,
@@ -129,7 +162,7 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
                               card=found[0] if found else None,alternatives=found[1:3],note=spec.get("note","")))
         if slots:
             totals=[((s["card"] or {}).get("calc") or {}).get("total") for s in slots if s["must"] or s["card"]]
-            return [dict(type="kit",title=row.get("title","Комплект программ"),role=row["id"],seats=(qty or {}).get("value"),
+            return [dict(**parent_field,type="kit",title=row.get("title","Комплект программ"),role=row["id"],seats=(qty or {}).get("value"),
                          slots=slots,total=sum(totals) if totals and all(v is not None for v in totals) else None)]
     if intent=="compare":
         targets=f.get("family",[]) or f.get("vendor",[])
@@ -174,6 +207,8 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         return [dict(type="answer",title=row.get("title","Условия закупки"),text=row.get("explain") or "Проверены явно указанные характеристики предложений.",source="kb",links=[]),*blocks]
     if intent=="off_topic" and reason=="piracy":
         return [dict(type="answer",title="Лицензионные варианты",text="Подберём легальную лицензию или пробную редакцию. Укажите название программы.",source="catalog",links=[]),*by_type("categories")]
+    if intent=="service" and cards and f.get("category")==["security_awareness"]:
+        return by_type("products")
     if intent=="service" and cards:
         return [dict(type="services",title="Услуги и обучение",items=next((b["items"] for b in by_type("products")),[]))]
     if intent=="service":

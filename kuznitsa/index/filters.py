@@ -27,6 +27,15 @@ class OfferFilters:
         for key,attr in [("platform","platforms"),("certs","certs")]:
             sets=[set(getattr(o,attr)) for o in offers]
             self.sets[key]={v:np.fromiter((v in s for s in sets),bool) for v in set().union(*sets)}
+        from kuznitsa.plans.procurement import offer_codes
+        procurement={}
+        for i,offer in enumerate(offers):
+            for kind,code in offer_codes(offer):
+                masks=procurement.setdefault(kind,{})
+                if code not in masks:
+                    masks[code]=np.zeros(self.size,dtype=bool)
+                masks[code][i]=True
+        self.sets.update(procurement)
         self.constants=dict(deployment=knowledge.get("deployment",[]),origin=vendor.get("origin"))
 
     def mask(self,key,expected):

@@ -3,7 +3,8 @@ from collections import defaultdict
 from dataclasses import dataclass
 import numpy as np
 from kuznitsa.schema import Offer
-from kuznitsa.text import sku_key
+from kuznitsa.plans.procurement import offer_codes
+from kuznitsa.text import sku_key,normalize
 from .cache import lexical
 from .filters import OfferFilters
 from scipy.stats import rankdata
@@ -27,12 +28,17 @@ class Card:
 class Catalog:
     def __init__(self,cfg,kb):
         groups = defaultdict(list)
+        self.offer_names={}
+        self.procurement=defaultdict(set)
         self.skus = {}
         self.offers_by_id = {}
         regional = defaultdict(list)
         with (cfg.data/"catalog.jsonl").open() as stream:
             for line in stream:
                 o = Offer.model_validate_json(line)
+                for key in offer_codes(o):
+                    self.procurement[key].add(o.card_id)
+                self.offer_names.setdefault(normalize(o.name),o)
                 groups[o.card_id].append(o)
                 self.offers_by_id[o.offer_id] = o
                 if o.sku:

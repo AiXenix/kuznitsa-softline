@@ -323,11 +323,11 @@ def test_extension_defaults_references_and_counts(tmp_path):
     assert any("gone" in w for w in kb.warnings) and any("unrecognized" in w for w in kb.warnings)
 
 
-def test_reference_regulation_explains_without_filter(find):
+def test_procurement_classification_explains_registry_selection(find):
     result=find("окпд2 58.29","gov_clinic")
     assert result["understood"]["intent"]=="compliance"
-    assert not result["understood"]["filters"] and not result["understood"]["zero_reason"]
-    assert [b["type"] for b in result["blocks"]]==["answer"]
+    assert result["understood"]["filters"]["registry"] and not result["understood"]["zero_reason"]
+    assert [b["type"] for b in result["blocks"]]==["answer","products"]
     assert "классификации" in result["blocks"][0]["text"]
 
 
@@ -346,3 +346,21 @@ def test_imported_renewal_only_family_remains_searchable(cfg,tmp_path):
         assert any("продление" in note and "подтвердить" in note for note in r["notes"])
     finally:
         engine.close()
+
+
+@pytest.mark.parametrize("mode", ["fast","smart"])
+def test_installed_line_upgrade_gov_and_academic_results(shop,monkeypatch,mode):
+    gov=shop.clients["gov_clinic"].model_copy(update={"owned":[
+        dict(family_id="kesb",edition="advanced",qty=150,product="Установленная защита Linux")]})
+    edu=Client(client_id="college",title="Колледж",segment="edu",
+               owned=[dict(family_id="drweb",edition="desktop",qty=150,product="Защита учебных классов")])
+    monkeypatch.setitem(shop.clients,"gov_clinic",gov)
+    monkeypatch.setitem(shop.clients,"college",edu)
+    def first(profile):
+        r=shop.search(Request(q="антивирус на 30 пк",profile_id=profile,mode=mode))
+        return next(b["items"][0] for b in r["blocks"] if b["type"]=="products")
+    smb,clinic,college=map(first,("smb_trade","gov_clinic","college"))
+    assert smb["card_id"]=="kesb:standard" and any("переход" in s for s in smb["score"]["why"])
+    assert clinic["card_id"]=="kesb:advanced" and any("Linux" in s for s in clinic["score"]["why"])
+    assert college["card_id"]=="drweb:desktop" and college["offer"]["audience"]=="edu"
+    assert any("учебных" in s for s in college["score"]["why"])

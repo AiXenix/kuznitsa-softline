@@ -49,6 +49,8 @@ class Decisions:
             """)
 
     def request(self, sid, source, purpose, state, questions):
+        authorized=source=="authorized_eval"
+        if authorized:source="eval"
         model=self.client.model
         def digest(x):
             return hashlib.sha256(json.dumps(x,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
@@ -69,11 +71,11 @@ class Decisions:
                     meta.update(cached=1,ok=True,saved_usd=row[1])
                 else:
                     midnight=int(self.clock()//86400)*86400
-                    spent=db.execute("SELECT COALESCE(SUM(cost_usd),0) FROM llm_calls WHERE ts>=? AND source NOT IN ('eval','replay')",(midnight,)).fetchone()[0]
+                    spent=db.execute("SELECT COALESCE(SUM(cost_usd),0) FROM llm_calls WHERE ts>=? AND source!='replay'",(midnight,)).fetchone()[0]
                     batch=source in {"eval","replay"} and self.run_budget is not None
                     if not self.client.enabled:
                         meta["note"]="Категоризатор выключен, сохранённого решения нет"
-                    elif source in {"eval","replay"} and not batch:
+                    elif source in {"eval","replay"} and not batch and not authorized:
                         meta["note"]="Для этого прогона не задан бюджет"
                     elif self.until>self.clock():
                         meta["note"]="Категоризатор временно недоступен"
