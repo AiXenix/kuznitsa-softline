@@ -104,7 +104,36 @@ def report(j, **filters):
     filters={k:v for k,v in filters.items() if v and k in DIMENSIONS}
     if filters.get("engine")=="legacy":
         del filters["engine"]
-    return cached(j,"kpi-proof:"+json.dumps(filters,sort_keys=True),lambda:summarize(j,filters))
+    def build():
+        result = summarize(j, filters)
+        if not j.rows("SELECT 1 FROM kv WHERE key='settings:history_source' AND value='import'"):
+            return result
+        amount_note = "Сумма переданных в истории денежных значений для заказов, связанных с поиском."
+        result["order_amounts"]["note"] = amount_note
+        for tile in result["tiles"]:
+            if tile["key"] == "revenue_rub":
+                tile["formula"] = amount_note
+        reports = [json.loads(r["value"]) for r in j.rows(
+            "SELECT value FROM kv WHERE key GLOB 'settings:import-report:*'")]
+        has_leads = any(r.get("kind") == "crm_leads" or "lead" in r.get("fields", [])
+                        or r.get("kind") == "metrika_goals" and "lead" in r.get("report_metrics", {})
+                        for r in reports)
+        if not has_leads and not j.rows(
+                "SELECT 1 FROM events JOIN active_history USING(search_id) WHERE type='lead' LIMIT 1"):
+            for step in result["funnel"]:
+                if step["key"] == "leads":
+                    step.update(label="Зарегистрированные заявки · сведения не переданы", observed=False)
+                if step["key"] == "orders_or_leads":
+                    step["label"] = "С заказом или заявкой · по переданным событиям"
+            result["coverage_notes"].append("В выгрузке нет сведений о заявках менеджеру.")
+        for pair in result["pairs"]:
+            if pair["key"] == "top5_hit":
+                pair["note"] += " Сравнение охватывает только поиски с известным товаром, в том числе выбранным в исходной выдаче."
+        from .goals import apply_to_funnel
+        apply_to_funnel(j, result, filters)
+        return result
+
+    return cached(j,"kpi-b5.2:"+json.dumps(filters,sort_keys=True),build)
 
 
 def queries(rows,kind,limit=50):

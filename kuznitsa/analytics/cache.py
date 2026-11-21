@@ -14,3 +14,19 @@ def cached(j,key,build):
         db.execute("""INSERT OR REPLACE INTO analytics_reports SELECT ?,? WHERE
                    (SELECT revision FROM analytics_revision)=?""",(key,dump(result),rev))
     return result
+
+
+def live_cached(j, key, build):
+    """Короткие сводки по всем источникам, включая записи других соединений."""
+    with j.lock:
+        if j.db.in_transaction:
+            return build()
+        stamp = (j.db.total_changes, j.db.execute("PRAGMA data_version").fetchone()[0],
+                 j.db.execute("PRAGMA schema_version").fetchone()[0])
+        if not hasattr(j, "_live_reports"):
+            j._live_reports = {}
+        entry = j._live_reports.get(key)
+        if entry is None or entry[0] != stamp:
+            entry = stamp, build()
+            j._live_reports[key] = entry
+        return entry[1]

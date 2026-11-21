@@ -43,6 +43,9 @@ def test_external_reports(cfg,tmp_path,monkeypatch):
     assert complete["frequency"]==17 and complete["labeled"]==1
     small=kpi.report(j)
     assert small["totals"]["revenue_rub"]==223000
+    lead = next(step for step in small["funnel"] if step["key"]=="leads")
+    assert lead["count"]==0 and lead["observed"] is False
+    assert any("заявках" in note for note in small["coverage_notes"])
     monkeypatch.setattr(rollup,"PACK_AT",1)
     with j.transaction() as db:
         db.execute("DELETE FROM analytics_reports")
@@ -65,7 +68,13 @@ def test_external_reports(cfg,tmp_path,monkeypatch):
                 if fmt=="md":
                     assert section in res.text and "Что сделать сегодня" in res.text
                 else:
-                    assert section in load_workbook(BytesIO(res.content),read_only=True).sheetnames
+                    book = load_workbook(BytesIO(res.content),read_only=True)
+                    assert section in book.sheetnames
+                    if role=="head_ecom":
+                        assert any(row[0]=="Цель в первых пяти" for row in book["До и после"].values)
+                    if role=="ecom_manager":
+                        assert any("заявк" in row[0].lower() for row in book["Воронка"].values)
+                    book.close()
 
 
 def test_naive_sku_and_family_identity(engine):

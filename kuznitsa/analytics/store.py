@@ -77,6 +77,7 @@ class Journal:
                 CREATE VIEW IF NOT EXISTS active_replay AS SELECT * FROM replays WHERE id=coalesce(
                     (SELECT value FROM kv WHERE key='settings:active_replay'),(SELECT id FROM replays ORDER BY created DESC LIMIT 1));
                 CREATE INDEX IF NOT EXISTS searches_engine_mode ON searches(engine,mode,search_id,llm_calls);
+                CREATE INDEX IF NOT EXISTS priority_live_ts ON searches(ts) WHERE source IN ('ui','api','widget');
                 CREATE INDEX IF NOT EXISTS search_recent ON searches(ts DESC) WHERE source IN ('ui','api','gallery','compare');
             """)
             for table,condition in (("searches","NEW.source='history'"),("events","EXISTS(SELECT 1 FROM searches WHERE search_id=NEW.search_id AND source='history')")):

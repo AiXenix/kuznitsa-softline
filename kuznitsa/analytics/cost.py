@@ -1,11 +1,16 @@
 import os
 
 
-def report(j,daily=1000):
-    rate=float(os.getenv("KZ_USD_RUB","100"))
+def _groups(j):
     columns={r["name"] for r in j.rows("PRAGMA table_info(llm_calls)")}
     groups={}
-    if columns:
+    if columns and not j.rows("SELECT 1 FROM llm_calls LIMIT 1"):
+        # На импортированной истории расходы нулевые, но число поисков и отправок известно.
+        groups = {r["mode"]: r for r in j.rows("""SELECT
+            CASE WHEN mode='fast' THEN 'fast' ELSE 'smart_uncached' END mode,
+            count(*) requests,coalesce(sum(llm_calls),0) sent,0 cached,0 usd
+            FROM searches WHERE engine='kuznitsa' GROUP BY 1""")}
+    elif columns:
         # В старой схеме нет sent. Движок пишет точное число отправок в searches.llm_calls
         # (включая ошибки транспорта). Отказ по бюджету не является отправкой.
         confirmed="l.sent" if "sent" in columns else "(l.cached=0 AND l.ok)" if "ok" in columns else "(l.cached=0)"
@@ -16,6 +21,13 @@ def report(j,daily=1000):
                 SELECT s.mode,max(coalesce(s.llm_calls,0),coalesce(c.sent,0)) sent,coalesce(c.cached,0) cached,
                 coalesce(c.usd,0) usd FROM searches s LEFT JOIN calls c USING(search_id) WHERE s.engine='kuznitsa'
             ) s) SELECT mode,count(*) requests,sum(sent) sent,sum(cached) cached,sum(usd) usd FROM requests GROUP BY mode""")}
+    return bool(columns), groups
+
+
+def report(j,daily=1000):
+    from .cache import live_cached
+    rate=float(os.getenv("KZ_USD_RUB","100"))
+    columns, groups = live_cached(j, "cost", lambda: _groups(j))
     items=[]
     for mode in ("smart_uncached","smart_cached","fast"):
         g=groups.get(mode,{})

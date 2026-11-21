@@ -81,17 +81,56 @@ def header(v):
     return re.sub(r"[^a-zа-яё0-9]+"," ",re.sub(r"([a-z])([A-Z])",r"\1 \2",str(v)).lower()).strip()
 
 
+GOAL_TITLE = re.compile(r"достижени[еяй] цел(?:и|ей)|goal (?:achievements?|completions?)", re.I)
+GOAL_DATES = {"дата", "день", "дата визита", "дата достижения", "дата достижения цели", "дата визита по дням", "дата по дням",
+              "период", "date", "day", "ym s date"}
+GOAL_STAGES = {"cart": r"корзин|\bcart\b", "order": r"заказ|покупк|покупок|purchase|\border",
+               "lead": r"заяв|запрос кп|\blead|обратн\w* звон"}
+
+
+@lru_cache(512)
+def goal_stage(name):
+    text = header(name)
+    if "%" in str(name) or re.search(r"конверси|целевые визиты|доход|ценност|conversion|rate|revenue", text):
+        return None
+    return next((stage for stage, pattern in GOAL_STAGES.items() if re.search(pattern, text)), None)
+
+
+def goal_columns(keys, title):
+    if not any(header(k) in GOAL_DATES for k in keys):
+        return {}
+    named = bool(GOAL_TITLE.search(title))
+    columns = {}
+    for key in keys:
+        text = header(key)
+        if text in GOAL_DATES:
+            columns[key] = "ts"
+        elif text in {"цель", "название цели", "наименование цели", "goal", "goal name"}:
+            columns[key] = "goal_name"
+        elif text in {"достижения", "количество достижений", "достижения цели", "достижение цели", "достижения целей", "число достижений", "goal completions"}:
+            columns[key] = "achievements"
+        elif named or GOAL_TITLE.search(text):
+            stage = goal_stage(key)
+            if stage:
+                columns[key] = stage
+    fields = set(columns.values())
+    if "ts" in fields and (fields.intersection(GOAL_STAGES) or {"goal_name", "achievements"} <= fields):
+        return columns
+    return {}
+
+
 def table_rows(rows,aliases,metadata=None):
     sample=list(islice(rows,80))
     if not sample:
         return
+    goal_title = next((str(cell) for row in sample for cell in row if GOAL_TITLE.search(str(cell))), "")
     def score(row):
-        return sum(header(v) in aliases or str(v).startswith("ym:") for v in row)
+        return sum(header(v) in aliases or str(v).startswith("ym:") for v in row) + len(goal_columns(row, goal_title))
     index=max(range(len(sample)),key=lambda i:score(sample[i]))
     if metadata is not None:
         for row in sample[:index]:
             line=" ".join(str(v or "") for v in row)
-            if re.search(r"поисковые фразы|поиск по сайту|search phrases|site search",line,re.I):
+            if GOAL_TITLE.search(line) or re.search(r"поисковые фразы|поиск по сайту|search phrases|site search",line,re.I):
                 metadata["report_title"]=line.strip()
             if re.search(r"период|period|date range",line,re.I):
                 dates=re.findall(r"\b(?:\d{4}-\d\d-\d\d|\d\d\.\d\d\.\d{4})\b",line)
@@ -147,7 +186,7 @@ def records(path,aliases,metadata=None):
             except csv.Error:
                 def header_score(delimiter):
                     rows=csv.reader(sample.splitlines(),delimiter=delimiter)
-                    return max((sum(header(c) in aliases or c.startswith("ym:") for c in r) for r in rows),default=0)
+                    return max((sum(header(c) in aliases or c.startswith("ym:") for c in r) + len(goal_columns(r, sample[:8192])) for r in rows),default=0)
                 delim="\t" if ext==".tsv" else max((";",",","\t"),key=header_score)
             yield from table_rows(iter(csv.reader(f,delimiter=delim)),aliases,metadata)
 
@@ -181,6 +220,10 @@ def sniff(path):
     if {"event_name","event_params","user_pseudo_id"}<=r.keys():
         return dict(kind="ga4_events",confidence=1.,columns={k:v for k,v in GA4.items() if k in r},
                     reason="События GA4 с параметрами BigQuery и идентификатором пользователя")
+    goals = goal_columns(r, metadata.get("report_title", ""))
+    if goals and not fields.intersection({"q", "session_id", "order_id", "search_id", "client_id"}):
+        return dict(kind="metrika_goals", confidence=.99, columns=goals,
+                    reason="Дата и количество достижений целей Метрики")
     if any(k.startswith("ym:pv:") for k in columns) and fields & {"hit_id","search_url"}:
         kind,confidence,reason="metrika_hits",1., "Поля хита Logs API"
     elif "ym:s:visitID" in columns:
@@ -215,7 +258,7 @@ def search_phrase(url,params):
 
 
 def ordered_files(files):
-    order={"metrika_visits":0,"search_log":1,"metrika_hits":2,"ga4_events":2,"metrika_report":3,"metrika_external_phrases":4,"crm_leads":5}
+    order={"metrika_visits":0,"search_log":1,"metrika_hits":2,"ga4_events":2,"metrika_report":3,"metrika_external_phrases":4,"crm_leads":5,"metrika_goals":6}
     return sorted(files,key=lambda f:order.get(sniff(f)["kind"],1))
 
 
@@ -375,6 +418,37 @@ def total_row(q):
     return bool(re.fullmatch(r"(итого|всего|итоги|total|totals)( и средние| по отч[её]ту)?",q.casefold()))
 
 
+def collect_goal_row(raw, columns, days):
+    row = {field: raw.get(col) for col, field in columns.items()}
+    if len(row) != len(columns):
+        raise ValueError("Несколько колонок для одной цели")
+    day_value = str(row.get("ts") or "").strip()
+    if total_row(day_value):
+        raise ValueError("Итоговая строка отчёта")
+    if not day_value:
+        raise ValueError("Нет даты достижения цели")
+    try:
+        ts = timestamp(day_value, 0)
+        day = datetime.fromtimestamp(ts, MSK).date().isoformat()
+    except (ValueError, OverflowError, OSError) as exc:
+        raise ValueError("Некорректная дата достижения цели") from exc
+    if "goal_name" in row:
+        stage = goal_stage(row["goal_name"])
+        values = {stage: row.get("achievements")} if stage else {}
+    else:
+        values = {stage: row[stage] for stage in GOAL_STAGES if stage in row}
+    try:
+        counts = {k: amount(v) for k,v in values.items() if v not in (None, "", "—", "-")}
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Некорректное число достижений") from exc
+    if not counts:
+        raise ValueError("Нет числовых достижений известных целей")
+    if days.get(day, {}).keys() & counts.keys():
+        raise ValueError("Повтор цели за ту же дату")
+    days.setdefault(day, {}).update(counts)
+    return ts
+
+
 def offer_resolver(catalog):
     external={}
     for offer in catalog.offers_by_id.values():
@@ -434,7 +508,8 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
     hint=sniff(path)
     file_kind=hint["kind"]
     external_counts=Counter()
-    if file_kind=="metrika_external_phrases":
+    goals_by_day = {}
+    if file_kind in {"metrika_external_phrases", "metrika_goals"}:
         summary_only=True
     if raw:
         files=ordered_files(f for f in path.iterdir() if f.is_file() and f.suffix.lower() in {".tsv",".jsonl",".csv",".xlsx"})
@@ -594,6 +669,17 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                 if not isinstance(r,dict):
                     reasons["Запись не является объектом"]+=1
                     stats["skipped"]+=1
+                    continue
+                if file_kind=="metrika_goals":
+                    columns.update(hint["columns"])
+                    known.update(columns)
+                    unknown.update(r.keys() - columns.keys())
+                    try:
+                        ts = collect_goal_row(r, columns, goals_by_day)
+                        track(ts,None,0,0)
+                    except ValueError as exc:
+                        stats["skipped"]+=1
+                        reasons[str(exc)]+=1
                     continue
                 if "_ga_error" in r:
                     reasons["Повреждены параметры GA4 или отсутствует поисковая фраза"]+=1
@@ -1011,6 +1097,12 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                 report["availability"]["zero_rate"]="по связанным поисковым хитам"
             if "ym:s:purchaseRevenue" in known and "ym:s:purchaseCurrency" not in known:
                 report["missing"].append("Валюта сумм визита не указана, при импорте приняты рубли.")
+        if file_kind=="metrika_goals":
+            report.update(source_type="Метрика · достижения целей", goals_by_day=goals_by_day,
+                          report_metrics={k:sum(v[k] for v in goals_by_day.values() if k in v)
+                                          for k in GOAL_STAGES if any(k in v for v in goals_by_day.values())},
+                          availability={"funnel":"Достижения целей по дням"}, missing=[
+                              "Дневные суммы не содержат фраз, идентификаторов заказов и связи с поисковой сессией."])
         if file_kind=="ga4_events":
             report.update(source_type="GA4 · события BigQuery",columns=hint["columns"],recognized=sorted(hint["columns"]),ignored=[])
             report["missing"].append("Суммы покупок показаны в рублях при валюте RUB. Исходная сумма, валюта и позиции сохранены в событии.")
@@ -1020,12 +1112,13 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                 dict(q=q,visits=n) for q,n in external_counts.most_common(50)])
         db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:import-report:"+path.name,dump(report),time()))
         previous=db.execute("SELECT value FROM kv WHERE key='settings:history_source'").fetchone()
-        if imported and (stats["events"] or stats["searches"] or new_members or not previous or previous[0]!="import"):
+        switch = not previous or previous[0]!="import"
+        goals_only = file_kind=="metrika_goals" and goals_by_day and switch
+        if goals_only or imported and (stats["events"] or stats["searches"] or new_members or switch):
             db.execute("INSERT OR REPLACE INTO kv VALUES ('settings:history_source','import',?)",(time(),))
             db.execute("DELETE FROM analytics_reports")
             db.execute("UPDATE analytics_revision SET revision=revision+1")
             db.execute("INSERT OR REPLACE INTO kv VALUES ('settings:active_replay','',?)",(time(),))
-    with j.transaction():
         for row in j.rows("SELECT file,count(search_id) linked,count(*)-count(search_id) unlinked FROM analytics_crm_leads GROUP BY file"):
             saved=j.rows("SELECT value FROM kv WHERE key=?",("settings:import-report:"+row["file"],))
             if saved:
@@ -1033,7 +1126,10 @@ def ingest(engine,filename,mapping=None,*,visits_with_hits=False,summary_only=Fa
                 if "crm" in prior and prior["crm"]["linked"]!=row["linked"]:
                     prior["crm"].update(linked=row["linked"],unlinked=row["unlinked"])
                     j.db.execute("UPDATE kv SET value=? WHERE key=?",(dump(prior),"settings:import-report:"+row["file"]))
-        reports=[json.loads(r["value"]) for r in j.rows("SELECT value FROM kv WHERE key LIKE 'settings:import-report:%' ORDER BY updated")]
+        reports=[json.loads(r["value"]) for r in j.rows("SELECT value FROM kv WHERE key GLOB 'settings:import-report:*' ORDER BY updated,key")]
+        from kuznitsa.analytics.goals import reconcile
+        reconcile(j, reports)
+        report = next(r for r in reports if r["file"] == path.name)
         dest=Path(j.path).parent/"history_report.json"
         with NamedTemporaryFile("w",dir=dest.parent,delete=False) as out:
             json.dump({"files":reports},out,ensure_ascii=False,indent=2)

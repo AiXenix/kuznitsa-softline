@@ -75,6 +75,10 @@ def foreign_shortlist(items):
         if not evidence.get("examples") and not (item["type"]=="renewal_campaign" and evidence.get("licenses")):
             continue
         payload=action["payload_json"]
+        if item["type"] == "fix_card" and item.get("status", "new") == "new" and not evidence.get("shown_defects"):
+            continue
+        if item["type"] == "rising_demand" and item.get("status", "new") == "new" and evidence.get("unresolved_sessions", 0) < 2:
+            continue
         if item["type"]=="add_product":
             key=("supply",normalize(payload["product"]))
             if evidence["sessions_30d"]<2 or not any(evidence.get("checks",{}).values()):
@@ -137,7 +141,8 @@ def discover(e):
             return
         samples=Counter(r["q"] for r in g)
         probes={}
-        for q,_ in samples.most_common(5):
+        common = sorted(samples, key=lambda q: (-samples[q], q))[:5] if imported else [q for q,_ in samples.most_common(5)]
+        for q in common:
             response=probe(q)
             probes[q]=dict(search_id=response["search_id"],top5=[c["card_id"] for c in products(response)[:5]],
                            repaired=bool(response["query"].get("corrections")))
@@ -170,20 +175,43 @@ def discover(e):
             targets=set(action["payload_json"].get("card_ids",[])) or e.catalog.by["category"].get(action["payload_json"].get("category"),set())
             unresolved=[q for q,v in probes.items() if not targets.intersection(v["top5"])]
             shown={}
-            if kind=="fix_card" and action["payload_json"]["field"]=="registry":
-                # Поиск может подобрать семейство по БЗ при незаполненном поле конкретного SKU.
+            field = action["payload_json"].get("field")
+            if kind=="fix_card" and (field=="registry" or imported):
+                # Связываем конкретную дефектную карточку с проверенной выдачей.
                 for q in probes:
                     matches=[]
                     for card in products(probe(q))[:5]:
                         sku=(card.get("offer") or {}).get("offer_id")
                         offer=e.catalog.offers_by_id.get(sku)
-                        if card["card_id"] in targets and offer and offer.registry is None:
+                        if card["card_id"] not in targets or not offer:
+                            continue
+                        if field != "registry" or offer.registry is None:
                             matches.append(dict(card_id=card["card_id"],offer_id=sku))
                     if matches:
                         shown[q]=matches
+            if imported and kind == "fix_card":
+                if not shown:
+                    return
+                action["payload_json"]["card_ids"] = sorted({c["card_id"] for hits in shown.values() for c in hits})
+                confirmed = set(action["payload_json"]["card_ids"])
+                extra = dict(extra or {}, impressions=sum(c["impressions"] for c in gaps["card_defects"]
+                             if c["card_id"] in confirmed) if gaps["impressions_available"] else None)
+                g = [r for r in g if r["q"] in shown]
+                samples = Counter(r["q"] for r in g)
+                probes = {q: probes[q] for q in shown}
+                unresolved = []
             if not unresolved and not shown:
                 return
             extra=dict(extra or {},unresolved_queries=unresolved)
+            if imported and kind == "rising_demand":
+                affected = [r for r in g if r["q"] in unresolved]
+                extra["unresolved_sessions"] = len({r["session_id"] for r in affected})
+                if extra["unresolved_sessions"] < 2:
+                    return
+                extra["category_searches"] = len(g)
+                g = affected
+                samples = Counter(r["q"] for r in g)
+                probes = {q: probes[q] for q in unresolved}
             if shown:
                 extra["shown_defects"]=shown
         if kind=="add_product":
@@ -266,7 +294,13 @@ def discover(e):
             evidence_text=item["summary"]
         if evidence.get("shown_defects"):
             shown_ids={c["card_id"] for cards in evidence["shown_defects"].values() for c in cards}
-            evidence_text+=f" Карточек в первой пятёрке с незаполненным признаком реестра у показанного SKU — {len(shown_ids)}."
+            feature = {"registry":"признак реестра", "platforms":"совместимость с ОС",
+                       "qty_range":"диапазон лицензирования"}[action["payload_json"]["field"]]
+            evidence_text+=f" В первой пятёрке {len(shown_ids)} карточек с дефектом поля «{feature}»."
+        if kind=="rising_demand":
+            growth = f"{extra['growth_pct']:g}".replace(".", ",")
+            searches = extra.get("category_searches", len(g))
+            evidence_text+=f" Спрос по направлению вырос с {extra['previous_searches']} до {searches} поисков за 30 дней (+{growth} %)."
         if kind=="merch_rule":
             evidence_text+=f" Сессий с выбором этой карточки · {extra.get('followup_click_sessions',extra.get('click_sessions',0))}, с заказом · {extra.get('ordered_sessions',0)}."
         if kind=="add_synonym":
@@ -335,6 +369,8 @@ def discover(e):
         cards=[x for x in gaps["card_defects"] if x["category"]==cat]
         for field,pattern,label in [("platforms","астр|linux|ред ос","совместимость с ОС"),("registry","реестр|ндс|44 фз","данные о реестре"),
                                     ("qty_range",r"\d+ (пк|комп|устройств)","диапазоны лицензирования")]:
+            if imported and field == "platforms":
+                pattern = r"\b(?:для|под|на|совместим\w* с)\s+(?:астр|astra|linux|линукс|ред ос|red os)"
             affected=[r for r in g if r["zero"] and re.search(pattern,r["q"].lower())]
             defects=[c for c in cards if field in c["fields"]]
             if field=="qty_range" and affected:
@@ -344,7 +380,7 @@ def discover(e):
             if len(affected)>=5 and defects:
                 add("fix_card",(cat,field),f"Дополнить {label} в категории «{e.names['category'].get(cat,cat)}»",affected,
                     dict(kind="ticket",label="Поставить задачу контент-менеджеру",payload_json=dict(field=field,card_ids=[c["card_id"] for c in defects])),
-                    dict(impressions=sum(c["impressions"] for c in defects)))
+                    dict(impressions=sum(c["impressions"] for c in defects) if gaps.get("impressions_available",True) else None))
     for r in j.rows("""SELECT s.q_raw q,e.card_id,count(distinct s.session_id) n,avg(e.position) pos,count(distinct case when exists(select 1 from events o where o.search_id=s.search_id and o.type='order' and o.card_id=e.card_id) then s.session_id end) ordered FROM events e JOIN active_history s USING(search_id)
         WHERE e.type='click' AND s.ts>? AND e.position>4 AND s.source IN ('ui','history') GROUP BY 1,2 HAVING n>=4 ORDER BY ordered DESC,n DESC,q,e.card_id""",(end-30*86400,)):
         if r["n"]<.20*len({hit["session_id"] for hit in by_q[r["q"]] if hit["clicks"]}):
@@ -490,6 +526,15 @@ def listing(j,ident=None):
         if (not ident and row["status"]=="new" and item["type"]=="add_synonym" and
                 not item.get("evidence",{}).get("target_card_ids")):
             continue
+        if (item.get("dataset") == "import" and item["type"] == "rising_demand"
+                and "unresolved_sessions" not in item["evidence"]):
+            # В старом снимке доступны только конкретные поиски-примеры.
+            evidence = item["evidence"]
+            ids = [evidence.get("search_ids", {}).get(q) for q in evidence.get("unresolved_queries", [])]
+            placeholders = ",".join("?" for _ in ids)
+            evidence["unresolved_sessions"] = j.rows(
+                f"SELECT count(DISTINCT session_id) n FROM active_history WHERE search_id IN ({placeholders})", ids
+            )[0]["n"] if ids else 0
         if "evidence_text" not in item:
             e=item.get("evidence",{})
             if item["type"]=="renewal_campaign":
