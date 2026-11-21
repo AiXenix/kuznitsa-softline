@@ -3666,7 +3666,7 @@
   intent: vendor
   surface: search
   contract: refine
-  pending: true
+  pending: false
   examples: [каспер для хоума, касперский для домика, антивирус маме на ноут]
   demo: {q: каспер для хоума, profile: guest}
   detection: После распознавания вендора остаётся жаргонное обозначение аудитории.
@@ -3682,7 +3682,7 @@
   intent: out_of_catalog
   surface: search
   contract: not_sold
-  pending: true
+  pending: false
   examples: [касперский для дома, антивирус для дома на 3 устройства, домашняя лицензия касперского]
   demo: {q: касперский для дома, profile: guest}
   detection: Понятны вендор и домашнее назначение, но подходящей линейки в продаже нет.

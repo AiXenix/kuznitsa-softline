@@ -17,12 +17,12 @@ EXPECTED=dict(product="products",vendor="products",category="products",sku="prod
               question="answer",broad="clarify",out_of_catalog="not_in_catalog",off_topic="categories answer",account="my_licenses",service="services lead",promo="promo products")
 
 
-def contract_evidence(path, result, mode):
+def contract_evidence(path, result, mode, expected_audience="home"):
     understood = result["understood"]
     if path == "refine":
         refined = understood.get("refined") or {}
-        chip = any(c.get("removable") and c.get("key") == "audience" for c in understood["chips"])
-        if (refined.get("audience") == "home" and refined.get("source") == ("dict" if mode == "fast" else "jev")
+        chip = any(c.get("removable") and c.get("key") == "refined" for c in understood["chips"])
+        if (refined.get("audience") == expected_audience and refined.get("source") == ("dict" if mode == "fast" else "jev")
                 and chip and (mode == "fast" or (refined.get("probability", 0) >= .55
                 and any(s["step"] == "refine" for s in result["trace"])))):
             return {"refined": refined}
