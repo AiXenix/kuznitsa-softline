@@ -77,3 +77,52 @@
   - строки 46–60 (15): «система, а не вендор» (по 3 пробы на каждую из 5 систем: 1С, PostgreSQL, Exchange, MS SQL, Astra Linux — бэкап, мониторинг, защита);
   - строки 61–80 (20): смешанные запросы (комбинации аудитория + платформа + вендор/линейка + жаргон + система + `not_sold`, а также контрольный запрос «лицензия на сервер 1с», где `onec` — именно вендор).
 - **Конвенция `expect` при `not_sold: true`:** поле `line` (если у того же вендора есть ближайшая продаваемая бизнес-линейка) или `category` (если весь вендор ушёл из РФ) обозначает целевую ближайшую продаваемую альтернативу для блока `analogs` (29.3). Все идентификаторы `vendor`, `line` и `category` взяты строго из базы знаний.
+
+---
+
+## 5. Ход 7: обновление `probes-audience-r6.jsonl` под возвращённые домашние линейки
+
+В ходе 7 поток A вернул в продажу домашние антивирусные линейки:
+- `kaspersky_standard_home` (Kaspersky Standard / Plus / Premium);
+- `drweb_security_space` (Dr.Web Security Space);
+- `pro32_total_security` (PRO32 Total Security).
+
+> Примечание: рекомендация пункта `A2.7` выше о переводе этих трёх линеек в `catalog: no` утратила силу — в ходе 7 они возвращены в продажу (`catalog: yes`), а для организаций выдаются с пометкой EULA и бизнес-заменами (`kaspersky_ksos`, `drweb_small_business`, `pro32_endpoint_security`).
+
+Состав запросов и общее число строк в `design/proposals/neon4/probes-audience-r6.jsonl` не менялись (**ровно 80 строк**). Исправлены **14 строк**, ранее ожидавших `not_sold: true` для этих линеек:
+- **12 строк** (профиль по умолчанию `guest` / домашняя аудитория) — снят `not_sold: true`, ожидается домашняя линейка (`kaspersky_standard_home`, `drweb_security_space`, `pro32_total_security`) или категория `home_antivirus` (для запросов без указания вендора);
+- **2 строки** (строки 32 и 34 — запросы с явным названием домашней линейки без семейного контекста) — задан профиль организации `"profile": "smb_trade"`, ожидается домашняя линейка с пометкой EULA и бизнес-заменой (`"eula_note": true`).
+
+### Список 14 изменённых строк
+
+| № | Запрос (`q`) | Профиль | Было (`expect`) | Стало (`expect`) |
+|---|---|---|---|---|
+| 1 | `антивирус для дома на 3 устройства` | `guest` | `audience: home`, `category: endpoint_security`, `not_sold: true` | `audience: home`, `category: home_antivirus` |
+| 21 | `каспер для хоума` | `guest` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home` |
+| 22 | `касперский для домика` | `guest` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home` |
+| 23 | `антивирус маме на ноут` | `guest` | `audience: home`, `platform: windows`, `category: endpoint_security`, `not_sold: true` | `audience: home`, `platform: windows`, `category: home_antivirus` |
+| 24 | `доктор веб бабушке на компьютер` | `guest` | `audience: home`, `platform: windows`, `vendor: drweb`, `line: drweb_small_business`, `not_sold: true` | `audience: home`, `platform: windows`, `vendor: drweb`, `line: drweb_security_space` |
+| 25 | `антивирус ребёнку на андроид` | `guest` | `audience: home`, `platform: android`, `category: endpoint_security`, `not_sold: true` | `audience: home`, `platform: android`, `category: home_antivirus` |
+| 27 | `антивирус папе на макбук` | `guest` | `audience: home`, `platform: macos`, `category: endpoint_security`, `not_sold: true` | `audience: home`, `platform: macos`, `category: home_antivirus` |
+| 31 | `касперский для дома` | `guest` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home` |
+| 32 | `kaspersky standard на 3 устройства` | `smb_trade` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home`, `eula_note: true` |
+| 33 | `kaspersky plus для семьи` | `guest` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home` |
+| 34 | `dr web security space на 2 пк` | `smb_trade` | `audience: home`, `vendor: drweb`, `line: drweb_small_business`, `not_sold: true` | `audience: home`, `vendor: drweb`, `line: drweb_security_space`, `eula_note: true` |
+| 35 | `доктор веб для дома на год` | `guest` | `audience: home`, `vendor: drweb`, `line: drweb_small_business`, `not_sold: true` | `audience: home`, `vendor: drweb`, `line: drweb_security_space` |
+| 36 | `pro32 total security домашний` | `guest` | `audience: home`, `vendor: pro32`, `line: pro32_endpoint_security`, `not_sold: true` | `audience: home`, `vendor: pro32`, `line: pro32_total_security` |
+| 65 | `антивирус на 3 компа домой от касперского` | `guest` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_ksos`, `not_sold: true` | `audience: home`, `vendor: kaspersky`, `line: kaspersky_standard_home` |
+
+### Сверка оставшихся `not_sold: true` (11 строк) с `kb/families/*.yaml`
+
+Во всех 11 оставшихся строках с `not_sold: true` целевые линейки имеют `catalog: no` в базе знаний:
+- строка 26 (`офис себе на домашний ноут`) — домашние офисные редакции (`myoffice_home`, `r7_office_home`, `microsoft_365_personal`) в `kb/families/home_r3.yaml` имеют `catalog: no`;
+- строка 37 (`eset nod32 для дома`) — `eset_home_security` (`catalog: no` в `kb/families/home_r3.yaml`);
+- строка 38 (`eset protect на 50 рабочих мест`) — `eset_protect` (`catalog: no` в `kb/families/security.yaml`);
+- строка 39 (`мойофис стандартный домашняя версия`) — `myoffice_home` (`catalog: no` в `kb/families/home_r3.yaml`);
+- строка 40 (`р7-офис домашний на 1 пк`) — `r7_office_home` (`catalog: no` в `kb/families/home_r3.yaml`);
+- строка 41 (`кибер бэкап персональный для домашнего пк`) — `cyber_backup_personal` (`catalog: no` в `kb/families/home_r3.yaml`);
+- строка 42 (`microsoft 365 персональный на год`) — `microsoft_365_personal` (`catalog: no` в `kb/families/home_r3.yaml`);
+- строка 43 (`microsoft 365 для бизнеса на 30 человек`) — `microsoft_365` (`catalog: no` в `kb/families/office.yaml`);
+- строка 44 (`microsoft exchange server лицензия`) — `ms_exchange` (`catalog: no` в `kb/families/office.yaml`);
+- строка 45 (`microsoft sql server standard купить`) — `ms_sql_server` (`catalog: no` в `kb/families/databases.yaml`);
+- строка 75 (`офис 365 семейный на макбук`) — `microsoft_365_personal` (`catalog: no` в `kb/families/home_r3.yaml`).
