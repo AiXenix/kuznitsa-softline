@@ -12,7 +12,6 @@ from pydantic_core import to_json
 from kuznitsa.analytics.store import result_cards
 from kuznitsa.config import WEIGHTS
 from kuznitsa.rank.business import ranked
-from kuznitsa.text import sku_key
 from kuznitsa.quote.parse import FileError, LIMIT, parse
 from kuznitsa.quote.export import SpecificationRequest, make_export
 
@@ -40,11 +39,20 @@ def search_file(engine,data,name,profile_id,mode,session_id):
         if p["sku"]:
             # A structured article is an explicit choice, even when its spelling
             # inside the product name was normalized as ordinary search text.
-            exact=engine.catalog.skus.get(sku_key(p["sku"]))
-            if exact is None or exact.sku.casefold()!=p["sku"].casefold():
-                if supplier_codes is None:
-                    supplier_codes={o.sku.casefold():o for o in engine.catalog.offers_by_id.values() if o.sku}
-                exact=supplier_codes.get(p["sku"].casefold())
+            if supplier_codes is None:
+                from kuznitsa.ingest.source_index import codes
+                from collections import defaultdict
+                supplier_codes=defaultdict(list)
+                for offer in engine.catalog.offers_by_id.values():
+                    for key in {str(v).casefold() for v in (offer.sku,*codes(offer)) if v}:
+                        supplier_codes[key].append(offer)
+            candidates=supplier_codes.get(p["sku"].casefold(),[])
+            exact=None
+            if len({o.family_id or o.offer_id for o in candidates})==1:
+                def preference(o):
+                    fits=(o.lic.qty_min or 1)<=p["qty"]<=(o.lic.qty_max or p["qty"])
+                    return (not fits,not o.available,o.price is None,o.price or 0,o.offer_id)
+                exact=min(candidates,key=preference)
             if exact:
                 group=engine.catalog.cards[exact.card_id]
                 outside=(exact.lic.qty_min or 1)>p["qty"] or (exact.lic.qty_max or p["qty"])<p["qty"]
@@ -64,6 +72,7 @@ def search_file(engine,data,name,profile_id,mode,session_id):
             snapshot=engine.catalog.offers_by_id.get(card["offer"]["offer_id"])
             if snapshot is not None:
                 card["offer"]["registry"]=snapshot.registry
+                card["offer"]["source_id"]=getattr(snapshot,"source_id",None) or snapshot.attrs.get("source_id")
         lines.append({**line,"n":i,"qty":p["qty"],"unit":p["unit"]})
     response["blocks"]=[dict(type="spec",title="Подбор по спецификации",lines=lines,
                              unresolved=[l["n"] for l in lines if not l["card"]],

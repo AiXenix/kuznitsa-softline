@@ -1,0 +1,68 @@
+--- a/kuznitsa/schema.py
++++ b/kuznitsa/schema.py
+@@ -33,7 +33,14 @@
+     category_path: list[str] = []
+     category_id: str | None = None
+     description: str = ""
+-    attrs: dict[str,str] = {}
++    source_id: str | None = None
++    source_ids: list[str] = Field(default_factory=list)
++    in_stock: bool | None = None
++    delivery_days: int | None = None
++    added_at: str | None = None
++    promo: bool | None = None
++    domestic: bool | None = None
++    attrs: dict[str,str | list[str] | dict[str,object]] = Field(default_factory=dict)
+     kind: Literal["license","service","course","hardware","other"] = "license"
+     lic: License = Field(default_factory=License)
+     platforms: list[str] = []
+--- a/kuznitsa/index/store.py
++++ b/kuznitsa/index/store.py
+@@ -3,6 +3,7 @@
+ from dataclasses import dataclass
+ import numpy as np
+ from kuznitsa.schema import Offer
++from kuznitsa.ingest.source_index import install,search_terms
+ from kuznitsa.plans.procurement import offer_codes
+ from kuznitsa.text import sku_key,normalize
+ from .cache import lexical
+@@ -46,6 +47,7 @@
+                     base=re.sub(r"[-/](?:ru|rus|russia|en|eu)$","",o.sku,flags=re.I)
+                     if base!=o.sku:
+                         regional[sku_key(base)].append(o)
++        install(self)
+         self.sorted_codes=sorted(self.skus)
+         self.regional={k:rows[0] for k,rows in regional.items() if len(rows)==1}
+         self.cards = {}
+@@ -65,7 +67,8 @@
+                 self.by[key][getattr(card,key)].add(ident)
+             docs.append(dict(title=title,aliases=" ".join(map(str,f.get("aliases",[]))),vendor=o.vendor or "",
+                              category=kb.rows["categories"].get(o.category_id,{}).get("title",""),
+-                             keywords=" ".join(map(str,f.get("use_cases",[])+f.get("roles",[])+f.get("formats",[]))),
++                             keywords=" ".join([*map(str,f.get("use_cases",[])+f.get("roles",[])+f.get("formats",[])),
++                                                *dict.fromkeys(term for variant in offers for term in search_terms(variant))]),
+                              summary=o.description,names=" ".join(dict.fromkeys(w for x in offers for w in x.name.split()))))
+         for ids in self.by["category"].values():
+             choices=[o for ident in sorted(ids) for o in self.cards[ident].offers]
+--- a/kuznitsa/rank/variants.py
++++ b/kuznitsa/rank/variants.py
+@@ -95,7 +95,7 @@
+ 
+ def public_offer(o):
+     lic=o.lic
+-    return dict(offer_id=o.offer_id,sku=o.sku,name=o.name,price=o.price,price_on_request=o.price_on_request,
++    return dict(offer_id=o.offer_id,sku=o.sku,source_id=o.source_id,source_ids=o.source_ids,name=o.name,price=o.price,price_on_request=o.price_on_request,
+                 delivery=o.delivery,vat=o.vat,available=o.available,version=o.version,action=lic.action,model=lic.model,
+                 term_months=lic.term_months,metric=lic.metric,qty_min=lic.qty_min,qty_max=lic.qty_max,pack=lic.pack,audience=lic.audience)
+ 
+--- a/kuznitsa/engine.py
++++ b/kuznitsa/engine.py
+@@ -245,7 +245,7 @@
+                 exact_offers.setdefault(offer.card_id,offer)
+             sku_prefix=bool(exact_offers)
+         sku=next(iter(exact_offers.values()),None)
+-        t.add("sku_lookup","Точный артикул",", ".join(o.sku for o in exact_offers.values()) or "Совпадений по артикулу нет")
++        t.add("sku_lookup","Точный артикул",", ".join(o.sku or o.source_id or o.name for o in exact_offers.values()) or "Совпадений по артикулу нет")
+         from .understand.quantities import spoken_numbers
+         norm=spoken_numbers(norm) if not sku else norm
+         words,changes= (tokens(norm),[]) if sku or req.verbatim else repair(norm,lex)

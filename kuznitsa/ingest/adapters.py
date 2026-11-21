@@ -72,23 +72,82 @@ def csv_rows(stream, delimiter):
 
 def spreadsheet(rows, explicit):
     prefix=list(islice(rows,50))
+    explicit_headers=set(explicit.values())
+    def recognized(h):
+        return field_for(h) or (h if h in explicit_headers else None)
     def score(row):
-        return sum(field_for(str(h)) is not None or h in explicit.values() for h in (row or ()) if h is not None)
+        return len({key for h in (row or ()) if h is not None and (key:=recognized(str(h).strip()))})
     if not prefix:
         return
     idx=max(range(len(prefix)),key=lambda i:score(prefix[i]))
-    header=[str(h).strip() if h is not None else "" for h in (prefix[idx] or ())]
-    for num,row in enumerate(chain(prefix[idx+1:],rows),idx+2):
+    unit_row=re.compile(r"руб[.]?|₽|шт[.]?|ед[.]?|usd|rub|eur|%|мес[.]?|дн[.]?",re.I)
+    def tier(line):
+        cells=[str(v).strip() for v in line or () if v is not None and str(v).strip()]
+        return cells and (all(unit_row.fullmatch(v) for v in cells) or
+                score(cells)>=2 and all(recognized(v) or unit_row.fullmatch(v) for v in cells))
+    start=idx+1
+    while start<min(idx+4,len(prefix)) and tier(prefix[start]):
+        start+=1
+    layers=[line for line in prefix[max(0,start-4):start] if line]
+    header=[]
+    for j in range(len(prefix[idx] or ())):
+        parts=list(dict.fromkeys(str(line[j]).strip() for line in layers if j<len(line) and line[j] not in ("",None)))
+        candidates=[" ".join(parts[-n:]) for n in (2,3) if len(parts)>=n]
+        candidates+=list(reversed(parts))
+        label=next((v for v in candidates if recognized(v)),None)
+        header.append(label or next((v for v in reversed(parts) if not unit_row.fullmatch(v)),""))
+    # Retain the leaf labels of unknown columns, even underneath a merged group.
+    for j,label in enumerate(header):
+        if header.count(label)>1:
+            leaf=(prefix[idx] or [])[j]
+            if leaf and str(leaf)!=label:
+                header[j]=str(leaf)
+    group=[]
+    for num,row in enumerate(chain(prefix[start:],rows),start+1):
         if row is None:
             yield num,None
         elif any(v is not None and v!="" for v in row):
-            yield num, (dict(zip(header,row)) if len(row)<=len(header) else None)
+            values=list(dict.fromkeys(str(v).strip() for v in row if v is not None and str(v).strip()))
+            first=values[0].casefold() if values else ""
+            if re.fullmatch(r"(?:итого|всего|grand total|total)(?: по .*)?[:.]?",first):
+                continue
+            if first in {"группа","раздел","подраздел","подгруппа","section","subsection"} and len(values)==2:
+                group=(group[:1] if first in {"подраздел","подгруппа","subsection"} else [])+[values[1]]
+                continue
+            if len(values)==1 and row.count(values[0])>1:
+                level=next(i for i,v in enumerate(row) if v not in (None,""))
+                group=group[:level]+[values[0]]
+                continue
+            if score(row)>=2 and sum(str(v).strip() in header for v in row if v is not None)>=2:
+                continue
+            data=dict(zip(header,row)) if len(row)<=len(header) else None
+            if group and data and not any(field_for(k)=="category_path" and v for k,v in data.items()):
+                data["category_path"]="/".join(group)
+            yield num,data
 
 
 def json_tables(obj, label):
+    from .variants import nested_records
     if isinstance(obj,list):
-        yield label, enumerate((r if isinstance(r,dict) else None for r in obj),1)
+        yield label,enumerate((variant for r in obj for variant in nested_records(r)),1)
     elif isinstance(obj,dict):
+        from .variants import flatten
+        wrappers={"products","cards","items","records","entries","results","edges","товары","карточки"}
+        def product_lists(node,prefix):
+            for key,value in node.items():
+                nested=prefix+"/"+key
+                if key.casefold() in wrappers and isinstance(value,list):
+                    yield nested,value
+                elif isinstance(value,dict):
+                    yield from product_lists(value,nested)
+        groups=list(product_lists(obj,label))
+        if groups:
+            for k,v in groups:
+                yield from json_tables(v,k)
+            return
+        if any(field_for(k) in ("name","sku","offer_id") for k in flatten(obj)):
+            yield label,enumerate(nested_records(obj),1)
+            return
         for k,v in obj.items():
             if isinstance(v,(list,dict)):
                 yield from json_tables(v,label+"/"+k)
@@ -118,7 +177,7 @@ def xlsx_rows(path, sheet):
         active=[area for area in active if area[2]>i]
 
 
-def tables(path, explicit):
+def tables(path, explicit, commerce=None):
     path=Path(path)
     ext=path.suffix.lower()
     if ext in (".csv",".tsv",".txt"):
@@ -148,14 +207,23 @@ def tables(path, explicit):
     elif ext==".json":
         yield from json_tables(json.loads(path.read_text(encoding=encoding(path))),str(path))
     elif ext in (".yml",".xml"):
+        from .variants import Commerce,is_commerce
+        if is_commerce(path):
+            yield str(path),(commerce or Commerce()).read(path)
+            return
         cats={}
+        rates={}
         def offers():
-            for _,e in etree.iterparse(str(path),events=("end",),tag=("category","offer"),resolve_entities=False,no_network=True):
-                if e.tag=="category" and e.getparent().tag=="categories":
+            for _,e in etree.iterparse(str(path),events=("end",),tag=("currency","category","offer"),resolve_entities=False,no_network=True):
+                if e.tag=="currency":
+                    rates[e.get("id")]=e.get("rate")
+                elif e.tag=="category" and e.getparent().tag=="categories":
                     cats[e.get("id")]=(e.text,e.get("parentId"))
                 elif e.tag=="offer":
                     row={c.tag:c.text for c in e if c.tag!="param"}
                     row.update(e.attrib)
+                    if row.get("currencyId") in rates:
+                        row["currency_rate"]=rates[row["currencyId"]]
                     row["sku"]=row.get("vendorCode") or row.get("id")
                     model=row.pop("model",None)
                     if not row.get("name"):

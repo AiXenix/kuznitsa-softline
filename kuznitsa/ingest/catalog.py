@@ -19,7 +19,7 @@ from .enrich import Enricher, number
 from .mapping import field_for, infer
 from .nameparse import Parser
 
-TITLES = dict(bad_row="Строка пропущена: проверьте формат данных", duplicate="Повтор предложения или артикула",
+TITLES = dict(bad_row="Строка пропущена: проверьте формат данных", inactive="Позиция снята с продажи", duplicate="Повтор предложения или артикула",
               no_price="Цена не заполнена", zero_price="Указана нулевая цена", request_price="Цена по запросу",
               invalid_price="Некорректная цена", no_description="Нет описания товара", no_vendor="Не указан производитель",
               no_category="Не указана категория", price_outlier="Цена отличается от медианы семейства более чем в 10 раз")
@@ -61,9 +61,16 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
         if len(item["examples"])<5:
             item["examples"].append(example)
 
+    merge_stats=dict(matched=Counter(),conflicts=Counter(),examples=[])
+    rates={}
+    from .variants import Commerce,is_commerce
+    commerce=Commerce()
+    commerce_files=[p for p in files if is_commerce(p)]
+    for path in commerce_files:
+        list(commerce.read(path,metadata_only=True))
     def scan(reference_pass):
         for path in files:
-            for label,rows in tables(path,explicit):
+            for label,rows in tables(path,explicit,commerce):
                 first=list(islice(rows,25))
                 sample=[row for _,row in first if row]
                 headers=list(dict.fromkeys(k for row in sample for k in row))
@@ -84,12 +91,27 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                     remember(h,key)
                 for num,row in chain(first,rows):
                     data={}
+                    extra={}
                     for h,v in (row or {}).items():
                         if h not in fields:
                             fields[h]=field_for(h)
                             remember(h,fields[h])
-                        if fields[h] and v is not None and v!="":
-                            data[fields[h]]=v
+                        if h in ("_product","_parent_id","_variant_identity"):
+                            data[h]=v
+                        elif v is None and row.get("offer_id") and fields[h] in ("source_id","in_stock","delivery_days","added_at","promo","domestic"):
+                            data[fields[h]]=None
+                        elif fields[h] and v is not None and v!="":
+                            key=fields[h]
+                            if key in ("sku","source_id","id","guid","store_id","supplier_sku") and key in data:
+                                data.setdefault("_aliases",[]).append(data[key])
+                            if key=="aliases" and key in data:
+                                from .source_fields import alias_list
+                                v=list(dict.fromkeys(alias_list(data[key])+alias_list(v)))
+                            data[key]=v
+                        elif not fields[h] and v not in (None,""):
+                            extra[h]=v
+                    if extra:
+                        data["_extra"]=extra
                     if ref:
                         used["reference_rows"]=used.get("reference_rows",0)+1
                         ident=data.get("id",data.get("category_id"))
@@ -97,6 +119,17 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                             used["references"]=used.get("references",0)+1
                             categories[str(ident)]=(data.get("name") or data.get("category_path"),str(data.get("parent","")))
                     else:
+                        if not data.get("offer_id"):
+                            units={}
+                            for key in ("price","cost"):
+                                if key in data:
+                                    header=used["columns"].get(key,"").casefold()
+                                    currency=str(data.get("currency") or "").upper()
+                                    units[key]="USD" if "usd" in header or "$" in header else currency
+                            if units:
+                                data["_field_currency"]=units
+                        if data.get("currency_rate") and data.get("currency"):
+                            rates[str(data["currency"]).upper()]=number(data["currency_rate"])
                         yield label,num,data
 
     for _ in scan(True):
@@ -106,30 +139,65 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     with TemporaryDirectory(dir=None if dry_run else out) as tmp:
         stage=Path(tmp)
         with (stage/"catalog.jsonl").open("w",encoding="utf8") as stream:
-            for label,num,row in scan(False):
+            from .join import merge
+            from .source_fields import decorate,wire_attrs
+            rows=scan(False)
+            if len(files)>1 or commerce_files or any(p.suffix.lower()==".xlsx" for p in files):
+                rows=merge(rows,merge_stats)
+            for label,num,row in rows:
                 counts["rows"]+=1
                 example=dict(file=label,row=num,name=str(row.get("name",""))[:220])
                 source=sources[label]
                 source["rows"]=source.get("rows",0)+1
+                if str(row.get("status","")).strip().casefold() in {"снято","снят с продажи","архив","discontinued","inactive"}:
+                    counts["rejected"]+=1
+                    issue("inactive",example)
+                    continue
                 converted=False
+                units=row.pop("_field_currency",{})
                 for key in ("price","cost"):
                     value=row.get(key)
-                    header=source["columns"].get(key,"")
-                    if value is not None and ("usd" in header.casefold() or "$" in header or
-                            str(row.get("currency","")).upper() in ("USD","840") or
-                            "$" in str(value) or "usd" in str(value).lower()):
-                        amount=number(str(value).replace("$","").upper().replace("USD",""))
-                        if amount is not None:
-                            row[key]=round(amount*cfg.usd_rub,2)
-                            converted=True
+                    currency=units.get(key,str(row.get("currency") or "").upper())
+                    if value is None:
+                        continue
+                    if "$" in str(value) or "usd" in str(value).casefold():
+                        currency="USD"
+                    if currency in ("","RUB","RUR","643"):
+                        continue
+                    usd=currency in ("USD","840")
+                    rate=(rates.get("USD") or cfg.usd_rub) if usd else rates.get(currency)
+                    amount=number(str(value).replace("$","").upper().replace("USD",""))
+                    if amount is not None:
+                        row[key]=round(amount*rate,2) if rate and rate>0 else None
+                        converted|=usd
                 try:
+                    native="offer_id" in row and isinstance(row.get("lic"),dict)
+                    extension={k:row.pop(k) for k in ("source_ids","source_id","in_stock","delivery_days","added_at","promo","domestic") if native and k in row}
+                    extra=row.pop("_extra",{})
+                    if native and extension.get("source_ids"):
+                        attrs=row.setdefault("attrs",{})
+                        attrs.setdefault("source_ids",json.dumps(extension["source_ids"],ensure_ascii=False))
+                        if extension.get("source_id"):
+                            attrs.setdefault("source_id",extension["source_id"])
+                    if not native:
+                        extension=decorate(row)
+                        if extra:
+                            row["attrs"]["extra"]=json.dumps(extra,ensure_ascii=False,default=str)
                     offer,evidence,pending=enricher.convert(row)
+                    if (row.get("source_id") or row.get("_tier") or row.get("_variant_identity")) and not native:
+                        from .enrich import stable
+                        identity=str(row.get("source_id") or offer.sku).casefold()
+                        if row.get("_variant_identity"):
+                            identity=row["_variant_identity"]
+                        if row.get("_tier"):
+                            identity+=f"|qty={row.get('qty_min','')}-{row.get('qty_max','')}"
+                        offer.offer_id=stable("o_",identity)
                 except (ValueError,TypeError,AttributeError,OverflowError) as exc:
                     counts["rejected"]+=1
                     issue("bad_row",{**example,"reason":str(exc)[:200]})
                     continue
                 sku=(offer.sku or "").casefold()
-                if offer.offer_id in seen or sku and sku in skus:
+                if offer.offer_id in seen or sku and sku in skus and not (row.get("source_id") or row.get("_tier") or row.get("_variant_identity")):
                     counts["duplicates"]+=1
                     issue("duplicate",example)
                     continue
@@ -166,7 +234,10 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                 source["offers"]=source.get("offers",0)+1
                 counts["usd_rows"]+=converted
                 counts["offers"]+=1
-                stream.write(offer.model_dump_json(exclude_none=True)+"\n")
+                record={**offer.model_dump(exclude_none=True),**extension}
+                if not native:
+                    record["attrs"]=wire_attrs(offer.attrs)
+                stream.write(json.dumps(record,ensure_ascii=False,separators=(",",":"))+"\n")
                 for key,val in [("vendor",offer.vendor_id),("family",offer.family_id),("edition",offer.edition),("category",offer.category_id)]:
                     recognized[key]+=bool(val and not val.startswith("auto_"))
                 recognized["licence"]+=any(k in evidence for k in License.model_fields)
@@ -221,13 +292,23 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
                         line=json.dumps(row,ensure_ascii=False,separators=(",",":"))+"\n"
                     dest.write(line)
             os.replace(stage/"resolved.jsonl",stage/"catalog.jsonl")
+        ai_report["coverage_gain_offers"]=sum(o["count"] for o in observations.values() if o["category"] not in parser.kb["categories"] and o["resolved"] in parser.kb["categories"])
+        # These three record types have different extension points in the KB schema.
+        for family in enricher.auto["families"].values():
+            # Decision-level probabilities and evidence are already in import_ai.jsonl.
+            family["confidence"]="low"
+            family.pop("classification_confidence",None)
+            family.pop("analog_suggestions",None)
+        for group,field in (("vendors","notes"),("categories","description")):
+            for item in enricher.auto[group].values():
+                item.setdefault(field,"Уверенность низкая. Автозапись из каталога поставщика требует проверки.")
         auto={g:list(items.values()) for g,items in enricher.auto.items()}
         notes=[]
         if signals["popular"]<counts["offers"]:
             notes.append("Для части товаров популярность нейтральна. Загрузите продажи, рейтинг, остатки или историю заказов.")
         if signals["margin"]<counts["offers"]:
             notes.append("Для части товаров маржа нейтральна. Загрузите маржу или закупочную цену.")
-        report=dict(currency=dict(usd_rub=cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
+        report=dict(merge=merge_stats,currency=dict(usd_rub=rates.get("USD") or cfg.usd_rub,converted_rows=counts["usd_rows"]),ai=ai_report,exchange_rates=rates,ts=datetime.now(timezone.utc).isoformat(),files=list(map(str,files)),
                     **{k:counts[k] for k in ("rows","offers","duplicates","rejected")},columns=columns,sources=sources,
                     recognized={k:recognized[k]/max(1,counts["offers"]) for k in ("vendor","family","edition","category","licence")},
                     auto={g:len(vals) for g,vals in auto.items()},issues=list(issues.values()),notes=notes,examples=examples,

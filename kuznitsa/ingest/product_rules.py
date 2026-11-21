@@ -18,7 +18,7 @@ def literal(text):
 
 
 def apply(offer):
-    text=" ".join([offer.name,offer.description,*offer.attrs.values()])
+    text=" ".join([offer.name,offer.description,*(str(v) for v in offer.attrs.values())])
     hits=literal(text)
     if not offer.platforms:
         offer.platforms=list(hits["platforms"])

@@ -54,7 +54,10 @@ def enum_value(k,v):
 
 def explicit_value(k,v):
     if k in PATTERNS:
-        return enum_value(k,str(v))
+        value=enum_value(k,str(v))
+        if k=="delivery" and value not in {key for key,_ in PATTERNS[k]}:
+            return None
+        return value
     if k=="vat":
         v=re.sub("ндс|vat","",str(v),flags=re.I)
     if k=="term_months":
@@ -83,6 +86,20 @@ def explicit_value(k,v):
     return str(v).strip()
 
 
+def attributes(attrs):
+    attrs=attrs or {}
+    if isinstance(attrs,str):
+        if attrs.lstrip().startswith(("{","[")):
+            attrs=json.loads(attrs)
+        else:
+            attrs=dict(re.split(r"\s*[:=]\s*",part,maxsplit=1) for part in attrs.split(";") if re.search("[:=]",part))
+    if isinstance(attrs,list):
+        attrs={item["name"]:item.get("value") for item in attrs if isinstance(item,dict) and item.get("name")}
+    if not isinstance(attrs,dict):
+        raise ValueError("Ожидались характеристики в виде объекта")
+    return attrs
+
+
 class Enricher:
     def __init__(self, parser, categories):
         self.parser=parser
@@ -95,16 +112,7 @@ class Enricher:
             for k,v in values.items():
                 if v is not None and v!="" and k:
                     evidence[k]=Evidence(v,str(v),source,1 if source=="column" else .99)
-        attrs=columns.get("attrs") or {}
-        if isinstance(attrs,str):
-            if attrs.lstrip().startswith(("{","[")):
-                attrs=json.loads(attrs)
-            else:
-                attrs=dict(re.split(r"\s*[:=]\s*",part,maxsplit=1) for part in attrs.split(";") if re.search("[:=]",part))
-        if isinstance(attrs,list):
-            attrs={item["name"]:item.get("value") for item in attrs if isinstance(item,dict) and item.get("name")}
-        if not isinstance(attrs,dict):
-            raise ValueError("Ожидались характеристики в виде объекта")
+        attrs=attributes(columns.get("attrs"))
         overlay({field_for(str(k)):v for k,v in attrs.items()},"attribute")
         overlay(columns.get("lic") or {},"column")
         overlay(columns,"column")
@@ -189,11 +197,11 @@ class Enricher:
         data.setdefault("popularity",next((n/(n+1) for n in signals if n is not None and n>=0),.5))
         cost=number(raw("cost"))
         data.setdefault("margin",max(0,min(1,1-cost/price)) if cost is not None and price else .5)
-        sku=str(raw("sku") or raw("id") or "").strip()
+        sku=str(raw("sku") or raw("id") or raw("source_id") or "").strip()
         ident=stable("o_",sku.casefold() or str(raw("offer_id") or json.dumps(columns,ensure_ascii=False,sort_keys=True,default=str)))
         offer=Offer(**data,offer_id=ident,name=name,sku=sku or None,vendor=vendor_name or None,vendor_id=vid,family_id=fid,
                     family_name=family_name,edition=edition,category_id=cid,category_path=path,lic=License(**lic),
-                    attrs={str(k):str(v) for k,v in attrs.items()},price=None if por else price,price_on_request=por)
+                    attrs={str(k):(json.dumps(v,ensure_ascii=False,default=str) if isinstance(v,(list,dict)) else str(v)) for k,v in attrs.items()},price=None if por else price,price_on_request=por)
         # Trace normalized values as returned, retaining the original supplier notation.
         for k in list(base):
             if k in License.model_fields:
