@@ -16,7 +16,16 @@ function alternatives(parent, options, ctx) {
   for (const o of options) card(d,o.card || o,ctx);
 }
 function collection(parent,b,ctx) {
-  if (b.source?.title) line(parent,[b.source.title,b.source.note].filter(Boolean).join(' · '));
+  if(b.type==='analogs' && b.source?.status==='unavailable'){
+    const notice=add(parent,'div',null,'availabilityNote');
+    line(notice,b.source.note || b.text || 'Запрошенной лицензии сейчас нет в продаже.');
+    for(const faq of rows(ctx.replacementFAQ)){
+      const params=new URLSearchParams({q:faq.q});
+      if(ctx.profile)params.set('profile',ctx.profile);
+      if(ctx.mode)params.set('mode',ctx.mode);
+      link(notice,'Из FAQ · '+(faq.label || faq.q),(ctx.shopOrigin || '')+'/?'+params);
+    }
+  }else if (b.source?.title) line(parent,[b.source.title,b.source.note].filter(Boolean).join(' · '));
   if (!rows(b.items).length && b.type === 'products') stateBox(parent,'По этим условиям товаров нет.');
   for (const item of rows(b.items)) {
     line(parent,item.reason || item.note,'hint');
@@ -91,7 +100,7 @@ export function block(parent,b,actions={}) {
   const p = add(parent,'section',null,'block');p.dataset.type=b.type;
   add(p,'h2',counted(b.title || caption('block',b.type,titles[b.type] || 'Блок не поддержан'),b.type==='products' ? b.total : null));
   if (!(Object.hasOwn(titles,b.type))) {if (b.title) line(p,'Блок не поддержан'); return;}
-  line(p,b.text);
+  if(b.type!=='analogs' || b.source?.status!=='unavailable')line(p,b.text);
   switch (b.type) {
     case 'kit': return kit(p,b,ctx);
     case 'spec': return spec(p,b,ctx);

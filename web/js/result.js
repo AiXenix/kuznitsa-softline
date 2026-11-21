@@ -1,4 +1,4 @@
-import {readable} from './labels.js';
+import {readable,caption} from './labels.js';
 import {add,line,button,details,rows,label,counted,stateBox} from './dom.js';
 import {block} from './blocks.js';
 
@@ -6,15 +6,25 @@ export function result(p,r,ctx={}) {
   ctx={profile:r.profile?.id,mode:r.mode,...ctx,weights:rows(r.trace).find(s=>s.detail?.weights)?.detail.weights || ctx.weights};
   const u=r.understood || {};
   function action(parent,title,patch) {
-    if (ctx.apply) button(parent,title,()=>ctx.apply(patch),'chip');
-    else line(parent,title,'chip','span');
+    if (ctx.apply) return button(parent,title,()=>ctx.apply(patch),'chip');
+    return line(parent,title,'chip','span');
   }
   if (Object.keys(u).length) {
     const panel=add(p,'section',null,'understood');
     add(panel,'h2','Понято так');
     line(panel,u.intent_title,'intent');
     const chips=add(panel,'div',null,'chips');
+    const refined=u.refined;
+    const audiences={home:'для дома',micro_office:'для малого офиса',business:'для организации',enterprise:'для крупного предприятия',gov:'для госучреждения',edu:'для образования',server:'для серверов',mobile:'для мобильных устройств',industrial:'для промышленности'};
+    const audience=audiences[refined?.audience];
+    const family=refined?.line && refined.line!=='none' ? caption('family',refined.line) : '';
+    if(audience || family){
+      const title='Понято: '+[audience,family].filter(Boolean).join(' · ');
+      const chip=action(chips,title+(ctx.apply?' ×':''),{ignore:['refined']});
+      if(refined.source==='dict' || refined.source==='jev')chip.title=refined.source==='dict'?'по словарю':'уточнено умным режимом';
+    }
     for(const c of rows(u.chips)) {
+      if((audience || family) && (c.key==='refined' || (audience && c.key==='audience')))continue;
       const title=c.key==='profile' ? 'Профиль · '+(r.profile?.short || r.profile?.title || c.label || '').split(/ [—–] /)[0] : readable(c.label);
       if(c.removable && c.key) action(chips,title+' ×',{ignore:[c.key]});
       else line(chips,title,'badge','span');
@@ -52,7 +62,15 @@ export function result(p,r,ctx={}) {
     filters_too_strict:'Все предложения отсечены условиями. Снимите одно из ограничений.',
     qty_out_of_range:'Для такого количества нет ступени лицензирования.',no_available_offer:'Подходящее предложение сейчас недоступно к заказу.'};
   let blocks=rows(r.blocks);
-  if(Object.hasOwn(messages,reason)){
+  // The unavailable offer is already explained by the analogs block.
+  const replacement=blocks.find(b=>b.type==='analogs' && b.source?.status==='unavailable' && b.source.note);
+  if(replacement){
+    const faq=blocks.find(b=>b.type==='answer' && b.source?.startsWith?.('faq:') && rows(b.links).some(l=>l.q));
+    ctx={...ctx,replacementFAQ:rows(faq?.links).filter(l=>l.q)};
+    blocks=blocks.filter(b=>!(b.type==='not_in_catalog' && b.text===replacement.source.note));
+  }
+  const explained=replacement && ['not_in_catalog','no_available_offer'].includes(reason);
+  if(Object.hasOwn(messages,reason) && !explained){
     const note=add(p,'section',null,'zeroReason');add(note,'h2',messages[reason]);
     if(reason==='not_in_catalog' && blocks.some(b=>b.type==='analogs' && rows(b.items).length))line(note,'Мы нашли варианты замены.');
     if(reason==='off_topic' && !blocks.some(b=>b.type==='categories'))
