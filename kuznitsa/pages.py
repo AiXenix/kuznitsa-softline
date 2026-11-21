@@ -21,6 +21,11 @@ def page():
     return FileResponse(WEB / "index.html", headers={"Cache-Control": "no-store"})
 
 
+@router.get("/embed")
+def embed_demo():
+    return FileResponse(WEB / "embed/demo.html", headers={"Cache-Control": "no-store"})
+
+
 @router.get("/web/{path:path}")
 async def asset(path: str, request: Request):
     response = await assets.get_response(path, request.scope)

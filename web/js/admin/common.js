@@ -10,9 +10,9 @@ export async function adminApi(path,method='GET',body){
   if(method==='GET' && cached)return cached;
   const load=async()=>{
     let r;
-    const signal=method==='GET'?AbortSignal.timeout(15000):undefined;
+    const signal=method==='GET'?AbortSignal.timeout(60000):undefined;
     try{r=await fetch('/api/admin/'+path,{method,signal,headers:{...(token?{'X-Admin-Token':token}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});}
-    catch{if(signal?.aborted)throw Error('Сервер не ответил за 15 секунд.');throw Error('Нет связи со служебным API. Проверьте подключение.');}
+    catch{if(signal?.aborted)throw Error('Сервер не ответил за минуту.');throw Error('Нет связи со служебным API. Проверьте подключение.');}
     if(!r.ok){
       const data=await r.json().catch(()=>null);
       const text=r.status===403?'Доступ закрыт. Проверьте ключ в шапке.':data?.error?.message || 'Данные недоступны.';

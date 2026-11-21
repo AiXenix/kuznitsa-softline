@@ -10,12 +10,13 @@ const defaults={
   intent:{sku:'Поиск по артикулу',product:'Поиск продукта',vendor:'Поиск по вендору',category:'Подбор в категории',broad:'Уточнение запроса',out_of_catalog:'Продукта нет в продаже',off_topic:'За пределами каталога',renewal:'Продление лицензии',license_ops:'Изменение лицензии',question:'Вопрос о ПО',analog:'Поиск аналога',spec_list:'Список позиций',compare:'Сравнение',account:'Личный кабинет',service:'Услуга',promo:'Акции',role_kit:'Рабочее место',industry:'Отраслевой подбор',task:'Поиск по задаче',compliance:'Требования к ПО'}
 };
 export function setMeta(meta={}){
-  for(const [key,kind] of Object.entries({scenarios:'scenario',intents:'intent',categories:'category',vendors:'vendor',segments:'segment',profiles:'profile',families:'family'})){
+  for(const [key,kind] of Object.entries({roles:'role',industries:'industry',zero_reasons:'reason',blocks:'block',tiers:'tier',scenarios:'scenario',intents:'intent',categories:'category',vendors:'vendor',segments:'segment',profiles:'profile',families:'family'})){
     const map=new Map(), entries=meta[key];
     for(const [id,row] of Object.entries(entries || {})){
       const title=typeof row==='string'?row:row?.short || row?.title || row?.name;
       if(title)map.set(row?.id ?? id,title);
     }
+    for(const [id,row] of Object.entries(meta.labels?.[key] || {})){const title=typeof row==='string'?row:row?.title;if(title)map.set(id,title);}
     dictionaries.set(kind,map);
   }
 }
@@ -26,7 +27,7 @@ export function loadMeta(){
 export function caption(kind,id,title){
   if(id==null || id==='')id=title || '';
   if(kind==='source' && typeof id==='string')id=id.split(':')[0];
-  const value=String(dictionaries.get(kind)?.get(id) || (kind==='intent' && dictionaries.get('scenario')?.get(id)) || (title!==id && title) || (Object.hasOwn(defaults[kind] || {},id)?defaults[kind][id]:id));
+  const value=String(dictionaries.get(kind)?.get(String(id)) || (kind==='intent' && dictionaries.get('scenario')?.get(id)) || (title!==id && title) || (Object.hasOwn(defaults[kind] || {},id)?defaults[kind][id]:id));
   return value.replace(/_/g,' ').replace(/^\p{Ll}/u,c=>c.toLocaleUpperCase('ru'));
 }
 // Descriptive strings in older journals sometimes contain embedded dictionary keys.

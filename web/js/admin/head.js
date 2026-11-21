@@ -61,17 +61,17 @@ function pair(p,item){
   const rate=['rate','ratio','fraction'].includes(item.unit), percent=rate || ['percent','%','pct'].includes(item.unit);
   const scale=rate?100:1,unit=percent?' %':item.unit==='rub'?' ₽':item.unit==='ms'?' мс':'';
   const delta=(item.after-item.before)*scale;
-  const formatValue=n=>item.unit==='rub'?rub(n):fmt(n*scale)+unit;
+  const formatValue=n=>item.unit==='rub'?shortRub(n):fmt(n*scale)+unit;
   const low=['lower','less','down','min'].includes(item.better);
   const high=['higher','more','up','max'].includes(item.better);
-  add(card,'strong',(delta>0?'+':'')+(item.unit==='rub'?rub(delta):fmt(delta)+(percent?' п. п.':unit)), 'delta'+((low && delta>0)||(high && delta<0)?' worse':''));
+  add(card,'strong',item.delta_text || (delta>0?'+':'')+(item.unit==='rub'?shortRub(delta):fmt(delta)+(percent?' п. п.':unit)), 'delta '+(item.tone || ((low && delta>0)||(high && delta<0)?'bad':'good')));
 
   const max=percent?100/scale:Math.max(item.before,item.after);
-  for(const [name,n,color] of [['Обычный поиск по словам',item.before,'#869895'],['Кузница',item.after,'#087969']]){
+  for(const [name,n,color] of [[item.before_label || 'Обычный поиск по словам',item.before,'#869895'],[item.after_label || 'Кузница',item.after,'#087969']]){
     const row=add(card,'div',null,'barLabel');add(row,'span',name);add(row,'b',formatValue(n));
     bar(card,n,max,color);
   }
-  line(card,[valid(item.n_before)?'До · '+fmt(item.n_before):'',valid(item.n_after)?'после · '+fmt(item.n_after):'',item.note].filter(Boolean).join(' / '),'muted','small');
+  line(card,[item.scope_text || [valid(item.n_before)?'До · '+fmt(item.n_before):'',valid(item.n_after)?'после · '+fmt(item.n_after):''].filter(Boolean).join(' / '),item.note].filter(Boolean).join(' / '),'muted','small');
 }
 async function replay(p,id){
   if(!id)return {};
@@ -81,13 +81,22 @@ async function replay(p,id){
 export function head(p,params=new URLSearchParams()){
   loadBox(section(p,'Как изменился поиск'),async box=>{
     const k=await adminApi('kpi'), c=k.comparison || {};
-    const r=rows(k.pairs).length?{}:await replay(box,c.run_id);
+    const r=await replay(box,c.run_id);
     const count=r.frequency ?? c.searches;
     const pairs=rows(k.pairs).length?k.pairs:[
       {label:'Пустая выдача',unit:'rate',better:'lower',before:ratio(r.before_zero ?? c.before_zero,count),after:ratio(r.after_zero ?? c.after_zero,count)},
       {label:'Цель в первой пятёрке',unit:'rate',better:'higher',before:ratio(r.before_top5,r.labeled),after:ratio(r.after_top5,r.labeled)}];
     const grid=add(box,'div',null,'adminTiles');
-    for(const item of pairs)pair(grid,item);
+    // Older reports repeat the baseline explanation at the start of each note.
+    const notes=pairs.map(i=>i.note || '');
+    const first=notes[0]?.match(/[^.!?]+[.!?](?:\s+|$)/g) || [];
+    let shared='';
+    for(const sentence of first){if(notes.length<2 || !notes.every(n=>n.startsWith(shared+sentence.trimEnd())))break;shared+=sentence;}
+    for(const item of pairs){
+      const note=(item.note || '').slice(shared.trimEnd().length).trim();
+      pair(grid,{...item,before_label:item.before_label || k.before_label,note:note===k.note?'':note});
+    }
+    line(box,k.note || shared.trim(),'muted');
     if(valid(r.recovered))tile(grid,'Возвращено поисков',fmt(r.recovered),'Появились подходящие предложения');
     if(!grid.childElementCount)empty(box,'Запустите парный прогон истории.');
     line(box,['Парный прогон на одной истории',valid(r.processed)?fmt(r.processed)+' фраз':'',valid(count)?fmt(count)+' поисков':'',valid(r.labeled)?'с разметкой цели · '+fmt(r.labeled):''].filter(Boolean).join(' · '),'muted');

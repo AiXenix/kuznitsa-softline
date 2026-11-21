@@ -9,7 +9,7 @@
 <body>
 <div id="pageScroll"><a class="skip" href="#main">К содержанию</a>
 <header><div class="wrap top"><a class="brand" href="/"><i aria-hidden="true">К</i>Кузница Softline</a>
-<nav aria-label="Разделы"><a href="/">Каталог</a><a href="/scenarios">Сценарии</a><a href="/admin">Аналитика</a><a href="/about">О решении</a></nav>
+<nav aria-label="Разделы"><a href="/">Каталог</a><a href="/scenarios">Сценарии</a><a href="/admin">Аналитика</a><a href="/embed">Виджет</a><a href="/about">О решении</a></nav>
 <button id="basket" hidden>Корзина</button></div></header>
 <main class="wrap" id="main" tabindex="-1"></main>
 <footer><div class="wrap"><strong>AiXenix</strong><span>Демонстрационный стенд хакатона. Каталог, цены и клиенты — синтетические.</span><a href="/styleguide">Образцы интерфейса</a></div></footer></div>
@@ -20,7 +20,7 @@
 <div id="suggestions" role="listbox" aria-label="Подсказки" hidden></div></div>
 <div class="settings"><label>Профиль клиента<select id="profile"><option value="guest">Гость</option></select></label><label>Категория<select id="category"><option value="">Все категории</option></select></label><label>Режим поиска<select id="mode"><option value="smart">Умный</option><option value="fast">Быстрый</option><option value="naive">Обычный</option></select></label></div></form>
 <div id="profileInfo"></div></section>
-<div class="tools"><button id="specMode" aria-expanded="false">Вставить спецификацию</button><button id="profileCompare">Сравнить профили</button><button id="modeCompare">Сравнить режимы</button></div>
+<div class="tools"><input id="uploadFile" type="file" accept=".xlsx,.csv,.tsv,.txt" hidden><button id="uploadButton">Загрузить спецификацию</button><button id="specMode" aria-expanded="false">Вставить спецификацию</button><button id="profileCompare">Сравнить профили</button><button id="modeCompare">Сравнить режимы</button></div>
 <form class="panel" id="specForm" hidden><label>Список закупки · каждая позиция с новой строки<textarea id="specText" rows="5" maxlength="1500" required></textarea></label><button class="primary">Подобрать лицензии</button></form>
 <section id="comparison" class="panel" hidden></section>
 <p id="notice" role="status"></p>

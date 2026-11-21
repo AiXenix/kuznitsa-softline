@@ -1,6 +1,6 @@
 import {caption,readable} from './labels.js';
 import {card} from './product.js';
-import {add, line, button, details, rows, label, money, num, counted, stateBox} from './dom.js';
+import {add, line, button, details, link, rows, label, money, num, counted, stateBox} from './dom.js';
 
 const titles = {products:'Подходящие лицензии',kit:'Комплект',analogs:'Варианты замены',answer:'Ответ на вопрос',
   spec:'Разбор спецификации',compare:'Сравнение программ',not_in_catalog:'Нет в каталоге',categories:'Категории',
@@ -25,7 +25,19 @@ function collection(parent,b,ctx) {
   }
 }
 function kit(p,b,ctx) {
-  line(p,[label(b.role), b.seats == null ? '' : num(b.seats)+' мест'].filter(Boolean).join(' · '));
+  const roleId=typeof b.role==='string'?b.role:b.role?.id;
+  const role=roleId?caption('role',roleId,b.title || label(b.role)):label(b.role);
+  line(p,[role===b.title?'':role, b.seats == null ? '' : num(b.seats)+' мест'].filter(Boolean).join(' · '));
+  if(b.parent?.q){
+    const query=new URLSearchParams({q:b.parent.q});
+    if(ctx.profile)query.set('profile',ctx.profile);
+    if(ctx.mode)query.set('mode',ctx.mode);
+    const parent=link(p,'Общий набор · '+(b.parent.title || caption('industry',b.parent.id)),(ctx.shopOrigin || '')+'/?'+query);
+    if(ctx.apply)parent.onclick=e=>{
+      if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey)return;
+      e.preventDefault();ctx.apply({q:b.parent.q});
+    };
+  }
   for (const s of rows(b.slots)) {
     line(p,s.title,null,'h3');
     if (typeof s.must === 'boolean') line(p,s.must ? 'Обязательная позиция' : 'По выбору','badge','span');
@@ -77,7 +89,7 @@ export function block(parent,b,actions={}) {
   if (!b) return;
   const ctx = {...actions};
   const p = add(parent,'section',null,'block');p.dataset.type=b.type;
-  add(p,'h2',counted(b.title || titles[b.type] || 'Блок не поддержан',b.type==='products' ? b.total : null));
+  add(p,'h2',counted(b.title || caption('block',b.type,titles[b.type] || 'Блок не поддержан'),b.type==='products' ? b.total : null));
   if (!(Object.hasOwn(titles,b.type))) {if (b.title) line(p,'Блок не поддержан'); return;}
   line(p,b.text);
   switch (b.type) {

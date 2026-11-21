@@ -1,6 +1,6 @@
 import {api} from './api.js';
 import {add,rows} from './dom.js';
-export function suggestions(input,p,params,launch) {
+export function suggestions(input,p,params,launch,origin='') {
   const groups=['corrections','queries','licenses','products','categories','vendors'];
   const icons=['↺','⌕','▤','▦','▧','◇'];
   let version=0,controller,timer,options=[],active=-1;
@@ -15,7 +15,7 @@ export function suggestions(input,p,params,launch) {
     timer=setTimeout(async()=>{
       try {
         controller=new AbortController();
-        const r=await api('/api/suggest?'+new URLSearchParams({...params(),q:input.value}),null,{signal:controller.signal});
+        const r=await api(origin+'/api/suggest?'+new URLSearchParams({...params(),q:input.value}),null,{signal:controller.signal});
         if(id!==version) return;
         p.replaceChildren();
         if(r.corrected && r.corrected!==input.value) add(p,'p','Исправлено: '+r.corrected);

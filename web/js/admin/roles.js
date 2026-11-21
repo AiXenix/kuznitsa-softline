@@ -1,4 +1,4 @@
-import {catalogImport} from './import.js';
+import {catalogImport,review} from './import.js';
 import {caption} from '../labels.js';
 import {moneyRate,add,line,rows} from '../dom.js';
 import {adminApi,section,table,loadBox,queryCols,options,phrase,samplePhrases,fmt,pct,valid,shortRub,groupText,resetData,tile,date,empty,shop} from './common.js';
@@ -76,7 +76,7 @@ export function content(p,params){
   });
   loadBox(section(p,'Дефекты карточек'),async box=>{
     const g=await adminApi('gaps');table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || caption('family',r.card_id);return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
-  });catalogImport(p);findings(p,params,'content_manager');
+  });catalogImport(p);review(p);findings(p,params,'content_manager');
 }
 export function log(p){
   const panel=section(p,'Журнал поисков'),control=add(panel,'label','Обновлять каждые 5 с ','pollControl');
