@@ -1,0 +1,539 @@
+# Карта аналогов для продуктов, отсутствующих в каталоге (раунд 3)
+# Формат: kb/SCHEMA.md (соответствует kb/analogs.yaml)
+# Все `family` соответствуют kb/families/absent_r3.yaml, все `russian_analogs[].family` — действующим семействам с catalog: yes.
+
+# ============================================================================
+# 1. ИИ-АССИСТЕНТЫ, LLM И СРЕДЫ РАЗРАБОТКИ
+# ============================================================================
+
+- product: "Cursor"
+  family: cursor_ide
+  aliases: ["cursor", "cursor ide", "cursor ai", "курсор", "курсор иде"]
+  russian_analogs:
+    - {family: sber_kandinsky_api, note: "GigaCode — российский ИИ-ассистент разработчика с автодополнением кода; подключается плагином в IDE, но не заменяет саму оболочку Cursor"}
+    - {family: sourcecraft_yandex, note: "Российская платформа разработки от Яндекса со встроенными инструментами для работы с кодом; ориентирована на командный цикл, а не только локальную IDE"}
+    - {family: gitflic, note: "Отечественная платформа хостинга репозиториев и CI/CD для корпоративной разработки; закрывает инфраструктурную часть, без ИИ-редактора в IDE"}
+
+- product: "Anthropic Claude"
+  family: anthropic_claude
+  aliases: ["claude", "anthropic claude", "claude ai", "claude pro", "клод", "клод аи"]
+  russian_analogs:
+    - {family: gigachat_enterprise, note: "Корпоративная LLM Сбера с поддержкой русского языка и размещением в РФ (облако или on-premise); уступает топовым моделям Claude в части сложных англоязычных и кодовых задач"}
+    - {family: yandexgpt_api, note: "Языковая модель Яндекса по API для бизнеса и интеграций с данными в РФ; ориентирована на API-сценарии, а не на готовый чат Claude Code"}
+    - {family: mws_gpt_ai, note: "Корпоративная GenAI-платформа МТС для развертывания языковых моделей в контуре заказчика; требует проектной настройки под задачи компании"}
+
+- product: "Midjourney"
+  family: midjourney
+  aliases: ["midjourney", "миджорни", "мидджорни", "нейросеть midjourney"]
+  russian_analogs:
+    - {family: gigachat_enterprise, note: "Генеративная платформа Сбера с возможностями генерации визуального контента (экосистема Kandinsky) и корпоративной оплатой в РФ; стиль генерации отличается от Midjourney"}
+    - {family: yandexgpt_api, note: "Корпоративные генеративные сервисы Яндекса для бизнеса с расчетами по договору в РФ; основной фокус на текстовых и смешанных сценариях"}
+    - {family: ams_photomaster, note: "Российский настольный фоторедактор для обработки и ретуши изображений; закрывает доработку макетов, но не заменяет генерацию с нуля по промпту"}
+
+- product: "Perplexity AI"
+  family: perplexity_ai
+  aliases: ["perplexity", "perplexity ai", "перплексити", "перплексити аи"]
+  russian_analogs:
+    - {family: gigachat_enterprise, note: "Корпоративная LLM с поддержкой поиска по внутренним документам (RAG) и защищенным контуром; для веб-поиска требует дополнительной интеграции"}
+    - {family: yandexgpt_api, note: "API языковой модели Яндекса для построения корпоративного ИИ-поиска и аналитики по базе знаний; поставляется как платформа, а не готовый браузерный поиск"}
+    - {family: mws_gpt_ai, note: "Платформа корпоративных ИИ-ассистентов с подключением к внутренним источникам компании; рассчитана на крупный бизнес"}
+
+- product: "Google Gemini"
+  family: google_gemini
+  aliases: ["google gemini", "gemini", "гугл джемини", "джемини", "google bard"]
+  russian_analogs:
+    - {family: gigachat_enterprise, note: "Отечественная корпоративная LLM для работы с текстом, документами и интеграций; доступна по договору в РФ и может работать локально"}
+    - {family: yandexgpt_api, note: "Корпоративная LLM-платформа Яндекса для автоматизации обработки текстов и сервисов поддержки; без тесной привязки к экосистеме Google Workspace"}
+    - {family: mws_gpt_ai, note: "Российская платформа генеративного ИИ для закрытых корпоративных сценариев и собственных моделей"}
+
+- product: "Windsurf (Codeium)"
+  family: windsurf_ide
+  aliases: ["windsurf", "windsurf ide", "codeium", "виндсерф", "кодеум"]
+  russian_analogs:
+    - {family: sber_kandinsky_api, note: "GigaCode — российский ИИ-помощник программиста с поддержкой популярных языков и установкой в корпоративном контуре; меньше агентных сценариев, чем в Windsurf"}
+    - {family: sourcecraft_yandex, note: "Платформа разработки Яндекса с инструментами ускорения работы с кодом в облаке РФ"}
+    - {family: gitflic, note: "Отечественная платформа управления исходным кодом и DevSecOps для команд, которым важна локализация инфраструктуры"}
+
+- product: "Visual Studio Code"
+  family: ms_vscode
+  aliases: ["vs code", "vscode", "visual studio code", "вс код", "вижуал студио код"]
+  russian_analogs:
+    - {family: sber_kandinsky_api, note: "GigaCode — отечественный ИИ-ассистент разработки, дополняющий рабочее место программиста; сам VS Code распространяется бесплатно, но не входит в коммерческий каталог"}
+    - {family: sourcecraft_yandex, note: "Российская платформа разработки и управления репозиториями для корпоративных команд"}
+    - {family: gitflic, note: "Российский сервис хранения кода и CI/CD для организации корпоративной разработки в РФ"}
+
+- product: "Sublime Text"
+  family: sublime_text
+  aliases: ["sublime text", "sublime", "саблайм", "саблайм текст"]
+  russian_analogs:
+    - {family: sber_kandinsky_api, note: "Российский инструмент помощи разработчику (GigaCode); решает задачи ускорения кодинга, но не является самостоятельным легковесным текстовым редактором"}
+    - {family: gitflic, note: "Российская платформа работы с кодом и веб-редактирования репозиториев для корпоративных команд"}
+    - {family: sourcecraft_yandex, note: "Отечественная среда совместной работы над исходным кодом в облаке и on-premise"}
+
+- product: "Docker Desktop"
+  family: docker_desktop
+  aliases: ["docker", "docker desktop", "докер", "докер десктоп"]
+  russian_analogs:
+    - {family: deckhouse_k8s, note: "Российская промышленная Kubernetes-платформа от Флант в Реестре ПО; заменяет серверную контейнеризацию, но это кластерная платформа, а не десктоп-клиент"}
+    - {family: shturval_k8s, note: "Отечественная платформа управления контейнерами и Kubernetes для корпоративных ЦОД; ориентирована на серверную эксплуатацию"}
+    - {family: orion_nova, note: "Nova Container Platform от Orion soft для запуска контейнеров в корпоративной инфраструктуре и импортозамещения"}
+    - {family: basis_digital_energy, note: "Платформа контейнеризации Базис Digital Energy для промышленных кластеров Kubernetes"}
+
+- product: "JetBrains TeamCity"
+  family: jetbrains_teamcity
+  aliases: ["teamcity", "jetbrains teamcity", "тимсити", "джетбрейнс тимсити"]
+  russian_analogs:
+    - {family: gitflic, note: "Российская платформа Git + CI/CD в Реестре ПО; проще по сценариям сложных сборочных матриц, но закрывает типовые пайплайны"}
+    - {family: sourcecraft_yandex, note: "Отечественная платформа разработки с CI/CD-конвейерами и управлением репозиториями"}
+    - {family: sphere_t1, note: "Комплексная российская DevSecOps-платформа от Т1 с модулями сборки, репозиториев и управления релизами"}
+    - {family: platform_v_works, note: "Корпоративная линейка инструментов разработки и CI/CD от СберТеха для крупных команд"}
+
+- product: "JetBrains YouTrack"
+  family: jetbrains_youtrack
+  aliases: ["youtrack", "jetbrains youtrack", "ютрек", "ютрэк"]
+  russian_analogs:
+    - {family: yandex_tracker, note: "Российский трекер задач и проектов с гибкими досками, очередями и автоматизацией; доступен в облаке РФ, без on-premise коробки"}
+    - {family: kaiten, note: "Отечественный таск-трекер с канбан/скрам-досками, учетом времени и локальной поставкой; близок по Agile-процессам"}
+    - {family: evaproject, note: "Российская замена Jira и YouTrack с установкой on-premise, workflow и миграцией задач"}
+    - {family: sphere_t1, note: "Модуль Сфера.Задачи в составе комплексной российской платформы управления разработкой"}
+
+- product: "HashiCorp Terraform"
+  family: hashicorp_terraform
+  aliases: ["terraform", "hashicorp terraform", "терраформ"]
+  russian_analogs:
+    - {family: yandex_cloud, note: "Российское облако со встроенными средствами автоматизации и собственным зеркалом провайдеров; не является универсальным мультиоблачным IaC-инструментом"}
+    - {family: vk_cloud, note: "Отечественная облачная платформа с инструментами оркестрации инфраструктуры в РФ"}
+    - {family: cloud_ru_evolution, note: "Российская облачная платформа с API и инструментами автоматического развертывания ресурсов"}
+    - {family: deckhouse_k8s, note: "Декларативное управление кластерами Kubernetes и инфраструктурой в закрытом контуре"}
+
+- product: "HashiCorp Vault"
+  family: hashicorp_vault
+  aliases: ["hashicorp vault", "vault", "хэшикорп волт", "волт секреты"]
+  russian_analogs:
+    - {family: passwork, note: "Российский корпоративный менеджер паролей и секретов с API и on-premise установкой; проще, чем Vault, и не включает динамическую генерацию PKI/секретов БД"}
+    - {family: indeed_pam, note: "Российская PAM-система для контроля привилегированного доступа и ротации паролей; ориентирована на администрирование, а не DevOps-секреты приложений"}
+    - {family: skdpu_nt, note: "Отечественный PAM-комплекс от АйТи Бастион для контроля привилегированных сессий и учетных записей в защищенных контурах"}
+    - {family: avanpost_idm, note: "Российская система управления учетными записями и правами доступа в корпоративном контуре"}
+
+- product: "JFrog Artifactory"
+  family: jfrog_artifactory
+  aliases: ["jfrog", "artifactory", "jfrog artifactory", "артифактори"]
+  russian_analogs:
+    - {family: gitflic, note: "Отечественная платформа разработки с встроенным реестром пакетов и контейнерных образов; набор поддерживаемых форматов пакетов скромнее, чем у Artifactory"}
+    - {family: sphere_t1, note: "Корпоративная платформа Т1 с модулями хранения артефактов и CI/CD для крупных организаций"}
+    - {family: platform_v_works, note: "Инструменты разработки и управления артефактами от СберТеха для импортозамещения DevOps-контура"}
+    - {family: sourcecraft_yandex, note: "Российская платформа разработки с хранением кода и сборочных артефактов"}
+
+# ============================================================================
+# 2. МОНИТОРИНГ, ДАННЫЕ, ВИРТУАЛИЗАЦИЯ И ИБ
+# ============================================================================
+
+- product: "Grafana Enterprise"
+  family: grafana_enterprise
+  aliases: ["grafana", "grafana enterprise", "графана"]
+  russian_analogs:
+    - {family: monq_aiops, note: "Российская платформа зонтичного мониторинга и AIOps с дашбордами и корреляцией событий; больше сфокусирована на управлении ИТ-инцидентами"}
+    - {family: saymon_monitoring, note: "Отечественная система мониторинга ИТ-инфраструктуры и бизнес-метрик с визуализацией топологии"}
+    - {family: klyuch_astrom, note: "Российская APM-платформа наблюдения за приложениями и инфраструктурой в реальном времени"}
+    - {family: yandex_datalens, note: "Российский BI-инструмент для построения дашбордов; подходит для визуализации аналитики, но не для алертинга мониторинга"}
+
+- product: "Elastic Stack (ELK / Elasticsearch)"
+  family: elastic_stack
+  aliases: ["elastic", "elasticsearch", "elk", "kibana", "эластик", "кибана"]
+  russian_analogs:
+    - {family: monq_aiops, note: "Российская платформа сбора и корреляции логов и событий ИТ-инфраструктуры; заменяет мониторинговый сценарий ELK"}
+    - {family: kaspersky_kuma, note: "Отечественная SIEM-система для высоконагруженного сбора и анализа логов ИБ; закрывает сценарий Elastic Security"}
+    - {family: pt_maxpatrol_siem, note: "Ведущая российская SIEM для сбора, нормализации и корреляции событий безопасности"}
+    - {family: saymon_monitoring, note: "Российская платформа мониторинга и агрегации событий ИТ-систем"}
+
+- product: "Confluent Platform (Apache Kafka)"
+  family: confluent_kafka
+  aliases: ["confluent", "confluent kafka", "apache kafka", "конфлюент", "кафка"]
+  russian_analogs:
+    - {family: arenadata_hadoop, note: "Российская платформа больших данных Arenadata (включая экосистему стриминга с техподдержкой в РФ); поставляется в рамках стека Arenadata"}
+    - {family: platform_v_synapse, note: "Корпоративная интеграционная и событийная платформа от СберТеха для высоконагруженных микросервисов"}
+    - {family: onec_esb, note: "Корпоративная шина данных 1С для обмена сообщениями в ландшафте 1С; проще Kafka, ориентирована на бизнес-интеграции"}
+
+- product: "Databricks"
+  family: databricks
+  aliases: ["databricks", "датабрикс", "дата брикс"]
+  russian_analogs:
+    - {family: arenadata_hadoop, note: "Российская платформа распределенной обработки больших данных (Hadoop/Spark) с поддержкой и Реестром ПО; требует отдельного ML-слоя"}
+    - {family: arenadata_db, note: "Отечественная MPP-СУБД для аналитических хранилищ данных (DWH) на базе Greenplum"}
+    - {family: cloud_ru_ml_space, note: "Российская облачная платформа для обучения и развертывания ML-моделей на GPU"}
+    - {family: yandex_datasphere, note: "Сервис для Data Science и ML-разработки в облаке Yandex Cloud; работает в облачной модели РФ"}
+
+- product: "Dynatrace"
+  family: dynatrace
+  aliases: ["dynatrace", "динатрейс", "дайнатрейс"]
+  russian_analogs:
+    - {family: klyuch_astrom, note: "Российская платформа APM и мониторинга производительности приложений и инфраструктуры, созданная как замена Dynatrace"}
+    - {family: monq_aiops, note: "Отечественная AIOps-платформа зонтичного мониторинга и анализа первопричин сбоев; фокус на корреляции событий"}
+    - {family: saymon_monitoring, note: "Российская система мониторинга доступности и производительности сервисов"}
+
+- product: "Proxmox VE"
+  family: proxmox_ve
+  aliases: ["proxmox", "proxmox ve", "проксмокс"]
+  russian_analogs:
+    - {family: orion_zvirt, note: "Российская платформа серверной виртуализации на базе KVM в Реестре ПО с корпоративной техподдержкой 24/7; платная в отличие от базового Proxmox"}
+    - {family: astra_brest, note: "Программный комплекс средств виртуализации на базе Astra Linux со встроенными средствами защиты ФСТЭК"}
+    - {family: basis_dynamix, note: "Российская платформа серверной виртуализации и контейнеров от Базис для корпоративных ЦОД"}
+    - {family: vmmanager, note: "Российская платформа управления виртуализацией KVM от ISPsystem с удобным веб-интерфейсом, близкая по простоте к Proxmox"}
+    - {family: red_virtualization, note: "Отечественная система виртуализации от РЕД СОФТ в Реестре ПО с совместимостью с РЕД ОС"}
+
+- product: "Nutanix (AOS / AHV)"
+  family: nutanix_aos
+  aliases: ["nutanix", "nutanix aos", "nutanix ahv", "нутаникс"]
+  russian_analogs:
+    - {family: vstack_hcp, note: "Российская гиперконвергентная платформа (HCI) с объединением вычислений, хранения и сети в едином кластере"}
+    - {family: basis_dynamix, note: "Отечественная платформа виртуализации и динамической инфраструктуры с поддержкой распределенного хранения"}
+    - {family: orion_zvirt, note: "Российская платформа серверной виртуализации корпоративного класса; для HCI комбинируется с SDS-хранилищами"}
+    - {family: cyber_infrastructure, note: "Гиперконвергентное решение Киберпротекта, объединяющее виртуализацию и программно-определяемое хранилище"}
+
+- product: "SentinelOne Singularity"
+  family: sentinelone
+  aliases: ["sentinelone", "sentinel one", "сентинел ван"]
+  russian_analogs:
+    - {family: kaspersky_symphony_xdr, note: "Российская платформа EDR/XDR от Лаборатории Касперского с телеметрией и автоматическим реагированием; есть сертификация и поддержка в РФ"}
+    - {family: pt_maxpatrol_edr, note: "Отечественный EDR от Positive Technologies с интеграцией в MaxPatrol SIEM и российскую экспертизу угроз"}
+    - {family: bizone_edr, note: "Российское EDR-решение от BI.ZONE для обнаружения сложных атак и реагирования на рабочих станциях и серверах"}
+    - {family: f6_mxdr, note: "Российский комплекс обнаружения и реагирования на угрозы (MXDR/EDR) для корпоративных сетей"}
+
+- product: "Cloudflare"
+  family: cloudflare
+  aliases: ["cloudflare", "клаудфлер", "клаудфлэр"]
+  russian_analogs:
+    - {family: qrator_ddos, note: "Российский сервис фильтрации DDoS-атак уровня L3–L7 и защиты доступности веб-ресурсов; без глобального бесплатного CDN"}
+    - {family: stormwall_ddos, note: "Отечественная облачная защита сайтов, сетей и приложений от DDoS-атак с точками фильтрации в РФ"}
+    - {family: bizone_waf, note: "Российский облачный Web Application Firewall (WAF) для защиты сайтов и API от атак уровня приложений"}
+    - {family: pt_af, note: "PT Application Firewall — российский WAF для on-premise и облачной защиты веб-приложений; требует развертывания в контуре"}
+
+- product: "Zscaler Zero Trust"
+  family: zscaler
+  aliases: ["zscaler", "зетскейлер", "zscaler zpa"]
+  russian_analogs:
+    - {family: usergate_ngfw, note: "Российский NGFW и VPN-шлюз с контролем доступа пользователей и фильтрацией трафика; в основном on-premise, а не глобальное облако SASE"}
+    - {family: continent_ngfw, note: "Сертифицированный ФСТЭК/ФСБ российский NGFW и ГОСТ-VPN шлюз для защищенного доступа сотрудников"}
+    - {family: ideco_ngfw, note: "Отечественный NGFW с веб-фильтрацией и удаленным VPN-доступом для среднего и крупного бизнеса"}
+    - {family: pt_ngfw, note: "Российский межсетевой экран нового поколения от Positive Technologies для защиты периметра и сегментации"}
+
+- product: "LastPass"
+  family: lastpass
+  aliases: ["lastpass", "last pass", "ластпасс"]
+  russian_analogs:
+    - {family: passwork, note: "Прямая российская замена — корпоративный менеджер паролей с установкой на сервер заказчика (on-premise), правами доступа и Реестром ПО"}
+    - {family: multifactor_mfa, note: "Российская система двухфакторной аутентификации (MFA) для защиты учетных записей; дополняет, но не хранит пароли"}
+    - {family: avanpost_fam, note: "Отечественная система единого входа (SSO) и многофакторной аутентификации для корпоративных приложений"}
+
+- product: "Bitwarden"
+  family: bitwarden
+  aliases: ["bitwarden", "битварден", "битворден"]
+  russian_analogs:
+    - {family: passwork, note: "Российский корпоративный менеджер паролей с self-hosted установкой, интеграцией с AD/LDAP и техподдержкой в РФ; проприетарное ПО в отличие от open-source Bitwarden"}
+    - {family: indeed_am, note: "Российская система управления аутентификацией и доступом (SSO/MFA) для корпоративных пользователей"}
+    - {family: avanpost_fam, note: "Отечественная платформа управления доступом и единого входа для снижения зависимости от паролей"}
+
+- product: "Dropbox Business"
+  family: dropbox_business
+  aliases: ["dropbox", "dropbox business", "дропбокс"]
+  russian_analogs:
+    - {family: cyber_files, note: "Российское EFSS-решение Кибер Файлы с установкой on-premise, синхронизацией и контролем корпоративного обмена файлами"}
+    - {family: yandex_360, note: "Российский облачный Яндекс Диск для бизнеса в составе Яндекс 360 с хранением данных в РФ и совместным редактированием"}
+    - {family: vk_workspace, note: "Корпоративное файловое хранилище Диск в составе VK WorkSpace (облако и on-premise)"}
+
+# ============================================================================
+# 3. КОММУНИКАЦИИ, ЗАДАЧИ, CRM, ITSM И БИЗНЕС-ПРИЛОЖЕНИЯ
+# ============================================================================
+
+- product: "Cisco Webex"
+  family: cisco_webex
+  aliases: ["webex", "cisco webex", "вебекс", "циско вебекс"]
+  russian_analogs:
+    - {family: kontur_tolk, note: "Российский сервис ВКС от СКБ Контур с высоким качеством связи, записью и расшифровкой встреч; доступен в облаке и on-premise"}
+    - {family: mts_link_meetings, note: "Отечественная платформа онлайн-встреч и вебинаров от МТС Линк с поддержкой крупных конференций"}
+    - {family: trueconf_server, note: "Российский on-premise ВКС-сервер с поддержкой аппаратных терминалов SIP/H.323, близкий к корпоративным инсталляциям Webex"}
+    - {family: iva_mcu, note: "Промышленная российская ВКС-платформа для госсектора и крупных компаний с поддержкой переговорных комнат"}
+    - {family: salute_jazz, note: "Корпоративная ВКС-платформа Сбера с ИИ-расшифровкой и резюме встреч"}
+
+- product: "Microsoft Teams"
+  family: ms_teams
+  aliases: ["ms teams", "microsoft teams", "тимс", "майкрософт тимс", "skype for business"]
+  russian_analogs:
+    - {family: vk_teams, note: "Корпоративный мессенджер и ВКС от VK с каналами, звонками и установкой on-premise; без глубокой привязки к Microsoft 365"}
+    - {family: myoffice_squadus, note: "Цифровое рабочее пространство от МойОфис (чаты, видеозвонки, работа с документами) в Реестре ПО"}
+    - {family: express_messenger, note: "Защищенная российская платформа корпоративных коммуникаций и ВКС с сертификацией ФСТЭК"}
+    - {family: kontur_tolk, note: "Российская платформа видеоконференций и рабочих чатов от СКБ Контур"}
+    - {family: mts_link_meetings, note: "Отечественный сервис видеовстреч и командной коммуникации в экосистеме МТС Линк"}
+
+- product: "Mattermost"
+  family: mattermost
+  aliases: ["mattermost", "маттермост", "матермост"]
+  russian_analogs:
+    - {family: pachca_messenger, note: "Российский командный мессенджер с тредами, ботами и API, близкий по логике к Slack/Mattermost; преимущественно облачный"}
+    - {family: compass_messenger, note: "Корпоративный мессенджер с высокой скоростью работы и возможностью локального развертывания on-premise"}
+    - {family: express_messenger, note: "Российский корпоративный мессенджер on-premise для компаний с высокими требованиями ИБ"}
+    - {family: vk_teams, note: "Российский корпоративный мессенджер с локальной поставкой и интеграцией с AD"}
+    - {family: myoffice_squadus, note: "Отечественное решение для командных чатов и видеозвонков с установкой на сервер заказчика"}
+
+- product: "Asana"
+  family: asana
+  aliases: ["asana", "асана"]
+  russian_analogs:
+    - {family: kaiten, note: "Российский таск-трекер с досками, таймлайнами, ресурсным планированием и on-premise версией"}
+    - {family: yandex_tracker, note: "Отечественный инструмент управления задачами и проектами от Яндекса с гибкими фильтрами и автоматизациями"}
+    - {family: yougile, note: "Российская система управления проектами с канбан-досками и встроенными чатами внутри каждой задачи"}
+    - {family: weeek, note: "Российский онлайн-сервис для управления задачами, проектами и базой знаний с простым интерфейсом, близким к Asana"}
+
+- product: "monday.com"
+  family: monday_com
+  aliases: ["monday", "monday.com", "мандей", "мондей"]
+  russian_analogs:
+    - {family: kaiten, note: "Российская платформа визуального управления задачами и процессами с таблицами, досками и отчетами"}
+    - {family: yougile, note: "Отечественная система управления проектами с диаграммой Ганта, досками и сводками"}
+    - {family: weeek, note: "Российское рабочее пространство для задач, проектов и CRM с современным интерфейсом"}
+    - {family: bitrix24, note: "Комплексный российский портал, объединяющий задачи, проекты, CRM и автоматизацию бизнес-процессов"}
+    - {family: planfix, note: "Гибкий российский конструктор систем управления задачами и процессами без программирования"}
+
+- product: "ClickUp"
+  family: clickup
+  aliases: ["clickup", "click up", "кликап"]
+  russian_analogs:
+    - {family: weeek, note: "Российская платформа «все в одном» для задач, базы знаний и CRM, близкая по концепции к ClickUp"}
+    - {family: kaiten, note: "Российская система управления задачами, документами и Agile-процессами с локальной версией"}
+    - {family: yougile, note: "Отечественный инструмент управления проектами с Гантом, ролями и чатами в задачах"}
+    - {family: yandex_tracker, note: "Корпоративный трекер задач от Яндекса (в связке с Яндекс Вики закрывает и базу знаний)"}
+    - {family: yonote, note: "Российский аналог Notion для документов, баз знаний и простых досок задач"}
+
+- product: "Linear"
+  family: linear_app
+  aliases: ["linear", "linear app", "линеар"]
+  russian_analogs:
+    - {family: yandex_tracker, note: "Российский таск-трекер с поддержкой спринтов, интеграцией с Git и гибкими очередями для продуктовых команд"}
+    - {family: kaiten, note: "Отечественный инструмент для продуктовых и инженерных команд с цикличными спринтами и метриками потока"}
+    - {family: evaproject, note: "Российская корпоративная система управления разработкой и задачами с on-premise установкой"}
+    - {family: sphere_t1, note: "Российская система управления задачами в составе платформы разработки Т1"}
+
+- product: "HubSpot CRM"
+  family: hubspot_crm
+  aliases: ["hubspot", "hubspot crm", "хабспот"]
+  russian_analogs:
+    - {family: bitrix24, note: "Ведущая российская CRM со встроенным маркетингом, сайтами и сквозной аналитикой; доступнее по цене и есть коробочная версия"}
+    - {family: amocrm, note: "Российская облачная CRM с фокусом на воронку продаж и мессенджеры; меньше встроенного контент-маркетинга, чем в HubSpot"}
+    - {family: bpmsoft_crm, note: "Российская корпоративная low-code CRM-платформа для крупного бизнеса и сложных процессов продаж и маркетинга"}
+    - {family: mindbox_cdp, note: "Российская CDP-платформа автоматизации маркетинга, рассылок и программ лояльности; закрывает маркетинговый контур HubSpot"}
+
+- product: "Zendesk Support"
+  family: zendesk_support
+  aliases: ["zendesk", "zendesk support", "зендеск"]
+  russian_analogs:
+    - {family: simpleone_itsm, note: "Российская ESM/ITSM-платформа для автоматизации службы поддержки и клиентского сервиса; ориентирована на средний и крупный бизнес"}
+    - {family: naumen_smp, note: "Отечественная платформа Service Desk от Naumen для обработки массовых обращений, SLA и порталов самообслуживания"}
+    - {family: onec_itilium, note: "Российский Service Desk на платформе 1С для автоматизации ИТ-поддержки и сервисных подразделений"}
+    - {family: bitrix24, note: "Контакт-центр и открытые линии Битрикс24 для обработки клиентских обращений из чатов, почты и соцсетей в малом и среднем бизнесе"}
+
+- product: "Freshdesk / Freshservice"
+  family: freshdesk
+  aliases: ["freshdesk", "freshservice", "фрешдеск", "фрешсервис"]
+  russian_analogs:
+    - {family: simpleone_itsm, note: "Российская ITSM-система с базой знаний, каталогом услуг и SLA в Реестре ПО"}
+    - {family: naumen_smp, note: "Отечественный Service Desk для автоматизации ИТ-поддержки и управления заявками"}
+    - {family: onec_itilium, note: "Российское ITSM-решение на платформе 1С для учета инцидентов и ИТ-активов"}
+    - {family: inframanager, note: "Российская система Service Desk и ITAM для автоматизации ИТ-службы и учета оборудования"}
+
+- product: "Mailchimp"
+  family: mailchimp
+  aliases: ["mailchimp", "мейлчимп", "мэйлчимп"]
+  russian_analogs:
+    - {family: unisender, note: "Прямая российская замена для email-рассылок с конструктором писем, автоматизацией и оплатой в рублях"}
+    - {family: mindbox_cdp, note: "Российская платформа автоматизации омниканального маркетинга (email, SMS, push) для среднего и крупного бизнеса"}
+    - {family: bitrix24, note: "Встроенный модуль CRM-маркетинга и email-рассылок в составе Битрикс24"}
+
+- product: "DocuSign"
+  family: docusign
+  aliases: ["docusign", "докьюсайн", "докусайн"]
+  russian_analogs:
+    - {family: kontur_diadoc, note: "Ведущий российский оператор юридически значимого ЭДО (63-ФЗ) для обмена и подписания договоров с контрагентами в РФ"}
+    - {family: sbis_saby, note: "Российская система ЭДО и электронного подписания договоров с роумингом и мобильной подписью"}
+    - {family: directum_rx, note: "Российская СЭД для внутреннего согласования и внешнего юридически значимого подписания договоров"}
+    - {family: onec_edo, note: "Встроенный сервис электронного документооборота и подписания первичных документов прямо из 1С"}
+
+- product: "Microsoft Dynamics 365 (AX / NAV / CRM)"
+  family: ms_dynamics_365
+  aliases: ["dynamics 365", "microsoft dynamics", "axapta", "аксапта", "navision", "навижн"]
+  russian_analogs:
+    - {family: onec_erp, note: "Основная российская ERP-система для замены Dynamics AX/365 в торговле, производстве и холдингах; требует переработки кастомных доработок"}
+    - {family: onec_ka, note: "1С:Комплексная автоматизация — замена Dynamics NAV для среднего бизнеса без избыточной сложности ERP"}
+    - {family: bpmsoft_crm, note: "Российская CRM-платформа для замены модуля Dynamics 365 Sales / Customer Service"}
+    - {family: galaktika_erp, note: "Российская ERP-система для крупных промышленных и оборонных предприятий"}
+    - {family: turbo_erp, note: "Отечественная высокопроизводительная ERP-платформа для крупного бизнеса и холдингов"}
+
+- product: "Oracle Primavera P6"
+  family: oracle_primavera
+  aliases: ["primavera", "oracle primavera", "примавера"]
+  russian_analogs:
+    - {family: spider_project, note: "Профессиональная российская система календарно-сетевого планирования с поддержкой импорта/экспорта Primavera и ресурсного выравнивания"}
+    - {family: advanta_pm, note: "Российская корпоративная ИСУП для управления портфелями проектов и контроля сроков; меньше детального инжинирингового КСП, чем в Primavera"}
+    - {family: onec_erp, note: "Модули управления производством и проектами в 1С:ERP для увязки планирования с бюджетом и снабжением"}
+
+- product: "Anaplan"
+  family: anaplan
+  aliases: ["anaplan", "анаплан"]
+  russian_analogs:
+    - {family: optimacros, note: "Прямая российская замена Anaplan — многомерная in-memory платформа для IBP, финансового моделирования и бюджетирования"}
+    - {family: onec_holding, note: "1С:Управление холдингом — российская система бюджетирования, казначейства и консолидации отчетности для групп компаний"}
+    - {family: foresight_analytics, note: "Российская аналитическая платформа с модулями бюджетирования и планирования"}
+
+- product: "IBM SPSS Statistics"
+  family: ibm_spss
+  aliases: ["spss", "ibm spss", "спсс"]
+  russian_analogs:
+    - {family: loginom, note: "Российская low-code аналитическая платформа для статистического анализа, прогнозирования и обработки данных без программирования"}
+    - {family: polymatica_bi, note: "Отечественная платформа многомерного анализа данных и предиктивной аналитики"}
+    - {family: foresight_analytics, note: "Российская платформа бизнес-аналитики с модулями продвинутого статистического и эконометрического анализа"}
+    - {family: visiology_bi, note: "Российская BI-платформа для визуального анализа и отчетности; закрывает отчетную часть, но не специализированные статистические тесты SPSS"}
+
+# ============================================================================
+# 4. ДИЗАЙН, 3D, ВИДЕО, ТЕКСТ, ОБУЧЕНИЕ И САПР/ГИС
+# ============================================================================
+
+- product: "Canva"
+  family: canva
+  aliases: ["canva", "канва"]
+  russian_analogs:
+    - {family: pixso_design, note: "Онлайн-редактор интерфейсов и графики с совместной работой и шаблонами, доступный для корпоративных закупок в РФ; чуть более дизайнерский, чем Canva"}
+    - {family: ams_photomaster, note: "Российский редактор изображений для обработки фото и подготовки баннеров; настольное приложение без облачных шаблонов"}
+    - {family: r7_office, note: "Российский офисный пакет с редактором презентаций для деловых слайдов и шаблонов"}
+
+- product: "Unity (Unity Pro / Industry)"
+  family: unity_engine
+  aliases: ["unity", "unity3d", "юнити"]
+  russian_analogs:
+    - {family: unigine_engine, note: "Российский промышленный 3D-движок реального времени для тренажеров, VR и цифровых двойников; ориентирован на B2B и симуляторы, а не на массовый геймдев"}
+    - {family: kompas_3d, note: "Отечественная 3D САПР для инженерного моделирования; подходит для подготовки 3D-моделей, но не является интерактивным игровым движком"}
+
+- product: "Unreal Engine"
+  family: unreal_engine
+  aliases: ["unreal engine", "ue5", "анрил энджин"]
+  russian_analogs:
+    - {family: unigine_engine, note: "Российский 3D-движок реального времени с высокой точностью сцен для симуляторов, архитектуры и промышленной визуализации; меньше готовых медиа-ассетов, чем в UE5"}
+    - {family: kompas_3d, note: "Российская система 3D-проектирования для создания инженерных моделей и сборок (не игровой движок)"}
+
+- product: "TechSmith Camtasia"
+  family: techsmith_camtasia
+  aliases: ["camtasia", "камтазия", "камтасия"]
+  russian_analogs:
+    - {family: movavi_video_suite, note: "Российский мультимедийный пакет с захватом экрана, монтажом и титрами; наиболее близкая по сценариям замена Camtasia"}
+    - {family: movavi_screen_recorder, note: "Специализированный инструмент записи экрана и вебинаров с базовой обрезкой видео"}
+    - {family: ams_videomontage, note: "Российский настольный видеоредактор для монтажа презентационных и обучающих роликов"}
+
+- product: "Grammarly"
+  family: grammarly
+  aliases: ["grammarly", "граммарли"]
+  russian_analogs:
+    - {family: promt_translation, note: "Российский нейронный переводчик с корпоративной установкой и отраслевыми словарями; помогает с переводом, но не работает как браузерный корректор стиля"}
+    - {family: gigachat_enterprise, note: "Корпоративная LLM для проверки орфографии, стиля и переформулирования деловых текстов на русском и английском"}
+    - {family: yandexgpt_api, note: "Языковая модель Яндекса для интеграции проверки и редактуры текстов в корпоративные сервисы"}
+
+- product: "Trimble SketchUp"
+  family: sketchup
+  aliases: ["sketchup", "скетчап", "скетч ап"]
+  russian_analogs:
+    - {family: renga_bim, note: "Российская BIM-система для архитектурного 3D-проектирования зданий; более строгая инженерная логика, чем у эскизного SketchUp"}
+    - {family: nanocad_platform, note: "Российская САПР-платформа с 2D/3D-моделированием и нативной поддержкой DWG"}
+    - {family: kompas_3d, note: "Отечественная 3D-САПР для твердотельного и поверхностного моделирования"}
+    - {family: nanocad_bim, note: "Российская линейка BIM-продуктов для строительного проектирования и инженерных систем"}
+
+- product: "Trimble Tekla Structures"
+  family: tekla_structures
+  aliases: ["tekla", "tekla structures", "текла"]
+  russian_analogs:
+    - {family: nanocad_bim, note: "nanoCAD BIM Конструкции — российское решение для проектирования КМ/КЖ и выпуска чертежей по ГОСТ/СПДС"}
+    - {family: model_studio_cs, note: "Model Studio CS Строительные решения — российская BIM-система для промышленных металлоконструкций и ЖБК"}
+    - {family: renga_bim, note: "Российская BIM-система с инструментами армирования и конструирования зданий; проще Tekla на сверхсложных промконструкциях"}
+
+- product: "PTC Mathcad"
+  family: ptc_mathcad
+  aliases: ["mathcad", "ptc mathcad", "маткад"]
+  russian_analogs:
+    - {family: engee_platform, note: "Российская инженерная платформа математических вычислений и моделирования (ближе к MATLAB, но закрывает расчетные задачи Mathcad)"}
+    - {family: simintech, note: "Отечественная среда математического и динамического моделирования технических систем"}
+    - {family: cae_fidesys, note: "Российский пакет инженерного прочностного анализа (CAE) для расчетных задач машиностроения и строительства"}
+
+- product: "PTC Creo (Pro/ENGINEER)"
+  family: ptc_creo
+  aliases: ["ptc creo", "creo", "pro engineer", "крео"]
+  russian_analogs:
+    - {family: kompas_3d, note: "Ведущая российская машиностроительная 3D САПР с выпуском КД по ЕСКД; уступает Creo в отдельных задачах тяжелого поверхностного моделирования"}
+    - {family: t_flex_cad, note: "Отечественная параметрическая 3D САПР высокого уровня, близкая по параметризации к тяжелым зарубежным MCAD"}
+    - {family: lotsman_plm, note: "Российская PLM-система для управления инженерными данными в связке с КОМПАС-3D"}
+
+- product: "MapInfo Pro"
+  family: mapinfo_pro
+  aliases: ["mapinfo", "mapinfo pro", "мапинфо"]
+  russian_analogs:
+    - {family: axioma_gis, note: "Прямая российская замена MapInfo Pro с нативной поддержкой формата TAB, привычным интерфейсом и работой под Linux"}
+    - {family: gis_panorama, note: "Ведущая российская ГИС с сертификацией ФСТЭК/МО для госсектора и картографии; использует собственный формат SXF и импорт TAB/SHP"}
+    - {family: zulugis, note: "Специализированная российская ГИС для ЖКХ, теплосетей и водоканалов"}
+
+- product: "Moodle LMS"
+  family: moodle_lms
+  aliases: ["moodle", "moodle lms", "мудл"]
+  russian_analogs:
+    - {family: ispring_suite, note: "Российская платформа корпоративного обучения и конструктор курсов SCORM с быстрым запуском и русскоязычной поддержкой"}
+    - {family: mirapolis_lms, note: "Российская корпоративная СДО в Реестре ПО для крупных компаний с управлением обучением и аттестацией"}
+    - {family: websoft_hcm, note: "Российская HCM/LMS-платформа (WebTutor) для обучения, оценки и адаптации персонала с установкой on-premise"}
+    - {family: equio_lms, note: "Отечественная мобильная LMS-платформа для обучения распределенного и линейного персонала"}
+
+# ============================================================================
+# 5. РОССИЙСКИЕ ПРОДУКТЫ, ОТСУТСТВУЮЩИЕ В ТЕКУЩЕМ КАТАЛОГЕ
+# ============================================================================
+
+- product: "Мегаплан"
+  family: megaplan_crm
+  aliases: ["мегаплан", "megaplan", "мегаплан срм"]
+  russian_analogs:
+    - {family: bitrix24, note: "Российская CRM + задачи + корпоративный портал с широкими возможностями автоматизации и интеграцией с 1С"}
+    - {family: amocrm, note: "Российская CRM, сфокусированная на управлении сделками и продажах через мессенджеры"}
+    - {family: bpmsoft_crm, note: "Российская корпоративная CRM с гибкой настройкой бизнес-процессов для растущих и крупных компаний"}
+    - {family: planfix, note: "Российский конструктор для управления задачами, клиентами и проектами"}
+
+- product: "Парус (ПАРУС-Предприятие / Бюджет)"
+  family: parus_erp
+  aliases: ["парус", "парус 8", "парус бюджет", "parus"]
+  russian_analogs:
+    - {family: onec_bgu, note: "1С:Бухгалтерия государственного учреждения — стандартный российский продукт для замены Парус-Бюджет в госсекторе"}
+    - {family: onec_erp, note: "Российская ERP-система для замены Парус-Предприятие в производственных и коммерческих холдингах"}
+    - {family: galaktika_erp, note: "Отечественная корпоративная ERP-система для крупных промышленных и государственных предприятий"}
+    - {family: turbo_erp, note: "Российская ERP-платформа для финансово-хозяйственной автоматизации крупных организаций"}
+
+- product: "Tilda Publishing (Тильда)"
+  family: tilda_publishing
+  aliases: ["tilda", "тильда", "tilda publishing"]
+  russian_analogs:
+    - {family: bitrix_site_manager, note: "1С-Битрикс: Управление сайтом — российская CMS для корпоративных сайтов и интернет-магазинов с интеграцией 1С; требует больше настройки, чем блочный конструктор Тильда"}
+    - {family: bitrix24, note: "Встроенный конструктор сайтов и лендингов Битрикс24.Сайты с прямой передачей заявок в CRM"}
+
+- product: "Jivo (JivoSite)"
+  family: jivosite
+  aliases: ["jivo", "jivosite", "живосайт", "дживосайт"]
+  russian_analogs:
+    - {family: bitrix24, note: "Открытые линии и онлайн-чат на сайт в составе Битрикс24; сразу сохраняет диалоги в CRM без отдельного коннектора"}
+    - {family: amocrm, note: "Встроенные чаты и омниканальный прием обращений с сайта и мессенджеров в воронку amoCRM"}
+    - {family: retailcrm, note: "CRM для интернет-магазинов со встроенными чатами для общения с покупателями по заказам"}
+    - {family: naumen_contact_center, note: "Российская платформа омниканального контакт-центра для среднего и крупного бизнеса"}
+
+- product: "Контур.Бухгалтерия"
+  family: kontur_buhgalteriya
+  aliases: ["контур бухгалтерия", "контур.бухгалтерия"]
+  russian_analogs:
+    - {family: onec_fresh, note: "1С:Фреш — облачный сервис 1С:Бухгалтерия с работой через браузер, ближайший по формату к облачной Контур.Бухгалтерии"}
+    - {family: onec_accounting, note: "1С:Бухгалтерия 8 — стандартная система бухгалтерского и налогового учета в РФ с широкими возможностями масштабирования"}
+    - {family: sbis_saby, note: "СБИС Бухгалтерия и отчетность — облачный российский сервис учета и сдачи отчетности для малого и среднего бизнеса"}
+
+- product: "1С:ТОИР Управление ремонтами и обслуживанием оборудования"
+  family: onec_toir
+  aliases: ["1с тоир", "1с:тоир", "1c toir", "деснол тоир"]
+  russian_analogs:
+    - {family: onec_erp, note: "1С:ERP включает встроенный контур управления ремонтами и обслуживанием оборудования; базовый функционал скромнее специализированного 1С:ТОИР"}
+    - {family: galaktika_erp, note: "Российская ERP-система с развитым модулем управления ремонтами и активами (Галактика EAM) для промышленности"}
+    - {family: turbo_erp, note: "Российская ERP-платформа с возможностями автоматизации производственных и ремонтных служб"}

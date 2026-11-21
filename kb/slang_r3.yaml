@@ -1,0 +1,1135 @@
+# Расширение словаря (раунд 3): классы продуктов, альтернативные написания и лицензионный жаргон
+# Формат: kb/SCHEMA.md (дополнение к kb/slang.yaml; существующие термины и алиасы не дублируются)
+# Типы: slang | abbr | translit | typo | obsolete
+# Цели maps_to: {category: id} | {vendor: id} | {family: id} | {platform: x} | {attr: ..., value: ...}
+
+# ============================================================================
+# ЧАСТЬ 1. КЛАССЫ ПРОДУКТОВ -> КАТЕГОРИЯ
+# ============================================================================
+
+# --- Информационная безопасность (security) ---
+- {term: "ав", type: abbr, maps_to: {category: endpoint_security}, note: "Антивирус"}
+- {term: "av", type: abbr, maps_to: {category: endpoint_security}, note: "Antivirus"}
+- {term: "епп", type: translit, maps_to: {category: endpoint_security}, note: "EPP"}
+- {term: "эндпоинт", type: translit, maps_to: {category: endpoint_security}, note: "Endpoint protection"}
+- {term: "эндпоинт секьюрити", type: translit, maps_to: {category: endpoint_security}, note: "Endpoint Security"}
+- {term: "корпоративный антивирус", type: slang, maps_to: {category: endpoint_security}, note: ""}
+- {term: "антивирус для бизнеса", type: slang, maps_to: {category: endpoint_security}, note: ""}
+- {term: "защита рабочих станций", type: slang, maps_to: {category: endpoint_security}, note: ""}
+- {term: "защита серверов", type: slang, maps_to: {category: endpoint_security}, note: ""}
+- {term: "средство антивирусной защиты", type: slang, maps_to: {category: endpoint_security}, note: "Полное название САВЗ"}
+- {term: "антивирус для ноутбука", type: slang, maps_to: {category: home_antivirus}, note: ""}
+- {term: "семейный антивирус", type: slang, maps_to: {category: home_antivirus}, note: ""}
+- {term: "антивирус для домашнего пк", type: slang, maps_to: {category: home_antivirus}, note: ""}
+- {term: "nta", type: abbr, maps_to: {category: edr_xdr}, note: "Network Traffic Analysis"}
+- {term: "нта", type: translit, maps_to: {category: edr_xdr}, note: "NTA"}
+- {term: "ндр", type: translit, maps_to: {category: edr_xdr}, note: "NDR"}
+- {term: "эдр", type: translit, maps_to: {category: edr_xdr}, note: "EDR"}
+- {term: "сэндбокс", type: translit, maps_to: {category: edr_xdr}, note: "Sandbox"}
+- {term: "сендбокс", type: translit, maps_to: {category: edr_xdr}, note: "Sandbox"}
+- {term: "anti-apt", type: abbr, maps_to: {category: edr_xdr}, note: "Защита от целевых атак"}
+- {term: "анализ сетевого трафика", type: slang, maps_to: {category: edr_xdr}, note: "NTA/NDR"}
+- {term: "выявление целевых атак", type: slang, maps_to: {category: edr_xdr}, note: "Anti-APT"}
+- {term: "vpn", type: abbr, maps_to: {category: ngfw_vpn}, note: "VPN"}
+- {term: "впн", type: translit, maps_to: {category: ngfw_vpn}, note: "VPN"}
+- {term: "ids", type: abbr, maps_to: {category: ngfw_vpn}, note: "Intrusion Detection System"}
+- {term: "ips", type: abbr, maps_to: {category: ngfw_vpn}, note: "Intrusion Prevention System"}
+- {term: "сов", type: abbr, maps_to: {category: ngfw_vpn}, note: "Система обнаружения вторжений"}
+- {term: "идс", type: translit, maps_to: {category: ngfw_vpn}, note: "IDS"}
+- {term: "ипс", type: translit, maps_to: {category: ngfw_vpn}, note: "IPS"}
+- {term: "утм", type: translit, maps_to: {category: ngfw_vpn}, note: "UTM"}
+- {term: "брандмауэр", type: slang, maps_to: {category: ngfw_vpn}, note: "Межсетевой экран"}
+- {term: "межсетевик", type: slang, maps_to: {category: ngfw_vpn}, note: "Межсетевой экран"}
+- {term: "корпоративный vpn", type: slang, maps_to: {category: ngfw_vpn}, note: ""}
+- {term: "корпоративный впн", type: slang, maps_to: {category: ngfw_vpn}, note: ""}
+- {term: "впн шлюз", type: slang, maps_to: {category: ngfw_vpn}, note: ""}
+- {term: "vpn клиент", type: slang, maps_to: {category: ngfw_vpn}, note: ""}
+- {term: "впн клиент", type: slang, maps_to: {category: ngfw_vpn}, note: ""}
+- {term: "криптошлюз", type: slang, maps_to: {category: ngfw_vpn}, note: "ГОСТ VPN шлюз"}
+- {term: "система обнаружения вторжений", type: slang, maps_to: {category: ngfw_vpn}, note: "IDS/СОВ"}
+- {term: "система предотвращения вторжений", type: slang, maps_to: {category: ngfw_vpn}, note: "IPS"}
+- {term: "межсетевой экран нового поколения", type: slang, maps_to: {category: ngfw_vpn}, note: "NGFW"}
+- {term: "дкап", type: translit, maps_to: {category: dlp}, note: "DCAP"}
+- {term: "длп система", type: slang, maps_to: {category: dlp}, note: ""}
+- {term: "dlp система", type: slang, maps_to: {category: dlp}, note: ""}
+- {term: "контроль утечки данных", type: slang, maps_to: {category: dlp}, note: ""}
+- {term: "защита от инсайдеров", type: slang, maps_to: {category: dlp}, note: ""}
+- {term: "dam", type: abbr, maps_to: {category: dlp}, note: "Database Activity Monitoring"}
+- {term: "sgrc", type: abbr, maps_to: {category: siem_soc}, note: "Security GRC"}
+- {term: "сгрц", type: translit, maps_to: {category: siem_soc}, note: "SGRC"}
+- {term: "ueba", type: abbr, maps_to: {category: siem_soc}, note: "User and Entity Behavior Analytics"}
+- {term: "уеба", type: translit, maps_to: {category: siem_soc}, note: "UEBA"}
+- {term: "соар", type: translit, maps_to: {category: siem_soc}, note: "SOAR"}
+- {term: "ирп", type: translit, maps_to: {category: siem_soc}, note: "IRP"}
+- {term: "сок платформа", type: translit, maps_to: {category: siem_soc}, note: "SOC"}
+- {term: "сием система", type: slang, maps_to: {category: siem_soc}, note: ""}
+- {term: "корреляция событий иб", type: slang, maps_to: {category: siem_soc}, note: "SIEM"}
+- {term: "реагирование на инциденты иб", type: slang, maps_to: {category: siem_soc}, note: "IRP/SOAR"}
+- {term: "апмдз", type: abbr, maps_to: {category: nsd_access_control}, note: "Аппаратно-программный модуль доверенной загрузки"}
+- {term: "сзи нсд", type: abbr, maps_to: {category: nsd_access_control}, note: "СЗИ от НСД"}
+- {term: "сзи виртуализации", type: abbr, maps_to: {category: nsd_access_control}, note: "Защита среды виртуализации"}
+- {term: "контроль съемных носителей", type: slang, maps_to: {category: nsd_access_control}, note: ""}
+- {term: "доверенная загрузка пк", type: slang, maps_to: {category: nsd_access_control}, note: ""}
+- {term: "otp", type: abbr, maps_to: {category: iam_pam_mfa}, note: "One-Time Password"}
+- {term: "отп", type: translit, maps_to: {category: iam_pam_mfa}, note: "OTP"}
+- {term: "2фа", type: translit, maps_to: {category: iam_pam_mfa}, note: "2FA"}
+- {term: "мфа", type: translit, maps_to: {category: iam_pam_mfa}, note: "MFA"}
+- {term: "иам", type: translit, maps_to: {category: iam_pam_mfa}, note: "IAM"}
+- {term: "идм", type: translit, maps_to: {category: iam_pam_mfa}, note: "IDM"}
+- {term: "ига система", type: translit, maps_to: {category: iam_pam_mfa}, note: "IGA"}
+- {term: "ссо", type: translit, maps_to: {category: iam_pam_mfa}, note: "SSO"}
+- {term: "единый вход", type: slang, maps_to: {category: iam_pam_mfa}, note: "SSO"}
+- {term: "хранилище паролей", type: slang, maps_to: {category: iam_pam_mfa}, note: "Менеджер паролей"}
+- {term: "корпоративный менеджер паролей", type: slang, maps_to: {category: iam_pam_mfa}, note: ""}
+- {term: "управление учетными записями", type: slang, maps_to: {category: iam_pam_mfa}, note: "IAM/IDM"}
+- {term: "криптозащита", type: slang, maps_to: {category: crypto_skzi}, note: "СКЗИ"}
+- {term: "криптографическая защита", type: slang, maps_to: {category: crypto_skzi}, note: "СКЗИ"}
+- {term: "гост шифрование", type: slang, maps_to: {category: crypto_skzi}, note: ""}
+- {term: "средство криптозащиты", type: slang, maps_to: {category: crypto_skzi}, note: "СКЗИ"}
+- {term: "кэп", type: abbr, maps_to: {category: e_signature}, note: "Квалифицированная электронная подпись"}
+- {term: "унэп", type: abbr, maps_to: {category: e_signature}, note: "Усиленная неквалифицированная ЭП"}
+- {term: "уц", type: abbr, maps_to: {category: e_signature}, note: "Удостоверяющий центр"}
+- {term: "dss", type: abbr, maps_to: {category: e_signature}, note: "Digital Signature Service"}
+- {term: "облачная подпись", type: slang, maps_to: {category: e_signature}, note: "Облачная ЭП / DSS"}
+- {term: "облачная эцп", type: slang, maps_to: {category: e_signature}, note: ""}
+- {term: "машиночитаемая доверенность", type: slang, maps_to: {category: e_signature}, note: "МЧД"}
+- {term: "цифровая подпись", type: slang, maps_to: {category: e_signature}, note: "ЭЦП"}
+- {term: "пки", type: translit, maps_to: {category: tokens_pki}, note: "PKI"}
+- {term: "смарткарта", type: slang, maps_to: {category: tokens_pki}, note: "Смарт-карта"}
+- {term: "юсб токен", type: translit, maps_to: {category: tokens_pki}, note: "USB-токен"}
+- {term: "аппаратный ключ", type: slang, maps_to: {category: tokens_pki}, note: "Ключевой носитель"}
+- {term: "носитель эцп", type: slang, maps_to: {category: tokens_pki}, note: ""}
+- {term: "ключевая флешка", type: slang, maps_to: {category: tokens_pki}, note: "Токен для ЭП"}
+- {term: "ssl", type: abbr, maps_to: {category: ssl_certificates}, note: "SSL-сертификаты"}
+- {term: "tls", type: abbr, maps_to: {category: ssl_certificates}, note: "TLS-сертификаты"}
+- {term: "тлс", type: translit, maps_to: {category: ssl_certificates}, note: "TLS"}
+- {term: "https", type: abbr, maps_to: {category: ssl_certificates}, note: "HTTPS-сертификаты"}
+- {term: "вайлдкард", type: translit, maps_to: {category: ssl_certificates}, note: "Wildcard SSL"}
+- {term: "сертификат безопасности сайта", type: slang, maps_to: {category: ssl_certificates}, note: "SSL"}
+- {term: "сег шлюз", type: translit, maps_to: {category: mail_security}, note: "SEG (Secure Email Gateway)"}
+- {term: "спам фильтр", type: slang, maps_to: {category: mail_security}, note: "Антиспам"}
+- {term: "почтовый антивирус", type: slang, maps_to: {category: mail_security}, note: ""}
+- {term: "защита корпоративной почты", type: slang, maps_to: {category: mail_security}, note: ""}
+- {term: "защита от спама", type: slang, maps_to: {category: mail_security}, note: ""}
+- {term: "веб экран", type: slang, maps_to: {category: waf_appsec}, note: "WAF"}
+- {term: "ддос защита", type: slang, maps_to: {category: waf_appsec}, note: "Anti-DDoS"}
+- {term: "ddos защита", type: slang, maps_to: {category: waf_appsec}, note: "Anti-DDoS"}
+- {term: "защита от ддос", type: translit, maps_to: {category: waf_appsec}, note: "Anti-DDoS"}
+- {term: "защита от ботов", type: slang, maps_to: {category: waf_appsec}, note: "WAF / Bot management"}
+- {term: "вм система", type: translit, maps_to: {category: vuln_mgmt_pentest}, note: "Vulnerability Management"}
+- {term: "анализ защищенности", type: slang, maps_to: {category: vuln_mgmt_pentest}, note: "VM / сканер уязвимостей"}
+- {term: "поиск уязвимостей", type: slang, maps_to: {category: vuln_mgmt_pentest}, note: ""}
+- {term: "тестирование на проникновение", type: slang, maps_to: {category: vuln_mgmt_pentest}, note: "Pentest"}
+- {term: "pentest", type: abbr, maps_to: {category: vuln_mgmt_pentest}, note: "Пентест"}
+- {term: "уам", type: translit, maps_to: {category: employee_monitoring}, note: "UAM"}
+- {term: "учет времени сотрудников", type: slang, maps_to: {category: employee_monitoring}, note: ""}
+- {term: "контроль рабочего времени", type: slang, maps_to: {category: employee_monitoring}, note: ""}
+- {term: "запись экрана сотрудников", type: slang, maps_to: {category: employee_monitoring}, note: ""}
+- {term: "защита асутп", type: slang, maps_to: {category: ot_ics_security}, note: "Защита АСУ ТП"}
+- {term: "защита скада", type: slang, maps_to: {category: ot_ics_security}, note: "SCADA security"}
+- {term: "промышленная кибербезопасность", type: slang, maps_to: {category: ot_ics_security}, note: "OT/ICS security"}
+- {term: "защита технологических сетей", type: slang, maps_to: {category: ot_ics_security}, note: ""}
+- {term: "емм", type: translit, maps_to: {category: mobile_security_mdm}, note: "EMM"}
+- {term: "управление смартфонами", type: slang, maps_to: {category: mobile_security_mdm}, note: "MDM"}
+- {term: "защита мобильных устройств", type: slang, maps_to: {category: mobile_security_mdm}, note: ""}
+- {term: "корпоративная мобильность", type: slang, maps_to: {category: mobile_security_mdm}, note: "EMM/MDM"}
+- {term: "fde", type: abbr, maps_to: {category: data_wiping_encryption}, note: "Full Disk Encryption"}
+- {term: "фде", type: translit, maps_to: {category: data_wiping_encryption}, note: "FDE"}
+- {term: "уничтожение данных", type: slang, maps_to: {category: data_wiping_encryption}, note: ""}
+- {term: "гарантированное удаление файлов", type: slang, maps_to: {category: data_wiping_encryption}, note: ""}
+- {term: "шифрование флешек", type: slang, maps_to: {category: data_wiping_encryption}, note: ""}
+
+# --- Операционные системы (operating_systems) ---
+- {term: "российская ось", type: slang, maps_to: {category: desktop_os_ru}, note: ""}
+- {term: "отечественная операционная система", type: slang, maps_to: {category: desktop_os_ru}, note: ""}
+- {term: "настольная российская ос", type: slang, maps_to: {category: desktop_os_ru}, note: ""}
+- {term: "линукс для рабочих станций", type: slang, maps_to: {category: desktop_os_ru}, note: ""}
+- {term: "ос для сервера", type: slang, maps_to: {category: server_os}, note: ""}
+- {term: "серверная операционка", type: slang, maps_to: {category: server_os}, note: ""}
+- {term: "серверный линукс", type: slang, maps_to: {category: server_os}, note: ""}
+- {term: "форточки", type: slang, maps_to: {category: desktop_os_windows}, note: "Windows"}
+- {term: "операционная система windows", type: slang, maps_to: {category: desktop_os_windows}, note: ""}
+- {term: "настольная windows", type: slang, maps_to: {category: desktop_os_windows}, note: ""}
+- {term: "юникс", type: translit, maps_to: {category: linux_unix_os}, note: "Unix"}
+- {term: "зарубежный линукс", type: slang, maps_to: {category: linux_unix_os}, note: ""}
+- {term: "коммерческий linux", type: slang, maps_to: {category: linux_unix_os}, note: ""}
+- {term: "ос для смартфонов", type: slang, maps_to: {category: mobile_os}, note: ""}
+- {term: "ос для планшетов", type: slang, maps_to: {category: mobile_os}, note: ""}
+- {term: "отечественная мобильная ос", type: slang, maps_to: {category: mobile_os}, note: ""}
+
+# --- Офисные программы (office) ---
+- {term: "пакет офисных программ", type: slang, maps_to: {category: office_suite}, note: ""}
+- {term: "офисные редакторы", type: slang, maps_to: {category: office_suite}, note: ""}
+- {term: "отечественный офис", type: slang, maps_to: {category: office_suite}, note: ""}
+- {term: "аналог ms office", type: slang, maps_to: {category: office_suite}, note: ""}
+- {term: "редактор документов и таблиц", type: slang, maps_to: {category: office_suite}, note: ""}
+- {term: "табличный процессор", type: slang, maps_to: {category: spreadsheets_bi_addons}, note: ""}
+- {term: "табличный редактор", type: slang, maps_to: {category: spreadsheets_bi_addons}, note: ""}
+- {term: "надстройки для таблиц", type: slang, maps_to: {category: spreadsheets_bi_addons}, note: ""}
+- {term: "клиент электронной почты", type: slang, maps_to: {category: email_clients_calendars}, note: ""}
+- {term: "программа для почты", type: slang, maps_to: {category: email_clients_calendars}, note: ""}
+- {term: "почтовый органайзер", type: slang, maps_to: {category: email_clients_calendars}, note: ""}
+- {term: "ментальные карты", type: slang, maps_to: {category: diagramming_mindmaps}, note: "Mindmap"}
+- {term: "майндкарта", type: translit, maps_to: {category: diagramming_mindmaps}, note: "Mindmap"}
+- {term: "редактор схем", type: slang, maps_to: {category: diagramming_mindmaps}, note: ""}
+- {term: "редактор диаграмм", type: slang, maps_to: {category: diagramming_mindmaps}, note: ""}
+- {term: "моделирование бизнес процессов", type: slang, maps_to: {category: diagramming_mindmaps}, note: "BPMN/ARIS"}
+- {term: "bpmn редактор", type: abbr, maps_to: {category: diagramming_mindmaps}, note: ""}
+- {term: "ксп", type: abbr, maps_to: {category: project_planning}, note: "Календарно-сетевое планирование"}
+- {term: "ppm", type: abbr, maps_to: {category: project_planning}, note: "Project Portfolio Management"}
+- {term: "ппм", type: translit, maps_to: {category: project_planning}, note: "PPM"}
+- {term: "график ганта", type: slang, maps_to: {category: project_planning}, note: ""}
+- {term: "сетевой график", type: slang, maps_to: {category: project_planning}, note: "КСП"}
+- {term: "система управления проектами", type: slang, maps_to: {category: project_planning}, note: "ИСУП"}
+- {term: "вайтборд", type: translit, maps_to: {category: whiteboards_notes}, note: "Whiteboard"}
+- {term: "whiteboard", type: abbr, maps_to: {category: whiteboards_notes}, note: "Онлайн-доска"}
+- {term: "бесконечная доска", type: slang, maps_to: {category: whiteboards_notes}, note: "Аналог Miro"}
+- {term: "база знаний для сотрудников", type: slang, maps_to: {category: whiteboards_notes}, note: "Wiki"}
+
+# --- Виртуализация и инфраструктура (virtualization_infra) ---
+- {term: "hci", type: abbr, maps_to: {category: server_virtualization}, note: "Hyper-Converged Infrastructure"}
+- {term: "гиперконвергенция", type: slang, maps_to: {category: server_virtualization}, note: "HCI"}
+- {term: "платформа виртуализации", type: slang, maps_to: {category: server_virtualization}, note: ""}
+- {term: "среда виртуализации", type: slang, maps_to: {category: server_virtualization}, note: ""}
+- {term: "виртуализация серверов", type: slang, maps_to: {category: server_virtualization}, note: ""}
+- {term: "отечественный гипервизор", type: slang, maps_to: {category: server_virtualization}, note: ""}
+- {term: "инфраструктура виртуальных рабочих столов", type: slang, maps_to: {category: vdi_desktop_virt}, note: "VDI"}
+- {term: "брокер vdi", type: slang, maps_to: {category: vdi_desktop_virt}, note: ""}
+- {term: "виртуализация десктопов", type: slang, maps_to: {category: vdi_desktop_virt}, note: "VDI"}
+- {term: "настольный гипервизор", type: slang, maps_to: {category: desktop_hypervisors}, note: ""}
+- {term: "эмулятор windows на linux", type: slang, maps_to: {category: desktop_hypervisors}, note: "WINE"}
+- {term: "запуск windows приложений на linux", type: slang, maps_to: {category: desktop_hypervisors}, note: ""}
+- {term: "контейнеры", type: slang, maps_to: {category: containers_kubernetes}, note: "Контейнеризация / Kubernetes"}
+- {term: "к8с", type: translit, maps_to: {category: containers_kubernetes}, note: "k8s"}
+- {term: "оркестратор контейнеров", type: slang, maps_to: {category: containers_kubernetes}, note: "Kubernetes"}
+- {term: "российский кубернетес", type: slang, maps_to: {category: containers_kubernetes}, note: ""}
+- {term: "российский kubernetes", type: slang, maps_to: {category: containers_kubernetes}, note: ""}
+- {term: "ldap", type: abbr, maps_to: {category: directory_services}, note: "Служба каталогов"}
+- {term: "лдап", type: translit, maps_to: {category: directory_services}, note: "LDAP"}
+- {term: "уем", type: translit, maps_to: {category: directory_services}, note: "UEM"}
+- {term: "российский active directory", type: slang, maps_to: {category: directory_services}, note: ""}
+- {term: "домен на linux", type: slang, maps_to: {category: directory_services}, note: "Контроллер домена"}
+- {term: "управление рабочими станциями", type: slang, maps_to: {category: directory_services}, note: "UEM/SCCM"}
+- {term: "мониторинг", type: slang, maps_to: {category: monitoring_apm}, note: "Мониторинг ИТ-инфраструктуры"}
+- {term: "апм", type: translit, maps_to: {category: monitoring_apm}, note: "APM"}
+- {term: "aiops", type: abbr, maps_to: {category: monitoring_apm}, note: "AIOps мониторинг"}
+- {term: "аиопс", type: translit, maps_to: {category: monitoring_apm}, note: "AIOps"}
+- {term: "обсервабилити", type: translit, maps_to: {category: monitoring_apm}, note: "Observability"}
+- {term: "зонтичный мониторинг", type: slang, maps_to: {category: monitoring_apm}, note: ""}
+- {term: "мониторинг приложений", type: slang, maps_to: {category: monitoring_apm}, note: "APM"}
+- {term: "сервис деск", type: translit, maps_to: {category: itsm_service_desk}, note: "Service Desk"}
+- {term: "хелп деск", type: translit, maps_to: {category: itsm_service_desk}, note: "Helpdesk"}
+- {term: "итсм", type: translit, maps_to: {category: itsm_service_desk}, note: "ITSM"}
+- {term: "есм", type: translit, maps_to: {category: itsm_service_desk}, note: "ESM"}
+- {term: "итам", type: translit, maps_to: {category: itsm_service_desk}, note: "ITAM"}
+- {term: "cmdb", type: abbr, maps_to: {category: itsm_service_desk}, note: "База конфигурационных единиц"}
+- {term: "цмдб", type: translit, maps_to: {category: itsm_service_desk}, note: "CMDB"}
+- {term: "sam система", type: abbr, maps_to: {category: itsm_service_desk}, note: "Software Asset Management"}
+- {term: "система тикетов", type: slang, maps_to: {category: itsm_service_desk}, note: "Service Desk"}
+- {term: "управление ит активами", type: slang, maps_to: {category: itsm_service_desk}, note: "ITAM"}
+- {term: "инвентаризация сети", type: slang, maps_to: {category: system_utilities}, note: ""}
+- {term: "аудит парка пк", type: slang, maps_to: {category: system_utilities}, note: ""}
+- {term: "диагностика пк", type: slang, maps_to: {category: system_utilities}, note: ""}
+- {term: "адц", type: translit, maps_to: {category: load_balancing_adc}, note: "ADC"}
+- {term: "балансировка нагрузки", type: slang, maps_to: {category: load_balancing_adc}, note: "ADC / Load Balancer"}
+- {term: "реверс прокси", type: translit, maps_to: {category: load_balancing_adc}, note: "Reverse proxy"}
+- {term: "обратный прокси", type: slang, maps_to: {category: load_balancing_adc}, note: ""}
+
+# --- СУБД, данные и BI (databases_data) ---
+- {term: "база данных", type: slang, maps_to: {category: rdbms}, note: "СУБД"}
+- {term: "рсубд", type: abbr, maps_to: {category: rdbms}, note: "Реляционная СУБД"}
+- {term: "rdbms", type: abbr, maps_to: {category: rdbms}, note: "Relational DBMS"}
+- {term: "sql база", type: slang, maps_to: {category: rdbms}, note: ""}
+- {term: "реляционная бд", type: slang, maps_to: {category: rdbms}, note: ""}
+- {term: "сервер баз данных", type: slang, maps_to: {category: rdbms}, note: ""}
+- {term: "база данных для 1с", type: slang, maps_to: {category: rdbms}, note: ""}
+- {term: "инмемори", type: translit, maps_to: {category: nosql_inmemory}, note: "In-Memory СУБД"}
+- {term: "документная субд", type: slang, maps_to: {category: nosql_inmemory}, note: "NoSQL"}
+- {term: "графовая бд", type: slang, maps_to: {category: nosql_inmemory}, note: ""}
+- {term: "распределенная бд", type: slang, maps_to: {category: nosql_inmemory}, note: ""}
+- {term: "олап", type: translit, maps_to: {category: dwh_olap}, note: "OLAP"}
+- {term: "мпп субд", type: translit, maps_to: {category: dwh_olap}, note: "MPP DWH"}
+- {term: "аналитическая субд", type: slang, maps_to: {category: dwh_olap}, note: "DWH/OLAP"}
+- {term: "корпоративное хранилище данных", type: slang, maps_to: {category: dwh_olap}, note: "КХД/DWH"}
+- {term: "витрины данных", type: slang, maps_to: {category: dwh_olap}, note: "DWH"}
+- {term: "елт", type: translit, maps_to: {category: big_data_streaming}, note: "ELT"}
+- {term: "большие данные", type: slang, maps_to: {category: big_data_streaming}, note: "Big Data"}
+- {term: "дата лейк", type: translit, maps_to: {category: big_data_streaming}, note: "Data Lake"}
+- {term: "хадуп", type: translit, maps_to: {category: big_data_streaming}, note: "Hadoop"}
+- {term: "брокер сообщений", type: slang, maps_to: {category: big_data_streaming}, note: "Kafka / streaming"}
+- {term: "конвейер данных", type: slang, maps_to: {category: big_data_streaming}, note: "ETL/ELT"}
+- {term: "би система", type: translit, maps_to: {category: bi_analytics}, note: "BI-система"}
+- {term: "bi платформа", type: slang, maps_to: {category: bi_analytics}, note: ""}
+- {term: "аналитика данных", type: slang, maps_to: {category: bi_analytics}, note: "BI"}
+- {term: "дашборд", type: translit, maps_to: {category: bi_analytics}, note: "Dashboard / BI"}
+- {term: "российский bi", type: slang, maps_to: {category: bi_analytics}, note: ""}
+- {term: "инструменты dba", type: abbr, maps_to: {category: db_management_tools}, note: "Администрирование БД"}
+- {term: "миграция субд", type: slang, maps_to: {category: db_management_tools}, note: ""}
+- {term: "мониторинг бд", type: slang, maps_to: {category: db_management_tools}, note: ""}
+- {term: "мастер данные", type: slang, maps_to: {category: data_governance_mdm}, note: "MDM/НСИ"}
+- {term: "дата говернанс", type: translit, maps_to: {category: data_governance_mdm}, note: "Data Governance"}
+- {term: "управление справочниками", type: slang, maps_to: {category: data_governance_mdm}, note: "НСИ"}
+- {term: "очистка данных", type: slang, maps_to: {category: data_governance_mdm}, note: "Data Quality"}
+
+# --- Резервное копирование и хранение (backup_storage) ---
+- {term: "система резервного копирования", type: slang, maps_to: {category: backup_recovery}, note: "СРК"}
+- {term: "бэкап серверов", type: slang, maps_to: {category: backup_recovery}, note: ""}
+- {term: "бэкап баз данных", type: slang, maps_to: {category: backup_recovery}, note: ""}
+- {term: "аварийное восстановление", type: slang, maps_to: {category: backup_recovery}, note: "Disaster Recovery"}
+- {term: "disaster recovery", type: abbr, maps_to: {category: backup_recovery}, note: "СРК / DR"}
+- {term: "восстановление удаленных файлов", type: slang, maps_to: {category: data_recovery}, note: ""}
+- {term: "восстановление диска", type: slang, maps_to: {category: data_recovery}, note: ""}
+- {term: "схд", type: abbr, maps_to: {category: sds_storage}, note: "Система хранения данных / SDS"}
+- {term: "сдс", type: translit, maps_to: {category: sds_storage}, note: "SDS"}
+- {term: "ефсс", type: translit, maps_to: {category: sds_storage}, note: "EFSS"}
+- {term: "файловое хранилище", type: slang, maps_to: {category: sds_storage}, note: "SDS / корп. диск"}
+- {term: "объектное хранилище", type: slang, maps_to: {category: sds_storage}, note: "S3"}
+- {term: "корпоративное хранилище файлов", type: slang, maps_to: {category: sds_storage}, note: "EFSS"}
+- {term: "двухпанельник", type: slang, maps_to: {category: file_managers}, note: "Двухпанельный файловый менеджер"}
+- {term: "менеджер файлов", type: slang, maps_to: {category: file_managers}, note: ""}
+- {term: "архивация файлов", type: slang, maps_to: {category: archivers}, note: ""}
+- {term: "программа для архивов", type: slang, maps_to: {category: archivers}, note: ""}
+- {term: "управление разделами диска", type: slang, maps_to: {category: disk_utilities}, note: ""}
+- {term: "перенос системы на ssd", type: slang, maps_to: {category: disk_utilities}, note: ""}
+
+# --- Коммуникации (communications) ---
+- {term: "видеоконференции", type: slang, maps_to: {category: vks_webinars}, note: "ВКС"}
+- {term: "видеоконференция", type: slang, maps_to: {category: vks_webinars}, note: "ВКС"}
+- {term: "вебинарная платформа", type: slang, maps_to: {category: vks_webinars}, note: ""}
+- {term: "платформа для вебинаров", type: slang, maps_to: {category: vks_webinars}, note: ""}
+- {term: "онлайн совещания", type: slang, maps_to: {category: vks_webinars}, note: "ВКС"}
+- {term: "сервер вкс", type: slang, maps_to: {category: vks_webinars}, note: "MCU"}
+- {term: "мцу", type: translit, maps_to: {category: vks_webinars}, note: "MCU сервер ВКС"}
+- {term: "мессенджер", type: slang, maps_to: {category: corporate_messengers}, note: "Корпоративный мессенджер"}
+- {term: "мессенджер для бизнеса", type: slang, maps_to: {category: corporate_messengers}, note: ""}
+- {term: "корпоративный чат", type: slang, maps_to: {category: corporate_messengers}, note: ""}
+- {term: "чат для команды", type: slang, maps_to: {category: corporate_messengers}, note: ""}
+- {term: "почта", type: slang, maps_to: {category: mail_servers}, note: "Корпоративная почта / почтовый сервер"}
+- {term: "корп почта", type: slang, maps_to: {category: mail_servers}, note: ""}
+- {term: "почта для домена", type: slang, maps_to: {category: mail_servers}, note: ""}
+- {term: "российский exchange", type: slang, maps_to: {category: mail_servers}, note: ""}
+- {term: "почтовый сервер linux", type: slang, maps_to: {category: mail_servers}, note: ""}
+- {term: "uc", type: abbr, maps_to: {category: uc_platforms}, note: "Unified Communications"}
+- {term: "юси платформа", type: translit, maps_to: {category: uc_platforms}, note: "UC-платформа"}
+- {term: "портал для сотрудников", type: slang, maps_to: {category: uc_platforms}, note: "Интранет"}
+- {term: "атс", type: abbr, maps_to: {category: ip_telephony}, note: "Программная / виртуальная АТС"}
+- {term: "pbx", type: abbr, maps_to: {category: ip_telephony}, note: "IP-АТС"}
+- {term: "voip", type: abbr, maps_to: {category: ip_telephony}, note: "IP-телефония"}
+- {term: "воип", type: translit, maps_to: {category: ip_telephony}, note: "VoIP"}
+- {term: "сип телефония", type: translit, maps_to: {category: ip_telephony}, note: "SIP-телефония"}
+- {term: "корпоративная телефония", type: slang, maps_to: {category: ip_telephony}, note: ""}
+- {term: "облачная атс", type: slang, maps_to: {category: ip_telephony}, note: "ВАТС"}
+- {term: "айпи телефония", type: translit, maps_to: {category: ip_telephony}, note: "IP-телефония"}
+- {term: "cdp", type: abbr, maps_to: {category: email_marketing}, note: "Customer Data Platform"}
+- {term: "цдп", type: translit, maps_to: {category: email_marketing}, note: "CDP"}
+- {term: "сервис рассылок", type: slang, maps_to: {category: email_marketing}, note: ""}
+- {term: "массовые рассылки", type: slang, maps_to: {category: email_marketing}, note: ""}
+- {term: "браузер", type: slang, maps_to: {category: browsers_network_utils}, note: "Корпоративный браузер"}
+- {term: "российский браузер", type: slang, maps_to: {category: browsers_network_utils}, note: ""}
+- {term: "ipam", type: abbr, maps_to: {category: browsers_network_utils}, note: "IP Address Management"}
+- {term: "ddi", type: abbr, maps_to: {category: browsers_network_utils}, note: "DNS/DHCP/IPAM"}
+
+# --- Удаленный доступ (remote_access) ---
+- {term: "удаленное управление пк", type: slang, maps_to: {category: remote_desktop}, note: ""}
+- {term: "программа для удаленной работы", type: slang, maps_to: {category: remote_desktop}, note: ""}
+- {term: "удаленное подключение к пк", type: slang, maps_to: {category: remote_desktop}, note: ""}
+- {term: "rdp", type: abbr, maps_to: {category: terminal_access}, note: "Remote Desktop Protocol / терминальный доступ"}
+- {term: "рдп", type: translit, maps_to: {category: terminal_access}, note: "RDP"}
+- {term: "терминальный доступ", type: slang, maps_to: {category: terminal_access}, note: ""}
+- {term: "сервер терминалов", type: slang, maps_to: {category: terminal_access}, note: ""}
+- {term: "jump host", type: abbr, maps_to: {category: pam_jump_hosts}, note: "Шлюз удаленного доступа"}
+- {term: "джамп хост", type: translit, maps_to: {category: pam_jump_hosts}, note: "Jump Host"}
+- {term: "зтна", type: translit, maps_to: {category: pam_jump_hosts}, note: "ZTNA"}
+- {term: "нулевое доверие", type: slang, maps_to: {category: pam_jump_hosts}, note: "Zero Trust"}
+
+# --- Бухгалтерия, 1С, торговля и кадры (accounting_1c) ---
+- {term: "бухучет", type: slang, maps_to: {category: accounting}, note: "Бухгалтерский учет"}
+- {term: "бух учет", type: slang, maps_to: {category: accounting}, note: ""}
+- {term: "программа для бухгалтера", type: slang, maps_to: {category: accounting}, note: ""}
+- {term: "бюджетный учет", type: slang, maps_to: {category: accounting}, note: "Бухгалтерия госучреждений"}
+- {term: "кадры", type: slang, maps_to: {category: payroll_hr_1c}, note: "Кадровый учет и зарплата"}
+- {term: "зарплата и кадры", type: slang, maps_to: {category: payroll_hr_1c}, note: ""}
+- {term: "расчет заработной платы", type: slang, maps_to: {category: payroll_hr_1c}, note: ""}
+- {term: "склад", type: slang, maps_to: {category: trade_warehouse}, note: "Складской учет / WMS"}
+- {term: "торговый учет", type: slang, maps_to: {category: trade_warehouse}, note: ""}
+- {term: "автоматизация склада", type: slang, maps_to: {category: trade_warehouse}, note: "WMS"}
+- {term: "товароучет", type: slang, maps_to: {category: trade_warehouse}, note: ""}
+- {term: "товароучетная система", type: slang, maps_to: {category: trade_warehouse}, note: ""}
+- {term: "pos", type: abbr, maps_to: {category: retail_pos_cash}, note: "Point of Sale / кассовое ПО"}
+- {term: "пос система", type: translit, maps_to: {category: retail_pos_cash}, note: "POS"}
+- {term: "программа для кассы", type: slang, maps_to: {category: retail_pos_cash}, note: ""}
+- {term: "автоматизация магазина", type: slang, maps_to: {category: retail_pos_cash}, note: ""}
+- {term: "автоматизация ресторана", type: slang, maps_to: {category: retail_pos_cash}, note: "HoReCa"}
+- {term: "рабочее место кассира", type: slang, maps_to: {category: retail_pos_cash}, note: "РМК"}
+- {term: "электронная отчетность", type: slang, maps_to: {category: tax_reporting_edo}, note: ""}
+- {term: "отчетность в налоговую", type: slang, maps_to: {category: tax_reporting_edo}, note: ""}
+- {term: "ткс", type: abbr, maps_to: {category: tax_reporting_edo}, note: "Отчетность по ТКС"}
+- {term: "юзд", type: abbr, maps_to: {category: tax_reporting_edo}, note: "Юридически значимый документооборот"}
+- {term: "кдо", type: abbr, maps_to: {category: kedo_hr_docs}, note: "Кадровый документооборот"}
+- {term: "кадровый документооборот", type: slang, maps_to: {category: kedo_hr_docs}, note: "КЭДО"}
+- {term: "лицензии на платформу 1с", type: slang, maps_to: {category: onec_platform_licenses}, note: ""}
+- {term: "рабочие места 1с", type: slang, maps_to: {category: onec_platform_licenses}, note: "Клиентские лицензии 1С"}
+- {term: "проверка юрлиц", type: slang, maps_to: {category: counterparty_legal_info}, note: ""}
+- {term: "скоринг контрагентов", type: slang, maps_to: {category: counterparty_legal_info}, note: ""}
+- {term: "юридическая база", type: slang, maps_to: {category: counterparty_legal_info}, note: "СПС"}
+
+# --- Бизнес-приложения: ERP, CRM, СЭД, BPM (business_erp_crm) ---
+- {term: "mes", type: abbr, maps_to: {category: erp_systems}, note: "Manufacturing Execution System"}
+- {term: "мес система", type: translit, maps_to: {category: erp_systems}, note: "MES"}
+- {term: "eam", type: abbr, maps_to: {category: erp_systems}, note: "Enterprise Asset Management"}
+- {term: "еам", type: translit, maps_to: {category: erp_systems}, note: "EAM"}
+- {term: "тоир", type: abbr, maps_to: {category: erp_systems}, note: "Техническое обслуживание и ремонт"}
+- {term: "торо", type: abbr, maps_to: {category: erp_systems}, note: "ТОРО / EAM"}
+- {term: "ерп система", type: slang, maps_to: {category: erp_systems}, note: ""}
+- {term: "управление производством", type: slang, maps_to: {category: erp_systems}, note: "ERP/MES"}
+- {term: "срмка", type: slang, maps_to: {category: crm_systems}, note: "CRM"}
+- {term: "crm система", type: slang, maps_to: {category: crm_systems}, note: ""}
+- {term: "црм система", type: slang, maps_to: {category: crm_systems}, note: ""}
+- {term: "срм система", type: slang, maps_to: {category: crm_systems}, note: ""}
+- {term: "автоматизация продаж", type: slang, maps_to: {category: crm_systems}, note: "CRM"}
+- {term: "учет клиентов", type: slang, maps_to: {category: crm_systems}, note: "CRM"}
+- {term: "ецм", type: translit, maps_to: {category: sed_ecm}, note: "ECM"}
+- {term: "система электронного документооборота", type: slang, maps_to: {category: sed_ecm}, note: "СЭД"}
+- {term: "согласование документов", type: slang, maps_to: {category: sed_ecm}, note: "СЭД"}
+- {term: "low code", type: abbr, maps_to: {category: bpm_rpa_lowcode}, note: "Low-code платформа"}
+- {term: "no code", type: abbr, maps_to: {category: bpm_rpa_lowcode}, note: "No-code платформа"}
+- {term: "ноукод", type: translit, maps_to: {category: bpm_rpa_lowcode}, note: "No-code"}
+- {term: "бпм", type: translit, maps_to: {category: bpm_rpa_lowcode}, note: "BPM"}
+- {term: "бпмс", type: translit, maps_to: {category: bpm_rpa_lowcode}, note: "BPMS"}
+- {term: "управление бизнес процессами", type: slang, maps_to: {category: bpm_rpa_lowcode}, note: "BPM"}
+- {term: "роботизация процессов", type: slang, maps_to: {category: bpm_rpa_lowcode}, note: "RPA"}
+- {term: "kanban", type: abbr, maps_to: {category: task_project_trackers}, note: "Канбан"}
+- {term: "скрам", type: translit, maps_to: {category: task_project_trackers}, note: "Scrum"}
+- {term: "эджайл", type: translit, maps_to: {category: task_project_trackers}, note: "Agile"}
+- {term: "трекер задач", type: slang, maps_to: {category: task_project_trackers}, note: ""}
+- {term: "канбан доска", type: slang, maps_to: {category: task_project_trackers}, note: ""}
+- {term: "багтрекер", type: translit, maps_to: {category: task_project_trackers}, note: "Bug tracker"}
+- {term: "hcm", type: abbr, maps_to: {category: hrm_recruiting}, note: "Human Capital Management"}
+- {term: "хцм", type: translit, maps_to: {category: hrm_recruiting}, note: "HCM"}
+- {term: "хрм", type: translit, maps_to: {category: hrm_recruiting}, note: "HRM"}
+- {term: "hr система", type: slang, maps_to: {category: hrm_recruiting}, note: "HRM"}
+- {term: "рекрутмент", type: translit, maps_to: {category: hrm_recruiting}, note: "ATS / рекрутинг"}
+- {term: "ibp", type: abbr, maps_to: {category: finance_budgeting}, note: "Integrated Business Planning"}
+- {term: "епм", type: translit, maps_to: {category: finance_budgeting}, note: "EPM"}
+- {term: "финансовое моделирование", type: slang, maps_to: {category: finance_budgeting}, note: ""}
+- {term: "транспортная логистика", type: slang, maps_to: {category: logistics_tms}, note: "TMS"}
+- {term: "управление доставкой", type: slang, maps_to: {category: logistics_tms}, note: "TMS"}
+- {term: "конструктор сайтов", type: slang, maps_to: {category: cms_ecommerce}, note: "CMS"}
+- {term: "система управления сайтом", type: slang, maps_to: {category: cms_ecommerce}, note: "CMS"}
+
+# --- САПР, BIM, ГИС и инженерное ПО (cad_engineering) ---
+- {term: "2д сапр", type: translit, maps_to: {category: cad_2d}, note: "2D САПР"}
+- {term: "программа для черчения", type: slang, maps_to: {category: cad_2d}, note: ""}
+- {term: "dwg редактор", type: slang, maps_to: {category: cad_2d}, note: ""}
+- {term: "российский сапр", type: slang, maps_to: {category: cad_2d}, note: ""}
+- {term: "пдм", type: translit, maps_to: {category: mcad_plm}, note: "PDM"}
+- {term: "кам система", type: translit, maps_to: {category: mcad_plm}, note: "CAM / ЧПУ"}
+- {term: "3d сапр", type: slang, maps_to: {category: mcad_plm}, note: "MCAD"}
+- {term: "3д сапр", type: translit, maps_to: {category: mcad_plm}, note: "MCAD"}
+- {term: "управление жизненным циклом изделия", type: slang, maps_to: {category: mcad_plm}, note: "PLM"}
+- {term: "сапр тп", type: abbr, maps_to: {category: mcad_plm}, note: "САПР технологических процессов"}
+- {term: "aec", type: abbr, maps_to: {category: bim_aec}, note: "Architecture, Engineering & Construction"}
+- {term: "cde", type: abbr, maps_to: {category: bim_aec}, note: "Common Data Environment / СОД"}
+- {term: "бим проектирование", type: slang, maps_to: {category: bim_aec}, note: ""}
+- {term: "проектирование зданий", type: slang, maps_to: {category: bim_aec}, note: "BIM"}
+- {term: "кае", type: translit, maps_to: {category: cae_simulation}, note: "CAE"}
+- {term: "fea", type: abbr, maps_to: {category: cae_simulation}, note: "Finite Element Analysis / МКЭ"}
+- {term: "цфд", type: translit, maps_to: {category: cae_simulation}, note: "CFD"}
+- {term: "метод конечных элементов", type: slang, maps_to: {category: cae_simulation}, note: "МКЭ"}
+- {term: "расчет конструкций", type: slang, maps_to: {category: cae_simulation}, note: "Строительный CAE"}
+- {term: "екад", type: translit, maps_to: {category: ecad_eda}, note: "ECAD"}
+- {term: "трассировка плат", type: slang, maps_to: {category: ecad_eda}, note: "ECAD/EDA"}
+- {term: "сапр электроники", type: slang, maps_to: {category: ecad_eda}, note: ""}
+- {term: "схемотехника", type: slang, maps_to: {category: ecad_eda}, note: "ECAD"}
+- {term: "gis", type: abbr, maps_to: {category: gis_mapping}, note: "ГИС"}
+- {term: "геоинформационная система", type: slang, maps_to: {category: gis_mapping}, note: "ГИС"}
+- {term: "электронные карты", type: slang, maps_to: {category: gis_mapping}, note: "ГИС"}
+- {term: "смета", type: slang, maps_to: {category: estimates_construction}, note: "Сметное ПО"}
+- {term: "расчет смет", type: slang, maps_to: {category: estimates_construction}, note: ""}
+- {term: "фснб", type: abbr, maps_to: {category: estimates_construction}, note: "Федеральная сметно-нормативная база"}
+- {term: "строительные сметы", type: slang, maps_to: {category: estimates_construction}, note: ""}
+- {term: "проектирование мебели", type: slang, maps_to: {category: cad_specialized}, note: ""}
+- {term: "проектирование автодорог", type: slang, maps_to: {category: cad_specialized}, note: ""}
+- {term: "инженерные изыскания", type: slang, maps_to: {category: cad_specialized}, note: ""}
+- {term: "векторизация чертежей", type: slang, maps_to: {category: raster_vectorizers}, note: ""}
+- {term: "обработка облаков точек", type: slang, maps_to: {category: raster_vectorizers}, note: ""}
+
+# --- Графика, дизайн и медиа (graphics_media) ---
+- {term: "графический редактор", type: slang, maps_to: {category: graphics_media}, note: "Общий класс графики"}
+- {term: "редактирование фото", type: slang, maps_to: {category: raster_photo}, note: ""}
+- {term: "растровая графика", type: slang, maps_to: {category: raster_photo}, note: ""}
+- {term: "редактор изображений", type: slang, maps_to: {category: raster_photo}, note: ""}
+- {term: "векторная иллюстрация", type: slang, maps_to: {category: vector_illustration}, note: ""}
+- {term: "редактор вектора", type: slang, maps_to: {category: vector_illustration}, note: ""}
+- {term: "ui ux", type: abbr, maps_to: {category: ui_ux_web_design}, note: "UI/UX-дизайн"}
+- {term: "юай юикс", type: translit, maps_to: {category: ui_ux_web_design}, note: "UI/UX"}
+- {term: "дизайн интерфейсов", type: slang, maps_to: {category: ui_ux_web_design}, note: ""}
+- {term: "прототипирование", type: slang, maps_to: {category: ui_ux_web_design}, note: "UI/UX"}
+- {term: "верстка", type: slang, maps_to: {category: dtp_publishing}, note: "Издательские системы / DTP"}
+- {term: "допечатная подготовка", type: slang, maps_to: {category: dtp_publishing}, note: "DTP"}
+- {term: "3д графика", type: translit, maps_to: {category: 3d_rendering_animation}, note: "3D-графика"}
+- {term: "3d визуализация", type: slang, maps_to: {category: 3d_rendering_animation}, note: ""}
+- {term: "3д моделирование", type: translit, maps_to: {category: 3d_rendering_animation}, note: ""}
+- {term: "игровой движок", type: slang, maps_to: {category: 3d_rendering_animation}, note: "3D-движки"}
+- {term: "редактирование видео", type: slang, maps_to: {category: video_editing}, note: ""}
+- {term: "захват экрана", type: slang, maps_to: {category: video_editing}, note: "Запись экрана"}
+- {term: "скринрекордер", type: translit, maps_to: {category: video_editing}, note: "Screen recorder"}
+- {term: "постпродакшн", type: translit, maps_to: {category: video_editing}, note: "Постпродакшн видео"}
+- {term: "daw", type: abbr, maps_to: {category: audio_multimedia}, note: "Digital Audio Workstation"}
+- {term: "монтаж звука", type: slang, maps_to: {category: audio_multimedia}, note: ""}
+- {term: "редактор аудио", type: slang, maps_to: {category: audio_multimedia}, note: ""}
+
+# --- Работа с PDF, OCR, текстом и речью (docs_text) ---
+- {term: "редактор pdf", type: slang, maps_to: {category: pdf_editors}, note: ""}
+- {term: "редактор пдф", type: translit, maps_to: {category: pdf_editors}, note: ""}
+- {term: "работа с pdf", type: slang, maps_to: {category: pdf_editors}, note: ""}
+- {term: "конвертер пдф", type: translit, maps_to: {category: pdf_editors}, note: ""}
+- {term: "распознавание", type: slang, maps_to: {category: ocr_capture}, note: "OCR / распознавание документов"}
+- {term: "распознавание документов", type: slang, maps_to: {category: ocr_capture}, note: "OCR/IDP"}
+- {term: "идп", type: translit, maps_to: {category: ocr_capture}, note: "IDP"}
+- {term: "потоковое распознавание", type: slang, maps_to: {category: ocr_capture}, note: "IDP"}
+- {term: "нейронный переводчик", type: slang, maps_to: {category: translation_dictionaries}, note: "NMT"}
+- {term: "nmt", type: abbr, maps_to: {category: translation_dictionaries}, note: "Neural Machine Translation"}
+- {term: "перевод документов", type: slang, maps_to: {category: translation_dictionaries}, note: ""}
+- {term: "кат система", type: translit, maps_to: {category: translation_dictionaries}, note: "CAT-система"}
+- {term: "шрифты", type: slang, maps_to: {category: text_editors}, note: "Корпоративные шрифты"}
+- {term: "гарнитуры шрифтов", type: slang, maps_to: {category: text_editors}, note: ""}
+- {term: "stt", type: abbr, maps_to: {category: speech_text}, note: "Speech-to-Text"}
+- {term: "стт", type: translit, maps_to: {category: speech_text}, note: "STT"}
+- {term: "ттс", type: translit, maps_to: {category: speech_text}, note: "TTS"}
+- {term: "аср", type: translit, maps_to: {category: speech_text}, note: "ASR"}
+- {term: "голосовой ввод", type: slang, maps_to: {category: speech_text}, note: "ASR"}
+- {term: "аудио в текст", type: slang, maps_to: {category: speech_text}, note: "Транскрибация"}
+
+# --- Разработка, DevOps и тестирование (dev_tools) ---
+- {term: "иде", type: translit, maps_to: {category: ide_compilers}, note: "IDE"}
+- {term: "редактор кода", type: slang, maps_to: {category: ide_compilers}, note: "IDE / code editor"}
+- {term: "интегрированная среда разработки", type: slang, maps_to: {category: ide_compilers}, note: "IDE"}
+- {term: "сдк", type: translit, maps_to: {category: ide_compilers}, note: "SDK"}
+- {term: "ci/cd", type: abbr, maps_to: {category: git_cicd_devops}, note: "CI/CD"}
+- {term: "ci cd", type: abbr, maps_to: {category: git_cicd_devops}, note: "CI/CD"}
+- {term: "cicd", type: abbr, maps_to: {category: git_cicd_devops}, note: "CI/CD"}
+- {term: "vcs", type: abbr, maps_to: {category: git_cicd_devops}, note: "Version Control System"}
+- {term: "гит сервер", type: translit, maps_to: {category: git_cicd_devops}, note: "Git-сервер"}
+- {term: "система контроля версий", type: slang, maps_to: {category: git_cicd_devops}, note: "Git / VCS"}
+- {term: "непрерывная интеграция", type: slang, maps_to: {category: git_cicd_devops}, note: "CI/CD"}
+- {term: "тестирование", type: slang, maps_to: {category: testing_qa}, note: "Тестирование ПО / QA"}
+- {term: "qa", type: abbr, maps_to: {category: testing_qa}, note: "Quality Assurance / тестирование ПО"}
+- {term: "кьюэй", type: translit, maps_to: {category: testing_qa}, note: "QA"}
+- {term: "тест кейсы", type: slang, maps_to: {category: testing_qa}, note: "TMS"}
+- {term: "система управления тестированием", type: slang, maps_to: {category: testing_qa}, note: "TMS"}
+- {term: "есб", type: translit, maps_to: {category: api_integration_esb}, note: "ESB"}
+- {term: "эсб", type: translit, maps_to: {category: api_integration_esb}, note: "ESB"}
+- {term: "кшд", type: abbr, maps_to: {category: api_integration_esb}, note: "Корпоративная шина данных"}
+- {term: "апи гейтвей", type: translit, maps_to: {category: api_integration_esb}, note: "API Gateway"}
+- {term: "апи менеджмент", type: translit, maps_to: {category: api_integration_esb}, note: "API Management"}
+- {term: "тестирование api", type: slang, maps_to: {category: api_integration_esb}, note: ""}
+- {term: "анализ исходного кода", type: slang, maps_to: {category: code_analysis_sast}, note: "SAST"}
+- {term: "динамический анализ кода", type: slang, maps_to: {category: code_analysis_sast}, note: "DAST"}
+- {term: "композиционный анализ", type: slang, maps_to: {category: code_analysis_sast}, note: "SCA"}
+- {term: "рбпо", type: abbr, maps_to: {category: code_analysis_sast}, note: "Разработка безопасного ПО"}
+- {term: "компоненты для разработчиков", type: slang, maps_to: {category: dev_libraries_components}, note: ""}
+- {term: "библиотека отчетов", type: slang, maps_to: {category: dev_libraries_components}, note: ""}
+- {term: "джава", type: translit, maps_to: {category: java_runtimes}, note: "Java"}
+- {term: "ждк", type: translit, maps_to: {category: java_runtimes}, note: "JDK"}
+- {term: "jvm", type: abbr, maps_to: {category: java_runtimes}, note: "Java Virtual Machine"}
+- {term: "среда исполнения java", type: slang, maps_to: {category: java_runtimes}, note: "JRE/JDK"}
+
+# --- Облака и ИИ (cloud_ai) ---
+- {term: "иаас", type: translit, maps_to: {category: iaas_cloud_platforms}, note: "IaaS"}
+- {term: "паас", type: translit, maps_to: {category: iaas_cloud_platforms}, note: "PaaS"}
+- {term: "публичное облако", type: slang, maps_to: {category: iaas_cloud_platforms}, note: "IaaS"}
+- {term: "аренда серверов в облаке", type: slang, maps_to: {category: iaas_cloud_platforms}, note: ""}
+- {term: "российское облако", type: slang, maps_to: {category: iaas_cloud_platforms}, note: ""}
+- {term: "cmp", type: abbr, maps_to: {category: private_cloud_platforms}, note: "Cloud Management Platform"}
+- {term: "цмп", type: translit, maps_to: {category: private_cloud_platforms}, note: "CMP"}
+- {term: "опенстек", type: translit, maps_to: {category: private_cloud_platforms}, note: "OpenStack"}
+- {term: "построение частного облака", type: slang, maps_to: {category: private_cloud_platforms}, note: ""}
+- {term: "нейросети", type: slang, maps_to: {category: llm_gen_ai}, note: "Генеративный ИИ / LLM"}
+- {term: "нейросеть", type: slang, maps_to: {category: llm_gen_ai}, note: ""}
+- {term: "нейронка", type: slang, maps_to: {category: llm_gen_ai}, note: ""}
+- {term: "ии", type: abbr, maps_to: {category: llm_gen_ai}, note: "Искусственный интеллект / GenAI"}
+- {term: "ai", type: abbr, maps_to: {category: llm_gen_ai}, note: "Artificial Intelligence / GenAI"}
+- {term: "gpt", type: abbr, maps_to: {category: llm_gen_ai}, note: "GPT / корпоративные LLM"}
+- {term: "гпт", type: translit, maps_to: {category: llm_gen_ai}, note: "GPT"}
+- {term: "ллм", type: translit, maps_to: {category: llm_gen_ai}, note: "LLM"}
+- {term: "большая языковая модель", type: slang, maps_to: {category: llm_gen_ai}, note: "LLM"}
+- {term: "ии помощник", type: slang, maps_to: {category: llm_gen_ai}, note: "ИИ-ассистент"}
+- {term: "ml", type: abbr, maps_to: {category: ml_platforms_cv}, note: "Machine Learning"}
+- {term: "мл", type: translit, maps_to: {category: ml_platforms_cv}, note: "ML"}
+- {term: "млопс", type: translit, maps_to: {category: ml_platforms_cv}, note: "MLOps"}
+- {term: "распознавание номеров", type: slang, maps_to: {category: ml_platforms_cv}, note: "Видеоаналитика / CV"}
+- {term: "дата сайнс", type: translit, maps_to: {category: ml_platforms_cv}, note: "Data Science"}
+- {term: "чатбот", type: slang, maps_to: {category: ai_speech_chatbots}, note: "Платформа чат-ботов"}
+- {term: "чат бот", type: slang, maps_to: {category: ai_speech_chatbots}, note: ""}
+- {term: "голосовой бот", type: slang, maps_to: {category: ai_speech_chatbots}, note: ""}
+- {term: "аналитика звонков", type: slang, maps_to: {category: ai_speech_chatbots}, note: "Речевая аналитика"}
+
+# --- Поддержка, обучение и отраслевое ПО (services_education) ---
+- {term: "сертификат техподдержки", type: slang, maps_to: {category: tech_support}, note: ""}
+- {term: "пакет техподдержки", type: slang, maps_to: {category: tech_support}, note: ""}
+- {term: "расширенная техподдержка", type: slang, maps_to: {category: tech_support}, note: ""}
+- {term: "поддержка 24 на 7", type: slang, maps_to: {category: tech_support}, note: ""}
+- {term: "elearning", type: abbr, maps_to: {category: lms_elearning}, note: "Дистанционное обучение"}
+- {term: "e-learning", type: abbr, maps_to: {category: lms_elearning}, note: "Дистанционное обучение"}
+- {term: "электронное обучение", type: slang, maps_to: {category: lms_elearning}, note: "LMS/СДО"}
+- {term: "система дистанционного обучения", type: slang, maps_to: {category: lms_elearning}, note: "СДО"}
+- {term: "скорм", type: translit, maps_to: {category: lms_elearning}, note: "SCORM / конструктор курсов"}
+- {term: "ит курсы", type: slang, maps_to: {category: it_training_courses}, note: ""}
+- {term: "авторизованные курсы", type: slang, maps_to: {category: it_training_courses}, note: ""}
+- {term: "курсы для сисадминов", type: slang, maps_to: {category: it_training_courses}, note: ""}
+- {term: "киберучения", type: slang, maps_to: {category: security_awareness}, note: ""}
+- {term: "тестовый фишинг", type: slang, maps_to: {category: security_awareness}, note: ""}
+- {term: "тренинги по иб", type: slang, maps_to: {category: security_awareness}, note: ""}
+- {term: "видеонаблюдение", type: slang, maps_to: {category: industry_specialized}, note: "ПО видеонаблюдения / VMS"}
+- {term: "ip видеонаблюдение", type: slang, maps_to: {category: industry_specialized}, note: "VMS"}
+- {term: "панель управления хостингом", type: slang, maps_to: {category: industry_specialized}, note: "ispmanager"}
+- {term: "деловые книги", type: slang, maps_to: {category: ebooks_corporate_lib}, note: "Корпоративные библиотеки"}
+- {term: "онлайн библиотека для бизнеса", type: slang, maps_to: {category: ebooks_corporate_lib}, note: ""}
+
+# ============================================================================
+# ЧАСТЬ 2. КАК ПИШУТ НАЗВАНИЯ ПРОДУКТОВ И ВЕНДОРОВ -> СЕМЕЙСТВО / ВЕНДОР
+# ============================================================================
+
+# --- ИБ: Kaspersky, Dr.Web, PT, UserGate, Код Безопасности, ИнфоТеКС, DLP, IAM, КриптоПро ---
+- {term: "касперски эндпоинт секюрити", type: translit, maps_to: {family: kaspersky_kesb}, note: "Kaspersky Endpoint Security"}
+- {term: "касперский эндпоинт секьюрити", type: translit, maps_to: {family: kaspersky_kesb}, note: "Kaspersky Endpoint Security"}
+- {term: "касперский эндпоинт", type: translit, maps_to: {family: kaspersky_kesb}, note: "KES для бизнеса"}
+- {term: "касперски эндпоинт", type: translit, maps_to: {family: kaspersky_kesb}, note: "KES для бизнеса"}
+- {term: "kes for business", type: abbr, maps_to: {family: kaspersky_kesb}, note: ""}
+- {term: "касперский для бизнеса стандартный", type: slang, maps_to: {family: kaspersky_kesb}, note: "KESB Select"}
+- {term: "касперский для бизнеса расширенный", type: slang, maps_to: {family: kaspersky_kesb}, note: "KESB Advanced"}
+- {term: "касперский лаб", type: translit, maps_to: {vendor: kaspersky}, note: "Kaspersky Lab"}
+- {term: "лаб касперского", type: slang, maps_to: {vendor: kaspersky}, note: ""}
+- {term: "касперский секьюрити центр", type: translit, maps_to: {vendor: kaspersky}, note: "Kaspersky Security Center (KSC)"}
+- {term: "ксц касперский", type: translit, maps_to: {vendor: kaspersky}, note: "KSC"}
+- {term: "касперский смолл офис", type: translit, maps_to: {family: kaspersky_ksos}, note: "KSOS"}
+- {term: "ксос касперский", type: translit, maps_to: {family: kaspersky_ksos}, note: "KSOS"}
+- {term: "касперский симфони", type: translit, maps_to: {family: kaspersky_symphony_xdr}, note: "Kaspersky Symphony"}
+- {term: "касперский симфония", type: translit, maps_to: {family: kaspersky_symphony_xdr}, note: "Kaspersky Symphony"}
+- {term: "касперский едр", type: translit, maps_to: {family: kaspersky_symphony_xdr}, note: "Kaspersky EDR"}
+- {term: "касперский кума", type: translit, maps_to: {family: kaspersky_kuma}, note: "KUMA SIEM"}
+- {term: "касперский почта", type: slang, maps_to: {family: kaspersky_ksmg}, note: "Kaspersky Secure Mail Gateway"}
+- {term: "касперский для почтовых серверов", type: slang, maps_to: {family: kaspersky_ksmg}, note: "KSMG"}
+- {term: "касперский кикс", type: translit, maps_to: {family: kaspersky_kics}, note: "KICS"}
+- {term: "касперский индастриал", type: translit, maps_to: {family: kaspersky_kics}, note: "KICS"}
+- {term: "касперский стандарт", type: translit, maps_to: {family: kaspersky_standard_home}, note: "Kaspersky Standard"}
+- {term: "касперский плюс", type: translit, maps_to: {family: kaspersky_standard_home}, note: "Kaspersky Plus"}
+- {term: "касперский премиум", type: translit, maps_to: {family: kaspersky_standard_home}, note: "Kaspersky Premium"}
+- {term: "касперский интернет секьюрити", type: obsolete, maps_to: {family: kaspersky_standard_home}, note: "Прежнее название KIS"}
+- {term: "кис касперский", type: obsolete, maps_to: {family: kaspersky_standard_home}, note: "Прежнее название KIS"}
+- {term: "касперский кис", type: obsolete, maps_to: {family: kaspersky_standard_home}, note: "Прежнее название KIS"}
+- {term: "касперский тотал секьюрити", type: obsolete, maps_to: {family: kaspersky_standard_home}, note: "Прежнее название KTS"}
+- {term: "касперский ктс", type: obsolete, maps_to: {family: kaspersky_standard_home}, note: "Прежнее название KTS"}
+- {term: "доктор веб энтерпрайз", type: translit, maps_to: {family: drweb_enterprise_security_suite}, note: "Dr.Web ESS"}
+- {term: "доктор веб для бизнеса", type: slang, maps_to: {family: drweb_enterprise_security_suite}, note: "Dr.Web ESS"}
+- {term: "доктор веб энтерпрайз сьют", type: translit, maps_to: {family: drweb_enterprise_security_suite}, note: "Dr.Web ESS"}
+- {term: "дрвеб есс", type: translit, maps_to: {family: drweb_enterprise_security_suite}, note: "Dr.Web ESS"}
+- {term: "докторвеб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "доктор вэб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "позитив технолоджиз", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
+- {term: "позитив технолоджи", type: translit, maps_to: {vendor: positive_technologies}, note: "Positive Technologies"}
+- {term: "пт сэндбокс", type: translit, maps_to: {vendor: positive_technologies}, note: "PT Sandbox"}
+- {term: "пт мультисканер", type: obsolete, maps_to: {vendor: positive_technologies}, note: "Прежнее название PT MultiScanner"}
+- {term: "позитив технолоджис сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
+- {term: "макс патрул сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
+- {term: "макспатрол 8", type: obsolete, maps_to: {family: pt_maxpatrol_vm}, note: "Прежнее поколение MaxPatrol 8"}
+- {term: "пт аппликейшн файрвол", type: translit, maps_to: {family: pt_af}, note: "PT AF"}
+- {term: "позитив технолоджис ваф", type: translit, maps_to: {family: pt_af}, note: "PT AF"}
+- {term: "позитив технолоджис нгфв", type: translit, maps_to: {family: pt_ngfw}, note: "PT NGFW"}
+- {term: "юзер гейт", type: translit, maps_to: {vendor: usergate}, note: "UserGate"}
+- {term: "юзергейт нгфв", type: translit, maps_to: {family: usergate_ngfw}, note: "UserGate NGFW"}
+- {term: "юзергейт утм", type: obsolete, maps_to: {family: usergate_ngfw}, note: "Прежнее позиционирование UTM"}
+- {term: "секьюрити код", type: translit, maps_to: {vendor: security_code}, note: "Код Безопасности"}
+- {term: "код безопасности континент", type: slang, maps_to: {family: continent_ngfw}, note: "Континент NGFW"}
+- {term: "континент нгфв", type: translit, maps_to: {family: continent_ngfw}, note: "Континент 4 NGFW"}
+- {term: "континент апкш", type: abbr, maps_to: {family: continent_ngfw}, note: "АПКШ Континент"}
+- {term: "секрет нет", type: translit, maps_to: {family: secret_net_studio}, note: "Secret Net Studio"}
+- {term: "секретнет", type: translit, maps_to: {family: secret_net_studio}, note: "Secret Net Studio"}
+- {term: "сикрет нет студио", type: translit, maps_to: {family: secret_net_studio}, note: "Secret Net Studio"}
+- {term: "код безопасности секрет нет", type: slang, maps_to: {family: secret_net_studio}, note: "Secret Net Studio"}
+- {term: "секрет нет лсп", type: slang, maps_to: {family: secret_net_studio}, note: "Secret Net LSP"}
+- {term: "вигейт", type: translit, maps_to: {family: vgate_security_code}, note: "vGate"}
+- {term: "инфо текс", type: translit, maps_to: {vendor: infotecs}, note: "ИнфоТеКС"}
+- {term: "инфотекс випнет клиент", type: translit, maps_to: {family: vipnet_client}, note: "ViPNet Client"}
+- {term: "инфотекс випнет координатор", type: translit, maps_to: {family: vipnet_coordinator}, note: "ViPNet Coordinator"}
+- {term: "випнет хв", type: translit, maps_to: {family: vipnet_coordinator}, note: "ViPNet Coordinator HW"}
+- {term: "даллас", type: slang, maps_to: {family: dallas_lock}, note: "Dallas Lock"}
+- {term: "далласлок", type: translit, maps_to: {family: dallas_lock}, note: "Dallas Lock"}
+- {term: "даллас лок 8", type: slang, maps_to: {family: dallas_lock}, note: "Dallas Lock 8.0"}
+- {term: "конфидент даллас лок", type: slang, maps_to: {family: dallas_lock}, note: "Dallas Lock"}
+- {term: "инфо вотч", type: translit, maps_to: {vendor: infowatch}, note: "InfoWatch"}
+- {term: "инфовотч трафик монитор", type: translit, maps_to: {family: infowatch_traffic_monitor}, note: "InfoWatch Traffic Monitor"}
+- {term: "киб серчинформ", type: slang, maps_to: {family: searchinform_kib}, note: "СёрчИнформ КИБ"}
+- {term: "инфовотч дозор", type: obsolete, maps_to: {family: solar_dozor}, note: "Прежнее название Дозор-Джет"}
+- {term: "айдеко нгфв", type: translit, maps_to: {family: ideco_ngfw}, note: "Ideco NGFW"}
+- {term: "идеко нгфв", type: translit, maps_to: {family: ideco_ngfw}, note: "Ideco NGFW"}
+- {term: "идеко утм", type: obsolete, maps_to: {family: ideco_ngfw}, note: "Прежнее название Ideco UTM"}
+- {term: "крипта про", type: slang, maps_to: {vendor: cryptopro}, note: "КриптоПро"}
+- {term: "криптопро цсп", type: translit, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP"}
+- {term: "крипто про си эс пи", type: translit, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP"}
+- {term: "криптопро 4", type: obsolete, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 4.0"}
+- {term: "ру токен", type: translit, maps_to: {vendor: aktiv_rutoken}, note: "Рутокен"}
+- {term: "рутокен эцп 3", type: slang, maps_to: {family: rutoken_ecp}, note: "Рутокен ЭЦП 3.0"}
+- {term: "джакарта 2", type: slang, maps_to: {family: aladdin_jacarta}, note: "JaCarta-2"}
+- {term: "аладин рд", type: translit, maps_to: {vendor: aladdin_rd}, note: "Аладдин Р.Д."}
+- {term: "пассворк корпоративный", type: slang, maps_to: {family: passwork}, note: "Корпоративный Пассворк"}
+- {term: "passwork корпоративный", type: slang, maps_to: {family: passwork}, note: "Корпоративный Пассворк"}
+- {term: "пассворк корп", type: slang, maps_to: {family: passwork}, note: "Пассворк"}
+- {term: "пасворк", type: translit, maps_to: {family: passwork}, note: "Пассворк"}
+- {term: "пассворк менеджер паролей", type: slang, maps_to: {family: passwork}, note: "Пассворк"}
+- {term: "мультифактор 2фа", type: slang, maps_to: {family: multifactor_mfa}, note: "MULTIFACTOR"}
+- {term: "айти бастион скдпу", type: slang, maps_to: {family: skdpu_nt}, note: "СКДПУ НТ"}
+- {term: "стахановец про", type: slang, maps_to: {family: stakhanovets}, note: "Стахановец"}
+- {term: "стаффкоп энтерпрайз", type: translit, maps_to: {family: staffcop_enterprise}, note: "Staffcop Enterprise"}
+- {term: "куратор ддос", type: translit, maps_to: {family: qrator_ddos}, note: "Qrator"}
+- {term: "стормволл ддос", type: translit, maps_to: {family: stormwall_ddos}, note: "StormWall"}
+- {term: "есет протект", type: translit, maps_to: {family: eset_protect}, note: "ESET PROTECT"}
+- {term: "есет эндпоинт", type: translit, maps_to: {family: eset_protect}, note: "ESET Endpoint"}
+- {term: "пало альто нгфв", type: translit, maps_to: {family: palo_alto_ngfw}, note: "Palo Alto NGFW"}
+- {term: "фортигейт нгфв", type: translit, maps_to: {family: fortigate}, note: "FortiGate"}
+- {term: "циско фаерпауэр", type: translit, maps_to: {family: cisco_firepower}, note: "Cisco Firepower"}
+- {term: "чекпоинт нгфв", type: translit, maps_to: {family: checkpoint_ngfw}, note: "Check Point NGFW"}
+
+# --- ОС: Astra, Альт, РЕД ОС, РОСА, МСВСфера, Аврора, Windows, RHEL ---
+- {term: "астралинукс", type: translit, maps_to: {vendor: astra_group}, note: "Astra Linux"}
+- {term: "гк астра", type: slang, maps_to: {vendor: astra_group}, note: "Группа Астра"}
+- {term: "астра спешл эдишн", type: translit, maps_to: {family: astra_linux_se}, note: "Astra Linux Special Edition"}
+- {term: "астра линукс спешл эдишн", type: translit, maps_to: {family: astra_linux_se}, note: "Astra Linux Special Edition"}
+- {term: "альтлинукс", type: translit, maps_to: {vendor: basealt}, note: "Альт Линукс"}
+- {term: "базальт альт рабочая станция", type: slang, maps_to: {family: alt_workstation}, note: "Альт Рабочая станция"}
+- {term: "альт рабочая станция 10", type: slang, maps_to: {family: alt_workstation}, note: ""}
+- {term: "альт к 10", type: slang, maps_to: {family: alt_workstation}, note: "Альт Рабочая станция К"}
+- {term: "базальт альт сервер", type: slang, maps_to: {family: alt_server}, note: "Альт Сервер"}
+- {term: "альт сервер 10", type: slang, maps_to: {family: alt_server}, note: ""}
+- {term: "ред софт ред ос", type: slang, maps_to: {family: red_os}, note: "РЕД ОС"}
+- {term: "ред ос муром", type: slang, maps_to: {family: red_os}, note: "РЕД ОС Муром"}
+- {term: "ред ос рабочая станция", type: slang, maps_to: {family: red_os}, note: ""}
+- {term: "инферит мсвсфера", type: slang, maps_to: {family: msvsphere_os}, note: "МСВСфера"}
+- {term: "аврора ос", type: slang, maps_to: {family: aurora_os}, note: "ОС Аврора"}
+- {term: "майкрософт корп", type: slang, maps_to: {vendor: microsoft}, note: "Microsoft"}
+- {term: "мелкософт", type: slang, maps_to: {vendor: microsoft}, note: "Microsoft"}
+- {term: "майкрософт виндоус 11", type: translit, maps_to: {family: windows_11}, note: "Windows 11"}
+- {term: "виндоус 11", type: translit, maps_to: {family: windows_11}, note: "Windows 11"}
+- {term: "виндоус 11 про", type: translit, maps_to: {family: windows_11}, note: "Windows 11 Pro"}
+- {term: "майкрософт виндоус 10", type: translit, maps_to: {family: windows_10}, note: "Windows 10"}
+- {term: "виндоус 10", type: translit, maps_to: {family: windows_10}, note: "Windows 10"}
+- {term: "виндоус 10 про", type: translit, maps_to: {family: windows_10}, note: "Windows 10 Pro"}
+- {term: "майкрософт виндоус сервер", type: translit, maps_to: {family: windows_server}, note: "Windows Server"}
+- {term: "виндоус сервер", type: translit, maps_to: {family: windows_server}, note: "Windows Server"}
+- {term: "виндовз сервер", type: translit, maps_to: {family: windows_server}, note: "Windows Server"}
+- {term: "вин сервер 2022", type: slang, maps_to: {family: windows_server}, note: "Windows Server 2022"}
+- {term: "вин сервер 2025", type: slang, maps_to: {family: windows_server}, note: "Windows Server 2025"}
+- {term: "виндоус сервер стандарт", type: translit, maps_to: {family: windows_server}, note: ""}
+- {term: "виндоус сервер кал", type: translit, maps_to: {family: windows_server_cal}, note: "Windows Server CAL"}
+- {term: "кал лицензия windows", type: slang, maps_to: {family: windows_server_cal}, note: "Windows Server CAL"}
+- {term: "рдс лицензия", type: slang, maps_to: {family: windows_server_rds_cal}, note: "Windows Server RDS CAL"}
+- {term: "рдс кал windows", type: slang, maps_to: {family: windows_server_rds_cal}, note: "Windows Server RDS CAL"}
+- {term: "ред хат энтерпрайз линукс", type: translit, maps_to: {family: rhel}, note: "RHEL"}
+
+# --- Офис, почта и коммуникации ---
+- {term: "эр7 офис", type: translit, maps_to: {family: r7_office}, note: "Р7-Офис"}
+- {term: "р7офис", type: translit, maps_to: {family: r7_office}, note: "Р7-Офис"}
+- {term: "р7 офис профессиональный", type: slang, maps_to: {family: r7_office}, note: ""}
+- {term: "р7 офис корпоративный", type: slang, maps_to: {family: r7_office}, note: ""}
+- {term: "р7 офис сервер документов", type: slang, maps_to: {family: r7_office}, note: ""}
+- {term: "май офис", type: translit, maps_to: {vendor: myoffice}, note: "МойОфис"}
+- {term: "майофис", type: translit, maps_to: {vendor: myoffice}, note: "МойОфис"}
+- {term: "мойофис стандарт", type: slang, maps_to: {family: myoffice_standard}, note: "МойОфис Стандартный"}
+- {term: "мой офис стандартный", type: slang, maps_to: {family: myoffice_standard}, note: "МойОфис Стандартный"}
+- {term: "мой офис стандартный 2", type: slang, maps_to: {family: myoffice_standard}, note: ""}
+- {term: "мой офис профессиональный", type: slang, maps_to: {family: myoffice_professional}, note: "МойОфис Профессиональный"}
+- {term: "скуадус", type: translit, maps_to: {family: myoffice_squadus}, note: "Squadus"}
+- {term: "майкрософт офис 2021", type: translit, maps_to: {family: ms_office}, note: "MS Office 2021"}
+- {term: "майкрософт офис 2024", type: translit, maps_to: {family: ms_office}, note: "MS Office 2024"}
+- {term: "офис для дома и бизнеса", type: slang, maps_to: {family: ms_office}, note: "Office Home & Business"}
+- {term: "офис про плюс", type: translit, maps_to: {family: ms_office}, note: "Office ProPlus"}
+- {term: "офис триста шестьдесят пять", type: translit, maps_to: {family: microsoft_365}, note: "Microsoft 365"}
+- {term: "майкрософт 365 бизнес", type: translit, maps_to: {family: microsoft_365}, note: ""}
+- {term: "майкрософт визио", type: translit, maps_to: {family: ms_visio}, note: "MS Visio"}
+- {term: "визио про", type: translit, maps_to: {family: ms_visio}, note: "Visio Professional"}
+- {term: "майкрософт проджект", type: translit, maps_to: {family: ms_project}, note: "MS Project"}
+- {term: "проджект про", type: translit, maps_to: {family: ms_project}, note: "Project Professional"}
+- {term: "майкрософт эксчендж", type: translit, maps_to: {family: ms_exchange}, note: "Exchange Server"}
+- {term: "иксчейндж", type: translit, maps_to: {family: ms_exchange}, note: "Exchange Server"}
+- {term: "комьюнигейт про", type: translit, maps_to: {family: communigate_pro}, note: "CommuniGate Pro"}
+- {term: "коммунигейт про", type: translit, maps_to: {family: communigate_pro}, note: "CommuniGate Pro"}
+- {term: "яндекс 360 бизнес", type: slang, maps_to: {family: yandex_360}, note: "Яндекс 360 для бизнеса"}
+- {term: "яндекс почта для бизнеса", type: slang, maps_to: {family: yandex_360}, note: "Яндекс 360"}
+- {term: "майтим", type: obsolete, maps_to: {family: vk_teams}, note: "Прежнее название Myteam"}
+- {term: "труконф сервер", type: translit, maps_to: {family: trueconf_server}, note: "TrueConf Server"}
+- {term: "трюконф", type: translit, maps_to: {vendor: trueconf}, note: "TrueConf"}
+- {term: "контур толк вкс", type: slang, maps_to: {family: kontur_tolk}, note: "Контур.Толк"}
+- {term: "мтс линк вкс", type: slang, maps_to: {family: mts_link_meetings}, note: "МТС Линк"}
+- {term: "ива мку", type: translit, maps_to: {family: iva_mcu}, note: "IVA MCU"}
+- {term: "сбер джаз вкс", type: slang, maps_to: {family: salute_jazz}, note: "SaluteJazz"}
+- {term: "экспресс корп мессенджер", type: slang, maps_to: {family: express_messenger}, note: "eXpress"}
+- {term: "зум воркплейс", type: translit, maps_to: {family: zoom_workplace}, note: "Zoom Workplace"}
+- {term: "зум про", type: translit, maps_to: {family: zoom_workplace}, note: "Zoom Pro"}
+- {term: "джи сьют", type: obsolete, maps_to: {family: google_workspace}, note: "Прежнее название G Suite"}
+
+# --- Виртуализация, инфраструктура, бэкап, СУБД, BI, ITSM, удаленка ---
+- {term: "орион зерт", type: translit, maps_to: {family: orion_zvirt}, note: "zVirt"}
+- {term: "орион софт зетвирт", type: translit, maps_to: {family: orion_zvirt}, note: "zVirt"}
+- {term: "зетвирт", type: translit, maps_to: {family: orion_zvirt}, note: "zVirt"}
+- {term: "нова контейнер платформ", type: translit, maps_to: {family: orion_nova}, note: "Nova Container Platform"}
+- {term: "астра алд про", type: slang, maps_to: {family: ald_pro}, note: "ALD Pro"}
+- {term: "вм менеджер", type: translit, maps_to: {family: vmmanager}, note: "VMmanager"}
+- {term: "вмвэйр", type: translit, maps_to: {vendor: vmware_broadcom}, note: "VMware"}
+- {term: "вмваре всфера", type: translit, maps_to: {family: vmware_vsphere}, note: "VMware vSphere"}
+- {term: "есикс", type: translit, maps_to: {family: vmware_vsphere}, note: "VMware ESXi"}
+- {term: "декхаус к8с", type: translit, maps_to: {family: deckhouse_k8s}, note: "Deckhouse"}
+- {term: "флант декхаус", type: translit, maps_to: {family: deckhouse_k8s}, note: "Deckhouse"}
+- {term: "штурвал к8с", type: slang, maps_to: {family: shturval_k8s}, note: "Штурвал"}
+- {term: "кибер бэкап корпоративный", type: slang, maps_to: {family: cyber_backup}, note: "Кибер Бэкап"}
+- {term: "киберпротект кибер бэкап", type: slang, maps_to: {family: cyber_backup}, note: "Кибер Бэкап"}
+- {term: "кибер бекап", type: translit, maps_to: {family: cyber_backup}, note: "Кибер Бэкап"}
+- {term: "ру бэкап астра", type: slang, maps_to: {family: rubackup}, note: "RuBackup"}
+- {term: "виим бэкап", type: translit, maps_to: {family: veeam_backup}, note: "Veeam Backup"}
+- {term: "постгря", type: slang, maps_to: {family: postgres_pro}, note: "Postgres Pro"}
+- {term: "постгреспро", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro"}
+- {term: "постгрес профессиональный", type: slang, maps_to: {family: postgres_pro}, note: "Postgres Pro"}
+- {term: "постгрес про стандарт", type: slang, maps_to: {family: postgres_pro}, note: "Postgres Pro Standard"}
+- {term: "постгрес про энтерпрайз", type: slang, maps_to: {family: postgres_pro}, note: "Postgres Pro Enterprise"}
+- {term: "тантор субд", type: slang, maps_to: {family: tantor_db}, note: "Tantor"}
+- {term: "аренадата хадуп", type: translit, maps_to: {family: arenadata_hadoop}, note: "Arenadata Hadoop"}
+- {term: "тарантул субд", type: slang, maps_to: {family: tarantool}, note: "Tarantool"}
+- {term: "майкрософт скл сервер", type: translit, maps_to: {family: ms_sql_server}, note: "MS SQL Server"}
+- {term: "мссгл", type: translit, maps_to: {family: ms_sql_server}, note: "MS SQL Server"}
+- {term: "оракл субд", type: translit, maps_to: {family: oracle_db}, note: "Oracle Database"}
+- {term: "визиолоджи би", type: translit, maps_to: {family: visiology_bi}, note: "Visiology"}
+- {term: "полиматика би", type: translit, maps_to: {family: polymatica_bi}, note: "Polymatica"}
+- {term: "форсайт би", type: translit, maps_to: {family: foresight_analytics}, note: "Форсайт"}
+- {term: "прогноз платформа", type: obsolete, maps_to: {family: foresight_analytics}, note: "Прежнее название Prognoz Platform"}
+- {term: "пауэр би", type: translit, maps_to: {family: ms_power_bi}, note: "Power BI"}
+- {term: "повер би ай", type: translit, maps_to: {family: ms_power_bi}, note: "Power BI"}
+- {term: "монк аиопс", type: translit, maps_to: {family: monq_aiops}, note: "MONQ"}
+- {term: "ключ астром апм", type: slang, maps_to: {family: klyuch_astrom}, note: "Ключ-АСТРОМ"}
+- {term: "симплван итсм", type: translit, maps_to: {family: simpleone_itsm}, note: "SimpleOne ITSM"}
+- {term: "наумен сервис деск", type: translit, maps_to: {family: naumen_smp}, note: "Naumen SMP"}
+- {term: "рудесктоп удаленка", type: slang, maps_to: {family: rudesktop}, note: "RuDesktop"}
+- {term: "ассистент сафиб", type: slang, maps_to: {family: assistant_remote}, note: "Ассистент"}
+- {term: "тимвьювер удаленка", type: slang, maps_to: {family: teamviewer}, note: "TeamViewer"}
+
+# --- 1С, бухгалтерия, ERP, CRM, СЭД, трекеры ---
+- {term: "один с", type: translit, maps_to: {vendor: onec}, note: "Фирма 1С"}
+- {term: "одинэска", type: slang, maps_to: {vendor: onec}, note: "1С"}
+- {term: "один эс бухгалтерия", type: translit, maps_to: {family: onec_accounting}, note: "1С:Бухгалтерия"}
+- {term: "бух 8", type: abbr, maps_to: {family: onec_accounting}, note: "1С:Бухгалтерия 8"}
+- {term: "бухпроф", type: slang, maps_to: {family: onec_accounting}, note: "1С:Бухгалтерия ПРОФ"}
+- {term: "бухкорп", type: slang, maps_to: {family: onec_accounting}, note: "1С:Бухгалтерия КОРП"}
+- {term: "бухгалтерия 8", type: slang, maps_to: {family: onec_accounting}, note: "1С:Бухгалтерия 8"}
+- {term: "один эс зарплата и управление персоналом", type: translit, maps_to: {family: onec_zup}, note: "1С:ЗУП"}
+- {term: "ут", type: abbr, maps_to: {family: onec_trade}, note: "1С:Управление торговлей"}
+- {term: "один эс управление торговлей", type: translit, maps_to: {family: onec_trade}, note: "1С:УТ"}
+- {term: "1с ерп 2", type: slang, maps_to: {family: onec_erp}, note: "1С:ERP 2"}
+- {term: "один эс комплексная автоматизация", type: translit, maps_to: {family: onec_ka}, note: "1С:КА"}
+- {term: "унф 8", type: abbr, maps_to: {family: onec_unf}, note: "1С:УНФ"}
+- {term: "один эс управление нашей фирмой", type: translit, maps_to: {family: onec_unf}, note: "1С:УНФ"}
+- {term: "до 8", type: abbr, maps_to: {family: onec_docflow}, note: "1С:Документооборот 8"}
+- {term: "до корп", type: abbr, maps_to: {family: onec_docflow}, note: "1С:Документооборот КОРП"}
+- {term: "один эс документооборот", type: translit, maps_to: {family: onec_docflow}, note: "1С:Документооборот"}
+- {term: "ух 8", type: abbr, maps_to: {family: onec_holding}, note: "1С:Управление холдингом"}
+- {term: "бгу 2", type: abbr, maps_to: {family: onec_bgu}, note: "1С:БГУ 2.0"}
+- {term: "зкгу 3", type: abbr, maps_to: {family: onec_zkgu}, note: "1С:ЗКГУ"}
+- {term: "один эс фреш", type: translit, maps_to: {family: onec_fresh}, note: "1С:Фреш"}
+- {term: "клиентская лицензия 1с", type: slang, maps_to: {family: onec_client_license}, note: ""}
+- {term: "сервер 1с мини", type: slang, maps_to: {family: onec_server_license}, note: "Мини-сервер 1С"}
+- {term: "сервер 1с х64", type: slang, maps_to: {family: onec_server_license}, note: ""}
+- {term: "скб-контур", type: slang, maps_to: {vendor: skb_kontur}, note: "СКБ Контур"}
+- {term: "контур экстерн отчетность", type: slang, maps_to: {family: kontur_extern}, note: "Контур.Экстерн"}
+- {term: "контур диадок эдо", type: slang, maps_to: {family: kontur_diadoc}, note: "Контур.Диадок"}
+- {term: "сбис саби", type: slang, maps_to: {family: sbis_saby}, note: "СБИС / Saby"}
+- {term: "сбис отчетность", type: slang, maps_to: {family: sbis_saby}, note: "СБИС"}
+- {term: "один эс битрикс 24", type: translit, maps_to: {family: bitrix24}, note: "Битрикс24"}
+- {term: "битрикс 24 коробка", type: slang, maps_to: {family: bitrix24}, note: "Коробочная версия Битрикс24"}
+- {term: "битрикс 24 облако", type: slang, maps_to: {family: bitrix24}, note: "Облачный Битрикс24"}
+- {term: "битрикс бус", type: abbr, maps_to: {family: bitrix_site_manager}, note: "1С-Битрикс: Управление сайтом"}
+- {term: "бпм софт", type: translit, maps_to: {family: bpmsoft_crm}, note: "BPMSoft"}
+- {term: "террасофт креатио", type: obsolete, maps_to: {family: bpmsoft_crm}, note: "Прежнее название Creatio / Terrasoft"}
+- {term: "доксвижн сэд", type: translit, maps_to: {family: docsvision}, note: "Docsvision"}
+- {term: "кайтен трекер", type: slang, maps_to: {family: kaiten}, note: "Kaiten"}
+- {term: "яндекс трекер задач", type: slang, maps_to: {family: yandex_tracker}, note: "Яндекс Трекер"}
+- {term: "атлассиан джира", type: translit, maps_to: {family: atlassian_jira}, note: "Jira"}
+- {term: "конфа атлассиан", type: slang, maps_to: {family: atlassian_confluence}, note: "Confluence"}
+- {term: "трело", type: translit, maps_to: {family: atlassian_trello}, note: "Trello"}
+- {term: "сап с4 хана", type: translit, maps_to: {family: sap_s4hana}, note: "SAP S/4HANA"}
+- {term: "сап р3", type: obsolete, maps_to: {family: sap_s4hana}, note: "Прежнее название SAP R/3"}
+- {term: "сейлсфорс срм", type: translit, maps_to: {family: salesforce_crm}, note: "Salesforce CRM"}
+- {term: "мой склад облако", type: slang, maps_to: {family: moysklad}, note: "МойСклад"}
+- {term: "айко касса", type: slang, maps_to: {family: iiko_rest}, note: "iiko"}
+- {term: "фронтол касса", type: slang, maps_to: {family: atol_frontol}, note: "АТОЛ Frontol"}
+- {term: "атол фронтол касса", type: slang, maps_to: {family: atol_frontol}, note: "АТОЛ Frontol"}
+- {term: "консультант плюс право", type: slang, maps_to: {family: consultant_plus}, note: "КонсультантПлюс"}
+- {term: "гарант правовая система", type: slang, maps_to: {family: garant_system}, note: "ГАРАНТ"}
+
+# --- САПР, BIM, ГИС, графика, PDF, OCR, разработка, облака и ИИ ---
+- {term: "нано-кад", type: translit, maps_to: {family: nanocad_platform}, note: "nanoCAD"}
+- {term: "нанософт нанокад", type: slang, maps_to: {family: nanocad_platform}, note: "nanoCAD"}
+- {term: "нанокад спдс", type: slang, maps_to: {family: nanocad_platform}, note: "Модуль СПДС nanoCAD"}
+- {term: "компас3д", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D"}
+- {term: "аскон компас 3д", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D"}
+- {term: "компас 22", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D v22"}
+- {term: "компас 23", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D v23"}
+- {term: "ренга про", type: translit, maps_to: {family: renga_bim}, note: "Renga Professional"}
+- {term: "т флекс кад", type: translit, maps_to: {family: t_flex_cad}, note: "T-FLEX CAD"}
+- {term: "лоцман плм", type: translit, maps_to: {family: lotsman_plm}, note: "ЛОЦМАН:PLM"}
+- {term: "модел студио цс", type: translit, maps_to: {family: model_studio_cs}, note: "Model Studio CS"}
+- {term: "автокад 2024", type: slang, maps_to: {family: autocad}, note: "AutoCAD"}
+- {term: "автокад 2025", type: slang, maps_to: {family: autocad}, note: "AutoCAD"}
+- {term: "аутодеск ревит", type: translit, maps_to: {family: autodesk_revit}, note: "Autodesk Revit"}
+- {term: "аутодеск инвентор", type: translit, maps_to: {family: autodesk_inventor}, note: "Autodesk Inventor"}
+- {term: "солидворкс 3д", type: translit, maps_to: {family: solidworks}, note: "SOLIDWORKS"}
+- {term: "солид воркс", type: translit, maps_to: {family: solidworks}, note: "SOLIDWORKS"}
+- {term: "ансис механикал", type: translit, maps_to: {family: ansys_suite}, note: "Ansys Mechanical"}
+- {term: "гранд смета 2024", type: slang, maps_to: {family: grand_smeta}, note: "ГРАНД-Смета"}
+- {term: "панорама гис", type: slang, maps_to: {family: gis_panorama}, note: "ГИС Панорама"}
+- {term: "адоб креатив клауд", type: translit, maps_to: {family: adobe_creative_cloud}, note: "Adobe Creative Cloud"}
+- {term: "адоби креатив клауд", type: translit, maps_to: {family: adobe_creative_cloud}, note: "Adobe Creative Cloud"}
+- {term: "фотошоп адоб", type: slang, maps_to: {family: adobe_photoshop}, note: "Adobe Photoshop"}
+- {term: "адоб иллюстратор", type: translit, maps_to: {family: adobe_illustrator}, note: "Adobe Illustrator"}
+- {term: "адоб акробат про", type: translit, maps_to: {family: adobe_acrobat}, note: "Adobe Acrobat Pro"}
+- {term: "фигма дизайн", type: slang, maps_to: {family: figma}, note: "Figma"}
+- {term: "пиксо дизайн", type: translit, maps_to: {family: pixso_design}, note: "Pixso"}
+- {term: "мовави видео", type: slang, maps_to: {family: movavi_video_suite}, note: "Movavi Video Suite"}
+- {term: "контентридер пдф", type: translit, maps_to: {family: contentreader_pdf}, note: "ContentReader PDF"}
+- {term: "контент аи контент ридер", type: translit, maps_to: {family: contentreader_pdf}, note: "ContentReader PDF"}
+- {term: "промт переводчик", type: slang, maps_to: {family: promt_translation}, note: "PROMT"}
+- {term: "дипл переводчик", type: translit, maps_to: {family: deepl_pro}, note: "DeepL"}
+- {term: "вижуалка", type: slang, maps_to: {family: ms_visual_studio}, note: "Microsoft Visual Studio"}
+- {term: "майкрософт вижуал студио", type: translit, maps_to: {family: ms_visual_studio}, note: "Microsoft Visual Studio"}
+- {term: "вс про", type: abbr, maps_to: {family: ms_visual_studio}, note: "Visual Studio Professional"}
+- {term: "вс энтерпрайз", type: abbr, maps_to: {family: ms_visual_studio}, note: "Visual Studio Enterprise"}
+- {term: "джетбрейнс пак", type: translit, maps_to: {family: jetbrains_all_products}, note: "JetBrains All Products Pack"}
+- {term: "интеллидж идея", type: translit, maps_to: {family: jetbrains_all_products}, note: "IntelliJ IDEA"}
+- {term: "идея джетбрейнс", type: slang, maps_to: {family: jetbrains_all_products}, note: "IntelliJ IDEA"}
+- {term: "пичарм", type: translit, maps_to: {family: jetbrains_all_products}, note: "PyCharm"}
+- {term: "копайлот гитхаб", type: translit, maps_to: {family: github_copilot}, note: "GitHub Copilot"}
+- {term: "гитфлик сервер", type: slang, maps_to: {family: gitflic}, note: "GitFlic"}
+- {term: "гитлаб энтерпрайз", type: translit, maps_to: {family: gitlab_ee}, note: "GitLab Enterprise"}
+- {term: "постман апи", type: translit, maps_to: {family: postman_enterprise}, note: "Postman"}
+- {term: "мэйл клауд солюшнс", type: obsolete, maps_to: {family: vk_cloud}, note: "Прежнее название Mail.ru Cloud Solutions"}
+- {term: "клауд ру эволюшн", type: translit, maps_to: {family: cloud_ru_evolution}, note: "Cloud.ru Evolution"}
+- {term: "гигачат энтерпрайз", type: translit, maps_to: {family: gigachat_enterprise}, note: "GigaChat"}
+- {term: "чат джи пи ти", type: translit, maps_to: {family: chatgpt_enterprise}, note: "ChatGPT"}
+- {term: "айспринг сьют", type: translit, maps_to: {family: ispring_suite}, note: "iSpring Suite"}
+- {term: "вин рар", type: translit, maps_to: {family: winrar}, note: "WinRAR"}
+- {term: "тотал ком", type: slang, maps_to: {family: total_commander}, note: "Total Commander"}
+
+# ============================================================================
+# ЧАСТЬ 3. ЛИЦЕНЗИОННЫЙ ЖАРГОН И УСЛОВИЯ ПОКУПКИ
+# ============================================================================
+
+# --- Действия с лицензией (license_action) ---
+- {term: "расширение лицензии", type: slang, maps_to: {attr: license_action, value: addon}, note: "Увеличение числа мест/узлов"}
+- {term: "увеличение числа узлов", type: slang, maps_to: {attr: license_action, value: addon}, note: ""}
+- {term: "добавить пользователей", type: slang, maps_to: {attr: license_action, value: addon}, note: ""}
+- {term: "дозакупка", type: slang, maps_to: {attr: license_action, value: addon}, note: "Докупка лицензий"}
+- {term: "доп узел", type: abbr, maps_to: {attr: license_action, value: addon}, note: ""}
+- {term: "дополнительная лицензия", type: slang, maps_to: {attr: license_action, value: addon}, note: ""}
+- {term: "доукомплектование", type: slang, maps_to: {attr: license_action, value: addon}, note: ""}
+- {term: "переход с редакции", type: slang, maps_to: {attr: license_action, value: upgrade}, note: "Апгрейд редакции"}
+- {term: "переход с базовой на проф", type: slang, maps_to: {attr: license_action, value: upgrade}, note: "Апгрейд 1С / ПО"}
+- {term: "переход с проф на корп", type: slang, maps_to: {attr: license_action, value: upgrade}, note: "Апгрейд редакции"}
+- {term: "перевод на новую версию", type: slang, maps_to: {attr: license_action, value: upgrade}, note: ""}
+- {term: "обновление версии", type: slang, maps_to: {attr: license_action, value: upgrade}, note: ""}
+- {term: "апдейт лицензии", type: translit, maps_to: {attr: license_action, value: upgrade}, note: ""}
+- {term: "переход с конкурента", type: slang, maps_to: {attr: license_action, value: crossgrade}, note: "Миграция со скидкой"}
+- {term: "миграция с зарубежного", type: slang, maps_to: {attr: license_action, value: crossgrade}, note: "Кроссгрейд / импортозамещение"}
+- {term: "миграция лицензий", type: slang, maps_to: {attr: license_action, value: crossgrade}, note: ""}
+- {term: "замена лицензии", type: slang, maps_to: {attr: license_action, value: crossgrade}, note: ""}
+- {term: "trade-in", type: abbr, maps_to: {attr: license_action, value: crossgrade}, note: "Трейд-ин ПО"}
+- {term: "продление подписки", type: slang, maps_to: {attr: license_action, value: renewal}, note: ""}
+- {term: "продление ключа", type: slang, maps_to: {attr: license_action, value: renewal}, note: ""}
+- {term: "продлить лицензию", type: slang, maps_to: {attr: license_action, value: renewal}, note: ""}
+- {term: "продление техподдержки", type: slang, maps_to: {attr: license_action, value: support}, note: ""}
+- {term: "продление сертификата тп", type: slang, maps_to: {attr: license_action, value: support}, note: ""}
+- {term: "поддержка вендора", type: slang, maps_to: {attr: license_action, value: support}, note: ""}
+- {term: "сертификат тп", type: abbr, maps_to: {attr: license_action, value: support}, note: "Техподдержка"}
+- {term: "премиальная поддержка", type: slang, maps_to: {attr: license_action, value: support}, note: ""}
+- {term: "новая поставка", type: slang, maps_to: {attr: license_action, value: new}, note: ""}
+- {term: "первичная поставка", type: slang, maps_to: {attr: license_action, value: new}, note: ""}
+- {term: "стартовая лицензия", type: slang, maps_to: {attr: license_action, value: new}, note: ""}
+- {term: "базовая лицензия", type: slang, maps_to: {attr: license_action, value: new}, note: ""}
+
+# --- Модель и сроки лицензирования (license_model) ---
+- {term: "трехлетка", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Подписка на 3 года"}
+- {term: "двухлетка", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Подписка на 2 года"}
+- {term: "полугодовая", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Подписка на 6 мес"}
+- {term: "помесячная", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Помесячная подписка"}
+- {term: "квартальная", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Подписка на квартал"}
+- {term: "ежегодная", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Годовая подписка"}
+- {term: "срочная", type: slang, maps_to: {attr: license_model, value: subscription}, note: "Срочная лицензия"}
+- {term: "временная лицензия", type: slang, maps_to: {attr: license_model, value: subscription}, note: ""}
+- {term: "лицензия на срок", type: slang, maps_to: {attr: license_model, value: subscription}, note: ""}
+- {term: "подписная", type: slang, maps_to: {attr: license_model, value: subscription}, note: ""}
+- {term: "подписная модель", type: slang, maps_to: {attr: license_model, value: subscription}, note: ""}
+- {term: "аренда лицензии", type: slang, maps_to: {attr: license_model, value: subscription}, note: ""}
+- {term: "бессрочная лицензия", type: slang, maps_to: {attr: license_model, value: perpetual}, note: ""}
+- {term: "пожизненная", type: slang, maps_to: {attr: license_model, value: perpetual}, note: "Бессрочная лицензия"}
+- {term: "разовая покупка", type: slang, maps_to: {attr: license_model, value: perpetual}, note: "Бессрочная лицензия"}
+- {term: "выкуп лицензии", type: slang, maps_to: {attr: license_model, value: perpetual}, note: "Бессрочная лицензия"}
+- {term: "неисключительная бессрочная", type: slang, maps_to: {attr: license_model, value: perpetual}, note: ""}
+- {term: "lifetime", type: abbr, maps_to: {attr: license_model, value: perpetual}, note: "Бессрочная лицензия"}
+
+# --- Виды поставки (delivery) ---
+- {term: "цифровая поставка", type: slang, maps_to: {attr: delivery, value: esd}, note: "ESD"}
+- {term: "электронная поставка", type: slang, maps_to: {attr: delivery, value: esd}, note: "ESD"}
+- {term: "электронный сертификат", type: slang, maps_to: {attr: delivery, value: esd}, note: "ESD"}
+- {term: "ключ активации", type: slang, maps_to: {attr: delivery, value: esd}, note: "ESD"}
+- {term: "коробочная версия", type: slang, maps_to: {attr: delivery, value: box}, note: "BOX"}
+- {term: "коробочная поставка", type: slang, maps_to: {attr: delivery, value: box}, note: "BOX"}
+- {term: "физическая поставка", type: slang, maps_to: {attr: delivery, value: box}, note: "BOX"}
+- {term: "ретейл", type: translit, maps_to: {attr: delivery, value: box}, note: "Retail / BOX"}
+- {term: "retail", type: abbr, maps_to: {attr: delivery, value: box}, note: "BOX"}
+- {term: "на флешке", type: slang, maps_to: {attr: delivery, value: media}, note: "Поставка на носителе"}
+- {term: "usb носитель", type: slang, maps_to: {attr: delivery, value: media}, note: "Поставка на носителе"}
+- {term: "дистрибутив на диске", type: slang, maps_to: {attr: delivery, value: media}, note: "Поставка на носителе"}
+- {term: "печатный формуляр", type: slang, maps_to: {attr: delivery, value: paper}, note: "Бумажный формуляр"}
+- {term: "лицензия на бланке", type: slang, maps_to: {attr: delivery, value: paper}, note: "Бумажный сертификат"}
+- {term: "бумажный сертификат", type: slang, maps_to: {attr: delivery, value: paper}, note: ""}
+- {term: "сертификат фстэк на бумаге", type: slang, maps_to: {attr: delivery, value: paper}, note: ""}
+
+# --- Развертывание (deployment) ---
+- {term: "онпремис", type: translit, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "on-premises", type: abbr, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "on premises", type: abbr, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "в свой цод", type: slang, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "внутренний контур", type: slang, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "изолированный контур", type: slang, maps_to: {attr: deployment, value: onprem}, note: "Air-gapped / on-premise"}
+- {term: "автономно", type: slang, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "без выхода в интернет", type: slang, maps_to: {attr: deployment, value: onprem}, note: "Закрытый контур"}
+- {term: "на сервере заказчика", type: slang, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "локальная установка", type: slang, maps_to: {attr: deployment, value: onprem}, note: "On-premise"}
+- {term: "облачная версия", type: slang, maps_to: {attr: deployment, value: cloud}, note: "SaaS"}
+- {term: "облачное решение", type: slang, maps_to: {attr: deployment, value: cloud}, note: "SaaS"}
+- {term: "в облаке", type: slang, maps_to: {attr: deployment, value: cloud}, note: "SaaS"}
+- {term: "веб версия", type: slang, maps_to: {attr: deployment, value: cloud}, note: "Cloud / SaaS"}
+- {term: "гибрид", type: slang, maps_to: {attr: deployment, value: hybrid}, note: "Гибридное развертывание"}
+- {term: "гибридная схема", type: slang, maps_to: {attr: deployment, value: hybrid}, note: ""}
+- {term: "hybrid", type: abbr, maps_to: {attr: deployment, value: hybrid}, note: "Гибридное развертывание"}
+
+# --- Аудитории и льготные программы (audience) ---
+- {term: "для юрлиц", type: slang, maps_to: {attr: audience, value: business}, note: "B2B"}
+- {term: "юридическим лицам", type: slang, maps_to: {attr: audience, value: business}, note: "B2B"}
+- {term: "юрлицам", type: slang, maps_to: {attr: audience, value: business}, note: "B2B"}
+- {term: "корпоративная", type: slang, maps_to: {attr: audience, value: business}, note: "Для организаций"}
+- {term: "для компаний", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "для предприятий", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "вузам", type: slang, maps_to: {attr: audience, value: edu}, note: "Академическая лицензия"}
+- {term: "для вузов", type: slang, maps_to: {attr: audience, value: edu}, note: "Академическая лицензия"}
+- {term: "для школ", type: slang, maps_to: {attr: audience, value: edu}, note: "Академическая лицензия"}
+- {term: "школам", type: slang, maps_to: {attr: audience, value: edu}, note: "Академическая лицензия"}
+- {term: "для университетов", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для колледжей", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для образования", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учебная лицензия", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для учебных заведений", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "бюджетникам", type: slang, maps_to: {attr: audience, value: gov}, note: "Для госучреждений"}
+- {term: "для госучреждений", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для госорганов", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для муниципальных", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госзаказчик", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для медицины", type: slang, maps_to: {attr: audience, value: med}, note: "Для медучреждений"}
+- {term: "медицинским учреждениям", type: slang, maps_to: {attr: audience, value: med}, note: ""}
+- {term: "для поликлиник", type: slang, maps_to: {attr: audience, value: med}, note: ""}
+- {term: "для здравоохранения", type: slang, maps_to: {attr: audience, value: med}, note: ""}
+- {term: "медучреждениям", type: slang, maps_to: {attr: audience, value: med}, note: ""}
+- {term: "для нко", type: slang, maps_to: {attr: audience, value: nonprofit}, note: "Некоммерческим организациям"}
+- {term: "некоммерческим организациям", type: slang, maps_to: {attr: audience, value: nonprofit}, note: ""}
+- {term: "для дома", type: slang, maps_to: {attr: audience, value: home}, note: "Домашняя лицензия"}
+- {term: "домашняя", type: slang, maps_to: {attr: audience, value: home}, note: ""}
+- {term: "для физлиц", type: slang, maps_to: {attr: audience, value: home}, note: "B2C"}
+- {term: "физическим лицам", type: slang, maps_to: {attr: audience, value: home}, note: "B2C"}
+- {term: "персональная", type: slang, maps_to: {attr: audience, value: home}, note: ""}
+
+# --- НДС, метрики и типы лицензий (vat, license_metric, license_type) ---
+- {term: "ндс 0", type: slang, maps_to: {attr: vat, value: "0"}, note: "Льгота НДС для реестрового ПО"}
+- {term: "нулевой ндс", type: slang, maps_to: {attr: vat, value: "0"}, note: ""}
+- {term: "не облагается ндс", type: slang, maps_to: {attr: vat, value: "0"}, note: ""}
+- {term: "освобождено от ндс", type: slang, maps_to: {attr: vat, value: "0"}, note: ""}
+- {term: "с учетом ндс", type: slang, maps_to: {attr: vat, value: with_vat}, note: ""}
+- {term: "включая ндс", type: slang, maps_to: {attr: vat, value: with_vat}, note: ""}
+- {term: "рабочих мест", type: slang, maps_to: {attr: license_metric, value: device}, note: "По устройствам/АРМ"}
+- {term: "рабочих станций", type: slang, maps_to: {attr: license_metric, value: device}, note: ""}
+- {term: "компьютеров", type: slang, maps_to: {attr: license_metric, value: device}, note: ""}
+- {term: "на пк", type: slang, maps_to: {attr: license_metric, value: device}, note: ""}
+- {term: "на устройство", type: slang, maps_to: {attr: license_metric, value: device}, note: ""}
+- {term: "на рабочее место", type: slang, maps_to: {attr: license_metric, value: device}, note: ""}
+- {term: "на пользователя", type: slang, maps_to: {attr: license_metric, value: user}, note: ""}
+- {term: "на сотрудника", type: slang, maps_to: {attr: license_metric, value: user}, note: ""}
+- {term: "пользователей", type: slang, maps_to: {attr: license_metric, value: user}, note: ""}
+- {term: "named user", type: abbr, maps_to: {attr: license_metric, value: user}, note: "Именной пользователь"}
+- {term: "плавающие лицензии", type: slang, maps_to: {attr: license_metric, value: concurrent}, note: "Конкурентные"}
+- {term: "одновременных пользователей", type: slang, maps_to: {attr: license_metric, value: concurrent}, note: ""}
+- {term: "сетевой ключ", type: slang, maps_to: {attr: license_metric, value: concurrent}, note: "Конкурентная лицензия"}
+- {term: "на сервер", type: slang, maps_to: {attr: license_metric, value: server}, note: ""}
+- {term: "на хост", type: slang, maps_to: {attr: license_metric, value: server}, note: ""}
+- {term: "на физический сервер", type: slang, maps_to: {attr: license_metric, value: server}, note: ""}
+- {term: "по ядрам", type: slang, maps_to: {attr: license_metric, value: core}, note: "Per core"}
+- {term: "per core", type: abbr, maps_to: {attr: license_metric, value: core}, note: "Лицензирование по ядрам"}
+- {term: "на ядро", type: slang, maps_to: {attr: license_metric, value: core}, note: ""}
+- {term: "по сокетам", type: slang, maps_to: {attr: license_metric, value: cpu}, note: "Per socket"}
+- {term: "per socket", type: abbr, maps_to: {attr: license_metric, value: cpu}, note: "Лицензирование по сокетам"}
+- {term: "на процессор", type: slang, maps_to: {attr: license_metric, value: cpu}, note: ""}
+- {term: "на виртуальную машину", type: slang, maps_to: {attr: license_metric, value: vm}, note: ""}
+- {term: "на почтовый ящик", type: slang, maps_to: {attr: license_metric, value: mailbox}, note: ""}
+- {term: "почтовых ящиков", type: slang, maps_to: {attr: license_metric, value: mailbox}, note: ""}
+- {term: "на терабайт", type: slang, maps_to: {attr: license_metric, value: storage}, note: ""}
+- {term: "пользовательский кал", type: slang, maps_to: {attr: license_type, value: cal}, note: "User CAL"}
+- {term: "терминальный кал", type: slang, maps_to: {attr: license_type, value: rds_cal}, note: "RDS CAL"}
+- {term: "оем лицензия", type: translit, maps_to: {attr: license_type, value: oem}, note: "OEM"}
+- {term: "предустановленная", type: slang, maps_to: {attr: license_type, value: oem}, note: "OEM"}
+- {term: "ггк", type: translit, maps_to: {attr: license_type, value: ggk}, note: "Get Genuine Kit"}
+- {term: "легализация windows", type: slang, maps_to: {attr: license_type, value: ggk}, note: "GGK"}
+- {term: "олп", type: translit, maps_to: {attr: license_type, value: olp}, note: "Open License Program"}
+- {term: "цсп", type: translit, maps_to: {attr: license_type, value: csp}, note: "Cloud Solution Provider"}
+
+# --- Платформы, совместимость с ОС РФ, реестр, сертификация и закупки ---
+- {term: "под windows", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "для windows", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "под windows server", type: slang, maps_to: {platform: windows_server}, note: ""}
+- {term: "под linux", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "для linux", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "под macos", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "под андроид", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "под ios", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "под аврору", type: slang, maps_to: {platform: aurora}, note: ""}
+- {term: "совместимо с астрой", type: slang, maps_to: {attr: compat_ru_os, value: astra}, note: ""}
+- {term: "под astra linux", type: slang, maps_to: {attr: compat_ru_os, value: astra}, note: ""}
+- {term: "совместимо с ред ос", type: slang, maps_to: {attr: compat_ru_os, value: redos}, note: ""}
+- {term: "под red os", type: slang, maps_to: {attr: compat_ru_os, value: redos}, note: ""}
+- {term: "совместимо с альт", type: slang, maps_to: {attr: compat_ru_os, value: alt}, note: ""}
+- {term: "под alt linux", type: slang, maps_to: {attr: compat_ru_os, value: alt}, note: ""}
+- {term: "под rosa linux", type: slang, maps_to: {attr: compat_ru_os, value: rosa}, note: ""}
+- {term: "на эльбрус", type: slang, maps_to: {attr: architecture, value: elbrus}, note: ""}
+- {term: "на байкал", type: slang, maps_to: {attr: architecture, value: baikal}, note: ""}
+- {term: "в реестре", type: slang, maps_to: {attr: registry, value: yes}, note: "Реестр отечественного ПО"}
+- {term: "реестровое по", type: slang, maps_to: {attr: registry, value: yes}, note: "Единый реестр Минцифры"}
+- {term: "реестр российского по", type: slang, maps_to: {attr: registry, value: yes}, note: ""}
+- {term: "единый реестр по", type: slang, maps_to: {attr: registry, value: yes}, note: ""}
+- {term: "российское по", type: slang, maps_to: {attr: registry, value: yes}, note: ""}
+- {term: "импортонезависимое", type: slang, maps_to: {attr: registry, value: yes}, note: ""}
+- {term: "сертификат фстэк", type: slang, maps_to: {attr: cert, value: fstec}, note: ""}
+- {term: "сертифицировано фстэк", type: slang, maps_to: {attr: cert, value: fstec}, note: ""}
+- {term: "по фстэк", type: slang, maps_to: {attr: cert, value: fstec}, note: ""}
+- {term: "сертификат фсб", type: slang, maps_to: {attr: cert, value: fsb}, note: ""}
+- {term: "класс кс1", type: slang, maps_to: {attr: cert, value: fsb_ks1}, note: "СКЗИ КС1"}
+- {term: "класс кс2", type: slang, maps_to: {attr: cert, value: fsb_ks2}, note: "СКЗИ КС2"}
+- {term: "класс кс3", type: slang, maps_to: {attr: cert, value: fsb_ks3}, note: "СКЗИ КС3"}
+- {term: "сертификат мо рф", type: slang, maps_to: {attr: cert, value: mo_rf}, note: "Минобороны РФ"}
+- {term: "по 44 фз", type: slang, maps_to: {attr: compliance, value: fz_44}, note: "Госзакупки 44-ФЗ"}
+- {term: "44 фз", type: abbr, maps_to: {attr: compliance, value: fz_44}, note: "44-ФЗ"}
+- {term: "котировка по 44 фз", type: slang, maps_to: {attr: compliance, value: fz_44}, note: "Запрос котировок 44-ФЗ"}
+- {term: "по 223 фз", type: slang, maps_to: {attr: compliance, value: fz_223}, note: "Закупки 223-ФЗ"}
+- {term: "223 фз", type: abbr, maps_to: {attr: compliance, value: fz_223}, note: "223-ФЗ"}
+- {term: "152 фз", type: abbr, maps_to: {attr: compliance, value: fz_152}, note: "Защита ПДн"}
+- {term: "по 152 фз", type: slang, maps_to: {attr: compliance, value: fz_152}, note: "152-ФЗ"}
+- {term: "персональные данные", type: slang, maps_to: {attr: compliance, value: fz_152}, note: "152-ФЗ / ИСПДн"}
+- {term: "защита пдн", type: slang, maps_to: {attr: compliance, value: fz_152}, note: "152-ФЗ"}
+- {term: "187 фз", type: abbr, maps_to: {attr: compliance, value: fz_187_kii}, note: "Защита КИИ"}
+- {term: "по 187 фз", type: slang, maps_to: {attr: compliance, value: fz_187_kii}, note: "187-ФЗ"}
+- {term: "объект кии", type: slang, maps_to: {attr: compliance, value: fz_187_kii}, note: "187-ФЗ КИИ"}
+- {term: "для кии", type: slang, maps_to: {attr: compliance, value: fz_187_kii}, note: "187-ФЗ КИИ"}
+- {term: "аттестация гис", type: slang, maps_to: {attr: compliance, value: gis}, note: "Защита ГИС (гос. инф. систем)"}
+- {term: "государственная тайна", type: slang, maps_to: {attr: compliance, value: state_secret}, note: "Гостайна"}

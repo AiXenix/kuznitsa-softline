@@ -1,0 +1,483 @@
+# Дополнительные вендоры (раунд 3) для продуктов, отсутствующих в каталоге (kb/families/absent_r3.yaml)
+# Формат: kb/SCHEMA.md (аналогично kb/vendors.yaml)
+# Все ссылки в categories соответствуют листовым id из kb/categories.yaml.
+
+# ============================================================================
+# 1. ИИ, РАЗРАБОТКА, DEVOPS И НАБЛЮДАЕМОСТЬ
+# ============================================================================
+
+- id: anysphere
+  name: "Anysphere"
+  name_ru: "Анисфер (Cursor)"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["anysphere", "cursor", "курсор", "cursor ai"]
+  categories: [ide_compilers, llm_gen_ai]
+  notes: "Разработчик ИИ-редактора кода Cursor; официальные поставки и оплата от юрлиц из РФ отсутствуют."
+
+- id: anthropic
+  name: "Anthropic"
+  name_ru: "Антропик (Claude)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["anthropic", "антропик", "claude", "клод", "клауд ии"]
+  categories: [llm_gen_ai]
+  notes: "Разработчик семейства LLM Claude; доступ с территории РФ ограничен, корпоративные поставки в РФ отсутствуют."
+
+- id: midjourney_inc
+  name: "Midjourney"
+  name_ru: "Миджорни"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["midjourney", "миджорни", "мидджорни", "mj"]
+  categories: [llm_gen_ai, raster_photo]
+  notes: "Сервис генерации изображений по тексту; официальная оплата от российских юрлиц недоступна."
+
+- id: perplexity
+  name: "Perplexity AI"
+  name_ru: "Перплексити"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["perplexity", "перплексити", "perplexity ai"]
+  categories: [llm_gen_ai]
+  notes: "ИИ-поисковик и корпоративный ассистент; официальные продажи в РФ отсутствуют."
+
+- id: codeium_windsurf
+  name: "Windsurf (Codeium)"
+  name_ru: "Виндсерф (Кодеиум)"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["windsurf", "виндсерф", "codeium", "кодеиум"]
+  categories: [ide_compilers, llm_gen_ai]
+  notes: "Разработчик ИИ-IDE Windsurf и ассистента Codeium; официальные корпоративные поставки в РФ отсутствуют."
+
+- id: docker_inc
+  name: "Docker"
+  name_ru: "Докер"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["docker", "докер", "docker inc", "docker hub"]
+  categories: [containers_kubernetes, git_cicd_devops]
+  notes: "Разработчик Docker Desktop и Docker Hub; коммерческие подписки для российских компаний недоступны."
+
+- id: sublime_hq
+  name: "Sublime HQ"
+  name_ru: "Саблайм"
+  country: AU
+  origin: foreign
+  market_status: restricted
+  aliases: ["sublime", "саблайм", "sublime hq", "sublime text"]
+  categories: [ide_compilers, text_editors]
+  notes: "Разработчик редактора кода Sublime Text; прямые поставки для юрлиц РФ отсутствуют."
+
+- id: hashicorp
+  name: "HashiCorp"
+  name_ru: "Хашикорп"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["hashicorp", "хашикорп", "terraform", "терраформ", "vault"]
+  categories: [git_cicd_devops, iam_pam_mfa]
+  notes: "Разработчик Terraform и Vault (часть IBM); коммерческие лицензии и поставки в РФ прекращены."
+
+- id: jfrog
+  name: "JFrog"
+  name_ru: "ДжейФрог"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["jfrog", "джейфрог", "artifactory", "артифактори"]
+  categories: [git_cicd_devops]
+  notes: "Разработчик платформы управления артефактами JFrog Artifactory; поставки в РФ прекращены."
+
+- id: grafana_labs
+  name: "Grafana Labs"
+  name_ru: "Графана Лабс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["grafana", "графана", "grafana labs"]
+  categories: [monitoring_apm]
+  notes: "Разработчик Grafana Enterprise и стека наблюдаемости; коммерческие поставки в РФ отсутствуют."
+
+- id: elastic
+  name: "Elastic"
+  name_ru: "Эластик"
+  country: NL
+  origin: foreign
+  market_status: left
+  aliases: ["elastic", "эластик", "elasticsearch", "elk", "елка"]
+  categories: [monitoring_apm, siem_soc]
+  notes: "Разработчик Elastic Stack (Elasticsearch, Kibana); коммерческие лицензии для РФ недоступны."
+
+- id: confluent
+  name: "Confluent"
+  name_ru: "Конфлюэнт"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["confluent", "конфлюэнт", "конфлуент", "kafka enterprise"]
+  categories: [big_data_streaming]
+  notes: "Разработчик корпоративной платформы потоковой обработки данных на базе Apache Kafka; поставки в РФ прекращены."
+
+- id: databricks_inc
+  name: "Databricks"
+  name_ru: "Датабрикс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["databricks", "датабрикс", "data bricks"]
+  categories: [big_data_streaming, ml_platforms_cv]
+  notes: "Облачная Lakehouse-платформа для больших данных и ML; работа с заказчиками из РФ прекращена."
+
+- id: dynatrace_inc
+  name: "Dynatrace"
+  name_ru: "Дайнатрейс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["dynatrace", "дайнатрейс", "динатрейс"]
+  categories: [monitoring_apm]
+  notes: "Зарубежная платформа APM и наблюдаемости; поставки в РФ прекращены."
+
+# ============================================================================
+# 2. ВИРТУАЛИЗАЦИЯ, ХРАНЕНИЕ И ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ
+# ============================================================================
+
+- id: proxmox
+  name: "Proxmox Server Solutions"
+  name_ru: "Проксмокс"
+  country: AT
+  origin: foreign
+  market_status: restricted
+  aliases: ["proxmox", "проксмокс", "pve", "proxmox ve"]
+  categories: [server_virtualization, backup_recovery]
+  notes: "Разработчик гипервизора Proxmox VE; коммерческие подписки для юрлиц РФ не поставляются."
+
+- id: nutanix
+  name: "Nutanix"
+  name_ru: "Нутаникс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["nutanix", "нутаникс", "нютаникс", "nutanix ahv"]
+  categories: [server_virtualization, sds_storage]
+  notes: "Разработчик гиперконвергентной платформы Nutanix; официальная деятельность в РФ прекращена."
+
+- id: dropbox
+  name: "Dropbox"
+  name_ru: "Дропбокс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["dropbox", "дропбокс", "дроп бокс"]
+  categories: [sds_storage]
+  notes: "Облачное файловое хранилище; корпоративные подписки для РФ недоступны."
+
+- id: lastpass_inc
+  name: "LastPass"
+  name_ru: "ЛастПасс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["lastpass", "ластпасс", "ласт пасс"]
+  categories: [iam_pam_mfa]
+  notes: "Облачный менеджер паролей; поставки для компаний из РФ прекращены."
+
+- id: bitwarden_inc
+  name: "Bitwarden"
+  name_ru: "Битварден"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["bitwarden", "битварден", "битворден"]
+  categories: [iam_pam_mfa]
+  notes: "Менеджер паролей с открытым исходным кодом; коммерческие корпоративные лицензии в РФ не поставляются."
+
+- id: sentinelone_inc
+  name: "SentinelOne"
+  name_ru: "СентинелВан"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["sentinelone", "сентинелван", "sentinel one", "сентинел ван"]
+  categories: [edr_xdr, endpoint_security]
+  notes: "Зарубежная платформа EDR/XDR; поставки в РФ прекращены."
+
+- id: cloudflare_inc
+  name: "Cloudflare"
+  name_ru: "Клаудфлэр"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["cloudflare", "клаудфлэр", "клаудфлер", "клаудфлейр"]
+  categories: [waf_appsec]
+  notes: "Зарубежный провайдер CDN, WAF и защиты от DDoS; корпоративные договоры с юрлицами РФ ограничены."
+
+- id: zscaler_inc
+  name: "Zscaler"
+  name_ru: "Зетскейлер"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["zscaler", "зетскейлер", "зскейлер", "зискейлер"]
+  categories: [pam_jump_hosts, ngfw_vpn]
+  notes: "Облачная платформа Zero Trust / SSE; деятельность в РФ прекращена."
+
+# ============================================================================
+# 3. БИЗНЕС-ПРИЛОЖЕНИЯ, ТАСК-ТРЕКЕРЫ, КОММУНИКАЦИИ И МАРКЕТИНГ
+# ============================================================================
+
+- id: asana_inc
+  name: "Asana"
+  name_ru: "Асана"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["asana", "асана"]
+  categories: [task_project_trackers]
+  notes: "Зарубежная система управления проектами и задачами; работа с заказчиками из РФ прекращена."
+
+- id: monday_inc
+  name: "monday.com"
+  name_ru: "Мандей"
+  country: IL
+  origin: foreign
+  market_status: left
+  aliases: ["monday", "мандей", "monday.com", "monday com"]
+  categories: [task_project_trackers, crm_systems]
+  notes: "Облачная платформа управления проектами и задачами; поставки в РФ прекращены."
+
+- id: clickup_inc
+  name: "ClickUp"
+  name_ru: "КликАп"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["clickup", "кликап", "клик ап"]
+  categories: [task_project_trackers]
+  notes: "Зарубежная платформа управления задачами и документами; продажи в РФ прекращены."
+
+- id: linear_inc
+  name: "Linear"
+  name_ru: "Линеар"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["linear", "линеар", "linear app"]
+  categories: [task_project_trackers]
+  notes: "Трекер задач для продуктовых и инженерных команд; официальные поставки в РФ отсутствуют."
+
+- id: hubspot
+  name: "HubSpot"
+  name_ru: "ХабСпот"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["hubspot", "хабспот", "хаб спот"]
+  categories: [crm_systems, email_marketing]
+  notes: "Зарубежная CRM и платформа входящего маркетинга; обслуживание клиентов из РФ прекращено."
+
+- id: zendesk
+  name: "Zendesk"
+  name_ru: "Зендеск"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["zendesk", "зендеск", "зен деск"]
+  categories: [itsm_service_desk, crm_systems]
+  notes: "Облачная служба поддержки и тикет-система; деятельность в РФ прекращена."
+
+- id: freshworks
+  name: "Freshworks"
+  name_ru: "Фрешворкс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["freshworks", "фрешворкс", "freshdesk", "фрешдеск"]
+  categories: [itsm_service_desk, crm_systems]
+  notes: "Разработчик Freshdesk и Freshservice; коммерческие продажи в РФ прекращены."
+
+- id: intuit_mailchimp
+  name: "Mailchimp (Intuit)"
+  name_ru: "Мейлчимп"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["mailchimp", "мейлчимп", "мэйлчимп", "маилчимп"]
+  categories: [email_marketing]
+  notes: "Сервис email-рассылок и автоматизации маркетинга; работа с РФ прекращена."
+
+- id: docusign_inc
+  name: "DocuSign"
+  name_ru: "ДокуСайн"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["docusign", "докусайн", "доку сайн"]
+  categories: [tax_reporting_edo, sed_ecm]
+  notes: "Зарубежный сервис электронного подписания документов; не соответствует требованиям 63-ФЗ в РФ, поставки прекращены."
+
+- id: anaplan_inc
+  name: "Anaplan"
+  name_ru: "Анаплан"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["anaplan", "анаплан"]
+  categories: [finance_budgeting]
+  notes: "Облачная EPM/IBP-платформа финансового и операционного планирования; ушла из РФ."
+
+- id: mattermost_inc
+  name: "Mattermost"
+  name_ru: "Маттермост"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["mattermost", "маттермост", "матермост"]
+  categories: [corporate_messengers]
+  notes: "Корпоративный мессенджер с self-hosted поставкой; коммерческие Enterprise-лицензии для РФ не поставляются."
+
+# ============================================================================
+# 4. САПР, 3D, ДИЗАЙН, ВИДЕО, ТЕКСТ И ОБУЧЕНИЕ (ЗАРУБЕЖНЫЕ)
+# ============================================================================
+
+- id: canva_pty
+  name: "Canva"
+  name_ru: "Канва"
+  country: AU
+  origin: foreign
+  market_status: left
+  aliases: ["canva", "канва"]
+  categories: [ui_ux_web_design, raster_photo]
+  notes: "Онлайн-редактор графики и презентаций; доступ из РФ ограничен, продажи прекращены."
+
+- id: unity_technologies
+  name: "Unity Technologies"
+  name_ru: "Юнити"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["unity", "юнити", "unity3d", "unity 3d"]
+  categories: [3d_rendering_animation]
+  notes: "Разработчик 3D-движка Unity; коммерческие лицензии для компаний РФ не продаются."
+
+- id: epic_games
+  name: "Epic Games"
+  name_ru: "Эпик Геймс (Unreal Engine)"
+  country: US
+  origin: foreign
+  market_status: restricted
+  aliases: ["epic games", "unreal", "анрил", "unreal engine"]
+  categories: [3d_rendering_animation]
+  notes: "Разработчик 3D-движка Unreal Engine; корпоративные лицензии для юрлиц РФ недоступны."
+
+- id: trimble
+  name: "Trimble"
+  name_ru: "Тримбл"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["trimble", "тримбл", "sketchup", "скетчап", "tekla", "текла"]
+  categories: [bim_aec, cad_2d]
+  notes: "Разработчик SketchUp и Tekla Structures; официальные поставки в РФ прекращены."
+
+- id: ptc
+  name: "PTC"
+  name_ru: "ПиТиСи (Mathcad / Creo)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["ptc", "mathcad", "маткад", "creo", "крео", "windchill"]
+  categories: [cae_simulation, mcad_plm]
+  notes: "Разработчик Mathcad, Creo и Windchill; официальная деятельность в РФ прекращена."
+
+- id: precisely
+  name: "Precisely"
+  name_ru: "Присайзли (MapInfo)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["precisely", "mapinfo", "мапинфо", "pitney bowes"]
+  categories: [gis_mapping]
+  notes: "Разработчик ГИС MapInfo Pro; поставки в РФ прекращены."
+
+- id: techsmith
+  name: "TechSmith"
+  name_ru: "ТекСмит (Camtasia)"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["techsmith", "тексмит", "camtasia", "камтазия", "snagit"]
+  categories: [video_editing]
+  notes: "Разработчик Camtasia и Snagit; официальные продажи в РФ прекращены."
+
+- id: grammarly_inc
+  name: "Grammarly"
+  name_ru: "Граммарли"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["grammarly", "граммарли", "грамарли"]
+  categories: [translation_dictionaries, llm_gen_ai]
+  notes: "Сервис проверки грамматики и стиля английского текста; работа в РФ прекращена."
+
+- id: moodle_hq
+  name: "Moodle"
+  name_ru: "Мудл"
+  country: AU
+  origin: foreign
+  market_status: restricted
+  aliases: ["moodle", "мудл", "moodle lms"]
+  categories: [lms_elearning]
+  notes: "Открытая СДО Moodle и коммерческий Moodle Workplace; официальная коммерческая поставка в РФ отсутствует."
+
+# ============================================================================
+# 5. РОССИЙСКИЕ ВЕНДОРЫ (ОТСУТСТВУЮЩИЕ В АССОРТИМЕНТЕ КАТАЛОГА)
+# ============================================================================
+
+- id: megaplan
+  name: "Megaplan"
+  name_ru: "Мегаплан"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["мегаплан", "megaplan", "мегаплан crm"]
+  categories: [crm_systems, task_project_trackers]
+  notes: "Российский разработчик CRM и таск-менеджера Мегаплан (напрямую не представлен в текущем каталоге)."
+
+- id: parus_corp
+  name: "Parus Corporation"
+  name_ru: "Корпорация Парус"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["парус", "корпорация парус", "parus", "парус 8", "парус 10"]
+  categories: [erp_systems, accounting]
+  notes: "Российский разработчик ERP и систем учета для госсектора и предприятий (вне текущего каталога магазина)."
+
+- id: tilda
+  name: "Tilda Publishing"
+  name_ru: "Тильда"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["тильда", "tilda", "tilda publishing"]
+  categories: [cms_ecommerce]
+  notes: "Российский облачный конструктор сайтов и лендингов; продается по прямой подписке, отсутствует в каталоге."
+
+- id: jivo
+  name: "Jivo (JivoSite)"
+  name_ru: "Дживо (Живосайт)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["живосайт", "дживосайт", "дживо", "jivosite", "jivo"]
+  categories: [crm_systems]
+  notes: "Российский бизнес-мессенджер и онлайн-чат для сайта (экосистема Сбера); отсутствует в каталоге магазина."
