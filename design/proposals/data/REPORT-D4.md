@@ -48,3 +48,11 @@
 Для уже написанного A модуля `index/source.py` после изменения схемы условие сериализации значений в `read_offer` — `if not isinstance(v, str) and k not in {"aliases", "source_ids", "certs", "extra"}:`. В `identifiers` блок разбора списка через `json.loads` заменить строкой `yield from strings(o.attrs.get("source_ids"))`. Она читает оба поколения снимков.
 
 **B.** Вставки B4 приняты. В `identify` подключены GA4, CRM и внешние поисковые фразы Метрики. Вызов повтора — `report["replay"] = replay.run(engine, mode="fast", limit=replay_limit, cfg=cfg)`. Для B3 до слияния сохранена совместимость со старой сигнатурой. «Сохраните контракт `sniff(path) → {kind, confidence, columns, reason}`, порядок из `ordered_files` и обработку набора через `ingest_files(engine, files, mapping=…)`. В `offer_resolver` замените строку чтения кодов на `codes = getattr(offer, "source_ids", None) or offer.attrs.get("source_ids", [])`. Это сохраняет связь с заказами и кликами в обоих форматах снимка».
+
+## Уточнение после слияния 4a9c9aa
+
+Во всех трёх репетициях (1С, USD, YML) у `03.tsv` одинаковые колонки `ym:s:searchPhrase`, `ym:s:visits` и `ym:s:bounceRate`. Они описывают фразу, по которой посетитель пришёл из поисковика, число визитов и долю отказов. История запросов самого магазина лежит в `02.csv`. Роль `metrika_external_phrases`, которую вернул B4, верна.
+
+В таблице файлов `day_report.md` внешняя выгрузка подписана «Метрика · фразы из поисковиков», внутренняя — «Метрика · поиск по сайту». Сквозная проверка передаёт обе выгрузки за один запуск и проверяет, что три визита по внешней фразе `windows pro` учтены в привлечении и добавили ноль поисков магазина. [Инструкция по отчётам Метрики](../../../docs/INGEST.md)
+
+После слияния все 29 тестов `pytest -q tests/ingest` прошли за 123,25 с.
