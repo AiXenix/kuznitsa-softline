@@ -121,8 +121,15 @@ def test_imported_shortlist():
     items=[proposal(i,"X "+str(i)) for i in range(55)]
     items.append(proposal(99,"X 54"))
     items.append(proposal(100,"нет подтверждения")|{"evidence":{"examples":[]}})
+    unsupported = proposal(120, "Фиктивный дефект") | {"type": "fix_card"}
+    items.append(unsupported)
     result=list(foreign_shortlist(items).values())
     assert len(result)==30 and [i["id"] for i in result[:2]]==["99","53"]
+    growing = proposal(1, "Хранение") | {"type": "rising_demand"}
+    growing["evidence"]["unresolved_sessions"] = 1
+    assert foreign_shortlist([growing]) == {}
+    growing["evidence"]["unresolved_sessions"] = 2
+    assert list(foreign_shortlist([growing])) == [growing["id"]]
 
 
 def test_ga4_leads_external_channels(shop,cfg,tmp_path,monkeypatch):

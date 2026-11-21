@@ -65,6 +65,11 @@ def failure_rows(j):
 
 
 def warm(e):
+    """Готовим снимок после загрузки истории или при первом открытии консоли."""
+    return cached(e.journal, "dashboard:ready-b5.2", lambda: _warm(e))
+
+
+def _warm(e):
     j=e.journal
     if kpi.report(j).get("data_status")=="incompatible":
         return

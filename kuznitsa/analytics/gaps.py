@@ -54,6 +54,14 @@ def demand(engine,rows,loss,end=None):
                   for v in shown if isinstance(v,str)}
         for card_id in card_ids:
             impressions[card_id]+=group["n"]
+    imported = engine.journal.rows("SELECT 1 FROM kv WHERE key='settings:history_source' AND value='import'")
+    clicks = {}
+    if imported:
+        clicks = {r["card_id"]: r["n"] for r in engine.journal.rows("""
+            SELECT e.card_id, count(DISTINCT s.search_id) n FROM events e JOIN active_history s USING(search_id)
+            WHERE e.type='click' AND e.card_id IS NOT NULL AND s.ts>? GROUP BY e.card_id
+            """, (end - 30 * 86400,))}
+    measured = not imported or bool(impressions)
     for r in rows:
         if r["reason"]=="unknown_term" and r["zero"]:
             term=brand_term(r.get("normalized_query") or r["q"])
@@ -135,7 +143,11 @@ def demand(engine,rows,loss,end=None):
         if not any(o.price or o.price_on_request for o in c.offers):
             fields.append("price")
         if fields:
-            defects.append(dict(card_id=c.id,title=c.title,category=c.category,fields=fields,impressions=impressions[c.id]))
+            defect = dict(card_id=c.id,title=c.title,category=c.category,fields=fields,
+                          impressions=impressions[c.id] if measured else None)
+            if imported:
+                defect["clicked_searches"] = clicks.get(c.id, 0)
+            defects.append(defect)
     sort=lambda items:sorted(items,key=lambda x:-x["searches"])
     breakdown={}
     for dimension in ("family","vendor","category"):
@@ -145,13 +157,13 @@ def demand(engine,rows,loss,end=None):
         breakdown[dimension]=sort([dict(key=key,searches=sum(i["searches"] for i in items),
             previous=sum(i["previous"] for i in items),expected_rub=sum(i["expected_rub"] for i in items),
             clusters=[i["key"] for i in items]) for key,items in grouped.items()])
-    return dict(items=sort(gaps),breakdown=breakdown,departed=sort(departed),card_defects=sorted(defects,key=lambda x:-x["impressions"]),
-                period_days=30,through=end)
+    return dict(items=sort(gaps),breakdown=breakdown,departed=sort(departed),card_defects=sorted(defects,key=lambda x:(-(x["impressions"] or 0),-x.get("clicked_searches",0))),
+                period_days=30,through=end,impressions_available=bool(measured))
 
 
 def report(engine):
     from .cache import cached
-    return cached(engine.journal,"gaps:b2.4",lambda:_report(engine))
+    return cached(engine.journal,"gaps:b5",lambda:_report(engine))
 
 
 def _report(engine):

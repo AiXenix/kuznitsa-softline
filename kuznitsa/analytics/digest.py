@@ -32,16 +32,14 @@ def digest(j,role=None):
         clicks=fact("Переходы в карточки отсутствуют в выгрузке. Подключите события кликов для оценки CTR.","/api/admin/ingest")
     options=dict(customer=[zero,clicks,categories],ecom_manager=[orders,clicks,zero],head_ecom=[revenue,loss,orders],
                  content_manager=[zero,clicks,loss],product_manager=[categories,loss,zero])
+    from .insights import listing
+    proposals = listing(j)
     items=[]
     for who,findings in options.items():
         if role and role!=who:
             continue
-        import json
-        choice=j.rows("""SELECT body FROM insights WHERE status='new' AND coalesce(json_extract(body,'$.dataset'),'mock')=
-            coalesce((SELECT value FROM kv WHERE key='settings:history_source'),'mock') AND json_extract(body,'$.role')=?
-            ORDER BY json_extract(body,'$.impact.conservative_rub') DESC,id LIMIT 1""",(who,))
-        if choice:
-            item=json.loads(choice[0]["body"])
+        item = next((v for v in proposals if v["status"]=="new" and v["role"]==who), None)
+        if item:
             ident=next(iter(item["evidence"].get("search_ids",{}).values()),None)
             findings.append(fact(f"{item['title']}. Основание · {item.get('evidence_text') or item['summary']}",
                                  "/inspect/"+ident if ident else "/api/admin/insights?role="+who))

@@ -2,6 +2,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from kuznitsa.analytics import dashboard, priorities
+from kuznitsa.analytics.cache import live_cached
 import json
 import gzip
 import os
@@ -38,6 +39,16 @@ async def warm_search(app):
     engine.catalog.legacy_category_names=engine.names["category"]
     naive.prepare(engine.catalog)
     engine._rules()
+    journal = engine.journal
+    if hasattr(journal, "rows") and journal.rows(
+            "SELECT 1 FROM kv WHERE key='settings:history_source' AND value='import'"):
+        dashboard.warm(engine)
+        source_counts(journal)
+        cost.report(journal)
+        ai_file = Path(journal.path).with_name("import_ai.jsonl")
+        if ai_file.is_file():
+            stat = ai_file.stat()
+            review_rows(ai_file, stat.st_mtime_ns, stat.st_size)
     yield
 
 
@@ -257,14 +268,17 @@ def review_rows(path,mtime,size):
     return nsmallest(50,decisions(),key=lambda r:(not bool(r.get("fallback")),bool(r.get("accepted")),r.get("probability") or 0))
 
 
+def source_counts(journal):
+    return live_cached(journal, "sources", lambda: journal.rows(
+        "SELECT source,count(*) searches,source IN ('eval','replay') service FROM searches GROUP BY source"))
+
+
 @router.get("/ingest")
 def ingestion(request:Request):
     e=request.app.state.engine
     path=Path(e.journal.path).parent/"import_report.json"
-    sources=e.journal.rows("SELECT source,count(*) searches FROM searches GROUP BY source")
-    for r in sources:
-        r["service"]=r["source"] in ("eval","replay")
-    reports=e.journal.rows("SELECT value FROM kv WHERE key LIKE 'settings:import-report:%' ORDER BY updated DESC")
+    sources=[row | {"service":bool(row["service"])} for row in source_counts(e.journal)]
+    reports=e.journal.rows("SELECT value FROM kv WHERE key GLOB 'settings:import-report:*' ORDER BY updated DESC")
     catalog=json.loads(path.read_text()) if path.is_file() else None
     ai_file=path.with_name("import_ai.jsonl")
     stat=ai_file.stat() if ai_file.is_file() else None
@@ -272,8 +286,8 @@ def ingestion(request:Request):
     history=[json.loads(r["value"]) for r in reports]
     external=[dict(file=r["file"],items=r.get("external_phrases",[]),metrics=r.get("report_metrics",{})) for r in history if r.get("kind")=="metrika_external_phrases"]
     crm=[dict(file=r["file"],**r["crm"]) for r in history if r.get("crm")]
-    return dict(catalog=catalog,external_phrases=external,crm_leads=crm,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=history,cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
-                sources=sources)
+    return json_report(request,dict(catalog=catalog,external_phrases=external,crm_leads=crm,classification_usd=ai.get("usd"),forecast_usd=ai.get("forecast_usd",(catalog or {}).get("forecast_usd")),review=review_rows(ai_file,stat.st_mtime_ns,stat.st_size) if stat else [],history=history,cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
+                sources=sources))
 
 
 @router.get("/digest")
