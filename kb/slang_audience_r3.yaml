@@ -1,0 +1,538 @@
+# Словарь аудиторий и платформ (ход 6, спецификация v0.7: 29.2)
+# Формат: kb/SCHEMA.md (дополнение к kb/slang.yaml и kb/slang_r3.yaml; существующие термины не дублируются)
+# Закрытый список audience (29.2): home | micro_office | business | enterprise | gov | edu | server | mobile | industrial
+# Платформы: server | windows | linux | macos | android | ios
+# Типы: slang | abbr | translit | typo | obsolete
+
+# ============================================================================
+# ЧАСТЬ 1. АУДИТОРИИ (audience)
+# ============================================================================
+
+# --- home (дом, семья, личное, физлица) ---
+- {term: "хоум", type: translit, maps_to: {attr: audience, value: home}, note: "Home / домашняя лицензия"}
+- {term: "для хоума", type: slang, maps_to: {attr: audience, value: home}, note: "Разговорная форма «для дома»"}
+- {term: "домик", type: slang, maps_to: {attr: audience, value: home}, note: "Разговорная форма «для дома»"}
+- {term: "для домика", type: slang, maps_to: {attr: audience, value: home}, note: "Разговорная форма «для дома»"}
+- {term: "домашний", type: slang, maps_to: {attr: audience, value: home}, note: "Домашняя лицензия (муж. род)"}
+- {term: "домашнего", type: slang, maps_to: {attr: audience, value: home}, note: "Падежная форма «домашний»"}
+- {term: "домашние", type: slang, maps_to: {attr: audience, value: home}, note: "Множ. число «домашний»"}
+- {term: "домашнему", type: slang, maps_to: {attr: audience, value: home}, note: "Падежная форма «домашний»"}
+- {term: "для домашнего", type: slang, maps_to: {attr: audience, value: home}, note: "Для домашнего ПК/использования"}
+- {term: "домой", type: slang, maps_to: {attr: audience, value: home}, note: "Для дома"}
+- {term: "на дом", type: slang, maps_to: {attr: audience, value: home}, note: "Для дома"}
+- {term: "для дачи", type: slang, maps_to: {attr: audience, value: home}, note: "Личное использование"}
+- {term: "для семьи", type: slang, maps_to: {attr: audience, value: home}, note: "Семейная лицензия"}
+- {term: "семейный", type: slang, maps_to: {attr: audience, value: home}, note: "Семейная лицензия"}
+- {term: "семейная", type: slang, maps_to: {attr: audience, value: home}, note: "Семейная лицензия"}
+- {term: "семейную", type: slang, maps_to: {attr: audience, value: home}, note: "Семейная лицензия (вин. падеж)"}
+- {term: "маме", type: slang, maps_to: {attr: audience, value: home}, note: "Личное / семейное использование"}
+- {term: "для мамы", type: slang, maps_to: {attr: audience, value: home}, note: "Личное / семейное использование"}
+- {term: "папе", type: slang, maps_to: {attr: audience, value: home}, note: "Личное / семейное использование"}
+- {term: "для папы", type: slang, maps_to: {attr: audience, value: home}, note: "Личное / семейное использование"}
+- {term: "родителям", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "ребёнку", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "ребенку", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование (без ё)"}
+- {term: "для ребёнка", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "для ребенка", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование (без ё)"}
+- {term: "сыну", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "дочке", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "бабушке", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "дедушке", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "жене", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "мужу", type: slang, maps_to: {attr: audience, value: home}, note: "Семейное использование"}
+- {term: "себе", type: slang, maps_to: {attr: audience, value: home}, note: "Личное использование"}
+- {term: "для себя", type: slang, maps_to: {attr: audience, value: home}, note: "Личное использование"}
+- {term: "личный", type: slang, maps_to: {attr: audience, value: home}, note: "Персональное использование"}
+- {term: "личная", type: slang, maps_to: {attr: audience, value: home}, note: "Персональное использование"}
+- {term: "личное", type: slang, maps_to: {attr: audience, value: home}, note: "Персональное использование"}
+- {term: "для личного", type: slang, maps_to: {attr: audience, value: home}, note: "Для личного ПК/пользования"}
+- {term: "на личный", type: slang, maps_to: {attr: audience, value: home}, note: "На личный ПК/ноут"}
+- {term: "персональный", type: slang, maps_to: {attr: audience, value: home}, note: "Персональная лицензия"}
+- {term: "персональное", type: slang, maps_to: {attr: audience, value: home}, note: "Персональная лицензия"}
+- {term: "частнику", type: slang, maps_to: {attr: audience, value: home}, note: "Физическому лицу"}
+- {term: "частному лицу", type: slang, maps_to: {attr: audience, value: home}, note: "Физическому лицу"}
+- {term: "физлицу", type: slang, maps_to: {attr: audience, value: home}, note: "Физическому лицу"}
+- {term: "физическому лицу", type: slang, maps_to: {attr: audience, value: home}, note: "B2C"}
+- {term: "home", type: abbr, maps_to: {attr: audience, value: home}, note: "Home edition"}
+- {term: "b2c", type: abbr, maps_to: {attr: audience, value: home}, note: "Частный покупатель"}
+- {term: "б2с", type: translit, maps_to: {attr: audience, value: home}, note: "B2C"}
+
+# --- micro_office (малый офис, микробизнес, 1–10 / до 25 мест) ---
+- {term: "малый офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Небольшой офис до 10–25 мест"}
+- {term: "для малого офиса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "в малый офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "малому офису", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "маленький офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для маленького офиса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "в маленький офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "небольшой офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для небольшого офиса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "в небольшой офис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "микробизнес", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для микробизнеса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "микробизнесу", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "микроофис", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для микроофиса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "малый бизнес", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Малый бизнес / SMB"}
+- {term: "для малого бизнеса", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "малому бизнесу", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "ипэшнику", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Разговорное «для ИП»"}
+- {term: "для ипэшки", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Разговорное «для ИП»"}
+- {term: "в ипэшку", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Разговорное «для ИП»"}
+- {term: "ипшнику", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Разговорное «для ИП»"}
+- {term: "для ипшника", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Разговорное «для ИП»"}
+- {term: "самозанятому", type: slang, maps_to: {attr: audience, value: micro_office}, note: "Микробизнес / 1 место"}
+- {term: "для самозанятого", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "в мелкую фирму", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для небольшой фирмы", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для маленькой компании", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для небольшой компании", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "небольшая команда", type: slang, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "small office", type: abbr, maps_to: {attr: audience, value: micro_office}, note: "SOHO / KSOS"}
+- {term: "micro office", type: abbr, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "soho", type: abbr, maps_to: {attr: audience, value: micro_office}, note: "Small Office / Home Office"}
+- {term: "smb", type: abbr, maps_to: {attr: audience, value: micro_office}, note: "Small and Medium Business"}
+- {term: "смб", type: translit, maps_to: {attr: audience, value: micro_office}, note: "SMB"}
+- {term: "мсб", type: abbr, maps_to: {attr: audience, value: micro_office}, note: "Малый и средний бизнес"}
+- {term: "для мсб", type: abbr, maps_to: {attr: audience, value: micro_office}, note: ""}
+- {term: "для мсп", type: abbr, maps_to: {attr: audience, value: micro_office}, note: "Малое и среднее предпринимательство"}
+
+# --- business (компания, коммерческая организация, средний бизнес) ---
+- {term: "бизнесу", type: slang, maps_to: {attr: audience, value: business}, note: "Дат. падеж «бизнес»"}
+- {term: "бизнес-лицензия", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "в офис", type: slang, maps_to: {attr: audience, value: business}, note: "Корпоративное использование"}
+- {term: "для офиса", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "офисный", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "офисная", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "в компанию", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "для компании", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "компаниям", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на фирму", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "для фирмы", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "в фирму", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "фирме", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "для организации", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на организацию", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "коммерческий", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "коммерческое", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "корпоративный", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "корпоративное", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "средний бизнес", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "для среднего бизнеса", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "среднему бизнесу", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на юрлицо", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "от юрлица", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на ооо", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "в ооо", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на рабочий пк", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+- {term: "на рабочий комп", type: slang, maps_to: {attr: audience, value: business}, note: ""}
+
+# --- enterprise (крупный бизнес, корпорации, холдинги, распределённые сети) ---
+- {term: "энтерпрайз", type: translit, maps_to: {attr: audience, value: enterprise}, note: "Enterprise / крупный бизнес"}
+- {term: "enterprise", type: abbr, maps_to: {attr: audience, value: enterprise}, note: "Крупный корпоративный сегмент"}
+- {term: "крупный бизнес", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для крупного бизнеса", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупному бизнесу", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупная компания", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для крупной компании", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупным компаниям", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупное предприятие", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для крупного предприятия", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупному предприятию", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для корпорации", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "корпорациям", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для холдинга", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "холдингу", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "в холдинг", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для группы компаний", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "группе компаний", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "для филиальной сети", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "многофилиальная компания", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "распределенная сеть", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "распределённая сеть", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "большая компания", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+- {term: "крупный заказчик", type: slang, maps_to: {attr: audience, value: enterprise}, note: ""}
+
+# --- gov (госсектор, бюджетники, госучреждения, муниципалитеты) ---
+- {term: "госникам", type: slang, maps_to: {attr: audience, value: gov}, note: "Жаргон: госзаказчикам"}
+- {term: "госам", type: slang, maps_to: {attr: audience, value: gov}, note: "Жаргон: госсектору"}
+- {term: "для госов", type: slang, maps_to: {attr: audience, value: gov}, note: "Жаргон: для госорганов"}
+- {term: "госкам", type: slang, maps_to: {attr: audience, value: gov}, note: "Жаргон: госучреждениям"}
+- {term: "для госструктур", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госструктурам", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госструктуры", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для госкомпаний", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госкомпаниям", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госкомпании", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для госсектора", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "в госсектор", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для госучреждения", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госучреждению", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госучреждениям", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для госоргана", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госорганам", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госзаказчику", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госзаказчикам", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "бюджетнику", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для бюджетников", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "бюджетное учреждение", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для бюджетного учреждения", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "бюджетным учреждениям", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "муниципалам", type: slang, maps_to: {attr: audience, value: gov}, note: "Муниципальным учреждениям"}
+- {term: "для муниципалитета", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для администрации", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для ведомства", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "ведомствам", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для министерства", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "для фгуп", type: abbr, maps_to: {attr: audience, value: gov}, note: "ФГУП"}
+- {term: "для мбу", type: abbr, maps_to: {attr: audience, value: gov}, note: "МБУ"}
+- {term: "для гбу", type: abbr, maps_to: {attr: audience, value: gov}, note: "ГБУ"}
+- {term: "для мку", type: abbr, maps_to: {attr: audience, value: gov}, note: "МКУ"}
+- {term: "для гку", type: abbr, maps_to: {attr: audience, value: gov}, note: "ГКУ"}
+- {term: "для казенного", type: slang, maps_to: {attr: audience, value: gov}, note: "Казённое учреждение"}
+- {term: "для казённого", type: slang, maps_to: {attr: audience, value: gov}, note: "Казённое учреждение"}
+- {term: "для госкорпорации", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+- {term: "госкорпорациям", type: slang, maps_to: {attr: audience, value: gov}, note: ""}
+
+# --- edu (образование, вузы, школы, колледжи, академические лицензии) ---
+- {term: "академический", type: slang, maps_to: {attr: audience, value: edu}, note: "Академическая лицензия"}
+- {term: "академка", type: slang, maps_to: {attr: audience, value: edu}, note: "Жаргон: академическая лицензия"}
+- {term: "академ", type: slang, maps_to: {attr: audience, value: edu}, note: "Жаргон: академическая лицензия"}
+- {term: "образовательный", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "образовательное", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "образовательным учреждениям", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "образовательным организациям", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учебный", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учебная", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учебному заведению", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для учебного заведения", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "универу", type: slang, maps_to: {attr: audience, value: edu}, note: "Разговорное: университету"}
+- {term: "для универа", type: slang, maps_to: {attr: audience, value: edu}, note: "Разговорное: для университета"}
+- {term: "в универ", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "университету", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для университета", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "институту", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для института", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "в институт", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для институтов", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "в школу", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "школе", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "школьникам", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для школьников", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "студентам", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "студенту", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для студентов", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "студенческая", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "студенческий", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учителям", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "учителю", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для учителей", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "преподавателям", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "преподавателю", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для преподавателей", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для колледжа", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "колледжу", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для техникума", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "техникуму", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для техникумов", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для ссуза", type: abbr, maps_to: {attr: audience, value: edu}, note: "ССУЗ"}
+- {term: "для ссузов", type: abbr, maps_to: {attr: audience, value: edu}, note: "ССУЗ"}
+- {term: "для лицея", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для гимназии", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для детсада", type: slang, maps_to: {attr: audience, value: edu}, note: "ДОУ"}
+- {term: "в компьютерный класс", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для компьютерного класса", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для учебного класса", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "для кафедры", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "в вуз", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+- {term: "вузу", type: slang, maps_to: {attr: audience, value: edu}, note: ""}
+
+# --- server (серверный сегмент и серверные роли) ---
+- {term: "для серверов", type: slang, maps_to: {attr: audience, value: server}, note: "Серверная защита / серверная лицензия"}
+- {term: "для сервера", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для сервака", type: slang, maps_to: {attr: audience, value: server}, note: "Жаргон: для сервера"}
+- {term: "для серваков", type: slang, maps_to: {attr: audience, value: server}, note: "Жаргон: для серверов"}
+- {term: "серверный", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "серверная", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "серверное", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "серверные", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "серверная лицензия", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для 1с-сервера", type: slang, maps_to: {attr: audience, value: server}, note: "Сервер приложений 1С"}
+- {term: "для 1с сервера", type: slang, maps_to: {attr: audience, value: server}, note: "Сервер приложений 1С"}
+- {term: "под 1с-сервер", type: slang, maps_to: {attr: audience, value: server}, note: "Сервер приложений 1С"}
+- {term: "под 1с сервер", type: slang, maps_to: {attr: audience, value: server}, note: "Сервер приложений 1С"}
+- {term: "для файлового сервера", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для почтового сервера", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для терминального сервера", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для сервера бд", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "для веб-сервера", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "в серверную", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+- {term: "в цод", type: abbr, maps_to: {attr: audience, value: server}, note: "ЦОД"}
+- {term: "для цод", type: abbr, maps_to: {attr: audience, value: server}, note: "ЦОД"}
+- {term: "для дата-центра", type: slang, maps_to: {attr: audience, value: server}, note: ""}
+
+# --- mobile (мобильные устройства, смартфоны, планшеты) ---
+- {term: "мобильный", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "мобильная", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "мобильное", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "мобильные", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "мобилка", type: slang, maps_to: {attr: audience, value: mobile}, note: "Жаргон: смартфон/мобильное устройство"}
+- {term: "на мобилку", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для мобилки", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на мобилу", type: slang, maps_to: {attr: audience, value: mobile}, note: "Жаргон: на смартфон"}
+- {term: "для мобилы", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на мобильник", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для мобильника", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для мобильных", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на мобильный", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на телефон", type: slang, maps_to: {attr: audience, value: mobile}, note: "Мобильное устройство (без уточнения ОС)"}
+- {term: "для телефона", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на телефоны", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для телефонов", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на смартфон", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для смартфона", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на смартфоны", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для смартфонов", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на планшет", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для планшета", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на планшеты", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для планшетов", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "на трубу", type: slang, maps_to: {attr: audience, value: mobile}, note: "Жаргон: на телефон"}
+- {term: "на трубку", type: slang, maps_to: {attr: audience, value: mobile}, note: "Жаргон: на телефон"}
+- {term: "на гаджет", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для гаджетов", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "корпоративные смартфоны", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "служебные телефоны", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "для выездных сотрудников", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "мобильным сотрудникам", type: slang, maps_to: {attr: audience, value: mobile}, note: ""}
+- {term: "mobile", type: abbr, maps_to: {attr: audience, value: mobile}, note: ""}
+
+# --- industrial (промышленность, АСУ ТП, SCADA, КИИ, заводы) ---
+- {term: "промышленный", type: slang, maps_to: {attr: audience, value: industrial}, note: "Промышленный сегмент / АСУ ТП"}
+- {term: "промышленная", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "промышленное", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "промышленные", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "промка", type: slang, maps_to: {attr: audience, value: industrial}, note: "Жаргон: промышленность / АСУ ТП"}
+- {term: "для промки", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "в промку", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "на промку", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для асу тп", type: abbr, maps_to: {attr: audience, value: industrial}, note: "АСУ ТП / OT"}
+- {term: "для асутп", type: abbr, maps_to: {attr: audience, value: industrial}, note: "АСУ ТП слитно"}
+- {term: "на асу тп", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "в асу тп", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "асу тп", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "асутп", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для скада", type: translit, maps_to: {attr: audience, value: industrial}, note: "SCADA"}
+- {term: "для scada", type: abbr, maps_to: {attr: audience, value: industrial}, note: "SCADA"}
+- {term: "scada-сеть", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "технологическая сеть", type: slang, maps_to: {attr: audience, value: industrial}, note: "OT-сеть"}
+- {term: "для техсети", type: slang, maps_to: {attr: audience, value: industrial}, note: "Технологическая сеть"}
+- {term: "для промпредприятия", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "промпредприятию", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для завода", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "на завод", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "заводу", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для заводов", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для фабрики", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "на фабрику", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для цеха", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "в цех", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для производства", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "на производство", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "производству", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для промышленных предприятий", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для промышленных узлов", type: slang, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "для промконтроллеров", type: slang, maps_to: {attr: audience, value: industrial}, note: "ПЛК / контроллеры"}
+- {term: "для плк", type: abbr, maps_to: {attr: audience, value: industrial}, note: "Программируемый логический контроллер"}
+- {term: "для кии-объектов", type: abbr, maps_to: {attr: audience, value: industrial}, note: "Объекты КИИ"}
+- {term: "для от-сети", type: abbr, maps_to: {attr: audience, value: industrial}, note: "OT-сеть"}
+- {term: "ot-сеть", type: abbr, maps_to: {attr: audience, value: industrial}, note: "Operational Technology"}
+- {term: "industrial", type: abbr, maps_to: {attr: audience, value: industrial}, note: ""}
+- {term: "индастриал", type: translit, maps_to: {attr: audience, value: industrial}, note: "Industrial"}
+
+# ============================================================================
+# ЧАСТЬ 2. ПЛАТФОРМЫ (platform: server, windows, linux, macos, android, ios)
+# ============================================================================
+
+# --- server (серверная платформа; «на сервер» см. заметки для A) ---
+- {term: "на сервак", type: slang, maps_to: {platform: server}, note: "Жаргон: на сервер"}
+- {term: "на серваки", type: slang, maps_to: {platform: server}, note: "Жаргон: на серверы"}
+- {term: "на сервера", type: slang, maps_to: {platform: server}, note: "Разговорное множ. число"}
+- {term: "на серверы", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "под сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "под сервера", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "под серверы", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "под сервак", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на сервер 1с", type: slang, maps_to: {platform: server}, note: "Сервер приложений 1С"}
+- {term: "на 1с-сервер", type: slang, maps_to: {platform: server}, note: "Сервер приложений 1С"}
+- {term: "на 1с сервер", type: slang, maps_to: {platform: server}, note: "Сервер приложений 1С"}
+- {term: "на файловый сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на почтовый сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на терминальный сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на сервер бд", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на веб-сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "серверная платформа", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на серверную ос", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "серверная ос", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на linux-сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на линукс-сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на windows-сервер", type: slang, maps_to: {platform: server}, note: ""}
+- {term: "на виндовс-сервер", type: slang, maps_to: {platform: server}, note: ""}
+
+# --- windows (Windows, настольный ПК и ноутбук) ---
+- {term: "windows", type: abbr, maps_to: {platform: windows}, note: "Платформа Windows"}
+- {term: "на винду", type: slang, maps_to: {platform: windows}, note: "Жаргон: на Windows"}
+- {term: "для винды", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "под винду", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "на виндовс", type: translit, maps_to: {platform: windows}, note: ""}
+- {term: "для виндовс", type: translit, maps_to: {platform: windows}, note: ""}
+- {term: "под виндовс", type: translit, maps_to: {platform: windows}, note: ""}
+- {term: "на виндоус", type: typo, maps_to: {platform: windows}, note: ""}
+- {term: "для виндоус", type: typo, maps_to: {platform: windows}, note: ""}
+- {term: "под виндоус", type: typo, maps_to: {platform: windows}, note: ""}
+- {term: "на виндовз", type: typo, maps_to: {platform: windows}, note: ""}
+- {term: "виндовз", type: typo, maps_to: {platform: windows}, note: ""}
+- {term: "на windows", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "виндовый", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "виндовая", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "виндовое", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "под вин10", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "под вин11", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "на вин10", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "на вин11", type: slang, maps_to: {platform: windows}, note: ""}
+- {term: "на десятку", type: slang, maps_to: {platform: windows}, note: "Жаргон: на Windows 10"}
+- {term: "на одиннадцатую винду", type: slang, maps_to: {platform: windows}, note: "На Windows 11"}
+- {term: "под win", type: abbr, maps_to: {platform: windows}, note: ""}
+- {term: "на win", type: abbr, maps_to: {platform: windows}, note: ""}
+- {term: "для win", type: abbr, maps_to: {platform: windows}, note: ""}
+- {term: "на комп", type: slang, maps_to: {platform: windows}, note: "Настольный ПК (по умолчанию Windows)"}
+- {term: "на ноут", type: slang, maps_to: {platform: windows}, note: "Ноутбук (десктопная платформа, по умолчанию Windows)"}
+- {term: "на ноутбук", type: slang, maps_to: {platform: windows}, note: "Ноутбук"}
+- {term: "для ноутбука", type: slang, maps_to: {platform: windows}, note: "Ноутбук"}
+- {term: "ноут", type: slang, maps_to: {platform: windows}, note: "Разговорное: ноутбук"}
+- {term: "ноутбук", type: slang, maps_to: {platform: windows}, note: "Ноутбук"}
+- {term: "на десктоп", type: translit, maps_to: {platform: windows}, note: "Десктопный ПК"}
+- {term: "для десктопа", type: translit, maps_to: {platform: windows}, note: ""}
+- {term: "на лаптоп", type: translit, maps_to: {platform: windows}, note: "Ноутбук"}
+- {term: "на лэптоп", type: translit, maps_to: {platform: windows}, note: "Ноутбук"}
+- {term: "на стационарный пк", type: slang, maps_to: {platform: windows}, note: ""}
+
+# --- linux (Linux и дистрибутивы) ---
+- {term: "linux", type: abbr, maps_to: {platform: linux}, note: "Платформа Linux"}
+- {term: "на линукс", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "для линукса", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "под линукс", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "для линукс", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "на линух", type: slang, maps_to: {platform: linux}, note: "Жаргон: Linux"}
+- {term: "под линух", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "для линуха", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на линь", type: slang, maps_to: {platform: linux}, note: "Жаргон: Linux"}
+- {term: "под линь", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на linux", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "линуксовый", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "линуксовая", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "линуксовое", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "линуксоидный", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на пингвин", type: slang, maps_to: {platform: linux}, note: "Жаргон: Linux"}
+- {term: "под пингвина", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на убунту", type: translit, maps_to: {platform: linux}, note: "Ubuntu Linux"}
+- {term: "под убунту", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "для убунту", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "на ubuntu", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "под ubuntu", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на дебиан", type: translit, maps_to: {platform: linux}, note: "Debian Linux"}
+- {term: "под дебиан", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "для дебиан", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "на debian", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "под centos", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на центос", type: translit, maps_to: {platform: linux}, note: ""}
+- {term: "под российские ос", type: slang, maps_to: {platform: linux}, note: "Отечественные Linux-ОС"}
+- {term: "под российский линукс", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на российский линукс", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "на отечественный линукс", type: slang, maps_to: {platform: linux}, note: ""}
+- {term: "под отечественный линукс", type: slang, maps_to: {platform: linux}, note: ""}
+
+# --- macos (macOS, Mac, MacBook, iMac) ---
+- {term: "macos", type: abbr, maps_to: {platform: macos}, note: "Платформа macOS"}
+- {term: "mac", type: abbr, maps_to: {platform: macos}, note: "Apple Mac"}
+- {term: "на мак", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "для мака", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "под мак", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "для мак", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "на макбук", type: slang, maps_to: {platform: macos}, note: "MacBook"}
+- {term: "для макбука", type: slang, maps_to: {platform: macos}, note: "MacBook"}
+- {term: "под макбук", type: slang, maps_to: {platform: macos}, note: "MacBook"}
+- {term: "макбук", type: translit, maps_to: {platform: macos}, note: "MacBook"}
+- {term: "на macbook", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "для macbook", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "macbook", type: abbr, maps_to: {platform: macos}, note: ""}
+- {term: "на mac", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "для mac", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "под mac", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "на macos", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "для macos", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "на макос", type: translit, maps_to: {platform: macos}, note: ""}
+- {term: "для макос", type: translit, maps_to: {platform: macos}, note: ""}
+- {term: "под макос", type: translit, maps_to: {platform: macos}, note: ""}
+- {term: "на аймак", type: translit, maps_to: {platform: macos}, note: "iMac"}
+- {term: "для аймака", type: translit, maps_to: {platform: macos}, note: "iMac"}
+- {term: "аймак", type: translit, maps_to: {platform: macos}, note: "iMac"}
+- {term: "imac", type: abbr, maps_to: {platform: macos}, note: ""}
+- {term: "маковский", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "яблочный ноут", type: slang, maps_to: {platform: macos}, note: "Жаргон: MacBook"}
+- {term: "на эппл", type: translit, maps_to: {platform: macos}, note: "Apple Mac"}
+- {term: "для apple", type: slang, maps_to: {platform: macos}, note: ""}
+- {term: "под apple", type: slang, maps_to: {platform: macos}, note: ""}
+
+# --- android (Android) ---
+- {term: "android", type: abbr, maps_to: {platform: android}, note: "Платформа Android"}
+- {term: "на андроид", type: translit, maps_to: {platform: android}, note: ""}
+- {term: "для андроида", type: translit, maps_to: {platform: android}, note: ""}
+- {term: "для андроид", type: translit, maps_to: {platform: android}, note: ""}
+- {term: "андроида", type: translit, maps_to: {platform: android}, note: "Род. падеж"}
+- {term: "андроидный", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "андроидовский", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "андройд", type: typo, maps_to: {platform: android}, note: "Частая опечатка «андроид»"}
+- {term: "на андройд", type: typo, maps_to: {platform: android}, note: ""}
+- {term: "для андройда", type: typo, maps_to: {platform: android}, note: ""}
+- {term: "под андройд", type: typo, maps_to: {platform: android}, note: ""}
+- {term: "на android", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "для android", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "под android", type: slang, maps_to: {platform: android}, note: ""}
+- {term: "на ведроид", type: slang, maps_to: {platform: android}, note: "Жаргон: Android"}
+- {term: "ведроид", type: slang, maps_to: {platform: android}, note: "Жаргон: Android"}
+- {term: "на самсунг", type: slang, maps_to: {platform: android}, note: "Смартфон Samsung (Android)"}
+- {term: "на сяоми", type: slang, maps_to: {platform: android}, note: "Смартфон Xiaomi (Android)"}
+- {term: "на хонор", type: slang, maps_to: {platform: android}, note: "Смартфон Honor (Android)"}
+- {term: "на хуавей", type: slang, maps_to: {platform: android}, note: "Смартфон Huawei (Android/Harmony)"}
+
+# --- ios (iOS, iPhone, iPad) ---
+- {term: "ios", type: abbr, maps_to: {platform: ios}, note: "Платформа iOS"}
+- {term: "на айфон", type: slang, maps_to: {platform: ios}, note: "iPhone"}
+- {term: "для айфона", type: slang, maps_to: {platform: ios}, note: "iPhone"}
+- {term: "под айфон", type: slang, maps_to: {platform: ios}, note: "iPhone"}
+- {term: "для айфон", type: slang, maps_to: {platform: ios}, note: "iPhone"}
+- {term: "айфона", type: slang, maps_to: {platform: ios}, note: "Род. падеж"}
+- {term: "айфоновский", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "на iphone", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "для iphone", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "под iphone", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "iphone", type: abbr, maps_to: {platform: ios}, note: ""}
+- {term: "на айпад", type: translit, maps_to: {platform: ios}, note: "iPad / iPadOS"}
+- {term: "для айпада", type: translit, maps_to: {platform: ios}, note: "iPad / iPadOS"}
+- {term: "под айпад", type: translit, maps_to: {platform: ios}, note: "iPad / iPadOS"}
+- {term: "айпад", type: translit, maps_to: {platform: ios}, note: "iPad"}
+- {term: "на ipad", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "для ipad", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "под ipad", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "ipad", type: abbr, maps_to: {platform: ios}, note: ""}
+- {term: "на ios", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "для ios", type: slang, maps_to: {platform: ios}, note: ""}
+- {term: "на айос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "для айос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "под айос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "иос", type: translit, maps_to: {platform: ios}, note: "iOS"}
+- {term: "на иос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "под иос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "для иос", type: translit, maps_to: {platform: ios}, note: ""}
+- {term: "на яблокофон", type: slang, maps_to: {platform: ios}, note: "Жаргон: iPhone"}

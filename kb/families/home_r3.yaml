@@ -1,0 +1,188 @@
+# Домашние и персональные линейки популярных вендоров, которых нет в B2B-каталоге (ход 6, 29.3)
+# Для каждой линейки указан catalog: no и analogs — ближайшая продаваемая бизнес-линейка того же вендора
+# (или ближайшие российские аналоги, если весь вендор ушёл из РФ).
+# Примечание: kaspersky_standard_home, drweb_security_space и pro32_total_security уже описаны в kb/families/security.yaml;
+# рекомендации по их переводу в catalog: no и добавлению бизнес-analogs см. в design/proposals/neon4/family-for-whom-r6.yaml и NOTES-r6.md.
+
+- id: eset_home_security
+  vendor: eset
+  name: "ESET HOME Security / NOD32 для дома"
+  aliases: ["eset home security", "eset nod32 home", "eset nod32 для дома", "eset internet security", "nod32 для дома", "нод32 для дома", "есет для дома", "eset smart security home"]
+  category: home_antivirus
+  extra_categories: []
+  summary: "Домашняя антивирусная линейка ESET (NOD32 Antivirus, Internet Security, Smart Security Premium / HOME Security) для 1–5 личных устройств. Вендор прекратил продажи в РФ, домашних лицензий в B2B-каталоге нет; ближайшие продаваемые аналоги для малого офиса — Kaspersky Small Office Security, Dr.Web Малый бизнес и PRO32 Endpoint Security."
+  editions:
+    - {id: essential, name: "HOME Security Essential", aliases: ["essential", "internet security"]}
+    - {id: premium, name: "HOME Security Premium", aliases: ["premium", "smart security"]}
+  versions: []
+  platforms: [windows, macos, android, ios]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription]
+    metrics: [device]
+    terms_months: [12, 24]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 3, 5]
+    audiences: [home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["замена домашнего ESET NOD32 на продаваемые российские решения", "поиск домашнего антивируса ESET (нет в продаже)"]
+  roles: []
+  industries: []
+  formats: []
+  analogs: [kaspersky_ksos, drweb_small_business, pro32_endpoint_security]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+  max_seats: 5
+
+- id: myoffice_home
+  vendor: myoffice
+  name: "МойОфис Стандартный. Домашняя версия"
+  aliases: ["мойофис домашний", "мойофис для дома", "мой офис домашний", "мой офис для дома", "мойофис стандартный домашняя версия", "myoffice home"]
+  category: office_suite
+  extra_categories: []
+  summary: "Бесплатная домашняя версия редакторов МойОфис (Текст, Таблица) для частных пользователей (1 ПК, без права коммерческого использования). В B2B-каталоге не продаётся; ближайшая продаваемая линейка того же вендора — МойОфис Стандартный для бизнеса."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [perpetual]
+    metrics: [device]
+    terms_months: []
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["домашняя некоммерческая версия МойОфис (не продаётся в B2B-каталоге)"]
+  roles: []
+  industries: []
+  formats: ["docx", "xlsx", "odt", "ods"]
+  analogs: [myoffice_standard]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+  max_seats: 1
+  upgrade_to: myoffice_standard
+
+- id: r7_office_home
+  vendor: r7_office
+  name: "Р7-Офис Домашний"
+  aliases: ["р7-офис домашний", "р7 офис домашний", "р7 для дома", "р7-офис для дома", "r7 office home"]
+  category: office_suite
+  extra_categories: []
+  summary: "Домашняя редакция Р7-Офис для частных пользователей и личных ПК (1 рабочее место, без коммерческого использования). В B2B-каталоге не продаётся; ближайшая продаваемая линейка того же вендора — Р7-Офис Профессиональный."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new]
+    bands: []
+    packs: [1]
+    audiences: [home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["домашняя версия Р7-Офис (не продаётся в B2B-каталоге)"]
+  roles: []
+  industries: []
+  formats: ["docx", "xlsx", "pptx", "odt", "ods"]
+  analogs: [r7_office]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+  max_seats: 1
+  upgrade_to: r7_office
+
+- id: microsoft_365_personal
+  vendor: microsoft
+  name: "Microsoft 365 Персональный / Для семьи"
+  aliases: ["microsoft 365 personal", "microsoft 365 family", "microsoft 365 персональный", "microsoft 365 для семьи", "microsoft 365 для дома", "office 365 personal", "office 365 family", "офис 365 для дома", "офис 365 семейный"]
+  category: office_suite
+  extra_categories: []
+  summary: "Домашняя облачная подписка Microsoft 365 (Personal на 1 пользователя, Family до 6 пользователей). Официальные продажи подписок Microsoft в РФ прекращены, домашних лицензий в B2B-каталоге нет; ближайшая продаваемая линейка того же вендора — бессрочный Microsoft Office (ESD), среди российских аналогов — Р7-Офис и МойОфис Стандартный."
+  editions:
+    - {id: personal, name: "Personal (1 пользователь)", aliases: ["personal", "персональный"]}
+    - {id: family, name: "Family (до 6 пользователей)", aliases: ["family", "для семьи", "семейный"]}
+  versions: []
+  platforms: [windows, macos, web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: [subscription]
+    metrics: [user]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 6]
+    audiences: [home]
+  delivery: [esd]
+  registry: no
+  certs: []
+  use_cases: ["домашняя подписка Microsoft 365 (не продаётся в РФ)"]
+  roles: []
+  industries: []
+  formats: ["docx", "xlsx", "pptx"]
+  analogs: [ms_office, r7_office, myoffice_standard]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+  max_seats: 6
+  upgrade_to: ms_office
+
+- id: cyber_backup_personal
+  vendor: cyberprotect
+  name: "Кибер Бэкап Персональный"
+  aliases: ["кибер бэкап персональный", "кибербэкап персональный", "кибер бэкап для дома", "cyber backup personal", "акронис тру имидж", "acronis true image"]
+  category: backup_recovery
+  extra_categories: []
+  summary: "Персональная версия Кибер Бэкапа (наследник Acronis True Image) для резервного копирования домашних ПК и ноутбуков (1–5 устройств). В B2B-каталоге не продаётся; ближайшая продаваемая линейка того же вендора — Кибер Бэкап для рабочих станций / Стандартный."
+  editions: []
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: [subscription, perpetual]
+    metrics: [device]
+    terms_months: [12]
+    actions: [new, renewal]
+    bands: []
+    packs: [1, 3, 5]
+    audiences: [home]
+  delivery: [esd]
+  registry: yes
+  certs: []
+  use_cases: ["домашнее резервное копирование ПК и ноутбука (нет в B2B-каталоге)"]
+  roles: []
+  industries: []
+  formats: []
+  analogs: [cyber_backup]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+  max_seats: 5
+  upgrade_to: cyber_backup
