@@ -38,6 +38,11 @@ try{
   fixtures.kpi.note='Общее пояснение к выборке';
   fixtures.kpi.funnel=[{key:'cart',label:'Добавили в корзину',count:79}];
   fixtures.ingest.catalog={ts:'2026-11-20',files:['пример.csv'],rows:65,offers:60,rejected:3,duplicates:2,recognized:{vendor:.75},auto:{vendors:2},issues:[{title:'Нет цены',count:3,examples:[{row:21,name:'Лицензия'}]}],unmatched:{families:[{name:'Новая программа',rows:5}]}};
+  fixtures.ingest.history=[
+    {file:'phrases.csv',source_type:'Внешний поиск',kind:'metrika_external_phrases',external_phrases:[{q:'антивирус для офиса',visits:17}]},
+    {file:'leads.csv',source_type:'CRM',crm:{linked:0,unlinked:3}},
+    {file:'old.csv',recognized:['ym:s:visits']}
+  ];
   fixtures.ingest.review=[{object:'Образец',question:'category',probability:.42,choice:'office',options:{office:'Офисные лицензии'}}];
   fixtures.ingest.catalog.ai={cost_rub:73.56,cached:5};
   fixtures.insights.items[0].evidence_text='Проверены сессии закупки';
@@ -65,6 +70,10 @@ try{
   for(const term of ['пример.csv','Нет цены','21 · Лицензия','Новая программа'])if(!main.textContent.includes(term))throw Error('Catalog: '+term);
   location.hash='data';await tick();
   if(!main.innerText.includes('73,56 ₽') || !main.innerText.includes('Офисные лицензии'))throw Error('Import costs or review missing');
+  const reportByTitle=title=>[...main.querySelectorAll('details')].find(d=>d.querySelector('summary')?.textContent===title);
+  const phrases=reportByTitle('Внешний поиск · phrases.csv')?.querySelector('tbody tr');
+  if(phrases?.cells[0]?.textContent!=='антивирус для офиса' || phrases.cells[1]?.textContent!=='17')throw Error('Фразы привлечения и визиты');
+  if(!reportByTitle('CRM · leads.csv')?.textContent.includes('Заявок связано с поиском · 0. Ожидают привязки · 3') || !reportByTitle('Метрика · old.csv'))throw Error('CRM и старые отчёты импорта');
   location.hash='log';await tick();if(!main.querySelector('a[href="/inspect/recent-id"]'))throw Error('Recent missing');
   if(!main.innerText.includes('Обычный поиск по словам') || !main.innerText.includes('Незнакомый термин') || !hits.has('/api/admin/queries?kind=recent&limit=50'))throw Error('Recent columns or URL');
   const poll=main.querySelector('.pollControl input');poll.click();

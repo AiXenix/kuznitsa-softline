@@ -1,5 +1,5 @@
 import {api} from './api.js';
-import {add,button} from './dom.js';
+import {add,button,link} from './dom.js';
 import {address} from './address.js';
 
 export async function presentation(){
@@ -28,6 +28,7 @@ export async function presentation(){
   const panel=add(document.body,'aside',null,'showBar');
   const route=add(panel,'select');route.setAttribute('aria-label','Регламент показа');
   route.add(new Option('Показ · 5 минут','short'));route.add(new Option('Показ · 10 минут','long'));
+  route.add(new Option('Показ · приоритеты','priority'));
   route.value=current.route;route.onchange=()=>go(steps.find(s=>s.route===route.value));
   const jump=n=>{if(list[pos+n])go(list[pos+n]);};
   button(panel,'←',()=>jump(-1)).disabled=pos===0;
@@ -36,6 +37,7 @@ export async function presentation(){
   choice.value=current.id;choice.onchange=()=>go(list.find(s=>s.id===choice.value));
   button(panel,'→',()=>jump(1)).disabled=pos===list.length-1;
   add(panel,'span',current.say);
+  link(panel,'Схемы','/flows');
   button(panel,'Закрыть',()=>{const u=new URL(location.href);for(const k of ['show','step','action'])u.searchParams.delete(k);location.assign(u);});
   document.body.classList.add('presenting');
   new ResizeObserver(()=>document.body.style.setProperty('--show-height',panel.offsetHeight+'px')).observe(panel);

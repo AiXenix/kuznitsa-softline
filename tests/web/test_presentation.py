@@ -23,7 +23,7 @@ def test_show_steps_use_catalog_profiles(cfg, tmp_path):
     with TestClient(create_app(cfg=replace(cfg, data=tmp_path))) as api:
         meta = api.get("/api/meta").json()
         steps = api.get("/web/demo/steps.json").json()
-    assert {s["route"] for s in steps} == {"short", "long"}
+    assert {s["route"] for s in steps} == {"short", "long", "priority"}
     assert len({s["id"] for s in steps}) == len(steps)
     for step in steps:
         assert step["profile"] in {p["id"] for p in meta["profiles"]}

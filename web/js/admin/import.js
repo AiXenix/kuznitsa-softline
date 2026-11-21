@@ -37,7 +37,11 @@ export function dataPage(p){
     if(!reports.length)line(box,'Отчётов загрузки истории и Метрики пока нет.');
     for(const r of reports){
       const metrika=r.logs || rows(r.recognized).some(field=>String(field).startsWith('ym:'));
-      const report=details(box,[metrika?'Метрика':'История поиска',r.file].filter(Boolean).join(' · '));
+      const report=details(box,[r.source_type || (metrika?'Метрика':'История поиска'),r.file].filter(Boolean).join(' · '));
+      if(r.kind==='metrika_external_phrases'){
+        table(report,r.external_phrases,[['Фраза привлечения','q'],['Визиты','visits']]);
+      }
+      if(r.crm)line(report,'Заявок связано с поиском · '+fmt(r.crm.linked)+'. Ожидают привязки · '+fmt(r.crm.unlinked));
       for(const [key,title] of Object.entries({visits:'Визиты',searches:'Поиски',events:'События',skipped:'Пропущено',duplicates:'Дубли'})){
         if(r[key]!=null)line(report,title+' · '+fmt(r[key]));
       }

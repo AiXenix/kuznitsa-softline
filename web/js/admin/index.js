@@ -1,3 +1,4 @@
+import {settings} from './priorities.js';
 import {spreadsheet} from '../download.js';
 import {dataPage} from './import.js';
 import {caption} from '../labels.js';
@@ -6,7 +7,7 @@ import {adminApi,keyField,fmt,loadBox,resetData} from './common.js';
 import {head} from './head.js';
 import {ecom,product,content,log} from './roles.js';
 import {findings} from './agent.js';
-const tabs={head:['Руководитель',head],ecom:['Менеджер e-com',ecom],product:['Продукт',product],content:['Контент',content],agent:['Агент',findings],log:['Журнал',log],data:['Данные',dataPage]};
+const tabs={head:['Руководитель',head],ecom:['Менеджер e-com',ecom],product:['Продукт',product],content:['Контент',content],agent:['Агент',findings],log:['Журнал',log],data:['Данные',dataPage],settings:['Настройки',settings]};
 export function consolePage(main){
   document.title='Аналитика поиска · Кузница Softline';main.classList.add('console');
   const top=add(main,'header',null,'consoleHeader'),title=add(top,'div');

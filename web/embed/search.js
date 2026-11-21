@@ -19,8 +19,15 @@ export function mount(root,origin,options){
   const notice=add(box,'p',null,'notice');notice.setAttribute('role','status');
   const output=add(box,'div');
   const params={profile_id:options.profile || 'guest',session_id:crypto.randomUUID?.() || 'widget-'+Date.now()};
-  const mode=['smart','fast','naive'].includes(options.mode)?options.mode:'smart';
-  let generation=0,active=null;
+  let mode=['smart','fast','naive'].includes(options.mode)?options.mode:'smart';
+  if(options.modeSwitch==='1'){
+    const label=add(form,'label','Режим поиска '), picker=add(label,'select');
+    for(const [id,title] of [['smart','Умный'],['fast','Быстрый']])picker.add(new Option(title,id));
+    if(mode==='naive')mode='smart';
+    picker.value=mode;
+    picker.onchange=()=>{mode=picker.value;close();if(input.value.trim())search(input.value);};
+  }
+  let generation=0,active=null,source='widget',channelConfirmed=false;
   const meta=api(origin+'/api/meta').then(m=>{setMeta(m);return m;}).catch(()=>({}));
   function event(r,type,c={},block){
     if(!r.search_id)return;
@@ -28,13 +35,21 @@ export function mount(root,origin,options){
       .catch(()=>{notice.textContent='Событие поиска не удалось сохранить.';});
   }
   function leave(){if(active)event(active,'exit');active=null;}
-  const close=suggestions(input,list,()=>params,q=>search(q,{},true),origin);
+  const close=suggestions(input,list,()=>({...params,mode}),q=>search(q,{},true),origin);
   async function search(q,criteria={},suggested=false){
     if(!q.trim())return;
     leave();const version=++generation;close();input.value=q;
     notice.textContent='Подбираем лицензии…';output.replaceChildren();
     try{
-      const r=await api(origin+'/api/search',{...params,q,mode,source:'ui',...criteria});
+      const request={...params,q,mode,...criteria,source};
+      let r;
+      try{r=await api(origin+'/api/search',request);}
+      catch(err){
+        if(channelConfirmed || err.status!==422 || err.code!=='invalid_request')throw err;
+        // Releases before channel-specific priorities accept only the storefront source.
+        r=await api(origin+'/api/search',{...request,source:'ui'});source='ui';
+      }
+      channelConfirmed=true;
       const m=await meta;if(version!==generation)return;
       notice.textContent='';active=r;event(r,'impression');if(suggested)event(r,'suggest_click');
       result(output,r,{shopOrigin:origin,categories:m.categories,apply:change=>search(change.q || q,{...criteria,...change}),

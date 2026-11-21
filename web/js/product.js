@@ -92,7 +92,7 @@ export function card(p,c,ctx) {
   const quote=unavailable || c.offer.price_on_request;
   if(unavailable)line(buy,'Нет в продаже','badge warn','span');
   priceLine(buy,c,quote?'price quote':'price');
-  if(ctx.act)button(buy,quote?'Запросить счёт':'В корзину',e=>ctx.act(quote?'lead':'cart',c,e.currentTarget),quote?'request':'buy');
+  if(ctx.act)button(buy,c.action?.type==='repeat_order'?(c.action.label || 'Повторить'):quote?'Запросить счёт':'В корзину',e=>ctx.act(quote?'lead':'cart',c,e.currentTarget),quote?'request':'buy');
   if(rows(c.calc?.items).length){
     line(info,'Пакеты в расчёте',null,'strong');
     for(const item of c.calc.items)line(info,[item.count==null?'':item.count+' шт.',item.pack==null?'':'по '+item.pack+' мест',money(item.price)].filter(Boolean).join(' · '));

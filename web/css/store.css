@@ -408,3 +408,26 @@ body.presenting {height:100dvh;display:flex;flex-direction:column;overflow:hidde
 }
 
 .mini .miniPrice {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.ruleGrid,.flowMap {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:.85rem}
+.ruleEditor:not(:empty) {margin-top:1rem;border-top:2px solid var(--teal)}
+.ruleEditor details {margin:.8rem 0;padding:.6rem;border:1px solid var(--line);border-radius:8px}
+.ruleEditor summary {font-weight:bold;cursor:pointer;margin-bottom:.55rem}
+.ruleEditor label,.flowTools label {display:grid;gap:.25rem;font-weight:600}
+.ruleEditor input,.flowTools select {min-width:0;width:100%;padding:.45rem;border:1px solid var(--line);border-radius:6px}
+.flowTools,.flowEdge {display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:.6rem 0}
+.flowMap {margin:1rem 0;align-items:stretch}
+.flowNode {padding:.9rem;border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:8px;background:white;break-inside:avoid}
+.flowNode[data-kind=decision],.flowNode[data-kind=fallback] {border-top-color:#bd792e}
+.flowNode h3 {margin:.4rem 0}.flowNode code {overflow-wrap:anywhere}.flowEdge {flex-wrap:nowrap;color:var(--teal);font-weight:600}.flowEdge svg {flex:none}
+.flowTiming {display:grid;grid-template-columns:minmax(0,1fr) minmax(2rem,1fr) auto;align-items:center;gap:.5rem;font-size:.9rem}
+.flowTiming progress {width:100%;accent-color:var(--teal)}
+.showBar a {color:white}
+@media print {
+ body:has(.flowPage),body:has(.flowPage) #pageScroll {display:block!important;height:auto!important;max-height:none!important;overflow:visible!important;background:white}
+ body:has(.flowPage) :is(header,footer,.flowTools,.showBar,.skip){display:none!important}
+ .flowPage {width:100%;margin:0;padding:0}.flowPage .panel {border:0;padding:0;overflow:visible}
+ .flowMap {display:block}.flowNode {margin-bottom:.5rem}.flowPage h2,.flowPage h3 {break-after:avoid}
+}
+.flowGraph {grid-column:1/-1;display:block;width:min(100%,42rem);height:auto;break-inside:avoid}
+@media print {.flowGraph{width:13cm;max-width:100%}}

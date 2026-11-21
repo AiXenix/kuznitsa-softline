@@ -11,7 +11,7 @@ function headParam(key,value){
   const params=new URLSearchParams(query);if(value)params.set(key,value);else params.delete(key);
   url.hash='head?'+params;history.replaceState(history.state,'',url);
 }
-function weights(parent,params){
+export function weights(parent,params){
   const panel=section(parent,'Рычаг прибыли');panel.dataset.section='weights';
   loadBox(panel,async p=>{
     const [config,top]=await Promise.all([adminApi('weights'),adminApi('queries?kind=top')]);

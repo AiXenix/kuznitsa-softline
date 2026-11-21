@@ -6,11 +6,13 @@ from fastapi.responses import FileResponse
 from starlette.staticfiles import StaticFiles
 
 WEB = Path(__file__).resolve().parents[1] / "web"
+FLOW_DOCS = WEB.parent / "docs" / "flows"
 router = APIRouter(include_in_schema=False)
 assets = StaticFiles(directory=WEB)
 
 
 @router.get("/")
+@router.get("/flows")
 @router.get("/about")
 @router.get("/scenarios")
 @router.get("/styleguide")
@@ -55,3 +57,17 @@ def history_days(request: Request):
     authorize(request, request.headers.get("X-Admin-Token", ""))
     from kuznitsa.analytics.dashboard import history_days as day_projection
     return day_projection(request.app.state.engine.journal)
+
+
+@router.get("/web-data/flows/{name}")
+def flow_document(name: str):
+    from fastapi import HTTPException
+    if name not in {"flows", "examples", "timings"}:
+        raise HTTPException(404)
+    if (FLOW_DOCS / "flows.json").is_file():
+        path = FLOW_DOCS / (name + ".json")
+        if not path.is_file():
+            raise HTTPException(404)
+    else:
+        path = WEB / "fixtures" / ("flows-" + name + ".json")
+    return FileResponse(path, headers={"Cache-Control": "no-cache"})

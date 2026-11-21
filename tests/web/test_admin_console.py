@@ -47,7 +47,7 @@ def test_console_http_contract(cfg, monkeypatch):
         assert api.get(period).status_code == 403
 
 
-@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js", "c4_render.browser.js"])
+@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js", "c4_render.browser.js", "c5_render.browser.js"])
 def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
     chrome = shutil.which("google-chrome") or shutil.which("chromium")
     if not chrome:
