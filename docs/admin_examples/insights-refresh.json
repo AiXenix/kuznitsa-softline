@@ -1,12 +1,12 @@
 {
-  "count": 108,
+  "count": 32,
   "by_type": {
-    "add_synonym": 18,
-    "add_product": 23,
-    "fix_card": 20,
-    "merch_rule": 8,
-    "rising_demand": 10,
-    "hot_lead": 27,
+    "add_synonym": 3,
+    "add_product": 3,
+    "fix_card": 3,
+    "merch_rule": 10,
+    "rising_demand": 6,
+    "hot_lead": 5,
     "renewal_campaign": 1,
     "weights_advice": 1
   }

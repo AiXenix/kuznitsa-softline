@@ -1,5 +1,6 @@
 {
   "id": "add_synonym-57f1770cf0da",
+  "dataset": "mock",
   "type": "add_synonym",
   "role": "content_manager",
   "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
@@ -15,21 +16,44 @@
       "резервилка",
       "корпоративная резервилка"
     ],
+    "checks": {
+      "лицензия резервилка": {
+        "search_id": "s_955fa64ee6ca424794aa06802dd174a0",
+        "top5": [],
+        "repaired": false
+      },
+      "резервилка": {
+        "search_id": "s_124d59190a7f485e8254c4e704187b3e",
+        "top5": [],
+        "repaired": false
+      },
+      "корпоративная резервилка": {
+        "search_id": "s_8214d0a2af4b43b3b6b218d44ff4b894",
+        "top5": [],
+        "repaired": false
+      }
+    },
+    "search_ids": {
+      "лицензия резервилка": "s_mock_002431_0",
+      "резервилка": "s_mock_002430_0",
+      "корпоративная резервилка": "s_mock_002432_0"
+    },
     "sample_sessions": [
-      "mock_003544",
-      "mock_003545",
-      "mock_003546",
-      "mock_003547",
-      "mock_003548",
-      "mock_003549"
+      "mock_002430",
+      "mock_002431",
+      "mock_002432",
+      "mock_002433",
+      "mock_002434",
+      "mock_002435"
     ],
     "segments": {
-      "gov": 11,
-      "guest": 21,
-      "smb": 14,
-      "mid": 12,
-      "enterprise": 15,
-      "edu": 7
+      "enterprise": 5,
+      "guest": 33,
+      "mid": 14,
+      "smb": 23,
+      "gov": 2,
+      "edu": 1,
+      "individual": 2
     },
     "metric_before": {
       "zero": 80,
@@ -37,7 +61,21 @@
     },
     "reformulated_to": {
       "Кибер Бэкап": 80
-    }
+    },
+    "examples": [
+      {
+        "q": "лицензия резервилка",
+        "search_id": "s_mock_002431_0"
+      },
+      {
+        "q": "резервилка",
+        "search_id": "s_mock_002430_0"
+      },
+      {
+        "q": "корпоративная резервилка",
+        "search_id": "s_mock_002432_0"
+      }
+    ]
   },
   "action": {
     "kind": "synonym",
@@ -50,36 +88,32 @@
     }
   },
   "impact": {
-    "expected_rub": 375886,
-    "conservative_rub": 258422,
+    "expected_rub": 140474,
+    "conservative_rub": 96576,
     "metric_label": "Оценка потенциала",
     "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
   },
   "verification": {
     "before": {
       "лицензия резервилка": {
-        "search_id": "s_721677d4be8647cdb1e86c95be5336be",
+        "n_cards": 0,
+        "search_id": "s_dbff94407b9b4b0e858843324bcc2394",
         "cards": [],
         "banners": []
       },
       "резервилка": {
-        "search_id": "s_83c04c1ea65a4c6793395075d6ea0ac4",
+        "n_cards": 0,
+        "search_id": "s_b1cdb36532a34f499fa2f3323f7ba2fd",
         "cards": [],
         "banners": []
       },
       "корпоративная резервилка": {
-        "search_id": "s_bfa50824b7c144ae832fc5b83a926d0e",
-        "cards": [
-          {
-            "card_id": "onec_accounting:corp",
-            "title": "1С:Бухгалтерия КОРП",
-            "tier": 2,
-            "position": 1
-          }
-        ],
+        "n_cards": 0,
+        "search_id": "s_3f0a2b31fcd84737bcd8a1035544824c",
+        "cards": [],
         "banners": []
       }
     },
-    "rule_id": "81b23dcd2fe84c35b95d4219c08d1450"
+    "rule_id": "6f59b1d69cda4a57b8bf5354cd3add9c"
   }
 }

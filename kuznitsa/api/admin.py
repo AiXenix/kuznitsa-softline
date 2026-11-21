@@ -1,16 +1,19 @@
 """Служебная консоль магазина."""
-from collections import Counter
+from datetime import datetime
+from zoneinfo import ZoneInfo
+from kuznitsa.analytics import dashboard
 import json
+import gzip
 import os
 from pathlib import Path
 from secrets import compare_digest
 from typing import Literal
 
+from fastapi.responses import JSONResponse
 from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Query, Request
 from pydantic import BaseModel, Field, ConfigDict
 from kuznitsa.config import WEIGHTS,ROOT
 from kuznitsa.analytics import kpi, gaps, insights, replay, cost, digest
-from kuznitsa.analytics.failures import REASONS,LABELS
 from kuznitsa.understand.intent import TITLES
 
 
@@ -51,49 +54,75 @@ def checked(fn,*args,**kwargs):
         raise HTTPException(422,str(exc)) from exc
 
 
+def json_report(request,data):
+    response=JSONResponse(data,headers={"Vary":"Accept-Encoding"})
+    accepted={item.strip() for item in request.headers.get("accept-encoding","").lower().split(",")}
+    if "gzip" in accepted and len(response.body)>16384:
+        response.body=gzip.compress(response.body,compresslevel=1,mtime=0)
+        response.headers.update({"Content-Encoding":"gzip","Content-Length":str(len(response.body))})
+    return response
+
+
 @router.get("/kpi")
-def indicators(request:Request,segment:str|None=None,category:str|None=None,intent:str|None=None,engine:str|None=None,day:str|None=None):
+def indicators(request:Request,segment:str|None=None,category:str|None=None,intent:str|None=None,engine:str|None=None,day:str|None=None,view:Literal["full","overview","slices"]="full"):
     result=kpi.report(request.app.state.engine.journal,segment=segment,category=category,intent=intent,engine=engine,day=day)
     labels=dict(category=request.app.state.engine.names["category"],intent=TITLES,
                 segment=dict(smb="Малый бизнес",mid="Средний бизнес",enterprise="Крупный бизнес",guest="Гости",gov="Госзаказчики",edu="Образование",individual="Физические лица"),
-                engine=dict(legacy="Прежний поиск",kuznitsa="Кузница",naive="Поиск по названию"))
-    for key,group in result["slices"].items():
+                engine=dict(legacy="Обычный поиск по словам",kuznitsa="Кузница",naive="Поиск по названию"))
+    if view=="overview":
+        result.pop("slices",None)
+    elif view=="slices":
+        result={k:result[k] for k in ("scope","slices")}
+    for key,group in result.get("slices",{}).items():
         for item in group:
             item["label"]=labels.get(key,{}).get(item["key"],"Не определено" if item["key"]=="unknown" else item["key"])
-    return result
+    tz=ZoneInfo("Europe/Moscow")
+    midnight=datetime.fromtimestamp(request.app.state.engine.clock(),tz).replace(hour=0,minute=0,second=0,microsecond=0)
+    result["today"]=dict(label="Сегодня на стенде · Москва",start=midnight.timestamp(),items=request.app.state.engine.journal.rows(
+        f"SELECT engine,count(*) searches,sum(zero) empty FROM searches WHERE source IN ({dashboard.LIVE}) AND ts>=? AND ts<? GROUP BY engine",
+        (midnight.timestamp(),midnight.timestamp()+86400)))
+    return json_report(request,result)
 
 
 @router.get("/queries")
-def queries(request:Request,kind:Literal["top","zero","low_ctr","rising","reformulated"]="top",limit:int=Query(50,ge=1,le=500)):
-    rows=[r for r in kpi.facts(request.app.state.engine.journal) if r["source"]!="replay"]
-    return dict(kind=kind,items=kpi.queries(rows,kind,limit))
+def queries(request:Request,kind:Literal["top","zero","low_ctr","rising","reformulated","recent"]="top",limit:int=Query(50,ge=1,le=500)):
+    e=request.app.state.engine
+    items=dashboard.recent(e.journal,limit,e.usd_rub) if kind=="recent" else dashboard.query_rows(e.journal,kind)[:limit]
+    return dict(kind=kind,items=items)
 
 
 @router.get("/failures")
 def failures(request:Request):
-    rows=[r for r in kpi.facts(request.app.state.engine.journal) if r["source"]!="replay" and (kpi.failed(r) or r["reason"])]
-    counts=Counter()
-    examples={}
-    for r in rows:
-        reason=r["reason"] or ("ranking_issue" if (r["best_position"] or 0)>5 else "ambiguous")
-        counts[reason]+=1
-        examples.setdefault(reason,r["q"])
-    return dict(items=[dict(reason=k,label=LABELS.get(k,k),count=v,example=examples[k]) for k,v in counts.most_common()],reasons=sorted(REASONS))
+    return dashboard.failure_rows(request.app.state.engine.journal)
 
 
 @router.get("/gaps")
 def assortment(request:Request):
-    return gaps.report(request.app.state.engine)
+    return json_report(request,gaps.report(request.app.state.engine))
 
 
 @router.get("/insights")
-def proposals(request:Request,role:str|None=None,status:str|None=None):
-    return dict(items=[r for r in insights.listing(request.app.state.engine.journal) if (not role or r["role"]==role) and (not status or r["status"]==status)])
+def proposals(request:Request,role:str|None=None,status:str|None=None,view:Literal["full","list"]="full"):
+    items=[r for r in insights.listing(request.app.state.engine.journal) if (not role or r["role"]==role) and (not status or r["status"]==status)]
+    if view=="list":
+        items=[{k:r[k] for k in ("id","type","title","role","status","confidence","impact")} for r in items]
+    return json_report(request,dict(items=items))
+
+
+@router.get("/insights/{ident}")
+def proposal_detail(request:Request,ident:str):
+    result=insights.listing(request.app.state.engine.journal,ident)
+    if not result:
+        raise KeyError(ident)
+    return JSONResponse(result[0])
 
 
 @router.post("/insights/refresh")
 def refresh(request:Request):
-    return insights.discover(request.app.state.engine)
+    e=request.app.state.engine
+    result=insights.discover(e)
+    dashboard.warm(e)
+    return result
 
 
 @router.post("/insights/{ident}/{operation}")
@@ -143,8 +172,8 @@ def preview(request:Request,body:Preview):
     e=request.app.state.engine
     if set(body.weights)!=set(WEIGHTS) or abs(sum(body.weights.values())-1)>.0001 or any(not 0<=v<=1 for v in body.weights.values()):
         raise HTTPException(422,"Проверьте веса")
-    phrases=[body.q] if body.q else [r["q_raw"] for r in e.journal.rows("""SELECT q_raw FROM searches
-        WHERE source='history' GROUP BY q_raw ORDER BY count(*) DESC,q_raw LIMIT ?""",(body.limit,))]
+    phrases=[body.q] if body.q else [r["q_raw"] for r in e.journal.rows("""SELECT q_raw FROM active_history
+        GROUP BY q_raw ORDER BY count(*) DESC,q_raw LIMIT ?""",(body.limit,))]
     return insights.preview(e,body.weights,phrases)
 
 
@@ -154,8 +183,12 @@ def start_replay(request:Request,body:Replay,background:BackgroundTasks):
     plan=replay.prepare(e,body.mode,body.limit)
     ident,selected,*_=plan
     done=e.journal.rows("SELECT count(*) n FROM replay_results WHERE run_id=?",(ident,))[0]["n"]
-    if done<len(selected):
-        background.add_task(replay.execute,e,body.mode,plan)
+    active=e.journal.rows("SELECT id FROM active_replay")
+    if done<len(selected) or not active or active[0]["id"]!=ident:
+        def publish():
+            replay.execute(e,body.mode,plan)
+            dashboard.warm(e)
+        background.add_task(publish)
     return dict(id=ident,status="accepted" if done<len(selected) else "completed",processed=done,total=len(selected))
 
 
@@ -180,7 +213,7 @@ def evaluation(request:Request):
     path=max((data/"eval").glob("*.jsonl"),key=lambda p:p.stat().st_mtime,default=None)
     items=[json.loads(line) for line in path.read_text().splitlines() if line.strip()] if path else []
     scenarios={}
-    for fixture in sorted((ROOT/"eval").glob("*.jsonl")):
+    for fixture in (ROOT/"eval").glob("queries.dev.jsonl"):
         with fixture.open() as stream:
             for line in stream:
                 if line.strip():
@@ -199,10 +232,15 @@ def evaluation(request:Request):
 @router.get("/ingest")
 def ingestion(request:Request):
     e=request.app.state.engine
-    return dict(cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
-                sources=e.journal.rows("SELECT source,count(*) searches FROM searches GROUP BY source"))
+    path=Path(e.journal.path).parent/"import_report.json"
+    sources=e.journal.rows("SELECT source,count(*) searches FROM searches GROUP BY source")
+    for r in sources:
+        r["service"]=r["source"] in ("eval","replay")
+    reports=e.journal.rows("SELECT value FROM kv WHERE key LIKE 'settings:import-report:%' ORDER BY updated DESC")
+    return dict(catalog=json.loads(path.read_text()) if path.is_file() else None,history=[json.loads(r["value"]) for r in reports],cards=len(e.catalog.cards),offers=len(e.catalog.offers_by_id),
+                sources=sources)
 
 
 @router.get("/digest")
-def summary(request:Request,role:str|None=None):
+def summary(request:Request,role:Literal["head_ecom","ecom_manager","product_manager","content_manager","customer"]|None=None):
     return checked(digest.digest,request.app.state.engine.journal,role)

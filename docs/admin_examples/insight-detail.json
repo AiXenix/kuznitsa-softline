@@ -1,0 +1,97 @@
+{
+  "id": "add_synonym-57f1770cf0da",
+  "dataset": "mock",
+  "type": "add_synonym",
+  "role": "content_manager",
+  "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
+  "status": "new",
+  "summary": "За последние 30 дней — 80 поисков в 80 сессиях.",
+  "confidence": 0.8,
+  "priority": "high",
+  "evidence": {
+    "searches_30d": 80,
+    "sessions_30d": 80,
+    "sample_queries": [
+      "лицензия резервилка",
+      "резервилка",
+      "корпоративная резервилка"
+    ],
+    "checks": {
+      "лицензия резервилка": {
+        "search_id": "s_955fa64ee6ca424794aa06802dd174a0",
+        "top5": [],
+        "repaired": false
+      },
+      "резервилка": {
+        "search_id": "s_124d59190a7f485e8254c4e704187b3e",
+        "top5": [],
+        "repaired": false
+      },
+      "корпоративная резервилка": {
+        "search_id": "s_8214d0a2af4b43b3b6b218d44ff4b894",
+        "top5": [],
+        "repaired": false
+      }
+    },
+    "search_ids": {
+      "лицензия резервилка": "s_mock_002431_0",
+      "резервилка": "s_mock_002430_0",
+      "корпоративная резервилка": "s_mock_002432_0"
+    },
+    "sample_sessions": [
+      "mock_002430",
+      "mock_002431",
+      "mock_002432",
+      "mock_002433",
+      "mock_002434",
+      "mock_002435"
+    ],
+    "segments": {
+      "enterprise": 5,
+      "guest": 33,
+      "mid": 14,
+      "smb": 23,
+      "gov": 2,
+      "edu": 1,
+      "individual": 2
+    },
+    "metric_before": {
+      "zero": 80,
+      "orders": 0
+    },
+    "reformulated_to": {
+      "Кибер Бэкап": 80
+    },
+    "examples": [
+      {
+        "q": "лицензия резервилка",
+        "search_id": "s_mock_002431_0"
+      },
+      {
+        "q": "резервилка",
+        "search_id": "s_mock_002430_0"
+      },
+      {
+        "q": "корпоративная резервилка",
+        "search_id": "s_mock_002432_0"
+      }
+    ]
+  },
+  "action": {
+    "kind": "synonym",
+    "label": "Добавить синоним",
+    "conditions": {},
+    "payload_json": {
+      "kind": "text",
+      "phrase": "резервилка",
+      "to": "Кибер Бэкап"
+    }
+  },
+  "impact": {
+    "expected_rub": 140474,
+    "conservative_rub": 96576,
+    "metric_label": "Оценка потенциала",
+    "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+  },
+  "verification": null
+}

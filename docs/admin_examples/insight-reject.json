@@ -1,48 +1,93 @@
 {
-  "id": "add_product-158c15b7d741",
+  "id": "add_product-46a4eebd20d8",
+  "dataset": "mock",
   "type": "add_product",
   "role": "content_manager",
-  "title": "Проверить поставку «РЕД АДМ (служба каталогов)»",
+  "title": "Проверить поставку · Лицензии Cursor",
   "status": "rejected",
-  "summary": "За последние 30 дней — 129 поисков в 129 сессиях.",
-  "confidence": 0.87,
+  "summary": "За последние 30 дней — 107 поисков в 107 сессиях.",
+  "confidence": 0.84,
   "priority": "high",
   "evidence": {
-    "searches_30d": 129,
-    "sessions_30d": 129,
+    "searches_30d": 107,
+    "sessions_30d": 107,
     "sample_queries": [
-      "ред адм контроллер домена",
-      "РЕД АДМ"
+      "cursor ide",
+      "cursor enterprise лицензия",
+      "купить cursor для команды"
     ],
+    "checks": {
+      "cursor ide": {
+        "search_id": "s_76c99541e38c4bb3be84e2f3ec9a4fa4",
+        "top5": [],
+        "repaired": false
+      },
+      "cursor enterprise лицензия": {
+        "search_id": "s_4250f6b2a468499fa4abc69d8e137c57",
+        "top5": [],
+        "repaired": false
+      },
+      "купить cursor для команды": {
+        "search_id": "s_ecaa6c86c2944e18b803664d3fb00802",
+        "top5": [],
+        "repaired": false
+      }
+    },
+    "search_ids": {
+      "cursor ide": "s_mock_000274_0",
+      "cursor enterprise лицензия": "s_mock_000275_0",
+      "купить cursor для команды": "s_mock_000276_0"
+    },
     "sample_sessions": [
-      "mock_000000",
-      "mock_000002",
-      "mock_000005",
-      "mock_000011",
-      "mock_000012",
-      "mock_000022"
+      "mock_000274",
+      "mock_000275",
+      "mock_000276",
+      "mock_000278",
+      "mock_000279",
+      "mock_000280"
     ],
     "segments": {
-      "gov": 65,
-      "enterprise": 44,
-      "mid": 20
+      "enterprise": 14,
+      "smb": 25,
+      "mid": 68
     },
     "metric_before": {
-      "zero": 129,
+      "zero": 107,
       "orders": 0
-    }
+    },
+    "alternatives": {},
+    "demand": 107,
+    "segments_30d": {
+      "enterprise": 14,
+      "mid": 68,
+      "smb": 25
+    },
+    "examples": [
+      {
+        "q": "cursor ide",
+        "search_id": "s_mock_000274_0"
+      },
+      {
+        "q": "cursor enterprise лицензия",
+        "search_id": "s_mock_000275_0"
+      },
+      {
+        "q": "купить cursor для команды",
+        "search_id": "s_mock_000276_0"
+      }
+    ]
   },
   "action": {
     "kind": "ticket",
     "label": "Завести товар",
     "payload_json": {
-      "product": "red_adm",
-      "category": "directory_services"
+      "product": "cursor",
+      "category": null
     }
   },
   "impact": {
-    "expected_rub": 7998111,
-    "conservative_rub": 4362606,
+    "expected_rub": 598475,
+    "conservative_rub": 411451,
     "metric_label": "Оценка потенциала",
     "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
   },

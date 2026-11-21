@@ -1,34 +1,6329 @@
 {
-  "file": "5d3404867aa14998a86d4dae731776ab.jsonl",
+  "file": "178876a4d9df40c1a5f1f07b58e9c07a.jsonl",
   "items": [
     {
-      "id": "quantity",
-      "checks": {
-        "qty": true,
-        "metric": true,
-        "block_any": true
-      },
-      "search_id": "s_fcb947d88a6a47afb0876f74811308d7"
-    },
-    {
-      "id": "renew",
-      "checks": {
-        "action": true,
-        "vendor": true
-      },
-      "search_id": "s_f426cb36903a4335a8f21f20d19da501"
-    },
-    {
-      "id": "hardware",
+      "id": "dev-0001",
+      "q": "антивирус на 30 пк",
+      "status": "passed",
       "checks": {
         "intent": true,
+        "category": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
         "zero_ok": true
       },
-      "search_id": "s_76975dd08199439393486ce9b1f23fcc"
+      "reasons": {},
+      "search_id": "s_dbdca5adc7184ca5b34f2f72a9168ad1",
+      "ms": 52.33
+    },
+    {
+      "id": "dev-0002",
+      "q": "антивирус на 30 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "platform": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_53486d3f40974fdfb53acb6be8eec923",
+      "ms": 2.89
+    },
+    {
+      "id": "dev-0003",
+      "q": "антивирус на 30 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5cbb1e8382d64f79bb2b58d307a004fe",
+      "ms": 3.74
+    },
+    {
+      "id": "dev-0004",
+      "q": "антивирус на 30 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_87873388e63c4ede874088210749f7a4",
+      "ms": 2.81
+    },
+    {
+      "id": "dev-0005",
+      "q": "антивирус на 30 пк",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "action": false,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "action": {
+          "expected": "addon",
+          "actual": "renewal",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_f4caed58bc984a17b9bce8c98aa97f26",
+      "ms": 2.71
+    },
+    {
+      "id": "dev-0006",
+      "q": "офисный пакет",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a22f929c326f429a972290915fe2fc8a",
+      "ms": 30.55
+    },
+    {
+      "id": "dev-0007",
+      "q": "офисный пакет",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9a735b15c4594e3b90b77e9fe93e5ea3",
+      "ms": 9.02
+    },
+    {
+      "id": "dev-0008",
+      "q": "офисный пакет",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1b4cc795d80a46fa985ef286badb0b5b",
+      "ms": 4.38
+    },
+    {
+      "id": "dev-0009",
+      "q": "офисный пакет",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_cc435d07e40d4e45aa602ac593fce39d",
+      "ms": 5.27
+    },
+    {
+      "id": "dev-0010",
+      "q": "офисный пакет",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": false,
+        "top5_any": true,
+        "must_not": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "audience": {
+          "expected": "home",
+          "actual": "business",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "must_not": {
+          "expected": [
+            "Корпоративный сервер",
+            "Государственная"
+          ],
+          "actual": [
+            "МойОфис Стандартный Для бизнеса",
+            "Яндекс 360 для бизнеса Расширенный",
+            "Microsoft Office Professional Plus",
+            "Р7-Офис Корпоративный сервер",
+            "МойОфис Профессиональный Корпоративная"
+          ],
+          "message": "В выдаче есть исключённый продукт"
+        }
+      },
+      "search_id": "s_cc7fe998b2ea4d57a243bfa464b0ce5a",
+      "ms": 4.66
+    },
+    {
+      "id": "dev-0011",
+      "q": "удаленный доступ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3d2990e3cce94ae99715e8e0479340a3",
+      "ms": 19.56
+    },
+    {
+      "id": "dev-0012",
+      "q": "удаленный доступ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_996077d8f5f94751abbe949a843d00f2",
+      "ms": 5.88
+    },
+    {
+      "id": "dev-0013",
+      "q": "удаленный доступ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_065fb6309fb24a1893c6477fe6620bc1",
+      "ms": 3.64
+    },
+    {
+      "id": "dev-0014",
+      "q": "удаленный доступ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_61fd53b442c243d3abab6bc7e8621ec3",
+      "ms": 3.4
+    },
+    {
+      "id": "dev-0015",
+      "q": "удаленный доступ",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "certs": {
+          "expected": [
+            "fstec"
+          ],
+          "actual": [],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_226fe42b5ba04ca3a74c0a20ff62987b",
+      "ms": 3.25
+    },
+    {
+      "id": "dev-0016",
+      "q": "резервное копирование",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_00054d634128420aa0f6b3199f50b2f6",
+      "ms": 18.09
+    },
+    {
+      "id": "dev-0017",
+      "q": "резервное копирование",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": false,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "platform": {
+          "expected": "astra",
+          "actual": [
+            "linux",
+            "windows_server",
+            "alt",
+            "rosa"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_b7c34c4192ca44628719095db8cc8395",
+      "ms": 3.59
+    },
+    {
+      "id": "dev-0018",
+      "q": "резервное копирование",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_523759ef6fe94d0ead3c884296d7d345",
+      "ms": 2.66
+    },
+    {
+      "id": "dev-0019",
+      "q": "резервное копирование",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_8ba7154589c04ce993910a1ed56d0053",
+      "ms": 2.54
+    },
+    {
+      "id": "dev-0020",
+      "q": "резервное копирование",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_83fc740fdf834a618a88292e617bedc0",
+      "ms": 1.93
+    },
+    {
+      "id": "dev-0021",
+      "q": "видеоконференцсвязь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_823a242ba5e64006926c31d9bb50d197",
+      "ms": 16.48
+    },
+    {
+      "id": "dev-0022",
+      "q": "видеоконференцсвязь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f7d0fedda5e244e38e18dcb0b4aae82a",
+      "ms": 3.83
+    },
+    {
+      "id": "dev-0023",
+      "q": "видеоконференцсвязь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_267db647cff349be9d20a5d72fb07709",
+      "ms": 2.79
+    },
+    {
+      "id": "dev-0024",
+      "q": "видеоконференцсвязь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_da61f28aa91c4764b8e18cf61fca19eb",
+      "ms": 2.83
+    },
+    {
+      "id": "dev-0025",
+      "q": "видеоконференцсвязь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_60f718f9627548eba05092570f120daa",
+      "ms": 2.24
+    },
+    {
+      "id": "dev-0026",
+      "q": "антивирус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7666a2022e0548d292e015261d0b52ce",
+      "ms": 16.73
+    },
+    {
+      "id": "dev-0027",
+      "q": "антивирус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_85b5641b311340558c0f28aa9fe7ff63",
+      "ms": 3.49
+    },
+    {
+      "id": "dev-0028",
+      "q": "антивирус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f3403176a62140198cbbbb7fae04ecc2",
+      "ms": 4.14
+    },
+    {
+      "id": "dev-0029",
+      "q": "антивирус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e6374c278a53421ba2cacf22e4b99e19",
+      "ms": 7.45
+    },
+    {
+      "id": "dev-0030",
+      "q": "антивирус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a1635f0f420a42c998528984828f063d",
+      "ms": 6.9
+    },
+    {
+      "id": "dev-0031",
+      "q": "защита от утечек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_24d8ff9fb8744d18898c0eaa660da1c4",
+      "ms": 17.1
+    },
+    {
+      "id": "dev-0032",
+      "q": "защита от утечек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1aff1e98c6f74c118cff725dd9565b24",
+      "ms": 4.45
+    },
+    {
+      "id": "dev-0033",
+      "q": "защита от утечек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_364199db0f2c4fcebdc603c0ce2972d1",
+      "ms": 4.5
+    },
+    {
+      "id": "dev-0034",
+      "q": "защита от утечек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_82248a96b9d64e259a8fe2cfdd0bd9e2",
+      "ms": 3.8
+    },
+    {
+      "id": "dev-0035",
+      "q": "защита от утечек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3757321cb0f3405fb29c5872e5985f96",
+      "ms": 4.66
+    },
+    {
+      "id": "dev-0036",
+      "q": "субд для сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d393524d49bc4657b36c3681cefe1003",
+      "ms": 16.26
+    },
+    {
+      "id": "dev-0037",
+      "q": "субд для сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4dc7f4731da34b7e8d9a727f9ca080cd",
+      "ms": 2.78
+    },
+    {
+      "id": "dev-0038",
+      "q": "субд для сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_586137b2a3594e789eb28aba3d902cf3",
+      "ms": 4.04
+    },
+    {
+      "id": "dev-0039",
+      "q": "субд для сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "audience": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bc3a41a2bb5243b78cc2498056aa88a4",
+      "ms": 3.17
+    },
+    {
+      "id": "dev-0040",
+      "q": "субд для сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_144f229cf90e4896b6e60730849b1e43",
+      "ms": 2.53
+    },
+    {
+      "id": "dev-0041",
+      "q": "1с лицензии на 10 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_880e60c6758e44029ec352dd19a22e62",
+      "ms": 2.27
+    },
+    {
+      "id": "dev-0042",
+      "q": "1с лицензии на 10 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1af132ff6348463e80627f0ba82ae03c",
+      "ms": 1.97
+    },
+    {
+      "id": "dev-0043",
+      "q": "1с лицензии на 10 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f8f77ab0d70a4816848528eebe2ab71e",
+      "ms": 2.39
+    },
+    {
+      "id": "dev-0044",
+      "q": "1с лицензии на 10 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b94128545ada43bc8a0fbd2e88772d81",
+      "ms": 1.86
+    },
+    {
+      "id": "dev-0045",
+      "q": "1с лицензии на 10 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5493f8b24de041b9b9decad19367212b",
+      "ms": 2.0
+    },
+    {
+      "id": "dev-0046",
+      "q": "сапр 10 лицензий",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_8bd63347294f4da88d5e9f9487d4c3ff",
+      "ms": 19.76
+    },
+    {
+      "id": "dev-0047",
+      "q": "сапр 10 лицензий",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "registry": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "top5_any": {
+          "expected": [
+            "nanoCAD",
+            "Renga"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products",
+            "my_licenses"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_d7a1e9abbb8d4262a6ec0cfbfc8376cf",
+      "ms": 2.35
+    },
+    {
+      "id": "dev-0048",
+      "q": "сапр 10 лицензий",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "audience": false,
+        "registry": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "audience": {
+          "expected": "edu",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "КОМПАС",
+            "nanoCAD"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products",
+            "my_licenses"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_65de7e4261404b16bcd52a22d79b5853",
+      "ms": 1.86
+    },
+    {
+      "id": "dev-0049",
+      "q": "сапр 10 лицензий",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "qty": true,
+        "registry": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "category": {
+          "expected": "mcad_plm",
+          "actual": [
+            "cad_2d"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "КОМПАС-3D",
+            "T-FLEX",
+            "nanoCAD"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_4899044fadff4f318c38c8844e005dd9",
+      "ms": 1.49
+    },
+    {
+      "id": "dev-0050",
+      "q": "сапр 10 лицензий",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "platform": false,
+        "audience": false,
+        "registry": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "platform": {
+          "expected": "astra",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "audience": {
+          "expected": "gov",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "nanoCAD",
+            "T-FLEX",
+            "КОМПАС"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_418e769e4bf347988c80234d15d28ca3",
+      "ms": 1.64
+    },
+    {
+      "id": "dev-0051",
+      "q": "Kaspersky Endpoint Security для бизнеса",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6c003800e17b4a7780374ad85b303e6c",
+      "ms": 7.17
+    },
+    {
+      "id": "dev-0052",
+      "q": "Astra Linux Special Edition",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_925e179a149b4f3f9c0247500ace4137",
+      "ms": 6.77
+    },
+    {
+      "id": "dev-0053",
+      "q": "1С:Бухгалтерия 8",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3cdfdd2026b84e72990d0cfe741a558b",
+      "ms": 6.27
+    },
+    {
+      "id": "dev-0054",
+      "q": "все продукты Лаборатории Касперского",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f092abbf71a74f59b53f61a4cfab897e",
+      "ms": 23.13
+    },
+    {
+      "id": "dev-0055",
+      "q": "продукты СКБ Контур",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_50450c7fd2c44db192f3f40e88d151c4",
+      "ms": 19.56
+    },
+    {
+      "id": "dev-0056",
+      "q": "Positive Technologies",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_62858d33da9045f5b03346d4420323f5",
+      "ms": 15.17
+    },
+    {
+      "id": "dev-0057",
+      "q": "МойОфис Стандартный 2",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_319a5f12ad6e4d799fb2272e2c54f559",
+      "ms": 4.52
+    },
+    {
+      "id": "dev-0058",
+      "q": "Kaspersky Endpoint Security Расширенный",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_70aa32877c7149919b1b28427ad05e17",
+      "ms": 5.31
+    },
+    {
+      "id": "dev-0059",
+      "q": "КриптоПро CSP 5.0",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "top1_any": {
+          "expected": [
+            "КриптоПро CSP 5"
+          ],
+          "actual": [
+            "КриптоПро CSP Клиентская"
+          ],
+          "message": "Первая карточка не совпала"
+        }
+      },
+      "search_id": "s_15fa4874a2924ccabfe28b428952374a",
+      "ms": 3.77
+    },
+    {
+      "id": "dev-0060",
+      "q": "Windows Server 2022 Standard",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "platform": true,
+        "top5_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "top5_any": {
+          "expected": [
+            "Windows Server 2022"
+          ],
+          "actual": [
+            "Microsoft Windows Server Standard"
+          ],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_90f235571f01443083e84e1a5148cd71",
+      "ms": 6.86
+    },
+    {
+      "id": "dev-0061",
+      "q": "межсетевые экраны NGFW",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5a577ca8169444d79b6ef3cb3eff0be4",
+      "ms": 27.88
+    },
+    {
+      "id": "dev-0062",
+      "q": "системы электронного документооборота СЭД",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f7e965d3064247a6870d3188c619c991",
+      "ms": 27.67
+    },
+    {
+      "id": "dev-0063",
+      "q": "модуль 1С-Отчетность",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "category": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7ff22642fd2444e09346599a004956a1",
+      "ms": 44.25
+    },
+    {
+      "id": "dev-0064",
+      "q": "модуль СПДС для nanoCAD",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "category": false,
+        "registry": false,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "cad_specialized",
+          "actual": "cad_2d",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "registry": {
+          "expected": true,
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_81333cbcfbb24b898eed0a13db084c7a",
+      "ms": 4.33
+    },
+    {
+      "id": "dev-0065",
+      "q": "нанокад бим электро сетевая лицензия",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "category": false,
+        "registry": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "license_ops",
+          "message": "Выбран другой сценарий"
+        },
+        "category": {
+          "expected": "ecad_eda",
+          "actual": "bim_aec",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_e4d4ae7d15474bcf8c211d363aa7b997",
+      "ms": 1.87
+    },
+    {
+      "id": "dev-0066",
+      "q": "KL4867RAQFR",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_cc814a9906474ef7a02aa03f87f6a754",
+      "ms": 4.45
+    },
+    {
+      "id": "dev-0067",
+      "q": "FQC-10572",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f80227ae1edd4e0a89e1ad811967a2a8",
+      "ms": 2.94
+    },
+    {
+      "id": "dev-0068",
+      "q": "KL4867",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_dfdd2012a80f47b8b33303b4377ff4de",
+      "ms": 4.2
+    },
+    {
+      "id": "dev-0069",
+      "q": "артикул 4601546092816",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "vendor": {
+          "expected": "1С",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "block_any": {
+          "expected": [
+            "products",
+            "not_in_catalog"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_0d99993555b44cefbeab6261cade8921",
+      "ms": 26.53
+    },
+    {
+      "id": "dev-0070",
+      "q": "номер в реестре 369",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_fe85136b64e44faf86b4d522cd3a1c01",
+      "ms": 54.84
+    },
+    {
+      "id": "dev-0071",
+      "q": "окпд2 58.29.11",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "compliance",
+          "actual": "sku",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_6e3519325c6a45339bbe5c199c0622e5",
+      "ms": 8.02
+    },
+    {
+      "id": "dev-0072",
+      "q": "ктру 58.29.29.000",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "compliance",
+          "actual": "sku",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_4a4f25042fe54a3eb5d1965fd20f9698",
+      "ms": 41.34
+    },
+    {
+      "id": "dev-0073",
+      "q": "КL4867RАQFR",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d9465c04b53a48409330925003ec2f4c",
+      "ms": 4.49
+    },
+    {
+      "id": "dev-0074",
+      "q": "FQС-10572",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_cc19c6dda1a147ad99aee849ee8fe496",
+      "ms": 3.57
+    },
+    {
+      "id": "dev-0075",
+      "q": "Р7-ОFFIСЕ",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": false,
+        "top1_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "off_topic",
+          "message": "Выбран другой сценарий"
+        },
+        "vendor": {
+          "expected": "Р7",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top1_any": {
+          "expected": [
+            "Р7-Офис"
+          ],
+          "actual": [],
+          "message": "Первая карточка не совпала"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "categories",
+            "clarify"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_0007e683d83745a0a53f8aafe07fc3ff",
+      "ms": 20.43
+    },
+    {
+      "id": "dev-0076",
+      "q": "каспер продление на 30 компов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_dec0de92bafd40eba8ae9d38352ad499",
+      "ms": 20.37
+    },
+    {
+      "id": "dev-0077",
+      "q": "продлёнка др веб 100 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3a8d51d5382c42738d904881e9220f78",
+      "ms": 21.51
+    },
+    {
+      "id": "dev-0078",
+      "q": "продлить р7 офис на 25 пользователей",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_77dc98c682554d48b9c04db6a59f9672",
+      "ms": 3.98
+    },
+    {
+      "id": "dev-0079",
+      "q": "пролонгация кибер бэкап 5 серверов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_489048d80db44ce081415281d05f3c58",
+      "ms": 1.82
+    },
+    {
+      "id": "dev-0080",
+      "q": "продлить 1с итс проф на год",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "term_months": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3902491410fa46da9fa97fbbee5a6cb6",
+      "ms": 2.28
+    },
+    {
+      "id": "dev-0081",
+      "q": "антивирус на 100 компьютеров на 2 года",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "term_months": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "category",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_66d63f429dd941d9a8014899cf16a14b",
+      "ms": 28.69
+    },
+    {
+      "id": "dev-0082",
+      "q": "мойофис стандартный 30 мест бессрочно",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "model": false,
+        "qty": true,
+        "metric": false,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "model": {
+          "expected": "perpetual",
+          "actual": "subscription",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "metric": {
+          "expected": "device",
+          "actual": "user",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_30ac1e1a88854a0084d06eaae990a258",
+      "ms": 8.36
+    },
+    {
+      "id": "dev-0083",
+      "q": "р7 офис бессрочный на 50 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "model": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b4a5b531511349ca9acd32635c7dfc79",
+      "ms": 3.45
+    },
+    {
+      "id": "dev-0084",
+      "q": "криптопро 5 годовая лицензия на 20 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "model": true,
+        "qty": true,
+        "metric": true,
+        "term_months": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_379f4408748c4ee6844b0e00acb7fe0c",
+      "ms": 2.75
+    },
+    {
+      "id": "dev-0085",
+      "q": "долицензирование kes на 15 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_20bda400b001476bb22b6f6c06768978",
+      "ms": 1.59
+    },
+    {
+      "id": "dev-0086",
+      "q": "докупить 5 мест мой офис",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "metric": {
+          "expected": "device",
+          "actual": "user",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_13641a44476f44d697886f6d5c2376cb",
+      "ms": 1.73
+    },
+    {
+      "id": "dev-0087",
+      "q": "апгрейд 1с бухгалтерия базовая на проф",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2b1db2ab2e584dbdb70d8dedd9960f6e",
+      "ms": 2.7
+    },
+    {
+      "id": "dev-0088",
+      "q": "переход с eset на касперский со скидкой 50 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_80bc5768befc4c8ea39db4b6e9994ac4",
+      "ms": 35.6
+    },
+    {
+      "id": "dev-0089",
+      "q": "миграция с microsoft office на р7 со скидкой",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3d1a567965164e4d80e270f2028fabc6",
+      "ms": 2.39
+    },
+    {
+      "id": "dev-0090",
+      "q": "windows server 16 ядер",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "license_ops",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_8e9eb512c73947d393d44fe8ad864b8e",
+      "ms": 1.58
+    },
+    {
+      "id": "dev-0091",
+      "q": "postgres pro на 8 ядер",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "license_ops",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_4389a5164e11493c9d0e5eb070eb2421",
+      "ms": 1.51
+    },
+    {
+      "id": "dev-0092",
+      "q": "виртуализация на 4 сокета",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7ed54688f53b4d46bbe80cc2b3cfca4d",
+      "ms": 18.83
+    },
+    {
+      "id": "dev-0093",
+      "q": "кибер бэкап на 10 виртуальных машин",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_ac7ae2af2bd94b33acc990253e7a915f",
+      "ms": 2.4
+    },
+    {
+      "id": "dev-0094",
+      "q": "почтовый сервер на 200 почтовых ящиков",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_86d4ba316e7f4e4fbea372300f477998",
+      "ms": 17.81
+    },
+    {
+      "id": "dev-0095",
+      "q": "нанокад сетевая плавающая лицензия",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "registry": false,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "registry": {
+          "expected": true,
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_0f05d152549449179e5f33e091a75884",
+      "ms": 4.13
+    },
+    {
+      "id": "dev-0096",
+      "q": "компас 3d плавающая лицензия 5 шт",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b7454196b13e4dbcbee40fc61f2a07ee",
+      "ms": 6.09
+    },
+    {
+      "id": "dev-0097",
+      "q": "rds cal 10 пользователей",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b549957cdd9b49a8b2c391fe042e53df",
+      "ms": 2.39
+    },
+    {
+      "id": "dev-0098",
+      "q": "windows server device cal 25",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": false,
+        "metric": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "qty": {
+          "expected": 25,
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "metric": {
+          "expected": "device",
+          "actual": "user",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_ee84e04506e94342afb18516ee024d63",
+      "ms": 2.0
+    },
+    {
+      "id": "dev-0099",
+      "q": "астра линукс для вуза 100 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "registry": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_73b2c7392c3343b9baa37311bcb7fff4",
+      "ms": 5.47
+    },
+    {
+      "id": "dev-0100",
+      "q": "антивирус для школы на 40 компов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "audience": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5cbf250b5c9d4a9a9ebad3d4cf40732b",
+      "ms": 22.18
+    },
+    {
+      "id": "dev-0101",
+      "q": "офис без ндс из реестра",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6510ef19f8524c869184b8948a24bad6",
+      "ms": 22.42
+    },
+    {
+      "id": "dev-0102",
+      "q": "антивирус без ндс для юрлиц",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4c0d3378973e45459473a1273b0f8fe3",
+      "ms": 29.7
+    },
+    {
+      "id": "dev-0103",
+      "q": "мои лицензии",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c1d5b63590bc49219f829f45ded788b4",
+      "ms": 1.92
+    },
+    {
+      "id": "dev-0104",
+      "q": "что у нас скоро истекает",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_93c7ffd67c7545238376c9ffab215722",
+      "ms": 6.04
+    },
+    {
+      "id": "dev-0105",
+      "q": "история заказов",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": false
+      },
+      "reasons": {
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_6970edbfcd72488eb032018b4c8f5da6",
+      "ms": 5.59
+    },
+    {
+      "id": "dev-0106",
+      "q": "повторить прошлый заказ антивируса",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": false,
+        "action": false,
+        "audience": false,
+        "top5_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "renewal",
+          "actual": "account",
+          "message": "Выбран другой сценарий"
+        },
+        "vendor": {
+          "expected": "Dr.Web",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "action": {
+          "expected": "renewal",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "audience": {
+          "expected": "edu",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "Dr.Web"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_b57e228885274e2a8322cfbf5191ff19",
+      "ms": 9.52
+    },
+    {
+      "id": "dev-0107",
+      "q": "такая же лицензия кибер бэкап еще на 5 серверов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e5cbe3c99d55439a8b5f2e890f9c49f8",
+      "ms": 4.98
+    },
+    {
+      "id": "dev-0108",
+      "q": "сдача отчетности",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_855581f9c16a4cda8b4cc3a0c2358cd9",
+      "ms": 16.99
+    },
+    {
+      "id": "dev-0109",
+      "q": "криптопро",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "vendor",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_680faa41021e464d80555e5bbe03994b",
+      "ms": 4.27
+    },
+    {
+      "id": "dev-0110",
+      "q": "kaspersky small office security на 40 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f00846ea54dd43e7b3e6420ad5da3990",
+      "ms": 4.68
+    },
+    {
+      "id": "dev-0111",
+      "q": "российский аналог microsoft office",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_94288b803a7f4c75bb42a4020f4c49ca",
+      "ms": 2.7
+    },
+    {
+      "id": "dev-0112",
+      "q": "замена autocad из реестра",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "cad_2d",
+          "actual": "mcad_plm",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_a3118568f0314769afdf65073c07de40",
+      "ms": 2.24
+    },
+    {
+      "id": "dev-0113",
+      "q": "аналог vmware vsphere российский",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_ad54c8112e684848bcb6b0a947030a8b",
+      "ms": 3.57
+    },
+    {
+      "id": "dev-0114",
+      "q": "чем заменить zoom для компании",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_eaa8c302b12849bbb83c583dce4eb029",
+      "ms": 3.85
+    },
+    {
+      "id": "dev-0115",
+      "q": "российский аналог jira и confluence",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3cd1639503be42efa70c22a4d0012b48",
+      "ms": 3.23
+    },
+    {
+      "id": "dev-0116",
+      "q": "замена teamviewer для юрлиц",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_728f979368094371a264b0faba240249",
+      "ms": 4.2
+    },
+    {
+      "id": "dev-0117",
+      "q": "autocad купить",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6285b71d46cf494fbbe28ae1acc75a41",
+      "ms": 2.93
+    },
+    {
+      "id": "dev-0118",
+      "q": "vmware vsphere лицензия",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_02b058050e7b4990b63fe1959c933f6b",
+      "ms": 3.16
+    },
+    {
+      "id": "dev-0119",
+      "q": "adobe photoshop для юрлиц",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9fa2dd94f0c8480bbebdad3cd1193a2f",
+      "ms": 1.65
+    },
+    {
+      "id": "dev-0120",
+      "q": "veeam backup enterprise",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_dd66b69c1b64491e86a4f8df1853480c",
+      "ms": 2.4
+    },
+    {
+      "id": "dev-0121",
+      "q": "microsoft windows 11 pro",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d017c26aff87442e98537fba50a6e08d",
+      "ms": 3.49
+    },
+    {
+      "id": "dev-0122",
+      "q": "импортозамещение microsoft под ключ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4c68c9c9c9ae41cfaea3b406b1ab767e",
+      "ms": 23.67
+    },
+    {
+      "id": "dev-0123",
+      "q": "замена active directory и exchange",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e54cda7d5d0945eeae38e1edf23993c9",
+      "ms": 4.73
+    },
+    {
+      "id": "dev-0124",
+      "q": "российский аналог автокада с поддержкой dwg",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "registry": true,
+        "top1_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "cad_2d",
+          "actual": "mcad_plm",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top1_any": {
+          "expected": [
+            "nanoCAD"
+          ],
+          "actual": [
+            "АСКОН КОМПАС Строитель"
+          ],
+          "message": "Первая карточка не совпала"
+        }
+      },
+      "search_id": "s_2e5f56335e94433784ee2f87dc6889a9",
+      "ms": 6.85
+    },
+    {
+      "id": "dev-0125",
+      "q": "российский аналог ms project файлы mpp",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_27cef2b1bcbb451c9923ee424e5ff61f",
+      "ms": 2.2
+    },
+    {
+      "id": "dev-0126",
+      "q": "отечественная операционная система",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4be0a98d94764053954d0f9532110b49",
+      "ms": 21.45
+    },
+    {
+      "id": "dev-0127",
+      "q": "postgresql с техподдержкой для юрлиц",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9aeb824df67f49d6b004603532d15ddd",
+      "ms": 7.1
+    },
+    {
+      "id": "dev-0128",
+      "q": "nginx коммерческая версия рф",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "top5_any": {
+          "expected": [
+            "Angie",
+            "UserGate"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products",
+            "not_in_catalog"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_8e95ef75e9554889bf111f5a1174a6ec",
+      "ms": 2.61
+    },
+    {
+      "id": "dev-0129",
+      "q": "антивирус из реестра минцифры",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_afae8b54c1984067af19bc4620c535ed",
+      "ms": 29.53
+    },
+    {
+      "id": "dev-0130",
+      "q": "астра линукс с сертификатом фстэк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "registry": true,
+        "certs": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9fee9781386b418b922201f6e88a8f81",
+      "ms": 2.63
+    },
+    {
+      "id": "dev-0131",
+      "q": "межсетевой экран фстэк 4 класс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_46439922df2d4c4ab095b4e2f85c1f24",
+      "ms": 23.33
+    },
+    {
+      "id": "dev-0132",
+      "q": "криптопро с сертификатом фсб",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "certs": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1b26c39364b047278e093394d09a56cb",
+      "ms": 2.02
+    },
+    {
+      "id": "dev-0133",
+      "q": "vpn гост фсб для филиалов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_471f78691a604f43b76cb893d7a4161d",
+      "ms": 35.02
+    },
+    {
+      "id": "dev-0134",
+      "q": "по для защиты персональных данных 152 фз",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_8ce0f8dfa2af4849b0050a5ce0b4075e",
+      "ms": 31.42
+    },
+    {
+      "id": "dev-0135",
+      "q": "сзи для зокии 187 фз указ 250",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_19622808e4304800b55b78bf41f71dfc",
+      "ms": 28.89
+    },
+    {
+      "id": "dev-0136",
+      "q": "офис для закупки по 44 фз",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d39f59b041a04ab1affc66b0847fb9d2",
+      "ms": 19.41
+    },
+    {
+      "id": "dev-0137",
+      "q": "ос для гостайны сертификат минобороны",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1d7e817ca9b2408e877a068eb0a3b880",
+      "ms": 18.76
+    },
+    {
+      "id": "dev-0138",
+      "q": "требования 683-п цб рф гост 57580 программное обеспечение",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9f23bb8d6803477c9e081bd4cca0dac9",
+      "ms": 47.54
+    },
+    {
+      "id": "dev-0139",
+      "q": "входит ли р7 офис в реестр российского по",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": false,
+        "registry": true,
+        "top5_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "question",
+          "actual": "compliance",
+          "message": "Выбран другой сценарий"
+        },
+        "vendor": {
+          "expected": "Р7",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "Р7-Офис"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_7302dbe099d24f9e9a9a52fcf173293f",
+      "ms": 3.31
+    },
+    {
+      "id": "dev-0140",
+      "q": "бэкап для альт линукс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4fad54abe70c48bfb06b541a317ebd79",
+      "ms": 22.12
+    },
+    {
+      "id": "dev-0141",
+      "q": "офис для macos",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5b8f741197e1450dac19d0ea942bf8fc",
+      "ms": 15.87
+    },
+    {
+      "id": "dev-0142",
+      "q": "ос для процессоров эльбрус",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_fcd05736780348738fda36f78e081231",
+      "ms": 19.85
+    },
+    {
+      "id": "dev-0143",
+      "q": "корпоративный мессенджер в закрытый контур",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2a4e8de6577f4fd7929eee88ae630e5d",
+      "ms": 16.76
+    },
+    {
+      "id": "dev-0144",
+      "q": "эдо с интеграцией в 1с",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "category",
+          "actual": "task",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_35f6c21076934f52b684341b2fa08d11",
+      "ms": 3.41
+    },
+    {
+      "id": "dev-0145",
+      "q": "чем открыть dwg",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "cad_2d",
+          "actual": "mcad_plm",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_e2009c677c2d4bf7af4d74b546c8b2ba",
+      "ms": 2.98
+    },
+    {
+      "id": "dev-0146",
+      "q": "чтобы сотрудники не сливали базу клиентов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_98c146cb399c43e79af925f9bd31969f",
+      "ms": 2.92
+    },
+    {
+      "id": "dev-0147",
+      "q": "запретить копирование на флешки",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2b588a257e7643388c3044971aa18cf7",
+      "ms": 6.1
+    },
+    {
+      "id": "dev-0148",
+      "q": "подписывать кадровые документы с удаленщиками",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "kedo_hr_docs",
+          "actual": "tax_reporting_edo",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_de1543d6a5774ad6a241cf9e27d0ba28",
+      "ms": 4.29
+    },
+    {
+      "id": "dev-0149",
+      "q": "распознать сканы паспортов и накладных в текст",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9f52027737054e8aa8d80b9d5b59adc0",
+      "ms": 9.2
+    },
+    {
+      "id": "dev-0150",
+      "q": "программа для видеосовещаний на 100 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_95d0fcf0c88742b78fc5083e614d7033",
+      "ms": 4.98
+    },
+    {
+      "id": "dev-0151",
+      "q": "подключаться к компьютерам сотрудников для помощи",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e4c9918b34f8405398657656ada445c3",
+      "ms": 5.97
+    },
+    {
+      "id": "dev-0152",
+      "q": "учет компьютеров и лицензий в организации",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bd448decae7146809be422e46c51f0d9",
+      "ms": 3.54
+    },
+    {
+      "id": "dev-0153",
+      "q": "система заявок для ит отдела",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c6dcb0451a2a4c4891e67900cf484194",
+      "ms": 2.84
+    },
+    {
+      "id": "dev-0154",
+      "q": "вести базу клиентов и воронку продаж",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2e7885c1fd0a4d8d9839b40dba7f70da",
+      "ms": 3.35
+    },
+    {
+      "id": "dev-0155",
+      "q": "проверка контрагентов на благонадежность",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_5a0c08883b824cbd8740adf4de371c56",
+      "ms": 2.11
+    },
+    {
+      "id": "dev-0156",
+      "q": "дашборды и аналитика продаж для директора",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4366e75e4b4f41a0b1cf1047754de8dc",
+      "ms": 3.71
+    },
+    {
+      "id": "dev-0157",
+      "q": "составление строительных смет фэр тэр",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_0bc1d1b8507046c19938174807a388d0",
+      "ms": 2.41
+    },
+    {
+      "id": "dev-0158",
+      "q": "3d моделирование деталей машин по ескд",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1d81fd043ac04357b874a7b01d027299",
+      "ms": 3.56
+    },
+    {
+      "id": "dev-0159",
+      "q": "что поставить чтобы менеджеры не теряли заявки",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4b66f439d88b42c08bc8a1847fd39e04",
+      "ms": 7.85
+    },
+    {
+      "id": "dev-0160",
+      "q": "как проверить чем сотрудники занимаются на удаленке",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "employee_monitoring",
+          "actual": [
+            "remote_desktop"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_fb1b2edc358e4b61b643ee115d03e073",
+      "ms": 8.83
+    },
+    {
+      "id": "dev-0161",
+      "q": "комплект по для бухгалтера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a79016b45888445981f27f6d92101f6e",
+      "ms": 11.64
+    },
+    {
+      "id": "dev-0162",
+      "q": "рабочее место госслужащего из реестра",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "audience": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c93a8b558fd84b54a34ec33e7edb8f1e",
+      "ms": 20.98
+    },
+    {
+      "id": "dev-0163",
+      "q": "набор программ для конструктора",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_52e8616ee7a54fe58b9dfce2e5825734",
+      "ms": 56.0
+    },
+    {
+      "id": "dev-0164",
+      "q": "базовый набор по для офиса на 20 человек",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "qty": true,
+        "metric": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d8ec874d1c2f49a8a75dc16ed84d089d",
+      "ms": 14.5
+    },
+    {
+      "id": "dev-0165",
+      "q": "по для строительной компании",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_8a64f6d4803a4a639ca0667aafd8741a",
+      "ms": 17.84
+    },
+    {
+      "id": "dev-0166",
+      "q": "софт для медицинской клиники",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "certs": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1bd54e2694604e76934918ad78df8c58",
+      "ms": 18.82
+    },
+    {
+      "id": "dev-0167",
+      "q": "астра линукс 20 шт\nр7 офис 20 шт\nкасперский 20 узлов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "lines": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a002f453cfc64182a8dc08423e65e6f7",
+      "ms": 37.06
+    },
+    {
+      "id": "dev-0168",
+      "q": "1. криптопро 5.0 - 5 шт\n2. рутокен эцп 3.0 - 5 шт\n3. контур диадок - 1 шт\n4. 1с бухгалтерия проф - 1 шт",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "lines": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d3583a40145348da89145d949ebb9605",
+      "ms": 8.72
+    },
+    {
+      "id": "dev-0169",
+      "q": "Добрый день! Выставьте счет:\n- Astra Linux SE Воронеж 25 шт\n- Р7-Офис Проф 25 лицензий\n- Kaspersky Endpoint Security продление 25 узлов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "lines": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e3053b1b87574b879d0a651b6f36a7db",
+      "ms": 12.65
+    },
+    {
+      "id": "dev-0170",
+      "q": "КL4867RАQFR 30 шт\nМойОфис Стандартный 30 мест\nКибер Бэкап 2 сервера",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "lines": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_fc4a9ed2c12a4755ab224267fb7231b0",
+      "ms": 4.07
+    },
+    {
+      "id": "dev-0171",
+      "q": "1. nanoCAD 24 сетевая - 4 шт\n2. Renga Professional - 2 шт\n3. Гранд-Смета - 1 шт\n4. Р7-Офис - 10 шт\n5. Кибер Бэкап - 1 сервер",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "lines": true,
+        "registry": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "registry": {
+          "expected": true,
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_41e17572e37e4338bd6d075fac78400b",
+      "ms": 11.1
+    },
+    {
+      "id": "dev-0172",
+      "q": "Средство антивирусной защиты конечных точек, наличие в ЕРРП, сертификат ФСТЭК, поддержка ОС Astra Linux, 100 узлов",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "platform": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "compliance",
+          "actual": "spec_list",
+          "message": "Выбран другой сценарий"
+        },
+        "top5_any": {
+          "expected": [
+            "Kaspersky",
+            "Dr.Web"
+          ],
+          "actual": [
+            "Astra Linux Special Edition «Смоленск»"
+          ],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "spec"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_08d6e9e7016c450e9794033524d40203",
+      "ms": 60.49
+    },
+    {
+      "id": "dev-0173",
+      "q": "Программный комплекс видеоконференцсвязи, развертывание on-premise, не менее 100 участников, запись, ЕРРП",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7f81c0feaa394e2e9c8af3b834f972ed",
+      "ms": 57.44
+    },
+    {
+      "id": "dev-0174",
+      "q": "рутокен эцп 3.0 10 штук",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_97ecd0f295254264a09603ccdd3bddfb",
+      "ms": 4.47
+    },
+    {
+      "id": "dev-0175",
+      "q": "курсы администрирования ред ос",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "platform": {
+          "expected": "redos",
+          "actual": [
+            "linux",
+            "web",
+            "astra"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_a8ed96784af34b109465c3b462f94e7f",
+      "ms": 3.27
+    },
+    {
+      "id": "dev-0176",
+      "q": "техподдержка астра линукс премиум",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c4ea24ccf2f040e683ee2a707faad474",
+      "ms": 6.16
+    },
+    {
+      "id": "dev-0177",
+      "q": "обучение по информационной безопасности для сотрудников",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "security_awareness",
+          "actual": [
+            "endpoint_security"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_bf61ff4a729643de82453fcfbe9e088a",
+      "ms": 2.28
+    },
+    {
+      "id": "dev-0178",
+      "q": "антивирус до 1500 рублей за пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "price_max": true,
+        "audience": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b4959495cd854d50b4281e714a8c4025",
+      "ms": 20.67
+    },
+    {
+      "id": "dev-0179",
+      "q": "сапр до 50000 рублей",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "price_max": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6d19ba3844a24abca76391e1b3f174fc",
+      "ms": 20.44
+    },
+    {
+      "id": "dev-0180",
+      "q": "недорогой российский офис",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9a4dbd2241ac451cbf24a5dfa94b175f",
+      "ms": 24.21
+    },
+    {
+      "id": "dev-0181",
+      "q": "касперский esd электронный ключ сегодня",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bb3c62804e554bf1b9523675b63d0610",
+      "ms": 38.75
+    },
+    {
+      "id": "dev-0182",
+      "q": "криптопро с бумажным формуляром",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "certs": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6e5c22773b70446fa3bd06ebb9e99473",
+      "ms": 7.75
+    },
+    {
+      "id": "dev-0183",
+      "q": "антивирус не касперский",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "exclude_vendor": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_212e714560bc4ebda91f4a6730e411fc",
+      "ms": 21.28
+    },
+    {
+      "id": "dev-0184",
+      "q": "российская ос кроме астра линукс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "exclude_vendor": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4372ebf76f124c009076e9b8837a6391",
+      "ms": 25.01
+    },
+    {
+      "id": "dev-0185",
+      "q": "crm не битрикс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "exclude_vendor": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9c843e47240947738e656e72e92abdaa",
+      "ms": 22.47
+    },
+    {
+      "id": "dev-0186",
+      "q": "maxpatrol siem цена",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "family_any": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_32593b3c897f48d0b3f56aa7eb02b8c0",
+      "ms": 4.44
+    },
+    {
+      "id": "dev-0187",
+      "q": "пилот астра линукс бесплатно",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d7b3f6d60f004d43abc57e16b52a1819",
+      "ms": 5.04
+    },
+    {
+      "id": "dev-0188",
+      "q": "скидки на антивирусы для юрлиц",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_52e050b7aa0744dcacd0de9e8908379a",
+      "ms": 20.1
+    },
+    {
+      "id": "dev-0189",
+      "q": "срочно продлить контур экстерн счет сегодня с упд",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_cfc87c53a41e4c0a812bf83fee0ad923",
+      "ms": 7.22
+    },
+    {
+      "id": "dev-0190",
+      "q": "сколько стоит перевести офис на 50 пк на российское по",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "qty": true,
+        "metric": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_95d59a7f22964a1da4da3fb70634802a",
+      "ms": 9.27
+    },
+    {
+      "id": "dev-0191",
+      "q": "rfcgthcrbq",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_aa5f3b56c2404b8e81ee1172e8ce5282",
+      "ms": 14.48
+    },
+    {
+      "id": "dev-0192",
+      "q": "fcnhf kbyerc",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f114ac5971344b52a07f5ad8e656676c",
+      "ms": 4.59
+    },
+    {
+      "id": "dev-0193",
+      "q": "fynbdibhec",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "corrected_to": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2047a43fe38046b0a573d5beb72b4c5a",
+      "ms": 8.6
+    },
+    {
+      "id": "dev-0194",
+      "q": "rhbgnjghj 5",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6d042519066844aa9eea1582fbfdd7bc",
+      "ms": 3.06
+    },
+    {
+      "id": "dev-0195",
+      "q": "1c ,e[ufknthbz",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "corrected_to": false,
+        "top1_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        },
+        "corrected_to": {
+          "expected": "1с бухгалтерия",
+          "actual": "1с ,e[ufknthbz",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top1_any": {
+          "expected": [
+            "1С:Бухгалтерия"
+          ],
+          "actual": [
+            "1С:Документооборот 8 ПРОФ"
+          ],
+          "message": "Первая карточка не совпала"
+        }
+      },
+      "search_id": "s_8ab6e14f778b4af088cd172b6de6f9f8",
+      "ms": 30.15
+    },
+    {
+      "id": "dev-0196",
+      "q": "дштгч",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "corrected_to": true,
+        "platform": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "top5_any": {
+          "expected": [
+            "Astra Linux",
+            "РЕД ОС",
+            "Альт"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_b682d7b3348d444da07f66094444a88c",
+      "ms": 15.53
+    },
+    {
+      "id": "dev-0197",
+      "q": "цштвщцы 11 зкщ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_80ca0b0e8faa42f69ab672c410381ffd",
+      "ms": 6.3
+    },
+    {
+      "id": "dev-0198",
+      "q": "фдв зкщ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6ac58c5e2db945f1a2a75d15dd68128a",
+      "ms": 10.94
+    },
+    {
+      "id": "dev-0199",
+      "q": "уыукпфеу",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_57e7adb12fae4b5da721259ca633671b",
+      "ms": 36.61
+    },
+    {
+      "id": "dev-0200",
+      "q": "зщыепкуы зкщ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6f617f3c32fa47be9ac57b9c3166df8a",
+      "ms": 8.93
+    },
+    {
+      "id": "dev-0201",
+      "q": "юзергейт",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "vendor",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_69ce6017a6bc46afbec4b2901b80b530",
+      "ms": 4.25
+    },
+    {
+      "id": "dev-0202",
+      "q": "позитив текнолоджиз",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_447d76fc7af44a37af77d85700ef8206",
+      "ms": 18.09
+    },
+    {
+      "id": "dev-0203",
+      "q": "випнет клиент",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_158cbebb7c934e579e696c5e0de867ab",
+      "ms": 5.41
+    },
+    {
+      "id": "dev-0204",
+      "q": "постгрес про",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9632ceb8e0664bcfa289225a9024c143",
+      "ms": 3.65
+    },
+    {
+      "id": "dev-0205",
+      "q": "moyofis standartny",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2e340b9981d74cf0aed739a460bb147a",
+      "ms": 4.01
+    },
+    {
+      "id": "dev-0206",
+      "q": "kiber bekap",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "category",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_ee4627aced5a4cd9a26b293ece19290d",
+      "ms": 19.53
+    },
+    {
+      "id": "dev-0207",
+      "q": "эксчейндж аналог",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "mail_servers",
+          "actual": "uc_platforms",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_a14fca64cb804798830a0f542b89a5a6",
+      "ms": 2.6
+    },
+    {
+      "id": "dev-0208",
+      "q": "каспэрский эндпоинт",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "corrected_to": true,
+        "top1_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        },
+        "top1_any": {
+          "expected": [
+            "Kaspersky Endpoint Security"
+          ],
+          "actual": [
+            "Kaspersky Industrial CyberSecurity for Nodes"
+          ],
+          "message": "Первая карточка не совпала"
+        }
+      },
+      "search_id": "s_12bcbe4e46374ca891576bbfbae46912",
+      "ms": 25.04
+    },
+    {
+      "id": "dev-0209",
+      "q": "астролинукс",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "corrected_to": false,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "corrected_to": {
+          "expected": "астра линукс",
+          "actual": "астролинукс",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_a52e2e42310446f7b10c0e6df6d3b150",
+      "ms": 6.35
+    },
+    {
+      "id": "dev-0210",
+      "q": "1cбухгалтерия 10юзеров",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6440adf2e4e5465aa54657581cd0c1bd",
+      "ms": 7.02
+    },
+    {
+      "id": "dev-0211",
+      "q": "win11pro",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_43f02aa25a934dfcbe65415ef07f84a4",
+      "ms": 4.64
+    },
+    {
+      "id": "dev-0212",
+      "q": "криптапро 50пк",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "corrected_to": false,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "corrected_to": {
+          "expected": "криптопро 50 пк",
+          "actual": "криптапро 50 пк",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_79e82d33c8ee4113ac33126585ad03e2",
+      "ms": 3.54
+    },
+    {
+      "id": "dev-0213",
+      "q": "р 7 офис",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9657d697953b4f4f84ca602f2a8e6861",
+      "ms": 4.01
+    },
+    {
+      "id": "dev-0214",
+      "q": "адешка на линуксе",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3d914f17831747ec9eac43140dbe10b1",
+      "ms": 24.45
+    },
+    {
+      "id": "dev-0215",
+      "q": "кес 50 узлов продлёнка",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e93d6bca9bd1461c8e3e4b609c3ceab9",
+      "ms": 5.01
+    },
+    {
+      "id": "dev-0216",
+      "q": "мэ фстэк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b7a996c0b8f04ff48ce6e6c34214bc92",
+      "ms": 19.67
+    },
+    {
+      "id": "dev-0217",
+      "q": "терминальник на 30 юзеров",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e145c86acf1642129e8864a1d50023af",
+      "ms": 21.66
+    },
+    {
+      "id": "dev-0218",
+      "q": "сзи от нсд фстэк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_b117a16ec00442f1bc7456c2d5b06e12",
+      "ms": 23.51
+    },
+    {
+      "id": "dev-0219",
+      "q": "савз для сервера",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "metric": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "metric": {
+          "expected": "server",
+          "actual": "device",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_94926ef470ba45828870067619cc2bf0",
+      "ms": 17.29
+    },
+    {
+      "id": "dev-0220",
+      "q": "эцпшка для буха",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": false,
+        "top5_any": true,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "category",
+          "actual": "role_kit",
+          "message": "Выбран другой сценарий"
+        },
+        "category": {
+          "expected": "crypto_skzi",
+          "actual": [
+            "e_signature"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "kit",
+            "crosssell"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_731ce79495034c0d9ddb3a3e2ff3dc42",
+      "ms": 15.89
+    },
+    {
+      "id": "dev-0221",
+      "q": "бэкапилка для гипервизора",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_fc2180ad82ea40c2811ce80bb6ddf3d3",
+      "ms": 29.07
+    },
+    {
+      "id": "dev-0222",
+      "q": "акронис бэкап",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_45e2e45cf5894fd786bb99f4c3931f1d",
+      "ms": 2.42
+    },
+    {
+      "id": "dev-0223",
+      "q": "webinar ru на 100 участников",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_a94b6d2b2f434fcc8abe79e4cb576b51",
+      "ms": 23.85
+    },
+    {
+      "id": "dev-0224",
+      "q": "abbyy finereader купить",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "analog",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_8616f28258aa4ffbbfd2700e51298676",
+      "ms": 1.43
+    },
+    {
+      "id": "dev-0225",
+      "q": "сертификат",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e5dd09a6295e4217bb7db96ac1a57606",
+      "ms": 20.94
+    },
+    {
+      "id": "dev-0226",
+      "q": "ключ",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_f7540be5a1164380b74a28d4bdf78b86",
+      "ms": 15.39
+    },
+    {
+      "id": "dev-0227",
+      "q": "контур",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_4379ace9a61245ec9a0b3162868f8eec",
+      "ms": 14.98
+    },
+    {
+      "id": "dev-0228",
+      "q": "кума",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_63b50f486d6c4a28ab7ab38d23c1e140",
+      "ms": 4.3
+    },
+    {
+      "id": "dev-0229",
+      "q": "брест",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_480884dcc728490db23232678391a202",
+      "ms": 4.51
+    },
+    {
+      "id": "dev-0230",
+      "q": "соболь",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2fdc55d8e3f6469789c8dcb90b5ca60e",
+      "ms": 4.96
+    },
+    {
+      "id": "dev-0231",
+      "q": "гарда",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d0fa9fddfa60489aa4480adc1b996910",
+      "ms": 13.69
+    },
+    {
+      "id": "dev-0232",
+      "q": "кас",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": false,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "intent": {
+          "expected": "vendor",
+          "actual": "off_topic",
+          "message": "Выбран другой сценарий"
+        },
+        "vendor": {
+          "expected": "Kaspersky",
+          "actual": null,
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "Kaspersky"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products",
+            "my_licenses"
+          ],
+          "actual": [
+            "categories",
+            "clarify"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_639f9d30d0ff45d3a16629dfd5d9ed2f",
+      "ms": 12.57
+    },
+    {
+      "id": "dev-0233",
+      "q": "fcnh",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "corrected_to": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_3dc96f7ab38146cab6fc81198ca1e3e7",
+      "ms": 14.3
+    },
+    {
+      "id": "dev-0234",
+      "q": "UserGate",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7e5da8645c574dd1a05330d28b3a0da2",
+      "ms": 1.79
+    },
+    {
+      "id": "dev-0235",
+      "q": "криптопро csp 5.0",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3b72d5f6f9324815adbb6653b569ac0b",
+      "ms": 3.31
+    },
+    {
+      "id": "dev-0236",
+      "q": "что такое cal лицензия",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3aef6ee3394a4c2f9ee51163bbda08d4",
+      "ms": 4.78
+    },
+    {
+      "id": "dev-0237",
+      "q": "чем отличается oem от box и esd",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_6b841ad2f70949a08044a7087cec9aec",
+      "ms": 5.27
+    },
+    {
+      "id": "dev-0238",
+      "q": "нужна ли лицензия фсб чтобы купить криптопро",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "vendor": {
+          "expected": "КриптоПро",
+          "actual": "aktiv_rutoken",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_22e6512635354dc4ace61bfc3d9de62b",
+      "ms": 3.69
+    },
+    {
+      "id": "dev-0239",
+      "q": "чем отличается астра орел воронеж смоленск",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7a8e6831fe97440ea65def5124cc8baa",
+      "ms": 3.16
+    },
+    {
+      "id": "dev-0240",
+      "q": "почему по из реестра без ндс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e808687170ea4501ab2a588e299453b3",
+      "ms": 5.62
+    },
+    {
+      "id": "dev-0241",
+      "q": "р7 офис или мой офис что лучше",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2570fc67c49b4f20954662e9f3ab4ab1",
+      "ms": 1.64
+    },
+    {
+      "id": "dev-0242",
+      "q": "astra linux vs ред ос",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_646e63dac64d4f3d82d065042c42b6af",
+      "ms": 3.96
+    },
+    {
+      "id": "dev-0243",
+      "q": "dr web против касперского для бизнеса",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_47845e0859194d6bbe199105cfb485f2",
+      "ms": 4.54
+    },
+    {
+      "id": "dev-0244",
+      "q": "битрикс24 или amocrm",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_803a5e5f5b0145428a12edc5fdde56de",
+      "ms": 2.24
+    },
+    {
+      "id": "dev-0245",
+      "q": "работает ли 1с на астра линукс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "platform": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a9327dbc52ae46edb78d8b4ff5587288",
+      "ms": 10.44
+    },
+    {
+      "id": "dev-0246",
+      "q": "совместим ли касперский с альт линукс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "platform": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c846cb6cc5c8417db1eb71644b344b70",
+      "ms": 7.57
+    },
+    {
+      "id": "dev-0247",
+      "q": "какие закрывающие документы при покупке электронной лицензии по эдо",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bbf87e9f23b04b2ba4cfd5f4f2977d41",
+      "ms": 4.72
+    },
+    {
+      "id": "dev-0248",
+      "q": "можно ли использовать домашний касперский в офисе ооо",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "top5_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "question",
+          "actual": "license_ops",
+          "message": "Выбран другой сценарий"
+        },
+        "top5_any": {
+          "expected": [
+            "Kaspersky Small Office Security",
+            "Kaspersky Endpoint Security"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_d75e9d8502ca4ff5ad6760faf08e4d88",
+      "ms": 28.69
+    },
+    {
+      "id": "dev-0249",
+      "q": "как перейти с eset на касперский со скидкой какие документы нужны",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "action": {
+          "expected": "crossgrade",
+          "actual": "new",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_a38deec89e2c49ccbafe189636c45d5a",
+      "ms": 9.88
+    },
+    {
+      "id": "dev-0250",
+      "q": "можно ли вернуть электронную лицензию после покупки",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_048ce41e14284513a8cff063be25c709",
+      "ms": 9.26
+    },
+    {
+      "id": "dev-0251",
+      "q": "фстэк 50 пк",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "compliance",
+          "actual": "category",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_b8fc6930941241eca4a4a55232e131a8",
+      "ms": 21.26
+    },
+    {
+      "id": "dev-0252",
+      "q": "бессрочная на 20 мест",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "model": true,
+        "qty": true,
+        "metric": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "metric": {
+          "expected": "device",
+          "actual": "user",
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_f130b4101e134ccf9bce3a14ce0a78ee",
+      "ms": 24.01
+    },
+    {
+      "id": "dev-0253",
+      "q": "под астра линукс",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d4bd1020553b457d8293f3e4dae98d36",
+      "ms": 25.49
+    },
+    {
+      "id": "dev-0254",
+      "q": "продление 10 серверов",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_680a769bfb94475893a86371133d39e9",
+      "ms": 24.34
+    },
+    {
+      "id": "dev-0255",
+      "q": "а на 50 пк?",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_542124d409e1407185b8f8b44421ed0a",
+      "ms": 23.04
+    },
+    {
+      "id": "dev-0256",
+      "q": "подешевле",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_ea3566c0611940a893c0049ec10c20e1",
+      "ms": 22.04
+    },
+    {
+      "id": "dev-0257",
+      "q": "а из реестра с фстэк",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "registry": true,
+        "certs": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "compliance",
+          "actual": "category",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_54811d69ba7047e6b7de7c5858a17719",
+      "ms": 24.37
+    },
+    {
+      "id": "dev-0258",
+      "q": "а на 3 года?",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "term_months": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_18e09f9b045447fc874d07f347e2cb0f",
+      "ms": 18.64
+    },
+    {
+      "id": "dev-0259",
+      "q": "межсетевой экран",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_123a61aaec074afa89cceba1445a3bbe",
+      "ms": 25.46
+    },
+    {
+      "id": "dev-0260",
+      "q": "другой производитель из реестра",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_17694e1fa20a4c17a51b7cda41b87c9a",
+      "ms": 27.42
+    },
+    {
+      "id": "dev-0261",
+      "q": "российское по -> операционная система -> астра линукс",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "registry": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "compliance",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_d5ac9844eb2a478db9d56eab30c85bda",
+      "ms": 3.21
+    },
+    {
+      "id": "dev-0262",
+      "q": "токен к криптопро",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "category": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "intent": {
+          "expected": "category",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        },
+        "top5_any": {
+          "expected": [
+            "Рутокен",
+            "JaCarta"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_23fd026779954220912bc220a190a2a0",
+      "ms": 1.6
+    },
+    {
+      "id": "dev-0263",
+      "q": "microsoft office из реестра минцифры",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "registry": true,
+        "top5_any": false,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "analog",
+          "actual": "compliance",
+          "message": "Выбран другой сценарий"
+        },
+        "top5_any": {
+          "expected": [
+            "Р7-Офис",
+            "МойОфис"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_39adf0fe83294b22b258e864f13fbfb8",
+      "ms": 1.52
+    },
+    {
+      "id": "dev-0264",
+      "q": "бессрочная лицензия антивируса касперского навсегда",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "model": true,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "top5_any": {
+          "expected": [
+            "Kaspersky"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "answer",
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_c9218565a7634288953ddadc04b71d3d",
+      "ms": 29.92
+    },
+    {
+      "id": "dev-0265",
+      "q": "компас 3d для macos",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "platform": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2408c2e561c74202b79a2287f81019aa",
+      "ms": 7.29
+    },
+    {
+      "id": "dev-0266",
+      "q": "антивирус для астра линукс до 300 рублей",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "price_max": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_40b64bc6ad03421ca770725092ad25d4",
+      "ms": 28.36
+    },
+    {
+      "id": "dev-0267",
+      "q": "защита сети",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_2f0e595eee3e4bb8b5c7ed24bdbf0060",
+      "ms": 26.27
+    },
+    {
+      "id": "dev-0268",
+      "q": "3 аналога офисного пакета из реестра для нмцк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_27e67c08da35426b9706744ca9ae5f88",
+      "ms": 6.81
+    },
+    {
+      "id": "dev-0269",
+      "q": "нужен расчет кп на 2000 рабочих мест астра линукс и ald pro",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "service",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_34661b524efd4a509afb7908131fa30f",
+      "ms": 3.92
+    },
+    {
+      "id": "dev-0270",
+      "q": "сегодня кончается лицензия касперский срочно ключ 20 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "action": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_d41c99904fe14efdbb41df7efafeceeb",
+      "ms": 26.87
+    },
+    {
+      "id": "dev-0271",
+      "q": "софт",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_15a2d6b4455848c08498fca5e592745e",
+      "ms": 22.5
+    },
+    {
+      "id": "dev-0272",
+      "q": "программы для бизнеса",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "audience": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3755f91fedb440a59af81f3a08fd22cb",
+      "ms": 75.19
+    },
+    {
+      "id": "dev-0273",
+      "q": "российское по",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "registry": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_05591bf38ca843af8bbccdaa2e4751c8",
+      "ms": 61.79
+    },
+    {
+      "id": "dev-0274",
+      "q": "figma для команды",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3a2da97d19104e0c8f1c9df1a577b4dc",
+      "ms": 2.24
+    },
+    {
+      "id": "dev-0275",
+      "q": "miro enterprise",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_530b7720080a4ba5a1370d59686b3685",
+      "ms": 3.25
+    },
+    {
+      "id": "dev-0276",
+      "q": "notion business",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bf195eb49cfb4e0baf87d05f0e045b0e",
+      "ms": 3.08
+    },
+    {
+      "id": "dev-0277",
+      "q": "chatgpt для компании",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_428037e66e2a4acf8d02cf1156f4f2a5",
+      "ms": 2.98
+    },
+    {
+      "id": "dev-0278",
+      "q": "купить ноутбук для офиса",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_838533e4bc9b48369e6ed379f8da47b0",
+      "ms": 1.84
+    },
+    {
+      "id": "dev-0279",
+      "q": "принтер лазерный hp",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a8d7cb03acaa4d5290b2057e33a3c905",
+      "ms": 6.57
+    },
+    {
+      "id": "dev-0280",
+      "q": "пак континент 4",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "category": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_a365fc2b483d43048b0d2ef249c614d7",
+      "ms": 4.99
+    },
+    {
+      "id": "dev-0281",
+      "q": "скачать windows 11 бесплатно с ключом",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_7d8241b79e89423b9f46ec18597adcf1",
+      "ms": 11.51
+    },
+    {
+      "id": "dev-0282",
+      "q": "активатор kms office",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_caa0b662b73c4ff6a69751397a0b3852",
+      "ms": 7.33
+    },
+    {
+      "id": "dev-0283",
+      "q": "кряк для автокада",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_e541637052f940bf861dc59623ec5f78",
+      "ms": 8.44
+    },
+    {
+      "id": "dev-0284",
+      "q": "asdfghjkl",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_9319027303354d718dd913fb9954b7fc",
+      "ms": 9.57
+    },
+    {
+      "id": "dev-0285",
+      "q": "доставка пиццы москва",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_0c68ad4fae454df7bfb0533fadab1683",
+      "ms": 46.2
+    },
+    {
+      "id": "dev-0286",
+      "q": "купить спецодежду и каску",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c5a10333aa784a8597b52d54e32e52f6",
+      "ms": 25.63
+    },
+    {
+      "id": "dev-0287",
+      "q": "123456",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_468de855cfe64387a4f58c80b659432c",
+      "ms": 15.62
+    },
+    {
+      "id": "dev-0288",
+      "q": "зимняя резина r16",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_46e9942b228c439394ac17a832441e75",
+      "ms": 23.27
+    },
+    {
+      "id": "dev-0289",
+      "q": "astra linux 1000 рабочих мест",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_3b5e7a85b5894b2589afdaca751c7380",
+      "ms": 17.92
+    },
+    {
+      "id": "dev-0290",
+      "q": "infowatch dlp 1500 пользователей",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top1_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "product",
+          "actual": "vendor",
+          "message": "Выбран другой сценарий"
+        }
+      },
+      "search_id": "s_efca52f690f2436482b288ec588f0d92",
+      "ms": 17.2
+    },
+    {
+      "id": "dev-0291",
+      "q": "gigachat корпоративный api",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_624f74fbc66341f9a3a40fffe692d07a",
+      "ms": 4.34
+    },
+    {
+      "id": "dev-0292",
+      "q": "deckhouse kubernetes лицензия",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_3b6cd521d17246dab13da849c033bccb",
+      "ms": 4.04
+    },
+    {
+      "id": "dev-0293",
+      "q": "российский bi вместо power bi",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_155428319e794343801ed29e89e942a7",
+      "ms": 2.53
+    },
+    {
+      "id": "dev-0294",
+      "q": "passwork корпоративный",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "out_of_catalog",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        },
+        "block_any": {
+          "expected": [
+            "not_in_catalog",
+            "analogs"
+          ],
+          "actual": [
+            "products",
+            "crosssell"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_6c20e0da8657490e8473e8e5fc88150a",
+      "ms": 3.47
+    },
+    {
+      "id": "dev-0295",
+      "q": "yonote корпоративный",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "out_of_catalog",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        },
+        "block_any": {
+          "expected": [
+            "not_in_catalog",
+            "analogs"
+          ],
+          "actual": [
+            "products"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_b875b7f5ae54450d8fdaf556eccea71d",
+      "ms": 1.78
+    },
+    {
+      "id": "dev-0296",
+      "q": "holst доски корпоративный тариф",
+      "status": "failed",
+      "checks": {
+        "intent": false,
+        "block_any": false,
+        "zero_ok": true
+      },
+      "reasons": {
+        "intent": {
+          "expected": "out_of_catalog",
+          "actual": "product",
+          "message": "Выбран другой сценарий"
+        },
+        "block_any": {
+          "expected": [
+            "not_in_catalog",
+            "analogs"
+          ],
+          "actual": [
+            "products"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        }
+      },
+      "search_id": "s_7af4936c9b9d48b599aeba94918a0fbc",
+      "ms": 1.71
+    },
+    {
+      "id": "dev-0297",
+      "q": "файрволл фстэк",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "certs": true,
+        "top5_any": false,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "ngfw_vpn",
+          "actual": "endpoint_security",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "UserGate",
+            "Континент",
+            "PT NGFW",
+            "ViPNet"
+          ],
+          "actual": [
+            "Kaspersky Endpoint Security для бизнеса Расширенный",
+            "ГИС Панорама Мини",
+            "ГИС Панорама Сервер",
+            "Cloud.ru Evolution Stack",
+            "Dallas Lock Linux"
+          ],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        }
+      },
+      "search_id": "s_2a98f419c22d4c95b83f409408827f1c",
+      "ms": 41.68
+    },
+    {
+      "id": "dev-0298",
+      "q": "почтовик в контур",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": false,
+        "block_any": false,
+        "zero_ok": false
+      },
+      "reasons": {
+        "category": {
+          "expected": "mail_servers",
+          "actual": [
+            "email_clients_calendars"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "top5_any": {
+          "expected": [
+            "RuPost",
+            "Tegu",
+            "МойОфис",
+            "VK WorkMail"
+          ],
+          "actual": [],
+          "message": "В первых пяти карточках нет ожидаемого продукта"
+        },
+        "block_any": {
+          "expected": [
+            "products"
+          ],
+          "actual": [
+            "lead"
+          ],
+          "message": "Отсутствует ожидаемый блок"
+        },
+        "zero_ok": {
+          "expected": false,
+          "actual": false,
+          "message": "Поиск не дал содержательного ответа"
+        }
+      },
+      "search_id": "s_31507abb802844b1abbb817b8b166913",
+      "ms": 18.22
+    },
+    {
+      "id": "dev-0299",
+      "q": "бэкап для postgres",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c5d5be8150664c4385ef36b547086fc5",
+      "ms": 19.92
+    },
+    {
+      "id": "dev-0300",
+      "q": "антивирус не касперский 300 пк",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "qty": true,
+        "metric": true,
+        "platform": true,
+        "registry": true,
+        "certs": true,
+        "exclude_vendor": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_be7c3343eb414667b1f8e29b929e6cc5",
+      "ms": 21.92
+    },
+    {
+      "id": "dev-0301",
+      "q": "замена битрикс24 на 250 пользователей",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "qty": true,
+        "metric": true,
+        "exclude_vendor": false,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "crm_systems",
+          "actual": "uc_platforms",
+          "message": "Условие поиска не совпало с ожиданием"
+        },
+        "exclude_vendor": {
+          "expected": "1С-Битрикс",
+          "actual": [],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_5d933496a6a2403292e90725ee047df3",
+      "ms": 3.77
+    },
+    {
+      "id": "dev-0302",
+      "q": "российский антивирус для бизнеса",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "audience": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_96f15de668724f5cab70363658c11208",
+      "ms": 20.62
+    },
+    {
+      "id": "dev-0303",
+      "q": "отечественный офисный пакет",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_1688dd80121c4b639b6a965be0201f65",
+      "ms": 18.46
+    },
+    {
+      "id": "dev-0304",
+      "q": "система резервного копирования из реестра",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "registry": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_c6d47913059f417fbd31ae9a5c5f7774",
+      "ms": 33.28
+    },
+    {
+      "id": "dev-0305",
+      "q": "антивирус на аврору",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "mobile_security_mdm",
+          "actual": [
+            "endpoint_security"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_1c5b1c57f1c44836846e9bcbf75ba555",
+      "ms": 28.08
+    },
+    {
+      "id": "dev-0306",
+      "q": "1с бухгалтерия 8 корп на 50 пользователей",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "vendor": true,
+        "qty": true,
+        "metric": true,
+        "top5_any": true,
+        "must_not": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_bbaec5f264c04484ad4bc2239931a5e1",
+      "ms": 6.05
+    },
+    {
+      "id": "dev-0307",
+      "q": "pdf редактор для ред ос",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "platform": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_abd1328de1a3475e87b5a00d71d63998",
+      "ms": 18.06
+    },
+    {
+      "id": "dev-0308",
+      "q": "зашифровать ноутбуки чтобы при краже не украли данные",
+      "status": "failed",
+      "checks": {
+        "intent": true,
+        "category": false,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {
+        "category": {
+          "expected": "data_wiping_encryption",
+          "actual": [
+            "code_analysis_sast"
+          ],
+          "message": "Условие поиска не совпало с ожиданием"
+        }
+      },
+      "search_id": "s_1e5925907ac24933a54f79931b14be0c",
+      "ms": 17.88
+    },
+    {
+      "id": "dev-0309",
+      "q": "электронный документооборот с контрагентами",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "category": true,
+        "top5_any": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_867b987acf5e4343a83874c11a74bbfa",
+      "ms": 3.21
+    },
+    {
+      "id": "dev-0310",
+      "q": "набор программ для сисадмина",
+      "status": "passed",
+      "checks": {
+        "intent": true,
+        "block_any": true,
+        "zero_ok": true
+      },
+      "reasons": {},
+      "search_id": "s_0958c7b2ae2e4346a1159558001056c1",
+      "ms": 19.66
     }
   ],
   "scenarios": {
-    "unknown": {
+    "same_query_different_segment": {
+      "total": 26,
+      "passed": 21
+    },
+    "ksos_to_kes_seat_threshold_upgrade": {
+      "total": 2,
+      "passed": 2
+    },
+    "addon_vs_new_by_ownership": {
+      "total": 5,
+      "passed": 4
+    },
+    "proactive_expiring_renewal": {
+      "total": 13,
+      "passed": 11
+    },
+    "os_fleet_auto_filtering": {
+      "total": 6,
+      "passed": 5
+    },
+    "license_addon_expansion": {
+      "total": 3,
+      "passed": 2
+    },
+    "exact_product_family": {
+      "total": 3,
+      "passed": 3
+    },
+    "vendor_catalog_browse": {
+      "total": 3,
+      "passed": 3
+    },
+    "product_with_edition": {
+      "total": 3,
+      "passed": 3
+    },
+    "product_with_version": {
+      "total": 2,
+      "passed": 0
+    },
+    "direct_category_search": {
+      "total": 2,
+      "passed": 2
+    },
+    "module_or_plugin_search": {
+      "total": 1,
+      "passed": 1
+    },
+    "engineer_cad_module_ecosystem": {
+      "total": 2,
+      "passed": 0
+    },
+    "exact_vendor_sku": {
+      "total": 2,
+      "passed": 2
+    },
+    "partial_or_obsolete_sku": {
+      "total": 2,
+      "passed": 1
+    },
+    "registry_number_lookup": {
+      "total": 1,
+      "passed": 1
+    },
+    "okpd2_ktru_code_search": {
+      "total": 2,
+      "passed": 0
+    },
+    "mixed_cyrillic_latin_sku": {
+      "total": 3,
+      "passed": 2
+    },
+    "renewal_by_quantity": {
+      "total": 5,
+      "passed": 5
+    },
+    "new_license_by_quantity_and_term": {
+      "total": 1,
+      "passed": 0
+    },
+    "perpetual_vs_subscription": {
+      "total": 3,
+      "passed": 2
+    },
+    "license_upgrade_and_crossgrade": {
+      "total": 3,
+      "passed": 3
+    },
+    "server_and_infrastructure_metrics": {
+      "total": 5,
+      "passed": 3
+    },
+    "concurrent_vs_named_licensing": {
+      "total": 2,
+      "passed": 1
+    },
+    "cal_and_rds_client_access": {
+      "total": 2,
+      "passed": 1
+    },
+    "audience_specific_pricing": {
+      "total": 2,
+      "passed": 2
+    },
+    "vat_and_tax_preference": {
+      "total": 2,
+      "passed": 2
+    },
+    "account_my_licenses_lookup": {
+      "total": 3,
+      "passed": 2
+    },
+    "repeat_order_from_history": {
+      "total": 2,
+      "passed": 1
+    },
+    "explicit_analog_query": {
+      "total": 6,
+      "passed": 5
+    },
+    "departed_vendor_direct_query": {
+      "total": 4,
+      "passed": 4
+    },
+    "restricted_vendor_query": {
+      "total": 1,
+      "passed": 1
+    },
+    "stack_migration_complex": {
+      "total": 2,
+      "passed": 2
+    },
+    "format_preserving_analog": {
+      "total": 2,
+      "passed": 1
+    },
+    "domestic_alternative_by_category": {
+      "total": 1,
+      "passed": 1
+    },
+    "open_source_with_commercial_support": {
+      "total": 2,
+      "passed": 1
+    },
+    "registry_mincifry_filter": {
+      "total": 1,
+      "passed": 1
+    },
+    "fstec_certified_search": {
+      "total": 2,
+      "passed": 2
+    },
+    "fsb_crypto_search": {
+      "total": 2,
+      "passed": 2
+    },
+    "personal_data_152fz": {
+      "total": 1,
+      "passed": 1
+    },
+    "kii_187fz_compliance": {
+      "total": 1,
+      "passed": 1
+    },
+    "procurement_44fz_223fz": {
+      "total": 1,
+      "passed": 1
+    },
+    "state_secret_and_gis": {
+      "total": 1,
+      "passed": 1
+    },
+    "ciso_audit_preparation_bundle": {
+      "total": 1,
+      "passed": 1
+    },
+    "gov_buyer_ban_and_registry_proof": {
+      "total": 1,
+      "passed": 0
+    },
+    "compat_with_russian_os": {
+      "total": 2,
+      "passed": 2
+    },
+    "platform_os_filter": {
+      "total": 2,
+      "passed": 1
+    },
+    "hardware_architecture_compat": {
+      "total": 1,
+      "passed": 1
+    },
+    "deployment_model_filter": {
+      "total": 1,
+      "passed": 1
+    },
+    "ecosystem_integration_search": {
+      "total": 1,
+      "passed": 0
+    },
+    "file_format_search": {
+      "total": 1,
+      "passed": 0
+    },
+    "security_incident_or_threat_task": {
+      "total": 3,
+      "passed": 2
+    },
+    "document_workflow_task": {
+      "total": 3,
+      "passed": 2
+    },
+    "remote_work_and_comms_task": {
+      "total": 2,
+      "passed": 2
+    },
+    "infra_admin_and_devops_task": {
+      "total": 2,
+      "passed": 2
+    },
+    "business_automation_task": {
+      "total": 3,
+      "passed": 3
+    },
+    "engineering_and_creative_task": {
+      "total": 2,
+      "passed": 2
+    },
+    "ceo_smb_plain_language_exploration": {
+      "total": 2,
+      "passed": 1
+    },
+    "role_workplace_bundle": {
+      "total": 4,
+      "passed": 4
+    },
+    "office_size_starter_pack": {
+      "total": 1,
+      "passed": 1
+    },
+    "industry_solution_bundle": {
+      "total": 2,
+      "passed": 2
+    },
+    "multi_item_spec_paste": {
+      "total": 3,
+      "passed": 2
+    },
+    "spec_list_messy_email_paste": {
+      "total": 2,
+      "passed": 2
+    },
+    "tender_tz_fragment_paste": {
+      "total": 2,
+      "passed": 1
+    },
+    "accessory_and_token_bundle": {
+      "total": 1,
+      "passed": 1
+    },
+    "training_and_support_services": {
+      "total": 3,
+      "passed": 1
+    },
+    "price_budget_filter": {
+      "total": 3,
+      "passed": 3
+    },
+    "delivery_format_and_urgency": {
+      "total": 2,
+      "passed": 2
+    },
+    "negation_and_exclusions": {
+      "total": 3,
+      "passed": 3
+    },
+    "price_on_request_enterprise": {
+      "total": 1,
+      "passed": 1
+    },
+    "promo_and_free_trial_intent": {
+      "total": 2,
+      "passed": 2
+    },
+    "accountant_closing_docs_and_urgent_report": {
+      "total": 1,
+      "passed": 1
+    },
+    "budget_estimation_tco_query": {
+      "total": 1,
+      "passed": 1
+    },
+    "keyboard_layout_error": {
+      "total": 10,
+      "passed": 8
+    },
+    "phonetic_translit_and_mixed_script": {
+      "total": 7,
+      "passed": 4
+    },
+    "typos_and_merged_tokens": {
+      "total": 6,
+      "passed": 3
+    },
+    "professional_it_slang_and_abbr": {
+      "total": 8,
+      "passed": 6
+    },
+    "obsolete_and_rebranded_names": {
+      "total": 3,
+      "passed": 1
+    },
+    "ambiguous_homonyms_disambiguation": {
+      "total": 3,
+      "passed": 3
+    },
+    "did_you_mean_soft_correction": {
+      "total": 4,
+      "passed": 4
+    },
+    "prefix_autocomplete_high_intent": {
+      "total": 1,
+      "passed": 0
+    },
+    "suggest_layout_and_typo_live_fix": {
+      "total": 1,
+      "passed": 0
+    },
+    "suggest_instant_entity_jump": {
+      "total": 1,
+      "passed": 1
+    },
+    "related_and_next_step_suggestions": {
+      "total": 1,
+      "passed": 1
+    },
+    "licensing_faq_question": {
+      "total": 5,
+      "passed": 4
+    },
+    "product_vs_product_comparison": {
+      "total": 4,
+      "passed": 4
+    },
+    "compatibility_check_question": {
+      "total": 2,
+      "passed": 2
+    },
+    "legal_and_audit_readiness": {
+      "total": 1,
+      "passed": 1
+    },
+    "license_audit_deficit_check": {
+      "total": 1,
+      "passed": 0
+    },
+    "migration_checklist_answer": {
+      "total": 1,
+      "passed": 0
+    },
+    "post_purchase_activation_support_query": {
+      "total": 1,
+      "passed": 1
+    },
+    "category_page_scoped_search": {
+      "total": 4,
+      "passed": 2
+    },
+    "chain_qty_recalculation": {
+      "total": 1,
+      "passed": 1
+    },
+    "chain_cheaper_or_budget_pivot": {
+      "total": 1,
+      "passed": 1
+    },
+    "chain_os_or_compliance_pivot": {
+      "total": 1,
+      "passed": 0
+    },
+    "chain_term_or_model_pivot": {
+      "total": 1,
+      "passed": 1
+    },
+    "chain_reformulation_after_failure": {
+      "total": 1,
+      "passed": 1
+    },
+    "chain_competitor_alternative_pivot": {
+      "total": 1,
+      "passed": 1
+    },
+    "chain_narrowing_from_broad_to_sku": {
+      "total": 1,
+      "passed": 0
+    },
+    "chain_upsell_companion_addition": {
+      "total": 1,
+      "passed": 0
+    },
+    "honest_no_impossible_requirement": {
+      "total": 2,
+      "passed": 0
+    },
+    "zero_result_smart_recovery": {
+      "total": 2,
+      "passed": 2
+    },
+    "clarify_before_commit_ambiguous_task": {
+      "total": 1,
+      "passed": 1
+    },
+    "procurement_officer_quote_comparison": {
+      "total": 1,
+      "passed": 1
+    },
+    "manager_presale_lead_routing": {
+      "total": 1,
+      "passed": 0
+    },
+    "sysadmin_emergency_outage_or_expiry": {
+      "total": 1,
+      "passed": 1
+    },
+    "too_broad_generic_query": {
+      "total": 3,
+      "passed": 3
+    },
+    "catalog_gap_known_software": {
+      "total": 4,
+      "passed": 4
+    },
+    "hardware_vs_software_boundary": {
+      "total": 3,
+      "passed": 3
+    },
+    "piracy_crack_free_query": {
+      "total": 3,
+      "passed": 3
+    },
+    "completely_offtopic_or_gibberish": {
+      "total": 5,
+      "passed": 5
+    },
+    "signal_hot_enterprise_lead": {
+      "total": 2,
+      "passed": 0
+    },
+    "signal_rising_demand_trend": {
+      "total": 3,
+      "passed": 3
+    },
+    "signal_catalog_gap_monetization": {
+      "total": 3,
+      "passed": 0
+    },
+    "signal_vocabulary_gap_synonym_discovery": {
+      "total": 2,
+      "passed": 0
+    },
+    "signal_card_content_gap_high_bounce": {
+      "total": 1,
+      "passed": 1
+    },
+    "signal_proactive_renewal_wave": {
+      "total": 2,
+      "passed": 1
+    },
+    "signal_margin_safe_merchandising": {
       "total": 3,
       "passed": 3
     }
