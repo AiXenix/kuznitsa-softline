@@ -1,0 +1,658 @@
+# Основные линейки продуктов вендоров хода 5 (catalog: no)
+# Формат: kb/SCHEMA.md (по образцу kb/families/absent_r3.yaml)
+# Цены и параметры лицензирования не выдумываются и оставлены пустыми.
+# Все аналоги (analogs) — действующие семейства из каталога (catalog: yes).
+
+# ============================================================================
+# 1. ЗАРУБЕЖНЫЕ ВЕНДОРЫ (Software AG, SolarWinds, ManageEngine, Pexip, I.R.I.S., Hetman Software)
+# ============================================================================
+
+- id: software_ag_aris
+  vendor: software_ag
+  name: "Software AG ARIS"
+  aliases: ["aris", "арис", "software ag aris", "aris architect", "aris designer", "aris connect", "арис архитектор"]
+  category: diagramming_mindmaps
+  extra_categories: [bpm_rpa_lowcode]
+  summary: "Зарубежная платформа моделирования бизнес-процессов, корпоративной архитектуры и управления изменениями (BPMN, EPC, ArchiMate). Официальные поставки в РФ прекращены; российские замены — Business Studio и SILA Union."
+  editions: []
+  versions: []
+  platforms: [web, windows, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["моделирование бизнес-процессов и архитектуры предприятия", "поиск российской замены software ag aris"]
+  roles: [analyst, manager, director]
+  industries: [enterprise, finance, energy, telecom]
+  formats: []
+  analogs: [business_studio, sila_union]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: solarwinds_orion
+  vendor: solarwinds
+  name: "SolarWinds Orion / Hybrid Cloud Observability (NPM / SAM)"
+  aliases: ["solarwinds orion", "solarwinds npm", "solarwinds sam", "solarwinds observability", "соларвиндс орион", "соларвиндс мониторинг"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Зарубежная платформа мониторинга сетевой и серверной инфраструктуры, приложений и журналов событий (Network Performance Monitor, Server & Application Monitor). Поставки в РФ прекращены."
+  editions: []
+  versions: []
+  platforms: [windows_server, web]
+  compat_ru_os: []
+  deployment: [onprem, hybrid]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["мониторинг сетей и серверов", "поиск российской замены solarwinds orion и npm"]
+  roles: [sysadmin, devops]
+  industries: [it, telecom, finance, enterprise]
+  formats: []
+  analogs: [monq_aiops, saymon_monitoring, klyuch_astrom]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: solarwinds_service_desk
+  vendor: solarwinds
+  name: "SolarWinds Service Desk"
+  aliases: ["solarwinds service desk", "solarwinds itsm", "solarwinds web help desk", "соларвиндс сервис деск"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Зарубежная ITSM-система и служба поддержки SolarWinds для управления заявками, инцидентами и ИТ-активами. Поставки в РФ прекращены."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["автоматизация ит-поддержки и service desk", "поиск российской замены solarwinds service desk"]
+  roles: [sysadmin, it_director]
+  industries: [it, enterprise, finance]
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, inframanager]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: manageengine_servicedesk_plus
+  vendor: manageengine
+  name: "ManageEngine ServiceDesk Plus"
+  aliases: ["servicedesk plus", "manageengine servicedesk plus", "manageengine sdp", "менеджэнджин сервисдеск плюс", "сервисдеск плюс"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Корпоративная ITSM/Helpdesk-система от ManageEngine (Zoho) для управления заявками, инцидентами, CMDB и ИТ-активами."
+  editions: []
+  versions: []
+  platforms: [windows_server, linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["service desk и учёт ит-активов", "поиск замены manageengine servicedesk plus"]
+  roles: [sysadmin, it_director]
+  industries: [it, enterprise, finance, retail]
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, inframanager]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: manageengine_opmanager
+  vendor: manageengine
+  name: "ManageEngine OpManager"
+  aliases: ["opmanager", "manageengine opmanager", "опменеджер", "менеджэнджин опменеджер", "opmanager plus"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Система мониторинга сетей, серверов, виртуальных машин и сетевого оборудования от ManageEngine (Zoho)."
+  editions: []
+  versions: []
+  platforms: [windows_server, linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["мониторинг сетевого оборудования и серверов", "поиск замены manageengine opmanager"]
+  roles: [sysadmin, devops]
+  industries: [it, telecom, enterprise]
+  formats: []
+  analogs: [monq_aiops, saymon_monitoring, klyuch_astrom]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: manageengine_endpoint_central
+  vendor: manageengine
+  name: "ManageEngine Endpoint Central (Desktop Central)"
+  aliases: ["endpoint central", "desktop central", "manageengine endpoint central", "manageengine desktop central", "эндпоинт централ"]
+  category: directory_services
+  extra_categories: [mobile_security_mdm]
+  summary: "UEM-платформа от ManageEngine (Zoho) для централизованного управления рабочими станциями, серверами и мобильными устройствами, установки патчей и инвентаризации ПО."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux, macos, android, ios]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["централизованное управление парком пк и патчами", "поиск российской замены manageengine endpoint central"]
+  roles: [sysadmin, security_officer]
+  industries: [it, enterprise, finance]
+  formats: []
+  analogs: [ald_pro, red_adm, colibri_arm]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: pexip_infinity
+  vendor: pexip
+  name: "Pexip Infinity"
+  aliases: ["pexip infinity", "пексип инфинити", "pexip вкс", "pexip mcu", "пексип сервер"]
+  category: vks_webinars
+  extra_categories: []
+  summary: "Зарубежная корпоративная серверная платформа видеоконференцсвязи (MCU) и шлюз совместимости переговорных комнат SIP/H.323. Официальная деятельность в РФ прекращена."
+  editions: []
+  versions: []
+  platforms: [linux, web, windows, macos, android, ios]
+  compat_ru_os: []
+  deployment: [onprem, cloud, hybrid]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["корпоративный сервер вкс и шлюз переговорных комнат", "поиск российской замены pexip infinity"]
+  roles: [sysadmin, it_director]
+  industries: [enterprise, finance, telecom, gov]
+  formats: []
+  analogs: [trueconf_server, iva_mcu, vinteo_mcu]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: iris_readiris
+  vendor: iris_ocr
+  name: "I.R.I.S. Readiris / IRISPowerscan"
+  aliases: ["readiris", "readiris pdf", "readiris pro", "readiris corporate", "irispowerscan", "ридирис", "ирис ocr", "iris ocr"]
+  category: ocr_capture
+  extra_categories: [pdf_editors]
+  summary: "Зарубежное ПО от I.R.I.S. (Canon Group) для оптического распознавания текста (OCR), потокового ввода документов и конвертации PDF. Официальные поставки в РФ прекращены."
+  editions: []
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["распознавание сканов и потоковый ввод документов ocr", "поиск российской замены readiris и irispowerscan"]
+  roles: [office_worker, accountant, legal]
+  industries: [enterprise, finance, legal]
+  formats: []
+  analogs: [contentreader_pdf, contentcapture, master_pdf_editor]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: hetman_partition_recovery
+  vendor: hetman_software
+  name: "Hetman Partition Recovery / RAID Recovery"
+  aliases: ["hetman partition recovery", "hetman raid recovery", "hetman uneraser", "хетман партишн рекавери", "hetman восстановление данных"]
+  category: data_recovery
+  extra_categories: []
+  summary: "Линейка утилит Hetman Software для восстановления удалённых файлов, повреждённых разделов жёстких дисков, SSD, флеш-накопителей и RAID-массивов."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["восстановление удалённых файлов и разделов диска", "восстановление данных с raid-массивов"]
+  roles: [sysadmin]
+  industries: [it, smb]
+  formats: []
+  analogs: [r_studio, cyber_backup]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+# ============================================================================
+# 2. РОССИЙСКИЕ ВЕНДОРЫ (Okdesk, Сигнал-КОМ, ОКБ САПР, Калуга Астрал, Инфо-Бухгалтер, БЭСТ, Проектная ПРАКТИКА)
+# ============================================================================
+
+- id: okdesk_helpdesk
+  vendor: okdesk
+  name: "Okdesk (Help Desk для сервисных компаний)"
+  aliases: ["okdesk", "окдеск", "okdesk helpdesk", "окдеск сервис деск", "окдеск техподдержка"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Российская специализированная helpdesk-система для сервисных компаний, B2B-поддержки, выездного обслуживания (FSM), учёта договоров SLA и оборудования клиентов."
+  editions: []
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация сервисной службы и выездных инженеров", "helpdesk для b2b-поддержки клиентов"]
+  roles: [sysadmin, manager, it_director]
+  industries: [it, smb, retail, manufacturing]
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, inframanager]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: signal_com_csp
+  vendor: signal_com
+  name: "Signal-COM CSP / УЦ «Нотариус» (Сигнал-КОМ)"
+  aliases: ["signal-com csp", "signal com csp", "сигнал-ком csp", "сигнал ком скзи", "криптопровайдер сигнал-ком", "message-pro", "notary-pro"]
+  category: crypto_skzi
+  extra_categories: [e_signature]
+  summary: "Российский сертифицированный криптопровайдер (СКЗИ) и линейка продуктов для электронной подписи и удостоверяющих центров компании «Сигнал-КОМ»."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: [fsb]
+  use_cases: ["криптографическая защита информации и гост-шифрование", "электронная подпись и инфраструктура уц"]
+  roles: [security_officer, sysadmin]
+  industries: [gov, finance, enterprise]
+  formats: []
+  analogs: [cryptopro_csp, vipnet_client]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: okb_sapr_akkord
+  vendor: okb_sapr
+  name: "СЗИ «Аккорд» (АПМДЗ / СЗИ от НСД, ОКБ САПР)"
+  aliases: ["аккорд сзи", "аккорд амдз", "аккорд-win", "аккорд-х", "сзи аккорд", "апмдз аккорд", "окб сапр аккорд"]
+  category: nsd_access_control
+  extra_categories: []
+  summary: "Российское семейство программных и программно-аппаратных средств защиты информации от несанкционированного доступа (СЗИ от НСД) и модулей доверенной загрузки (АПМДЗ) «Аккорд» от ОКБ САПР."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: [fstec]
+  use_cases: ["защита рабочих станций и серверов от нсд", "доверенная загрузка пк для гис, кии и гостайны"]
+  roles: [security_officer, sysadmin]
+  industries: [gov, defense, energy, finance]
+  formats: []
+  analogs: [secret_net_studio, dallas_lock, sobol_mdz]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: okb_sapr_shipka
+  vendor: okb_sapr
+  name: "Электронный идентификатор «Шипка» (ОКБ САПР)"
+  aliases: ["шипка", "токен шипка", "shipka", "шипка окб сапр", "шипка-lite", "шипка-1.9"]
+  category: tokens_pki
+  extra_categories: [crypto_skzi]
+  summary: "Аппаратные USB-идентификаторы и токены «Шипка» от ОКБ САПР для строгой аутентификации, хранения ключей ЭП и работы с сертифицированными СКЗИ."
+  editions: []
+  versions: []
+  platforms: [windows, linux]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: [fsb]
+  use_cases: ["аппаратный токен для аутентификации и хранения ключей эп", "работа в связке со сзи аккорд"]
+  roles: [security_officer, sysadmin]
+  industries: [gov, finance, enterprise]
+  formats: []
+  analogs: [rutoken_ecp, aladdin_jacarta, esmart_token]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: astral_otchet
+  vendor: kaluga_astral
+  name: "Астрал Отчёт (Калуга Астрал)"
+  aliases: ["астрал отчет", "астрал отчёт", "астрал отчет 5.0", "astral otchet", "калуга астрал отчетность"]
+  category: tax_reporting_edo
+  extra_categories: []
+  summary: "Российский сервис сдачи электронной отчётности в ФНС, СФР, Росстат и другие контролирующие органы от компании «Калуга Астрал»."
+  editions: []
+  versions: []
+  platforms: [web, windows]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["сдача электронной налоговой и бухгалтерской отчётности по ткс", "отчётность для ип, ооо и уполномоченных бухгалтерий"]
+  roles: [accountant, director]
+  industries: [smb, mid, enterprise, finance]
+  formats: []
+  analogs: [kontur_extern, sbis_saby, taxcom_sprinter]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: astral_edo
+  vendor: kaluga_astral
+  name: "Астрал.ЭДО / Доки (Калуга Астрал)"
+  aliases: ["астрал эдо", "астрал.эдо", "астрал доки", "astral edo", "калуга астрал эдо"]
+  category: tax_reporting_edo
+  extra_categories: []
+  summary: "Российский сервис юридически значимого электронного документооборота (ЮЗЭДО) с контрагентами от оператора ЭДО «Калуга Астрал»."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["обмен упд, счетами-фактурами и договорами с контрагентами по эдо", "работа с маркировкой честный знак"]
+  roles: [accountant, manager, legal]
+  industries: [smb, retail, logistics, manufacturing]
+  formats: []
+  analogs: [kontur_diadoc, sbis_saby, onec_edo]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: astral_ep
+  vendor: kaluga_astral
+  name: "Астрал-ЭТ / Электронная подпись (Калуга Астрал)"
+  aliases: ["астрал эт", "астрал-эт", "астрал эп", "эцп калуга астрал", "уц калуга астрал"]
+  category: e_signature
+  extra_categories: []
+  summary: "Решения удостоверяющего центра «Калуга Астрал» для выпуска и применения квалифицированной электронной подписи (КЭП) в торгах, отчётности и ЭДО."
+  editions: []
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["электронная подпись для электронных торгов и эдо", "подписание документов в госсистемах"]
+  roles: [accountant, manager, director]
+  industries: [smb, mid, gov]
+  formats: []
+  analogs: [cryptoarm_gost, cryptopro_dss]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: info_buhgalter_10
+  vendor: info_buhgalter
+  name: "Инфо-Бухгалтер 10"
+  aliases: ["инфо-бухгалтер 10", "инфо бухгалтер 10", "инфо-бухгалтер 8", "инфобухгалтер", "info-buhgalter"]
+  category: accounting
+  extra_categories: [payroll_hr_1c]
+  summary: "Российская программа автоматизации бухгалтерского, налогового, кадрового и зарплатного учёта для коммерческих предприятий, ИП, ТСЖ и бюджетных учреждений."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["бухгалтерский и налоговый учёт в малом и среднем бизнесе", "расчёт заработной платы и формирование отчётности"]
+  roles: [accountant]
+  industries: [smb, mid, finance, gov]
+  formats: []
+  analogs: [onec_accounting, onec_zup]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: best_5
+  vendor: best_company
+  name: "БЭСТ-5 (бухгалтерия и управление предприятием)"
+  aliases: ["бэст-5", "бэст 5", "бэст офис", "бэст-офис", "бэст бухгалтерия", "бэст-5 аптека"]
+  category: accounting
+  extra_categories: [erp_systems, trade_warehouse]
+  summary: "Российская комплексная учётная и ERP-система «БЭСТ-5» (и «БЭСТ-Офис») для бухгалтерского учёта, управления торговлей, складом, производством и отраслевого учёта (включая аптечные сети)."
+  editions: []
+  versions: []
+  platforms: [windows, windows_server]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["бухгалтерский и складской учёт на предприятии", "автоматизация розничной торговли и аптек"]
+  roles: [accountant, manager]
+  industries: [smb, retail, manufacturing, healthcare]
+  formats: []
+  analogs: [onec_accounting, onec_erp, onec_trade]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: pm_foresight
+  vendor: project_practice
+  name: "ПМ Форсайт (Проектная ПРАКТИКА)"
+  aliases: ["пм форсайт", "pm форсайт", "pm foresight", "исуп пм форсайт", "проектная практика пм форсайт"]
+  category: project_planning
+  extra_categories: []
+  summary: "Российская информационная система управления проектами, программами и портфелями (ИСУП) от ГК «Проектная ПРАКТИКА» — импортонезависимая замена Microsoft Project Server и Oracle Primavera."
+  editions: []
+  versions: []
+  platforms: [web, linux, windows_server]
+  compat_ru_os: [astra, alt, redos]
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["корпоративное управление проектами и портфелями исуп", "импортозамещение microsoft project server"]
+  roles: [manager, director]
+  industries: [enterprise, gov, construction, energy]
+  formats: []
+  analogs: [advanta_pm, spider_project]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium

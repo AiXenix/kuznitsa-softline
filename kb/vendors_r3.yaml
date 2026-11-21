@@ -1,4 +1,4 @@
-# Дополнительные вендоры (раунд 3) для продуктов, отсутствующих в каталоге (kb/families/absent_r3.yaml)
+# Дополнительные вендоры (раунд 3) для продуктов, отсутствующих в каталоге (kb/families/absent_r3.yaml, kb/families/vendors_r3.yaml)
 # Формат: kb/SCHEMA.md (аналогично kb/vendors.yaml)
 # Все ссылки в categories соответствуют листовым id из kb/categories.yaml.
 
@@ -481,3 +481,141 @@
   aliases: ["живосайт", "дживосайт", "дживо", "jivosite", "jivo"]
   categories: [crm_systems]
   notes: "Российский бизнес-мессенджер и онлайн-чат для сайта (экосистема Сбера); отсутствует в каталоге магазина."
+
+# ============================================================================
+# 6. КОРПОРАТИВНЫЕ ВЕНДОРЫ B2B — ЗАРУБЕЖНЫЕ (ХОД 5)
+# ============================================================================
+
+- id: software_ag
+  name: "Software AG"
+  name_ru: "Софтвер АГ (ARIS)"
+  country: DE
+  origin: foreign
+  market_status: left
+  aliases: ["software ag", "softwareag", "софтвер аг", "софтвер эйджи", "софтвэр аг", "aris", "арис"]
+  categories: [diagramming_mindmaps, bpm_rpa_lowcode]
+  notes: "Немецкий разработчик платформы моделирования бизнес-процессов и архитектуры предприятия ARIS; официальные поставки в РФ прекращены."
+
+- id: solarwinds
+  name: "SolarWinds"
+  name_ru: "СоларВиндс"
+  country: US
+  origin: foreign
+  market_status: left
+  aliases: ["solarwinds", "solar winds", "соларвиндс", "соларвиндз", "солар виндс", "solarwinds orion"]
+  categories: [monitoring_apm, itsm_service_desk]
+  notes: "Американский разработчик систем мониторинга ИТ-инфраструктуры, сетей и Service Desk (Orion / Observability, NPM, SAM); официальные поставки в РФ прекращены."
+
+- id: manageengine
+  name: "ManageEngine"
+  name_ru: "МенеджЭнджин (Zoho)"
+  country: IN
+  origin: foreign
+  market_status: restricted
+  aliases: ["manageengine", "manage engine", "менеджэнджин", "менедж энджин", "мэнеджэнджин", "zoho manageengine"]
+  categories: [itsm_service_desk, monitoring_apm, directory_services]
+  notes: "Подразделение корпоративного ИТ-управления Zoho (ServiceDesk Plus, OpManager, Endpoint Central, ADManager Plus); официальный статус прямых поставок и поддержки в РФ требует уточнения."
+
+- id: pexip
+  name: "Pexip"
+  name_ru: "Пексип"
+  country: NO
+  origin: foreign
+  market_status: left
+  aliases: ["pexip", "пексип", "пексип вкс", "pexip infinity"]
+  categories: [vks_webinars]
+  notes: "Норвежский разработчик корпоративной платформы видеоконференцсвязи Pexip Infinity и шлюзов SIP/H.323; официальная деятельность в РФ прекращена."
+
+- id: iris_ocr
+  name: "I.R.I.S."
+  name_ru: "ИРИС (I.R.I.S. / Canon)"
+  country: BE
+  origin: foreign
+  market_status: left
+  aliases: ["iris", "i.r.i.s.", "i.r.i.s", "ирис", "айрис", "iris canon", "readiris", "ридирис"]
+  categories: [ocr_capture, pdf_editors]
+  notes: "Бельгийский разработчик ПО распознавания текста (OCR), потокового ввода и работы с PDF (Readiris, IRISPowerscan), входит в группу Canon; официальные поставки в РФ прекращены."
+
+- id: hetman_software
+  name: "Hetman Software"
+  name_ru: "Хетман Софтвер"
+  country: ""
+  origin: foreign
+  market_status: restricted
+  aliases: ["hetman", "hetman software", "хетман", "хетман софтвер", "гетман софт", "hetman recovery"]
+  categories: [data_recovery]
+  notes: "Разработчик утилит восстановления удалённых файлов, разделов и RAID-массивов (Hetman Partition Recovery, Hetman RAID Recovery); юрисдикция и статус корпоративных поставок в РФ требуют уточнения."
+
+# ============================================================================
+# 7. КОРПОРАТИВНЫЕ ВЕНДОРЫ B2B — РОССИЙСКИЕ (ХОД 5)
+# ============================================================================
+
+- id: okdesk
+  name: "Okdesk"
+  name_ru: "Окдеск"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["okdesk", "окдеск", "ок деск", "ok desk", "окдеск хелпдеск"]
+  categories: [itsm_service_desk]
+  notes: "Российский разработчик специализированной helpdesk-системы Okdesk для сервисных компаний, выездного обслуживания и технической поддержки."
+
+- id: signal_com
+  name: "Signal-COM"
+  name_ru: "Сигнал-КОМ"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["сигнал-ком", "сигнал ком", "сигналком", "signal-com", "signal com", "signalcom"]
+  categories: [crypto_skzi, e_signature]
+  notes: "Российский разработчик сертифицированных ФСБ средств криптографической защиты информации (СКЗИ), удостоверяющих центров и решений ЭП (Signal-COM CSP, Notary-PRO, Message-PRO)."
+
+- id: okb_sapr
+  name: "OKB SAPR"
+  name_ru: "ОКБ САПР"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["окб сапр", "окбсапр", "okb sapr", "okbsapr", "аккорд окб сапр", "шипка окб сапр"]
+  categories: [nsd_access_control, tokens_pki]
+  notes: "Российский разработчик СЗИ от НСД, модулей доверенной загрузки (семейство «Аккорд») и аппаратных идентификаторов/СКЗИ («Шипка»)."
+
+- id: kaluga_astral
+  name: "Kaluga Astral"
+  name_ru: "Калуга Астрал"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["калуга астрал", "калугаастрал", "астрал", "kaluga astral", "astral", "астрал отчет", "астрал эдо"]
+  categories: [tax_reporting_edo, e_signature]
+  notes: "Российский разработчик сервисов электронной отчётности, ЭДО и удостоверяющего центра (Астрал Отчёт, Астрал.ЭДО, Астрал-ЭТ)."
+
+- id: info_buhgalter
+  name: "Info-Buhgalter"
+  name_ru: "Инфо-Бухгалтер"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["инфо-бухгалтер", "инфо бухгалтер", "инфобухгалтер", "info-buhgalter", "info buhgalter", "infobuhgalter", "инфобух"]
+  categories: [accounting, payroll_hr_1c]
+  notes: "Российский разработчик программ бухгалтерского, налогового и зарплатного учёта «Инфо-Бухгалтер» для коммерческих организаций, ИП и бюджетных учреждений."
+
+- id: best_company
+  name: "BEST"
+  name_ru: "БЭСТ (Компания БЭСТ)"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["бэст", "компания бэст", "бэст-5", "бэст 5", "бэст бухгалтерия", "best-5", "best accounting"]
+  categories: [accounting, erp_systems, trade_warehouse]
+  notes: "Российский разработчик учётных и ERP-систем семейства «БЭСТ» (БЭСТ-5, БЭСТ-Офис) для бухгалтерии, торговли, производства и аптечных сетей."
+
+- id: project_practice
+  name: "Project Practice"
+  name_ru: "Проектная ПРАКТИКА"
+  country: RU
+  origin: russian
+  market_status: active
+  aliases: ["проектная практика", "гк проектная практика", "project practice", "pm practice", "пм форсайт", "pm foresight"]
+  categories: [project_planning]
+  notes: "Российская группа компаний, разработчик ИСУП «ПМ Форсайт» и комплексных систем управления проектами, программами и портфелями."
