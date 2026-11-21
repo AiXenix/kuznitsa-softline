@@ -106,7 +106,7 @@ export function settings(p,params){
     loadBox(section(p,'Журнал изменений'),async box=>{
       const r=await adminApi('priorities/audit'),items=rows(r.items || r);
       if(!items.length)line(box,'Изменений пока нет.');
-      else table(box,items,[['Когда','ts',(v,r)=>date(v ?? r.created_at)],['Автор','author'],['Правило','title',(v,r)=>v || r.after?.title || r.before?.title || r.rule_id],['Изменение','action',(v,r)=>r.note || ({create:'Создание',update:'Изменение',delete:'Удаление',toggle:'Переключение'})[r.operation || v] || r.operation || v],['Подробности','after',(_,r)=>{
+      else table(box,items,[['Когда','ts',(v,r)=>date(v ?? r.created_at)],['Автор','author'],['Правило','title',(v,r)=>v || r.after?.title || r.before?.title || r.rule_id],['Изменение','action',(v,r)=>r.note || ({create:'Создание',update:'Изменение',delete:'Удаление',toggle:'Переключение',import:'Импорт'})[r.operation || v] || r.operation || v],['Подробности','after',(_,r)=>{
         const cell=document.createElement('div');
         const d=details(cell,'Изменённые поля'), keys=new Set([...Object.keys(r.before || {}),...Object.keys(r.after || {})]);
         for(const key of keys){
