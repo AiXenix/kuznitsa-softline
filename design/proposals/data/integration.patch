@@ -1,0 +1,72 @@
+--- a/kuznitsa/cli.py
++++ b/kuznitsa/cli.py
+@@ -38,9 +38,14 @@
+     if analytics is not None:
+         analytics.register(sub)
++    ingest = optional_module("kuznitsa.ingest.cli")
++    if ingest is not None:
++        ingest.register(sub)
+     args=parser.parse_args(argv)
++    if ingest is not None and ingest.run(args, cfg):
++        return 0
+     if analytics is not None and analytics.run(args, cfg):
+         return 0
+     if args.cmd in ("kb-check","build-mock"):
+-        kb=load(cfg.kb)
++        kb=load(cfg.kb, cfg.data if args.cmd=="kb-check" else None)
+         if args.cmd=="kb-check":
+             show(kb.report())
+--- a/kuznitsa/engine.py
++++ b/kuznitsa/engine.py
+@@ -113,5 +113,5 @@
+     @classmethod
+     def _open_snapshot(cls,cfg,clock,llm,journal,controls):
+-        kb = load(cfg.kb)
++        kb = load(cfg.kb, cfg.data)
+         extra = cfg.data/"mock_families.jsonl"
+         if extra.exists():
+--- a/kuznitsa/kb/loader.py
++++ b/kuznitsa/kb/loader.py
+@@ -20,13 +20,16 @@
+     dangling: list = field(default_factory=list)
+ 
++    warnings: list = field(default_factory=list)
++    auto: dict = field(default_factory=lambda: dict(vendors=0, categories=0, families=0))
++
+     def report(self):
+         return dict(counts={g:len(r) for g,r in self.rows.items()}, errors=self.errors,
+-                    syntax=self.syntax, dangling=self.dangling)
++                    syntax=self.syntax, dangling=self.dangling, warnings=self.warnings, auto=self.auto)
+ 
+ 
+-def load(root: Path):
++def load(root: Path, data: Path | None = None):
+     kb = Knowledge()
+     for group in GROUPS:
+-        paths = sorted((root/group).glob("*.yaml")) if group=="families" else [root/(group+".yaml")]
++        paths = sorted((root/group).glob("*.yaml")) if group=="families" else [root/(group+".yaml"), *sorted(root.glob(group+"_*.yaml"))]
+         for p in paths:
+             if not p.exists():
+@@ -64,9 +67,12 @@
+                     validate(group,row)
+                     if ident in kb.rows[group]:
+-                        kb.errors.append(f"{p.name} [{i+1}]: повтор {ident}")
++                        kb.warnings.append(f"{p.name} [{i+1}]: повтор {ident}")
+                         continue
+                     kb.rows[group][ident] = row
+                 except (KeyError,TypeError,ValueError,AttributeError) as exc:
+                     kb.errors.append(f"{p.name} [{i+1}]: {exc}")
++    if data is not None:
++        from kuznitsa.ingest.auto import merge_auto
++        kb.auto = merge_auto(kb, data)
+     from .titles import apply_titles
+     apply_titles(kb,root/"overrides/families.yaml")
+--- a/kuznitsa/app.py
++++ b/kuznitsa/app.py
+@@ -75,5 +75,5 @@
+     def health():
+         c=core().catalog
+-        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb=core().kb.report()["counts"],llm=dict(enabled=core().llm.enabled))
++        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb={**core().kb.report()["counts"], "auto": core().kb.auto},llm=dict(enabled=core().llm.enabled))
+     @app.get("/api/meta")
+     def meta():

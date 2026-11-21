@@ -1,0 +1,314 @@
+{
+  "KL-7FEF5ABC9591": {
+    "family": "kaspersky_kesb",
+    "vendor": "kaspersky",
+    "edition": "standard",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 25,
+      "qty_max": 49,
+      "audience": "business"
+    }
+  },
+  "KL-269DAEC9FD78": {
+    "family": "kaspersky_kesb",
+    "vendor": "kaspersky",
+    "edition": "total",
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 500,
+      "qty_max": 999,
+      "audience": "edu"
+    }
+  },
+  "KL-01DDF819311A": {
+    "family": "kaspersky_kesb",
+    "vendor": "kaspersky",
+    "edition": "standard",
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 250,
+      "qty_max": 499,
+      "audience": "business"
+    }
+  },
+  "FQC-92850693D362": {
+    "family": "windows_server",
+    "vendor": "microsoft",
+    "edition": "standard",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "core",
+      "pack": 16,
+      "audience": "business"
+    }
+  },
+  "FQC-882C5DFB7A0A": {
+    "family": "windows_server",
+    "vendor": "microsoft",
+    "edition": "datacenter",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "core",
+      "pack": 16,
+      "audience": "business"
+    }
+  },
+  "FQC-2E16ADFC76CE": {
+    "family": "windows_server",
+    "vendor": "microsoft",
+    "edition": "datacenter",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "core",
+      "pack": 2,
+      "audience": "business"
+    }
+  },
+  "AX-AE11B1352430": {
+    "family": "astra_linux_se",
+    "vendor": "astra_group",
+    "edition": "orel",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "server",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "AX-86C4F3130090": {
+    "family": "astra_linux_se",
+    "vendor": "astra_group",
+    "edition": "orel",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "server",
+      "pack": 1,
+      "audience": "med"
+    }
+  },
+  "AX-3D0F94012FCC": {
+    "family": "astra_linux_se",
+    "vendor": "astra_group",
+    "edition": "server",
+    "lic": {
+      "action": "renewal",
+      "model": "perpetual",
+      "metric": "server",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "AX-B712948AA059": {
+    "family": "myoffice_standard",
+    "vendor": "myoffice",
+    "edition": "standard_2",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "user",
+      "pack": 1,
+      "audience": "gov"
+    }
+  },
+  "AX-86D92BCBF36E": {
+    "family": "myoffice_standard",
+    "vendor": "myoffice",
+    "edition": "standard_2",
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 100,
+      "qty_max": 499,
+      "audience": "business"
+    }
+  },
+  "AX-BC1135FCB9EA": {
+    "family": "myoffice_standard",
+    "vendor": "myoffice",
+    "edition": "standard_2",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 1,
+      "qty_max": 24,
+      "audience": "business"
+    }
+  },
+  "DWL-8B1B76BD2384": {
+    "family": "drweb_enterprise_security_suite",
+    "vendor": "drweb",
+    "edition": "mail",
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "server",
+      "qty_min": 10,
+      "qty_max": 24,
+      "audience": "business"
+    }
+  },
+  "DWL-CC7220F149A4": {
+    "family": "drweb_enterprise_security_suite",
+    "vendor": "drweb",
+    "edition": "complex",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 50,
+      "qty_max": 99,
+      "audience": "edu"
+    }
+  },
+  "DWL-88548BACBCDF": {
+    "family": "drweb_enterprise_security_suite",
+    "vendor": "drweb",
+    "edition": "complex",
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "qty_min": 10,
+      "qty_max": 24,
+      "audience": "edu"
+    }
+  },
+  "KL-EF4C1862F694": {
+    "family": "kaspersky_ksos",
+    "vendor": "kaspersky",
+    "edition": null,
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "pack": 20,
+      "audience": "business"
+    }
+  },
+  "KL-34F235424412": {
+    "family": "kaspersky_ksos",
+    "vendor": "kaspersky",
+    "edition": null,
+    "lic": {
+      "action": "renewal",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "pack": 10,
+      "audience": "business"
+    }
+  },
+  "KL-0C63CCEFCB2D": {
+    "family": "kaspersky_ksos",
+    "vendor": "kaspersky",
+    "edition": null,
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "device",
+      "pack": 25,
+      "audience": "business"
+    }
+  },
+  "FQC-237D2D0783EB": {
+    "family": "windows_11",
+    "vendor": "microsoft",
+    "edition": "pro",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "device",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "FQC-134CC72A828D": {
+    "family": "windows_11",
+    "vendor": "microsoft",
+    "edition": "home",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "device",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "FQC-D244FB037FB3": {
+    "family": "windows_11",
+    "vendor": "microsoft",
+    "edition": "home",
+    "lic": {
+      "action": "new",
+      "model": "perpetual",
+      "metric": "device",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "AX-E9EC64B627F4": {
+    "family": "onec_accounting",
+    "vendor": "onec",
+    "edition": "corp",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "company",
+      "pack": 1,
+      "audience": "business"
+    }
+  },
+  "AX-5FBF006C0036": {
+    "family": "onec_accounting",
+    "vendor": "onec",
+    "edition": "corp",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "company",
+      "pack": 10,
+      "audience": "business"
+    }
+  },
+  "AX-4710671CCB42": {
+    "family": "onec_accounting",
+    "vendor": "onec",
+    "edition": "base",
+    "lic": {
+      "action": "new",
+      "model": "subscription",
+      "term_months": 12,
+      "metric": "company",
+      "pack": 5,
+      "audience": "business"
+    }
+  }
+}
