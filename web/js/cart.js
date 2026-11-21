@@ -30,10 +30,24 @@ export function cart() {
       } catch(err){ordering=false;display();stateBox(body,err.message,'error');}
     },'primary');
   }
-  basket.onclick=()=>{display();drawer.showModal();};
+  basket.onclick=()=>{$('drawerTitle').textContent='Корзина';display();drawer.showModal();};
   return (r,block,session)=>({
     click:(c,action)=>record(r,'click',c,block,session,action).catch(err=>{$('notice').textContent=err.message;}),
     act:async(type,c,b)=>{
+      if(type==='lead'){
+        $('drawerTitle').textContent='Заявка менеджеру';body.replaceChildren();
+        line(body,c.title || r.query?.raw,null,'h3');line(body,c.offer?.name);
+        const form=add(body,'form'), label=add(form,'label','Количество'), quantity=add(label,'input');
+        quantity.type='number';quantity.min=1;quantity.step=1;quantity.value=r.understood?.qty?.value ?? c.calc?.qty ?? '';
+        const submit=add(form,'button','Отправить заявку','primary');
+        form.onsubmit=async e=>{
+          e.preventDefault();submit.disabled=true;
+          try{await record(r,'lead',{...c,calc:{...c.calc,qty:quantity.value?Number(quantity.value):undefined}},block,session);
+            body.replaceChildren();stateBox(body,'Заявка на поставку сохранена.');b.textContent='Заявка принята';}
+          catch(err){submit.disabled=false;line(body,err.message,'error');}
+        };
+        drawer.showModal();return;
+      }
       b.disabled=true;
       try {
         await record(r,type,c,block,session);

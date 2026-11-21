@@ -1,4 +1,5 @@
-import {add,line,details,rows} from '../dom.js';
+import {caption} from '../labels.js';
+import {moneyRate,add,line,details,rows} from '../dom.js';
 import {adminApi,loadBox,section,fmt,pct,rub,shortRub,ratio,valid,tile,table,empty,field,taskButton} from './common.js';
 import {bar,trend} from './charts.js';
 
@@ -56,19 +57,21 @@ function weights(parent,params){
 function pair(p,item){
   if(!valid(item.before)||!valid(item.after))return;
   const card=add(p,'article',null,'pair');
-  add(card,'h3',item.label || item.key);
+  add(card,'h3',caption('',item.key,item.label));
   const rate=['rate','ratio','fraction'].includes(item.unit), percent=rate || ['percent','%','pct'].includes(item.unit);
-  const scale=rate?100:1,unit=percent?' %':item.unit==='rub'?' ₽':'';
+  const scale=rate?100:1,unit=percent?' %':item.unit==='rub'?' ₽':item.unit==='ms'?' мс':'';
   const delta=(item.after-item.before)*scale;
+  const formatValue=n=>item.unit==='rub'?rub(n):fmt(n*scale)+unit;
   const low=['lower','less','down','min'].includes(item.better);
   const high=['higher','more','up','max'].includes(item.better);
-  add(card,'strong',(delta>0?'+':'')+fmt(delta)+(percent?' п. п.':unit), 'delta'+((low && delta>0)||(high && delta<0)?' worse':''));
+  add(card,'strong',(delta>0?'+':'')+(item.unit==='rub'?rub(delta):fmt(delta)+(percent?' п. п.':unit)), 'delta'+((low && delta>0)||(high && delta<0)?' worse':''));
 
   const max=percent?100/scale:Math.max(item.before,item.after);
-  for(const [name,n,color] of [['Прежний поиск',item.before,'#869895'],['Кузница',item.after,'#087969']]){
-    const row=add(card,'div',null,'barLabel');add(row,'span',name);add(row,'b',fmt(n*scale)+unit);
+  for(const [name,n,color] of [['Обычный поиск по словам',item.before,'#869895'],['Кузница',item.after,'#087969']]){
+    const row=add(card,'div',null,'barLabel');add(row,'span',name);add(row,'b',formatValue(n));
     bar(card,n,max,color);
   }
+  line(card,[valid(item.n_before)?'До · '+fmt(item.n_before):'',valid(item.n_after)?'после · '+fmt(item.n_after):'',item.note].filter(Boolean).join(' / '),'muted','small');
 }
 async function replay(p,id){
   if(!id)return {};
@@ -78,7 +81,7 @@ async function replay(p,id){
 export function head(p,params=new URLSearchParams()){
   loadBox(section(p,'Как изменился поиск'),async box=>{
     const k=await adminApi('kpi'), c=k.comparison || {};
-    const r=await replay(box,c.run_id);
+    const r=rows(k.pairs).length?{}:await replay(box,c.run_id);
     const count=r.frequency ?? c.searches;
     const pairs=rows(k.pairs).length?k.pairs:[
       {label:'Пустая выдача',unit:'rate',better:'lower',before:ratio(r.before_zero ?? c.before_zero,count),after:ratio(r.after_zero ?? c.after_zero,count)},
@@ -102,7 +105,12 @@ export function head(p,params=new URLSearchParams()){
   loadBox(section(p,'Поиски и заказы'),async box=>{
     const k=await adminApi('kpi'),grid=add(box,'div',null,'adminTiles');
     for(const t of rows(k.tiles))tile(grid,t.label,t.unit==='₽'?shortRub(t.value):fmt(t.value)+' '+(t.unit || ''));
-    const charts=add(box,'div',null,'adminSplit');trend(charts,k.slices?.day,'searches','Поиски по дням');trend(charts,k.slices?.day,'zero_rate','Доля пустых выдач');
+  });
+  loadBox(section(p,'Динамика истории магазина'),async box=>{
+    const days=rows((await adminApi('ui/history-days')).items);
+    const charts=add(box,'div',null,'adminSplit');
+    trend(charts,days,'searches','Поиски по дням');trend(charts,days,'zero_rate','Доля пустых выдач');
+    line(box,'Линия — история магазина. Пунктир — последний день наблюдений.','muted');
   });
   weights(p,params);
   const economics=section(p,'Экономика ИИ');economics.dataset.section='cost';
@@ -113,16 +121,25 @@ export function head(p,params=new URLSearchParams()){
     const body=add(box,'div');
     function draw(){
       body.replaceChildren();
-      line(body,valid(data.usd_rub)?'Курс · '+rub(data.usd_rub)+' за доллар':'','muted');
-      if(!rows(data.items).some(i=>i.rub_per_query>0) && !data.cache_rate){line(body,'Ожидаются данные. Выполните поиск с обращением к модели.');return;}
+      if(valid(data.sent) || valid(data.cached))line(body,[valid(data.sent)?'Внешние вызовы · '+fmt(data.sent):'',valid(data.cached)?'Из кэша · '+fmt(data.cached):''].filter(Boolean).join(' / '));
+      if(!rows(data.items).some(i=>i.rub_per_query>0) && !data.cache_rate && !data.cached && !data.sent){line(body,'Ожидаются данные. Выполните поиск с обращением к модели.');return;}
       line(body,'Из кэша · '+pct(data.cache_rate));
-      table(body,data.items,[['Режим','mode',v=>({smart_uncached:'Умный',smart_cached:'Умный с кэшем',fast:'Быстрый'})[v]||v],['За запрос','rub_per_query',v=>fmt(v,8)+' ₽'],['Прогноз за месяц','monthly_rub',rub]]);
-      line(body,data.formula,'muted');
+      const smart=rows(data.items).filter(i=>['smart','smart_cached','smart_uncached'].includes(i.mode));
+      const combined=smart.find(i=>i.mode==='smart');
+      const searches=smart.reduce((n,i)=>n+(i.requests || 0),0);
+      const priceForVolume=i=>i.rub_per_100000 ?? (valid(i.rub_per_query)?i.rub_per_query*100000:null);
+      const volume=combined?priceForVolume(combined):searches && smart.every(i=>!i.requests || valid(priceForVolume(i)))?
+        smart.reduce((n,i)=>n+(i.requests || 0)*(priceForVolume(i) || 0),0)/searches:null;
+      if(valid(volume))line(body,'100 000 умных запросов ≈ '+rub(volume),'roleLead');
+      if(valid(data.monthly_rub))line(body,'Прогноз при текущем сочетании режимов · '+rub(data.monthly_rub)+' в месяц');
+      table(body,data.items,[['Режим','mode',v=>caption('mode',v)],['За запрос','rub_per_query',(v,r)=>moneyRate(v,r.rub_per_1000)],['Прогноз за месяц','monthly_rub',rub]]);
+      line(body,data.formula?.replace(/;? курс указан в usd_rub\.?/i,'.'),'muted');
     }
     draw();taskButton(form,'Пересчитать',async()=>{if(!daily.value || !daily.reportValidity())throw Error('Введите целое число запросов.');data=await adminApi('cost?daily='+encodeURIComponent(daily.value));headParam('daily',daily.value);draw();},null,false);
   });
   loadBox(section(p,'Качество на проверочном наборе'),async box=>{
-    const r=await adminApi('eval');line(box,r.file,'muted');
-    table(box,Object.entries(r.scenarios || {}).map(([key,value])=>({key,...value})),[['Сценарий','key',v=>v==='unknown'?'Без разметки сценария':v],['Пройдено','passed'],['Проверок','total']]);
+    const r=await adminApi('eval');const count=r.total ?? (Array.isArray(r.items)?r.items.length:null);
+    if(valid(count))line(box,'Проверочный набор · '+fmt(count)+' '+({one:'запрос',few:'запроса',many:'запросов',other:'запроса'}[new Intl.PluralRules('ru').select(count)]),'muted');
+    table(box,Object.entries(r.scenarios || {}).map(([key,value])=>({key,...value})),[['Сценарий','key',v=>v==='unknown'?'Без разметки сценария':caption('intent',v)],['Пройдено','passed'],['Проверок','total']]);
   });
 }

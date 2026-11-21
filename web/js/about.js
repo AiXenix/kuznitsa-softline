@@ -1,4 +1,5 @@
-import {add,line,rows,num,money,link} from './dom.js';
+import {caption,setMeta} from './labels.js';
+import {moneyRate,add,line,rows,num,link} from './dom.js';
 import {api} from './api.js';
 const pipeline=[
  ['Нормализация','Приводит строку к форме для поиска.'],['Точный артикул','Проверяет код поставщика.'],['Проверка написания','Исправляет раскладку и опечатки.'],
@@ -21,18 +22,35 @@ export async function about(main){
   const rank=section('Порядок выдачи');line(rank,'Поиск распределяет кандидатов по четырём уровням релевантности. Популярность, маржа и профиль влияют на порядок внутри уровня. Карточки верхнего уровня сохраняют приоритет.');
   const tech=section('Модели и библиотеки'), t=add(tech,'table');
   const h=add(t,'tr');['Название','Зачем','Лицензия'].forEach(v=>add(h,'th',v));
-  for(const row of [['FastAPI, Uvicorn','Веб-сервис','MIT, BSD'],['pydantic','Схемы','MIT'],['NumPy, SciPy','Векторы','BSD'],['scikit-learn','Текстовые признаки','BSD'],['RapidFuzz','Близкие написания','MIT'],['pymorphy3','Морфология русского языка','MIT'],['fastembed, ONNX Runtime','Локальная модель','Apache 2.0, MIT'],['paraphrase-multilingual-MiniLM-L12-v2','Смысловая близость','Apache 2.0'],['SQLite','Журнал','Общественное достояние'],['Jev 1.13 через OpenRouter','Категоризатор','Внешний платный сервис']]){
+  for(const row of [['FastAPI, Uvicorn','Веб-сервис','MIT, BSD'],['pydantic','Схемы','MIT'],['NumPy, SciPy','Векторы','BSD'],['scikit-learn','Текстовые признаки','BSD'],['RapidFuzz','Близкие написания','MIT'],['pymorphy3','Морфология русского языка','MIT'],['fastembed, ONNX Runtime','Локальная модель','Apache 2.0, MIT'],['Локальная модель векторов','Смысловая близость','Apache 2.0'],['SQLite','Журнал','Общественное достояние'],['Jev через OpenRouter','Категоризатор','Внешний платный сервис']]){
     const tr=add(t,'tr');row.forEach(v=>add(tr,'td',v));
   }
   const cost=section('Стоимость запроса'), quality=section('Качество на проверочном наборе');
   line(section('Данные стенда'),'Каталог, цены, клиенты и журнал синтетические. Адаптер загружает данные организаторов без изменения движка.');
   const [meta,health,c,e]=await Promise.all(['/api/meta','/health','/api/admin/cost','/api/admin/eval'].map(url=>api(url).catch(()=>null)));
+  setMeta(meta || {});
+  const examples=new Map();
+  for(const s of rows(meta?.scenarios)){
+    const q=s.demo?.q || s.demo?.chain?.[0] || s.examples?.[0];
+    if(s.intent && q && !examples.has(s.intent))examples.set(s.intent,{q,profile:s.demo?.profile || 'guest'});
+  }
+  const gallery=add(groups,'div',null,'intentGallery');
+  for(const [intent,{q,profile}] of examples){
+    const item=add(gallery,'article');add(item,'strong',caption('intent',intent));
+    link(item,q,'/?'+new URLSearchParams({q,profile,mode:'smart'}));
+  }
+  if(health?.version)line(tech,'Версия сервиса · '+health.version);
+  for(const [key,value] of Object.entries({...meta?.versions,...health?.versions,...meta?.models,...health?.models})){
+    const description=typeof value==='string'?value:[value?.name || value?.model || value?.id,value?.version].filter(Boolean).join(' · ');
+    if(description)line(tech,caption('',key)+' · '+description);
+  }
+  if(health?.llm?.model)line(tech,'Категоризатор · '+health.llm.model);
   const counts=new Map();for(const s of rows(meta?.scenarios))counts.set(s.group_title,(counts.get(s.group_title)||0)+1);
   for(const [name,n] of counts)line(groups,name+' · '+num(n),'chip','span');link(groups,'Открыть галерею →','/scenarios');
   if(health?.llm)line(tech,'Внешняя модель '+(health.llm.enabled?'включена':'отключена'));
   const values=rows(c?.items).filter(x=>x.requests && x.mode!=='fast');
   const pending=p=>{add(p,'p','Ожидаются данные').dataset.pending='';};
-  if(values.some(x=>x.rub_per_query>0) || (values.length && c.cache_rate>0))for(const x of values)line(cost,(x.mode==='smart_cached'?'Умный с кэшем':'Умный без кэша')+' · '+money(x.rub_per_query));else pending(cost);
+  if(values.some(x=>x.rub_per_query>0) || (values.length && c.cache_rate>0))for(const x of values)line(cost,(x.mode==='smart_cached'?'Умный с кэшем':'Умный без кэша')+' · '+moneyRate(x.rub_per_query,x.rub_per_1000));else pending(cost);
   const stats=Object.values(e?.scenarios || {}),total=stats.reduce((n,r)=>n+r.total,0);
   if(total)line(quality,'Пройдено '+num(stats.reduce((n,r)=>n+r.passed,0))+' из '+num(total));else pending(quality);
 }

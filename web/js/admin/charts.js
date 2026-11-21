@@ -20,6 +20,7 @@ export function trend(p,days,key,title){
   for(const v of new Set([0,max/2,max])){
     svg(s,'line',{x1:58,x2:448,y1:y(v),y2:y(v),stroke:'#d9e3de'});svg(s,'text',{x:52,y:y(v)+4,'text-anchor':'end'},f(v));
   }
-  svg(s,'polyline',{points:data.map((d,i)=>x(i)+','+y(d[key])).join(' '),fill:'none',stroke:'#00695b','stroke-width':3});
+  svg(s,'polyline',{points:data.slice(0,-1).map((d,i)=>x(i)+','+y(d[key])).join(' '),fill:'none',stroke:'#00695b','stroke-width':3});
+  if(data.length>1)svg(s,'line',{x1:x(data.length-2),y1:y(data.at(-2)[key]),x2:x(data.length-1),y2:y(data.at(-1)[key]),stroke:'#00695b','stroke-width':3,'stroke-dasharray':'4 3'});
   svg(s,'text',{x:58,y:122},data[0].key);svg(s,'text',{x:448,y:122,'text-anchor':'end'},data.at(-1).key);
 }

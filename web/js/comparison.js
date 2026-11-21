@@ -1,6 +1,7 @@
 import {api} from './api.js';
-import {freshSession,modes} from './state.js';
-import {add,button,stateBox,rows,line} from './dom.js';
+import {caption} from './labels.js';
+import {freshSession} from './state.js';
+import {add,button,stateBox,rows,line,num,moneyRate} from './dom.js';
 import {mini} from './product.js';
 
 
@@ -13,6 +14,12 @@ export function compare(panel,kind,req,profiles,preset=[],onClose=()=>{},onSelec
   if(!req.q){stateBox(area,'Введите запрос в строке поиска и выберите сравнение.');return;}
 
   const selectors=[];
+  let baseline='naive';
+  if(kind==='modes'){
+    const picker=add(add(head,'label','Сравнить с умным режимом '),'select');
+    picker.add(new Option(caption('mode','naive'),'naive'));picker.add(new Option(caption('mode','fast'),'fast'));
+    picker.onchange=()=>{baseline=picker.value;refresh();};
+  }
   if(kind==='profiles') {
     const settings=add(area,'div',null,'settings');
     const ids=[...new Set([...preset,req.profile_id,...profiles.map(p=>p.id)])].slice(0,3);
@@ -30,11 +37,11 @@ export function compare(panel,kind,req,profiles,preset=[],onClose=()=>{},onSelec
   const columns=add(area,'div',null,'columns');
   async function refresh() {
     const seq=++generation;summary.textContent='';columns.replaceChildren();
-    const values=kind==='profiles' ? [...new Set(selectors.map(s=>s.value).filter(Boolean))] : ['naive','smart'];
+    const values=kind==='profiles' ? [...new Set(selectors.map(s=>s.value).filter(Boolean))] : [baseline,'smart'];
     if(values.length<2){stateBox(columns,'Выберите разные профили.');return;}
     const groups=await Promise.all(values.map(async v=>{
       const p=add(columns,'section',null,'comparisonColumn');
-      add(p,'h3',kind==='profiles' ? profiles.find(row=>row.id===v)?.title.split(/ [—–] /)[0] : modes[v]);
+      add(p,'h3',kind==='profiles' ? profiles.find(row=>row.id===v)?.title.split(/ [—–] /)[0] : v==='smart'?'Кузница · умный режим':caption('mode',v));
       const body=add(p,'div'); stateBox(body,'Идёт поиск…','loading');
       try {
         const r=await api('/api/search',{...req,[kind==='profiles'?'profile_id':'mode']:v,session_id:freshSession(),source:'compare',page:1,page_size:8});
@@ -46,6 +53,8 @@ export function compare(panel,kind,req,profiles,preset=[],onClose=()=>{},onSelec
         }
         const main=blocks.find(b=>['products','analogs','services','promo'].includes(b.type));
         const cards=rows(main?.items).map(i=>i.card || i);
+        const total=main?.total ?? cards.length;
+        line(body,[count(total),r.timing_ms?.total==null?'':num(r.timing_ms.total)+' мс',moneyRate(r.cost?.rub)].filter(Boolean).join(' · '),'compareMetrics');
         const nodes=cards.map(c=>mini(body,c));
         if(!cards.length)stateBox(body,r.notes?.[0] || 'Подходящих товаров нет.');
         return {cards,nodes,total:main?.total ?? cards.length};
@@ -53,14 +62,20 @@ export function compare(panel,kind,req,profiles,preset=[],onClose=()=>{},onSelec
     }));
     if(seq!==generation || groups.some(g=>!g))return;
     const first=groups[0].cards.map(c=>c.card_id);
-    for(const group of groups.slice(1))group.cards.forEach((c,i)=>{
+    if(kind==='modes'){
+      groups.forEach((group,col)=>group.cards.forEach((card,i)=>{
+        const pos=groups[1-col].cards.findIndex(c=>c.card_id===card.card_id);
+        const other=col===0?'у умного режима':baseline==='fast'?'у быстрого поиска':'у обычного поиска';
+        line(group.nodes[i],pos<0?'Нет в показанном списке '+other:other+' · '+(pos+1)+'-я','movement','small');
+      }));
+    }else for(const group of groups.slice(1))group.cards.forEach((c,i)=>{
       const pos=first.indexOf(c.card_id), shift=pos-i;
       if(pos<0 || shift)line(group.nodes[i],pos<0?'нет в первом столбце':(shift>0?'↑':'↓')+Math.abs(shift),'movement','small');
     });
     const windowSize=Math.min(5,Math.max(...groups.map(g=>g.cards.length)));
     const matches=first.slice(0,windowSize).filter((id,i)=>groups.every(g=>g.cards[i]?.card_id===id)).length;
     summary.textContent=kind==='profiles' ? 'Совпадает '+matches+' из '+windowSize+' позиций в первой пятёрке' :
-      'Наивный: '+count(groups[0].total)+' · Умный: '+count(groups[1].total);
+      caption('mode',baseline)+': '+count(groups[0].total)+' · Умный: '+count(groups[1].total);
   }
   refresh();
 }

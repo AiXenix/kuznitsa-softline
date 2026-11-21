@@ -1,3 +1,4 @@
+import {readable} from './labels.js';
 import {add,line,button,details,rows,label,counted,stateBox} from './dom.js';
 import {block} from './blocks.js';
 
@@ -14,7 +15,7 @@ export function result(p,r,ctx={}) {
     line(panel,u.intent_title,'intent');
     const chips=add(panel,'div',null,'chips');
     for(const c of rows(u.chips)) {
-      const title=c.key==='profile' ? 'Профиль · '+(r.profile?.title || c.label).split(/ [—–] /)[0] : c.label;
+      const title=c.key==='profile' ? 'Профиль · '+(r.profile?.short || r.profile?.title || c.label || '').split(/ [—–] /)[0] : readable(c.label);
       if(c.removable && c.key) action(chips,title+' ×',{ignore:[c.key]});
       else line(chips,title,'badge','span');
       if(c.key==='profile' && chips.lastChild)chips.lastChild.title=r.profile?.title || c.label;
@@ -41,10 +42,41 @@ export function result(p,r,ctx={}) {
       for(const v of rows(f.values)) action(d,counted(v.label,v.count),{filters:{[f.key]:v.id}});
     }
   }
-  for(const h of rows(r.relax_hints)) action(p,counted(h.label,h.count),{ignore:[h.drop],...h.apply});
-  if(!rows(r.blocks).length) stateBox(p,'Подходящих предложений нет. Попробуйте изменить запрос.');
-  for(const b of rows(r.blocks)){
-    const inline=b.type==='my_licenses' && r.blocks.some(other=>other.type==='products');
+  const reason=u.zero_reason, raw=r.query?.raw || '';
+  const messages={off_topic:'Мы помогаем подобрать программы и ИТ-услуги. Выберите раздел каталога.',
+    unknown_term:'Не узнали '+(raw?'«'+raw+'»':'термин')+'. Попробуйте название программы или уточните запрос.',
+    not_in_catalog:'Этого продукта нет в каталоге.',vendor_left:'Поставки вендора ограничены.',
+    filters_too_strict:'Все предложения отсечены условиями. Снимите одно из ограничений.',
+    qty_out_of_range:'Для такого количества нет ступени лицензирования.',no_available_offer:'Подходящее предложение сейчас недоступно к заказу.'};
+  let blocks=rows(r.blocks);
+  if(Object.hasOwn(messages,reason)){
+    const note=add(p,'section',null,'zeroReason');add(note,'h2',messages[reason]);
+    if(reason==='not_in_catalog' && blocks.some(b=>b.type==='analogs' && rows(b.items).length))line(note,'Мы нашли варианты замены.');
+    if(reason==='off_topic' && !blocks.some(b=>b.type==='categories'))
+      for(const c of rows(ctx.categories).slice(0,6))action(note,c.title,{q:c.title,category:c.id});
+    if(reason==='qty_out_of_range'){
+      const steps=new Map(),qty=u.qty?.value;
+      for(const b of blocks)for(const i of rows(b.items)){
+        const c=i.card || i;
+        for(const o of [c.offer,...rows(c.variants)].filter(Boolean)){
+          const min=o.pack ?? o.qty_min,max=o.pack ?? o.qty_max;
+          if(min==null && max==null)continue;
+          const range=min==null?'до '+max:max==null?'от '+min:min===max?String(min):min+'–'+max;
+          const distance=qty==null?0:Math.max(0,(min ?? qty)-qty,qty-(max ?? qty));
+          steps.set(range,distance);
+        }
+      }
+      const nearest=[...steps].sort((a,b)=>a[1]-b[1]).slice(0,3);
+      if(nearest.length)line(note,'Ближайшие ступени · '+nearest.map(([range])=>range).join(', '));
+    }
+    if(reason==='vendor_left' || reason==='not_in_catalog')blocks=[...blocks.filter(b=>b.type==='analogs'),...blocks.filter(b=>b.type!=='analogs')];
+    const lead=['unknown_term','not_in_catalog','qty_out_of_range','no_available_offer'].includes(reason);
+    if(lead && !blocks.some(b=>b.type==='lead'))blocks=[...blocks,{type:'lead',action:'request_quote'}];
+    if(lead)blocks=[...blocks.filter(b=>b.type!=='lead'),...blocks.filter(b=>b.type==='lead').map(b=>({...b,button:reason==='not_in_catalog'?'Сообщить о появлении':'Запросить счёт'}))];
+  }else if(!blocks.length)stateBox(p,'Подходящих предложений нет. Попробуйте изменить запрос.');
+  for(const h of rows(r.relax_hints))action(p,counted(readable(h.label),h.count),{ignore:[h.drop],...h.apply});
+  for(const b of blocks){
+    const inline=b.type==='my_licenses' && blocks.some(other=>other.type==='products');
     const container=inline ? details(p,counted(b.title || 'Ваши лицензии',rows(b.items).length)) : p;
     block(container,b,ctx.forBlock ? {...ctx,...ctx.forBlock(b.type)} : ctx);
   }

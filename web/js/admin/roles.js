@@ -1,5 +1,7 @@
-import {add,line,rows} from '../dom.js';
-import {adminApi,section,table,loadBox,queryCols,options,phrase,fmt,pct,valid,shortRub,groupText,tile,date,empty,shop} from './common.js';
+import {catalogImport} from './import.js';
+import {caption} from '../labels.js';
+import {moneyRate,add,line,rows} from '../dom.js';
+import {adminApi,section,table,loadBox,queryCols,options,phrase,samplePhrases,fmt,pct,valid,shortRub,groupText,resetData,tile,date,empty,shop} from './common.js';
 import {bar} from './charts.js';
 import {findings} from './agent.js';
 import {rules} from './rules.js';
@@ -19,10 +21,11 @@ function queries(p,kind){
 }
 export function ecom(p,params){
   loadBox(section(p,'Где поиск теряет заказ'),async box=>{
-    const t=(await adminApi('kpi')).totals || {},grid=add(box,'div',null,'adminTiles');
-    if(!Object.keys(t).length){empty(box,'Добавьте историю с событиями кликов и заказов.');return;}
+    const k=await adminApi('kpi'),t=k.totals || {},grid=add(box,'div',null,'adminTiles');
+    if(!Object.keys(t).length && !rows(k.funnel).length){empty(box,'Добавьте историю с событиями кликов и заказов.');return;}
     const n=t.behavioral_searches ?? t.searches;
-    for(const [name,key,rate] of [['Поиски','behavioral_searches'],['С кликом','clicked','ctr'],['В корзину','carts','cart_rate'],['Заказ','orders','conversion']]){
+    if(rows(k.funnel).length){for(const step of k.funnel)tile(grid,step.label || caption('',step.key),fmt(step.count));}
+    else for(const [name,key,rate] of [['Поиски','behavioral_searches'],['С кликом','clicked','ctr'],['В корзину','carts','cart_rate'],['Заказ','orders','conversion']]){
       const value=t[key] ?? (!rate?n:valid(n)&&valid(t[rate])?Math.round(n*t[rate]):null);
       tile(grid,name,fmt(value),rate && valid(t[rate])?pct(t[rate]):'');
     }
@@ -38,7 +41,7 @@ export function ecom(p,params){
     const items=rows((await adminApi('failures')).items);
     if(!items.length)empty(box,'Соберите журнал неудачных поисков.');
     const max=Math.max(0,...items.map(i=>i.count || 0));
-    for(const r of items){const row=add(box,'div',null,'failureRow');add(row,'b',r.label || r.reason);add(row,'strong',fmt(r.count));bar(row,r.count,max,'#20786d');row.append(phrase(r.example?.q || r.example,r.example?.search_id || r.search_id));}
+    for(const r of items){const row=add(box,'div',null,'failureRow');add(row,'b',caption('reason',r.reason,r.label));add(row,'strong',fmt(r.count));bar(row,r.count,max,'#20786d');row.append(samplePhrases(r.examples || r.example,typeof r.example==='string'?{[r.example]:r.search_id}:{}));}
   });
   findings(p,params,'ecom_manager');rules(p);
 }
@@ -50,14 +53,14 @@ export function product(p,params){
   loadBox(section(p,'Срезы спроса'),async box=>{
     const slices=(await adminApi('kpi')).slices || {};
     for(const [key,name] of [['intent','Сценарии'],['category','Категории'],['segment','Сегменты']]){
-      add(box,'h3',name);table(box,slices[key],[['Название','label',(v,r)=>v || r.key],...searchColumns],{sortable:true,limit:key==='category'?15:null});
+      add(box,'h3',name);table(box,slices[key],[['Название','label',(v,r)=>caption(key,r.key,v)],...searchColumns],{sortable:true,limit:key==='category'?15:null});
     }
   });
   loadBox(section(p,'Импортозамещение'),async box=>{
     const g=await adminApi('gaps'),tiles=add(box,'div',null,'adminTiles');
     if(!g.bridge)empty(tiles,'Нужны показы и клики по аналогам.');
     for(const [key,title] of [['impressions','Показы замен'],['clicks','Клики'],['carts','Корзины']])if(valid(g.bridge?.[key]))tile(tiles,title,fmt(g.bridge[key]));
-    table(box,g.departed,[['Исходный продукт','title'],['Вендор','vendor'],['Поиски','searches'],['Сессии','sessions'],['Предыдущее окно','previous'],['Изменение','change']]);
+    table(box,g.departed,[['Исходный продукт','title'],['Вендор','vendor',v=>caption('vendor',v)],['Поиски','searches'],['Сессии','sessions'],['Предыдущее окно','previous'],['Изменение','change']]);
   });
   findings(p,params,'product_manager');
 }
@@ -65,25 +68,46 @@ export function content(p,params){
   loadBox(section(p,'Каких товаров не хватает'),async box=>{
     const g=await adminApi('gaps');
     const lead=rows(g.items)[0];
-    if(lead)line(box,[lead.title,valid(lead.searches)?fmt(lead.searches)+' поисков':'',valid(lead.expected_rub)?shortRub(lead.expected_rub)+' потенциальных потерь':''].filter(Boolean).join(' · '),'roleLead');
-    table(box,g.items,[['Кластер','title'],['Пример запроса','queries',(v,r)=>{const q=rows(v)[0];return phrase(q?.q || q,q?.search_id || r.search_id);}],['Вендор','vendor'],['Категория','category'],['Поиски','searches'],['Изменение','change'],['Сегменты','segments',groupText],['Оценка потерь','expected_rub',shortRub]],{limit:15,sortable:true});
+    if(lead)line(box,[caption('family',lead.key,lead.title),valid(lead.searches)?fmt(lead.searches)+' поисков':'',valid(lead.expected_rub)?shortRub(lead.expected_rub)+' потенциальных потерь':''].filter(Boolean).join(' · '),'roleLead');
+    table(box,g.items,[['Кластер','title'],['Пример запроса','queries',(v,r)=>samplePhrases(r.examples || v,r.search_ids || (typeof v?.[0]==='string'?{[v[0]]:r.search_id}:{}))],['Вендор','vendor',v=>caption('vendor',v)],['Категория','category',v=>caption('category',v)],['Поиски','searches'],['Изменение','change'],['Сегменты','segments',groupText],['Оценка потерь','expected_rub',shortRub]],{limit:15,sortable:true});
     for(const [key,title] of [['vendor','По вендорам'],['category','По категориям']]){
-      add(box,'h3',title);table(box,g.breakdown?.[key],[['Группа','key'],['Поиски','searches'],['Предыдущее окно','previous'],['Оценка потерь','expected_rub',shortRub]],{limit:8});
+      add(box,'h3',title);table(box,g.breakdown?.[key],[['Группа','key',v=>caption(key,v)],['Поиски','searches'],['Предыдущее окно','previous'],['Оценка потерь','expected_rub',shortRub]],{limit:8});
     }
   });
   loadBox(section(p,'Дефекты карточек'),async box=>{
-    const g=await adminApi('gaps');table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || r.card_id;return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
-  });findings(p,params,'content_manager');
+    const g=await adminApi('gaps');table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || caption('family',r.card_id);return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
+  });catalogImport(p);findings(p,params,'content_manager');
 }
 export function log(p){
-  loadBox(section(p,'Журнал поисков'),async box=>{
-    try{
-      const r=await adminApi('queries?kind=recent');
-      table(box,r.items,[['Москва','ts',date],['Запрос','q',(q,r)=>phrase(q || r.q_raw,r.search_id)],['Профиль','profile_id',(v,r)=>v || r.client_id || r.segment],['Режим','mode'],['Сценарий','intent'],['Карточки','n_cards'],['Время, мс','ms'],['Расход, $','llm_cost_usd',v=>fmt(v,8)]]);
-    }catch(e){
-      if(![404,422].includes(e.status))throw e;
-      line(box,'Служебный API пока возвращает агрегаты. Ниже — популярные фразы со ссылками на записи.','hint');queries(box,'top');
-    }
-  });
-  loadBox(section(p,'Состав журнала'),async box=>{table(box,(await adminApi('ingest')).sources,[['Источник','source'],['Поиски','searches',v=>fmt(v)]]);});
+  const panel=section(p,'Журнал поисков'),control=add(panel,'label','Обновлять каждые 5 с ','pollControl');
+  const toggle=add(control,'input');toggle.type='checkbox';
+  const host=add(panel,'div'),path='queries?kind=recent&limit=50';
+  let timer,busy=false;
+  function stop(){clearTimeout(timer);}
+  function next(){stop();if(!busy && toggle.checked && panel.isConnected)timer=setTimeout(()=>draw(true),5000);}
+  const cols=[['Москва','ts',date],['Запрос','q',(q,r)=>phrase(q || r.q_raw,r.search_id)],
+    ['Профиль','profile_id',(v,r)=>caption('profile',v || r.client_id)],['Сегмент','segment',v=>caption('segment',v)],
+    ['Режим','mode',v=>caption('mode',v)],['Сценарий','intent',v=>caption('intent',v)],['Карточки','n_cards'],
+    ['Время, мс','ms'],['Цена','cost_rub',v=>moneyRate(v)],['Причина пустой выдачи','zero_reason',v=>caption('reason',v)]];
+  function draw(fresh){
+    if(busy || (!panel.isConnected && fresh))return;
+    busy=true;
+    if(fresh)resetData(path);
+    const previous=host.firstElementChild;
+    const content=loadBox(host,async box=>{
+      try{
+        const r=await adminApi(path);
+        table(box,r.items,cols,{rowHref:r=>r.search_id && '/inspect/'+encodeURIComponent(r.search_id)});
+      }catch(e){
+        if(![404,422].includes(e.status))throw e;
+        toggle.checked=false;control.hidden=true;
+        line(box,'Журнал пока отдаёт агрегаты. Выберите фразу, чтобы открыть её последнюю запись.','hint');queries(box,'top');
+      }finally{busy=false;previous?.remove();next();}
+    });
+    if(previous)content.setAttribute('aria-live','polite');
+  }
+  toggle.onchange=()=>{stop();if(toggle.checked)next();};
+  window.addEventListener('hashchange',stop,{once:true});draw(false);
+  loadBox(section(p,'Состав журнала'),async box=>{table(box,(await adminApi('ingest')).sources,[['Источник','source',v=>caption('source',v)],['Поиски','searches',v=>fmt(v)]]);});
+  catalogImport(p);
 }
