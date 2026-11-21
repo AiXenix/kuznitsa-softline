@@ -1,0 +1,3556 @@
+{
+  "version": 1,
+  "pipeline": [
+    {
+      "step": "normalize",
+      "title": "Нормализация",
+      "what": "Привести текст к единой записи и применить словарь магазина.",
+      "code": "kuznitsa/text.py:normalize"
+    },
+    {
+      "step": "sku_lookup",
+      "title": "Точный артикул",
+      "what": "Проверить обозначения в словарях артикулов и региональных кодов.",
+      "code": "kuznitsa/understand/normalize.py:lookup_skus"
+    },
+    {
+      "step": "repair",
+      "title": "Проверка написания",
+      "what": "Учесть раскладку, транслитерацию и опечатки.",
+      "code": "kuznitsa/understand/repair.py:repair"
+    },
+    {
+      "step": "entities",
+      "title": "Сущности и параметры",
+      "what": "Выделить продукты, количество, условия закупки и исключения.",
+      "code": "kuznitsa/understand/entities.py:extract"
+    },
+    {
+      "step": "context",
+      "title": "Контекст клиента",
+      "what": "Учесть профиль организации, раздел и предыдущий запрос.",
+      "code": "kuznitsa/engine.py:Engine._search"
+    },
+    {
+      "step": "intent",
+      "title": "Сценарий запроса",
+      "what": "Распознать цель покупателя по фразе и сущностям.",
+      "code": "kuznitsa/understand/routing.py:route"
+    },
+    {
+      "step": "plan",
+      "title": "План поиска",
+      "what": "Выбрать способ отбора карточек.",
+      "code": "kuznitsa/engine.py:Engine._search"
+    },
+    {
+      "step": "retrieve",
+      "title": "Отбор кандидатов",
+      "what": "Найти карточки по индексам каталога или связям базы знаний.",
+      "code": "kuznitsa/plans/base.py:candidates"
+    },
+    {
+      "step": "filters",
+      "title": "Проверка ограничений",
+      "what": "Проверить условия и подготовить подсказки, если совпадений нет.",
+      "code": "kuznitsa/engine.py:Engine._search"
+    },
+    {
+      "step": "variants",
+      "title": "Выбор лицензии",
+      "what": "Подобрать предложение с учётом метрики, срока и объёма.",
+      "code": "kuznitsa/rank/variants.py:select"
+    },
+    {
+      "step": "rerank",
+      "title": "Проверка категоризатором",
+      "what": "При выполнении условий умного режима уточнить близость предложений.",
+      "code": "kuznitsa/llm/decisions.py:Decisions.rerank"
+    },
+    {
+      "step": "business",
+      "title": "Порядок карточек",
+      "what": "Отсортировать по соответствию, популярности, марже и профилю.",
+      "code": "kuznitsa/rank/business.py:ranked"
+    },
+    {
+      "step": "merch",
+      "title": "Правила магазина",
+      "what": "Применить подходящие правила продвижения.",
+      "code": "kuznitsa/controls.py:Controls.merch"
+    },
+    {
+      "step": "compose",
+      "title": "Сборка ответа",
+      "what": "Собрать блоки для выбранного вида.",
+      "code": "kuznitsa/plans/scenarios.py:compose"
+    },
+    {
+      "step": "log",
+      "title": "Журнал и стоимость",
+      "what": "Записать результат и связать его с расходами по идентификатору поиска.",
+      "code": "kuznitsa/analytics/store.py:Journal.search"
+    }
+  ],
+  "flows": [
+    {
+      "id": "sku",
+      "kind": "intent",
+      "title": "Поиск по артикулу, SKU и номеру в реестре",
+      "summary": "Артикул из счёта или реестровый номер. Результат для покупателя — точная позиция или сообщение об отсутствии.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Артикул из счёта или реестровый номер",
+          "detail": "Артикул из счёта или реестровый номер",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Нормализовать обозначение",
+          "detail": "Нормализовать обозначение",
+          "code": "kuznitsa/text.py:normalize",
+          "step": "normalize"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть точное предложение или совпадение по префиксу?",
+          "detail": "Есть точное предложение или совпадение по префиксу?",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "sku_lookup"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Передать найденные предложения на проверку",
+          "detail": "Передать найденные предложения на проверку",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Проверить номер реестра и подобрать варианты для неизвестного кода",
+          "detail": "Проверить номер реестра и подобрать варианты для неизвестного кода",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Найденные позиции или уточнение кода",
+          "detail": "Найденные позиции или уточнение кода",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Поиск по ключу в skus и regional обходит полнотекстовый отбор."
+      ],
+      "business": [
+        "Закупщик проверяет конкретную строку счёта. По отсутствующим артикулам можно искать пробелы прайса."
+      ],
+      "speed_code": [
+        "kuznitsa/understand/normalize.py:lookup_skus"
+      ]
+    },
+    {
+      "id": "product",
+      "kind": "intent",
+      "title": "Конкретный продукт, редакция, версия и параметры лицензии",
+      "summary": "Название семейства, редакция, срок и число мест. Результат для покупателя — карточки с выбранным вариантом лицензии.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Название семейства, редакция, срок и число мест",
+          "detail": "Название семейства, редакция, срок и число мест",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Определено семейство?",
+          "detail": "Определено семейство?",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Отобрать его карточки",
+          "detail": "Отобрать его карточки",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Искать по совпадениям в каталоге",
+          "detail": "Искать по совпадениям в каталоге",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Карточки с выбранным вариантом лицензии",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "qty (есть ближайшая ступень)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "scores",
+          "type": "data",
+          "title": "Оценить совпадения текста и фрагментов слов",
+          "code": "kuznitsa/index/store.py:Catalog.scores",
+          "detail": "Оценить совпадения текста и фрагментов слов",
+          "step": "retrieve"
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "scores",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        },
+        {
+          "from": "scores",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "qty (есть ближайшая ступень)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Индекс family сразу ограничивает выбор редакциями одного семейства.",
+        "Для свободного текста готовы индекс BM25 и разреженная матрица фрагментов слов. При смысловом поиске вектор запроса сравнивается с заранее рассчитанными векторами карточек."
+      ],
+      "business": [
+        "Менеджер видит редакцию и объём, для которых покупатель запрашивает цену."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/base.py:candidates",
+        "kuznitsa/index/store.py:Catalog.scores"
+      ]
+    },
+    {
+      "id": "vendor",
+      "kind": "intent",
+      "title": "Витрина и линейка вендора",
+      "summary": "Название производителя или его линейки. Результат для покупателя — ассортимент производителя и фасеты.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Название производителя или его линейки",
+          "detail": "Название производителя или его линейки",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть ассортимент производителя?",
+          "detail": "Есть ассортимент производителя?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Ограничить подбор его ассортиментом",
+          "detail": "Ограничить подбор его ассортиментом",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Перейти к плану для отсутствующего продукта",
+          "detail": "Перейти к плану для отсутствующего продукта",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Ассортимент или объяснение отсутствия",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "qty (есть ближайшая ступень)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        },
+        {
+          "from": "selection",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "qty (есть ближайшая ступень)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Индекс vendor хранит готовые множества карточек."
+      ],
+      "business": [
+        "Отдел закупок может оценить спрос на ассортимент производителя."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/base.py:candidates"
+      ]
+    },
+    {
+      "id": "category",
+      "kind": "intent",
+      "title": "Подбор по классу ПО с фильтрами и исключениями",
+      "summary": "Класс программ, ограничения и исключения. Результат для покупателя — подходящие лицензии и фильтры каталога.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Класс программ, ограничения и исключения",
+          "detail": "Класс программ, ограничения и исключения",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Задан класс программ?",
+          "detail": "Задан класс программ?",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Включить его дочерние категории",
+          "detail": "Включить его дочерние категории",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Подобрать кандидатов по условиям и тексту",
+          "detail": "Подобрать кандидатов по условиям и тексту",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Подходящие лицензии и фильтры каталога",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Какова цель покупателя?",
+          "detail": "В smart при признаках неоднозначности и наличии опоры в запросе. При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "options": [
+            "category",
+            "broad",
+            "task",
+            "product",
+            "off_topic"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "В smart при признаках неоднозначности и наличии опоры в запросе",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "category",
+          "broad",
+          "task",
+          "product",
+          "off_topic"
+        ],
+        "threshold": 0.55,
+        "fallback": "При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85."
+      },
+      "speed": [
+        "Множества карточек категорий пересекаются до выбора лицензии.",
+        "При уверенно определённом классе отбор по тексту обходится без расчёта смыслового вектора."
+      ],
+      "business": [
+        "Менеджер видит, какие сочетания требований оставляют покупателю мало вариантов."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/base.py:candidates"
+      ]
+    },
+    {
+      "id": "task",
+      "kind": "intent",
+      "title": "Поиск от проблемы и бизнес-задачи",
+      "summary": "Потребность на языке покупателя. Результат для покупателя — программы с пояснением по задаче.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Потребность на языке покупателя",
+          "detail": "Потребность на языке покупателя",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть связи для задачи?",
+          "detail": "Есть связи для задачи?",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Взять связанные семейства и классы",
+          "detail": "Взять связанные семейства и классы",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Выполнить общий поиск",
+          "detail": "Выполнить общий поиск",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Программы с пояснением по задаче",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Какова цель покупателя?",
+          "detail": "В smart при признаках неоднозначности и наличии опоры в запросе. При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "options": [
+            "task",
+            "broad",
+            "category",
+            "product",
+            "off_topic"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "В smart при признаках неоднозначности и наличии опоры в запросе",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "task",
+          "broad",
+          "category",
+          "product",
+          "off_topic"
+        ],
+        "threshold": 0.55,
+        "fallback": "При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85."
+      },
+      "speed": [
+        "Запись use_cases связывает потребность с готовыми группами товаров."
+      ],
+      "business": [
+        "Формулировки клиентов дают материал для словаря задач и категорий магазина."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:scope"
+      ]
+    },
+    {
+      "id": "role_kit",
+      "kind": "intent",
+      "title": "Комплект ПО по профессии, АРМ или ситуации",
+      "summary": "Профессия, рабочее место и число сотрудников. Результат для покупателя — комплект по роли или уточнение.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Профессия, рабочее место и число сотрудников",
+          "detail": "Профессия, рабочее место и число сотрудников",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Определена конкретная профессия?",
+          "detail": "Определена конкретная профессия?",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Собрать рабочее место по слотам роли",
+          "detail": "Собрать рабочее место по слотам роли",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Уточнить профиль при нескольких кандидатах",
+          "detail": "При неуверенном выборе итоговый вид может смениться на broad.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Комплект по роли или уточнение",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Для кого покупатель выбирает программы?",
+          "detail": "В smart для неточного названия роли или отрасли с подходящими кандидатами. Локальная оценка совпадения или уточнение профиля.",
+          "code": "kuznitsa/understand/kits.py:KitIndex.ask",
+          "step": "entities",
+          "options": [
+            "до восьми ID ролей и отраслей из локального списка",
+            "none"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        }
+      ],
+      "llm": {
+        "when": "В smart для неточного названия роли или отрасли с подходящими кандидатами",
+        "question": "Для кого покупатель выбирает программы?",
+        "options": [
+          "до восьми ID ролей и отраслей из локального списка",
+          "none"
+        ],
+        "threshold": 0.55,
+        "fallback": "Локальная оценка совпадения или уточнение профиля."
+      },
+      "speed": [
+        "Слоты роли ссылаются на семейства в индексе каталога. Точные названия и веса слов подготовлены в KitIndex до запроса."
+      ],
+      "business": [
+        "Менеджер получает перечень программ для оснащения рабочего места."
+      ],
+      "speed_code": [
+        "kuznitsa/understand/kits.py:KitIndex.candidates"
+      ]
+    },
+    {
+      "id": "industry",
+      "kind": "intent",
+      "title": "Подбор программ для отрасли и по коду ОКВЭД",
+      "summary": "Вид организации или код ОКВЭД. Результат для покупателя — отраслевой комплект или уточнение.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Вид организации или код ОКВЭД",
+          "detail": "Вид организации или код ОКВЭД",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Определена отрасль?",
+          "detail": "Определена отрасль?",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Подобрать программы для отраслевых задач",
+          "detail": "Подобрать программы для отраслевых задач",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Уточнить профиль при нескольких кандидатах",
+          "detail": "При неуверенном выборе итоговый вид может смениться на broad.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Отраслевой комплект или уточнение",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Для кого покупатель выбирает программы?",
+          "detail": "В smart для неточного названия роли или отрасли с подходящими кандидатами. Локальная оценка совпадения или уточнение профиля.",
+          "code": "kuznitsa/understand/kits.py:KitIndex.ask",
+          "step": "entities",
+          "options": [
+            "до восьми ID ролей и отраслей из локального списка",
+            "none"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        }
+      ],
+      "llm": {
+        "when": "В smart для неточного названия роли или отрасли с подходящими кандидатами",
+        "question": "Для кого покупатель выбирает программы?",
+        "options": [
+          "до восьми ID ролей и отраслей из локального списка",
+          "none"
+        ],
+        "threshold": 0.55,
+        "fallback": "Локальная оценка совпадения или уточнение профиля."
+      },
+      "speed": [
+        "Состав отраслевого комплекта хранится в базе знаний. Точные названия и веса слов подготовлены в KitIndex до запроса."
+      ],
+      "business": [
+        "Закупщик получает отправную точку для сметы по своей отрасли."
+      ],
+      "speed_code": [
+        "kuznitsa/understand/kits.py:KitIndex.candidates"
+      ]
+    },
+    {
+      "id": "analog",
+      "kind": "intent",
+      "title": "Импортозамещение, замена продукта и миграция стека",
+      "summary": "Исходный продукт и условия замены. Результат для покупателя — варианты замены с пояснениями.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Исходный продукт и условия замены",
+          "detail": "Исходный продукт и условия замены",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть связи с исходным продуктом?",
+          "detail": "Есть связи с исходным продуктом?",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Взять замены и продукты того же класса",
+          "detail": "Взять замены и продукты того же класса",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Проверить известную категорию",
+          "detail": "Проверить известную категорию",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Варианты замены с пояснениями",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Справочник замен и индекс family дают кандидатов по идентификатору."
+      ],
+      "business": [
+        "Менеджер может начать обсуждение миграции с доступных в каталоге альтернатив."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:scope"
+      ]
+    },
+    {
+      "id": "compliance",
+      "kind": "intent",
+      "title": "Комплаенс, реестр, сертификация и тендерное ТЗ",
+      "summary": "Условия закупки, сертификат или код. Результат для покупателя — пояснение требований и результаты проверки.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Условия закупки, сертификат или код",
+          "detail": "Условия закупки, сертификат или код",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Распознан код закупки?",
+          "detail": "Распознан код закупки?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Получить множество карточек по коду",
+          "detail": "Получить множество карточек по коду",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Проверить явно заданные свойства предложений",
+          "detail": "Проверить явно заданные свойства предложений",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Пояснение требований и результаты проверки",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Какова цель покупателя?",
+          "detail": "В smart при признаках неоднозначности и наличии опоры в запросе. При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "options": [
+            "compliance",
+            "broad",
+            "task",
+            "category",
+            "product",
+            "off_topic"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "В smart при признаках неоднозначности и наличии опоры в запросе",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "compliance",
+          "broad",
+          "task",
+          "category",
+          "product",
+          "off_topic"
+        ],
+        "threshold": 0.55,
+        "fallback": "При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85."
+      },
+      "speed": [
+        "Движок хранит индекс procurement для кодов закупки."
+      ],
+      "business": [
+        "Закупщик видит, какие заявленные условия подтверждаются данными о предложении."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine._search"
+      ]
+    },
+    {
+      "id": "renewal",
+      "kind": "intent",
+      "title": "Продление лицензий и подписок",
+      "summary": "Наименование подписки и условия продления. Результат для покупателя — предложения продления с параметрами лицензии.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Наименование подписки и условия продления",
+          "detail": "Наименование подписки и условия продления",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Объём мест задан в запросе?",
+          "detail": "Объём мест задан в запросе?",
+          "code": "kuznitsa/rank/variants.py:select"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Использовать запрошенное количество",
+          "detail": "Использовать запрошенное количество",
+          "code": "kuznitsa/rank/variants.py:select"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "При наличии лицензии учесть купленный объём",
+          "detail": "При наличии лицензии учесть купленный объём",
+          "code": "kuznitsa/rank/variants.py:select"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Предложения продления с параметрами лицензии",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Варианты лицензии сгруппированы внутри карточки."
+      ],
+      "business": [
+        "Отдел продаж может подготовить предложение на следующий период обслуживания."
+      ],
+      "speed_code": [
+        "kuznitsa/rank/variants.py:select"
+      ]
+    },
+    {
+      "id": "license_ops",
+      "kind": "intent",
+      "title": "Докупка, апгрейд, кроссгрейд и клиентские лицензии",
+      "summary": "Докупка, переход на другую редакцию или вопрос о правах. Результат для покупателя — предложения для операции или ответ из FAQ.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Докупка, переход на другую редакцию или вопрос о правах",
+          "detail": "Докупка, переход на другую редакцию или вопрос о правах",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Это вопрос о допустимости операции?",
+          "detail": "Это вопрос о допустимости операции?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Проверить ответ в FAQ",
+          "detail": "Проверить ответ в FAQ",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Подобрать варианты для нужной операции",
+          "detail": "Подобрать варианты для нужной операции",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Предложения для операции или ответ из FAQ",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "selection",
+          "type": "step",
+          "title": "Проверить условия и выбрать вариант лицензии",
+          "detail": "Для каждой подходящей карточки проверяются ограничения предложений.",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "selection",
+          "label": ""
+        },
+        {
+          "from": "selection",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Сравнение условий выполняется по полям лицензии предложения."
+      ],
+      "business": [
+        "Менеджер может отделить запрос на расширение установленного ПО от покупки новой лицензии."
+      ],
+      "speed_code": [
+        "kuznitsa/rank/variants.py:select"
+      ]
+    },
+    {
+      "id": "spec_list",
+      "kind": "intent",
+      "title": "Многострочные спецификации, файлы и сметы из переписки",
+      "summary": "Перечень позиций и количества. Результат для покупателя — таблица расчёта и список нерешённых строк.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Перечень позиций и количества",
+          "detail": "Перечень позиций и количества",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать список позиций",
+          "detail": "Распознать список позиций",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Позиция распознана напрямую?",
+          "detail": "Позиция распознана напрямую?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Подставить карточку и расчёт",
+          "detail": "Подставить карточку и расчёт",
+          "code": "kuznitsa/plans/specification.py:file_line"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Запустить вложенный быстрый поиск",
+          "detail": "Запустить вложенный быстрый поиск",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Таблица расчёта и список нерешённых строк",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Повторяющиеся строки одной спецификации используют кэш run_line."
+      ],
+      "business": [
+        "Закупщик получает основу сметы и видит строки, требующие помощи менеджера."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine._search"
+      ]
+    },
+    {
+      "id": "compare",
+      "kind": "intent",
+      "title": "Сравнение продуктов по фактам базы знаний",
+      "summary": "Названия продуктов или редакций. Результат для покупателя — таблица сравнения по полям каталога.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Названия продуктов или редакций",
+          "detail": "Названия продуктов или редакций",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Нашлось две целевые колонки?",
+          "detail": "Нашлось две целевые колонки?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Сопоставить характеристики предложений",
+          "detail": "Сопоставить характеристики предложений",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Дополнить сравнение другими найденными карточками",
+          "detail": "Дополнить сравнение другими найденными карточками",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Таблица сравнения по полям каталога",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Строки сравнения берутся из уже отобранных предложений."
+      ],
+      "business": [
+        "Менеджер видит, какие продукты покупатель рассматривает для одной закупки."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:compose"
+      ]
+    },
+    {
+      "id": "question",
+      "kind": "intent",
+      "title": "Вопросы по лицензированию, НДС и совместимости",
+      "summary": "Вопрос о покупке или использовании ПО. Результат для покупателя — ответ из справочника и доступные предложения.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Вопрос о покупке или использовании ПО",
+          "detail": "Вопрос о покупке или использовании ПО",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Найден подходящий вопрос в FAQ?",
+          "detail": "Найден подходящий вопрос в FAQ?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Показать текст ответа с источником",
+          "detail": "Показать текст ответа с источником",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Вернуть доступные блоки подбора",
+          "detail": "Вернуть доступные блоки подбора",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Ответ из справочника и доступные предложения",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Какова цель покупателя?",
+          "detail": "В smart при признаках неоднозначности и наличии опоры в запросе. При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "options": [
+            "question",
+            "broad",
+            "compliance",
+            "task",
+            "off_topic"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        },
+        {
+          "from": "parse",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "В smart при признаках неоднозначности и наличии опоры в запросе",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "question",
+          "broad",
+          "compliance",
+          "task",
+          "off_topic"
+        ],
+        "threshold": 0.55,
+        "fallback": "При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85."
+      },
+      "speed": [
+        "Движок извлекает готовый ответ по записи FAQ."
+      ],
+      "business": [
+        "Повторяющиеся вопросы показывают, какие условия стоит пояснить в карточках товара."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/knowledge.py:KnowledgeIndex.nearest"
+      ]
+    },
+    {
+      "id": "broad",
+      "kind": "intent",
+      "title": "Широкие и многозначные запросы",
+      "summary": "Общее или многозначное название. Результат для покупателя — варианты уточнения запроса.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Общее или многозначное название",
+          "detail": "Общее или многозначное название",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть подходящие карточки?",
+          "detail": "Есть подходящие карточки?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Предложить уточнение по первым карточкам",
+          "detail": "Предложить уточнение по первым карточкам",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Подставить варианты из справочника категорий",
+          "detail": "Подставить варианты из справочника категорий",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Варианты уточнения запроса",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Какова цель покупателя?",
+          "detail": "В smart при признаках неоднозначности и наличии опоры в запросе. При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "options": [
+            "broad",
+            "task",
+            "category",
+            "product",
+            "off_topic"
+          ],
+          "threshold": 0.55
+        },
+        {
+          "id": "ranking",
+          "type": "llm",
+          "title": "Оценить соответствие лучших предложений",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "detail": "Вопрос для каждой карточки — насколько она отвечает запросу? Закрытые ответы yes, part, no. При no ≥ 0,85 оценка ограничивается сверху. При ошибке остаётся локальное ранжирование.",
+          "step": "rerank",
+          "options": [
+            "yes",
+            "part",
+            "no"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "jev",
+          "label": "smart при неоднозначности"
+        },
+        {
+          "from": "jev",
+          "to": "d",
+          "label": "выбор или локальный путь"
+        },
+        {
+          "from": "parse",
+          "to": "ranking",
+          "label": "smart · более трёх вариантов и есть время"
+        },
+        {
+          "from": "ranking",
+          "to": "result",
+          "label": "оценки или локальный порядок"
+        }
+      ],
+      "llm": {
+        "when": "В smart при признаках неоднозначности и наличии опоры в запросе",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "broad",
+          "task",
+          "category",
+          "product",
+          "off_topic"
+        ],
+        "threshold": 0.55,
+        "fallback": "При недостаточной уверенности или противоречии подтверждённым условиям сохраняется локальная цель. Для изменения ряда условий требуется 0,85."
+      },
+      "speed": [
+        "Уточнения строятся из уже найденных карточек."
+      ],
+      "business": [
+        "Покупатель может продолжить поиск с конкретным названием продукта или категории."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine._search"
+      ]
+    },
+    {
+      "id": "out_of_catalog",
+      "kind": "intent",
+      "title": "Ушедшие вендоры и известное ПО вне каталога",
+      "summary": "Название известного отсутствующего продукта. Результат для покупателя — причина отсутствия и запрос поставки.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Название известного отсутствующего продукта",
+          "detail": "Название известного отсутствующего продукта",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Известны доступные замены?",
+          "detail": "Известны доступные замены?",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Объяснить отсутствие и показать аналоги",
+          "detail": "Объяснить отсутствие и показать аналоги",
+          "code": "kuznitsa/plans/base.py:candidates"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Объяснить отсутствие и предложить запрос поставки",
+          "detail": "Объяснить отсутствие и предложить запрос поставки",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Причина отсутствия и запрос поставки",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "Замены ищутся по связям семейств и индексам класса."
+      ],
+      "business": [
+        "Сохраняется интерес покупателя к отсутствующему семейству или вендору."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/base.py:candidates"
+      ]
+    },
+    {
+      "id": "off_topic",
+      "kind": "intent",
+      "title": "Пиратский и непрофильный трафик",
+      "summary": "Запрос вне ассортимента или пиратской копии. Результат для покупателя — пояснение и категории программ.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Запрос вне ассортимента или пиратской копии",
+          "detail": "Запрос вне ассортимента или пиратской копии",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Запрошена пиратская копия?",
+          "detail": "Запрошена пиратская копия?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Предложить легальный вариант и категории",
+          "detail": "Предложить легальный вариант и категории",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Показать категории и запросить уточнение",
+          "detail": "Показать категории и запросить уточнение",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Пояснение и категории программ",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "recover",
+          "type": "llm",
+          "title": "Проверить подтверждённые варианты восстановления",
+          "detail": "В smart при пустой строгой выдаче, если условия запроса допускают проверку восстановления и точный SKU не найден. Использовать локальный подбор. Движок включает в список лишь допустимые для запроса действия.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters",
+          "options": [
+            "clarify",
+            "unavailable (если вариантов нет)",
+            "audience (доступен обычный тариф)"
+          ],
+          "threshold": 0.55
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "recover",
+          "label": "smart · нет строгого совпадения"
+        },
+        {
+          "from": "recover",
+          "to": "result",
+          "label": "вариант или локальный ответ"
+        }
+      ],
+      "llm": {
+        "when": "в умном режиме при пустой строгой выдаче без точного совпадения по артикулу",
+        "question": "Какой следующий шаг поиска подтверждён?",
+        "options": [
+          "clarify",
+          "unavailable (если вариантов нет)",
+          "audience (доступен обычный тариф)"
+        ],
+        "threshold": 0.55,
+        "fallback": "Если решение не принято, поиск продолжает локальный подбор."
+      },
+      "speed": [
+        "План не отбирает товарные карточки."
+      ],
+      "business": [
+        "Причина пустой выдачи помогает отделить непрофильный спрос от пробелов ассортимента."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:scope"
+      ]
+    },
+    {
+      "id": "account",
+      "kind": "intent",
+      "title": "Личный кабинет, мои лицензии и история заказов",
+      "summary": "Вопрос о своих покупках или сроках. Результат для покупателя — лицензии организации или выбор профиля.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Вопрос о своих покупках или сроках",
+          "detail": "Вопрос о своих покупках или сроках",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "У организации есть лицензии?",
+          "detail": "У организации есть лицензии?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Показать сроки и варианты продления",
+          "detail": "Показать сроки и варианты продления",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Предложить выбрать профиль организации",
+          "detail": "Предложить выбрать профиль организации",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Лицензии организации или выбор профиля",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Список покупок читается из загруженного профиля."
+      ],
+      "business": [
+        "Клиент может самостоятельно сверить сроки лицензий перед продлением."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:compose"
+      ]
+    },
+    {
+      "id": "service",
+      "kind": "intent",
+      "title": "Услуги обучения, сертификации и техподдержки",
+      "summary": "Обучение, внедрение или поддержка. Результат для покупателя — предложения услуг или обращение к специалисту.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Обучение, внедрение или поддержка",
+          "detail": "Обучение, внедрение или поддержка",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Найдены услуги?",
+          "detail": "Найдены услуги?",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Показать предложения услуг или обучения",
+          "detail": "Показать предложения услуг или обучения",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Предложить запрос специалисту",
+          "detail": "Предложить запрос специалисту",
+          "code": "kuznitsa/plans/scenarios.py:scope"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Предложения услуг или обращение к специалисту",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Кандидаты берутся из категорий обучения и поддержки."
+      ],
+      "business": [
+        "Спрос на услуги можно рассматривать отдельно от продажи лицензий."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:scope"
+      ]
+    },
+    {
+      "id": "promo",
+      "kind": "intent",
+      "title": "Пилоты, скидки и спецпредложения для юрлиц",
+      "summary": "Запрос пилота, скидки или акции. Результат для покупателя — акция с подтверждением или обычные условия.",
+      "nodes": [
+        {
+          "id": "input",
+          "type": "input",
+          "title": "Запрос пилота, скидки или акции",
+          "detail": "Запрос пилота, скидки или акции",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "parse",
+          "type": "step",
+          "title": "Распознать запрос",
+          "detail": "Распознать сущности запроса и выбрать план обработки.",
+          "code": "kuznitsa/understand/routing.py:route",
+          "step": "intent"
+        },
+        {
+          "id": "d",
+          "type": "decision",
+          "title": "Есть карточки с подтверждённой акцией?",
+          "detail": "Есть карточки с подтверждённой акцией?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "a",
+          "type": "data",
+          "title": "Показать акционные предложения",
+          "detail": "Показать акционные предложения",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "b",
+          "type": "fallback",
+          "title": "Объяснить отсутствие акции и показать доступные условия",
+          "detail": "Объяснить отсутствие акции и показать доступные условия",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "result",
+          "type": "output",
+          "title": "Акция с подтверждением или обычные условия",
+          "detail": "После сборки блоков движок записывает поиск в журнал.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "parse",
+          "label": ""
+        },
+        {
+          "from": "parse",
+          "to": "d",
+          "label": "локальный путь"
+        },
+        {
+          "from": "d",
+          "to": "a",
+          "label": "да"
+        },
+        {
+          "from": "d",
+          "to": "b",
+          "label": "иначе"
+        },
+        {
+          "from": "a",
+          "to": "result",
+          "label": ""
+        },
+        {
+          "from": "b",
+          "to": "result",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Признак акции проверяется на найденных карточках."
+      ],
+      "business": [
+        "Покупатель видит льготные предложения только при наличии соответствующего предложения в каталоге."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:compose"
+      ]
+    },
+    {
+      "id": "suggest",
+      "kind": "path",
+      "title": "Подсказки при наборе",
+      "summary": "Поиск предлагает продолжения ещё до отправки запроса.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Начало запроса",
+          "detail": "Начало запроса",
+          "code": "kuznitsa/suggest/index.py:suggest"
+        },
+        {
+          "id": "1",
+          "type": "decision",
+          "title": "Есть совпадение по префиксу?",
+          "detail": "Есть совпадение по префиксу?",
+          "code": "kuznitsa/suggest/index.py:SuggestIndex.prefix"
+        },
+        {
+          "id": "2",
+          "type": "fallback",
+          "title": "Проверить раскладку, транслитерацию и опечатки",
+          "detail": "Проверить раскладку, транслитерацию и опечатки",
+          "code": "kuznitsa/suggest/index.py:SuggestIndex.complete"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Группы подсказок, артикулы и лицензии клиента",
+          "detail": "Группы подсказок, артикулы и лицензии клиента",
+          "code": "kuznitsa/suggest/index.py:suggest"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "3",
+          "label": "да"
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": "нет"
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Двоичный поиск находит начало префикса в отсортированном словаре."
+      ],
+      "business": [
+        "Покупатель может перейти к нужному продукту до отправки полного запроса."
+      ],
+      "speed_code": [
+        "kuznitsa/suggest/index.py:SuggestIndex.prefix"
+      ]
+    },
+    {
+      "id": "spec_file",
+      "guide_anchors": ["spec_file_kp"],
+      "kind": "path",
+      "title": "Спецификация файлом → КП",
+      "summary": "Закупщик загружает файл, сверяет строки и скачивает коммерческое предложение.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Загрузить XLSX, CSV, TSV или TXT",
+          "detail": "Загрузить XLSX, CSV, TSV или TXT",
+          "code": "kuznitsa/api/files.py:upload"
+        },
+        {
+          "id": "1",
+          "type": "data",
+          "title": "Разобрать строки, артикулы и количество",
+          "detail": "Разобрать строки, артикулы и количество",
+          "code": "kuznitsa/quote/parse.py:parse"
+        },
+        {
+          "id": "2",
+          "type": "decision",
+          "title": "Указанный артикул подтверждён?",
+          "detail": "Указанный артикул подтверждён?",
+          "code": "kuznitsa/api/files.py:search_file"
+        },
+        {
+          "id": "3",
+          "type": "data",
+          "title": "Рассчитать количество упаковок и цену",
+          "detail": "Рассчитать количество упаковок и цену",
+          "code": "kuznitsa/api/files.py:search_file"
+        },
+        {
+          "id": "4",
+          "type": "fallback",
+          "title": "Отметить позицию для согласования",
+          "detail": "Отметить позицию для согласования",
+          "code": "kuznitsa/api/files.py:search_file"
+        },
+        {
+          "id": "5",
+          "type": "output",
+          "title": "Скачать сохранённую смету по search_id в XLSX или CSV",
+          "detail": "Скачать сохранённую смету по search_id в XLSX или CSV",
+          "code": "kuznitsa/quote/export.py:make_export"
+        },
+        {
+          "id": "search",
+          "type": "step",
+          "title": "Подобрать позиции и сопоставить строки ответа",
+          "code": "kuznitsa/api/files.py:search_file",
+          "detail": "Подобрать позиции и сопоставить строки ответа",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "search",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": "да"
+        },
+        {
+          "from": "2",
+          "to": "4",
+          "label": "нет"
+        },
+        {
+          "from": "3",
+          "to": "5",
+          "label": ""
+        },
+        {
+          "from": "4",
+          "to": "5",
+          "label": ""
+        },
+        {
+          "from": "search",
+          "to": "5",
+          "label": "без артикула · подбор по описанию"
+        },
+        {
+          "from": "1",
+          "to": "search",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Для свежей спецификации экспорт использует сохранённый расчёт. Архивный запрос с сокращённой записью пересчитывается."
+      ],
+      "business": [
+        "Менеджер видит позиции, по которым ещё нужно согласовать замену."
+      ],
+      "speed_code": [
+        "kuznitsa/quote/export.py:make_export"
+      ]
+    },
+    {
+      "id": "voice",
+      "guide_anchors": ["voice_words"],
+      "kind": "path",
+      "title": "Голос и числа словами",
+      "summary": "Браузер передаёт распознанный текст в обычный поиск.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Нажать микрофон в поддерживаемом браузере",
+          "detail": "Нажать микрофон в поддерживаемом браузере",
+          "code": "web/js/input.js:voice"
+        },
+        {
+          "id": "1",
+          "type": "data",
+          "title": "Распознать русскую речь и передать текст",
+          "detail": "Распознать русскую речь и передать текст",
+          "code": "web/js/input.js:voice"
+        },
+        {
+          "id": "2",
+          "type": "step",
+          "title": "Преобразовать словесное количество",
+          "detail": "Преобразовать словесное количество",
+          "code": "kuznitsa/understand/quantities.py:spoken_numbers",
+          "step": "repair"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Подобрать лицензию на указанное количество",
+          "detail": "Подобрать лицензию на указанное количество",
+          "code": "kuznitsa/rank/variants.py:select",
+          "step": "variants"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "После распознавания речи работает обычный разбор текста."
+      ],
+      "business": [
+        "Покупатель может продиктовать объём закупки."
+      ],
+      "speed_code": [
+        "kuznitsa/understand/quantities.py:spoken_numbers"
+      ]
+    },
+    {
+      "id": "widget",
+      "kind": "path",
+      "title": "Поиск на сайте партнёра",
+      "summary": "Встроенная форма использует тот же поисковый API, что и витрина.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Строка поиска на странице партнёра",
+          "detail": "Строка поиска на странице партнёра",
+          "code": "web/embed/search.js:mount"
+        },
+        {
+          "id": "1",
+          "type": "data",
+          "title": "Передать запрос, профиль, сессию и режим в /api/search",
+          "detail": "Передать запрос, профиль, сессию и режим в /api/search",
+          "code": "web/embed/search.js:mount"
+        },
+        {
+          "id": "2",
+          "type": "step",
+          "title": "Выполнить поиск",
+          "detail": "Выполнить поиск",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Показать блоки и записать событие показа",
+          "detail": "Показать блоки и записать событие показа",
+          "code": "web/embed/search.js:mount"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Виджет использует загруженный индекс общего движка."
+      ],
+      "business": [
+        "Клиент видит результат на странице партнёра и может продолжить в каталоге."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine.search"
+      ]
+    },
+    {
+      "id": "okved",
+      "kind": "path",
+      "title": "Подбор по ОКВЭД",
+      "summary": "Движок сопоставляет номер с отраслью и собирает комплект.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Код деятельности организации",
+          "detail": "Код деятельности организации",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "1",
+          "type": "decision",
+          "title": "Есть точный или более короткий префикс?",
+          "detail": "Есть точный или более короткий префикс?",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "2",
+          "type": "data",
+          "title": "Отрасль из справочника ОКВЭД",
+          "detail": "Отрасль из справочника ОКВЭД",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Комплект по слотам отрасли",
+          "detail": "Комплект по слотам отрасли",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "4",
+          "type": "fallback",
+          "title": "Уточнить отрасль",
+          "detail": "Уточнить отрасль",
+          "code": "kuznitsa/engine.py:Engine._search"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": "да"
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "4",
+          "label": "нет"
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Словарь проверяется от полного кода к короткому."
+      ],
+      "business": [
+        "Закупщик может начать подбор с известного кода организации."
+      ],
+      "speed_code": [
+        "kuznitsa/understand/kits.py:KitIndex.pick"
+      ]
+    },
+    {
+      "id": "kit_parent",
+      "kind": "path",
+      "title": "Частный и общий комплект",
+      "summary": "Из узкого отраслевого или ролевого комплекта можно перейти к общему.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Запрос профессии или отрасли",
+          "detail": "Запрос профессии или отрасли",
+          "code": "kuznitsa/understand/kits.py:KitIndex.pick"
+        },
+        {
+          "id": "1",
+          "type": "data",
+          "title": "Подобрать слоты конкретного комплекта",
+          "detail": "Подобрать слоты конкретного комплекта",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "2",
+          "type": "decision",
+          "title": "Есть запись parent в справочнике?",
+          "detail": "Есть запись parent в справочнике?",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Добавить название и запрос родительского комплекта",
+          "detail": "Добавить название и запрос родительского комплекта",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        },
+        {
+          "id": "4",
+          "type": "output",
+          "title": "Вернуть выбранный комплект",
+          "detail": "Вернуть выбранный комплект",
+          "code": "kuznitsa/plans/scenarios.py:compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": "да"
+        },
+        {
+          "from": "2",
+          "to": "4",
+          "label": "нет"
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Родитель извлекается по идентификатору из того же справочника. Точные названия и веса слов подготовлены в KitIndex до запроса."
+      ],
+      "business": [
+        "Можно расширить подбор от узкой специализации до общего профиля."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/scenarios.py:compose"
+      ]
+    },
+    {
+      "id": "naive",
+      "kind": "path",
+      "title": "Обычный поиск по словам",
+      "summary": "Каждый результат соответствует отдельной прайсовой позиции.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Запрос в режиме naive",
+          "detail": "Запрос в режиме naive",
+          "code": "kuznitsa/engine.py:Engine.search"
+        },
+        {
+          "id": "1",
+          "type": "data",
+          "title": "Пересечь списки предложений для всех значимых слов",
+          "detail": "Пересечь списки предложений для всех значимых слов",
+          "code": "kuznitsa/plans/naive.py:StoreIndex.match"
+        },
+        {
+          "id": "2",
+          "type": "step",
+          "title": "Отсортировать по популярности",
+          "detail": "Отсортировать по популярности",
+          "code": "kuznitsa/plans/naive.py:StoreIndex.match",
+          "step": "retrieve"
+        },
+        {
+          "id": "3",
+          "type": "output",
+          "title": "Вывести страницу отдельных предложений",
+          "detail": "Вывести страницу отдельных предложений",
+          "code": "kuznitsa/engine.py:Engine._naive"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "3",
+          "label": ""
+        }
+      ],
+      "llm": null,
+      "speed": [
+        "Обратный индекс предложений строится при открытии каталога."
+      ],
+      "business": [
+        "Бизнес получает базовый результат для сравнения с подбором по намерению."
+      ],
+      "speed_code": [
+        "kuznitsa/plans/naive.py:StoreIndex.match"
+      ]
+    },
+    {
+      "id": "smart",
+      "kind": "path",
+      "title": "Умный режим и кэш Jev",
+      "summary": "Jev выбирает из вариантов, подготовленных движком для конкретного запроса.",
+      "nodes": [
+        {
+          "id": "0",
+          "type": "input",
+          "title": "Запрос в режиме smart",
+          "detail": "Запрос в режиме smart",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "1",
+          "type": "decision",
+          "title": "Нужна проверка моделью?",
+          "detail": "Нужна проверка моделью?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "2",
+          "type": "data",
+          "title": "Подготовить вопрос и допустимые ответы",
+          "detail": "Вопрос зависит от этапа поиска.",
+          "code": "kuznitsa/llm/advice.py:questions_for"
+        },
+        {
+          "id": "3",
+          "type": "decision",
+          "title": "Есть решение для модели, состояния и вопросов?",
+          "detail": "SQLite ищет запись по SHA-256 от модели, состояния и текста вопросов с вариантами. При промахе проверяются бюджет и доступность модели.",
+          "code": "kuznitsa/llm/decisions.py:Decisions.request"
+        },
+        {
+          "id": "4",
+          "type": "llm",
+          "title": "Отправить закрытый вопрос в Decisions",
+          "detail": "Запрос к шлюзу передаёт состояние и закрытые вопросы. Ожидание ограничено общим дедлайном в 600 мс с начала поиска.",
+          "code": "kuznitsa/llm/jev.py:Jev.complete"
+        },
+        {
+          "id": "5",
+          "type": "decision",
+          "title": "Можно применить результат по правилам этапа?",
+          "detail": "Ответ валиден и проходит порог для действия?",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "6",
+          "type": "fallback",
+          "title": "Оставить локальную оценку или предложить уточнение",
+          "detail": "Оставить локальную оценку или предложить уточнение",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "7",
+          "type": "output",
+          "title": "Выдача, трасса и стоимость",
+          "detail": "Выдача, трасса и стоимость",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "goal",
+          "type": "data",
+          "title": "Цель и класс программы",
+          "detail": "Исходная допустимая цель, broad и off_topic; для предметного подбора также task, category, product. Для вопроса — compliance и task. Класс — до 6 кандидатов и none, FAQ — до 5 и none.",
+          "code": "kuznitsa/llm/advice.py:questions_for",
+          "step": "intent"
+        },
+        {
+          "id": "kit",
+          "type": "data",
+          "title": "Профессия или отрасль",
+          "detail": "До восьми ID из списка локальных кандидатов и none. Применить выбранный комплект при вероятности от 0,55.",
+          "code": "kuznitsa/understand/kits.py:KitIndex.ask",
+          "step": "entities"
+        },
+        {
+          "id": "recovery",
+          "type": "data",
+          "title": "Уточнение при пустой выдаче",
+          "detail": "Только доступные qty, audience, category_ID и clarify. Без вариантов добавляется unavailable. Порог 0,55.",
+          "code": "kuznitsa/llm/recovery.py:ask_recovery",
+          "step": "filters"
+        },
+        {
+          "id": "rerank",
+          "type": "data",
+          "title": "Соответствие предложений",
+          "detail": "Для каждой карточки yes, part, no. До 30 карточек партиями по 20 при старте до 400 мс. При no ≥ 0,85 оценка ограничивается сверху; в остальных случаях учитывается разность вероятностей yes и no.",
+          "code": "kuznitsa/llm/decisions.py:Decisions.rerank",
+          "step": "rerank"
+        }
+      ],
+      "edges": [
+        {
+          "from": "0",
+          "to": "1",
+          "label": ""
+        },
+        {
+          "from": "1",
+          "to": "7",
+          "label": "нет"
+        },
+        {
+          "from": "1",
+          "to": "2",
+          "label": "да"
+        },
+        {
+          "from": "3",
+          "to": "5",
+          "label": "кэш"
+        },
+        {
+          "from": "3",
+          "to": "4",
+          "label": "нет · бюджет доступен"
+        },
+        {
+          "from": "3",
+          "to": "6",
+          "label": "запрос заблокирован"
+        },
+        {
+          "from": "4",
+          "to": "5",
+          "label": "ответ"
+        },
+        {
+          "from": "4",
+          "to": "6",
+          "label": "ошибка или дедлайн"
+        },
+        {
+          "from": "5",
+          "to": "7",
+          "label": "да"
+        },
+        {
+          "from": "5",
+          "to": "6",
+          "label": "нет"
+        },
+        {
+          "from": "6",
+          "to": "7",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "goal",
+          "label": "intent"
+        },
+        {
+          "from": "goal",
+          "to": "3",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "kit",
+          "label": "entities"
+        },
+        {
+          "from": "kit",
+          "to": "3",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "recovery",
+          "label": "filters"
+        },
+        {
+          "from": "recovery",
+          "to": "3",
+          "label": ""
+        },
+        {
+          "from": "2",
+          "to": "rerank",
+          "label": "rerank"
+        },
+        {
+          "from": "rerank",
+          "to": "3",
+          "label": ""
+        }
+      ],
+      "llm": {
+        "when": "В smart при неоднозначной цели с данными в пользу нескольких трактовок",
+        "question": "Какова цель покупателя?",
+        "options": [
+          "исходная допустимая цель",
+          "broad",
+          "off_topic",
+          "task/category/product или compliance по исходной цели"
+        ],
+        "threshold": 0.55,
+        "fallback": "При низкой вероятности сохраняются локальные условия. При ошибке запроса выдача помечается fast. Для реранка действуют отдельные правила."
+      },
+      "speed": [
+        "SQLite хранит решения. Общий дедлайн ожидания Jev — 600 мс от начала поиска."
+      ],
+      "business": [
+        "В журнале можно сопоставить пользу модели с расходами."
+      ],
+      "speed_code": [
+        "kuznitsa/llm/decisions.py:Decisions.request"
+      ]
+    }
+  ]
+}
