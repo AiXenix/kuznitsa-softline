@@ -12,7 +12,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.29,
+        "ms": 3.79,
         "source": "dev-0041",
         "category_ctx": null
       },
@@ -21,12 +21,12 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "product",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Total",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "products",
           "crosssell"
         ],
-        "ms": 6.06,
+        "ms": 6.15,
         "source": "dev-0051",
         "category_ctx": null
       },
@@ -40,7 +40,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 6.69,
+        "ms": 7.72,
         "source": "dev-0052",
         "category_ctx": null
       },
@@ -54,7 +54,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 6.25,
+        "ms": 7.4,
         "source": "dev-0053",
         "category_ctx": null
       },
@@ -68,7 +68,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.65,
+        "ms": 6.88,
         "source": "dev-0057",
         "category_ctx": null
       }
@@ -83,7 +83,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 6.68,
+        "ms": 5.97,
         "source": "dev-0054",
         "category_ctx": null
       },
@@ -96,7 +96,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 4.9,
+        "ms": 3.85,
         "source": "dev-0055",
         "category_ctx": null
       },
@@ -110,7 +110,7 @@
           "my_licenses",
           "products"
         ],
-        "ms": 3.95,
+        "ms": 3.0,
         "source": "dev-0056",
         "category_ctx": null
       },
@@ -119,11 +119,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "vendor",
-        "first_card": "Kaspersky ASAP Cloud",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "products"
         ],
-        "ms": 6.3,
+        "ms": 5.46,
         "source": "dev-0191",
         "category_ctx": null
       },
@@ -136,7 +136,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 2.62,
+        "ms": 2.0,
         "source": "dev-0199",
         "category_ctx": null
       }
@@ -147,11 +147,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "category",
-        "first_card": "Dr.Web Enterprise Security Suite Защита рабочих станций",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "products"
         ],
-        "ms": 5.52,
+        "ms": 5.77,
         "source": "dev-0001",
         "category_ctx": null
       },
@@ -164,7 +164,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 5.45,
+        "ms": 4.94,
         "source": "dev-0006",
         "category_ctx": null
       },
@@ -173,11 +173,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "category",
-        "first_card": "RMS Удалённый доступ Профессиональная",
+        "first_card": "Ассистент Стандартный",
         "blocks": [
           "products"
         ],
-        "ms": 5.6,
+        "ms": 4.98,
         "source": "dev-0011",
         "category_ctx": null
       },
@@ -190,7 +190,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 3.91,
+        "ms": 3.98,
         "source": "dev-0016",
         "category_ctx": null
       },
@@ -203,7 +203,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 5.57,
+        "ms": 5.34,
         "source": "dev-0021",
         "category_ctx": null
       }
@@ -219,7 +219,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 6.84,
+        "ms": 4.67,
         "source": "dev-0066",
         "category_ctx": null
       },
@@ -233,7 +233,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 4.52,
+        "ms": 3.83,
         "source": "dev-0067",
         "category_ctx": null
       },
@@ -247,7 +247,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.52,
+        "ms": 4.55,
         "source": "dev-0068",
         "category_ctx": null
       },
@@ -261,7 +261,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 3.55,
+        "ms": 2.95,
         "source": "dev-0069",
         "category_ctx": null
       },
@@ -275,7 +275,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.09,
+        "ms": 4.33,
         "source": "dev-0073",
         "category_ctx": null
       }
@@ -290,7 +290,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 3.66,
+        "ms": 3.61,
         "source": "dev-0145",
         "category_ctx": null
       },
@@ -303,7 +303,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 4.06,
+        "ms": 4.01,
         "source": "dev-0146",
         "category_ctx": null
       },
@@ -312,11 +312,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "task",
-        "first_card": "Secret Net Studio Базовая",
+        "first_card": "Dallas Lock 8.0-C",
         "blocks": [
           "products"
         ],
-        "ms": 8.18,
+        "ms": 9.61,
         "source": "dev-0147",
         "category_ctx": null
       },
@@ -329,7 +329,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 3.7,
+        "ms": 4.94,
         "source": "dev-0148",
         "category_ctx": null
       },
@@ -342,7 +342,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 3.53,
+        "ms": 3.01,
         "source": "dev-0149",
         "category_ctx": null
       }
@@ -353,11 +353,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "analog",
-        "first_card": "Яндекс 360 для бизнеса Расширенный",
+        "first_card": "МойОфис Профессиональный Корпоративная",
         "blocks": [
           "analogs"
         ],
-        "ms": 4.83,
+        "ms": 3.74,
         "source": "dev-0111",
         "category_ctx": null
       },
@@ -370,7 +370,7 @@
         "blocks": [
           "analogs"
         ],
-        "ms": 3.51,
+        "ms": 3.13,
         "source": "dev-0112",
         "category_ctx": null
       },
@@ -383,7 +383,7 @@
         "blocks": [
           "analogs"
         ],
-        "ms": 5.29,
+        "ms": 4.13,
         "source": "dev-0113",
         "category_ctx": null
       },
@@ -396,7 +396,7 @@
         "blocks": [
           "analogs"
         ],
-        "ms": 4.59,
+        "ms": 4.41,
         "source": "dev-0114",
         "category_ctx": null
       },
@@ -409,7 +409,7 @@
         "blocks": [
           "analogs"
         ],
-        "ms": 3.9,
+        "ms": 3.66,
         "source": "dev-0115",
         "category_ctx": null
       }
@@ -424,7 +424,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 11.0,
+        "ms": 8.08,
         "source": "dev-0165",
         "category_ctx": null
       },
@@ -437,7 +437,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 12.85,
+        "ms": 8.38,
         "source": "seen",
         "category_ctx": null
       },
@@ -450,7 +450,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 11.55,
+        "ms": 8.04,
         "source": "seen",
         "category_ctx": null
       },
@@ -463,7 +463,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 8.86,
+        "ms": 8.9,
         "source": "seen",
         "category_ctx": null
       },
@@ -476,7 +476,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 7.04,
+        "ms": 7.64,
         "source": "seen",
         "category_ctx": null
       }
@@ -492,7 +492,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 10.63,
+        "ms": 12.27,
         "source": "dev-0161",
         "category_ctx": null
       },
@@ -506,7 +506,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 11.3,
+        "ms": 13.19,
         "source": "dev-0162",
         "category_ctx": null
       },
@@ -520,7 +520,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 10.88,
+        "ms": 12.75,
         "source": "dev-0163",
         "category_ctx": null
       },
@@ -534,7 +534,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 11.58,
+        "ms": 11.11,
         "source": "dev-0164",
         "category_ctx": null
       },
@@ -548,7 +548,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 9.14,
+        "ms": 10.69,
         "source": "dev-0190",
         "category_ctx": null
       }
@@ -564,7 +564,7 @@
           "answer",
           "products"
         ],
-        "ms": 3.64,
+        "ms": 3.52,
         "source": "dev-0071",
         "category_ctx": null
       },
@@ -573,12 +573,12 @@
         "profile": "gov_clinic",
         "mode": "fast",
         "intent": "compliance",
-        "first_card": "СёрчИнформ КИБ",
+        "first_card": "ГИС Панорама Мини",
         "blocks": [
           "answer",
           "products"
         ],
-        "ms": 24.09,
+        "ms": 24.44,
         "source": "dev-0072",
         "category_ctx": null
       },
@@ -592,7 +592,7 @@
           "answer",
           "products"
         ],
-        "ms": 3.76,
+        "ms": 4.48,
         "source": "dev-0101",
         "category_ctx": null
       },
@@ -601,12 +601,12 @@
         "profile": "smb_trade",
         "mode": "fast",
         "intent": "compliance",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "answer",
           "products"
         ],
-        "ms": 4.58,
+        "ms": 5.44,
         "source": "dev-0102",
         "category_ctx": null
       },
@@ -615,12 +615,12 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "compliance",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Total",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "answer",
           "products"
         ],
-        "ms": 4.01,
+        "ms": 4.92,
         "source": "dev-0129",
         "category_ctx": null
       }
@@ -636,7 +636,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.48,
+        "ms": 5.96,
         "source": "dev-0076",
         "category_ctx": null
       },
@@ -650,7 +650,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 6.73,
+        "ms": 6.97,
         "source": "dev-0077",
         "category_ctx": null
       },
@@ -664,7 +664,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 5.49,
+        "ms": 6.54,
         "source": "dev-0078",
         "category_ctx": null
       },
@@ -678,7 +678,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 3.42,
+        "ms": 3.56,
         "source": "dev-0079",
         "category_ctx": null
       },
@@ -692,7 +692,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 3.86,
+        "ms": 4.07,
         "source": "dev-0080",
         "category_ctx": null
       }
@@ -707,7 +707,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 2.48,
+        "ms": 2.88,
         "source": "dev-0085",
         "category_ctx": null
       },
@@ -716,11 +716,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "license_ops",
-        "first_card": "МойОфис Стандартный Для бизнеса",
+        "first_card": "МойОфис Почта 2",
         "blocks": [
           "products"
         ],
-        "ms": 2.74,
+        "ms": 2.63,
         "source": "dev-0086",
         "category_ctx": null
       },
@@ -729,11 +729,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "license_ops",
-        "first_card": "1С:Бухгалтерия 8 ПРОФ",
+        "first_card": "1С:Бухгалтерия 8 Базовая",
         "blocks": [
           "products"
         ],
-        "ms": 3.27,
+        "ms": 2.46,
         "source": "dev-0087",
         "category_ctx": null
       },
@@ -742,11 +742,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "license_ops",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "first_card": "Kaspersky Symphony Security",
         "blocks": [
           "products"
         ],
-        "ms": 3.72,
+        "ms": 4.43,
         "source": "dev-0088",
         "category_ctx": null
       },
@@ -759,7 +759,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 4.13,
+        "ms": 3.3,
         "source": "dev-0089",
         "category_ctx": null
       }
@@ -774,7 +774,7 @@
         "blocks": [
           "spec"
         ],
-        "ms": 13.91,
+        "ms": 11.44,
         "source": "dev-0167",
         "category_ctx": null
       },
@@ -787,7 +787,7 @@
         "blocks": [
           "spec"
         ],
-        "ms": 6.35,
+        "ms": 5.31,
         "source": "dev-0168",
         "category_ctx": null
       },
@@ -800,7 +800,7 @@
         "blocks": [
           "spec"
         ],
-        "ms": 13.02,
+        "ms": 10.36,
         "source": "dev-0169",
         "category_ctx": null
       },
@@ -813,7 +813,7 @@
         "blocks": [
           "spec"
         ],
-        "ms": 14.87,
+        "ms": 7.29,
         "source": "dev-0170",
         "category_ctx": null
       },
@@ -826,7 +826,7 @@
         "blocks": [
           "spec"
         ],
-        "ms": 8.66,
+        "ms": 7.97,
         "source": "dev-0171",
         "category_ctx": null
       }
@@ -841,7 +841,7 @@
         "blocks": [
           "compare"
         ],
-        "ms": 2.83,
+        "ms": 2.64,
         "source": "dev-0239",
         "category_ctx": null
       },
@@ -854,7 +854,7 @@
         "blocks": [
           "compare"
         ],
-        "ms": 3.45,
+        "ms": 2.58,
         "source": "dev-0241",
         "category_ctx": null
       },
@@ -867,7 +867,7 @@
         "blocks": [
           "compare"
         ],
-        "ms": 4.36,
+        "ms": 4.26,
         "source": "dev-0242",
         "category_ctx": null
       },
@@ -876,11 +876,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "compare",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Total",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "compare"
         ],
-        "ms": 4.64,
+        "ms": 4.1,
         "source": "dev-0243",
         "category_ctx": null
       },
@@ -893,7 +893,7 @@
         "blocks": [
           "compare"
         ],
-        "ms": 4.67,
+        "ms": 3.14,
         "source": "dev-0244",
         "category_ctx": null
       }
@@ -909,7 +909,7 @@
           "answer",
           "products"
         ],
-        "ms": 2.59,
+        "ms": 2.73,
         "source": "dev-0139",
         "category_ctx": null
       },
@@ -918,12 +918,12 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "question",
-        "first_card": "Postgres Pro Standard",
+        "first_card": "СУБД Tantor SE",
         "blocks": [
           "answer",
           "products"
         ],
-        "ms": 5.45,
+        "ms": 5.65,
         "source": "dev-0236",
         "category_ctx": null
       },
@@ -937,7 +937,7 @@
           "answer",
           "products"
         ],
-        "ms": 6.1,
+        "ms": 5.89,
         "source": "dev-0237",
         "category_ctx": null
       },
@@ -951,7 +951,7 @@
           "answer",
           "products"
         ],
-        "ms": 2.67,
+        "ms": 2.32,
         "source": "dev-0238",
         "category_ctx": null
       },
@@ -960,12 +960,12 @@
         "profile": "accounting_firm",
         "mode": "fast",
         "intent": "question",
-        "first_card": "РЕД ОС Рабочая станция Стандартная",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "answer",
           "products"
         ],
-        "ms": 9.34,
+        "ms": 10.96,
         "source": "dev-0240",
         "category_ctx": null
       }
@@ -982,7 +982,7 @@
           "products",
           "vendors"
         ],
-        "ms": 6.18,
+        "ms": 7.84,
         "source": "dev-0225",
         "category_ctx": null
       },
@@ -997,7 +997,7 @@
           "products",
           "vendors"
         ],
-        "ms": 3.75,
+        "ms": 4.54,
         "source": "dev-0226",
         "category_ctx": null
       },
@@ -1012,7 +1012,7 @@
           "products",
           "vendors"
         ],
-        "ms": 19.09,
+        "ms": 22.44,
         "source": "dev-0267",
         "category_ctx": null
       },
@@ -1027,7 +1027,7 @@
           "products",
           "vendors"
         ],
-        "ms": 5.93,
+        "ms": 5.39,
         "source": "dev-0271",
         "category_ctx": null
       },
@@ -1036,13 +1036,13 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "broad",
-        "first_card": "Project Expert Standard",
+        "first_card": "Project Expert Professional",
         "blocks": [
           "clarify",
           "products",
           "vendors"
         ],
-        "ms": 53.52,
+        "ms": 44.98,
         "source": "dev-0272",
         "category_ctx": null
       }
@@ -1060,7 +1060,7 @@
           "lead",
           "answer"
         ],
-        "ms": 4.36,
+        "ms": 3.36,
         "source": "dev-0117",
         "category_ctx": null
       },
@@ -1076,7 +1076,7 @@
           "lead",
           "answer"
         ],
-        "ms": 5.18,
+        "ms": 4.05,
         "source": "dev-0118",
         "category_ctx": null
       },
@@ -1092,7 +1092,7 @@
           "lead",
           "answer"
         ],
-        "ms": 2.73,
+        "ms": 2.25,
         "source": "dev-0119",
         "category_ctx": null
       },
@@ -1108,7 +1108,7 @@
           "lead",
           "answer"
         ],
-        "ms": 4.05,
+        "ms": 3.0,
         "source": "dev-0120",
         "category_ctx": null
       },
@@ -1124,7 +1124,7 @@
           "lead",
           "answer"
         ],
-        "ms": 3.42,
+        "ms": 2.19,
         "source": "dev-0274",
         "category_ctx": null
       }
@@ -1140,7 +1140,7 @@
           "categories",
           "clarify"
         ],
-        "ms": 2.33,
+        "ms": 1.57,
         "source": "dev-0278",
         "category_ctx": null
       },
@@ -1154,7 +1154,7 @@
           "categories",
           "clarify"
         ],
-        "ms": 2.23,
+        "ms": 1.42,
         "source": "dev-0279",
         "category_ctx": null
       },
@@ -1168,7 +1168,7 @@
           "answer",
           "categories"
         ],
-        "ms": 2.63,
+        "ms": 2.0,
         "source": "dev-0281",
         "category_ctx": null
       },
@@ -1182,7 +1182,7 @@
           "answer",
           "categories"
         ],
-        "ms": 2.39,
+        "ms": 1.3,
         "source": "dev-0282",
         "category_ctx": null
       },
@@ -1196,7 +1196,7 @@
           "answer",
           "categories"
         ],
-        "ms": 2.05,
+        "ms": 1.2,
         "source": "dev-0283",
         "category_ctx": null
       }
@@ -1211,7 +1211,7 @@
         "blocks": [
           "my_licenses"
         ],
-        "ms": 1.77,
+        "ms": 1.27,
         "source": "dev-0103",
         "category_ctx": null
       },
@@ -1224,7 +1224,7 @@
         "blocks": [
           "my_licenses"
         ],
-        "ms": 1.65,
+        "ms": 1.5,
         "source": "dev-0104",
         "category_ctx": null
       },
@@ -1239,7 +1239,7 @@
           "answer",
           "my_licenses"
         ],
-        "ms": 2.49,
+        "ms": 1.95,
         "source": "dev-0106",
         "category_ctx": null
       },
@@ -1252,7 +1252,7 @@
         "blocks": [
           "my_licenses"
         ],
-        "ms": 1.64,
+        "ms": 1.39,
         "source": "author",
         "category_ctx": null
       },
@@ -1265,7 +1265,7 @@
         "blocks": [
           "my_licenses"
         ],
-        "ms": 1.48,
+        "ms": 1.4,
         "source": "author",
         "category_ctx": null
       }
@@ -1280,7 +1280,7 @@
         "blocks": [
           "services"
         ],
-        "ms": 2.03,
+        "ms": 1.72,
         "source": "dev-0175",
         "category_ctx": null
       },
@@ -1293,7 +1293,7 @@
         "blocks": [
           "services"
         ],
-        "ms": 3.75,
+        "ms": 3.46,
         "source": "dev-0176",
         "category_ctx": null
       },
@@ -1306,7 +1306,7 @@
         "blocks": [
           "services"
         ],
-        "ms": 2.68,
+        "ms": 2.28,
         "source": "author",
         "category_ctx": null
       },
@@ -1319,7 +1319,7 @@
         "blocks": [
           "services"
         ],
-        "ms": 1.72,
+        "ms": 1.54,
         "source": "author",
         "category_ctx": null
       },
@@ -1332,7 +1332,7 @@
         "blocks": [
           "services"
         ],
-        "ms": 1.89,
+        "ms": 1.7,
         "source": "author",
         "category_ctx": null
       }
@@ -1348,7 +1348,7 @@
           "answer",
           "products"
         ],
-        "ms": 2.43,
+        "ms": 2.31,
         "source": "dev-0187",
         "category_ctx": null
       },
@@ -1361,7 +1361,7 @@
         "blocks": [
           "promo"
         ],
-        "ms": 4.91,
+        "ms": 3.72,
         "source": "dev-0188",
         "category_ctx": null
       },
@@ -1374,7 +1374,7 @@
         "blocks": [
           "promo"
         ],
-        "ms": 2.58,
+        "ms": 1.72,
         "source": "author",
         "category_ctx": null
       },
@@ -1388,7 +1388,7 @@
           "answer",
           "products"
         ],
-        "ms": 2.7,
+        "ms": 2.34,
         "source": "author",
         "category_ctx": null
       },
@@ -1401,7 +1401,7 @@
         "blocks": [
           "promo"
         ],
-        "ms": 2.2,
+        "ms": 1.89,
         "source": "author",
         "category_ctx": null
       }
@@ -1410,9 +1410,9 @@
       {
         "q": "касп",
         "suggestions": [
-          "Kaspersky Standard / Plus / Premium",
           "Kaspersky Endpoint Security для бизнеса",
-          "Kaspersky Small Office Security"
+          "Kaspersky Small Office Security",
+          "Kaspersky ASAP"
         ],
         "profile": "guest",
         "mode": "fast",
@@ -1423,7 +1423,7 @@
           "vendors",
           "queries"
         ],
-        "ms": 0.5
+        "ms": 0.45
       },
       {
         "q": "крипто",
@@ -1443,7 +1443,7 @@
           "queries",
           "answers"
         ],
-        "ms": 0.42
+        "ms": 0.75
       },
       {
         "q": "астр",
@@ -1475,11 +1475,11 @@
         "blocks": [
           "spec"
         ],
-        "ms": 162.63,
+        "ms": 129.71,
         "file": "request.csv",
         "positions": 2,
         "matched": 2,
-        "quote_filename": "KP-20261121-s_a783.xlsx"
+        "quote_filename": "KP-20261121-s_faf5.xlsx"
       },
       {
         "q": "request.txt",
@@ -1490,11 +1490,11 @@
         "blocks": [
           "spec"
         ],
-        "ms": 32.28,
+        "ms": 32.36,
         "file": "request.txt",
         "positions": 3,
         "matched": 3,
-        "quote_filename": "KP-20261121-s_3a26.xlsx"
+        "quote_filename": "KP-20261121-s_9021.xlsx"
       },
       {
         "q": "request-1c.xlsx",
@@ -1505,11 +1505,11 @@
         "blocks": [
           "spec"
         ],
-        "ms": 97.9,
+        "ms": 102.7,
         "file": "request-1c.xlsx",
         "positions": 2,
         "matched": 2,
-        "quote_filename": "KP-20261121-s_6e86.xlsx"
+        "quote_filename": "KP-20261121-s_930b.xlsx"
       }
     ],
     "widget": [
@@ -1523,7 +1523,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 97.64,
+        "ms": 30.25,
         "source": "ui",
         "endpoint": "/api/search"
       },
@@ -1537,7 +1537,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 8.37,
+        "ms": 8.1,
         "source": "ui",
         "endpoint": "/api/search"
       },
@@ -1551,7 +1551,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 13.09,
+        "ms": 7.95,
         "source": "ui",
         "endpoint": "/api/search"
       },
@@ -1565,7 +1565,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 10.45,
+        "ms": 7.67,
         "source": "ui",
         "endpoint": "/api/search"
       },
@@ -1580,7 +1580,7 @@
           "analogs",
           "crosssell"
         ],
-        "ms": 15.43,
+        "ms": 12.41,
         "source": "ui",
         "endpoint": "/api/search"
       },
@@ -1595,7 +1595,7 @@
           "analogs",
           "crosssell"
         ],
-        "ms": 11.29,
+        "ms": 10.19,
         "source": "ui",
         "endpoint": "/api/search"
       }
@@ -1606,11 +1606,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "category",
-        "first_card": "Dr.Web Enterprise Security Suite Защита рабочих станций",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "products"
         ],
-        "ms": 12.48,
+        "ms": 9.17,
         "quantity": 30,
         "metric": "device"
       },
@@ -1625,7 +1625,7 @@
           "lead",
           "crosssell"
         ],
-        "ms": 13.83,
+        "ms": 7.27,
         "quantity": 25,
         "metric": "device"
       },
@@ -1639,7 +1639,7 @@
           "products",
           "crosssell"
         ],
-        "ms": 4.04,
+        "ms": 5.08,
         "quantity": 5,
         "metric": "device"
       }
@@ -1654,7 +1654,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 15.98,
+        "ms": 12.85,
         "industry_id": "dentistry_private_clinic",
         "industry_title": "Стоматология и частная медицинская клиника"
       },
@@ -1667,7 +1667,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 11.31,
+        "ms": 6.76,
         "industry_id": "transport_logistics",
         "industry_title": "Транспорт, грузоперевозки и логистика"
       },
@@ -1680,7 +1680,7 @@
         "blocks": [
           "kit"
         ],
-        "ms": 14.3,
+        "ms": 6.27,
         "industry_id": "food_beverage_mfg",
         "industry_title": "Пищевое производство и переработка продуктов"
       }
@@ -1696,7 +1696,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 12.96,
+        "ms": 10.14,
         "child_id": "school_teacher",
         "child_title": "Учитель школы (рабочее место педагога)",
         "parent": {
@@ -1710,11 +1710,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "role_kit",
-        "first_card": "Р7-Офис Для образования",
+        "first_card": "Р7-Офис Профессиональный",
         "blocks": [
           "kit"
         ],
-        "ms": 8.69,
+        "ms": 6.3,
         "child_id": "university_professor",
         "child_title": "Преподаватель вуза и кафедры",
         "parent": {
@@ -1733,7 +1733,7 @@
           "kit",
           "crosssell"
         ],
-        "ms": 16.05,
+        "ms": 14.85,
         "child_id": "clinic_registrar",
         "child_title": "Регистратор и администратор медицинской клиники",
         "parent": {
@@ -1753,7 +1753,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 0.57,
+        "ms": 0.41,
         "offers": 0,
         "fast_cards": 11
       },
@@ -1766,7 +1766,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 1.17,
+        "ms": 1.0,
         "offers": 125,
         "fast_cards": 2
       },
@@ -1779,7 +1779,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 0.44,
+        "ms": 0.33,
         "offers": 0,
         "fast_cards": 19
       }
@@ -1790,11 +1790,11 @@
         "profile": "ent_factory",
         "mode": "smart",
         "intent": "category",
-        "first_card": "ПК СВ «Брест»",
+        "first_card": "Basis Dynamix Standard",
         "blocks": [
           "products"
         ],
-        "ms": 38.54,
+        "ms": 39.04,
         "source": "dev-0092",
         "fast_first_card": "РЕД Виртуализация",
         "expected_top": [
@@ -1805,7 +1805,30 @@
         "cost_usd": 0.0,
         "cached": 2,
         "calls": 0,
-        "saved_rub": 0.0258048
+        "saved_rub": 0.025838399999999997
+      },
+      {
+        "q": "запретить копирование на флешки",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "task",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 48.74,
+        "source": "dev-0147",
+        "fast_first_card": "Dallas Lock 8.0-C",
+        "expected_top": [
+          "Kaspersky",
+          "Secret Net",
+          "SearchInform",
+          "InfoWatch"
+        ],
+        "cost_usd": 0.0,
+        "cached": 3,
+        "calls": 0,
+        "saved_rub": 0.0666162
       },
       {
         "q": "3d моделирование деталей машин по ескд",
@@ -1816,7 +1839,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 23.89,
+        "ms": 22.68,
         "source": "dev-0158",
         "fast_first_card": "СПРУТКАМ X Expert",
         "expected_top": [
@@ -1826,28 +1849,7 @@
         "cost_usd": 0.0,
         "cached": 2,
         "calls": 0,
-        "saved_rub": 0.028644000000000003
-      },
-      {
-        "q": "офисный пакет",
-        "profile": "guest",
-        "mode": "smart",
-        "intent": "category",
-        "first_card": "МойОфис Стандартный Для бизнеса",
-        "blocks": [
-          "products"
-        ],
-        "ms": 32.52,
-        "source": "dev-0006",
-        "fast_first_card": "Microsoft Office Home and Business",
-        "expected_top": [
-          "Р7-Офис",
-          "МойОфис"
-        ],
-        "cost_usd": 0.0,
-        "cached": 2,
-        "calls": 0,
-        "saved_rub": 0.03024
+        "saved_rub": 0.0286356
       }
     ],
     "priorities": [
@@ -1860,7 +1862,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 3.96,
+        "ms": 2.94,
         "rule": {
           "id": "demo-domestic-av",
           "title": "Отечественные антивирусы для госзаказчиков",
@@ -1911,17 +1913,17 @@
         "moves": [
           {
             "card_id": "drweb_enterprise_security_suite:desktop",
-            "before": 4,
+            "before": 5,
             "after": 1
           },
           {
             "card_id": "kaspersky_kesb:standard",
-            "before": 5,
+            "before": 4,
             "after": 2
           },
           {
             "card_id": "drweb_enterprise_security_suite:server",
-            "before": 7,
+            "before": 6,
             "after": 3
           },
           {
@@ -1931,36 +1933,36 @@
           },
           {
             "card_id": "drweb_enterprise_security_suite:mail",
-            "before": 6,
+            "before": 7,
             "after": 5
-          },
-          {
-            "card_id": "kaspersky_kesb:total",
-            "before": 3,
-            "after": 6
           },
           {
             "card_id": "drweb_enterprise_security_suite:complex",
             "before": 2,
+            "after": 6
+          },
+          {
+            "card_id": "kaspersky_kesb:total",
+            "before": 3,
             "after": 7
           }
         ],
         "steps": {
-          "normalize": 0.18,
-          "sku_lookup": 0.11,
-          "repair": 0.09,
-          "entities": 0.58,
+          "normalize": 0.08,
+          "sku_lookup": 0.09,
+          "repair": 0.05,
+          "entities": 0.45,
           "context": 0.01,
-          "refine": 0.2,
-          "intent": 0.07,
+          "refine": 0.15,
+          "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 0.13,
-          "filters": 0.07,
-          "variants": 0.79,
-          "rerank": 0.02,
-          "business": 1.23,
-          "merch": 0.08,
-          "compose": 0.05,
+          "retrieve": 0.06,
+          "filters": 0.05,
+          "variants": 0.54,
+          "rerank": 0.01,
+          "business": 1.08,
+          "merch": 0.04,
+          "compose": 0.07,
           "log": 0.0
         }
       },
@@ -1973,7 +1975,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 4.24,
+        "ms": 3.04,
         "rule": {
           "id": "demo-domestic-av",
           "title": "Отечественные антивирусы для госзаказчиков",
@@ -2023,21 +2025,21 @@
         "matched": 5,
         "moves": [],
         "steps": {
-          "normalize": 0.16,
-          "sku_lookup": 0.22,
-          "repair": 0.14,
-          "entities": 0.75,
+          "normalize": 0.09,
+          "sku_lookup": 0.14,
+          "repair": 0.11,
+          "entities": 0.53,
           "context": 0.01,
-          "refine": 0.21,
-          "intent": 0.07,
+          "refine": 0.15,
+          "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 0.12,
-          "filters": 0.38,
-          "variants": 0.83,
-          "rerank": 0.02,
-          "business": 0.87,
-          "merch": 0.05,
-          "compose": 0.04,
+          "retrieve": 0.06,
+          "filters": 0.4,
+          "variants": 0.6,
+          "rerank": 0.01,
+          "business": 0.63,
+          "merch": 0.03,
+          "compose": 0.03,
           "log": 0.0
         }
       },
@@ -2050,7 +2052,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 4.75,
+        "ms": 3.05,
         "rule": {
           "id": "demo-domestic-av",
           "title": "Отечественные антивирусы для госзаказчиков",
@@ -2101,17 +2103,17 @@
         "moves": [
           {
             "card_id": "drweb_enterprise_security_suite:desktop",
-            "before": 4,
+            "before": 5,
             "after": 1
           },
           {
             "card_id": "kaspersky_kesb:standard",
-            "before": 5,
+            "before": 4,
             "after": 2
           },
           {
             "card_id": "drweb_enterprise_security_suite:server",
-            "before": 7,
+            "before": 6,
             "after": 3
           },
           {
@@ -2121,36 +2123,36 @@
           },
           {
             "card_id": "drweb_enterprise_security_suite:mail",
-            "before": 6,
+            "before": 7,
             "after": 5
-          },
-          {
-            "card_id": "kaspersky_kesb:total",
-            "before": 3,
-            "after": 6
           },
           {
             "card_id": "drweb_enterprise_security_suite:complex",
             "before": 2,
+            "after": 6
+          },
+          {
+            "card_id": "kaspersky_kesb:total",
+            "before": 3,
             "after": 7
           }
         ],
         "steps": {
-          "normalize": 0.22,
-          "sku_lookup": 0.23,
-          "repair": 0.13,
-          "entities": 1.26,
+          "normalize": 0.09,
+          "sku_lookup": 0.13,
+          "repair": 0.08,
+          "entities": 0.81,
           "context": 0.01,
-          "refine": 0.31,
-          "intent": 0.11,
+          "refine": 0.15,
+          "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 0.14,
-          "filters": 0.06,
-          "variants": 0.75,
+          "retrieve": 0.06,
+          "filters": 0.07,
+          "variants": 0.48,
           "rerank": 0.01,
-          "business": 1.03,
+          "business": 0.81,
           "merch": 0.04,
-          "compose": 0.04,
+          "compose": 0.03,
           "log": 0.0
         }
       }
@@ -2161,36 +2163,34 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 9.27,
+        "ms": 2.46,
         "refined": {
           "audience": "home",
-          "line": null,
+          "line": "kaspersky_standard_home",
           "source": "dict",
           "probability": 1.0
         },
         "steps": {
-          "normalize": 0.13,
-          "sku_lookup": 0.18,
+          "normalize": 0.08,
+          "sku_lookup": 0.14,
           "repair": 0.12,
-          "entities": 0.33,
+          "entities": 0.43,
           "context": 0.01,
-          "refine": 0.15,
+          "refine": 0.37,
           "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 2.74,
-          "filters": 0.06,
-          "variants": 1.1,
-          "rerank": 0.02,
-          "business": 2.86,
-          "merch": 0.09,
-          "compose": 0.21,
-          "log": 1.03
+          "retrieve": 0.03,
+          "filters": 0.01,
+          "variants": 0.21,
+          "rerank": 0.01,
+          "business": 0.31,
+          "merch": 0.03,
+          "compose": 0.02,
+          "log": 0.55
         }
       },
       {
@@ -2198,36 +2198,34 @@
         "profile": "guest",
         "mode": "smart",
         "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 20.85,
+        "ms": 11.71,
         "refined": {
           "audience": "home",
-          "line": null,
+          "line": "kaspersky_standard_home",
           "source": "jev",
-          "probability": 0.99
+          "probability": 0.81
         },
         "steps": {
-          "normalize": 0.19,
-          "sku_lookup": 0.23,
-          "repair": 0.18,
-          "entities": 0.52,
-          "context": 0.01,
-          "refine": 8.91,
-          "intent": 0.39,
+          "normalize": 0.15,
+          "sku_lookup": 0.12,
+          "repair": 0.07,
+          "entities": 0.25,
+          "context": 0.0,
+          "refine": 9.51,
+          "intent": 0.25,
           "plan": 0.01,
-          "retrieve": 0.16,
-          "filters": 5.83,
-          "variants": 0.34,
-          "rerank": 0.03,
-          "business": 2.61,
-          "merch": 0.14,
-          "compose": 0.17,
-          "log": 0.94
+          "retrieve": 0.04,
+          "filters": 0.02,
+          "variants": 0.14,
+          "rerank": 0.02,
+          "business": 0.3,
+          "merch": 0.03,
+          "compose": 0.03,
+          "log": 0.67
         }
       },
       {
@@ -2235,36 +2233,34 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 7.73,
+        "ms": 2.13,
         "refined": {
           "audience": "home",
-          "line": null,
+          "line": "kaspersky_standard_home",
           "source": "dict",
           "probability": 1.0
         },
         "steps": {
-          "normalize": 0.16,
-          "sku_lookup": 0.24,
-          "repair": 0.16,
-          "entities": 0.48,
-          "context": 0.01,
-          "refine": 0.17,
-          "intent": 0.06,
+          "normalize": 0.09,
+          "sku_lookup": 0.2,
+          "repair": 0.09,
+          "entities": 0.28,
+          "context": 0.0,
+          "refine": 0.26,
+          "intent": 0.04,
           "plan": 0.0,
-          "retrieve": 2.88,
-          "filters": 0.04,
-          "variants": 0.28,
-          "rerank": 0.02,
-          "business": 2.09,
-          "merch": 0.06,
-          "compose": 0.14,
-          "log": 0.79
+          "retrieve": 0.04,
+          "filters": 0.02,
+          "variants": 0.1,
+          "rerank": 0.01,
+          "business": 0.35,
+          "merch": 0.04,
+          "compose": 0.02,
+          "log": 0.5
         }
       },
       {
@@ -2272,35 +2268,33 @@
         "profile": "guest",
         "mode": "smart",
         "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 23.66,
+        "ms": 11.3,
         "refined": {
           "audience": "home",
-          "line": null,
+          "line": "kaspersky_standard_home",
           "source": "jev",
-          "probability": 0.96
+          "probability": 0.75
         },
         "steps": {
-          "normalize": 0.12,
-          "sku_lookup": 0.16,
-          "repair": 0.13,
-          "entities": 0.39,
+          "normalize": 0.11,
+          "sku_lookup": 0.14,
+          "repair": 0.08,
+          "entities": 0.32,
           "context": 0.01,
-          "refine": 11.12,
-          "intent": 0.26,
-          "plan": 0.01,
-          "retrieve": 0.11,
-          "filters": 7.84,
-          "variants": 0.35,
-          "rerank": 0.03,
-          "business": 2.08,
-          "merch": 0.08,
-          "compose": 0.12,
+          "refine": 8.86,
+          "intent": 0.23,
+          "plan": 0.02,
+          "retrieve": 0.06,
+          "filters": 0.02,
+          "variants": 0.19,
+          "rerank": 0.01,
+          "business": 0.32,
+          "merch": 0.05,
+          "compose": 0.04,
           "log": 0.74
         }
       },
@@ -2313,7 +2307,7 @@
         "blocks": [
           "products"
         ],
-        "ms": 2.34,
+        "ms": 1.9,
         "refined": {
           "audience": "server",
           "line": "kaspersky_ksmg",
@@ -2321,21 +2315,21 @@
           "probability": 1.0
         },
         "steps": {
-          "normalize": 0.13,
-          "sku_lookup": 0.17,
-          "repair": 0.11,
-          "entities": 0.47,
+          "normalize": 0.1,
+          "sku_lookup": 0.14,
+          "repair": 0.1,
+          "entities": 0.4,
           "context": 0.01,
-          "refine": 0.27,
-          "intent": 0.06,
+          "refine": 0.2,
+          "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 0.04,
-          "filters": 0.03,
-          "variants": 0.14,
+          "retrieve": 0.03,
+          "filters": 0.01,
+          "variants": 0.1,
           "rerank": 0.01,
-          "business": 0.26,
-          "merch": 0.04,
-          "compose": 0.04,
+          "business": 0.16,
+          "merch": 0.03,
+          "compose": 0.03,
           "log": 0.44
         }
       },
@@ -2344,11 +2338,11 @@
         "profile": "guest",
         "mode": "smart",
         "intent": "vendor",
-        "first_card": "Kaspersky Endpoint Security для бизнеса Total",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
         "blocks": [
           "products"
         ],
-        "ms": 16.29,
+        "ms": 10.51,
         "refined": {
           "audience": "server",
           "line": "kaspersky_kesb",
@@ -2356,22 +2350,22 @@
           "probability": 0.61
         },
         "steps": {
-          "normalize": 0.14,
-          "sku_lookup": 0.22,
-          "repair": 0.11,
-          "entities": 0.37,
+          "normalize": 0.09,
+          "sku_lookup": 0.12,
+          "repair": 0.08,
+          "entities": 0.32,
           "context": 0.01,
-          "refine": 9.15,
-          "intent": 0.35,
-          "plan": 0.01,
-          "retrieve": 0.07,
-          "filters": 0.04,
-          "variants": 0.27,
-          "rerank": 0.02,
-          "business": 0.79,
-          "merch": 0.06,
-          "compose": 0.05,
-          "log": 4.45
+          "refine": 8.24,
+          "intent": 0.17,
+          "plan": 0.0,
+          "retrieve": 0.03,
+          "filters": 0.02,
+          "variants": 0.14,
+          "rerank": 0.01,
+          "business": 0.47,
+          "merch": 0.03,
+          "compose": 0.03,
+          "log": 0.66
         }
       },
       {
@@ -2379,13 +2373,11 @@
         "profile": "guest",
         "mode": "fast",
         "intent": "category",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 12.07,
+        "ms": 3.37,
         "refined": {
           "audience": "home",
           "line": null,
@@ -2393,22 +2385,22 @@
           "probability": 1.0
         },
         "steps": {
-          "normalize": 0.18,
-          "sku_lookup": 0.3,
-          "repair": 0.17,
-          "entities": 0.99,
+          "normalize": 0.1,
+          "sku_lookup": 0.14,
+          "repair": 0.09,
+          "entities": 0.57,
           "context": 0.01,
-          "refine": 0.21,
-          "intent": 0.06,
+          "refine": 0.28,
+          "intent": 0.04,
           "plan": 0.0,
-          "retrieve": 3.25,
-          "filters": 0.08,
-          "variants": 1.01,
-          "rerank": 0.02,
-          "business": 1.62,
-          "merch": 0.06,
-          "compose": 0.12,
-          "log": 3.82
+          "retrieve": 0.07,
+          "filters": 0.03,
+          "variants": 0.61,
+          "rerank": 0.01,
+          "business": 0.55,
+          "merch": 0.04,
+          "compose": 0.03,
+          "log": 0.7
         }
       },
       {
@@ -2416,13 +2408,11 @@
         "profile": "guest",
         "mode": "smart",
         "intent": "category",
-        "first_card": "Kaspersky Small Office Security",
+        "first_card": "Kaspersky Plus",
         "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
+          "products"
         ],
-        "ms": 55.1,
+        "ms": 45.48,
         "refined": {
           "audience": "home",
           "line": null,
@@ -2430,28 +2420,28 @@
           "probability": 0.97
         },
         "steps": {
-          "normalize": 0.15,
+          "normalize": 0.09,
           "sku_lookup": 0.17,
-          "repair": 0.14,
-          "entities": 0.78,
-          "context": 0.01,
-          "refine": 45.76,
-          "intent": 0.26,
+          "repair": 0.11,
+          "entities": 0.48,
+          "context": 0.0,
+          "refine": 42.3,
+          "intent": 0.25,
           "plan": 0.01,
-          "retrieve": 0.23,
-          "filters": 0.09,
-          "variants": 0.7,
-          "rerank": 0.02,
-          "business": 1.57,
-          "merch": 0.05,
-          "compose": 0.11,
-          "log": 0.9
+          "retrieve": 0.1,
+          "filters": 0.04,
+          "variants": 0.28,
+          "rerank": 0.01,
+          "business": 0.62,
+          "merch": 0.04,
+          "compose": 0.03,
+          "log": 0.84
         }
       }
     ],
     "not_sold": [
       {
-        "q": "касперский для дома",
+        "q": "NOD32 для дома",
         "profile": "guest",
         "mode": "fast",
         "intent": "out_of_catalog",
@@ -2461,35 +2451,35 @@
           "analogs",
           "answer"
         ],
-        "ms": 3.92,
-        "reason": "not_in_catalog",
-        "explanation": "Для домашнего использования Kaspersky в этой подборке магазина для организаций подходящей лицензии нет.",
+        "ms": 5.06,
+        "reason": "vendor_left",
+        "explanation": "Для домашнего использования ESET в этой подборке магазина для организаций подходящей лицензии нет.",
         "alternatives": [
           "Kaspersky Small Office Security",
-          "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "Kaspersky Endpoint Security Cloud Базовый"
+          "Dr.Web Малый бизнес",
+          "PRO32 Endpoint Security Advanced"
         ],
         "steps": {
-          "normalize": 0.15,
+          "normalize": 0.11,
           "sku_lookup": 0.16,
-          "repair": 0.09,
-          "entities": 0.64,
+          "repair": 0.12,
+          "entities": 0.62,
           "context": 0.01,
-          "refine": 0.16,
+          "refine": 0.26,
           "intent": 0.05,
           "plan": 0.0,
-          "retrieve": 0.05,
-          "filters": 0.02,
-          "variants": 0.0,
+          "retrieve": 0.1,
+          "filters": 0.03,
+          "variants": 0.5,
           "rerank": 0.01,
-          "business": 1.59,
-          "merch": 0.05,
-          "compose": 0.16,
-          "log": 0.66
+          "business": 2.04,
+          "merch": 0.04,
+          "compose": 0.14,
+          "log": 0.74
         }
       },
       {
-        "q": "касперский для дома",
+        "q": "NOD32 для дома",
         "profile": "guest",
         "mode": "smart",
         "intent": "out_of_catalog",
@@ -2499,144 +2489,183 @@
           "analogs",
           "answer"
         ],
-        "ms": 23.93,
-        "reason": "not_in_catalog",
-        "explanation": "Для домашнего использования Kaspersky в этой подборке магазина для организаций подходящей лицензии нет.",
+        "ms": 50.55,
+        "reason": "vendor_left",
+        "explanation": "Для домашнего использования ESET в этой подборке магазина для организаций подходящей лицензии нет.",
         "alternatives": [
           "Kaspersky Small Office Security",
-          "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "Kaspersky Endpoint Security Cloud Базовый"
+          "Dr.Web Малый бизнес",
+          "PRO32 Endpoint Security Advanced"
         ],
         "steps": {
-          "normalize": 0.14,
-          "sku_lookup": 0.18,
+          "normalize": 0.1,
+          "sku_lookup": 0.19,
           "repair": 0.1,
-          "entities": 0.6,
+          "entities": 0.61,
           "context": 0.01,
-          "refine": 6.97,
-          "intent": 0.45,
+          "refine": 45.61,
+          "intent": 0.31,
           "plan": 0.01,
-          "retrieve": 0.15,
-          "filters": 11.07,
-          "variants": 0.03,
-          "rerank": 0.03,
-          "business": 2.55,
-          "merch": 0.15,
-          "compose": 0.18,
-          "log": 1.13
+          "retrieve": 0.2,
+          "filters": 0.06,
+          "variants": 0.38,
+          "rerank": 0.02,
+          "business": 1.93,
+          "merch": 0.06,
+          "compose": 0.1,
+          "log": 0.76
         }
       },
       {
-        "q": "антивирус для дома на 3 устройства",
+        "q": "Р7-Офис для дома",
         "profile": "guest",
         "mode": "fast",
-        "intent": "category",
-        "first_card": "Kaspersky Small Office Security",
+        "intent": "out_of_catalog",
+        "first_card": "Р7-Офис Корпоративный сервер",
         "blocks": [
           "not_in_catalog",
           "analogs",
           "answer"
         ],
-        "ms": 9.72,
+        "ms": 4.36,
         "reason": "not_in_catalog",
-        "explanation": "Для домашнего использования в этой подборке магазина для организаций подходящей лицензии нет.",
+        "explanation": "Для домашнего использования R7-Office в этой подборке магазина для организаций подходящей лицензии нет.",
         "alternatives": [
-          "Kaspersky Small Office Security",
-          "Dr.Web Малый бизнес"
-        ],
-        "steps": {
-          "normalize": 0.21,
-          "sku_lookup": 0.36,
-          "repair": 0.23,
-          "entities": 1.56,
-          "context": 0.01,
-          "refine": 0.19,
-          "intent": 0.12,
-          "plan": 0.0,
-          "retrieve": 3.21,
-          "filters": 0.03,
-          "variants": 0.0,
-          "rerank": 0.01,
-          "business": 2.47,
-          "merch": 0.07,
-          "compose": 0.19,
-          "log": 0.88
-        }
-      },
-      {
-        "q": "домашняя лицензия касперского",
-        "profile": "guest",
-        "mode": "fast",
-        "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
-        "blocks": [
-          "not_in_catalog",
-          "analogs",
-          "answer"
-        ],
-        "ms": 12.56,
-        "reason": "not_in_catalog",
-        "explanation": "Для домашнего использования Kaspersky в этой подборке магазина для организаций подходящей лицензии нет.",
-        "alternatives": [
-          "Kaspersky Small Office Security",
-          "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "Kaspersky Endpoint Security Cloud Базовый"
+          "Р7-Офис Корпоративный сервер",
+          "Microsoft Office Home and Business",
+          "МойОфис Профессиональный Частное облако"
         ],
         "steps": {
           "normalize": 0.13,
-          "sku_lookup": 0.2,
-          "repair": 0.1,
-          "entities": 0.44,
+          "sku_lookup": 0.22,
+          "repair": 0.13,
+          "entities": 0.38,
           "context": 0.01,
-          "refine": 0.16,
-          "intent": 0.05,
+          "refine": 0.28,
+          "intent": 0.06,
           "plan": 0.0,
-          "retrieve": 3.6,
+          "retrieve": 0.19,
           "filters": 0.07,
-          "variants": 0.6,
-          "rerank": 0.02,
-          "business": 5.09,
-          "merch": 0.05,
+          "variants": 0.58,
+          "rerank": 0.01,
+          "business": 1.44,
+          "merch": 0.06,
           "compose": 0.1,
-          "log": 1.84
+          "log": 0.58
         }
       },
       {
-        "q": "домашняя лицензия касперского",
+        "q": "Р7-Офис для дома",
         "profile": "guest",
         "mode": "smart",
-        "intent": "vendor",
-        "first_card": "Kaspersky Small Office Security",
+        "intent": "out_of_catalog",
+        "first_card": "Р7-Офис Корпоративный сервер",
         "blocks": [
           "not_in_catalog",
           "analogs",
           "answer"
         ],
-        "ms": 601.14,
+        "ms": 12.6,
         "reason": "not_in_catalog",
-        "explanation": "Для домашнего использования Kaspersky в этой подборке магазина для организаций подходящей лицензии нет.",
+        "explanation": "Для домашнего использования R7-Office в этой подборке магазина для организаций подходящей лицензии нет.",
         "alternatives": [
-          "Kaspersky Small Office Security",
-          "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "Kaspersky Endpoint Security Cloud Базовый"
+          "Р7-Офис Корпоративный сервер",
+          "Microsoft Office Home and Business",
+          "МойОфис Профессиональный Частное облако"
         ],
         "steps": {
-          "normalize": 0.12,
+          "normalize": 0.11,
           "sku_lookup": 0.16,
-          "repair": 0.13,
-          "entities": 0.4,
+          "repair": 0.09,
+          "entities": 0.34,
           "context": 0.01,
-          "refine": 303.6,
-          "intent": 0.84,
-          "plan": 0.04,
-          "retrieve": 0.5,
-          "filters": 285.85,
-          "variants": 1.83,
-          "rerank": 0.03,
-          "business": 5.51,
-          "merch": 0.13,
-          "compose": 0.15,
-          "log": 1.67
+          "refine": 8.53,
+          "intent": 0.22,
+          "plan": 0.01,
+          "retrieve": 0.15,
+          "filters": 0.03,
+          "variants": 0.28,
+          "rerank": 0.05,
+          "business": 1.62,
+          "merch": 0.04,
+          "compose": 0.1,
+          "log": 0.7
+        }
+      },
+      {
+        "q": "Кибер Бэкап для дома",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "Кибер Бэкап Расширенный",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "answer"
+        ],
+        "ms": 4.23,
+        "reason": "not_in_catalog",
+        "explanation": "Для домашнего использования Cyberprotect в этой подборке магазина для организаций подходящей лицензии нет.",
+        "alternatives": [
+          "Кибер Бэкап Расширенный",
+          "RuBackup Enterprise",
+          "Handy Backup Professional"
+        ],
+        "steps": {
+          "normalize": 0.17,
+          "sku_lookup": 0.21,
+          "repair": 0.14,
+          "entities": 0.46,
+          "context": 0.01,
+          "refine": 0.3,
+          "intent": 0.05,
+          "plan": 0.0,
+          "retrieve": 0.08,
+          "filters": 0.02,
+          "variants": 0.43,
+          "rerank": 0.01,
+          "business": 1.43,
+          "merch": 0.04,
+          "compose": 0.08,
+          "log": 0.72
+        }
+      },
+      {
+        "q": "Кибер Бэкап для дома",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "out_of_catalog",
+        "first_card": "Кибер Бэкап Расширенный",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "answer"
+        ],
+        "ms": 12.95,
+        "reason": "not_in_catalog",
+        "explanation": "Для домашнего использования Cyberprotect в этой подборке магазина для организаций подходящей лицензии нет.",
+        "alternatives": [
+          "Кибер Бэкап Расширенный",
+          "RuBackup Enterprise",
+          "Handy Backup Professional"
+        ],
+        "steps": {
+          "normalize": 0.1,
+          "sku_lookup": 0.14,
+          "repair": 0.09,
+          "entities": 0.46,
+          "context": 0.01,
+          "refine": 8.5,
+          "intent": 0.27,
+          "plan": 0.01,
+          "retrieve": 0.12,
+          "filters": 0.02,
+          "variants": 0.14,
+          "rerank": 0.01,
+          "business": 1.85,
+          "merch": 0.05,
+          "compose": 0.11,
+          "log": 0.92
         }
       }
     ]
