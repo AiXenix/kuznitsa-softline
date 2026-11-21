@@ -38,7 +38,8 @@ export async function presentation(){
   add(panel,'span',current.say);
   button(panel,'Закрыть',()=>{const u=new URL(location.href);for(const k of ['show','step','action'])u.searchParams.delete(k);location.assign(u);});
   document.body.classList.add('presenting');
+  new ResizeObserver(()=>document.body.style.setProperty('--show-height',panel.offsetHeight+'px')).observe(panel);
   window.addEventListener('keydown',e=>{
-    if(e.altKey && ['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();jump(e.key==='ArrowRight'?1:-1);}
+    if(!e.ctrlKey && !e.metaKey && !document.querySelector('dialog[open]') && ['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();jump(e.key==='ArrowRight'?1:-1);}
   });
 }

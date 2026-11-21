@@ -28,21 +28,33 @@ def test_console_http_contract(cfg, monkeypatch):
         for page in ("/admin", "/inspect/by-query", "/inspect/s_saved", "/card/sample"):
             assert api.get(page).status_code == 200
         search = api.post("/api/search", json={"q": "щит", "mode": "fast", "source": "ui"}).json()
+        journal = api.app.state.engine.journal
+        with journal.transaction() as db:
+            for index, (source, zero) in enumerate([("history", 1), ("history", 0), ("replay", 1)]):
+                db.execute("INSERT INTO searches(search_id,source,ts,zero) VALUES(?,?,?,?)",
+                           (f"period-{index}", source, 22 * 3600, zero))
+        period = "/api/admin/ui/history-days"
+        assert api.get(period).json()["items"] == [{"key": "1970-01-02", "searches": 2, "zero_rate": 0.5}]
         lookup = "/api/admin/ui/search-reference"
         assert api.get(lookup, params={"q": "щит"}).json()["search_id"] == search["search_id"]
         assert api.get(lookup, params={"q": "фразы нет в журнале"}).status_code == 404
         monkeypatch.setenv("KZ_ADMIN_OPEN", "0")
         assert api.get(lookup, params={"q": "щит"}).status_code == 403
+        assert api.get(period).status_code == 403
 
 
-def test_console_renderers_with_journal_examples(tmp_path):
+@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js"])
+def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
     chrome = shutil.which("google-chrome") or shutil.which("chromium")
     if not chrome:
         pytest.skip("Нужен локальный Chrome")
     data = {path.stem: json.loads(path.read_text()) for path in EXAMPLES.glob("*.json")}
     data["insights"]["items"] = [data["insight-verify"], data["insight-reject"]]
-    js = (Path(__file__).parent / "admin_render.browser.js").read_text()
+    js = (Path(__file__).parent / fixture_script).read_text()
     js = js.replace("./admin/", (ROOT / "web/js/admin").as_uri() + "/")
+    js = js.replace("./store/", (ROOT / "web/js").as_uri() + "/")
+    if fixture_script == "c3_render.browser.js":
+        data = [json.loads(p.read_text()) for p in sorted((ROOT / "docs/api_examples").glob("*.json"))]
     html = tmp_path / "console.html"
     html.write_text('<body><output></output><main></main><script id="fixtures" type="application/json">'
                     + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + '</script><script type="module">'

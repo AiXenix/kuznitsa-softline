@@ -1,3 +1,4 @@
+import {caption,readable} from '../labels.js';
 import {add,details,link,rows} from '../dom.js';
 import {adminApi,section,field,options,loadBox,taskButton,empty,shop} from './common.js';
 
@@ -27,7 +28,7 @@ export function rules(parent){
       const item=add(box,'article',null,'ruleRow');
       add(item,'strong',kinds[row.kind] || row.kind);add(item,'span',row.enabled?'Включено':'Выключено','badge');
       const cond=row.conditions || {},act=row.action || {};
-      add(item,'p',[...Object.entries(cond),...Object.entries(act)].map(([k,v])=>(labels[k] || k)+' · '+v).join(' / '));
+      add(item,'p',[...Object.entries(cond),...Object.entries(act)].map(([k,v])=>(labels[k] || caption('',k))+' · '+(['intent','segment','category'].includes(k)?caption(k,v):readable(v))).join(' / '));
       const ops=add(item,'div',null,'adminControls');
       if(cond.phrase || act.phrase){const a=link(ops,'Проверить на запросе ↗',shop(cond.phrase || act.phrase));a.target='_blank';a.rel='noopener';}
       const path='rules/'+encodeURIComponent(row.id);

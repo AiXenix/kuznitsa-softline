@@ -1,3 +1,4 @@
+import {caption,readable} from '../labels.js';
 import {add,button,line,link,details,rows} from '../dom.js';
 import {adminApi,roles,types,statuses,fmt,pct,rub,shortRub,valid,groupText,phrase,loadBox,section,options,taskButton,empty} from './common.js';
 
@@ -13,7 +14,7 @@ function verification(p,v){
     if(rows(v.recovered).includes(q))line(row,'Выдача восстановлена','badge','span');
     const split=add(row,'div',null,'adminSplit');
     for(const [title,side] of [['Было',b],['Стало',a]]){
-      const cell=add(split,'div');add(cell,'b',title+' · '+(Array.isArray(side?.cards)?fmt(side.cards.length)+' в сохранённом списке':'нет записи'));
+      const cell=add(split,'div');add(cell,'b',title+' · '+(valid(side?.n_cards)?fmt(side.n_cards)+' карточек':Array.isArray(side?.cards)?fmt(side.cards.length)+' в сохранённом списке':'нет записи'));
       const ol=add(cell,'ol');for(const c of rows(side?.cards).slice(0,5))add(ol,'li',c.title || c.card_id || c);
       for(const banner of rows(side?.banners))line(cell,banner.text || banner);
       if(side?.search_id)link(cell,'Трасса →','/inspect/'+encodeURIComponent(side.search_id));
@@ -24,8 +25,8 @@ function card(p,i,change,expanded){
   const box=add(p,'article',null,'finding');
   const meta=add(box,'div',null,'chips');add(meta,'span',types[i.type] || i.type,'badge');add(meta,'b',statuses[i.status] || i.status,'stage');
   line(meta,roles[i.role] || i.role,'muted','small');line(meta,priorities[i.priority]?'Приоритет · '+priorities[i.priority]:i.priority,'muted','small');
-  const h=add(box,'h3');link(h,i.title || i.id,'#agent?id='+encodeURIComponent(i.id));
-  line(box,i.summary);
+  const h=add(box,'h3');link(h,readable(i.title) || types[i.type],'#agent?id='+encodeURIComponent(i.id));
+  line(box,readable(i.summary));
   const impact=i.impact || {};
   if(valid(impact.expected_rub)||valid(impact.conservative_rub)){
     const e=add(box,'p',null,'impact');line(e,impact.metric_label,'muted','small');
@@ -34,13 +35,13 @@ function card(p,i,change,expanded){
   }
   if(valid(i.confidence)){
     const label=add(box,'label','Уверенность · '+pct(i.confidence),'confidence');
-    label.title=i.confidence_note || 'Число сессий / (число сессий + 20)';
+    label.title=i.confidence_note || 'Уверенность по данным журнала';
     const meter=add(label,'progress');meter.max=1;meter.value=i.confidence;
   }
   const d=details(box,'Доказательства и действие');d.open=expanded;
   const ev=i.evidence || {};
   line(d,[valid(ev.searches_30d)?fmt(ev.searches_30d)+' поисков':'',valid(ev.sessions_30d)?fmt(ev.sessions_30d)+' сессий':'',groupText(ev.segments)].filter(Boolean).join(' · '));
-  for(const q of rows(ev.sample_queries)){
+  for(const q of rows(ev.examples || ev.sample_queries)){
     const text=typeof q==='string'?q:q.q;
     const row=add(d,'div');row.append(phrase(text,q.search_id || ev.search_ids?.[text] || i.verification?.before?.[text]?.search_id));
   }
@@ -49,8 +50,8 @@ function card(p,i,change,expanded){
   }
   const action=i.action || {};line(d,action.label,null,'h4');
   for(const [key,v] of [...Object.entries(action.conditions || {}),...Object.entries(action.payload_json || {})]){
-    if(key==='clients'){const clients=details(d,'Клиенты · '+fmt(rows(v).length));for(const client of rows(v))line(clients,[client.client_id,valid(client.licenses)?fmt(client.licenses)+' лицензий':''].filter(Boolean).join(' · '));}
-    else line(d,(actionFields[key] || key)+' · '+(Array.isArray(v)?v.join(', '):typeof v==='object'?JSON.stringify(v):v));
+    if(key==='clients'){const clients=details(d,'Клиенты · '+fmt(rows(v).length));for(const client of rows(v))line(clients,[caption('profile',client.client_id),valid(client.licenses)?fmt(client.licenses)+' лицензий':''].filter(Boolean).join(' · '));}
+    else line(d,(actionFields[key] || caption('',key))+' · '+(Array.isArray(v)?v.map(readable).join(', '):typeof v==='object'?Object.entries(v || {}).map(([k,n])=>caption('',k)+' · '+readable(n)).join(', '):['category','intent','segment','product'].includes(key)?caption(key==='product'?'family':key,v):readable(v)));
   }
   line(d,impact.formula_note,'muted');
   if(i.verification?.after){d.open=false;verification(box,i.verification);box.insertBefore(box.querySelector('.verification'),d);}
@@ -95,8 +96,7 @@ export function findings(parent,params,role=''){
         const u=new URL(location.href);u.hash='agent?'+next;
         history.replaceState(history.state,'',u);params=next;focus=chosen.id;render();return;
       }
-      const lead=filtered[0];
-      if(!focus)line(view,lead.title,'roleLead');
+
       if(focus)link(view,'← Все предложения','#agent');
       for(const i of filtered.slice(0,limit)){
         card(view,i,updated=>{

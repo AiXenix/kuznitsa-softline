@@ -1,3 +1,4 @@
+import {caption,readable} from './labels.js';
 import {card} from './product.js';
 import {add, line, button, details, rows, label, money, num, counted, stateBox} from './dom.js';
 
@@ -88,16 +89,16 @@ export function block(parent,b,actions={}) {
       for (const i of rows(b.items)) choice(p,counted(i.title,i.count),{q:i.title},ctx);
       break;
     case 'answer':
-      line(p,b.source,'muted');
+      line(p,caption('source',label(b.source)),'muted');
       for (const l of rows(b.links)) choice(p,label(l),{q:l.q || label(l)},ctx);
       break;
-    case 'not_in_catalog': if (!b.text) line(p,b.reason); break;
+    case 'not_in_catalog': if (!b.text) line(p,readable(b.reason)); break;
     case 'clarify':
       line(p,b.question);
       for (const o of rows(b.options)) choice(p,o.label,o.apply,ctx);
       break;
     case 'lead':
-      if (ctx.act && b.action==='request_quote') button(p,'Оставить запрос',e=>ctx.act('lead',{},e.currentTarget));
+      if (ctx.act && b.action==='request_quote') button(p,b.button || 'Оставить запрос',e=>ctx.act('lead',{},e.currentTarget));
       break;
     default: collection(p,b,ctx);
   }

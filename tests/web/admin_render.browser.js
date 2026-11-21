@@ -6,10 +6,13 @@ const fixtures=JSON.parse(document.querySelector('#fixtures').textContent);
 const main=document.querySelector('main'),status=document.querySelector('output');
 const tick=()=>new Promise(resolve=>setTimeout(resolve,20));
 let sparse=false, newer=false;
+const hits=new Map();
 window.fetch=async path=>{
   const url=new URL(path,'https://example.invalid'), name=url.pathname.split('/')[3];
+  hits.set(path,(hits.get(path) || 0)+1);
+  if(url.pathname.endsWith('/history-days'))return new Response(JSON.stringify({items:[{key:'2026-11-20',searches:2,zero_rate:0}]}));
   const kind=url.searchParams.get('kind');
-  if(name==='queries' && kind==='recent' && newer)return new Response(JSON.stringify({items:[{search_id:'recent-id',q:'Недавний запрос',n_cards:0}]}));
+  if(name==='queries' && kind==='recent' && newer)return new Response(JSON.stringify({items:[{search_id:hits.get(path)>1?'next-live-id':'recent-id',q:'Недавний запрос',n_cards:0,mode:'naive',intent:'role_kit',cost_rub:.00954284,zero_reason:'unknown_term'}]}));
   if(name==='queries' && kind==='recent')return new Response('{}',{status:422});
   const key=name==='queries'?'queries-'+kind:name==='replay'?'replay-result':name;
   if(!(key in fixtures))throw Error('Unexpected endpoint '+path);
@@ -30,9 +33,29 @@ try{
     }
   }
   sparse=false;newer=true;resetData();
-  fixtures.kpi.pairs=[{key:'target',label:'Показатель B2',unit:'%',before:0,after:12.5,better:'higher'}];
+  fixtures.kpi.pairs=[{key:'target',label:'Показатель B2',unit:'ms',before:12.5,after:11,better:'lower',n_before:37,n_after:36,note:'Парные наблюдения'}];
+  fixtures.kpi.funnel=[{key:'cart',label:'Добавили в корзину',count:79}];
+  fixtures.ingest.catalog={ts:'2026-11-20',files:['пример.csv'],rows:65,offers:60,rejected:3,duplicates:2,recognized:{vendor:.75},auto:{vendors:2},issues:[{title:'Нет цены',count:3,examples:[{row:21,name:'Лицензия'}]}],unmatched:{families:[{name:'Новая программа',rows:5}]}};
+  fixtures.failures.items=[{reason:'unknown_term',count:2,example:{q:'Термин',search_id:'failure-own'}}];
+  fixtures.gaps.items=[{title:'Семейство',queries:[{q:'Фраза',search_id:'gap-own'}]}];
+  fixtures.insights.items[0].evidence={sample_queries:[{q:'Синоним',search_id:'agent-own'}]};
+  fixtures.cost={items:[{mode:'smart',rub_per_query:0.0095,monthly_rub:35,rub_per_100000:950}],sent:4,cached:7};
+  hits.clear();
   location.hash='head';await tick();if(!main.innerText.includes('Показатель B2'))throw Error('B2 pairs missing');
+  if(!main.innerText.includes('-1,5 мс') || !main.innerText.includes('Парные наблюдения'))throw Error('Pair units or evidence missing');
+  if(!main.innerText.includes('Внешние вызовы · 4') || !main.innerText.includes('950 ₽'))throw Error('Cost report');
+  location.hash='agent';await tick();if(!main.querySelector('a[href="/inspect/agent-own"]'))throw Error('Agent example');
+  location.hash='ecom';await tick();if(!main.querySelector('a[href="/inspect/failure-own"]'))throw Error('Failure example');
+  if(!main.innerText.includes('Добавили в корзину') || hits.get('/api/admin/kpi')!==1)throw Error('Funnel or shared cache');
+  location.hash='content';await tick();
+  if(!main.querySelector('a[href="/inspect/gap-own"]'))throw Error('Gap example');
+  for(const term of ['пример.csv','Нет цены','21 · Лицензия','Новая программа'])if(!main.textContent.includes(term))throw Error('Catalog: '+term);
   location.hash='log';await tick();if(!main.querySelector('a[href="/inspect/recent-id"]'))throw Error('Recent missing');
+  if(!main.innerText.includes('Обычный поиск по словам') || !main.innerText.includes('Незнакомый термин') || !hits.has('/api/admin/queries?kind=recent&limit=50'))throw Error('Recent columns or URL');
+  const poll=main.querySelector('.pollControl input');poll.click();
+  await new Promise(resolve=>setTimeout(resolve,5100));
+  if(!main.querySelector('a[href="/inspect/next-live-id"]') || hits.get('/api/admin/queries?kind=recent&limit=50')!==2)throw Error('Recent poll');
+  poll.click();
   resetData();main.replaceChildren();inspector(main);await tick();
   if(!main.querySelector('.steps details[open]') || !main.querySelector('.catalogCard'))throw Error('Inspector missing trace or cards');
   status.textContent='passed';

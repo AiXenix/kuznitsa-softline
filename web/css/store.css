@@ -284,3 +284,109 @@ footer .wrap {justify-content:space-between}
 .delta.worse {color:#9b4129}
 .finding .stage {background:#e2efeb;padding:.12rem .55rem;border-radius:4px}
 .console .roleLead a {text-decoration-thickness:1px}
+
+.searched #profileInfo {position:static;max-width:none;margin-top:.35rem;background:transparent}
+#profileInfo summary {line-height:1.45;font-weight:500}
+.catalogCard {grid-template-columns:2.5rem minmax(0,1fr) auto}
+.cardHead {grid-column:2/-1;align-self:center;min-width:0}
+.cardHead h3 {font-size:1.14rem;margin:0;text-wrap:initial}
+.cardHead .whyFirst,.mini .license {margin:.15rem 0;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cardHead .badge {vertical-align:middle;margin-left:.5rem;font-size:.75rem}
+.description {grid-column:2}
+.purchase {max-width:100%;text-align:right}
+.pricePart,.amount {white-space:nowrap;overflow-wrap:normal}
+.conditions {display:flex;flex-wrap:wrap;gap:.25rem .45rem}
+.conditions span {color:var(--teal);font-size:.82rem}
+.traceStats {display:block;background:#edf4f0;border-radius:6px;padding:.35rem .5rem;font-size:.78rem;line-height:1.28}
+.traceStats p {margin:0}
+.steps {margin:.35rem 0;padding-left:1.45rem}
+.steps li {padding:0;border-bottom:1px solid var(--line)}
+.steps li.changed {border-left:2px solid var(--teal);background:#ecf6f1}
+.steps summary {display:flex;align-items:center;gap:.3rem;font-size:.76rem;line-height:1.5;min-height:1.4rem}
+.steps summary b,.stepBrief {min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.steps summary b {max-width:64%}
+.stepBrief {flex:1;color:var(--muted);font-size:.68rem}
+.stepTime {margin-left:auto;white-space:nowrap;font-size:.69rem}
+.steps details[open]>p,.detailGroup {font-size:.86rem;padding-left:.35rem}
+.steps .stepStatus {position:static;white-space:nowrap}
+.trace .sectionHead {gap:.25rem;margin-bottom:.35rem}
+.workspace>.trace {padding:.5rem .65rem}
+.workspace>.trace h2 {font-size:1.06rem;flex:1}
+.workspace>.trace .sectionHead button {margin:0;font-size:.74rem;padding:.3rem}
+.workspace.traceWide .steps {display:block;columns:2;column-gap:3rem}
+.traceWide .steps li {break-inside:avoid}
+.traceWide .steps summary,.inspectSplit .steps summary {font-size:1rem}
+.traceWide .stepBrief {font-size:.85rem}
+.traceWide .sectionHead,.traceWide #trace>a {position:sticky;background:white;z-index:1;padding:.45rem}
+.traceWide .sectionHead {top:0}
+.traceWide #trace>a {bottom:0;display:block}
+@media(min-width:801px){
+ .workspace {grid-template-columns:minmax(0,1fr) min(340px,34%)}
+ .workspace>.trace {top:8.4rem;max-height:none;overflow:visible}
+ .workspace.traceWide>.trace {overflow:auto}
+ .presenting .workspace.traceWide>.trace {bottom:4.1rem}
+ .workspace.traceClosed {grid-template-columns:minmax(0,1fr) auto}
+}
+@media(max-width:800px){
+ .searched .hero {position:relative}
+ .top nav {min-width:0;max-width:100%;gap:0}
+ .top nav a {padding:.4rem .45rem}
+ .hero .settings,.searched .settings {display:grid;grid-template-columns:1fr;gap:.25rem}
+ .searched .settings label {display:grid;grid-template-columns:6.5rem minmax(0,1fr);align-items:center}
+ .searched .tools {padding-top:.4rem}
+ .catalogCard {grid-template-columns:2rem minmax(0,1fr)}
+ .purchase {text-align:left;grid-column:2}
+ .traceWide .steps {columns:1}
+}
+.compareMetrics {font-weight:650;color:var(--teal);font-variant-numeric:tabular-nums}
+.movement {max-width:8rem}
+.zeroReason {background:#edf4ee;border-left:3px solid var(--teal);padding:.7rem 1rem;margin:.5rem 0}
+.zeroReason h2 {font-size:1.15rem}
+.skeleton {height:4.6rem;border-radius:6px;background:linear-gradient(#e5ede7 0 0) 0 .25rem/37% .8rem,linear-gradient(#edf2ed 0 0) 0 1.65rem/88% .65rem,linear-gradient(#edf2ed 0 0) 0 2.85rem/68% .65rem;background-repeat:no-repeat}
+.journalSummary {display:flex;flex-wrap:wrap;gap:.45rem;color:var(--muted);font-size:.83rem}
+.journalSummary p {margin:.2rem 0}
+.journalSummary .skeleton {width:8rem;height:1.3rem}
+.keyBox {display:flex;align-items:end;gap:.6rem;flex-basis:auto}
+.keyBox label {max-width:12rem}
+.linkedRow {cursor:pointer}
+.linkedRow:hover {background:var(--mint)}
+.sectionHead>.keyBox {margin-left:auto}
+.pollControl {display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.6rem}
+.pollControl input {width:auto}
+.intentGallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:.8rem;margin:.7rem 0}
+.intentGallery article {display:grid;align-content:start;gap:.2rem;border-left:2px solid var(--line);padding-left:.6rem}
+.steps li {font-size:.8rem;line-height:1.32}
+.steps summary {min-height:1.26rem}
+.stepFull {display:none}
+.workspace.traceWide .steps {columns:1}
+.traceWide .steps summary {min-height:1.8rem}
+.traceWide .steps summary b {min-width:15rem}
+.traceWide .stepBrief {display:none}
+.traceWide .stepFull {display:block;font-weight:450;font-size:.93rem}
+.traceWide .stepTime {font-size:.88rem}
+#comparison>.sectionHead {gap:.5rem}
+#comparison>.sectionHead select {width:auto}
+#comparison>.sectionHead label {font-size:.84rem}
+@media(max-width:800px){
+ .traceWide .steps summary b {min-width:0}
+ .traceWide .stepFull {font-size:.75rem}
+ .catalogCard .purchase,.miniPrice {max-width:100%;min-width:0;overflow-x:auto}
+ .catalogCard .pricePart {font-size:.94rem}
+}
+.journalSummary>div+div:not(:empty) {border-left:1px solid var(--line);padding-left:.5rem}
+.adminTable td,.adminTile strong,.price,.traceStats {overflow-wrap:normal}
+@media(max-width:480px){
+ .top nav a {font-size:.85rem;padding:.3rem .4rem}
+ .searched .settings label {display:block;line-height:1.25}
+ .searched .settings select {display:block;width:100%;font-size:.87rem}
+ .searched .tools {display:flex;flex-wrap:nowrap;overflow-x:auto}
+ .searched .tools button {font-size:.8rem;flex:none;padding:.4rem .55rem}
+}
+body.presenting {height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:0}
+.presenting #pageScroll {flex:1 1 auto;min-height:0;overflow:auto}
+.presenting .showBar {position:static;flex:none}
+.presenting .workspace.traceWide>.trace {bottom:calc(var(--show-height,4rem) + .75rem)}
+.adminTable th,.adminTable th button {white-space:nowrap;overflow-wrap:normal}
+.adminTable td details {margin:.2rem 0 0;border:0;padding:0}
+.adminTable td summary {font-size:.78rem}
+#profileInfo .muted {color:inherit}

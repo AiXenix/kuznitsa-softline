@@ -43,3 +43,22 @@ def search_reference(request: Request, q: str = Query(min_length=1, max_length=1
     if not found:
         raise HTTPException(404, "В журнале нет записи с этой фразой")
     return found[0]
+
+
+@router.get("/api/admin/ui/history-days")
+def history_days(request: Request):
+    """Project only historical traffic for the chart and its Moscow date range."""
+    from kuznitsa.api.admin import authorize
+
+    authorize(request, request.headers.get("X-Admin-Token", ""))
+    journal = request.app.state.engine.journal
+    days = journal.read_report(
+        """SELECT date(ts, 'unixepoch', '+3 hours') AS key,
+                  count(*) AS searches, avg(zero) AS zero_rate
+           FROM searches WHERE source='history' AND ts IS NOT NULL GROUP BY key ORDER BY key"""
+    )
+    period = journal.read_report(
+        """SELECT date(min(ts), 'unixepoch', '+3 hours') AS start,
+                  date(max(ts), 'unixepoch', '+3 hours') AS end FROM searches"""
+    )[0]
+    return {"items": days, "period": period}

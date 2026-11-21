@@ -1,8 +1,9 @@
+import {caption,loadMeta} from './labels.js';
 import {address,readAddress} from './address.js';
 import {presentation} from './show.js';
 import {$,add,line,button,details,rows,num,stateBox,link} from './dom.js';
 import {api} from './api.js';
-import {state,segments,freshSession} from './state.js';
+import {state,freshSession} from './state.js';
 import {suggestions} from './suggest.js';
 import {trace} from './trace.js';
 import {result} from './result.js';
@@ -21,11 +22,23 @@ async function store() {
   let version=0, chain=[], comparisonProfiles=[];
   const spec=$('specForm'),specText=$('specText');
   const interactions=cart();
+  const workspace=timeline.closest('.workspace'), mobile=matchMedia('(max-width:800px)');
+  function collapse(closed){
+    workspace.classList.toggle('traceClosed',closed);timeline.hidden=closed;
+    if(closed){$('traceWidth').textContent='Развернуть';$('traceWidth').setAttribute('aria-pressed','false');}
+    $('traceCollapse').textContent=closed?'Показать':'Скрыть';
+    $('traceCollapse').setAttribute('aria-expanded',String(!closed));
+    $('traceWidth').hidden=closed;
+  }
+  function restoreTrace(){collapse(localStorage.getItem('traceClosed-'+mobile.matches)==='true' ||
+    (mobile.matches && localStorage.getItem('traceClosed-true')==null));}
+  restoreTrace();mobile.addEventListener('change',restoreTrace);
+  $('traceCollapse').onclick=()=>{workspace.classList.remove('traceWide');collapse(!timeline.hidden);localStorage.setItem('traceClosed-'+mobile.matches,String(timeline.hidden));};
   $('traceWidth').onclick=e=>{
     const expanded=timeline.closest('.workspace').classList.toggle('traceWide');
     e.currentTarget.setAttribute('aria-pressed',String(expanded));
     e.currentTarget.textContent=expanded ? 'Свернуть' : 'Развернуть';
-    $('traceTitle').scrollIntoView({block:'start'});
+    if(expanded)$('traceWidth').focus({preventScroll:true});
   };
   const params=()=>({profile_id:profile.value,category:category.value,session_id:state.session});
   function save(req,kind='',replace=false,profiles=[]) {
@@ -68,7 +81,7 @@ async function store() {
     state.request=request;
     main.classList.add('searched');
     if(!navigation.restore)save(request);
-    window.scrollTo(0,0);
+    window.scrollTo(0,0);document.getElementById('pageScroll')?.scrollTo(0,0);
     $('notice').textContent='Идёт поиск…';
     results.replaceChildren();timeline.replaceChildren();
     stateBox(results,'Подбираем предложения…','loading');
@@ -78,12 +91,16 @@ async function store() {
       const r=await api('/api/search',request);
       if(now!==version)return;
       results.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);
+      if(r.profile?.short || r.profile?.segment_title){responseProfiles.set(profile.value,r.profile);profileInfo();}
       record(r,'impression').catch(err=>line(results,err.message,'error'));
       if(navigation.suggest)record(r,'suggest_click',{},'suggest').catch(err=>line(results,err.message,'error'));
-      result(results,r,{
+      result(results,r,{categories:state.meta.categories,
         related:q=>{record(r,'reformulate',{},'related').catch(err=>line(results,err.message,'error'));run(q);},
         apply:change=>{
-          if(change.q) return run(change.q,change);
+          if(change.q){
+            if(change.category && [...category.options].some(o=>o.value===change.category))category.value=change.category;
+            return run(change.q,change);
+          }
           const next={page:1,...change};
           if(change.filters) next.filters={...request.filters,...change.filters};
           if(change.ignore) {
@@ -106,7 +123,7 @@ async function store() {
       if(chain.length) button(results,'Следующий запрос · '+chain[0],()=>run(chain.shift(),{source:'gallery'}));
       const jump=link(results,'Как работал поиск ↓','#traceTitle');
       jump.className='traceJump';results.prepend(jump);
-      trace(timeline,r);$('notice').textContent='Поиск завершён.';
+      trace(timeline,r);$('notice').textContent='';
     } catch(err) {
       if(now!==version)return;
       results.replaceChildren();stateBox(results,err.message,'error');button(results,'Повторить поиск',()=>run(q,patch,previous));
@@ -126,20 +143,26 @@ async function store() {
     });
   }
   $('profileCompare').onclick=()=>openCompare('profiles');$('modeCompare').onclick=()=>openCompare('modes');
+  const profilesById=new Map(), responseProfiles=new Map();
   async function profileInfo() {
     const id=profile.value, container=$('profileInfo');container.replaceChildren();
     if(id==='guest') {
-      const d=details(container,'Кто это · Гость');
+      const d=details(container,'Гость: без истории, персонализация выключена');
       line(d,'Посетитель без истории покупок. Поиск учитывает запрос и выбранную категорию.');
       return;
     }
     try {
-      const p=await api('/api/profile/'+encodeURIComponent(id));
+      if(!profilesById.has(id))profilesById.set(id,api('/api/profile/'+encodeURIComponent(id)).catch(err=>{profilesById.delete(id);throw err;}));
+      const p=await profilesById.get(id);
       if(profile.value!==id)return;
-      const d=details(container,'О профиле');
+      const profileMeta={...rows(state.meta.profiles).find(row=>row.id===id),...responseProfiles.get(id)};
+      const next=rows(p.owned).filter(o=>Number.isFinite(o.expires_in_days) && o.expires_in_days>=0).sort((a,b)=>a.expires_in_days-b.expires_in_days)[0];
+      const d=details(container,[p.short || profileMeta.short || p.title?.split(/ [—–] /)[0],p.segment_title || profileMeta.segment_title || caption('segment',p.segment),
+        p.size_seats==null?'':num(p.size_seats)+' рабочих мест',p.industry_title || caption('industry',p.industry),
+        next?'истекает через '+num(next.expires_in_days)+' дн. · '+(next.product || next.title || caption('family',next.family_id)):''].filter(Boolean).join(' · '));
       line(d,p.title);
-      line(d,[segments[p.segment] || p.segment,p.size_seats==null?'':num(p.size_seats)+' мест',...rows(p.fleet?.os)].filter(Boolean).join(' · '));
-      for(const item of rows(p.owned)) line(d,[item.product || item.title || item.family_id,item.qty==null?'':item.qty+' мест',
+      line(d,[p.segment_title || caption('segment',p.segment),p.size_seats==null?'':num(p.size_seats)+' мест',...rows(p.fleet?.os)].filter(Boolean).join(' · '));
+      for(const item of rows(p.owned)) line(d,[item.product || item.title || caption('family',item.family_id),item.qty==null?'':item.qty+' мест',
         item.expires_in_days==null?'':'До окончания '+item.expires_in_days+' дн.'].filter(Boolean).join(' · '));
     }catch(err){if(profile.value===id)line(container,err.message);}
   }
@@ -148,8 +171,8 @@ async function store() {
     if(currentQ()) run(currentQ());
   };
   stateBox(results,'Загружаем каталог…','loading');
-  const m=await api('/api/meta');state.meta=m;
-  for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.title.split(/ [—–] /)[0],p.id));
+  const m=await loadMeta();state.meta=m;
+  for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.short || p.title.split(/ [—–] /)[0],p.id));
   for(const c of rows(m.categories)) category.add(new Option(c.title,c.id));
   $('stats').textContent=[m.catalog?.cards==null?'':num(m.catalog.cards)+' карточек',m.catalog?.offers==null?'':num(m.catalog.offers)+' вариантов лицензий'].filter(Boolean).join(' · ');
   const url=new URLSearchParams(location.search), scenario=rows(m.scenarios).find(s=>s.id===url.get('scenario'));

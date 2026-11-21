@@ -1,3 +1,4 @@
+import {loadMeta} from './labels.js';
 import {consolePage} from './admin/index.js';
 import {inspector} from './admin/inspect.js';
 import {about} from './about.js';
@@ -19,7 +20,7 @@ async function gallery(main) {
   const select=add(add(form,'label','Группа'),'select');select.add(new Option('Все группы',''));
   const status=add(main,'p',null,'muted');status.setAttribute('role','status');
   const container=add(main,'div');
-  const meta=await api('/api/meta'), all=rows(meta.scenarios);
+  const meta=await loadMeta(), all=rows(meta.scenarios);
   const checks=new Map();
   const groups=new Map(all.map(s=>[s.group || '',s.group_title || 'Другие сценарии']));
   for(const [id,title] of groups) if(id) select.add(new Option(title,id));
@@ -87,6 +88,7 @@ export async function page(main) {
     if(c.title)link(main,'Подобрать лицензию на витрине','/?'+new URLSearchParams({q:c.title}));
     return;
   }
+  if(location.pathname==='/admin' || location.pathname.startsWith('/inspect/'))await loadMeta().catch(()=>null);
   switch(location.pathname) {
     case '/scenarios':return gallery(main);
     case '/about':return about(main);
