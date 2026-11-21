@@ -21,7 +21,8 @@ def test_ut_day(mode,cfg,tmp_path):
     assert rows["VX-002"]["category_path"]==["Программы","Графика"]
     assert not rows["VX-003"]["category_path"]
     first=rows["VX-001"]
-    assert (first["price"],first["attrs"]["prices"])==(1250.50,{"Для госзаказчиков":1100.50,"Оптовая":1050.50})
+    assert (first["price"],first["attrs"]["prices"])==(1250.50,{"Для госзаказчиков":1100.50,"Оптовая":1050.50,"Розничная":1250.50,
+                                                        "gov":1100.50,"wholesale":1050.50,"retail":1250.50})
     assert (first["vendor"],first["family_name"],first["edition"])==("Вектор","Север","Проф")
     assert first["registry"] and first["attrs"]["country"]=="Россия"
     attrs=first["attrs"]

@@ -138,12 +138,14 @@ def sheet_records(rows,prefix,start,header,score,layout,sheet,explicit):
             if score(row)>=2 and sum(str(v).strip() in header for v in row if v is not None)>=2:
                 continue
             data=dict(zip(header,row)) if len(row)<=len(header) else None
-            if alternatives and data:
-                data["prices"]={h:data[h] for h in alternatives if data.get(h) not in (None,"")}
+            if (retail or alternatives) and data:
+                labels=([retail] if retail else [])+alternatives
+                data["prices"]={h:data[h] for h in labels if data.get(h) not in (None,"")}
                 for label in alternatives:
                     if field_for(label)!="cost":
                         data.pop(label,None)
-                data["_retail_price"]=retail
+                if retail:
+                    data["_retail_price"]=retail
             if group and data and not any(field_for(k)=="category_path" and v for k,v in data.items()):
                 data["category_path"]="/".join(group)
             yield num,data

@@ -2,7 +2,7 @@
 from pathlib import Path
 from lxml import etree
 
-from .mapping import field_for
+from .mapping import field_for, primary_retail
 from .nameparse import normalize
 
 
@@ -101,10 +101,15 @@ class Commerce:
                 key=scalar(price,"ИдТипаЦены")
                 return self.price_types.get(key) or scalar(price,"Представление") or key
             if prices:
-                price=next((p for p in prices if any(k in title(p).casefold() for k in ("рознич","retail"))),prices[0])
+                retail=primary_retail(title(p) for p in prices)
+                price=next((p for p in prices if title(p)==retail),prices[0])
                 row.update(price=scalar(price,"ЦенаЗаЕдиницу"),currency=scalar(price,"Валюта"))
                 attrs["Тип цены"]=title(price)
+                row["prices"]={}
+                row["_field_currency"]={}
                 for p in prices:
+                    row["prices"][title(p)] = scalar(p,"ЦенаЗаЕдиницу")
+                    row["_field_currency"][title(p)]=scalar(p,"Валюта").upper()
                     attrs["Цена · "+title(p)]=" ".join(filter(None,[scalar(p,"ЦенаЗаЕдиницу"),scalar(p,"Валюта")]))
         return {k:v for k,v in row.items() if v not in (None,"")}
 
@@ -142,6 +147,8 @@ def flatten(obj):
                     attrs=result.setdefault("attrs",{})
                     attrs.update(value)
                     visit(value)
+                elif field=="prices":
+                    result[key]=value
                 elif field in {"vendor","family_name","category_path","name","edition",*ID_FIELDS}:
                     labels={normalize(k):v for k,v in value.items()}
                     chosen=next((labels[k] for k in LABELS if isinstance(labels.get(k),(int,str))),None)
