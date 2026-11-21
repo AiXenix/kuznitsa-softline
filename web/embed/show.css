@@ -1,0 +1,5 @@
+body.presenting {padding-bottom:6rem}
+.showBar {position:fixed;z-index:10;inset:auto 0 0;background:#10373c;color:white;padding:.5rem 2%;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font:15px/1.35 system-ui}
+.showBar select,.showBar button {max-width:42vw;font:inherit;padding:.3rem}
+.showBar span {flex:1 1 14rem}
+.showBar a {color:white}

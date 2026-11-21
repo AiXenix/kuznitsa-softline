@@ -124,6 +124,27 @@ export function settings(p,params){
     area.replaceChildren();add(area,'h2','Приоритеты направлений');
     loadBox(area,async box=>{
       const [catalog,meta]=await Promise.all([adminApi('priorities'),loadMeta()]);
+      const phase=params.get('phase');
+      if(params.get('scene')==='gov' && ['enable','preview','disable'].includes(phase)){
+        const rule=rows(catalog.items).find(r=>r.id==='seed-gov-antivirus');
+        if(!rule){line(box,'Пример для госзаказчиков отсутствует в этом снимке.');return;}
+        add(box,'h3',rule.title);
+        line(box,rule.enabled?'Правило включено':'Правило выключено','badge');
+        if(phase==='preview'){
+          const out=add(box,'section');
+          line(out,rule.enabled?'Слева правило действует, справа показана выдача без него.':'Слева текущая выдача, справа показана выдача с правилом.');
+          const {id,title,order,target,scope,action,cross_tier}=rule;
+          const draft={id,title,order,target,scope,action,cross_tier,enabled:!rule.enabled};
+          const data=await adminApi('priorities/preview','POST',{rule:draft,queries:['антивирус на 30 пк'],limit:1});
+          preview(add(out,'div'),data);
+        }else{
+          const enable=phase==='enable';
+          if(Boolean(rule.enabled)!==enable)taskButton(box,enable?'Включить пример':'Выключить пример',async()=>{
+            await adminApi('priorities/'+encodeURIComponent(rule.id)+'/toggle','POST',{});render();
+          });
+        }
+        return;
+      }
       const ed=add(box,'section',null,'ruleEditor');
       const edit=r=>{editor(ed,r,meta,catalog,render);ed.scrollIntoView({block:'start'});};
       button(box,'Создать правило',()=>edit({}));box.append(ed);

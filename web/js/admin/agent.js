@@ -90,7 +90,9 @@ export function findings(parent,params,role=''){
         }
         taskButton(controls,'Найти новые',async()=>{await adminApi('insights/refresh','POST',{});all=rows((await adminApi(path)).items);render();});
       }
-      const filtered=all.filter(i=>role || (focus?i.id===focus:['role','type','status'].every(k=>!params.get(k)||i[k]===params.get(k))));
+      const example=params.get('example');
+      const source=example && !focus && !role ? all.filter(i=>i.action?.payload_json?.phrase===example) : all;
+      const filtered=source.filter(i=>role || (focus?i.id===focus:['role','type','status'].every(k=>!params.get(k)||i[k]===params.get(k))));
       filtered.sort((a,b)=>((b.impact?.expected_rub??0)-(a.impact?.expected_rub??0))*(params.get('sort')==='asc'?-1:1));
       if(!filtered.length){empty(view,'Измените фильтры или запустите поиск новых предложений.');return;}
       if(!role && params.get('first')==='1' && !focus){

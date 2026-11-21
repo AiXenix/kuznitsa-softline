@@ -57,7 +57,7 @@ export function trace(p,r,inspect=true){
   const ol=add(p,'ol',null,'steps');
   for(const s of rows(r.trace)){
     const calls=rows(s.detail?.calls).filter(x=>x.sent || x.cached);
-    const li=add(ol,'li',null,s.status);
+    const li=add(ol,'li',null,s.status);li.dataset.step=s.step;
     if(calls.length || s.changed || s.detail?.fired?.length || s.detail?.synonyms?.length || s.detail?.redirect || (s.step==='sku_lookup' && r.understood?.intent==='sku') || (s.step==='repair' && r.query?.corrections?.length))li.classList.add('changed');
     const d=details(li,''), header=d.firstChild;
     const title=s.title || caption('',s.step) || 'Шаг';
