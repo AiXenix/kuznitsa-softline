@@ -1,0 +1,583 @@
+# Назначение линеек и рекомендуемые замены · AiXenix
+families:
+  # =========================================================================
+  # 1. Kaspersky
+  # =========================================================================
+  - id: kaspersky_kesb
+    vendor: kaspersky
+    catalog: yes
+    audiences: [business, enterprise, gov, edu, server, mobile]
+    seats: "от 5–10 до 1000+ узлов"
+    for_whom: "KES для бизнеса — компании от 5 рабочих мест, централизованное управление (KSC), есть серверная и мобильная защита, версии ФСТЭК."
+
+  - id: kaspersky_ksos
+    vendor: kaspersky
+    catalog: yes
+    audiences: [micro_office, business, mobile]
+    seats: "5–25 устройств (+ 1 файловый сервер, до 50)"
+    for_whom: "KSOS — малый офис, 5–25 устройств и 1 файловый сервер, без выделенного сервера администрирования и сложной настройки."
+
+  - id: kaspersky_kes_cloud
+    vendor: kaspersky
+    catalog: yes
+    audiences: [micro_office, business, mobile]
+    seats: "10–250 пользователей/устройств"
+    for_whom: "KES Cloud — малый и средний бизнес (10–250 мест) с облачной консолью управления, удобно для филиалов и удалённых сотрудников."
+
+  - id: kaspersky_symphony_xdr
+    vendor: kaspersky
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "от 50 до 1000+ узлов"
+    for_whom: "Kaspersky Symphony / EDR / XDR — средний, крупный бизнес и госструктуры от 50 мест, которым нужно расследование инцидентов и защита серверов."
+
+  - id: kaspersky_kata
+    vendor: kaspersky
+    catalog: yes
+    audiences: [enterprise, gov, server]
+    seats: "от 250–1000+ узлов"
+    for_whom: "Kaspersky Anti Targeted Attack (KATA) — крупный бизнес, банки и госсектор, защита периметра от целевых атак (Anti-APT, песочница)."
+
+  - id: kaspersky_kuma
+    vendor: kaspersky
+    catalog: yes
+    audiences: [enterprise, gov, server]
+    seats: "по EPS (событий в секунду)"
+    for_whom: "Kaspersky KUMA (SIEM) — крупные компании, госсектор и SOC-центры для централизованного сбора и корреляции событий ИБ."
+
+  - id: kaspersky_kics
+    vendor: kaspersky
+    catalog: yes
+    audiences: [industrial, enterprise, gov, server]
+    seats: "от 10–100+ узлов АСУ ТП"
+    for_whom: "Kaspersky KICS — промышленные предприятия, энергетика и объекты КИИ (187-ФЗ): защита узлов и сетей АСУ ТП и SCADA."
+
+  - id: kaspersky_ksmg
+    vendor: kaspersky
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "от 50 до 1000+ почтовых ящиков"
+    for_whom: "Kaspersky Secure Mail Gateway (KSMG) — антиспам и антивирус для корпоративных почтовых серверов (Exchange, RuPost, CommuniGate), от 50 ящиков."
+
+  - id: kaspersky_asap
+    vendor: kaspersky
+    catalog: yes
+    audiences: [business, enterprise, gov, edu]
+    seats: "от 10 до 1000+ сотрудников"
+    for_whom: "Kaspersky ASAP — онлайн-обучение сотрудников кибергигиене и имитация фишинга для компаний любого размера."
+
+  - id: kaspersky_msa_support
+    vendor: kaspersky
+    catalog: yes
+    audiences: [business, enterprise, gov]
+    seats: "корпоративный контракт"
+    for_whom: "Kaspersky MSA Support — расширенная и премиальная техподдержка 24/7 для корпоративных продуктов «Лаборатории Касперского»."
+
+  - id: kaspersky_standard_home
+    vendor: kaspersky
+    catalog: no
+    audiences: [home, mobile]
+    seats: "1–5 личных устройств"
+    for_whom: "Kaspersky Standard / Plus / Premium — домашний антивирус для 1–5 личных устройств (нет в B2B-продаже; ближайший бизнес-аналог — KSOS)."
+    analogs: [kaspersky_ksos, kaspersky_kesb]
+
+  # =========================================================================
+  # 2. Dr.Web
+  # =========================================================================
+  - id: drweb_enterprise_security_suite
+    vendor: drweb
+    catalog: yes
+    audiences: [business, enterprise, gov, edu, server, mobile]
+    seats: "от 5 до 500+ узлов"
+    for_whom: "Dr.Web Enterprise Security Suite — компании, госструктуры и образование от 5 мест: рабочие станции, файловые и почтовые серверы, сертификаты ФСТЭК/ФСБ/МО РФ."
+
+  - id: drweb_small_business
+    vendor: drweb
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "5–50 ПК (+ файловые серверы)"
+    for_whom: "Dr.Web Малый бизнес — готовые пакеты для небольших офисов на 5–50 рабочих станций с защитой файловых серверов, без сложного внедрения."
+
+  - id: drweb_security_space
+    vendor: drweb
+    catalog: no
+    audiences: [home, mobile]
+    seats: "1–5 личных устройств"
+    for_whom: "Dr.Web Security Space — домашний антивирус для 1–5 личных ПК и смартфонов (нет в B2B-продаже; ближайший бизнес-аналог — Dr.Web Малый бизнес)."
+    analogs: [drweb_small_business, drweb_enterprise_security_suite]
+
+  # =========================================================================
+  # 3. ESET (вендор ушёл из РФ — обе линейки не в продаже)
+  # =========================================================================
+  - id: eset_protect
+    vendor: eset
+    catalog: no
+    audiences: [business, enterprise, server, mobile]
+    seats: "от 5 до 500+ узлов"
+    for_whom: "ESET PROTECT — корпоративный антивирус (вендор ушёл из РФ, не продаётся; российские замены — KES для бизнеса, Dr.Web Enterprise, PRO32 Endpoint)."
+    analogs: [kaspersky_kesb, drweb_enterprise_security_suite, pro32_endpoint_security]
+
+  - id: eset_home_security
+    vendor: eset
+    catalog: no
+    audiences: [home, mobile]
+    seats: "1–5 личных устройств"
+    for_whom: "ESET HOME Security / NOD32 для дома — домашний антивирус (не продаётся в РФ и B2B; ближайшие аналоги для малого офиса — KSOS, Dr.Web Малый бизнес, PRO32)."
+    analogs: [kaspersky_ksos, drweb_small_business, pro32_endpoint_security]
+
+  # =========================================================================
+  # 4. PRO32
+  # =========================================================================
+  - id: pro32_endpoint_security
+    vendor: pro32
+    catalog: yes
+    audiences: [micro_office, business, gov, edu, server]
+    seats: "от 5 до 250+ устройств"
+    for_whom: "PRO32 Endpoint Security — антивирус для малого и среднего бизнеса от 5 мест: рабочие станции Windows и Linux (Astra/РЕД ОС), есть серверная защита."
+
+  - id: pro32_connect
+    vendor: pro32
+    catalog: yes
+    audiences: [micro_office, business, enterprise]
+    seats: "от 1 оператора / лицензии"
+    for_whom: "PRO32 Connect — удалённый доступ и техподдержка ПК и серверов (замена TeamViewer/AnyDesk) для ИТ-отделов и сервисных компаний."
+
+  - id: pro32_total_security
+    vendor: pro32
+    catalog: no
+    audiences: [home, mobile]
+    seats: "1–5 личных устройств"
+    for_whom: "PRO32 Total Security — домашний антивирус на 1–5 устройств (нет в B2B-продаже; ближайшая продаваемая линейка PRO32 — PRO32 Endpoint Security)."
+    analogs: [pro32_endpoint_security]
+
+  # =========================================================================
+  # 5. Microsoft
+  # =========================================================================
+  - id: ms_office
+    vendor: microsoft
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "от 1 ПК/Mac (бессрочная ESD/OEM)"
+    for_whom: "Microsoft Office 2021/2024/LTSC — бессрочный офисный пакет на 1 ПК или Mac для малого и среднего бизнеса, без облачной подписки."
+
+  - id: windows_11
+    vendor: microsoft
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "от 1 ПК (Pro для домена AD)"
+    for_whom: "Windows 11 Pro — настольная ОС для рабочих станций и ноутбуков бизнеса (подключение к домену AD, BitLocker), от 1 ПК."
+
+  - id: windows_10
+    vendor: microsoft
+    catalog: yes
+    audiences: [micro_office, business, industrial]
+    seats: "от 1 ПК (Pro / LTSC)"
+    for_whom: "Windows 10 Pro / Enterprise LTSC — ОС для рабочих станций, старого отраслевого ПО, касс и промышленных терминалов, от 1 ПК."
+
+  - id: windows_server
+    vendor: microsoft
+    catalog: yes
+    audiences: [business, enterprise, server]
+    seats: "от 16 ядер на 1 физический сервер"
+    for_whom: "Windows Server Standard / Datacenter — серверная ОС для контроллеров домена AD, серверов 1С и виртуализации, лицензируется по ядрам (минимум 16 ядер)."
+
+  - id: windows_server_cal
+    vendor: microsoft
+    catalog: yes
+    audiences: [business, enterprise, server]
+    seats: "пакеты 1, 5, 10, 50 CAL"
+    for_whom: "Windows Server CAL — обязательные клиентские лицензии доступа пользователей или устройств к Windows Server, пакеты от 1 до 50 шт."
+
+  - id: windows_server_rds_cal
+    vendor: microsoft
+    catalog: yes
+    audiences: [business, enterprise, server]
+    seats: "пакеты 1, 5, 10, 50 RDS CAL"
+    for_whom: "Windows Server RDS CAL — терминальные лицензии для одновременной работы сотрудников по RDP на сервере (в том числе под 1С), пакеты 1–50 шт."
+
+  - id: microsoft_365
+    vendor: microsoft
+    catalog: no
+    audiences: [business, enterprise]
+    seats: "облачная подписка (ушла из РФ)"
+    for_whom: "Microsoft 365 для бизнеса — облачная подписка (не продаётся в РФ; ближайшая линейка вендора — бессрочный MS Office, российские замены — Яндекс 360, МойОфис, Р7)."
+    analogs: [ms_office, yandex_360, myoffice_professional, r7_office]
+
+  - id: microsoft_365_personal
+    vendor: microsoft
+    catalog: no
+    audiences: [home, mobile]
+    seats: "1–6 личных пользователей"
+    for_whom: "Microsoft 365 Персональный / Для семьи — домашняя подписка (не продаётся в РФ и B2B; ближайшие альтернативы — MS Office ESD, Р7-Офис, МойОфис Стандартный)."
+    analogs: [ms_office, r7_office, myoffice_standard]
+
+  - id: ms_visio
+    vendor: microsoft
+    catalog: no
+    audiences: [business, enterprise]
+    seats: "1 ПК (нет в продаже)"
+    for_whom: "Microsoft Visio — редактор схем и диаграмм (нет в продаже; российские замены — Р7-Офис Графика, SILA Union)."
+    analogs: [r7_office, sila_union]
+
+  - id: ms_exchange
+    vendor: microsoft
+    catalog: no
+    audiences: [business, enterprise, server]
+    seats: "сервер + CAL (нет в продаже)"
+    for_whom: "Microsoft Exchange Server — корпоративный почтовый сервер (нет в продаже; российские замены — RuPost, МойОфис Почта, Яндекс 360)."
+    analogs: [rupost, myoffice_mail, yandex_360]
+
+  - id: ms_sql_server
+    vendor: microsoft
+    catalog: no
+    audiences: [business, enterprise, server]
+    seats: "по ядрам или сервер+CAL (нет в продаже)"
+    for_whom: "Microsoft SQL Server — корпоративная СУБД (нет в продаже; российские замены — Tantor DB / Postgres Pro, РЕД База Данных)."
+    analogs: [tantor_db, red_db]
+
+  - id: ms_teams
+    vendor: microsoft
+    catalog: no
+    audiences: [business, enterprise, mobile]
+    seats: "подписка (нет в продаже)"
+    for_whom: "Microsoft Teams — корпоративный мессенджер и ВКС (нет в продаже; российские замены — МойОфис Squadus, Яндекс 360)."
+    analogs: [myoffice_squadus, yandex_360]
+
+  # =========================================================================
+  # 6. 1С
+  # =========================================================================
+  - id: onec_accounting
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, enterprise]
+    seats: "Базовая 1 место; ПРОФ/КОРП от 1 места + клиентские лицензии"
+    for_whom: "1С:Бухгалтерия 8 — бухучёт и налоги: Базовая для ИП и 1 бухгалтера, ПРОФ для малого и среднего бизнеса, КОРП для филиалов и холдингов."
+
+  - id: onec_zup
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, enterprise]
+    seats: "Базовая 1 место; ПРОФ/КОРП от 1 места"
+    for_whom: "1С:Зарплата и управление персоналом (ЗУП) — расчёт зарплаты и кадровый учёт: Базовая на 1 место, ПРОФ для коммерческих фирм, КОРП для крупного HR."
+
+  - id: onec_trade
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "Базовая 1 место; ПРОФ от 1 места"
+    for_whom: "1С:Управление торговлей (УТ) — оптовая и розничная торговля, склад, закупки, ценообразование и CRM для торговых компаний от 1 места."
+
+  - id: onec_unf
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "от 1–20 мест (Базовая / ПРОФ)"
+    for_whom: "1С:Управление нашей фирмой (УНФ) — управленческий учёт, заказы, склад и производство в одной базе для малого бизнеса (услуги, торговля, мастерские)."
+
+  - id: onec_ka
+    vendor: onec
+    catalog: yes
+    audiences: [business]
+    seats: "от 10–100+ мест"
+    for_whom: "1С:Комплексная автоматизация (КА) — единая информационная база (бухгалтерия, торговля, склад, зарплата, производство) для среднего бизнеса."
+
+  - id: onec_erp
+    vendor: onec
+    catalog: yes
+    audiences: [enterprise, industrial]
+    seats: "от 20 до 1000+ мест"
+    for_whom: "1С:ERP Управление предприятием — комплексная ERP для средних и крупных производственных, торговых и многофилиальных предприятий от 20 мест."
+
+  - id: onec_holding
+    vendor: onec
+    catalog: yes
+    audiences: [enterprise]
+    seats: "от 50+ мест (группы компаний)"
+    for_whom: "1С:Управление холдингом — консолидация отчётности, МСФО, бюджетирование и казначейство для крупных холдингов и групп компаний."
+
+  - id: onec_bgu
+    vendor: onec
+    catalog: yes
+    audiences: [gov, edu]
+    seats: "от 1 места (Базовая / ПРОФ)"
+    for_whom: "1С:Бухгалтерия государственного учреждения (БГУ) — регламентированный бюджетный учёт для госучреждений, школ, вузов, больниц (МБУ/ГБУ/ФГУП)."
+
+  - id: onec_zkgu
+    vendor: onec
+    catalog: yes
+    audiences: [gov, edu]
+    seats: "от 1 места (Базовая / ПРОФ / КОРП)"
+    for_whom: "1С:Зарплата и кадры государственного учреждения (ЗКГУ) — расчёт зарплаты и кадры для бюджетных, казённых, автономных учреждений и вузов."
+
+  - id: onec_retail
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "от 1 кассы / торговой точки"
+    for_whom: "1С:Розница — автоматизация розничных магазинов, касс (54-ФЗ, ЕГАИС, Честный ЗНАК) и небольших торговых сетей от 1 точки."
+
+  - id: onec_client_license
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, enterprise, gov]
+    seats: "пакеты на 1, 5, 10, 20, 50, 100, 300, 500 мест"
+    for_whom: "Клиентские лицензии 1С:Предприятие 8 — расширение числа одновременных пользователей в любой базе 1С (ПРОФ/КОРП), пакеты 1–500 мест."
+
+  - id: onec_server_license
+    vendor: onec
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "МИНИ до 5 подключений; x86-64 / КОРП для кластеров"
+    for_whom: "Лицензия на сервер 1С:Предприятие — для клиент-серверной работы баз 1С с СУБД (МИНИ до 5 сеансов, x86-64 для среднего бизнеса, КОРП для высоких нагрузок)."
+
+  - id: onec_its
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, enterprise, gov]
+    seats: "подписка на организацию (ТЕХНО / ПРОФ)"
+    for_whom: "1С:ИТС (КП) — обязательная подписка на легальные обновления программ 1С, техподдержку и встроенные сервисы для организаций."
+
+  - id: onec_fresh
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business]
+    seats: "от 1–5+ сеансов в облаке"
+    for_whom: "1С:Фреш — облачная аренда популярных программ 1С (Бухгалтерия, ЗУП, УНФ) в браузере без своего сервера, удобно для ИП и малого бизнеса."
+
+  - id: onec_reporting
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, gov]
+    seats: "на 1 юрлицо / ИП"
+    for_whom: "1С-Отчётность — встроенная сдача электронной отчётности в ФНС, СФР, Росстат прямо из программ 1С, лицензия на юрлицо или ИП."
+
+  - id: onec_edo
+    vendor: onec
+    catalog: yes
+    audiences: [micro_office, business, enterprise]
+    seats: "по пакетам комплектов документов"
+    for_whom: "1С-ЭДО — юридически значимый обмен первичными документами (УПД, счета-фактуры) с контрагентами прямо из 1С."
+
+  - id: onec_kedo
+    vendor: onec
+    catalog: yes
+    audiences: [business, enterprise]
+    seats: "по числу сотрудников (от 10–100+)"
+    for_whom: "1С:Кабинет сотрудника (КЭДО) — кадровый электронный документооборот (отпуска, расчётные листки, приказы) для компаний с удалёнными и офисными сотрудниками."
+
+  - id: onec_esb
+    vendor: onec
+    catalog: yes
+    audiences: [enterprise, server]
+    seats: "на сервер интеграционной шины"
+    for_whom: "1С:Шина (ESB) — корпоративная интеграционная шина для обмена данными между несколькими базами 1С и внешними ИТ-системами в крупном бизнесе."
+
+  - id: onec_itilium
+    vendor: onec
+    catalog: yes
+    audiences: [business, enterprise]
+    seats: "от 5–50+ агентов ИТ-поддержки"
+    for_whom: "1С:ITILIUM — система управления ИТ-услугами (ITSM / Service Desk) на платформе 1С для внутренних ИТ-подразделений и сервисных компаний."
+
+  # =========================================================================
+  # 7. Группа Астра (Astra Linux)
+  # =========================================================================
+  - id: astra_linux_se
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, edu, server, industrial]
+    seats: "от 1 ПК или сервера (Орёл / Воронеж / Смоленск)"
+    for_whom: "Astra Linux Special Edition — российская защищённая ОС для рабочих станций и серверов (бизнес, госсектор, КИИ, вузы), уровни Орёл/Воронеж/Смоленск, ФСТЭК/ФСБ/МО РФ."
+
+  - id: astra_brest
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по физическим серверам / сокетам"
+    for_whom: "ПК СВ «Брест» — серверная виртуализация от Группы Астра (замена VMware vSphere) со встроенными средствами защиты ФСТЭК, для бизнеса и госсектора."
+
+  - id: termidesk
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "от 10 до 1000+ виртуальных рабочих мест"
+    for_whom: "Termidesk — российская VDI-платформа виртуальных рабочих столов (замена Citrix/Horizon) для защищённой удалённой работы от 10 пользователей."
+
+  - id: ald_pro
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по числу управляемых узлов/пользователей"
+    for_whom: "ALD Pro — корпоративная служба каталогов и централизованное управление парком Linux/Windows (замена Microsoft Active Directory)."
+
+  - id: rupost
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по числу почтовых ящиков (от 25–1000+)"
+    for_whom: "RuPost — корпоративный почтовый сервер от Группы Астра (замена MS Exchange) на базе Linux, для среднего, крупного бизнеса и госсектора."
+
+  - id: astra_support_pack
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "на лицензии ОС (Стандартная / Привилегированная)"
+    for_whom: "Техподдержка Astra Linux — сертификаты расширенной и круглосуточной поддержки для организаций, эксплуатирующих Astra Linux."
+
+  - id: astra_training_courses
+    vendor: astra_group
+    catalog: yes
+    audiences: [business, enterprise, gov, edu]
+    seats: "на 1 слушателя"
+    for_whom: "Курсы по Astra Linux — авторизованное обучение системных администраторов и специалистов ИБ работе с ОС Astra Linux."
+
+  # =========================================================================
+  # 8. РЕД СОФТ (РЕД ОС)
+  # =========================================================================
+  - id: red_os
+    vendor: red_soft
+    catalog: yes
+    audiences: [micro_office, business, enterprise, gov, edu]
+    seats: "от 1 рабочей станции (Стандартная / ФСТЭК)"
+    for_whom: "РЕД ОС Рабочая станция (7.3 / 8) — российская Linux-ОС для офисных ПК в бизнесе, госсекторе и образовании, есть сертифицированная редакция ФСТЭК."
+
+  - id: red_os_server
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, edu, server]
+    seats: "на 1 сервер (Стандартная / ФСТЭК)"
+    for_whom: "РЕД ОС Сервер — российская серверная ОС для СУБД, веб-сервисов и серверов 1С в бизнесе и госсекторе, лицензируется на 1 сервер."
+
+  - id: red_virtualization
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по физическим серверам / CPU"
+    for_whom: "РЕД Виртуализация — российская платформа серверной виртуализации (замена VMware/Hyper-V) для корпоративных ЦОД и госорганов."
+
+  - id: red_adm
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по числу управляемых объектов"
+    for_whom: "РЕД АДМ — служба каталогов и управление доменом (замена Active Directory) для гетерогенных сетей на РЕД ОС и Windows."
+
+  - id: red_db
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "по серверам / ядрам"
+    for_whom: "РЕД База Данных — российская промышленная СУБД (развитие Firebird) из реестра ПО с сертификацией ФСТЭК для бизнеса и госинформсистем."
+
+  - id: redsoft_support_pack
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "на 1 сервер / рабочую станцию"
+    for_whom: "Техподдержка РЕД СОФТ — годовые пакеты расширенной технической поддержки для РЕД ОС и инфраструктурных продуктов РЕД СОФТ."
+
+  - id: redos_training_courses
+    vendor: red_soft
+    catalog: yes
+    audiences: [business, enterprise, gov, edu]
+    seats: "на 1 слушателя"
+    for_whom: "Курсы по РЕД ОС — авторизованное обучение системных администраторов миграции и эксплуатации РЕД ОС."
+
+  # =========================================================================
+  # 9. МойОфис
+  # =========================================================================
+  - id: myoffice_standard
+    vendor: myoffice
+    catalog: yes
+    audiences: [micro_office, business, gov, edu]
+    seats: "от 1 рабочего места (1–24, 25–99, 100+)"
+    for_whom: "МойОфис Стандартный — десктопный офисный пакет (Текст, Таблица, Презентация, Почта) от 1 рабочего места для малого, среднего бизнеса, госструктур и образования."
+
+  - id: myoffice_professional
+    vendor: myoffice
+    catalog: yes
+    audiences: [enterprise, gov, server, mobile]
+    seats: "от 100 пользователей (100–499, 500+, 1000+)"
+    for_whom: "МойОфис Профессиональный — корпоративная платформа от 100 пользователей: десктоп, веб-редакторы, частное облако, почтовый сервер, сертификат ФСТЭК."
+
+  - id: myoffice_mail
+    vendor: myoffice
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "от 25–100+ почтовых ящиков"
+    for_whom: "МойОфис Почта — защищённый корпоративный почтовый сервер on-premise (замена Exchange) с календарём и контактами для бизнеса и госсектора."
+
+  - id: myoffice_squadus
+    vendor: myoffice
+    catalog: yes
+    audiences: [business, enterprise, gov, mobile]
+    seats: "по числу пользователей (от 25–100+)"
+    for_whom: "МойОфис Squadus — корпоративный мессенджер, чаты и видеоконференции (замена Slack и MS Teams) в закрытом контуре организации."
+
+  - id: myoffice_home
+    vendor: myoffice
+    catalog: no
+    audiences: [home]
+    seats: "1 личный ПК (некоммерческая)"
+    for_whom: "МойОфис Стандартный. Домашняя версия — бесплатные редакторы для дома (нет в B2B-продаже; ближайшая продаваемая линейка — МойОфис Стандартный)."
+    analogs: [myoffice_standard]
+
+  # =========================================================================
+  # 10. Р7-Офис
+  # =========================================================================
+  - id: r7_office
+    vendor: r7_office
+    catalog: yes
+    audiences: [micro_office, business, enterprise, gov, edu, server, mobile]
+    seats: "Профессиональный от 1 места; Корпоративный сервер для команд"
+    for_whom: "Р7-Офис — российский офисный пакет: Профессиональный десктоп от 1 места (малый и средний бизнес, вузы), Корпоративный сервер для совместной работы в браузере."
+
+  - id: r7_office_home
+    vendor: r7_office
+    catalog: no
+    audiences: [home]
+    seats: "1 личный ПК"
+    for_whom: "Р7-Офис Домашний — редакция для личных ПК (нет в B2B-продаже; ближайшая продаваемая линейка того же вендора — Р7-Офис Профессиональный)."
+    analogs: [r7_office]
+
+  # =========================================================================
+  # 11. Киберпротект (Кибер Бэкап)
+  # =========================================================================
+  - id: cyber_backup
+    vendor: cyberprotect
+    catalog: yes
+    audiences: [micro_office, business, enterprise, gov, server]
+    seats: "от 1 рабочей станции/сервера до виртуальных хостов и ЦОД"
+    for_whom: "Кибер Бэкап — российская СРК (наследник Acronis) для рабочих станций, физических и виртуальных серверов, СУБД (PostgreSQL, MS SQL, 1С) и Exchange; от 1 узла до enterprise."
+
+  - id: cyber_infrastructure
+    vendor: cyberprotect
+    catalog: yes
+    audiences: [enterprise, gov, server]
+    seats: "по терабайтам хранения (ТБ)"
+    for_whom: "Кибер Инфраструктура — гиперконвергентное программно-определяемое хранилище (SDS) для корпоративных ЦОД и крупных предприятий."
+
+  - id: cyber_files
+    vendor: cyberprotect
+    catalog: yes
+    audiences: [business, enterprise, gov, mobile]
+    seats: "от 25 пользователей"
+    for_whom: "Кибер Файлы — защищённый корпоративный файловый обмен и синхронизация on-premise (замена корпоративного Dropbox/OneDrive) от 25 сотрудников."
+
+  - id: cyber_backup_personal
+    vendor: cyberprotect
+    catalog: no
+    audiences: [home]
+    seats: "1–5 личных ПК"
+    for_whom: "Кибер Бэкап Персональный — резервное копирование личных ПК и ноутбуков (нет в B2B-продаже; ближайшая линейка вендора — Кибер Бэкап для рабочих станций)."
+    analogs: [cyber_backup]
+
+  # =========================================================================
+  # 12. RuBackup
+  # =========================================================================
+  - id: rubackup
+    vendor: rubackup
+    catalog: yes
+    audiences: [business, enterprise, gov, server]
+    seats: "Стандарт / Enterprise — по серверам, CPU или объёму данных (ТБ)"
+    for_whom: "RuBackup (Группа Астра) — корпоративная система резервного копирования с нативной поддержкой Astra Linux, РЕД ОС, PostgreSQL и виртуализации для среднего, крупного бизнеса и госсектора."

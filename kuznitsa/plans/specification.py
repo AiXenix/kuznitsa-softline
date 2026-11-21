@@ -6,10 +6,13 @@ from kuznitsa.rank.variants import select
 from kuznitsa.rank.business import ranked
 
 
+supplier_pattern=re.compile(r"(.+?)\s*[,;]\s*(?:кол[- ]во\s*[:=]?\s*)?(\d{1,9})\s*(ед|шт|мест\w*|уз(?:ел|ла|лов)|устройств\w*|пк)[.]?",re.I)
+
+
 def file_line(engine,line,profile,req,weights,inherited_filters):
-    structured=re.fullmatch(r"(.+?)\s*,\s*кол[- ]во\s*(\d+)\s*ед[.]?",line,re.I)
+    structured=supplier_pattern.fullmatch(line)
     if structured and "/" in structured[1]:
-        return supplier_line(engine,structured[1],int(structured[2]),profile,req,weights,inherited_filters)
+        return supplier_line(engine,structured[1],int(structured[2]),profile,req,weights,inherited_filters,structured[3])
     match=re.fullmatch(r"(.*?)\s*(?:\[([^\[\]]+)\])?\s*[—–-]\s*(\d{1,9})\s*шт[.]?",line,re.I)
     if not match:return None
     name,article,n=match.groups()
@@ -45,22 +48,31 @@ def file_line(engine,line,profile,req,weights,inherited_filters):
                 blocks=[dict(type="products",items=hits)])
 
 
-def supplier_line(engine,text,count,profile,req,weights,inherited):
+def supplier_line(engine,text,count,profile,req,weights,inherited,unit="ед"):
     parts=[normalize(s) for s in text.split("/") if s.strip()]
     vendor=parts[0]
     attributes=parts[1:]
-    qty=dict(value=count,metric=None)
+    device=unit.lower().startswith(("уз","устройств","пк"))
+    seat=unit.lower().startswith("мест")
+    qty=dict(value=count,metric="device" if device else None)
     filters={k:v for k,v in inherited.items() if k in ("certs","registry","platform")}
     filters.update(req.filters)
     hits=[]
     for cid in engine.catalog.by["vendor"].get(engine.source_vendors.get(vendor),()):
         card=engine.catalog.cards[cid]
         for offer in card.offers:
+            if device and offer.lic.metric!="device" or seat and offer.lic.metric not in ("device","user","seat"):
+                continue
             name=normalize(offer.name)
             # Когда исполнение содержит косую черту, проверяем весь исходный фрагмент.
             fields=("series","edition","operation")
             match=all(s==normalize(offer.attrs[field]) if offer.attrs.get(field) else s in name
                       for s,field in zip(attributes,fields)) if len(attributes)==3 else all(s in name for s in attributes)
+            if not match and len(attributes)==3:
+                series,edition,op=attributes
+                operation=next((v for pattern,v in ((r"образоват|академ","edu"),(r"госучреж|государств","gov"),(r"миграц|переход","crossgrade")) if re.search(pattern,op)),None)
+                match=bool(operation and operation in (offer.lic.audience,offer.lic.action) and
+                           all(normalize(offer.attrs.get(k) or "")==v or v in name for k,v in (("series",series),("edition",edition))))
             if match and (offer.lic.qty_min or 1)<=count<=(offer.lic.qty_max or 10**10):
                 chosen=select(card,profile,filters,req.exclude,qty,offer)
                 if chosen:hits.append(ranked(card,chosen,1.,True,profile,weights,engine.kb))

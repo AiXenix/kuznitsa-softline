@@ -1,0 +1,270 @@
+# Подтверждённая совместимость по системам и классам ПО · AiXenix
+systems:
+  # =========================================================================
+  # 1. 1С:Предприятие
+  # =========================================================================
+  - id: "1c"
+    label: "Для 1С"
+    system_vendors: [onec]
+    aliases:
+      - "1с"
+      - "1c"
+      - "1с предприятие"
+      - "1с:предприятие"
+      - "базы 1с"
+      - "баз 1с"
+      - "сервер 1с"
+      - "сервера 1с"
+      - "1с-сервер"
+      - "1с-сервера"
+      - "1с сервер"
+      - "1с сервера"
+    compatible:
+      backup:
+        categories: [backup_recovery]
+        families:
+          - id: cyber_backup
+            note: "Агент резервного копирования серверов и баз 1С (в т.ч. через PostgreSQL/MS SQL) и файловых баз; подтверждено в KB."
+          - id: handy_backup
+            note: "Отдельный плагин «1С:Предприятие» для резервного копирования файловых и серверных баз 1С; подтверждено в KB."
+      monitoring:
+        categories: [monitoring_apm]
+        families:
+          - id: monq_aiops
+            note: "Инфраструктурный и зонтичный мониторинг серверов, сервисов и доступности контура 1С."
+          - id: saymon_monitoring
+            note: "Мониторинг серверов, СУБД и служб корпоративной инфраструктуры, включая серверы 1С."
+      security:
+        categories: [endpoint_security, nsd_access_control, iam_pam_mfa]
+        families:
+          - id: kaspersky_kesb
+            note: "Серверная антивирусная защита (Windows/Linux) серверов 1С с настраиваемыми исключениями для баз 1С."
+          - id: drweb_enterprise_security_suite
+            note: "Серверная антивирусная защита узлов 1С (Windows/Linux), в т.ч. сертифицированные версии ФСТЭК."
+          - id: secret_net_studio
+            note: "СЗИ от НСД на серверах и рабочих станциях с базами 1С (152-ФЗ, приказы ФСТЭК)."
+          - id: dallas_lock
+            note: "СЗИ от НСД для серверов 1С и АРМ бухгалтерии/кадров с персональными данными."
+          - id: multifactor_mfa
+            note: "Двухфакторная аутентификация (2FA) для веб-публикаций 1С и RDP-доступа к серверам 1С."
+          - id: indeed_pam
+            note: "Контроль и запись привилегированного доступа администраторов к серверам 1С."
+          - id: skdpu_nt
+            note: "PAM-контроль доступа администраторов и подрядчиков к серверам 1С (сертификат ФСТЭК)."
+
+  # =========================================================================
+  # 2. PostgreSQL / Postgres Pro
+  # =========================================================================
+  - id: postgresql
+    label: "Для PostgreSQL"
+    system_vendors: [postgres_pro, tantor_labs]
+    aliases:
+      - "postgresql"
+      - "postgres"
+      - "postgres pro"
+      - "постгрес"
+      - "постгреса"
+      - "постгресу"
+      - "постгрескюэль"
+      - "постгрес про"
+      - "pgsql"
+    compatible:
+      backup:
+        categories: [backup_recovery]
+        families:
+          - id: cyber_backup
+            note: "Выделенный модуль горячего резервного копирования PostgreSQL и Postgres Pro; подтверждено в KB."
+          - id: rubackup
+            note: "Нативный модуль резервного копирования PostgreSQL, Postgres Pro и Tantor DB; подтверждено в KB."
+          - id: handy_backup
+            note: "Плагин горячего бэкапа PostgreSQL без остановки СУБД; подтверждено в KB."
+      monitoring:
+        categories: [db_management_tools, monitoring_apm]
+        families:
+          - id: tantor_platform
+            note: "Специализированная платформа администрирования, диагностики и мониторинга кластеров PostgreSQL; подтверждено в KB."
+          - id: monq_aiops
+            note: "Мониторинг метрик, доступности и инцидентов кластеров PostgreSQL."
+          - id: saymon_monitoring
+            note: "Мониторинг состояния и производительности серверов PostgreSQL."
+          - id: klyuch_astrom
+            note: "APM-мониторинг приложений, транзакций и запросов к PostgreSQL."
+      security:
+        categories: [dlp, endpoint_security, iam_pam_mfa]
+        families:
+          - id: garda_db
+            note: "DAM (аудит и защита баз данных) с нативной поддержкой PostgreSQL / Postgres Pro; подтверждено в KB."
+          - id: kaspersky_kesb
+            note: "Защита хоста и ОС (Linux/Windows), на которой развёрнут сервер PostgreSQL."
+          - id: drweb_enterprise_security_suite
+            note: "Серверная антивирусная защита Linux/Windows-узлов с СУБД PostgreSQL."
+          - id: safeinspect_pam
+            note: "Контроль и видеозапись привилегированных сессий DBA к серверам PostgreSQL."
+          - id: indeed_pam
+            note: "Управление привилегированным доступом администраторов к СУБД и хостам PostgreSQL."
+          - id: skdpu_nt
+            note: "Сертифицированный ФСТЭК PAM-контроль доступа к серверам БД PostgreSQL."
+
+  # =========================================================================
+  # 3. Microsoft Exchange
+  # =========================================================================
+  - id: ms_exchange
+    label: "Для Exchange"
+    system_vendors: [microsoft]
+    aliases:
+      - "exchange"
+      - "ms exchange"
+      - "microsoft exchange"
+      - "exchange server"
+      - "эксчейндж"
+      - "эксчендж"
+      - "эксчейнджа"
+      - "эксченджа"
+      - "сервер exchange"
+    compatible:
+      backup:
+        categories: [backup_recovery]
+        families:
+          - id: cyber_backup
+            note: "Выделенный агент резервного копирования Microsoft Exchange Server (базы, почтовые ящики, гранулярное восстановление); подтверждено в KB."
+      monitoring:
+        categories: [monitoring_apm]
+        families:
+          - id: monq_aiops
+            note: "Мониторинг доступности, очередей и инфраструктуры почтового сервера Exchange."
+          - id: saymon_monitoring
+            note: "Мониторинг служб, серверов и ресурсов почтовой системы Exchange."
+      security:
+        categories: [mail_security, dlp, iam_pam_mfa, endpoint_security]
+        families:
+          - id: kaspersky_ksmg
+            note: "Почтовый шлюз безопасности (антиспам, антифишинг, антивирус) с прямой интеграцией с Exchange; подтверждено в KB."
+          - id: drweb_enterprise_security_suite
+            note: "Редакция Dr.Web для почтовых серверов (mail) — антивирусная и антиспам-фильтрация Exchange; подтверждено в KB."
+          - id: infowatch_traffic_monitor
+            note: "DLP-контроль исходящей и внутренней корреспонденции почтового сервера Exchange."
+          - id: searchinform_kib
+            note: "DLP-перехват, архивация и контроль утечек через почту Exchange."
+          - id: solar_dozor
+            note: "DLP-мониторинг корпоративной переписки и вложений в Exchange."
+          - id: multifactor_mfa
+            note: "Двухфакторная аутентификация (2FA) для веб-доступа Outlook Web Access (OWA) в Exchange; подтверждено в KB."
+
+  # =========================================================================
+  # 4. Microsoft SQL Server (MS SQL)
+  # =========================================================================
+  - id: ms_sql
+    label: "Для MS SQL"
+    system_vendors: [microsoft]
+    aliases:
+      - "ms sql"
+      - "mssql"
+      - "ms sql server"
+      - "microsoft sql server"
+      - "sql server"
+      - "мсскул"
+      - "мс скл"
+      - "мс sql"
+    compatible:
+      backup:
+        categories: [backup_recovery]
+        families:
+          - id: cyber_backup
+            note: "Выделенный агент горячего резервного копирования Microsoft SQL Server (VSS, базы и журналы транзакций); подтверждено в KB."
+          - id: handy_backup
+            note: "Плагин горячего резервного копирования баз MS SQL Server; подтверждено в KB."
+      monitoring:
+        categories: [monitoring_apm]
+        families:
+          - id: monq_aiops
+            note: "Мониторинг серверов, служб и доступности баз MS SQL Server."
+          - id: saymon_monitoring
+            note: "Мониторинг производительности и состояния серверов MS SQL."
+          - id: klyuch_astrom
+            note: "APM-мониторинг транзакций приложений и обращений к MS SQL Server."
+      security:
+        categories: [dlp, endpoint_security, iam_pam_mfa, nsd_access_control]
+        families:
+          - id: garda_db
+            note: "DAM (аудит, мониторинг запросов и защита БД) с поддержкой MS SQL Server; подтверждено в KB."
+          - id: kaspersky_kesb
+            note: "Серверная антивирусная защита Windows-хостов MS SQL Server."
+          - id: drweb_enterprise_security_suite
+            note: "Серверная антивирусная защита узлов с MS SQL Server."
+          - id: safeinspect_pam
+            note: "Контроль привилегированных сессий администраторов к серверам MS SQL."
+          - id: indeed_pam
+            note: "Управление привилегированным доступом DBA к MS SQL Server."
+          - id: skdpu_nt
+            note: "PAM-контроль привилегированного доступа к серверам БД MS SQL."
+          - id: secret_net_studio
+            note: "СЗИ от НСД на серверах Windows с MS SQL Server."
+          - id: dallas_lock
+            note: "СЗИ от НСД для серверов Windows с базами MS SQL."
+
+  # =========================================================================
+  # 5. Astra Linux
+  # =========================================================================
+  - id: astra_linux
+    label: "Для Astra Linux"
+    system_vendors: [astra_group]
+    aliases:
+      - "astra linux"
+      - "astra"
+      - "астра линукс"
+      - "астралинукс"
+      - "астры"
+      - "астре"
+      - "астру"
+      - "астра се"
+      - "astra linux se"
+    compatible:
+      backup:
+        categories: [backup_recovery]
+        families:
+          - id: rubackup
+            note: "СРК из экосистемы Группы Астра с нативной поддержкой Astra Linux (включая мандатный контроль); подтверждено в KB."
+          - id: cyber_backup
+            note: "Резервное копирование рабочих станций и серверов на Astra Linux; compat_ru_os: [astra] в KB."
+          - id: handy_backup
+            note: "Резервное копирование узлов и данных на Astra Linux; compat_ru_os: [astra] в KB."
+      monitoring:
+        categories: [monitoring_apm]
+        families:
+          - id: monq_aiops
+            note: "Мониторинг и AIOps с поддержкой серверов и агентов Astra Linux; compat_ru_os: [astra] в KB."
+          - id: saymon_monitoring
+            note: "Мониторинг инфраструктуры и узлов на Astra Linux; compat_ru_os: [astra] в KB."
+          - id: klyuch_astrom
+            note: "APM-мониторинг приложений в среде Astra Linux; compat_ru_os: [astra] в KB."
+      security:
+        categories: [endpoint_security, edr_xdr, nsd_access_control, siem_soc, dlp]
+        families:
+          - id: kaspersky_kesb
+            note: "Антивирус для Linux-станций и серверов с поддержкой Astra Linux (в т.ч. ФСТЭК); compat_ru_os: [astra] в KB."
+          - id: drweb_enterprise_security_suite
+            note: "Сертифицированный ФСТЭК/ФСБ антивирус для рабочих станций и серверов Astra Linux; compat_ru_os: [astra] в KB."
+          - id: pro32_endpoint_security
+            note: "Защита рабочих станций и серверов на Astra Linux; compat_ru_os: [astra] в KB."
+          - id: kaspersky_symphony_xdr
+            note: "EDR/XDR-агенты и реагирование на инциденты для узлов Astra Linux; compat_ru_os: [astra] в KB."
+          - id: pt_maxpatrol_edr
+            note: "EDR-защита и детектирование угроз на узлах Astra Linux; compat_ru_os: [astra] в KB."
+          - id: bizone_edr
+            note: "EDR-агент для рабочих станций и серверов Astra Linux; compat_ru_os: [astra] в KB."
+          - id: f6_mxdr
+            note: "EDR/MDR-защита конечных точек на Astra Linux; compat_ru_os: [astra] в KB."
+          - id: secret_net_studio
+            note: "СЗИ от НСД для Linux / Astra Linux (версия Secret Net LSP / Studio); compat_ru_os: [astra] в KB."
+          - id: dallas_lock
+            note: "СЗИ от НСД Dallas Lock Linux с поддержкой Astra Linux; compat_ru_os: [astra] в KB."
+          - id: kaspersky_kuma
+            note: "SIEM-система для сбора и корреляции событий ИБ с узлов Astra Linux; compat_ru_os: [astra] в KB."
+          - id: pt_maxpatrol_siem
+            note: "SIEM-мониторинг и коннекторы к журналам ОС Astra Linux; compat_ru_os: [astra] в KB."
+          - id: rusiem
+            note: "Российская SIEM-система с поддержкой источников Astra Linux; compat_ru_os: [astra] в KB."
+          - id: infowatch_traffic_monitor
+            note: "DLP-агенты для рабочих станций на Astra Linux; compat_ru_os: [astra] в KB."
+          - id: searchinform_kib
+            note: "DLP-агенты контроля рабочих станций на Astra Linux; compat_ru_os: [astra] в KB."

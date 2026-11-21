@@ -1,0 +1,15 @@
+{"q":"антивирус для домашнего компьютера","expect":{"audience":"home","not_sold":true}}
+{"q":"антивирус для семьи","expect":{"audience":"home","not_sold":true}}
+{"q":"каспер для малого офиса","expect":{"audience":"micro_office","line":"kaspersky_ksos"}}
+{"q":"антивирус для смартфона","expect":{"audience":"mobile"}}
+{"q":"антивирус папе","expect":{"audience":"home","not_sold":true}}
+{"q":"каспер для школы","expect":{"audience":"edu"}}
+{"q":"антивирус на андроид","expect":{"audience":"mobile","platform":"android"}}
+{"q":"антивирус для файлового сервера","expect":{"audience":"server"}}
+{"q":"мониторинг exchange","expect":{"category":"monitoring_apm"}}
+{"q":"бэкап постгреса","expect":{"category":"backup_recovery"}}
+{"q":"windows home в офис","expect":{"not_sold":true}}
+{"q":"антивирус для предприятия с тысячами рабочих мест","expect":{"audience":"enterprise"}}
+{"q":"каспер для охраны конвейера на производстве","expect":{"audience":"industrial"}}
+{"q":"антивирус для компьютера моей бабушки","expect":{"audience":"home","not_sold":true}}
+{"q":"каспер для фирмы из пяти коллег","expect":{"audience":"micro_office"}}

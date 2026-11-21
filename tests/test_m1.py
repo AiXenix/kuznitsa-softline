@@ -74,8 +74,13 @@ def test_pack_and_exclude(engine):
 def test_relax(engine):
     r=ask(engine,"страж на 7 лет")
     assert cards(r) and r["notes"] and r["understood"]["filters"]["term_months"]==84
-    assert not cards(ask(engine,"страж",filters={"registry":True}))
-    assert not cards(ask(engine,"страж",filters={"certs":["fstec"]}))
+    for key,value in (("registry",True),("certs",["fstec"])):
+        result=ask(engine,"страж",filters={key:value})
+        assert not any(b["type"]=="products" for b in result["blocks"])
+        for card in cards(result):
+            offer=engine.catalog.offers_by_id[card["offer"]["offer_id"]]
+            assert offer.family_id!="guard"
+            assert offer.registry if key=="registry" else "fstec" in offer.certs
 
 
 def test_exact(engine):
@@ -90,7 +95,7 @@ def test_exact(engine):
 def test_plans(engine,q,intent,block):
     r=ask(engine,q)
     assert r["understood"]["intent"]==intent and any(b["type"]==block for b in r["blocks"])
-    assert len(r["trace"])==15 and r["cost"]["usd"]==0
+    assert [s["step"] for s in r["trace"]].count("refine")==1 and r["cost"]["usd"]==0
 
 
 def test_profiles(engine):

@@ -100,7 +100,7 @@ class SupplierNames:
                     self.tasks[normalize(task)].add(card.id)
                 for alias in strings(o.attrs.get("aliases")):
                     self.names["alias",normalize(alias)].add(card.id)
-                if not (o.attrs.get("source_id") or o.attrs.get("series") or " / " in o.name and "," in o.name):
+                if not (not card.kb or o.source_id or o.source_ids or o.family_id and o.family_id.startswith("auto_") or o.attrs.get("source_id") or o.attrs.get("series") or " / " in o.name and "," in o.name):
                     continue
                 series = o.attrs.get("series")
                 if not series and " / " in o.name and "," in o.name:
@@ -118,6 +118,7 @@ class SupplierNames:
             self.forms[name].add((kind,name))
             for variant in (name.translate(LAYOUT),roman(name),cyrillic(name)):
                 self.forms[normalize(variant)].add((kind,name))
+                self.forms[normalize(re.sub(r"[-‐‑–]"," ",variant))].add((kind,name))
         for task in self.tasks:
             words=self.task_words[task]=self.terms(task)
             for w in words:
@@ -149,7 +150,7 @@ class SupplierNames:
         # Границы названия задают только распознанные слова операции и количества.
         boundary=r"^(?:купить|продлить|продление)\s+|\s+(?:продление|на \d+\s*(?:мест\w*|пк|пользовател\w*|компьютер\w*))$"
         key=re.sub(boundary,"",q)
-        options=self.forms.get(key)
+        options=self.forms.get(key) or self.forms.get(key.replace("-"," "))
         # Назначение из прайса бывает также названием раздела. По точной фразе
         # подбираем варианты с подтверждённой задачей внутри этого ассортимента.
         if q in self.tasks and not any(kind!="category" for kind,_ in options or ()):
@@ -160,7 +161,7 @@ class SupplierNames:
             if other!=layout and other in self.forms:
                 q,key,options=layout,other,self.forms[other]
         if not options and not verbatim and 5 <= len(key) <= 100:
-            near = self.nearest(key, 2, 1)
+            near = self.nearest(key, 2, 2 if len(key)>=9 else 1)
             if near and (len(near)==1 or near[0][1]<near[1][1]):
                 options = self.forms[near[0][0]]
         if not options:

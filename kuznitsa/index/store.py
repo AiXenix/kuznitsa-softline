@@ -1,4 +1,5 @@
 import re
+import json
 from collections import defaultdict
 from dataclasses import dataclass
 import numpy as np
@@ -41,9 +42,24 @@ class Catalog:
         self.skus = {}
         self.offers_by_id = {}
         regional = defaultdict(list)
+        self.retired={}
+        def archive(name,keys,category=None,vendor=None,family=None):
+            for key in keys:
+                if key:self.retired[normalize(str(key))]=(name,category,vendor,family)
+        archived=cfg.data/"inactive_offers.jsonl"
+        if archived.is_file():
+            with archived.open() as retired_stream:
+                for line in retired_stream:
+                    row=json.loads(line)
+                    name=row.get("name","")
+                    archive(name,[name,row.get("source_id"),*strings(row.get("source_ids"))],
+                            row.get("category_id"),row.get("vendor_id"),row.get("family_id"))
         with (cfg.data/"catalog.jsonl").open() as stream:
             for line in stream:
                 o = read_offer(line)
+                if any(str(o.attrs.get(k,"")).lower() in ("false","нет","no","0") for k in ("active","sold")):
+                    archive(o.name,[o.name,o.family_name,*identifiers(o),*strings(o.attrs.get("aliases"))],o.category_id,o.vendor_id,o.family_id)
+                    continue
                 for code in o.source_ids:
                     source_offers[code.casefold()][o.offer_id]=o
                 for code in identifiers(o):
@@ -102,7 +118,7 @@ class Catalog:
             aliases=dict.fromkeys([*map(str,f.get("aliases",[])),*(s for x in offers for s in strings(x.attrs.get("aliases")))])
             tasks=dict.fromkeys(s for x in offers for s in strings(x.attrs.get("task")))
             docs.append(dict(title=title,aliases=" ".join(aliases),vendor=o.vendor or "",
-                             category=kb.rows["categories"].get(o.category_id,{}).get("title",""),
+                             category=kb.rows["categories"].get(o.category_id,{}).get("title") or " ".join(o.category_path),
                              keywords=" ".join(map(str,f.get("use_cases",[])+f.get("roles",[])+f.get("formats",[])+list(tasks))),
                              summary=o.description,names=" ".join(dict.fromkeys(w for x in offers for w in x.name.split()))))
         from .source import SupplierNames

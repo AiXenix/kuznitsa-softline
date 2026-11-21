@@ -11,6 +11,14 @@ def roman(word):
 
 
 def spell_terms(lex):
+    from .repair import LAYOUT
+    compounds=defaultdict(set)
+    for phrase in lex.phrases:
+        if " " in phrase or "-" in phrase:
+            key=re.sub(r"[- ]","",phrase)
+            for form,kind in ((key,"split"),(key.translate(LAYOUT),"layout"),(roman(key),"translit"),(cyrillic(key),"translit")):
+                compounds[form].add((phrase,kind))
+    lex.compounds={key:min(matches) for key,matches in compounds.items() if len({p for p,_ in matches})==1}
     index=defaultdict(set)
     for phrase in lex.phrases:
         for word in tokens(phrase):

@@ -51,6 +51,13 @@ def repair(q,lex):
             fixed.append(translated)
             changes.append({"from":fragment,"to":translated,"kind":"layout","candidates":[translated]})
             continue
+        if "-" in fragment and fragment not in lex.phrases:
+            candidate=getattr(lex,"compounds",{}).get(fragment.replace("-",""))
+            if candidate:
+                target,kind=candidate
+                fixed.extend(target.split())
+                changes.append({"from":fragment,"to":target,"kind":kind,"candidates":[target]})
+                continue
         for w in tokens(fragment):
             options={}
             def add(word,kind,base):

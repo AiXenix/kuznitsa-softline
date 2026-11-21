@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field, ConfigDict, field_validator, PrivateAttr
 
 Action = Literal["new","renewal","upgrade","crossgrade","addon","support"]
 Metric = Literal["device","user","concurrent","server","core","cpu","vm","mailbox","company","site","storage","other"]
-Audience = Literal["business","gov","edu","home","nonprofit","med"]
+Audience = Literal["business","gov","edu","home","nonprofit","med","micro_office","enterprise","server","mobile","industrial"]
 Delivery = Literal["esd","box","paper","media","service"]
 Model = Literal["subscription","perpetual"]
 
@@ -97,7 +97,7 @@ class Request(BaseModel):
     profile_id: str = "guest"
     category: str | None = None
     session_id: str = ""
-    ignore: list[str] = Field(default_factory=list)
+    ignore: list[str] = Field(default_factory=list, description="Ключи снимаемых условий. refined отключает уточнение назначения и линейки.")
     context: Literal["on","off"] = "on"
     verbatim: bool = False
     mode: Literal["smart","fast","naive"] = "smart"

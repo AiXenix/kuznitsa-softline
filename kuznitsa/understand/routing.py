@@ -122,3 +122,16 @@ def software_name(query):
     if re.search(r"\b[a-z][a-z0-9.-]{3,}\b",text) and re.search(r"лиценз|подписк|софт|купить",text):
         return True
     return bool(re.search(r"\b[a-z]{3,}(?:desk|flow|cad|sync|cloud|docs|soft|suite)\b",text))
+
+
+def software_like_unknown(raw,words,entities):
+    """Общее слово редакции без бренда не идентифицирует латинское название."""
+    if not re.fullmatch(r"[A-Za-z][A-Za-z -]+",raw.strip()):return False
+    if any(e["type"]=="vendor" for e in entities) and not any(e["type"]=="family" for e in entities):
+        covered={w for e in entities for w in e["text"].split()}
+        tail=set(words)-covered-{"license","subscription","products","buy","business","lab"}
+        if tail and any(len(w)>=5 for w in tail):return True
+    generic={"studio","suite","manager","enterprise","professional","standard","software"}
+    return (len(words)>=2 and bool(generic.intersection(words)) and
+            not any(e["type"] in ("family","vendor","category") and
+                    set(e["text"].split())-generic for e in entities))

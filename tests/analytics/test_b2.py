@@ -85,11 +85,22 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
         "INS-02":("кэдо",{"hrlink_kedo","onec_kedo"}),
         "INS-10":("аналог teamviewer",{"rudesktop","assistant_remote"}),
         "INS-12":("autocad лицензия цена",{"nanocad_platform"}),
+        "INS-14":("миграция active directory на российское",{"ald_pro","red_adm","alt_domain"}),
     }.items():
         import json
         rr=j.rows("SELECT result FROM replay_results WHERE run_id=? AND q=?",(run["id"],phrase))
         first=json.loads(rr[0]["result"])["first"] if rr else []
         solved[story]=any(e.catalog.cards[c].family in families for c in first)
+        if story=="INS-14":
+            solved[story]=bool(first) and e.catalog.cards[first[0]].family in families
+    # Прежняя проблема INS-11 — клики по малому офису в среднем с позиции 4,8.
+    # Все три исходных запроса должны выводить такую лицензию уже в первую тройку.
+    small_office={"kaspersky_ksos","drweb_small_business"}
+    phrases=("антивирус для малого бизнеса","антивирус на 10 пк","антивирус на 15 компьютеров")
+    rows=j.rows("SELECT result FROM replay_results WHERE run_id=? AND q IN (?,?,?)",(run["id"],*phrases))
+    solved["INS-11"]=len(rows)==len(phrases) and all(
+        any(e.catalog.cards[cid].family in small_office for cid in json.loads(row["result"])["first"][:3])
+        for row in rows)
     assert sum(bool(ids) or solved.get(story,False) for story,ids in stories.items())>=15
     assert all(stories[k] or solved.get(k) for k in ("INS-10","INS-11","INS-12","INS-17"))
     items=insights.listing(j)
@@ -112,7 +123,22 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
     from kuznitsa.analytics import gaps
     clusters={r["key"] for r in gaps.report(e)["items"]}
     assert not clusters.intersection({"ghjlktybt","regbnm","lkz","bazovyi","ghjlkbnm","fpjdsq","premise","rfg","god","dlya","резервилка"})
-    assert any(i["type"]=="merch_rule" and any("касс" in q for q in i["evidence"]["sample_queries"]) for i in items)
+    # Перенаправление по разговорной фразе требует переходов и хотя бы одного
+    # заказа именно выбранного после уточнения товара (условия discover).
+    phrase="защитить десять касс от вирусов"
+    supported=j.rows("""
+        SELECT c.card_id FROM active_history s
+        JOIN events rf ON rf.search_id=s.search_id AND rf.type='reformulate'
+        JOIN active_history nxt ON nxt.session_id=s.session_id
+            AND nxt.q_raw=json_extract(rf.payload_json,'$.to') AND nxt.ts>s.ts AND nxt.ts<=s.ts+180
+        JOIN events c ON c.search_id=nxt.search_id AND c.type='click'
+        LEFT JOIN events o ON o.search_id=nxt.search_id AND o.type='order' AND o.card_id=c.card_id
+        WHERE s.q_raw=? AND s.ts>? GROUP BY c.card_id
+        HAVING COUNT(DISTINCT s.session_id)>=4 AND COUNT(o.event_id)>0
+    """,(phrase,end-30*86400))
+    cash_rules=[i for i in items if i["type"]=="merch_rule" and phrase in i["evidence"]["sample_queries"]]
+    assert bool(cash_rules)==bool(supported)
+    assert all(i["evidence"]["target_card"] in {r["card_id"] for r in supported} for i in cash_rules)
     assert {i["type"] for i in items}==set(insights.ROLES)
     for i in items:
         if i["type"]=="merch_rule":

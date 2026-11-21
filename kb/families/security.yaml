@@ -334,11 +334,12 @@
   roles: []
   industries: []
   formats: []
-  analogs: [drweb_security_space, pro32_total_security]
+  analogs: [kaspersky_ksos, kaspersky_kesb]
   replaces: [eset_protect]
   price_rub: {unit: pack_year, low: 1600, typical: 2900, high: 4900}
   popularity: 5
-  catalog: yes
+  upgrade_to: kaspersky_ksos
+  catalog: no
   sku_name_examples:
     - "Kaspersky Standard 3 устройства 1 год (ESD)"
     - "Kaspersky Plus 5 устройств 1 год (ESD)"
@@ -447,11 +448,12 @@
   roles: []
   industries: []
   formats: []
-  analogs: [kaspersky_standard_home, pro32_total_security]
+  analogs: [drweb_small_business, drweb_enterprise_security_suite]
   replaces: [eset_protect]
   price_rub: {unit: pack_year, low: 1500, typical: 2500, high: 4500}
   popularity: 4
-  catalog: yes
+  upgrade_to: drweb_small_business
+  catalog: no
   sku_name_examples:
     - "Dr.Web Security Space 3 ПК на 1 год (ESD)"
   confidence: high
@@ -523,11 +525,12 @@
   roles: []
   industries: []
   formats: []
-  analogs: [kaspersky_standard_home, drweb_security_space]
+  analogs: [pro32_endpoint_security]
   replaces: [eset_protect]
   price_rub: {unit: pack_year, low: 1400, typical: 2200, high: 3500}
   popularity: 3
-  catalog: yes
+  upgrade_to: pro32_endpoint_security
+  catalog: no
   sku_name_examples:
     - "PRO32 Total Security 3 устройства 1 год (ESD)"
   confidence: high

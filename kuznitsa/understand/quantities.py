@@ -72,6 +72,11 @@ def spoken_numbers(text):
     text=re.sub(r"\bсорока\b","сорок",text)
     text=re.sub(r"\bполутор[аы] год\w*", "18 мес",text)
     text=re.sub(r"\bполтор[аы] год\w*", "18 мес",text)
+    text=re.sub(r"\bпол(?:у)?тор[аы] тысяч\w*","1500",text)
+    text=re.sub(r"\b(?:дюжину|дюжина|дюжины)\b","12",text)
+    text=re.sub(r"\bполтысячи\b","500",text)
+    text=re.sub(r"\bполсотн[ияе]\b","50",text)
+    text=re.sub(r"\b(?:одной|одного)\b(?= (?:тысяч|сот|мест|лиценз|пользоват|устройств))","один",text)
     parts=text.split()
     result=[]
     i=0
@@ -80,9 +85,9 @@ def spoken_numbers(text):
         value=total=0
         while i<len(parts):
             w=parts[i]
-            if w not in vocab and w.endswith(("ти","ми","ех","ых","ум","ью","ста","сот","сти","и")):
+            if w not in vocab and w.startswith(("одн","дв","тр","чет","пят","шест","сем","вос","дев","сто","сор","тысяч","сот")):
                 base=lemma(w)
-                if base in vocab:w=base
+                if base in vocab or base in ("тысяча","сотня"):w=base
             if w in vocab:value+=vocab[w]
             elif w in ("сотня","сотни","сотен"):value=(value or 1)*100
             elif w in ("тысяча","тысячи","тысяч"):total+=(value or 1)*1000;value=0

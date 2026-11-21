@@ -22,12 +22,13 @@ class Knowledge:
     warnings: list = field(default_factory=list)
     auto: dict = field(default_factory=lambda: dict(vendors=0,categories=0,families=0))
     import_links: dict = field(default_factory=lambda: {g:{} for g in ("roles","industries","analogs","use_cases")})
+    systems: dict = field(default_factory=dict)
     dangling: list = field(default_factory=list)
 
-    sources: dict = field(default_factory=lambda: {g:dict(base=0,extensions=0,auto=0) for g in GROUPS})
+    sources: dict = field(default_factory=lambda: {g:dict(base=0,extensions=0,auto=0) for g in [*GROUPS,"for_whom","system_compat"]})
 
     def report(self):
-        return dict(counts={g:len(r) for g,r in self.rows.items()}, errors=self.errors, warnings=self.warnings, auto=self.auto,
+        return dict(counts={g:sum(v.values()) for g,v in self.sources.items()}, errors=self.errors, warnings=self.warnings, auto=self.auto,
                     syntax=self.syntax, dangling=self.dangling,sources=self.sources)
 
 
@@ -113,6 +114,8 @@ def load(root: Path, data_dir=None):
             kb.errors.append(f"{p.name}: ожидается словарь групп")
     from .titles import apply_titles
     apply_titles(kb,root/"overrides/families.yaml")
+    from .purposes import load_purposes
+    load_purposes(kb,root,_read)
     prune_families(kb,origins)
     kb.dangling.extend(v for v in missing_references(kb) if v not in kb.dangling)
     kb.warnings.extend("Ссылка отсутствует: "+v for v in kb.dangling)

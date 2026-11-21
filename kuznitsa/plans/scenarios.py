@@ -18,7 +18,10 @@ def reference(engine,kind,text,entities):
 
 
 def spec_lines(raw):
-    if re.search(r"(?:расчет|рассчитать|подбор) кп",raw,re.I) and " и " in raw:
+    from .specification import supplier_pattern
+    if "/" in raw and supplier_pattern.fullmatch(raw):
+        lines=[raw]
+    elif re.search(r"(?:расчет|рассчитать|подбор) кп",raw,re.I) and " и " in raw:
         lines=re.split(r"\s+и\s+",re.sub(r"^.*?\bкп\s*", "",raw,flags=re.I))
         seats=re.search(r"\d+\s+рабочих мест",raw,re.I)
         if seats:

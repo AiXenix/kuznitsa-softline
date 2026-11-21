@@ -1,7 +1,7 @@
 """Схема строк источников и удаление недействительных ссылок после объединения KB."""
 
 FIELDS={
-    "families":"id name title vendor aliases category extra_categories summary editions versions platforms compat_ru_os deployment license delivery registry certs use_cases roles industries formats analogs replaces price_rub popularity catalog sku_name_examples confidence max_seats upgrade_to",
+    "families":"id for_whom name title vendor aliases category extra_categories summary editions versions platforms compat_ru_os deployment license delivery registry certs use_cases roles industries formats analogs replaces price_rub popularity catalog sku_name_examples confidence max_seats upgrade_to",
     "vendors":"id name name_ru country origin market_status aliases categories notes",
     "categories":"id parent title title_short softline_path synonyms slang description typical_queries",
     "okved":"code title industry",

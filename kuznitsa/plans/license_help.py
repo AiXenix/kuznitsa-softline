@@ -4,6 +4,10 @@ import re
 
 def operation(query):
     match=re.search(r"\bкак\s+(?:мне\s+|нам\s+)?(продлить|перенести|активировать|зарегистрировать|восстановить|переоформить)\b",query.lower())
+    if re.search(r"куда (?:можно )?обратиться.*продл",query,re.I):
+        return "продлить"
+    if re.search(r"^(?:можно ли|как мне|как нам|как) (?:перенести|переустановить) .*(?:компьютер|устройств|ноутбук)",query,re.I):
+        return "перенести"
     if match and re.search(r"лицензи|ключ",query,re.I):
         return match[1]
 

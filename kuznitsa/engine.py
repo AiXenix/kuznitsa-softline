@@ -1,3 +1,4 @@
+from kuznitsa.understand.routing import software_like_unknown
 from collections import Counter
 from datetime import date,datetime,timezone,timedelta
 from rapidfuzz import process
@@ -89,6 +90,8 @@ class Engine:
         from .understand.spell_index import brand_products
         self.brand_products=brand_products(self)
         from .understand.kits import KitIndex
+        from .understand.audience import Lines
+        self.lines=Lines(cat)
         self.kits=KitIndex(kb)
         self.source_vendors={normalize(c.offers[0].vendor):c.vendor for c in cat.cards.values() if c.offers[0].vendor}
         self.knowledge=KnowledgeIndex(kb,self.lex)
@@ -255,7 +258,8 @@ class Engine:
         norm, synonyms = phrases.apply(normalize(raw))
         category = req.category if not ({"category","context"} & set(req.ignore) or req.context=="off") else None
         t.add("normalize","Нормализация",norm or "Пустой запрос")
-        supplier_line=bool(re.search(r"/.*?,\s*кол[- ]во\s*\d+\s*ед",raw,re.I))
+        from .plans.specification import supplier_pattern
+        supplier_line="/" in raw and bool(supplier_pattern.fullmatch(raw))
         multiline=persist and not self.catalog.offer_names.get(norm) and (supplier_line or len(raw.splitlines())>1 or bool(re.fullmatch(r".+?[—–-]\s*\d{1,9}\s*шт[.]?",raw,re.I)))
         positional=re.search(r"\[([^\[\]]+)\]\s*[-—–]\s*\d+\s*шт",raw)
         named=self.catalog.offer_names.get(norm)
@@ -286,6 +290,12 @@ class Engine:
             changes=[{"from":norm,"to":literal,"kind":"catalog"}] if literal!=norm else []
         else:
             words,changes= (tokens(norm),[]) if sku or req.verbatim else repair(norm,lex)
+        weak_name=False
+        if re.fullmatch(r"[a-z]{5,}",norm) and changes and changes[0]["kind"]=="typo":
+            from rapidfuzz.distance import DamerauLevenshtein
+            if norm not in lex.typos and DamerauLevenshtein.normalized_similarity(norm,changes[0]["to"])<.8:
+                weak_name=True
+                words,changes=tokens(norm),[]
         corrected=" ".join(words) if changes else norm
         t.add("repair","Проверка написания",", ".join(x["from"]+" → "+x["to"] for x in changes) or "Запрос сохранён",candidates=changes,criterion="Близость написания, длина совпавшего начала и популярность в каталоге")
         f,exc,entities,qty,residual=extract(words,lex,self.kb)
@@ -297,6 +307,12 @@ class Engine:
             f,exc,entities={}, {}, []
             if named:qty=None
             if registry and registry[1] in self.catalog.registry_codes:f["registry"]=True
+        if not sku and not f.get("vendor") and not f.get("family"):
+            for token in tokens(original_norm):
+                if token.isalnum() and not token.isalpha() and token in self.kb.rows["vendors"]:
+                    f["vendor"]=[token]
+                    entities.append(dict(type="vendor",id=token,text=token,span=[0,1],source="kb",conf=1.))
+                    break
         qty=refine(self,[] if sku else words,f,exc,entities,qty)
         resolve_details(self,lex,[] if sku else words,f,entities,qty)
         if qty:
@@ -309,6 +325,10 @@ class Engine:
             f[entity_kind]=ids
             if ids:
                 entities.append(dict(type=entity_kind,id=ids[0],text=literal,span=[0,len(words)],source="catalog",conf=1.))
+        if "refined" in req.ignore:
+            for key in ("audience","platform"):
+                f.pop(key,None)
+            entities=[e for e in entities if e["type"] not in ("audience","platform")]
         if len(trail)>1:
             for phrase in trail[:-1]:
                 prefix,_,_,_,_=extract(tokens(phrase),lex,self.kb)
@@ -343,13 +363,43 @@ class Engine:
             families=list(dict.fromkeys(fid for row in related for slot in row.get("slots",[]) for fid in slot.get("families",[]) if self.catalog.by["family"].get(fid)))
             if families and not f.get("family") and not f.get("category"):f["family"]=families
             entities=[e for e in entities if e["type"] not in ("role","industry")]
+        from .understand.catalog_language import domain_request,mapped_class,descriptive_class
+        domain=domain_request(original_norm) if not sku and not multiline and not supplier else None
+        domain_cat=mapped_class(self,domain[0],domain[1]) if domain else None
+        if not domain_cat and not supplier and not sku and not f.get("family") and not f.get("vendor"):
+            domain_cat=descriptive_class(self.catalog,original_norm)
+            if domain_cat:domain=(domain_cat,"","task")
+        if domain_cat and not f.get("family"):
+            intent=domain[2]
+            f["category"]=[domain_cat]
+            seats=re.search(r"\b(\d{1,8}) (seats?|devices?|users?|licenses?)\b",original_norm)
+            if seats:
+                qty=dict(value=int(seats[1]),metric="user" if seats[2].startswith(("seat","user")) else "device")
+                f["metric"]=qty["metric"]
         if supplier:
             intent="renewal" if f.get("action")=="renewal" else {"family":"product","category":"category","vendor":"vendor","alias":"product","task":"task"}[source_kind]
+        from .understand.systems import target_system
+        system=target_system(self,original_norm,f,entities,exc) if not sku and not supplier and intent not in ("spec_list","question","compare","compliance") else None
+        if system:intent="category"
+        if not system and intent=="product" and "refined" not in req.ignore:
+            leading=next((e["id"] for e in entities if e["type"]=="family" and e["span"][0]==0),None)
+            anchor=self.kb.rows["families"].get(leading,{})
+            if anchor and ("для" in words or "под" in words) and leading not in f.get("family",[]) and "family" not in req.filters:
+                f["family"]=[leading]
+                if anchor.get("vendor") and "vendor" not in req.filters:f["vendor"]=[anchor["vendor"]]
+            if leading in f.get("family",[]) and anchor.get("category") and f.get("category") and "category" not in req.filters and re.search(r" для ",original_norm):
+                if anchor["category"] not in f["category"]:
+                    f.pop("category")
+        domestic_analog=re.search(r"отечествен\w* (?:замен|аналог)|(?:замен|аналог)\w* .*отечествен",original_norm)
+        if domestic_analog and not multiline:
+            intent="analog"
+            if "origin" not in req.ignore:f.setdefault("origin","russian")
+            if "registry" not in req.filters and "реестр" not in original_norm:f.pop("registry",None)
         kit=None
         kit_options=[]
         code=None
         from .understand.routing import procurement_subject
-        competing=supplier or procurement_subject(corrected,words,entities,f,intent)
+        competing=(system or domestic_analog or domain_cat or supplier or (f.get("vendor") and f.get("audience") and not re.search("комплект|набор",original_norm)) or procurement_subject(corrected,words,entities,f,intent)) and "оквэд" not in words
         if competing and intent in ("role_kit","industry"):
             intent=route(raw,words,f,[e for e in entities if e["type"] not in ("role","industry")],sku,category)
             if intent in ("role_kit","industry"):intent="product" if f.get("family") else "category"
@@ -369,18 +419,21 @@ class Engine:
         t.add("entities","Сущности и параметры",", ".join(x["label"] for x in chips) or "Явных условий нет",residual=residual,synonyms=synonyms,ignored=req.ignore)
         if inherited:
             chips.append(dict(key="context",label="В контексте · "+inherited["from_q"],source="context",removable=True))
+        if f.get("platform")==["aurora"] and f.get("category")==["endpoint_security"] and self.catalog.by["category"].get("mobile_security_mdm") and "category" not in req.filters:
+            f["category"]=["mobile_security_mdm"]
         if category and not f.get("category"):
             chips.append(dict(key="category",label=self.names["category"].get(category,"Категория страницы"),source="context",removable=False))
             f["category"]=[category]
         if profile.client_id!="guest":
             chips.append(dict(key="profile",label=profile.title,source="context",removable=False))
         t.add("context","Контекст клиента",profile.title+(" · "+self.names["category"].get(category,category) if category else ""))
+        if code and re.search("реестр",original_norm) and "registry" not in req.ignore:f["registry"]=True
         if code:
             entities.append(dict(type="okved",id=code[1],text=code[1],span=[0,len(words)],source="kb",conf=1. if kit else 0.))
             chips.append(dict(key="okved",label="ОКВЭД "+code[1]+(" · "+code[2] if code[2] else ""),source="query",removable=False))
         if intent=="task":
             task=scenarios.reference(self,"use_case",corrected,entities)
-            if task.get("categories"):
+            if task.get("categories") and not domain_cat:
                 f["category"]=task["categories"][:1]
         if intent=="category" and not (f.get("category") or f.get("family") or f.get("vendor") or qty or category or f.get("registry") or f.get("model")):
             intent="off_topic"
@@ -402,6 +455,9 @@ class Engine:
                     entities.append(dict(type="family",id=fid,text=self.names["family"][fid],span=[0,len(words)],source="prefix",conf=.8))
                     chips.append(dict(key="family",label=self.names["family"][fid],source="query",removable=False))
                 intent="product"
+        if not domain_cat and not sku and not supplier and (weak_name or software_like_unknown(raw,words,entities)):
+            f.clear()
+            intent="out_of_catalog"
         if not any(f.get(k) for k in ("vendor","family","category")) and (exc.get("vendor") or exc.get("family")):
             intent="analog"
         if intent=="category" and profile.industry and not category and not req.filters.get("category"):
@@ -451,16 +507,25 @@ class Engine:
                 entities.append(dict(type=kind,id=ident,text=corrected,span=[0,len(words)],source="embed",conf=intent_conf))
                 if kind=="category":
                     f["category"]=[ident]
+        retired=self.catalog.retired.get(norm) if not sku and not supplier else None
+        if retired:
+            intent="out_of_catalog"
+            for k,value in zip(("category","vendor","family"),retired[1:]):
+                if value:f[k]=[value]
         alt_term=re.sub(r"^(?:аналоги?|альтернатива|замена|вместо|чем заменить|купить|продление)\s+","",original_norm)
+        if domestic_analog:
+            subject=re.sub(r"\b(?:отечествен\w*|российск\w*)\b","",original_norm).strip()
+            subject=re.sub(r"^(?:замена|аналог)\s+","",subject)
+            alt_term=re.sub(r"\s+на\s+\d+[\s\w-]*$","",subject).strip()
         supplied=self.catalog.replacements.get(alt_term)
         if supplied and not supplier and intent not in ("sku","spec_list"):
-            intent="analog" if alt_term!=original_norm and re.match(r"аналог|альтернатив|замен|вместо|чем замен",original_norm) else "out_of_catalog"
+            intent="analog" if domestic_analog or alt_term!=original_norm and re.match(r"аналог|альтернатив|замен|вместо|чем замен",original_norm) else "out_of_catalog"
         from .understand.routing import software_name
         subject=any(e["type"] in ("vendor","family","category","role","industry","use_case","compliance","faq") for e in entities)
         if intent in ("off_topic","broad","category") and not kit_options and not subject and not category and not re.search(HARDWARE+"|"+PIRACY,corrected) and software_name(raw):
             scored=self.catalog.bm.scores(corrected)
             candidates_found=[self.catalog.cards[self.catalog.ids[i]] for i in scored.argsort()[::-1][:3] if scored[i]>=.45]
-            confirmed=next((c for c in candidates_found if set(tokens(c.title)) & set(words)-{"про","pro","по","для","лицензию","программа"}),None)
+            confirmed=next((c for c in candidates_found if set(tokens(c.title)) & (set(words)-{"про","pro","по","для","лицензию","программа","studio","suite","professional","enterprise","manager","software","standard","server","cloud","desktop","office"})),None)
             if confirmed:
                 f["family"]=[confirmed.family]
                 intent="product"
@@ -470,11 +535,11 @@ class Engine:
         smart=req.mode=="smart" and self.decisions is not None and not prior_calls
         rejected=[]
         rules_intent=intent
-        evidence=bool(entities or category or inherited or intent_source=="embed")
+        evidence=bool(entities or category or inherited or domain_cat or intent_source=="embed")
         branches=category_options(self,entities,f,profile,corrected) if smart and intent=="category" and not category else []
         uncertain_category=(intent in ("compliance","category") and not f.get("category") and not f.get("family"))
         uncertain_embedding=intent_source=="embed" and intent_conf<.85
-        if smart and not supplier and not kit and not kit_options and not code and not sku and corrected not in self.exact_titles and not reference_only and (evidence or intent=="question" and self.knowledge.nearest("faq",corrected)) and (intent in ("broad","question","task") or uncertain_category or uncertain_embedding or branches):
+        if smart and not supplier and not kit and not kit_options and not code and not sku and corrected not in self.exact_titles and not reference_only and (evidence or intent=="question" and self.knowledge.nearest("faq",corrected)) and (intent in ("broad","question","task") or uncertain_category or uncertain_embedding or branches or domain_cat):
             owned_products=[self.kb.rows["families"].get(o.get("family_id"),{}) for o in profile.owned]
             state.update(установлено=[r.get("title",r.get("name")) for r in owned_products if r.get("category") in branches],
                          отрасль=self.kb.rows["industries"].get(profile.industry,{}).get("title",profile.industry),парк=profile.fleet.get("os",[]),исходный_сценарий=intent)
@@ -500,6 +565,28 @@ class Engine:
                     f["category"]=[val]
                 elif k=="faq":
                     entities.insert(0,dict(type="faq",id=val,text=corrected,span=[0,len(words)],source="jev",conf=prob))
+        from .understand.audience import resolve,LABELS
+        refined=None
+        if "refined" not in req.ignore and not sku and (not supplier or source_kind in ("category","vendor")) and not kit_options and intent in ("product","vendor","category","broad","out_of_catalog","compliance","task") and (f.get("family") or f.get("vendor") or f.get("category")):
+            refined=resolve(self,req,intent,original_norm,residual,f,smart and not system,deadline,sid,calls,t,entities)
+            if refined["audience"]:
+                chips=[c for c in chips if c.get("key")!="audience"]
+                chips.append(dict(key="refined",label="Понято: "+LABELS[refined["audience"]],removable=True,source=refined["source"]))
+            elif refined["line"]:
+                chips.append(dict(key="refined",label="Понято: "+self.lines.rows[refined["line"]]["title"],
+                                  removable=True,source=refined["source"]))
+        else:t.add("refine","Уточнение назначения","Дополнительное уточнение не требуется","skip")
+        if refined and "device" not in req.ignore and re.search(r"\bноут",original_norm):
+            chips.append(dict(key="device",label="Для ноутбука",removable=True,source="dict"))
+        if system:
+            chips.append(dict(key="system",label="Для "+system,removable=False,source="query"))
+        server_request=refined and refined["audience"]=="server" and "platform" not in req.ignore
+        if server_request and not f.get("platform") and f.get("family"):
+            systems=[self.kb.rows["families"].get(fid,{}) for fid in f["family"]]
+            if all(row.get("category")=="server_os" for row in systems):
+                platforms={os for row in systems for os in row.get("platforms",[])}
+                if len(platforms)==1:
+                    f["platform"]=list(platforms)
         explicit_conditions=set(f)
         if intent=="industry" and profile.preferences.get("certs_required"):
             f.setdefault("certs",profile.preferences["certs_required"])
@@ -510,10 +597,17 @@ class Engine:
                     self.kb.rows["vendors"].get(self.kb.rows["families"].get(v,{}).get("vendor"),{}).get("origin")=="russian" for v in f.get("family",[])):
                 f.setdefault("registry",True)
             apply_profile(profile,f,intent)
+            if server_request and intent=="category" and not f.get("platform") and profile.client_id!="guest":
+                servers=set(profile.fleet.get("os",[])) & {"linux","windows_server","astra","alt","redos"}
+                if len(servers)==1:
+                    f["platform"]=list(servers)
         for ignored in req.ignore:
             f.pop(ignored,None)
         inherited_chips=profile_chips(f,explicit_conditions)
         chips.extend(inherited_chips)
+        if intent=="renewal" and f.get("vendor") and not req.filters.get("family") and not any(e["type"]=="family" for e in entities):
+            owned=[r["family_id"] for r in profile.owned if self.kb.rows["families"].get(r.get("family_id"),{}).get("vendor") in f["vendor"]]
+            if owned:f["family"]=owned
         if intent=="renewal" and f.get("family") and not any(self.catalog.by["family"].get(v) for v in f["family"]):
             intent="out_of_catalog"
         plan=intent
@@ -581,8 +675,18 @@ class Engine:
             scores=self.catalog.scores(corrected or " ",semantic=not scoped) if need_text and not code_search and not reference_only and not kit_options and not code else {}
         rel=dict.fromkeys(exact_offers,1.) if sku else special if special is not None else candidates(self.catalog,self.kb,plan,f,scores,None)
         if supplier and not redirect and plan in ("category","product","vendor","renewal","task"):
-            rel={cid:1. for cid in supplier_cards if all(not req.filters.get(k) or
+            rel={cid:1. for cid in supplier_cards if (not refined or not refined["line"] or self.catalog.cards[cid].family==refined["line"]) and all(not req.filters.get(k) or
                  getattr(self.catalog.cards[cid],k) in req.filters[k] for k in ("category","vendor","family"))}
+        compatible=set()
+        if system:
+            from .understand.systems import SYSTEMS,linked_families
+            confirmed=linked_families(self,system,f.get("category",[]))
+            for cid in rel:
+                c=self.catalog.cards[cid]
+                evidence=str(c.kb)+" "+str(c.offers[0].attrs)+" "+c.offers[0].description
+                if c.family in confirmed or re.search(SYSTEMS.get(system,re.escape(system)),evidence,re.I):
+                    compatible.add(cid)
+                    rel[cid]=1.
         if lead_family:
             rel={cid:(1. if self.catalog.cards[cid].family==lead_family else min(.65,score)) for cid,score in rel.items()}
         if reference_only or kit_options or code and not kit:
@@ -594,13 +698,27 @@ class Engine:
         elif code_search:
             rel=candidates(self.catalog,self.kb,"category",f,{},None)
         if plan in ("analog","out_of_catalog"):
-            rel=analog_scope(self,rel,anchor_filters,exc,"дешев" in corrected,corrected)
+            rel=analog_scope(self,rel,anchor_filters,exc.copy() if plan=="out_of_catalog" else exc,"дешев" in corrected,corrected)
+        if domain_cat and not supplier and intent in ("task","service"):
+            rel=dict.fromkeys(self.catalog.by["category"].get(domain_cat,()),.9)
+        if retired:
+            similar=self.catalog.by["family"].get(retired[3],()) or self.catalog.by["category"].get(retired[1],())
+            if not similar:
+                similar=[cid for cat in f.get("category",[]) for cid in self.catalog.by["category"].get(cat,())]
+            if similar:
+                rel=dict.fromkeys(similar,.78)
         if supplied and plan in ("analog","out_of_catalog"):
             rel={cid:1. for cid in supplied}
         t.add("retrieve","Отбор кандидатов",f"Подходящих карточек до проверки лицензий · {len(rel)}",
               sources=["Артикул"] if sku else ["Сущности","Совпадения по полям","Фрагменты слов"]+(["Смысл запроса"] if self.catalog.dense.matrix is not None else []))
         # Карточка уже проверена по семейству, вендору и дереву категорий.
         active={k:v for k,v in f.items() if k not in {"family","vendor","category"}}
+        # «Сервер» описывает место развёртывания. ОС (Linux/Windows) задаётся отдельно.
+        if active.get("platform")==["server"]:
+            active.pop("platform")
+        if active.get("audience")=="business" and not req.filters.get("audience"):
+            # Обычные лицензии без ограничения аудитории доступны организациям.
+            active.pop("audience")
         if supplier and not redirect and source_kind in ("alias","task"):
             active["supplier_"+("aliases" if source_kind=="alias" else "task")]=supplier_key
         if unit_cap is not None and not qty and "price_max" in active:
@@ -762,6 +880,15 @@ class Engine:
                     selected[cid]=selection
             return selected
         selected=collect()
+        other_terms=set()
+        if (plan=="category" and qty and active.get("term_months") and
+                "term_months" not in req.filters and len(selected)<3 and not active.get("action")):
+            alternate={k:v for k,v in active.items() if k!="term_months"}
+            for cid in rel.keys()-selected.keys():
+                option=pick(self.catalog.cards[cid],profile,{**alternate,"action":"new"},exc,qty)
+                if option and option[0].available and option[0].lic.term_months:
+                    selected[cid]=option
+                    other_terms.add(cid)
         conditional_cards=set()
         if plan in ("category","vendor","product") and f.get("category") and f.get("vendor") and not f.get("action") and not sku:
             for cid in rel.keys()-selected.keys():
@@ -1018,12 +1145,24 @@ class Engine:
                         offer.kind=="service" or offer.lic.action=="support" or offer.lic.action=="renewal" and not continuing or re.search(r"\b(?:поддержка|support)\b",card.title,re.I)):
                     item["score"]["tier"]=min(3,max(2,item["score"]["tier"]+1))
                     item["score"]["why"].append("Для запроса по классу основные лицензии показаны выше сопровождения.")
+            if refined and "device" not in req.ignore and re.search(r"\bноут",original_norm) and "device"==item["offer"]["metric"]:
+                item["score"]["why"].append("Лицензия на устройство для рабочего компьютера")
+                item["score"]["tier"]=min(1,item["score"]["tier"])
+            if cid in compatible:
+                item["score"]["why"].append("Поддержка системы по данным каталога и базы знаний · "+system)
+                item["score"]["tier"]=min(1,item["score"]["tier"])
+            if refined and refined["audience"]=="server" and re.search(r"сервер|server",card.title,re.I):
+                item["score"]["tier"]=min(1,item["score"]["tier"])
+                item["score"]["why"].append("Редакция для защиты серверов")
             if cid in excess:
                 delta=excess[cid]
                 unit=" за место" if unit_cap is not None and not qty else ""
                 item["score"]["why"].append(f"Выше бюджета на {delta:,.2f} ₽{unit}".replace(","," ").replace(".",","))
                 item["score"]["tier"]=3
                 item["calc"].update(budget_rub=cap,over_budget_rub=delta,vat=selected[cid][0].vat)
+            if cid in other_terms:
+                item["score"]["why"].append(f"Запрошено {active['term_months']} мес. У этой лицензии срок {selected[cid][0].lic.term_months} мес. Расчёт приведён за её срок.")
+                item["score"]["tier"]=3
             if cid in conditional_cards:
                 item["score"]["why"].append("В этом прайсе есть только лицензия для действующего клиента. Право на покупку нужно подтвердить.")
                 item["score"]["tier"]=max(2,item["score"]["tier"])
@@ -1052,16 +1191,25 @@ class Engine:
             for card in cards:
                 if task.get("phrases") and (self.catalog.cards[card["card_id"]].family in task.get("families",[]) or card["category"]["id"] in task.get("categories",[])):
                     card["score"]["why"].append("Решает задачу «"+task["phrases"][0]+"»")
-        if plan=="category" and profile.segment=="individual":
-            domestic=[c for c in cards if c["offer"]["audience"]=="home"]
-            if domestic:
-                cards=domestic
+        if plan=="category" and profile.segment=="individual" and not f.get("family") and not f.get("edition"):
+            personal=[c for c in cards if c["offer"]["available"] and c["offer"]["audience"]=="home"]
+            if personal:
+                # Для личного рабочего места также подходят универсальные настольные лицензии.
+                cards=[c for c in cards if c in personal or not re.search(r"сервер|облако|корпоративн",c["title"],re.I)]
+                for c in personal:
+                    c["score"]["tier"]=min(1,c["score"]["tier"])
+                    c["score"]["tier_label"]=TIERS[c["score"]["tier"]]
+                    c["score"]["why"].append("Домашняя лицензия подходит частному покупателю")
         if not requested_qty:
             for card in cards:
                 calc=card.get("calc") or {}
                 if card["offer"]["action"]=="renewal" and calc.get("qty") is not None:
                     card["score"]["why"].append("Количество для продления взято из купленной лицензии")
         cards.sort(key=lambda c:(c["score"]["tier"],-c["score"]["score"],c["card_id"]))
+        if plan=="category" and not f.get("action") and not sku and not req.sort and weights["pers"]:
+            segment_audience={"individual":"home","gov":"gov","edu":"edu"}.get(profile.segment)
+            if segment_audience and not (inherited and "дешев" in norm):
+                cards.sort(key=lambda c:(c["score"]["tier"],c["offer"]["audience"]!=segment_audience))
         if inherited and "дешев" in norm:
             cards.sort(key=lambda c:(c["score"]["tier"],(c.get("calc") or {}).get("total") or c["offer"]["price"] or float("inf")))
         if req.sort in ("price_asc","price_desc"):
@@ -1071,6 +1219,19 @@ class Engine:
             cards=diversify(cards)
         for i,c in enumerate(cards,1):
             c["position"]=i
+        from .plans.nearby import alternative_blocks,faq_link
+        home=bool(refined and refined["audience"]=="home")
+        office=home and bool(re.search(r"для офис|в офис|для компани",original_norm))
+        home_for_sale=home and any(c["offer"]["available"] and c["offer"]["audience"]=="home"
+                                   and "home" in self.catalog.cards[c["card_id"]].kb.get("target_audiences",["home"])
+                                   for c in cards)
+        nearby=[]
+        if office or home and not home_for_sale or plan=="out_of_catalog" and any(self.kb.rows["families"].get(fid,{}).get("for_sale_b2b") is False for fid in f.get("family",[])) or not cards and plan in ("product","category","vendor") and any(f.get(k) for k in ("category","vendor","family")):
+            nearby=alternative_blocks(self,f,profile,exc,qty,weights,home,office)
+            if home or len(nearby)>1:
+                cards=[item["card"] for block in nearby if block["type"]=="analogs" for item in block["items"]]
+                signals=None
+            else:nearby=[]
         from .rank.priorities import apply
         ctx.update(region=profile.region,channel=req.source)
         applied,moves=apply(cards,priorities,ctx,self.catalog,self.clock(),exact=bool(sku and not sku_prefix),signals=signals)
@@ -1113,6 +1274,7 @@ class Engine:
             fid=next(iter(f.get("family",[])),None)
             vid=self.kb.rows["families"].get(fid,{}).get("vendor") or next(iter(f.get("vendor",[])),None)
             title=self.names["family"].get(fid) or self.names["vendor"].get(vid,vid) or alt_term
+            if retired:title=retired[0]
             status=self.kb.rows["vendors"].get(vid,{}).get("market_status")
             reason="vendor_left" if status=="left" else "not_in_catalog_known"
             blocks.append(dict(type="not_in_catalog",title=title,reason={"left":"vendor_left","restricted":"restricted"}.get(status,"gap"),text=f"{title} не поставляется в Россию. Ближайшие замены:" if status=="left" else f"{title} сейчас нет в продаже."))
@@ -1172,10 +1334,25 @@ class Engine:
             zero="qty_out_of_range"
         elif cards and all(not c["offer"]["available"] or c["offer"]["price_on_request"] for c in cards):
             zero="no_available_offer"
+        if nearby:
+            blocks=nearby[:1]
+            if len(nearby)>1 and page:
+                blocks.append({**nearby[1],"items":[dict(card=c,note="Лицензия для организации") for c in page]})
+            zero=(zero or "not_in_catalog") if plan=="out_of_catalog" else "not_in_catalog" if home else "filters_too_strict"
+            if home and (link:=faq_link(self,True)):blocks.append(link)
+        elif plan=="out_of_catalog" and reason=="vendor_left":
+            if link:=faq_link(self,False):blocks.append(link)
+        unavailable=next((b for b in blocks if b["type"]=="not_in_catalog"),None)
+        if unavailable:
+            answer=next((b for b in blocks if b["type"]=="answer" and b.get("faq_id")),None)
+            for block in blocks:
+                if block["type"]=="analogs":
+                    block["text"]=unavailable["text"]
+                    if answer:block["faq_id"]=answer["faq_id"]
         if code and not kit:zero="unknown_term"
         if zero in ("no_available_offer","qty_out_of_range") and not any(b["type"]=="lead" for b in blocks):
             blocks.append(dict(type="lead",title="Уточнить условия поставки",text="Менеджер проверит цену и доступность нужного количества.",action="request_quote"))
-        if persist and plan=="product" and cards:
+        if persist and not nearby and plan=="product" and cards:
             alt=restricted(self,cards,profile,f,exc,weights)
             if alt:
                 notes.append(alt["source"]["note"])
@@ -1185,7 +1362,7 @@ class Engine:
                 vendor=self.kb.rows["vendors"].get(cards[0]["vendor"]["id"],{})
                 if vendor.get("market_status") in ("restricted","left"):
                     notes.append(f"Для продукции {vendor['name']} действуют ограничения поставки. Доступность следует подтвердить.")
-        if persist:
+        if persist and not nearby:
             extra=companions(self,intent,cards,profile,weights,f,exc)
             if extra:
                 shown={i["card"]["card_id"] for b in blocks if b["type"]=="analogs" for i in b["items"]}
@@ -1201,10 +1378,18 @@ class Engine:
             industry_ids=list(dict.fromkeys(e["id"] for e in entities if e["type"]=="industry"))
             if industry_ids:
                 f["industry"]=industry_ids
+        if refined and "platform" not in req.ignore and "platform" not in req.filters:
+            # Тип развёртывания и род ОС можно показать вместе с точной совместимостью.
+            platforms=list(f.get("platform",[]))
+            if re.search(r"\b(?:сервер|server|сервак)",original_norm):
+                platforms.append("server")
+            if {"alt","astra","redos"}.intersection(platforms) and re.search("linux|линукс",original_norm):
+                platforms.append("linux")
+            if platforms:f["platform"]=list(dict.fromkeys(platforms))
         result=dict(search_id=sid,mode="fast" if failed else req.mode,engine="kuznitsa",relax_hints=relax_hints,banners=merch["banners"],engine_version="0.1.0",query=dict(raw=req.q,normalized=original_norm,corrected=corrected,
                     corrections=changes,did_you_mean=None),understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=intent_conf,
-                    zero_reason=zero,intent_source=intent_source,inherited=inherited,entities=entities,filters=f,exclude=exc,qty=requested_qty,chips=chips,subtype=reason if intent=="off_topic" else None,reason=(next((b["reason"] for b in blocks if b["type"]=="not_in_catalog"),reason) if intent=="out_of_catalog" else reason),
-                    agent_note=TITLES[intent]+(" · "+", ".join(x["label"] for x in chips) if chips else "")),blocks=blocks,facets=facets,
+                    **({"refined":refined} if refined else {}),zero_reason=zero,intent_source=intent_source,inherited=inherited,entities=entities,filters=f,exclude=exc,qty=requested_qty,chips=chips,subtype=reason if intent=="off_topic" else None,reason=(next((b["reason"] for b in blocks if b["type"]=="not_in_catalog"),reason) if intent=="out_of_catalog" else reason),
+                    agent_note=unavailable["text"] if unavailable else TITLES[intent]+(" · "+", ".join(x["label"] for x in chips) if chips else "")),blocks=blocks,facets=facets,
                     related_queries=next_queries(self,cards,norm,blocks),notes=notes,trace=t.steps,
                     cost=cost_summary(calls,self.usd_rub),timing_ms=dict(total=round((self.timer()-t.start)*1000,2)),
                     profile=profile_info(profile))
