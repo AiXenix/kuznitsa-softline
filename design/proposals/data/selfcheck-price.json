@@ -1,0 +1,561 @@
+{
+  "overall": {
+    "n": 210,
+    "top3": 0.7666666666666667,
+    "top5": 0.7666666666666667,
+    "p50_ms": 1.54,
+    "p95_ms": 7.2
+  },
+  "n": 24,
+  "mode": "fast",
+  "seed": 7,
+  "groups": {
+    "all": {
+      "exact": {
+        "n": 24,
+        "top3": 0.9583333333333334,
+        "top5": 0.9583333333333334,
+        "p50_ms": 2.49,
+        "p95_ms": 5.53
+      },
+      "short": {
+        "n": 24,
+        "top3": 0.7916666666666666,
+        "top5": 0.7916666666666666,
+        "p50_ms": 1.3,
+        "p95_ms": 1.86
+      },
+      "sku": {
+        "n": 24,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 1.0,
+        "p95_ms": 1.32
+      },
+      "vendor_family": {
+        "n": 24,
+        "top3": 0.875,
+        "top5": 0.875,
+        "p50_ms": 1.19,
+        "p95_ms": 1.55
+      },
+      "typo": {
+        "n": 24,
+        "top3": 0.7916666666666666,
+        "top5": 0.7916666666666666,
+        "p50_ms": 5.01,
+        "p95_ms": 6.51
+      },
+      "layout": {
+        "n": 24,
+        "top3": 0.6666666666666666,
+        "top5": 0.6666666666666666,
+        "p50_ms": 2.84,
+        "p95_ms": 6.91
+      },
+      "phonetic": {
+        "n": 18,
+        "top3": 0.7222222222222222,
+        "top5": 0.7222222222222222,
+        "p50_ms": 5.19,
+        "p95_ms": 27.51
+      },
+      "quantity": {
+        "n": 24,
+        "top3": 0.7083333333333334,
+        "top5": 0.7083333333333334,
+        "p50_ms": 1.56,
+        "p95_ms": 2.02
+      },
+      "class_vendor": {
+        "n": 24,
+        "top3": 0.375,
+        "top5": 0.375,
+        "p50_ms": 1.21,
+        "p95_ms": 18.8
+      }
+    },
+    "known": {
+      "exact": {
+        "n": 24,
+        "top3": 0.9583333333333334,
+        "top5": 0.9583333333333334,
+        "p50_ms": 2.49,
+        "p95_ms": 5.53
+      },
+      "short": {
+        "n": 24,
+        "top3": 0.7916666666666666,
+        "top5": 0.7916666666666666,
+        "p50_ms": 1.3,
+        "p95_ms": 1.86
+      },
+      "sku": {
+        "n": 24,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 1.0,
+        "p95_ms": 1.32
+      },
+      "vendor_family": {
+        "n": 24,
+        "top3": 0.875,
+        "top5": 0.875,
+        "p50_ms": 1.19,
+        "p95_ms": 1.55
+      },
+      "typo": {
+        "n": 24,
+        "top3": 0.7916666666666666,
+        "top5": 0.7916666666666666,
+        "p50_ms": 5.01,
+        "p95_ms": 6.51
+      },
+      "layout": {
+        "n": 24,
+        "top3": 0.6666666666666666,
+        "top5": 0.6666666666666666,
+        "p50_ms": 2.84,
+        "p95_ms": 6.91
+      },
+      "phonetic": {
+        "n": 18,
+        "top3": 0.7222222222222222,
+        "top5": 0.7222222222222222,
+        "p50_ms": 5.19,
+        "p95_ms": 27.51
+      },
+      "quantity": {
+        "n": 24,
+        "top3": 0.7083333333333334,
+        "top5": 0.7083333333333334,
+        "p50_ms": 1.56,
+        "p95_ms": 2.02
+      },
+      "class_vendor": {
+        "n": 24,
+        "top3": 0.375,
+        "top5": 0.375,
+        "p50_ms": 1.21,
+        "p95_ms": 18.8
+      }
+    },
+    "unknown": {}
+  },
+  "worst": {
+    "exact": [
+      {
+        "q": "Microsoft Windows Server 2022 Standard Russian BOX 16 Core BUSINESS New Perpetual",
+        "error": null,
+        "sku": "FQC-92850693D362",
+        "expected": "windows_server:standard",
+        "found": [
+          "windows_server:datacenter"
+        ],
+        "rank": null
+      }
+    ],
+    "quantity": [
+      {
+        "q": "Microsoft Windows Server Standard на 16 ядер",
+        "error": null,
+        "sku": "FQC-92850693D362",
+        "expected": "windows_server:standard",
+        "found": [
+          "windows_server:datacenter"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security Suite Защита почтовых серверов на 15 серверов",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite:mail",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "МойОфис Стандартный Для бизнеса на 1 пользователя",
+        "error": null,
+        "sku": "AX-B712948AA059",
+        "expected": "myoffice_standard:standard_2",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security Suite Комплексная защита на 15 пк",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Astra Linux Special Edition Серверная на 1 сервер",
+        "error": null,
+        "sku": "AX-3D0F94012FCC",
+        "expected": "astra_linux_se:server",
+        "found": [
+          "astra_linux_se:orel",
+          "myoffice_standard:standard_2",
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Kaspersky Endpoint Security для бизнеса Total на 505 пк",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb:total",
+        "found": [
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security Suite Комплексная защита на 55 пк",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "layout": [
+      {
+        "q": "1c:,e[ufknthbz 8 rjhg",
+        "error": null,
+        "sku": "AX-E9EC64B627F4",
+        "expected": "onec_accounting:corp",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "вкюцуи утеукзкшыу ыусгкшен ыгшеу pfobnf gjxnjds[ cthdthjd",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite:mail",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "1c:,e[ufknthbz 8 ,fpjdfz",
+        "error": null,
+        "sku": "AX-4710671CCB42",
+        "expected": "onec_accounting:base",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "вкюцуи утеукзкшыу ыусгкшен ыгшеу rjvgktrcyfz pfobnf",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "фыекф дштгч ызусшфд увшешщт cthdthyfz",
+        "error": null,
+        "sku": "AX-3D0F94012FCC",
+        "expected": "astra_linux_se:server",
+        "found": [
+          "astra_linux_se:orel",
+          "myoffice_standard:standard_2",
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "1c:,e[ufknthbz 8 rjhg",
+        "error": null,
+        "sku": "AX-5FBF006C0036",
+        "expected": "onec_accounting:corp",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "лфызукылн утвзщште ыусгкшен lkz ,bpytcf ещефд",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb:total",
+        "found": [
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "вкюцуи утеукзкшыу ыусгкшен ыгшеу rjvgktrcyfz pfobnf",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "class_vendor": [
+      {
+        "q": "Бухгалтерский и налоговый учёт 1C",
+        "error": null,
+        "sku": "AX-E9EC64B627F4",
+        "expected": "onec_accounting",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы и защита рабочих мест Dr.Web",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Операционные системы Windows Microsoft",
+        "error": null,
+        "sku": "FQC-134CC72A828D",
+        "expected": "windows_11",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы и защита рабочих мест Kaspersky",
+        "error": null,
+        "sku": "KL-01DDF819311A",
+        "expected": "kaspersky_kesb",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Бухгалтерский и налоговый учёт 1C",
+        "error": null,
+        "sku": "AX-4710671CCB42",
+        "expected": "onec_accounting",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы и защита рабочих мест Dr.Web",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Операционные системы Windows Microsoft",
+        "error": null,
+        "sku": "FQC-D244FB037FB3",
+        "expected": "windows_11",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Бухгалтерский и налоговый учёт 1C",
+        "error": null,
+        "sku": "AX-5FBF006C0036",
+        "expected": "onec_accounting",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы и защита рабочих мест Kaspersky",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы и защита рабочих мест Dr.Web",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "short": [
+      {
+        "q": "Dr.Web Enterprise Security Suite Защита почтовых серверов",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite:mail",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security Suite Комплексная защита",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Astra Linux Special Edition Серверная",
+        "error": null,
+        "sku": "AX-3D0F94012FCC",
+        "expected": "astra_linux_se:server",
+        "found": [
+          "astra_linux_se:orel",
+          "myoffice_standard:standard_2",
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Kaspersky Endpoint Security для бизнеса Total",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb:total",
+        "found": [
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security Suite Комплексная защита",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "vendor_family": [
+      {
+        "q": "Dr.Web Dr.Web Enterprise Security Suite",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Dr.Web Enterprise Security Suite",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Dr.Web Enterprise Security Suite",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "typo": [
+      {
+        "q": "Dr.Web nEterprise Security Suite Защита почтовых серверов",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite:mail",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterrpise Security Suite Комплексная защита",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Astra Linux Specila Edition Серверная",
+        "error": null,
+        "sku": "AX-3D0F94012FCC",
+        "expected": "astra_linux_se:server",
+        "found": [
+          "astra_linux_se:orel",
+          "myoffice_standard:standard_2",
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Kaspersyk Endpoint Security для бизнеса Total",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb:total",
+        "found": [
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Enterprise Security uSite Комплексная защита",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "phonetic": [
+      {
+        "q": "др.веб ентерприсе секуритй суите защита почтовых серверов",
+        "error": null,
+        "sku": "DWL-8B1B76BD2384",
+        "expected": "drweb_enterprise_security_suite:mail",
+        "found": [
+          "windows_server:datacenter",
+          "kaspersky_ksos",
+          "kaspersky_kesb:standard",
+          "windows_server:standard",
+          "astra_linux_se:orel"
+        ],
+        "rank": null
+      },
+      {
+        "q": "др.веб ентерприсе секуритй суите комплексная защита",
+        "error": null,
+        "sku": "DWL-88548BACBCDF",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [
+          "kaspersky_kesb:standard",
+          "kaspersky_ksos"
+        ],
+        "rank": null
+      },
+      {
+        "q": "астра линукс спекиал едитион серверная",
+        "error": null,
+        "sku": "AX-3D0F94012FCC",
+        "expected": "astra_linux_se:server",
+        "found": [
+          "astra_linux_se:orel",
+          "myoffice_standard:standard_2",
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "касперскй ендпоинт секуритй для бизнеса тотал",
+        "error": null,
+        "sku": "KL-269DAEC9FD78",
+        "expected": "kaspersky_kesb:total",
+        "found": [
+          "kaspersky_kesb:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "др.веб ентерприсе секуритй суите комплексная защита",
+        "error": null,
+        "sku": "DWL-CC7220F149A4",
+        "expected": "drweb_enterprise_security_suite:complex",
+        "found": [
+          "kaspersky_kesb:standard",
+          "kaspersky_ksos"
+        ],
+        "rank": null
+      }
+    ]
+  }
+}

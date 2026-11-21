@@ -1,0 +1,1015 @@
+{
+  "overall": {
+    "n": 2632,
+    "top3": 0.9072948328267477,
+    "top5": 0.9167933130699089,
+    "p50_ms": 3.35,
+    "p95_ms": 25.32
+  },
+  "n": 300,
+  "mode": "fast",
+  "seed": 7,
+  "groups": {
+    "all": {
+      "exact": {
+        "n": 300,
+        "top3": 0.9266666666666666,
+        "top5": 0.93,
+        "p50_ms": 3.93,
+        "p95_ms": 62.7
+      },
+      "short": {
+        "n": 300,
+        "top3": 0.95,
+        "top5": 0.9566666666666667,
+        "p50_ms": 2.81,
+        "p95_ms": 22.72
+      },
+      "sku": {
+        "n": 300,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 1.58,
+        "p95_ms": 4.6
+      },
+      "vendor_family": {
+        "n": 300,
+        "top3": 0.9666666666666667,
+        "top5": 0.9833333333333333,
+        "p50_ms": 1.92,
+        "p95_ms": 4.89
+      },
+      "typo": {
+        "n": 300,
+        "top3": 0.8933333333333333,
+        "top5": 0.9066666666666666,
+        "p50_ms": 6.62,
+        "p95_ms": 19.53
+      },
+      "layout": {
+        "n": 300,
+        "top3": 0.8366666666666667,
+        "top5": 0.8466666666666667,
+        "p50_ms": 3.69,
+        "p95_ms": 20.87
+      },
+      "phonetic": {
+        "n": 232,
+        "top3": 0.771551724137931,
+        "top5": 0.7931034482758621,
+        "p50_ms": 5.07,
+        "p95_ms": 26.47
+      },
+      "quantity": {
+        "n": 300,
+        "top3": 0.92,
+        "top5": 0.9266666666666666,
+        "p50_ms": 3.19,
+        "p95_ms": 42.28
+      },
+      "class_vendor": {
+        "n": 300,
+        "top3": 0.87,
+        "top5": 0.88,
+        "p50_ms": 3.44,
+        "p95_ms": 29.07
+      }
+    },
+    "known": {
+      "exact": {
+        "n": 300,
+        "top3": 0.9266666666666666,
+        "top5": 0.93,
+        "p50_ms": 3.93,
+        "p95_ms": 62.7
+      },
+      "short": {
+        "n": 300,
+        "top3": 0.95,
+        "top5": 0.9566666666666667,
+        "p50_ms": 2.81,
+        "p95_ms": 22.72
+      },
+      "sku": {
+        "n": 300,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 1.58,
+        "p95_ms": 4.6
+      },
+      "vendor_family": {
+        "n": 300,
+        "top3": 0.9666666666666667,
+        "top5": 0.9833333333333333,
+        "p50_ms": 1.92,
+        "p95_ms": 4.89
+      },
+      "typo": {
+        "n": 300,
+        "top3": 0.8933333333333333,
+        "top5": 0.9066666666666666,
+        "p50_ms": 6.62,
+        "p95_ms": 19.53
+      },
+      "layout": {
+        "n": 300,
+        "top3": 0.8366666666666667,
+        "top5": 0.8466666666666667,
+        "p50_ms": 3.69,
+        "p95_ms": 20.87
+      },
+      "phonetic": {
+        "n": 232,
+        "top3": 0.771551724137931,
+        "top5": 0.7931034482758621,
+        "p50_ms": 5.07,
+        "p95_ms": 26.47
+      },
+      "quantity": {
+        "n": 300,
+        "top3": 0.92,
+        "top5": 0.9266666666666666,
+        "p50_ms": 3.19,
+        "p95_ms": 42.28
+      },
+      "class_vendor": {
+        "n": 300,
+        "top3": 0.87,
+        "top5": 0.88,
+        "p50_ms": 3.44,
+        "p95_ms": 29.07
+      }
+    },
+    "unknown": {}
+  },
+  "worst": {
+    "class_vendor": [
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Websoft",
+        "error": null,
+        "sku": "AX-F6D7FFF1E3A7",
+        "expected": "websoft_hcm",
+        "found": [
+          "astra_training_courses:ald",
+          "softline_academy_courses:corp",
+          "softline_academy_courses:open",
+          "astra_training_courses:admin",
+          "basealt_training_courses:admin"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Видеоконференцсвязь и вебинары MTS Link",
+        "error": null,
+        "sku": "AX-FB0408D39EA7",
+        "expected": "mts_link_meetings",
+        "found": [
+          "mts_link_webinars",
+          "salutespeech:cloud",
+          "yonote",
+          "mts_link_boards",
+          "yandex_speechkit:hybrid"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Техническая поддержка ПО и ИТС Softline Cloud",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Антивирусы для дома и микробизнеса Dr.Web",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Финансовое планирование, бюджетирование и казначейство 1C",
+        "error": null,
+        "sku": "AX-7749FC70C0E7",
+        "expected": "onec_holding",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Платформы построения частных облаков Selectel",
+        "error": null,
+        "sku": "AX-9F1E2022392F",
+        "expected": "selectel_private_cloud",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Защита почты и антиспам Kaspersky",
+        "error": null,
+        "sku": "KL-CD46E9D60DFC",
+        "expected": "kaspersky_ksmg",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Операционные системы Windows Microsoft",
+        "error": null,
+        "sku": "FQC-8A4C857D5D0A",
+        "expected": "windows_11",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Видеоредакторы, монтаж и постпродакшн Movavi",
+        "error": null,
+        "sku": "AX-3E0FF33D4378",
+        "expected": "movavi_screen_recorder",
+        "found": [
+          "movavi_video_suite:editor",
+          "movavi_video_suite:business",
+          "movavi_video_suite:suite"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Кадровый электронный документооборот (КЭДО) HRlink",
+        "error": null,
+        "sku": "AX-959B660B5CE3",
+        "expected": "hrlink_kedo",
+        "found": [
+          "sbis_saby:edo",
+          "onec_kedo:onprem",
+          "sbis_saby:kedo",
+          "vk_hr_tek:onprem",
+          "sbis_saby:reporting"
+        ],
+        "rank": null
+      }
+    ],
+    "phonetic": [
+      {
+        "q": "йоугиле облачная",
+        "error": null,
+        "sku": "AX-666CE787975D",
+        "expected": "yougile:cloud",
+        "found": [
+          "advanta_pm",
+          "softline_cloud_iaas:public",
+          "amocrm:pro",
+          "ispring_suite:suite",
+          "astra_training_courses:ald"
+        ],
+        "rank": null
+      },
+      {
+        "q": "софтлине сервикес миграция и импортозамещение",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "astra_training_courses:ald",
+          "cloud_ru_evolution:advanced",
+          "astra_support_pack:privileged",
+          "selectel_cloud:cloud"
+        ],
+        "rank": null
+      },
+      {
+        "q": "др.веб секуритй спаке",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "селектел частное облако дедикатед",
+        "error": null,
+        "sku": "AX-9F1E2022392F",
+        "expected": "selectel_private_cloud:dedicated",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "би.зоне секуритй аваренесс платформ",
+        "error": null,
+        "sku": "AX-4BBABA85B860",
+        "expected": "bizone_cymulate_awareness:awareness",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "даллас лок линукс",
+        "error": null,
+        "sku": "AX-E625383C2909",
+        "expected": "dallas_lock:linux",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "ретаилкрм профессиональный",
+        "error": null,
+        "sku": "AX-69129034BF4F",
+        "expected": "retailcrm:pro",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "клоуд.ру адванкед",
+        "error": null,
+        "sku": "AX-D3EA7156836C",
+        "expected": "cloud_ru_evolution:advanced",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "аскон пилот ике ентерприсе",
+        "error": null,
+        "sku": "AX-2C96AD190FD1",
+        "expected": "pilot_bim:ice",
+        "found": [
+          "lotsman_plm:vertical",
+          "lotsman_plm:lotsman"
+        ],
+        "rank": null
+      },
+      {
+        "q": "компасс",
+        "error": null,
+        "sku": "AX-5620E5C6DF20",
+        "expected": "compass_messenger",
+        "found": [
+          "kompas_3d:build",
+          "kompas_3d:k3d",
+          "kompas_3d:mash",
+          "kompas_3d:grafik",
+          "cyber_backup:standard"
+        ],
+        "rank": null
+      }
+    ],
+    "exact": [
+      {
+        "q": "Softline Services Миграция и импортозамещение, новая лицензия, 1 организация, 12 мес., для госучреждений, SERVICE",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "kaspersky_msa_support:enterprise",
+          "kaspersky_msa_support:plus",
+          "astra_support_pack:privileged",
+          "postgres_pro_support:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Стахановец Полный, продление, 50–99 устройств, бессрочная, для организаций, ESD",
+        "error": null,
+        "sku": "AX-34AE029620D2",
+        "expected": "stakhanovets:full",
+        "found": [
+          "fastreport_net:net_pro",
+          "stakhanovets:pro",
+          "datapk_ics",
+          "bazis_mebel:raskroy",
+          "bitrix_site_manager:small_business"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space, новая лицензия, пакет 3 устройства, 36 мес., для дома, BOX",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dallas Lock 8.0 Linux, новая лицензия, 1 устройство, бессрочная, для госучреждений, PAPER",
+        "error": null,
+        "sku": "AX-E625383C2909",
+        "expected": "dallas_lock:linux",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Поток HR-платформа, продление, 50–99 пользователей, 12 мес., для организаций, SERVICE",
+        "error": null,
+        "sku": "AX-3EAA643A3D19",
+        "expected": "potok_hr:suite",
+        "found": [
+          "naumen_smp:smp",
+          "kaspersky_symphony_xdr:xdr",
+          "continent_ngfw:ap",
+          "ideco_ngfw:smb",
+          "movavi_video_suite:business"
+        ],
+        "rank": null
+      },
+      {
+        "q": "JaCarta-2 ГОСТ, новая лицензия, пакет 50 устройств, бессрочная, для госучреждений, MEDIA",
+        "error": null,
+        "sku": "AX-2396568D0D34",
+        "expected": "aladdin_jacarta:gost",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Эквио Cloud, новая лицензия, 10–24 пользователя, 12 мес., для организаций, ESD",
+        "error": null,
+        "sku": "AX-5F28F1B955D2",
+        "expected": "equio_lms:cloud",
+        "found": [
+          "cyber_backup:standard",
+          "advanta_pm",
+          "aurora_os:os",
+          "foresight_analytics",
+          "infowatch_arma:firewall"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Литрес Бизнес-библиотека, новая лицензия, 250+ пользователей, 12 мес., академическая, SERVICE",
+        "error": null,
+        "sku": "AX-9BE5FF79FB3B",
+        "expected": "litres_corporate:corp",
+        "found": [
+          "r7_office:desktop",
+          "myoffice_standard:standard_2",
+          "myoffice_standard:edu",
+          "trueconf_server:standard",
+          "kontur_tolk:webinars"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Phishman Cloud, новая лицензия, 50–99 пользователей, 12 мес., для организаций, SERVICE",
+        "error": null,
+        "sku": "AX-D448D110099B",
+        "expected": "phishman_awareness:cloud",
+        "found": [
+          "softline_cloud_iaas:public",
+          "yandex_datasphere:standard",
+          "cloud_ru_evolution:advanced",
+          "cyber_backup:standard",
+          "advanta_pm"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space, продление, пакет 3 устройства, 12 мес., для дома, BOX",
+        "error": null,
+        "sku": "DWL-03BE8C2E9086",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "short": [
+      {
+        "q": "Softline Services Миграция и импортозамещение",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "astra_support_pack:privileged",
+          "kaspersky_msa_support:enterprise",
+          "kaspersky_msa_support:plus",
+          "postgres_pro_support:extended"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "JaCarta-2 ГОСТ",
+        "error": null,
+        "sku": "AX-2396568D0D34",
+        "expected": "aladdin_jacarta:gost",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Эквио Cloud",
+        "error": null,
+        "sku": "AX-5F28F1B955D2",
+        "expected": "equio_lms:cloud",
+        "found": [
+          "softline_cloud_iaas:public",
+          "yandex_datasphere:standard",
+          "softline_cloud_iaas:ru_stack",
+          "cloud_ru_evolution:advanced",
+          "vk_private_cloud:enterprise"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space",
+        "error": null,
+        "sku": "DWL-03BE8C2E9086",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Инфоклиника Cloud",
+        "error": null,
+        "sku": "AX-8CC969CB0257",
+        "expected": "infoklinika_mis:cloud",
+        "found": [
+          "softline_cloud_iaas:public",
+          "yandex_datasphere:standard",
+          "softline_cloud_iaas:ru_stack",
+          "cloud_ru_evolution:advanced",
+          "vk_private_cloud:enterprise"
+        ],
+        "rank": null
+      },
+      {
+        "q": "ELMA365 SaaS",
+        "error": null,
+        "sku": "AX-EC7139AF82F7",
+        "expected": "elma365:saas",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "1С:Бухгалтерия госучреждения 8 Базовая",
+        "error": null,
+        "sku": "AX-ED59040D093C",
+        "expected": "onec_bgu:base",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "WINE@Etersoft CAD",
+        "error": null,
+        "sku": "AX-1A363ED25CB4",
+        "expected": "wine_etersoft:cad",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Такском Онлайн-Спринтер",
+        "error": null,
+        "sku": "AX-8FF8E5CDDD23",
+        "expected": "taxcom_sprinter:online_sprinter",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "vendor_family": [
+      {
+        "q": "Dr.Web Dr.Web Security Space",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Dr.Web Security Space",
+        "error": null,
+        "sku": "DWL-03BE8C2E9086",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "1C 1С:Бухгалтерия госучреждения 8",
+        "error": null,
+        "sku": "AX-ED59040D093C",
+        "expected": "onec_bgu",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "1C 1С:Зарплата и кадры госучреждения 8",
+        "error": null,
+        "sku": "AX-8E6179526AEB",
+        "expected": "onec_zkgu",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Dr.Web Security Space",
+        "error": null,
+        "sku": "DWL-7BEBFD5A01E6",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Softline Cloud Softline Services",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support",
+        "found": [
+          "softline_cloud_iaas:public",
+          "softline_cloud_iaas:ru_stack",
+          "softline_cloud_iaas:secure",
+          "softline_managed_support:migration",
+          "softline_managed_support:support"
+        ],
+        "rank": 4
+      },
+      {
+        "q": "Movavi Мовавика Запись экрана",
+        "error": null,
+        "sku": "AX-3E0FF33D4378",
+        "expected": "movavi_screen_recorder",
+        "found": [
+          "movavi_video_suite:editor",
+          "movavi_video_suite:business",
+          "movavi_video_suite:suite",
+          "movavi_screen_recorder:business"
+        ],
+        "rank": 4
+      },
+      {
+        "q": "RED SOFT Курсы РЕД ОС",
+        "error": null,
+        "sku": "AX-1099DF380419",
+        "expected": "redos_training_courses",
+        "found": [
+          "astra_training_courses:ald",
+          "softline_academy_courses:corp",
+          "softline_academy_courses:open",
+          "redos_training_courses:admin",
+          "astra_training_courses:admin"
+        ],
+        "rank": 4
+      },
+      {
+        "q": "Movavi Мовавика Запись экрана",
+        "error": null,
+        "sku": "AX-F1B091C6366A",
+        "expected": "movavi_screen_recorder",
+        "found": [
+          "movavi_video_suite:editor",
+          "movavi_video_suite:business",
+          "movavi_video_suite:suite",
+          "movavi_screen_recorder:business"
+        ],
+        "rank": 4
+      },
+      {
+        "q": "Softline Cloud Softline Services",
+        "error": null,
+        "sku": "AX-8F22A19206BD",
+        "expected": "softline_managed_support",
+        "found": [
+          "softline_cloud_iaas:public",
+          "softline_cloud_iaas:ru_stack",
+          "softline_cloud_iaas:secure",
+          "softline_managed_support:migration",
+          "softline_managed_support:support"
+        ],
+        "rank": 4
+      }
+    ],
+    "typo": [
+      {
+        "q": "Softline Services Миграция и импотрозамещение",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "astra_support_pack:privileged",
+          "kaspersky_msa_support:enterprise",
+          "kaspersky_msa_support:plus",
+          "postgres_pro_support:extended"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Кюлч-АСТРОМ",
+        "error": null,
+        "sku": "AX-4C595FB316B6",
+        "expected": "klyuch_astrom",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Secuirty Space",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "ГРАНД-Смтеа Локальная",
+        "error": null,
+        "sku": "AX-45E18FF97260",
+        "expected": "grand_smeta:local",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "JaCarta-2 ГОТС",
+        "error": null,
+        "sku": "AX-2396568D0D34",
+        "expected": "aladdin_jacarta:gost",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "PVS-Studio eTam",
+        "error": null,
+        "sku": "AX-D7A7F28FA38F",
+        "expected": "pvs_studio:team",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Эквио lCoud",
+        "error": null,
+        "sku": "AX-5F28F1B955D2",
+        "expected": "equio_lms:cloud",
+        "found": [
+          "softline_cloud_iaas:public",
+          "yandex_datasphere:standard",
+          "softline_cloud_iaas:ru_stack",
+          "cloud_ru_evolution:advanced",
+          "vk_private_cloud:enterprise"
+        ],
+        "rank": null
+      },
+      {
+        "q": "1С:ИСТ ПРОФ",
+        "error": null,
+        "sku": "AX-B74EFB456E8B",
+        "expected": "onec_its:prof",
+        "found": [
+          "onec_docflow:prof",
+          "onec_trade:prof",
+          "onec_client_license:prof",
+          "onec_accounting:prof",
+          "onec_itilium:prof"
+        ],
+        "rank": null
+      },
+      {
+        "q": "IndorCAD IBM",
+        "error": null,
+        "sku": "AX-61F5FFF9E1AA",
+        "expected": "indorcad:bim",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "IAV One",
+        "error": null,
+        "sku": "AX-3308E9227B9E",
+        "expected": "iva_one",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "layout": [
+      {
+        "q": "ыщаедшту ыукмшсуы vbuhfwbz b bvgjhnjpfvtotybt",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "astra_support_pack:privileged",
+          "kaspersky_msa_support:enterprise",
+          "kaspersky_msa_support:plus",
+          "postgres_pro_support:extended"
+        ],
+        "rank": null
+      },
+      {
+        "q": "rk.x-fcnhjv",
+        "error": null,
+        "sku": "AX-4C595FB316B6",
+        "expected": "klyuch_astrom",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "cnf[fyjdtw gjkysq",
+        "error": null,
+        "sku": "AX-34AE029620D2",
+        "expected": "stakhanovets:full",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "вкюцуи ыусгкшен ызфсу",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "h7-jabc rjhgjhfnbdysq cthdth",
+        "error": null,
+        "sku": "AX-FE59BAA7E790",
+        "expected": "r7_office:corp_server",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "ыудусеуд xfcnyjt j,kfrj вувшсфеув",
+        "error": null,
+        "sku": "AX-9F1E2022392F",
+        "expected": "selectel_private_cloud:dedicated",
+        "found": [
+          "selectel_cloud:dedicated",
+          "cyber_backup:standard",
+          "usergate_ngfw:hardware",
+          "continent_ngfw:ap",
+          "pt_af"
+        ],
+        "rank": null
+      },
+      {
+        "q": "uhfyl-cvtnf kjrfkmyfz",
+        "error": null,
+        "sku": "AX-45E18FF97260",
+        "expected": "grand_smeta:local",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "фшвф64 игыштуыы",
+        "error": null,
+        "sku": "AX-9881EB1385A4",
+        "expected": "aida64_business:business",
+        "found": [
+          "business_studio:portal",
+          "ms_office:hb",
+          "business_studio:enterprise",
+          "ispmanager_panel:business",
+          "fastreport_net:vcl"
+        ],
+        "rank": null
+      },
+      {
+        "q": "vjdfdbrf pfgbcm 'rhfyf ,bpytc",
+        "error": null,
+        "sku": "AX-3E0FF33D4378",
+        "expected": "movavi_screen_recorder:business",
+        "found": [
+          "movavi_video_suite:editor",
+          "movavi_video_suite:business",
+          "movavi_video_suite:suite"
+        ],
+        "rank": null
+      },
+      {
+        "q": "огые фш офшсз сдщгв",
+        "error": null,
+        "sku": "AX-BF63A8D6075A",
+        "expected": "just_ai_jaicp:cloud",
+        "found": [
+          "ams_photomaster:pro",
+          "akvis_suite:alchemy",
+          "ams_photomaster:standard",
+          "akvis_suite:business"
+        ],
+        "rank": null
+      }
+    ],
+    "quantity": [
+      {
+        "q": "Softline Services Миграция и импортозамещение на 1 организацию",
+        "error": null,
+        "sku": "AX-6F86C9BFD07E",
+        "expected": "softline_managed_support:migration",
+        "found": [
+          "astra_support_pack:standard",
+          "astra_support_pack:privileged",
+          "kaspersky_msa_support:enterprise",
+          "kaspersky_msa_support:plus",
+          "postgres_pro_support:extended"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Стахановец Полный на 55 пк",
+        "error": null,
+        "sku": "AX-34AE029620D2",
+        "expected": "stakhanovets:full",
+        "found": [
+          "bazis_mebel:raskroy",
+          "astra_linux_se:voronezh",
+          "aladdin_jacarta:pki_gost",
+          "kompas_3d:build",
+          "datapk_ics"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space на 3 пк",
+        "error": null,
+        "sku": "DWL-A8451625D644",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "JaCarta-2 ГОСТ на 50 пк",
+        "error": null,
+        "sku": "AX-2396568D0D34",
+        "expected": "aladdin_jacarta:gost",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Галактика EAM на 6 одновременных подключений",
+        "error": null,
+        "sku": "AX-8882D8D8A117",
+        "expected": "galaktika_erp:eam",
+        "found": [
+          "grand_smeta:client_server",
+          "elma365:saas",
+          "galaktika_erp:erp",
+          "kompas_3d:k3d",
+          "lira_sapr:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Эквио Cloud на 15 пользователей",
+        "error": null,
+        "sku": "AX-5F28F1B955D2",
+        "expected": "equio_lms:cloud",
+        "found": [
+          "foresight_analytics",
+          "amocrm:pro",
+          "ispring_suite:suite",
+          "astra_training_courses:ald",
+          "kontur_tolk:server"
+        ],
+        "rank": null
+      },
+      {
+        "q": "ТУРБО ТОРО на 55 одновременных подключений",
+        "error": null,
+        "sku": "AX-461172037DC0",
+        "expected": "turbo_erp:toir",
+        "found": [
+          "advanta_pm",
+          "grand_smeta:client_server",
+          "kontur_tolk:server",
+          "kompas_3d:k3d",
+          "lira_sapr:standard"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Phishman Cloud на 55 пользователей",
+        "error": null,
+        "sku": "AX-D448D110099B",
+        "expected": "phishman_awareness:cloud",
+        "found": [
+          "directum_rx:cloud",
+          "phishman_awareness:onprem",
+          "ideco_ngfw:smb",
+          "elma365:onprem_ent",
+          "astra_training_courses:ald"
+        ],
+        "rank": null
+      },
+      {
+        "q": "Dr.Web Security Space на 3 пк",
+        "error": null,
+        "sku": "DWL-03BE8C2E9086",
+        "expected": "drweb_security_space",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Инфоклиника Cloud на 1 одновременное подключение",
+        "error": null,
+        "sku": "AX-8CC969CB0257",
+        "expected": "infoklinika_mis:cloud",
+        "found": [
+          "grand_smeta:client_server",
+          "elma365:saas",
+          "onec_client_license:prof",
+          "business_studio:portal",
+          "assistant_remote:standard"
+        ],
+        "rank": null
+      }
+    ]
+  }
+}

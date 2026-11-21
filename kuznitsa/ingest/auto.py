@@ -24,4 +24,16 @@ def merge_auto(kb, data):
                 counts[group]+=1
     except (TypeError,AttributeError,UnicodeError,ValueError,KeyError,yaml.YAMLError) as exc:
         kb.errors.append(f"{path}: {exc}")
+    kb.import_links=reverse_links(kb.rows["families"])
     return counts
+
+
+def reverse_links(families):
+    """Derived search index. Keep imported edges separate from curated KB records."""
+    links={kind:{} for kind in ("use_cases","roles","industries","analogs")}
+    for fid,family in families.items():
+        if fid.startswith("auto_"):
+            for kind,index in links.items():
+                for key in family.get(kind,[]):
+                    index.setdefault(key,[]).append(fid)
+    return links

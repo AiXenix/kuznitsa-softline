@@ -1,0 +1,52 @@
+--- a/kuznitsa/plans/scenarios.py
++++ b/kuznitsa/plans/scenarios.py
+@@ -42,6 +42,8 @@
+             cats=slot.get("categories",[]) + slot.get("related_categories",[])+([slot["category"]] if slot.get("category") else [])
+             result.update(ids("category",cats,.65))
+             result.update(ids("family",slot.get("families",[])+slot.get("related_families",[]),.85))
++        links=getattr(engine.kb,"import_links",{}).get(GROUPS[kind],{})
++        result.update(ids("family",links.get(row.get("id"),[]),.85))
+         return result or None
+     if intent=="product" and re.search(r"с техподдержкой|коммерческ\w+ верси",text):
+         name=text.split()[0]
+@@ -58,7 +60,8 @@
+             row=engine.kb.rows["families"].get(fid,{})
+             result.update(ids("category",[row.get("category")],.55))
+             analogs=row.get("analogs",[])+[v["family"] for v in engine.kb.rows["analogs"].get(fid,{}).get("russian_analogs",[])]
+-            result.update(ids("family",analogs,.85))
++            reverse=getattr(engine.kb,"import_links",{}).get("analogs",{}).get(fid,[])
++            result.update(ids("family",analogs+reverse,.85))
+         for cid in ids("family",source,1):
+             result.pop(cid,None)
+         return result or ids("category",f.get("category",[]),.7)
+@@ -79,7 +82,9 @@
+     by_type=lambda key: [b for b in blocks if b["type"]==key]
+     def options(row):
+         by_family=[c for c in cards if engine.catalog.cards[c["card_id"]].family in row.get("families",[])]
+-        return by_family or [c for c in cards if c["category"]["id"]==row.get("category")]
++        same_category=[c for c in cards if c["category"]["id"]==row.get("category")]
++        imported=[c for c in same_category if engine.catalog.cards[c["card_id"]].family in imported_matches]
++        return by_family+[c for c in imported if c not in by_family] or same_category
+     if intent=="account":
+         items=[]
+         for p in sorted(profile.owned,key=lambda p:p.get("expires_in_days") if p.get("expires_in_days") is not None else float("inf")):
+@@ -107,6 +112,8 @@
+         return [dict(type="spec",title="Подбор по спецификации",lines=lines,total=sum(x["total"] for x in lines) if lines and all(x["total"] is not None for x in lines) else None,unresolved=[x["n"] for x in lines if not x["card"]])]
+     if intent in ("role_kit","industry"):
+         row=reference(engine,"role" if intent=="role_kit" else "industry",req.q,entities)
++        group="roles" if intent=="role_kit" else "industries"
++        imported_matches=getattr(engine.kb,"import_links",{}).get(group,{}).get(row.get("id"),[])
+         slots=[]
+         for spec in row.get("slots",[]):
+             found=options(spec)
+--- a/kuznitsa/understand/routing.py
++++ b/kuznitsa/understand/routing.py
+@@ -39,7 +39,7 @@
+         return "compare"
+     if has(r"\bаналог\w*|альтернатив\w*|чем замен|\bзамен[ауы]|\bвместо|импортозамещ") and not has(r"как (?:перейти|заменить)"):
+         return "analog"
+-    if has(r"^(?:распозна|подписыва|подключа|зашифров|копирова)ть(?:ся)? |программа для |с интеграцией|(?:копирование|учет|моделирование|проверка|составление|документооборот) [а-яa-z]+ .+|как проверить |чем (?:открыть|защитить|вести|подписать|распознать)|чтобы |для чего подобрать"):
++    if has(r"^(?:распозна|подписыва|подключа|зашифров|копирова)ть(?:ся)? |программа для |с интеграцией|(?:копирование|учет|моделирование|проверка|составление|документооборот) [а-яa-z]+ .+|как проверить |чем (?:чертить|начертить|открыть|защитить|вести|подписать|распознать)|чтобы |для чего подобрать"):
+         return "task"
+     if has(r"что такое|почему|можно ли|\bкак (?:активировать|перейти|купить|получить|оплатить)|работает ли|нужн\w* ли|чем отличается|входит ли|совместим\w* ли") or "faq" in types:
+         return "question"

@@ -1,0 +1,707 @@
+{
+  "overall": {
+    "n": 2304,
+    "top3": 0.9618055555555556,
+    "top5": 0.9618055555555556,
+    "p50_ms": 1.1,
+    "p95_ms": 4.97
+  },
+  "n": 256,
+  "mode": "fast",
+  "seed": 7,
+  "groups": {
+    "all": {
+      "exact": {
+        "n": 256,
+        "top3": 0.90625,
+        "top5": 0.90625,
+        "p50_ms": 1.6,
+        "p95_ms": 4.17
+      },
+      "short": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.93,
+        "p95_ms": 1.46
+      },
+      "sku": {
+        "n": 256,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 0.81,
+        "p95_ms": 1.15
+      },
+      "vendor_family": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.98,
+        "p95_ms": 1.41
+      },
+      "typo": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 4.17,
+        "p95_ms": 5.96
+      },
+      "layout": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.98,
+        "p95_ms": 1.89
+      },
+      "phonetic": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 1.03,
+        "p95_ms": 1.61
+      },
+      "quantity": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 1.07,
+        "p95_ms": 1.46
+      },
+      "class_vendor": {
+        "n": 256,
+        "top3": 0.9375,
+        "top5": 0.9375,
+        "p50_ms": 1.35,
+        "p95_ms": 21.86
+      }
+    },
+    "known": {},
+    "unknown": {
+      "exact": {
+        "n": 256,
+        "top3": 0.90625,
+        "top5": 0.90625,
+        "p50_ms": 1.6,
+        "p95_ms": 4.17
+      },
+      "short": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.93,
+        "p95_ms": 1.46
+      },
+      "sku": {
+        "n": 256,
+        "top3": 1.0,
+        "top5": 1.0,
+        "p50_ms": 0.81,
+        "p95_ms": 1.15
+      },
+      "vendor_family": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.98,
+        "p95_ms": 1.41
+      },
+      "typo": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 4.17,
+        "p95_ms": 5.96
+      },
+      "layout": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 0.98,
+        "p95_ms": 1.89
+      },
+      "phonetic": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 1.03,
+        "p95_ms": 1.61
+      },
+      "quantity": {
+        "n": 256,
+        "top3": 0.96875,
+        "top5": 0.96875,
+        "p50_ms": 1.07,
+        "p95_ms": 1.46
+      },
+      "class_vendor": {
+        "n": 256,
+        "top3": 0.9375,
+        "top5": 0.9375,
+        "p50_ms": 1.35,
+        "p95_ms": 21.86
+      }
+    }
+  },
+  "worst": {
+    "exact": [
+      {
+        "q": "Onvella Lumonu Облачная инфраструктура IaaS, 10-24 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-57-1",
+        "expected": "auto_f_42aefe307e5139808195",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu Техническая поддержка, 10-24 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Vinonu Система дистанционного обучения LMS, 50-99 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-61-3",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Lumonu Облачная инфраструктура IaaS, 25-49 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-57-2",
+        "expected": "auto_f_42aefe307e5139808195",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu Техническая поддержка, 1-9 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Vinonu Система дистанционного обучения LMS, 10-24 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-61-1",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Lumonu Облачная инфраструктура IaaS, 50-99 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-57-3",
+        "expected": "auto_f_42aefe307e5139808195",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu Техническая поддержка, 50-99 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Vinonu Система дистанционного обучения LMS, 1-9 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-61-0",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Lumonu Облачная инфраструктура IaaS, 1-9 ПК, 12 мес., ESD",
+        "error": null,
+        "sku": "VX-57-0",
+        "expected": "auto_f_42aefe307e5139808195",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "short": [
+      {
+        "q": "Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "vendor_family": [
+      {
+        "q": "Veltari Systems Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Systems Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Systems Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Systems Veltari Selinu",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Systems Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Systems Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Systems Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Systems Onvella Selinu",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "typo": [
+      {
+        "q": "Vletari Selinu",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari eSlinu",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Seilnu",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Sleinu",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Ovnella Selinu",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onevlla Selinu",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Sleinu",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella eSlinu",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "layout": [
+      {
+        "q": "мудефкш ыудштг",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "мудефкш ыудштг",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "мудефкш ыудштг",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "мудефкш ыудштг",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "щтмуддф ыудштг",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "щтмуддф ыудштг",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "щтмуддф ыудштг",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "щтмуддф ыудштг",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "phonetic": [
+      {
+        "q": "велтари селину",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "велтари селину",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "велтари селину",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "велтари селину",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "онвелла селину",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "онвелла селину",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "онвелла селину",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "онвелла селину",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "quantity": [
+      {
+        "q": "Veltari Selinu на 15 пк",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu на 6 пк",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu на 55 пк",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Veltari Selinu на 30 пк",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu на 30 пк",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu на 15 пк",
+        "error": null,
+        "sku": "VX-63-1",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu на 6 пк",
+        "error": null,
+        "sku": "VX-63-0",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Onvella Selinu на 55 пк",
+        "error": null,
+        "sku": "VX-63-3",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      }
+    ],
+    "class_vendor": [
+      {
+        "q": "Техническая поддержка ПО и ИТС Veltari Systems",
+        "error": null,
+        "sku": "VX-62-1",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Onvella Logic",
+        "error": null,
+        "sku": "VX-61-3",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Техническая поддержка ПО и ИТС Veltari Systems",
+        "error": null,
+        "sku": "VX-62-0",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Onvella Logic",
+        "error": null,
+        "sku": "VX-61-1",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Техническая поддержка ПО и ИТС Veltari Systems",
+        "error": null,
+        "sku": "VX-62-3",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Onvella Logic",
+        "error": null,
+        "sku": "VX-61-0",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Техническая поддержка ПО и ИТС Veltari Systems",
+        "error": null,
+        "sku": "VX-62-2",
+        "expected": "auto_f_9bccddec8d8d856de94d",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Onvella Logic",
+        "error": null,
+        "sku": "VX-61-2",
+        "expected": "auto_f_07cdb147b0e46d6fa79c",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Техническая поддержка ПО и ИТС Onvella Systems",
+        "error": null,
+        "sku": "VX-63-2",
+        "expected": "auto_f_f8952f1a987b8d5ac8e1",
+        "found": [],
+        "rank": null
+      },
+      {
+        "q": "Системы дистанционного обучения (LMS) и конструкторы курсов Veltari Logic",
+        "error": null,
+        "sku": "VX-60-3",
+        "expected": "auto_f_4c8bd263886209379fda",
+        "found": [],
+        "rank": null
+      }
+    ]
+  }
+}
