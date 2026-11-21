@@ -2886,7 +2886,9 @@
     },
     {
       "id": "spec_file",
-      "guide_anchors": ["spec_file_kp"],
+      "guide_anchors": [
+        "spec_file_kp"
+      ],
       "kind": "path",
       "title": "Спецификация файлом → КП",
       "summary": "Закупщик загружает файл, сверяет строки и скачивает коммерческое предложение.",
@@ -2997,7 +2999,9 @@
     },
     {
       "id": "voice",
-      "guide_anchors": ["voice_words"],
+      "guide_anchors": [
+        "voice_words"
+      ],
       "kind": "path",
       "title": "Голос и числа словами",
       "summary": "Браузер передаёт распознанный текст в обычный поиск.",
@@ -3551,6 +3555,403 @@
       "speed_code": [
         "kuznitsa/llm/decisions.py:Decisions.request"
       ]
+    },
+    {
+      "id": "priorities",
+      "kind": "path",
+      "title": "Приоритеты направлений",
+      "summary": "Предпросмотр показывает, как правило изменило бы порядок уже подобранных лицензий.",
+      "nodes": [
+        {
+          "id": "request",
+          "type": "input",
+          "title": "Запрос и пробное правило",
+          "detail": "Сравниваем две выдачи одного профиля в быстром режиме.",
+          "code": "kuznitsa/engine.py:Engine.preview"
+        },
+        {
+          "id": "compile",
+          "type": "data",
+          "title": "Подготовить область и цели правила",
+          "detail": "Категории, вендоры и семейства сопоставляются с индексами каталога.",
+          "code": "kuznitsa/rank/priorities.py:compile_rules"
+        },
+        {
+          "id": "offers",
+          "type": "step",
+          "title": "Выбрать допустимые лицензии",
+          "detail": "К шагу business у карточек уже есть выбранное предложение и полоса соответствия.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "variants"
+        },
+        {
+          "id": "match",
+          "type": "decision",
+          "title": "Правило применимо к выбранным предложениям?",
+          "detail": "Проверяются профиль, срок действия и признаки конкретного предложения.",
+          "code": "kuznitsa/rank/priorities.py:evaluate",
+          "step": "business"
+        },
+        {
+          "id": "rank",
+          "type": "step",
+          "title": "Применить поправку внутри полосы",
+          "detail": "Учитываются ограничения правила и защита точного совпадения.",
+          "code": "kuznitsa/rank/priorities.py:apply",
+          "step": "business"
+        },
+        {
+          "id": "same",
+          "type": "fallback",
+          "title": "Сохранить исходный порядок",
+          "detail": "Нет подходящего правила или подходящих предложений.",
+          "code": "kuznitsa/rank/priorities.py:evaluate",
+          "step": "business"
+        },
+        {
+          "id": "preview",
+          "type": "output",
+          "title": "Показать до и после",
+          "detail": "В трассе business остаются сработавшие правила и перестановки. Правило не публикуется.",
+          "code": "kuznitsa/analytics/priorities.py:preview",
+          "step": "business"
+        }
+      ],
+      "edges": [
+        {
+          "from": "request",
+          "to": "compile",
+          "label": ""
+        },
+        {
+          "from": "compile",
+          "to": "offers",
+          "label": ""
+        },
+        {
+          "from": "offers",
+          "to": "match",
+          "label": ""
+        },
+        {
+          "from": "match",
+          "to": "rank",
+          "label": "да"
+        },
+        {
+          "from": "match",
+          "to": "same",
+          "label": "нет"
+        },
+        {
+          "from": "rank",
+          "to": "preview",
+          "label": ""
+        },
+        {
+          "from": "same",
+          "to": "preview",
+          "label": ""
+        }
+      ],
+      "speed": [
+        "Цели ограничиваются множествами карточек из индексов. В обычном поиске скомпилированные правила переиспользуются до смены версии."
+      ],
+      "speed_code": [
+        "kuznitsa/rank/priorities.py:compile_rules"
+      ],
+      "business": [
+        "Менеджер проверяет эффект продвижения перед публикацией правила."
+      ],
+      "llm": null
+    },
+    {
+      "id": "refine",
+      "kind": "path",
+      "title": "Уточнение аудитории и линейки",
+      "summary": "Проект схемы. После быстрого разбора поиск уточняет, для кого и для какой среды покупают программу.",
+      "nodes": [
+        {
+          "id": "q",
+          "type": "input",
+          "title": "Запрос, профиль и быстрый разбор",
+          "detail": "Исходные сущности и необъяснённые слова.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "entities"
+        },
+        {
+          "id": "need",
+          "type": "decision",
+          "title": "Есть повод уточнить?",
+          "detail": "Остались значимые слова, нет распознанной линейки в продаже или у вендора/раздела не менее трёх линеек разного назначения при vendor, category или broad.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "dict",
+          "type": "data",
+          "title": "Словарная аудитория и платформа",
+          "detail": "Быстрый режим использует словарь без обращения к модели.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "jev",
+          "type": "llm",
+          "title": "Для кого ПО и какая линейка подходит?",
+          "detail": "Один вызов с вопросами audience и line. Кэш по нормализованному запросу, ожидание до 600 мс.",
+          "code": "kuznitsa/llm/decisions.py:Decisions.decide_before",
+          "step": "refine"
+        },
+        {
+          "id": "accept",
+          "type": "decision",
+          "title": "Уверенность не ниже 0,55?",
+          "detail": "Для line допустимы до восьми продаваемых линеек и none.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "refine"
+        },
+        {
+          "id": "base",
+          "type": "fallback",
+          "title": "Оставить быстрый результат",
+          "detail": "Дедлайн, ошибка, none или недостаточная уверенность.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "out",
+          "type": "output",
+          "title": "Метка аудитории и фильтр линейки",
+          "detail": "В understood.refined сохраняются audience, line, source и probability. Аудиторию можно снять. Недоступная линейка ведёт к пути «Нет в продаже».",
+          "code": "kuznitsa/engine.py:Engine._search"
+        }
+      ],
+      "edges": [
+        {
+          "from": "q",
+          "to": "need",
+          "label": ""
+        },
+        {
+          "from": "need",
+          "to": "dict",
+          "label": "fast"
+        },
+        {
+          "from": "need",
+          "to": "jev",
+          "label": "smart · да"
+        },
+        {
+          "from": "need",
+          "to": "base",
+          "label": "smart · нет"
+        },
+        {
+          "from": "jev",
+          "to": "accept",
+          "label": "решение"
+        },
+        {
+          "from": "jev",
+          "to": "base",
+          "label": "тайм-аут"
+        },
+        {
+          "from": "accept",
+          "to": "out",
+          "label": "да"
+        },
+        {
+          "from": "accept",
+          "to": "base",
+          "label": "нет"
+        },
+        {
+          "from": "dict",
+          "to": "out",
+          "label": ""
+        },
+        {
+          "from": "base",
+          "to": "out",
+          "label": ""
+        }
+      ],
+      "speed": [
+        "Быстрый режим использует словарь. Умный режим кэширует решение по нормализованному запросу, предлагает до восьми линеек и ждёт ответ до 600 мс."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine._search"
+      ],
+      "business": [
+        "Жаргон клиента помогает отделить домашнюю, серверную и корпоративную закупку."
+      ],
+      "llm": {
+        "when": "при неоднозначном запросе в умном режиме",
+        "question": "Для кого продукт и какая линейка подходит?",
+        "options": [
+          "home",
+          "micro_office",
+          "business",
+          "enterprise",
+          "gov",
+          "edu",
+          "server",
+          "mobile",
+          "industrial",
+          "none",
+          "line: до 8 ID из каталога или none"
+        ],
+        "threshold": 0.55,
+        "fallback": "Сохранить результат быстрого разбора."
+      },
+      "draft": true
+    },
+    {
+      "id": "not_sold",
+      "kind": "path",
+      "title": "Нет в продаже — ближайшие варианты",
+      "summary": "Проект схемы. Покупатель видит причину отсутствия и может перейти к доступной замене.",
+      "nodes": [
+        {
+          "id": "q",
+          "type": "input",
+          "title": "Понятная потребность без товара в продаже",
+          "detail": "Известны вендор, линейка, раздел или аудитория.",
+          "code": "kuznitsa/engine.py:Engine._search"
+        },
+        {
+          "id": "why",
+          "type": "data",
+          "title": "Объяснить причину",
+          "detail": "Указать, что именно не продаётся. Сохранить zero_reason для аналитики.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "kb",
+          "type": "decision",
+          "title": "Есть продаваемая замена по базе знаний?",
+          "detail": "Сначала проверить явные связи.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "retrieve"
+        },
+        {
+          "id": "vendor",
+          "type": "decision",
+          "title": "Есть младшая бизнес-линейка того же вендора?",
+          "detail": "Следующий приоритет после связей базы знаний.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "retrieve"
+        },
+        {
+          "id": "cat",
+          "type": "fallback",
+          "title": "Найти предложение того же раздела",
+          "detail": "Проверить доступность предложения.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "retrieve"
+        },
+        {
+          "id": "alt",
+          "type": "data",
+          "title": "Собрать блок analogs",
+          "detail": "Показать ближайшие продаваемые варианты.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "faq",
+          "type": "decision",
+          "title": "Есть подходящий FAQ?",
+          "detail": "Проверить справочник по предмету запроса.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "link",
+          "type": "data",
+          "title": "Добавить ссылку на ответ",
+          "detail": "Например, об использовании домашней лицензии в офисе.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        },
+        {
+          "id": "out",
+          "type": "output",
+          "title": "Объяснение и варианты покупки",
+          "detail": "Вернуть блоки вместе с причиной нулевого точного подбора.",
+          "code": "kuznitsa/engine.py:Engine._search",
+          "step": "compose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "q",
+          "to": "why",
+          "label": ""
+        },
+        {
+          "from": "why",
+          "to": "kb",
+          "label": ""
+        },
+        {
+          "from": "kb",
+          "to": "alt",
+          "label": "да"
+        },
+        {
+          "from": "kb",
+          "to": "vendor",
+          "label": "нет"
+        },
+        {
+          "from": "vendor",
+          "to": "alt",
+          "label": "да"
+        },
+        {
+          "from": "vendor",
+          "to": "cat",
+          "label": "нет"
+        },
+        {
+          "from": "cat",
+          "to": "alt",
+          "label": ""
+        },
+        {
+          "from": "alt",
+          "to": "faq",
+          "label": ""
+        },
+        {
+          "from": "faq",
+          "to": "link",
+          "label": "да"
+        },
+        {
+          "from": "link",
+          "to": "out",
+          "label": ""
+        },
+        {
+          "from": "faq",
+          "to": "out",
+          "label": "нет"
+        }
+      ],
+      "speed": [
+        "Сначала проверяются известные связи и ограниченный ассортимент вендора или раздела."
+      ],
+      "speed_code": [
+        "kuznitsa/engine.py:Engine._search"
+      ],
+      "business": [
+        "Спрос на отсутствующее ПО остаётся виден в аналитике и ведёт к доступным альтернативам."
+      ],
+      "llm": null,
+      "draft": true
     }
   ]
 }

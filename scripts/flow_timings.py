@@ -18,11 +18,12 @@ from time import perf_counter
 from uuid import uuid4
 
 import numpy as np
+import yaml
 from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.check_scenarios import EXPECTED
+from scripts.check_scenarios import EXPECTED, contract_evidence
 from kuznitsa.config import Config
 from kuznitsa.engine import Engine
 from kuznitsa.evaluation import cards_from, inspect
@@ -31,7 +32,7 @@ from kuznitsa.schema import Request
 OUT = ROOT / "docs/flows"
 GATEWAY = "http://127.0.0.1:8098/decisions"
 # Leave headroom for two already submitted rerank batches.
-BUDGET = 0.14
+BUDGET = 0.085
 EXTRA = {
     "account": ["мои лицензии организации", "что у нас скоро истекает", "покажи мои покупки",
                 "история заказов организации", "что куплено для нашей компании", "открыть личный кабинет"],
@@ -172,6 +173,8 @@ def measure():
             for name in stats["datasets"]
         }
         by_flow[intent][mode] = stats
+    by_flow.update(path_timings(examples))
+    update_contracts(examples)
     write("examples.json", dict(version=1, by_flow=examples))
     write("timings.json", dict(version=1, release=subprocess.check_output(
         ["git","rev-parse","--short","HEAD"],cwd=ROOT,text=True).strip(),
@@ -193,10 +196,11 @@ def smart_examples(engine):
     # Dev names acceptable products in the first five. For this exhibit require one at rank one.
     candidates = {"dev-0092", "dev-0147", "dev-0148", "dev-0149", "dev-0158", "dev-0216"}
     rows = []
-    for dev in read_jsonl(ROOT / "eval/queries.dev.jsonl"):
-        if dev["id"] not in candidates:
+    dev_rows = read_jsonl(ROOT / "eval/queries.dev.jsonl")
+    for dev in sorted(dev_rows, key=lambda item: item["id"] not in candidates):
+        targets = dev["assert"].get("top1_any") or dev["assert"].get("top5_any")
+        if not targets or any(row["q"] == dev["q"] for row in rows):
             continue
-        targets = dev["assert"]["top5_any"]
         top = {"assert": {"top1_any": targets}}
         fast = request(engine, dev, "fast")
         if inspect(engine, top, fast)[0]["top1_any"]:
@@ -243,6 +247,102 @@ def file_examples(client):
     return rows
 
 
+CONTRACT_QUERIES = {
+    "refine": ["каспер для хоума", "касперский для домика", "антивирус маме на ноут"],
+    "not_sold": ["касперский для дома", "антивирус для дома на 3 устройства", "домашняя лицензия касперского"],
+}
+
+
+def priority_examples(engine):
+    from kuznitsa.analytics.priorities import validate
+    rule = validate(dict(id="demo-domestic-av", title="Отечественные антивирусы для госзаказчиков",
+                         target=dict(categories=["endpoint_security"], tags=["domestic"]),
+                         scope=dict(segments=["gov"]), action=dict(boost=40, criteria={"stock": 1, "price_low": 1},
+                         public_label="Отечественный антивирус")))
+    rows = []
+    for q in ("антивирус", "антивирус на 30 пк", "антивирус для организации"):
+        req = Request(q=q, profile_id="gov_clinic", mode="fast", source="eval")
+        baseline = engine.preview(req, priorities=[])
+        start = perf_counter()
+        result = engine.preview(req, priorities=[rule])
+        elapsed = round((perf_counter() - start) * 1000, 2)
+        business = next(s for s in result["trace"] if s["step"] == "business")
+        applied, = business["detail"]["priorities"]
+        assert applied["id"] == rule["id"] and applied["matched"] > 0
+        row = result_example(q, result, req.profile_id)
+        row.update(ms=elapsed, rule=rule, baseline_first=result_example(q, baseline)["first_card"],
+                   matched=applied["matched"], moves=business["detail"]["moves"],
+                   steps={s["step"]: s["ms"] for s in result["trace"]})
+        rows.append(row)
+    return rows
+
+
+def contract_examples(engine, path):
+    rows = []
+    for index, q in enumerate(CONTRACT_QUERIES[path]):
+        pair = []
+        for mode in ("fast", "smart"):
+            result = request(engine, {"q": q}, mode)
+            evidence = contract_evidence(path, result, mode)
+            if evidence and result["mode"] == mode:
+                pair.append(dict(**result_example(q, result), **evidence,
+                                 steps={s["step"]: s["ms"] for s in result["trace"]}))
+            elif index == 0:
+                # The gallery demo is the acceptance probe in both modes.
+                return []
+        rows.extend(pair)
+    return rows
+
+
+def sync_gallery(examples):
+    path = ROOT / "docs/scenarios.yaml"
+    original = path.read_text()
+    # Replace just the two YAML scalars. Source marks preserve comments and other rows.
+    updated = original
+    for item in reversed(yaml.compose(original, Loader=yaml.CSafeLoader).value):
+        fields = {key.value: value for key, value in item.value}
+        contract = fields.get("contract")
+        if contract is not None and contract.value in CONTRACT_QUERIES:
+            flag = fields["pending"]
+            value = "false" if examples[contract.value] else "true"
+            updated = updated[:flag.start_mark.index] + value + updated[flag.end_mark.index:]
+    if original != updated:
+        path.write_text(updated)
+
+
+def update_contracts(examples):
+    doc = json.loads((OUT / "flows.json").read_text())
+    for flow in doc["flows"]:
+        ident = flow["id"]
+        if ident in CONTRACT_QUERIES:
+            flow["summary"] = flow["summary"].removeprefix("Проект схемы. ")
+            if examples[ident]:
+                flow.pop("draft", None)
+            else:
+                flow["draft"] = True
+                flow["summary"] = "Проект схемы. " + flow["summary"]
+    if examples["refine"] and not any(p["step"] == "refine" for p in doc["pipeline"]):
+        trace_order = next(list(row["steps"]) for row in examples["refine"] if "refine" in row["steps"])
+        before = trace_order[:trace_order.index("refine")]
+        pos = sum(p["step"] in before for p in doc["pipeline"])
+        doc["pipeline"].insert(pos, dict(step="refine", title="Уточнение аудитории и линейки",
+                                         what="Проверить назначение продукта и подходящую линейку.",
+                                         code="kuznitsa/engine.py:Engine._search"))
+    write("flows.json", doc)
+    sync_gallery(examples)
+
+
+def path_timings(examples):
+    stats = {}
+    for ident in ("priorities", *CONTRACT_QUERIES):
+        for mode in ("fast", "smart"):
+            records = [("preview" if ident == "priorities" else "probe", mode, r["ms"], r["steps"])
+                       for r in examples[ident] if r["mode"] == mode]
+            if records:
+                stats.setdefault(ident, {})[mode] = summarize(records)
+    return stats
+
+
 def path_examples(engine):
     from fastapi.testclient import TestClient
     from kuznitsa.app import create_app
@@ -273,12 +373,17 @@ def path_examples(engine):
         got = result["understood"]["qty"]
         assert got["value"] == quantity and "products" in [b["type"] for b in result["blocks"]]
         paths["voice"].append(dict(**result_example(q, result), quantity=got["value"], metric=got["metric"]))
-    for code in ("86.23", "62.01", "49.41"):
+    for code in ("86.23", "49.41", "10.71", "86.21", "01"):
         q = "оквэд " + code
         result = request(engine, {"q": q}, "fast")
-        kit = next(b for b in result["blocks"] if b["type"] == "kit")
-        assert result["understood"]["intent"] == "industry" and kit["role"] == engine.kb.rows["okved"][code]["industry"]
+        kit = next((b for b in result["blocks"] if b["type"] == "kit"), None)
+        if not kit or result["understood"]["intent"] != "industry" or kit["role"] != engine.kb.rows["okved"][code]["industry"]:
+            continue
         paths["okved"].append(dict(**result_example(q, result), industry_id=kit["role"], industry_title=kit["title"]))
+        if len(paths["okved"]) == 3:
+            break
+    if len(paths["okved"]) < 3:
+        raise ValueError("Недостаточно подтверждённых отраслевых комплектов по ОКВЭД")
     for q, role in [("софт для учителя школы", "school_teacher"), ("софт для преподавателя вуза", "university_professor"),
                     ("софт для регистратора клиники", "clinic_registrar")]:
         result = request(engine, {"q": q}, "fast")
@@ -295,6 +400,9 @@ def path_examples(engine):
         assert naive["mode"] == "naive" and fast["mode"] == "fast" and cards > 0
         paths["naive"].append(dict(**result_example(q, naive), offers=offers, fast_cards=cards))
     paths["smart"] = smart_examples(engine)
+    paths["priorities"] = priority_examples(engine)
+    for path in CONTRACT_QUERIES:
+        paths[path] = contract_examples(engine, path)
     return paths
 
 
@@ -306,10 +414,23 @@ def update_paths():
         payload["by_flow"].update(path_examples(engine))
     finally:
         engine.close()
+    update_contracts(payload["by_flow"])
+    timings = json.loads((OUT / "timings.json").read_text())
+    for path in CONTRACT_QUERIES:
+        timings["by_flow"].pop(path, None)
+    timings["by_flow"].update(path_timings(payload["by_flow"]))
+    write("timings.json", timings)
     write("examples.json", payload)
 
 
 def path_caption(ident, r):
+    if ident == "priorities":
+        return (f'{r["baseline_first"]} → {r["first_card"]}. Под правило попало {r["matched"]} карточек, '
+                f'сменили позицию {len(r["moves"])}. Шаг business — {r["steps"]["business"]} мс.')
+    if ident == "refine":
+        return f'{r["mode"]} · {r["refined"]["audience"]} · {r["refined"]["source"]}'
+    if ident == "not_sold":
+        return r["explanation"] + " " + ", ".join(r["alternatives"][:3])
     if ident == "suggest":
         return " · ".join(r["suggestions"])
     if ident == "spec_file":
@@ -376,9 +497,8 @@ def render():
            f'{timings["datasets"]["examples"]} повторных запросов из примеров. Группировка по фактическому виду и '
            'запрошенному режиму. Время в миллисекундах, без запуска движка, HTTP и отрисовки браузером. '
            'p50 — медиана, p95 — граница для 95% наблюдений. Повторы могут попадать в кэш.',
-           'Шаг учитывает интервал с предыдущей отметки. Например, проверка условий и выбор предложения '
-           'идут в одном цикле до отметки `filters`. Строка `variants` показывает промежуток до следующей '
-           'отметки. Стоимость записи журнала измеряется отдельно. Полное время взято из `timing_ms.total`. '
+           'Шаг учитывает интервал с предыдущей отметки. Время выбора предложений внутри проверки условий '
+           'движок вычитает из filters и переносит в variants. Стоимость записи журнала измеряется отдельно. Полное время взято из `timing_ms.total`. '
            'Перцентили разных шагов складывать нельзя. ' + link("kuznitsa/engine.py:Trace.add"),
            "## Цена запроса",
            "Быстрый режим стоит **0 ₽ за внешние модели**. Умный режим берёт расход из журнала "
@@ -402,7 +522,15 @@ def render():
                 query = x["q"].replace("\n", "<br>").replace("|", "\\|")
                 table.append(f'| {query} | {x["profile"]} | {x["first_card"] or "Без карточки"} | {", ".join(x["blocks"])} |')
             doc.append("\n".join(table))
+        elif f.get("draft"):
+            doc.append("Примеры и замеры появятся, когда движок подтвердит этот путь в быстром и умном режимах.")
         else:
+            if ident == "priorities":
+                rule = examples["by_flow"][ident][0]["rule"]
+                doc.append(f'Пробное правило «{rule["title"]}» действует для государственного профиля. '
+                           'Оба запуска получают один запрос. Сначала Engine.preview получает пустой список правил, '
+                           'затем — правило с прибавкой 40 для отечественных антивирусов и равными весами наличия и низкой цены. '
+                           'Полное время включает подготовку правила, а business — весь шаг бизнес-ранжирования.')
             if ident == "smart":
                 doc.append("Слева — первая карточка быстрого поиска, справа — умного. Для этих запросов "
                            "в dev задан список подходящих продуктов. В каждом примере Jev поднял продукт из этого "
@@ -433,9 +561,17 @@ def render():
                 cells = []
                 for mode in ("fast","smart"):
                     record = stats[mode]
-                    ms = record["total"] if step["step"] == "total" else record["steps"][step["step"]]
-                    cells.extend(f'{ms[key]:.2f}' for key in ("p50","p95"))
+                    ms = record["total"] if step["step"] == "total" else record["steps"].get(step["step"])
+                    cells.extend(f'{ms[key]:.2f}' if ms else "—" for key in ("p50","p95"))
                 table.append("| " + " | ".join([step["title"], *cells]) + " |")
+            doc.append("\n".join(table))
+        elif ident in timings["by_flow"]:
+            table = ["| Режим | Запросов | Граница замера | p50, мс | p95, мс |", "|---|---:|---|---:|---:|"]
+            for mode, stats in timings["by_flow"][ident].items():
+                bounds = {"Полный предпросмотр" if ident == "priorities" else "Полный поиск": stats["total"]}
+                bounds.update((key, stats["steps"][key]) for key in ("business", "refine") if key in stats["steps"])
+                for label, pair in bounds.items():
+                    table.append(f'| {mode} | {stats["n"]} | {label} | {pair["p50"]} | {pair["p95"]} |')
             doc.append("\n".join(table))
         refs = f["speed_code"]
         doc.extend(["**За счёт чего быстро.** " + " ".join(f["speed"]) + " " + " · ".join(map(link,refs)),
@@ -446,6 +582,7 @@ def render():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_mutually_exclusive_group()
+    commands.add_argument("--refresh", action="store_true", help="Recheck examples, draft contracts and timings, then rebuild Markdown")
     commands.add_argument("--paths-only", action="store_true", help="Verify path examples and rebuild Markdown")
     commands.add_argument("--render-only", action="store_true", help="Rebuild Markdown from existing JSON")
     args = parser.parse_args()
