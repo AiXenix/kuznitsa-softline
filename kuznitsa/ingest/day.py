@@ -46,6 +46,7 @@ def identify(path,explicit=None,parser=None,diagnostics=None):
         hint=sniff(path)
         roles={"search_log":"history","metrika_report":"metrika","metrika_hits":"metrika_hits","metrika_visits":"metrika_visits","orders":"orders"}
         roles.update(ga4_events="ga4_events", crm_leads="crm_leads", metrika_external_phrases="metrika_external_phrases")
+        roles["metrika_goals"]="metrika_goals"
         if hint["kind"] in roles:
             if diagnostics is not None:
                 diagnostics.update(confidence=hint["confidence"],reason=hint["reason"])
@@ -149,7 +150,7 @@ def markdown(r):
     lines=["# День данных","",f"Каталог данных — `{r['out']}`. Время — {r['seconds']:.2f} с.","",
            "| Файл | Назначение | Принято строк | Пропущено |","|---|---|---:|---:|"]
     roles=dict(ga4_events="События GA4",crm_leads="Заявки CRM",metrika_external_phrases="Метрика · фразы из поисковиков",orders="Заказы",prices="Таблица цен",stock="Остатки",documentation="Сопроводительный текст",catalog="Каталог",categories="Справочник категорий",history="История запросов",
-               metrika="Метрика · поиск по сайту",metrika_hits="Хиты Метрики",metrika_visits="Визиты Метрики",
+               metrika="Метрика · поиск по сайту",metrika_goals="Метрика · достижение целей",metrika_hits="Хиты Метрики",metrika_visits="Визиты Метрики",
                unknown="Не распознан")
     for f in r["files"]:
         lines.append(f"| {f['file']} | {roles[f['role']]} | {f.get('accepted','—')} | {f.get('skipped','—')} |")
@@ -178,7 +179,7 @@ def markdown(r):
     if r.get("catalog"):
         merge=r["catalog"]["merge"]
         ai=r["catalog"]["ai"]
-        lines+=["",f"Совмещено строк — {sum(merge['matched'].values())}. Расхождений значений — {sum(merge['conflicts'].values())}.",
+        lines+=["",f"Снято с продажи — {r['catalog'].get('inactive',0)}.",f"Совмещено строк — {sum(merge['matched'].values())}. Расхождений значений — {sum(merge['conflicts'].values())}.",
                 f"Раскладка добавила класс основной БЗ для {ai.get('coverage_gain_offers',0)} предложений. Расход — ${ai['usd']:.5f}."]
         lines+=["","[Качество каталога и соответствие столбцов](import_report.json) · [Решения раскладки](import_ai.jsonl)"]
     if r.get("error"):
@@ -251,9 +252,9 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
             raise ValueError("Не удалось распознать каталог по столбцам товаров")
         stage("detect")
         catalog=import_catalog(cats,out,cfg.kb,mapping=mapping,ai=ai,ai_budget_usd=budget,config=cfg)
+        report["catalog"]={k:catalog[k] for k in ("rows","offers","inactive","rejected","duplicates","ai","currency","merge")}
         if not catalog["offers"]:
-            raise ValueError("Нет пригодных предложений. Проверьте заголовки и цены.")
-        report["catalog"]={k:catalog[k] for k in ("rows","offers","rejected","duplicates","ai","currency","merge")}
+            raise ValueError("Нет пригодных предложений. Проверьте признаки снятия с продажи, заголовки и цены.")
         stage("catalog")
         history_inputs=[]
         for p,f in sorted(files,key=lambda item:item[1]["role"]=="metrika_hits"):
@@ -269,12 +270,9 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
         ordered=history.ordered_files(history_files)
         # Logs API uses camelCase. Older history readers split these names into words.
         aliases={"ym:s:searchPhrase":"q","ym:s:bounceRate":"bounce"}
-        from .source_index import install
         def open_search(config,journal=None):
             reuse_knowledge_vectors(config)
-            result=Engine.open(config,llm=search_client("fast"),journal=journal)
-            install(result.catalog)
-            return result
+            return Engine.open(config,llm=search_client("fast"),journal=journal)
 
         large_logs=[p for p,f in history_inputs if f["role"]=="history" and p.stat().st_size>=2_000_000]
         overlap=bool(large_logs and cfg.embed!="off")

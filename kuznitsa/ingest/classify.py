@@ -78,19 +78,39 @@ def classify(kb,auto,observations,stage,cfg,mode,budget,dry,transport=None):
             pathstates[key]=states[fid]
     def query(state):
         return ". ".join(" ".join(v) if isinstance(v,list) else v or "" for v in state.values())[:1800]
-    queries=list(dict.fromkeys(query(s) for s in [*pathstates.values(),*states.values()]))
+    # The leaf of a supplier tree is usually more informative than ten SKU titles.
+    path_queries={s["путь"]:s["путь"].split(" / ")[-1] for s in pathstates.values() if "путь" in s}
+    anchors=defaultdict(dict)
+    for (fid,path),obs in observations.items():
+        if fid in kb["families"] and path:
+            cid=kb["families"][fid].get("category")
+            if cid in groups["category"]:
+                anchors[" / ".join(path)][fid]=cid
+    queries=list(dict.fromkeys([*(query(s) for s in [*pathstates.values(),*states.values()]),*path_queries.values()]))
     vectors=Vectors(cfg,docs,queries,{indices["analogs"][fid] for fid in families}) if queries else None
     def shortlist(kind,state,allowed=None):
         q=query(state); bag=words(q)
         scored=[]
         candidates=list(indices[kind] if allowed is None else allowed)
         sims=vectors.scores(q,[indices[kind][k] for k in candidates])
-        for key,similarity in zip(candidates,sims):
+        path=state.get("путь") if kind=="category" else None
+        if path:
+            leaf=path_queries[path]
+            leaf_sims=vectors.scores(leaf,[indices[kind][k] for k in candidates])
+            votes=Counter(anchors[path].values())
+            leaf_words=words(leaf)
+        for pos,(key,similarity) in enumerate(zip(candidates,sims)):
             idx=indices[kind][key]
             pattern=label_patterns.get((kind,key))
             exact=bool(pattern and pattern.search(q))
             overlap=len(bag & lex[idx])/max(1,min(len(bag),len(lex[idx]),8))
             score=min(.99,max(0,float(similarity))*.78+min(1,overlap)*.22+.14*exact)
+            if path:
+                agreement=len(leaf_words & lex[idx])/max(1,len(leaf_words))
+                leaf_score=.76*float(leaf_sims[pos])+.24*agreement
+                score=max(score,.82*leaf_score+.18*score)
+                if votes[key]>=2 and votes[key]/len(anchors[path])>=.8:
+                    score=max(score,.82)
             scored.append((round(score,5),key))
         return sorted(scored,reverse=True)[:8]
     tasks=[(key,"category",state) for key,state in pathstates.items()]
@@ -135,6 +155,7 @@ def classify(kb,auto,observations,stage,cfg,mode,budget,dry,transport=None):
         elif d["accepted"]:
             families[obj][kind]=[d["choice"]]
             families[obj].setdefault("classification_confidence",{})[kind]=dict(source=d["source"],level=d["confidence"],score=d["probability"])
+    parent_ranks={}
     for (fid,path),key in keys.items():
         obs=observations[fid,path]
         if key[0]=="explicit":
@@ -147,7 +168,9 @@ def classify(kb,auto,observations,stage,cfg,mode,budget,dry,transport=None):
             if not cid or cid not in auto["categories"]:
                 cid=stable("auto_c_","/".join(path) or fid)
                 auto["categories"].setdefault(cid,dict(id=cid,title=path[-1] if path else "Без категории",parent=None,synonyms=[]))
-            root=shortlist("parent",pathstates[key])
+            if key not in parent_ranks:
+                parent_ranks[key]=shortlist("parent",pathstates[key])
+            root=parent_ranks[key]
             if root and root[0][0]>=.60:
                 auto["categories"][cid]["parent"]=root[0][1]
                 audit.append(dict(object=cid,question="parent",options=[k for _,k in root],choice=root[0][1],

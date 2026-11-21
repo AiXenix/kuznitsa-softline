@@ -7,17 +7,19 @@ from functools import lru_cache
 
 HEADERS={
     "source_id":"code|код|код ут|номенклатура код|код учетной системы|код учётной системы|код 1с|erp id|item id|internal code|erpId|код элемента|внутренний код",
-    "name":"display name|displayName|label|caption","guid":"uuid|uid|ид guid","store_id":"код витрины|store id|web id|storefront code|storeCode|storefrontId|код сайта","supplier_sku":"артикул поставщика|supplier sku|supplier part number|supplierSku",
-    "source_ids":"source ids","aliases":"также ищут|жаргон|синонимы|ключевые слова|keywords|synonyms",
-    "task":"назначение|решаемая задача|задача|purpose|use case","sku":"артикул изготовителя|manufacturer part number", "price":"прайс|цена дилера",
-    "currency":"вал", "category_path":"путь группы|group path", "stock":"свободно|доступно",
+    "description":"detail text|preview text|детальное описание|описание для анонса","name":"display name|displayName|label|caption","guid":"uuid|uid|ид guid","store_id":"код витрины|store id|web id|storefront code|storeCode|storefrontId|код сайта","supplier_sku":"артикул поставщика|supplier sku|supplier part number|supplierSku",
+    "active":"активность|активен|is active|активность элемента","sold":"продается|в продаже|is sold",
+    "withdrawn":"снят с продажи|снята с продажи|снято с продажи|discontinued",
+    "source_ids":"source ids","aliases":"также ищут|жаргон|синонимы|ключевые слова|keywords|synonyms|search tag|tags",
+    "task":"назначение|решаемая задача|задача|purpose|use case","sku":"артикул изготовителя|manufacturer part number|artnumber", "price":"прайс|цена дилера",
+    "currency":"вал", "category_path":"путь группы|group path|разделы|путь разделов|путь раздела|section path|разделы каталога", "stock":"свободно|доступно",
     "series":"серия|product series","edition":"исполнение","operation":"операция|license operation",
     "period":"период|license period","unit":"за единицу|ед лицензирования|единица измерения|uom",
     "qty_min":"нижний порог","qty_max":"верхний порог","delivery":"вариант поставки",
     "country":"страна разработки|country of origin","registry_no":"запись рпо|номер в реестре",
     "analog_of":"альтернатива|замена для|аналог для|alternative to","fstec":"фстэк","fsb":"фсб",
     "delivery_days":"отгрузка|срок поставки|lead time","barcode":"ean 13|ean|штрихкод",
-    "status":"состояние|статус товара|product status","warehouse":"склад|warehouse","promo":"акция","added_at":"дата добавления|дата поступления","domestic":"отечественное по",
+    "status":"состояние|статус|статус товара|product status","warehouse":"склад|warehouse","promo":"акция","added_at":"дата добавления|дата поступления","domestic":"отечественное по",
     "in_stock":"в наличии на складе"
 }
 
@@ -53,6 +55,53 @@ def added_date(raw):
     return None
 
 
+def withdrawal(row):
+    """Only an explicit sales or publication flag can withdraw a product."""
+    from .mapping import field_for
+    facts=row
+    if row.get("attrs"):
+        from .enrich import attributes
+        try:
+            attrs=attributes(row["attrs"])
+        except (TypeError,ValueError):
+            attrs={}
+        facts={**{field_for(str(k)):v for k,v in attrs.items()},**row}
+    for field in ("active","sold","withdrawn","status"):
+        value=str(facts.get(field,"")).casefold().strip().replace("ё","е")
+        if value.startswith("статус:"):
+            value=value.partition(":")[2].strip()
+        if ((field in ("active","sold") and value in {"0","false","n","no","нет"})
+            or (field=="withdrawn" and value in {"1","true","y","yes","да"})
+            or value in {"архив","архивный","снято","снят с продажи","снята с продажи","снято с продажи",
+                          "не продается","discontinued","archived","inactive"}):
+            return field,str(facts[field])
+    return None
+
+
+@lru_cache(1024)
+def description_text(text):
+    if not re.search(r"</?[a-zA-Z][^>]*>",text):
+        return text
+    from lxml import html
+    root=html.fragment_fromstring(text,create_parent="div")
+    for node in root.xpath(".//script|.//style"):
+        node.drop_tree()
+    return " ".join(" ".join(root.itertext()).split())
+
+
+@lru_cache(512)
+def supplier_metric(unit):
+    from .nameparse import PATTERNS
+    from .enrich import enum_value
+    text=unit.strip().casefold()
+    if "одновр" in text:
+        return "concurrent"
+    if text in {"час","часы","часов","чел.-ч","hour","hours"}:
+        return "other"
+    metric=enum_value("metric",text)
+    return metric if any(key==metric for key,_ in PATTERNS["metric"]) else None
+
+
 def decorate(row):
     from .enrich import number
     from .enrich import attributes
@@ -62,6 +111,8 @@ def decorate(row):
         key=field_for(header)
         if key:
             row.setdefault(key,value)
+    if isinstance(row.get("description"),str):
+        row["description"]=description_text(row["description"])
     if row.get("series"):
         row.setdefault("family_name",row["series"])
     period=str(row.get("period","")).casefold()
@@ -84,13 +135,9 @@ def decorate(row):
         if fragment in operation:
             row.setdefault(key,value)
     if row.get("unit"):
-        from .enrich import enum_value
-        from .nameparse import PATTERNS
-        metric=enum_value("metric",str(row["unit"]))
-        if metric in {key for key,_ in PATTERNS["metric"]}:
+        metric=supplier_metric(str(row["unit"]))
+        if metric:
             row.setdefault("metric",metric)
-        elif "одновр" in str(row["unit"]).casefold():
-            row.setdefault("metric","concurrent")
     stock=number(row.get("stock"))
     availability=flag(row.get("in_stock",row.get("available")))
     country=str(row.get("country","")).strip().casefold()

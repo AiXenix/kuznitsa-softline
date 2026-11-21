@@ -37,6 +37,8 @@ def field_for(header):
     if header in NAMES or header in Offer.model_fields or header in License.model_fields:
         return header
     key=normalize(header)
+    if key.startswith("property "):
+        key=key.removeprefix("property ")
     direct=ALIASES.get(key)
     if direct:
         return direct

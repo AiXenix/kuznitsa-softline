@@ -1,7 +1,7 @@
 """Join complementary supplier tables on exact, unambiguous identifiers."""
 from collections import defaultdict
 
-from .variants import ID_FIELDS as KEYS
+from .variants import ID_FIELDS as KEYS,variant_values
 
 
 def identifiers(row):
@@ -33,12 +33,12 @@ def expand(tables,stats):
                 continue
             key=next(iter(matches))
             base=tables[key[0]][key[1]][1]
-            row={**base,**child}
+            row=variant_values(base,child)
             row.pop("_product",None)
             row.pop("_parent_id",None)
             row["source_ids"]=list(dict.fromkeys(identifiers(child)+identifiers(base)))
             row["family_name"]=base.get("family_name") or base.get("series") or base["name"]
-            for field in ("attrs","_extra","_field_currency"):
+            for field in ("_extra","_field_currency"):
                 row[field]={**base.get(field,{}),**child.get(field,{})}
             if tier:
                 row["_tier"]=True

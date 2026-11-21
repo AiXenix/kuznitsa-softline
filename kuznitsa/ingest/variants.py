@@ -161,6 +161,25 @@ def flatten(obj):
     return result
 
 
+def variant_values(base,child):
+    """An explicit variant unit or band takes precedence over the parent licence."""
+    row={**base,**child}
+    if child.get("unit") and "metric" not in child:
+        from .source_fields import supplier_metric
+        metric=supplier_metric(str(child["unit"]))
+        if metric:
+            row["metric"]=metric
+    bounds={"qty_min","qty_max","pack"}
+    omitted=bounds-child.keys() if bounds.intersection(child) else set()
+    for field in omitted:
+        row.pop(field,None)
+    attrs=base.get("attrs",{})
+    extra=child.get("attrs",{})
+    if isinstance(attrs,dict) and isinstance(extra,dict) and (attrs or extra):
+        row["attrs"]={**{k:v for k,v in attrs.items() if field_for(k) not in omitted},**extra}
+    return row
+
+
 def nested_records(obj):
     if not isinstance(obj,dict):
         yield None
@@ -189,7 +208,7 @@ def nested_records(obj):
                     continue
                 option={field_for(k) or k:v for k,v in option.items()}
                 ids=[option[k] for k in ID_FIELDS if option.get(k)]
-                row={**base,**option}
+                row=variant_values(base,option)
                 if base.get("name"):
                     row.setdefault("family_name",base["name"])
                     if option.get("name") and base["name"].casefold() not in str(option["name"]).casefold():
@@ -199,6 +218,4 @@ def nested_records(obj):
                 if not ids:
                     import json
                     row["_variant_identity"]=json.dumps([inherited,option],sort_keys=True,ensure_ascii=False)
-                if "attrs" in option:
-                    row["attrs"]={**base.get("attrs",{}),**option["attrs"]}
                 yield row
