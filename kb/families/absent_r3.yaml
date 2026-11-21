@@ -1,0 +1,2064 @@
+# Продукты, отсутствующие в продаже (раунд 3, catalog: no)
+# Формат: kb/SCHEMA.md (по образцу autocad в kb/families/cad_engineering.yaml)
+# Цены и параметры лицензирования не выдумываются и оставлены пустыми.
+# Все аналоги (analogs) — действующие семейства из каталога (catalog: yes).
+
+# ============================================================================
+# 1. ИИ-АССИСТЕНТЫ, LLM И СРЕДЫ РАЗРАБОТКИ (AI / IDE / DEVOPS)
+# ============================================================================
+
+- id: cursor_ide
+  vendor: anysphere
+  name: "Cursor"
+  aliases: ["cursor", "cursor ide", "cursor ai", "курсор", "курсор иде", "курсор аи", "редактор кода cursor"]
+  category: ide_compilers
+  extra_categories: [llm_gen_ai]
+  summary: "Зарубежная среда разработки (форк VS Code) со встроенным ИИ-ассистентом для написания и рефакторинга кода. Не поставляется в каталоге; для корпоративной разработки доступны российские ИИ-ассистенты и платформы."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены cursor", "ии-ассистент разработчика в ide", "автодополнение и генерация кода"]
+  roles: [developer, devops]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [sber_kandinsky_api, gitflic, sourcecraft_yandex]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: anthropic_claude
+  vendor: anthropic
+  name: "Anthropic Claude"
+  aliases: ["claude", "anthropic claude", "claude ai", "claude pro", "claude team", "claude enterprise", "claude code", "клод", "клод аи", "антропик клод"]
+  category: llm_gen_ai
+  extra_categories: []
+  summary: "Семейство зарубежных больших языковых моделей и чат-ассистент от Anthropic (ограничен в РФ, не продаётся в каталоге). Для корпоративного использования предлагаются российские LLM-платформы."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены claude", "корпоративная языковая модель llm", "ии-ассистент для анализа текстов и кода"]
+  roles: [developer, analyst, manager]
+  industries: [it, finance, consulting, media]
+  formats: []
+  analogs: [gigachat_enterprise, yandexgpt_api, mws_gpt_ai]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: midjourney
+  vendor: midjourney_inc
+  name: "Midjourney"
+  aliases: ["midjourney", "миджорни", "мидджорни", "миджони", "нейросеть midjourney", "генерация картинок midjourney"]
+  category: llm_gen_ai
+  extra_categories: [raster_photo]
+  summary: "Зарубежный генеративный ИИ-сервис для создания изображений по текстовому описанию. Отсутствует в продаже в каталоге; для корпоративных задач доступны российские генеративные платформы и фоторедакторы."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены midjourney", "генерация иллюстраций нейросетью", "создание визуального контента для маркетинга"]
+  roles: [designer, marketer]
+  industries: [media, retail, marketing]
+  formats: [png, jpg]
+  analogs: [gigachat_enterprise, yandexgpt_api, ams_photomaster]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: perplexity_ai
+  vendor: perplexity
+  name: "Perplexity AI"
+  aliases: ["perplexity", "perplexity ai", "perplexity pro", "перплексити", "перплексити аи", "ии поиск perplexity"]
+  category: llm_gen_ai
+  extra_categories: []
+  summary: "Зарубежная ИИ-поисковая система на базе языковых моделей с ответами со ссылками на источники. Не продаётся в каталоге; для бизнеса доступны российские LLM-решения."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены perplexity", "корпоративный ии-поиск и аналитика"]
+  roles: [analyst, manager, researcher]
+  industries: [it, consulting, finance, media]
+  formats: []
+  analogs: [gigachat_enterprise, yandexgpt_api, mws_gpt_ai]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: google_gemini
+  vendor: google
+  name: "Google Gemini"
+  aliases: ["google gemini", "gemini", "gemini pro", "gemini workspace", "гугл джемини", "джемини", "гемини", "google bard"]
+  category: llm_gen_ai
+  extra_categories: []
+  summary: "Линейка мультимодальных ИИ-моделей и корпоративный ассистент от Google (коммерческие поставки в РФ остановлены). Заменяется российскими корпоративными LLM."
+  editions: []
+  versions: []
+  platforms: [web, android, ios]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены google gemini", "корпоративный генеративный ии"]
+  roles: [analyst, developer, manager]
+  industries: [it, finance, consulting]
+  formats: []
+  analogs: [gigachat_enterprise, yandexgpt_api, mws_gpt_ai]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: windsurf_ide
+  vendor: codeium_windsurf
+  name: "Windsurf (Codeium)"
+  aliases: ["windsurf", "windsurf ide", "codeium", "виндсерф", "виндсерф иде", "кодеум", "кодиум"]
+  category: ide_compilers
+  extra_categories: [llm_gen_ai]
+  summary: "Зарубежная ИИ-ориентированная IDE и плагин автодополнения кода от команды Windsurf (ранее Codeium). Не поставляется в каталоге."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены windsurf и codeium", "ии-ассистент для программистов"]
+  roles: [developer]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [sber_kandinsky_api, gitflic, sourcecraft_yandex]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: ms_vscode
+  vendor: microsoft
+  name: "Visual Studio Code"
+  aliases: ["vs code", "vscode", "visual studio code", "вс код", "вижуал студио код", "редактор vscode"]
+  category: ide_compilers
+  extra_categories: []
+  summary: "Популярный бесплатный редактор кода от Microsoft. Не продаётся как коммерческая позиция в каталоге; для корпоративных команд доступны российские платформы разработки и ИИ-ассистенты."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["редактор кода для разработчиков", "корпоративная среда разработки"]
+  roles: [developer, devops]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [sber_kandinsky_api, gitflic, sourcecraft_yandex]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: sublime_text
+  vendor: sublime_hq
+  name: "Sublime Text"
+  aliases: ["sublime text", "sublime", "саблайм", "саблайм текст", "sublime merge"]
+  category: ide_compilers
+  extra_categories: [text_editors]
+  summary: "Зарубежный легковесный текстовый редактор и редактор исходного кода от Sublime HQ. Отсутствует в каталоге."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены sublime text", "быстрый редактор кода и текстовых файлов"]
+  roles: [developer, sysadmin]
+  industries: [it]
+  formats: []
+  analogs: [sber_kandinsky_api, gitflic, sourcecraft_yandex]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: docker_desktop
+  vendor: docker_inc
+  name: "Docker Desktop"
+  aliases: ["docker", "docker desktop", "docker business", "docker pro", "докер", "докер десктоп", "докер энтерпрайз"]
+  category: containers_kubernetes
+  extra_categories: []
+  summary: "Зарубежная коммерческая платформа локальной контейнеризации и сборки образов от Docker Inc. (ограничения для пользователей из РФ, в каталоге не продаётся). Для промышленных контейнеров предлагаются российские Kubernetes-платформы."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены docker desktop", "корпоративная платформа контейнеризации", "импортозамещение docker и kubernetes"]
+  roles: [devops, developer, sysadmin]
+  industries: [it, finance, telecom, retail]
+  formats: []
+  analogs: [deckhouse_k8s, shturval_k8s, orion_nova, basis_digital_energy]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: jetbrains_teamcity
+  vendor: jetbrains
+  name: "JetBrains TeamCity"
+  aliases: ["teamcity", "jetbrains teamcity", "тимсити", "джетбрейнс тимсити", "сборка teamcity"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Зарубежный сервер непрерывной интеграции и доставки (CI/CD) от JetBrains (поставки в РФ прекращены). В каталоге заменяется российскими DevSecOps и CI/CD-платформами."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены teamcity", "импортозамещение ci cd конвейера"]
+  roles: [devops, developer]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [gitflic, sourcecraft_yandex, sphere_t1, platform_v_works]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: jetbrains_youtrack
+  vendor: jetbrains
+  name: "JetBrains YouTrack"
+  aliases: ["youtrack", "jetbrains youtrack", "ютрек", "ютрэк", "джетбрейнс ютрек"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Зарубежный трекер задач, ошибок и проектов от JetBrains (продажи в РФ остановлены). Заменяется российскими таск-трекерами и платформами управления разработкой."
+  editions: []
+  versions: []
+  platforms: [web, linux, windows]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены youtrack", "багтрекер и управление спринтами"]
+  roles: [developer, project_manager, qa_engineer]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [yandex_tracker, kaiten, evaproject, sphere_t1]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: hashicorp_terraform
+  vendor: hashicorp
+  name: "HashiCorp Terraform"
+  aliases: ["terraform", "hashicorp terraform", "terraform enterprise", "терраформ", "хэшикорп терраформ"]
+  category: git_cicd_devops
+  extra_categories: [iaas_cloud_platforms]
+  summary: "Зарубежный инструмент управления инфраструктурой как кодом (IaC) от HashiCorp (коммерческие поставки и доступ к реестру провайдеров в РФ ограничены)."
+  editions: []
+  versions: []
+  platforms: [linux, windows, macos]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["управление облачной инфраструктурой как кодом", "поиск замены terraform enterprise"]
+  roles: [devops, cloud_architect]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [yandex_cloud, vk_cloud, cloud_ru_evolution, deckhouse_k8s]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: hashicorp_vault
+  vendor: hashicorp
+  name: "HashiCorp Vault"
+  aliases: ["hashicorp vault", "vault", "хэшикорп волт", "волт секреты", "управление секретами vault"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Зарубежная система управления секретами, токенами и ключами доступа от HashiCorp (в каталоге не продаётся). Заменяется российскими менеджерами паролей и PAM-системами."
+  editions: []
+  versions: []
+  platforms: [linux, windows]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены hashicorp vault", "хранение паролей и секретов инфраструктуры"]
+  roles: [devops, infosec_engineer]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [passwork, indeed_pam, skdpu_nt, avanpost_idm]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: jfrog_artifactory
+  vendor: jfrog
+  name: "JFrog Artifactory"
+  aliases: ["jfrog", "artifactory", "jfrog artifactory", "джейфрог", "артифактори", "репозиторий артефактов jfrog"]
+  category: git_cicd_devops
+  extra_categories: []
+  summary: "Зарубежный менеджер бинарных репозиториев и артефактов сборки от JFrog (не поставляется в РФ). Заменяется российскими DevOps-платформами с хранением пакетов и реестром артефактов."
+  editions: []
+  versions: []
+  platforms: [linux, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены jfrog artifactory", "хранение пакетов и бинарных артефактов сборки"]
+  roles: [devops, developer]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [gitflic, sphere_t1, platform_v_works, sourcecraft_yandex]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+# ============================================================================
+# 2. МОНИТОРИНГ, ДАННЫЕ, ВИРТУАЛИЗАЦИЯ И ИБ
+# ============================================================================
+
+- id: grafana_enterprise
+  vendor: grafana_labs
+  name: "Grafana Enterprise"
+  aliases: ["grafana", "grafana enterprise", "grafana cloud", "графана", "графана энтерпрайз", "дашборды grafana"]
+  category: monitoring_apm
+  extra_categories: [bi_analytics]
+  summary: "Зарубежная платформа визуализации метрик, логов и трассировок от Grafana Labs (коммерческая редакция не продаётся в РФ). Заменяется российскими системами мониторинга, AIOps и визуализации."
+  editions: []
+  versions: []
+  platforms: [linux, windows, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены grafana enterprise", "мониторинг и дашборды ит-инфраструктуры"]
+  roles: [devops, sysadmin, sre]
+  industries: [it, finance, telecom, retail]
+  formats: []
+  analogs: [monq_aiops, saymon_monitoring, klyuch_astrom, yandex_datalens]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: elastic_stack
+  vendor: elastic
+  name: "Elastic Stack (ELK / Elasticsearch)"
+  aliases: ["elastic", "elasticsearch", "elastic stack", "elk", "kibana", "эластик", "эластиксерч", "елк стек", "кибана"]
+  category: monitoring_apm
+  extra_categories: [siem_soc]
+  summary: "Зарубежная платформа поиска, сбора и анализа логов (Elasticsearch, Logstash, Kibana) от Elastic (коммерческие поставки в РФ прекращены). Заменяется российскими платформами мониторинга и SIEM."
+  editions: []
+  versions: []
+  platforms: [linux, windows, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены elasticsearch и elk", "сбор и анализ логов инфраструктуры и иб"]
+  roles: [devops, sysadmin, infosec_engineer]
+  industries: [it, finance, telecom, retail]
+  formats: []
+  analogs: [monq_aiops, kaspersky_kuma, pt_maxpatrol_siem, saymon_monitoring]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: confluent_kafka
+  vendor: confluent
+  name: "Confluent Platform (Apache Kafka)"
+  aliases: ["confluent", "confluent kafka", "confluent platform", "apache kafka", "конфлюент", "кафка", "конфлюент кафка"]
+  category: big_data_streaming
+  extra_categories: [api_integration_esb]
+  summary: "Коммерческая дистрибуция брокера потоковых событий Apache Kafka от Confluent (не продаётся в РФ). Заменяется российскими стриминговыми и интеграционными платформами."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены confluent kafka", "потоковая обработка данных и шина событий"]
+  roles: [data_engineer, architect, devops]
+  industries: [finance, telecom, retail, it]
+  formats: []
+  analogs: [arenadata_hadoop, platform_v_synapse, onec_esb]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: databricks
+  vendor: databricks_inc
+  name: "Databricks"
+  aliases: ["databricks", "датабрикс", "дата брикс", "databricks lakehouse"]
+  category: big_data_streaming
+  extra_categories: [ml_platforms_cv]
+  summary: "Зарубежная облачная платформа для обработки больших данных и машинного обучения (Lakehouse) от Databricks (не поставляется в РФ)."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены databricks", "платформа больших данных и ml"]
+  roles: [data_engineer, data_scientist]
+  industries: [finance, retail, telecom, it]
+  formats: []
+  analogs: [arenadata_hadoop, arenadata_db, cloud_ru_ml_space, yandex_datasphere]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: dynatrace
+  vendor: dynatrace_inc
+  name: "Dynatrace"
+  aliases: ["dynatrace", "динатрейс", "дайнатрейс", "apm dynatrace"]
+  category: monitoring_apm
+  extra_categories: []
+  summary: "Зарубежная платформа мониторинга производительности приложений (APM) и наблюдаемости от Dynatrace (ушла из РФ). Заменяется российскими APM и AIOps-решениями."
+  editions: []
+  versions: []
+  platforms: [web, linux, windows]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены dynatrace", "мониторинг производительности приложений apm"]
+  roles: [sre, devops, sysadmin]
+  industries: [finance, telecom, retail, it]
+  formats: []
+  analogs: [klyuch_astrom, monq_aiops, saymon_monitoring]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: proxmox_ve
+  vendor: proxmox
+  name: "Proxmox VE"
+  aliases: ["proxmox", "proxmox ve", "pve", "проксмокс", "прокс мокс", "гипервизор proxmox"]
+  category: server_virtualization
+  extra_categories: []
+  summary: "Зарубежная платформа серверной виртуализации на базе KVM и LXC от австрийской Proxmox Server Solutions (коммерческая подписка в каталоге не продаётся). Для корпоративных проектов с реестром ПО и поддержкой в РФ предлагаются российские гипервизоры."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены proxmox с поддержкой и реестром по", "серверная виртуализация на базе kvm"]
+  roles: [sysadmin, infra_architect]
+  industries: [it, gov, finance, manufacturing]
+  formats: []
+  analogs: [orion_zvirt, astra_brest, basis_dynamix, vmmanager, red_virtualization]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: nutanix_aos
+  vendor: nutanix
+  name: "Nutanix (AOS / AHV)"
+  aliases: ["nutanix", "nutanix aos", "nutanix ahv", "нутаникс", "нютаникс", "гиперконвергенция nutanix"]
+  category: server_virtualization
+  extra_categories: [sds_storage]
+  summary: "Зарубежная гиперконвергентная платформа виртуализации и программно-определяемого хранения от Nutanix (поставки в РФ остановлены). Заменяется российскими гиперконвергентными платформами."
+  editions: []
+  versions: []
+  platforms: [linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение nutanix", "гиперконвергентная инфраструктура hci"]
+  roles: [infra_architect, sysadmin]
+  industries: [finance, telecom, manufacturing, gov]
+  formats: []
+  analogs: [vstack_hcp, basis_dynamix, orion_zvirt, cyber_infrastructure]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: sentinelone
+  vendor: sentinelone_inc
+  name: "SentinelOne Singularity"
+  aliases: ["sentinelone", "sentinel one", "сентинел ван", "сентинелван", "edr sentinelone"]
+  category: edr_xdr
+  extra_categories: [endpoint_security]
+  summary: "Зарубежная платформа EDR/XDR для защиты конечных точек от SentinelOne (в РФ не поставляется). Заменяется российскими EDR/XDR-решениями."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены sentinelone", "обнаружение и реагирование на угрозы edr xdr"]
+  roles: [infosec_engineer, ciso]
+  industries: [finance, it, telecom, manufacturing]
+  formats: []
+  analogs: [kaspersky_symphony_xdr, pt_maxpatrol_edr, bizone_edr, f6_mxdr]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: cloudflare
+  vendor: cloudflare_inc
+  name: "Cloudflare"
+  aliases: ["cloudflare", "клаудфлер", "клаудфлэр", "клаудфлаер", "защита ddos cloudflare"]
+  category: waf_appsec
+  extra_categories: []
+  summary: "Зарубежный облачный сервис защиты от DDoS-атак, WAF и CDN от Cloudflare (в каталоге не продаётся). Заменяется российскими сервисами защиты от DDoS и веб-приложений."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены cloudflare", "защита сайта от ddos и веб-атак waf"]
+  roles: [infosec_engineer, devops, sysadmin]
+  industries: [retail, finance, it, media]
+  formats: []
+  analogs: [qrator_ddos, stormwall_ddos, bizone_waf, pt_af]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: zscaler
+  vendor: zscaler_inc
+  name: "Zscaler Zero Trust"
+  aliases: ["zscaler", "зетскейлер", "зискейлер", "zscaler zpa", "zscaler zia"]
+  category: pam_jump_hosts
+  extra_categories: [ngfw_vpn]
+  summary: "Зарубежная облачная платформа защищенного удаленного доступа (ZTNA) и веб-шлюза безопасности от Zscaler (не поставляется в РФ). Для защищенного периметра и удаленного доступа предлагаются российские NGFW/VPN-решения."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены zscaler", "защищенный удаленный доступ и сетевой периметр"]
+  roles: [infosec_engineer, network_engineer]
+  industries: [finance, it, manufacturing, retail]
+  formats: []
+  analogs: [usergate_ngfw, continent_ngfw, ideco_ngfw, pt_ngfw]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: lastpass
+  vendor: lastpass_inc
+  name: "LastPass"
+  aliases: ["lastpass", "last pass", "ластпасс", "ласт пасс", "менеджер паролей lastpass"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Зарубежный облачный менеджер паролей для частных пользователей и бизнеса от LastPass (в каталоге не продаётся). Заменяется российскими корпоративными менеджерами паролей и средствами MFA."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены lastpass", "корпоративное хранилище паролей"]
+  roles: [infosec_engineer, sysadmin]
+  industries: [it, finance, smb]
+  formats: []
+  analogs: [passwork, multifactor_mfa, avanpost_fam]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: bitwarden
+  vendor: bitwarden_inc
+  name: "Bitwarden"
+  aliases: ["bitwarden", "bit warden", "битварден", "битворден", "менеджер паролей bitwarden"]
+  category: iam_pam_mfa
+  extra_categories: []
+  summary: "Зарубежный менеджер паролей с открытым исходным кодом от Bitwarden (коммерческие тарифы в каталоге не продаются). В корпоративном сегменте заменяется российским Пассворком и IAM-системами."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, ios, android]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены bitwarden", "корпоративный менеджер паролей on-premise"]
+  roles: [infosec_engineer, sysadmin, developer]
+  industries: [it, finance, smb]
+  formats: []
+  analogs: [passwork, indeed_am, avanpost_fam]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: dropbox_business
+  vendor: dropbox
+  name: "Dropbox Business"
+  aliases: ["dropbox", "dropbox business", "дропбокс", "дроп бокс", "облако dropbox"]
+  category: sds_storage
+  extra_categories: []
+  summary: "Зарубежное облачное файловое хранилище и сервис синхронизации документов от Dropbox (в РФ не поставляется). Заменяется российскими корпоративными файловыми дисками и EFSS-платформами."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены dropbox", "корпоративное облачное хранилище файлов и обмен"]
+  roles: [sysadmin, office_worker, manager]
+  industries: [smb, it, media, consulting]
+  formats: []
+  analogs: [cyber_files, yandex_360, vk_workspace]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+# ============================================================================
+# 3. КОММУНИКАЦИИ, ЗАДАЧИ, CRM, ITSM И БИЗНЕС-ПРИЛОЖЕНИЯ
+# ============================================================================
+
+- id: cisco_webex
+  vendor: cisco
+  name: "Cisco Webex"
+  aliases: ["webex", "cisco webex", "вебекс", "вебэкс", "циско вебекс", "webex meetings"]
+  category: vks_webinars
+  extra_categories: [uc_platforms]
+  summary: "Зарубежная платформа видеоконференцсвязи и корпоративных коммуникаций от Cisco (вендор ушёл из РФ). Заменяется российскими ВКС-платформами."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux, web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение cisco webex", "корпоративная видеоконференцсвязь"]
+  roles: [sysadmin, office_worker, manager]
+  industries: [finance, telecom, energy, gov, it]
+  formats: []
+  analogs: [kontur_tolk, mts_link_meetings, trueconf_server, iva_mcu, salute_jazz]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: ms_teams
+  vendor: microsoft
+  name: "Microsoft Teams"
+  aliases: ["ms teams", "microsoft teams", "teams", "тимс", "мс тимс", "майкрософт тимс", "скайп для бизнеса", "skype for business"]
+  category: uc_platforms
+  extra_categories: [vks_webinars, corporate_messengers]
+  summary: "Корпоративная платформа чатов, звонков и видеовстреч от Microsoft (продажи в РФ прекращены). В каталоге заменяется российскими мессенджерами и ВКС-платформами."
+  editions: []
+  versions: []
+  platforms: [windows, macos, web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение microsoft teams", "корпоративный мессенджер и видеозвонки"]
+  roles: [sysadmin, office_worker, manager]
+  industries: [it, finance, retail, manufacturing, gov]
+  formats: []
+  analogs: [vk_teams, kontur_tolk, mts_link_meetings, myoffice_squadus, express_messenger]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: mattermost
+  vendor: mattermost_inc
+  name: "Mattermost"
+  aliases: ["mattermost", "маттермост", "матермост", "мессенджер mattermost"]
+  category: corporate_messengers
+  extra_categories: []
+  summary: "Зарубежный корпоративный мессенджер с возможностью локальной установки от Mattermost (коммерческие редакции в РФ не поставляются). Заменяется российскими корпоративными мессенджерами."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, linux, ios, android]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены mattermost", "корпоративный чат on-premise для ит-команд"]
+  roles: [developer, devops, sysadmin]
+  industries: [it, finance, telecom]
+  formats: []
+  analogs: [pachca_messenger, compass_messenger, express_messenger, vk_teams, myoffice_squadus]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: asana
+  vendor: asana_inc
+  name: "Asana"
+  aliases: ["asana", "асана", "трекер asana", "управление проектами asana"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Зарубежный облачный сервис управления задачами и командными проектами от Asana (в РФ не поставляется). Заменяется российскими таск-трекерами."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены asana", "командный трекер задач и канбан-доски"]
+  roles: [project_manager, manager, marketer]
+  industries: [it, media, consulting, retail]
+  formats: []
+  analogs: [kaiten, yandex_tracker, yougile, weeek]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: monday_com
+  vendor: monday_inc
+  name: "monday.com"
+  aliases: ["monday", "monday.com", "monday com", "мандей", "мондей", "мандей ком"]
+  category: task_project_trackers
+  extra_categories: [crm_systems]
+  summary: "Зарубежная облачная платформа управления проектами, задачами и рабочими процессами от monday.com (в каталоге не продаётся). Заменяется российскими системами управления задачами и CRM."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены monday.com", "управление проектами и процессами команды"]
+  roles: [project_manager, manager]
+  industries: [it, marketing, consulting, smb]
+  formats: []
+  analogs: [kaiten, yougile, weeek, bitrix24, planfix]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: clickup
+  vendor: clickup_inc
+  name: "ClickUp"
+  aliases: ["clickup", "click up", "кликап", "клик ап", "трекер clickup"]
+  category: task_project_trackers
+  extra_categories: [whiteboards_notes]
+  summary: "Зарубежное облачное рабочее пространство для управления задачами, документами и целями от ClickUp (в каталоге не продаётся)."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены clickup", "единое пространство для задач и базы знаний"]
+  roles: [project_manager, developer, manager]
+  industries: [it, marketing, smb]
+  formats: []
+  analogs: [weeek, kaiten, yougile, yandex_tracker, yonote]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: linear_app
+  vendor: linear_inc
+  name: "Linear"
+  aliases: ["linear", "linear app", "линеар", "линиар", "трекер linear"]
+  category: task_project_trackers
+  extra_categories: []
+  summary: "Зарубежный облачный трекер задач и релизов для продуктовых и инженерных команд от Linear (в каталоге не продаётся)."
+  editions: []
+  versions: []
+  platforms: [web, macos, windows]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены linear", "таск-трекер для разработки по"]
+  roles: [developer, product_manager]
+  industries: [it, finance]
+  formats: []
+  analogs: [yandex_tracker, kaiten, evaproject, sphere_t1]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: hubspot_crm
+  vendor: hubspot
+  name: "HubSpot CRM"
+  aliases: ["hubspot", "hubspot crm", "хабспот", "хаб спот", "срм hubspot"]
+  category: crm_systems
+  extra_categories: [email_marketing]
+  summary: "Зарубежная облачная CRM-платформа и автоматизация маркетинга от HubSpot (в РФ не поставляется). Заменяется российскими CRM и CDP-платформами."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены hubspot", "crm и автоматизация маркетинга"]
+  roles: [sales_manager, marketer]
+  industries: [it, retail, b2b_services, smb]
+  formats: []
+  analogs: [bitrix24, amocrm, bpmsoft_crm, mindbox_cdp]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: zendesk_support
+  vendor: zendesk
+  name: "Zendesk Support"
+  aliases: ["zendesk", "zendesk support", "зендеск", "зен деск", "хелпдеск zendesk"]
+  category: itsm_service_desk
+  extra_categories: [crm_systems]
+  summary: "Зарубежная облачная платформа клиентской поддержки и Helpdesk от Zendesk (прекратила работу в РФ). Заменяется российскими Service Desk и омниканальными платформами."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены zendesk", "система обработки обращений и тикетов"]
+  roles: [support_manager, sysadmin]
+  industries: [it, retail, finance, telecom]
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, onec_itilium, bitrix24]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: freshdesk
+  vendor: freshworks
+  name: "Freshdesk / Freshservice"
+  aliases: ["freshdesk", "freshservice", "freshworks", "фрешдеск", "фрешсервис", "фрешворкс"]
+  category: itsm_service_desk
+  extra_categories: []
+  summary: "Зарубежная облачная система Helpdesk и ITSM от Freshworks (в РФ не поставляется). Заменяется российскими ITSM/Service Desk платформами."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены freshdesk", "сервис деск для поддержки клиентов и сотрудников"]
+  roles: [support_manager, sysadmin]
+  industries: [it, retail, smb]
+  formats: []
+  analogs: [simpleone_itsm, naumen_smp, onec_itilium, inframanager]
+  replaces: []
+  popularity: 3
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: mailchimp
+  vendor: intuit_mailchimp
+  name: "Mailchimp"
+  aliases: ["mailchimp", "mail chimp", "мейлчимп", "мэйлчимп", "рассылки mailchimp"]
+  category: email_marketing
+  extra_categories: []
+  summary: "Зарубежный облачный сервис email-рассылок и маркетинговой автоматизации от Intuit Mailchimp (недоступен для российских компаний). Заменяется российскими сервисами рассылок и CDP."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены mailchimp", "массовые email-рассылки и триггерный маркетинг"]
+  roles: [marketer]
+  industries: [retail, media, it, smb]
+  formats: []
+  analogs: [unisender, mindbox_cdp, bitrix24]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: docusign
+  vendor: docusign_inc
+  name: "DocuSign"
+  aliases: ["docusign", "docu sign", "докьюсайн", "докусайн", "электронная подпись docusign"]
+  category: tax_reporting_edo
+  extra_categories: [e_signature]
+  summary: "Зарубежный сервис электронного подписания договоров и согласования документов от DocuSign (в РФ не работает и не имеет юридической значимости по 63-ФЗ). Заменяется российскими системами ЭДО."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены docusign", "юридически значимое подписание договоров в рф"]
+  roles: [lawyer, manager, accountant]
+  industries: [finance, retail, consulting, manufacturing]
+  formats: [pdf]
+  analogs: [kontur_diadoc, sbis_saby, directum_rx, onec_edo]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: ms_dynamics_365
+  vendor: microsoft
+  name: "Microsoft Dynamics 365 (AX / NAV / CRM)"
+  aliases: ["dynamics 365", "microsoft dynamics", "ms dynamics", "dynamics ax", "axapta", "аксапта", "navision", "навижн", "динамикс 365", "майкрософт динамикс"]
+  category: erp_systems
+  extra_categories: [crm_systems]
+  summary: "Зарубежная линейка ERP и CRM-систем от Microsoft (ранее Axapta и Navision; продажи в РФ прекращены). В каталоге заменяется российскими ERP и CRM-платформами."
+  editions: []
+  versions: []
+  platforms: [web, windows]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение microsoft dynamics ax и navision", "переход с dynamics 365 на российскую erp"]
+  roles: [cio, cfo, erp_architect]
+  industries: [retail, manufacturing, logistics, finance]
+  formats: []
+  analogs: [onec_erp, onec_ka, bpmsoft_crm, galaktika_erp, turbo_erp]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: oracle_primavera
+  vendor: oracle
+  name: "Oracle Primavera P6"
+  aliases: ["primavera", "oracle primavera", "primavera p6", "примавера", "оракл примавера", "примавера п6"]
+  category: project_planning
+  extra_categories: []
+  summary: "Зарубежная система календарно-сетевого планирования и управления портфелями капитальных проектов от Oracle (вендор ушёл из РФ). Заменяется российскими ИСУП и системами КСП."
+  editions: []
+  versions: []
+  platforms: [windows, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение oracle primavera", "календарно-сетевое планирование крупных строек"]
+  roles: [project_manager, planner]
+  industries: [construction, oil_gas, energy, manufacturing]
+  formats: [xer, xml]
+  analogs: [spider_project, advanta_pm, onec_erp]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: anaplan
+  vendor: anaplan_inc
+  name: "Anaplan"
+  aliases: ["anaplan", "анаплан", "бюджетирование anaplan", "ibp anaplan"]
+  category: finance_budgeting
+  extra_categories: []
+  summary: "Зарубежная облачная EPM/IBP-платформа финансового и интегрированного бизнес-планирования от Anaplan (поставки в РФ прекращены). Заменяется российскими EPM и системами бюджетирования."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение anaplan", "интегрированное бизнес-планирование и бюджетирование"]
+  roles: [cfo, financial_analyst]
+  industries: [retail, manufacturing, finance, fmcg]
+  formats: []
+  analogs: [optimacros, onec_holding, foresight_analytics]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: ibm_spss
+  vendor: ibm
+  name: "IBM SPSS Statistics"
+  aliases: ["spss", "ibm spss", "spss statistics", "спсс", "айбиэм спсс", "статистика spss"]
+  category: bi_analytics
+  extra_categories: []
+  summary: "Зарубежный пакет статистического анализа данных от IBM (вендор ушёл из РФ). Для аналитики и прогнозного моделирования предлагаются российские аналитические и BI-платформы."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены ibm spss", "статистический анализ и прогнозирование"]
+  roles: [analyst, data_scientist, researcher]
+  industries: [edu, finance, consulting, healthcare]
+  formats: [sav, csv, xlsx]
+  analogs: [loginom, polymatica_bi, foresight_analytics, visiology_bi]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+# ============================================================================
+# 4. ДИЗАЙН, 3D, ВИДЕО, ТЕКСТ, ОБУЧЕНИЕ И САПР/ГИС
+# ============================================================================
+
+- id: canva
+  vendor: canva_pty
+  name: "Canva"
+  aliases: ["canva", "canva pro", "canva teams", "канва", "канва про", "графический редактор canva"]
+  category: ui_ux_web_design
+  extra_categories: [raster_photo]
+  summary: "Зарубежный онлайн-сервис для быстрого создания презентаций, баннеров и графики от Canva (ушёл из РФ). Заменяется российскими и доступными инструментами дизайна и презентаций."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены canva", "создание презентаций и графики для маркетинга"]
+  roles: [marketer, designer, office_worker]
+  industries: [marketing, media, retail, edu]
+  formats: [png, jpg, pdf, svg]
+  analogs: [pixso_design, ams_photomaster, r7_office]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: unity_engine
+  vendor: unity_technologies
+  name: "Unity (Unity Pro / Industry)"
+  aliases: ["unity", "unity3d", "unity 3d", "unity pro", "юнити", "юнити 3д", "движок unity"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Зарубежный кроссплатформенный 3D-движок реального времени для игр, VR/AR и промышленных симуляторов от Unity Technologies (в каталоге не продаётся). В качестве российского 3D-движка реального времени доступен UNIGINE."
+  editions: []
+  versions: []
+  platforms: [windows, macos, linux]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены unity", "3d-симуляторы, цифровые двойники и vr-тренажеры"]
+  roles: [developer, 3d_artist]
+  industries: [it, manufacturing, edu, media]
+  formats: [fbx, obj, gltf]
+  analogs: [unigine_engine, kompas_3d]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: unreal_engine
+  vendor: epic_games
+  name: "Unreal Engine"
+  aliases: ["unreal engine", "ue5", "unreal", "анрил энджин", "анрил", "движок unreal"]
+  category: 3d_rendering_animation
+  extra_categories: []
+  summary: "Зарубежный 3D-движок реального времени от Epic Games для визуализации, тренажеров и медиапроизводства (не продаётся в каталоге). Для промышленной 3D-визуализации и симуляторов доступен российский движок UNIGINE."
+  editions: []
+  versions: []
+  platforms: [windows, linux, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены unreal engine", "интерактивная 3d-визуализация и тренажеры"]
+  roles: [3d_artist, developer, architect]
+  industries: [media, construction, manufacturing, it]
+  formats: [fbx, gltf, usd]
+  analogs: [unigine_engine, kompas_3d]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: techsmith_camtasia
+  vendor: techsmith
+  name: "TechSmith Camtasia"
+  aliases: ["camtasia", "camtasia studio", "techsmith camtasia", "камтазия", "камтасия", "камтазия студио"]
+  category: video_editing
+  extra_categories: []
+  summary: "Зарубежная программа для записи экрана и монтажа обучающих видеороликов от TechSmith (не продаётся в каталоге). Заменяется российскими видеоредакторами и средствами захвата экрана."
+  editions: []
+  versions: []
+  platforms: [windows, macos]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены camtasia", "запись экрана и монтаж видеоуроков"]
+  roles: [methodologist, marketer, video_editor]
+  industries: [edu, marketing, it, media]
+  formats: [mp4, mov, avi]
+  analogs: [movavi_video_suite, movavi_screen_recorder, ams_videomontage]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: grammarly
+  vendor: grammarly_inc
+  name: "Grammarly"
+  aliases: ["grammarly", "grammarly business", "граммарли", "грамарли", "проверка английского grammarly"]
+  category: translation_dictionaries
+  extra_categories: [llm_gen_ai]
+  summary: "Зарубежный облачный сервис проверки грамматики и стиля английского текста от Grammarly (недоступен в РФ). Для работы с иностранными текстами и редактуры предлагаются российские переводчики и корпоративные LLM."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск замены grammarly", "редактура и перевод деловых текстов"]
+  roles: [office_worker, marketer, translator]
+  industries: [it, consulting, media, edu]
+  formats: []
+  analogs: [promt_translation, gigachat_enterprise, yandexgpt_api]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: sketchup
+  vendor: trimble
+  name: "Trimble SketchUp"
+  aliases: ["sketchup", "sketch up", "sketchup pro", "скетчап", "скетч ап", "тримбл скетчап"]
+  category: bim_aec
+  extra_categories: [cad_2d, 3d_rendering_animation]
+  summary: "Зарубежная программа для быстрого архитектурного и интерьерного 3D-моделирования от Trimble (вендор ушёл из РФ). Заменяется российскими BIM и САПР-системами."
+  editions: []
+  versions: []
+  platforms: [windows, macos, web]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены sketchup", "архитектурное 3d-моделирование и проектирование"]
+  roles: [architect, designer, cad_engineer]
+  industries: [construction, design_institute, architecture]
+  formats: [skp, dwg, dxf, ifc]
+  analogs: [renga_bim, nanocad_platform, kompas_3d, nanocad_bim]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: tekla_structures
+  vendor: trimble
+  name: "Trimble Tekla Structures"
+  aliases: ["tekla", "tekla structures", "текла", "текла стракчерс", "тримбл текла", "bim металлоконструкции tekla"]
+  category: bim_aec
+  extra_categories: []
+  summary: "Зарубежная BIM-система деталировочного проектирования металлических и железобетонных конструкций от Trimble (поставки в РФ прекращены). Заменяется российскими BIM-решениями."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение tekla structures", "bim-проектирование металлоконструкций и жбк"]
+  roles: [bim_manager, cad_engineer, design_engineer]
+  industries: [construction, design_institute, manufacturing]
+  formats: [ifc, dwg, dxf]
+  analogs: [nanocad_bim, model_studio_cs, renga_bim]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: ptc_mathcad
+  vendor: ptc
+  name: "PTC Mathcad"
+  aliases: ["mathcad", "ptc mathcad", "mathcad prime", "маткад", "мат кад", "маткад прайм"]
+  category: cae_simulation
+  extra_categories: []
+  summary: "Зарубежная система инженерных математических расчетов и документирования вычислений от PTC (вендор ушёл из РФ). Заменяется российскими расчетными и инженерными платформами."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены mathcad", "инженерные математические расчеты"]
+  roles: [cae_engineer, design_engineer, researcher]
+  industries: [manufacturing, energy, aerospace, edu, design_institute]
+  formats: [mcdx, pdf]
+  analogs: [engee_platform, simintech, cae_fidesys]
+  replaces: []
+  popularity: 5
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: ptc_creo
+  vendor: ptc
+  name: "PTC Creo (Pro/ENGINEER)"
+  aliases: ["ptc creo", "creo", "creo parametric", "pro engineer", "proe", "крео", "птс крео", "про инженер"]
+  category: mcad_plm
+  extra_categories: []
+  summary: "Зарубежная тяжелая машиностроительная 3D САПР от PTC (ранее Pro/ENGINEER; вендор ушёл из РФ). Заменяется российскими MCAD и PLM-системами."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение ptc creo", "машиностроительное 3d-проектирование и plm"]
+  roles: [design_engineer, cad_engineer, technologist]
+  industries: [manufacturing, aerospace, automotive, energy]
+  formats: [step, iges, stl]
+  analogs: [kompas_3d, t_flex_cad, lotsman_plm]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: mapinfo_pro
+  vendor: precisely
+  name: "MapInfo Pro"
+  aliases: ["mapinfo", "mapinfo pro", "мапинфо", "мап инфо", "гис mapinfo", "pitney bowes mapinfo"]
+  category: gis_mapping
+  extra_categories: []
+  summary: "Зарубежная настольная геоинформационная система от Precisely (ранее Pitney Bowes; в РФ не поставляется). Прямым российским аналогом с поддержкой формата TAB является ГИС Аксиома."
+  editions: []
+  versions: []
+  platforms: [windows]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["импортозамещение mapinfo pro", "работа с картами в формате tab"]
+  roles: [gis_specialist]
+  industries: [gov, oil_gas, telecom, urban_planning]
+  formats: [tab, mif, shp]
+  analogs: [axioma_gis, gis_panorama, zulugis]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+- id: moodle_lms
+  vendor: moodle_hq
+  name: "Moodle LMS"
+  aliases: ["moodle", "moodle lms", "moodle workplace", "мудл", "мудл сдо", "сдо moodle"]
+  category: lms_elearning
+  extra_categories: []
+  summary: "Зарубежная система дистанционного обучения с открытым исходным кодом (коммерческая редакция Moodle Workplace не продаётся в каталоге). Для корпоративного обучения и реестра ПО предлагаются российские СДО."
+  editions: []
+  versions: []
+  platforms: [web, linux]
+  compat_ru_os: []
+  deployment: [onprem, cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["поиск российской замены moodle с поддержкой", "корпоративная система дистанционного обучения"]
+  roles: [hr_manager, methodologist, sysadmin]
+  industries: [edu, retail, finance, manufacturing]
+  formats: [scorm]
+  analogs: [ispring_suite, mirapolis_lms, websoft_hcm, equio_lms]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: high
+
+# ============================================================================
+# 5. РОССИЙСКИЕ ПРОДУКТЫ, ОТСУТСТВУЮЩИЕ В ТЕКУЩЕМ КАТАЛОГЕ
+# ============================================================================
+
+- id: megaplan_crm
+  vendor: megaplan
+  name: "Мегаплан"
+  aliases: ["мегаплан", "megaplan", "мегаплан срм", "megaplan crm", "срм мегаплан"]
+  category: crm_systems
+  extra_categories: [task_project_trackers]
+  summary: "Российская CRM-система и инструмент управления задачами для малого и среднего бизнеса от компании Мегаплан. Отсутствует в текущем ассортименте каталога; предлагаются близкие российские CRM."
+  editions: []
+  versions: []
+  platforms: [web, ios, android]
+  compat_ru_os: []
+  deployment: [cloud, onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["crm и управление задачами для малого и среднего бизнеса", "поиск альтернативы мегаплан в каталоге"]
+  roles: [sales_manager, manager]
+  industries: [smb, retail, b2b_services]
+  formats: []
+  analogs: [bitrix24, amocrm, bpmsoft_crm, planfix]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: parus_erp
+  vendor: parus_corp
+  name: "Парус (ПАРУС-Предприятие / Бюджет)"
+  aliases: ["парус", "парус 8", "парус бюджет", "парус предприятие", "parus", "корпорация парус"]
+  category: erp_systems
+  extra_categories: [accounting]
+  summary: "Российская ERP-система и комплекс автоматизации финансово-хозяйственной деятельности для госсектора и крупных предприятий от Корпорации ПАРУС. Отсутствует в текущем каталоге."
+  editions: []
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["автоматизация госучреждений и крупных предприятий", "поиск аналогов парус в каталоге"]
+  roles: [accountant, cfo, cio]
+  industries: [gov, manufacturing, healthcare, edu]
+  formats: []
+  analogs: [onec_erp, onec_bgu, galaktika_erp, turbo_erp]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: tilda_publishing
+  vendor: tilda
+  name: "Tilda Publishing (Тильда)"
+  aliases: ["tilda", "tilda publishing", "тильда", "конструктор сайтов тильда", "тильда паблишинг"]
+  category: cms_ecommerce
+  extra_categories: []
+  summary: "Популярный российский облачный конструктор сайтов и лендингов Tilda. Отсутствует в текущем ассортименте каталога; для корпоративных сайтов и интернет-магазинов доступна линейка 1С-Битрикс."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["создание лендингов и корпоративных сайтов", "поиск альтернативы tilda для интернет-магазина"]
+  roles: [marketer, designer]
+  industries: [retail, smb, marketing, media]
+  formats: []
+  analogs: [bitrix_site_manager, bitrix24]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: jivosite
+  vendor: jivo
+  name: "Jivo (JivoSite)"
+  aliases: ["jivo", "jivosite", "живосайт", "дживосайт", "живо", "онлайн чат jivo"]
+  category: crm_systems
+  extra_categories: []
+  summary: "Российский бизнес-мессенджер и онлайн-чат для сайта с интеграцией в мессенджеры и CRM. Отсутствует в текущем каталоге; схожие функции омниканальных коммуникаций есть в российских CRM и контакт-центрах."
+  editions: []
+  versions: []
+  platforms: [web, windows, macos, ios, android]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: no
+  certs: []
+  use_cases: ["онлайн-консультант на сайт и чаты с клиентами", "омниканальные обращения в crm"]
+  roles: [sales_manager, support_manager, marketer]
+  industries: [retail, smb, b2b_services]
+  formats: []
+  analogs: [bitrix24, amocrm, retailcrm, naumen_contact_center]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: kontur_buhgalteriya
+  vendor: skb_kontur
+  name: "Контур.Бухгалтерия"
+  aliases: ["контур бухгалтерия", "контур.бухгалтерия", "kontur buhgalteriya", "облачная бухгалтерия контур"]
+  category: accounting
+  extra_categories: [tax_reporting_edo]
+  summary: "Российский облачный сервис бухгалтерского учета, расчета зарплаты и сдачи отчетности для малого бизнеса от СКБ Контур. Отсутствует в текущем каталоге; доступны решения 1С и СБИС."
+  editions: []
+  versions: []
+  platforms: [web]
+  compat_ru_os: []
+  deployment: [cloud]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["облачная бухгалтерия для малого бизнеса", "бухучет и сдача отчетности в фнс"]
+  roles: [accountant, smb_owner]
+  industries: [smb, retail, b2b_services]
+  formats: []
+  analogs: [onec_accounting, onec_fresh, sbis_saby]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
+
+- id: onec_toir
+  vendor: onec
+  name: "1С:ТОИР Управление ремонтами и обслуживанием оборудования"
+  aliases: ["1с тоир", "1с:тоир", "1с тоир корп", "1с тоир 2", "1c toir", "деснол тоир"]
+  category: erp_systems
+  extra_categories: []
+  summary: "Российская EAM-система на платформе 1С:Предприятие для учета оборудования, планирования ремонтов и управления нарядами (разработчик Деснол Софт / 1С-Совместно). Отсутствует в текущем каталоге."
+  editions: []
+  versions: []
+  platforms: [windows, linux, web]
+  compat_ru_os: []
+  deployment: [onprem]
+  license:
+    models: []
+    metrics: []
+    terms_months: []
+    actions: []
+    bands: []
+    packs: []
+    audiences: []
+  delivery: []
+  registry: yes
+  certs: []
+  use_cases: ["управление техническим обслуживанием и ремонтами оборудования", "eam-система на платформе 1с"]
+  roles: [chief_engineer, erp_architect]
+  industries: [manufacturing, energy, oil_gas, mining]
+  formats: []
+  analogs: [onec_erp, galaktika_erp, turbo_erp]
+  replaces: []
+  popularity: 4
+  catalog: no
+  sku_name_examples: []
+  confidence: medium
