@@ -16,6 +16,9 @@ class OfferFilters:
         for field in ("delivery","version","registry","edition","family_id","vendor_id","category_id"):
             key={"family_id":"family","vendor_id":"vendor","category_id":"category"}.get(field,field)
             self.columns[key]=np.array([getattr(o,field) for o in offers],dtype=object)
+        # Для предложения без флага можно использовать однозначное сведение о всём семействе.
+        if isinstance(knowledge.get("registry"),bool):
+            self.columns["registry"]=np.array([knowledge["registry"] if o.registry is None else o.registry for o in offers],dtype=object)
         self.columns["promo"]=np.array([o.attrs.get("promo")=="true" for o in offers])
         self.price=np.array([o.price if o.price is not None and not o.price_on_request else np.nan for o in offers])
         self.minimum=np.array([o.lic.qty_min or 1 for o in offers])

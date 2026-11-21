@@ -1,5 +1,5 @@
 {
-  "search_id": "s_fa0234214f6c425081197a805e8c3577",
+  "search_id": "s_14665cd2d0b847e3bd1146ecb498245a",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "vendor",
     "intent_title": "Поиск по вендору",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -57,330 +58,6 @@
       "title": "Подходящие лицензии",
       "total": 19,
       "items": [
-        {
-          "card_id": "kaspersky_kics:nodes",
-          "title": "Kaspersky Industrial CyberSecurity for Nodes",
-          "vendor": {
-            "id": "kaspersky",
-            "name": "Kaspersky"
-          },
-          "category": {
-            "id": "ot_ics_security",
-            "title": "Защита АСУ ТП и промышленная ИБ"
-          },
-          "summary": "Специализированная платформа защиты промышленных узлов (KICS for Nodes) и технологических сетей АСУ ТП (KICS for Networks).",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_141CCF15EBDF",
-            "sku": "KL-141CCF15EBDF",
-            "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License BUSINESS",
-            "price": 5760.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "device",
-            "qty_min": 25,
-            "qty_max": 49,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 5760.0,
-            "total": null,
-            "text": "от 5 760 ₽ за устройство в год (при покупке от 25)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_600C0E25CA82",
-              "sku": "KL-600C0E25CA82",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License BUSINESS",
-              "price": 6000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_F47748E4E150",
-              "sku": "KL-F47748E4E150",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License GOV",
-              "price": 5400.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_E3851515BE85",
-              "sku": "KL-E3851515BE85",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License GOV",
-              "price": 5180.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_46101D617B91",
-              "sku": "KL-46101D617B91",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License BUSINESS",
-              "price": 5530.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 50,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_F64A1E29DD6A",
-              "sku": "KL-F64A1E29DD6A",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License GOV",
-              "price": 4980.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 50,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 45,
-          "price_from": 3340.0,
-          "score": {
-            "tier": 2,
-            "score": 0.5777399999999999,
-            "parts": {
-              "rel": 0.25,
-              "pop": 0.19576,
-              "margin": 0.13198,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 25 до 49 мест"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "kaspersky_ksmg",
-          "title": "Kaspersky Secure Mail Gateway",
-          "vendor": {
-            "id": "kaspersky",
-            "name": "Kaspersky"
-          },
-          "category": {
-            "id": "mail_security",
-            "title": "Защита почты и антиспам"
-          },
-          "summary": "Защищённый почтовый шлюз (SEG) с антиспамом, антифишингом и антивирусной проверкой корпоративной переписки.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_6A5AA8BC884B",
-            "sku": "KL-6A5AA8BC884B",
-            "name": "Kaspersky Secure Mail Gateway Russian Edition. 500–999 Mailbox 1 year New License BUSINESS",
-            "price": 840.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "mailbox",
-            "qty_min": 500,
-            "qty_max": 999,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 840.0,
-            "total": null,
-            "text": "от 840 ₽ за ящик в год (при покупке от 500)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_5845CFD30A62",
-              "sku": "KL-5845CFD30A62",
-              "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License BUSINESS",
-              "price": 950.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "mailbox",
-              "qty_min": 50,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_79D947D69F24",
-              "sku": "KL-79D947D69F24",
-              "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License GOV",
-              "price": 860.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "mailbox",
-              "qty_min": 50,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_DF23FFE0E93E",
-              "sku": "KL-DF23FFE0E93E",
-              "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License BUSINESS",
-              "price": 910.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "mailbox",
-              "qty_min": 100,
-              "qty_max": 249,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_CD5073B5D953",
-              "sku": "KL-CD5073B5D953",
-              "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License GOV",
-              "price": 820.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "mailbox",
-              "qty_min": 100,
-              "qty_max": 249,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_89503D4C0A85",
-              "sku": "KL-89503D4C0A85",
-              "name": "Kaspersky Secure Mail Gateway Russian Edition. 250–499 Mailbox 1 year New License BUSINESS",
-              "price": 880.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": false,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "mailbox",
-              "qty_min": 250,
-              "qty_max": 499,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 72,
-          "price_from": 510.0,
-          "score": {
-            "tier": 2,
-            "score": 0.57083,
-            "parts": {
-              "rel": 0.25,
-              "pop": 0.18333,
-              "margin": 0.1375,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 500 до 999 мест"
-            ]
-          },
-          "position": 2
-        },
         {
           "card_id": "kaspersky_asap:cloud",
           "title": "Kaspersky ASAP Cloud",
@@ -528,10 +205,11 @@
           "variants_count": 46,
           "price_from": 240.0,
           "score": {
-            "tier": 2,
-            "score": 0.56084,
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.61434,
             "parts": {
-              "rel": 0.26133,
+              "rel": 0.31483,
               "pop": 0.17921,
               "margin": 0.1203,
               "pers": 0.0
@@ -541,7 +219,7 @@
               "Диапазон от 50 до 99 мест"
             ]
           },
-          "position": 3
+          "position": 1
         },
         {
           "card_id": "kaspersky_asap:onprem",
@@ -691,9 +369,10 @@
           "price_from": 860.0,
           "score": {
             "tier": 2,
-            "score": 0.54633,
+            "tier_label": "Близкий вариант",
+            "score": 0.58089,
             "parts": {
-              "rel": 0.26267,
+              "rel": 0.29723,
               "pop": 0.18416,
               "margin": 0.0995,
               "pers": 0.0
@@ -701,6 +380,332 @@
             "why": [
               "Совпадает с условиями поиска",
               "Диапазон от 500 до 999 мест"
+            ]
+          },
+          "position": 2
+        },
+        {
+          "card_id": "kaspersky_kics:nodes",
+          "title": "Kaspersky Industrial CyberSecurity for Nodes",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "ot_ics_security",
+            "title": "Защита АСУ ТП и промышленная ИБ"
+          },
+          "summary": "Специализированная платформа защиты промышленных узлов (KICS for Nodes) и технологических сетей АСУ ТП (KICS for Networks).",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_141CCF15EBDF",
+            "sku": "KL-141CCF15EBDF",
+            "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License BUSINESS",
+            "price": 5760.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 25,
+            "qty_max": 49,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 5760.0,
+            "total": null,
+            "text": "от 5 760 ₽ за устройство в год (при покупке от 25)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_600C0E25CA82",
+              "sku": "KL-600C0E25CA82",
+              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License BUSINESS",
+              "price": 6000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_F47748E4E150",
+              "sku": "KL-F47748E4E150",
+              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License GOV",
+              "price": 5400.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_E3851515BE85",
+              "sku": "KL-E3851515BE85",
+              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License GOV",
+              "price": 5180.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_46101D617B91",
+              "sku": "KL-46101D617B91",
+              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License BUSINESS",
+              "price": 5530.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_F64A1E29DD6A",
+              "sku": "KL-F64A1E29DD6A",
+              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License GOV",
+              "price": 4980.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 45,
+          "price_from": 3340.0,
+          "score": {
+            "tier": 2,
+            "tier_label": "Близкий вариант",
+            "score": 0.5777399999999999,
+            "parts": {
+              "rel": 0.25,
+              "pop": 0.19576,
+              "margin": 0.13198,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 25 до 49 мест"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "kaspersky_kics:networks",
+          "title": "Kaspersky Industrial CyberSecurity for Networks",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "ot_ics_security",
+            "title": "Защита АСУ ТП и промышленная ИБ"
+          },
+          "summary": "Специализированная платформа защиты промышленных узлов (KICS for Nodes) и технологических сетей АСУ ТП (KICS for Networks).",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_F94291653106",
+            "sku": "KL-F94291653106",
+            "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 25–49 Node 1 year New License BUSINESS",
+            "price": 24000.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 25,
+            "qty_max": 49,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 24000.0,
+            "total": null,
+            "text": "от 24 000 ₽ за устройство в год (при покупке от 25)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_062DF1017456",
+              "sku": "KL-062DF1017456",
+              "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 10–24 Node 1 year New License BUSINESS",
+              "price": 25000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_0BEC7317E984",
+              "sku": "KL-0BEC7317E984",
+              "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 10–24 Node 1 year New License GOV",
+              "price": 22500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_3F8CCE04CAF5",
+              "sku": "KL-3F8CCE04CAF5",
+              "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 25–49 Node 1 year New License GOV",
+              "price": 21600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 25,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_47FD10E77B27",
+              "sku": "KL-47FD10E77B27",
+              "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 50–99 Node 1 year New License BUSINESS",
+              "price": 23000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_7B3BFD0C6252",
+              "sku": "KL-7B3BFD0C6252",
+              "name": "Kaspersky Industrial CyberSecurity for Networks Russian Edition. 50–99 Node 1 year New License GOV",
+              "price": 20700.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 45,
+          "price_from": 13930.0,
+          "score": {
+            "tier": 2,
+            "tier_label": "Близкий вариант",
+            "score": 0.52031,
+            "parts": {
+              "rel": 0.2325,
+              "pop": 0.15689,
+              "margin": 0.13092,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 25 до 49 мест"
             ]
           },
           "position": 4
@@ -735,13 +740,13 @@
           "count": 4
         },
         {
-          "id": "ot_ics_security",
-          "label": "Защита АСУ ТП и промышленная ИБ",
+          "id": "security_awareness",
+          "label": "Обучение сотрудников кибербезопасности",
           "count": 2
         },
         {
-          "id": "security_awareness",
-          "label": "Обучение сотрудников кибербезопасности",
+          "id": "ot_ics_security",
+          "label": "Защита АСУ ТП и промышленная ИБ",
           "count": 2
         },
         {
@@ -750,23 +755,25 @@
           "count": 2
         },
         {
-          "id": "mail_security",
-          "label": "Защита почты и антиспам",
+          "id": "siem_soc",
+          "label": "SIEM, SOAR и мониторинг ИБ",
           "count": 1
         },
         {
-          "id": "siem_soc",
-          "label": "SIEM, SOAR и мониторинг ИБ",
+          "id": "mail_security",
+          "label": "Защита почты и антиспам",
           "count": 1
         }
       ]
     }
   ],
   "related_queries": [
-    "Kaspersky Industrial CyberSecurity for Nodes",
-    "Kaspersky Secure Mail Gateway",
-    "Kaspersky ASAP Cloud",
-    "Kaspersky ASAP On-Premise"
+    "Kaspersky ASAP продление",
+    "Kaspersky ASAP Cloud на 12 мес",
+    "Аналог Kaspersky ASAP",
+    "Обучение сотрудников кибербезопасности из реестра",
+    "Обучение сотрудников кибербезопасности на 50 пользователей",
+    "Обучение сотрудников кибербезопасности"
   ],
   "notes": [],
   "trace": [
@@ -774,7 +781,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.12,
+      "ms": 0.2,
       "summary": "лаборатория касперского",
       "detail": {}
     },
@@ -782,7 +789,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.06,
+      "ms": 0.36,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -790,15 +797,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.03,
+      "ms": 0.1,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.18,
+      "ms": 0.29,
       "summary": "Kaspersky",
       "detail": {
         "residual": "",
@@ -818,10 +828,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.13,
+      "ms": 0.21,
       "summary": "Поиск по вендору",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "vendor",
+        "rejected": [],
         "calls": []
       }
     },
@@ -837,7 +851,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 21.05,
+      "ms": 12.66,
       "summary": "Подходящих карточек до проверки лицензий · 22",
       "detail": {
         "sources": [
@@ -852,7 +866,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 1.09,
+      "ms": 2.11,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -868,9 +882,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.04,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -878,14 +894,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 1.21,
+      "ms": 2.87,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -893,7 +909,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.02,
+      "ms": 0.03,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -903,7 +919,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.02,
+      "ms": 0.03,
       "summary": "Карточек в выдаче · 19",
       "detail": {}
     },
@@ -911,7 +927,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 5.91,
+      "ms": 1.0,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -921,14 +937,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 29.96
+    "total": 20.22
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

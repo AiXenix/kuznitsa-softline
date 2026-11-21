@@ -1,5 +1,5 @@
 {
-  "search_id": "s_c1c4010acab345a1b88eee48a5386d35",
+  "search_id": "s_c31fb14de6ab41df9f8f87accdde599c",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "off_topic",
     "intent_title": "За пределами каталога",
     "intent_conf": 0.95,
+    "zero_reason": "off_topic",
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -109,7 +110,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.11,
+      "ms": 0.13,
       "summary": "купить ноутбук для офиса",
       "detail": {}
     },
@@ -117,7 +118,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.09,
+      "ms": 0.24,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -125,15 +126,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.34,
+      "ms": 0.44,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.22,
+      "ms": 0.32,
       "summary": "Офисные программы и продуктивность",
       "detail": {
         "residual": "купить ноутбук для",
@@ -145,7 +149,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -153,10 +157,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.38,
+      "ms": 1.56,
       "summary": "За пределами каталога",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "off_topic",
+        "rejected": [],
         "calls": []
       }
     },
@@ -164,7 +172,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "За пределами каталога",
       "detail": {}
     },
@@ -172,7 +180,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Подходящих карточек до проверки лицензий · 0",
       "detail": {
         "sources": [
@@ -187,7 +195,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -203,9 +211,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -220,7 +230,7 @@
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -238,7 +248,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.23,
+      "ms": 0.28,
       "summary": "Карточек в выдаче · 0",
       "detail": {}
     },
@@ -246,7 +256,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.04,
+      "ms": 0.63,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -256,14 +266,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 5.51
+    "total": 3.75
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

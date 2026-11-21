@@ -1,5 +1,5 @@
 {
-  "search_id": "s_eda29c58e31e4a3cb077fcc8629b84e1",
+  "search_id": "s_ef6ce9db504a4eed8266d01dd5f58f5d",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "out_of_catalog",
     "intent_title": "Продукта нет в продаже",
     "intent_conf": 0.95,
+    "zero_reason": "vendor_left",
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -36,7 +37,11 @@
         "autocad"
       ]
     },
-    "exclude": {},
+    "exclude": {
+      "vendor": [
+        "autodesk"
+      ]
+    },
     "qty": null,
     "chips": [
       {
@@ -56,7 +61,7 @@
       "type": "not_in_catalog",
       "title": "Autodesk AutoCAD",
       "reason": "vendor_left",
-      "text": "Autodesk AutoCAD отсутствует в демокаталоге."
+      "text": "Autodesk AutoCAD не поставляется в Россию. Ближайшие замены:"
     },
     {
       "type": "analogs",
@@ -67,6 +72,330 @@
         "note": ""
       },
       "items": [
+        {
+          "card": {
+            "card_id": "nanocad_platform:base",
+            "title": "Платформа nanoCAD Базовая",
+            "vendor": {
+              "id": "nanosoft",
+              "name": "Nanosoft"
+            },
+            "category": {
+              "id": "cad_2d",
+              "title": "Базовые 2D/3D САПР и черчение DWG"
+            },
+            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре по данным семейства"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_1D48F8A2073F",
+              "sku": "AX-1D48F8A2073F",
+              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+              "price": 28000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 28000.0,
+              "total": null,
+              "text": "от 28 000 ₽ за устройство"
+            },
+            "variants": [
+              {
+                "offer_id": "o_81CFA883CEF8",
+                "sku": "AX-81CFA883CEF8",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 28000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_97CAE9C50B4E",
+                "sku": "AX-97CAE9C50B4E",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 25200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_A73BF7EAE0DD",
+                "sku": "AX-A73BF7EAE0DD",
+                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 11200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_439BCE75ADBD",
+                "sku": "AX-439BCE75ADBD",
+                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 19600.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_45CC2310B377",
+                "sku": "AX-45CC2310B377",
+                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 17640.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 21,
+            "price_from": 7840.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.79,
+              "parts": {
+                "rel": 0.485,
+                "pop": 0.17176,
+                "margin": 0.13324,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Включение в реестр указано в базе знаний для всего семейства"
+              ]
+            },
+            "position": 1
+          },
+          "note": "Близкий продукт по базе знаний"
+        },
+        {
+          "card": {
+            "card_id": "nanocad_platform:pro",
+            "title": "Платформа nanoCAD Pro",
+            "vendor": {
+              "id": "nanosoft",
+              "name": "Nanosoft"
+            },
+            "category": {
+              "id": "cad_2d",
+              "title": "Базовые 2D/3D САПР и черчение DWG"
+            },
+            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре по данным семейства"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_93536698759B",
+              "sku": "AX-93536698759B",
+              "name": "Платформа nanoCAD 23 Pro, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+              "price": 145000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 145000.0,
+              "total": null,
+              "text": "от 145 000 ₽ за лицензию в год"
+            },
+            "variants": [
+              {
+                "offer_id": "o_56DA58ECC57F",
+                "sku": "AX-56DA58ECC57F",
+                "name": "Платформа nanoCAD 23 Pro, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 145000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_D13FB8A30F91",
+                "sku": "AX-D13FB8A30F91",
+                "name": "Платформа nanoCAD 23 Pro, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 130500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_AC1693D18BF4",
+                "sku": "AX-AC1693D18BF4",
+                "name": "Платформа nanoCAD 23 Pro, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 58000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_FD426B0C8B79",
+                "sku": "AX-FD426B0C8B79",
+                "name": "Платформа nanoCAD 23 Pro, продление, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 101500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_3041BB3776E8",
+                "sku": "AX-3041BB3776E8",
+                "name": "Платформа nanoCAD 23 Pro, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                "price": 91400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "23",
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 21,
+            "price_from": 34800.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.69177,
+              "parts": {
+                "rel": 0.435,
+                "pop": 0.18353,
+                "margin": 0.07324,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Включение в реестр указано в базе знаний для всего семейства"
+              ]
+            },
+            "position": 2
+          },
+          "note": "Близкий продукт по базе знаний"
+        },
         {
           "card": {
             "card_id": "kompas_3d:build",
@@ -216,330 +545,12 @@
             "price_from": 192000.0,
             "score": {
               "tier": 1,
-              "score": 0.74082,
+              "tier_label": "Подходит по условиям",
+              "score": 0.68582,
               "parts": {
-                "rel": 0.425,
+                "rel": 0.37,
                 "pop": 0.19796,
                 "margin": 0.11786,
-                "pers": 0.0
-              },
-              "why": [
-                "Совпадает с условиями поиска"
-              ]
-            },
-            "position": 1
-          },
-          "note": "Близкий продукт по базе знаний"
-        },
-        {
-          "card": {
-            "card_id": "nanocad_platform:base",
-            "title": "Платформа nanoCAD Базовая",
-            "vendor": {
-              "id": "nanosoft",
-              "name": "Nanosoft"
-            },
-            "category": {
-              "id": "cad_2d",
-              "title": "Базовые 2D/3D САПР и черчение DWG"
-            },
-            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
-            "badges": [],
-            "offer": {
-              "offer_id": "o_1D48F8A2073F",
-              "sku": "AX-1D48F8A2073F",
-              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
-              "price": 28000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "23",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            "calc": {
-              "qty": null,
-              "unit_price": 28000.0,
-              "total": null,
-              "text": "от 28 000 ₽ за устройство"
-            },
-            "variants": [
-              {
-                "offer_id": "o_81CFA883CEF8",
-                "sku": "AX-81CFA883CEF8",
-                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-                "price": 28000.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_97CAE9C50B4E",
-                "sku": "AX-97CAE9C50B4E",
-                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-                "price": 25200.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_A73BF7EAE0DD",
-                "sku": "AX-A73BF7EAE0DD",
-                "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-                "price": 11200.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "edu"
-              },
-              {
-                "offer_id": "o_439BCE75ADBD",
-                "sku": "AX-439BCE75ADBD",
-                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для организаций, ESD",
-                "price": 19600.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
-                "action": "renewal",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_45CC2310B377",
-                "sku": "AX-45CC2310B377",
-                "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для госучреждений, ESD",
-                "price": 17640.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
-                "action": "renewal",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "gov"
-              }
-            ],
-            "variants_count": 21,
-            "price_from": 7840.0,
-            "score": {
-              "tier": 1,
-              "score": 0.73,
-              "parts": {
-                "rel": 0.425,
-                "pop": 0.17176,
-                "margin": 0.13324,
-                "pers": 0.0
-              },
-              "why": [
-                "Совпадает с условиями поиска"
-              ]
-            },
-            "position": 2
-          },
-          "note": "Близкий продукт по базе знаний"
-        },
-        {
-          "card": {
-            "card_id": "kompas_3d:k3d",
-            "title": "АСКОН КОМПАС 3D",
-            "vendor": {
-              "id": "ascon",
-              "name": "ASCON"
-            },
-            "category": {
-              "id": "mcad_plm",
-              "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
-            },
-            "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
-            "badges": [
-              {
-                "kind": "registry",
-                "label": "В реестре ПО"
-              },
-              {
-                "kind": "vat",
-                "label": "Без НДС"
-              }
-            ],
-            "offer": {
-              "offer_id": "o_10C94CA1D923",
-              "sku": "AX-10C94CA1D923",
-              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-              "price": 151400.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "v22",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            "calc": {
-              "qty": null,
-              "unit_price": 151400.0,
-              "total": null,
-              "text": "от 151 400 ₽ за устройство в год"
-            },
-            "variants": [
-              {
-                "offer_id": "o_3EEE48EBAAD4",
-                "sku": "AX-3EEE48EBAAD4",
-                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-                "price": 136200.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": "v22",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_1663272ADED2",
-                "sku": "AX-1663272ADED2",
-                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-                "price": 60500.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": "v22",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "edu"
-              },
-              {
-                "offer_id": "o_C425AC4DBC9F",
-                "sku": "AX-C425AC4DBC9F",
-                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
-                "price": 151400.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": "v22",
-                "action": "new",
-                "model": "perpetual",
-                "term_months": null,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_8C14E86D99D7",
-                "sku": "AX-8C14E86D99D7",
-                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
-                "price": 151400.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": "v22",
-                "action": "new",
-                "model": "perpetual",
-                "term_months": null,
-                "metric": "concurrent",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_2158D5EB5F25",
-                "sku": "AX-2158D5EB5F25",
-                "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
-                "price": 151400.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": "v22",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "concurrent",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              }
-            ],
-            "variants_count": 20,
-            "price_from": 60500.0,
-            "score": {
-              "tier": 1,
-              "score": 0.68521,
-              "parts": {
-                "rel": 0.425,
-                "pop": 0.19388,
-                "margin": 0.06633,
                 "pers": 0.0
               },
               "why": [
@@ -552,33 +563,28 @@
         },
         {
           "card": {
-            "card_id": "nanocad_platform:topoplan",
-            "title": "Платформа nanoCAD Модуль Топоплан",
+            "card_id": "zwcad:pro",
+            "title": "ZWCAD Professional",
             "vendor": {
-              "id": "nanosoft",
-              "name": "Nanosoft"
+              "id": "zwsoft",
+              "name": "ZWSOFT"
             },
             "category": {
               "id": "cad_2d",
               "title": "Базовые 2D/3D САПР и черчение DWG"
             },
-            "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
-            "badges": [
-              {
-                "kind": "promo",
-                "label": "Специальное предложение"
-              }
-            ],
+            "summary": "Быстрая 2D/3D САПР-платформа от ZWSOFT с интерфейсом и командной строкой, максимально близкими к AutoCAD, и полной поддержкой DWG.",
+            "badges": [],
             "offer": {
-              "offer_id": "o_041FBF8AB975",
-              "sku": "AX-041FBF8AB975",
-              "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
-              "price": 96100.0,
+              "offer_id": "o_23BF5EEA3619",
+              "sku": "AX-23BF5EEA3619",
+              "name": "ZWCAD 2024 Professional, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 100400.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 22,
+              "vat": null,
               "available": true,
-              "version": "23",
+              "version": "2024",
               "action": "new",
               "model": "perpetual",
               "term_months": null,
@@ -590,21 +596,21 @@
             },
             "calc": {
               "qty": null,
-              "unit_price": 96100.0,
+              "unit_price": 100400.0,
               "total": null,
-              "text": "от 96 100 ₽ за лицензию"
+              "text": "от 100 400 ₽ за лицензию"
             },
             "variants": [
               {
-                "offer_id": "o_6DE5B318E012",
-                "sku": "AX-6DE5B318E012",
-                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-                "price": 96100.0,
+                "offer_id": "o_39DFD410BC90",
+                "sku": "AX-39DFD410BC90",
+                "name": "ZWCAD 2024 Professional, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                "price": 100400.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": null,
                 "available": true,
-                "version": "23",
+                "version": "2024",
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
@@ -615,34 +621,15 @@
                 "audience": "business"
               },
               {
-                "offer_id": "o_C6E4394B4AFB",
-                "sku": "AX-C6E4394B4AFB",
-                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-                "price": 86500.0,
+                "offer_id": "o_ACC6C758785E",
+                "sku": "AX-ACC6C758785E",
+                "name": "ZWCAD 2024 Professional, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                "price": 40100.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": null,
                 "available": true,
-                "version": "23",
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_5EDE7E47739B",
-                "sku": "AX-5EDE7E47739B",
-                "name": "Платформа nanoCAD 23 Модуль Топоплан, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-                "price": 38400.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": "23",
+                "version": "2024",
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
@@ -653,18 +640,18 @@
                 "audience": "edu"
               },
               {
-                "offer_id": "o_EB6075DC35AD",
-                "sku": "AX-EB6075DC35AD",
-                "name": "Платформа nanoCAD 23 Модуль Топоплан, продление, 1 устройств, 12 мес., для организаций, ESD",
-                "price": 67300.0,
+                "offer_id": "o_6FCA9B35D187",
+                "sku": "AX-6FCA9B35D187",
+                "name": "ZWCAD 2024 Professional, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 100400.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": null,
                 "available": true,
-                "version": "23",
-                "action": "renewal",
-                "model": "subscription",
-                "term_months": 12,
+                "version": "2024",
+                "action": "new",
+                "model": "perpetual",
+                "term_months": null,
                 "metric": "device",
                 "qty_min": null,
                 "qty_max": null,
@@ -672,34 +659,54 @@
                 "audience": "business"
               },
               {
-                "offer_id": "o_344904667274",
-                "sku": "AX-344904667274",
-                "name": "Платформа nanoCAD 23 Модуль Топоплан, продление, 1 устройств, 12 мес., для госучреждений, ESD",
-                "price": 60600.0,
+                "offer_id": "o_A8E857F009D5",
+                "sku": "AX-A8E857F009D5",
+                "name": "ZWCAD 2024 Professional, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 100400.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": null,
                 "available": true,
-                "version": "23",
-                "action": "renewal",
+                "version": "2024",
+                "action": "new",
                 "model": "subscription",
                 "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_591F5BE0E942",
+                "sku": "AX-591F5BE0E942",
+                "name": "ZWCAD 2025 Professional, обновление, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 60200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": null,
+                "available": true,
+                "version": "2025",
+                "action": "upgrade",
+                "model": "perpetual",
+                "term_months": null,
                 "metric": "device",
                 "qty_min": null,
                 "qty_max": null,
                 "pack": 1,
-                "audience": "gov"
+                "audience": "business"
               }
             ],
-            "variants_count": 21,
-            "price_from": 26900.0,
+            "variants_count": 22,
+            "price_from": 24100.0,
             "score": {
               "tier": 1,
-              "score": 0.68294,
+              "tier_label": "Подходит по условиям",
+              "score": 0.6722100000000001,
               "parts": {
-                "rel": 0.425,
-                "pop": 0.17765,
-                "margin": 0.08029,
+                "rel": 0.4675,
+                "pop": 0.07412,
+                "margin": 0.13059,
                 "pers": 0.0
               },
               "why": [
@@ -725,11 +732,6 @@
       "title": "Вендор",
       "values": [
         {
-          "id": "nanosoft",
-          "label": "Nanosoft",
-          "count": 5
-        },
-        {
           "id": "ascon",
           "label": "ASCON",
           "count": 4
@@ -738,6 +740,11 @@
           "id": "zwsoft",
           "label": "ZWSOFT",
           "count": 3
+        },
+        {
+          "id": "nanosoft",
+          "label": "Nanosoft",
+          "count": 2
         }
       ]
     },
@@ -748,7 +755,7 @@
         {
           "id": "cad_2d",
           "label": "Базовые 2D/3D САПР и черчение DWG",
-          "count": 8
+          "count": 5
         },
         {
           "id": "mcad_plm",
@@ -759,10 +766,9 @@
     }
   ],
   "related_queries": [
-    "АСКОН КОМПАС Строитель",
-    "Платформа nanoCAD Базовая",
-    "АСКОН КОМПАС 3D",
-    "Платформа nanoCAD Модуль Топоплан"
+    "Платформа nanoCAD продление",
+    "Аналог Платформа nanoCAD",
+    "Базовые 2D/3D САПР и черчение DWG"
   ],
   "notes": [],
   "trace": [
@@ -770,7 +776,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.13,
+      "ms": 0.12,
       "summary": "autocad купить",
       "detail": {}
     },
@@ -778,7 +784,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.09,
+      "ms": 0.11,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -786,15 +792,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.03,
+      "ms": 0.04,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.12,
+      "ms": 0.29,
       "summary": "Autodesk AutoCAD",
       "detail": {
         "residual": "купить",
@@ -814,10 +823,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.1,
+      "ms": 0.11,
       "summary": "Продукта нет в продаже",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "product",
+        "rejected": [],
         "calls": []
       }
     },
@@ -833,8 +846,8 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.05,
-      "summary": "Подходящих карточек до проверки лицензий · 12",
+      "ms": 0.13,
+      "summary": "Подходящих карточек до проверки лицензий · 9",
       "detail": {
         "sources": [
           "Сущности",
@@ -848,7 +861,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.87,
+      "ms": 0.72,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -856,8 +869,8 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
-      "summary": "Подобрано вариантов для карточек · 12",
+      "ms": 0.0,
+      "summary": "Подобрано вариантов для карточек · 9",
       "detail": {}
     },
     {
@@ -867,6 +880,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -874,14 +889,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 1.09,
+      "ms": 1.03,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -900,14 +915,14 @@
       "title": "Сборка ответа",
       "status": "ok",
       "ms": 0.03,
-      "summary": "Карточек в выдаче · 12",
+      "summary": "Карточек в выдаче · 9",
       "detail": {}
     },
     {
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 8.93,
+      "ms": 0.97,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -917,14 +932,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 11.59
+    "total": 3.72
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

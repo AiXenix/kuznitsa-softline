@@ -1,5 +1,5 @@
 {
-  "search_id": "s_2453901f3580450f9b9d4dded9acca9f",
+  "search_id": "s_a2037166e81245e5a6de14671e4e22cc",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -8,14 +8,27 @@
   "query": {
     "raw": "что у нас скоро истекает",
     "normalized": "что у нас скоро истекает",
-    "corrected": "что у нас скоро истекает",
-    "corrections": [],
+    "corrected": "что у nas скоро истекает",
+    "corrections": [
+      {
+        "from": "нас",
+        "to": "nas",
+        "kind": "translit",
+        "candidates": [
+          "nas"
+        ],
+        "scores": {
+          "nas": 0.96
+        }
+      }
+    ],
     "did_you_mean": null
   },
   "understood": {
     "intent": "account",
     "intent_title": "Личный кабинет",
     "intent_conf": 0.55,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [],
@@ -42,7 +55,7 @@
         {
           "title": "Kaspersky Small Office Security",
           "qty": 15,
-          "expires_in_days": 22,
+          "expires_in_days": 21,
           "renew_offer": {
             "offer_id": "o_CD774F990085",
             "sku": "KL-CD774F990085",
@@ -66,7 +79,7 @@
         {
           "title": "1С:ИТС ПРОФ",
           "qty": 1,
-          "expires_in_days": 56,
+          "expires_in_days": 55,
           "renew_offer": {
             "offer_id": "o_FBD29741A879",
             "sku": "AX-FBD29741A879",
@@ -90,7 +103,7 @@
         {
           "title": "Контур.Диадок",
           "qty": 1,
-          "expires_in_days": 166,
+          "expires_in_days": 165,
           "renew_offer": {
             "offer_id": "o_DB6C6943BE49",
             "sku": "AX-DB6C6943BE49",
@@ -139,7 +152,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.18,
+      "ms": 0.16,
       "summary": "что у нас скоро истекает",
       "detail": {}
     },
@@ -147,7 +160,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.09,
+      "ms": 0.2,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -155,18 +168,33 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 5.2,
-      "summary": "Запрос сохранён",
-      "detail": {}
+      "ms": 10.2,
+      "summary": "нас → nas",
+      "detail": {
+        "candidates": [
+          {
+            "from": "нас",
+            "to": "nas",
+            "kind": "translit",
+            "candidates": [
+              "nas"
+            ],
+            "scores": {
+              "nas": 0.96
+            }
+          }
+        ],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.23,
+      "ms": 0.33,
       "summary": "Явных условий нет",
       "detail": {
-        "residual": "что у нас скоро истекает",
+        "residual": "что у nas скоро истекает",
         "synonyms": [],
         "ignored": []
       }
@@ -183,10 +211,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.13,
+      "ms": 0.15,
       "summary": "Личный кабинет",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.55,
+        "rules": "account",
+        "rejected": [],
         "calls": []
       }
     },
@@ -217,7 +249,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -236,6 +268,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -258,7 +292,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -268,7 +302,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 1.27,
+      "ms": 1.52,
       "summary": "Карточек в выдаче · 0",
       "detail": {}
     },
@@ -276,7 +310,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 10.87,
+      "ms": 0.95,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -286,14 +320,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 18.17
+    "total": 13.77
   },
   "profile": {
     "id": "smb_trade",
     "title": "ООО «Торговый дом Вектор» — оптовая торговля, 15 ПК",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Торговый дом Вектор",
+    "segment_title": "Малый бизнес"
   }
 }

@@ -1,0 +1,9 @@
+- {id: endpoint_security, title: Защита рабочих станций, synonyms: [антивирус], typical_queries: [антивирус для бизнеса, антивирус на 30 пк]}
+- {id: cad_2d, title: САПР}
+- {id: desktop_os_ru, title: Операционные системы}
+- {id: db, title: СУБД}
+- {id: server_os, title: Серверные ОС}
+- {id: tech_support, title: Внедрение и поддержка}
+- {id: dlp, title: Защита от утечек, synonyms: [dlp]}
+- {id: accounting, title: Бухгалтерия}
+- {id: home_antivirus, title: Домашний антивирус}

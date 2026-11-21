@@ -16,7 +16,12 @@ def reference(engine,kind,text,entities):
 
 
 def spec_lines(raw):
-    if re.search(r"[;\n]",raw):
+    if re.search(r"(?:расчет|рассчитать|подбор) кп",raw,re.I) and " и " in raw:
+        lines=re.split(r"\s+и\s+",re.sub(r"^.*?\bкп\s*", "",raw,flags=re.I))
+        seats=re.search(r"\d+\s+рабочих мест",raw,re.I)
+        if seats:
+            lines=[line if seats[0] in line else line+" "+seats[0] for line in lines]
+    elif re.search(r"[;\n]",raw):
         lines=re.split(r"[;\n]+",raw)
     elif len(re.findall(r"\d+\s*(?:шт|пк|узл|мест|лиценз)",raw,re.I))>=2:
         lines=raw.split(",")
@@ -42,6 +47,9 @@ def scope(engine,intent,f,entities,text,profile,qty):
             cats=slot.get("categories",[]) + slot.get("related_categories",[])+([slot["category"]] if slot.get("category") else [])
             result.update(ids("category",cats,.65))
             result.update(ids("family",slot.get("families",[])+slot.get("related_families",[]),.85))
+        if intent=="question":
+            explicit=ids("family",f.get("family",[]),.98) or ids("vendor",f.get("vendor",[]),.96)
+            return explicit or result
         return result or None
     if intent=="product" and re.search(r"с техподдержкой|коммерческ\w+ верси",text):
         name=text.split()[0]
@@ -50,7 +58,7 @@ def scope(engine,intent,f,entities,text,profile,qty):
             from collections import Counter
             category=Counter(r.get("category") for r in related).most_common(1)[0][0]
             f["category"]=[category]
-            return ids("family",[r["id"] for r in related if r.get("category")==category],.85)
+            return ids("family",[r["id"] for r in related if r.get("category")==category],.85) or ids("category",[category],.57)
     if intent=="analog":
         source=f.get("family",[]) or [fid for fid,r in engine.kb.rows["families"].items() if r.get("vendor") in f.get("vendor",[])]
         result={}
@@ -91,6 +99,8 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
             title=p.get("product") or engine.names["family"].get(p.get("family_id"),"Лицензия")
             items.append(dict(title=title,qty=p.get("qty"),expires_in_days=p.get("expires_in_days"),renew_offer=renewal))
         result=[dict(type="my_licenses",title="Лицензии организации",items=items)] if items else [dict(type="clarify",title="Личный кабинет",question="Выберите профиль организации, чтобы посмотреть покупки.",options=[])]
+        if re.search("заказ",req.q,re.I) and not profile.orders:
+            result.insert(0,dict(type="answer",title="История заказов",text="У выбранного профиля пока нет заказов.",source="profile",links=[]))
         if re.search("заказ",req.q,re.I) and profile.orders:
             last=max(profile.orders,key=lambda o:o.get("date",""))
             result.insert(0,dict(type="answer",title="Заказы организации",text=f"Заказов в истории: {len(profile.orders)}. Дата последнего заказа: {last.get('date','не указана')}.",source="profile",links=[]))
@@ -110,11 +120,17 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
         slots=[]
         for spec in row.get("slots",[]):
             found=options(spec)
+            if qty:
+                found=sorted(found,key=lambda c:(
+                    (c.get("calc") or {}).get("total") is None,
+                    c["offer"]["metric"] not in ("user","device","company","concurrent","mailbox"),
+                    not c["offer"]["available"]))
             slots.append(dict(title=engine.names["category"].get(spec.get("category"),"Программное обеспечение"),must=spec.get("must",False),
                               card=found[0] if found else None,alternatives=found[1:3],note=spec.get("note","")))
         if slots:
-            return [dict(type="kit",title=row.get("title","Комплект программ"),role=row["id"],seats=(qty or {}).get("value") or profile.size_seats,
-                         slots=slots,total=sum(s["card"]["calc"]["total"] for s in slots if s["card"]) if all((s["card"] or {}).get("calc") for s in slots if s["must"] or s["card"]) else None)]
+            totals=[((s["card"] or {}).get("calc") or {}).get("total") for s in slots if s["must"] or s["card"]]
+            return [dict(type="kit",title=row.get("title","Комплект программ"),role=row["id"],seats=(qty or {}).get("value"),
+                         slots=slots,total=sum(totals) if totals and all(v is not None for v in totals) else None)]
     if intent=="compare":
         targets=f.get("family",[]) or f.get("vendor",[])
         columns=[]
@@ -123,6 +139,9 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
             if hit:
                 if hit not in columns:
                     columns.append(hit)
+        if len(f.get("edition",[]))>=2 and len(targets)==1:
+            columns=[next((c for c in cards if engine.catalog.cards[c["card_id"]].offers[0].edition==ed),None) for ed in f["edition"]]
+            columns=[c for c in columns if c]
         if len(columns)<2:
             columns=(columns+[c for c in cards if c not in columns])[:2]
         if columns:
@@ -135,7 +154,7 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
                     v=getattr(o,key)
                     values.append(("Да" if v else "Нет") if isinstance(v,bool) else ", ".join(v) if v else "Нет сведений")
                 rows.append(dict(title=label,values=values))
-            return [dict(type="compare",title="Сравнение программ",columns=columns[:4],rows=[{**r,"values":r["values"][:4]} for r in rows]),*by_type("products")]
+            return [dict(type="compare",title="Сравнение программ",columns=columns[:4],rows=[{**r,"values":r["values"][:4]} for r in rows])]
     if intent=="broad" and cards:
         from collections import Counter
         counts=Counter(c["vendor"]["id"] for c in cards)
@@ -148,7 +167,7 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
                      items=[dict(card=c,note=notes.get(engine.catalog.cards[c["card_id"]].family,"Альтернатива по назначению")) for c in cards[:req.page_size]])]
     if intent=="question" or intent=="license_ops" and re.search("можно ли|разрешен",req.q,re.I):
         row=reference(engine,"faq",req.q,entities)
-        if row:
+        if row and row["id"] in engine.knowledge.nearest("faq",req.q):
             return [dict(type="answer",title=row["questions"][0].capitalize(),text=row["answer"],source="faq:"+row["id"],links=[]),*by_type("products")]
     if intent=="compliance":
         row=engine.kb.rows["compliance"].get(entity(entities,"compliance"),{})
@@ -156,13 +175,13 @@ def compose(engine,intent,req,f,entities,qty,cards,profile,blocks,run_line,reaso
     if intent=="off_topic" and reason=="piracy":
         return [dict(type="answer",title="Лицензионные варианты",text="Подберём легальную лицензию или пробную редакцию. Укажите название программы.",source="catalog",links=[]),*by_type("categories")]
     if intent=="service" and cards:
-        return [dict(type="services",title="Услуги и обучение",items=cards[:req.page_size]),*by_type("products")]
+        return [dict(type="services",title="Услуги и обучение",items=next((b["items"] for b in by_type("products")),[]))]
     if intent=="service":
         return [dict(type="answer",title="Подбор услуги",text="Готового предложения по заданным условиям нет. Запросите расчёт у специалиста.",source="catalog",links=[]),
                 *by_type("lead")]
     if intent=="promo":
         # Льготное предложение подтверждается аудиторией SKU. Остальные цены остаются обычными.
         promos=[c for c in cards if any(b["kind"]=="promo" for b in c["badges"])]
-        return ([dict(type="promo",title="Специальные предложения",items=promos[:req.page_size])] if promos else
-                [dict(type="answer",title="Специальные предложения",text="Подтверждённой акции в каталоге нет. Доступны стандартные условия покупки.",source="catalog",links=[])])+blocks
+        return ([dict(type="promo",title="Специальные предложения",items=[c for b in by_type("products") for c in b["items"] if c in promos])] if promos else
+                [dict(type="answer",title="Специальные предложения",text="Подтверждённой акции в каталоге нет. Доступны стандартные условия покупки.",source="catalog",links=[])]+blocks)
     return blocks

@@ -20,6 +20,7 @@ BUILTIN = {
 
 class Lexicon:
     def __init__(self,kb,catalog):
+        self.max_length=1
         self.entries = defaultdict(list)
         self.words = set()
         self.phrases = defaultdict(set)
@@ -60,8 +61,9 @@ class Lexicon:
             return
         raw = tokens(str(phrase))
         key = tuple(map(lemma,raw))
-        if not 1<=len(key)<=6:
+        if not 1<=len(key)<=18:
             return
+        self.max_length=max(self.max_length,len(key))
         self.words.update(raw)
         if k in {"vendor","family","category"}:
             self.phrases[" ".join(raw)].add((k,v))
@@ -74,10 +76,11 @@ class Lexicon:
         keys = list(map(lemma,words))
         i=0
         while i<len(keys):
-            for end in range(min(i+6,len(keys)),i,-1):
+            for end in range(min(i+self.max_length,len(keys)),i,-1):
                 found = self.entries.get(tuple(keys[i:end]))
                 if found:
-                    yield i,end,found
+                    direct=[row for row in found if row[2]!="phonetic"]
+                    yield i,end,direct or found
                     i=end
                     break
             else:

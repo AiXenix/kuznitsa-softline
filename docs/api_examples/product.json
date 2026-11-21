@@ -1,5 +1,5 @@
 {
-  "search_id": "s_509b7fe14839425f9533231135655411",
+  "search_id": "s_211aece7875740bcb012db8f1ce7d9a4",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "product",
     "intent_title": "Поиск продукта",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -76,168 +77,6 @@
       "title": "Подходящие лицензии",
       "total": 3,
       "items": [
-        {
-          "card_id": "kaspersky_kesb:advanced",
-          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "vendor": {
-            "id": "kaspersky",
-            "name": "Kaspersky"
-          },
-          "category": {
-            "id": "endpoint_security",
-            "title": "Антивирусы и защита рабочих мест"
-          },
-          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_BDB4840E1C45",
-            "sku": "KL-BDB4840E1C45",
-            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
-            "price": 2790.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "device",
-            "qty_min": 10,
-            "qty_max": 14,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 2790.0,
-            "total": null,
-            "text": "от 2 790 ₽ за устройство в год (при покупке от 10)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_B526C5C3171A",
-              "sku": "KL-B526C5C3171A",
-              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
-              "price": 2510.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 10,
-              "qty_max": 14,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_7ACF4C669060",
-              "sku": "KL-7ACF4C669060",
-              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
-              "price": 1120.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 10,
-              "qty_max": 14,
-              "pack": null,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_999E93EB29D8",
-              "sku": "KL-999E93EB29D8",
-              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
-              "price": 2680.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 15,
-              "qty_max": 19,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_CB7051802333",
-              "sku": "KL-CB7051802333",
-              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
-              "price": 2410.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 15,
-              "qty_max": 19,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_B003F7955E85",
-              "sku": "KL-B003F7955E85",
-              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License EDU",
-              "price": 1070.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": 15,
-              "qty_max": 19,
-              "pack": null,
-              "audience": "edu"
-            }
-          ],
-          "variants_count": 80,
-          "price_from": 540.0,
-          "score": {
-            "tier": 1,
-            "score": 0.66964,
-            "parts": {
-              "rel": 0.44,
-              "pop": 0.18653,
-              "margin": 0.04311,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 10 до 14 мест"
-            ]
-          },
-          "position": 1
-        },
         {
           "card_id": "kaspersky_kesb:standard",
           "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
@@ -386,6 +225,7 @@
           "price_from": 340.0,
           "score": {
             "tier": 1,
+            "tier_label": "Подходит по условиям",
             "score": 0.65288,
             "parts": {
               "rel": 0.44,
@@ -396,6 +236,169 @@
             "why": [
               "Совпадает с условиями поиска",
               "Диапазон от 100 до 149 мест"
+            ]
+          },
+          "position": 1
+        },
+        {
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_BDB4840E1C45",
+            "sku": "KL-BDB4840E1C45",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
+            "price": 2790.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 10,
+            "qty_max": 14,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 2790.0,
+            "total": null,
+            "text": "от 2 790 ₽ за устройство в год (при покупке от 10)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_B526C5C3171A",
+              "sku": "KL-B526C5C3171A",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
+              "price": 2510.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_7ACF4C669060",
+              "sku": "KL-7ACF4C669060",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_999E93EB29D8",
+              "sku": "KL-999E93EB29D8",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
+              "price": 2680.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_CB7051802333",
+              "sku": "KL-CB7051802333",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
+              "price": 2410.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_B003F7955E85",
+              "sku": "KL-B003F7955E85",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License EDU",
+              "price": 1070.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "edu"
+            }
+          ],
+          "variants_count": 80,
+          "price_from": 540.0,
+          "score": {
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.6521399999999999,
+            "parts": {
+              "rel": 0.4225,
+              "pop": 0.18653,
+              "margin": 0.04311,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Диапазон от 10 до 14 мест"
             ]
           },
           "position": 2
@@ -548,9 +551,10 @@
           "price_from": 870.0,
           "score": {
             "tier": 1,
-            "score": 0.62937,
+            "tier_label": "Подходит по условиям",
+            "score": 0.5943700000000001,
             "parts": {
-              "rel": 0.44,
+              "rel": 0.405,
               "pop": 0.18623,
               "margin": 0.00314,
               "pers": 0.0
@@ -717,6 +721,7 @@
             "price_from": 7840.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.73812,
               "parts": {
                 "rel": 0.4,
@@ -881,6 +886,7 @@
             "price_from": 510.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.7208300000000001,
               "parts": {
                 "rel": 0.4,
@@ -1046,6 +1052,7 @@
             "price_from": 240.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.6995100000000001,
               "parts": {
                 "rel": 0.4,
@@ -1211,6 +1218,7 @@
             "price_from": 1000.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.64109,
               "parts": {
                 "rel": 0.4,
@@ -1255,9 +1263,12 @@
     }
   ],
   "related_queries": [
-    "Kaspersky Endpoint Security для бизнеса Расширенный",
-    "Kaspersky Endpoint Security для бизнеса Стандартный",
-    "Kaspersky Endpoint Security для бизнеса Total"
+    "Kaspersky Endpoint Security для бизнеса продление",
+    "Kaspersky Endpoint Security для бизнеса Стандартный на 12 мес",
+    "Аналог Kaspersky Endpoint Security для бизнеса",
+    "Купить Кибер Бэкап",
+    "Антивирусы и защита рабочих мест из реестра",
+    "Антивирусы и защита рабочих мест на 100 пк"
   ],
   "notes": [],
   "trace": [
@@ -1265,7 +1276,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.18,
+      "ms": 0.21,
       "summary": "kaspersky endpoint security",
       "detail": {}
     },
@@ -1273,7 +1284,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.28,
+      "ms": 0.66,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -1281,15 +1292,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.04,
+      "ms": 0.18,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 1.91,
+      "ms": 3.15,
       "summary": "Kaspersky, Kaspersky Endpoint Security для бизнеса",
       "detail": {
         "residual": "",
@@ -1301,7 +1315,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -1309,10 +1323,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 5.35,
+      "ms": 7.69,
       "summary": "Поиск продукта",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "product",
+        "rejected": [],
         "calls": []
       }
     },
@@ -1320,7 +1338,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Поиск продукта",
       "detail": {}
     },
@@ -1328,7 +1346,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.06,
+      "ms": 0.09,
       "summary": "Подходящих карточек до проверки лицензий · 6",
       "detail": {
         "sources": [
@@ -1343,7 +1361,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.73,
+      "ms": 1.05,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -1359,9 +1377,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.03,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -1369,14 +1389,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.39,
+      "ms": 1.75,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1384,7 +1404,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.02,
+      "ms": 0.07,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -1394,7 +1414,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 4.42,
+      "ms": 7.25,
       "summary": "Карточек в выдаче · 3",
       "detail": {}
     },
@@ -1402,7 +1422,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 11.7,
+      "ms": 7.65,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1412,14 +1432,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 25.22
+    "total": 30.35
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

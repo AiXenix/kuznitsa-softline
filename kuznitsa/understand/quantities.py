@@ -30,6 +30,14 @@ def numeric_conditions(words,filters,qty):
                 filters["term_months"]=n*(12 if word.startswith(("год","лет")) else 1)
             if word in ("шт","штук","лицензий","лицензии") and not qty:
                 qty=dict(value=n,metric=None)
+    cal=re.search(r"\b(device|user) cal (\d{1,8})\b",text)
+    if cal:
+        filters["metric"]=cal[1]
+        qty=dict(value=int(cal[2]),metric=cal[1])
+    if qty and re.search(r"\d+ (?:мест|места)\b",text) and not re.search(r"сотрудник|пользовател",text):
+        qty["metric"]=filters["metric"]="device"
+    if "для сервера" in text:
+        filters.setdefault("metric","server")
     workplaces=re.search(r"\b(\d{1,9})\s+рабочи[хе]\s+мест",text)
     if workplaces:
         qty=dict(value=int(workplaces[1]),metric="device")

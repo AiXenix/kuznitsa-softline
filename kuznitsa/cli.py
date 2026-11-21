@@ -37,11 +37,16 @@ def main(argv=None):
     analytics = optional_module("kuznitsa.analytics.cli")
     if analytics is not None:
         analytics.register(sub)
+    ingest = optional_module("kuznitsa.ingest.cli")
+    if ingest is not None:
+        ingest.register(sub)
     args=parser.parse_args(argv)
+    if ingest is not None and ingest.run(args,cfg):
+        return 0
     if analytics is not None and analytics.run(args, cfg):
         return 0
     if args.cmd in ("kb-check","build-mock"):
-        kb=load(cfg.kb)
+        kb=load(cfg.kb,cfg.data if args.cmd=="kb-check" else None)
         if args.cmd=="kb-check":
             show(kb.report())
             return int(bool(kb.syntax))

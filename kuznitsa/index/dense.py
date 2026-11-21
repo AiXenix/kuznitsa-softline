@@ -58,3 +58,10 @@ class Dense:
             if sims[i]>=threshold:
                 return (*self.knowledge_keys[i],float(sims[i]))
         return None
+
+    def nearest_categories(self,q,limit=5):
+        if self.knowledge_matrix is None:
+            return []
+        sims=np.einsum("ij,j->i",self.knowledge_matrix,self.encode(q))
+        hits=[(float(s),ident) for (kind,ident),s in zip(self.knowledge_keys,sims) if kind=="category"]
+        return [ident for _,ident in sorted(hits,reverse=True)[:limit]]

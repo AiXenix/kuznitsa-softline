@@ -72,9 +72,9 @@ def test_modes_and_failed_decision(cfg):
     fast=engine.search(Request(q="антивирус",mode="fast"))
     assert not calls
     fallback=engine.search(Request(q="антивирус",mode="smart"))
-    assert fallback["mode"]=="fast" and fallback["notes"] and fallback["cost"]["llm_calls"]==1
+    assert fallback["mode"]=="smart" and fallback["cost"]["llm_calls"]==0
     assert fallback["blocks"]==fast["blocks"]
-    assert next(t for t in fallback["trace"] if t["step"]=="rerank")["status"]=="fallback"
+    assert next(t for t in fallback["trace"] if t["step"]=="rerank")["status"]=="skip"
     client.close()
 
 

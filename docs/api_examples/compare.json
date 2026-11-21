@@ -1,5 +1,5 @@
 {
-  "search_id": "s_2226b41f789d43f994e47678cabb319c",
+  "search_id": "s_24b99b017797401e852a50c8b3974161",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "compare",
     "intent_title": "Сравнение",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -76,679 +77,6 @@
       "title": "Сравнение программ",
       "columns": [
         {
-          "card_id": "r7_office:corp_server",
-          "title": "Р7-Офис Корпоративный сервер",
-          "vendor": {
-            "id": "r7_office",
-            "name": "R7-Office"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_0735C68CFE8A",
-            "sku": "AX-0735C68CFE8A",
-            "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-            "price": 5480.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 22,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "user",
-            "qty_min": 1,
-            "qty_max": 9,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 5480.0,
-            "total": null,
-            "text": "от 5 480 ₽ за пользователя в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_B70D2EFEAB06",
-              "sku": "AX-B70D2EFEAB06",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4930.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_E425EE4FD1E8",
-              "sku": "AX-E425EE4FD1E8",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
-              "price": 2190.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_FE59BAA7E790",
-              "sku": "AX-FE59BAA7E790",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 5260.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_9F9A13BCCE90",
-              "sku": "AX-9F9A13BCCE90",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4730.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_C191FB3D5C68",
-              "sku": "AX-C191FB3D5C68",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
-              "price": 2100.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "edu"
-            }
-          ],
-          "variants_count": 61,
-          "price_from": 1300.0,
-          "score": {
-            "tier": 1,
-            "score": 0.70682,
-            "parts": {
-              "rel": 0.45,
-              "pop": 0.17494,
-              "margin": 0.08188,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 9 мест"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "myoffice_standard:standard_2",
-          "title": "МойОфис Стандартный Для бизнеса",
-          "vendor": {
-            "id": "myoffice",
-            "name": "MyOffice"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_BC1135FCB9EA",
-            "sku": "AX-BC1135FCB9EA",
-            "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, 12 мес., для организаций, ESD",
-            "price": 2800.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 22,
-            "available": true,
-            "version": "3",
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "device",
-            "qty_min": 1,
-            "qty_max": 24,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 2800.0,
-            "total": null,
-            "text": "от 2 800 ₽ за устройство в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_2832705383F6",
-              "sku": "AX-2832705383F6",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 2800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_A99A7C74895C",
-              "sku": "AX-A99A7C74895C",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2520.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_92BDB1F04154",
-              "sku": "AX-92BDB1F04154",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
-              "price": 1120.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_AEBA211CB143",
-              "sku": "AX-AEBA211CB143",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
-              "price": 2690.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_4653A93C9BA2",
-              "sku": "AX-4653A93C9BA2",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2420.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 64,
-          "price_from": 540.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65693,
-            "parts": {
-              "rel": 0.45,
-              "pop": 0.19284,
-              "margin": 0.01409,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 24 мест"
-            ]
-          },
-          "position": 2
-        }
-      ],
-      "rows": [
-        {
-          "title": "Производитель",
-          "values": [
-            "R7-Office",
-            "MyOffice"
-          ]
-        },
-        {
-          "title": "Цена от, ₽",
-          "values": [
-            1300.0,
-            540.0
-          ]
-        },
-        {
-          "title": "Срок, мес.",
-          "values": [
-            12,
-            12
-          ]
-        },
-        {
-          "title": "В реестре ПО",
-          "values": [
-            "Нет сведений",
-            "Нет сведений"
-          ]
-        },
-        {
-          "title": "Сертификаты",
-          "values": [
-            "Нет сведений",
-            "Нет сведений"
-          ]
-        },
-        {
-          "title": "Платформы",
-          "values": [
-            "windows, linux, macos, web, android, ios, aurora, astra, alt, redos, rosa, msvsphere",
-            "windows, linux, macos, aurora, astra, alt, redos, rosa, msvsphere"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "products",
-      "title": "Подходящие лицензии",
-      "total": 3,
-      "items": [
-        {
-          "card_id": "r7_office:corp_server",
-          "title": "Р7-Офис Корпоративный сервер",
-          "vendor": {
-            "id": "r7_office",
-            "name": "R7-Office"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_0735C68CFE8A",
-            "sku": "AX-0735C68CFE8A",
-            "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-            "price": 5480.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 22,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "user",
-            "qty_min": 1,
-            "qty_max": 9,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 5480.0,
-            "total": null,
-            "text": "от 5 480 ₽ за пользователя в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_B70D2EFEAB06",
-              "sku": "AX-B70D2EFEAB06",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4930.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_E425EE4FD1E8",
-              "sku": "AX-E425EE4FD1E8",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
-              "price": 2190.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_FE59BAA7E790",
-              "sku": "AX-FE59BAA7E790",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 5260.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_9F9A13BCCE90",
-              "sku": "AX-9F9A13BCCE90",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4730.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_C191FB3D5C68",
-              "sku": "AX-C191FB3D5C68",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
-              "price": 2100.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "edu"
-            }
-          ],
-          "variants_count": 61,
-          "price_from": 1300.0,
-          "score": {
-            "tier": 1,
-            "score": 0.70682,
-            "parts": {
-              "rel": 0.45,
-              "pop": 0.17494,
-              "margin": 0.08188,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 9 мест"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "myoffice_standard:standard_2",
-          "title": "МойОфис Стандартный Для бизнеса",
-          "vendor": {
-            "id": "myoffice",
-            "name": "MyOffice"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_BC1135FCB9EA",
-            "sku": "AX-BC1135FCB9EA",
-            "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, 12 мес., для организаций, ESD",
-            "price": 2800.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 22,
-            "available": true,
-            "version": "3",
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "device",
-            "qty_min": 1,
-            "qty_max": 24,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 2800.0,
-            "total": null,
-            "text": "от 2 800 ₽ за устройство в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_2832705383F6",
-              "sku": "AX-2832705383F6",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 2800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_A99A7C74895C",
-              "sku": "AX-A99A7C74895C",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2520.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_92BDB1F04154",
-              "sku": "AX-92BDB1F04154",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
-              "price": 1120.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_AEBA211CB143",
-              "sku": "AX-AEBA211CB143",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
-              "price": 2690.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_4653A93C9BA2",
-              "sku": "AX-4653A93C9BA2",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2420.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 64,
-          "price_from": 540.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65693,
-            "parts": {
-              "rel": 0.45,
-              "pop": 0.19284,
-              "margin": 0.01409,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 24 мест"
-            ]
-          },
-          "position": 2
-        },
-        {
           "card_id": "r7_office:desktop",
           "title": "Р7-Офис Профессиональный",
           "vendor": {
@@ -760,7 +88,12 @@
             "title": "Офисные пакеты"
           },
           "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-          "badges": [],
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре по данным семейства"
+            }
+          ],
           "offer": {
             "offer_id": "o_4A0E1E2FAE85",
             "sku": "AX-4A0E1E2FAE85",
@@ -887,6 +220,7 @@
           "price_from": 590.0,
           "score": {
             "tier": 1,
+            "tier_label": "Подходит по условиям",
             "score": 0.65672,
             "parts": {
               "rel": 0.45,
@@ -896,10 +230,219 @@
             },
             "why": [
               "Совпадает с условиями поиска",
+              "Включение в реестр указано в базе знаний для всего семейства",
               "Диапазон от 1 до 9 мест"
             ]
           },
-          "position": 3
+          "position": 2
+        },
+        {
+          "card_id": "myoffice_standard:standard_2",
+          "title": "МойОфис Стандартный Для бизнеса",
+          "vendor": {
+            "id": "myoffice",
+            "name": "MyOffice"
+          },
+          "category": {
+            "id": "office_suite",
+            "title": "Офисные пакеты"
+          },
+          "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
+          "badges": [
+            {
+              "kind": "promo",
+              "label": "Специальное предложение"
+            },
+            {
+              "kind": "registry",
+              "label": "В реестре по данным семейства"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_BC1135FCB9EA",
+            "sku": "AX-BC1135FCB9EA",
+            "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, 12 мес., для организаций, ESD",
+            "price": 2800.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 22,
+            "available": true,
+            "version": "3",
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 1,
+            "qty_max": 24,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 2800.0,
+            "total": null,
+            "text": "от 2 800 ₽ за устройство в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_2832705383F6",
+              "sku": "AX-2832705383F6",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
+              "price": 2800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_A99A7C74895C",
+              "sku": "AX-A99A7C74895C",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2520.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_92BDB1F04154",
+              "sku": "AX-92BDB1F04154",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_AEBA211CB143",
+              "sku": "AX-AEBA211CB143",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
+              "price": 2690.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 25,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_4653A93C9BA2",
+              "sku": "AX-4653A93C9BA2",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2420.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 25,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 64,
+          "price_from": 540.0,
+          "score": {
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.65693,
+            "parts": {
+              "rel": 0.45,
+              "pop": 0.19284,
+              "margin": 0.01409,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Включение в реестр указано в базе знаний для всего семейства",
+              "Диапазон от 1 до 24 мест"
+            ]
+          },
+          "position": 1
+        }
+      ],
+      "rows": [
+        {
+          "title": "Производитель",
+          "values": [
+            "R7-Office",
+            "MyOffice"
+          ]
+        },
+        {
+          "title": "Цена от, ₽",
+          "values": [
+            590.0,
+            540.0
+          ]
+        },
+        {
+          "title": "Срок, мес.",
+          "values": [
+            12,
+            12
+          ]
+        },
+        {
+          "title": "В реестре ПО",
+          "values": [
+            "Нет сведений",
+            "Нет сведений"
+          ]
+        },
+        {
+          "title": "Сертификаты",
+          "values": [
+            "Нет сведений",
+            "Нет сведений"
+          ]
+        },
+        {
+          "title": "Платформы",
+          "values": [
+            "windows, linux, macos, web, android, ios, aurora, astra, alt, redos, rosa, msvsphere",
+            "windows, linux, macos, aurora, astra, alt, redos, rosa, msvsphere"
+          ]
         }
       ]
     }
@@ -934,9 +477,11 @@
     }
   ],
   "related_queries": [
-    "Р7-Офис Корпоративный сервер",
-    "МойОфис Стандартный Для бизнеса",
-    "Р7-Офис Профессиональный"
+    "МойОфис Стандартный продление",
+    "МойОфис Стандартный Для бизнеса на 12 мес",
+    "Аналог МойОфис Стандартный",
+    "Офисные пакеты на 1 пк",
+    "Офисные пакеты"
   ],
   "notes": [],
   "trace": [
@@ -944,7 +489,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.11,
+      "ms": 0.12,
       "summary": "р7 офис или мой офис что лучше",
       "detail": {}
     },
@@ -952,7 +497,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.08,
+      "ms": 0.27,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -960,15 +505,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.04,
+      "ms": 0.12,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.15,
+      "ms": 1.06,
       "summary": "Р7-Офис, МойОфис Стандартный",
       "detail": {
         "residual": "или что лучше",
@@ -980,7 +528,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -988,10 +536,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.05,
+      "ms": 0.12,
       "summary": "Сравнение",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "compare",
+        "rejected": [],
         "calls": []
       }
     },
@@ -1007,7 +559,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.04,
+      "ms": 0.03,
       "summary": "Подходящих карточек до проверки лицензий · 5",
       "detail": {
         "sources": [
@@ -1022,7 +574,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.19,
+      "ms": 0.3,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -1030,7 +582,7 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Подобрано вариантов для карточек · 3",
       "detail": {}
     },
@@ -1038,9 +590,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -1048,14 +602,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.24,
+      "ms": 0.35,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1063,7 +617,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -1073,7 +627,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.05,
+      "ms": 0.08,
       "summary": "Карточек в выдаче · 3",
       "detail": {}
     },
@@ -1081,7 +635,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.22,
+      "ms": 0.7,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1091,14 +645,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 5.28
+    "total": 3.35
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

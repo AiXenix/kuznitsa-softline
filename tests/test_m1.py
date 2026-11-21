@@ -32,10 +32,10 @@ def test_normalize(q,w):
 def test_loader(tmp_path):
     (tmp_path/"families").mkdir()
     p=tmp_path/"families/f.yaml"
-    p.write_text("- {id: good, name: Перо, catalog: no, platforms: linux, vendor: missing, custom: true}\n- {oops: yes}")
+    p.write_text("- {id: good, name: Перо, catalog: no, platforms: linux, vendor: missing}\n- {id: extra, name: Перо, custom: true}\n- {oops: yes}")
     kb=load(tmp_path)
     f=kb.rows["families"]["good"]
-    assert f["catalog"] is False and f["platforms"]==["linux"] and f["custom"]
+    assert f["catalog"] is False and f["platforms"]==["linux"] and "extra" not in kb.rows["families"] and kb.warnings
     assert kb.errors and kb.dangling and not kb.syntax
     p.write_text("- [")
     assert load(tmp_path).syntax

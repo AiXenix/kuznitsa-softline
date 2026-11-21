@@ -29,6 +29,10 @@ def select(card,profile,filters,exclude,qty,exact=None,relax_qty=False):
         choices = [exact]
     else:
         indices=card.filters.indices(filters,exclude,audience,action,None if relax_qty else n,upper)
+        if not len(indices) and not filters.get("action") and action=="renewal":
+            action="new"
+            n=qty["value"] if qty else None
+            indices=card.filters.indices(filters,exclude,audience,action,None if relax_qty else n,n)
         choices=(card.offers[i] for i in indices)
     for o in choices:
         lic=o.lic
@@ -95,3 +99,15 @@ def calculation(o,count):
         units={"device":"устр.","user":"польз.","core":"яд.","server":"серв."}
         unit=f" {noun} по {o.lic.pack} {units.get(o.lic.metric,'ед.')}"
     return dict(qty=count,unit_price=o.price,total=total,text=f"{count}{unit} × {rub(o.price)} ₽ = {rub(total)} ₽")
+
+
+def select_for_workplaces(card,profile,filters,exclude,seats):
+    """Рабочие места покрываются лицензиями на людей, устройства или организацию."""
+    if not seats:
+        return select(card,profile,filters,exclude,None)
+    for metrics,quantity in ((["user","device","concurrent","mailbox"],seats),(["company"],{"value":1})):
+        found=select(card,profile,{**filters,"metric":metrics},exclude,quantity)
+        if found:
+            return found
+    # Из числа сотрудников нельзя вывести число серверов, ядер или площадок.
+    return select(card,profile,filters,exclude,None)

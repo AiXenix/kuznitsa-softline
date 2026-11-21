@@ -1,5 +1,5 @@
 {
-  "search_id": "s_9743f3ec4b074f4ab70c5cb85a387266",
+  "search_id": "s_28854fda72dc45f290fca054eb1967a6",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,30 +16,20 @@
     "intent": "service",
     "intent_title": "Услуга",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
       {
-        "type": "action",
-        "id": "support",
-        "text": "техподдержка",
+        "type": "family",
+        "id": "astra_support_pack",
+        "text": "техподдержка астра линукс",
         "span": [
           0,
-          1
-        ],
-        "source": "slang",
-        "conf": 1.0
-      },
-      {
-        "type": "family",
-        "id": "astra_linux_se",
-        "text": "астра линукс",
-        "span": [
-          1,
           3
         ],
-        "source": "kb",
-        "conf": 1.0
+        "source": "phonetic",
+        "conf": 0.81
       },
       {
         "type": "edition",
@@ -54,42 +44,24 @@
       }
     ],
     "filters": {
-      "action": "support",
       "family": [
-        "astra_linux_se"
-      ],
-      "edition": [
-        "premium"
+        "astra_support_pack"
       ]
     },
     "exclude": {},
     "qty": null,
     "chips": [
       {
-        "key": "action",
-        "label": "техподдержка",
-        "source": "query",
-        "removable": true,
-        "remove_q": "астра линукс премиум"
-      },
-      {
         "key": "family",
-        "label": "Astra Linux Special Edition",
+        "label": "Техподдержка Группы Астра",
         "source": "query",
         "removable": true,
-        "remove_q": "техподдержка премиум"
-      },
-      {
-        "key": "edition",
-        "label": "премиум",
-        "source": "query",
-        "removable": true,
-        "remove_q": "техподдержка астра линукс"
+        "remove_q": "премиум"
       }
     ],
     "subtype": null,
     "reason": null,
-    "agent_note": "Услуга · техподдержка, Astra Linux Special Edition, премиум"
+    "agent_note": "Услуга · Техподдержка Группы Астра"
   },
   "blocks": [
     {
@@ -97,167 +69,6 @@
       "title": "Услуги и обучение",
       "items": [
         {
-          "card_id": "astra_support_pack:standard",
-          "title": "Техподдержка Группы Астра Стандартная",
-          "vendor": {
-            "id": "astra_group",
-            "name": "Astra Group"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Сертификаты технической поддержки и получения обновлений безопасности для ОС Astra Linux Special Edition, ALD Pro и ПК СВ Брест (Стандартный и Привилегированный уровни).",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_303561D548B9",
-            "sku": "AX-303561D548B9",
-            "name": "Техподдержка Группы Астра Стандартная, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
-            "price": 2500.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "server",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 2500.0,
-            "total": null,
-            "text": "от 2 500 ₽ за сервер в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_D5BFF5A35E78",
-              "sku": "AX-D5BFF5A35E78",
-              "name": "Техподдержка Группы Астра Стандартная, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-              "price": 2500.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_22878DCB2592",
-              "sku": "AX-22878DCB2592",
-              "name": "Техподдержка Группы Астра Стандартная, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-              "price": 2250.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_B94340CA708E",
-              "sku": "AX-B94340CA708E",
-              "name": "Техподдержка Группы Астра Стандартная, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-              "price": 1000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_4EB0D8AD863C",
-              "sku": "AX-4EB0D8AD863C",
-              "name": "Техподдержка Группы Астра Стандартная, продление, 1 устройств, 12 мес., для организаций, ESD",
-              "price": 1750.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_DD6C87EF1389",
-              "sku": "AX-DD6C87EF1389",
-              "name": "Техподдержка Группы Астра Стандартная, продление, 1 устройств, 12 мес., для госучреждений, ESD",
-              "price": 1580.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 35,
-          "price_from": 700.0,
-          "score": {
-            "tier": 1,
-            "score": 0.8156,
-            "parts": {
-              "rel": 0.49,
-              "pop": 0.192,
-              "margin": 0.1336,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 1
-        },
-        {
           "card_id": "astra_support_pack:privileged",
           "title": "Техподдержка Группы Астра Привилегированная",
           "vendor": {
@@ -280,18 +91,18 @@
             }
           ],
           "offer": {
-            "offer_id": "o_B01D643B38E5",
-            "sku": "AX-B01D643B38E5",
-            "name": "Техподдержка Группы Астра Привилегированная, новая лицензия, 1 серверов, 12 мес., для организаций, PAPER",
-            "price": 28000.0,
+            "offer_id": "o_5381FE760203",
+            "sku": "AX-5381FE760203",
+            "name": "Техподдержка Группы Астра Привилегированная, поддержка, 1 серверов, 24 мес., для организаций, PAPER",
+            "price": 25200.0,
             "price_on_request": false,
             "delivery": "paper",
             "vat": 0,
             "available": true,
             "version": null,
-            "action": "new",
+            "action": "support",
             "model": "subscription",
-            "term_months": 12,
+            "term_months": 24,
             "metric": "server",
             "qty_min": null,
             "qty_max": null,
@@ -300,9 +111,9 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 28000.0,
+            "unit_price": 25200.0,
             "total": null,
-            "text": "от 28 000 ₽ за сервер в год"
+            "text": "от 25 200 ₽ за сервер на 24 мес."
           },
           "variants": [
             {
@@ -405,350 +216,20 @@
           "price_from": 5600.0,
           "score": {
             "tier": 1,
-            "score": 0.77867,
+            "tier_label": "Подходит по условиям",
+            "score": 0.8149,
             "parts": {
-              "rel": 0.49,
-              "pop": 0.19147,
-              "margin": 0.0972,
+              "rel": 0.4725,
+              "pop": 0.1936,
+              "margin": 0.1488,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска"
             ]
           },
-          "position": 2
+          "position": 1
         },
-        {
-          "card_id": "postgres_pro_support:extended",
-          "title": "Техподдержка Postgres Pro Расширенная",
-          "vendor": {
-            "id": "postgres_pro",
-            "name": "Postgres Professional"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Круглосуточная профессиональная техническая поддержка СУБД Postgres Pro и open-source PostgreSQL напрямую от разработчиков ядра в России.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_B8ABCEFB8FB7",
-            "sku": "AX-B8ABCEFB8FB7",
-            "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 50–99 ядер, 12 мес., для организаций, SERVICE",
-            "price": 106200.0,
-            "price_on_request": false,
-            "delivery": "service",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "core",
-            "qty_min": 50,
-            "qty_max": 99,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 106200.0,
-            "total": null,
-            "text": "от 106 200 ₽ за ядро в год (при покупке от 50)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_E84B5810C5B9",
-              "sku": "AX-E84B5810C5B9",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 1–9 ядер, 12 мес., для организаций, SERVICE",
-              "price": 120000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_E6A776DC5A0F",
-              "sku": "AX-E6A776DC5A0F",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 1–9 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": 108000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_9C835F051749",
-              "sku": "AX-9C835F051749",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 10–24 ядер, 12 мес., для организаций, SERVICE",
-              "price": 115200.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_8CAA9A4BDC1D",
-              "sku": "AX-8CAA9A4BDC1D",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 10–24 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": null,
-              "price_on_request": true,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_BF80FADFF467",
-              "sku": "AX-BF80FADFF467",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 25–49 ядер, 12 мес., для организаций, SERVICE",
-              "price": 110600.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 51,
-          "price_from": 44000.0,
-          "score": {
-            "tier": 1,
-            "score": 0.62547,
-            "parts": {
-              "rel": 0.36,
-              "pop": 0.15147,
-              "margin": 0.114,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 50 до 99 мест"
-            ]
-          },
-          "position": 3
-        },
-        {
-          "card_id": "postgres_pro_support:standard",
-          "title": "Техподдержка Postgres Pro Стандартная",
-          "vendor": {
-            "id": "postgres_pro",
-            "name": "Postgres Professional"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Круглосуточная профессиональная техническая поддержка СУБД Postgres Pro и open-source PostgreSQL напрямую от разработчиков ядра в России.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_6116D64D857B",
-            "sku": "AX-6116D64D857B",
-            "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 250+ ядер, 12 мес., для организаций, SERVICE",
-            "price": 20400.0,
-            "price_on_request": false,
-            "delivery": "service",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "core",
-            "qty_min": 250,
-            "qty_max": null,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 20400.0,
-            "total": null,
-            "text": "от 20 400 ₽ за ядро в год (при покупке от 250)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_338332079857",
-              "sku": "AX-338332079857",
-              "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 1–9 ядер, 12 мес., для организаций, SERVICE",
-              "price": 25000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_1D5CB1A4A7E0",
-              "sku": "AX-1D5CB1A4A7E0",
-              "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 1–9 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": 22500.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_1DB0B8CD2574",
-              "sku": "AX-1DB0B8CD2574",
-              "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 10–24 ядер, 12 мес., для организаций, SERVICE",
-              "price": 24000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_D4DDD6593566",
-              "sku": "AX-D4DDD6593566",
-              "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 10–24 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": 21600.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_4D7B5A5E67BC",
-              "sku": "AX-4D7B5A5E67BC",
-              "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 25–49 ядер, 12 мес., для организаций, SERVICE",
-              "price": 23000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 56,
-          "price_from": 9560.0,
-          "score": {
-            "tier": 1,
-            "score": 0.5771999999999999,
-            "parts": {
-              "rel": 0.36,
-              "pop": 0.1024,
-              "margin": 0.1148,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 250 мест"
-            ]
-          },
-          "position": 4
-        }
-      ]
-    },
-    {
-      "type": "products",
-      "title": "Подходящие лицензии",
-      "total": 13,
-      "items": [
         {
           "card_id": "astra_support_pack:standard",
           "title": "Техподдержка Группы Астра Стандартная",
@@ -772,16 +253,16 @@
             }
           ],
           "offer": {
-            "offer_id": "o_303561D548B9",
-            "sku": "AX-303561D548B9",
-            "name": "Техподдержка Группы Астра Стандартная, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
-            "price": 2500.0,
+            "offer_id": "o_7B3B135349AD",
+            "sku": "AX-7B3B135349AD",
+            "name": "Техподдержка Группы Астра Стандартная, поддержка, 1 серверов, 12 мес., для организаций, ESD",
+            "price": 1250.0,
             "price_on_request": false,
             "delivery": "esd",
             "vat": 0,
             "available": true,
             "version": null,
-            "action": "new",
+            "action": "support",
             "model": "subscription",
             "term_months": 12,
             "metric": "server",
@@ -792,9 +273,9 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 2500.0,
+            "unit_price": 1250.0,
             "total": null,
-            "text": "от 2 500 ₽ за сервер в год"
+            "text": "от 1 250 ₽ за сервер в год"
           },
           "variants": [
             {
@@ -897,172 +378,12 @@
           "price_from": 700.0,
           "score": {
             "tier": 1,
-            "score": 0.8156,
+            "tier_label": "Подходит по условиям",
+            "score": 0.8008,
             "parts": {
               "rel": 0.49,
-              "pop": 0.192,
-              "margin": 0.1336,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "astra_support_pack:privileged",
-          "title": "Техподдержка Группы Астра Привилегированная",
-          "vendor": {
-            "id": "astra_group",
-            "name": "Astra Group"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Сертификаты технической поддержки и получения обновлений безопасности для ОС Astra Linux Special Edition, ALD Pro и ПК СВ Брест (Стандартный и Привилегированный уровни).",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_B01D643B38E5",
-            "sku": "AX-B01D643B38E5",
-            "name": "Техподдержка Группы Астра Привилегированная, новая лицензия, 1 серверов, 12 мес., для организаций, PAPER",
-            "price": 28000.0,
-            "price_on_request": false,
-            "delivery": "paper",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "server",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 28000.0,
-            "total": null,
-            "text": "от 28 000 ₽ за сервер в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_B5D67FAA66AF",
-              "sku": "AX-B5D67FAA66AF",
-              "name": "Техподдержка Группы Астра Привилегированная, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-              "price": 28000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_00A4C17B643A",
-              "sku": "AX-00A4C17B643A",
-              "name": "Техподдержка Группы Астра Привилегированная, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-              "price": 25200.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_24468693E569",
-              "sku": "AX-24468693E569",
-              "name": "Техподдержка Группы Астра Привилегированная, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-              "price": 11200.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_1E650393B974",
-              "sku": "AX-1E650393B974",
-              "name": "Техподдержка Группы Астра Привилегированная, продление, 1 устройств, 12 мес., для организаций, ESD",
-              "price": 19600.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_78F73A40C9FA",
-              "sku": "AX-78F73A40C9FA",
-              "name": "Техподдержка Группы Астра Привилегированная, продление, 1 устройств, 12 мес., для госучреждений, ESD",
-              "price": 17640.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": false,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 36,
-          "price_from": 5600.0,
-          "score": {
-            "tier": 1,
-            "score": 0.77867,
-            "parts": {
-              "rel": 0.49,
-              "pop": 0.19147,
-              "margin": 0.0972,
+              "pop": 0.168,
+              "margin": 0.1428,
               "pers": 0.0
             },
             "why": [
@@ -1070,168 +391,6 @@
             ]
           },
           "position": 2
-        },
-        {
-          "card_id": "postgres_pro_support:extended",
-          "title": "Техподдержка Postgres Pro Расширенная",
-          "vendor": {
-            "id": "postgres_pro",
-            "name": "Postgres Professional"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Круглосуточная профессиональная техническая поддержка СУБД Postgres Pro и open-source PostgreSQL напрямую от разработчиков ядра в России.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_B8ABCEFB8FB7",
-            "sku": "AX-B8ABCEFB8FB7",
-            "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 50–99 ядер, 12 мес., для организаций, SERVICE",
-            "price": 106200.0,
-            "price_on_request": false,
-            "delivery": "service",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "core",
-            "qty_min": 50,
-            "qty_max": 99,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 106200.0,
-            "total": null,
-            "text": "от 106 200 ₽ за ядро в год (при покупке от 50)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_E84B5810C5B9",
-              "sku": "AX-E84B5810C5B9",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 1–9 ядер, 12 мес., для организаций, SERVICE",
-              "price": 120000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_E6A776DC5A0F",
-              "sku": "AX-E6A776DC5A0F",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 1–9 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": 108000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_9C835F051749",
-              "sku": "AX-9C835F051749",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 10–24 ядер, 12 мес., для организаций, SERVICE",
-              "price": 115200.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_8CAA9A4BDC1D",
-              "sku": "AX-8CAA9A4BDC1D",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 10–24 ядер, 12 мес., для госучреждений, SERVICE",
-              "price": null,
-              "price_on_request": true,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_BF80FADFF467",
-              "sku": "AX-BF80FADFF467",
-              "name": "Техподдержка Postgres Pro Расширенная, новая лицензия, 25–49 ядер, 12 мес., для организаций, SERVICE",
-              "price": 110600.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "core",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 51,
-          "price_from": 44000.0,
-          "score": {
-            "tier": 1,
-            "score": 0.62547,
-            "parts": {
-              "rel": 0.36,
-              "pop": 0.15147,
-              "margin": 0.114,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 50 до 99 мест"
-            ]
-          },
-          "position": 3
         },
         {
           "card_id": "postgres_pro_support:standard",
@@ -1256,29 +415,29 @@
             }
           ],
           "offer": {
-            "offer_id": "o_6116D64D857B",
-            "sku": "AX-6116D64D857B",
-            "name": "Техподдержка Postgres Pro Стандартная, новая лицензия, 250+ ядер, 12 мес., для организаций, SERVICE",
-            "price": 20400.0,
+            "offer_id": "o_813BF20B8C49",
+            "sku": "AX-813BF20B8C49",
+            "name": "Техподдержка Postgres Pro Стандартная, поддержка, 25–49 серверов, 12 мес., для организаций, SERVICE",
+            "price": 11520.0,
             "price_on_request": false,
             "delivery": "service",
             "vat": 0,
             "available": true,
             "version": null,
-            "action": "new",
+            "action": "support",
             "model": "subscription",
             "term_months": 12,
-            "metric": "core",
-            "qty_min": 250,
-            "qty_max": null,
+            "metric": "server",
+            "qty_min": 25,
+            "qty_max": 49,
             "pack": null,
             "audience": "business"
           },
           "calc": {
             "qty": null,
-            "unit_price": 20400.0,
+            "unit_price": 11520.0,
             "total": null,
-            "text": "от 20 400 ₽ за ядро в год (при покупке от 250)"
+            "text": "от 11 520 ₽ за сервер в год (при покупке от 25)"
           },
           "variants": [
             {
@@ -1381,16 +540,179 @@
           "price_from": 9560.0,
           "score": {
             "tier": 1,
-            "score": 0.5771999999999999,
+            "tier_label": "Подходит по условиям",
+            "score": 0.66413,
             "parts": {
               "rel": 0.36,
-              "pop": 0.1024,
-              "margin": 0.1148,
+              "pop": 0.15733,
+              "margin": 0.1468,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска",
-              "Диапазон от 250 мест"
+              "Диапазон от 25 до 49 мест"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "basealt_support_pack:standard",
+          "title": "Техподдержка ОС Альт Стандартная",
+          "vendor": {
+            "id": "basealt",
+            "name": "BaseALT"
+          },
+          "category": {
+            "id": "tech_support",
+            "title": "Техническая поддержка ПО и ИТС"
+          },
+          "summary": "Сертификаты расширенной технической поддержки (Базовый, Стандартный, Расширенный 24x7) для линейки ОС Альт Рабочая станция, Альт Сервер и Альт СП.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_53F741408F99",
+            "sku": "AX-53F741408F99",
+            "name": "Техподдержка ОС Альт Стандартная, поддержка, 1 устройств, 36 мес., для организаций, PAPER",
+            "price": 2250.0,
+            "price_on_request": false,
+            "delivery": "paper",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "support",
+            "model": "subscription",
+            "term_months": 36,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 2250.0,
+            "total": null,
+            "text": "от 2 250 ₽ за устройство на 36 мес."
+          },
+          "variants": [
+            {
+              "offer_id": "o_89CF20563110",
+              "sku": "AX-89CF20563110",
+              "name": "Техподдержка ОС Альт Стандартная, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 1800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_34AE6F10548B",
+              "sku": "AX-34AE6F10548B",
+              "name": "Техподдержка ОС Альт Стандартная, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 1620.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_5232370BA15F",
+              "sku": "AX-5232370BA15F",
+              "name": "Техподдержка ОС Альт Стандартная, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+              "price": 720.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_70B1F6EF1065",
+              "sku": "AX-70B1F6EF1065",
+              "name": "Техподдержка ОС Альт Стандартная, продление, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 1260.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_DD1AB6CBEE8B",
+              "sku": "AX-DD1AB6CBEE8B",
+              "name": "Техподдержка ОС Альт Стандартная, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 1130.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 35,
+          "price_from": 360.0,
+          "score": {
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.61,
+            "parts": {
+              "rel": 0.36,
+              "pop": 0.1216,
+              "margin": 0.1284,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
             ]
           },
           "position": 4
@@ -1448,10 +770,11 @@
     }
   ],
   "related_queries": [
-    "Техподдержка Группы Астра Стандартная",
-    "Техподдержка Группы Астра Привилегированная",
-    "Техподдержка Postgres Pro Расширенная",
-    "Техподдержка Postgres Pro Стандартная"
+    "Техподдержка Группы Астра продление",
+    "Техподдержка Группы Астра Привилегированная на 24 мес",
+    "Аналог Техподдержка Группы Астра",
+    "Техническая поддержка ПО и ИТС из реестра",
+    "Техническая поддержка ПО и ИТС"
   ],
   "notes": [],
   "trace": [
@@ -1459,7 +782,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.09,
+      "ms": 0.16,
       "summary": "техподдержка астра линукс премиум",
       "detail": {}
     },
@@ -1467,7 +790,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.06,
+      "ms": 0.18,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -1475,16 +798,19 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.03,
+      "ms": 0.08,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.13,
-      "summary": "техподдержка, Astra Linux Special Edition, премиум",
+      "ms": 0.4,
+      "summary": "Техподдержка Группы Астра",
       "detail": {
         "residual": "",
         "synonyms": [],
@@ -1495,7 +821,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -1507,6 +833,10 @@
       "summary": "Услуга",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "service",
+        "rejected": [],
         "calls": []
       }
     },
@@ -1514,7 +844,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Услуга",
       "detail": {}
     },
@@ -1522,7 +852,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.23,
+      "ms": 0.27,
       "summary": "Подходящих карточек до проверки лицензий · 13",
       "detail": {
         "sources": [
@@ -1537,7 +867,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.8,
+      "ms": 1.41,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -1553,9 +883,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -1563,14 +895,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.88,
+      "ms": 1.76,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1578,7 +910,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.05,
+      "ms": 0.03,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -1588,7 +920,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.02,
+      "ms": 0.04,
       "summary": "Карточек в выдаче · 13",
       "detail": {}
     },
@@ -1596,7 +928,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.02,
+      "ms": 0.91,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1606,14 +938,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 6.56
+    "total": 5.6
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

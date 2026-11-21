@@ -1,5 +1,5 @@
 {
-  "search_id": "s_8649e34b7f6b4d268bd85751ac00c684",
+  "search_id": "s_a649854982cd4f94b9331e11d444fc43",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "role_kit",
     "intent_title": "Рабочее место",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -69,22 +70,8 @@
     "qty": null,
     "chips": [
       {
-        "key": "edition",
-        "label": "комплект · несколько вариантов",
-        "source": "query",
-        "removable": true,
-        "remove_q": "по для бухгалтера"
-      },
-      {
-        "key": "edition",
-        "label": "бухгалтера",
-        "source": "query",
-        "removable": true,
-        "remove_q": "комплект по для"
-      },
-      {
         "key": "role",
-        "label": "бухгалтера",
+        "label": "Роль: бухгалтер",
         "source": "query",
         "removable": true,
         "remove_q": "комплект по для"
@@ -92,14 +79,14 @@
     ],
     "subtype": null,
     "reason": null,
-    "agent_note": "Рабочее место · комплект · несколько вариантов, бухгалтера, бухгалтера"
+    "agent_note": "Рабочее место · Роль: бухгалтер"
   },
   "blocks": [
     {
       "type": "kit",
       "title": "Бухгалтер",
       "role": "accountant",
-      "seats": 1,
+      "seats": null,
       "slots": [
         {
           "title": "Бухгалтерский и налоговый учёт",
@@ -146,10 +133,10 @@
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
+              "qty": null,
               "unit_price": 5400.0,
-              "total": 5400.0,
-              "text": "1 × 5 400 ₽ = 5 400 ₽"
+              "total": null,
+              "text": "от 5 400 ₽ за организацию"
             },
             "variants": [
               {
@@ -252,6 +239,7 @@
             "price_from": 2700.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.70692,
               "parts": {
                 "rel": 0.425,
@@ -263,7 +251,7 @@
                 "Совпадает с условиями поиска"
               ]
             },
-            "position": 8
+            "position": 6
           },
           "alternatives": [
             {
@@ -308,10 +296,10 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
+                "qty": null,
                 "unit_price": 15270.0,
-                "total": 15270.0,
-                "text": "1 × 15 270 ₽ = 15 270 ₽"
+                "total": null,
+                "text": "от 15 270 ₽ за пользователя"
               },
               "variants": [
                 {
@@ -414,9 +402,10 @@
               "price_from": 7640.0,
               "score": {
                 "tier": 1,
-                "score": 0.6968300000000001,
+                "tier_label": "Подходит по условиям",
+                "score": 0.67933,
                 "parts": {
-                  "rel": 0.425,
+                  "rel": 0.4075,
                   "pop": 0.2,
                   "margin": 0.07183,
                   "pers": 0.0
@@ -425,11 +414,11 @@
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 9
+              "position": 11
             },
             {
-              "card_id": "onec_accounting:corp",
-              "title": "1С:Бухгалтерия 8 КОРП",
+              "card_id": "onec_fresh:base",
+              "title": "1С:Фреш Базовый",
               "vendor": {
                 "id": "onec",
                 "name": "1C"
@@ -438,7 +427,7 @@
                 "id": "accounting",
                 "title": "Бухгалтерский и налоговый учёт"
               },
-              "summary": "Самая распространённая в России система бухгалтерского и налогового учёта для коммерческих организаций и ИП.",
+              "summary": "Официальный облачный SaaS-сервис фирмы 1С для работы в Бухгалтерии, ЗУП, УНФ и УТ через браузер без своего сервера.",
               "badges": [
                 {
                   "kind": "registry",
@@ -450,143 +439,144 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_9D4B4204FFA2",
-                "sku": "AX-9D4B4204FFA2",
-                "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-                "price": 43200.0,
+                "offer_id": "o_0A93B97F3D2C",
+                "sku": "AX-0A93B97F3D2C",
+                "name": "1С:Фреш Базовый, новая лицензия, пакет на 2 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 17000.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": "8.3",
+                "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "user",
+                "metric": "concurrent",
                 "qty_min": null,
                 "qty_max": null,
-                "pack": 1,
+                "pack": 2,
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 43200.0,
-                "total": 43200.0,
-                "text": "1 × 43 200 ₽ = 43 200 ₽"
+                "qty": null,
+                "unit_price": 17000.0,
+                "total": null,
+                "text": "от 17 000 ₽ за пакет на 2 мест в год"
               },
               "variants": [
                 {
-                  "offer_id": "o_E9EC64B627F4",
-                  "sku": "AX-E9EC64B627F4",
-                  "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, 1 организаций, 12 мес., для организаций, ESD",
-                  "price": 43200.0,
+                  "offer_id": "o_F728A8B15093",
+                  "sku": "AX-F728A8B15093",
+                  "name": "1С:Фреш Базовый, новая лицензия, пакет на 2 одновременных подключений, 12 мес., для организаций, SERVICE",
+                  "price": 17000.0,
                   "price_on_request": false,
-                  "delivery": "esd",
+                  "delivery": "service",
                   "vat": 0,
                   "available": true,
-                  "version": "8.3",
+                  "version": null,
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
-                  "metric": "company",
+                  "metric": "concurrent",
                   "qty_min": null,
                   "qty_max": null,
-                  "pack": 1,
+                  "pack": 2,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_57FF6AA99DEA",
-                  "sku": "AX-57FF6AA99DEA",
-                  "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, пакет на 5 организаций, 12 мес., для организаций, ESD",
-                  "price": 196100.0,
+                  "offer_id": "o_254E1E9B5058",
+                  "sku": "AX-254E1E9B5058",
+                  "name": "1С:Фреш Базовый, новая лицензия, пакет на 5 одновременных подключений, 12 мес., для организаций, SERVICE",
+                  "price": 37000.0,
                   "price_on_request": false,
-                  "delivery": "esd",
+                  "delivery": "service",
                   "vat": 0,
                   "available": true,
-                  "version": "8.3",
+                  "version": null,
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
-                  "metric": "company",
+                  "metric": "concurrent",
                   "qty_min": null,
                   "qty_max": null,
                   "pack": 5,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_5FBF006C0036",
-                  "sku": "AX-5FBF006C0036",
-                  "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, пакет на 10 организаций, 12 мес., для организаций, ESD",
-                  "price": 376300.0,
+                  "offer_id": "o_350887A6F412",
+                  "sku": "AX-350887A6F412",
+                  "name": "1С:Фреш Базовый, новая лицензия, пакет на 10 одновременных подключений, 12 мес., для организаций, SERVICE",
+                  "price": 66800.0,
                   "price_on_request": false,
-                  "delivery": "esd",
+                  "delivery": "service",
                   "vat": 0,
                   "available": true,
-                  "version": "8.3",
+                  "version": null,
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
-                  "metric": "company",
+                  "metric": "concurrent",
                   "qty_min": null,
                   "qty_max": null,
                   "pack": 10,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_1350A1923895",
-                  "sku": "AX-1350A1923895",
-                  "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
-                  "price": 43200.0,
+                  "offer_id": "o_11E5C8231643",
+                  "sku": "AX-11E5C8231643",
+                  "name": "1С:Фреш Базовый, продление, пакет на 2 одновременных подключений, 12 мес., для организаций, SERVICE",
+                  "price": 11900.0,
                   "price_on_request": false,
-                  "delivery": "esd",
+                  "delivery": "service",
                   "vat": 0,
                   "available": true,
-                  "version": "8.3",
-                  "action": "new",
-                  "model": "perpetual",
-                  "term_months": null,
-                  "metric": "company",
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "concurrent",
                   "qty_min": null,
                   "qty_max": null,
-                  "pack": 1,
+                  "pack": 2,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_CE7E6B82A929",
-                  "sku": "AX-CE7E6B82A929",
-                  "name": "1С:Бухгалтерия 8 8.3 КОРП, новая лицензия, 1 пользователей, бессрочная, для организаций, ESD",
-                  "price": 43200.0,
+                  "offer_id": "o_C2FEF869D62A",
+                  "sku": "AX-C2FEF869D62A",
+                  "name": "1С:Фреш Базовый, продление, пакет на 5 одновременных подключений, 12 мес., для организаций, SERVICE",
+                  "price": 25900.0,
                   "price_on_request": false,
-                  "delivery": "esd",
+                  "delivery": "service",
                   "vat": 0,
                   "available": true,
-                  "version": "8.3",
-                  "action": "new",
-                  "model": "perpetual",
-                  "term_months": null,
-                  "metric": "user",
+                  "version": null,
+                  "action": "renewal",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "concurrent",
                   "qty_min": null,
                   "qty_max": null,
-                  "pack": 1,
+                  "pack": 5,
                   "audience": "business"
                 }
               ],
-              "variants_count": 26,
-              "price_from": 21600.0,
+              "variants_count": 25,
+              "price_from": 8500.0,
               "score": {
                 "tier": 1,
-                "score": 0.6658499999999999,
+                "tier_label": "Подходит по условиям",
+                "score": 0.5858,
                 "parts": {
                   "rel": 0.425,
-                  "pop": 0.09296,
-                  "margin": 0.14789,
+                  "pop": 0.09108,
+                  "margin": 0.06972,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 16
+              "position": 35
             }
           ],
           "note": "Ведение бухгалтерского и налогового учёта"
@@ -636,10 +626,10 @@
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
+              "qty": null,
               "unit_price": 12200.0,
-              "total": 12200.0,
-              "text": "1 × 12 200 ₽ = 12 200 ₽"
+              "total": null,
+              "text": "от 12 200 ₽ за организацию в год"
             },
             "variants": [
               {
@@ -742,9 +732,10 @@
             "price_from": 7680.0,
             "score": {
               "tier": 1,
-              "score": 0.7634799999999999,
+              "tier_label": "Подходит по условиям",
+              "score": 0.74598,
               "parts": {
-                "rel": 0.425,
+                "rel": 0.4075,
                 "pop": 0.19342,
                 "margin": 0.14506,
                 "pers": 0.0
@@ -753,7 +744,7 @@
                 "Совпадает с условиями поиска"
               ]
             },
-            "position": 1
+            "position": 4
           },
           "alternatives": [
             {
@@ -798,10 +789,10 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
+                "qty": null,
                 "unit_price": 6500.0,
-                "total": 6500.0,
-                "text": "1 × 6 500 ₽ = 6 500 ₽"
+                "total": null,
+                "text": "от 6 500 ₽ за организацию в год"
               },
               "variants": [
                 {
@@ -904,6 +895,7 @@
               "price_from": 4100.0,
               "score": {
                 "tier": 1,
+                "tier_label": "Подходит по условиям",
                 "score": 0.73076,
                 "parts": {
                   "rel": 0.425,
@@ -915,20 +907,20 @@
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 4
+              "position": 5
             },
             {
-              "card_id": "kontur_diadoc:packages",
-              "title": "Контур.Диадок Пакеты документов",
+              "card_id": "sbis_saby:kedo",
+              "title": "СБИС Saby КЭДО и Кадры",
               "vendor": {
-                "id": "skb_kontur",
-                "name": "SKB Kontur"
+                "id": "tensor_sbis",
+                "name": "Tensor (Saby / SBIS)"
               },
               "category": {
                 "id": "tax_reporting_edo",
                 "title": "Электронная отчётность и ЭДО с контрагентами"
               },
-              "summary": "Ведущая в РФ система юридически значимого внешнего электронного документооборота (ЭДО) с контрагентами и модулем интеграции с 1С.",
+              "summary": "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница.",
               "badges": [
                 {
                   "kind": "registry",
@@ -940,36 +932,36 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_62F2D976FB62",
-                "sku": "AX-62F2D976FB62",
-                "name": "Контур.Диадок Пакеты документов, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
-                "price": 4500.0,
+                "offer_id": "o_B753CD5005FB",
+                "sku": "AX-B753CD5005FB",
+                "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
+                "price": 27100.0,
                 "price_on_request": false,
-                "delivery": "service",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
                 "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "company",
+                "metric": "user",
                 "qty_min": null,
                 "qty_max": null,
                 "pack": 1,
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 4500.0,
-                "total": 4500.0,
-                "text": "1 × 4 500 ₽ = 4 500 ₽"
+                "qty": null,
+                "unit_price": 27100.0,
+                "total": null,
+                "text": "от 27 100 ₽ за пользователя в год"
               },
               "variants": [
                 {
-                  "offer_id": "o_3DFE63EAB59D",
-                  "sku": "AX-3DFE63EAB59D",
-                  "name": "Контур.Диадок Пакеты документов, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
-                  "price": 4050.0,
+                  "offer_id": "o_704CA3CD1FC7",
+                  "sku": "AX-704CA3CD1FC7",
+                  "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
+                  "price": 27100.0,
                   "price_on_request": false,
                   "delivery": "service",
                   "vat": 0,
@@ -982,13 +974,32 @@
                   "qty_min": null,
                   "qty_max": null,
                   "pack": 1,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_3176B93AA04C",
+                  "sku": "AX-3176B93AA04C",
+                  "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
+                  "price": 24300.0,
+                  "price_on_request": false,
+                  "delivery": "service",
+                  "vat": 0,
+                  "available": false,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "company",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_CFC5AC5B872D",
-                  "sku": "AX-CFC5AC5B872D",
-                  "name": "Контур.Диадок Пакеты документов, продление, 1 организаций, 12 мес., для организаций, SERVICE",
-                  "price": 3150.0,
+                  "offer_id": "o_A2BF4CAA0FC0",
+                  "sku": "AX-A2BF4CAA0FC0",
+                  "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для организаций, SERVICE",
+                  "price": 18940.0,
                   "price_on_request": false,
                   "delivery": "service",
                   "vat": 0,
@@ -1004,10 +1015,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_9AA51597326A",
-                  "sku": "AX-9AA51597326A",
-                  "name": "Контур.Диадок Пакеты документов, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
-                  "price": 2840.0,
+                  "offer_id": "o_88ACC95457D6",
+                  "sku": "AX-88ACC95457D6",
+                  "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
+                  "price": 17040.0,
                   "price_on_request": false,
                   "delivery": "service",
                   "vat": 0,
@@ -1023,10 +1034,10 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_DB2C9C7B8ACD",
-                  "sku": "AX-DB2C9C7B8ACD",
-                  "name": "Контур.Диадок Пакеты документов, новая лицензия, 1 ед., 12 мес., для организаций, SERVICE",
-                  "price": 4500.0,
+                  "offer_id": "o_51402A80261C",
+                  "sku": "AX-51402A80261C",
+                  "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
+                  "price": 27100.0,
                   "price_on_request": false,
                   "delivery": "service",
                   "vat": 0,
@@ -1035,48 +1046,30 @@
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
-                  "metric": "other",
+                  "metric": "user",
                   "qty_min": null,
                   "qty_max": null,
                   "pack": 1,
                   "audience": "business"
-                },
-                {
-                  "offer_id": "o_21583996CB9C",
-                  "sku": "AX-21583996CB9C",
-                  "name": "Контур.Диадок Пакеты документов, продление, 1 ед., 12 мес., для госучреждений, SERVICE",
-                  "price": 2840.0,
-                  "price_on_request": false,
-                  "delivery": "service",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "renewal",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 1,
-                  "audience": "gov"
                 }
               ],
-              "variants_count": 24,
-              "price_from": 2840.0,
+              "variants_count": 18,
+              "price_from": 17040.0,
               "score": {
                 "tier": 1,
-                "score": 0.6805599999999999,
+                "tier_label": "Подходит по условиям",
+                "score": 0.69453,
                 "parts": {
-                  "rel": 0.425,
-                  "pop": 0.18272,
-                  "margin": 0.07284,
+                  "rel": 0.39,
+                  "pop": 0.18107,
+                  "margin": 0.12346,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 12
+              "position": 8
             }
           ],
           "note": "Сдача отчётности в ФНС/СФР и ЭДО с контрагентами"
@@ -1126,10 +1119,10 @@
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
+              "qty": null,
               "unit_price": 1500.0,
-              "total": 1500.0,
-              "text": "1 × 1 500 ₽ = 1 500 ₽"
+              "total": null,
+              "text": "от 1 500 ₽ за устройство в год"
             },
             "variants": [
               {
@@ -1232,6 +1225,7 @@
             "price_from": 940.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.75179,
               "parts": {
                 "rel": 0.425,
@@ -1269,10 +1263,10 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_5C40A3D09C56",
-                "sku": "AX-5C40A3D09C56",
-                "name": "КриптоПро CSP 5.0 Клиентская, новая лицензия, 1–9 устройств, 12 мес., для организаций, ESD",
-                "price": 1500.0,
+                "offer_id": "o_B7BB998F5367",
+                "sku": "AX-B7BB998F5367",
+                "name": "КриптоПро CSP 5.0 Клиентская, новая лицензия, 10–49 устройств, 12 мес., для организаций, ESD",
+                "price": 1440.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -1282,18 +1276,37 @@
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
-                "qty_min": 1,
-                "qty_max": 9,
+                "qty_min": 10,
+                "qty_max": 49,
                 "pack": null,
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 1500.0,
-                "total": 1500.0,
-                "text": "1 × 1 500 ₽ = 1 500 ₽"
+                "qty": null,
+                "unit_price": 1440.0,
+                "total": null,
+                "text": "от 1 440 ₽ за устройство в год (при покупке от 10)"
               },
               "variants": [
+                {
+                  "offer_id": "o_5C40A3D09C56",
+                  "sku": "AX-5C40A3D09C56",
+                  "name": "КриптоПро CSP 5.0 Клиентская, новая лицензия, 1–9 устройств, 12 мес., для организаций, ESD",
+                  "price": 1500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "5.0",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 1,
+                  "qty_max": 9,
+                  "pack": null,
+                  "audience": "business"
+                },
                 {
                   "offer_id": "o_4EBC1C81C56D",
                   "sku": "AX-4EBC1C81C56D",
@@ -1331,25 +1344,6 @@
                   "qty_max": 9,
                   "pack": null,
                   "audience": "edu"
-                },
-                {
-                  "offer_id": "o_B7BB998F5367",
-                  "sku": "AX-B7BB998F5367",
-                  "name": "КриптоПро CSP 5.0 Клиентская, новая лицензия, 10–49 устройств, 12 мес., для организаций, ESD",
-                  "price": 1440.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": "5.0",
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 49,
-                  "pack": null,
-                  "audience": "business"
                 },
                 {
                   "offer_id": "o_9745DC1F8354",
@@ -1394,32 +1388,33 @@
               "price_from": 370.0,
               "score": {
                 "tier": 1,
-                "score": 0.72343,
+                "tier_label": "Подходит по условиям",
+                "score": 0.64823,
                 "parts": {
                   "rel": 0.425,
-                  "pop": 0.15906,
-                  "margin": 0.13937,
+                  "pop": 0.18898,
+                  "margin": 0.03425,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска",
-                  "Диапазон от 1 до 9 мест"
+                  "Диапазон от 10 до 49 мест"
                 ]
               },
-              "position": 5
+              "position": 17
             },
             {
-              "card_id": "cryptopro_csp:server",
-              "title": "КриптоПро CSP Серверная",
+              "card_id": "cryptoarm_gost:pro",
+              "title": "КриптоАРМ ГОСТ Про",
               "vendor": {
-                "id": "cryptopro",
-                "name": "CryptoPro"
+                "id": "trusted_cryptoarm",
+                "name": "Digital Technologies"
               },
               "category": {
-                "id": "crypto_skzi",
-                "title": "СКЗИ и криптографическая защита"
+                "id": "e_signature",
+                "title": "Электронная подпись и инструменты ЭП"
               },
-              "summary": "Самый распространённый в России криптопровайдер (СКЗИ, сертификат ФСБ) для работы с электронной подписью, ЭДО, ЕГАИС и порталами ФНС/ЕИС.",
+              "summary": "Программа для создания и проверки электронной подписи (УКЭП) и шифрования файлов по ГОСТ на Windows, Linux и macOS.",
               "badges": [
                 {
                   "kind": "registry",
@@ -1431,144 +1426,144 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_8D7744EF084B",
-                "sku": "AX-8D7744EF084B",
-                "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 1–9 устройств, бессрочная, для организаций, PAPER",
-                "price": 85000.0,
+                "offer_id": "o_4524EDCD6C04",
+                "sku": "AX-4524EDCD6C04",
+                "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+                "price": 5500.0,
                 "price_on_request": false,
-                "delivery": "paper",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": "5.0",
+                "version": "3",
                 "action": "new",
                 "model": "perpetual",
                 "term_months": null,
                 "metric": "device",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 85000.0,
-                "total": 85000.0,
-                "text": "1 × 85 000 ₽ = 85 000 ₽"
+                "qty": null,
+                "unit_price": 5500.0,
+                "total": null,
+                "text": "от 5 500 ₽ за устройство"
               },
               "variants": [
                 {
-                  "offer_id": "o_DA9064FE6AC4",
-                  "sku": "AX-DA9064FE6AC4",
-                  "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 1–9 устройств, 12 мес., для организаций, ESD",
-                  "price": 85000.0,
+                  "offer_id": "o_E9F7B725F5C3",
+                  "sku": "AX-E9F7B725F5C3",
+                  "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 5500.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
                   "available": true,
-                  "version": "5.0",
+                  "version": "3",
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
                   "metric": "device",
-                  "qty_min": 1,
-                  "qty_max": 9,
-                  "pack": null,
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_176B6F3D5DB4",
-                  "sku": "AX-176B6F3D5DB4",
-                  "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 1–9 устройств, 12 мес., для госучреждений, ESD",
-                  "price": 76500.0,
+                  "offer_id": "o_7586B4BADF2F",
+                  "sku": "AX-7586B4BADF2F",
+                  "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 4950.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
                   "available": true,
-                  "version": "5.0",
+                  "version": "3",
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
                   "metric": "device",
-                  "qty_min": 1,
-                  "qty_max": 9,
-                  "pack": null,
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 1,
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_BAFFF1D0382D",
-                  "sku": "AX-BAFFF1D0382D",
-                  "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 1–9 устройств, 12 мес., академическая, ESD",
-                  "price": 34000.0,
+                  "offer_id": "o_13829C9F2982",
+                  "sku": "AX-13829C9F2982",
+                  "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, пакет на 5 устройств, 12 мес., для организаций, ESD",
+                  "price": 25000.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
                   "available": true,
-                  "version": "5.0",
+                  "version": "3",
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
                   "metric": "device",
-                  "qty_min": 1,
-                  "qty_max": 9,
-                  "pack": null,
-                  "audience": "edu"
-                },
-                {
-                  "offer_id": "o_60821D6E19A1",
-                  "sku": "AX-60821D6E19A1",
-                  "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 10–49 устройств, 12 мес., для организаций, ESD",
-                  "price": 81600.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": "5.0",
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 49,
-                  "pack": null,
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 5,
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_BE32E6A0C80A",
-                  "sku": "AX-BE32E6A0C80A",
-                  "name": "КриптоПро CSP 5.0 Серверная, новая лицензия, 10–49 устройств, 12 мес., для госучреждений, ESD",
-                  "price": 73400.0,
+                  "offer_id": "o_F1093EA7CA33",
+                  "sku": "AX-F1093EA7CA33",
+                  "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, пакет на 5 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 22500.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
                   "available": true,
-                  "version": "5.0",
+                  "version": "3",
                   "action": "new",
                   "model": "subscription",
                   "term_months": 12,
                   "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 49,
-                  "pack": null,
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 5,
                   "audience": "gov"
+                },
+                {
+                  "offer_id": "o_0E1A7D31437C",
+                  "sku": "AX-0E1A7D31437C",
+                  "name": "КриптоАРМ ГОСТ 3 Про, новая лицензия, пакет на 10 устройств, 12 мес., для организаций, ESD",
+                  "price": 47900.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 10,
+                  "audience": "business"
                 }
               ],
-              "variants_count": 63,
-              "price_from": 21100.0,
+              "variants_count": 37,
+              "price_from": 3460.0,
               "score": {
                 "tier": 1,
-                "score": 0.63169,
+                "tier_label": "Подходит по условиям",
+                "score": 0.5993299999999999,
                 "parts": {
-                  "rel": 0.425,
-                  "pop": 0.1748,
-                  "margin": 0.03189,
+                  "rel": 0.4075,
+                  "pop": 0.17908,
+                  "margin": 0.01275,
                   "pers": 0.0
                 },
                 "why": [
-                  "Совпадает с условиями поиска",
-                  "Диапазон от 1 до 9 мест"
+                  "Совпадает с условиями поиска"
                 ]
               },
-              "position": 25
+              "position": 33
             }
           ],
           "note": "Криптопровайдер для работы с КЭП"
@@ -1618,10 +1613,10 @@
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
+              "qty": null,
               "unit_price": 4800.0,
-              "total": 4800.0,
-              "text": "1 × 4 800 ₽ = 4 800 ₽"
+              "total": null,
+              "text": "от 4 800 ₽ за устройство"
             },
             "variants": [
               {
@@ -1724,9 +1719,10 @@
             "price_from": 4320.0,
             "score": {
               "tier": 1,
-              "score": 0.72,
+              "tier_label": "Подходит по условиям",
+              "score": 0.7024999999999999,
               "parts": {
-                "rel": 0.425,
+                "rel": 0.4075,
                 "pop": 0.145,
                 "margin": 0.15,
                 "pers": 0.0
@@ -1735,7 +1731,7 @@
                 "Совпадает с условиями поиска"
               ]
             },
-            "position": 6
+            "position": 7
           },
           "alternatives": [
             {
@@ -1784,10 +1780,10 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
+                "qty": null,
                 "unit_price": 1800.0,
-                "total": 1800.0,
-                "text": "1 × 1 800 ₽ = 1 800 ₽"
+                "total": null,
+                "text": "от 1 800 ₽ за устройство"
               },
               "variants": [
                 {
@@ -1890,6 +1886,7 @@
               "price_from": 1620.0,
               "score": {
                 "tier": 1,
+                "tier_label": "Подходит по условиям",
                 "score": 0.67875,
                 "parts": {
                   "rel": 0.425,
@@ -1901,11 +1898,11 @@
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 13
+              "position": 12
             },
             {
-              "card_id": "aladdin_jacarta:pki_gost",
-              "title": "JaCarta-2 PKI/ГОСТ",
+              "card_id": "aladdin_jacarta:gost",
+              "title": "JaCarta-2 ГОСТ",
               "vendor": {
                 "id": "aladdin_rd",
                 "name": "Aladdin"
@@ -1917,10 +1914,6 @@
               "summary": "Сертифицированные ФСБ и ФСТЭК ключевые носители JaCarta-2 для электронной подписи, ЕГАИС и строгой аутентификации.",
               "badges": [
                 {
-                  "kind": "promo",
-                  "label": "Специальное предложение"
-                },
-                {
                   "kind": "registry",
                   "label": "В реестре ПО"
                 },
@@ -1930,10 +1923,10 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_C020C862D7EA",
-                "sku": "AX-C020C862D7EA",
-                "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, 1 устройств, бессрочная, для организаций, MEDIA",
-                "price": 3220.0,
+                "offer_id": "o_898270147306",
+                "sku": "AX-898270147306",
+                "name": "JaCarta-2 ГОСТ, новая лицензия, 1 устройств, бессрочная, для организаций, MEDIA",
+                "price": 2000.0,
                 "price_on_request": false,
                 "delivery": "media",
                 "vat": 0,
@@ -1949,17 +1942,17 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 3220.0,
-                "total": 3220.0,
-                "text": "1 × 3 220 ₽ = 3 220 ₽"
+                "qty": null,
+                "unit_price": 2000.0,
+                "total": null,
+                "text": "от 2 000 ₽ за устройство"
               },
               "variants": [
                 {
-                  "offer_id": "o_664DA735F70E",
-                  "sku": "AX-664DA735F70E",
-                  "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, 1 устройств, бессрочная, для госучреждений, MEDIA",
-                  "price": 2900.0,
+                  "offer_id": "o_50B976153A34",
+                  "sku": "AX-50B976153A34",
+                  "name": "JaCarta-2 ГОСТ, новая лицензия, 1 устройств, бессрочная, для госучреждений, MEDIA",
+                  "price": 1800.0,
                   "price_on_request": false,
                   "delivery": "media",
                   "vat": 0,
@@ -1975,10 +1968,10 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_FEFA05113F0A",
-                  "sku": "AX-FEFA05113F0A",
-                  "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для организаций, MEDIA",
-                  "price": 28100.0,
+                  "offer_id": "o_71FCD9CB35E3",
+                  "sku": "AX-71FCD9CB35E3",
+                  "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для организаций, MEDIA",
+                  "price": 17420.0,
                   "price_on_request": false,
                   "delivery": "media",
                   "vat": 0,
@@ -1994,10 +1987,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_6E03EB4B8B4E",
-                  "sku": "AX-6E03EB4B8B4E",
-                  "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для госучреждений, MEDIA",
-                  "price": 25300.0,
+                  "offer_id": "o_8C6E3CA8AA3D",
+                  "sku": "AX-8C6E3CA8AA3D",
+                  "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для госучреждений, MEDIA",
+                  "price": 15680.0,
                   "price_on_request": false,
                   "delivery": "media",
                   "vat": 0,
@@ -2013,11 +2006,11 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_AD363F23B2E2",
-                  "sku": "AX-AD363F23B2E2",
-                  "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для организаций, MEDIA",
-                  "price": 127500.0,
-                  "price_on_request": false,
+                  "offer_id": "o_8820CE439061",
+                  "sku": "AX-8820CE439061",
+                  "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для организаций, MEDIA",
+                  "price": null,
+                  "price_on_request": true,
                   "delivery": "media",
                   "vat": 0,
                   "available": true,
@@ -2032,10 +2025,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_A7AF8D776F00",
-                  "sku": "AX-A7AF8D776F00",
-                  "name": "JaCarta-2 PKI/ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для госучреждений, MEDIA",
-                  "price": 114800.0,
+                  "offer_id": "o_2396568D0D34",
+                  "sku": "AX-2396568D0D34",
+                  "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для госучреждений, MEDIA",
+                  "price": 71200.0,
                   "price_on_request": false,
                   "delivery": "media",
                   "vat": 0,
@@ -2052,21 +2045,22 @@
                 }
               ],
               "variants_count": 6,
-              "price_from": 2900.0,
+              "price_from": 1800.0,
               "score": {
                 "tier": 1,
-                "score": 0.66125,
+                "tier_label": "Подходит по условиям",
+                "score": 0.6525,
                 "parts": {
                   "rel": 0.425,
-                  "pop": 0.15,
-                  "margin": 0.08625,
+                  "pop": 0.115,
+                  "margin": 0.1125,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 18
+              "position": 16
             }
           ],
           "note": "Сертифицированный носитель электронной подписи"
@@ -2075,162 +2069,171 @@
           "title": "Офисные пакеты",
           "must": true,
           "card": {
-            "card_id": "r7_office:corp_server",
-            "title": "Р7-Офис Корпоративный сервер",
+            "card_id": "yandex_360:basic",
+            "title": "Яндекс 360 для бизнеса Базовый",
             "vendor": {
-              "id": "r7_office",
-              "name": "R7-Office"
+              "id": "yandex",
+              "name": "Yandex"
             },
             "category": {
               "id": "office_suite",
               "title": "Офисные пакеты"
             },
-            "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-            "badges": [],
+            "summary": "Облачный виртуальный офис для компаний: корпоративная Почта на своём домене, Диск, онлайн-Документы, Телемост (ВКС), Мессенджер, Календарь и Вики.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
             "offer": {
-              "offer_id": "o_0735C68CFE8A",
-              "sku": "AX-0735C68CFE8A",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-              "price": 5480.0,
+              "offer_id": "o_D9FF964E03C5",
+              "sku": "AX-D9FF964E03C5",
+              "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
+              "price": 2900.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 22,
+              "vat": 0,
               "available": true,
               "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
-              "unit_price": 5480.0,
-              "total": 5480.0,
-              "text": "1 × 5 480 ₽ = 5 480 ₽"
+              "qty": null,
+              "unit_price": 2900.0,
+              "total": null,
+              "text": "от 2 900 ₽ за пользователя в год"
             },
             "variants": [
               {
-                "offer_id": "o_B70D2EFEAB06",
-                "sku": "AX-B70D2EFEAB06",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-                "price": 4930.0,
+                "offer_id": "o_8D06EDEB575F",
+                "sku": "AX-8D06EDEB575F",
+                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
+                "price": 1160.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": 0,
                 "available": true,
                 "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "user",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_E425EE4FD1E8",
-                "sku": "AX-E425EE4FD1E8",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
-                "price": 2190.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 22,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
                 "audience": "edu"
               },
               {
-                "offer_id": "o_FE59BAA7E790",
-                "sku": "AX-FE59BAA7E790",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-                "price": 5260.0,
+                "offer_id": "o_73072FBF1179",
+                "sku": "AX-73072FBF1179",
+                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
+                "price": 25300.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": 0,
                 "available": true,
                 "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "user",
-                "qty_min": 10,
-                "qty_max": 49,
-                "pack": null,
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 10,
                 "audience": "business"
               },
               {
-                "offer_id": "o_9F9A13BCCE90",
-                "sku": "AX-9F9A13BCCE90",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-                "price": 4730.0,
+                "offer_id": "o_B4E729D7DFC7",
+                "sku": "AX-B4E729D7DFC7",
+                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
+                "price": 10100.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": 0,
                 "available": true,
                 "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "user",
-                "qty_min": 10,
-                "qty_max": 49,
-                "pack": null,
-                "audience": "gov"
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 10,
+                "audience": "edu"
               },
               {
-                "offer_id": "o_C191FB3D5C68",
-                "sku": "AX-C191FB3D5C68",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
-                "price": 2100.0,
+                "offer_id": "o_047BE743D432",
+                "sku": "AX-047BE743D432",
+                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
+                "price": 114700.0,
                 "price_on_request": false,
                 "delivery": "esd",
-                "vat": 22,
+                "vat": 0,
                 "available": true,
                 "version": null,
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "user",
-                "qty_min": 10,
-                "qty_max": 49,
-                "pack": null,
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 50,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_BDDB432A623B",
+                "sku": "AX-BDDB432A623B",
+                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
+                "price": 45900.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 50,
                 "audience": "edu"
               }
             ],
-            "variants_count": 61,
-            "price_from": 1300.0,
+            "variants_count": 23,
+            "price_from": 700.0,
             "score": {
               "tier": 1,
-              "score": 0.68182,
+              "tier_label": "Подходит по условиям",
+              "score": 0.6703,
               "parts": {
                 "rel": 0.425,
-                "pop": 0.17494,
-                "margin": 0.08188,
+                "pop": 0.1557,
+                "margin": 0.0896,
                 "pers": 0.0
               },
               "why": [
-                "Совпадает с условиями поиска",
-                "Диапазон от 1 до 9 мест"
+                "Совпадает с условиями поиска"
               ]
             },
-            "position": 11
+            "position": 13
           },
           "alternatives": [
             {
-              "card_id": "yandex_360:basic",
-              "title": "Яндекс 360 для бизнеса Базовый",
+              "card_id": "yandex_360:optimal",
+              "title": "Яндекс 360 для бизнеса Оптимальный",
               "vendor": {
                 "id": "yandex",
                 "name": "Yandex"
@@ -2251,10 +2254,10 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_D9FF964E03C5",
-                "sku": "AX-D9FF964E03C5",
-                "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-                "price": 2900.0,
+                "offer_id": "o_7C943DBEACA1",
+                "sku": "AX-7C943DBEACA1",
+                "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
+                "price": 6480.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -2270,17 +2273,17 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
-                "unit_price": 2900.0,
-                "total": 2900.0,
-                "text": "1 × 2 900 ₽ = 2 900 ₽"
+                "qty": null,
+                "unit_price": 6480.0,
+                "total": null,
+                "text": "от 6 480 ₽ за пользователя в год"
               },
               "variants": [
                 {
-                  "offer_id": "o_8D06EDEB575F",
-                  "sku": "AX-8D06EDEB575F",
-                  "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
-                  "price": 1160.0,
+                  "offer_id": "o_E043B6DA713E",
+                  "sku": "AX-E043B6DA713E",
+                  "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
+                  "price": 2590.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -2296,10 +2299,10 @@
                   "audience": "edu"
                 },
                 {
-                  "offer_id": "o_73072FBF1179",
-                  "sku": "AX-73072FBF1179",
-                  "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
-                  "price": 25300.0,
+                  "offer_id": "o_7C76F7D63BB4",
+                  "sku": "AX-7C76F7D63BB4",
+                  "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
+                  "price": 56500.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -2315,10 +2318,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_B4E729D7DFC7",
-                  "sku": "AX-B4E729D7DFC7",
-                  "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
-                  "price": 10100.0,
+                  "offer_id": "o_8DC753C3F6C2",
+                  "sku": "AX-8DC753C3F6C2",
+                  "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
+                  "price": 22600.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -2334,10 +2337,10 @@
                   "audience": "edu"
                 },
                 {
-                  "offer_id": "o_047BE743D432",
-                  "sku": "AX-047BE743D432",
-                  "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
-                  "price": 114700.0,
+                  "offer_id": "o_31534B589473",
+                  "sku": "AX-31534B589473",
+                  "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
+                  "price": 256400.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -2353,171 +2356,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_BDDB432A623B",
-                  "sku": "AX-BDDB432A623B",
-                  "name": "Яндекс 360 для бизнеса Базовый, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
-                  "price": 45900.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "user",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 50,
-                  "audience": "edu"
-                }
-              ],
-              "variants_count": 23,
-              "price_from": 700.0,
-              "score": {
-                "tier": 1,
-                "score": 0.6703,
-                "parts": {
-                  "rel": 0.425,
-                  "pop": 0.1557,
-                  "margin": 0.0896,
-                  "pers": 0.0
-                },
-                "why": [
-                  "Совпадает с условиями поиска"
-                ]
-              },
-              "position": 15
-            },
-            {
-              "card_id": "yandex_360:extended",
-              "title": "Яндекс 360 для бизнеса Расширенный",
-              "vendor": {
-                "id": "yandex",
-                "name": "Yandex"
-              },
-              "category": {
-                "id": "office_suite",
-                "title": "Офисные пакеты"
-              },
-              "summary": "Облачный виртуальный офис для компаний: корпоративная Почта на своём домене, Диск, онлайн-Документы, Телемост (ВКС), Мессенджер, Календарь и Вики.",
-              "badges": [
-                {
-                  "kind": "registry",
-                  "label": "В реестре ПО"
-                },
-                {
-                  "kind": "vat",
-                  "label": "Без НДС"
-                }
-              ],
-              "offer": {
-                "offer_id": "o_43E1D429789A",
-                "sku": "AX-43E1D429789A",
-                "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-                "price": 14500.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "business"
-              },
-              "calc": {
-                "qty": 1,
-                "unit_price": 14500.0,
-                "total": 14500.0,
-                "text": "1 × 14 500 ₽ = 14 500 ₽"
-              },
-              "variants": [
-                {
-                  "offer_id": "o_BE503A59B20E",
-                  "sku": "AX-BE503A59B20E",
-                  "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
-                  "price": 5800.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "user",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 1,
-                  "audience": "edu"
-                },
-                {
-                  "offer_id": "o_FC885589E757",
-                  "sku": "AX-FC885589E757",
-                  "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
-                  "price": 126300.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "user",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 10,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_EC629B07B1F4",
-                  "sku": "AX-EC629B07B1F4",
-                  "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
-                  "price": 50500.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": false,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "user",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 10,
-                  "audience": "edu"
-                },
-                {
-                  "offer_id": "o_E0C00B8F1F81",
-                  "sku": "AX-E0C00B8F1F81",
-                  "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
-                  "price": 573300.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "user",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 50,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_A9D8BEEABEF8",
-                  "sku": "AX-A9D8BEEABEF8",
-                  "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
-                  "price": 229300.0,
+                  "offer_id": "o_4A0F70F02EBB",
+                  "sku": "AX-4A0F70F02EBB",
+                  "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
+                  "price": 102600.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -2534,21 +2376,186 @@
                 }
               ],
               "variants_count": 22,
-              "price_from": 4060.0,
+              "price_from": 1560.0,
               "score": {
                 "tier": 1,
-                "score": 0.65643,
+                "tier_label": "Подходит по условиям",
+                "score": 0.63211,
                 "parts": {
-                  "rel": 0.425,
-                  "pop": 0.18881,
-                  "margin": 0.04262,
+                  "rel": 0.4075,
+                  "pop": 0.09575,
+                  "margin": 0.12886,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска"
                 ]
               },
-              "position": 19
+              "position": 25
+            },
+            {
+              "card_id": "myoffice_standard:standard_2",
+              "title": "МойОфис Стандартный Для бизнеса",
+              "vendor": {
+                "id": "myoffice",
+                "name": "MyOffice"
+              },
+              "category": {
+                "id": "office_suite",
+                "title": "Офисные пакеты"
+              },
+              "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
+              "badges": [
+                {
+                  "kind": "promo",
+                  "label": "Специальное предложение"
+                },
+                {
+                  "kind": "registry",
+                  "label": "В реестре по данным семейства"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_BC1135FCB9EA",
+                "sku": "AX-BC1135FCB9EA",
+                "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, 12 мес., для организаций, ESD",
+                "price": 2800.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 22,
+                "available": true,
+                "version": "3",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": 1,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": null,
+                "unit_price": 2800.0,
+                "total": null,
+                "text": "от 2 800 ₽ за устройство в год"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_2832705383F6",
+                  "sku": "AX-2832705383F6",
+                  "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
+                  "price": 2800.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 22,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": 1,
+                  "qty_max": 24,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_A99A7C74895C",
+                  "sku": "AX-A99A7C74895C",
+                  "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
+                  "price": 2520.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 22,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": 1,
+                  "qty_max": 24,
+                  "pack": null,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_92BDB1F04154",
+                  "sku": "AX-92BDB1F04154",
+                  "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
+                  "price": 1120.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 22,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": 1,
+                  "qty_max": 24,
+                  "pack": null,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_AEBA211CB143",
+                  "sku": "AX-AEBA211CB143",
+                  "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
+                  "price": 2690.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 22,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": 25,
+                  "qty_max": 99,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_4653A93C9BA2",
+                  "sku": "AX-4653A93C9BA2",
+                  "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
+                  "price": 2420.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 22,
+                  "available": true,
+                  "version": "3",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "user",
+                  "qty_min": 25,
+                  "qty_max": 99,
+                  "pack": null,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 64,
+              "price_from": 540.0,
+              "score": {
+                "tier": 1,
+                "tier_label": "Подходит по условиям",
+                "score": 0.63193,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.19284,
+                  "margin": 0.01409,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска",
+                  "Включение в реестр указано в базе знаний для всего семейства",
+                  "Диапазон от 1 до 24 мест"
+                ]
+              },
+              "position": 26
             }
           ],
           "note": "Таблицы, сверки и акты"
@@ -2557,17 +2564,17 @@
           "title": "Антивирусы и защита рабочих мест",
           "must": true,
           "card": {
-            "card_id": "kaspersky_ksos",
-            "title": "Kaspersky Small Office Security",
+            "card_id": "drweb_enterprise_security_suite:desktop",
+            "title": "Dr.Web Enterprise Security Suite Защита рабочих станций",
             "vendor": {
-              "id": "kaspersky",
-              "name": "Kaspersky"
+              "id": "drweb",
+              "name": "Dr.Web"
             },
             "category": {
               "id": "endpoint_security",
               "title": "Антивирусы и защита рабочих мест"
             },
-            "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
+            "summary": "Корпоративный антивирусный комплекс Dr.Web для рабочих станций, серверов, почты и интернет-шлюзов с сертификацией ФСТЭК и ФСБ.",
             "badges": [
               {
                 "kind": "registry",
@@ -2579,10 +2586,10 @@
               }
             ],
             "offer": {
-              "offer_id": "o_EC0160E7C3D8",
-              "sku": "KL-EC0160E7C3D8",
-              "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
-              "price": 8500.0,
+              "offer_id": "o_D64BC3DB6707",
+              "sku": "DWL-D64BC3DB6707",
+              "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 серверов, 12 мес., для организаций, ESD",
+              "price": 1430.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
@@ -2591,24 +2598,43 @@
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 5,
+              "metric": "server",
+              "qty_min": 5,
+              "qty_max": 9,
+              "pack": null,
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
-              "unit_price": 8500.0,
-              "total": 8500.0,
-              "text": "1 пакет по 5 устр. × 8 500 ₽ = 8 500 ₽"
+              "qty": null,
+              "unit_price": 1430.0,
+              "total": null,
+              "text": "от 1 430 ₽ за сервер в год (при покупке от 5)"
             },
             "variants": [
               {
-                "offer_id": "o_39E099AE40B1",
-                "sku": "KL-39E099AE40B1",
-                "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
-                "price": 15860.0,
+                "offer_id": "o_E0B29C44AF39",
+                "sku": "DWL-E0B29C44AF39",
+                "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., для организаций, ESD",
+                "price": 1430.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": false,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": 5,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_FDF2CEEC0323",
+                "sku": "DWL-FDF2CEEC0323",
+                "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., для госучреждений, ESD",
+                "price": 1290.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -2618,16 +2644,16 @@
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 10,
-                "audience": "business"
+                "qty_min": 5,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "gov"
               },
               {
-                "offer_id": "o_5D49447181C5",
-                "sku": "KL-5D49447181C5",
-                "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
-                "price": 22800.0,
+                "offer_id": "o_49F565EDA58C",
+                "sku": "DWL-49F565EDA58C",
+                "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 5–9 устройств, 12 мес., академическая, ESD",
+                "price": 570.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -2637,16 +2663,16 @@
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 15,
-                "audience": "business"
+                "qty_min": 5,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "edu"
               },
               {
-                "offer_id": "o_EF4C1862F694",
-                "sku": "KL-EF4C1862F694",
-                "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
-                "price": 29600.0,
+                "offer_id": "o_24B7B7645DDD",
+                "sku": "DWL-24B7B7645DDD",
+                "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 10–24 устройств, 12 мес., для организаций, ESD",
+                "price": 1370.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -2656,16 +2682,16 @@
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 20,
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
                 "audience": "business"
               },
               {
-                "offer_id": "o_0C63CCEFCB2D",
-                "sku": "KL-0C63CCEFCB2D",
-                "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
-                "price": 36200.0,
+                "offer_id": "o_D52B57D5BDF0",
+                "sku": "DWL-D52B57D5BDF0",
+                "name": "Dr.Web Enterprise Security Suite Защита рабочих станций, новая лицензия, 10–24 устройств, 12 мес., для госучреждений, ESD",
+                "price": 1240.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -2675,22 +2701,228 @@
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 25,
-                "audience": "business"
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 43,
+            "price_from": 310.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.75606,
+              "parts": {
+                "rel": 0.425,
+                "pop": 0.1988,
+                "margin": 0.13226,
+                "pers": 0.0
               },
-              {
-                "offer_id": "o_F3692F787099",
-                "sku": "KL-F3692F787099",
-                "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year Renewal License BUSINESS",
-                "price": 5950.0,
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 5 до 9 мест"
+              ]
+            },
+            "position": 1
+          },
+          "alternatives": [
+            {
+              "card_id": "drweb_enterprise_security_suite:complex",
+              "title": "Dr.Web Enterprise Security Suite Комплексная защита",
+              "vendor": {
+                "id": "drweb",
+                "name": "Dr.Web"
+              },
+              "category": {
+                "id": "endpoint_security",
+                "title": "Антивирусы и защита рабочих мест"
+              },
+              "summary": "Корпоративный антивирусный комплекс Dr.Web для рабочих станций, серверов, почты и интернет-шлюзов с сертификацией ФСТЭК и ФСБ.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_D4ADE64E05E5",
+                "sku": "DWL-D4ADE64E05E5",
+                "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 5–9 серверов, 12 мес., для организаций, ESD",
+                "price": 3800.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
                 "available": true,
                 "version": null,
-                "action": "renewal",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 5,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": null,
+                "unit_price": 3800.0,
+                "total": null,
+                "text": "от 3 800 ₽ за сервер в год (при покупке от 5)"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_01F461B2446E",
+                  "sku": "DWL-01F461B2446E",
+                  "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 5–9 устройств, 12 мес., для организаций, ESD",
+                  "price": 3800.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 5,
+                  "qty_max": 9,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_5209C9188FF9",
+                  "sku": "DWL-5209C9188FF9",
+                  "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 5–9 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 3420.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 5,
+                  "qty_max": 9,
+                  "pack": null,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_6828F1D91A08",
+                  "sku": "DWL-6828F1D91A08",
+                  "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 5–9 устройств, 12 мес., академическая, ESD",
+                  "price": 1520.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 5,
+                  "qty_max": 9,
+                  "pack": null,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_C277931FEAFF",
+                  "sku": "DWL-C277931FEAFF",
+                  "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 10–24 устройств, 12 мес., для организаций, ESD",
+                  "price": 3650.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 10,
+                  "qty_max": 24,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_92BA8FC439F6",
+                  "sku": "DWL-92BA8FC439F6",
+                  "name": "Dr.Web Enterprise Security Suite Комплексная защита, новая лицензия, 10–24 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 3280.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 10,
+                  "qty_max": 24,
+                  "pack": null,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 38,
+              "price_from": 830.0,
+              "score": {
+                "tier": 1,
+                "tier_label": "Подходит по условиям",
+                "score": 0.66168,
+                "parts": {
+                  "rel": 0.375,
+                  "pop": 0.19461,
+                  "margin": 0.09207,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска",
+                  "Диапазон от 5 до 9 мест"
+                ]
+              },
+              "position": 15
+            },
+            {
+              "card_id": "kaspersky_ksos",
+              "title": "Kaspersky Small Office Security",
+              "vendor": {
+                "id": "kaspersky",
+                "name": "Kaspersky"
+              },
+              "category": {
+                "id": "endpoint_security",
+                "title": "Антивирусы и защита рабочих мест"
+              },
+              "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_65302CDBB03A",
+                "sku": "KL-65302CDBB03A",
+                "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+                "price": 8500.0,
+                "price_on_request": false,
+                "delivery": "box",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
                 "model": "subscription",
                 "term_months": 12,
                 "metric": "device",
@@ -2698,26 +2930,129 @@
                 "qty_max": null,
                 "pack": 5,
                 "audience": "business"
-              }
-            ],
-            "variants_count": 60,
-            "price_from": 5950.0,
-            "score": {
-              "tier": 1,
-              "score": 0.5887,
-              "parts": {
-                "rel": 0.425,
-                "pop": 0.13383,
-                "margin": 0.02987,
-                "pers": 0.0
               },
-              "why": [
-                "Совпадает с условиями поиска"
-              ]
-            },
-            "position": 33
-          },
-          "alternatives": [],
+              "calc": {
+                "qty": null,
+                "unit_price": 8500.0,
+                "total": null,
+                "text": "от 8 500 ₽ за пакет на 5 мест в год"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_EC0160E7C3D8",
+                  "sku": "KL-EC0160E7C3D8",
+                  "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+                  "price": 8500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 5,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_39E099AE40B1",
+                  "sku": "KL-39E099AE40B1",
+                  "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
+                  "price": 15860.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 10,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_5D49447181C5",
+                  "sku": "KL-5D49447181C5",
+                  "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
+                  "price": 22800.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 15,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_EF4C1862F694",
+                  "sku": "KL-EF4C1862F694",
+                  "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
+                  "price": 29600.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 20,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_0C63CCEFCB2D",
+                  "sku": "KL-0C63CCEFCB2D",
+                  "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
+                  "price": 36200.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": null,
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": null,
+                  "qty_max": null,
+                  "pack": 25,
+                  "audience": "business"
+                }
+              ],
+              "variants_count": 60,
+              "price_from": 5950.0,
+              "score": {
+                "tier": 1,
+                "tier_label": "Подходит по условиям",
+                "score": 0.63975,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.16198,
+                  "margin": 0.05277,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска"
+                ]
+              },
+              "position": 21
+            }
+          ],
           "note": "Защита от шифровальщиков и фишинга"
         },
         {
@@ -2765,10 +3100,10 @@
               "audience": "business"
             },
             "calc": {
-              "qty": 1,
+              "qty": null,
               "unit_price": 350000.0,
-              "total": 350000.0,
-              "text": "1 × 350 000 ₽ = 350 000 ₽"
+              "total": null,
+              "text": "от 350 000 ₽ за сервер в год"
             },
             "variants": [
               {
@@ -2871,6 +3206,7 @@
             "price_from": 179800.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.75225,
               "parts": {
                 "rel": 0.425,
@@ -2886,168 +3222,6 @@
             "position": 2
           },
           "alternatives": [
-            {
-              "card_id": "contentcapture:invoices",
-              "title": "ContentCapture Модуль счетов и УПД",
-              "vendor": {
-                "id": "content_ai",
-                "name": "Content AI"
-              },
-              "category": {
-                "id": "ocr_capture",
-                "title": "Распознавание текста (OCR) и потоковый ввод (IDP)"
-              },
-              "summary": "Корпоративная российская платформа потокового ввода, классификации и интеллектуального извлечения данных из первичных документов (наследник ABBYY FlexiCapture).",
-              "badges": [
-                {
-                  "kind": "registry",
-                  "label": "В реестре ПО"
-                },
-                {
-                  "kind": "vat",
-                  "label": "Без НДС"
-                }
-              ],
-              "offer": {
-                "offer_id": "o_F60BD4D0D6FD",
-                "sku": "AX-F60BD4D0D6FD",
-                "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 1–9 серверов, 12 мес., для организаций, ESD",
-                "price": 3500000.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "server",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
-                "audience": "business"
-              },
-              "calc": {
-                "qty": 1,
-                "unit_price": 3500000.0,
-                "total": 3500000.0,
-                "text": "1 × 3 500 000 ₽ = 3 500 000 ₽"
-              },
-              "variants": [
-                {
-                  "offer_id": "o_327D17745CA8",
-                  "sku": "AX-327D17745CA8",
-                  "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 1–9 ед., 12 мес., для организаций, ESD",
-                  "price": 3500000.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": 1,
-                  "qty_max": 9,
-                  "pack": null,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_2DAD5B030875",
-                  "sku": "AX-2DAD5B030875",
-                  "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 1–9 ед., 12 мес., для госучреждений, ESD",
-                  "price": 3150000.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": 1,
-                  "qty_max": 9,
-                  "pack": null,
-                  "audience": "gov"
-                },
-                {
-                  "offer_id": "o_D028961FA7D7",
-                  "sku": "AX-D028961FA7D7",
-                  "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 10–24 ед., 12 мес., для организаций, ESD",
-                  "price": 3360000.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": 10,
-                  "qty_max": 24,
-                  "pack": null,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_952F1D9D8AAE",
-                  "sku": "AX-952F1D9D8AAE",
-                  "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 10–24 ед., 12 мес., для госучреждений, ESD",
-                  "price": 3024000.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": 10,
-                  "qty_max": 24,
-                  "pack": null,
-                  "audience": "gov"
-                },
-                {
-                  "offer_id": "o_023DB4E4EFC5",
-                  "sku": "AX-023DB4E4EFC5",
-                  "name": "ContentCapture Модуль счетов и УПД, новая лицензия, 25–49 ед., 12 мес., для организаций, ESD",
-                  "price": 3225600.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "other",
-                  "qty_min": 25,
-                  "qty_max": 49,
-                  "pack": null,
-                  "audience": "business"
-                }
-              ],
-              "variants_count": 51,
-              "price_from": 1797900.0,
-              "score": {
-                "tier": 1,
-                "score": 0.7069799999999999,
-                "parts": {
-                  "rel": 0.425,
-                  "pop": 0.16996,
-                  "margin": 0.11202,
-                  "pers": 0.0
-                },
-                "why": [
-                  "Совпадает с условиями поиска",
-                  "Диапазон от 1 до 9 мест"
-                ]
-              },
-              "position": 7
-            },
             {
               "card_id": "contentreader_pdf:corporate",
               "title": "КонтентРидер PDF Corporate",
@@ -3090,10 +3264,10 @@
                 "audience": "business"
               },
               "calc": {
-                "qty": 1,
+                "qty": null,
                 "unit_price": 35000.0,
-                "total": 35000.0,
-                "text": "1 × 35 000 ₽ = 35 000 ₽"
+                "total": null,
+                "text": "от 35 000 ₽ за устройство"
               },
               "variants": [
                 {
@@ -3196,9 +3370,10 @@
               "price_from": 8060.0,
               "score": {
                 "tier": 1,
-                "score": 0.68185,
+                "tier_label": "Подходит по условиям",
+                "score": 0.66435,
                 "parts": {
-                  "rel": 0.425,
+                  "rel": 0.4075,
                   "pop": 0.19315,
                   "margin": 0.0637,
                   "pers": 0.0
@@ -3208,13 +3383,176 @@
                   "Диапазон от 1 до 4 мест"
                 ]
               },
-              "position": 10
+              "position": 14
+            },
+            {
+              "card_id": "contentreader_pdf:standard",
+              "title": "КонтентРидер PDF Standard",
+              "vendor": {
+                "id": "content_ai",
+                "name": "Content AI"
+              },
+              "category": {
+                "id": "pdf_editors",
+                "title": "Редакторы и конвертеры PDF"
+              },
+              "summary": "Российский редактор PDF и система оптического распознавания текста (OCR) от Content AI — прямой технологический преемник ABBYY FineReader PDF в России.",
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре ПО"
+                },
+                {
+                  "kind": "vat",
+                  "label": "Без НДС"
+                }
+              ],
+              "offer": {
+                "offer_id": "o_0AEB8E38212E",
+                "sku": "AX-0AEB8E38212E",
+                "name": "КонтентРидер PDF 15 Standard, новая лицензия, 1–4 одновременных подключений, 12 мес., для организаций, ESD",
+                "price": 8500.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "15",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "concurrent",
+                "qty_min": 1,
+                "qty_max": 4,
+                "pack": null,
+                "audience": "business"
+              },
+              "calc": {
+                "qty": null,
+                "unit_price": 8500.0,
+                "total": null,
+                "text": "от 8 500 ₽ за лицензию в год"
+              },
+              "variants": [
+                {
+                  "offer_id": "o_6B3B007E6041",
+                  "sku": "AX-6B3B007E6041",
+                  "name": "КонтентРидер PDF 15 Standard, новая лицензия, 1–4 устройств, 12 мес., для организаций, ESD",
+                  "price": 8500.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "15",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 1,
+                  "qty_max": 4,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_0907AF2D871A",
+                  "sku": "AX-0907AF2D871A",
+                  "name": "КонтентРидер PDF 15 Standard, новая лицензия, 1–4 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 7650.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "15",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 1,
+                  "qty_max": 4,
+                  "pack": null,
+                  "audience": "gov"
+                },
+                {
+                  "offer_id": "o_D11EABE67D6F",
+                  "sku": "AX-D11EABE67D6F",
+                  "name": "КонтентРидер PDF 15 Standard, новая лицензия, 1–4 устройств, 12 мес., академическая, ESD",
+                  "price": 3400.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": false,
+                  "version": "15",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 1,
+                  "qty_max": 4,
+                  "pack": null,
+                  "audience": "edu"
+                },
+                {
+                  "offer_id": "o_AF045C49A486",
+                  "sku": "AX-AF045C49A486",
+                  "name": "КонтентРидер PDF 15 Standard, новая лицензия, 5–10 устройств, 12 мес., для организаций, ESD",
+                  "price": 8160.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "15",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 5,
+                  "qty_max": 10,
+                  "pack": null,
+                  "audience": "business"
+                },
+                {
+                  "offer_id": "o_1BBEA98A59FC",
+                  "sku": "AX-1BBEA98A59FC",
+                  "name": "КонтентРидер PDF 15 Standard, новая лицензия, 5–10 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 7340.0,
+                  "price_on_request": false,
+                  "delivery": "esd",
+                  "vat": 0,
+                  "available": true,
+                  "version": "15",
+                  "action": "new",
+                  "model": "subscription",
+                  "term_months": 12,
+                  "metric": "device",
+                  "qty_min": 5,
+                  "qty_max": 10,
+                  "pack": null,
+                  "audience": "gov"
+                }
+              ],
+              "variants_count": 59,
+              "price_from": 1880.0,
+              "score": {
+                "tier": 1,
+                "tier_label": "Подходит по условиям",
+                "score": 0.63733,
+                "parts": {
+                  "rel": 0.425,
+                  "pop": 0.16301,
+                  "margin": 0.04932,
+                  "pers": 0.0
+                },
+                "why": [
+                  "Совпадает с условиями поиска",
+                  "Диапазон от 1 до 4 мест"
+                ]
+              },
+              "position": 23
             }
           ],
           "note": "Автоматический ввод первичных документов"
         }
       ],
-      "total": 387880.0
+      "total": null
     },
     {
       "type": "crosssell",
@@ -3222,17 +3560,17 @@
       "items": [
         {
           "card": {
-            "card_id": "kontur_focus:api",
-            "title": "Контур.Фокус API",
+            "card_id": "cyber_backup:standard",
+            "title": "Кибер Бэкап Стандартный",
             "vendor": {
-              "id": "skb_kontur",
-              "name": "SKB Kontur"
+              "id": "cyberprotect",
+              "name": "Cyberprotect"
             },
             "category": {
-              "id": "counterparty_legal_info",
-              "title": "Проверка контрагентов и справочно-правовые системы"
+              "id": "backup_recovery",
+              "title": "Системы резервного копирования"
             },
-            "summary": "Сервис проверки благонадёжности контрагентов (ЕГРЮЛ, арбитражные дела, финансы, аффилированность, санкционные списки).",
+            "summary": "Ведущая российская система резервного копирования и восстановления физических, виртуальных сред (zVirt, Брест, VMware), СУБД (Postgres Pro, MS SQL) и рабочих станций.",
             "badges": [
               {
                 "kind": "registry",
@@ -3244,19 +3582,19 @@
               }
             ],
             "offer": {
-              "offer_id": "o_6043D1ED6DBF",
-              "sku": "AX-6043D1ED6DBF",
-              "name": "Контур.Фокус API, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
-              "price": 150000.0,
+              "offer_id": "o_FECAA714F98C",
+              "sku": "AX-FECAA714F98C",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 виртуальных машин, 12 мес., для организаций, ESD",
+              "price": 28000.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "17",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
+              "metric": "vm",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
@@ -3264,116 +3602,117 @@
             },
             "calc": {
               "qty": null,
-              "unit_price": 150000.0,
+              "unit_price": 28000.0,
               "total": null,
-              "text": "от 150 000 ₽ за пользователя в год"
+              "text": "от 28 000 ₽ за лицензию в год"
             },
             "variants": [
               {
-                "offer_id": "o_3029F26FB68F",
-                "sku": "AX-3029F26FB68F",
-                "name": "Контур.Фокус API, новая лицензия, 1 пользователей, 12 мес., для госучреждений, SERVICE",
-                "price": 135000.0,
+                "offer_id": "o_FD3A35C16A01",
+                "sku": "AX-FD3A35C16A01",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+                "price": 28000.0,
                 "price_on_request": false,
-                "delivery": "service",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": null,
+                "version": "17",
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "user",
-                "qty_min": null,
-                "qty_max": null,
-                "pack": 1,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_1F8E2EE1D2FF",
-                "sku": "AX-1F8E2EE1D2FF",
-                "name": "Контур.Фокус API, продление, 1 пользователей, 12 мес., для организаций, SERVICE",
-                "price": 105000.0,
-                "price_on_request": false,
-                "delivery": "service",
-                "vat": 0,
-                "available": false,
-                "version": null,
-                "action": "renewal",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
+                "metric": "server",
                 "qty_min": null,
                 "qty_max": null,
                 "pack": 1,
                 "audience": "business"
               },
               {
-                "offer_id": "o_4FEEE29CDCD5",
-                "sku": "AX-4FEEE29CDCD5",
-                "name": "Контур.Фокус API, продление, 1 пользователей, 12 мес., для госучреждений, SERVICE",
-                "price": 94500.0,
+                "offer_id": "o_2220009C8E74",
+                "sku": "AX-2220009C8E74",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+                "price": 25200.0,
                 "price_on_request": false,
-                "delivery": "service",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": null,
-                "action": "renewal",
+                "version": "17",
+                "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "user",
+                "metric": "server",
                 "qty_min": null,
                 "qty_max": null,
                 "pack": 1,
                 "audience": "gov"
               },
               {
-                "offer_id": "o_89DBFDD1ECCF",
-                "sku": "AX-89DBFDD1ECCF",
-                "name": "Контур.Фокус API, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
-                "price": 150000.0,
+                "offer_id": "o_663B44ADB82C",
+                "sku": "AX-663B44ADB82C",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+                "price": 11200.0,
                 "price_on_request": false,
-                "delivery": "service",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": null,
+                "version": "17",
                 "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "company",
+                "metric": "server",
                 "qty_min": null,
                 "qty_max": null,
                 "pack": 1,
+                "audience": "edu"
+              },
+              {
+                "offer_id": "o_A2C2A2612324",
+                "sku": "AX-A2C2A2612324",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
+                "price": 127100.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "17",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
                 "audience": "business"
               },
               {
-                "offer_id": "o_90AA4749704E",
-                "sku": "AX-90AA4749704E",
-                "name": "Контур.Фокус API, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
-                "price": 94500.0,
+                "offer_id": "o_1A9E2E3D39C3",
+                "sku": "AX-1A9E2E3D39C3",
+                "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
+                "price": 114400.0,
                 "price_on_request": false,
-                "delivery": "service",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
-                "version": null,
-                "action": "renewal",
+                "version": "17",
+                "action": "new",
                 "model": "subscription",
                 "term_months": 12,
-                "metric": "company",
+                "metric": "server",
                 "qty_min": null,
                 "qty_max": null,
-                "pack": 1,
+                "pack": 5,
                 "audience": "gov"
               }
             ],
-            "variants_count": 16,
-            "price_from": 94500.0,
+            "variants_count": 40,
+            "price_from": 7840.0,
             "score": {
               "tier": 1,
-              "score": 0.70208,
+              "tier_label": "Подходит по условиям",
+              "score": 0.73812,
               "parts": {
                 "rel": 0.4,
-                "pop": 0.15833,
-                "margin": 0.14375,
+                "pop": 0.1901,
+                "margin": 0.14802,
                 "pers": 0.0
               },
               "why": [
@@ -3382,21 +3721,21 @@
             },
             "position": 1
           },
-          "reason": "Проверка благонадежности контрагентов перед заключением сделок и обменом УПД"
+          "reason": "Резервные копии с защитой от шифровальщиков гарантируют восстановление при инциденте"
         },
         {
           "card": {
-            "card_id": "cryptopro_dss",
-            "title": "КриптоПро DSS",
+            "card_id": "kaspersky_ksmg",
+            "title": "Kaspersky Secure Mail Gateway",
             "vendor": {
-              "id": "cryptopro",
-              "name": "CryptoPro"
+              "id": "kaspersky",
+              "name": "Kaspersky"
             },
             "category": {
-              "id": "e_signature",
-              "title": "Электронная подпись и инструменты ЭП"
+              "id": "mail_security",
+              "title": "Защита почты и антиспам"
             },
-            "summary": "Сервер облачной электронной подписи (СКЗИ ФСБ) для подписания документов со смартфонов и веб-приложений без USB-токена.",
+            "summary": "Защищённый почтовый шлюз (SEG) с антиспамом, антифишингом и антивирусной проверкой корпоративной переписки.",
             "badges": [
               {
                 "kind": "registry",
@@ -3408,12 +3747,178 @@
               }
             ],
             "offer": {
-              "offer_id": "o_E586C7F43422",
-              "sku": "AX-E586C7F43422",
-              "name": "КриптоПро DSS, новая лицензия, 100–249 пользователей, 12 мес., для организаций, PAPER",
-              "price": 1528800.0,
+              "offer_id": "o_6A5AA8BC884B",
+              "sku": "KL-6A5AA8BC884B",
+              "name": "Kaspersky Secure Mail Gateway Russian Edition. 500–999 Mailbox 1 year New License BUSINESS",
+              "price": 840.0,
               "price_on_request": false,
-              "delivery": "paper",
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "mailbox",
+              "qty_min": 500,
+              "qty_max": 999,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 840.0,
+              "total": null,
+              "text": "от 840 ₽ за ящик в год (при покупке от 500)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_5845CFD30A62",
+                "sku": "KL-5845CFD30A62",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License BUSINESS",
+                "price": 950.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_79D947D69F24",
+                "sku": "KL-79D947D69F24",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 50–99 Mailbox 1 year New License GOV",
+                "price": 860.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_DF23FFE0E93E",
+                "sku": "KL-DF23FFE0E93E",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License BUSINESS",
+                "price": 910.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_CD5073B5D953",
+                "sku": "KL-CD5073B5D953",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 100–249 Mailbox 1 year New License GOV",
+                "price": 820.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_89503D4C0A85",
+                "sku": "KL-89503D4C0A85",
+                "name": "Kaspersky Secure Mail Gateway Russian Edition. 250–499 Mailbox 1 year New License BUSINESS",
+                "price": 880.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": false,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "mailbox",
+                "qty_min": 250,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 72,
+            "price_from": 510.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.7208300000000001,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.18333,
+                "margin": 0.1375,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 500 до 999 мест"
+              ]
+            },
+            "position": 2
+          },
+          "reason": "Фильтрация вредоносных вложений и фишинга ещё на уровне почтового шлюза"
+        },
+        {
+          "card": {
+            "card_id": "kaspersky_asap:cloud",
+            "title": "Kaspersky ASAP Cloud",
+            "vendor": {
+              "id": "kaspersky",
+              "name": "Kaspersky"
+            },
+            "category": {
+              "id": "security_awareness",
+              "title": "Обучение сотрудников кибербезопасности"
+            },
+            "summary": "Платформа автоматического обучения сотрудников кибергигиене от «Лаборатории Касперского» с учебными фишинговыми атаками и контролем прогресса.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_FBA70992CE36",
+              "sku": "KL-FBA70992CE36",
+              "name": "Kaspersky ASAP Cloud Russian Edition. 50–99 User 1 year New License BUSINESS",
+              "price": 430.0,
+              "price_on_request": false,
+              "delivery": "esd",
               "vat": 0,
               "available": true,
               "version": null,
@@ -3421,63 +3926,25 @@
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": 100,
-              "qty_max": 249,
+              "qty_min": 50,
+              "qty_max": 99,
               "pack": null,
               "audience": "business"
             },
             "calc": {
               "qty": null,
-              "unit_price": 1528800.0,
+              "unit_price": 430.0,
               "total": null,
-              "text": "от 1 528 800 ₽ за пользователя в год (при покупке от 100)"
+              "text": "от 430 ₽ за пользователя в год (при покупке от 50)"
             },
             "variants": [
               {
-                "offer_id": "o_B0D4F3E43F83",
-                "sku": "AX-B0D4F3E43F83",
-                "name": "КриптоПро DSS, новая лицензия, 1–9 пользователей, 12 мес., для организаций, PAPER",
-                "price": 1800000.0,
+                "offer_id": "o_BB8D1BE720FE",
+                "sku": "KL-BB8D1BE720FE",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 10–49 User 1 year New License BUSINESS",
+                "price": 450.0,
                 "price_on_request": false,
-                "delivery": "paper",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_497C25BAB2CB",
-                "sku": "AX-497C25BAB2CB",
-                "name": "КриптоПро DSS, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, PAPER",
-                "price": 1620000.0,
-                "price_on_request": false,
-                "delivery": "paper",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": 1,
-                "qty_max": 9,
-                "pack": null,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_535421D7115B",
-                "sku": "AX-535421D7115B",
-                "name": "КриптоПро DSS, новая лицензия, 10–24 пользователей, 12 мес., для организаций, PAPER",
-                "price": 1728000.0,
-                "price_on_request": false,
-                "delivery": "paper",
+                "delivery": "esd",
                 "vat": 0,
                 "available": true,
                 "version": null,
@@ -3486,68 +3953,273 @@
                 "term_months": 12,
                 "metric": "user",
                 "qty_min": 10,
-                "qty_max": 24,
-                "pack": null,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_FFA7A4A47D70",
-                "sku": "AX-FFA7A4A47D70",
-                "name": "КриптоПро DSS, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, PAPER",
-                "price": 1555200.0,
-                "price_on_request": false,
-                "delivery": "paper",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": 10,
-                "qty_max": 24,
-                "pack": null,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_3B11FC355451",
-                "sku": "AX-3B11FC355451",
-                "name": "КриптоПро DSS, новая лицензия, 25–49 пользователей, 12 мес., для организаций, PAPER",
-                "price": 1658900.0,
-                "price_on_request": false,
-                "delivery": "paper",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "user",
-                "qty_min": 25,
                 "qty_max": 49,
                 "pack": null,
                 "audience": "business"
+              },
+              {
+                "offer_id": "o_6894831B22D6",
+                "sku": "KL-6894831B22D6",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 10–49 User 1 year New License GOV",
+                "price": 400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 10,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_230D74B0E18F",
+                "sku": "KL-230D74B0E18F",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 50–99 User 1 year New License GOV",
+                "price": 390.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_0262FB296933",
+                "sku": "KL-0262FB296933",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 100–249 User 1 year New License BUSINESS",
+                "price": 410.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_A38CE25BCB28",
+                "sku": "KL-A38CE25BCB28",
+                "name": "Kaspersky ASAP Cloud Russian Edition. 100–249 User 1 year New License GOV",
+                "price": 370.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 249,
+                "pack": null,
+                "audience": "gov"
               }
             ],
-            "variants_count": 82,
-            "price_from": 716600.0,
+            "variants_count": 46,
+            "price_from": 240.0,
             "score": {
               "tier": 1,
-              "score": 0.5464100000000001,
+              "tier_label": "Подходит по условиям",
+              "score": 0.6995100000000001,
               "parts": {
                 "rel": 0.4,
-                "pop": 0.10719,
-                "margin": 0.03922,
+                "pop": 0.17921,
+                "margin": 0.1203,
                 "pers": 0.0
               },
               "why": [
                 "Совпадает с условиями поиска",
-                "Диапазон от 100 до 249 мест"
+                "Диапазон от 50 до 99 мест"
               ]
             },
-            "position": 2
+            "position": 3
           },
-          "reason": "Подписание произвольных файлов и пакетных документов вне веб-интерфейса оператора"
+          "reason": "Обучение сотрудников распознаванию фишинга снижает число инцидентов на рабочих местах"
+        },
+        {
+          "card": {
+            "card_id": "phishman_awareness:onprem",
+            "title": "Phishman Enterprise",
+            "vendor": {
+              "id": "phishman",
+              "name": "Phishman"
+            },
+            "category": {
+              "id": "security_awareness",
+              "title": "Обучение сотрудников кибербезопасности"
+            },
+            "summary": "Российская платформа повышения осведомлённости в ИБ: симуляции фишинга (email/мессенджеры), интерактивные курсы и аналитика рисков сотрудников.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_5DD75A839318",
+              "sku": "AX-5DD75A839318",
+              "name": "Phishman Enterprise, новая лицензия, 50–99 пользователей, 12 мес., для организаций, ESD",
+              "price": 1800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 1800.0,
+              "total": null,
+              "text": "от 1 800 ₽ за пользователя в год (при покупке от 50)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_502040948F80",
+                "sku": "AX-502040948F80",
+                "name": "Phishman Enterprise, новая лицензия, 50–99 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1620.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 50,
+                "qty_max": 99,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_856860A8C18C",
+                "sku": "AX-856860A8C18C",
+                "name": "Phishman Enterprise, новая лицензия, 100–499 пользователей, 12 мес., для организаций, ESD",
+                "price": 1730.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_300BB4CEF23E",
+                "sku": "AX-300BB4CEF23E",
+                "name": "Phishman Enterprise, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1560.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 100,
+                "qty_max": 499,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_D77C3D22A7CC",
+                "sku": "AX-D77C3D22A7CC",
+                "name": "Phishman Enterprise, новая лицензия, 500–999 пользователей, 12 мес., для организаций, ESD",
+                "price": 1660.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": false,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 500,
+                "qty_max": 999,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_FE39110FF6A7",
+                "sku": "AX-FE39110FF6A7",
+                "name": "Phishman Enterprise, новая лицензия, 500–999 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 1490.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "user",
+                "qty_min": 500,
+                "qty_max": 999,
+                "pack": null,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 31,
+            "price_from": 1000.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.64109,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.10891,
+                "margin": 0.13218,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 50 до 99 мест"
+              ]
+            },
+            "position": 4
+          },
+          "reason": "Обучение сотрудников распознаванию фишинга снижает число инцидентов на рабочих местах"
         }
       ]
     }
@@ -3563,18 +4235,28 @@
           "count": 10
         },
         {
+          "id": "kaspersky",
+          "label": "Kaspersky",
+          "count": 7
+        },
+        {
+          "id": "drweb",
+          "label": "Dr.Web",
+          "count": 5
+        },
+        {
           "id": "skb_kontur",
           "label": "SKB Kontur",
           "count": 5
         },
         {
-          "id": "tensor_sbis",
-          "label": "Tensor (Saby / SBIS)",
+          "id": "content_ai",
+          "label": "Content AI",
           "count": 4
         },
         {
-          "id": "content_ai",
-          "label": "Content AI",
+          "id": "tensor_sbis",
+          "label": "Tensor (Saby / SBIS)",
           "count": 4
         },
         {
@@ -3588,8 +4270,18 @@
           "count": 3
         },
         {
+          "id": "myoffice",
+          "label": "MyOffice",
+          "count": 3
+        },
+        {
           "id": "trusted_cryptoarm",
           "label": "Digital Technologies",
+          "count": 2
+        },
+        {
+          "id": "aktiv_rutoken",
+          "label": "Aktiv",
           "count": 2
         },
         {
@@ -3598,8 +4290,8 @@
           "count": 2
         },
         {
-          "id": "aktiv_rutoken",
-          "label": "Aktiv",
+          "id": "microsoft",
+          "label": "Microsoft",
           "count": 2
         },
         {
@@ -3618,38 +4310,23 @@
           "count": 2
         },
         {
-          "id": "alteroffice",
-          "label": "Almi Partner",
-          "count": 2
-        },
-        {
           "id": "taxcom",
           "label": "Taxcom",
           "count": 2
         },
         {
-          "id": "microsoft",
-          "label": "Microsoft",
+          "id": "pro32",
+          "label": "PRO32",
           "count": 2
         },
         {
-          "id": "myoffice",
-          "label": "MyOffice",
-          "count": 1
-        },
-        {
-          "id": "kaspersky",
-          "label": "Kaspersky",
-          "count": 1
+          "id": "alteroffice",
+          "label": "Almi Partner",
+          "count": 2
         },
         {
           "id": "esmart",
           "label": "ESMART",
-          "count": 1
-        },
-        {
-          "id": "drweb",
-          "label": "Dr.Web",
           "count": 1
         }
       ]
@@ -3664,18 +4341,18 @@
           "count": 15
         },
         {
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 14
+        },
+        {
           "id": "office_suite",
           "label": "Офисные пакеты",
-          "count": 10
+          "count": 12
         },
         {
           "id": "ocr_capture",
           "label": "Распознавание текста (OCR) и потоковый ввод (IDP)",
-          "count": 6
-        },
-        {
-          "id": "tokens_pki",
-          "label": "USB-токены, смарт-карты и PKI",
           "count": 6
         },
         {
@@ -3684,13 +4361,13 @@
           "count": 6
         },
         {
-          "id": "e_signature",
-          "label": "Электронная подпись и инструменты ЭП",
-          "count": 2
+          "id": "tokens_pki",
+          "label": "USB-токены, смарт-карты и PKI",
+          "count": 6
         },
         {
-          "id": "crypto_skzi",
-          "label": "СКЗИ и криптографическая защита",
+          "id": "e_signature",
+          "label": "Электронная подпись и инструменты ЭП",
           "count": 2
         },
         {
@@ -3699,18 +4376,20 @@
           "count": 2
         },
         {
-          "id": "endpoint_security",
-          "label": "Антивирусы и защита рабочих мест",
+          "id": "crypto_skzi",
+          "label": "СКЗИ и криптографическая защита",
           "count": 2
         }
       ]
     }
   ],
   "related_queries": [
-    "СБИС Saby ЭДО",
-    "ContentCapture Standard",
-    "КриптоАРМ ГОСТ Стандарт",
-    "Контур.Экстерн Оптимальный плюс"
+    "Dr.Web Enterprise Security Suite продление",
+    "Dr.Web Enterprise Security Suite Защита рабочих станций на 12 мес",
+    "Аналог Dr.Web Enterprise Security Suite",
+    "Купить Кибер Бэкап",
+    "Антивирусы и защита рабочих мест из реестра",
+    "Антивирусы и защита рабочих мест"
   ],
   "notes": [],
   "trace": [
@@ -3726,7 +4405,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.1,
+      "ms": 0.3,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -3734,16 +4413,19 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.05,
+      "ms": 0.16,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.22,
-      "summary": "комплект · несколько вариантов, бухгалтера, бухгалтера",
+      "ms": 0.25,
+      "summary": "Роль: бухгалтер",
       "detail": {
         "residual": "по для",
         "synonyms": [],
@@ -3762,10 +4444,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.17,
+      "ms": 0.1,
       "summary": "Рабочее место",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "role_kit",
+        "rejected": [],
         "calls": []
       }
     },
@@ -3781,7 +4467,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.15,
+      "ms": 0.18,
       "summary": "Подходящих карточек до проверки лицензий · 70",
       "detail": {
         "sources": [
@@ -3796,7 +4482,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 5.75,
+      "ms": 6.04,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -3805,16 +4491,18 @@
       "title": "Выбор лицензии",
       "status": "ok",
       "ms": 0.01,
-      "summary": "Подобрано вариантов для карточек · 51. Запрошено мест · 1",
+      "summary": "Подобрано вариантов для карточек · 65",
       "detail": {}
     },
     {
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.04,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -3822,14 +4510,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 4.5,
+      "ms": 10.36,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -3847,15 +4535,15 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 1.16,
-      "summary": "Карточек в выдаче · 51",
+      "ms": 2.92,
+      "summary": "Карточек в выдаче · 65",
       "detail": {}
     },
     {
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.43,
+      "ms": 2.07,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -3865,14 +4553,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 17.01
+    "total": 22.95
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

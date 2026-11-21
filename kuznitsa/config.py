@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+MODE_TITLES = dict(naive="Обычный поиск по словам",fast="Быстрый поиск",smart="Умный поиск")
 WEIGHTS = dict(rel=.50, pop=.20, margin=.15, pers=.15)
 
 

@@ -1,5 +1,5 @@
 {
-  "search_id": "s_90fab7caca5b4a7aa2f99aa3bf13673c",
+  "search_id": "s_7d641f1e9aaa497f90016a2a3ca3a98f",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "compliance",
     "intent_title": "Требования к ПО",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -99,7 +100,7 @@
     {
       "type": "products",
       "title": "Подходящие лицензии",
-      "total": 7,
+      "total": 10,
       "items": [
         {
           "card_id": "myoffice_professional:prof",
@@ -249,6 +250,7 @@
           "price_from": 2480.0,
           "score": {
             "tier": 2,
+            "tier_label": "Близкий вариант",
             "score": 0.52075,
             "parts": {
               "rel": 0.275,
@@ -411,6 +413,7 @@
           "price_from": 700.0,
           "score": {
             "tier": 2,
+            "tier_label": "Близкий вариант",
             "score": 0.5203,
             "parts": {
               "rel": 0.275,
@@ -425,323 +428,325 @@
           "position": 2
         },
         {
-          "card_id": "yandex_360:extended",
-          "title": "Яндекс 360 для бизнеса Расширенный",
+          "card_id": "myoffice_standard:standard_2",
+          "title": "МойОфис Стандартный Для бизнеса",
           "vendor": {
-            "id": "yandex",
-            "name": "Yandex"
+            "id": "myoffice",
+            "name": "MyOffice"
           },
           "category": {
             "id": "office_suite",
             "title": "Офисные пакеты"
           },
-          "summary": "Облачный виртуальный офис для компаний: корпоративная Почта на своём домене, Диск, онлайн-Документы, Телемост (ВКС), Мессенджер, Календарь и Вики.",
+          "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
           "badges": [
             {
-              "kind": "registry",
-              "label": "В реестре ПО"
+              "kind": "promo",
+              "label": "Специальное предложение"
             },
             {
-              "kind": "vat",
-              "label": "Без НДС"
+              "kind": "registry",
+              "label": "В реестре по данным семейства"
             }
           ],
           "offer": {
-            "offer_id": "o_43E1D429789A",
-            "sku": "AX-43E1D429789A",
-            "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-            "price": 14500.0,
+            "offer_id": "o_BC1135FCB9EA",
+            "sku": "AX-BC1135FCB9EA",
+            "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, 12 мес., для организаций, ESD",
+            "price": 2800.0,
             "price_on_request": false,
             "delivery": "esd",
-            "vat": 0,
+            "vat": 22,
             "available": true,
-            "version": null,
+            "version": "3",
             "action": "new",
             "model": "subscription",
             "term_months": 12,
-            "metric": "user",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
+            "metric": "device",
+            "qty_min": 1,
+            "qty_max": 24,
+            "pack": null,
             "audience": "business"
           },
           "calc": {
             "qty": null,
-            "unit_price": 14500.0,
+            "unit_price": 2800.0,
             "total": null,
-            "text": "от 14 500 ₽ за пользователя в год"
+            "text": "от 2 800 ₽ за устройство в год"
           },
           "variants": [
             {
-              "offer_id": "o_BE503A59B20E",
-              "sku": "AX-BE503A59B20E",
-              "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
-              "price": 5800.0,
+              "offer_id": "o_2832705383F6",
+              "sku": "AX-2832705383F6",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
+              "price": 2800.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_FC885589E757",
-              "sku": "AX-FC885589E757",
-              "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
-              "price": 126300.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 10,
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_EC629B07B1F4",
-              "sku": "AX-EC629B07B1F4",
-              "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
-              "price": 50500.0,
+              "offer_id": "o_A99A7C74895C",
+              "sku": "AX-A99A7C74895C",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2520.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
-              "available": false,
-              "version": null,
+              "vat": 22,
+              "available": true,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 10,
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_92BDB1F04154",
+              "sku": "AX-92BDB1F04154",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
+              "price": 1120.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "3",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1,
+              "qty_max": 24,
+              "pack": null,
               "audience": "edu"
             },
             {
-              "offer_id": "o_E0C00B8F1F81",
-              "sku": "AX-E0C00B8F1F81",
-              "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
-              "price": 573300.0,
+              "offer_id": "o_AEBA211CB143",
+              "sku": "AX-AEBA211CB143",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
+              "price": 2690.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 50,
+              "qty_min": 25,
+              "qty_max": 99,
+              "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_A9D8BEEABEF8",
-              "sku": "AX-A9D8BEEABEF8",
-              "name": "Яндекс 360 для бизнеса Расширенный, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
-              "price": 229300.0,
+              "offer_id": "o_4653A93C9BA2",
+              "sku": "AX-4653A93C9BA2",
+              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2420.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 50,
-              "audience": "edu"
+              "qty_min": 25,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "gov"
             }
           ],
-          "variants_count": 22,
-          "price_from": 4060.0,
+          "variants_count": 64,
+          "price_from": 540.0,
           "score": {
             "tier": 2,
-            "score": 0.50643,
+            "tier_label": "Близкий вариант",
+            "score": 0.4941,
             "parts": {
-              "rel": 0.275,
-              "pop": 0.18881,
-              "margin": 0.04262,
+              "rel": 0.28717,
+              "pop": 0.19284,
+              "margin": 0.01409,
               "pers": 0.0
             },
             "why": [
-              "Совпадает с условиями поиска"
+              "Совпадает с условиями поиска",
+              "Включение в реестр указано в базе знаний для всего семейства",
+              "Диапазон от 1 до 24 мест"
             ]
           },
           "position": 3
         },
         {
-          "card_id": "yandex_360:optimal",
-          "title": "Яндекс 360 для бизнеса Оптимальный",
+          "card_id": "r7_office:desktop",
+          "title": "Р7-Офис Профессиональный",
           "vendor": {
-            "id": "yandex",
-            "name": "Yandex"
+            "id": "r7_office",
+            "name": "R7-Office"
           },
           "category": {
             "id": "office_suite",
             "title": "Офисные пакеты"
           },
-          "summary": "Облачный виртуальный офис для компаний: корпоративная Почта на своём домене, Диск, онлайн-Документы, Телемост (ВКС), Мессенджер, Календарь и Вики.",
+          "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
           "badges": [
             {
               "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
+              "label": "В реестре по данным семейства"
             }
           ],
           "offer": {
-            "offer_id": "o_7C943DBEACA1",
-            "sku": "AX-7C943DBEACA1",
-            "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-            "price": 6480.0,
+            "offer_id": "o_4A0E1E2FAE85",
+            "sku": "AX-4A0E1E2FAE85",
+            "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
+            "price": 2500.0,
             "price_on_request": false,
             "delivery": "esd",
-            "vat": 0,
+            "vat": 22,
             "available": true,
             "version": null,
             "action": "new",
             "model": "subscription",
             "term_months": 12,
             "metric": "user",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
+            "qty_min": 1,
+            "qty_max": 9,
+            "pack": null,
             "audience": "business"
           },
           "calc": {
             "qty": null,
-            "unit_price": 6480.0,
+            "unit_price": 2500.0,
             "total": null,
-            "text": "от 6 480 ₽ за пользователя в год"
+            "text": "от 2 500 ₽ за пользователя в год"
           },
           "variants": [
             {
-              "offer_id": "o_E043B6DA713E",
-              "sku": "AX-E043B6DA713E",
-              "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, 1 пользователей, 12 мес., академическая, ESD",
-              "price": 2590.0,
+              "offer_id": "o_932A19C12FCC",
+              "sku": "AX-932A19C12FCC",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2250.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
               "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
+              "qty_min": 1,
+              "qty_max": 9,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_15FA7ABF5B73",
+              "sku": "AX-15FA7ABF5B73",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
+              "price": 1000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "user",
+              "qty_min": 1,
+              "qty_max": 9,
+              "pack": null,
               "audience": "edu"
             },
             {
-              "offer_id": "o_7C76F7D63BB4",
-              "sku": "AX-7C76F7D63BB4",
-              "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 10 пользователей, 12 мес., для организаций, ESD",
-              "price": 56500.0,
+              "offer_id": "o_8AFA99E41795",
+              "sku": "AX-8AFA99E41795",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
+              "price": 2400.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
               "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 10,
+              "qty_min": 10,
+              "qty_max": 49,
+              "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_8DC753C3F6C2",
-              "sku": "AX-8DC753C3F6C2",
-              "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 10 пользователей, 12 мес., академическая, ESD",
-              "price": 22600.0,
+              "offer_id": "o_E1ABA3A73D92",
+              "sku": "AX-E1ABA3A73D92",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2160.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
               "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 10,
-              "audience": "edu"
+              "qty_min": 10,
+              "qty_max": 49,
+              "pack": null,
+              "audience": "gov"
             },
             {
-              "offer_id": "o_31534B589473",
-              "sku": "AX-31534B589473",
-              "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 50 пользователей, 12 мес., для организаций, ESD",
-              "price": 256400.0,
+              "offer_id": "o_748C10C632F1",
+              "sku": "AX-748C10C632F1",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
+              "price": 960.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
               "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
               "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 50,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_4A0F70F02EBB",
-              "sku": "AX-4A0F70F02EBB",
-              "name": "Яндекс 360 для бизнеса Оптимальный, новая лицензия, пакет на 50 пользователей, 12 мес., академическая, ESD",
-              "price": 102600.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 50,
+              "qty_min": 10,
+              "qty_max": 49,
+              "pack": null,
               "audience": "edu"
             }
           ],
-          "variants_count": 22,
-          "price_from": 1560.0,
+          "variants_count": 59,
+          "price_from": 590.0,
           "score": {
             "tier": 2,
-            "score": 0.49961,
+            "tier_label": "Близкий вариант",
+            "score": 0.48592,
             "parts": {
-              "rel": 0.275,
-              "pop": 0.09575,
-              "margin": 0.12886,
+              "rel": 0.2792,
+              "pop": 0.17987,
+              "margin": 0.02685,
               "pers": 0.0
             },
             "why": [
-              "Совпадает с условиями поиска"
+              "Совпадает с условиями поиска",
+              "Включение в реестр указано в базе знаний для всего семейства",
+              "Диапазон от 1 до 9 мест"
             ]
           },
           "position": 4
@@ -755,13 +760,18 @@
       "title": "Вендор",
       "values": [
         {
+          "id": "myoffice",
+          "label": "MyOffice",
+          "count": 3
+        },
+        {
           "id": "yandex",
           "label": "Yandex",
           "count": 3
         },
         {
-          "id": "myoffice",
-          "label": "MyOffice",
+          "id": "r7_office",
+          "label": "R7-Office",
           "count": 2
         },
         {
@@ -778,16 +788,17 @@
         {
           "id": "office_suite",
           "label": "Офисные пакеты",
-          "count": 7
+          "count": 10
         }
       ]
     }
   ],
   "related_queries": [
-    "МойОфис Профессиональный Корпоративная",
-    "Яндекс 360 для бизнеса Базовый",
-    "Яндекс 360 для бизнеса Расширенный",
-    "Яндекс 360 для бизнеса Оптимальный"
+    "МойОфис Профессиональный продление",
+    "Аналог МойОфис Профессиональный",
+    "Офисные пакеты из реестра",
+    "Офисные пакеты на 100 пользователей",
+    "Офисные пакеты"
   ],
   "notes": [],
   "trace": [
@@ -795,7 +806,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.2,
+      "ms": 0.07,
       "summary": "офис без ндс",
       "detail": {}
     },
@@ -813,13 +824,16 @@
       "status": "ok",
       "ms": 0.04,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.3,
+      "ms": 0.22,
       "summary": "Офисные программы и продуктивность, без ндс, без ндс",
       "detail": {
         "residual": "",
@@ -831,7 +845,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -839,10 +853,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.16,
+      "ms": 0.11,
       "summary": "Требования к ПО",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "compliance",
+        "rejected": [],
         "calls": []
       }
     },
@@ -858,7 +876,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 14.79,
+      "ms": 2.0,
       "summary": "Подходящих карточек до проверки лицензий · 14",
       "detail": {
         "sources": [
@@ -873,7 +891,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.67,
+      "ms": 0.55,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -881,8 +899,8 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
-      "summary": "Подобрано вариантов для карточек · 7",
+      "ms": 0.0,
+      "summary": "Подобрано вариантов для карточек · 10",
       "detail": {}
     },
     {
@@ -892,6 +910,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -899,14 +919,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.43,
+      "ms": 0.89,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -914,7 +934,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.04,
+      "ms": 0.01,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -925,14 +945,14 @@
       "title": "Сборка ответа",
       "status": "ok",
       "ms": 0.03,
-      "summary": "Карточек в выдаче · 7",
+      "summary": "Карточек в выдаче · 10",
       "detail": {}
     },
     {
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 5.14,
+      "ms": 0.78,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -942,14 +962,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 22.04
+    "total": 4.92
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

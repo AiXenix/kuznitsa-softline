@@ -1,5 +1,5 @@
 {
-  "search_id": "s_829c8f52b2734b6d89a44446ac38acb3",
+  "search_id": "s_da5aab78bd9b4c78874676123326e420",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "renewal",
     "intent_title": "Продление лицензии",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -245,9 +246,10 @@
           "price_from": 540.0,
           "score": {
             "tier": 1,
-            "score": 0.64534,
+            "tier_label": "Подходит по условиям",
+            "score": 0.62784,
             "parts": {
-              "rel": 0.33,
+              "rel": 0.3125,
               "pop": 0.17365,
               "margin": 0.14169,
               "pers": 0.0
@@ -407,6 +409,7 @@
           "price_from": 3340.0,
           "score": {
             "tier": 3,
+            "tier_label": "Расширенный поиск",
             "score": 0.34947,
             "parts": {
               "rel": 0.194,
@@ -569,9 +572,10 @@
           "price_from": 13930.0,
           "score": {
             "tier": 3,
-            "score": 0.29099,
+            "tier_label": "Расширенный поиск",
+            "score": 0.27349,
             "parts": {
-              "rel": 0.194,
+              "rel": 0.1765,
               "pop": 0.06572,
               "margin": 0.03127,
               "pers": 0.0
@@ -738,6 +742,7 @@
             "price_from": 7840.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.73812,
               "parts": {
                 "rel": 0.4,
@@ -902,6 +907,7 @@
             "price_from": 510.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.7208300000000001,
               "parts": {
                 "rel": 0.4,
@@ -1067,6 +1073,7 @@
             "price_from": 240.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.6995100000000001,
               "parts": {
                 "rel": 0.4,
@@ -1232,6 +1239,7 @@
             "price_from": 1000.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.64109,
               "parts": {
                 "rel": 0.4,
@@ -1281,9 +1289,12 @@
     }
   ],
   "related_queries": [
-    "Kaspersky Endpoint Security для бизнеса Расширенный",
-    "Kaspersky Industrial CyberSecurity for Nodes",
-    "Kaspersky Industrial CyberSecurity for Networks"
+    "Kaspersky Endpoint Security для бизнеса продление",
+    "Kaspersky Endpoint Security для бизнеса Расширенный на 12 мес",
+    "Аналог Kaspersky Endpoint Security для бизнеса",
+    "Купить Кибер Бэкап",
+    "Антивирусы и защита рабочих мест из реестра",
+    "Антивирусы и защита рабочих мест на 25 пк"
   ],
   "notes": [],
   "trace": [
@@ -1291,7 +1302,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.28,
+      "ms": 0.12,
       "summary": "каспер продление на 30 компов",
       "detail": {}
     },
@@ -1299,7 +1310,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.16,
+      "ms": 0.22,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -1307,15 +1318,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.09,
+      "ms": 0.14,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.94,
+      "ms": 0.63,
       "summary": "Kaspersky, продление, Количество устройств · 30",
       "detail": {
         "residual": "на",
@@ -1335,10 +1349,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.17,
+      "ms": 0.11,
       "summary": "Продление лицензии",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "renewal",
+        "rejected": [],
         "calls": []
       }
     },
@@ -1346,7 +1364,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Продление лицензии",
       "detail": {}
     },
@@ -1354,7 +1372,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 20.19,
+      "ms": 20.52,
       "summary": "Подходящих карточек до проверки лицензий · 22",
       "detail": {
         "sources": [
@@ -1369,7 +1387,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 2.06,
+      "ms": 2.16,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -1385,9 +1403,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -1395,14 +1415,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.36,
+      "ms": 0.52,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1420,7 +1440,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 3.48,
+      "ms": 3.75,
       "summary": "Карточек в выдаче · 3",
       "detail": {}
     },
@@ -1428,7 +1448,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 6.27,
+      "ms": 1.19,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1438,14 +1458,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 34.24
+    "total": 29.67
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

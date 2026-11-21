@@ -1,5 +1,5 @@
 {
-  "search_id": "s_3947b02fec8041259480eda02a573011",
+  "search_id": "s_2fd50fec55fc4971b9c44787bc2226c8",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "spec_list",
     "intent_title": "Список позиций",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -124,6 +125,7 @@
             "intent": "product",
             "intent_title": "Поиск продукта",
             "intent_conf": 0.95,
+            "zero_reason": null,
             "intent_source": "rules",
             "inherited": null,
             "entities": [
@@ -317,9 +319,10 @@
             "price_from": 2530.0,
             "score": {
               "tier": 1,
-              "score": 0.76483,
+              "tier_label": "Подходит по условиям",
+              "score": 0.74733,
               "parts": {
-                "rel": 0.44,
+                "rel": 0.4225,
                 "pop": 0.19006,
                 "margin": 0.13477,
                 "pers": 0.0
@@ -482,9 +485,10 @@
               "price_from": 4930.0,
               "score": {
                 "tier": 1,
-                "score": 0.74551,
+                "tier_label": "Подходит по условиям",
+                "score": 0.71051,
                 "parts": {
-                  "rel": 0.44,
+                  "rel": 0.405,
                   "pop": 0.19568,
                   "margin": 0.10983,
                   "pers": 0.0
@@ -496,8 +500,8 @@
               "position": 2
             },
             {
-              "card_id": "astra_linux_se:server",
-              "title": "Astra Linux Special Edition Серверная",
+              "card_id": "astra_linux_se:orel",
+              "title": "Astra Linux Special Edition «Орёл»",
               "vendor": {
                 "id": "astra_group",
                 "name": "Astra Group"
@@ -518,10 +522,10 @@
                 }
               ],
               "offer": {
-                "offer_id": "o_3D39488A8612",
-                "sku": "AX-3D39488A8612",
-                "name": "Astra Linux Special Edition 1.8 Серверная, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
-                "price": 48000.0,
+                "offer_id": "o_1AB5A1D5A67A",
+                "sku": "AX-1AB5A1D5A67A",
+                "name": "Astra Linux Special Edition 1.8 «Орёл», новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+                "price": 6500.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -538,16 +542,16 @@
               },
               "calc": {
                 "qty": 20,
-                "unit_price": 48000.0,
-                "total": 960000.0,
-                "text": "20 × 48 000 ₽ = 960 000 ₽"
+                "unit_price": 6500.0,
+                "total": 130000.0,
+                "text": "20 × 6 500 ₽ = 130 000 ₽"
               },
               "variants": [
                 {
-                  "offer_id": "o_D71F121A28C7",
-                  "sku": "AX-D71F121A28C7",
-                  "name": "Astra Linux Special Edition 1.8 Серверная, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
-                  "price": 48000.0,
+                  "offer_id": "o_9C625AE5ABFE",
+                  "sku": "AX-9C625AE5ABFE",
+                  "name": "Astra Linux Special Edition 1.8 «Орёл», новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 6500.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -563,10 +567,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_715D459AF132",
-                  "sku": "AX-715D459AF132",
-                  "name": "Astra Linux Special Edition 1.8 Серверная, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
-                  "price": 43200.0,
+                  "offer_id": "o_5427E7FD8D48",
+                  "sku": "AX-5427E7FD8D48",
+                  "name": "Astra Linux Special Edition 1.8 «Орёл», новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 5850.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -582,10 +586,10 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_C0F62712656B",
-                  "sku": "AX-C0F62712656B",
-                  "name": "Astra Linux Special Edition 1.8 Серверная, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
-                  "price": 19200.0,
+                  "offer_id": "o_363F63D52CB9",
+                  "sku": "AX-363F63D52CB9",
+                  "name": "Astra Linux Special Edition 1.8 «Орёл», новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+                  "price": 2600.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -601,10 +605,10 @@
                   "audience": "edu"
                 },
                 {
-                  "offer_id": "o_215E0082F935",
-                  "sku": "AX-215E0082F935",
-                  "name": "Astra Linux Special Edition 1.8 Серверная, продление, 1 устройств, 12 мес., для организаций, ESD",
-                  "price": 33600.0,
+                  "offer_id": "o_43C35290F818",
+                  "sku": "AX-43C35290F818",
+                  "name": "Astra Linux Special Edition 1.8 «Орёл», продление, 1 устройств, 12 мес., для организаций, ESD",
+                  "price": 4550.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -620,10 +624,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_B5BAACFCEB01",
-                  "sku": "AX-B5BAACFCEB01",
-                  "name": "Astra Linux Special Edition 1.8 Серверная, продление, 1 устройств, 12 мес., для госучреждений, ESD",
-                  "price": 30200.0,
+                  "offer_id": "o_4D4437CDE2F9",
+                  "sku": "AX-4D4437CDE2F9",
+                  "name": "Astra Linux Special Edition 1.8 «Орёл», продление, 1 устройств, 12 мес., для госучреждений, ESD",
+                  "price": 4100.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 0,
@@ -640,14 +644,15 @@
                 }
               ],
               "variants_count": 24,
-              "price_from": 9600.0,
+              "price_from": 1560.0,
               "score": {
                 "tier": 1,
-                "score": 0.72207,
+                "tier_label": "Подходит по условиям",
+                "score": 0.66257,
                 "parts": {
                   "rel": 0.44,
-                  "pop": 0.14989,
-                  "margin": 0.13218,
+                  "pop": 0.18013,
+                  "margin": 0.04244,
                   "pers": 0.0
                 },
                 "why": [
@@ -665,6 +670,7 @@
             "intent": "product",
             "intent_title": "Поиск продукта",
             "intent_conf": 0.95,
+            "zero_reason": null,
             "intent_source": "rules",
             "inherited": null,
             "entities": [
@@ -711,8 +717,8 @@
           },
           "status": "matched",
           "card": {
-            "card_id": "r7_office:corp_server",
-            "title": "Р7-Офис Корпоративный сервер",
+            "card_id": "r7_office:desktop",
+            "title": "Р7-Офис Профессиональный",
             "vendor": {
               "id": "r7_office",
               "name": "R7-Office"
@@ -722,12 +728,17 @@
               "title": "Офисные пакеты"
             },
             "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-            "badges": [],
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре по данным семейства"
+              }
+            ],
             "offer": {
-              "offer_id": "o_FE59BAA7E790",
-              "sku": "AX-FE59BAA7E790",
-              "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 5260.0,
+              "offer_id": "o_8AFA99E41795",
+              "sku": "AX-8AFA99E41795",
+              "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
+              "price": 2400.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 22,
@@ -744,16 +755,16 @@
             },
             "calc": {
               "qty": 20,
-              "unit_price": 5260.0,
-              "total": 105200.0,
-              "text": "20 × 5 260 ₽ = 105 200 ₽"
+              "unit_price": 2400.0,
+              "total": 48000.0,
+              "text": "20 × 2 400 ₽ = 48 000 ₽"
             },
             "variants": [
               {
-                "offer_id": "o_0735C68CFE8A",
-                "sku": "AX-0735C68CFE8A",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-                "price": 5480.0,
+                "offer_id": "o_4A0E1E2FAE85",
+                "sku": "AX-4A0E1E2FAE85",
+                "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
+                "price": 2500.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -769,10 +780,10 @@
                 "audience": "business"
               },
               {
-                "offer_id": "o_B70D2EFEAB06",
-                "sku": "AX-B70D2EFEAB06",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-                "price": 4930.0,
+                "offer_id": "o_932A19C12FCC",
+                "sku": "AX-932A19C12FCC",
+                "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 2250.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -788,10 +799,10 @@
                 "audience": "gov"
               },
               {
-                "offer_id": "o_E425EE4FD1E8",
-                "sku": "AX-E425EE4FD1E8",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
-                "price": 2190.0,
+                "offer_id": "o_15FA7ABF5B73",
+                "sku": "AX-15FA7ABF5B73",
+                "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
+                "price": 1000.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -807,10 +818,10 @@
                 "audience": "edu"
               },
               {
-                "offer_id": "o_9F9A13BCCE90",
-                "sku": "AX-9F9A13BCCE90",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-                "price": 4730.0,
+                "offer_id": "o_E1ABA3A73D92",
+                "sku": "AX-E1ABA3A73D92",
+                "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
+                "price": 2160.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -826,10 +837,10 @@
                 "audience": "gov"
               },
               {
-                "offer_id": "o_C191FB3D5C68",
-                "sku": "AX-C191FB3D5C68",
-                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
-                "price": 2100.0,
+                "offer_id": "o_748C10C632F1",
+                "sku": "AX-748C10C632F1",
+                "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
+                "price": 960.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -845,31 +856,33 @@
                 "audience": "edu"
               }
             ],
-            "variants_count": 61,
-            "price_from": 1300.0,
+            "variants_count": 59,
+            "price_from": 590.0,
             "score": {
               "tier": 1,
-              "score": 0.60857,
+              "tier_label": "Подходит по условиям",
+              "score": 0.59817,
               "parts": {
                 "rel": 0.44,
-                "pop": 0.15615,
-                "margin": 0.01242,
+                "pop": 0.10783,
+                "margin": 0.05034,
                 "pers": 0.0
               },
               "why": [
                 "Совпадает с условиями поиска",
+                "Включение в реестр указано в базе знаний для всего семейства",
                 "Диапазон от 10 до 49 мест"
               ]
             },
             "position": 1
           },
           "qty": 20,
-          "unit_price": 5260.0,
-          "total": 105200.0,
+          "unit_price": 2400.0,
+          "total": 48000.0,
           "alternatives": [
             {
-              "card_id": "r7_office:desktop",
-              "title": "Р7-Офис Профессиональный",
+              "card_id": "r7_office:corp_server",
+              "title": "Р7-Офис Корпоративный сервер",
               "vendor": {
                 "id": "r7_office",
                 "name": "R7-Office"
@@ -879,12 +892,17 @@
                 "title": "Офисные пакеты"
               },
               "summary": "Один из двух ведущих российских офисных пакетов (Документы, Таблицы, Презентации, Органайзер, Графика) с высокой совместимостью с форматами MS Office (DOCX/XLSX/PPTX) и поддержкой макросов.",
-              "badges": [],
+              "badges": [
+                {
+                  "kind": "registry",
+                  "label": "В реестре по данным семейства"
+                }
+              ],
               "offer": {
-                "offer_id": "o_8AFA99E41795",
-                "sku": "AX-8AFA99E41795",
-                "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-                "price": 2400.0,
+                "offer_id": "o_FE59BAA7E790",
+                "sku": "AX-FE59BAA7E790",
+                "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
+                "price": 5260.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 22,
@@ -901,16 +919,16 @@
               },
               "calc": {
                 "qty": 20,
-                "unit_price": 2400.0,
-                "total": 48000.0,
-                "text": "20 × 2 400 ₽ = 48 000 ₽"
+                "unit_price": 5260.0,
+                "total": 105200.0,
+                "text": "20 × 5 260 ₽ = 105 200 ₽"
               },
               "variants": [
                 {
-                  "offer_id": "o_4A0E1E2FAE85",
-                  "sku": "AX-4A0E1E2FAE85",
-                  "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-                  "price": 2500.0,
+                  "offer_id": "o_0735C68CFE8A",
+                  "sku": "AX-0735C68CFE8A",
+                  "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
+                  "price": 5480.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 22,
@@ -926,10 +944,10 @@
                   "audience": "business"
                 },
                 {
-                  "offer_id": "o_932A19C12FCC",
-                  "sku": "AX-932A19C12FCC",
-                  "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-                  "price": 2250.0,
+                  "offer_id": "o_B70D2EFEAB06",
+                  "sku": "AX-B70D2EFEAB06",
+                  "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
+                  "price": 4930.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 22,
@@ -945,10 +963,10 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_15FA7ABF5B73",
-                  "sku": "AX-15FA7ABF5B73",
-                  "name": "Р7-Офис Профессиональный, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
-                  "price": 1000.0,
+                  "offer_id": "o_E425EE4FD1E8",
+                  "sku": "AX-E425EE4FD1E8",
+                  "name": "Р7-Офис Корпоративный сервер, новая лицензия, 1–9 пользователей, 12 мес., академическая, ESD",
+                  "price": 2190.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 22,
@@ -964,10 +982,10 @@
                   "audience": "edu"
                 },
                 {
-                  "offer_id": "o_E1ABA3A73D92",
-                  "sku": "AX-E1ABA3A73D92",
-                  "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-                  "price": 2160.0,
+                  "offer_id": "o_9F9A13BCCE90",
+                  "sku": "AX-9F9A13BCCE90",
+                  "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
+                  "price": 4730.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 22,
@@ -983,10 +1001,10 @@
                   "audience": "gov"
                 },
                 {
-                  "offer_id": "o_748C10C632F1",
-                  "sku": "AX-748C10C632F1",
-                  "name": "Р7-Офис Профессиональный, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
-                  "price": 960.0,
+                  "offer_id": "o_C191FB3D5C68",
+                  "sku": "AX-C191FB3D5C68",
+                  "name": "Р7-Офис Корпоративный сервер, новая лицензия, 10–49 пользователей, 12 мес., академическая, ESD",
+                  "price": 2100.0,
                   "price_on_request": false,
                   "delivery": "esd",
                   "vat": 22,
@@ -1002,19 +1020,21 @@
                   "audience": "edu"
                 }
               ],
-              "variants_count": 59,
-              "price_from": 590.0,
+              "variants_count": 61,
+              "price_from": 1300.0,
               "score": {
                 "tier": 1,
-                "score": 0.59817,
+                "tier_label": "Подходит по условиям",
+                "score": 0.49607,
                 "parts": {
-                  "rel": 0.44,
-                  "pop": 0.10783,
-                  "margin": 0.05034,
+                  "rel": 0.3275,
+                  "pop": 0.15615,
+                  "margin": 0.01242,
                   "pers": 0.0
                 },
                 "why": [
                   "Совпадает с условиями поиска",
+                  "Включение в реестр указано в базе знаний для всего семейства",
                   "Диапазон от 10 до 49 мест"
                 ]
               },
@@ -1026,9 +1046,10 @@
           "n": 3,
           "raw": "касперский 20 узлов",
           "understood": {
-            "intent": "vendor",
-            "intent_title": "Поиск по вендору",
+            "intent": "product",
+            "intent_title": "Поиск продукта",
             "intent_conf": 0.95,
+            "zero_reason": null,
             "intent_source": "rules",
             "inherited": null,
             "entities": [
@@ -1059,7 +1080,10 @@
               "vendor": [
                 "kaspersky"
               ],
-              "metric": "device"
+              "metric": "device",
+              "family": [
+                "kaspersky_standard_home"
+              ]
             },
             "exclude": {},
             "qty": {
@@ -1083,26 +1107,22 @@
             ],
             "subtype": null,
             "reason": null,
-            "agent_note": "Поиск по вендору · Kaspersky, Количество устройств · 20"
+            "agent_note": "Поиск продукта · Kaspersky, Количество устройств · 20"
           },
           "status": "matched",
           "card": {
-            "card_id": "kaspersky_kics:nodes",
-            "title": "Kaspersky Industrial CyberSecurity for Nodes",
+            "card_id": "kaspersky_ksos",
+            "title": "Kaspersky Small Office Security",
             "vendor": {
               "id": "kaspersky",
               "name": "Kaspersky"
             },
             "category": {
-              "id": "ot_ics_security",
-              "title": "Защита АСУ ТП и промышленная ИБ"
+              "id": "endpoint_security",
+              "title": "Антивирусы и защита рабочих мест"
             },
-            "summary": "Специализированная платформа защиты промышленных узлов (KICS for Nodes) и технологических сетей АСУ ТП (KICS for Networks).",
+            "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
             "badges": [
-              {
-                "kind": "promo",
-                "label": "Специальное предложение"
-              },
               {
                 "kind": "registry",
                 "label": "В реестре ПО"
@@ -1113,10 +1133,10 @@
               }
             ],
             "offer": {
-              "offer_id": "o_600C0E25CA82",
-              "sku": "KL-600C0E25CA82",
-              "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License BUSINESS",
-              "price": 6000.0,
+              "offer_id": "o_EF4C1862F694",
+              "sku": "KL-EF4C1862F694",
+              "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
+              "price": 29600.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
@@ -1126,325 +1146,23 @@
               "model": "subscription",
               "term_months": 12,
               "metric": "device",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 20,
               "audience": "business"
             },
             "calc": {
-              "qty": 20,
-              "unit_price": 6000.0,
-              "total": 120000.0,
-              "text": "20 × 6 000 ₽ = 120 000 ₽"
+              "qty": 1,
+              "unit_price": 29600.0,
+              "total": 29600.0,
+              "text": "1 пакет по 20 устр. × 29 600 ₽ = 29 600 ₽"
             },
             "variants": [
               {
-                "offer_id": "o_F47748E4E150",
-                "sku": "KL-F47748E4E150",
-                "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 10–24 Node 1 year New License GOV",
-                "price": 5400.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 10,
-                "qty_max": 24,
-                "pack": null,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_141CCF15EBDF",
-                "sku": "KL-141CCF15EBDF",
-                "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License BUSINESS",
-                "price": 5760.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 25,
-                "qty_max": 49,
-                "pack": null,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_E3851515BE85",
-                "sku": "KL-E3851515BE85",
-                "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 25–49 Node 1 year New License GOV",
-                "price": 5180.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 25,
-                "qty_max": 49,
-                "pack": null,
-                "audience": "gov"
-              },
-              {
-                "offer_id": "o_46101D617B91",
-                "sku": "KL-46101D617B91",
-                "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License BUSINESS",
-                "price": 5530.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 50,
-                "qty_max": 99,
-                "pack": null,
-                "audience": "business"
-              },
-              {
-                "offer_id": "o_F64A1E29DD6A",
-                "sku": "KL-F64A1E29DD6A",
-                "name": "Kaspersky Industrial CyberSecurity for Nodes Russian Edition. 50–99 Node 1 year New License GOV",
-                "price": 4980.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 50,
-                "qty_max": 99,
-                "pack": null,
-                "audience": "gov"
-              }
-            ],
-            "variants_count": 45,
-            "price_from": 3340.0,
-            "score": {
-              "tier": 2,
-              "score": 0.56537,
-              "parts": {
-                "rel": 0.25,
-                "pop": 0.16749,
-                "margin": 0.14788,
-                "pers": 0.0
-              },
-              "why": [
-                "Совпадает с условиями поиска",
-                "Диапазон от 10 до 24 мест"
-              ]
-            },
-            "position": 1
-          },
-          "qty": 20,
-          "unit_price": 6000.0,
-          "total": 120000.0,
-          "alternatives": [
-            {
-              "card_id": "kaspersky_kesb:advanced",
-              "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
-              "vendor": {
-                "id": "kaspersky",
-                "name": "Kaspersky"
-              },
-              "category": {
-                "id": "endpoint_security",
-                "title": "Антивирусы и защита рабочих мест"
-              },
-              "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
-              "badges": [
-                {
-                  "kind": "registry",
-                  "label": "В реестре ПО"
-                },
-                {
-                  "kind": "vat",
-                  "label": "Без НДС"
-                }
-              ],
-              "offer": {
-                "offer_id": "o_B64F50048ADF",
-                "sku": "KL-B64F50048ADF",
-                "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 20–24 Node 1 year New License BUSINESS",
-                "price": 2570.0,
-                "price_on_request": false,
-                "delivery": "esd",
-                "vat": 0,
-                "available": true,
-                "version": null,
-                "action": "new",
-                "model": "subscription",
-                "term_months": 12,
-                "metric": "device",
-                "qty_min": 20,
-                "qty_max": 24,
-                "pack": null,
-                "audience": "business"
-              },
-              "calc": {
-                "qty": 20,
-                "unit_price": 2570.0,
-                "total": 51400.0,
-                "text": "20 × 2 570 ₽ = 51 400 ₽"
-              },
-              "variants": [
-                {
-                  "offer_id": "o_BDB4840E1C45",
-                  "sku": "KL-BDB4840E1C45",
-                  "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
-                  "price": 2790.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 14,
-                  "pack": null,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_B526C5C3171A",
-                  "sku": "KL-B526C5C3171A",
-                  "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
-                  "price": 2510.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 14,
-                  "pack": null,
-                  "audience": "gov"
-                },
-                {
-                  "offer_id": "o_7ACF4C669060",
-                  "sku": "KL-7ACF4C669060",
-                  "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
-                  "price": 1120.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 10,
-                  "qty_max": 14,
-                  "pack": null,
-                  "audience": "edu"
-                },
-                {
-                  "offer_id": "o_999E93EB29D8",
-                  "sku": "KL-999E93EB29D8",
-                  "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
-                  "price": 2680.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 15,
-                  "qty_max": 19,
-                  "pack": null,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_CB7051802333",
-                  "sku": "KL-CB7051802333",
-                  "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
-                  "price": 2410.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": 15,
-                  "qty_max": 19,
-                  "pack": null,
-                  "audience": "gov"
-                }
-              ],
-              "variants_count": 80,
-              "price_from": 540.0,
-              "score": {
-                "tier": 2,
-                "score": 0.50891,
-                "parts": {
-                  "rel": 0.25,
-                  "pop": 0.16078,
-                  "margin": 0.09813,
-                  "pers": 0.0
-                },
-                "why": [
-                  "Совпадает с условиями поиска",
-                  "Диапазон от 20 до 24 мест"
-                ]
-              },
-              "position": 2
-            },
-            {
-              "card_id": "kaspersky_ksos",
-              "title": "Kaspersky Small Office Security",
-              "vendor": {
-                "id": "kaspersky",
-                "name": "Kaspersky"
-              },
-              "category": {
-                "id": "endpoint_security",
-                "title": "Антивирусы и защита рабочих мест"
-              },
-              "summary": "Готовая защита компьютеров, файловых серверов и смартфонов для малого бизнеса (5–50 устройств) без выделенного сисадмина.",
-              "badges": [
-                {
-                  "kind": "registry",
-                  "label": "В реестре ПО"
-                },
-                {
-                  "kind": "vat",
-                  "label": "Без НДС"
-                }
-              ],
-              "offer": {
-                "offer_id": "o_EF4C1862F694",
-                "sku": "KL-EF4C1862F694",
-                "name": "Kaspersky Small Office Security Russian Edition. 20 Node 1 year New License BUSINESS",
-                "price": 29600.0,
+                "offer_id": "o_EC0160E7C3D8",
+                "sku": "KL-EC0160E7C3D8",
+                "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
+                "price": 8500.0,
                 "price_on_request": false,
                 "delivery": "esd",
                 "vat": 0,
@@ -1456,133 +1174,111 @@
                 "metric": "device",
                 "qty_min": null,
                 "qty_max": null,
-                "pack": 20,
+                "pack": 5,
                 "audience": "business"
               },
-              "calc": {
-                "qty": 1,
-                "unit_price": 29600.0,
-                "total": 29600.0,
-                "text": "1 пакет по 20 устр. × 29 600 ₽ = 29 600 ₽"
+              {
+                "offer_id": "o_39E099AE40B1",
+                "sku": "KL-39E099AE40B1",
+                "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
+                "price": 15860.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 10,
+                "audience": "business"
               },
-              "variants": [
-                {
-                  "offer_id": "o_EC0160E7C3D8",
-                  "sku": "KL-EC0160E7C3D8",
-                  "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year New License BUSINESS",
-                  "price": 8500.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 5,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_39E099AE40B1",
-                  "sku": "KL-39E099AE40B1",
-                  "name": "Kaspersky Small Office Security Russian Edition. 10 Node 1 year New License BUSINESS",
-                  "price": 15860.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 10,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_5D49447181C5",
-                  "sku": "KL-5D49447181C5",
-                  "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
-                  "price": 22800.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 15,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_0C63CCEFCB2D",
-                  "sku": "KL-0C63CCEFCB2D",
-                  "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
-                  "price": 36200.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "new",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 25,
-                  "audience": "business"
-                },
-                {
-                  "offer_id": "o_F3692F787099",
-                  "sku": "KL-F3692F787099",
-                  "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year Renewal License BUSINESS",
-                  "price": 5950.0,
-                  "price_on_request": false,
-                  "delivery": "esd",
-                  "vat": 0,
-                  "available": true,
-                  "version": null,
-                  "action": "renewal",
-                  "model": "subscription",
-                  "term_months": 12,
-                  "metric": "device",
-                  "qty_min": null,
-                  "qty_max": null,
-                  "pack": 5,
-                  "audience": "business"
-                }
-              ],
-              "variants_count": 60,
-              "price_from": 5950.0,
-              "score": {
-                "tier": 2,
-                "score": 0.4985,
-                "parts": {
-                  "rel": 0.25,
-                  "pop": 0.10389,
-                  "margin": 0.14461,
-                  "pers": 0.0
-                },
-                "why": [
-                  "Совпадает с условиями поиска"
-                ]
+              {
+                "offer_id": "o_5D49447181C5",
+                "sku": "KL-5D49447181C5",
+                "name": "Kaspersky Small Office Security Russian Edition. 15 Node 1 year New License BUSINESS",
+                "price": 22800.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 15,
+                "audience": "business"
               },
-              "position": 3
-            }
-          ]
+              {
+                "offer_id": "o_0C63CCEFCB2D",
+                "sku": "KL-0C63CCEFCB2D",
+                "name": "Kaspersky Small Office Security Russian Edition. 25 Node 1 year New License BUSINESS",
+                "price": 36200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 25,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_F3692F787099",
+                "sku": "KL-F3692F787099",
+                "name": "Kaspersky Small Office Security Russian Edition. 5 Node 1 year Renewal License BUSINESS",
+                "price": 5950.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "renewal",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 5,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 60,
+            "price_from": 5950.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.6885,
+              "parts": {
+                "rel": 0.44,
+                "pop": 0.10389,
+                "margin": 0.14461,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 1
+          },
+          "qty": 20,
+          "unit_price": 29600.0,
+          "total": 29600.0,
+          "alternatives": []
         }
       ],
-      "total": 478400.0,
+      "total": 330800.0,
       "unresolved": []
     }
   ],
@@ -1613,7 +1309,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.18,
+      "ms": 0.43,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -1621,15 +1317,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.12,
+      "ms": 0.22,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.35,
+      "ms": 1.55,
       "summary": "Astra Linux Special Edition, Р7-Офис, Kaspersky, Количество устройств · 20",
       "detail": {
         "residual": "20 шт 20 шт",
@@ -1653,6 +1352,10 @@
       "summary": "Список позиций",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "spec_list",
+        "rejected": [],
         "calls": []
       }
     },
@@ -1660,7 +1363,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Список позиций",
       "detail": {}
     },
@@ -1691,7 +1394,7 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Подобрано вариантов для карточек · 0. Запрошено мест · 20",
       "detail": {}
     },
@@ -1702,6 +1405,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -1716,7 +1421,7 @@
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1734,7 +1439,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 21.37,
+      "ms": 7.45,
       "summary": "Карточек в выдаче · 0",
       "detail": {}
     },
@@ -1742,7 +1447,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 5.39,
+      "ms": 1.55,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1752,14 +1457,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 28.02
+    "total": 11.88
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

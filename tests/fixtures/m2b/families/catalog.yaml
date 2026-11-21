@@ -1,0 +1,16 @@
+- {id: kesb, vendor: k, name: Kaspersky Endpoint Security для бизнеса, aliases: [кес, kesb, endpoint security], category: endpoint_security, price_rub: {typical: 2600}, popularity: 5, editions: [{id: standard, name: Стандартный}, {id: advanced, name: Расширенный}, {id: total, name: Total}], analogs: [drweb]}
+- {id: small, vendor: k, name: Kaspersky Small Office Security, category: endpoint_security, max_seats: 25, upgrade_to: kesb, popularity: 3}
+- {id: drweb, vendor: dw, name: Dr.Web, category: endpoint_security, editions: [{id: desktop, name: Рабочие станции}, {id: server, name: Защита файловых серверов}]}
+- {id: guard, vendor: dw, name: Бизнес Антивирус, category: endpoint_security}
+- {id: nanocad, vendor: nano, name: Платформа nanoCAD, aliases: [нанокад, nanoCAD], category: cad_2d, editions: [{id: base, name: Базовая}, {id: spds, name: Модуль СПДС}]}
+- {id: autocad, vendor: ad, name: Autodesk AutoCAD, aliases: [autocad], category: cad_2d, catalog: false, analogs: [nanocad]}
+- {id: win11, vendor: ms, name: Windows 11, aliases: [windows 11 pro], category: desktop_os_ru, versions: ['11'], editions: [{id: home, name: Home}, {id: pro, name: Pro}], analogs: [astra]}
+- {id: astra, vendor: ag, name: Astra Linux Special Edition, aliases: [астра линукс, астра орел, астра], category: desktop_os_ru, popularity: 5, editions: [{id: orel, name: Орёл}, {id: vor, name: Воронеж}, {id: smo, name: Смоленск}]}
+- {id: pg, vendor: pg, name: Postgres Pro, category: db, editions: [{id: ent, name: Enterprise}]}
+- {id: ws, vendor: ms, name: Windows Server, category: server_os, editions: [{id: standard, name: Standard}], versions: ['2022']}
+- {id: crypto, vendor: crypto, name: КриптоПро CSP, aliases: [криптопро], versions: ['5.0'], category: crypto}
+- {id: ug, vendor: ug, name: UserGate NGFW, aliases: [юзергейт], category: firewall}
+- {id: it, vendor: one, name: Внедрение 1С, category: tech_support}
+- {id: accounting, vendor: one, name: '1С:Бухгалтерия', category: accounting}
+- {id: iw, vendor: iw, name: InfoWatch Traffic Monitor, category: dlp}
+- {id: home, vendor: k, name: Kaspersky Standard для дома, category: home_antivirus, popularity: 5}

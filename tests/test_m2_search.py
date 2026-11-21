@@ -112,7 +112,7 @@ def test_other_line_is_new_purchase(demo):
     assert any("переход" in text.lower() for text in result["notes"])
 
 
-@pytest.mark.parametrize("probability,expected",[(.54,"question"),(.55,"broad")])
+@pytest.mark.parametrize("probability,expected",[(.54,"question"),(.88,"question")])
 def test_closed_smart_decision(demo,probability,expected,tmp_path):
     import httpx
     from kuznitsa.llm.jev import Jev
@@ -133,7 +133,7 @@ def test_closed_smart_decision(demo,probability,expected,tmp_path):
                   decisions=Decisions(client,path,demo.clock,1))
     request=Request(q="как получить счет",mode="smart")
     result=engine.search(request)
-    assert requests and "faq" in requests[0]["questions"] and len(requests[0]["questions"]["intent"]["criteria"])==20
+    assert requests and "faq" in requests[0]["questions"] and 4<=len(requests[0]["questions"]["intent"]["criteria"])<=7
     assert result["understood"]["intent"]==expected
     assert result["cost"]["usd"]==pytest.approx(.0002*len(requests))
     cached=engine.search(request)

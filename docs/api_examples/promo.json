@@ -1,5 +1,5 @@
 {
-  "search_id": "s_e2f61a884dee469180ba9edbe96e9256",
+  "search_id": "s_898604e6210749ddb3878c9cec8118c0",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "promo",
     "intent_title": "Акции",
     "intent_conf": 0.55,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [],
@@ -33,172 +34,6 @@
       "title": "Специальные предложения",
       "items": [
         {
-          "card_id": "elma365:onprem_std",
-          "title": "ELMA365 On-Premises Standard",
-          "vendor": {
-            "id": "elma",
-            "name": "ELMA"
-          },
-          "category": {
-            "id": "bpm_rpa_lowcode",
-            "title": "BPM, Low-code и роботизация процессов (RPA)"
-          },
-          "summary": "Лидирующая в РФ low-code BPM-платформа с готовыми решениями: CRM, СЭД/CSP, КЭДО, Service Desk и корпоративный портал.",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            },
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_56A76BECC782",
-            "sku": "AX-56A76BECC782",
-            "name": "ELMA365 On-Premises Standard, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-            "price": 29000.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "user",
-            "qty_min": 1,
-            "qty_max": 9,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 29000.0,
-            "total": null,
-            "text": "от 29 000 ₽ за пользователя в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_F27B3AA5D756",
-              "sku": "AX-F27B3AA5D756",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 26100.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_CE154800A217",
-              "sku": "AX-CE154800A217",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 10–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 27800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_3B22EC810E65",
-              "sku": "AX-3B22EC810E65",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 25000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_47EFBE1AF93D",
-              "sku": "AX-47EFBE1AF93D",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 25–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 26700.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_3E191ECBB95C",
-              "sku": "AX-3E191ECBB95C",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 25–49 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 24000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 45,
-          "price_from": 14890.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65972,
-            "parts": {
-              "rel": 0.325,
-              "pop": 0.19169,
-              "margin": 0.14303,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 9 мест"
-            ]
-          },
-          "position": 1
-        },
-        {
           "card_id": "advanta_pm",
           "title": "Адванта",
           "vendor": {
@@ -350,6 +185,7 @@
           "price_from": 11740.0,
           "score": {
             "tier": 1,
+            "tier_label": "Подходит по условиям",
             "score": 0.65712,
             "parts": {
               "rel": 0.325,
@@ -362,7 +198,7 @@
               "Диапазон от 50 до 99 мест"
             ]
           },
-          "position": 2
+          "position": 1
         },
         {
           "card_id": "onec_docflow:prof",
@@ -516,6 +352,7 @@
           "price_from": 24300.0,
           "score": {
             "tier": 1,
+            "tier_label": "Подходит по условиям",
             "score": 0.65283,
             "parts": {
               "rel": 0.325,
@@ -527,7 +364,7 @@
               "Совпадает с условиями поиска"
             ]
           },
-          "position": 3
+          "position": 2
         },
         {
           "card_id": "solar_appscreener:standard",
@@ -681,6 +518,7 @@
           "price_from": 1130100.0,
           "score": {
             "tier": 1,
+            "tier_label": "Подходит по условиям",
             "score": 0.64949,
             "parts": {
               "rel": 0.325,
@@ -693,27 +531,20 @@
               "Диапазон от 25 до 49 мест"
             ]
           },
-          "position": 4
-        }
-      ]
-    },
-    {
-      "type": "products",
-      "title": "Подходящие лицензии",
-      "total": 304,
-      "items": [
+          "position": 3
+        },
         {
-          "card_id": "elma365:onprem_std",
-          "title": "ELMA365 On-Premises Standard",
+          "card_id": "visiology_bi",
+          "title": "Visiology",
           "vendor": {
-            "id": "elma",
-            "name": "ELMA"
+            "id": "visiology",
+            "name": "Visiology"
           },
           "category": {
-            "id": "bpm_rpa_lowcode",
-            "title": "BPM, Low-code и роботизация процессов (RPA)"
+            "id": "bi_analytics",
+            "title": "BI-системы и визуализация данных"
           },
-          "summary": "Лидирующая в РФ low-code BPM-платформа с готовыми решениями: CRM, СЭД/CSP, КЭДО, Service Desk и корпоративный портал.",
+          "summary": "Ведущая российская BI-платформа (Visiology 3) с нативной поддержкой языка DAX для быстрой миграции дашбордов из Microsoft Power BI.",
           "badges": [
             {
               "kind": "promo",
@@ -729,516 +560,19 @@
             }
           ],
           "offer": {
-            "offer_id": "o_56A76BECC782",
-            "sku": "AX-56A76BECC782",
-            "name": "ELMA365 On-Premises Standard, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-            "price": 29000.0,
+            "offer_id": "o_A386246B99C3",
+            "sku": "AX-A386246B99C3",
+            "name": "Visiology 3, новая лицензия, 25–49 пользователей, 12 мес., для организаций, ESD",
+            "price": 2304000.0,
             "price_on_request": false,
             "delivery": "esd",
             "vat": 0,
             "available": true,
-            "version": null,
+            "version": "3",
             "action": "new",
             "model": "subscription",
             "term_months": 12,
             "metric": "user",
-            "qty_min": 1,
-            "qty_max": 9,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 29000.0,
-            "total": null,
-            "text": "от 29 000 ₽ за пользователя в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_F27B3AA5D756",
-              "sku": "AX-F27B3AA5D756",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 26100.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_CE154800A217",
-              "sku": "AX-CE154800A217",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 10–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 27800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_3B22EC810E65",
-              "sku": "AX-3B22EC810E65",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 25000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_47EFBE1AF93D",
-              "sku": "AX-47EFBE1AF93D",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 25–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 26700.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_3E191ECBB95C",
-              "sku": "AX-3E191ECBB95C",
-              "name": "ELMA365 On-Premises Standard, новая лицензия, 25–49 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 24000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 45,
-          "price_from": 14890.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65972,
-            "parts": {
-              "rel": 0.325,
-              "pop": 0.19169,
-              "margin": 0.14303,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 9 мест"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "advanta_pm",
-          "title": "Адванта",
-          "vendor": {
-            "id": "advanta",
-            "name": "Advanta"
-          },
-          "category": {
-            "id": "project_planning",
-            "title": "Планирование проектов и диаграммы Ганта"
-          },
-          "summary": "Российская корпоративная информационная система управления портфелями и проектами (диаграммы Ганта, бюджеты, ресурсы, контрольные точки).",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            },
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_473F687302C3",
-            "sku": "AX-473F687302C3",
-            "name": "Адванта, новая лицензия, 50–99 одновременных подключений, 12 мес., для организаций, ESD",
-            "price": 28300.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "concurrent",
-            "qty_min": 50,
-            "qty_max": 99,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 28300.0,
-            "total": null,
-            "text": "от 28 300 ₽ за лицензию в год (при покупке от 50)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_7C280A0FBA0C",
-              "sku": "AX-7C280A0FBA0C",
-              "name": "Адванта, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
-              "price": 32000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_684D1F33F921",
-              "sku": "AX-684D1F33F921",
-              "name": "Адванта, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 28800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 9,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_CDFC5BB0DECE",
-              "sku": "AX-CDFC5BB0DECE",
-              "name": "Адванта, новая лицензия, 10–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 30700.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_35E2790064A0",
-              "sku": "AX-35E2790064A0",
-              "name": "Адванта, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 27600.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_0452072D1306",
-              "sku": "AX-0452072D1306",
-              "name": "Адванта, новая лицензия, 25–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 29500.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 85,
-          "price_from": 11740.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65712,
-            "parts": {
-              "rel": 0.325,
-              "pop": 0.2,
-              "margin": 0.13212,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 50 до 99 мест"
-            ]
-          },
-          "position": 2
-        },
-        {
-          "card_id": "onec_docflow:prof",
-          "title": "1С:Документооборот 8 ПРОФ",
-          "vendor": {
-            "id": "onec",
-            "name": "1C"
-          },
-          "category": {
-            "id": "sed_ecm",
-            "title": "СЭД, ECM и внутренний документооборот"
-          },
-          "summary": "Российская система электронного документооборота (СЭД/ECM) на платформе 1С: договоры, входящая/исходящая корреспонденция, согласование, ЭП и архив.",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            },
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_E39F349406C3",
-            "sku": "AX-E39F349406C3",
-            "name": "1С:Документооборот 8 3.0 ПРОФ, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
-            "price": 45000.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": "3.0",
-            "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "company",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 45000.0,
-            "total": null,
-            "text": "от 45 000 ₽ за организацию"
-          },
-          "variants": [
-            {
-              "offer_id": "o_646A0E75B419",
-              "sku": "AX-646A0E75B419",
-              "name": "1С:Документооборот 8 8.3 ПРОФ, новая лицензия, 1 организаций, бессрочная, для организаций, ESD",
-              "price": 45000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "8.3",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_EF81FB88F3BD",
-              "sku": "AX-EF81FB88F3BD",
-              "name": "1С:Документооборот 8 8.3 ПРОФ, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
-              "price": 40500.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "8.3",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_863D1D1F7B4E",
-              "sku": "AX-863D1D1F7B4E",
-              "name": "1С:Документооборот 8 8.3 ПРОФ, обновление, 1 организаций, бессрочная, для организаций, BOX",
-              "price": 27000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": 0,
-              "available": true,
-              "version": "8.3",
-              "action": "upgrade",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_AA70542ADA6A",
-              "sku": "AX-AA70542ADA6A",
-              "name": "1С:Документооборот 8 3.0 ПРОФ, обновление, 1 организаций, бессрочная, для организаций, BOX",
-              "price": 27000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": 0,
-              "available": true,
-              "version": "3.0",
-              "action": "upgrade",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_5944F5744037",
-              "sku": "AX-5944F5744037",
-              "name": "1С:Документооборот 8 3.0 ПРОФ, новая лицензия, 1 организаций, бессрочная, для госучреждений, ESD",
-              "price": 40500.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "3.0",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 16,
-          "price_from": 24300.0,
-          "score": {
-            "tier": 1,
-            "score": 0.65283,
-            "parts": {
-              "rel": 0.325,
-              "pop": 0.17943,
-              "margin": 0.1484,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 3
-        },
-        {
-          "card_id": "solar_appscreener:standard",
-          "title": "Solar appScreener Enterprise",
-          "vendor": {
-            "id": "solar_rt",
-            "name": "Solar"
-          },
-          "category": {
-            "id": "code_analysis_sast",
-            "title": "Анализ кода, SAST/DAST и контроль качества"
-          },
-          "summary": "Российское решение класса SAST/SCA от ГК «Солар» для анализа исходного и бинарного кода более 35 языков программирования и проверки open-source зависимостей.",
-          "badges": [
-            {
-              "kind": "promo",
-              "label": "Специальное предложение"
-            },
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_F3AADA83385B",
-            "sku": "AX-F3AADA83385B",
-            "name": "Solar appScreener Enterprise, новая лицензия, 25–49 серверов, 12 мес., для организаций, ESD",
-            "price": 2027500.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "server",
             "qty_min": 25,
             "qty_max": 49,
             "pack": null,
@@ -1246,116 +580,117 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 2027500.0,
+            "unit_price": 2304000.0,
             "total": null,
-            "text": "от 2 027 500 ₽ за сервер в год (при покупке от 25)"
+            "text": "от 2 304 000 ₽ за пользователя в год (при покупке от 25)"
           },
           "variants": [
             {
-              "offer_id": "o_59437BE13181",
-              "sku": "AX-59437BE13181",
-              "name": "Solar appScreener Enterprise, новая лицензия, 1–9 ед., 12 мес., для организаций, ESD",
-              "price": 2200000.0,
+              "offer_id": "o_73DFD237F6C5",
+              "sku": "AX-73DFD237F6C5",
+              "name": "Visiology 3, новая лицензия, 1–9 пользователей, 12 мес., для организаций, ESD",
+              "price": 2500000.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "other",
+              "metric": "user",
               "qty_min": 1,
               "qty_max": 9,
               "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_A2543DE15F5A",
-              "sku": "AX-A2543DE15F5A",
-              "name": "Solar appScreener Enterprise, новая лицензия, 1–9 ед., 12 мес., для госучреждений, ESD",
-              "price": 1980000.0,
+              "offer_id": "o_FF903863FA09",
+              "sku": "AX-FF903863FA09",
+              "name": "Visiology 3, новая лицензия, 1–9 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2250000.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "other",
+              "metric": "user",
               "qty_min": 1,
               "qty_max": 9,
               "pack": null,
               "audience": "gov"
             },
             {
-              "offer_id": "o_A6F4678B744D",
-              "sku": "AX-A6F4678B744D",
-              "name": "Solar appScreener Enterprise, новая лицензия, 10–24 ед., 12 мес., для организаций, ESD",
-              "price": 2112000.0,
+              "offer_id": "o_FDD279556C23",
+              "sku": "AX-FDD279556C23",
+              "name": "Visiology 3, новая лицензия, 10–24 пользователей, 12 мес., для организаций, ESD",
+              "price": 2400000.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "other",
+              "metric": "user",
               "qty_min": 10,
               "qty_max": 24,
               "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_D73F1E176982",
-              "sku": "AX-D73F1E176982",
-              "name": "Solar appScreener Enterprise, новая лицензия, 10–24 ед., 12 мес., для госучреждений, ESD",
-              "price": 1900800.0,
+              "offer_id": "o_85F413819191",
+              "sku": "AX-85F413819191",
+              "name": "Visiology 3, новая лицензия, 10–24 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2160000.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "other",
+              "metric": "user",
               "qty_min": 10,
               "qty_max": 24,
               "pack": null,
               "audience": "gov"
             },
             {
-              "offer_id": "o_C0CC808C34A1",
-              "sku": "AX-C0CC808C34A1",
-              "name": "Solar appScreener Enterprise, новая лицензия, 25–49 ед., 12 мес., для организаций, ESD",
-              "price": 2027500.0,
+              "offer_id": "o_20E108C0D1CB",
+              "sku": "AX-20E108C0D1CB",
+              "name": "Visiology 3, новая лицензия, 25–49 пользователей, 12 мес., для госучреждений, ESD",
+              "price": 2073600.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "3",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "other",
+              "metric": "user",
               "qty_min": 25,
               "qty_max": 49,
               "pack": null,
-              "audience": "business"
+              "audience": "gov"
             }
           ],
-          "variants_count": 73,
-          "price_from": 1130100.0,
+          "variants_count": 83,
+          "price_from": 917300.0,
           "score": {
             "tier": 1,
-            "score": 0.64949,
+            "tier_label": "Подходит по условиям",
+            "score": 0.64863,
             "parts": {
               "rel": 0.325,
-              "pop": 0.17755,
-              "margin": 0.14694,
+              "pop": 0.18663,
+              "margin": 0.137,
               "pers": 0.0
             },
             "why": [
@@ -1389,18 +724,13 @@
           "count": 6
         },
         {
-          "id": "nanosoft",
-          "label": "Nanosoft",
-          "count": 5
-        },
-        {
           "id": "positive_technologies",
           "label": "Positive Technologies",
           "count": 5
         },
         {
-          "id": "microsoft",
-          "label": "Microsoft",
+          "id": "nanosoft",
+          "label": "Nanosoft",
           "count": 5
         },
         {
@@ -1416,6 +746,11 @@
         {
           "id": "red_soft",
           "label": "RED SOFT",
+          "count": 5
+        },
+        {
+          "id": "microsoft",
+          "label": "Microsoft",
           "count": 5
         },
         {
@@ -1439,11 +774,6 @@
           "count": 4
         },
         {
-          "id": "sber_platform_v",
-          "label": "SberTech",
-          "count": 3
-        },
-        {
           "id": "naumen",
           "label": "NAUMEN",
           "count": 3
@@ -1451,11 +781,6 @@
         {
           "id": "safib_assistant",
           "label": "SAFIB",
-          "count": 3
-        },
-        {
-          "id": "tantor_labs",
-          "label": "Tantor Labs",
           "count": 3
         },
         {
@@ -1469,8 +794,8 @@
           "count": 3
         },
         {
-          "id": "cyberprotect",
-          "label": "Cyberprotect",
+          "id": "sber_platform_v",
+          "label": "SberTech",
           "count": 3
         },
         {
@@ -1481,6 +806,16 @@
         {
           "id": "basealt",
           "label": "BaseALT",
+          "count": 3
+        },
+        {
+          "id": "cyberprotect",
+          "label": "Cyberprotect",
+          "count": 3
+        },
+        {
+          "id": "tantor_labs",
+          "label": "Tantor Labs",
           "count": 3
         },
         {
@@ -1499,18 +834,13 @@
           "count": 3
         },
         {
-          "id": "elma",
-          "label": "ELMA",
-          "count": 2
-        },
-        {
           "id": "passwork",
           "label": "Passwork",
           "count": 2
         },
         {
-          "id": "content_ai",
-          "label": "Content AI",
+          "id": "elma",
+          "label": "ELMA",
           "count": 2
         },
         {
@@ -1519,43 +849,13 @@
           "count": 2
         },
         {
-          "id": "rudesktop",
-          "label": "RuDesktop",
-          "count": 2
-        },
-        {
-          "id": "pvs_studio",
-          "label": "PVS-Studio",
-          "count": 2
-        },
-        {
-          "id": "lira_soft",
-          "label": "LIRA Soft",
-          "count": 2
-        },
-        {
-          "id": "onec_bitrix",
-          "label": "1C-Bitrix",
+          "id": "security_vision",
+          "label": "Security Vision",
           "count": 2
         },
         {
           "id": "directum",
           "label": "Directum",
-          "count": 2
-        },
-        {
-          "id": "websoft",
-          "label": "Websoft",
-          "count": 2
-        },
-        {
-          "id": "amocrm",
-          "label": "amoCRM",
-          "count": 2
-        },
-        {
-          "id": "security_vision",
-          "label": "Security Vision",
           "count": 2
         },
         {
@@ -1566,11 +866,6 @@
         {
           "id": "pix_robotics",
           "label": "PIX Robotics",
-          "count": 2
-        },
-        {
-          "id": "raidix",
-          "label": "RAIDIX",
           "count": 2
         },
         {
@@ -1609,11 +904,6 @@
           "count": 2
         },
         {
-          "id": "mgk_grand",
-          "label": "MGK GRAND",
-          "count": 2
-        },
-        {
           "id": "galaktika",
           "label": "Galaktika",
           "count": 2
@@ -1624,13 +914,8 @@
           "count": 2
         },
         {
-          "id": "syntellect_tessa",
-          "label": "Syntellect",
-          "count": 2
-        },
-        {
-          "id": "r_vision",
-          "label": "R-Vision",
+          "id": "pvs_studio",
+          "label": "PVS-Studio",
           "count": 2
         },
         {
@@ -1639,18 +924,18 @@
           "count": 2
         },
         {
+          "id": "r_vision",
+          "label": "R-Vision",
+          "count": 2
+        },
+        {
           "id": "smart_engines",
           "label": "Smart Engines",
           "count": 2
         },
         {
-          "id": "rosatom_logos",
-          "label": "Rosatom (Logos)",
-          "count": 2
-        },
-        {
-          "id": "evateam",
-          "label": "EvaTeam",
+          "id": "rudesktop",
+          "label": "RuDesktop",
           "count": 2
         },
         {
@@ -1664,8 +949,8 @@
           "count": 2
         },
         {
-          "id": "comindware",
-          "label": "Comindware",
+          "id": "content_ai",
+          "label": "Content AI",
           "count": 2
         },
         {
@@ -1679,6 +964,26 @@
           "count": 2
         },
         {
+          "id": "raidix",
+          "label": "RAIDIX",
+          "count": 2
+        },
+        {
+          "id": "syntellect_tessa",
+          "label": "Syntellect",
+          "count": 2
+        },
+        {
+          "id": "comindware",
+          "label": "Comindware",
+          "count": 2
+        },
+        {
+          "id": "garda_technologies",
+          "label": "Garda",
+          "count": 2
+        },
+        {
           "id": "mirapolis",
           "label": "Mirapolis",
           "count": 2
@@ -1689,13 +994,43 @@
           "count": 2
         },
         {
-          "id": "garda_technologies",
-          "label": "Garda",
+          "id": "evateam",
+          "label": "EvaTeam",
           "count": 2
         },
         {
           "id": "polymatica",
           "label": "Polymatica",
+          "count": 2
+        },
+        {
+          "id": "lira_soft",
+          "label": "LIRA Soft",
+          "count": 2
+        },
+        {
+          "id": "onec_bitrix",
+          "label": "1C-Bitrix",
+          "count": 2
+        },
+        {
+          "id": "websoft",
+          "label": "Websoft",
+          "count": 2
+        },
+        {
+          "id": "amocrm",
+          "label": "amoCRM",
+          "count": 2
+        },
+        {
+          "id": "mgk_grand",
+          "label": "MGK GRAND",
+          "count": 2
+        },
+        {
+          "id": "rosatom_logos",
+          "label": "Rosatom (Logos)",
           "count": 2
         },
         {
@@ -1714,11 +1049,6 @@
           "count": 1
         },
         {
-          "id": "softinventive",
-          "label": "Softinventive Lab",
-          "count": 1
-        },
-        {
           "id": "softline_cloud",
           "label": "Softline Cloud",
           "count": 1
@@ -1726,11 +1056,6 @@
         {
           "id": "staffcop",
           "label": "Staffcop",
-          "count": 1
-        },
-        {
-          "id": "stakhanovets",
-          "label": "Stakhanovets",
           "count": 1
         },
         {
@@ -1754,18 +1079,8 @@
           "count": 1
         },
         {
-          "id": "confidant",
-          "label": "Confidant",
-          "count": 1
-        },
-        {
           "id": "yonote",
           "label": "Yonote",
-          "count": 1
-        },
-        {
-          "id": "ispring",
-          "label": "iSpring",
           "count": 1
         },
         {
@@ -1774,28 +1089,8 @@
           "count": 1
         },
         {
-          "id": "finalwire",
-          "label": "FinalWire",
-          "count": 1
-        },
-        {
-          "id": "cloud_ru",
-          "label": "Cloud.ru",
-          "count": 1
-        },
-        {
           "id": "aktiv_rutoken",
           "label": "Aktiv",
-          "count": 1
-        },
-        {
-          "id": "csoft_development",
-          "label": "CSoft Development",
-          "count": 1
-        },
-        {
-          "id": "qameta_allure",
-          "label": "Qameta Software",
           "count": 1
         },
         {
@@ -1814,23 +1109,8 @@
           "count": 1
         },
         {
-          "id": "potok_hr",
-          "label": "Potok",
-          "count": 1
-        },
-        {
-          "id": "aladdin_rd",
-          "label": "Aladdin",
-          "count": 1
-        },
-        {
           "id": "falcongaze",
           "label": "Falcongaze",
-          "count": 1
-        },
-        {
-          "id": "robin_rpa",
-          "label": "ROBIN",
           "count": 1
         },
         {
@@ -1839,23 +1119,8 @@
           "count": 1
         },
         {
-          "id": "top_systems",
-          "label": "Top Systems",
-          "count": 1
-        },
-        {
           "id": "kaiten",
           "label": "Kaiten",
-          "count": 1
-        },
-        {
-          "id": "r_tt",
-          "label": "R-Tools Technology",
-          "count": 1
-        },
-        {
-          "id": "axiom_jdk",
-          "label": "Axiom JDK",
           "count": 1
         },
         {
@@ -1864,18 +1129,8 @@
           "count": 1
         },
         {
-          "id": "mts_link",
-          "label": "MTS Link",
-          "count": 1
-        },
-        {
           "id": "simpleone",
           "label": "SimpleOne",
-          "count": 1
-        },
-        {
-          "id": "postgres_pro",
-          "label": "Postgres Professional",
           "count": 1
         },
         {
@@ -1899,23 +1154,8 @@
           "count": 1
         },
         {
-          "id": "macroscop",
-          "label": "Macroscop",
-          "count": 1
-        },
-        {
-          "id": "soft_balance_t1",
-          "label": "T1 (Sfera)",
-          "count": 1
-        },
-        {
           "id": "test_it",
           "label": "Test IT",
-          "count": 1
-        },
-        {
-          "id": "weeek",
-          "label": "WEEEK",
           "count": 1
         },
         {
@@ -1929,23 +1169,8 @@
           "count": 1
         },
         {
-          "id": "tekton_rms",
-          "label": "TektonIT",
-          "count": 1
-        },
-        {
-          "id": "fidesys",
-          "label": "Fidesys",
-          "count": 1
-        },
-        {
           "id": "unigine",
           "label": "UNIGINE",
-          "count": 1
-        },
-        {
-          "id": "visionlabs",
-          "label": "VisionLabs",
           "count": 1
         },
         {
@@ -1956,11 +1181,6 @@
         {
           "id": "express_unlimited",
           "label": "Unlimited Production",
-          "count": 1
-        },
-        {
-          "id": "rubackup",
-          "label": "RuBackup",
           "count": 1
         },
         {
@@ -2004,26 +1224,6 @@
           "count": 1
         },
         {
-          "id": "zwsoft",
-          "label": "ZWSOFT",
-          "count": 1
-        },
-        {
-          "id": "promt",
-          "label": "PROMT",
-          "count": 1
-        },
-        {
-          "id": "huntflow",
-          "label": "Huntflow",
-          "count": 1
-        },
-        {
-          "id": "open_mobile_platform",
-          "label": "Open Mobile Platform",
-          "count": 1
-        },
-        {
           "id": "makves",
           "label": "Makves",
           "count": 1
@@ -2031,16 +1231,6 @@
         {
           "id": "cyberpeak",
           "label": "CyberPeak",
-          "count": 1
-        },
-        {
-          "id": "sherpa_rpa",
-          "label": "Sherpa Robotics",
-          "count": 1
-        },
-        {
-          "id": "ritm_engee",
-          "label": "Engee / TsITM Eksponenta",
           "count": 1
         },
         {
@@ -2069,28 +1259,8 @@
           "count": 1
         },
         {
-          "id": "trusted_cryptoarm",
-          "label": "Digital Technologies",
-          "count": 1
-        },
-        {
           "id": "picodata",
           "label": "Picodata",
-          "count": 1
-        },
-        {
-          "id": "credo_dialog",
-          "label": "CREDO-DIALOGUE",
-          "count": 1
-        },
-        {
-          "id": "axelot",
-          "label": "AXELOT",
-          "count": 1
-        },
-        {
-          "id": "dbrain",
-          "label": "Dbrain",
           "count": 1
         },
         {
@@ -2109,11 +1279,6 @@
           "count": 1
         },
         {
-          "id": "getscreen",
-          "label": "Getscreen",
-          "count": 1
-        },
-        {
           "id": "axxonsoft",
           "label": "AxxonSoft",
           "count": 1
@@ -2121,11 +1286,6 @@
         {
           "id": "retailcrm",
           "label": "RetailCRM",
-          "count": 1
-        },
-        {
-          "id": "eremex",
-          "label": "EREMEX",
           "count": 1
         },
         {
@@ -2169,11 +1329,6 @@
           "count": 1
         },
         {
-          "id": "ait_s_terra",
-          "label": "S-Terra",
-          "count": 1
-        },
-        {
           "id": "redcheck_altex",
           "label": "Altex-Soft",
           "count": 1
@@ -2191,6 +1346,186 @@
         {
           "id": "rebrain_blitz",
           "label": "Identity Blitz",
+          "count": 1
+        },
+        {
+          "id": "softinventive",
+          "label": "Softinventive Lab",
+          "count": 1
+        },
+        {
+          "id": "stakhanovets",
+          "label": "Stakhanovets",
+          "count": 1
+        },
+        {
+          "id": "ispring",
+          "label": "iSpring",
+          "count": 1
+        },
+        {
+          "id": "finalwire",
+          "label": "FinalWire",
+          "count": 1
+        },
+        {
+          "id": "csoft_development",
+          "label": "CSoft Development",
+          "count": 1
+        },
+        {
+          "id": "confidant",
+          "label": "Confidant",
+          "count": 1
+        },
+        {
+          "id": "qameta_allure",
+          "label": "Qameta Software",
+          "count": 1
+        },
+        {
+          "id": "cloud_ru",
+          "label": "Cloud.ru",
+          "count": 1
+        },
+        {
+          "id": "potok_hr",
+          "label": "Potok",
+          "count": 1
+        },
+        {
+          "id": "aladdin_rd",
+          "label": "Aladdin",
+          "count": 1
+        },
+        {
+          "id": "r_tt",
+          "label": "R-Tools Technology",
+          "count": 1
+        },
+        {
+          "id": "axiom_jdk",
+          "label": "Axiom JDK",
+          "count": 1
+        },
+        {
+          "id": "robin_rpa",
+          "label": "ROBIN",
+          "count": 1
+        },
+        {
+          "id": "mts_link",
+          "label": "MTS Link",
+          "count": 1
+        },
+        {
+          "id": "top_systems",
+          "label": "Top Systems",
+          "count": 1
+        },
+        {
+          "id": "postgres_pro",
+          "label": "Postgres Professional",
+          "count": 1
+        },
+        {
+          "id": "soft_balance_t1",
+          "label": "T1 (Sfera)",
+          "count": 1
+        },
+        {
+          "id": "weeek",
+          "label": "WEEEK",
+          "count": 1
+        },
+        {
+          "id": "tekton_rms",
+          "label": "TektonIT",
+          "count": 1
+        },
+        {
+          "id": "visionlabs",
+          "label": "VisionLabs",
+          "count": 1
+        },
+        {
+          "id": "rubackup",
+          "label": "RuBackup",
+          "count": 1
+        },
+        {
+          "id": "macroscop",
+          "label": "Macroscop",
+          "count": 1
+        },
+        {
+          "id": "fidesys",
+          "label": "Fidesys",
+          "count": 1
+        },
+        {
+          "id": "huntflow",
+          "label": "Huntflow",
+          "count": 1
+        },
+        {
+          "id": "open_mobile_platform",
+          "label": "Open Mobile Platform",
+          "count": 1
+        },
+        {
+          "id": "zwsoft",
+          "label": "ZWSOFT",
+          "count": 1
+        },
+        {
+          "id": "sherpa_rpa",
+          "label": "Sherpa Robotics",
+          "count": 1
+        },
+        {
+          "id": "ritm_engee",
+          "label": "Engee / TsITM Eksponenta",
+          "count": 1
+        },
+        {
+          "id": "trusted_cryptoarm",
+          "label": "Digital Technologies",
+          "count": 1
+        },
+        {
+          "id": "axelot",
+          "label": "AXELOT",
+          "count": 1
+        },
+        {
+          "id": "dbrain",
+          "label": "Dbrain",
+          "count": 1
+        },
+        {
+          "id": "getscreen",
+          "label": "Getscreen",
+          "count": 1
+        },
+        {
+          "id": "credo_dialog",
+          "label": "CREDO-DIALOGUE",
+          "count": 1
+        },
+        {
+          "id": "eremex",
+          "label": "EREMEX",
+          "count": 1
+        },
+        {
+          "id": "promt",
+          "label": "PROMT",
+          "count": 1
+        },
+        {
+          "id": "ait_s_terra",
+          "label": "S-Terra",
           "count": 1
         },
         {
@@ -2220,13 +1555,13 @@
           "count": 9
         },
         {
-          "id": "bpm_rpa_lowcode",
-          "label": "BPM, Low-code и роботизация процессов (RPA)",
+          "id": "iaas_cloud_platforms",
+          "label": "Облачные платформы IaaS/PaaS и виртуальные ЦОД",
           "count": 8
         },
         {
-          "id": "iaas_cloud_platforms",
-          "label": "Облачные платформы IaaS/PaaS и виртуальные ЦОД",
+          "id": "bpm_rpa_lowcode",
+          "label": "BPM, Low-code и роботизация процессов (RPA)",
           "count": 8
         },
         {
@@ -2237,6 +1572,11 @@
         {
           "id": "bi_analytics",
           "label": "BI-системы и визуализация данных",
+          "count": 7
+        },
+        {
+          "id": "server_virtualization",
+          "label": "Серверная виртуализация и гипервизоры",
           "count": 7
         },
         {
@@ -2252,11 +1592,6 @@
         {
           "id": "lms_elearning",
           "label": "Системы дистанционного обучения (LMS) и конструкторы курсов",
-          "count": 7
-        },
-        {
-          "id": "server_virtualization",
-          "label": "Серверная виртуализация и гипервизоры",
           "count": 7
         },
         {
@@ -2280,11 +1615,6 @@
           "count": 6
         },
         {
-          "id": "server_os",
-          "label": "Серверные операционные системы",
-          "count": 5
-        },
-        {
           "id": "dlp",
           "label": "DLP-системы и защита от утечек",
           "count": 5
@@ -2305,13 +1635,13 @@
           "count": 5
         },
         {
-          "id": "code_analysis_sast",
-          "label": "Анализ кода, SAST/DAST и контроль качества",
-          "count": 4
+          "id": "server_os",
+          "label": "Серверные операционные системы",
+          "count": 5
         },
         {
-          "id": "bim_aec",
-          "label": "Строительные САПР, архитектура и BIM/ТИМ",
+          "id": "code_analysis_sast",
+          "label": "Анализ кода, SAST/DAST и контроль качества",
           "count": 4
         },
         {
@@ -2325,23 +1655,13 @@
           "count": 4
         },
         {
-          "id": "git_cicd_devops",
-          "label": "Git-платформы, CI/CD и DevSecOps",
+          "id": "bim_aec",
+          "label": "Строительные САПР, архитектура и BIM/ТИМ",
           "count": 4
         },
         {
           "id": "directory_services",
           "label": "Службы каталогов, контроллеры домена и UEM",
-          "count": 4
-        },
-        {
-          "id": "accounting",
-          "label": "Бухгалтерский и налоговый учёт",
-          "count": 4
-        },
-        {
-          "id": "edr_xdr",
-          "label": "EDR, XDR и защита от сложных угроз",
           "count": 4
         },
         {
@@ -2355,13 +1675,8 @@
           "count": 4
         },
         {
-          "id": "rdbms",
-          "label": "Реляционные СУБД",
-          "count": 4
-        },
-        {
-          "id": "cad_2d",
-          "label": "Базовые 2D/3D САПР и черчение DWG",
+          "id": "git_cicd_devops",
+          "label": "Git-платформы, CI/CD и DevSecOps",
           "count": 4
         },
         {
@@ -2375,13 +1690,33 @@
           "count": 4
         },
         {
+          "id": "vks_webinars",
+          "label": "Видеоконференцсвязь и вебинары",
+          "count": 4
+        },
+        {
+          "id": "edr_xdr",
+          "label": "EDR, XDR и защита от сложных угроз",
+          "count": 4
+        },
+        {
+          "id": "accounting",
+          "label": "Бухгалтерский и налоговый учёт",
+          "count": 4
+        },
+        {
           "id": "sds_storage",
           "label": "Программно-определяемые хранилища (SDS) и корпоративные диски",
           "count": 4
         },
         {
-          "id": "vks_webinars",
-          "label": "Видеоконференцсвязь и вебинары",
+          "id": "rdbms",
+          "label": "Реляционные СУБД",
+          "count": 4
+        },
+        {
+          "id": "llm_gen_ai",
+          "label": "Генеративный ИИ, корпоративные LLM и ИИ-ассистенты",
           "count": 4
         },
         {
@@ -2390,8 +1725,8 @@
           "count": 4
         },
         {
-          "id": "llm_gen_ai",
-          "label": "Генеративный ИИ, корпоративные LLM и ИИ-ассистенты",
+          "id": "cad_2d",
+          "label": "Базовые 2D/3D САПР и черчение DWG",
           "count": 4
         },
         {
@@ -2435,28 +1770,8 @@
           "count": 3
         },
         {
-          "id": "system_utilities",
-          "label": "Системные утилиты, диагностика и настройка",
-          "count": 2
-        },
-        {
-          "id": "pdf_editors",
-          "label": "Редакторы и конвертеры PDF",
-          "count": 2
-        },
-        {
-          "id": "retail_pos_cash",
-          "label": "Автоматизация розницы, кассы и маркировка",
-          "count": 2
-        },
-        {
           "id": "nosql_inmemory",
           "label": "NoSQL, In-Memory и графовые СУБД",
-          "count": 2
-        },
-        {
-          "id": "nsd_access_control",
-          "label": "СЗИ от НСД и доверенная загрузка",
           "count": 2
         },
         {
@@ -2475,18 +1790,8 @@
           "count": 2
         },
         {
-          "id": "testing_qa",
-          "label": "Тестирование ПО, TMS и нагрузочное тестирование",
-          "count": 2
-        },
-        {
-          "id": "kedo_hr_docs",
-          "label": "Кадровый электронный документооборот (КЭДО)",
-          "count": 2
-        },
-        {
-          "id": "hrm_recruiting",
-          "label": "HRM-системы, рекрутинг и управление персоналом",
+          "id": "retail_pos_cash",
+          "label": "Автоматизация розницы, кассы и маркировка",
           "count": 2
         },
         {
@@ -2500,18 +1805,13 @@
           "count": 2
         },
         {
-          "id": "estimates_construction",
-          "label": "Сметное ПО и ценообразование в строительстве",
-          "count": 2
-        },
-        {
           "id": "ip_telephony",
           "label": "IP-телефония, программные АТС и колл-центры",
           "count": 2
         },
         {
-          "id": "industry_specialized",
-          "label": "Отраслевое ПО (видеонаблюдение, медицина, образование, АПК)",
+          "id": "testing_qa",
+          "label": "Тестирование ПО, TMS и нагрузочное тестирование",
           "count": 2
         },
         {
@@ -2525,13 +1825,18 @@
           "count": 2
         },
         {
-          "id": "mobile_os",
-          "label": "Мобильные операционные системы",
+          "id": "nsd_access_control",
+          "label": "СЗИ от НСД и доверенная загрузка",
           "count": 2
         },
         {
-          "id": "e_signature",
-          "label": "Электронная подпись и инструменты ЭП",
+          "id": "kedo_hr_docs",
+          "label": "Кадровый электронный документооборот (КЭДО)",
+          "count": 2
+        },
+        {
+          "id": "pdf_editors",
+          "label": "Редакторы и конвертеры PDF",
           "count": 2
         },
         {
@@ -2545,33 +1850,38 @@
           "count": 2
         },
         {
-          "id": "terminal_access",
-          "label": "Терминальный доступ и публикация приложений",
-          "count": 1
+          "id": "industry_specialized",
+          "label": "Отраслевое ПО (видеонаблюдение, медицина, образование, АПК)",
+          "count": 2
         },
         {
-          "id": "raster_vectorizers",
-          "label": "Векторизаторы и обработка лазерного сканирования",
-          "count": 1
+          "id": "e_signature",
+          "label": "Электронная подпись и инструменты ЭП",
+          "count": 2
         },
         {
-          "id": "data_recovery",
-          "label": "Восстановление удалённых данных",
-          "count": 1
+          "id": "mobile_os",
+          "label": "Мобильные операционные системы",
+          "count": 2
         },
         {
-          "id": "java_runtimes",
-          "label": "Среды исполнения Java и корпоративные рантаймы",
-          "count": 1
+          "id": "system_utilities",
+          "label": "Системные утилиты, диагностика и настройка",
+          "count": 2
+        },
+        {
+          "id": "hrm_recruiting",
+          "label": "HRM-системы, рекрутинг и управление персоналом",
+          "count": 2
+        },
+        {
+          "id": "estimates_construction",
+          "label": "Сметное ПО и ценообразование в строительстве",
+          "count": 2
         },
         {
           "id": "dwh_olap",
           "label": "Аналитические СУБД и хранилища данных (DWH)",
-          "count": 1
-        },
-        {
-          "id": "desktop_os_windows",
-          "label": "Операционные системы Windows",
           "count": 1
         },
         {
@@ -2587,11 +1897,6 @@
         {
           "id": "db_management_tools",
           "label": "Инструменты администрирования и миграции БД",
-          "count": 1
-        },
-        {
-          "id": "ml_platforms_cv",
-          "label": "Платформы ML/DS, компьютерное зрение и видеоаналитика",
           "count": 1
         },
         {
@@ -2615,11 +1920,6 @@
           "count": 1
         },
         {
-          "id": "translation_dictionaries",
-          "label": "Машинные переводчики, CAT-системы и словари",
-          "count": 1
-        },
-        {
           "id": "monitoring_apm",
           "label": "Мониторинг инфраструктуры, сетей и APM",
           "count": 1
@@ -2635,18 +1935,8 @@
           "count": 1
         },
         {
-          "id": "logistics_tms",
-          "label": "Транспортная логистика, TMS и управление автопарком",
-          "count": 1
-        },
-        {
           "id": "api_integration_esb",
           "label": "Интеграционные шины (ESB) и API-менеджмент",
-          "count": 1
-        },
-        {
-          "id": "ecad_eda",
-          "label": "Проектирование электроники, печатных плат и электрики",
           "count": 1
         },
         {
@@ -2668,15 +1958,60 @@
           "id": "vuln_mgmt_pentest",
           "label": "Сканеры уязвимостей и аудит ИБ",
           "count": 1
+        },
+        {
+          "id": "raster_vectorizers",
+          "label": "Векторизаторы и обработка лазерного сканирования",
+          "count": 1
+        },
+        {
+          "id": "data_recovery",
+          "label": "Восстановление удалённых данных",
+          "count": 1
+        },
+        {
+          "id": "java_runtimes",
+          "label": "Среды исполнения Java и корпоративные рантаймы",
+          "count": 1
+        },
+        {
+          "id": "terminal_access",
+          "label": "Терминальный доступ и публикация приложений",
+          "count": 1
+        },
+        {
+          "id": "desktop_os_windows",
+          "label": "Операционные системы Windows",
+          "count": 1
+        },
+        {
+          "id": "ml_platforms_cv",
+          "label": "Платформы ML/DS, компьютерное зрение и видеоаналитика",
+          "count": 1
+        },
+        {
+          "id": "logistics_tms",
+          "label": "Транспортная логистика, TMS и управление автопарком",
+          "count": 1
+        },
+        {
+          "id": "ecad_eda",
+          "label": "Проектирование электроники, печатных плат и электрики",
+          "count": 1
+        },
+        {
+          "id": "translation_dictionaries",
+          "label": "Машинные переводчики, CAT-системы и словари",
+          "count": 1
         }
       ]
     }
   ],
   "related_queries": [
-    "ELMA365 On-Premises Standard",
-    "Адванта",
-    "1С:Документооборот 8 ПРОФ",
-    "Solar appScreener Enterprise"
+    "Адванта продление",
+    "Аналог Адванта",
+    "Планирование проектов и диаграммы Ганта из реестра",
+    "Планирование проектов и диаграммы Ганта"
   ],
   "notes": [],
   "trace": [
@@ -2684,7 +2019,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.16,
+      "ms": 0.07,
       "summary": "акции",
       "detail": {}
     },
@@ -2700,15 +2035,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 2.46,
+      "ms": 2.75,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.17,
+      "ms": 0.13,
       "summary": "Явных условий нет",
       "detail": {
         "residual": "акции",
@@ -2728,10 +2066,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.12,
+      "ms": 0.1,
       "summary": "Акции",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.55,
+        "rules": "promo",
+        "rejected": [],
         "calls": []
       }
     },
@@ -2747,7 +2089,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 7.96,
+      "ms": 7.76,
       "summary": "Подходящих карточек до проверки лицензий · 429",
       "detail": {
         "sources": [
@@ -2762,7 +2104,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 35.79,
+      "ms": 36.42,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -2770,7 +2112,7 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Подобрано вариантов для карточек · 304",
       "detail": {}
     },
@@ -2778,9 +2120,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.16,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -2788,14 +2132,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 24.36,
+      "ms": 30.16,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -2803,7 +2147,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.52,
+      "ms": 0.2,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -2813,7 +2157,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.35,
+      "ms": 0.25,
       "summary": "Карточек в выдаче · 304",
       "detail": {}
     },
@@ -2821,7 +2165,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.51,
+      "ms": 1.24,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -2831,14 +2175,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 78.74
+    "total": 80.07
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

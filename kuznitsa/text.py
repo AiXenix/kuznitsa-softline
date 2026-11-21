@@ -10,11 +10,12 @@ TOKEN = re.compile(r"c\+\+|c#|\.net|[\w]+(?:[.:-][\w]+)*")
 def normalize(s):
     s = unicodedata.normalize("NFKC", s).lower().replace("ё","е")
     s = re.sub("[‐‑–—−]", "-", s)
-    s = re.sub(r"\b1[cс]:?", "1с ", s)
+    s = re.sub(r"\b1[cс][:-]?", "1с ", s)
     s = re.sub(r"\b(win(?:dows)?|office)\s*(?=\d)",lambda m:"windows " if m[1].startswith("win") else "office ",s)
     s = re.sub(r"\b([mo])365\b",lambda m:("office" if m[1]=="o" else "microsoft")+" 365",s)
     s = re.sub(r"(\d)(пк|мес|комп|лет|год|шт|узл|польз|юзер)",r"\1 \2",s)
     s = re.sub(r"[a-zа-я0-9]+",lambda m:m[0].translate(LOOK) if re.search("[a-z]",m[0]) else m[0],s)
+    s = re.sub(r"\b([а-я]\d)-([a-z]{3,})",r"\1 \2",s)
     s = re.sub(r"(windows \d+)(pro|home|enterprise)\b",r"\1 \2",s)
     return " ".join(s.split())
 

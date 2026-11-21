@@ -1,25 +1,14 @@
 {
-  "search_id": "s_bdef845dbe894111853d2ecdb85cb904",
+  "search_id": "s_a5f2c26ee4ee45b29b1e6fb195a2c6ce",
   "mode": "fast",
   "engine": "kuznitsa",
-  "relax_hints": [
-    {
-      "drop": "edition",
-      "label": "Снять условие «редакция»",
-      "count": 10,
-      "apply": {
-        "ignore": [
-          "edition"
-        ]
-      }
-    }
-  ],
+  "relax_hints": [],
   "banners": [],
   "engine_version": "0.1.0",
   "query": {
-    "raw": "эдо с интеграцией в 1с",
-    "normalized": "эдо с интеграцией в 1с",
-    "corrected": "эдо с интеграцией в 1с",
+    "raw": "чем открыть dwg",
+    "normalized": "чем открыть dwg",
+    "corrected": "чем открыть dwg",
     "corrections": [],
     "did_you_mean": null
   },
@@ -27,38 +16,17 @@
     "intent": "task",
     "intent_title": "Поиск по задаче",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
       {
-        "type": "category",
-        "id": "tax_reporting_edo",
-        "text": "эдо",
+        "type": "use_case",
+        "id": "uc_open_edit_dwg",
+        "text": "чем открыть dwg",
         "span": [
           0,
-          1
-        ],
-        "source": "kb",
-        "conf": 1.0
-      },
-      {
-        "type": "edition",
-        "id": "api",
-        "text": "интеграцией",
-        "span": [
-          2,
           3
-        ],
-        "source": "kb",
-        "conf": 1.0
-      },
-      {
-        "type": "vendor",
-        "id": "onec",
-        "text": "1с",
-        "span": [
-          4,
-          5
         ],
         "source": "kb",
         "conf": 1.0
@@ -66,89 +34,62 @@
     ],
     "filters": {
       "category": [
-        "tax_reporting_edo"
-      ],
-      "edition": [
-        "api"
-      ],
-      "vendor": [
-        "onec"
-      ],
-      "family": [
-        "onec_edo"
+        "cad_2d"
       ]
     },
     "exclude": {},
     "qty": null,
     "chips": [
       {
-        "key": "category",
-        "label": "Электронная отчётность и ЭДО с контрагентами",
+        "key": "use_case",
+        "label": "чем открыть dwg",
         "source": "query",
-        "removable": true,
-        "remove_q": "с интеграцией в 1с"
-      },
-      {
-        "key": "edition",
-        "label": "интеграцией",
-        "source": "query",
-        "removable": true,
-        "remove_q": "эдо с в 1с"
-      },
-      {
-        "key": "vendor",
-        "label": "1C",
-        "source": "query",
-        "removable": true,
-        "remove_q": "эдо с интеграцией в"
+        "removable": false,
+        "remove_q": ""
       }
     ],
     "subtype": null,
     "reason": null,
-    "agent_note": "Поиск по задаче · Электронная отчётность и ЭДО с контрагентами, интеграцией, 1C"
+    "agent_note": "Поиск по задаче · чем открыть dwg"
   },
   "blocks": [
     {
       "type": "products",
       "title": "Подходящие лицензии",
-      "total": 10,
+      "total": 12,
       "items": [
         {
-          "card_id": "sbis_saby:edo",
-          "title": "СБИС Saby ЭДО",
+          "card_id": "nanocad_platform:base",
+          "title": "Платформа nanoCAD Базовая",
           "vendor": {
-            "id": "tensor_sbis",
-            "name": "Tensor (Saby / SBIS)"
+            "id": "nanosoft",
+            "name": "Nanosoft"
           },
           "category": {
-            "id": "tax_reporting_edo",
-            "title": "Электронная отчётность и ЭДО с контрагентами"
+            "id": "cad_2d",
+            "title": "Базовые 2D/3D САПР и черчение DWG"
           },
-          "summary": "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница.",
+          "summary": "Ведущая российская САПР-платформа с нативной поддержкой формата DWG, 2D-черчением, 3D-моделированием и вертикальными модулями (СПДС, Механика, Топоплан, Растр).",
           "badges": [
             {
               "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
+              "label": "В реестре по данным семейства"
             }
           ],
           "offer": {
-            "offer_id": "o_97365B6BABE5",
-            "sku": "AX-97365B6BABE5",
-            "name": "СБИС Saby ЭДО, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
-            "price": 12200.0,
+            "offer_id": "o_1D48F8A2073F",
+            "sku": "AX-1D48F8A2073F",
+            "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+            "price": 28000.0,
             "price_on_request": false,
-            "delivery": "service",
-            "vat": 0,
+            "delivery": "esd",
+            "vat": 22,
             "available": true,
-            "version": null,
+            "version": "23",
             "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "company",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "device",
             "qty_min": null,
             "qty_max": null,
             "pack": 1,
@@ -156,137 +97,139 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 12200.0,
+            "unit_price": 28000.0,
             "total": null,
-            "text": "от 12 200 ₽ за организацию в год"
+            "text": "от 28 000 ₽ за устройство"
           },
           "variants": [
             {
-              "offer_id": "o_0CD9AF1046B7",
-              "sku": "AX-0CD9AF1046B7",
-              "name": "СБИС Saby ЭДО, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 10980.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_9CE85D07122A",
-              "sku": "AX-9CE85D07122A",
-              "name": "СБИС Saby ЭДО, продление, 1 организаций, 12 мес., для организаций, SERVICE",
-              "price": 8540.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_D7A7512490BE",
-              "sku": "AX-D7A7512490BE",
-              "name": "СБИС Saby ЭДО, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 7680.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_D346A8C33C8C",
-              "sku": "AX-D346A8C33C8C",
-              "name": "СБИС Saby ЭДО, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
-              "price": 12200.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_4BAE6D9574F1",
-              "sku": "AX-4BAE6D9574F1",
-              "name": "СБИС Saby ЭДО, новая лицензия, 1 пользователей, 24 мес., для организаций, ESD",
-              "price": 22000.0,
+              "offer_id": "o_81CFA883CEF8",
+              "sku": "AX-81CFA883CEF8",
+              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 28000.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 0,
+              "vat": 22,
               "available": true,
-              "version": null,
+              "version": "23",
               "action": "new",
               "model": "subscription",
-              "term_months": 24,
-              "metric": "user",
+              "term_months": 12,
+              "metric": "device",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
               "audience": "business"
+            },
+            {
+              "offer_id": "o_97CAE9C50B4E",
+              "sku": "AX-97CAE9C50B4E",
+              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 25200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_A73BF7EAE0DD",
+              "sku": "AX-A73BF7EAE0DD",
+              "name": "Платформа nanoCAD 23 Базовая, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+              "price": 11200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_439BCE75ADBD",
+              "sku": "AX-439BCE75ADBD",
+              "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 19600.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_45CC2310B377",
+              "sku": "AX-45CC2310B377",
+              "name": "Платформа nanoCAD 23 Базовая, продление, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 17640.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 22,
+              "available": true,
+              "version": "23",
+              "action": "renewal",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
             }
           ],
-          "variants_count": 19,
-          "price_from": 7680.0,
+          "variants_count": 21,
+          "price_from": 7840.0,
           "score": {
             "tier": 1,
-            "score": 0.7634799999999999,
+            "tier_label": "Подходит по условиям",
+            "score": 0.73,
             "parts": {
               "rel": 0.425,
-              "pop": 0.19342,
-              "margin": 0.14506,
+              "pop": 0.17176,
+              "margin": 0.13324,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска",
-              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+              "Включение в реестр указано в базе знаний для всего семейства",
+              "Решает задачу «чем открыть dwg»"
             ]
           },
           "position": 1
         },
         {
-          "card_id": "onec_kedo:onprem",
-          "title": "1С:Кабинет сотрудника Локальный",
+          "card_id": "kompas_3d:build",
+          "title": "АСКОН КОМПАС Строитель",
           "vendor": {
-            "id": "onec",
-            "name": "1C"
+            "id": "ascon",
+            "name": "ASCON"
           },
           "category": {
-            "id": "kedo_hr_docs",
-            "title": "Кадровый электронный документооборот (КЭДО)"
+            "id": "mcad_plm",
+            "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
           },
-          "summary": "Сервис кадрового электронного документооборота (КЭДО), встроенный в 1С:ЗУП, 1С:Бухгалтерию и 1С:ERP.",
+          "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
           "badges": [
             {
               "kind": "registry",
@@ -298,182 +241,19 @@
             }
           ],
           "offer": {
-            "offer_id": "o_BB4564B9F5EF",
-            "sku": "AX-BB4564B9F5EF",
-            "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 50–99 пользователей, 12 мес., для организаций, ESD",
-            "price": 670.0,
+            "offer_id": "o_DAE970924515",
+            "sku": "AX-DAE970924515",
+            "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+            "price": 480000.0,
             "price_on_request": false,
             "delivery": "esd",
             "vat": 0,
             "available": true,
-            "version": null,
+            "version": "v22",
             "action": "new",
             "model": "subscription",
             "term_months": 12,
-            "metric": "user",
-            "qty_min": 50,
-            "qty_max": 99,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 670.0,
-            "total": null,
-            "text": "от 670 ₽ за пользователя в год (при покупке от 50)"
-          },
-          "variants": [
-            {
-              "offer_id": "o_199D311CBA5E",
-              "sku": "AX-199D311CBA5E",
-              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 10–49 пользователей, 12 мес., для организаций, ESD",
-              "price": 700.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_2FFD34552B21",
-              "sku": "AX-2FFD34552B21",
-              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 10–49 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 630.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 10,
-              "qty_max": 49,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_4192B8D9D288",
-              "sku": "AX-4192B8D9D288",
-              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 50–99 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 600.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 50,
-              "qty_max": 99,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_347DC37660F1",
-              "sku": "AX-347DC37660F1",
-              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 100–499 пользователей, 12 мес., для организаций, ESD",
-              "price": 650.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 100,
-              "qty_max": 499,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_9A22CBBD78D4",
-              "sku": "AX-9A22CBBD78D4",
-              "name": "1С:Кабинет сотрудника Локальный, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 580.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 100,
-              "qty_max": 499,
-              "pack": null,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 53,
-          "price_from": 390.0,
-          "score": {
-            "tier": 1,
-            "score": 0.75851,
-            "parts": {
-              "rel": 0.425,
-              "pop": 0.19243,
-              "margin": 0.14108,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 50 до 99 мест",
-              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
-            ]
-          },
-          "position": 2
-        },
-        {
-          "card_id": "sbis_saby:kedo",
-          "title": "СБИС Saby КЭДО и Кадры",
-          "vendor": {
-            "id": "tensor_sbis",
-            "name": "Tensor (Saby / SBIS)"
-          },
-          "category": {
-            "id": "tax_reporting_edo",
-            "title": "Электронная отчётность и ЭДО с контрагентами"
-          },
-          "summary": "Универсальная облачная экосистема компании Тензор: электронная отчётность, ЭДО, КЭДО, ОФД, проверка контрагентов, учёт и розница.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_B753CD5005FB",
-            "sku": "AX-B753CD5005FB",
-            "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, ESD",
-            "price": 27100.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "user",
+            "metric": "device",
             "qty_min": null,
             "qty_max": null,
             "pack": 1,
@@ -481,137 +261,138 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 27100.0,
+            "unit_price": 480000.0,
             "total": null,
-            "text": "от 27 100 ₽ за пользователя в год"
+            "text": "от 480 000 ₽ за устройство в год"
           },
           "variants": [
             {
-              "offer_id": "o_704CA3CD1FC7",
-              "sku": "AX-704CA3CD1FC7",
-              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
-              "price": 27100.0,
+              "offer_id": "o_19D4D47FA3BA",
+              "sku": "AX-19D4D47FA3BA",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 432000.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_3176B93AA04C",
-              "sku": "AX-3176B93AA04C",
-              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 24300.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": false,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
+              "metric": "device",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
               "audience": "gov"
             },
             {
-              "offer_id": "o_A2BF4CAA0FC0",
-              "sku": "AX-A2BF4CAA0FC0",
-              "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для организаций, SERVICE",
-              "price": 18940.0,
+              "offer_id": "o_0BA6312D7131",
+              "sku": "AX-0BA6312D7131",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+              "price": 192000.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
-              "action": "renewal",
+              "version": "v22",
+              "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "company",
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_09BE3F05D994",
+              "sku": "AX-09BE3F05D994",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+              "price": 480000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
               "audience": "business"
             },
             {
-              "offer_id": "o_88ACC95457D6",
-              "sku": "AX-88ACC95457D6",
-              "name": "СБИС Saby КЭДО и Кадры, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 17040.0,
+              "offer_id": "o_7B9BCD3E6054",
+              "sku": "AX-7B9BCD3E6054",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 480000.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
+              "version": "v22",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
-              "audience": "gov"
+              "audience": "business"
             },
             {
-              "offer_id": "o_51402A80261C",
-              "sku": "AX-51402A80261C",
-              "name": "СБИС Saby КЭДО и Кадры, новая лицензия, 1 пользователей, 12 мес., для организаций, SERVICE",
-              "price": 27100.0,
+              "offer_id": "o_76608AD48B9B",
+              "sku": "AX-76608AD48B9B",
+              "name": "АСКОН КОМПАС v22 Строитель, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+              "price": 480000.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
+              "metric": "concurrent",
               "qty_min": null,
               "qty_max": null,
               "pack": 1,
               "audience": "business"
             }
           ],
-          "variants_count": 18,
-          "price_from": 17040.0,
+          "variants_count": 21,
+          "price_from": 192000.0,
           "score": {
             "tier": 1,
-            "score": 0.72953,
+            "tier_label": "Подходит по условиям",
+            "score": 0.69082,
             "parts": {
-              "rel": 0.425,
-              "pop": 0.18107,
-              "margin": 0.12346,
+              "rel": 0.375,
+              "pop": 0.19796,
+              "margin": 0.11786,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска",
-              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+              "Решает задачу «чем открыть dwg»"
             ]
           },
-          "position": 3
+          "position": 2
         },
         {
-          "card_id": "vk_hr_tek:onprem",
-          "title": "VK HR Tek On-Premise",
+          "card_id": "kompas_3d:k3d",
+          "title": "АСКОН КОМПАС 3D",
           "vendor": {
-            "id": "vk_tech",
-            "name": "VK Tech"
+            "id": "ascon",
+            "name": "ASCON"
           },
           "category": {
-            "id": "kedo_hr_docs",
-            "title": "Кадровый электронный документооборот (КЭДО)"
+            "id": "mcad_plm",
+            "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
           },
-          "summary": "Корпоративная платформа кадрового электронного документооборота и HR-сервисов от VK Tech (облако и on-premise).",
+          "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
           "badges": [
             {
               "kind": "registry",
@@ -623,142 +404,305 @@
             }
           ],
           "offer": {
-            "offer_id": "o_31AE1F0DFC65",
-            "sku": "AX-31AE1F0DFC65",
-            "name": "VK HR Tek On-Premise, новая лицензия, 100–499 пользователей, 12 мес., для организаций, SERVICE",
-            "price": 1300.0,
+            "offer_id": "o_10C94CA1D923",
+            "sku": "AX-10C94CA1D923",
+            "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+            "price": 151400.0,
             "price_on_request": false,
-            "delivery": "service",
+            "delivery": "esd",
             "vat": 0,
             "available": true,
-            "version": null,
+            "version": "v22",
             "action": "new",
             "model": "subscription",
             "term_months": 12,
-            "metric": "user",
-            "qty_min": 100,
-            "qty_max": 499,
-            "pack": null,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
             "audience": "business"
           },
           "calc": {
             "qty": null,
-            "unit_price": 1300.0,
+            "unit_price": 151400.0,
             "total": null,
-            "text": "от 1 300 ₽ за пользователя в год (при покупке от 100)"
+            "text": "от 151 400 ₽ за устройство в год"
           },
           "variants": [
             {
-              "offer_id": "o_FDDD56E3C1D1",
-              "sku": "AX-FDDD56E3C1D1",
-              "name": "VK HR Tek On-Premise, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, SERVICE",
-              "price": 1170.0,
+              "offer_id": "o_3EEE48EBAAD4",
+              "sku": "AX-3EEE48EBAAD4",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 136200.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 100,
-              "qty_max": 499,
-              "pack": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
               "audience": "gov"
             },
             {
-              "offer_id": "o_C0A12ACEF0F5",
-              "sku": "AX-C0A12ACEF0F5",
-              "name": "VK HR Tek On-Premise, новая лицензия, 500–999 пользователей, 12 мес., для организаций, SERVICE",
-              "price": 1250.0,
+              "offer_id": "o_1663272ADED2",
+              "sku": "AX-1663272ADED2",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+              "price": 60500.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 500,
-              "qty_max": 999,
-              "pack": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_C425AC4DBC9F",
+              "sku": "AX-C425AC4DBC9F",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+              "price": 151400.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
               "audience": "business"
             },
             {
-              "offer_id": "o_7862C5C201B4",
-              "sku": "AX-7862C5C201B4",
-              "name": "VK HR Tek On-Premise, новая лицензия, 500–999 пользователей, 12 мес., для госучреждений, SERVICE",
-              "price": 1120.0,
+              "offer_id": "o_8C14E86D99D7",
+              "sku": "AX-8C14E86D99D7",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 151400.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 500,
-              "qty_max": 999,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_C5B2AEAB11B5",
-              "sku": "AX-C5B2AEAB11B5",
-              "name": "VK HR Tek On-Premise, новая лицензия, 1000+ пользователей, 12 мес., для организаций, SERVICE",
-              "price": 1200.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": 0,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1000,
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
+              "qty_min": null,
               "qty_max": null,
-              "pack": null,
+              "pack": 1,
               "audience": "business"
             },
             {
-              "offer_id": "o_3B9A4FAF897E",
-              "sku": "AX-3B9A4FAF897E",
-              "name": "VK HR Tek On-Premise, новая лицензия, 1000+ пользователей, 12 мес., для госучреждений, SERVICE",
-              "price": 1080.0,
+              "offer_id": "o_2158D5EB5F25",
+              "sku": "AX-2158D5EB5F25",
+              "name": "АСКОН КОМПАС v22 3D, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+              "price": 151400.0,
               "price_on_request": false,
-              "delivery": "service",
+              "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": null,
+              "version": "v22",
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 1000,
+              "metric": "concurrent",
+              "qty_min": null,
               "qty_max": null,
-              "pack": null,
-              "audience": "gov"
+              "pack": 1,
+              "audience": "business"
             }
           ],
-          "variants_count": 24,
-          "price_from": 750.0,
+          "variants_count": 20,
+          "price_from": 60500.0,
           "score": {
             "tier": 1,
-            "score": 0.6923,
+            "tier_label": "Подходит по условиям",
+            "score": 0.66771,
             "parts": {
-              "rel": 0.425,
-              "pop": 0.16757,
-              "margin": 0.09973,
+              "rel": 0.4075,
+              "pop": 0.19388,
+              "margin": 0.06633,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска",
-              "Диапазон от 100 до 499 мест",
-              "Решает задачу «подписывать кадровые документы с удаленщиками онлайн»"
+              "Решает задачу «чем открыть dwg»"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "kompas_3d:grafik",
+          "title": "АСКОН КОМПАС График",
+          "vendor": {
+            "id": "ascon",
+            "name": "ASCON"
+          },
+          "category": {
+            "id": "mcad_plm",
+            "title": "Машиностроительные САПР, 3D-моделирование и PLM/PDM"
+          },
+          "summary": "Ведущая российская система трёхмерного твердотельного моделирования и 2D-черчения от АСКОН с полным соблюдением стандартов ЕСКД и СПДС.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_BCB03DB3A485",
+            "sku": "AX-BCB03DB3A485",
+            "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 устройств, бессрочная, для организаций, ESD",
+            "price": 85000.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": "v22",
+            "action": "new",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 85000.0,
+            "total": null,
+            "text": "от 85 000 ₽ за устройство"
+          },
+          "variants": [
+            {
+              "offer_id": "o_D19BF3271BDD",
+              "sku": "AX-D19BF3271BDD",
+              "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+              "price": 85000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": false,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_CE1E75B4AE98",
+              "sku": "AX-CE1E75B4AE98",
+              "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 устройств, 12 мес., для госучреждений, ESD",
+              "price": 76500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_741105236F2D",
+              "sku": "AX-741105236F2D",
+              "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 устройств, 12 мес., академическая, ESD",
+              "price": 34000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_827DFA74136D",
+              "sku": "AX-827DFA74136D",
+              "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 одновременных подключений, бессрочная, для организаций, ESD",
+              "price": 85000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": false,
+              "version": "v22",
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_9C93649A776B",
+              "sku": "AX-9C93649A776B",
+              "name": "АСКОН КОМПАС v22 График, новая лицензия, 1 одновременных подключений, 12 мес., для организаций, ESD",
+              "price": 85000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "v22",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "concurrent",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            }
+          ],
+          "variants_count": 20,
+          "price_from": 20400.0,
+          "score": {
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.65238,
+            "parts": {
+              "rel": 0.425,
+              "pop": 0.17891,
+              "margin": 0.04847,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска",
+              "Решает задачу «чем открыть dwg»"
             ]
           },
           "position": 4
@@ -772,24 +716,19 @@
       "title": "Вендор",
       "values": [
         {
-          "id": "tensor_sbis",
-          "label": "Tensor (Saby / SBIS)",
+          "id": "nanosoft",
+          "label": "Nanosoft",
+          "count": 5
+        },
+        {
+          "id": "ascon",
+          "label": "ASCON",
           "count": 4
         },
         {
-          "id": "onec",
-          "label": "1C",
-          "count": 2
-        },
-        {
-          "id": "vk_tech",
-          "label": "VK Tech",
-          "count": 2
-        },
-        {
-          "id": "hrlink",
-          "label": "HRlink",
-          "count": 2
+          "id": "zwsoft",
+          "label": "ZWSOFT",
+          "count": 3
         }
       ]
     },
@@ -798,41 +737,38 @@
       "title": "Категория",
       "values": [
         {
-          "id": "kedo_hr_docs",
-          "label": "Кадровый электронный документооборот (КЭДО)",
-          "count": 6
+          "id": "cad_2d",
+          "label": "Базовые 2D/3D САПР и черчение DWG",
+          "count": 8
         },
         {
-          "id": "tax_reporting_edo",
-          "label": "Электронная отчётность и ЭДО с контрагентами",
+          "id": "mcad_plm",
+          "label": "Машиностроительные САПР, 3D-моделирование и PLM/PDM",
           "count": 4
         }
       ]
     }
   ],
   "related_queries": [
-    "СБИС Saby ЭДО",
-    "1С:Кабинет сотрудника Локальный",
-    "СБИС Saby КЭДО и Кадры",
-    "VK HR Tek On-Premise"
+    "Платформа nanoCAD продление",
+    "Аналог Платформа nanoCAD",
+    "Базовые 2D/3D САПР и черчение DWG"
   ],
-  "notes": [
-    "Для подбора других вариантов снято условие «редакция»."
-  ],
+  "notes": [],
   "trace": [
     {
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
       "ms": 0.16,
-      "summary": "эдо с интеграцией в 1с",
+      "summary": "чем открыть dwg",
       "detail": {}
     },
     {
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.11,
+      "ms": 0.18,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -840,18 +776,21 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.07,
+      "ms": 0.09,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.31,
-      "summary": "Электронная отчётность и ЭДО с контрагентами, интеграцией, 1C",
+      "ms": 0.2,
+      "summary": "чем открыть dwg",
       "detail": {
-        "residual": "с в",
+        "residual": "",
         "synonyms": [],
         "ignored": []
       }
@@ -868,10 +807,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.07,
+      "ms": 0.15,
       "summary": "Поиск по задаче",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "task",
+        "rejected": [],
         "calls": []
       }
     },
@@ -887,8 +830,8 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.2,
-      "summary": "Подходящих карточек до проверки лицензий · 10",
+      "ms": 0.08,
+      "summary": "Подходящих карточек до проверки лицензий · 12",
       "detail": {
         "sources": [
           "Сущности",
@@ -902,8 +845,8 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.99,
-      "summary": "Для подбора других вариантов снято условие «редакция».",
+      "ms": 0.57,
+      "summary": "Условия запроса сохранены",
       "detail": {}
     },
     {
@@ -911,16 +854,18 @@
       "title": "Выбор лицензии",
       "status": "ok",
       "ms": 0.01,
-      "summary": "Подобрано вариантов для карточек · 10",
+      "summary": "Подобрано вариантов для карточек · 12",
       "detail": {}
     },
     {
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -928,14 +873,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.53,
+      "ms": 2.22,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -943,7 +888,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.03,
+      "ms": 0.05,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -953,15 +898,15 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.01,
-      "summary": "Карточек в выдаче · 10",
+      "ms": 0.15,
+      "summary": "Карточек в выдаче · 12",
       "detail": {}
     },
     {
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 3.92,
+      "ms": 1.54,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -971,14 +916,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 6.49
+    "total": 5.83
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

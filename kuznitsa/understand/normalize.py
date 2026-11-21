@@ -4,7 +4,9 @@ from kuznitsa.text import sku_key,tokens
 
 def lookup_skus(catalog,raw):
     found={}
-    for candidate in (raw,*tokens(raw)):
+    from .repair import LAYOUT
+    parts=(raw,*tokens(raw))
+    for candidate in (*parts,*(s.translate(LAYOUT) for s in parts if re.search(r"[а-я]",s,re.I) and re.search(r"\d",s))):
         key=sku_key(candidate)
         o=catalog.skus.get(key) or catalog.regional.get(key)
         if o:

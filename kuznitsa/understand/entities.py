@@ -25,9 +25,13 @@ def extract(words,lex,kb):
         if end==i+1 and words[i] in {"в","и","на","по","к","с","а","из","для","ошибка"}:
             continue
         for k,v,source in matches:
+            if k=="edition" and all(w.isdigit() for w in words[i:end]):
+                continue
             if k=="edition" and number_before(words,i) and words[i].startswith("рабоч") and end>i+1 and words[i+1].startswith("мест"):
                 continue
             if k=="edition" and kinds & {"family","vendor","category","metric","industry","compliance"}:
+                continue
+            if k=="audience" and v=="home" and words[i].startswith("персональн") and end<len(words) and words[end].startswith("данн"):
                 continue
             if k=="metric" and not number_before(words,i) and not any(w in words for w in ("cal","ядерная","ядер")):
                 continue
@@ -46,7 +50,7 @@ def extract(words,lex,kb):
                 assign(target,k,{"yes":True,"no":False}.get(v,v) if k=="registry" else v)
             if k=="edition" and v=="pro" and any(x[0]=="edition" and str(x[1]).lower()=="pro" and x[1]!=v for x in matches):
                 continue
-            entities.append(dict(type=k,id=v,text=" ".join(words[i:end]),span=[i,end],source=source,conf=1.))
+            entities.append(dict(type=k,id=v,text=" ".join(words[i:end]),span=[i,end],source=source,conf=.81 if source=="phonetic" else 1.))
             used.update(range(i,end))
     ambiguous_office=(len(filters.get("family",[]))>1 and
                       all(e["text"]=="офис" for e in entities if e["type"]=="family") and
@@ -57,6 +61,8 @@ def extract(words,lex,kb):
     if "office_suite" in kb.rows["categories"] and "офис" in words and len(words)>1 and "family" not in filters and not filters.get("vendor"):
         if not filters.get("category") or "office" in filters["category"]:
             filters["category"]=["office_suite"]
+    if any(w.startswith("бессроч") for w in words):
+        filters["model"]="perpetual"
     qty = numeric_conditions(words,filters,qty)
     for i,w in enumerate(words):
         if i and "family" in filters and re.fullmatch(r"\d+(?:\.\d+)*",w):

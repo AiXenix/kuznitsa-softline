@@ -69,7 +69,7 @@ def refine(engine,words,f,exc,entities,qty):
             choices=[fid for fid,_ in rows if "клиентск" in families[fid]["name"].lower()]
             if choices:
                 f["family"]=[choices[0]]
-    if re.search(r"переход с |миграци\w* с ",text) and "на" in words:
+    if re.search(r"(?:переход|перейти|миграци\w*) с ",text) and "на" in words:
         pivot=words.index("на")
         for key in ("vendor","family"):
             dest=[e["id"] for e in entities if e["type"]==key and e["span"][0]>pivot]
@@ -92,12 +92,87 @@ def refine(engine,words,f,exc,entities,qty):
 
 
 def apply_profile(profile,f,intent):
-    if intent in ("category","role_kit","industry","task") and profile.preferences.get("registry_required"):
+    if intent in ("category","role_kit","industry","task","compliance") and profile.preferences.get("registry_required"):
         f.setdefault("registry",True)
-    if intent in ("category","role_kit","industry") and profile.segment=="gov" and profile.preferences.get("certs_required") and f.get("category") and any(
-            c in ("endpoint_security","desktop_os_ru") for c in f["category"]):
+    if intent in ("category","role_kit","industry","task","compliance") and profile.preferences.get("certs_required") and (
+            any(c in ("endpoint_security","desktop_os_ru","dlp","remote_desktop","nsd_access_control","ngfw_vpn") for c in f.get("category",[]))):
         certs=[v for v in profile.preferences["certs_required"] if v in ("fstec","fsb","mo")]
         if certs:
             f.setdefault("certs",certs)
+    if profile.segment=="gov" and intent in ("category","task","compliance") and any(os in profile.fleet.get("os",[]) for os in ("astra","alt","redos")):
+        f.setdefault("platform",[next(os for os in profile.fleet["os"] if os in ("astra","alt","redos"))])
     if profile.segment=="individual" and f.get("category")==["endpoint_security"]:
         f["category"]=["home_antivirus"]
+
+
+def resolve_details(engine,lex,words,f,entities,qty):
+    """Найти вложенные роли и редакции, скрытые длинным названием семейства."""
+    text=" ".join(words)
+    keys=list(map(lemma,words))
+    if re.search(r"\b(?:комплект|набор|арм|оснастить|для|рабочее место)\b",text):
+        for i in range(len(keys)):
+            for end in range(min(i+4,len(keys)),i,-1):
+                for kind,ident,src in lex.entries.get(tuple(keys[i:end]),()):
+                    if kind in ("industry","role") and not any(e["type"]==kind and e["id"]==ident for e in entities):
+                        entities.append(dict(type=kind,id=ident,text=" ".join(words[i:end]),span=[i,end],source=src,conf=.95))
+    if f.get("action") in ("addon","renewal","upgrade"):
+        for e in list(entities):
+            if e["type"]!="family":
+                continue
+            matches=lex.entries.get(tuple(keys[slice(*e["span"])]),[])
+            vendors=[v for k,v,_ in matches if k=="vendor"]
+            if vendors and len(engine.vendor_families.get(vendors[0],()))>1:
+                f["vendor"]=vendors
+                f.pop("family",None)
+    families=engine.kb.rows["families"]
+    if f.get("family") and f.get("category"):
+        anchor=next((e for e in entities if e["type"]=="family" and e["span"][0]>0 and
+                    words[e["span"][0]-1] in ("для","к","под")),None)
+        if anchor:
+            f.pop("family",None)
+    if not f.get("family") and f.get("vendor") and (qty or f.get("category")):
+        ids=[fid for v in f["vendor"] for fid in engine.vendor_families.get(v,())]
+        if f.get("category"):
+            ids=[fid for fid in ids if families[fid].get("category") in f["category"]]
+        if ids and not f.get("action"):
+            f["family"]=[max(ids,key=lambda fid:(families[fid].get("popularity",0),len(engine.family_terms[fid]&set(keys)),-len(engine.family_terms[fid])))]
+    for e in entities:
+        if e["type"]!="vendor" or f.get("action") or text==engine.kb.rows["vendors"].get(e["id"],{}).get("name","").lower() and not qty:
+            continue
+        start,end=e["span"]
+        tails=[" ".join(words[i:j]) for i in {start+1,end} for j in range(i+1,min(i+5,len(words))+1)]
+        matches=[engine.brand_products.get(e["id"],{}).get(tail) for tail in tails]
+        best=max((hit for hit in matches if hit),default=None)
+        if best:
+            f["family"]=[best[-1]]
+    if f.get("family"):
+        editions=[]
+        # Общие номера версий/количества не являются именами редакций.
+        for fid in f["family"]:
+            for ed in families.get(fid,{}).get("editions",[]):
+                for alias in [ed["id"],ed.get("title",""),ed.get("name",""),*ed.get("aliases",[])]:
+                    parts=list(map(lemma,tokens(alias)))
+                    if parts and not all(s.isdigit() for s in parts) and any(keys[i:i+len(parts)]==parts for i in range(len(keys))):
+                        editions.append(ed["id"])
+                        break
+        f.pop("edition",None)
+        if editions:
+            f["edition"]=list(dict.fromkeys(editions))
+    elif not any(e["type"]=="edition" and not e["text"].isdigit() for e in entities):
+        f.pop("edition",None)
+    if not f.get("family") and f.get("category") and "linux" in f.get("platform",[]) and text=="linux":
+        # Покупателю нужны дистрибутивы ОС, включая российские.
+        f["category"]=list(dict.fromkeys(f["category"]+[row["category"] for row in families.values()
+                       if row.get("category") and "linux" in row.get("platforms",[]) and row.get("category","").endswith("_os_ru")]))
+
+
+def nested_family(lex,words,entities):
+    if any(e["type"] in ("family","vendor","category") for e in entities):
+        return
+    # Название модуля может начинаться с последнего слова чужой редакции.
+    keys=list(map(lemma,words))
+    for i in range(len(keys)):
+        for end in range(min(i+lex.max_length,len(keys)),i+1,-1):
+            for kind,ident,src in lex.entries.get(tuple(keys[i:end]),()):
+                if kind=="family":
+                    return dict(type=kind,id=ident,text=" ".join(words[i:end]),span=[i,end],source=src,conf=.92)

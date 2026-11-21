@@ -1,0 +1,11 @@
+- {id: k, name: Kaspersky, categories: [endpoint_security], aliases: [касперский, каспер, касперски]}
+- {id: dw, name: Dr.Web, origin: russian}
+- {id: nano, name: Нанософт, origin: russian}
+- {id: ad, name: Autodesk, market_status: left}
+- {id: ms, name: Microsoft, market_status: restricted}
+- {id: ag, name: Группа Астра, categories: [desktop_os_ru], aliases: [astra linux, астра], origin: russian}
+- {id: one, name: 1С}
+- {id: crypto, name: КриптоПро}
+- {id: pg, name: Postgres Professional}
+- {id: ug, name: UserGate, aliases: [юзергейт]}
+- {id: iw, name: InfoWatch}

@@ -6,7 +6,7 @@ import sqlite3
 from contextlib import closing
 from threading import BoundedSemaphore, Lock
 from time import perf_counter
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor,TimeoutError
 
 
 def choice(instructions,criteria):
@@ -62,11 +62,11 @@ class Decisions:
                        (self.clock(),sid,purpose,model,meta["cached"],meta["tokens_in"],meta["tokens_out"],meta["usd"],meta["ms"],meta["ok"],source))
         try:
             with self.limit, closing(sqlite3.connect(self.path,timeout=5)) as db, db:
-                row=db.execute("SELECT response_json FROM llm_cache WHERE key=?",(key,)).fetchone()
+                row=db.execute("SELECT response_json,cost_usd FROM llm_cache WHERE key=?",(key,)).fetchone()
                 if row:
                     answers=validate_answers(json.loads(row[0]),questions)
                     db.execute("UPDATE llm_cache SET hits=hits+1 WHERE key=?",(key,))
-                    meta.update(cached=1,ok=True)
+                    meta.update(cached=1,ok=True,saved_usd=row[1])
                 else:
                     midnight=int(self.clock()//86400)*86400
                     spent=db.execute("SELECT COALESCE(SUM(cost_usd),0) FROM llm_calls WHERE ts>=? AND source NOT IN ('eval','replay')",(midnight,)).fetchone()[0]
@@ -112,12 +112,24 @@ class Decisions:
             meta.update(ok=False,note="Не удалось прочитать или сохранить решение модели")
         return answers,meta
 
-    def rerank(self,sid,source,state,cards):
+    def _before(self,future,deadline,kind):
+        try:
+            return future.result(timeout=max(0.,deadline-perf_counter()))
+        except TimeoutError:
+            queued=future.cancel()
+            return {},dict(sent=not queued,kind=kind,model=self.client.model,cached=0,tokens_in=0,tokens_out=0,usd=0.,ok=False,
+                           ms=600,note="Истекло время ожидания категоризатора",probabilities={},pending=not queued)
+
+    def decide_before(self,deadline,*args):
+        return self._before(self.pool.submit(self.request,*args),deadline,args[2])
+
+    def rerank(self,sid,source,state,cards,deadline=None):
         batches=[cards[i:i+20] for i in range(0,len(cards),20)]
         def run(batch):
             content={str(i):c for i,c in enumerate(batch)}
-            questions={i:choice(f"Подходит ли предложение {i} покупателю?",{"yes":"Подходит","part":"Подходит частично","no":"Не подходит"}) for i in content}
+            questions={i:choice(f"Сопоставьте потребность покупателя с назначением и условиями предложения {i}.",{"yes":"Точно то, что искали","part":"Тот же класс, но отличаются условия","no":"Другой класс продукта"}) for i in content}
             answers,m=self.request(sid,source,"rerank",{**state,"предложения":content},questions)
             m["probabilities"]={batch[int(i)]["card_id"]:a["probabilities"] for i,a in answers.items()}
-            return m
-        return list(self.pool.map(run,batches))
+            return {},m
+        pending=[self.pool.submit(run,batch) for batch in batches]
+        return [(self._before(future,deadline,"rerank") if deadline is not None else future.result())[1] for future in pending]

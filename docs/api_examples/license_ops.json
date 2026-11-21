@@ -1,14 +1,14 @@
 {
-  "search_id": "s_20f8ca2236cb4ce58991194d38732529",
+  "search_id": "s_9e60c8cfbe18403dad9ae9e6d84bb3f0",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
   "banners": [],
   "engine_version": "0.1.0",
   "query": {
-    "raw": "бессрочная лицензия офиса",
-    "normalized": "бессрочная лицензия офиса",
-    "corrected": "бессрочная лицензия офиса",
+    "raw": "апгрейд касперский стандартный на расширенный",
+    "normalized": "апгрейд касперский стандартный на расширенный",
+    "corrected": "апгрейд касперский стандартный на расширенный",
     "corrections": [],
     "did_you_mean": null
   },
@@ -16,13 +16,14 @@
     "intent": "license_ops",
     "intent_title": "Изменение лицензии",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
       {
-        "type": "model",
-        "id": "perpetual",
-        "text": "бессрочная",
+        "type": "action",
+        "id": "upgrade",
+        "text": "апгрейд",
         "span": [
           0,
           1
@@ -31,215 +32,96 @@
         "conf": 1.0
       },
       {
-        "type": "category",
-        "id": "office",
-        "text": "офиса",
+        "type": "family",
+        "id": "kaspersky_kesb",
+        "text": "касперский стандартный",
         "span": [
-          2,
+          1,
           3
+        ],
+        "source": "kb",
+        "conf": 1.0
+      },
+      {
+        "type": "edition",
+        "id": "advanced",
+        "text": "расширенный",
+        "span": [
+          4,
+          5
+        ],
+        "source": "kb",
+        "conf": 1.0
+      },
+      {
+        "type": "edition",
+        "id": "extended",
+        "text": "расширенный",
+        "span": [
+          4,
+          5
         ],
         "source": "kb",
         "conf": 1.0
       }
     ],
     "filters": {
-      "model": "perpetual",
-      "category": [
-        "office_suite"
+      "action": "upgrade",
+      "family": [
+        "kaspersky_kesb"
+      ],
+      "edition": [
+        "standard",
+        "advanced"
       ]
     },
     "exclude": {},
     "qty": null,
     "chips": [
       {
-        "key": "model",
-        "label": "бессрочная",
+        "key": "action",
+        "label": "апгрейд",
         "source": "query",
         "removable": true,
-        "remove_q": "лицензия офиса"
+        "remove_q": "касперский стандартный на расширенный"
       },
       {
-        "key": "category",
-        "label": "Офисные программы и продуктивность",
+        "key": "family",
+        "label": "Kaspersky Endpoint Security для бизнеса",
         "source": "query",
         "removable": true,
-        "remove_q": "бессрочная лицензия"
+        "remove_q": "апгрейд на расширенный"
+      },
+      {
+        "key": "edition",
+        "label": "расширенный · несколько вариантов",
+        "source": "query",
+        "removable": true,
+        "remove_q": "апгрейд касперский стандартный на"
       }
     ],
     "subtype": null,
     "reason": null,
-    "agent_note": "Изменение лицензии · бессрочная, Офисные программы и продуктивность"
+    "agent_note": "Изменение лицензии · апгрейд, Kaspersky Endpoint Security для бизнеса, расширенный · несколько вариантов"
   },
   "blocks": [
     {
       "type": "products",
       "title": "Подходящие лицензии",
-      "total": 9,
+      "total": 2,
       "items": [
         {
-          "card_id": "ms_office:hb",
-          "title": "Microsoft Office Home and Business",
+          "card_id": "kaspersky_kesb:advanced",
+          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
           "vendor": {
-            "id": "microsoft",
-            "name": "Microsoft"
+            "id": "kaspersky",
+            "name": "Kaspersky"
           },
           "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
           },
-          "summary": "Бессрочный офисный пакет Microsoft (Word, Excel, PowerPoint, Outlook). Официальные корпоративные поставки в РФ приостановлены; доступны ограниченные ESD-позиции.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_7CC5FFC1429A",
-            "sku": "FQC-7CC5FFC1429A",
-            "name": "Microsoft Office 2021 Home and Business Russian ESD 1 Device BUSINESS New Perpetual",
-            "price": 22000.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": null,
-            "available": true,
-            "version": "2021",
-            "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "device",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 22000.0,
-            "total": null,
-            "text": "от 22 000 ₽ за устройство"
-          },
-          "variants": [
-            {
-              "offer_id": "o_8668C108BDBB",
-              "sku": "FQC-8668C108BDBB",
-              "name": "Microsoft Office 2024 Home and Business Russian ESD 1 Device BUSINESS New Perpetual",
-              "price": 22000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2024",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_0E3C4E6A118E",
-              "sku": "FQC-0E3C4E6A118E",
-              "name": "Microsoft Office 2019 Home and Business Russian BOX 1 Device HOME New Perpetual",
-              "price": 22000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": null,
-              "available": true,
-              "version": "2019",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "home"
-            },
-            {
-              "offer_id": "o_551E2EB23698",
-              "sku": "FQC-551E2EB23698",
-              "name": "Microsoft Office 2021 Home and Business Russian ESD 1 Device HOME New Perpetual",
-              "price": 22000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2021",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "home"
-            },
-            {
-              "offer_id": "o_6D73E529355E",
-              "sku": "FQC-6D73E529355E",
-              "name": "Microsoft Office 2024 Home and Business Russian BOX 1 Device BUSINESS New Perpetual",
-              "price": 22000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": null,
-              "available": true,
-              "version": "2024",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_7A1BDDE8EC5F",
-              "sku": "FQC-7A1BDDE8EC5F",
-              "name": "Microsoft Office 2019 Home and Business Russian ESD 1 Device BUSINESS New Perpetual",
-              "price": 22000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2019",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 12,
-          "price_from": 22000.0,
-          "score": {
-            "tier": 2,
-            "score": 0.58999,
-            "parts": {
-              "rel": 0.275,
-              "pop": 0.1915,
-              "margin": 0.12349,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 1
-        },
-        {
-          "card_id": "myoffice_professional:prof",
-          "title": "МойОфис Профессиональный Корпоративная",
-          "vendor": {
-            "id": "myoffice",
-            "name": "MyOffice"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Комплексная корпоративная платформа МойОфис: десктопные и веб-редакторы, частное облако для совместной работы, почтовый сервер и мессенджер Squadus.",
+          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
           "badges": [
             {
               "kind": "registry",
@@ -251,449 +133,308 @@
             }
           ],
           "offer": {
-            "offer_id": "o_DDE377B1CE43",
-            "sku": "AX-DDE377B1CE43",
-            "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 100–499 пользователей, бессрочная, для организаций, PAPER",
-            "price": 5500.0,
+            "offer_id": "o_FE9FFD60F312",
+            "sku": "KL-FE9FFD60F312",
+            "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 100–149 Node 2 year Upgrade License BUSINESS",
+            "price": 2460.0,
             "price_on_request": false,
             "delivery": "paper",
             "vat": 0,
             "available": true,
-            "version": "3",
-            "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "user",
+            "version": null,
+            "action": "upgrade",
+            "model": "subscription",
+            "term_months": 24,
+            "metric": "device",
             "qty_min": 100,
-            "qty_max": 499,
+            "qty_max": 149,
             "pack": null,
             "audience": "business"
           },
           "calc": {
             "qty": null,
-            "unit_price": 5500.0,
+            "unit_price": 2460.0,
             "total": null,
-            "text": "от 5 500 ₽ за пользователя (при покупке от 100)"
+            "text": "от 2 460 ₽ за устройство на 24 мес. (при покупке от 100)"
           },
           "variants": [
             {
-              "offer_id": "o_ECBA9E762D49",
-              "sku": "AX-ECBA9E762D49",
-              "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 100–499 пользователей, 12 мес., для организаций, ESD",
-              "price": 5500.0,
+              "offer_id": "o_BDB4840E1C45",
+              "sku": "KL-BDB4840E1C45",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License BUSINESS",
+              "price": 2790.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": "3",
+              "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 100,
-              "qty_max": 499,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
               "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_07010E443801",
-              "sku": "AX-07010E443801",
-              "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 100–499 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4950.0,
+              "offer_id": "o_B526C5C3171A",
+              "sku": "KL-B526C5C3171A",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License GOV",
+              "price": 2510.0,
               "price_on_request": false,
               "delivery": "esd",
               "vat": 0,
               "available": true,
-              "version": "3",
+              "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 100,
-              "qty_max": 499,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
               "pack": null,
               "audience": "gov"
             },
             {
-              "offer_id": "o_AE9CEBE5D492",
-              "sku": "AX-AE9CEBE5D492",
-              "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 500–999 пользователей, 12 мес., для организаций, ESD",
-              "price": 5280.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 500,
-              "qty_max": 999,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_9447E1CB68E5",
-              "sku": "AX-9447E1CB68E5",
-              "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 500–999 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 4750.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 500,
-              "qty_max": 999,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_BCC0ADB20454",
-              "sku": "AX-BCC0ADB20454",
-              "name": "МойОфис Профессиональный 3 Корпоративная, новая лицензия, 1000+ пользователей, 12 мес., для организаций, ESD",
-              "price": 5070.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1000,
-              "qty_max": null,
-              "pack": null,
-              "audience": "business"
-            }
-          ],
-          "variants_count": 43,
-          "price_from": 2480.0,
-          "score": {
-            "tier": 2,
-            "score": 0.52075,
-            "parts": {
-              "rel": 0.275,
-              "pop": 0.19105,
-              "margin": 0.0547,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 100 до 499 мест"
-            ]
-          },
-          "position": 2
-        },
-        {
-          "card_id": "ms_office:pro_plus",
-          "title": "Microsoft Office Professional Plus",
-          "vendor": {
-            "id": "microsoft",
-            "name": "Microsoft"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Бессрочный офисный пакет Microsoft (Word, Excel, PowerPoint, Outlook). Официальные корпоративные поставки в РФ приостановлены; доступны ограниченные ESD-позиции.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_CF9E0E819313",
-            "sku": "FQC-CF9E0E819313",
-            "name": "Microsoft Office 2024 Professional Plus Russian BOX 1 Device BUSINESS New Perpetual",
-            "price": 48000.0,
-            "price_on_request": false,
-            "delivery": "box",
-            "vat": null,
-            "available": true,
-            "version": "2024",
-            "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "device",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 48000.0,
-            "total": null,
-            "text": "от 48 000 ₽ за устройство"
-          },
-          "variants": [
-            {
-              "offer_id": "o_D4A3E06F66F1",
-              "sku": "FQC-D4A3E06F66F1",
-              "name": "Microsoft Office 2024 Professional Plus Russian ESD 1 Device BUSINESS New Perpetual",
-              "price": 48000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2024",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_2C0892C49C9E",
-              "sku": "FQC-2C0892C49C9E",
-              "name": "Microsoft Office 2019 Professional Plus Russian ESD 1 Device BUSINESS New Perpetual",
-              "price": 48000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2019",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_8A2DF75D8CED",
-              "sku": "FQC-8A2DF75D8CED",
-              "name": "Microsoft Office 2021 Professional Plus Russian ESD 1 Device HOME New Perpetual",
-              "price": 48000.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": null,
-              "available": true,
-              "version": "2021",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "home"
-            },
-            {
-              "offer_id": "o_E0254CA00234",
-              "sku": "FQC-E0254CA00234",
-              "name": "Microsoft Office 2021 Professional Plus Russian BOX 1 Device HOME New Perpetual",
-              "price": 48000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": null,
-              "available": true,
-              "version": "2021",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "home"
-            },
-            {
-              "offer_id": "o_5E85D1354C5E",
-              "sku": "FQC-5E85D1354C5E",
-              "name": "Microsoft Office 2024 Professional Plus Russian BOX 1 Device HOME New Perpetual",
-              "price": 48000.0,
-              "price_on_request": false,
-              "delivery": "box",
-              "vat": null,
-              "available": true,
-              "version": "2024",
-              "action": "new",
-              "model": "perpetual",
-              "term_months": null,
-              "metric": "device",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "home"
-            }
-          ],
-          "variants_count": 12,
-          "price_from": 48000.0,
-          "score": {
-            "tier": 2,
-            "score": 0.52064,
-            "parts": {
-              "rel": 0.275,
-              "pop": 0.19866,
-              "margin": 0.04698,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 3
-        },
-        {
-          "card_id": "myoffice_standard:standard_2",
-          "title": "МойОфис Стандартный Для бизнеса",
-          "vendor": {
-            "id": "myoffice",
-            "name": "MyOffice"
-          },
-          "category": {
-            "id": "office_suite",
-            "title": "Офисные пакеты"
-          },
-          "summary": "Российский десктопный офисный пакет (Текст, Таблица, Презентация, Почта) для рабочих станций на Windows, Linux и macOS.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_D1ADC4AA7B0B",
-            "sku": "AX-D1ADC4AA7B0B",
-            "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 устройств, бессрочная, для организаций, ESD",
-            "price": 2800.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 22,
-            "available": true,
-            "version": "3",
-            "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "device",
-            "qty_min": 1,
-            "qty_max": 24,
-            "pack": null,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 2800.0,
-            "total": null,
-            "text": "от 2 800 ₽ за устройство"
-          },
-          "variants": [
-            {
-              "offer_id": "o_2832705383F6",
-              "sku": "AX-2832705383F6",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для организаций, ESD",
-              "price": 2800.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_A99A7C74895C",
-              "sku": "AX-A99A7C74895C",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2520.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 22,
-              "available": true,
-              "version": "3",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
-              "pack": null,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_92BDB1F04154",
-              "sku": "AX-92BDB1F04154",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 1–24 пользователей, 12 мес., академическая, ESD",
+              "offer_id": "o_7ACF4C669060",
+              "sku": "KL-7ACF4C669060",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 10–14 Node 1 year New License EDU",
               "price": 1120.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 22,
+              "vat": 0,
               "available": true,
-              "version": "3",
+              "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 1,
-              "qty_max": 24,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
               "pack": null,
               "audience": "edu"
             },
             {
-              "offer_id": "o_AEBA211CB143",
-              "sku": "AX-AEBA211CB143",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для организаций, ESD",
-              "price": 2690.0,
+              "offer_id": "o_999E93EB29D8",
+              "sku": "KL-999E93EB29D8",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License BUSINESS",
+              "price": 2680.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 22,
+              "vat": 0,
               "available": true,
-              "version": "3",
+              "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
               "pack": null,
               "audience": "business"
             },
             {
-              "offer_id": "o_4653A93C9BA2",
-              "sku": "AX-4653A93C9BA2",
-              "name": "МойОфис Стандартный 3 Для бизнеса, новая лицензия, 25–99 пользователей, 12 мес., для госучреждений, ESD",
-              "price": 2420.0,
+              "offer_id": "o_CB7051802333",
+              "sku": "KL-CB7051802333",
+              "name": "Kaspersky Endpoint Security для бизнеса Расширенный Russian Edition. 15–19 Node 1 year New License GOV",
+              "price": 2410.0,
               "price_on_request": false,
               "delivery": "esd",
-              "vat": 22,
+              "vat": 0,
               "available": true,
-              "version": "3",
+              "version": null,
               "action": "new",
               "model": "subscription",
               "term_months": 12,
-              "metric": "user",
-              "qty_min": 25,
-              "qty_max": 99,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
               "pack": null,
               "audience": "gov"
             }
           ],
-          "variants_count": 64,
+          "variants_count": 80,
           "price_from": 540.0,
           "score": {
-            "tier": 2,
-            "score": 0.51571,
+            "tier": 0,
+            "tier_label": "Точное соответствие",
+            "score": 0.62488,
             "parts": {
-              "rel": 0.275,
-              "pop": 0.1736,
-              "margin": 0.06711,
+              "rel": 0.44,
+              "pop": 0.07575,
+              "margin": 0.10913,
               "pers": 0.0
             },
             "why": [
-              "Совпадает с условиями поиска",
-              "Диапазон от 1 до 24 мест"
+              "Точное совпадение",
+              "Диапазон от 100 до 149 мест"
             ]
           },
-          "position": 4
+          "position": 1
+        },
+        {
+          "card_id": "kaspersky_kesb:standard",
+          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
+          "vendor": {
+            "id": "kaspersky",
+            "name": "Kaspersky"
+          },
+          "category": {
+            "id": "endpoint_security",
+            "title": "Антивирусы и защита рабочих мест"
+          },
+          "summary": "Корпоративная защита рабочих станций, файловых серверов и мобильных устройств с централизованным управлением Kaspersky Security Center.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_89710BB4B8CF",
+            "sku": "KL-89710BB4B8CF",
+            "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 10–14 Node 1 year Upgrade License BUSINESS",
+            "price": 1040.0,
+            "price_on_request": false,
+            "delivery": "paper",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "upgrade",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": 10,
+            "qty_max": 14,
+            "pack": null,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 1040.0,
+            "total": null,
+            "text": "от 1 040 ₽ за устройство в год (при покупке от 10)"
+          },
+          "variants": [
+            {
+              "offer_id": "o_287C81B27410",
+              "sku": "KL-287C81B27410",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 10–14 Node 1 year New License BUSINESS",
+              "price": 1730.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_ADB45C8C74EC",
+              "sku": "KL-ADB45C8C74EC",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 10–14 Node 1 year New License GOV",
+              "price": 1560.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_7A5E094D0D2D",
+              "sku": "KL-7A5E094D0D2D",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 10–14 Node 1 year New License EDU",
+              "price": 690.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 10,
+              "qty_max": 14,
+              "pack": null,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_A43BD093FAF5",
+              "sku": "KL-A43BD093FAF5",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 15–19 Node 1 year New License BUSINESS",
+              "price": 1660.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_90F346CC7544",
+              "sku": "KL-90F346CC7544",
+              "name": "Kaspersky Endpoint Security для бизнеса Стандартный Russian Edition. 15–19 Node 1 year New License GOV",
+              "price": 1500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": 15,
+              "qty_max": 19,
+              "pack": null,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 63,
+          "price_from": 340.0,
+          "score": {
+            "tier": 0,
+            "tier_label": "Точное соответствие",
+            "score": 0.60116,
+            "parts": {
+              "rel": 0.44,
+              "pop": 0.1524,
+              "margin": 0.00876,
+              "pers": 0.0
+            },
+            "why": [
+              "Точное совпадение",
+              "Диапазон от 10 до 14 мест"
+            ]
+          },
+          "position": 2
         }
       ]
     }
@@ -704,23 +445,8 @@
       "title": "Вендор",
       "values": [
         {
-          "id": "myoffice",
-          "label": "MyOffice",
-          "count": 3
-        },
-        {
-          "id": "microsoft",
-          "label": "Microsoft",
-          "count": 2
-        },
-        {
-          "id": "r7_office",
-          "label": "R7-Office",
-          "count": 2
-        },
-        {
-          "id": "alteroffice",
-          "label": "Almi Partner",
+          "id": "kaspersky",
+          "label": "Kaspersky",
           "count": 2
         }
       ]
@@ -730,18 +456,20 @@
       "title": "Категория",
       "values": [
         {
-          "id": "office_suite",
-          "label": "Офисные пакеты",
-          "count": 9
+          "id": "endpoint_security",
+          "label": "Антивирусы и защита рабочих мест",
+          "count": 2
         }
       ]
     }
   ],
   "related_queries": [
-    "Microsoft Office Home and Business",
-    "МойОфис Профессиональный Корпоративная",
-    "Microsoft Office Professional Plus",
-    "МойОфис Стандартный Для бизнеса"
+    "Kaspersky Endpoint Security для бизнеса продление",
+    "Kaspersky Endpoint Security для бизнеса Расширенный на 24 мес",
+    "Аналог Kaspersky Endpoint Security для бизнеса",
+    "Антивирусы и защита рабочих мест из реестра",
+    "Антивирусы и защита рабочих мест на 100 пк",
+    "Антивирусы и защита рабочих мест"
   ],
   "notes": [],
   "trace": [
@@ -749,15 +477,15 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.2,
-      "summary": "бессрочная лицензия офиса",
+      "ms": 0.11,
+      "summary": "апгрейд касперский стандартный на расширенный",
       "detail": {}
     },
     {
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.1,
+      "ms": 0.16,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -765,18 +493,21 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.05,
+      "ms": 0.07,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.41,
-      "summary": "бессрочная, Офисные программы и продуктивность",
+      "ms": 0.48,
+      "summary": "апгрейд, Kaspersky Endpoint Security для бизнеса, расширенный · несколько вариантов",
       "detail": {
-        "residual": "лицензия",
+        "residual": "на",
         "synonyms": [],
         "ignored": []
       }
@@ -797,6 +528,10 @@
       "summary": "Изменение лицензии",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "license_ops",
+        "rejected": [],
         "calls": []
       }
     },
@@ -804,7 +539,7 @@
       "step": "plan",
       "title": "План поиска",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Изменение лицензии",
       "detail": {}
     },
@@ -812,8 +547,8 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 16.77,
-      "summary": "Подходящих карточек до проверки лицензий · 14",
+      "ms": 0.03,
+      "summary": "Подходящих карточек до проверки лицензий · 3",
       "detail": {
         "sources": [
           "Сущности",
@@ -827,7 +562,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 1.58,
+      "ms": 0.31,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -835,8 +570,8 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
-      "summary": "Подобрано вариантов для карточек · 9",
+      "ms": 0.0,
+      "summary": "Подобрано вариантов для карточек · 2",
       "detail": {}
     },
     {
@@ -846,6 +581,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -853,14 +590,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.89,
+      "ms": 0.17,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -868,7 +605,7 @@
       "step": "merch",
       "title": "Правила магазина",
       "status": "skip",
-      "ms": 0.03,
+      "ms": 0.02,
       "summary": "Правила не сработали",
       "detail": {
         "fired": []
@@ -878,15 +615,15 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.2,
-      "summary": "Карточек в выдаче · 9",
+      "ms": 0.04,
+      "summary": "Карточек в выдаче · 2",
       "detail": {}
     },
     {
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 6.57,
+      "ms": 0.53,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -896,14 +633,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 27.11
+    "total": 2.25
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

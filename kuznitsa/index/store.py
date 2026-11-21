@@ -84,9 +84,10 @@ class Catalog:
         start=bisect_left(self.sorted_codes,prefix)
         return [self.skus[key] for key in self.sorted_codes[start:start+limit] if key.startswith(prefix)]
 
-    def scores(self,q):
+    def scores(self,q,semantic=True):
         if self.matrix is None:
             return {}
         ch = (self.matrix @ self.char.transform([q]).T).toarray().ravel()
-        scores = .45*self.bm.scores(q)+.15*ch+.4*self.dense.scores(q,len(self.ids))
+        lexical_scores=.75*self.bm.scores(q)+.25*ch
+        scores=.6*lexical_scores+.4*self.dense.scores(q,len(self.ids)) if semantic else lexical_scores
         return dict(zip(self.ids,scores))

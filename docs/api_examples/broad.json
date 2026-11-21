@@ -1,5 +1,5 @@
 {
-  "search_id": "s_b088a31631144d4ba578437bf4d4dcb4",
+  "search_id": "s_f853acb0b83a4aada924560a44d440c1",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "broad",
     "intent_title": "Требуется уточнение",
     "intent_conf": 0.55,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [],
@@ -40,9 +41,9 @@
           }
         },
         {
-          "label": "Рутокен Lite",
+          "label": "JaCarta-2 ГОСТ",
           "apply": {
-            "q": "Рутокен Lite"
+            "q": "JaCarta-2 ГОСТ"
           }
         }
       ]
@@ -200,6 +201,7 @@
           "price_from": 92500.0,
           "score": {
             "tier": 2,
+            "tier_label": "Близкий вариант",
             "score": 0.53427,
             "parts": {
               "rel": 0.22136,
@@ -215,17 +217,17 @@
           "position": 1
         },
         {
-          "card_id": "rutoken_ecp:lite",
-          "title": "Рутокен Lite",
+          "card_id": "aladdin_jacarta:gost",
+          "title": "JaCarta-2 ГОСТ",
           "vendor": {
-            "id": "aktiv_rutoken",
-            "name": "Aktiv"
+            "id": "aladdin_rd",
+            "name": "Aladdin"
           },
           "category": {
             "id": "tokens_pki",
             "title": "USB-токены, смарт-карты и PKI"
           },
-          "summary": "Сертифицированные ФСТЭК и ФСБ USB-токены и смарт-карты для хранения ключей электронной подписи, ФНС, ЕГАИС и двухфакторной аутентификации.",
+          "summary": "Сертифицированные ФСБ и ФСТЭК ключевые носители JaCarta-2 для электронной подписи, ЕГАИС и строгой аутентификации.",
           "badges": [
             {
               "kind": "registry",
@@ -237,10 +239,176 @@
             }
           ],
           "offer": {
-            "offer_id": "o_E87A9E8BAE89",
-            "sku": "AX-E87A9E8BAE89",
-            "name": "Рутокен 3.0 Lite, новая лицензия, 1 устройств, бессрочная, для организаций, MEDIA",
-            "price": 4800.0,
+            "offer_id": "o_898270147306",
+            "sku": "AX-898270147306",
+            "name": "JaCarta-2 ГОСТ, новая лицензия, 1 устройств, бессрочная, для организаций, MEDIA",
+            "price": 2000.0,
+            "price_on_request": false,
+            "delivery": "media",
+            "vat": 0,
+            "available": true,
+            "version": null,
+            "action": "new",
+            "model": "perpetual",
+            "term_months": null,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 2000.0,
+            "total": null,
+            "text": "от 2 000 ₽ за устройство"
+          },
+          "variants": [
+            {
+              "offer_id": "o_50B976153A34",
+              "sku": "AX-50B976153A34",
+              "name": "JaCarta-2 ГОСТ, новая лицензия, 1 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 1800.0,
+              "price_on_request": false,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_71FCD9CB35E3",
+              "sku": "AX-71FCD9CB35E3",
+              "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для организаций, MEDIA",
+              "price": 17420.0,
+              "price_on_request": false,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_8C6E3CA8AA3D",
+              "sku": "AX-8C6E3CA8AA3D",
+              "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 10 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 15680.0,
+              "price_on_request": false,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 10,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_8820CE439061",
+              "sku": "AX-8820CE439061",
+              "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для организаций, MEDIA",
+              "price": null,
+              "price_on_request": true,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 50,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_2396568D0D34",
+              "sku": "AX-2396568D0D34",
+              "name": "JaCarta-2 ГОСТ, новая лицензия, пакет на 50 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 71200.0,
+              "price_on_request": false,
+              "delivery": "media",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 50,
+              "audience": "gov"
+            }
+          ],
+          "variants_count": 6,
+          "price_from": 1800.0,
+          "score": {
+            "tier": 2,
+            "tier_label": "Близкий вариант",
+            "score": 0.46028,
+            "parts": {
+              "rel": 0.23278,
+              "pop": 0.115,
+              "margin": 0.1125,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 2
+        },
+        {
+          "card_id": "rutoken_ecp:ecp3",
+          "title": "Рутокен ЭЦП 3.0",
+          "vendor": {
+            "id": "aktiv_rutoken",
+            "name": "Aktiv"
+          },
+          "category": {
+            "id": "tokens_pki",
+            "title": "USB-токены, смарт-карты и PKI"
+          },
+          "summary": "Сертифицированные ФСТЭК и ФСБ USB-токены и смарт-карты для хранения ключей электронной подписи, ФНС, ЕГАИС и двухфакторной аутентификации.",
+          "badges": [
+            {
+              "kind": "promo",
+              "label": "Специальное предложение"
+            },
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_478C96C4798F",
+            "sku": "AX-478C96C4798F",
+            "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, 1 устройств, бессрочная, для организаций, MEDIA",
+            "price": 1800.0,
             "price_on_request": false,
             "delivery": "media",
             "vat": 0,
@@ -257,16 +425,16 @@
           },
           "calc": {
             "qty": null,
-            "unit_price": 4800.0,
+            "unit_price": 1800.0,
             "total": null,
-            "text": "от 4 800 ₽ за устройство"
+            "text": "от 1 800 ₽ за устройство"
           },
           "variants": [
             {
-              "offer_id": "o_4671285DF6AA",
-              "sku": "AX-4671285DF6AA",
-              "name": "Рутокен 3.0 Lite, новая лицензия, 1 устройств, бессрочная, для госучреждений, MEDIA",
-              "price": 4320.0,
+              "offer_id": "o_2D289DE54912",
+              "sku": "AX-2D289DE54912",
+              "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, 1 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 1620.0,
               "price_on_request": false,
               "delivery": "media",
               "vat": 0,
@@ -282,14 +450,14 @@
               "audience": "gov"
             },
             {
-              "offer_id": "o_10236918DEEF",
-              "sku": "AX-10236918DEEF",
-              "name": "Рутокен 3.0 Lite, новая лицензия, пакет на 10 устройств, бессрочная, для организаций, MEDIA",
-              "price": 41800.0,
+              "offer_id": "o_E4D6885327B6",
+              "sku": "AX-E4D6885327B6",
+              "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, пакет на 10 устройств, бессрочная, для организаций, MEDIA",
+              "price": 15680.0,
               "price_on_request": false,
               "delivery": "media",
               "vat": 0,
-              "available": true,
+              "available": false,
               "version": "3.0",
               "action": "new",
               "model": "perpetual",
@@ -301,10 +469,10 @@
               "audience": "business"
             },
             {
-              "offer_id": "o_DD7CFC8A4FF9",
-              "sku": "AX-DD7CFC8A4FF9",
-              "name": "Рутокен 3.0 Lite, новая лицензия, пакет на 10 устройств, бессрочная, для госучреждений, MEDIA",
-              "price": 37600.0,
+              "offer_id": "o_E0A4F0B9E908",
+              "sku": "AX-E0A4F0B9E908",
+              "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, пакет на 10 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 14110.0,
               "price_on_request": false,
               "delivery": "media",
               "vat": 0,
@@ -320,10 +488,10 @@
               "audience": "gov"
             },
             {
-              "offer_id": "o_308C06A8498C",
-              "sku": "AX-308C06A8498C",
-              "name": "Рутокен 3.0 Lite, новая лицензия, пакет на 50 устройств, бессрочная, для организаций, MEDIA",
-              "price": 189800.0,
+              "offer_id": "o_5EFDFEB271EE",
+              "sku": "AX-5EFDFEB271EE",
+              "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, пакет на 50 устройств, бессрочная, для организаций, MEDIA",
+              "price": 71200.0,
               "price_on_request": false,
               "delivery": "media",
               "vat": 0,
@@ -339,10 +507,10 @@
               "audience": "business"
             },
             {
-              "offer_id": "o_76628723CD4A",
-              "sku": "AX-76628723CD4A",
-              "name": "Рутокен 3.0 Lite, новая лицензия, пакет на 50 устройств, бессрочная, для госучреждений, MEDIA",
-              "price": 170800.0,
+              "offer_id": "o_9D4EAB2FF1C4",
+              "sku": "AX-9D4EAB2FF1C4",
+              "name": "Рутокен 3.0 ЭЦП 3.0, новая лицензия, пакет на 50 устройств, бессрочная, для госучреждений, MEDIA",
+              "price": 64100.0,
               "price_on_request": false,
               "delivery": "media",
               "vat": 0,
@@ -359,21 +527,22 @@
             }
           ],
           "variants_count": 9,
-          "price_from": 4320.0,
+          "price_from": 1620.0,
           "score": {
             "tier": 2,
-            "score": 0.50058,
+            "tier_label": "Близкий вариант",
+            "score": 0.45727999999999996,
             "parts": {
-              "rel": 0.20558,
-              "pop": 0.145,
-              "margin": 0.15,
+              "rel": 0.20353,
+              "pop": 0.175,
+              "margin": 0.07875,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска"
             ]
           },
-          "position": 2
+          "position": 3
         },
         {
           "card_id": "aladdin_jacarta:pki_gost",
@@ -527,158 +696,12 @@
           "price_from": 2900.0,
           "score": {
             "tier": 2,
-            "score": 0.46786,
+            "tier_label": "Близкий вариант",
+            "score": 0.45036,
             "parts": {
-              "rel": 0.23161,
+              "rel": 0.21411,
               "pop": 0.15,
               "margin": 0.08625,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 3
-        },
-        {
-          "card_id": "softline_managed_support:sam",
-          "title": "Softline Services SAM-аудит",
-          "vendor": {
-            "id": "softline_cloud",
-            "name": "Softline Cloud"
-          },
-          "category": {
-            "id": "tech_support",
-            "title": "Техническая поддержка ПО и ИТС"
-          },
-          "summary": "Комплексная мульти-вендорная техническая поддержка инфраструктуры (24x7), аудит лицензий (SAM), проектирование и миграция на отечественное ПО.",
-          "badges": [],
-          "offer": {
-            "offer_id": "o_EFA12FBEF3BD",
-            "sku": "AX-EFA12FBEF3BD",
-            "name": "Softline Services SAM-аудит, новая лицензия, 1 организаций, 12 мес., для организаций, SERVICE",
-            "price": null,
-            "price_on_request": true,
-            "delivery": "service",
-            "vat": null,
-            "available": true,
-            "version": null,
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "company",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": null,
-          "variants": [
-            {
-              "offer_id": "o_6E15055242E7",
-              "sku": "AX-6E15055242E7",
-              "name": "Softline Services SAM-аудит, новая лицензия, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 5400000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": null,
-              "available": true,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_A01A4AA3E724",
-              "sku": "AX-A01A4AA3E724",
-              "name": "Softline Services SAM-аудит, продление, 1 организаций, 12 мес., для организаций, SERVICE",
-              "price": 4200000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": null,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_1B346C3485D5",
-              "sku": "AX-1B346C3485D5",
-              "name": "Softline Services SAM-аудит, продление, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 3780000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": null,
-              "available": true,
-              "version": null,
-              "action": "renewal",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_248B8B90E47B",
-              "sku": "AX-248B8B90E47B",
-              "name": "Softline Services SAM-аудит, новая лицензия, 1 ед., 12 мес., для организаций, SERVICE",
-              "price": 6000000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": null,
-              "available": false,
-              "version": null,
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "other",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_EEE76E16CCF6",
-              "sku": "AX-EEE76E16CCF6",
-              "name": "Softline Services SAM-аудит, поддержка, 1 организаций, 12 мес., для госучреждений, SERVICE",
-              "price": 2700000.0,
-              "price_on_request": false,
-              "delivery": "service",
-              "vat": null,
-              "available": true,
-              "version": null,
-              "action": "support",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "company",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 12,
-          "price_from": 2700000.0,
-          "score": {
-            "tier": 2,
-            "score": 0.3140035,
-            "parts": {
-              "rel": 0.20026,
-              "pop": 0.05227,
-              "margin": 0.078,
               "pers": 0.0
             },
             "why": [
@@ -753,13 +776,13 @@
           "count": 5
         },
         {
-          "id": "tech_support",
-          "label": "Техническая поддержка ПО и ИТС",
+          "id": "iaas_cloud_platforms",
+          "label": "Облачные платформы IaaS/PaaS и виртуальные ЦОД",
           "count": 3
         },
         {
-          "id": "iaas_cloud_platforms",
-          "label": "Облачные платформы IaaS/PaaS и виртуальные ЦОД",
+          "id": "tech_support",
+          "label": "Техническая поддержка ПО и ИТС",
           "count": 3
         },
         {
@@ -771,10 +794,10 @@
     }
   ],
   "related_queries": [
-    "Ключ-АСТРОМ",
-    "Рутокен Lite",
-    "JaCarta-2 PKI/ГОСТ",
-    "Softline Services SAM-аудит"
+    "Ключ-АСТРОМ продление",
+    "Аналог Ключ-АСТРОМ",
+    "Мониторинг инфраструктуры, сетей и APM из реестра",
+    "Мониторинг инфраструктуры, сетей и APM"
   ],
   "notes": [],
   "trace": [
@@ -782,7 +805,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.14,
+      "ms": 0.1,
       "summary": "ключ",
       "detail": {}
     },
@@ -790,7 +813,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.07,
+      "ms": 0.1,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -800,7 +823,10 @@
       "status": "ok",
       "ms": 0.03,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
@@ -818,7 +844,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -826,10 +852,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.12,
+      "ms": 0.1,
       "summary": "Требуется уточнение",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.55,
+        "rules": "broad",
+        "rejected": [],
         "calls": []
       }
     },
@@ -845,7 +875,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 11.44,
+      "ms": 13.78,
       "summary": "Подходящих карточек до проверки лицензий · 12",
       "detail": {
         "sources": [
@@ -860,7 +890,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.38,
+      "ms": 0.88,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -876,9 +906,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.01,
+      "ms": 0.02,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -886,14 +918,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.78,
+      "ms": 1.44,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -919,7 +951,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 5.15,
+      "ms": 1.03,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -929,14 +961,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 18.45
+    "total": 17.86
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }

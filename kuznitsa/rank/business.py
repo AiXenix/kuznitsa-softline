@@ -1,3 +1,4 @@
+from .fit import TIERS
 from kuznitsa.rank.variants import AUD_LABEL, public_offer, calculation
 
 
@@ -27,8 +28,10 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
         why.append("Учтено предпочтение госзаказчика к ПО в реестре")
     if o.attrs.get("promo")=="true":
         badges.append(dict(kind="promo",label="Специальное предложение"))
-    if o.registry:
-        badges.append(dict(kind="registry",label="В реестре ПО"))
+    if o.registry or o.registry is None and card.kb.get("registry") is True:
+        badges.append(dict(kind="registry",label="В реестре ПО" if o.registry else "В реестре по данным семейства"))
+        if o.registry is None:
+            why.append("Включение в реестр указано в базе знаний для всего семейства")
     if o.vat==0:
         badges.append(dict(kind="vat",label="Без НДС"))
     if profile.client_id!="guest" and set(profile.fleet.get("os",[])).intersection(o.platforms):
@@ -46,4 +49,4 @@ def ranked(card,selection,rel,exact,profile,weights,kb):
                 title=kb.rows["categories"].get(card.category,{}).get("title", (o.category_path or ["ПО"])[-1])),
                 summary=o.description,badges=badges,offer=public_offer(o),calc=calculation(o,count),
                 variants=[public_offer(x) for x in card.offers[:6] if x!=o][:5],variants_count=len(card.offers),
-                price_from=card.price_from,score=dict(tier=tier,score=score,parts=parts,why=why))
+                price_from=card.price_from,score=dict(tier=tier,tier_label=TIERS[tier],score=score,parts=parts,why=why))

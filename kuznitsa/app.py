@@ -10,9 +10,10 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 from starlette.exceptions import HTTPException
 import yaml
-from .config import Config,ROOT,WEIGHTS
+from .config import Config,ROOT,WEIGHTS,MODE_TITLES
 from .engine import Engine
 from .optional import optional_module
+from .plans.presentation import profile_info
 from .schema import Request
 from .suggest.index import suggest
 
@@ -74,7 +75,7 @@ def create_app(engine=None,cfg=None):
     @app.get("/health")
     def health():
         c=core().catalog
-        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb=core().kb.report()["counts"],llm=dict(enabled=core().llm.enabled))
+        return dict(ok=True,version="0.1.0",catalog=dict(offers=sum(len(x.offers) for x in c.cards.values()),cards=len(c.cards)),kb={**core().kb.report()["counts"], "auto":core().kb.auto},llm=dict(enabled=core().llm.enabled))
     @app.get("/api/meta")
     def meta():
         preferred=ROOT/"docs/scenarios.yaml"
@@ -87,9 +88,9 @@ def create_app(engine=None,cfg=None):
             for row in data or []:
                 if isinstance(row,dict) and row.get("id"):
                     scenarios.setdefault(row["id"],row)
-        return dict(profiles=[dict(id=c.client_id,title=c.title,segment=c.segment) for c in core().clients.values() if c.demo],
+        return dict(profiles=[profile_info(c) for c in core().clients.values() if c.demo],
                     categories=[dict(id=k,title=r.get("title",k)) for k,r in core().kb.rows["categories"].items() if not r.get("parent")],
-                    modes=["fast","smart","naive"],weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
+                    modes=["fast","smart","naive"],mode_titles=MODE_TITLES,weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
                     disclaimer="Каталог, цены и клиенты — демонстрационные.")
     @app.post("/api/search")
     def search(req:Request):
@@ -121,7 +122,8 @@ def create_app(engine=None,cfg=None):
         return core().card(card_id,profile_id,qty,term,action)
     @app.get("/api/profile/{id}")
     def profile(id:str):
-        return core().clients[id]
+        client=core().clients[id]
+        return {**client.model_dump(),**profile_info(client)}
     @app.get("/robots.txt")
     def robots():
         return Response("User-agent: *\nDisallow: /\n",media_type="text/plain")

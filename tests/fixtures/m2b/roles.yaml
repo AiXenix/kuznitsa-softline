@@ -1,0 +1,11 @@
+- id: accountant
+  title: Бухгалтер
+  aliases: [арм бухгалтера]
+  slots:
+    - {category: accounting, must: true, families: [accounting]}
+    - {category: endpoint_security, must: true, families: [kesb]}
+- id: kit_branch
+  title: Новый филиал
+  aliases: [открытие филиала]
+  slots:
+    - {category: accounting, must: true, families: [accounting]}

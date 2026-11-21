@@ -1,5 +1,5 @@
 {
-  "search_id": "s_d3e1ddb156a04bc8aac51f5d9416f8cb",
+  "search_id": "s_ad78346ca2b84d14968e2b8736ea66d9",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "sku",
     "intent_title": "Поиск по артикулу",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [],
@@ -181,9 +182,10 @@
           "price_from": 540.0,
           "score": {
             "tier": 0,
-            "score": 0.61999,
+            "tier_label": "Точное соответствие",
+            "score": 0.60249,
             "parts": {
-              "rel": 0.5,
+              "rel": 0.4825,
               "pop": 0.09731,
               "margin": 0.02268,
               "pers": 0.0
@@ -350,6 +352,7 @@
             "price_from": 7840.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.73812,
               "parts": {
                 "rel": 0.4,
@@ -514,6 +517,7 @@
             "price_from": 510.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.7208300000000001,
               "parts": {
                 "rel": 0.4,
@@ -679,6 +683,7 @@
             "price_from": 240.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.6995100000000001,
               "parts": {
                 "rel": 0.4,
@@ -844,6 +849,7 @@
             "price_from": 1000.0,
             "score": {
               "tier": 1,
+              "tier_label": "Подходит по условиям",
               "score": 0.64109,
               "parts": {
                 "rel": 0.4,
@@ -888,7 +894,12 @@
     }
   ],
   "related_queries": [
-    "Kaspersky Endpoint Security для бизнеса Расширенный"
+    "Kaspersky Endpoint Security для бизнеса продление",
+    "Kaspersky Endpoint Security для бизнеса Расширенный на 12 мес",
+    "Аналог Kaspersky Endpoint Security для бизнеса",
+    "Купить Кибер Бэкап",
+    "Антивирусы и защита рабочих мест из реестра",
+    "Антивирусы и защита рабочих мест на 50 пк"
   ],
   "notes": [],
   "trace": [
@@ -896,7 +907,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.11,
+      "ms": 0.09,
       "summary": "kl4867raqfr",
       "detail": {}
     },
@@ -904,7 +915,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.06,
+      "ms": 0.09,
       "summary": "KL4867RAQFR",
       "detail": {}
     },
@@ -914,7 +925,10 @@
       "status": "ok",
       "ms": 0.02,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
@@ -944,6 +958,10 @@
       "summary": "Поиск по артикулу",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "sku",
+        "rejected": [],
         "calls": []
       }
     },
@@ -971,7 +989,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.22,
+      "ms": 0.21,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -979,7 +997,7 @@
       "step": "variants",
       "title": "Выбор лицензии",
       "status": "ok",
-      "ms": 0.01,
+      "ms": 0.0,
       "summary": "Подобрано вариантов для карточек · 1",
       "detail": {}
     },
@@ -987,9 +1005,11 @@
       "step": "rerank",
       "title": "Проверка категоризатором",
       "status": "skip",
-      "ms": 0.0,
+      "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -997,14 +1017,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.08,
+      "ms": 0.12,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -1022,7 +1042,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 2.39,
+      "ms": 3.22,
       "summary": "Карточек в выдаче · 1",
       "detail": {}
     },
@@ -1030,7 +1050,7 @@
       "step": "log",
       "title": "Журнал и стоимость",
       "status": "ok",
-      "ms": 4.27,
+      "ms": 0.75,
       "summary": "Запись поиска в журнал. Расходы на внешние модели · 0 ₽",
       "detail": {}
     }
@@ -1040,14 +1060,18 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 7.39
+    "total": 4.8
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   }
 }
