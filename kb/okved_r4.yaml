@@ -1,0 +1,288 @@
+# Справочник ОКВЭД 2 (ОК 029-2014 / КДЕС Ред. 2) -> отрасли базы знаний (Кузница Softline, K4)
+# Соответствует spec-addendum-v0.5.md (27.4): все 88 классов (2 цифры) + 161 уточнение (3-5 цифр), итого 249 строк.
+# Сопоставление в движке — по самому длинному совпавшему префиксу кода.
+# Все значения industry — существующие id из kb/industries.yaml и kb/industries_r3.yaml.
+
+# Раздел A. Сельское, лесное хозяйство, охота, рыболовство и рыбоводство
+- {code: "01", title: "Растениеводство и животноводство, охота и предоставление соответствующих услуг в этих областях", industry: agriculture}
+- {code: "02", title: "Лесоводство и лесозаготовки", industry: agriculture}
+- {code: "03", title: "Рыболовство и рыбоводство", industry: agriculture}
+
+# Раздел B. Добыча полезных ископаемых
+- {code: "05", title: "Добыча угля", industry: mining_metallurgy}
+- {code: "06", title: "Добыча нефти и природного газа", industry: oil_gas}
+- {code: "06.10", title: "Добыча нефти и нефтяного (попутного) газа", industry: oil_gas}
+- {code: "06.20", title: "Добыча природного газа и газового конденсата", industry: oil_gas}
+- {code: "07", title: "Добыча металлических руд", industry: mining_metallurgy}
+- {code: "08", title: "Добыча прочих полезных ископаемых", industry: mining_metallurgy}
+- {code: "09", title: "Предоставление услуг в области добычи полезных ископаемых", industry: mining_metallurgy}
+- {code: "09.10", title: "Предоставление услуг в области добычи нефти и природного газа", industry: oil_gas}
+
+# Раздел C. Обрабатывающие производства
+- {code: "10", title: "Производство пищевых продуктов", industry: food_beverage_mfg}
+- {code: "10.11", title: "Переработка и консервирование мяса", industry: food_beverage_mfg}
+- {code: "10.51", title: "Производство молока (кроме сырого) и молочной продукции", industry: food_beverage_mfg}
+- {code: "10.71", title: "Производство хлеба и мучных кондитерских изделий, тортов и пирожных недлительного хранения", industry: food_beverage_mfg}
+- {code: "10.82", title: "Производство какао, шоколада и сахаристых кондитерских изделий", industry: food_beverage_mfg}
+- {code: "11", title: "Производство напитков", industry: food_beverage_mfg}
+- {code: "11.05", title: "Производство пива", industry: food_beverage_mfg}
+- {code: "11.07", title: "Производство безалкогольных напитков; производство упакованных питьевых вод, включая минеральные воды", industry: food_beverage_mfg}
+- {code: "12", title: "Производство табачных изделий", industry: manufacturing}
+- {code: "13", title: "Производство текстильных изделий", industry: manufacturing}
+- {code: "14", title: "Производство одежды", industry: manufacturing}
+- {code: "15", title: "Производство кожи и изделий из кожи", industry: manufacturing}
+- {code: "16", title: "Обработка древесины и производство изделий из дерева и пробки, кроме мебели, производство изделий из соломки и материалов для плетения", industry: woodworking_furniture}
+- {code: "16.10", title: "Распиловка и строгание древесины", industry: woodworking_furniture}
+- {code: "16.21", title: "Производство шпона, фанеры, деревянных плит и панелей", industry: woodworking_furniture}
+- {code: "16.23", title: "Производство прочих деревянных строительных конструкций и столярных изделий", industry: woodworking_furniture}
+- {code: "17", title: "Производство бумаги и бумажных изделий", industry: manufacturing}
+- {code: "18", title: "Деятельность полиграфическая и копирование носителей информации", industry: printing_publishing}
+- {code: "18.11", title: "Печатание газет", industry: printing_publishing}
+- {code: "18.12", title: "Прочие виды полиграфической деятельности", industry: printing_publishing}
+- {code: "18.13", title: "Изготовление печатных форм и подготовительная деятельность", industry: printing_publishing}
+- {code: "18.14", title: "Деятельность брошюровочно-переплетная и отделочная и сопутствующие услуги", industry: printing_publishing}
+- {code: "19", title: "Производство кокса и нефтепродуктов", industry: oil_gas}
+- {code: "19.20", title: "Производство нефтепродуктов", industry: oil_gas}
+- {code: "20", title: "Производство химических веществ и химических продуктов", industry: chemical_industry}
+- {code: "20.13", title: "Производство прочих основных неорганических химических веществ", industry: chemical_industry}
+- {code: "20.14", title: "Производство прочих основных органических химических веществ", industry: chemical_industry}
+- {code: "20.15", title: "Производство удобрений и азотных соединений", industry: chemical_industry}
+- {code: "20.16", title: "Производство пластмасс и синтетических смол в первичных формах", industry: chemical_industry}
+- {code: "20.30", title: "Производство красок, лаков и аналогичных материалов для нанесения покрытий, полиграфических красок и мастик", industry: chemical_industry}
+- {code: "20.41", title: "Производство мыла и моющих, чистящих и полирующих средств", industry: chemical_industry}
+- {code: "20.42", title: "Производство парфюмерных и косметических средств", industry: chemical_industry}
+- {code: "21", title: "Производство лекарственных средств и материалов, применяемых в медицинских целях", industry: pharma_biotech}
+- {code: "21.10", title: "Производство фармацевтических субстанций", industry: pharma_biotech}
+- {code: "21.20", title: "Производство лекарственных препаратов и материалов, применяемых в медицинских целях", industry: pharma_biotech}
+- {code: "22", title: "Производство резиновых и пластмассовых изделий", industry: chemical_industry}
+- {code: "22.21", title: "Производство пластмассовых плит, полос, труб и профилей", industry: chemical_industry}
+- {code: "22.22", title: "Производство пластмассовых изделий для упаковывания товаров", industry: chemical_industry}
+- {code: "23", title: "Производство прочей неметаллической минеральной продукции", industry: manufacturing}
+- {code: "24", title: "Производство металлургическое", industry: mining_metallurgy}
+- {code: "25", title: "Производство готовых металлических изделий, кроме машин и оборудования", industry: machinery_engineering}
+- {code: "25.11", title: "Производство строительных металлических конструкций, изделий и их частей", industry: machinery_engineering}
+- {code: "25.40", title: "Производство оружия и боеприпасов", industry: defense_aerospace}
+- {code: "25.62", title: "Обработка металлических изделий механическая", industry: machinery_engineering}
+- {code: "26", title: "Производство компьютеров, электронных и оптических изделий", industry: instrument_electronics_mfg}
+- {code: "26.11", title: "Производство элементов электронной аппаратуры", industry: instrument_electronics_mfg}
+- {code: "26.12", title: "Производство электронных печатных плат", industry: instrument_electronics_mfg}
+- {code: "26.20", title: "Производство компьютеров и периферийного оборудования", industry: instrument_electronics_mfg}
+- {code: "26.30", title: "Производство коммуникационного оборудования", industry: instrument_electronics_mfg}
+- {code: "26.51", title: "Производство инструментов и приборов для измерения, тестирования и навигации", industry: instrument_electronics_mfg}
+- {code: "26.60", title: "Производство облучающего и электротерапевтического оборудования, применяемого в медицинских целях", industry: instrument_electronics_mfg}
+- {code: "26.70", title: "Производство оптических приборов, фото- и кинооборудования", industry: instrument_electronics_mfg}
+- {code: "27", title: "Производство электрического оборудования", industry: instrument_electronics_mfg}
+- {code: "27.11", title: "Производство электродвигателей, электрогенераторов и трансформаторов", industry: instrument_electronics_mfg}
+- {code: "27.12", title: "Производство электрической распределительной и регулирующей аппаратуры", industry: instrument_electronics_mfg}
+- {code: "27.32", title: "Производство прочих проводов и кабелей для электронного и электрического оборудования", industry: instrument_electronics_mfg}
+- {code: "28", title: "Производство машин и оборудования, не включенных в другие группировки", industry: machinery_engineering}
+- {code: "28.11", title: "Производство двигателей и турбин, кроме авиационных, автомобильных и мотоциклетных двигателей", industry: machinery_engineering}
+- {code: "28.22", title: "Производство подъемно-транспортного оборудования", industry: machinery_engineering}
+- {code: "28.30", title: "Производство машин и оборудования для сельского и лесного хозяйства", industry: machinery_engineering}
+- {code: "28.41", title: "Производство металлообрабатывающего оборудования", industry: machinery_engineering}
+- {code: "28.92", title: "Производство машин и оборудования для добычи полезных ископаемых и строительства", industry: machinery_engineering}
+- {code: "29", title: "Производство автотранспортных средств, прицепов и полуприцепов", industry: machinery_engineering}
+- {code: "29.10", title: "Производство автотранспортных средств", industry: machinery_engineering}
+- {code: "29.32", title: "Производство прочих комплектующих и принадлежностей для автотранспортных средств", industry: machinery_engineering}
+- {code: "30", title: "Производство прочих транспортных средств и оборудования", industry: machinery_engineering}
+- {code: "30.11", title: "Строительство кораблей, судов и плавучих конструкций", industry: machinery_engineering}
+- {code: "30.20", title: "Производство железнодорожных локомотивов и подвижного состава", industry: machinery_engineering}
+- {code: "30.30", title: "Производство летательных аппаратов, включая космические, и соответствующего оборудования", industry: defense_aerospace}
+- {code: "31", title: "Производство мебели", industry: woodworking_furniture}
+- {code: "31.01", title: "Производство мебели для офисов и предприятий торговли", industry: woodworking_furniture}
+- {code: "31.02", title: "Производство кухонной мебели", industry: woodworking_furniture}
+- {code: "31.09", title: "Производство прочей мебели", industry: woodworking_furniture}
+- {code: "32", title: "Производство прочих готовых изделий", industry: manufacturing}
+- {code: "33", title: "Ремонт и монтаж машин и оборудования", industry: machinery_engineering}
+- {code: "33.12", title: "Ремонт машин и оборудования", industry: machinery_engineering}
+- {code: "33.20", title: "Монтаж промышленных машин и оборудования", industry: machinery_engineering}
+
+# Разделы D и E. Энергетика, водоснабжение, утилизация отходов
+- {code: "35", title: "Обеспечение электрической энергией, газом и паром; кондиционирование воздуха", industry: energy_utilities}
+- {code: "35.11", title: "Производство электроэнергии", industry: energy_utilities}
+- {code: "35.12", title: "Передача электроэнергии и технологическое присоединение к распределительным электросетям", industry: energy_utilities}
+- {code: "35.13", title: "Распределение электроэнергии", industry: energy_utilities}
+- {code: "35.30", title: "Производство, передача и распределение пара и горячей воды; кондиционирование воздуха", industry: energy_utilities}
+- {code: "36", title: "Забор, очистка и распределение воды", industry: energy_utilities}
+- {code: "37", title: "Сбор и обработка сточных вод", industry: energy_utilities}
+- {code: "38", title: "Сбор, обработка и утилизация отходов; обработка вторичного сырья", industry: energy_utilities}
+- {code: "39", title: "Предоставление услуг в области ликвидации последствий загрязнений и прочих услуг, связанных с удалением отходов", industry: energy_utilities}
+
+# Раздел F. Строительство
+- {code: "41", title: "Строительство зданий", industry: construction}
+- {code: "41.20", title: "Строительство жилых и нежилых зданий", industry: construction}
+- {code: "42", title: "Строительство инженерных сооружений", industry: construction}
+- {code: "42.11", title: "Строительство автомобильных дорог и автомагистралей", industry: construction}
+- {code: "42.21", title: "Строительство инженерных коммуникаций для водоснабжения и водоотведения, газоснабжения", industry: construction}
+- {code: "43", title: "Работы строительные специализированные", industry: construction}
+- {code: "43.21", title: "Производство электромонтажных работ", industry: construction}
+
+# Раздел G. Торговля и ремонт автотранспортных средств
+- {code: "45", title: "Торговля оптовая и розничная автотранспортными средствами и мотоциклами и их ремонт", industry: auto_dealer_service}
+- {code: "45.11", title: "Торговля легковыми автомобилями и грузовыми автомобилями малой грузоподъемности", industry: auto_dealer_service}
+- {code: "45.19", title: "Торговля прочими автотранспортными средствами", industry: auto_dealer_service}
+- {code: "45.20", title: "Техническое обслуживание и ремонт автотранспортных средств", industry: auto_dealer_service}
+- {code: "45.31", title: "Торговля оптовая автомобильными деталями, узлами и принадлежностями", industry: auto_dealer_service}
+- {code: "45.32", title: "Торговля розничная автомобильными деталями, узлами и принадлежностями", industry: auto_dealer_service}
+- {code: "46", title: "Торговля оптовая, кроме оптовой торговли автотранспортными средствами и мотоциклами", industry: trade}
+- {code: "46.46", title: "Торговля оптовая фармацевтической продукцией", industry: pharma_biotech}
+- {code: "46.51", title: "Торговля оптовая компьютерами, периферийными устройствами к компьютерам и программным обеспечением", industry: it_integrator_service}
+- {code: "46.52", title: "Торговля оптовая электронным и телекоммуникационным оборудованием и его запасными частями", industry: it_integrator_service}
+- {code: "46.90", title: "Торговля оптовая неспециализированная", industry: trade}
+- {code: "47", title: "Торговля розничная, кроме торговли автотранспортными средствами и мотоциклами", industry: retail}
+- {code: "47.11", title: "Торговля розничная преимущественно пищевыми продуктами, включая напитки, и табачными изделиями в неспециализированных магазинах", industry: retail}
+- {code: "47.19", title: "Торговля розничная прочая в неспециализированных магазинах", industry: retail}
+- {code: "47.73", title: "Торговля розничная лекарственными средствами в специализированных магазинах (аптеках)", industry: pharmacy_chain}
+- {code: "47.74", title: "Торговля розничная изделиями, применяемыми в медицинских целях, ортопедическими изделиями в специализированных магазинах", industry: pharmacy_chain}
+- {code: "47.91", title: "Торговля розничная по почте или по информационно-коммуникационной сети Интернет", industry: ecommerce_marketplaces}
+
+# Раздел H. Транспортировка и хранение
+- {code: "49", title: "Деятельность сухопутного и трубопроводного транспорта", industry: transport_logistics}
+- {code: "49.41", title: "Деятельность автомобильного грузового транспорта", industry: transport_logistics}
+- {code: "49.50", title: "Деятельность трубопроводного транспорта", industry: oil_gas}
+- {code: "50", title: "Деятельность водного транспорта", industry: transport_logistics}
+- {code: "51", title: "Деятельность воздушного и космического транспорта", industry: transport_logistics}
+- {code: "52", title: "Складское хозяйство и вспомогательная транспортная деятельность", industry: transport_logistics}
+- {code: "52.10", title: "Деятельность по складированию и хранению", industry: transport_logistics}
+- {code: "52.29", title: "Деятельность вспомогательная прочая, связанная с перевозками", industry: transport_logistics}
+- {code: "53", title: "Деятельность почтовой связи и курьерская деятельность", industry: transport_logistics}
+- {code: "53.20", title: "Деятельность почтовой связи прочая и курьерская деятельность", industry: transport_logistics}
+
+# Раздел I. Гостиницы и общественное питание
+- {code: "55", title: "Деятельность по предоставлению мест для временного проживания", industry: horeca_tourism}
+- {code: "55.10", title: "Деятельность гостиниц и прочих мест для временного проживания", industry: horeca_tourism}
+- {code: "56", title: "Деятельность по предоставлению продуктов питания и напитков", industry: horeca_tourism}
+- {code: "56.10", title: "Деятельность ресторанов и услуги по доставке продуктов питания", industry: horeca_tourism}
+
+# Раздел J. Информация и связь
+- {code: "58", title: "Деятельность издательская", industry: printing_publishing}
+- {code: "58.11", title: "Издание книг", industry: printing_publishing}
+- {code: "58.13", title: "Издание газет", industry: printing_publishing}
+- {code: "58.14", title: "Издание журналов и периодических изданий", industry: printing_publishing}
+- {code: "58.21", title: "Издание компьютерных игр", industry: game_dev_studio}
+- {code: "58.29", title: "Издание прочих программных продуктов", industry: custom_software_dev}
+- {code: "59", title: "Производство кинофильмов, видеофильмов и телевизионных программ, издание звукозаписей и нот", industry: video_production_studio}
+- {code: "59.11", title: "Производство кинофильмов, видеофильмов и телевизионных программ", industry: video_production_studio}
+- {code: "59.12", title: "Деятельность монтажно-компоновочная в области производства кинофильмов, видеофильмов и телевизионных программ", industry: video_production_studio}
+- {code: "59.14", title: "Деятельность в области демонстрации кинофильмов", industry: culture_institution}
+- {code: "59.20", title: "Деятельность в области звукозаписи и издания музыкальных произведений", industry: video_production_studio}
+- {code: "60", title: "Деятельность в области телевизионного и радиовещания", industry: media_advertising}
+- {code: "61", title: "Деятельность в сфере телекоммуникаций", industry: telecom_isp}
+- {code: "61.10", title: "Деятельность в области связи на базе проводных технологий", industry: telecom_isp}
+- {code: "61.20", title: "Деятельность в области связи на базе беспроводных технологий", industry: telecom_isp}
+- {code: "61.30", title: "Деятельность в области спутниковой связи", industry: telecom_isp}
+- {code: "62", title: "Разработка компьютерного программного обеспечения, консультационные услуги в данной области и другие сопутствующие услуги", industry: it_telecom}
+- {code: "62.01", title: "Разработка компьютерного программного обеспечения", industry: custom_software_dev}
+- {code: "62.02", title: "Деятельность консультативная и работы в области компьютерных технологий", industry: it_integrator_service}
+- {code: "62.03", title: "Деятельность по управлению компьютерным оборудованием", industry: it_integrator_service}
+- {code: "62.09", title: "Деятельность, связанная с использованием вычислительной техники и информационных технологий, прочая", industry: it_integrator_service}
+- {code: "63", title: "Деятельность в области информационных технологий", industry: it_telecom}
+- {code: "63.11", title: "Деятельность по обработке данных, предоставление услуг по размещению информации и связанная с этим деятельность", industry: datacenter_hosting}
+- {code: "63.12", title: "Деятельность web-порталов", industry: it_telecom}
+- {code: "63.91", title: "Деятельность информационных агентств", industry: media_advertising}
+
+# Раздел K. Финансовая и страховая деятельность
+- {code: "64", title: "Деятельность по предоставлению финансовых услуг, кроме услуг по страхованию и пенсионному обеспечению", industry: banking_finance}
+- {code: "64.19", title: "Денежное посредничество прочее", industry: banking_finance}
+- {code: "64.20", title: "Деятельность холдинговых компаний", industry: distributed_holding}
+- {code: "64.91", title: "Деятельность по финансовой аренде (лизингу/сублизингу)", industry: leasing_company}
+- {code: "64.92", title: "Предоставление займов и прочих видов кредита", industry: microfinance_org}
+- {code: "65", title: "Страхование, перестрахование, деятельность негосударственных пенсионных фондов, кроме обязательного социального обеспечения", industry: insurance}
+- {code: "65.11", title: "Страхование жизни", industry: insurance}
+- {code: "65.12", title: "Страхование, кроме страхования жизни", industry: insurance}
+- {code: "66", title: "Деятельность вспомогательная в сфере финансовых услуг и страхования", industry: banking_finance}
+
+# Раздел L. Операции с недвижимым имуществом
+- {code: "68", title: "Операции с недвижимым имуществом", industry: real_estate}
+- {code: "68.10", title: "Покупка и продажа собственного недвижимого имущества", industry: real_estate}
+- {code: "68.20", title: "Аренда и управление собственным или арендованным недвижимым имуществом", industry: real_estate}
+- {code: "68.31", title: "Деятельность агентств недвижимости за вознаграждение или на договорной основе", industry: real_estate}
+- {code: "68.32", title: "Управление недвижимым имуществом за вознаграждение или на договорной основе", industry: housing_utilities_uk}
+
+# Раздел M. Профессиональная, научная и техническая деятельность
+- {code: "69", title: "Деятельность в области права и бухгалтерского учета", industry: legal_consulting}
+- {code: "69.10", title: "Деятельность в области права", industry: legal_consulting}
+- {code: "69.20", title: "Деятельность по оказанию услуг в области бухгалтерского учета, по проведению финансового аудита, по налоговому консультированию", industry: accounting_audit}
+- {code: "70", title: "Деятельность головных офисов; консультирование по вопросам управления", industry: distributed_holding}
+- {code: "70.10", title: "Деятельность головных офисов", industry: distributed_holding}
+- {code: "70.22", title: "Консультирование по вопросам коммерческой деятельности и управления", industry: legal_consulting}
+- {code: "71", title: "Деятельность в области архитектуры и инженерно-технического проектирования; технических испытаний, исследований и анализа", industry: architecture_design}
+- {code: "71.11", title: "Деятельность в области архитектуры", industry: architecture_design}
+- {code: "71.12", title: "Деятельность в области инженерных изысканий, инженерно-технического проектирования, управления проектами строительства, выполнения строительного контроля и авторского надзора, предоставление технических консультаций в этих областях", industry: design_institute_kb}
+- {code: "71.20", title: "Технические испытания, исследования, анализ и сертификация", industry: science_rnd}
+- {code: "72", title: "Научные исследования и разработки", industry: science_rnd}
+- {code: "72.11", title: "Научные исследования и разработки в области биотехнологии", industry: pharma_biotech}
+- {code: "72.19", title: "Научные исследования и разработки в области естественных и технических наук прочие", industry: science_rnd}
+- {code: "73", title: "Деятельность рекламная и исследование конъюнктуры рынка", industry: media_advertising}
+- {code: "73.11", title: "Деятельность рекламных агентств", industry: media_advertising}
+- {code: "73.20", title: "Исследование конъюнктуры рынка и изучение общественного мнения", industry: media_advertising}
+- {code: "74", title: "Деятельность профессиональная научная и техническая прочая", industry: architecture_design}
+- {code: "74.10", title: "Деятельность специализированная в области дизайна", industry: architecture_design}
+- {code: "74.20", title: "Деятельность в области фотографии", industry: media_advertising}
+- {code: "74.30", title: "Деятельность по письменному и устному переводу", industry: legal_consulting}
+- {code: "75", title: "Деятельность ветеринарная", industry: veterinary_clinic}
+- {code: "75.00", title: "Деятельность ветеринарная", industry: veterinary_clinic}
+
+# Раздел N. Административная деятельность и сопутствующие услуги
+- {code: "77", title: "Аренда и лизинг", industry: leasing_company}
+- {code: "77.11", title: "Аренда и лизинг легковых автомобилей и легких автотранспортных средств", industry: leasing_company}
+- {code: "77.32", title: "Аренда и лизинг строительных машин и оборудования", industry: leasing_company}
+- {code: "78", title: "Деятельность по трудоустройству и подбору персонала", industry: recruiting_agency}
+- {code: "78.10", title: "Деятельность агентств по подбору персонала", industry: recruiting_agency}
+- {code: "78.20", title: "Деятельность агентств по временному трудоустройству", industry: recruiting_agency}
+- {code: "78.30", title: "Деятельность по подбору персонала прочая", industry: recruiting_agency}
+- {code: "79", title: "Деятельность туристических агентств и прочих организаций, предоставляющих услуги в сфере туризма", industry: horeca_tourism}
+- {code: "80", title: "Деятельность по обеспечению безопасности и проведению расследований", industry: private_security_org}
+- {code: "80.10", title: "Деятельность охранных служб, в том числе частных", industry: private_security_org}
+- {code: "80.20", title: "Деятельность систем обеспечения безопасности", industry: private_security_org}
+- {code: "81", title: "Деятельность по обслуживанию зданий и территорий", industry: housing_utilities_uk}
+- {code: "81.10", title: "Деятельность по комплексному обслуживанию помещений", industry: housing_utilities_uk}
+- {code: "82", title: "Деятельность административно-хозяйственная, вспомогательная деятельность по обеспечению функционирования организации, деятельность по предоставлению прочих вспомогательных услуг для бизнеса", industry: legal_consulting}
+
+# Раздел O. Государственное управление
+- {code: "84", title: "Государственное управление и обеспечение военной безопасности; социальное обеспечение", industry: gov_public_sector}
+- {code: "84.11", title: "Деятельность органов государственного управления и местного самоуправления по вопросам общего характера", industry: gov_public_sector}
+- {code: "84.11.3", title: "Деятельность органов местного самоуправления по управлению вопросами общего характера", industry: municipality_local_gov}
+- {code: "84.22", title: "Деятельность, связанная с обеспечением военной безопасности", industry: defense_aerospace}
+
+# Раздел P. Образование
+- {code: "85", title: "Образование", industry: education}
+- {code: "85.11", title: "Образование дошкольное", industry: kindergarten_preschool}
+- {code: "85.12", title: "Образование начальное общее", industry: general_school}
+- {code: "85.13", title: "Образование основное общее", industry: general_school}
+- {code: "85.14", title: "Образование среднее общее", industry: general_school}
+- {code: "85.21", title: "Образование профессиональное среднее", industry: college_spo}
+- {code: "85.22", title: "Образование высшее", industry: higher_edu_university}
+- {code: "85.30", title: "Обучение профессиональное", industry: training_center_dpo}
+- {code: "85.41", title: "Образование дополнительное детей и взрослых", industry: training_center_dpo}
+- {code: "85.42", title: "Образование профессиональное дополнительное", industry: training_center_dpo}
+
+# Раздел Q. Здравоохранение и социальные услуги
+- {code: "86", title: "Деятельность в области здравоохранения", industry: healthcare}
+- {code: "86.10", title: "Деятельность больничных организаций", industry: healthcare}
+- {code: "86.21", title: "Общая врачебная практика", industry: healthcare}
+- {code: "86.22", title: "Специальная врачебная практика", industry: healthcare}
+- {code: "86.23", title: "Стоматологическая практика", industry: dentistry_private_clinic}
+- {code: "86.90", title: "Деятельность в области медицины прочая", industry: healthcare}
+- {code: "87", title: "Деятельность по уходу с обеспечением проживания", industry: healthcare}
+- {code: "88", title: "Предоставление социальных услуг без обеспечения проживания", industry: nonprofit_ngo}
+
+# Раздел R. Культура, спорт, досуг и развлечения
+- {code: "90", title: "Деятельность творческая, деятельность в области искусства и организации развлечений", industry: culture_institution}
+- {code: "90.01", title: "Деятельность в области исполнительских искусств", industry: culture_institution}
+- {code: "90.04", title: "Деятельность учреждений культуры и искусства", industry: culture_institution}
+- {code: "91", title: "Деятельность библиотек, архивов, музеев и прочих объектов культуры", industry: culture_institution}
+- {code: "91.01", title: "Деятельность библиотек и архивов", industry: culture_institution}
+- {code: "91.02", title: "Деятельность музеев", industry: culture_institution}
+- {code: "92", title: "Деятельность по организации и проведению азартных игр и заключению пари, по организации и проведению лотерей", industry: horeca_tourism}
+- {code: "93", title: "Деятельность в области спорта, отдыха и развлечений", industry: culture_institution}
+
+# Разделы S, T и U. Прочие виды услуг, домашние хозяйства, экстерриториальные организации
+- {code: "94", title: "Деятельность общественных организаций", industry: nonprofit_ngo}
+- {code: "95", title: "Ремонт компьютеров, предметов личного потребления и хозяйственно-бытового назначения", industry: it_integrator_service}
+- {code: "95.11", title: "Ремонт компьютеров и периферийного компьютерного оборудования", industry: it_integrator_service}
+- {code: "95.12", title: "Ремонт коммуникационного оборудования", industry: it_integrator_service}
+- {code: "96", title: "Деятельность по предоставлению прочих персональных услуг", industry: freelance_individual}
+- {code: "97", title: "Деятельность домашних хозяйств с наемными работниками", industry: freelance_individual}
+- {code: "98", title: "Деятельность недифференцированная частных домашних хозяйств по производству товаров и предоставлению услуг для собственного потребления", industry: freelance_individual}
+- {code: "99", title: "Деятельность экстерриториальных организаций и органов", industry: nonprofit_ngo}
