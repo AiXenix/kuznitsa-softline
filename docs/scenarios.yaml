@@ -3658,3 +3658,35 @@
   priority: P0
   wow: На живом слайдере руководитель увеличивает вес маржи и видит рост маржинальной выручки при неизменных NDCG@5 и 0 нарушениях релевантности.
   source: neon2
+- id: audience_from_slang
+  group: language_errors
+  group_title: 'Язык: раскладка, опечатки, сленг'
+  title: Аудитория по жаргону
+  user_goal: Найти подходящее назначение продукта, описав покупателя своими словами.
+  intent: vendor
+  surface: search
+  contract: refine
+  pending: true
+  examples: [каспер для хоума, касперский для домика, антивирус маме на ноут]
+  demo: {q: каспер для хоума, profile: guest}
+  detection: После распознавания вендора остаётся жаргонное обозначение аудитории.
+  behaviour: Дома и для себя означают audience=home. Показать снимаемую метку. Источник dict в fast или Jev с вероятностью от 0,55 в smart.
+  data_needed: [understood.refined, understood.chips, trace.refine]
+  priority: P0
+  source: spec-29.2
+- id: not_sold_nearest
+  group: suggest_and_assistance
+  group_title: Подсказки и восстановление выдачи
+  title: Нет в продаже — ближайшее
+  user_goal: Понять причину отсутствия домашней линейки и увидеть доступные замены.
+  intent: out_of_catalog
+  surface: search
+  contract: not_sold
+  pending: true
+  examples: [касперский для дома, антивирус для дома на 3 устройства, домашняя лицензия касперского]
+  demo: {q: касперский для дома, profile: guest}
+  detection: Понятны вендор и домашнее назначение, но подходящей линейки в продаже нет.
+  behaviour: Объяснить отсутствие и сохранить zero_reason. В analogs подобрать доступные замены по связям базы знаний, затем по младшей бизнес-линейке вендора и разделу. Дать ссылку на FAQ о домашней лицензии.
+  data_needed: [understood.zero_reason, blocks.analogs, faq]
+  priority: P0
+  source: spec-29.3

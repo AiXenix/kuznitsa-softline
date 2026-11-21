@@ -8,6 +8,7 @@ from uuid import uuid4
 import yaml
 from kuznitsa.config import Config,ROOT
 from kuznitsa.engine import Engine
+from kuznitsa.evaluation import cards_from
 from kuznitsa.schema import Request
 from kuznitsa.suggest.index import suggest
 
@@ -16,10 +17,36 @@ EXPECTED=dict(product="products",vendor="products",category="products",sku="prod
               question="answer",broad="clarify",out_of_catalog="not_in_catalog",off_topic="categories answer",account="my_licenses",service="services lead",promo="promo products")
 
 
+def contract_evidence(path, result, mode):
+    understood = result["understood"]
+    if path == "refine":
+        refined = understood.get("refined") or {}
+        chip = any(c.get("removable") and c.get("key") == "audience" for c in understood["chips"])
+        if (refined.get("audience") == "home" and refined.get("source") == ("dict" if mode == "fast" else "jev")
+                and chip and (mode == "fast" or (refined.get("probability", 0) >= .55
+                and any(s["step"] == "refine" for s in result["trace"])))):
+            return {"refined": refined}
+    elif path == "not_sold":
+        blocks = result["blocks"]
+        absence_terms = ("нет", "отсутств", "недоступ", "не прода", "не постав")
+        explanation = next((b["text"] for b in blocks if b.get("text") and (
+            b["type"] in {"not_in_catalog", "not_sold"} or
+            b["type"] == "answer" and any(term in b["text"].casefold() for term in absence_terms))), None)
+        alternatives = cards_from([b for b in blocks if b["type"] == "analogs"])
+        faq = next((b for b in blocks if str(b.get("source", "")).startswith("faq")
+                    or b.get("faq") or any("faq" in str(link).lower() for link in b.get("links", []))), None)
+        if (explanation and understood.get("zero_reason") and alternatives and faq
+                and all(c.get("offer", {}).get("available") for c in alternatives)):
+            return dict(reason=understood["zero_reason"], explanation=explanation,
+                        alternatives=[c["title"] for c in alternatives])
+
+
 def gallery(engine,mode,page_size=20):
     run_id=uuid4().hex
     admin_items=None
     for row in yaml.load((ROOT/"docs/scenarios.yaml").read_text(),Loader=yaml.CSafeLoader):
+        if row.get("pending"):
+            continue
         demo=row["demo"]
         intent=row.get("intent")
         record=dict(id=row["id"],expected=intent,surface=row["surface"])
@@ -48,6 +75,9 @@ def gallery(engine,mode,page_size=20):
                    any(b.get(k) for k in ("items","lines","text","options")))]
         actual=r["understood"]["intent"]
         ok=actual==intent and bool(set(nonempty)&set(EXPECTED.get(intent,"").split()))
+        if row.get("contract"):
+            ok = r["mode"] == mode and bool(contract_evidence(row["contract"], r, mode))
+            record["contract"] = row["contract"]
         yield {**record,"q":q,"actual":actual,"blocks":nonempty,"ms":r["timing_ms"]["total"],"ok":ok,"reason":"" if ok else f"Получено {actual}: {', '.join(nonempty)}"},r
 
 
