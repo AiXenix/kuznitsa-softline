@@ -75,6 +75,8 @@ class Engine:
                                  ("category",card.category,(o.category_path or [None])[-1])]:
                 if ident and name:
                     self.names[k].setdefault(ident,name)
+        cat.legacy_category_names=self.names["category"]
+        naive.prepare(cat)
         self.exact_titles={normalize(c.title) for c in cat.cards.values()}
         self.exact_titles.update(normalize(c.kb["title"]) for c in cat.cards.values() if c.kb.get("title"))
         self._rules()
@@ -189,12 +191,11 @@ class Engine:
         return card
 
     def search(self,req: Request):
-        rules = self._rules()
         profile = self.clients["guest" if "profile" in req.ignore else req.profile_id]
         trace = Trace(self.timer)
         if req.mode == "naive":
             return self._naive(req, profile, trace)
-        return self._search(req, profile, trace, rules)
+        return self._search(req, profile, trace, self._rules())
 
     def _naive(self, req, profile, trace):
         offers = naive.match(self.catalog, req.q, limit=None)

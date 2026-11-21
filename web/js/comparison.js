@@ -61,19 +61,20 @@ export function compare(panel,kind,req,profiles,preset=[],onClose=()=>{},onSelec
       }catch(err){body.replaceChildren();stateBox(body,err.message,'error');return null;}
     }));
     if(seq!==generation || groups.some(g=>!g))return;
-    const first=groups[0].cards.map(c=>c.card_id);
+    const key=c=>c?.card_ref || c?.card_id;
+    const first=groups[0].cards.map(key);
     if(kind==='modes'){
       groups.forEach((group,col)=>group.cards.forEach((card,i)=>{
-        const pos=groups[1-col].cards.findIndex(c=>card.card_id && c.card_id===card.card_id);
+        const pos=groups[1-col].cards.findIndex(c=>key(card) && key(c)===key(card));
         const other=col===0?'у умного поиска':baseline==='fast'?'у быстрого поиска':'у обычного поиска';
         line(group.nodes[i],pos<0?'Нет в показанном списке '+other:other+' · '+(pos+1)+'-я','movement','small');
       }));
     }else for(const group of groups.slice(1))group.cards.forEach((c,i)=>{
-      const pos=c.card_id?first.indexOf(c.card_id):-1, shift=pos-i;
+      const pos=key(c)?first.indexOf(key(c)):-1, shift=pos-i;
       if(pos<0 || shift)line(group.nodes[i],pos<0?'нет в первом столбце':(shift>0?'↑':'↓')+Math.abs(shift),'movement','small');
     });
     const windowSize=Math.min(5,Math.max(...groups.map(g=>g.cards.length)));
-    const matches=first.slice(0,windowSize).filter((id,i)=>id && groups.every(g=>g.cards[i]?.card_id===id)).length;
+    const matches=first.slice(0,windowSize).filter((id,i)=>id && groups.every(g=>key(g.cards[i])===id)).length;
     summary.textContent=kind==='profiles' ? 'Совпадает '+matches+' из '+windowSize+' позиций в первой пятёрке' :
       caption('mode',baseline)+': '+count(groups[0].total)+' · Умный: '+count(groups[1].total);
   }
