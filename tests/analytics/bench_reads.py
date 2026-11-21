@@ -16,10 +16,15 @@ def measure():
                "kpi?category=accounting","failures","gaps","cost","ingest","rules","weights","insights","insights?view=list",
                "eval","digest?role=head_ecom","digest?role=head"]
         paths.extend("queries?kind="+kind for kind in ("top","zero","low_ctr","rising","reformulated","recent"))
+        paths.extend(f"digest?role={role}&format={fmt}" for role in
+                     ("head_ecom","product_manager","content_manager","customer","ecom_manager") for fmt in ("md","xlsx"))
+        item=j.rows("SELECT id FROM insights LIMIT 1")
+        if item:
+            paths.append("insights/"+item[0]["id"])
         latest=j.rows("SELECT id FROM active_replay")
         if latest:
             paths.append("replay/"+latest[0]["id"])
-        sample=j.rows("SELECT search_id FROM searches WHERE source='replay' LIMIT 1")
+        sample=j.rows("SELECT search_id FROM searches WHERE source='history' LIMIT 1")
         if sample:
             paths.append("search/"+sample[0]["search_id"])
 

@@ -3,13 +3,13 @@
   "items": [
     {
       "q": "Кибер Бэкап",
-      "count": 684,
+      "count": 657,
       "zero": 0,
-      "clicks": 472,
-      "reformulated": 58,
-      "recent": 290,
-      "previous": 177,
-      "growth": 0.6384180790960452,
+      "clicks": 460,
+      "reformulated": 51,
+      "recent": 274,
+      "previous": 189,
+      "growth": 0.4497354497354497,
       "search_id": "s_mock_002430_1"
     },
     {
@@ -38,8 +38,8 @@
       "q": "удаленный доступ",
       "count": 75,
       "zero": 0,
-      "clicks": 53,
-      "reformulated": 16,
+      "clicks": 49,
+      "reformulated": 24,
       "recent": 75,
       "previous": 0,
       "growth": 75.0,
@@ -91,14 +91,25 @@
     },
     {
       "q": "Kaspersky Small Office Security",
+      "count": 70,
+      "zero": 0,
+      "clicks": 48,
+      "reformulated": 2,
+      "recent": 63,
+      "previous": 4,
+      "growth": 14.75,
+      "search_id": "s_mock_001365_1"
+    },
+    {
+      "q": "Dr.Web Малый бизнес",
       "count": 68,
       "zero": 0,
-      "clicks": 50,
+      "clicks": 38,
       "reformulated": 1,
-      "recent": 63,
+      "recent": 57,
       "previous": 2,
-      "growth": 30.5,
-      "search_id": "s_mock_001365_1"
+      "growth": 27.5,
+      "search_id": "s_mock_001369_1"
     },
     {
       "q": "антивирус на 35 пк",
@@ -132,17 +143,6 @@
       "previous": 0,
       "growth": 53.0,
       "search_id": "s_mock_000978_0"
-    },
-    {
-      "q": "Dr.Web Малый бизнес",
-      "count": 58,
-      "zero": 0,
-      "clicks": 37,
-      "reformulated": 1,
-      "recent": 53,
-      "previous": 4,
-      "growth": 12.25,
-      "search_id": "s_mock_001369_1"
     },
     {
       "q": "ngfw совместимый с astra linux",
@@ -222,26 +222,26 @@
       "search_id": "s_mock_001365_0"
     },
     {
-      "q": "nanoCAD BIM ОПС и СКС",
-      "count": 42,
+      "q": "nanoCAD BIM ВК",
+      "count": 44,
       "zero": 0,
-      "clicks": 28,
+      "clicks": 31,
       "reformulated": 0,
-      "recent": 40,
-      "previous": 0,
-      "growth": 40.0,
-      "search_id": "s_mock_001565_1"
+      "recent": 42,
+      "previous": 2,
+      "growth": 20.0,
+      "search_id": "s_mock_001567_1"
     },
     {
-      "q": "nanoCAD BIM ВК",
-      "count": 40,
+      "q": "nanoCAD BIM ОПС и СКС",
+      "count": 43,
       "zero": 0,
-      "clicks": 29,
+      "clicks": 23,
       "reformulated": 0,
-      "recent": 40,
-      "previous": 0,
+      "recent": 41,
+      "previous": 1,
       "growth": 40.0,
-      "search_id": "s_mock_001567_1"
+      "search_id": "s_mock_001565_1"
     },
     {
       "q": "офисный пакет реестр по без ндс",
@@ -253,17 +253,6 @@
       "previous": 0,
       "growth": 40.0,
       "search_id": "s_mock_000859_0"
-    },
-    {
-      "q": "1C",
-      "count": 608,
-      "zero": 0,
-      "clicks": 116,
-      "reformulated": 278,
-      "recent": 225,
-      "previous": 186,
-      "growth": 0.20967741935483872,
-      "search_id": "s_mock_002527_0"
     },
     {
       "q": "сапр 2d из реестра минцифры",
@@ -288,21 +277,54 @@
       "search_id": "s_mock_000861_0"
     },
     {
-      "q": "GigaChat",
-      "count": 288,
+      "q": "GigaCode",
+      "count": 313,
       "zero": 0,
-      "clicks": 196,
-      "reformulated": 27,
-      "recent": 117,
-      "previous": 82,
-      "growth": 0.4268292682926829,
-      "search_id": "s_mock_002556_1"
+      "clicks": 206,
+      "reformulated": 36,
+      "recent": 118,
+      "previous": 80,
+      "growth": 0.475,
+      "search_id": "s_mock_002525_1"
+    },
+    {
+      "q": "nanoCAD BIM Отопление и вентиляция",
+      "count": 38,
+      "zero": 0,
+      "clicks": 22,
+      "reformulated": 0,
+      "recent": 37,
+      "previous": 0,
+      "growth": 37.0,
+      "search_id": "s_mock_001560_1"
+    },
+    {
+      "q": "GigaChat",
+      "count": 292,
+      "zero": 0,
+      "clicks": 204,
+      "reformulated": 25,
+      "recent": 121,
+      "previous": 86,
+      "growth": 0.4069767441860465,
+      "search_id": "s_mock_002649_1"
+    },
+    {
+      "q": "nanoCAD BIM Конструкции",
+      "count": 35,
+      "zero": 0,
+      "clicks": 24,
+      "reformulated": 1,
+      "recent": 35,
+      "previous": 0,
+      "growth": 35.0,
+      "search_id": "s_mock_001558_1"
     },
     {
       "q": "Ассистент Профессиональный",
-      "count": 36,
+      "count": 35,
       "zero": 0,
-      "clicks": 23,
+      "clicks": 27,
       "reformulated": 0,
       "recent": 35,
       "previous": 0,
@@ -310,36 +332,36 @@
       "search_id": "s_mock_001141_1"
     },
     {
-      "q": "nanoCAD BIM Отопление и вентиляция",
-      "count": 35,
+      "q": "Контур.Экстерн",
+      "count": 448,
       "zero": 0,
-      "clicks": 24,
-      "reformulated": 0,
-      "recent": 35,
-      "previous": 0,
-      "growth": 35.0,
-      "search_id": "s_mock_001560_1"
+      "clicks": 99,
+      "reformulated": 87,
+      "recent": 167,
+      "previous": 134,
+      "growth": 0.2462686567164179,
+      "search_id": "s_mock_002570_1"
     },
     {
-      "q": "nanoCAD BIM Конструкции",
-      "count": 37,
+      "q": "VK HR Tek",
+      "count": 297,
       "zero": 0,
-      "clicks": 21,
-      "reformulated": 0,
-      "recent": 35,
-      "previous": 1,
-      "growth": 34.0,
-      "search_id": "s_mock_001558_1"
+      "clicks": 72,
+      "reformulated": 73,
+      "recent": 118,
+      "previous": 85,
+      "growth": 0.38823529411764707,
+      "search_id": "s_mock_002517_1"
     },
     {
       "q": "RuDesktop Professional",
-      "count": 34,
+      "count": 32,
       "zero": 0,
-      "clicks": 21,
-      "reformulated": 1,
-      "recent": 33,
+      "clicks": 22,
+      "reformulated": 0,
+      "recent": 32,
       "previous": 0,
-      "growth": 33.0,
+      "growth": 32.0,
       "search_id": "s_mock_001137_1"
     },
     {
@@ -363,17 +385,6 @@
       "previous": 18,
       "growth": 1.6666666666666667,
       "search_id": "s_mock_001817_0"
-    },
-    {
-      "q": "ALD Pro",
-      "count": 31,
-      "zero": 0,
-      "clicks": 18,
-      "reformulated": 0,
-      "recent": 30,
-      "previous": 0,
-      "growth": 30.0,
-      "search_id": "s_mock_000001_1"
     },
     {
       "q": "obsidian commercial",
@@ -401,7 +412,7 @@
       "q": "gigacode корпоративная лицензия",
       "count": 65,
       "zero": 0,
-      "clicks": 44,
+      "clicks": 38,
       "reformulated": 0,
       "recent": 47,
       "previous": 18,
@@ -431,15 +442,48 @@
       "search_id": "s_mock_000576_0"
     },
     {
+      "q": "АТОЛ Frontol 6",
+      "count": 476,
+      "zero": 0,
+      "clicks": 335,
+      "reformulated": 39,
+      "recent": 177,
+      "previous": 149,
+      "growth": 0.18791946308724833,
+      "search_id": "s_mock_002513_1"
+    },
+    {
       "q": "кадровый документооборот",
       "count": 28,
       "zero": 0,
-      "clicks": 1,
+      "clicks": 3,
       "reformulated": 0,
       "recent": 28,
       "previous": 0,
       "growth": 28.0,
       "search_id": "s_mock_000114_1"
+    },
+    {
+      "q": "1С:Предприятие 8 Клиентские лицензии",
+      "count": 232,
+      "zero": 0,
+      "clicks": 66,
+      "reformulated": 54,
+      "recent": 93,
+      "previous": 66,
+      "growth": 0.4090909090909091,
+      "search_id": "s_mock_002585_1"
+    },
+    {
+      "q": "Cloud.ru Evolution",
+      "count": 143,
+      "zero": 0,
+      "clicks": 23,
+      "reformulated": 33,
+      "recent": 62,
+      "previous": 35,
+      "growth": 0.7714285714285715,
+      "search_id": "s_mock_002650_1"
     },
     {
       "q": "миграция active directory на российское",
@@ -506,50 +550,6 @@
       "previous": 0,
       "growth": 27.0,
       "search_id": "s_mock_002430_0"
-    },
-    {
-      "q": "яндекс трекер",
-      "count": 27,
-      "zero": 27,
-      "clicks": 0,
-      "reformulated": 0,
-      "recent": 27,
-      "previous": 0,
-      "growth": 27.0,
-      "search_id": "s_mock_000466_0"
-    },
-    {
-      "q": "яндекс трекер корпоративный",
-      "count": 27,
-      "zero": 27,
-      "clicks": 0,
-      "reformulated": 0,
-      "recent": 27,
-      "previous": 0,
-      "growth": 27.0,
-      "search_id": "s_mock_000469_0"
-    },
-    {
-      "q": "ald pro цена",
-      "count": 84,
-      "zero": 0,
-      "clicks": 60,
-      "reformulated": 0,
-      "recent": 55,
-      "previous": 29,
-      "growth": 0.896551724137931,
-      "search_id": "s_mock_002081_0"
-    },
-    {
-      "q": "замена ad на astra linux",
-      "count": 84,
-      "zero": 84,
-      "clicks": 0,
-      "reformulated": 0,
-      "recent": 55,
-      "previous": 29,
-      "growth": 0.896551724137931,
-      "search_id": "s_mock_002080_0"
     }
   ]
 }

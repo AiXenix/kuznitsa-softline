@@ -6,8 +6,9 @@ from .kpi import facts,loss_by_search
 GAPS={"not_in_catalog_known","not_in_catalog_unknown"}
 
 
-def demand(engine,rows,loss):
-    end=max((r["ts"] for r in rows),default=0)
+def demand(engine,rows,loss,end=None):
+    if end is None:
+        end=max((r["ts"] for r in rows),default=0)
     groups=defaultdict(list)
     from functools import lru_cache
     from kuznitsa.understand.repair import repair
@@ -154,17 +155,36 @@ def report(engine):
 
 
 def _report(engine):
-    rows=[r for r in facts(engine.journal) if r["source"]!="replay"]
-    result=demand(engine,rows,loss_by_search(rows)[0])
+    j=engine.journal
+    packed=bool(j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"))
+    if packed:
+        end=j.rows("SELECT max(ts) end FROM analytics_detail")[0]["end"]
+        losses={r["id"]:(r["base"],r["low"]) for r in j.rows("SELECT search_id id,base,low FROM analytics_fact WHERE base>0")}
+        with j.lock:
+            rows=(dict(r) for r in j.db.execute("""SELECT * FROM analytics_detail WHERE ts>? AND reason IN
+                ('unknown_term','not_in_catalog_known','not_in_catalog_unknown','vendor_left')""",(end-60*86400,)))
+            result=demand(engine,rows,losses,end)
+        groups=j.rows("""SELECT q,count(*) n,min(ts) start,max(ts) end FROM analytics_detail
+                        WHERE reason='vendor_left' GROUP BY q""")
+        found=j.rows("""SELECT avg(clicks>0) clicks,avg(carts) carts,avg(orders) orders FROM analytics_detail WHERE NOT zero""")[0]
+    else:
+        rows=facts(j)
+        result=demand(engine,rows,loss_by_search(rows)[0])
+        departed=defaultdict(list)
+        for r in rows:
+            if r["reason"]=="vendor_left":
+                departed[r["q"]].append(r["ts"])
+        groups=[dict(q=q,n=len(times),start=min(times),end=max(times)) for q,times in departed.items()]
+        available=[r for r in rows if not r["zero"]]
+        found={k:sum(bool(r[k]) for r in available)/(len(available) or 1) for k in ("clicks","carts","orders")}
     latest=engine.journal.rows("SELECT id FROM active_replay")
     seen={}
     if latest:
         seen={r["q"]:json.loads(r["result"]) for r in engine.journal.rows("SELECT q,result FROM replay_results WHERE run_id=?",(latest[0]["id"],))}
-    bridge=[r for r in rows if r["reason"]=="vendor_left" and r["q"] in seen]
-    shown=sum(bool(seen[r["q"]].get("analogs")) for r in bridge)
-    found=[r for r in rows if not r["zero"]]
-    result["bridge"]=dict(searched=len(bridge),impressions=shown,run_id=latest[0]["id"] if latest else None,
-        start=min((r["ts"] for r in bridge),default=None),end=max((r["ts"] for r in bridge),default=None),
-        **{k:round(shown*sum(bool(r[k]) for r in found)/(len(found) or 1)) for k in ("clicks","carts","orders")},
+    bridge=[r for r in groups if r["q"] in seen]
+    shown=sum(r["n"] for r in bridge if seen[r["q"]].get("analogs"))
+    result["bridge"]=dict(searched=sum(r["n"] for r in bridge),impressions=shown,run_id=latest[0]["id"] if latest else None,
+        start=min((r["start"] for r in bridge),default=None),end=max((r["end"] for r in bridge),default=None),
+        **{k:round(shown*(rate or 0)) for k,rate in found.items()},
         note="Показы блоков аналогов измерены в парном прогоне. Клики, корзины и заказы — прогноз по частотам непустой исторической выдачи.")
     return result

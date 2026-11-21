@@ -19,6 +19,18 @@ def recent(j,limit,rate):
 
 def failure_rows(j):
     def history():
+        if j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"):
+            sql="""SELECT engine,coalesce(reason,case when zero then 'unknown_term' else 'ambiguous' end) key,
+                count(*) n,q,min(search_id) search_id FROM analytics_detail WHERE reason IS NOT NULL OR zero
+                OR (NOT clicks AND (exits OR reformulations)) GROUP BY engine,key"""
+            counts=Counter()
+            examples={}
+            for row in j.rows(sql):
+                key=(row["engine"],CANONICAL.get(row["key"],row["key"]))
+                counts[key]+=row["n"]
+                examples[key]=dict(q=row["q"],search_id=row["search_id"])
+            return [dict(engine=e,reason=k,label=LABELS.get(k,k),count=n,example=examples[e,k]["q"],
+                         search_id=examples[e,k]["search_id"],examples=[examples[e,k]],scope="history") for (e,k),n in counts.most_common()]
         rows=kpi.facts(j)
         grouped=defaultdict(Counter)
         examples={}
@@ -54,16 +66,35 @@ def failure_rows(j):
 
 def warm(e):
     j=e.journal
-    kpi.report(j)
-    # Для крупных срезов заранее сохраняем также пересечения фильтров.
-    # Московские дни укладываются в короткий запрос к индексированной витрине.
+    if kpi.report(j).get("data_status")=="incompatible":
+        return
+    packed=bool(j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"))
+    # Редкие срезы обслуживаются индексом, крупные готовим до открытия консоли.
     from itertools import combinations
-    for size in range(1,4):
-        for keys in combinations(("segment","category","intent"),size):
+    table="analytics_pack" if packed else "analytics_fact"
+    axes=("day","segment","category","intent") if packed else ("segment","category","intent")
+    for size in range(1,len(axes)+1):
+        for keys in combinations(axes,size):
             cols=",".join(keys)
-            for group in j.rows(f"SELECT {cols} FROM analytics_fact GROUP BY {cols} HAVING count(*)>=2500"):
+            for group in j.rows(f"SELECT {cols} FROM {table} GROUP BY {cols} HAVING count(*)>=2000"):
                 if all(group.values()):
                     kpi.report(j,**group)
+    if packed:
+        end=j.rows("SELECT max(end_ts) t FROM analytics_pack")[0]["t"] or 0
+        query_stats=j.rows("""SELECT q,count(*) count,sum(zero) zero,sum(clicks>0) clicks,sum(reformulations) reformulated,
+            sum(ts>?) recent,sum(ts>? AND ts<=?) previous,min(search_id) search_id FROM analytics_detail GROUP BY q""",
+            (end-30*86400,end-60*86400,end-30*86400))
+        for r in query_stats:
+            r["growth"]=(r["recent"]-r["previous"])/max(1,r["previous"])
+        for kind,rank in (("top",lambda r:r["count"]),("zero",lambda r:r["zero"]),("low_ctr",lambda r:1-r["clicks"]/r["count"]),
+                         ("rising",lambda r:r["recent"]-r["previous"]),("reformulated",lambda r:r["reformulated"])):
+            ordered=sorted((r for r in query_stats if rank(r)>0),key=lambda r:(-rank(r),-r["count"],r["q"]))
+            cached(j,"queries:"+kind,lambda:ordered[:500])
+        failure_rows(j)
+        gaps.report(e)
+        for r in j.rows("SELECT id FROM active_replay"):
+            replay.summary(j,r["id"])
+        return
     rows=kpi.facts(j)
     for kind in ("top","zero","low_ctr","rising","reformulated"):
         cached(j,"queries:"+kind,lambda:kpi.queries(rows,kind,500))
@@ -71,3 +102,29 @@ def warm(e):
     gaps.report(e)
     for r in j.rows("SELECT id FROM active_replay"):
         replay.summary(j,r["id"])
+
+
+def search_reference(engine,q):
+    """Последний разбор фразы и канонические карточки для сравнения режимов."""
+    import json
+    from .store import result_cards
+    journal=engine.journal
+    rows=journal.rows("SELECT search_id FROM searches WHERE q_raw=? ORDER BY ts DESC,search_id DESC LIMIT 1",(q,))
+    if not rows:
+        return None
+    result=journal.detail(rows[0]["search_id"])
+    def canonical(key):
+        offer=engine.catalog.offers_by_id.get(key.removeprefix("sku:"))
+        return offer.card_id if offer else key
+    if result.get("archived_summary"):
+        items=[dict(card_id=canonical(key),position=i) for i,key in enumerate(json.loads(result["top_cards_json"] or "[]"),1)]
+    else:
+        items=[dict(card_id=c.get("card_ref") or canonical(c["card_id"]),position=c["position"],
+                    offer_id=(c.get("offer") or {}).get("offer_id")) for c in result_cards(result)]
+    return dict(search_id=result["search_id"],items=items)
+
+
+def history_days(journal):
+    snapshot=kpi.report(journal)
+    days=[{key:r[key] for key in ("key","searches","zero_rate")} for r in snapshot["slices"]["day"]]
+    return dict(items=days,period=dict(start=days[0]["key"] if days else None,end=days[-1]["key"] if days else None))

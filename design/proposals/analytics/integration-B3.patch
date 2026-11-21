@@ -1,0 +1,89 @@
+--- a/kuznitsa/engine.py
++++ b/kuznitsa/engine.py
+@@ -75,6 +75,8 @@
+                                  ("category",card.category,(o.category_path or [None])[-1])]:
+                 if ident and name:
+                     self.names[k].setdefault(ident,name)
++        cat.legacy_category_names=self.names["category"]
++        naive.prepare(cat)
+         self.exact_titles={normalize(c.title) for c in cat.cards.values()}
+         self.exact_titles.update(normalize(c.kb["title"]) for c in cat.cards.values() if c.kb.get("title"))
+         self._rules()
+@@ -183,12 +185,11 @@
+         return card
+ 
+     def search(self,req: Request):
+-        rules = self._rules()
+         profile = self.clients["guest" if "profile" in req.ignore else req.profile_id]
+         trace = Trace(self.timer)
+         if req.mode == "naive":
+             return self._naive(req, profile, trace)
+-        return self._search(req, profile, trace, rules)
++        return self._search(req, profile, trace, self._rules())
+ 
+     def _naive(self, req, profile, trace):
+         offers = naive.match(self.catalog, req.q, limit=None)
+--- a/kuznitsa/pages.py
++++ b/kuznitsa/pages.py
+@@ -35,14 +35,11 @@
+     from kuznitsa.api.admin import authorize
+ 
+     authorize(request, request.headers.get("X-Admin-Token", ""))
+-    journal = request.app.state.engine.journal
+-    found = journal.rows(
+-        "SELECT search_id FROM searches WHERE q_raw=? ORDER BY ts DESC, search_id DESC LIMIT 1",
+-        (q,),
+-    )
++    from kuznitsa.analytics.dashboard import search_reference as reference
++    found = reference(request.app.state.engine, q)
+     if not found:
+         raise HTTPException(404, "В журнале нет записи с этой фразой")
+-    return found[0]
++    return found
+ 
+ 
+ @router.get("/api/admin/ui/history-days")
+@@ -51,14 +48,5 @@
+     from kuznitsa.api.admin import authorize
+ 
+     authorize(request, request.headers.get("X-Admin-Token", ""))
+-    journal = request.app.state.engine.journal
+-    days = journal.read_report(
+-        """SELECT date(ts, 'unixepoch', '+3 hours') AS key,
+-                  count(*) AS searches, avg(zero) AS zero_rate
+-           FROM searches WHERE source='history' AND ts IS NOT NULL GROUP BY key ORDER BY key"""
+-    )
+-    period = journal.read_report(
+-        """SELECT date(min(ts), 'unixepoch', '+3 hours') AS start,
+-                  date(max(ts), 'unixepoch', '+3 hours') AS end FROM searches"""
+-    )[0]
+-    return {"items": days, "period": period}
++    from kuznitsa.analytics.dashboard import history_days as day_projection
++    return day_projection(request.app.state.engine.journal)
+--- a/web/js/comparison.js
++++ b/web/js/comparison.js
+@@ -61,19 +61,20 @@
+       }catch(err){body.replaceChildren();stateBox(body,err.message,'error');return null;}
+     }));
+     if(seq!==generation || groups.some(g=>!g))return;
+-    const first=groups[0].cards.map(c=>c.card_id);
++    const key=c=>c?.card_ref || c?.card_id;
++    const first=groups[0].cards.map(key);
+     if(kind==='modes'){
+       groups.forEach((group,col)=>group.cards.forEach((card,i)=>{
+-        const pos=groups[1-col].cards.findIndex(c=>c.card_id===card.card_id);
++        const pos=groups[1-col].cards.findIndex(c=>key(c)===key(card));
+         const other=col===0?'у умного режима':baseline==='fast'?'у быстрого поиска':'у обычного поиска';
+         line(group.nodes[i],pos<0?'Нет в показанном списке '+other:other+' · '+(pos+1)+'-я','movement','small');
+       }));
+     }else for(const group of groups.slice(1))group.cards.forEach((c,i)=>{
+-      const pos=first.indexOf(c.card_id), shift=pos-i;
++      const pos=first.indexOf(key(c)), shift=pos-i;
+       if(pos<0 || shift)line(group.nodes[i],pos<0?'нет в первом столбце':(shift>0?'↑':'↓')+Math.abs(shift),'movement','small');
+     });
+     const windowSize=Math.min(5,Math.max(...groups.map(g=>g.cards.length)));
+-    const matches=first.slice(0,windowSize).filter((id,i)=>groups.every(g=>g.cards[i]?.card_id===id)).length;
++    const matches=first.slice(0,windowSize).filter((id,i)=>groups.every(g=>key(g.cards[i])===id)).length;
+     summary.textContent=kind==='profiles' ? 'Совпадает '+matches+' из '+windowSize+' позиций в первой пятёрке' :
+       caption('mode',baseline)+': '+count(groups[0].total)+' · Умный: '+count(groups[1].total);
+   }

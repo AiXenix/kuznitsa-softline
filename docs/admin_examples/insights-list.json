@@ -1,20 +1,6 @@
 {
   "items": [
     {
-      "id": "add_product-46a4eebd20d8",
-      "type": "add_product",
-      "title": "Проверить поставку · Лицензии Cursor",
-      "role": "content_manager",
-      "status": "new",
-      "confidence": 0.84,
-      "impact": {
-        "expected_rub": 598475,
-        "conservative_rub": 411451,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
       "id": "add_product-4e2295dd929e",
       "type": "add_product",
       "title": "Проверить поставку · Лицензии Obsidian",
@@ -22,11 +8,29 @@
       "status": "new",
       "confidence": 0.82,
       "impact": {
-        "expected_rub": 102205,
-        "conservative_rub": 40882,
+        "expected_rub": 287257,
+        "conservative_rub": 114903,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 89. Сессий — 89.",
+      "impact_text": "Оценка потенциала · 287 257 ₽. Осторожная оценка · 114 903 ₽."
+    },
+    {
+      "id": "add_product-627cb9ac5424",
+      "type": "add_product",
+      "title": "Проверить поставку · Cursor",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.88,
+      "impact": {
+        "expected_rub": 1044828,
+        "conservative_rub": 569906,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "evidence_text": "Поисков за 30 дней — 142. Сессий — 142.",
+      "impact_text": "Оценка потенциала · 1 044 828 ₽. Осторожная оценка · 569 906 ₽."
     },
     {
       "id": "add_product-77568cd3aec8",
@@ -36,11 +40,13 @@
       "status": "new",
       "confidence": 0.84,
       "impact": {
-        "expected_rub": 830883,
-        "conservative_rub": 453209,
+        "expected_rub": 860621,
+        "conservative_rub": 469430,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 108. Сессий — 108.",
+      "impact_text": "Оценка потенциала · 860 621 ₽. Осторожная оценка · 469 430 ₽."
     },
     {
       "id": "add_synonym-3082dd513fa1",
@@ -50,25 +56,13 @@
       "status": "new",
       "confidence": 0.71,
       "impact": {
-        "expected_rub": 216519,
-        "conservative_rub": 148857,
+        "expected_rub": 103772,
+        "conservative_rub": 71343,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "add_synonym-4b5a3684173a",
-      "type": "add_synonym",
-      "title": "Связать «unf» с запросом «1С:Управление нашей фирмой 8»",
-      "role": "content_manager",
-      "status": "new",
-      "confidence": 0.09,
-      "impact": {
-        "expected_rub": 2256,
-        "conservative_rub": 1551,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 48. Сессий — 48. «ндв» до правила. Карточек — 0, «сертифицированный фстэк» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
+      "impact_text": "Оценка потенциала · 103 772 ₽. Осторожная оценка · 71 343 ₽."
     },
     {
       "id": "add_synonym-57f1770cf0da",
@@ -78,11 +72,13 @@
       "status": "new",
       "confidence": 0.8,
       "impact": {
-        "expected_rub": 140474,
-        "conservative_rub": 96576,
+        "expected_rub": 297295,
+        "conservative_rub": 204391,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 80. Сессий — 80. «резервилка» до правила. Карточек — 0, «Кибер Бэкап» в первой пятёрке отсутствует. В пробной выдаче цель на позиции 1.",
+      "impact_text": "Оценка потенциала · 297 295 ₽. Осторожная оценка · 204 391 ₽."
     },
     {
       "id": "fix_card-4ba19f63d833",
@@ -92,11 +88,13 @@
       "status": "new",
       "confidence": 0.67,
       "impact": {
-        "expected_rub": 293865,
-        "conservative_rub": 202032,
+        "expected_rub": 185458,
+        "conservative_rub": 127502,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 41. Сессий — 41.",
+      "impact_text": "Оценка потенциала · 185 458 ₽. Осторожная оценка · 127 502 ₽."
     },
     {
       "id": "fix_card-ae82884e265b",
@@ -106,81 +104,29 @@
       "status": "new",
       "confidence": 0.83,
       "impact": {
-        "expected_rub": 986845,
-        "conservative_rub": 678456,
+        "expected_rub": 647469,
+        "conservative_rub": 445135,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 99. Сессий — 99.",
+      "impact_text": "Оценка потенциала · 647 469 ₽. Осторожная оценка · 445 135 ₽."
     },
     {
-      "id": "fix_card-cf6669b92ca1",
-      "type": "fix_card",
-      "title": "Дополнить диапазоны лицензирования в категории «Антивирусы и защита рабочих мест»",
-      "role": "content_manager",
-      "status": "new",
-      "confidence": 0.91,
-      "impact": {
-        "expected_rub": 838129,
-        "conservative_rub": 576214,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "hot_lead-1d03134da542",
+      "id": "hot_lead-de5fd3c928ab",
       "type": "hot_lead",
-      "title": "Связаться с клиентом «ПАО «Меридиан 223»»",
+      "title": "Связаться с клиентом «АО «Кварц 218»»",
       "role": "ecom_manager",
       "status": "new",
       "confidence": 0.13,
       "impact": {
-        "expected_rub": 3963,
-        "conservative_rub": 2378,
+        "expected_rub": 1814,
+        "conservative_rub": 1193,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "hot_lead-233f4819ca1f",
-      "type": "hot_lead",
-      "title": "Связаться с клиентом «ГК «ВолгаПром 211»»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.17,
-      "impact": {
-        "expected_rub": 20338,
-        "conservative_rub": 13686,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "hot_lead-9f8d1c8f82da",
-      "type": "hot_lead",
-      "title": "Связаться с клиентом «АО «Арктика 224»»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.13,
-      "impact": {
-        "expected_rub": 11772,
-        "conservative_rub": 8093,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "hot_lead-c8ed4fa9205e",
-      "type": "hot_lead",
-      "title": "Связаться с клиентом «АО «Прогресс 217»»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.2,
-      "impact": {
-        "expected_rub": 6341,
-        "conservative_rub": 4360,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 72 часа — 5. Сессий — 3.",
+      "impact_text": "Оценка потенциала · 1 814 ₽. Осторожная оценка · 1 193 ₽."
     },
     {
       "id": "hot_lead-f7f29923a489",
@@ -190,25 +136,29 @@
       "status": "new",
       "confidence": 0.23,
       "impact": {
-        "expected_rub": 26812,
-        "conservative_rub": 17648,
+        "expected_rub": 18154,
+        "conservative_rub": 12123,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 72 часа — 6. Сессий — 6.",
+      "impact_text": "Оценка потенциала · 18 154 ₽. Осторожная оценка · 12 123 ₽."
     },
     {
-      "id": "merch_rule-043122dcd2c2",
-      "type": "merch_rule",
-      "title": "Поднять «1С:Бухгалтерия 8 Базовая» по запросу «1C»",
+      "id": "hot_lead-fafad9dda9b7",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «ПАО «Региональный Инвестбанк» — коммерческий банк, 1400 АРМ»",
       "role": "ecom_manager",
       "status": "new",
-      "confidence": 0.92,
+      "confidence": 0.17,
       "impact": {
-        "expected_rub": 123606,
-        "conservative_rub": 74163,
+        "expected_rub": 18294,
+        "conservative_rub": 12577,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 72 часа — 4. Сессий — 4.",
+      "impact_text": "Оценка потенциала · 18 294 ₽. Осторожная оценка · 12 577 ₽."
     },
     {
       "id": "merch_rule-09114534b14e",
@@ -218,67 +168,13 @@
       "status": "new",
       "confidence": 0.55,
       "impact": {
-        "expected_rub": 68266,
-        "conservative_rub": 46933,
+        "expected_rub": 73912,
+        "conservative_rub": 50814,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-300365b7f582",
-      "type": "merch_rule",
-      "title": "Поднять «Ассистент Стандартный» по запросу «удаленный доступ»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.79,
-      "impact": {
-        "expected_rub": 77343,
-        "conservative_rub": 46406,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-77825c8c0787",
-      "type": "merch_rule",
-      "title": "Показывать «1С:Кабинет сотрудника Локальный» по запросу «1С:Кабинет сотрудника Облачный»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.29,
-      "impact": {
-        "expected_rub": 549,
-        "conservative_rub": 329,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-8685ad9b8e63",
-      "type": "merch_rule",
-      "title": "Показывать «nanoCAD BIM ВК» по запросу «autocad лицензия цена»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.76,
-      "impact": {
-        "expected_rub": 0,
-        "conservative_rub": 0,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-88bf008bec1f",
-      "type": "merch_rule",
-      "title": "Поднять «Контур.Фокус Базовый» по запросу «SKB Kontur»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.63,
-      "impact": {
-        "expected_rub": 14581,
-        "conservative_rub": 8748,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 24. Сессий — 24. Сессий с выбором этой карточки · 7, с заказом · 1.",
+      "impact_text": "Оценка потенциала · 73 912 ₽. Осторожная оценка · 50 814 ₽."
     },
     {
       "id": "merch_rule-d61da11facea",
@@ -288,53 +184,13 @@
       "status": "new",
       "confidence": 0.56,
       "impact": {
-        "expected_rub": 53437,
-        "conservative_rub": 36738,
+        "expected_rub": 91180,
+        "conservative_rub": 62687,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-ebf6c375faea",
-      "type": "merch_rule",
-      "title": "Показывать «nanoCAD BIM ВК» по запросу «купить автокад 2025»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.76,
-      "impact": {
-        "expected_rub": 0,
-        "conservative_rub": 0,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-f099c10290b0",
-      "type": "merch_rule",
-      "title": "Показывать «HRlink КЭДО On-Premise» по запросу «HRlink КЭДО Облачная»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.41,
-      "impact": {
-        "expected_rub": 5811,
-        "conservative_rub": 3487,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "merch_rule-faabde0d4b5c",
-      "type": "merch_rule",
-      "title": "Показывать «1С:Кабинет сотрудника Локальный» по запросу «личный кабинет сотрудника 1с»",
-      "role": "ecom_manager",
-      "status": "new",
-      "confidence": 0.33,
-      "impact": {
-        "expected_rub": 8817,
-        "conservative_rub": 6062,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 25. Сессий — 25. Сессий с выбором этой карточки · 7, с заказом · 2.",
+      "impact_text": "Оценка потенциала · 91 180 ₽. Осторожная оценка · 62 687 ₽."
     },
     {
       "id": "renewal_campaign-d85ac9d3ff8f",
@@ -342,27 +198,31 @@
       "title": "Предложить продление лицензий со сроком до 60 дней",
       "role": "ecom_manager",
       "status": "new",
-      "confidence": 0.05,
+      "confidence": null,
       "impact": {
-        "expected_rub": 27183760,
+        "expected_rub": 33467270,
         "conservative_rub": 0,
         "metric_label": "Стоимость продлений по каталогу",
         "formula_note": "Сумма минимальных цен доступных годовых SKU продления той же редакции × число единиц или пакетов. Онлайн-оценка включает договоры до 2,5 млн ₽ с проверенным количеством. Остальные договоры выделены для расчёта менеджером. Нижняя граница без подтверждённых заказов — 0 ₽."
-      }
+      },
+      "evidence_text": "До 20.01.2027 истекают лицензии у 96 клиентов. Всего лицензий — 120, для ручного расчёта — 54.",
+      "impact_text": "Стоимость продлений по каталогу · 33 467 270 ₽. Осторожная оценка · 0 ₽."
     },
     {
-      "id": "rising_demand-27623587c343",
+      "id": "rising_demand-0df2423394c2",
       "type": "rising_demand",
-      "title": "Развить подборку «Схемы, диаграммы и интеллект-карты»",
+      "title": "Развить подборку «Почтовые клиенты и органайзеры»",
       "role": "product_manager",
       "status": "new",
-      "confidence": 0.52,
+      "confidence": 0.44,
       "impact": {
-        "expected_rub": 58959,
-        "conservative_rub": 37876,
+        "expected_rub": 87466,
+        "conservative_rub": 57693,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 22. Сессий — 16.",
+      "impact_text": "Оценка потенциала · 87 466 ₽. Осторожная оценка · 57 693 ₽."
     },
     {
       "id": "rising_demand-4f95416988f2",
@@ -372,11 +232,29 @@
       "status": "new",
       "confidence": 0.87,
       "impact": {
-        "expected_rub": 785497,
-        "conservative_rub": 521487,
+        "expected_rub": 1114362,
+        "conservative_rub": 732627,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 143. Сессий — 132.",
+      "impact_text": "Оценка потенциала · 1 114 362 ₽. Осторожная оценка · 732 627 ₽."
+    },
+    {
+      "id": "rising_demand-6ca27cce9363",
+      "type": "rising_demand",
+      "title": "Развить подборку «IP-телефония, программные АТС и колл-центры»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.51,
+      "impact": {
+        "expected_rub": 67814,
+        "conservative_rub": 45241,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      },
+      "evidence_text": "Поисков за 30 дней — 23. Сессий — 21.",
+      "impact_text": "Оценка потенциала · 67 814 ₽. Осторожная оценка · 45 241 ₽."
     },
     {
       "id": "rising_demand-868cf65b960d",
@@ -386,39 +264,13 @@
       "status": "new",
       "confidence": 0.91,
       "impact": {
-        "expected_rub": 1368865,
-        "conservative_rub": 923795,
+        "expected_rub": 919692,
+        "conservative_rub": 615904,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "rising_demand-8d1310b3e736",
-      "type": "rising_demand",
-      "title": "Разобрать растущий спрос · Генеративный ИИ, корпоративные LLM и ИИ-ассистенты · Рабочее место",
-      "role": "product_manager",
-      "status": "new",
-      "confidence": 0.71,
-      "impact": {
-        "expected_rub": 108767,
-        "conservative_rub": 43507,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
-    },
-    {
-      "id": "rising_demand-ab7fbc57e199",
-      "type": "rising_demand",
-      "title": "Развить подборку «Машинные переводчики, CAT-системы и словари»",
-      "role": "product_manager",
-      "status": "new",
-      "confidence": 0.5,
-      "impact": {
-        "expected_rub": 29944,
-        "conservative_rub": 20037,
-        "metric_label": "Оценка потенциала",
-        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 225. Сессий — 200.",
+      "impact_text": "Оценка потенциала · 919 692 ₽. Осторожная оценка · 615 904 ₽."
     },
     {
       "id": "rising_demand-af62ebcf3de3",
@@ -426,27 +278,31 @@
       "title": "Развить подборку «Среды разработки (IDE), компиляторы и SDK»",
       "role": "product_manager",
       "status": "new",
-      "confidence": 0.66,
+      "confidence": 0.88,
       "impact": {
-        "expected_rub": 301531,
-        "conservative_rub": 207302,
+        "expected_rub": 1044828,
+        "conservative_rub": 569906,
         "metric_label": "Оценка потенциала",
         "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 142. Сессий — 142.",
+      "impact_text": "Оценка потенциала · 1 044 828 ₽. Осторожная оценка · 569 906 ₽."
     },
     {
       "id": "weights_advice-9a129038d9a0",
       "type": "weights_advice",
-      "title": "Увеличить вес маржи",
+      "title": "Сохранить текущие веса по результату проверки",
       "role": "head_ecom",
       "status": "new",
       "confidence": 1.0,
       "impact": {
-        "expected_rub": 298521.1,
+        "expected_rub": 0,
         "conservative_rub": 0,
         "metric_label": "Изменение взвешенной маржи на выборке",
         "formula_note": "Сумма удельной маржи первых пяти позиций с весом 1 / позиция"
-      }
+      },
+      "evidence_text": "Поисков за 30 дней — 8919. Сессий — 6815. Перестановок при пробном изменении весов — 216, нарушений уровней — 0. Изменение маржи с учётом позиции −29 532 ₽.",
+      "impact_text": "Изменение взвешенной маржи на выборке · 0 ₽. Осторожная оценка · 0 ₽."
     }
   ]
 }

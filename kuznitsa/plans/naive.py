@@ -45,16 +45,20 @@ class StoreIndex:
         return found if limit is None else found[:max(0,limit)]
 
 
-def match(catalog,q,limit=20) -> list[Offer]:
+def prepare(catalog):
     with _LOCK:
         if not hasattr(catalog,"legacy_index"):
             catalog.legacy_index=StoreIndex(catalog)
-    return catalog.legacy_index.match(q,limit)
+    return catalog.legacy_index
+
+
+def match(catalog,q,limit=20) -> list[Offer]:
+    return prepare(catalog).match(q,limit)
 
 
 def card(engine, offer, position):
     group = engine.catalog.cards[offer.card_id]
-    return dict(card_id="sku:"+offer.offer_id, position=position, title=offer.name,
+    return dict(card_id="sku:"+offer.offer_id,card_ref=offer.card_id, position=position, title=offer.name,
                 vendor=dict(id=group.vendor, name=offer.vendor),
                 category=dict(id=group.category, title=engine.names["category"].get(group.category, group.category)),
                 summary=offer.description, badges=[], offer=public_offer(offer),

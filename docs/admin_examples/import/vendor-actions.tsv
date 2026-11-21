@@ -1,0 +1,5 @@
+ym:pv:watchID	ym:pv:clientID	ym:pv:dateTime	ym:pv:URL	ym:pv:params
+88001	301	2026-11-11 12:00:05	https://shop.example/search?text=щит	"{""search_results_count"":8}"
+88002	301	2026-11-11 12:00:23	https://shop.example/item/54	"{""ecommerce"":{""click"":{""products"":[{""id"":""shield:pro"",""position"":2}]}}}"
+88003	301	2026-11-11 12:01:06	https://shop.example/order/77	"{""ecommerce"":{""purchase"":{""actionField"":{""revenue"":88000},""products"":[{""id"":""shield:pro""}]}}}"
+88004	701	bad date	https://shop.example/	{}

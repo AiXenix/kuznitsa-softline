@@ -62,10 +62,13 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
     j=Journal(cfg.data/"kuznitsa.sqlite")
     e=Engine.open(cfg,journal=j,controls=RuleControls(j))
     generate(e,today="2026-11-21")
-    run=replay.run(e,"fast",3000)
+    run=replay.run(e,"fast")
+    assert run["frequency"]==45000
     assert .25<=run["before_zero"]/run["frequency"]<=.35
     assert .03<=run["after_zero"]/run["frequency"]<=.08
-    assert .45<=run["before_top5"]/run["labeled"]<=.55
+    baseline=run["before_top5"]/run["labeled"]
+    assert .45<=baseline<=.55
+    assert run["after_top5"]/run["labeled"]-baseline>=.20
     assert run["after_top5"]/run["labeled"]>=.85
     amounts=[r["value"] for r in j.rows("SELECT value FROM events WHERE type='order'")]
     assert .02<=len(amounts)/45000<=.04
@@ -74,8 +77,21 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
     insights.discover(e)
     from tests.analytics.coverage import audit
     stories=audit(j)
-    assert sum(bool(ids) for ids in stories.values())>=15
-    assert all(stories[k] for k in ("INS-10","INS-11","INS-12"))
+    # Устранённый поиском сюжет не должен порождать правило. Проверяем саму
+    # выдачу на сохранённых реплеях и сохраняем порог покрытия сюжетов B2.
+    solved={}
+    for story,(phrase,families) in {
+        "INS-01":("адешка",{"ald_pro"}),
+        "INS-02":("кэдо",{"hrlink_kedo","onec_kedo"}),
+        "INS-10":("аналог teamviewer",{"rudesktop","assistant_remote"}),
+        "INS-12":("autocad лицензия цена",{"nanocad_platform"}),
+    }.items():
+        import json
+        rr=j.rows("SELECT result FROM replay_results WHERE run_id=? AND q=?",(run["id"],phrase))
+        first=json.loads(rr[0]["result"])["first"] if rr else []
+        solved[story]=any(e.catalog.cards[c].family in families for c in first)
+    assert sum(bool(ids) or solved.get(story,False) for story,ids in stories.items())>=15
+    assert all(stories[k] or solved.get(k) for k in ("INS-10","INS-11","INS-12","INS-17"))
     items=insights.listing(j)
     end=j.rows("SELECT max(ts) ts FROM active_history")[0]["ts"]
     turnover=j.rows("""SELECT sum(value) rub FROM events JOIN active_history s USING(search_id)
@@ -87,11 +103,22 @@ def test_fresh_history_paired_and_recovery(tmp_path,monkeypatch):
     clusters={r["key"] for r in gaps.report(e)["items"]}
     assert not clusters.intersection({"ghjlktybt","regbnm","lkz","bazovyi","ghjlkbnm","fpjdsq","premise","rfg","god","dlya","резервилка"})
     assert any(i["type"]=="merch_rule" and any("касс" in q for q in i["evidence"]["sample_queries"]) for i in items)
+    assert {i["type"] for i in items}==set(insights.ROLES)
+    for i in items:
+        if i["type"]=="merch_rule":
+            assert i["evidence"]["choice_examples"]
+            for proof in i["evidence"]["choice_examples"]:
+                assert j.rows("SELECT card_id FROM events WHERE event_id=?",(proof["click_event_id"],))[0]["card_id"]==proof["card_id"]
+    assert all(i["evidence_text"] and i["impact_text"] for i in items)
     demo=next(i for i in items if i["action"]["payload_json"].get("phrase")=="резервилка")
     assert demo["status"]=="new"
+    assert "Карточек — 0" in demo["evidence_text"]
+    assert all(i["action"]["payload_json"].get("phrase")!="адешка" for i in items if i["type"]=="add_synonym")
+    assert all(x["trial_target_position"]<=5 and x["n_cards"]==0 for x in demo["evidence"]["checks"].values())
     assert insights.transition(e,demo["id"],"apply")["status"]=="applied"
     verified=insights.transition(e,demo["id"],"verify")
     assert verified["status"]=="verified"
+    assert all(x["before_n_cards"]==0 and x["after_n_cards"]>0 and x["target_position"]<=5 for x in verified["verification"]["outcomes"])
     for q,r in verified["verification"]["before"].items():
         after=verified["verification"]["after"][q]
         assert r["n_cards"]==0 and after["n_cards"]>0

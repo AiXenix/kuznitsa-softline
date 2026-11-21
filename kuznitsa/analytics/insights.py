@@ -11,7 +11,7 @@ from time import time
 from kuznitsa.config import WEIGHTS
 from kuznitsa.schema import Request
 from kuznitsa.text import tokens
-from .gaps import demand
+from .gaps import demand,report as gap_report
 from .kpi import facts,loss_by_search
 from .replay import compare,products,experiment_engine
 from .store import dump
@@ -43,12 +43,34 @@ def preview(e,weights,phrases):
                 formula="Сумма удельной маржи первых пяти позиций с весом 1 / позиция")
 
 
+def synonym_targets(e,payload):
+    if payload.get("kind")=="family":
+        return set(e.catalog.by["family"].get(payload["to"],()))
+    response=e.search(Request(q=payload["to"],source="eval",mode="fast"))
+    first=next(iter(products(response)),None)
+    if not first:
+        return set()
+    card=e.catalog.cards.get(first["card_id"])
+    return set(e.catalog.by["family"].get(card.family,())) if card else {first["card_id"]}
+
+
+def target_position(cards,targets):
+    return next((i for i,c in enumerate(cards,1) if c["card_id"] in targets),None)
+
+
 def discover(e):
     j=e.journal
-    rows=[r for r in facts(j) if r["source"] in ("ui","history")]
-    end=max((r["ts"] for r in rows),default=e.clock())
+    packed=bool(j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"))
+    if packed:
+        end=j.rows("SELECT max(ts) end FROM analytics_detail")[0]["end"]
+        rows=j.read_report("""SELECT q,search_id,ts,session_id,client_id,segment,category,intent,reason,zero,
+                orders,leads,carts,clicks,top_cards_json,filters_json FROM analytics_detail WHERE ts>?""",(end-60*86400,))
+        losses={r["id"]:(r["base"],r["low"]) for r in j.rows("SELECT search_id id,base,low FROM analytics_fact WHERE base>0")}
+    else:
+        rows=facts(j)
+        end=max((r["ts"] for r in rows),default=e.clock())
+        losses,_=loss_by_search(rows)
     recent=[r for r in rows if r["ts"]>end-30*86400]
-    losses,_=loss_by_search(rows)
     source=j.rows("SELECT value FROM kv WHERE key='settings:history_source'")
     imported=bool(source and source[0]["value"]=="import")
     suggestions={}
@@ -68,7 +90,10 @@ def discover(e):
                            repaired=bool(response["query"].get("corrections")))
         if kind=="add_synonym":
             payload=action["payload_json"]
-            targets={c["card_id"] for c in products(probe(payload["to"]))[:1]}
+            targets=synonym_targets(e,payload)
+            if not targets or target_position(products(probe(payload["phrase"]))[:5],targets):
+                return
+            extra=dict(extra or {},target_card_ids=sorted(targets))
             trial=experiment_engine(e)
             trial._rules()
             trial._phrases=PhraseRules([r for r in trial.controls.synonyms() if r["kind"]=="text"]+[dict(payload,rule_id="preview")])
@@ -77,7 +102,11 @@ def discover(e):
                 if targets.intersection(result["top5"]):
                     continue
                 after=compare(trial,q)
-                if targets.intersection(c["card_id"] for c in after["cards"][:5]):
+                rank=target_position(after["cards"][:5],targets)
+                if rank:
+                    before=j.detail(result["search_id"])
+                    result.update(n_cards=before["n_cards"],trial_search_id=after["search_id"],
+                                  trial_n_cards=after["n_cards"],trial_target_position=rank)
                     kept.append(q)
             if not kept:
                 return
@@ -122,13 +151,51 @@ def discover(e):
                       checks=probes,search_ids={q:next(r["search_id"] for r in g if r["q"]==q) for q,_ in samples.most_common(8)},sample_sessions=sorted(sessions)[:6],segments=dict(Counter(r["segment"] for r in g)),
                       metric_before=dict(zero=sum(r["zero"] for r in g),orders=sum(r["orders"] for r in g)),
                       **(extra or {}))
+        if kind=="merch_rule":
+            select_next=("""
+                JOIN events rf ON rf.search_id=s.search_id AND rf.type='reformulate'
+                JOIN active_history chosen ON chosen.session_id=s.session_id AND chosen.q_raw=json_extract(rf.payload_json,'$.to')
+                      AND chosen.ts>s.ts AND chosen.ts<=s.ts+180
+                """ if action["kind"]=="redirect" else " JOIN active_history chosen ON chosen.search_id=s.search_id ")
+            chosen=j.rows("""SELECT s.search_id,s.session_id,chosen.search_id chosen_search_id,c.event_id click_event_id,
+                        c.card_id,c.position,MIN(o.event_id) order_event_id FROM active_history s """+select_next+"""
+                        JOIN events c ON c.search_id=chosen.search_id AND c.type='click' AND c.card_id=?
+                        LEFT JOIN events o ON o.search_id=chosen.search_id AND o.type='order' AND o.card_id=c.card_id
+                        WHERE s.q_raw=? AND s.ts>? AND (? OR c.position>4)
+                        GROUP BY c.event_id,s.search_id ORDER BY order_event_id IS NULL,s.ts,c.event_id LIMIT 3""",
+                        (target,q,end-30*86400,action["kind"]=="redirect"))
+            evidence["choice_examples"]=chosen
+            if chosen:
+                evidence["search_ids"][q]=chosen[0]["search_id"]
         evidence["examples"]=[dict(q=q,search_id=sid) for q,sid in evidence["search_ids"].items()]
         sums=[round(sum(losses.get(r["search_id"],(0,0))[i] for r in g)) for i in range(2)]
         suggestions[ident]=dict(id=ident,dataset="import" if imported else "mock",type=kind,role=ROLES[kind],title=title,status="new",
-            summary=f"За последние {'72 часа' if kind=='hot_lead' else '30 дней'} — {len(g)} поисков в {len(sessions)} сессиях.",
+            summary=f"Поисков за {'72 часа' if kind=='hot_lead' else '30 дней'} — {len(g)}. Сессий — {len(sessions)}.",
             confidence=round(len(sessions)/(len(sessions)+20),2),priority="high" if len(sessions)>=50 else "medium",
             evidence=evidence,action=action,impact=impact or dict(expected_rub=sums[0],conservative_rub=sums[1],
                 metric_label="Оценка потенциала",formula_note="Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."))
+
+        item=suggestions[ident]
+        if kind=="renewal_campaign":
+            from datetime import datetime,timedelta
+            from zoneinfo import ZoneInfo
+            deadline=datetime.fromtimestamp(e.clock(),ZoneInfo("Europe/Moscow")).date()+timedelta(days=60)
+            evidence_text=f"До {deadline:%d.%m.%Y} истекают лицензии у {evidence['clients']} клиентов. Всего лицензий — {evidence['licenses']}, для ручного расчёта — {evidence['manual_review']}."
+            item["confidence"]=None
+        else:
+            evidence_text=item["summary"]
+        if kind=="merch_rule":
+            evidence_text+=f" Сессий с выбором этой карточки · {extra.get('followup_click_sessions',extra.get('click_sessions',0))}, с заказом · {extra.get('ordered_sessions',0)}."
+        if kind=="add_synonym":
+            phrase=payload["phrase"] if payload["phrase"] in probes else next(iter(probes))
+            before=probes[phrase]
+            evidence_text+=f" «{phrase}» до правила. Карточек — {before['n_cards']}, «{payload['to']}» в первой пятёрке отсутствует. В пробной выдаче цель на позиции {before['trial_target_position']}."
+        if kind=="weights_advice":
+            delta_text=f"{extra['margin_delta_rub']:+,.0f}".replace(","," ").replace("-","−")
+            evidence_text+=f" Перестановок при пробном изменении весов — {extra['moved']}, нарушений уровней — {extra['band_inversions']}. Изменение маржи с учётом позиции {delta_text} ₽."
+        effect=item["impact"]
+        item.update(summary=evidence_text,evidence_text=evidence_text,
+                    impact_text=f"{effect['metric_label']} · {effect['expected_rub']:,.0f} ₽. Осторожная оценка · {effect['conservative_rub']:,.0f} ₽.".replace(","," "))
 
     by_q=defaultdict(list)
     by_cat=defaultdict(list)
@@ -165,7 +232,7 @@ def discover(e):
         target=next((t for t,m in ranked if m>=n/2 and any(not r["zero"] for r in by_q[t])),target)
         add("add_synonym",word,f"Связать «{word}» с запросом «{target}»",[r for q in qs for r in by_q[q]],
             dict(kind="synonym",label="Добавить синоним",conditions={},payload_json=dict(kind="text",phrase=word,to=target)),dict(reformulated_to=dict(ranked[:5])))
-    gaps=demand(e,rows,losses)
+    gaps=gap_report(e) if packed else demand(e,rows,losses)
     for item in gaps["items"]:
         if item["sessions"]>=8:
             add("add_product",item["key"],f"Проверить поставку · {item['title']}",[r for q in item["queries"] for r in by_q[q]],
@@ -195,16 +262,18 @@ def discover(e):
                 add("fix_card",(cat,field),f"Дополнить {label} в категории «{e.names['category'].get(cat,cat)}»",affected,
                     dict(kind="ticket",label="Поставить задачу контент-менеджеру",payload_json=dict(field=field,card_ids=[c["card_id"] for c in defects])),
                     dict(impressions=sum(c["impressions"] for c in defects)))
-    for r in j.rows("""SELECT s.q_raw q,e.card_id,count(*) n,avg(e.position) pos FROM events e JOIN active_history s USING(search_id)
-        WHERE e.type='click' AND s.ts>? AND e.position>4 AND s.source IN ('ui','history') GROUP BY 1,2 HAVING count(*)>=2""",(end-30*86400,)):
+    for r in j.rows("""SELECT s.q_raw q,e.card_id,count(distinct s.session_id) n,avg(e.position) pos,count(distinct case when exists(select 1 from events o where o.search_id=s.search_id and o.type='order' and o.card_id=e.card_id) then s.session_id end) ordered FROM events e JOIN active_history s USING(search_id)
+        WHERE e.type='click' AND s.ts>? AND e.position>4 AND s.source IN ('ui','history') GROUP BY 1,2 HAVING n>=4 ORDER BY ordered DESC,n DESC,q,e.card_id""",(end-30*86400,)):
+        if r["n"]<.20*len({hit["session_id"] for hit in by_q[r["q"]] if hit["clicks"]}):
+            continue
         if any(r["card_id"] in json.loads(hit["top_cards_json"] or "[]")[:3] for hit in by_q[r["q"]]):
             continue
         if r["card_id"] in e.catalog.cards:
             add("merch_rule",(r["q"],r["card_id"]),f"Поднять «{e.catalog.cards[r['card_id']].title}» по запросу «{r['q']}»",by_q[r["q"]],
-                dict(kind="boost",label="Поднять внутри уровня",conditions=dict(phrase=r["q"]),payload_json=dict(card_id=r["card_id"],factor=1.3)),dict(late_clicks=r["n"],mean_position=r["pos"]))
+                dict(kind="boost",label="Поднять внутри уровня",conditions=dict(phrase=r["q"]),payload_json=dict(card_id=r["card_id"],factor=1.3)),dict(click_sessions=r["n"],ordered_sessions=r["ordered"],mean_position=r["pos"]))
     # После неудачи посетитель уточнил название и кликнул товар в следующей выдаче.
     # Ставим правило только для фразы, где нужной карточки всё ещё нет в первой пятёрке.
-    transitions=j.rows("""SELECT s.q_raw q,clicked.card_id,count(distinct s.session_id) sessions
+    transitions=j.rows("""SELECT s.q_raw q,clicked.card_id,count(distinct s.session_id) sessions, count(distinct case when exists(select 1 from events o where o.search_id=nxt.search_id and o.type='order' and o.card_id=clicked.card_id) then s.session_id end) ordered
         FROM active_history s JOIN events reform ON reform.search_id=s.search_id AND reform.type='reformulate'
         JOIN active_history nxt ON nxt.session_id=s.session_id AND nxt.q_raw=json_extract(reform.payload_json,'$.to')
             AND nxt.ts>s.ts AND nxt.ts<=s.ts+180
@@ -217,6 +286,10 @@ def discover(e):
         card=e.catalog.cards.get(t["card_id"])
         if not card or q in synonym_phrases or len(tokens(q))<2:
             continue
+        # Не переводим общий интерес к семейству на отдельную редакцию или модуль.
+        # Подходящий товар нужен в нескольких независимых визитах с покупкой.
+        if len(e.catalog.by["family"][card.family])>1 or t["ordered"]<1:
+            continue
         current_ids=[c["card_id"] for c in products(probe(q))]
         if card.id in current_ids[:5] or card.id not in [c["card_id"] for c in products(probe(card.title))[:5]]:
             continue
@@ -224,7 +297,7 @@ def discover(e):
             continue
         add("merch_rule",(q,card.id),f"Показывать «{card.title}» по запросу «{q}»",by_q[q],
             dict(kind="redirect",label="Перенаправить точную фразу",conditions=dict(phrase=q),payload_json=dict(q=card.title)),
-            dict(target_card=card.id,followup_click_sessions=t["sessions"]))
+            dict(target_card=card.id,followup_click_sessions=t["sessions"],ordered_sessions=t["ordered"]))
     previous=Counter(r["category"] for r in rows if end-60*86400<r["ts"]<=end-30*86400)
     for cat,g in by_cat.items():
         old=previous[cat]
@@ -307,9 +380,11 @@ def discover(e):
     candidate=dict(current,rel=current["rel"]-delta,pop=current["pop"]-delta,margin=current["margin"]+2*delta)
     test=preview(e,candidate,common)
     gain=sum(x["margin_delta_rub"] for x in test["items"])
-    if common and test["moved"] and gain>0 and not test["band_inversions"]:
-        add("weights_advice","weights","Увеличить вес маржи", [r for q in common for r in by_q[q]],
-            dict(kind="weights",label="Применить веса",payload_json=candidate),dict(tested_weights=candidate,moved=test["moved"],band_inversions=test["band_inversions"],margin_delta_rub=round(gain,2)),
+    comparable=any(len({c["card_id"] for c in x["before"][:5]})>1 and
+                   x["margin_top5_before_rub"]>0 for x in test["items"])
+    if comparable and not test["band_inversions"]:
+        add("weights_advice","weights","Увеличить вес маржи" if gain>0 else "Сохранить текущие веса по результату проверки", [r for q in common for r in by_q[q]],
+            dict(kind="weights",label="Применить веса" if gain>0 else "Подтвердить текущие веса",payload_json=candidate if gain>0 else current),dict(tested_weights=candidate,moved=test["moved"],band_inversions=test["band_inversions"],margin_delta_rub=round(gain,2)),
             dict(expected_rub=round(max(0,gain),2),conservative_rub=0,metric_label="Изменение взвешенной маржи на выборке",formula_note=test["formula"]))
     with j.transaction() as db:
         db.executemany("""INSERT INTO insights VALUES (?,?, 'new',?,NULL) ON CONFLICT(id) DO UPDATE SET body=excluded.body WHERE insights.status='new'""",
@@ -324,7 +399,26 @@ def listing(j,ident=None):
     sql="SELECT * FROM insights"
     rows=j.rows(sql+" WHERE id=?",(ident,)) if ident else j.rows(sql+""" WHERE coalesce(json_extract(body,'$.dataset'),'mock')=
         coalesce((SELECT value FROM kv WHERE key='settings:history_source'),'mock') ORDER BY type,id""")
-    return [json.loads(r["body"])|dict(status=r["status"],verification=json.loads(r["verification"] or "null")) for r in rows]
+    items=[]
+    for row in rows:
+        item=json.loads(row["body"])
+        if (not ident and row["status"]=="new" and item["type"]=="add_synonym" and
+                not item.get("evidence",{}).get("target_card_ids")):
+            continue
+        if "evidence_text" not in item:
+            e=item.get("evidence",{})
+            if item["type"]=="renewal_campaign":
+                item["confidence"]=None
+                item["evidence_text"]=f"Клиентов с продлениями в ближайшие 60 дней — {e.get('clients',0)}. Договоров — {e.get('licenses',0)}."
+            else:
+                item["evidence_text"]=item.get("summary") or f"Фраз в сохранённом предложении — {len(e.get('sample_queries',[]))}."
+            effect=item.get("impact",{})
+            if effect.get("expected_rub") is None:
+                item["impact_text"]="Денежная оценка не сохранена."
+            else:
+                item["impact_text"]=f"{effect.get('metric_label','Оценка эффекта')} · {effect['expected_rub']:,.0f} ₽.".replace(","," ")
+        items.append(item|dict(status=row["status"],verification=json.loads(row["verification"] or "null")))
+    return items
 
 
 def transition(e,ident,op):
@@ -346,6 +440,16 @@ def transition(e,ident,op):
         if op=="apply":
             verification["before"]={q:compare(e,q) for q in item["evidence"]["sample_queries"]}
             kind=a["kind"]
+            if item["type"]=="add_synonym":
+                payload=a["payload_json"]
+                targets=synonym_targets(e,payload)
+                if not targets:
+                    raise ValueError("Цель синонима отсутствует в каталоге. Обновите предложения.")
+                verification["target_card_ids"]=sorted(targets)
+                if payload["phrase"] not in verification["before"]:
+                    verification["before"][payload["phrase"]]=compare(e,payload["phrase"])
+                if any(target_position(result["cards"][:5],targets) for result in verification["before"].values()):
+                    raise ValueError("Цель уже в первой пятёрке исходной выдачи. Обновите предложения.")
             if kind in ("ticket","campaign","digest"):
                 db.execute("INSERT INTO kv VALUES (?,?,?)",("settings:task:"+ident,dump(a),time()))
                 verification["task_id"]=ident
@@ -363,5 +467,16 @@ def transition(e,ident,op):
             regressions=[q for q,b in verification["before"].items() if b["cards"] and not after[q]["cards"]]
             recovered=[q for q,b in verification["before"].items() if not b["cards"] and after[q]["cards"]]
             verification.update(after=after,changed=changed,regressions=regressions,recovered=recovered,verified_at=time(),summary=f"Повторено запросов · {len(after)}. Выдача изменилась · {changed}.")
+            if item["type"]=="add_synonym" and verification.get("target_card_ids"):
+                targets=set(verification["target_card_ids"])
+                outcomes=[]
+                for q,before in verification["before"].items():
+                    result=after[q]
+                    rank=target_position(result["cards"][:5],targets)
+                    outcomes.append(dict(q=q,before_search_id=before["search_id"],after_search_id=result["search_id"],
+                        before_n_cards=before["n_cards"],after_n_cards=result["n_cards"],target_position=rank,
+                        text=f"«{q}» · карточек {before['n_cards']} → {result['n_cards']}. "+
+                             (f"Цель на позиции {rank}." if rank else "Цель отсутствует в первой пятёрке.")))
+                verification.update(outcomes=outcomes,summary=" ".join(x["text"] for x in outcomes))
         db.execute("UPDATE insights SET status=?,verification=? WHERE id=?",(status,dump(verification),ident))
         return listing(j,ident)[0]

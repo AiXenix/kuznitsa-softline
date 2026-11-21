@@ -1,5 +1,5 @@
 {
-  "search_id": "s_10a2436219a540f2b69a0eedd4c1a188",
+  "search_id": "s_34fc0ee7153f4efa9f777b78212e1822",
   "mode": "fast",
   "engine": "kuznitsa",
   "relax_hints": [],
@@ -16,6 +16,7 @@
     "intent": "product",
     "intent_title": "Поиск продукта",
     "intent_conf": 0.95,
+    "zero_reason": null,
     "intent_source": "rules",
     "inherited": null,
     "entities": [
@@ -49,8 +50,7 @@
     ],
     "subtype": null,
     "reason": null,
-    "agent_note": "Поиск продукта · Кибер Бэкап",
-    "zero_reason": null
+    "agent_note": "Поиск продукта · Кибер Бэкап"
   },
   "blocks": [
     {
@@ -83,7 +83,7 @@
           "offer": {
             "offer_id": "o_FECAA714F98C",
             "sku": "AX-FECAA714F98C",
-            "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 виртуальных машин, 12 мес., для организаций, ESD",
+            "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 виртуальная машина, 12 мес., для организаций, ESD",
             "price": 28000.0,
             "price_on_request": false,
             "delivery": "esd",
@@ -109,7 +109,7 @@
             {
               "offer_id": "o_FD3A35C16A01",
               "sku": "AX-FD3A35C16A01",
-              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 сервер, 12 мес., для организаций, ESD",
               "price": 28000.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -128,7 +128,7 @@
             {
               "offer_id": "o_2220009C8E74",
               "sku": "AX-2220009C8E74",
-              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 сервер, 12 мес., для госучреждений, ESD",
               "price": 25200.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -147,7 +147,7 @@
             {
               "offer_id": "o_663B44ADB82C",
               "sku": "AX-663B44ADB82C",
-              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, 1 сервер, 12 мес., академическая, ESD",
               "price": 11200.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -166,7 +166,7 @@
             {
               "offer_id": "o_A2C2A2612324",
               "sku": "AX-A2C2A2612324",
-              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет 5 серверов, 12 мес., для организаций, ESD",
               "price": 127100.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -185,7 +185,7 @@
             {
               "offer_id": "o_1A9E2E3D39C3",
               "sku": "AX-1A9E2E3D39C3",
-              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Стандартный, новая лицензия, пакет 5 серверов, 12 мес., для госучреждений, ESD",
               "price": 114400.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -206,11 +206,12 @@
           "price_from": 7840.0,
           "score": {
             "tier": 1,
-            "score": 0.77812,
+            "tier_label": "Подходит по условиям",
+            "score": 0.7772,
             "parts": {
               "rel": 0.44,
-              "pop": 0.1901,
-              "margin": 0.14802,
+              "pop": 0.18976,
+              "margin": 0.14744,
               "pers": 0.0
             },
             "why": [
@@ -218,167 +219,6 @@
             ]
           },
           "position": 1
-        },
-        {
-          "card_id": "cyber_backup:workstation",
-          "title": "Кибер Бэкап Для рабочих станций",
-          "vendor": {
-            "id": "cyberprotect",
-            "name": "Cyberprotect"
-          },
-          "category": {
-            "id": "backup_recovery",
-            "title": "Системы резервного копирования"
-          },
-          "summary": "Ведущая российская система резервного копирования и восстановления физических, виртуальных сред (zVirt, Брест, VMware), СУБД (Postgres Pro, MS SQL) и рабочих станций.",
-          "badges": [
-            {
-              "kind": "registry",
-              "label": "В реестре ПО"
-            },
-            {
-              "kind": "vat",
-              "label": "Без НДС"
-            }
-          ],
-          "offer": {
-            "offer_id": "o_22C2BA06E7CD",
-            "sku": "AX-22C2BA06E7CD",
-            "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 виртуальных машин, 12 мес., для организаций, ESD",
-            "price": 91400.0,
-            "price_on_request": false,
-            "delivery": "esd",
-            "vat": 0,
-            "available": true,
-            "version": "17",
-            "action": "new",
-            "model": "subscription",
-            "term_months": 12,
-            "metric": "vm",
-            "qty_min": null,
-            "qty_max": null,
-            "pack": 1,
-            "audience": "business"
-          },
-          "calc": {
-            "qty": null,
-            "unit_price": 91400.0,
-            "total": null,
-            "text": "от 91 400 ₽ за лицензию в год"
-          },
-          "variants": [
-            {
-              "offer_id": "o_25C563B8646E",
-              "sku": "AX-25C563B8646E",
-              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
-              "price": 91400.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "17",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "server",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_D3DA29F40BA2",
-              "sku": "AX-D3DA29F40BA2",
-              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
-              "price": 82200.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "17",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "server",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "gov"
-            },
-            {
-              "offer_id": "o_76F133611BF8",
-              "sku": "AX-76F133611BF8",
-              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
-              "price": 36500.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "17",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "server",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 1,
-              "audience": "edu"
-            },
-            {
-              "offer_id": "o_18BEC8274F30",
-              "sku": "AX-18BEC8274F30",
-              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
-              "price": 414700.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "17",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "server",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 5,
-              "audience": "business"
-            },
-            {
-              "offer_id": "o_38279777694B",
-              "sku": "AX-38279777694B",
-              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
-              "price": 373200.0,
-              "price_on_request": false,
-              "delivery": "esd",
-              "vat": 0,
-              "available": true,
-              "version": "17",
-              "action": "new",
-              "model": "subscription",
-              "term_months": 12,
-              "metric": "server",
-              "qty_min": null,
-              "qty_max": null,
-              "pack": 5,
-              "audience": "gov"
-            }
-          ],
-          "variants_count": 40,
-          "price_from": 25600.0,
-          "score": {
-            "tier": 1,
-            "score": 0.77251,
-            "parts": {
-              "rel": 0.44,
-              "pop": 0.19934,
-              "margin": 0.13317,
-              "pers": 0.0
-            },
-            "why": [
-              "Совпадает с условиями поиска"
-            ]
-          },
-          "position": 2
         },
         {
           "card_id": "cyber_backup:advanced",
@@ -405,7 +245,7 @@
           "offer": {
             "offer_id": "o_6C12DADFBB95",
             "sku": "AX-6C12DADFBB95",
-            "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 устройств, 12 мес., для организаций, ESD",
+            "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 устройство, 12 мес., для организаций, ESD",
             "price": 50600.0,
             "price_on_request": false,
             "delivery": "esd",
@@ -431,7 +271,7 @@
             {
               "offer_id": "o_BF955B9B558A",
               "sku": "AX-BF955B9B558A",
-              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 сервер, 12 мес., для организаций, ESD",
               "price": 50600.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -450,7 +290,7 @@
             {
               "offer_id": "o_F4FCA5BB3CC3",
               "sku": "AX-F4FCA5BB3CC3",
-              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 сервер, 12 мес., для госучреждений, ESD",
               "price": 45500.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -469,7 +309,7 @@
             {
               "offer_id": "o_D2F4A10AFE48",
               "sku": "AX-D2F4A10AFE48",
-              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, 1 сервер, 12 мес., академическая, ESD",
               "price": 20200.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -488,7 +328,7 @@
             {
               "offer_id": "o_20BDB874ABEA",
               "sku": "AX-20BDB874ABEA",
-              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, пакет 5 серверов, 12 мес., для организаций, ESD",
               "price": 229600.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -507,7 +347,7 @@
             {
               "offer_id": "o_2A39B7158A2C",
               "sku": "AX-2A39B7158A2C",
-              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Расширенный, новая лицензия, пакет 5 серверов, 12 мес., для госучреждений, ESD",
               "price": 206600.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -528,18 +368,19 @@
           "price_from": 12140.0,
           "score": {
             "tier": 1,
-            "score": 0.73901,
+            "tier_label": "Подходит по условиям",
+            "score": 0.7226699999999999,
             "parts": {
-              "rel": 0.44,
-              "pop": 0.1703,
-              "margin": 0.12871,
+              "rel": 0.4225,
+              "pop": 0.1686,
+              "margin": 0.13157,
               "pers": 0.0
             },
             "why": [
               "Совпадает с условиями поиска"
             ]
           },
-          "position": 3
+          "position": 2
         },
         {
           "card_id": "cyber_backup:virt_host",
@@ -564,9 +405,9 @@
             }
           ],
           "offer": {
-            "offer_id": "o_0CD7F4314C6F",
-            "sku": "AX-0CD7F4314C6F",
-            "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 виртуальных машин, бессрочная, для организаций, ESD",
+            "offer_id": "o_B6C99A1E8374",
+            "sku": "AX-B6C99A1E8374",
+            "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 устройство, 12 мес., для организаций, ESD",
             "price": 165000.0,
             "price_on_request": false,
             "delivery": "esd",
@@ -574,9 +415,9 @@
             "available": true,
             "version": "17",
             "action": "new",
-            "model": "perpetual",
-            "term_months": null,
-            "metric": "vm",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
             "qty_min": null,
             "qty_max": null,
             "pack": 1,
@@ -586,13 +427,13 @@
             "qty": null,
             "unit_price": 165000.0,
             "total": null,
-            "text": "от 165 000 ₽ за лицензию"
+            "text": "от 165 000 ₽ за устройство в год"
           },
           "variants": [
             {
               "offer_id": "o_A6C7AC45620C",
               "sku": "AX-A6C7AC45620C",
-              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 сервер, 12 мес., для организаций, ESD",
               "price": 165000.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -611,7 +452,7 @@
             {
               "offer_id": "o_EA4A690F7B24",
               "sku": "AX-EA4A690F7B24",
-              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 сервер, 12 мес., для госучреждений, ESD",
               "price": 148500.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -630,7 +471,7 @@
             {
               "offer_id": "o_4F62DB877D00",
               "sku": "AX-4F62DB877D00",
-              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 серверов, 12 мес., академическая, ESD",
+              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, 1 сервер, 12 мес., академическая, ESD",
               "price": 66000.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -649,7 +490,7 @@
             {
               "offer_id": "o_2AC0C43A106E",
               "sku": "AX-2AC0C43A106E",
-              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, пакет на 5 серверов, 12 мес., для организаций, ESD",
+              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, пакет 5 серверов, 12 мес., для организаций, ESD",
               "price": 749100.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -668,7 +509,7 @@
             {
               "offer_id": "o_B473FA1F7BAE",
               "sku": "AX-B473FA1F7BAE",
-              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, пакет на 5 серверов, 12 мес., для госучреждений, ESD",
+              "name": "Кибер Бэкап 17 Для виртуальных хостов, новая лицензия, пакет 5 серверов, 12 мес., для госучреждений, ESD",
               "price": 674200.0,
               "price_on_request": false,
               "delivery": "esd",
@@ -689,11 +530,174 @@
           "price_from": 46200.0,
           "score": {
             "tier": 1,
-            "score": 0.69066,
+            "tier_label": "Подходит по условиям",
+            "score": 0.6256700000000001,
             "parts": {
-              "rel": 0.44,
-              "pop": 0.19076,
-              "margin": 0.0599,
+              "rel": 0.39,
+              "pop": 0.19932,
+              "margin": 0.03635,
+              "pers": 0.0
+            },
+            "why": [
+              "Совпадает с условиями поиска"
+            ]
+          },
+          "position": 3
+        },
+        {
+          "card_id": "cyber_backup:workstation",
+          "title": "Кибер Бэкап Для рабочих станций",
+          "vendor": {
+            "id": "cyberprotect",
+            "name": "Cyberprotect"
+          },
+          "category": {
+            "id": "backup_recovery",
+            "title": "Системы резервного копирования"
+          },
+          "summary": "Ведущая российская система резервного копирования и восстановления физических, виртуальных сред (zVirt, Брест, VMware), СУБД (Postgres Pro, MS SQL) и рабочих станций.",
+          "badges": [
+            {
+              "kind": "registry",
+              "label": "В реестре ПО"
+            },
+            {
+              "kind": "vat",
+              "label": "Без НДС"
+            }
+          ],
+          "offer": {
+            "offer_id": "o_5713392664AC",
+            "sku": "AX-5713392664AC",
+            "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 устройство, 12 мес., для организаций, ESD",
+            "price": 91400.0,
+            "price_on_request": false,
+            "delivery": "esd",
+            "vat": 0,
+            "available": true,
+            "version": "17",
+            "action": "new",
+            "model": "subscription",
+            "term_months": 12,
+            "metric": "device",
+            "qty_min": null,
+            "qty_max": null,
+            "pack": 1,
+            "audience": "business"
+          },
+          "calc": {
+            "qty": null,
+            "unit_price": 91400.0,
+            "total": null,
+            "text": "от 91 400 ₽ за устройство в год"
+          },
+          "variants": [
+            {
+              "offer_id": "o_6CA56C366CA4",
+              "sku": "AX-6CA56C366CA4",
+              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 устройство, 12 мес., для госучреждений, ESD",
+              "price": 82200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_1F2682C4C0E0",
+              "sku": "AX-1F2682C4C0E0",
+              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, 1 устройство, 12 мес., академическая, ESD",
+              "price": 36500.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "edu"
+            },
+            {
+              "offer_id": "o_34840FB5760B",
+              "sku": "AX-34840FB5760B",
+              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, пакет 5 устройств, 12 мес., для организаций, ESD",
+              "price": 414700.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "business"
+            },
+            {
+              "offer_id": "o_CDFD79F4B1FA",
+              "sku": "AX-CDFD79F4B1FA",
+              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, пакет 5 устройств, 12 мес., для госучреждений, ESD",
+              "price": 373200.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "gov"
+            },
+            {
+              "offer_id": "o_90F3F3364A57",
+              "sku": "AX-90F3F3364A57",
+              "name": "Кибер Бэкап 17 Для рабочих станций, новая лицензия, пакет 5 устройств, 12 мес., академическая, ESD",
+              "price": 165900.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "17",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 5,
+              "audience": "edu"
+            }
+          ],
+          "variants_count": 34,
+          "price_from": 25600.0,
+          "score": {
+            "tier": 1,
+            "tier_label": "Подходит по условиям",
+            "score": 0.48418000000000005,
+            "parts": {
+              "rel": 0.405,
+              "pop": 0.02799,
+              "margin": 0.05119,
               "pers": 0.0
             },
             "why": [
@@ -701,6 +705,590 @@
             ]
           },
           "position": 4
+        }
+      ]
+    },
+    {
+      "type": "crosssell",
+      "title": "С этим обычно берут",
+      "items": [
+        {
+          "card": {
+            "card_id": "r_studio:standard",
+            "title": "R-Studio Standard",
+            "vendor": {
+              "id": "r_tt",
+              "name": "R-Tools Technology"
+            },
+            "category": {
+              "id": "data_recovery",
+              "title": "Восстановление удалённых данных"
+            },
+            "summary": "Профессиональная утилита восстановления удалённых файлов, повреждённых разделов и RAID-массивов (Windows, Linux, macOS).",
+            "badges": [],
+            "offer": {
+              "offer_id": "o_B1D6EF5E2F42",
+              "sku": "AX-B1D6EF5E2F42",
+              "name": "R-Studio Standard, новая лицензия, 1 устройство, бессрочная, для организаций, ESD",
+              "price": 9000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": null,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "device",
+              "qty_min": null,
+              "qty_max": null,
+              "pack": 1,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 9000.0,
+              "total": null,
+              "text": "от 9 000 ₽ за устройство"
+            },
+            "variants": [
+              {
+                "offer_id": "o_85C5FC53D2C1",
+                "sku": "AX-85C5FC53D2C1",
+                "name": "R-Studio Standard, новая лицензия, 1 устройство, 12 мес., для организаций, ESD",
+                "price": 9000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": null,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "device",
+                "qty_min": null,
+                "qty_max": null,
+                "pack": 1,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 2,
+            "price_from": 9000.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.75,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.2,
+                "margin": 0.15,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска"
+              ]
+            },
+            "position": 1
+          },
+          "reason": "Инструмент аварийного восстановления помогает спасти данные с носителей, не попавших в расписание бэкапа."
+        },
+        {
+          "card": {
+            "card_id": "raidix_sds:r5",
+            "title": "RAIDIX 5",
+            "vendor": {
+              "id": "raidix",
+              "name": "RAIDIX"
+            },
+            "category": {
+              "id": "sds_storage",
+              "title": "Программно-определяемые хранилища (SDS) и корпоративные диски"
+            },
+            "summary": "Российское высокопроизводительное ПО для построения отказоустойчивых СХД (SAN/NAS/NVMe) с патентованными алгоритмами RAID 6/7.3.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_63298F2293AB",
+              "sku": "AX-63298F2293AB",
+              "name": "RAIDIX 5 5, новая лицензия, 250+ серверов, 12 мес., для организаций, ESD",
+              "price": 203800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": "5",
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "server",
+              "qty_min": 250,
+              "qty_max": null,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 203800.0,
+              "total": null,
+              "text": "от 203 800 ₽ за сервер в год (при покупке от 250)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_ED66E4648A24",
+                "sku": "AX-ED66E4648A24",
+                "name": "RAIDIX 5 5, новая лицензия, 1–9 серверов, 12 мес., для организаций, ESD",
+                "price": 250000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "5",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_6A9BC81EF0FD",
+                "sku": "AX-6A9BC81EF0FD",
+                "name": "RAIDIX 5 5, новая лицензия, 1–9 серверов, 12 мес., для госучреждений, ESD",
+                "price": 225000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "5",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_DBD26D979DC1",
+                "sku": "AX-DBD26D979DC1",
+                "name": "RAIDIX 5 5, новая лицензия, 10–24 сервера, 12 мес., для организаций, ESD",
+                "price": 240000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "5",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_B846031FD448",
+                "sku": "AX-B846031FD448",
+                "name": "RAIDIX 5 5, новая лицензия, 10–24 сервера, 12 мес., для госучреждений, ESD",
+                "price": 216000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "5",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_797841C2D52E",
+                "sku": "AX-797841C2D52E",
+                "name": "RAIDIX 5 5, новая лицензия, 25–49 серверов, 12 мес., для организаций, ESD",
+                "price": 230400.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": "5",
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "server",
+                "qty_min": 25,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 44,
+            "price_from": 91700.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.6661600000000001,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.19772,
+                "margin": 0.06844,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 250 мест"
+              ]
+            },
+            "position": 2
+          },
+          "reason": "Отдельное защищённое хранилище нужно для размещения репозиториев резервных копий."
+        },
+        {
+          "card": {
+            "card_id": "saymon_monitoring",
+            "title": "SAYMON",
+            "vendor": {
+              "id": "saymon",
+              "name": "SAYMON"
+            },
+            "category": {
+              "id": "monitoring_apm",
+              "title": "Мониторинг инфраструктуры, сетей и APM"
+            },
+            "summary": "Российская платформа мониторинга и управления ИТ-, телеком- и промышленной инфраструктурой с ресурсными моделями.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_4C58620C08C8",
+              "sku": "AX-4C58620C08C8",
+              "name": "SAYMON, новая лицензия, 10–24 ед., 12 мес., для организаций, ESD",
+              "price": 1728000.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "subscription",
+              "term_months": 12,
+              "metric": "other",
+              "qty_min": 10,
+              "qty_max": 24,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 1728000.0,
+              "total": null,
+              "text": "от 1 728 000 ₽ за лицензию в год (при покупке от 10)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_1184BB1E6DAE",
+                "sku": "AX-1184BB1E6DAE",
+                "name": "SAYMON, новая лицензия, 1–9 ед., 12 мес., для организаций, ESD",
+                "price": 1800000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "other",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_99361F8C8ABB",
+                "sku": "AX-99361F8C8ABB",
+                "name": "SAYMON, новая лицензия, 1–9 ед., 12 мес., для госучреждений, ESD",
+                "price": 1620000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "other",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_8C93CED7A208",
+                "sku": "AX-8C93CED7A208",
+                "name": "SAYMON, новая лицензия, 10–24 ед., 12 мес., для госучреждений, ESD",
+                "price": 1555200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "other",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_984343F2C901",
+                "sku": "AX-984343F2C901",
+                "name": "SAYMON, новая лицензия, 25–49 ед., 12 мес., для организаций, ESD",
+                "price": 1658900.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "other",
+                "qty_min": 25,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_4F3423D6AFD8",
+                "sku": "AX-4F3423D6AFD8",
+                "name": "SAYMON, новая лицензия, 25–49 ед., 12 мес., для госучреждений, ESD",
+                "price": 1493000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "other",
+                "qty_min": 25,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "gov"
+              }
+            ],
+            "variants_count": 73,
+            "price_from": 688000.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.63334,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.19249,
+                "margin": 0.04085,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 10 до 24 мест"
+              ]
+            },
+            "position": 3
+          },
+          "reason": "Автоматические уведомления о неуспешных заданиях бэкапа предотвращают тихую потерю копий."
+        },
+        {
+          "card": {
+            "card_id": "cyber_infrastructure",
+            "title": "Кибер Инфраструктура",
+            "vendor": {
+              "id": "cyberprotect",
+              "name": "Cyberprotect"
+            },
+            "category": {
+              "id": "sds_storage",
+              "title": "Программно-определяемые хранилища (SDS) и корпоративные диски"
+            },
+            "summary": "Российская программно-определяемая система хранения данных (блочное, файловое, S3-объектное) и гиперконвергентная платформа.",
+            "badges": [
+              {
+                "kind": "registry",
+                "label": "В реестре ПО"
+              },
+              {
+                "kind": "vat",
+                "label": "Без НДС"
+              }
+            ],
+            "offer": {
+              "offer_id": "o_D81D544B8E42",
+              "sku": "AX-D81D544B8E42",
+              "name": "Кибер Инфраструктура, новая лицензия, 50–99 ед. хранения, бессрочная, для организаций, ESD",
+              "price": 24800.0,
+              "price_on_request": false,
+              "delivery": "esd",
+              "vat": 0,
+              "available": true,
+              "version": null,
+              "action": "new",
+              "model": "perpetual",
+              "term_months": null,
+              "metric": "storage",
+              "qty_min": 50,
+              "qty_max": 99,
+              "pack": null,
+              "audience": "business"
+            },
+            "calc": {
+              "qty": null,
+              "unit_price": 24800.0,
+              "total": null,
+              "text": "от 24 800 ₽ за лицензию (при покупке от 50)"
+            },
+            "variants": [
+              {
+                "offer_id": "o_12E939902983",
+                "sku": "AX-12E939902983",
+                "name": "Кибер Инфраструктура, новая лицензия, 1–9 ед. хранения, 12 мес., для организаций, ESD",
+                "price": 28000.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "storage",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_06969E68C22F",
+                "sku": "AX-06969E68C22F",
+                "name": "Кибер Инфраструктура, новая лицензия, 1–9 ед. хранения, 12 мес., для госучреждений, ESD",
+                "price": 25200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "storage",
+                "qty_min": 1,
+                "qty_max": 9,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_28D52AA36378",
+                "sku": "AX-28D52AA36378",
+                "name": "Кибер Инфраструктура, новая лицензия, 10–24 ед. хранения, 12 мес., для организаций, ESD",
+                "price": 26900.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "storage",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "business"
+              },
+              {
+                "offer_id": "o_A831D6DFD018",
+                "sku": "AX-A831D6DFD018",
+                "name": "Кибер Инфраструктура, новая лицензия, 10–24 ед. хранения, 12 мес., для госучреждений, ESD",
+                "price": 24200.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "storage",
+                "qty_min": 10,
+                "qty_max": 24,
+                "pack": null,
+                "audience": "gov"
+              },
+              {
+                "offer_id": "o_656D3B2FFC62",
+                "sku": "AX-656D3B2FFC62",
+                "name": "Кибер Инфраструктура, новая лицензия, 25–49 ед. хранения, 12 мес., для организаций, ESD",
+                "price": 25800.0,
+                "price_on_request": false,
+                "delivery": "esd",
+                "vat": 0,
+                "available": true,
+                "version": null,
+                "action": "new",
+                "model": "subscription",
+                "term_months": 12,
+                "metric": "storage",
+                "qty_min": 25,
+                "qty_max": 49,
+                "pack": null,
+                "audience": "business"
+              }
+            ],
+            "variants_count": 72,
+            "price_from": 10270.0,
+            "score": {
+              "tier": 1,
+              "tier_label": "Подходит по условиям",
+              "score": 0.61445,
+              "parts": {
+                "rel": 0.4,
+                "pop": 0.18707,
+                "margin": 0.02738,
+                "pers": 0.0
+              },
+              "why": [
+                "Совпадает с условиями поиска",
+                "Диапазон от 50 до 99 мест"
+              ]
+            },
+            "position": 4
+          },
+          "reason": "Отдельное защищённое хранилище нужно для размещения репозиториев резервных копий."
         }
       ]
     }
@@ -730,10 +1318,12 @@
     }
   ],
   "related_queries": [
-    "Кибер Бэкап Стандартный",
-    "Кибер Бэкап Для рабочих станций",
-    "Кибер Бэкап Расширенный",
-    "Кибер Бэкап Для виртуальных хостов"
+    "Кибер Бэкап продление",
+    "Кибер Бэкап Стандартный на 12 мес",
+    "Аналог Кибер Бэкап",
+    "Купить R-Studio",
+    "Системы резервного копирования из реестра",
+    "Системы резервного копирования"
   ],
   "notes": [],
   "trace": [
@@ -741,7 +1331,7 @@
       "step": "normalize",
       "title": "Нормализация",
       "status": "ok",
-      "ms": 0.14,
+      "ms": 0.1,
       "summary": "кибер бэкап",
       "detail": {}
     },
@@ -749,7 +1339,7 @@
       "step": "sku_lookup",
       "title": "Точный артикул",
       "status": "ok",
-      "ms": 0.07,
+      "ms": 0.1,
       "summary": "Совпадений по артикулу нет",
       "detail": {}
     },
@@ -757,15 +1347,18 @@
       "step": "repair",
       "title": "Проверка написания",
       "status": "ok",
-      "ms": 0.04,
+      "ms": 0.05,
       "summary": "Запрос сохранён",
-      "detail": {}
+      "detail": {
+        "candidates": [],
+        "criterion": "Близость написания, длина совпавшего начала и популярность в каталоге"
+      }
     },
     {
       "step": "entities",
       "title": "Сущности и параметры",
       "status": "ok",
-      "ms": 0.19,
+      "ms": 0.66,
       "summary": "Кибер Бэкап",
       "detail": {
         "residual": "",
@@ -774,7 +1367,7 @@
             "kind": "text",
             "phrase": "резервилка",
             "to": "Кибер Бэкап",
-            "rule_id": "6f59b1d69cda4a57b8bf5354cd3add9c"
+            "rule_id": "bd14e8a5b50c45a69dd8a1f207062036"
           }
         ],
         "ignored": []
@@ -784,7 +1377,7 @@
       "step": "context",
       "title": "Контекст клиента",
       "status": "ok",
-      "ms": 0.03,
+      "ms": 0.01,
       "summary": "Гость — неавторизованный посетитель без истории покупок",
       "detail": {}
     },
@@ -792,10 +1385,14 @@
       "step": "intent",
       "title": "Сценарий запроса",
       "status": "ok",
-      "ms": 0.27,
+      "ms": 0.17,
       "summary": "Поиск продукта",
       "detail": {
         "redirect": null,
+        "source": "rules",
+        "probability": 0.95,
+        "rules": "product",
+        "rejected": [],
         "calls": []
       }
     },
@@ -811,7 +1408,7 @@
       "step": "retrieve",
       "title": "Отбор кандидатов",
       "status": "ok",
-      "ms": 0.05,
+      "ms": 0.04,
       "summary": "Подходящих карточек до проверки лицензий · 4",
       "detail": {
         "sources": [
@@ -826,7 +1423,7 @@
       "step": "filters",
       "title": "Проверка ограничений",
       "status": "ok",
-      "ms": 0.36,
+      "ms": 0.16,
       "summary": "Условия запроса сохранены",
       "detail": {}
     },
@@ -845,6 +1442,8 @@
       "ms": 0.01,
       "summary": "Использованы локальные оценки",
       "detail": {
+        "raised": 0,
+        "lowered": 0,
         "calls": []
       }
     },
@@ -852,14 +1451,14 @@
       "step": "business",
       "title": "Порядок карточек",
       "status": "ok",
-      "ms": 0.41,
+      "ms": 0.45,
       "summary": "В каждой полосе учтены популярность, маржа и профиль клиента",
       "detail": {
         "weights": {
           "rel": 0.5,
           "pop": 0.2,
           "margin": 0.15,
-          "pers": 0.15
+          "pers": 0.0
         }
       }
     },
@@ -877,7 +1476,7 @@
       "step": "compose",
       "title": "Сборка ответа",
       "status": "ok",
-      "ms": 0.14,
+      "ms": 1.24,
       "summary": "Карточек в выдаче · 4",
       "detail": {}
     },
@@ -895,16 +1494,20 @@
     "cached": 0,
     "tokens_in": 0,
     "usd": 0,
-    "rub": 0.0
+    "rub": 0.0,
+    "saved_rub": 0.0,
+    "pending": false
   },
   "timing_ms": {
-    "total": 1.87
+    "total": 3.13
   },
   "profile": {
     "id": "guest",
     "title": "Гость — неавторизованный посетитель без истории покупок",
-    "segment": "smb"
+    "segment": "smb",
+    "short": "Гость",
+    "segment_title": "Гость"
   },
-  "ts": 1795218905.2438853,
+  "ts": 1795226463.3593202,
   "n_cards": 4
 }

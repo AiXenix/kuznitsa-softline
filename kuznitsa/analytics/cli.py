@@ -11,7 +11,7 @@ def register(subparsers):
             p.add_argument("file",nargs="+")
             p.add_argument("--mapping")
         if name=="replay":
-            p.add_argument("--limit",type=int,default=3000)
+            p.add_argument("--limit",type=int,default=None)
             p.add_argument("--mode",choices=["smart","fast"],default="fast")
         if name=="digest":
             p.add_argument("--role")
@@ -34,8 +34,8 @@ def run(args,cfg):
             from kuznitsa.mock.metrika_gen import export
             out=export(e,cfg.data/"mock_metrika")
         elif name=="import-history":
-            from kuznitsa.ingest.history import ingest
-            out=[ingest(e,f,args.mapping) for f in args.file]
+            from kuznitsa.ingest.history import ingest_files
+            out=ingest_files(e,args.file,args.mapping)
         elif name=="insights":
             from .insights import discover
             out=discover(e)
