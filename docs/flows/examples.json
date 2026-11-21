@@ -1400,6 +1400,455 @@
         "source": "author",
         "category_ctx": null
       }
+    ],
+    "suggest": [
+      {
+        "q": "касп",
+        "suggestions": [
+          "Kaspersky Endpoint Security для бизнеса",
+          "Kaspersky Small Office Security",
+          "Kaspersky ASAP"
+        ],
+        "profile": "guest",
+        "mode": "fast",
+        "intent": null,
+        "first_card": null,
+        "blocks": [
+          "products",
+          "vendors",
+          "queries"
+        ],
+        "ms": 0.48
+      },
+      {
+        "q": "крипто",
+        "suggestions": [
+          "КриптоПро CSP",
+          "КриптоАРМ ГОСТ",
+          "Ideco NGFW"
+        ],
+        "profile": "guest",
+        "mode": "fast",
+        "intent": null,
+        "first_card": null,
+        "blocks": [
+          "products",
+          "categories",
+          "vendors",
+          "queries",
+          "answers"
+        ],
+        "ms": 0.53
+      },
+      {
+        "q": "астр",
+        "suggestions": [
+          "Astra Linux Special Edition",
+          "GitFlic (Enterprise / Cloud)",
+          "RuBackup (Группа Астра)"
+        ],
+        "profile": "guest",
+        "mode": "fast",
+        "intent": null,
+        "first_card": null,
+        "blocks": [
+          "products",
+          "vendors",
+          "queries",
+          "answers"
+        ],
+        "ms": 0.36
+      }
+    ],
+    "spec_file": [
+      {
+        "q": "request.csv",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Microsoft Windows 11 Pro",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 123.58,
+        "file": "request.csv",
+        "positions": 2,
+        "matched": 2,
+        "quote_filename": "KP-20261121-s_9615.xlsx"
+      },
+      {
+        "q": "request.txt",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Kaspersky Small Office Security",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 78.62,
+        "file": "request.txt",
+        "positions": 3,
+        "matched": 3,
+        "quote_filename": "KP-20261121-s_d19c.xlsx"
+      },
+      {
+        "q": "request-1c.xlsx",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Microsoft Windows 11 Pro",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 71.16,
+        "file": "request-1c.xlsx",
+        "positions": 2,
+        "matched": 2,
+        "quote_filename": "KP-20261121-s_343d.xlsx"
+      }
+    ],
+    "widget": [
+      {
+        "q": "КриптоПро CSP",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "КриптоПро CSP Клиентская",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 44.49,
+        "source": "ui",
+        "endpoint": "/api/search"
+      },
+      {
+        "q": "КриптоПро CSP",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "product",
+        "first_card": "КриптоПро CSP Клиентская",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 41.87,
+        "source": "ui",
+        "endpoint": "/api/search"
+      },
+      {
+        "q": "KL4867RAQFR",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 20.71,
+        "source": "ui",
+        "endpoint": "/api/search"
+      },
+      {
+        "q": "KL4867RAQFR",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "sku",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 20.51,
+        "source": "ui",
+        "endpoint": "/api/search"
+      },
+      {
+        "q": "Microsoft Windows 11 Pro",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "Microsoft Windows 11 Pro",
+        "blocks": [
+          "products",
+          "analogs",
+          "crosssell"
+        ],
+        "ms": 27.81,
+        "source": "ui",
+        "endpoint": "/api/search"
+      },
+      {
+        "q": "Microsoft Windows 11 Pro",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "product",
+        "first_card": "Microsoft Windows 11 Pro",
+        "blocks": [
+          "products",
+          "analogs",
+          "crosssell"
+        ],
+        "ms": 21.42,
+        "source": "ui",
+        "endpoint": "/api/search"
+      }
+    ],
+    "voice": [
+      {
+        "q": "антивирус на тридцать компьютеров",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 31.0,
+        "quantity": 30,
+        "metric": "device"
+      },
+      {
+        "q": "Р7 офис на двадцать пять мест",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "products",
+          "lead",
+          "crosssell"
+        ],
+        "ms": 16.32,
+        "quantity": 25,
+        "metric": "device"
+      },
+      {
+        "q": "КриптоПро CSP на пять рабочих мест",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "КриптоПро CSP Клиентская",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 41.98,
+        "quantity": 5,
+        "metric": "device"
+      }
+    ],
+    "okved": [
+      {
+        "q": "оквэд 86.23",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "Инфоклиника On-Premise",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 23.96,
+        "industry_id": "dentistry_private_clinic",
+        "industry_title": "Стоматология и частная медицинская клиника"
+      },
+      {
+        "q": "оквэд 62.01",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "GitFlic Cloud",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 18.37,
+        "industry_id": "custom_software_dev",
+        "industry_title": "Заказная разработка ПО и продуктовые студии"
+      },
+      {
+        "q": "оквэд 49.41",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "AXELOT TMS X4",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 12.47,
+        "industry_id": "transport_logistics",
+        "industry_title": "Транспорт, грузоперевозки и логистика"
+      }
+    ],
+    "kit_parent": [
+      {
+        "q": "софт для учителя школы",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 50.07,
+        "child_id": "school_teacher",
+        "child_title": "Учитель школы (рабочее место педагога)",
+        "parent": {
+          "id": "teacher_lecturer",
+          "title": "Учитель / преподаватель вуза",
+          "q": "Учитель / преподаватель вуза"
+        }
+      },
+      {
+        "q": "софт для преподавателя вуза",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 51.58,
+        "child_id": "university_professor",
+        "child_title": "Преподаватель вуза и кафедры",
+        "parent": {
+          "id": "teacher_lecturer",
+          "title": "Учитель / преподаватель вуза",
+          "q": "Учитель / преподаватель вуза"
+        }
+      },
+      {
+        "q": "софт для регистратора клиники",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Инфоклиника On-Premise",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 58.77,
+        "child_id": "clinic_registrar",
+        "child_title": "Регистратор и администратор медицинской клиники",
+        "parent": {
+          "id": "doctor_clinician",
+          "title": "Врач / АРМ медицинского работника",
+          "q": "Врач / АРМ медицинского работника"
+        }
+      }
+    ],
+    "naive": [
+      {
+        "q": "антивирус на 30 пк",
+        "profile": "guest",
+        "mode": "naive",
+        "intent": "product",
+        "first_card": null,
+        "blocks": [
+          "products"
+        ],
+        "ms": 0.43,
+        "offers": 0,
+        "fast_cards": 11
+      },
+      {
+        "q": "КриптоПро CSP",
+        "profile": "guest",
+        "mode": "naive",
+        "intent": "product",
+        "first_card": "КриптоПро CSP 4.0 Серверная, новая лицензия, 100+ серверов, бессрочная, академическая, PAPER",
+        "blocks": [
+          "products"
+        ],
+        "ms": 1.96,
+        "offers": 125,
+        "fast_cards": 2
+      },
+      {
+        "q": "rfcgthcrbq",
+        "profile": "guest",
+        "mode": "naive",
+        "intent": "product",
+        "first_card": null,
+        "blocks": [
+          "products"
+        ],
+        "ms": 0.36,
+        "offers": 0,
+        "fast_cards": 19
+      }
+    ],
+    "smart": [
+      {
+        "q": "виртуализация на 4 сокета",
+        "profile": "ent_factory",
+        "mode": "smart",
+        "intent": "category",
+        "first_card": "zVirt Standard",
+        "blocks": [
+          "products"
+        ],
+        "ms": 231.6,
+        "source": "dev-0092",
+        "fast_first_card": "РЕД Виртуализация",
+        "expected_top": [
+          "Брест",
+          "zVirt",
+          "Basis"
+        ],
+        "cost_usd": 0.000190428,
+        "cached": 0,
+        "calls": 1,
+        "saved_rub": 0.0
+      },
+      {
+        "q": "запретить копирование на флешки",
+        "profile": "guest",
+        "mode": "smart",
+        "intent": "task",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 572.25,
+        "source": "dev-0147",
+        "fast_first_card": "Dallas Lock 8.0-C",
+        "expected_top": [
+          "Kaspersky",
+          "Secret Net",
+          "SearchInform",
+          "InfoWatch"
+        ],
+        "cost_usd": 0.00066612,
+        "cached": 0,
+        "calls": 3,
+        "saved_rub": 0.0
+      },
+      {
+        "q": "подписывать кадровые документы с удаленщиками",
+        "profile": "it_company",
+        "mode": "smart",
+        "intent": "task",
+        "first_card": "1С:Кабинет сотрудника Локальный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 521.11,
+        "source": "dev-0148",
+        "fast_first_card": "СБИС Saby ЭДО",
+        "expected_top": [
+          "HRlink",
+          "КЭДО",
+          "Кабинет сотрудника",
+          "Directum"
+        ],
+        "cost_usd": 0.000307314,
+        "cached": 0,
+        "calls": 2,
+        "saved_rub": 0.0
+      }
     ]
   }
 }

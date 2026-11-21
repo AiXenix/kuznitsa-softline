@@ -63,8 +63,10 @@ def test_verified_examples_and_timing_coverage():
     timings = load("timings")
     stats = timings["by_flow"]
     steps = {p["step"] for p in load("flows")["pipeline"]}
-    assert set(stats) == set(examples) == set(TITLES)
-    for intent, rows in examples.items():
+    assert set(stats) == set(TITLES)
+    assert set(examples) == set(TITLES) | PATHS
+    for intent in TITLES:
+        rows = examples[intent]
         assert len({r["q"] for r in rows}) >= 5
         for r in rows:
             assert r["intent"] == intent and r["blocks"] and r["profile"] and r["ms"] >= 0
@@ -80,3 +82,36 @@ def test_verified_examples_and_timing_coverage():
     for mode in ("fast", "smart"):
         for source, expected in timings["datasets"].items():
             assert sum(m[mode]["datasets"].get(source, 0) for m in stats.values()) == expected
+
+
+def test_document_anchors_and_path_examples():
+    flows = load("flows")["flows"]
+    doc = (ROOT / "docs/FLOWS.md").read_text()
+    examples = load("examples")["by_flow"]
+    assert not re.search(r"\bход(?:а|е|у|ом)?\s*\d", doc, re.I)
+    for flow in flows:
+        ident = flow["id"]
+        anchor = f'<a id="{ident}"></a>'
+        assert doc.count(anchor) == 1
+        assert f'{anchor}\n\n## {flow["title"]} (`{ident}`)' in doc
+    for alias, ident in (("spec_file_kp", "spec_file"), ("voice_words", "voice")):
+        assert f'<a id="{alias}"></a>\n\n<a id="{ident}"></a>' in doc
+    for path in PATHS:
+        rows = examples[path]
+        assert len({r["q"] for r in rows}) >= 3
+        for row in rows:
+            assert {"q", "profile", "mode", "intent", "first_card", "blocks", "ms"} <= row.keys()
+            assert row["ms"] >= 0
+    assert all(r["suggestions"] for r in examples["suggest"])
+    for r in examples["spec_file"]:
+        assert (ROOT / "docs/quote_examples" / r["file"]).is_file()
+        assert 0 < r["matched"] <= r["positions"] and r["quote_filename"].endswith(".xlsx")
+    assert all(r["quantity"] > 0 for r in examples["voice"])
+    widget = examples["widget"]
+    for q in {r["q"] for r in widget}:
+        assert {r["mode"] for r in widget if r["q"] == q and r["source"] == "ui"} == {"fast", "smart"}
+    assert all(r["industry_id"] and r["intent"] == "industry" for r in examples["okved"])
+    assert all(r["child_id"] != r["parent"]["id"] and r["parent"]["q"] for r in examples["kit_parent"])
+    assert all(r["offers"] >= 0 and r["fast_cards"] > 0 for r in examples["naive"])
+    assert all(r["first_card"] != r["fast_first_card"] and r["cost_usd"] >= 0
+               and r["expected_top"] for r in examples["smart"])

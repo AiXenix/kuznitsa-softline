@@ -4,7 +4,9 @@ import argparse
 import ast
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from email.message import Message
 from functools import lru_cache
+from io import BytesIO
 import hashlib
 import json
 import os
@@ -12,8 +14,11 @@ from pathlib import Path
 import sqlite3
 import subprocess
 import sys
+from time import perf_counter
+from uuid import uuid4
 
 import numpy as np
+from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -86,10 +91,15 @@ def summarize(records):
                 returned_mode=Counter(r[1] for r in records))
 
 
-def measure():
+def gateway_config():
     cfg = Config()
     if cfg.jev_url != GATEWAY or os.getenv("OPENROUTER_API_KEY") != "gateway" or os.getenv("KZ_LLM") == "off":
         raise SystemExit("Set KZ_JEV_URL to the local gateway and OPENROUTER_API_KEY=gateway.")
+    return cfg
+
+
+def measure():
+    cfg = gateway_config()
     sources = {"dev": read_jsonl(ROOT / "eval/queries.dev.jsonl"),
                "seen": [r for r in read_jsonl(ROOT / "design/proposals/neon4/probes-kits-r3.jsonl") if r["seen"] is True]}
     engine = Engine.open(cfg)
@@ -145,6 +155,7 @@ def measure():
         for source, rows in sources.items():
             for row in rows:
                 sample(row, "smart", source)
+        examples.update(path_examples(engine))
     finally:
         engine.close()  # Include late completions in journal costs.
     with sqlite3.connect(engine.decisions.path) as db:
@@ -169,6 +180,153 @@ def measure():
         datasets={k:len(v) for k,v in sources.items()}, cost=dict(entries=calls,cached=cached,failed=failed,usd=usd),
         snapshot={name:hashlib.sha256((cfg.data/name).read_bytes()).hexdigest()
                   for name in ("catalog.jsonl","clients.jsonl","mock_families.jsonl")}))
+
+
+def result_example(q, result, profile="guest"):
+    cards = cards_from(result["blocks"])
+    return dict(q=q, profile=profile, mode=result["mode"], intent=result["understood"]["intent"],
+                first_card=cards[0]["title"] if cards else None,
+                blocks=[b["type"] for b in result["blocks"]], ms=result["timing_ms"]["total"])
+
+
+def smart_examples(engine):
+    # Dev names acceptable products in the first five. For this exhibit require one at rank one.
+    candidates = {"dev-0092", "dev-0147", "dev-0148", "dev-0149", "dev-0158", "dev-0216"}
+    rows = []
+    for dev in read_jsonl(ROOT / "eval/queries.dev.jsonl"):
+        if dev["id"] not in candidates:
+            continue
+        targets = dev["assert"]["top5_any"]
+        top = {"assert": {"top1_any": targets}}
+        fast = request(engine, dev, "fast")
+        if inspect(engine, top, fast)[0]["top1_any"]:
+            continue
+        smart = request(engine, dev, "smart")
+        cost = smart["cost"]
+        if (smart["mode"] != "smart" or cost["pending"] or not (cost["llm_calls"] or cost["cached"])
+                or not inspect(engine, top, smart)[0]["top1_any"] or not all(inspect(engine, dev, smart)[0].values())):
+            continue
+        rows.append(dict(**result_example(dev["q"], smart, dev["profile"]), source=dev["id"],
+                         fast_first_card=result_example(dev["q"], fast)["first_card"], expected_top=targets,
+                         cost_usd=cost["usd"], cached=cost["cached"], calls=cost["llm_calls"],
+                         saved_rub=cost["saved_rub"]))
+        if len(rows) == 3:
+            return rows
+    raise ValueError(f"Only {len(rows)} verified smart corrections")
+
+
+def file_examples(client):
+    rows = []
+    for filename, count in [("request.csv", 2), ("request.txt", 3), ("request-1c.xlsx", 2)]:
+        path = ROOT / "docs/quote_examples" / filename
+        data = path.read_bytes()
+        start = perf_counter()
+        uploaded = client.post("/api/spec/upload", params={"name": filename}, content=data)
+        uploaded.raise_for_status()
+        result = uploaded.json()
+        lines = next(b["lines"] for b in result["blocks"] if b["type"] == "spec")
+        matched = sum(bool(line["card"]) for line in lines)
+        quote = client.get(f'/api/export/{result["search_id"]}', params={"format": "xlsx"})
+        quote.raise_for_status()
+        elapsed = round(1000 * (perf_counter() - start), 2)
+        name = Message()
+        name["Content-Disposition"] = quote.headers["Content-Disposition"]
+        workbook = load_workbook(BytesIO(quote.content), read_only=True)
+        try:
+            assert "Коммерческое предложение" in workbook.sheetnames and "Не найдено" in workbook.sheetnames
+        finally:
+            workbook.close()
+        assert len(lines) == count and matched > 0 and name.get_filename().endswith(".xlsx")
+        row = result_example(filename, result)
+        row.update(file=filename, positions=len(lines), matched=matched, ms=elapsed, quote_filename=name.get_filename())
+        rows.append(row)
+    return rows
+
+
+def path_examples(engine):
+    from fastapi.testclient import TestClient
+    from kuznitsa.app import create_app
+
+    paths = defaultdict(list)
+    with TestClient(create_app(engine=engine)) as client:
+        for q in ("касп", "крипто", "астр"):
+            resp = client.get("/api/suggest", params={"q": q})
+            resp.raise_for_status()
+            result = resp.json()
+            groups = result["groups"]
+            suggestions = [item["text"] for group in groups for item in group["items"]][:3]
+            assert suggestions
+            paths["suggest"].append(dict(q=q, suggestions=suggestions, profile="guest", mode="fast", intent=None,
+                                         first_card=None, blocks=[g["type"] for g in groups], ms=result["ms"]))
+        paths["spec_file"] = file_examples(client)
+        for q in ("КриптоПро CSP", "KL4867RAQFR", "Microsoft Windows 11 Pro"):
+            for mode in ("fast", "smart"):
+                resp = client.post("/api/search", json=dict(q=q, mode=mode, profile_id="guest",
+                                                           source="ui", session_id=uuid4().hex))
+                resp.raise_for_status()
+                row = result_example(q, resp.json())
+                assert row["mode"] == mode and "products" in row["blocks"] and row["first_card"]
+                paths["widget"].append(dict(**row, source="ui", endpoint="/api/search"))
+    for q, quantity in [("антивирус на тридцать компьютеров", 30), ("Р7 офис на двадцать пять мест", 25),
+                        ("КриптоПро CSP на пять рабочих мест", 5)]:
+        result = request(engine, {"q": q}, "fast")
+        got = result["understood"]["qty"]
+        assert got["value"] == quantity and "products" in [b["type"] for b in result["blocks"]]
+        paths["voice"].append(dict(**result_example(q, result), quantity=got["value"], metric=got["metric"]))
+    for code in ("86.23", "62.01", "49.41"):
+        q = "оквэд " + code
+        result = request(engine, {"q": q}, "fast")
+        kit = next(b for b in result["blocks"] if b["type"] == "kit")
+        assert result["understood"]["intent"] == "industry" and kit["role"] == engine.kb.rows["okved"][code]["industry"]
+        paths["okved"].append(dict(**result_example(q, result), industry_id=kit["role"], industry_title=kit["title"]))
+    for q, role in [("софт для учителя школы", "school_teacher"), ("софт для преподавателя вуза", "university_professor"),
+                    ("софт для регистратора клиники", "clinic_registrar")]:
+        result = request(engine, {"q": q}, "fast")
+        kit = next(b for b in result["blocks"] if b["type"] == "kit")
+        roles = engine.kb.rows["roles"]
+        assert kit["role"] == role and kit["parent"]["id"] == roles[role]["parent"]
+        assert kit["parent"]["q"] == roles[kit["parent"]["id"]]["title"]
+        paths["kit_parent"].append(dict(**result_example(q, result), child_id=role, child_title=kit["title"], parent=kit["parent"]))
+    for q in ("антивирус на 30 пк", "КриптоПро CSP", "rfcgthcrbq"):
+        naive = request(engine, {"q": q}, "naive")
+        fast = request(engine, {"q": q}, "fast")
+        offers = next(b["total"] for b in naive["blocks"] if b["type"] == "products")
+        cards = next(b["total"] for b in fast["blocks"] if b["type"] == "products")
+        assert naive["mode"] == "naive" and fast["mode"] == "fast" and cards > 0
+        paths["naive"].append(dict(**result_example(q, naive), offers=offers, fast_cards=cards))
+    paths["smart"] = smart_examples(engine)
+    return paths
+
+
+def update_paths():
+    payload = json.loads((OUT / "examples.json").read_text())
+    engine = Engine.open(gateway_config())
+    engine.decisions.run_budget = 0.007
+    try:
+        payload["by_flow"].update(path_examples(engine))
+    finally:
+        engine.close()
+    write("examples.json", payload)
+
+
+def path_caption(ident, r):
+    if ident == "suggest":
+        return " · ".join(r["suggestions"])
+    if ident == "spec_file":
+        return f'Найдено {r["matched"]} из {r["positions"]} позиций. КП {r["quote_filename"]}. Загрузка и экспорт заняли {r["ms"]} мс.'
+    if ident == "voice":
+        return f'Распознано количество {r["quantity"]}. Первая карточка — {r["first_card"]}.'
+    if ident == "widget":
+        return f'{r["mode"]} · {r["first_card"]}'
+    if ident == "okved":
+        return r["industry_title"]
+    if ident == "kit_parent":
+        return f'{r["child_title"]} → {r["parent"]["title"]}'
+    if ident == "naive":
+        return f'Обычный поиск — {r["offers"]} предложений, быстрый — {r["fast_cards"]} сгруппированных карточек.'
+    if ident == "smart":
+        return f'{r["fast_first_card"]} → {r["first_card"]}. Расход ${r["cost_usd"]:.8f}, решений из кэша — {r["cached"]}.'
+    raise KeyError(ident)
 
 
 def diagram(nodes, edges):
@@ -234,6 +392,8 @@ def render():
            f'Расход по журналу — **${timings["cost"]["usd"]:.6f}**.']
     for f in flows["flows"]:
         ident = f["id"]
+        for anchor in [*f.get("guide_anchors", []), ident]:
+            doc.append(f'<a id="{anchor}"></a>')
         doc.extend([f'## {f["title"]} (`{ident}`)', f["summary"]])
         if f["kind"] == "intent":
             table = ["| Запрос | Профиль | Первая карточка | Блоки ответа |",
@@ -241,6 +401,18 @@ def render():
             for x in examples["by_flow"][ident]:
                 query = x["q"].replace("\n", "<br>").replace("|", "\\|")
                 table.append(f'| {query} | {x["profile"]} | {x["first_card"] or "Без карточки"} | {", ".join(x["blocks"])} |')
+            doc.append("\n".join(table))
+        else:
+            if ident == "smart":
+                doc.append("Слева — первая карточка быстрого поиска, справа — умного. Для этих запросов "
+                           "в dev задан список подходящих продуктов. В каждом примере Jev поднял продукт из этого "
+                           "списка на первое место, а ответ smart прошёл все проверки строки dev.")
+            table = ["| Пример | Проверенный результат |", "|---|---|"]
+            for row in examples["by_flow"][ident]:
+                query = row["q"]
+                if ident == "spec_file":
+                    query = f'[{query}](quote_examples/{row["file"]})'
+                table.append(f"| {query} | {path_caption(ident, row)} |")
             doc.append("\n".join(table))
         doc.append(diagram(f["nodes"], f["edges"]))
         if ident == "smart":
@@ -273,8 +445,12 @@ def render():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--render-only", action="store_true", help="Rebuild Markdown from existing JSON")
+    commands = parser.add_mutually_exclusive_group()
+    commands.add_argument("--paths-only", action="store_true", help="Verify path examples and rebuild Markdown")
+    commands.add_argument("--render-only", action="store_true", help="Rebuild Markdown from existing JSON")
     args = parser.parse_args()
-    if not args.render_only:
+    if args.paths_only:
+        update_paths()
+    elif not args.render_only:
         measure()
     render()
