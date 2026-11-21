@@ -1,5 +1,5 @@
-# Расширение ролей, рабочих мест и ситуационных комплектов ПО (Кузница Softline, раунд K2b)
-# Соответствует схеме kb/SCHEMA.md и формату kb/roles.yaml.
+# Расширение ролей, рабочих мест и ситуационных комплектов ПО (Кузница Softline, раунд K2b / K4)
+# Соответствует схеме kb/SCHEMA.md, формату kb/roles.yaml и spec-addendum-v0.5.md (27.3).
 # Категории в `slots` — листовые id из design/work/kb_categories_r3.tsv.
 # Семейства в `families` — id из design/work/kb_families_r3.tsv (сначала catalog: yes, с российским вариантом из ЕРРП).
 # Всего записей: 70 (50 профессий и рабочих мест + 20 комплектов по ситуации с префиксом kit_).
@@ -7,8 +7,9 @@
 # --- ПРОФЕССИИ И РАБОЧИЕ МЕСТА (50) ---
 
 - id: school_teacher
+  parent: teacher_lecturer
   title: "Учитель школы (рабочее место педагога)"
-  aliases: ["софт для учителя школы", "программы учителю в школу", "рабочее место школьного учителя", "по для школьного учителя", "что поставить учителю школы", "арм школьного учителя", "комплект по учителю школы", "программы для учителя информатики", "набор по педагогу школы"]
+  aliases: ["учитель школы", "школьный учитель", "педагог школы", "учитель информатики", "классный руководитель"]
   slots:
     - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Российская операционная система для школьного компьютера с учебными пакетами."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, alteroffice], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Подготовка поурочных планов, презентаций, журналов и раздаточных материалов."}
@@ -18,8 +19,9 @@
     - {category: pdf_editors, must: false, families: [contentreader_pdf, master_pdf_editor], products: ["КонтентРидер PDF", "Master PDF Editor"], note: "Распознавание сканов учебников и подготовка методических PDF."}
 
 - id: university_professor
+  parent: teacher_lecturer
   title: "Преподаватель вуза и кафедры"
-  aliases: ["софт для преподавателя вуза", "по для преподавателя университета", "рабочее место преподавателя вуза", "программы преподавателю вуза", "комплект по на кафедру вуза", "что поставить преподавателю университета", "арм преподавателя кафедры", "софт для доцента и профессора", "набор программ вузовскому педагогу"]
+  aliases: ["преподаватель вуза", "преподаватель университета", "профессор", "доцент", "преподаватель кафедры"]
   slots:
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "МойОфис Стандартный", "Яндекс 360"], note: "Написание лекций, научных статей, рабочих программ и презентаций."}
     - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Реестровая ОС для академических рабочих станций по льготным условиям EDU."}
@@ -29,8 +31,9 @@
     - {category: ebooks_corporate_lib, must: false, families: [litres_corporate, alpina_digital_lib], products: ["Литрес: Библиотека", "Альпина Диджитал"], note: "Доступ кафедры к электронной учебной и профессиональной литературе."}
 
 - id: clinic_registrar
+  parent: doctor_clinician
   title: "Регистратор и администратор медицинской клиники"
-  aliases: ["софт для регистратора клиники", "по для регистратуры поликлиники", "рабочее место администратора клиники", "программы в регистратуру медцентра", "арм регистратора клиники", "что поставить на ресепшен клиники", "по администратору медцентра", "комплект для медрегистратора", "регистратор клиники программы"]
+  aliases: ["регистратура", "регистратор клиники", "медрегистратор", "медицинский регистратор", "администратор клиники", "администратор медцентра"]
   slots:
     - {category: industry_specialized, must: true, families: [infoklinika_mis, crt_voice2med], products: ["Инфоклиника МИС", "ЦРТ Voice2Med"], note: "Запись пациентов на приём, ведение расписания врачей и электронных медкарт."}
     - {category: ip_telephony, must: true, families: [mango_vats, naumen_contact_center, protei_uc], products: ["Манго Офис ВАТС", "Naumen Contact Center"], note: "Приём входящих звонков, запись разговоров и напоминания пациентам о визите."}
@@ -41,7 +44,7 @@
 
 - id: pharmacist
   title: "Провизор и фармацевт аптеки"
-  aliases: ["софт для провизора", "программы для фармацевта", "рабочее место провизора", "по для первостольника", "что поставить провизору в аптеку", "арм фармацевта", "программы заведующему аптекой", "софт в аптечный пункт", "комплект по для провизора"]
+  aliases: ["провизор", "фармацевт", "первостольник", "заведующий аптекой", "аптекарь"]
   slots:
     - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Отпуск препаратов на кассе, сканирование кодов маркировки и печать чеков."}
     - {category: trade_warehouse, must: true, families: [onec_trade, onec_unf, moysklad], products: ["1С:Управление торговлей 8", "1С:УНФ 8", "МойСклад"], note: "Партионный учёт лекарств, контроль сроков годности и заказ дефектуры."}
@@ -50,8 +53,9 @@
     - {category: remote_desktop, must: false, families: [assistant_remote, rudesktop, kontur_dostup], products: ["Ассистент", "RuDesktop", "Контур.Доступ"], note: "Оперативное подключение ИТ-поддержки к кассе без выезда в аптечную точку."}
 
 - id: soc_analyst
+  parent: infosec_engineer
   title: "Аналитик центра мониторинга ИБ (SOC)"
-  aliases: ["софт для аналитика soc", "по для аналитика центра мониторинга", "рабочее место аналитика soc", "программы оператору soc", "комплект для мониторинга инцидентов иб", "арм аналитика иб", "что нужно аналитику soc", "инструменты soc аналитика", "софт для центра мониторинга иб"]
+  aliases: ["аналитик soc", "оператор soc", "инженер soc", "специалист soc", "аналитик инцидентов", "центр мониторинга иб"]
   slots:
     - {category: siem_soc, must: true, families: [pt_maxpatrol_siem, kaspersky_kuma, rusiem, security_vision_soar, r_vision_soar], products: ["MaxPatrol SIEM", "Kaspersky KUMA", "Security Vision SOAR"], note: "Сбор событий безопасности, корреляция инцидентов и автоматизация реагирования."}
     - {category: edr_xdr, must: true, families: [kaspersky_symphony_xdr, pt_maxpatrol_edr, pt_nad, bizone_edr, f6_mxdr], products: ["Kaspersky Symphony XDR", "MaxPatrol EDR", "PT NAD"], note: "Расследование сложных атак на конечных точках и анализ сетевого трафика."}
@@ -60,8 +64,9 @@
     - {category: whiteboards_notes, must: false, families: [evawiki, teamly, yonote], products: ["EvaWiki", "Teamly", "Yonote"], note: "Ведение плейбуков реагирования и базы знаний по расследованным инцидентам."}
 
 - id: network_engineer
+  parent: sysadmin
   title: "Сетевой инженер и администратор периметра"
-  aliases: ["софт для сетевого инженера", "программы сетевику", "рабочее место сетевого инженера", "по для сетевого администратора", "что поставить сетевому инженеру", "арм сетевого инженера", "инструменты инженера сетей", "софт сетевому админу", "комплект сетевого инженера"]
+  aliases: ["сетевой инженер", "сетевик", "сетевой администратор", "инженер сетей", "администратор сети", "сетевой админ"]
   slots:
     - {category: ngfw_vpn, must: true, families: [usergate_ngfw, continent_ngfw, pt_ngfw, vipnet_coordinator, ideco_ngfw], products: ["UserGate NGFW", "Континент 4", "PT NGFW", "ViPNet Coordinator"], note: "Управление межсетевыми экранами, фильтрацией трафика и защищёнными VPN-туннелями."}
     - {category: monitoring_apm, must: true, families: [monq_aiops, saymon_monitoring, klyuch_astrom], products: ["MONQ", "SAYMON", "Ключ-АСТРОМ"], note: "Мониторинг доступности каналов связи, коммутаторов и сетевых сервисов."}
@@ -71,8 +76,9 @@
     - {category: remote_desktop, must: false, families: [assistant_remote, rudesktop, rms_remote], products: ["Ассистент", "RuDesktop", "RMS"], note: "Удалённое подключение к узлам сети и диагностика рабочих станций."}
 
 - id: product_manager
+  parent: project_manager
   title: "Менеджер продукта (Product Manager)"
-  aliases: ["софт для менеджера продукта", "программы продакт менеджеру", "рабочее место продакта", "по для product manager", "что поставить продакт менеджеру", "инструменты менеджера продукта", "комплект по продакту", "софт для продакт менеджера", "арм продакт менеджера"]
+  aliases: ["менеджер продукта", "продакт менеджер", "продакт-менеджер", "продакт", "product manager", "владелец продукта"]
   slots:
     - {category: task_project_trackers, must: true, families: [yandex_tracker, kaiten, yougile, evaproject, weeek], products: ["Яндекс Трекер", "Kaiten", "YouGile", "EvaProject"], note: "Ведение продуктового бэклога, дорожной карты и спринтов команд разработки."}
     - {category: whiteboards_notes, must: true, families: [holst_boards, mts_link_boards, yonote, teamly], products: ["Holst", "МТС Линк Доски", "Yonote"], note: "Карты пользовательских путей, брейнштормы и продуктовые спецификации."}
@@ -82,8 +88,9 @@
     - {category: office_suite, must: false, families: [r7_office, yandex_360, myoffice_standard], products: ["Р7-Офис", "Яндекс 360"], note: "Подготовка презентаций для защиты бюджета и финансовых расчётов юнит-экономики."}
 
 - id: system_analyst
+  parent: business_analyst
   title: "Системный аналитик (ИТ и интеграции)"
-  aliases: ["софт для системного аналитика", "программы системному аналитику", "рабочее место системного аналитика", "по для сисаналитика", "что поставить системному аналитику", "арм системного аналитика", "инструменты системного аналитика", "комплект системному аналитику", "системный аналитик софт"]
+  aliases: ["системный аналитик", "сисаналитик", "ит аналитик", "аналитик систем", "аналитик интеграций"]
   slots:
     - {category: diagramming_mindmaps, must: true, families: [sila_union, business_studio, ms_visio], products: ["SILA Union", "Business Studio"], note: "Проектирование схем архитектуры, диаграмм последовательностей и моделей процессов."}
     - {category: whiteboards_notes, must: true, families: [evawiki, yonote, teamly], products: ["EvaWiki", "Yonote", "Teamly"], note: "Ведение системных спецификаций, требований и реестра интеграций."}
@@ -93,8 +100,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Оформление технических заданий по ГОСТ и матриц трассировки требований."}
 
 - id: technical_writer
+  parent: translator_editor
   title: "Технический писатель и автор документации"
-  aliases: ["софт для технического писателя", "программы техпису", "рабочее место техписателя", "по для технического писателя", "что поставить техническому писателю", "инструменты техписа", "арм технического писателя", "комплект по техписателю", "техпис программы"]
+  aliases: ["технический писатель", "техпис", "техписатель", "автор документации", "инженер документации"]
   slots:
     - {category: whiteboards_notes, must: true, families: [evawiki, teamly, yonote], products: ["EvaWiki", "Teamly", "Yonote"], note: "Публикация и поддержка структурированной пользовательской и API-документации."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Оформление эксплуатационной документации, руководств и ГОСТ-документов."}
@@ -104,8 +112,9 @@
     - {category: video_editing, must: false, families: [movavi_screen_recorder, movavi_video_suite], products: ["Мовавика Запись экрана", "Мовавика Видеоредактор"], note: "Запись коротких обучающих скринкастов и видеоинструкций по интерфейсу."}
 
 - id: photographer
+  parent: graphic_designer
   title: "Фотограф и специалист по ретуши"
-  aliases: ["софт для фотографа", "программы фотографу", "рабочее место фотографа", "по для обработки фото", "что поставить фотографу и ретушеру", "комплект по для фотостудии", "программы для ретушера", "арм фотографа", "софт для коммерческого фотографа"]
+  aliases: ["фотограф", "ретушер", "фотостудия", "коммерческий фотограф", "фотохудожник"]
   slots:
     - {category: raster_photo, must: true, families: [ams_photomaster, akvis_suite, adobe_photoshop], products: ["ФотоМАСТЕР", "AKVIS", "Adobe Photoshop"], note: "Цветокоррекция, ретушь, пакетная обработка и подготовка снимков к публикации."}
     - {category: backup_recovery, must: true, families: [cyber_backup, handy_backup], products: ["Кибер Бэкап", "Handy Backup"], note: "Автоматическое резервное копирование тяжёлых RAW-архивов и съёмок клиентов."}
@@ -114,8 +123,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Dr.Web Малый бизнес"], note: "Защита рабочей станции и внешних накопителей от шифровальщиков."}
 
 - id: artist_3d
+  parent: graphic_designer
   title: "3D-художник и специалист по визуализации"
-  aliases: ["софт для 3d художника", "программы 3д художнику", "рабочее место 3d визуализатора", "по для 3d моделирования и рендера", "что поставить 3д дизайнеру", "арм 3d художника", "комплект 3d визуализатора", "программы для 3д моделлера", "3d художник софт"]
+  aliases: ["визуализатор", "моделлер", "трехмерная графика", "архитектурный визуализатор", "художник визуализации"]
   slots:
     - {category: 3d_rendering_animation, must: true, families: [unigine_engine, autodesk_3ds_max, vray_chaos], products: ["UNIGINE", "Autodesk 3ds Max", "V-Ray"], note: "Трёхмерная визуализация в реальном времени, интерактивные сцены и рендеринг."}
     - {category: raster_photo, must: true, families: [ams_photomaster, akvis_suite, adobe_photoshop], products: ["ФотоМАСТЕР", "AKVIS", "Adobe Photoshop"], note: "Постобработка рендеров, подготовка текстур и цветокоррекция."}
@@ -125,8 +135,9 @@
     - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Антивирусная защита мощной графической рабочей станции."}
 
 - id: sound_engineer
+  parent: video_editor_motion
   title: "Звукорежиссёр и специалист по аудиопроизводству"
-  aliases: ["софт для звукорежиссера", "программы звукорежиссеру", "рабочее место звукорежиссера", "по для студии звукозаписи", "что поставить звукоинженеру", "арм звукорежиссера", "комплект по для работы со звуком", "софт аудиоредактору", "звукорежиссер программы"]
+  aliases: ["звукорежиссер", "звукоинженер", "саунд дизайнер", "аудиоредактор", "студия звукозаписи"]
   slots:
     - {category: video_editing, must: true, families: [movavi_video_suite, ams_videomontage], products: ["Мовавика Видеосюита", "ВидеоМОНТАЖ"], note: "Сведение аудиодорожек с видео, конвертация медиаформатов и базовая очистка звука."}
     - {category: speech_text, must: false, families: [salutespeech, yandex_speechkit], products: ["SaluteSpeech", "Yandex SpeechKit"], note: "Расшифровка дикторских записей и синтез речевых дорожек для прототипов."}
@@ -135,8 +146,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Dr.Web Малый бизнес"], note: "Защита студийного ПК без избыточной нагрузки на ресурсы."}
 
 - id: web_developer
+  parent: software_developer
   title: "Веб-разработчик (фронтенд и фулстек)"
-  aliases: ["софт для веб разработчика", "программы веб разработчику", "рабочее место web разработчика", "по для фронтенд и фулстек разработчика", "что поставить веб программисту", "арм веб разработчика", "комплект веб программиста", "софт для верстки и веб разработки", "веб разработчик программы"]
+  aliases: ["веб разработчик", "веб-разработчик", "фронтенд разработчик", "фулстек разработчик", "веб программист", "web разработчик"]
   slots:
     - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1], products: ["GitFlic", "Yandex SourceCraft", "Платформа Сфера"], note: "Хранение репозиториев кода, код-ревью и автоматическая сборка веб-приложений."}
     - {category: cms_ecommerce, must: false, families: [bitrix_site_manager, bitrix24], products: ["1С-Битрикс: Управление сайтом"], note: "Разработка и сопровождение корпоративных сайтов и интернет-магазинов."}
@@ -146,8 +158,9 @@
     - {category: iaas_cloud_platforms, must: false, families: [yandex_cloud, selectel_cloud, vk_cloud], products: ["Yandex Cloud", "Selectel Cloud", "VK Cloud"], note: "Развёртывание тестовых стендов и продакшн-инфраструктуры веб-проектов."}
 
 - id: mobile_developer
+  parent: software_developer
   title: "Мобильный разработчик (iOS, Android, Аврора)"
-  aliases: ["софт для мобильного разработчика", "программы мобильному разработчику", "рабочее место разработчика приложений", "по для мобильной разработки", "что поставить разработчику под аврору", "арм мобильного программиста", "комплект разработчика мобильных приложений", "софт для android и ios разработчика", "мобильный разработчик программы"]
+  aliases: ["мобильный разработчик", "мобильный программист", "разработчик приложений", "android разработчик", "ios разработчик"]
   slots:
     - {category: mobile_os, must: true, families: [aurora_os, rosa_mobile], products: ["ОС «Аврора»", "РОСА Мобайл"], note: "Целевые российские мобильные платформы для разработки и тестирования корпоративных приложений."}
     - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1, platform_v_works], products: ["GitFlic", "Yandex SourceCraft", "Platform V Works"], note: "Контроль версий мобильного кода и автоматическая сборка релизных пакетов."}
@@ -157,8 +170,9 @@
     - {category: task_project_trackers, must: false, families: [yandex_tracker, kaiten, evaproject], products: ["Яндекс Трекер", "Kaiten"], note: "Планирование релизов в магазины приложений и трекинг багов."}
 
 - id: embedded_developer
+  parent: software_developer
   title: "Разработчик встраиваемых систем (Embedded)"
-  aliases: ["софт для embedded разработчика", "программы разработчику встраиваемых систем", "рабочее место embedded инженера", "по для программирования микроконтроллеров", "что поставить разработчику прошивок", "арм embedded программиста", "комплект по для встроенных систем", "софт программисту электроники", "встраиваемые системы программы"]
+  aliases: ["embedded разработчик", "embedded инженер", "embedded программист", "разработчик прошивок", "инженер встраиваемых систем", "разработчик микроконтроллеров"]
   slots:
     - {category: code_analysis_sast, must: true, families: [pvs_studio, solar_appscreener], products: ["PVS-Studio", "Solar appScreener"], note: "Статический анализ C/C++ кода прошивок с проверкой стандартов MISRA."}
     - {category: cae_simulation, must: true, families: [simintech, engee_platform], products: ["SimInTech", "Engee"], note: "Модельно-ориентированное проектирование алгоритмов управления и генерация кода."}
@@ -167,8 +181,9 @@
     - {category: desktop_os_ru, must: false, families: [astra_linux_se, alt_workstation, red_os], products: ["Astra Linux SE", "Альт Рабочая станция", "РЕД ОС"], note: "Linux-среда для кросс-компиляции и отладки встраиваемых систем."}
 
 - id: onec_administrator
+  parent: sysadmin
   title: "Администратор 1С (сервер, базы и лицензии)"
-  aliases: ["софт для администратора 1с", "программы админу 1с", "рабочее место администратора 1с", "по для сопровождения сервера 1с", "что поставить администратору баз 1с", "арм админа 1с", "комплект для администрирования 1с", "софт для поддержки 1с", "администратор 1с программы"]
+  aliases: ["администратор один эс", "админ один эс", "инженер один эс", "сопровождение один эс", "сервер один эс"]
   slots:
     - {category: onec_platform_licenses, must: true, families: [onec_server_license, onec_client_license, onec_its], products: ["1С:Предприятие 8 — Лицензия на сервер", "Клиентские лицензии 1С", "1С:ИТС"], note: "Серверные и клиентские лицензии платформы, а также подписка на официальные обновления."}
     - {category: rdbms, must: true, families: [postgres_pro, tantor_db, ms_sql_server], products: ["Postgres Pro для 1С", "СУБД Tantor для 1С"], note: "Высокопроизводительная СУБД с оптимизацией под кластер серверов 1С."}
@@ -178,8 +193,9 @@
     - {category: remote_desktop, must: false, families: [assistant_remote, rudesktop, kontur_dostup], products: ["Ассистент", "RuDesktop", "Контур.Доступ"], note: "Удалённая помощь пользователям 1С и администрирование серверов."}
 
 - id: process_engineer
+  parent: cad_mechanical_engineer
   title: "Инженер-технолог производства"
-  aliases: ["софт для инженера технолога", "программы технологу на завод", "рабочее место инженера технолога", "по для технолога производства", "что поставить технологу машиностроения", "арм инженера технолога", "комплект по технологу", "технолог производства программы", "софт в технологический отдел"]
+  aliases: ["инженер технолог", "инженер-технолог", "технолог производства", "технолог машиностроения", "технологический отдел"]
   slots:
     - {category: mcad_plm, must: true, families: [lotsman_plm, kompas_3d, t_flex_cad], products: ["ЛОЦМАН:PLM", "КОМПАС-3D", "T-FLEX CAD"], note: "Разработка техпроцессов, работа с составом изделия и просмотр 3D-моделей от КБ."}
     - {category: cad_specialized, must: true, families: [sprutcam_x, bazis_mebel], products: ["СПРУТКАМ (SprutCAM X)"], note: "Подготовка управляющих программ обработки и расчёт норм времени."}
@@ -189,8 +205,9 @@
     - {category: endpoint_security, must: false, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита рабочих станций с конструкторско-технологической документацией."}
 
 - id: cnc_engineer
+  parent: cad_mechanical_engineer
   title: "Инженер-программист станков с ЧПУ"
-  aliases: ["софт для инженера чпу", "программы для программиста чпу", "рабочее место инженера чпу", "по для станков с чпу", "что поставить наладчику и программисту чпу", "арм программиста чпу", "cam программы для чпу", "комплект по для чпу", "чпу инженер софт"]
+  aliases: ["инженер чпу", "программист чпу", "технолог чпу", "наладчик чпу", "оператор чпу", "cam инженер"]
   slots:
     - {category: cad_specialized, must: true, families: [sprutcam_x, bazis_mebel], products: ["СПРУТКАМ (SprutCAM X)"], note: "Расчёт траекторий инструмента, симуляция обработки и генерация G-кода для станков ЧПУ."}
     - {category: mcad_plm, must: true, families: [kompas_3d, t_flex_cad, lotsman_plm], products: ["КОМПАС-3D", "T-FLEX CAD", "ЛОЦМАН:PLM"], note: "Импорт 3D-моделей деталей, проектирование приспособлений и работа с архивом КБ."}
@@ -199,8 +216,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита рабочей станции и USB-носителей при переносе программ на стойку ЧПУ."}
 
 - id: pcb_designer
+  parent: electrical_cad_engineer
   title: "Конструктор печатных плат и электроники"
-  aliases: ["софт для конструктора печатных плат", "программы для разводки плат", "рабочее место разработчика электроники", "по для проектирования печатных плат", "что поставить конструктору рэа", "арм разработчика печатных плат", "комплект инженера электронщика", "сапр для печатных плат", "конструктор печатных плат софт"]
+  aliases: ["конструктор печатных плат", "разработчик печатных плат", "конструктор рэа", "инженер электронщик", "разработчик электроники", "трассировщик плат"]
   slots:
     - {category: ecad_eda, must: true, families: [delta_design, nanocad_bim, eplan_electric], products: ["Delta Design"], note: "Схемотехника, трассировка печатных плат, проверка правил и выпуск Gerber-файлов."}
     - {category: cae_simulation, must: false, families: [simintech, engee_platform], products: ["SimInTech", "Engee"], note: "Моделирование динамических и электронных систем на этапе проектирования."}
@@ -210,7 +228,7 @@
 
 - id: occupational_safety_specialist
   title: "Специалист по охране труда и промбезопасности"
-  aliases: ["софт для специалиста по охране труда", "программы инженеру по охране труда", "рабочее место специалиста по от", "по для отдела охраны труда", "что поставить специалисту по охране труда", "арм по охране труда", "комплект по охране труда", "софт инженеру по тб", "охрана труда программы"]
+  aliases: ["охрана труда", "инженер от", "специалист охраны труда", "отдел охраны труда", "инженер тб", "техника безопасности"]
   slots:
     - {category: lms_elearning, must: true, families: [ispring_suite, mirapolis_lms, equio_lms], products: ["iSpring Suite", "Mirapolis LMS", "Эквио"], note: "Дистанционные инструктажи по охране труда, тестирование персонала и учёт протоколов."}
     - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow, eos_delo], products: ["Directum RX", "1С:Документооборот"], note: "Согласование положений, приказов и журналов ознакомления сотрудников."}
@@ -221,7 +239,7 @@
 
 - id: ecologist_engineer
   title: "Инженер-эколог предприятия"
-  aliases: ["софт для эколога", "программы экологу предприятия", "рабочее место инженера эколога", "по для отдела экологии", "что поставить экологу на производстве", "арм эколога", "комплект по для эколога", "софт для сдачи экологической отчетности", "эколог программы"]
+  aliases: ["инженер эколог", "инженер-эколог", "эколог", "эколог предприятия", "отдел экологии"]
   slots:
     - {category: tax_reporting_edo, must: true, families: [kontur_extern, sbis_saby, taxcom_sprinter], products: ["Контур.Экстерн", "СБИС", "Такском-Спринтер"], note: "Сдача обязательной экологической отчётности в Росприроднадзор и контроль сроков."}
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, cryptoarm_gost], products: ["КриптоПро CSP", "КриптоАРМ ГОСТ"], note: "Электронная подпись для работы в личном кабинете природопользователя и ЭДО."}
@@ -230,8 +248,9 @@
     - {category: pdf_editors, must: false, families: [contentreader_pdf, master_pdf_editor], products: ["КонтентРидер PDF", "Master PDF Editor"], note: "Подготовка пакетов сканов протоколов замеров и разрешительной документации."}
 
 - id: archivist_records_manager
+  parent: secretary_office_manager
   title: "Архивариус и специалист по электронному архиву"
-  aliases: ["софт для архивариуса", "программы архивариусу", "рабочее место архивариуса", "по для электронного архива", "что поставить в архивный отдел", "арм архивариуса", "комплект для оцифровки архива", "софт специалисту по архивному делу", "архивариус программы"]
+  aliases: ["архивариус", "архивист", "электронный архив", "архивный отдел", "специалист архива"]
   slots:
     - {category: sed_ecm, must: true, families: [directum_rx, eos_delo, docsvision, tessa_ecm], products: ["Directum RX", "ЭОС ДЕЛО", "Docsvision", "TESSA"], note: "Долговременное хранение электронных дел, номенклатура и поиск по реквизитам."}
     - {category: ocr_capture, must: true, families: [contentcapture, contentreader_pdf, dbrain_ocr], products: ["ContentCapture", "КонтентРидер PDF", "Dbrain"], note: "Потоковое сканирование, распознавание бумажных архивов и автоматическая индексация."}
@@ -240,8 +259,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Составление описей дел, актов выделения к уничтожению и архивных справок."}
 
 - id: cfo_finance_director
+  parent: economist_financier
   title: "Финансовый директор (CFO)"
-  aliases: ["софт для финансового директора", "программы финансовому директору", "рабочее место финансового директора", "по для cfo", "что поставить финансовому директору", "арм финансового директора", "комплект по для cfo", "софт финдиректору", "инструменты финансового директора"]
+  aliases: ["финансовый директор", "cfo", "финдиректор", "финдир"]
   slots:
     - {category: finance_budgeting, must: true, families: [optimacros, onec_holding, project_expert], products: ["Optimacros", "1С:Управление холдингом 8", "Project Expert"], note: "Бюджетирование, платёжный календарь, консолидация МСФО и финмоделирование."}
     - {category: bi_analytics, must: true, families: [visiology_bi, foresight_analytics, pix_bi, modus_bi], products: ["Visiology", "Форсайт", "PIX BI"], note: "Управленческие дашборды по выручке, маржинальности, ДДС и плану-факту."}
@@ -251,8 +271,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Подготовка презентаций для совета директоров и сводных финансовых таблиц."}
 
 - id: internal_auditor
+  parent: accountant
   title: "Внутренний аудитор и специалист по контролю"
-  aliases: ["софт для внутреннего аудитора", "программы аудитору", "рабочее место внутреннего аудитора", "по для службы внутреннего аудита", "что поставить аудитору", "арм аудитора", "комплект для внутреннего контроля", "софт ревизору и аудитору", "внутренний аудитор программы"]
+  aliases: ["внутренний аудитор", "аудитор", "ревизор", "внутренний контроль", "служба внутреннего аудита"]
   slots:
     - {category: accounting, must: true, families: [onec_accounting, onec_bgu, onec_fresh], products: ["1С:Бухгалтерия 8", "1С:БГУ 8"], note: "Проверка первичных документов, регистров учёта и корректности проводок."}
     - {category: counterparty_legal_info, must: true, families: [kontur_focus, sbis_saby, spark_interfax], products: ["Контур.Фокус", "СБИС", "СПАРК-Интерфакс"], note: "Выявление аффилированности, схем и рисковых сделок с контрагентами."}
@@ -263,7 +284,7 @@
 
 - id: hotel_administrator
   title: "Администратор гостиницы и службы приёма"
-  aliases: ["софт для администратора гостиницы", "программы на ресепшен отеля", "рабочее место администратора отеля", "по для администратора гостиницы", "что поставить на стойку ресепшен отеля", "арм администратора гостиницы", "комплект для ресепшен отеля", "программы в мини отель", "администратор гостиницы софт"]
+  aliases: ["администратор гостиницы", "администратор отеля", "ресепшен отеля", "портье", "служба приема гостей"]
   slots:
     - {category: crm_systems, must: true, families: [bitrix24, amocrm, bpmsoft_crm], products: ["Битрикс24", "amoCRM"], note: "Учёт заявок на бронирование, корпоративных клиентов и истории обращений гостей."}
     - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Приём оплаты за проживание и дополнительные услуги с печатью чеков ОФД."}
@@ -273,8 +294,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_ksos, kaspersky_kesb, drweb_small_business], products: ["Kaspersky Small Office Security", "Dr.Web Малый бизнес"], note: "Защита компьютеров ресепшена с персональными данными постояльцев."}
 
 - id: fz44_procurement_officer
+  parent: procurement_specialist
   title: "Специалист по закупкам по 44-ФЗ и 223-ФЗ"
-  aliases: ["софт для закупщика по 44 фз", "программы по 44 фз и 223 фз", "рабочее место контрактного управляющего", "по для специалиста по госзакупкам", "что поставить контрактному управляющему", "арм специалиста по 44 фз", "комплект для отдела госзакупок", "софт для закупок 223 фз", "контрактный управляющий программы"]
+  aliases: ["контрактный управляющий", "специалист госзакупок", "отдел госзакупок", "госзакупщик", "госзакупки"]
   slots:
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, vipnet_client], products: ["КриптоПро CSP", "ViPNet Client"], note: "Криптопровайдер для входа в ЕИС, работы на ЭТП и подписания контрактов."}
     - {category: tokens_pki, must: true, families: [rutoken_ecp, aladdin_jacarta, esmart_token], products: ["Рутокен ЭЦП 3.0", "JaCarta", "ESMART Token"], note: "Сертифицированный USB-токен для безопасного хранения ключей УКЭП."}
@@ -284,8 +306,9 @@
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_sp], products: ["Astra Linux SE", "РЕД ОС", "Альт СП"], note: "Реестровая ОС для соблюдения требований импортозамещения в госзаказе."}
 
 - id: tender_specialist
+  parent: procurement_specialist
   title: "Тендерный специалист (участник торгов)"
-  aliases: ["софт для тендерного специалиста", "программы тендерному менеджеру", "рабочее место тендерного специалиста", "по для участия в тендерах", "что поставить тендерному отделу", "арм тендерного специалиста", "комплект для тендерного менеджера", "софт для торгов и аукционов", "по тендерщику"]
+  aliases: ["тендерный специалист", "тендерный менеджер", "тендерный отдел", "тендерщик", "участник торгов"]
   slots:
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, vipnet_client], products: ["КриптоПро CSP"], note: "Обязательный криптопровайдер для аккредитации и подачи заявок на всех ЭТП."}
     - {category: tokens_pki, must: true, families: [rutoken_ecp, aladdin_jacarta, esmart_token], products: ["Рутокен ЭЦП 3.0", "JaCarta"], note: "Носитель квалифицированной электронной подписи для участия в торгах."}
@@ -295,8 +318,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Расчёт себестоимости спецификаций и подготовка коммерческих предложений."}
 
 - id: smm_specialist
+  parent: marketing_manager
   title: "SMM-специалист и контент-менеджер соцсетей"
-  aliases: ["софт для smm специалиста", "программы сммщику", "рабочее место smm менеджера", "по для ведения соцсетей", "что поставить смм специалисту", "арм smm менеджера", "комплект по для smm", "софт для смм отдела", "смм специалист программы"]
+  aliases: ["smm", "smm специалист", "smm менеджер", "сммщик", "смм специалист", "смм менеджер"]
   slots:
     - {category: raster_photo, must: true, families: [ams_photomaster, akvis_suite, adobe_photoshop], products: ["ФотоМАСТЕР", "AKVIS", "Adobe Photoshop"], note: "Обработка фотографий, создание баннеров и визуалов для публикаций."}
     - {category: ui_ux_web_design, must: true, families: [pixso_design, figma], products: ["Pixso", "Figma"], note: "Быстрая сборка шаблонов карточек, сторис и инфографики по брендбуку."}
@@ -306,8 +330,9 @@
     - {category: email_marketing, must: false, families: [unisender, mindbox_cdp], products: ["Unisender", "Mindbox"], note: "Запуск рассылок и омниканальных кампаний для удержания подписчиков."}
 
 - id: copywriter
+  parent: marketing_manager
   title: "Копирайтер и коммерческий редактор"
-  aliases: ["софт для копирайтера", "программы копирайтеру", "рабочее место копирайтера", "по для контент редактора", "что поставить копирайтеру", "арм копирайтера", "комплект по для автора текстов", "софт редактору контента", "копирайтер программы"]
+  aliases: ["копирайтер", "контент редактор", "контент-редактор", "автор текстов", "коммерческий редактор"]
   slots:
     - {category: office_suite, must: true, families: [r7_office, yandex_360, myoffice_standard], products: ["Р7-Офис", "Яндекс 360", "МойОфис Стандартный"], note: "Написание текстов, рецензирование правок и совместная редактура материалов."}
     - {category: llm_gen_ai, must: false, families: [gigachat_enterprise, yandexgpt_api], products: ["GigaChat", "YandexGPT"], note: "Структурирование брифов, подбор тезисов и ускорение подготовки черновиков."}
@@ -316,8 +341,9 @@
     - {category: task_project_trackers, must: true, families: [weeek, kaiten, yandex_tracker], products: ["WEEEK", "Kaiten", "Яндекс Трекер"], note: "Контроль дедлайнов по статьям, лендингам и рекламным текстам."}
 
 - id: elearning_methodologist
+  parent: teacher_lecturer
   title: "Методист дистанционного обучения и педдизайнер"
-  aliases: ["софт для методиста дистанционного обучения", "программы методисту онлайн курсов", "рабочее место педдизайнера", "по для создания электронных курсов", "что поставить методисту сдо", "арм методиста обучения", "комплект по для разработки курсов", "софт разработчику онлайн курсов", "методист сдо программы"]
+  aliases: ["методист сдо", "педдизайнер", "педагогический дизайнер", "методист онлайн курсов", "методист дистанционного обучения", "разработчик онлайн курсов"]
   slots:
     - {category: lms_elearning, must: true, families: [ispring_suite, mirapolis_lms, websoft_hcm, equio_lms], products: ["iSpring Suite", "Mirapolis LMS", "Websoft HCM"], note: "Сборка интерактивных SCORM-курсов, диалоговых тренажёров и загрузка в СДО."}
     - {category: vks_webinars, must: true, families: [mts_link_webinars, kontur_tolk, salute_jazz], products: ["МТС Линк Вебинары", "Контур.Толк"], note: "Проведение живых вебинаров, воркшопов и запись учебных сессий."}
@@ -327,7 +353,7 @@
 
 - id: research_scientist
   title: "Научный сотрудник и исследователь (R&D)"
-  aliases: ["софт для научного сотрудника", "программы научному сотруднику", "рабочее место исследователя нии", "по для научных исследований", "что поставить научному работнику", "арм научного сотрудника", "комплект для инженера исследователя", "софт для отдела r&d", "научный сотрудник программы"]
+  aliases: ["научный сотрудник", "исследователь", "научный работник", "инженер исследователь", "отдел ниокр"]
   slots:
     - {category: cae_simulation, must: true, families: [simintech, engee_platform, cae_fidesys, logos_cae], products: ["SimInTech", "Engee", "CAE Fidesys", "Логос"], note: "Математическое моделирование, численные эксперименты и инженерные расчёты."}
     - {category: ml_platforms_cv, must: false, families: [yandex_datasphere, cloud_ru_ml_space], products: ["Yandex DataSphere", "Cloud.ru ML Space"], note: "Облачная среда для обработки исследовательских датасетов и машинного обучения."}
@@ -338,7 +364,7 @@
 
 - id: lab_technician
   title: "Лаборант и специалист испытательной лаборатории"
-  aliases: ["софт для лаборанта", "программы лаборанту", "рабочее место лаборанта", "по для испытательной лаборатории", "что поставить в лабораторию", "арм лаборанта", "комплект по лаборанту", "софт специалисту лаборатории", "лаборант программы"]
+  aliases: ["лаборант", "инженер лаборант", "специалист лаборатории", "испытательная лаборатория", "химик лаборант"]
   slots:
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Оформление протоколов испытаний, расчётных таблиц и журналов проб."}
     - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow, docsvision], products: ["Directum RX", "1С:Документооборот"], note: "Регистрация заявок на испытания, согласование и архив протоколов."}
@@ -348,8 +374,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита рабочих станций лаборатории без нарушения работы измерительных комплексов."}
 
 - id: virtualization_admin
+  parent: sysadmin
   title: "Администратор виртуализации и ЦОД"
-  aliases: ["софт для администратора виртуализации", "программы инженеру виртуализации", "рабочее место админа виртуализации", "по для управления гипервизорами", "что поставить администратору виртуализации", "арм инженера виртуализации", "комплект по админу вм", "софт для поддержки виртуализации", "администратор виртуализации программы"]
+  aliases: ["администратор виртуализации", "инженер виртуализации", "админ виртуализации", "админ вм", "инженер цод"]
   slots:
     - {category: server_virtualization, must: true, families: [astra_brest, orion_zvirt, basis_dynamix, red_virtualization, alt_virtualization], products: ["ПК СВ «Брест»", "zVirt", "Basis Dynamix", "РЕД Виртуализация"], note: "Отечественная платформа серверной виртуализации и управления кластерами хостов."}
     - {category: vdi_desktop_virt, must: false, families: [termidesk, basis_workplace, space_vdi], products: ["Termidesk", "Basis Workplace", "Space VDI"], note: "Публикация и администрирование виртуальных рабочих столов сотрудников."}
@@ -359,8 +386,9 @@
     - {category: iam_pam_mfa, must: false, families: [indeed_pam, skdpu_nt, safeinspect_pam], products: ["Indeed PAM", "СКДПУ НТ"], note: "Запись и контроль привилегированных сессий администраторов к гипервизорам."}
 
 - id: backup_admin
+  parent: sysadmin
   title: "Администратор резервного копирования и СХД"
-  aliases: ["софт для администратора резервного копирования", "программы админу бэкапов", "рабочее место администратора срк", "по для инженера резервного копирования", "что поставить админу бэкапов и схд", "арм администратора срк", "комплект по для бэкапа и схд", "софт специалисту по резервному копированию", "администратор бэкапа программы"]
+  aliases: ["администратор резервного копирования", "админ бэкапов", "администратор срк", "инженер резервного копирования", "администратор схд"]
   slots:
     - {category: backup_recovery, must: true, families: [cyber_backup, rubackup, handy_backup], products: ["Кибер Бэкап", "RuBackup", "Handy Backup"], note: "Централизованное резервное копирование серверов, СУБД, ВМ и рабочих станций."}
     - {category: sds_storage, must: true, families: [cyber_infrastructure, raidix_sds, baum_storage], products: ["Кибер Инфраструктура", "RAIDIX", "BAUM STORAGE"], note: "Отказоустойчивое хранилище для репозиториев резервных копий."}
@@ -369,8 +397,9 @@
     - {category: monitoring_apm, must: false, families: [saymon_monitoring, monq_aiops, klyuch_astrom], products: ["SAYMON", "MONQ"], note: "Оповещение о сбоях заданий копирования и заполнении дисковых полок."}
 
 - id: mail_admin
+  parent: sysadmin
   title: "Администратор корпоративной почты"
-  aliases: ["софт для администратора почты", "программы почтовому администратору", "рабочее место админа почты", "по для администрирования почтового сервера", "что поставить почтовому админу", "арм администратора почты", "комплект для корпоративной почты", "софт инженеру почтовых систем", "администратор почты программы"]
+  aliases: ["администратор почты", "почтовый администратор", "админ почты", "инженер почтовых систем", "администратор почтового сервера"]
   slots:
     - {category: mail_servers, must: true, families: [rupost, myoffice_mail, communigate_pro, tegu_mail], products: ["RuPost", "МойОфис Почта", "CommuniGate Pro", "Tegu"], note: "Корпоративный почтовый сервер с календарём и адресной книгой в реестре РФ."}
     - {category: mail_security, must: true, families: [kaspersky_ksmg, drweb_enterprise_security_suite], products: ["Kaspersky Secure Mail Gateway", "Dr.Web Mail"], note: "Защита почтового шлюза от спама, фишинга и вредоносных вложений."}
@@ -380,8 +409,9 @@
     - {category: monitoring_apm, must: false, families: [saymon_monitoring, monq_aiops], products: ["SAYMON", "MONQ"], note: "Мониторинг очередей писем, доступности SMTP/IMAP и сертификатов."}
 
 - id: vks_telephony_admin
+  parent: sysadmin
   title: "Администратор ВКС и корпоративной телефонии"
-  aliases: ["софт для администратора вкс", "программы админу телефонии и вкс", "рабочее место инженера вкс", "по для администратора видеосвязи", "что поставить админу ip телефонии", "арм инженера вкс и телефонии", "комплект для унифицированных коммуникаций", "софт инженеру связи и вкс", "администратор вкс программы"]
+  aliases: ["администратор вкс", "инженер вкс", "админ телефонии", "администратор видеосвязи", "инженер телефонии"]
   slots:
     - {category: vks_webinars, must: true, families: [trueconf_server, iva_mcu, vinteo_mcu, kontur_tolk], products: ["TrueConf Server", "IVA MCU", "Vinteo", "Контур.Толк"], note: "Сервер видеоконференцсвязи для переговорных комнат и удалённых подключений."}
     - {category: uc_platforms, must: true, families: [iva_one, protei_uc, vk_workspace], products: ["IVA One", "ПРОТЕЙ UC", "VK WorkSpace"], note: "Объединённые коммуникации: чаты, звонки, присутствие и адресная книга."}
@@ -391,7 +421,7 @@
 
 - id: student_learner
   title: "Студент вуза или колледжа"
-  aliases: ["софт для студента", "программы студенту на ноутбук", "рабочее место студента", "по для учебы в вузе", "что поставить студенту", "комплект программ для студента", "набор по для учебы", "софт студенту колледжа", "студент программы"]
+  aliases: ["студент", "учащийся", "студент вуза", "студент колледжа", "магистрант", "бакалавр"]
   slots:
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "МойОфис Стандартный", "Яндекс 360"], note: "Написание курсовых и дипломных работ, расчёты и презентации к защите."}
     - {category: desktop_os_ru, must: false, families: [alt_education, red_os, windows_11], products: ["Альт Образование", "РЕД ОС", "Windows 11"], note: "Операционная система с комплектом инструментов для учёбы и лабораторных работ."}
@@ -401,8 +431,9 @@
     - {category: home_antivirus, must: true, families: [kaspersky_standard_home, drweb_security_space, pro32_total_security], products: ["Kaspersky Standard", "Dr.Web Security Space"], note: "Защита личного ноутбука студента при работе в открытых Wi-Fi сетях."}
 
 - id: security_officer_pdn
+  parent: infosec_engineer
   title: "Ответственный за защиту персональных данных (152-ФЗ)"
-  aliases: ["софт для ответственного за пдн", "программы для защиты пдн 152 фз", "рабочее место ответственного за 152 фз", "по для dpo по персональным данным", "что поставить ответственному за пдн", "арм специалиста по 152 фз", "комплект для оператора пдн", "софт по 152 фз специалисту", "ответственный за пдн программы"]
+  aliases: ["ответственный за пдн", "специалист пдн", "оператор пдн", "офицер пдн", "dpo"]
   slots:
     - {category: nsd_access_control, must: true, families: [secret_net_studio, dallas_lock, sobol_mdz], products: ["Secret Net Studio", "Dallas Lock", "Соболь"], note: "Сертифицированные средства защиты от несанкционированного доступа к ИСПДн."}
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, vipnet_client], products: ["КриптоПро CSP", "ViPNet Client"], note: "Сертифицированная ФСБ криптозащита каналов передачи персональных данных."}
@@ -411,8 +442,9 @@
     - {category: security_awareness, must: false, families: [kaspersky_asap, phishman_awareness, bizone_cymulate_awareness], products: ["Kaspersky ASAP", "Phishman"], note: "Обучение сотрудников правилам обращения с персональными данными и защите от фишинга."}
 
 - id: k8s_platform_engineer
+  parent: devops_sre_engineer
   title: "Инженер Kubernetes и контейнерных платформ"
-  aliases: ["софт для инженера kubernetes", "программы для k8s администратора", "рабочее место платформенного инженера", "по для управления контейнерами", "что поставить платформенному инженеру", "арм инженера k8s", "комплект для кластера kubernetes", "софт для платформенной команды", "инженер кубернетес программы"]
+  aliases: ["инженер kubernetes", "платформенный инженер", "администратор kubernetes", "инженер кубернетес", "админ кубернетес", "инженер контейнеров"]
   slots:
     - {category: containers_kubernetes, must: true, families: [deckhouse_k8s, shturval_k8s, orion_nova, basis_digital_energy], products: ["Deckhouse Kubernetes Platform", "Штурвал", "Nova Container Platform"], note: "Российская промышленная платформа оркестрации контейнеров Kubernetes."}
     - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1], products: ["GitFlic", "Yandex SourceCraft", "Платформа Сфера"], note: "GitOps-репозитории манифестов и конвейеры CI/CD для выкатки микросервисов."}
@@ -422,8 +454,9 @@
     - {category: iaas_cloud_platforms, must: false, families: [yandex_cloud, vk_private_cloud, selectel_cloud], products: ["Yandex Cloud", "VK Private Cloud", "Selectel Cloud"], note: "Облачные или частные вычислительные ресурсы для развёртывания кластеров."}
 
 - id: it_asset_manager
+  parent: sysadmin
   title: "Менеджер ИТ-активов и лицензий (ITAM/SAM)"
-  aliases: ["софт для менеджера ит активов", "программы для учета лицензий по", "рабочее место sam менеджера", "по для инвентаризации компьютеров и лицензий", "что поставить itam специалисту", "арм менеджера лицензий", "комплект для учета ит активов", "софт по sam и itam", "учет лицензий программы"]
+  aliases: ["менеджер ит активов", "sam менеджер", "itam специалист", "менеджер лицензий", "учет ит активов", "специалист sam"]
   slots:
     - {category: itsm_service_desk, must: true, families: [simpleone_itsm, naumen_smp, inframanager, onec_itilium], products: ["SimpleOne ITSM", "Naumen SMP", "ИнфраМенеджер", "1С:ITILIUM"], note: "Реестр ИТ-активов (CMDB), учёт договоров, сроков лицензий и заявок на выдачу ПО."}
     - {category: system_utilities, must: true, families: [total_network_inventory, aida64_business, colibri_arm], products: ["Total Network Inventory", "AIDA64 Business", "Колибри-АРМ"], note: "Автоматический сбор сведений об установленном ПО и железе на всех ПК сети."}
@@ -432,8 +465,9 @@
     - {category: bi_analytics, must: false, families: [yandex_datalens, visiology_bi, pix_bi], products: ["Yandex DataLens", "Visiology"], note: "Отчётность по утилизации лицензий и прогнозу продлений по подразделениям."}
 
 - id: supply_chain_planner
+  parent: logistics_dispatcher
   title: "Специалист по планированию цепей поставок и ВЭД"
-  aliases: ["софт для специалиста по цепям поставок", "программы для менеджера вэд", "рабочее место планировщика поставок", "по для управления цепочками поставок", "что поставить специалисту по вэд", "арм менеджера цепей поставок", "комплект для отдела вэд и логистики", "софт supply chain менеджеру", "цепи поставок программы"]
+  aliases: ["менеджер вэд", "специалист вэд", "планировщик поставок", "менеджер цепей поставок", "отдел вэд", "supply chain менеджер"]
   slots:
     - {category: trade_warehouse, must: true, families: [onec_trade, onec_erp, onec_ka], products: ["1С:Управление торговлей 8", "1С:ERP 2"], note: "Расчёт потребностей в закупках, страховых запасов и себестоимости импорта."}
     - {category: logistics_tms, must: true, families: [axelot_wms, onec_trade], products: ["AXELOT WMS / TMS"], note: "Планирование маршрутов доставки и контроль прохождения грузов через склады."}
@@ -443,8 +477,9 @@
     - {category: bi_analytics, must: false, families: [pix_bi, visiology_bi, yandex_datalens], products: ["PIX BI", "Visiology", "Yandex DataLens"], note: "Анализ оборачиваемости запасов, сроков поставки и выполнения SLA перевозчиков."}
 
 - id: marketplace_manager
+  parent: sales_manager
   title: "Менеджер по работе с маркетплейсами"
-  aliases: ["софт для менеджера маркетплейсов", "программы селлеру на маркетплейсах", "рабочее место менеджера wb и ozon", "по для работы с маркетплейсами", "что поставить менеджеру маркетплейсов", "арм менеджера маркетплейсов", "комплект по для селлера", "софт для торговли на маркетплейсах", "менеджер маркетплейсов программы"]
+  aliases: ["менеджер маркетплейсов", "селлер", "менеджер wb", "менеджер ozon", "специалист маркетплейсов", "аккаунт менеджер маркетплейсов"]
   slots:
     - {category: trade_warehouse, must: true, families: [moysklad, onec_unf, onec_trade], products: ["МойСклад", "1С:УНФ 8", "1С:Управление торговлей 8"], note: "Синхронизация остатков, цен, отгрузок FBO/FBS и расчёт прибыли по площадкам."}
     - {category: tax_reporting_edo, must: true, families: [kontur_diadoc, sbis_saby, onec_edo], products: ["Контур.Диадок", "СБИС", "1С-ЭДО"], note: "Обязательный ЭДО с маркетплейсами и передача кодов маркировки «Честный ЗНАК»."}
@@ -454,8 +489,9 @@
     - {category: bi_analytics, must: false, families: [yandex_datalens, pix_bi], products: ["Yandex DataLens", "PIX BI"], note: "Сводная аналитика продаж, возвратов и маржинальности по SKU."}
 
 - id: rpa_developer
+  parent: software_developer
   title: "Разработчик программных роботов (RPA)"
-  aliases: ["софт для rpa разработчика", "программы разработчику роботов rpa", "рабочее место rpa инженера", "по для роботизации процессов", "что поставить rpa разработчику", "арм специалиста по rpa", "комплект по для rpa", "софт для автоматизации роботами", "rpa разработчик программы"]
+  aliases: ["rpa разработчик", "rpa инженер", "разработчик роботов", "специалист rpa", "роботизация процессов"]
   slots:
     - {category: bpm_rpa_lowcode, must: true, families: [pix_rpa, primo_rpa, robin_rpa, sherpa_rpa, elma365], products: ["PIX RPA", "Primo RPA", "ROBIN RPA", "Sherpa RPA"], note: "Студия разработки, оркестратор и лицензии программных роботов для рутинных операций."}
     - {category: ocr_capture, must: true, families: [contentcapture, smart_id_engine, dbrain_ocr], products: ["ContentCapture", "Smart ID Engine", "Dbrain"], note: "Интеллектуальное извлечение данных из сканов первички для передачи роботам."}
@@ -464,8 +500,9 @@
     - {category: task_project_trackers, must: false, families: [yandex_tracker, kaiten, evaproject], products: ["Яндекс Трекер", "Kaiten"], note: "Учёт пайплайна процессов на роботизацию и заявок на доработку роботов."}
 
 - id: bi_architect
+  parent: data_analyst_bi
   title: "Архитектор данных и BI-систем"
-  aliases: ["софт для bi архитектора", "программы архитектору данных", "рабочее место инженера данных и bi", "по для построения хранилищ данных", "что поставить bi архитектору", "арм дата инженера", "комплект для корпоративного dwh и bi", "софт для data engineer", "архитектор данных программы"]
+  aliases: ["bi архитектор", "архитектор данных", "инженер данных", "дата инженер", "data engineer", "архитектор dwh"]
   slots:
     - {category: dwh_olap, must: true, families: [arenadata_db, arenadata_quickmarts, clickhouse_cloud], products: ["Arenadata DB", "Arenadata QuickMarts"], note: "Российское аналитическое хранилище данных (MPP и колоночные витрины)."}
     - {category: bi_analytics, must: true, families: [visiology_bi, foresight_analytics, polymatica_bi, modus_bi, pix_bi], products: ["Visiology", "Форсайт", "Polymatica BI", "Modus BI"], note: "Визуализация корпоративной отчётности и построение витрин для бизнеса."}
@@ -474,8 +511,9 @@
     - {category: rdbms, must: true, families: [postgres_pro, tantor_db, pangolin_db], products: ["Postgres Pro", "СУБД Tantor", "Platform V Pangolin"], note: "Реляционная СУБД для оперативных слоёв данных и метаданных BI."}
 
 - id: crm_administrator
+  parent: sysadmin
   title: "Администратор CRM и автоматизации продаж"
-  aliases: ["софт для администратора crm", "программы админу crm", "рабочее место администратора битрикс24", "по для автоматизации продаж и crm", "что поставить администратору crm", "арм администратора crm", "комплект для внедренца crm", "софт для настройки crm и телефонии", "администратор crm программы"]
+  aliases: ["администратор crm", "админ crm", "внедренец crm", "специалист crm", "инженер crm"]
   slots:
     - {category: crm_systems, must: true, families: [bitrix24, amocrm, bpmsoft_crm, retailcrm], products: ["Битрикс24", "amoCRM", "BPMSoft CRM", "RetailCRM"], note: "Настройка воронок продаж, прав доступа, роботов и пользовательских полей CRM."}
     - {category: ip_telephony, must: true, families: [mango_vats, naumen_contact_center], products: ["Манго Офис ВАТС", "Naumen Contact Center"], note: "Интеграция звонков, всплывающих карточек клиентов и сквозной записи в CRM."}
@@ -485,7 +523,7 @@
 
 - id: video_surveillance_operator
   title: "Оператор видеонаблюдения и службы безопасности"
-  aliases: ["софт для оператора видеонаблюдения", "программы на пост охраны", "рабочее место оператора видеоконтроля", "по для службы безопасности объекта", "что поставить на пульт видеонаблюдения", "арм оператора видеонаблюдения", "комплект для мониторинга камер", "софт для видеоаналитики сб", "оператор видеонаблюдения программы"]
+  aliases: ["оператор видеонаблюдения", "оператор видеоконтроля", "пост охраны", "пульт видеонаблюдения", "инженер видеонаблюдения"]
   slots:
     - {category: industry_specialized, must: true, families: [macroscop_vms, trassir_vms, axxon_next_vms], products: ["Macroscop", "TRASSIR", "Axxon Next"], note: "Профессиональная система видеонаблюдения с записью архива и поиском событий."}
     - {category: ml_platforms_cv, must: false, families: [visionlabs_luna, ntechlab_findface], products: ["VisionLabs LUNA", "NtechLab FindFace Multi"], note: "Видеоаналитика распознавания лиц, автономеров и нарушений периметра."}
@@ -494,8 +532,9 @@
     - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security", "Dr.Web Enterprise Security Suite"], note: "Защита видеосерверов и поста охраны от несанкционированного вмешательства."}
 
 - id: medical_director
+  parent: doctor_clinician
   title: "Главный врач и заместитель по ИТ в клинике"
-  aliases: ["софт для главного врача", "программы главврачу клиники", "рабочее место главного врача", "по для руководителя медцентра", "что поставить главврачу", "арм главного врача", "комплект для управления клиникой", "софт начмеду и главврачу", "главный врач программы"]
+  aliases: ["главный врач", "главврач", "начмед", "руководитель клиники", "руководитель медцентра"]
   slots:
     - {category: industry_specialized, must: true, families: [infoklinika_mis, crt_voice2med], products: ["Инфоклиника МИС", "ЦРТ Voice2Med"], note: "Контроль загрузки врачей, качества ведения медкарт и оперативной статистики клиники."}
     - {category: crypto_skzi, must: true, families: [cryptopro_csp, vipnet_client], products: ["КриптоПро CSP", "ViPNet Client"], note: "Электронная подпись руководителя и защищённый обмен с ЕГИСЗ."}
@@ -505,8 +544,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Работа с приказами, отчётами по клиническим показателям и презентациями."}
 
 - id: road_civil_engineer
+  parent: architect_bim
   title: "Инженер-проектировщик дорог и генплана"
-  aliases: ["софт для проектировщика дорог", "программы инженеру генплана", "рабочее место дорожного проектировщика", "по для проектирования автодорог", "что поставить проектировщику генплана", "арм инженера дорожника", "комплект для проектирования дорог и сетей", "софт для изысканий и генплана", "проектировщик дорог программы"]
+  aliases: ["проектировщик дорог", "инженер генплана", "дорожный проектировщик", "инженер дорожник", "проектировщик автодорог", "генпланист"]
   slots:
     - {category: cad_specialized, must: true, families: [indorcad, robur_topomatic, credo_complex], products: ["IndorCAD", "Топоматик Robur", "ТИМ КРЕДО"], note: "Проектирование автомобильных дорог, профилей, объёмов земляных работ и генплана."}
     - {category: cad_2d, must: true, families: [nanocad_platform, zwcad], products: ["Платформа nanoCAD", "ZWCAD"], note: "Оформление рабочих чертежей в формате DWG и выпуск проектной документации."}
@@ -515,8 +555,9 @@
     - {category: pdf_editors, must: false, families: [contentreader_pdf, master_pdf_editor], products: ["КонтентРидер PDF", "Master PDF Editor"], note: "Сборка многотомных комплектов проектной документации для экспертизы."}
 
 - id: furniture_designer
+  parent: cad_mechanical_engineer
   title: "Конструктор-технолог мебельного производства"
-  aliases: ["софт для конструктора мебели", "программы мебельному дизайнеру", "рабочее место технолога мебели", "по для проектирования мебели", "что поставить конструктору мебели", "арм конструктора мебели", "комплект для мебельного цеха", "софт для раскроя и проектирования мебели", "конструктор мебели программы"]
+  aliases: ["конструктор мебели", "мебельный дизайнер", "технолог мебели", "мебельный конструктор", "проектировщик мебели"]
   slots:
     - {category: cad_specialized, must: true, families: [bazis_mebel, sprutcam_x], products: ["БАЗИС-Мебельщик", "СПРУТКАМ"], note: "Проектирование корпусной мебели, расчёт карт раскроя, фурнитуры и программ ЧПУ."}
     - {category: mcad_plm, must: false, families: [kompas_3d, t_flex_cad], products: ["КОМПАС-3D", "T-FLEX CAD"], note: "Проектирование нестандартных металлокаркасов и сложных узлов крепления."}
@@ -525,8 +566,9 @@
     - {category: office_suite, must: false, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Формирование смет заказов, прайс-листов и договоров с покупателями."}
 
 - id: compliance_dpo_lawyer
+  parent: lawyer
   title: "Комплаенс-менеджер и специалист по проверке контрагентов"
-  aliases: ["софт для комплаенс менеджера", "программы специалисту по экономической безопасности", "рабочее место комплаенс офицера", "по для проверки контрагентов и рисков", "что поставить в отдел комплаенса", "арм специалиста по проверке контрагентов", "комплект по экономической безопасности", "софт комплаенс офицеру", "комплаенс программы"]
+  aliases: ["комплаенс менеджер", "комплаенс офицер", "специалист комплаенс", "отдел комплаенса", "экономическая безопасность", "проверка контрагентов"]
   slots:
     - {category: counterparty_legal_info, must: true, families: [kontur_focus, sbis_saby, spark_interfax, consultant_plus, garant_system], products: ["Контур.Фокус", "СБИС", "СПАРК-Интерфакс", "КонсультантПлюс"], note: "Проверка благонадёжности контрагентов, санкционных списков, бенефициаров и судов."}
     - {category: sed_ecm, must: true, families: [directum_rx, onec_docflow], products: ["Directum RX", "1С:Документооборот"], note: "Согласование договоров по матрице рисков и хранение заключений комплаенса."}
@@ -538,7 +580,7 @@
 
 - id: kit_new_branch
   title: "Новый филиал: рабочие места, сеть и связь"
-  aliases: ["софт для нового филиала", "по при открытии филиала", "открываем новый филиал какие программы", "комплект по для нового офиса", "что купить для нового филиала", "оснащение нового филиала по", "запуск филиала набор программ", "новый филиал по", "открытие обособленного подразделения софт"]
+  aliases: ["новый филиал", "открытие филиала", "запуск филиала", "новый офис", "обособленное подразделение"]
   slots:
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_workstation], products: ["Astra Linux SE", "РЕД ОС", "Альт Рабочая станция"], note: "Единая корпоративная ОС на все рабочие станции нового подразделения."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "МойОфис Стандартный", "Яндекс 360"], note: "Офисные редакторы и корпоративная почта для сотрудников филиала."}
@@ -548,8 +590,9 @@
     - {category: remote_desktop, must: false, families: [assistant_remote, rudesktop, kontur_dostup], products: ["Ассистент", "RuDesktop", "Контур.Доступ"], note: "Удалённое администрирование ПК филиала силами ИТ-отдела головного офиса."}
 
 - id: kit_new_employee
+  parent: office_worker
   title: "Новый сотрудник: комплект ПО для выхода на работу"
-  aliases: ["комплект для нового сотрудника", "по при найме нового сотрудника", "онбординг нового сотрудника софт", "что поставить на пк нового сотрудника", "лицензии для нового работника", "выход нового сотрудника программы", "оснащение рабочего места новичка", "закупить по на новое рабочее место", "новый сотрудник комплект лицензий"]
+  aliases: ["новый сотрудник", "онбординг сотрудника", "найм сотрудника", "выход нового сотрудника", "новый работник"]
   slots:
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_workstation, windows_11], products: ["Astra Linux", "РЕД ОС", "Альт Рабочая станция", "Windows 11"], note: "Лицензионная операционная система для нового рабочего компьютера или ноутбука."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, yandex_360], products: ["Р7-Офис", "МойОфис Стандартный", "Яндекс 360"], note: "Пакет офисных приложений для ежедневной работы с документами и таблицами."}
@@ -559,8 +602,9 @@
     - {category: security_awareness, must: false, families: [kaspersky_asap, phishman_awareness], products: ["Kaspersky ASAP", "Phishman"], note: "Вводный курс по информационной безопасности и защите от фишинга при найме."}
 
 - id: kit_remote_department
+  parent: remote_employee
   title: "Перевод отдела на удалённую работу"
-  aliases: ["перевод отдела на удаленку по", "софт для перевода на удаленную работу", "комплект по для удаленной команды", "организация удаленной работы отдела", "что купить для удаленки в компании", "программы для удаленного отдела", "настройка удаленной работы сотрудников", "удаленка для бизнеса комплект по", "перевести сотрудников на удаленку софт"]
+  aliases: ["удаленный отдел", "удаленная команда", "перевод на удаленку", "организация удаленной работы", "удаленка для бизнеса"]
   slots:
     - {category: ngfw_vpn, must: true, families: [vipnet_client, continent_ngfw, usergate_ngfw, s_terra_vpn], products: ["ViPNet Client", "Континент АП", "UserGate NGFW"], note: "Защищённое VPN-подключение домашних и корпоративных ноутбуков к офисной сети."}
     - {category: vdi_desktop_virt, must: false, families: [termidesk, basis_workplace, space_vdi], products: ["Termidesk", "Basis Workplace", "Space VDI"], note: "Виртуальные рабочие столы, чтобы корпоративные данные не сохранялись на личных ПК."}
@@ -572,7 +616,7 @@
 
 - id: kit_windows_to_ru_os
   title: "Переход с Windows на российскую ОС"
-  aliases: ["переход с windows на российскую ос", "миграция с виндовс на линукс комплект", "замена windows на отечественную ос", "перевод парка пк на российский линукс", "импортозамещение windows под ключ", "что нужно при переходе на астра линукс", "комплект для миграции с windows", "переход на отечественную ос по", "отказ от windows набор программ"]
+  aliases: ["переход с windows", "миграция с windows", "замена windows", "импортозамещение windows", "переход на линукс", "миграция на линукс", "отечественная ос"]
   slots:
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, red_os, alt_workstation, alt_sp, rosa_chrome], products: ["Astra Linux SE", "РЕД ОС", "Альт Рабочая станция"], note: "Реестровая российская операционная система на замену Windows на рабочих местах."}
     - {category: directory_services, must: true, families: [ald_pro, red_adm, alt_domain], products: ["ALD Pro", "РЕД АДМ", "Альт Домен"], note: "Служба каталогов и групповые политики на замену Active Directory."}
@@ -583,7 +627,7 @@
 
 - id: kit_replace_office_suite
   title: "Замена ушедшего офисного пакета (Microsoft Office)"
-  aliases: ["замена ушедшего офисного пакета", "переход с microsoft office комплект", "импортозамещение офиса под ключ", "чем заменить ms office в компании", "комплект на замену ворд и эксель", "перевод офиса на российские редакторы", "миграция с office 365 комплект", "замена майкрософт офис для юрлиц", "российский офис вместо microsoft"]
+  aliases: ["замена офисного пакета", "замена microsoft office", "переход с office", "импортозамещение офиса", "российский офис", "замена майкрософт офис"]
   slots:
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, myoffice_professional, yandex_360, alteroffice], products: ["Р7-Офис", "МойОфис Стандартный", "Яндекс 360"], note: "Отечественные редакторы документов, таблиц и презентаций с поддержкой DOCX и XLSX."}
     - {category: mail_servers, must: false, families: [rupost, myoffice_mail, tegu_mail, communigate_pro], products: ["RuPost", "МойОфис Почта", "Tegu"], note: "Замена корпоративной почты и календарей при переходе с Exchange и Outlook."}
@@ -594,7 +638,7 @@
 
 - id: kit_pdn_152fz
   title: "Защита персональных данных по 152-ФЗ"
-  aliases: ["комплект для 152 фз", "по для защиты персональных данных по 152 фз", "что купить для соответствия 152 фз", "закрыть требования 152 фз софт", "защита испдн комплект по", "набор сзи по 152 фз", "софт для аттестации по 152 фз", "защита персональных данных комплект", "152 фз программы для компании"]
+  aliases: ["защита персональных данных", "защита испдн", "аттестация испдн", "персональные данные", "испдн"]
   slots:
     - {category: nsd_access_control, must: true, families: [secret_net_studio, dallas_lock, sobol_mdz], products: ["Secret Net Studio", "Dallas Lock", "Соболь"], note: "Сертифицированное СЗИ от НСД для разграничения доступа и регистрации событий в ИСПДн."}
     - {category: endpoint_security, must: true, families: [kaspersky_kesb, drweb_enterprise_security_suite], products: ["Kaspersky Endpoint Security ФСТЭК", "Dr.Web ФСТЭК"], note: "Сертифицированный антивирус ФСТЭК на рабочие станции и серверы с ПДн."}
@@ -605,7 +649,7 @@
 
 - id: kit_kii_object
   title: "Защита объекта критической информационной инфраструктуры (187-ФЗ КИИ)"
-  aliases: ["комплект по для объекта кии", "софт для защиты кии по 187 фз", "что нужно для зокии", "защита объектов кии набор программ", "по для значимых объектов кии", "сзи для кии комплект", "импортозамещение на объекте кии", "требования 187 фз софт", "объект кии комплект по"]
+  aliases: ["объект кии", "защита кии", "зокии", "значимый объект кии", "безопасность кии"]
   slots:
     - {category: desktop_os_ru, must: true, families: [astra_linux_se, alt_sp, red_os], products: ["Astra Linux SE", "Альт СП", "РЕД ОС ФСТЭК"], note: "Сертифицированная ФСТЭК российская ОС, допущенная к применению на объектах КИИ."}
     - {category: ot_ics_security, must: true, families: [kaspersky_kics, datapk_ics, infowatch_arma], products: ["Kaspersky KICS", "DATAPK", "InfoWatch ARMA"], note: "Специализированная защита промышленных сетей, узлов АСУ ТП и технологических сегментов."}
@@ -616,7 +660,7 @@
 
 - id: kit_small_office_server
   title: "Серверная малого офиса под ключ"
-  aliases: ["по для серверной малого офиса", "софт на сервер в небольшой офис", "комплект для серверной малого бизнеса", "что поставить на офисный сервер", "базовое по на сервер компании", "сервер малого офиса программы", "набор лицензий на сервер 1с и файлы", "оснащение мини серверной по", "серверная малого офиса комплект"]
+  aliases: ["серверная малого офиса", "офисный сервер", "мини серверная", "сервер малого офиса", "серверная малого бизнеса"]
   slots:
     - {category: server_os, must: true, families: [alt_server, red_os_server, astra_linux_se, windows_server], products: ["Альт Сервер", "РЕД ОС Сервер", "Astra Linux SE", "Windows Server"], note: "Серверная операционная система для файлового хранилища, 1С и корпоративных служб."}
     - {category: backup_recovery, must: true, families: [cyber_backup, handy_backup, rubackup], products: ["Кибер Бэкап", "Handy Backup", "RuBackup"], note: "Автоматическое резервное копирование сервера и баз данных по расписанию."}
@@ -627,7 +671,7 @@
 
 - id: kit_computer_class
   title: "Компьютерный класс в школе, колледже или учебном центре"
-  aliases: ["софт для компьютерного класса", "по в компьютерный класс школы", "оснащение кабинета информатики по", "комплект программ для учебного класса", "что поставить в компьютерный класс", "лицензии для компьютерного класса", "набор по в класс информатики", "компьютерный класс программы", "учебный класс софт"]
+  aliases: ["компьютерный класс", "кабинет информатики", "класс информатики", "учебный класс", "компьютерный класс школы"]
   slots:
     - {category: desktop_os_ru, must: true, families: [alt_education, astra_linux_se, red_os], products: ["Альт Образование", "Astra Linux", "РЕД ОС"], note: "Образовательная российская ОС с предустановленными учебными средами и компиляторами."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard, alteroffice], products: ["Р7-Офис Образование", "МойОфис Образование"], note: "Льготные академические лицензии офисного пакета для учеников и преподавателя."}
@@ -638,7 +682,7 @@
 
 - id: kit_meeting_room
   title: "Переговорная комната: ВКС, презентации и совместная работа"
-  aliases: ["софт для переговорной комнаты", "по в переговорку", "комплект для конференц зала", "что поставить в переговорную комнату", "видеосвязь в переговорную софт", "оснащение переговорной комнаты по", "программы для переговорной", "переговорная комната вкс софт", "зал совещаний комплект по"]
+  aliases: ["переговорная комната", "переговорка", "конференц зал", "конференц-зал", "зал совещаний"]
   slots:
     - {category: vks_webinars, must: true, families: [trueconf_server, iva_mcu, vinteo_mcu, kontur_tolk, mts_link_meetings], products: ["TrueConf Server", "IVA MCU", "Контур.Толк", "МТС Линк"], note: "Лицензии видеоконференцсвязи для переговорных комнат, запись встреч и SIP/H.323."}
     - {category: office_suite, must: true, families: [r7_office, myoffice_standard], products: ["Р7-Офис", "МойОфис Стандартный"], note: "Показ презентаций, таблиц и совместное редактирование протоколов совещаний."}
@@ -648,7 +692,7 @@
 
 - id: kit_dev_startup
   title: "Стартап разработки ПО: код, задачи и облако"
-  aliases: ["софт для стартапа разработки", "по для ит стартапа", "комплект для команды разработчиков", "что нужно софтверному стартапу", "набор программ для молодой ит компании", "стартап разработки по комплект", "инструменты для продуктового стартапа", "запуск команды разработки софт", "по стартапу программистов"]
+  aliases: ["стартап разработки", "ит стартап", "софтверный стартап", "продуктовый стартап", "команда разработчиков"]
   slots:
     - {category: git_cicd_devops, must: true, families: [gitflic, sourcecraft_yandex, sphere_t1], products: ["GitFlic", "Yandex SourceCraft"], note: "Хостинг Git-репозиториев и быстрый запуск конвейеров сборки и деплоя."}
     - {category: task_project_trackers, must: true, families: [yandex_tracker, kaiten, yougile, weeek], products: ["Яндекс Трекер", "Kaiten", "YouGile"], note: "Управление бэклогом продукта, спринтами и релизами без лишней бюрократии."}
@@ -660,7 +704,7 @@
 
 - id: kit_online_school
   title: "Онлайн-школа: курсы, вебинары и продажи"
-  aliases: ["софт для онлайн школы", "по для запуска онлайн школы", "комплект программ онлайн школе", "что нужно для онлайн школы", "программы для онлайн курсов и вебинаров", "онлайн школа комплект по", "набор сервисов для онлайн образования", "инструменты для онлайн школы", "по для образовательной платформы"]
+  aliases: ["онлайн школа", "онлайн-школа", "запуск онлайн школы", "онлайн курсы", "образовательная платформа"]
   slots:
     - {category: lms_elearning, must: true, families: [ispring_suite, mirapolis_lms, equio_lms, getcourse_platform], products: ["iSpring Learn / Suite", "Mirapolis LMS", "Эквио", "GetCourse"], note: "Личный кабинет учеников, размещение видеоуроков, проверка домашних заданий и тесты."}
     - {category: vks_webinars, must: true, families: [mts_link_webinars, kontur_tolk, salute_jazz], products: ["МТС Линк Вебинары", "Контур.Толк"], note: "Проведение продающих и учебных вебинаров с чатом, опросами и автозаписью."}
@@ -670,8 +714,9 @@
     - {category: accounting, must: false, families: [onec_fresh, onec_accounting], products: ["1С:Фреш", "1С:Бухгалтерия 8"], note: "Учёт оплат учеников, расчёты с преподавателями и сдача отчётности."}
 
 - id: kit_contact_center
+  parent: call_center_operator
   title: "Контакт-центр и служба клиентской поддержки"
-  aliases: ["софт для контакт центра", "по для организации колл центра", "комплект для контакт центра", "что нужно для запуска колл центра", "программы в службу поддержки клиентов", "контакт центр комплект по", "автоматизация колл центра софт", "набор по для горячей линии", "открыть колл центр программы"]
+  aliases: ["контакт-центр", "контакт центр", "колл центр", "колл-центр", "служба поддержки клиентов", "горячая линия"]
   slots:
     - {category: ip_telephony, must: true, families: [naumen_contact_center, mango_vats, protei_uc], products: ["Naumen Contact Center", "Манго Офис ВАТС"], note: "Омниканальная маршрутизация звонков и чатов, очереди, IVR и контроль SLA."}
     - {category: crm_systems, must: true, families: [bitrix24, bpmsoft_crm, amocrm, retailcrm], products: ["Битрикс24", "BPMSoft CRM", "RetailCRM"], note: "Единая карточка клиента с историей всех обращений и заказов."}
@@ -682,7 +727,7 @@
 
 - id: kit_design_studio
   title: "Дизайн-студия: графика, интерфейсы и проекты"
-  aliases: ["софт для дизайн студии", "по для студии дизайна", "комплект программ дизайн студии", "что нужно для открытия дизайн студии", "набор по для дизайнеров в агентстве", "дизайн студия комплект по", "программы для брендингового агентства", "оснащение дизайн студии софт", "по в веб и дизайн студию"]
+  aliases: ["студия дизайна", "открытие дизайн студии", "брендинговое агентство", "веб студия", "креативная студия"]
   slots:
     - {category: ui_ux_web_design, must: true, families: [pixso_design, figma], products: ["Pixso", "Figma"], note: "Совместное проектирование сайтов, интерфейсов, дизайн-систем и презентаций."}
     - {category: raster_photo, must: true, families: [ams_photomaster, akvis_suite, adobe_photoshop], products: ["ФотоМАСТЕР", "AKVIS", "Adobe Photoshop"], note: "Ретушь фотоматериалов, коллажирование и подготовка растровой графики."}
@@ -693,7 +738,7 @@
 
 - id: kit_design_bureau
   title: "Проектное бюро: САПР, BIM и сметы"
-  aliases: ["софт для проектного бюро", "по для открытия проектного бюро", "комплект программ проектной организации", "что нужно проектному бюро", "набор сапр для проектного бюро", "проектное бюро комплект по", "оснащение проектного отдела софт", "программы для проектной мастерской", "проектная организация набор по"]
+  aliases: ["открытие проектного бюро", "проектный отдел", "проектная мастерская", "инженерное бюро"]
   slots:
     - {category: cad_2d, must: true, families: [nanocad_platform, zwcad, kompas_3d], products: ["Платформа nanoCAD", "ZWCAD", "КОМПАС-3D"], note: "Базовая САПР-платформа для выпуска чертежей всех разделов в формате DWG."}
     - {category: bim_aec, must: true, families: [renga_bim, nanocad_bim, model_studio_cs, pilot_bim], products: ["Renga", "nanoCAD BIM", "Model Studio CS", "Pilot-BIM"], note: "Информационное моделирование зданий (ТИМ/BIM) и среда общих данных проекта."}
@@ -703,8 +748,9 @@
     - {category: backup_recovery, must: true, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Защита проектного хранилища и BIM-моделей от потери данных."}
 
 - id: kit_accounting_outsource
+  parent: accountant
   title: "Бухгалтерская фирма на аутсорсинге"
-  aliases: ["софт для бухгалтерской фирмы на аутсорсинге", "по для бухгалтерского аутсорсинга", "комплект для аутсорсинга бухгалтерии", "что нужно бухгалтерской компании", "программы для ведения нескольких фирм", "бухгалтерская фирма комплект по", "оснащение бухгалтерского агентства софт", "набор по для бухфирмы", "бухгалтерия на аутсорсе программы"]
+  aliases: ["бухгалтерский аутсорсинг", "бухаутсорсинг", "бухгалтерское агентство", "бухфирма", "бухгалтерия на аутсорсе"]
   slots:
     - {category: accounting, must: true, families: [onec_accounting, onec_fresh, onec_zup], products: ["1С:Бухгалтерия 8 КОРП/ПРОФ", "1С:Фреш", "1С:ЗУП 8"], note: "Ведение учёта и расчёт зарплаты по десяткам клиентских юрлиц и ИП."}
     - {category: tax_reporting_edo, must: true, families: [kontur_extern, sbis_saby, taxcom_sprinter, kontur_diadoc], products: ["Контур.Экстерн (Обслуживающая бухгалтерия)", "СБИС", "Контур.Диадок"], note: "Массовая сдача отчётности за клиентов по доверенностям и обмен первичкой по ЭДО."}
@@ -714,8 +760,9 @@
     - {category: backup_recovery, must: false, families: [cyber_backup, rubackup], products: ["Кибер Бэкап", "RuBackup"], note: "Ежедневное резервное копирование всех клиентских баз 1С."}
 
 - id: kit_retail_pos_store
+  parent: cashier_retail
   title: "Магазин с кассами, складом и маркировкой"
-  aliases: ["софт для магазина с кассами", "по для открытия розничного магазина", "комплект для торговой точки с кассой", "что нужно для магазина с маркировкой", "программы для розничной точки", "магазин с кассами комплект по", "автоматизация магазина под ключ софт", "набор по для кассы и учета в магазине", "открыть магазин какие программы"]
+  aliases: ["магазин с кассами", "открытие розничного магазина", "торговая точка", "розничная точка", "открытие магазина"]
   slots:
     - {category: retail_pos_cash, must: true, families: [atol_frontol, onec_retail], products: ["АТОЛ Frontol 6", "1С:Розница 8"], note: "Рабочее место кассира с поддержкой ОФД, маркировки «Честный ЗНАК» и ЕГАИС."}
     - {category: trade_warehouse, must: true, families: [onec_trade, moysklad, onec_unf], products: ["1С:Управление торговлей 8", "МойСклад", "1С:УНФ 8"], note: "Учёт поступлений, ценников, инвентаризаций и остатков по торговым точкам."}
@@ -726,7 +773,7 @@
 
 - id: kit_ecommerce_store
   title: "Интернет-магазин: витрина, заказы и учёт"
-  aliases: ["комплект для интернет магазина", "по для запуска интернет магазина", "софт чтобы открыть интернет магазин", "что нужно для интернет магазина по", "программы для онлайн магазина под ключ", "интернет магазин набор программ", "автоматизация интернет магазина софт", "стек по для онлайн торговли", "запуск ecommerce комплект"]
+  aliases: ["запуск интернет магазина", "открытие интернет магазина", "онлайн магазин", "онлайн-магазин", "запуск ecommerce"]
   slots:
     - {category: cms_ecommerce, must: true, families: [bitrix_site_manager, bitrix24], products: ["1С-Битрикс: Управление сайтом"], note: "Платформа витрины интернет-магазина с корзиной, каталогом и обменом с 1С."}
     - {category: crm_systems, must: true, families: [retailcrm, bitrix24, amocrm], products: ["RetailCRM", "Битрикс24"], note: "Обработка онлайн-заказов, статусы доставки и коммуникации с покупателями."}
@@ -737,7 +784,7 @@
 
 - id: kit_medical_clinic
   title: "Медицинская клиника: приём пациентов, МИС и 152-ФЗ"
-  aliases: ["комплект для медицинской клиники", "по для открытия клиники", "софт чтобы открыть медцентр", "что купить в новую клинику", "оснащение частной клиники по", "медицинская клиника набор программ", "запуск медцентра комплект софта", "программы для открытия поликлиники", "клиника под ключ софт"]
+  aliases: ["открытие клиники", "запуск клиники", "новая клиника", "открытие медцентра", "запуск медцентра", "открытие поликлиники"]
   slots:
     - {category: industry_specialized, must: true, families: [infoklinika_mis, crt_voice2med], products: ["Инфоклиника МИС", "ЦРТ Voice2Med"], note: "Ведение электронных медкарт, расписания врачей и интеграция с ЕГИСЗ."}
     - {category: nsd_access_control, must: true, families: [secret_net_studio, dallas_lock], products: ["Secret Net Studio", "Dallas Lock"], note: "Обязательная защита рабочих станций с медицинскими персональными данными по 152-ФЗ."}
@@ -749,7 +796,7 @@
 
 - id: kit_license_audit_prep
   title: "Подготовка к проверке лицензий и аудит ПО"
-  aliases: ["подготовка к проверке лицензий по", "софт для аудита лицензий", "проверка лицензионной чистоты по", "комплект для легализации софта", "что нужно перед проверкой лицензий", "инвентаризация и аудит по комплект", "подготовка к ит проверке программы", "легализация программного обеспечения комплект", "проверка лицензий в офисе софт"]
+  aliases: ["аудит лицензий", "проверка лицензий", "легализация лицензий", "инвентаризация лицензий", "лицензионный аудит", "проверка лицензионной чистоты"]
   slots:
     - {category: system_utilities, must: true, families: [total_network_inventory, aida64_business, colibri_arm], products: ["Total Network Inventory", "AIDA64 Business", "Колибри-АРМ"], note: "Полное сканирование парка ПК для выявления всего установленного ПО и версий."}
     - {category: itsm_service_desk, must: true, families: [simpleone_itsm, inframanager, naumen_smp, onec_itilium], products: ["SimpleOne ITSM", "ИнфраМенеджер", "Naumen SMP"], note: "Сведение фактических установок с купленными лицензиями и договорами в CMDB."}
