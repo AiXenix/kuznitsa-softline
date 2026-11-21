@@ -7,14 +7,12 @@ from kuznitsa.schema import Request
 from kuznitsa.controls import Controls
 from .controls import RuleControls
 from .store import Journal, result_cards
-from . import priorities
 
 
 def initialize(cfg, snapshot, merchant, now, names):
     from kuznitsa.engine import Engine, Disabled
     global worker_engine
     journal = Journal(":memory:")
-    priorities.initialize(journal)
     with journal.transaction() as db:
         for table, rows in snapshot.items():
             if rows:
@@ -44,7 +42,6 @@ def search_batch(phrases):
 
 def batches(engine, cfg, phrases):
     j = engine.journal
-    priorities.initialize(j)
     rows = dict(rules=j.rows("SELECT * FROM rules"), priorities=j.rows("SELECT * FROM priorities"),
                 kv=j.rows("SELECT * FROM kv WHERE key IN ('settings:weights','rules:version')"))
     workers = min(8, len(os.sched_getaffinity(0)) if hasattr(os,"sched_getaffinity") else os.cpu_count() or 1)

@@ -169,9 +169,23 @@ def discover(e):
         if kind in ("fix_card","rising_demand"):
             targets=set(action["payload_json"].get("card_ids",[])) or e.catalog.by["category"].get(action["payload_json"].get("category"),set())
             unresolved=[q for q,v in probes.items() if not targets.intersection(v["top5"])]
-            if not unresolved:
+            shown={}
+            if kind=="fix_card" and action["payload_json"]["field"]=="registry":
+                # Поиск может подобрать семейство по БЗ при незаполненном поле конкретного SKU.
+                for q in probes:
+                    matches=[]
+                    for card in products(probe(q))[:5]:
+                        sku=(card.get("offer") or {}).get("offer_id")
+                        offer=e.catalog.offers_by_id.get(sku)
+                        if card["card_id"] in targets and offer and offer.registry is None:
+                            matches.append(dict(card_id=card["card_id"],offer_id=sku))
+                    if matches:
+                        shown[q]=matches
+            if not unresolved and not shown:
                 return
             extra=dict(extra or {},unresolved_queries=unresolved)
+            if shown:
+                extra["shown_defects"]=shown
         if kind=="add_product":
             if key in e.catalog.by["family"] or key in e.catalog.by["vendor"]:
                 return
@@ -250,6 +264,9 @@ def discover(e):
             item["confidence"]=None
         else:
             evidence_text=item["summary"]
+        if evidence.get("shown_defects"):
+            shown_ids={c["card_id"] for cards in evidence["shown_defects"].values() for c in cards}
+            evidence_text+=f" Карточек в первой пятёрке с незаполненным признаком реестра у показанного SKU — {len(shown_ids)}."
         if kind=="merch_rule":
             evidence_text+=f" Сессий с выбором этой карточки · {extra.get('followup_click_sessions',extra.get('click_sessions',0))}, с заказом · {extra.get('ordered_sessions',0)}."
         if kind=="add_synonym":

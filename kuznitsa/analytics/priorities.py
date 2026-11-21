@@ -111,17 +111,6 @@ def validate(body):
     return rule.model_dump(by_alias=True)
 
 
-def initialize(journal):
-    if getattr(journal, "_priorities_ready", False):
-        return
-    with journal.transaction() as db:
-        db.execute("CREATE TABLE IF NOT EXISTS priorities(id TEXT PRIMARY KEY, body TEXT NOT NULL)")
-        db.execute("""CREATE TABLE IF NOT EXISTS priorities_audit(
-            version INTEGER PRIMARY KEY AUTOINCREMENT, rule_id TEXT, operation TEXT, ts INTEGER,
-            author TEXT, before_json TEXT, after_json TEXT)""")
-    journal._priorities_ready = True
-
-
 def all_rules(journal):
     return [json.loads(r["body"]) for r in journal.rows(
         "SELECT body FROM priorities ORDER BY json_extract(body,'$.order'),rowid")]
@@ -130,7 +119,6 @@ def all_rules(journal):
 def active_rules(journal):
     if not hasattr(journal,"transaction"):
         return 0, []
-    initialize(journal)
     with journal.lock:
         version = journal.db.execute("SELECT coalesce(max(version),0) FROM priorities_audit").fetchone()[0]
         cached = getattr(journal, "_priority_rules", None)
@@ -145,7 +133,6 @@ def active_rules(journal):
 
 
 def change(journal, operation, body=None, ident=None, author=None):
-    initialize(journal)
     with journal.transaction() as db:
         before = db.execute("SELECT body FROM priorities WHERE id=?", (ident,)).fetchone()
         previous = json.loads(before[0]) if before else None
@@ -180,7 +167,6 @@ def change(journal, operation, body=None, ident=None, author=None):
 
 
 def audit(journal):
-    initialize(journal)
     rows = journal.rows("SELECT * FROM priorities_audit ORDER BY version DESC")
     for row in rows:
         for side in ("before","after"):
@@ -189,7 +175,6 @@ def audit(journal):
 
 
 def export_rules(journal):
-    initialize(journal)
     return dict(format="priorities.v1", items=all_rules(journal))
 
 
@@ -203,7 +188,6 @@ def import_rules(journal, payload):
     mode = payload.get("mode","merge")
     if mode not in ("merge","replace"):
         raise ValueError("Режим импорта — merge или replace")
-    initialize(journal)
     with journal.transaction():
         if mode=="replace":
             # Порядок строк снимка разрешает ничьи при одинаковом order.
@@ -309,7 +293,6 @@ def preview(engine, payload):
     if not callable(getattr(engine,"preview",None)):
         raise NotImplementedError("Установите версию движка с Engine.preview")
     j = engine.journal
-    initialize(j)
     stored = all_rules(j)
     active = [r for r in stored if r["enabled"]]
     rule["id"] = rule["id"] or "draft_" + uuid4().hex
