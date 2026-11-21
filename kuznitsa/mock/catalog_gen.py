@@ -146,6 +146,18 @@ def seed_defects(offers):
     return [o for o in offers if o.offer_id not in remove],labels
 
 
+def demo_record(o,today,vendors):
+    marker=int(hashlib.blake2s(o.offer_id.encode(),digest_size=4).hexdigest(),16)
+    fields=dict(in_stock=o.available and (o.delivery=="esd" or marker%5!=0),
+                added_at=str(today-timedelta(days=marker%540)),promo=o.attrs.get("promo")=="true",
+                domestic=bool(o.registry or vendors.get(o.vendor_id,{}).get("origin")=="russian"))
+    fields["delivery_days"]=0 if fields["in_stock"] else 2+marker%12 if o.available else None
+    row=o.model_dump(exclude_none=True,exclude_defaults=True)
+    row["attrs"]={**o.attrs,**{k:(str(v).lower() if isinstance(v,bool) else str(v))
+                              for k,v in fields.items() if v is not None}}
+    return json.dumps({**row,**fields},ensure_ascii=False,separators=(",",":"))
+
+
 def build(cfg,kb,seed=20261126,today=None):
     cfg.data.mkdir(parents=True,exist_ok=True)
     real = kb.rows["families"]
@@ -163,7 +175,7 @@ def build(cfg,kb,seed=20261126,today=None):
     today=today or datetime.now(timezone(timedelta(hours=3))).date()
     with TemporaryDirectory(dir=cfg.data) as temporary:
         stage=Path(temporary)
-        write_lines(stage/"catalog.jsonl",(o.model_dump_json(exclude_none=True,exclude_defaults=True) for o in offers))
+        write_lines(stage/"catalog.jsonl",(demo_record(o,today,kb.rows["vendors"]) for o in offers))
         write_lines(stage/"mock_defects.jsonl",(json.dumps(dict(card_id=k,insight=v,**({"scope":"secondary_segments_or_nonannual","qty_min":[25,50]} if v=="INS-09" else {}))) for k,v in defects.items()))
         profiles=configured_clients(cfg.kb.parent/"mock/spec",offers,seed)
         write_lines(stage/"clients.jsonl",(date_client(c,today).model_dump_json() for c in profiles))

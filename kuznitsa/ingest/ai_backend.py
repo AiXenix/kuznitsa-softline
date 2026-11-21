@@ -20,12 +20,19 @@ class Vectors:
     def __init__(self,cfg,documents,queries,volatile):
         fixed=[i for i in range(len(documents)) if i not in volatile]
         extra=sorted(volatile)
+        # A path may contain ten nearly identical licensing configurations. Rank
+        # by the distinct terms in the evidence and batch by length to reduce padding.
+        def compact(text):
+            return " ".join(dict.fromkeys(text.casefold().split()))[:560]
         lookups=list(dict.fromkeys([*queries,*(documents[i] for i in extra)]))
-        dense=Dense(cfg,[documents[i] for i in fixed],list(enumerate(lookups)))
+        texts={q:compact(q) for q in lookups}
+        embeddings=sorted(set(texts.values()),key=lambda s:(len(s),s))
+        dense=Dense(cfg,[documents[i] for i in fixed],list(enumerate(embeddings)))
         self.docs=None
         self.query={}
         if dense.knowledge_matrix is not None:
-            self.query=dict(zip(lookups,dense.knowledge_matrix))
+            by_text=dict(zip(embeddings,dense.knowledge_matrix))
+            self.query={q:by_text[s] for q,s in texts.items()}
             self.docs=np.empty((len(documents),dense.knowledge_matrix.shape[1]),dtype=np.float32)
             if fixed:
                 self.docs[fixed]=dense.matrix
@@ -111,3 +118,47 @@ class Gateway:
         self.client.close()
         for decisions in (self.live,self.cache):
             decisions.pool.shutdown()
+
+
+def reuse_knowledge_vectors(cfg):
+    """Compose the index's immutable knowledge matrix from cached base and imported labels."""
+    import os
+    from pathlib import Path
+    from tempfile import NamedTemporaryFile
+    from kuznitsa.kb.loader import load
+    if cfg.embed=="off" or not (cfg.data/"kb_auto.yaml").exists():
+        return
+    kb=load(cfg.kb,cfg.data)
+    def cache_path(texts):
+        digest=hashlib.sha256("\0".join([cfg.embed,*texts]).encode()).hexdigest()
+        return cfg.cache/f"dense-{digest}.npy"
+    texts=[]
+    base=[]
+    for group in ("categories","use_cases","roles","industries","faq"):
+        for key,row in kb.rows[group].items():
+            words=[row.get("title",key),*row.get("phrases",[])[:3],*row.get("questions",[])[:3],*row.get("synonyms",[])[:3]]
+            texts.append(". ".join(map(str,words)))
+            if not key.startswith("auto_"):
+                base.append(texts[-1])
+    dest=cache_path(texts)
+    src=cache_path(base)
+    if dest.exists() or not src.is_file():
+        return
+    try:
+        vectors=np.load(src,mmap_mode="r",allow_pickle=False)
+    except (ValueError,OSError):
+        return
+    if vectors.ndim!=2 or len(vectors)!=len(base):
+        return
+    by_text=dict(zip(base,vectors))
+    missing=list(dict.fromkeys(t for t in texts if t not in by_text))
+    if missing:
+        imported=Dense(cfg,missing)
+        by_text.update(zip(missing,imported.matrix))
+    with NamedTemporaryFile(dir=cfg.cache,delete=False) as stream:
+        try:
+            np.save(stream,np.stack([by_text[t] for t in texts]),allow_pickle=False)
+            stream.flush()
+            os.replace(stream.name,dest)
+        finally:
+            Path(stream.name).unlink(missing_ok=True)

@@ -99,13 +99,13 @@ class Parser:
             for ident,row in self.kb[group].items():
                 for alias in (ident,row.get("name",""),row.get("title","")):
                     index.add(alias,ident)
-                    if group=="families":
+                    if group=="families" and row.get("vendor"):
                         self.by_vendor[row["vendor"]].add(alias,ident)
             for ident,row in self.kb[group].items():
                 for alias in [ident,row.get("name",""),row.get("name_ru",""),row.get("title",""),row.get("title_short",""),
                               *row.get("aliases",[]),*row.get("synonyms",[]),*row.get("sku_name_examples",[])]:
                     index.add(alias,ident)
-                    if group=="families":
+                    if group=="families" and row.get("vendor"):
                         self.by_vendor[row["vendor"]].add(alias,ident)
                 if group=="families":
                     editions = self.editions[ident] = AliasIndex()
@@ -185,10 +185,10 @@ class Parser:
         if vendor:
             fields["vendor_id"] = vendor
         index = self.by_vendor.get(vid) if vid else self.index["families"]
-        if family in self.editions and (not vid or self.kb["families"][family]["vendor"]==vid):
+        if family in self.editions and (not vid or self.kb["families"][family].get("vendor")==vid):
             found=Evidence(family,family,"column",1)
         elif family:
-            found = index.match(family,True) if index else None
+            found = (index.match(family,True) or entity(index)) if index else None
         else:
             found = entity(index) if index else None
             if not found and index and vid:
@@ -197,7 +197,8 @@ class Parser:
             fid = found.value
             fields["family_id"] = found
             f = self.kb["families"][fid]
-            fields["vendor_id"] = Evidence(f["vendor"],found.fragment,"kb")
+            if f.get("vendor"):
+                fields["vendor_id"] = Evidence(f["vendor"],found.fragment,"kb")
             fields["category_id"] = Evidence(f.get("category"),found.fragment,"kb")
             ed = entity(self.editions[fid])
             if ed:

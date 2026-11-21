@@ -5,7 +5,7 @@ from .nameparse import normalize
 from kuznitsa.schema import Offer, License
 
 NAMES = {
-    "currency":"валюта|currency code|currencyId", "name":"номенклатура|наименование|название|наименование товара|название товара|товар|product name|product|title|model name",
+    "currency_rate":"курс валюты|exchange rate","currency":"валюта|currency code|currencyId", "name":"номенклатура|наименование|название|наименование товара|название товара|товар|product name|product|title|model name",
     "sku":"артикул|арт|код товара|код номенклатуры|код производителя|part number|vendorCode|product code|pn",
     "price":"цена|стоимость|цена руб|цена с ндс|розничная цена|розница|цена продажи|price rub|retail price|price usd|unit price usd|цена usd|unit price",
     "vendor":"вендор|производитель|бренд|brand|manufacturer", "category_path":"категория|category|раздел|путь категории|группа товаров|категория товара|категории",
@@ -24,6 +24,9 @@ NAMES = {
 }
 NAMES.update(kind="тип товара|вид товара", image="изображение|картинка|picture",
              price_on_request="цена по запросу|по запросу", sku=NAMES["sku"]+"|article| артикул поставщика|product sku")
+from .source_fields import HEADERS
+for key, names in HEADERS.items():
+    NAMES[key]="|".join(filter(None,[NAMES.get(key),names]))
 ALIASES = {normalize(k):k for k in {*Offer.model_fields,*License.model_fields,*NAMES}}
 for field, aliases in NAMES.items():
     ALIASES.update({normalize(alias):field for alias in aliases.split("|")})
@@ -31,6 +34,8 @@ for field, aliases in NAMES.items():
 
 @lru_cache(4096)
 def field_for(header):
+    if header in NAMES or header in Offer.model_fields or header in License.model_fields:
+        return header
     key=normalize(header)
     direct=ALIASES.get(key)
     if direct:

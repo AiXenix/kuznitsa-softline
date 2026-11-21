@@ -13,6 +13,7 @@ def register(sub):
     day.add_argument("--mapping",type=Path)
     day.add_argument("--ai",choices=("off","embed","jev"),default="embed")
     day.add_argument("--ai-budget-usd",type=float,default=.5)
+    day.add_argument("--replay-limit",type=int)
     day.add_argument("--n",type=int,default=300)
     check=sub.add_parser("selfcheck")
     check.add_argument("--n",type=int,default=300)
@@ -33,7 +34,7 @@ def run(args,cfg):
     if args.cmd=="day":
         from .day import day
         try:
-            result=day(args.folder,cfg,args.out,args.ai,args.ai_budget_usd,args.n,args.mapping)
+            result=day(args.folder,cfg,args.out,args.ai,args.ai_budget_usd,args.n,args.mapping,args.replay_limit)
         except (OSError,ValueError) as exc:
             raise SystemExit(str(exc)) from exc
         print(Path(result["out"])/"day_report.md")

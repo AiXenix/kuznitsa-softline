@@ -8,8 +8,7 @@ import numpy as np
 
 from kuznitsa.engine import Engine
 from kuznitsa.mock.naming import quantity_word
-from kuznitsa.kb.loader import load
-from kuznitsa.schema import Offer, Request
+from kuznitsa.schema import Request
 from .nameparse import normalize
 from kuznitsa.understand.repair import LAYOUT
 
@@ -89,19 +88,18 @@ def selfcheck(cfg,n,mode,seed,engine=None):
     if n<=0:
         raise ValueError("Размер выборки должен быть положительным")
     rng=random.Random(seed)
-    kb=load(cfg.kb).rows
     from .ai_backend import search_client
     owns_engine=engine is None
     if owns_engine:
         engine=Engine.open(cfg,llm=search_client(mode))
+    kb=engine.kb.rows
     if engine.decisions:
         engine.decisions.run_budget=cfg.daily_budget
-    with (cfg.data/"catalog.jsonl").open() as stream:
-        selection=list(sample(map(Offer.model_validate_json,stream),n,rng))
+    selection=list(sample(engine.catalog.offers_by_id.values(),n,rng))
     groups=defaultdict(lambda:defaultdict(list))
     worst=defaultdict(list)
     for o in selection:
-        cohort="known" if o.family_id in kb["families"] else "unknown"
+        cohort="known" if o.family_id and not o.family_id.startswith("auto_") and o.family_id in kb["families"] else "unknown"
         for kind,q,ed in probes(o,kb,rng):
             start=perf_counter()
             error=None

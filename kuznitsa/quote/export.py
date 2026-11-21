@@ -20,7 +20,7 @@ class SpecificationRequest(Request):
 
 
 HEADERS = ["№", "Запрос клиента", "Найденный товар", "Артикул", "Вендор", "Условия лицензии",
-           "Количество", "Цена, ₽", "Сумма, ₽", "Реестр российского ПО", "Примечание"]
+           "Количество", "Цена, ₽", "Сумма, ₽", "Реестр российского ПО", "Исходный код","Примечание"]
 DISCLAIMER = "Расчёт предварительный, цены демонстрационные."
 
 
@@ -69,7 +69,7 @@ def license_terms(offer):
     return ", ".join(filter(None,terms)) or offer.get("name")
 
 
-def quote_rows(detail):
+def quote_rows(detail,inventory=None):
     rows, missing = [], []
     for i, (q, card, qty, line) in enumerate(positions(detail), 1):
         card = card or {}
@@ -93,9 +93,11 @@ def quote_rows(detail):
         registry = next((b["label"] for b in card.get("badges",[]) if b["kind"]=="registry"),"Нет сведений")
         if isinstance(offer.get("registry"),bool):
             registry="Да" if offer["registry"] else "Нет"
+        stored=(inventory or {}).get(offer.get("offer_id"))
+        source=offer.get("source_id") or ((getattr(stored,"source_id",None) or stored.attrs.get("source_id")) if stored else None)
         rows.append([i,q,card.get("title"),offer.get("sku"),(card.get("vendor") or {}).get("name"),
                      license_terms(offer),qty,calc.get("unit_price",offer.get("price")),line.get("total",calc.get("total")),
-                     registry,". ".join(notes)])
+                     registry,source,". ".join(notes)])
     return rows,missing
 
 
@@ -114,7 +116,7 @@ def make_export(engine, ident, fmt):
             profile="guest"
         detail = engine.search(SpecificationRequest(q=detail["q_raw"],profile_id=profile,
                     category=detail.get("category_ctx"),mode=detail["mode"],source="eval",context="off"))
-    rows, missing = quote_rows(detail)
+    rows, missing = quote_rows(detail,engine.catalog.offers_by_id)
     meta = [["Клиент",detail["profile"]["title"]],["Дата расчёта",day.isoformat()],
             ["Действительно по",(day+timedelta(days=14)).isoformat()]]
     if archive_note:
@@ -135,7 +137,7 @@ def make_export(engine, ident, fmt):
         ws=wb.active
         ws.title="Коммерческое предложение"
         unresolved=wb.create_sheet("Не найдено")
-        for sheet,table,header,widths in [(ws,body,4,[6,42,39,23,22,46,14,17,18,24,44]),
+        for sheet,table,header,widths in [(ws,body,4,[6,42,39,23,22,46,14,17,18,24,23,44]),
                                          (unresolved,[["№","Запрос клиента","Что предложено взамен"]]+missing,1,[6,55,48])]:
             for row in table:
                 sheet.append(list(map(clean,row)))
