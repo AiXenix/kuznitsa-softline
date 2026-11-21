@@ -1,0 +1,26 @@
+--- a/kuznitsa/understand/refine.py
++++ b/kuznitsa/understand/refine.py
+@@ -165,6 +165,23 @@
+         f["category"]=list(dict.fromkeys(f["category"]+[row["category"] for row in families.values()
+                        if row.get("category") and "linux" in row.get("platforms",[]) and row.get("category","").endswith("_os_ru")]))
+ 
++    # Если запрос целиком состоит из класса и марки, оставляем оба фильтра.
++    if len(entities)!=2 or not f.get("category"):
++        return
++    cat=next((e for e in entities if e["type"]=="category"),None)
++    if not cat:
++        return
++    brand=next(e for e in entities if e is not cat)
++    spans=sorted([cat["span"],brand["span"]])
++    if spans[0][0]!=0 or spans[0][1]!=spans[1][0] or spans[1][1]!=len(words):
++        return
++    vendors=[v for kind,v,_ in lex.entries.get(tuple(map(lemma,words[slice(*brand["span"])])),()) if kind=="vendor"]
++    if vendors:
++        f["vendor"]=list(dict.fromkeys(vendors))
++        f.pop("family",None)
++        f.pop("edition",None)
++        brand.update(type="vendor",id=vendors[0])
++
+ 
+ def nested_family(lex,words,entities):
+     if any(e["type"] in ("family","vendor","category") for e in entities):

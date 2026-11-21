@@ -138,7 +138,7 @@ def create_app(engine=None,cfg=None):
     @app.get("/robots.txt")
     def robots():
         return Response("User-agent: *\nDisallow: /\n",media_type="text/plain")
-    for name in ("kuznitsa.api.admin", "kuznitsa.pages"):
+    for name in ("kuznitsa.api.admin", "kuznitsa.api.files", "kuznitsa.pages"):
         module = optional_module(name)
         if module is not None:
             router = module.router

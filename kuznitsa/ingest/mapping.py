@@ -5,9 +5,9 @@ from .nameparse import normalize
 from kuznitsa.schema import Offer, License
 
 NAMES = {
-    "name":"наименование|название|наименование товара|название товара|товар|product name|product|title|model name",
+    "currency":"валюта|currency code|currencyId", "name":"номенклатура|наименование|название|наименование товара|название товара|товар|product name|product|title|model name",
     "sku":"артикул|арт|код товара|код номенклатуры|код производителя|part number|vendorCode|product code|pn",
-    "price":"цена|стоимость|цена руб|цена с ндс|розничная цена|розница|цена продажи|price rub|retail price",
+    "price":"цена|стоимость|цена руб|цена с ндс|розничная цена|розница|цена продажи|price rub|retail price|price usd|unit price usd|цена usd|unit price",
     "vendor":"вендор|производитель|бренд|brand|manufacturer", "category_path":"категория|category|раздел|путь категории|группа товаров|категория товара|категории",
     "description":"описание|описание товара|аннотация|описание продукта", "attrs":"атрибуты|характеристики|attributes|params|param",
     "available":"доступен|наличие|в наличии|availability|in stock", "stock":"остатки|остаток|количество на складе|stock quantity",

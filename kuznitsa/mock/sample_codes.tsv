@@ -1,0 +1,11 @@
+family_id	edition	action	audience	delivery	metric	model	term_months	qty_min	qty_max	pack	sku
+onec_accounting	base	new	business	box	company	perpetual				10	4601546092816
+windows_11	pro	new	business	esd	device	perpetual				1	FQC-10572
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	10	14		KL4867RAKFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	15	19		KL4867RAMFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	20	24		KL4867RANFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	25	49		KL4867RAPFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	50	99		KL4867RAQFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	100	149		KL4867RARFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	150	249		KL4867RASFR
+kaspersky_kesb	advanced	renewal	business	esd	device	subscription	12	250	499		KL4867RATFR
