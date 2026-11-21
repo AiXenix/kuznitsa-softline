@@ -4,6 +4,8 @@ import hashlib
 import json
 from collections import Counter
 from datetime import datetime
+from itertools import islice,chain
+from time import time
 from pathlib import Path
 from math import isfinite
 from urllib.parse import urlsplit,parse_qs
@@ -17,6 +19,7 @@ from kuznitsa.text import normalize
 
 ALIASES={
     "q":["query","поисковая фраза","поисковый запрос","запрос","ym:s:searchphrase","q_raw","text"],
+    "visits":["визиты","ym:s:visits"],"bounce":["отказы","отказы, %","доля отказов","ym:s:bouncerate"],
     "count":["поиски","частота","searches"],"n_cards":["результаты","число результатов","results_count","results"],
     "zero_rate":["доля пустых выдач","zero_rate"],"ts":["дата","дата и время","timestamp","time","datetime"],
     "session_id":["визит","visitid","visit_id"],"client_id":["клиент","clientid"],"segment":["сегмент"],
@@ -25,15 +28,30 @@ ALIASES={
     "revenue":["доход (₽)","выручка","value"]}
 
 
-def records(path):
+def table_rows(rows,aliases):
+    sample=list(islice(rows,12))
+    if not sample:
+        return
+    def score(row):
+        return sum(str(v).strip().lower() in aliases or str(v).startswith("ym:") for v in row)
+    index=max(range(len(sample)),key=lambda i:score(sample[i]))
+    keys=list(sample[index])
+    if index:
+        # В Excel объединённая подпись часто занимает только верхнюю строку.
+        for i,k in enumerate(keys):
+            if not k and i<len(sample[index-1]):
+                keys[i]=sample[index-1][i]
+    for values in chain(sample[index+1:],rows):
+        yield {k:v for k,v in zip(keys,values) if k}
+
+
+def records(path,aliases):
     ext=path.suffix.lower()
     if ext==".xlsx":
         book=load_workbook(path,read_only=True,data_only=True)
         try:
             rows=iter(book.active.values)
-            keys=next(rows,[])
-            for values in rows:
-                yield dict(zip(keys,values))
+            yield from table_rows(rows,aliases)
         finally:
             book.close()
     elif ext==".jsonl":
@@ -44,14 +62,22 @@ def records(path):
                 except ValueError:
                     yield {}
     else:
-        with path.open(encoding="utf-8-sig",newline="") as f:
+        with path.open("rb") as raw:
+            probe=raw.read(65536)
+        try:
+            import codecs
+            codecs.getincrementaldecoder("utf-8-sig")().decode(probe,final=False)
+            encoding="utf-8-sig"
+        except UnicodeDecodeError:
+            encoding="cp1251"
+        with path.open(encoding=encoding,newline="") as f:
             sample=f.read(8192)
             f.seek(0)
             try:
-                delim=csv.Sniffer().sniff(sample,delimiters=";,\t").delimiter
+                delim="\t" if ext==".tsv" else csv.Sniffer().sniff(sample,delimiters=";,\t").delimiter
             except csv.Error:
                 delim="\t" if ext==".tsv" else ";"
-            yield from csv.DictReader(f,delimiter=delim)
+            yield from table_rows(iter(csv.reader(f,delimiter=delim)),aliases)
 
 
 def timestamp(v,default):
@@ -128,10 +154,14 @@ def ingest(engine,filename,mapping=None):
     active={}
     cache={}
     native=set()
+    imported_ids=set()
+    observations={}
+    has=set()
     reasons=Counter()
 
     def save(ident,q,ts,sid,client,segment,count=None,ids=None,category=None,previous=None):
         existing=db.execute("SELECT session_id FROM searches WHERE search_id=?",(ident,)).fetchone()
+        imported_ids.add(ident)
         if existing:
             if existing[0]!=sid:
                 native.add(ident)
@@ -170,7 +200,7 @@ def ingest(engine,filename,mapping=None):
     with j.transaction() as db:
         for f in files:
             default=f.stat().st_mtime
-            for i,r in enumerate(records(f)):
+            for i,r in enumerate(records(f,aliases)):
                 if not isinstance(r,dict):
                     stats["skipped"]+=1
                     continue
@@ -215,6 +245,7 @@ def ingest(engine,filename,mapping=None):
                         impressions=ec.get("impressions",[])
                         ids=[engine.catalog.offers_by_id[x["id"]].card_id if x["id"] in engine.catalog.offers_by_id else x["id"] for x in impressions]
                         save(ident,q,ts,sid,client,meta.get("segment","unknown"),p.get("search_results_count"),ids,p.get("search_category_ctx"),(p.get("inherited") or {}).get("from_search_id"))
+                        observations[ident]=(True,True,True)
                         if sid in last:
                             prev,t,old=last[sid]
                             if 0<=ts-t<=180 and normalize(old)!=normalize(q) and not active.get(prev) and not p.get("inherited"):
@@ -253,30 +284,68 @@ def ingest(engine,filename,mapping=None):
                         unknown.add(str(k))
                 q=str(row.get("q") or "").strip()
                 try:
-                    n=amount(row.get("count",1))
+                    visits_n=amount(row["visits"]) if row.get("visits") not in (None,"") else None
+                    n=amount(row.get("count",visits_n if visits_n is not None else 1))
+                    bounce_text=str(row.get("bounce") or 0).strip()
+                    bounce=number(bounce_text.rstrip("%"))
+                    if "%" in bounce_text or bounce>1 or "отказы, %" in (str(k).lower() for k in r):
+                        bounce/=100
+                    if not 0<=bounce<=1 or (visits_n is not None and not 1<=visits_n<=n):
+                        raise ValueError()
                     ts=timestamp(row.get("ts"),default)
                     raw_rate=str(row.get("zero_rate") or 0).strip()
                     rate=number(raw_rate.rstrip("%"))/(100 if raw_rate.endswith("%") else 1)
                     amounts={k:amount(row.get(k)) for k in ("click","cart","order","lead")}
                     revenue=number(row.get("revenue") or 0)
                     count=amount(row["n_cards"]) if row.get("n_cards") not in ("",None) else None
-                    if not q or len(q)>1500 or n<1 or not 0<=rate<=1:
+                    if not q or len(q)>1500 or n<1 or not 0<=rate<=1 or any(v>n for v in amounts.values()):
                         raise ValueError()
                 except (TypeError,ValueError):
                     stats["skipped"]+=1
                     reasons["Пустая фраза или неверное числовое поле"]+=1
                     continue
+                has.update(k for k,v in row.items() if v not in (None,""))
                 prefix="import_"+hashlib.sha256((str(i)+dump({k:str(v) for k,v in row.items()})).encode()).hexdigest()[:24]
                 for k in range(n):
                     ident=prefix+"_"+str(k)
-                    sid=str(row.get("session_id") or ident)
+                    observations[ident]=tuple(field in row and row[field] not in ("",None) for field in ("order","revenue","click"))
+                    sid=str(row.get("session_id") or (prefix+"_v"+str(k%visits_n) if visits_n else ident))
                     client=str(row.get("client_id") or "guest")
                     size=(0 if k<round(n*rate) else count or 1) if "zero_rate" in row else count
                     if save(ident,q,ts,sid,client,row.get("segment") or "unknown",size):
+                        if "bounce" in row and k>=n-round((visits_n or n)*bounce):
+                            event(ident+"_bounce","exit",ident,ts,sid,client,payload={"aggregate":True})
                         for kind,num in amounts.items():
                             if k<num:
                                 event(ident+kind,kind,ident,ts,sid,client,value=revenue/num if kind=="order" else None)
         for sid,(ident,ts,q) in last.items():
             if not active.get(ident):
                 event(ident+"_exit","exit",ident,ts,sid,visits.get(sid,{}).get("client_id","guest"))
-    return dict(**stats,skip_reasons=dict(reasons),recognized=sorted(known),ignored=sorted(unknown),visits=len(visits))
+        logs=any(str(k).startswith("ym:pv:") for k in known)
+        missing=[]
+        if not logs:
+            for field,label in [("order","Нет данных о заказах: конверсия недоступна."),("revenue","Нет сумм заказов: выручка и потери не оценены."),
+                                ("click","Нет кликов: CTR недоступен."),("ts","Нет дат: используется дата файла.")]:
+                if field not in has:
+                    missing.append(label)
+            if not has.intersection({"n_cards","zero_rate"}):
+                missing.append("Нет размеров исходной выдачи. Обычный поиск по словам воспроизведён по каталогу.")
+            if has.intersection({"bounce","visits"}):
+                missing.append("Агрегаты Метрики распределены по визитам. Отказ в визите служит приближением ухода.")
+        availability=dict(zero_rate="наблюдение" if logs or has.intersection({"n_cards","zero_rate"}) else "модель поиска по словам",
+            orders="наблюдение" if logs or "order" in has else "нет цели заказа",revenue="наблюдение" if logs or "revenue" in has else "нет суммы заказа",
+            ctr="наблюдение" if logs or "click" in has else "нет кликов",click_position="по событиям" if logs else "нет позиций клика",
+            exit_after_fail="по событиям" if logs else "приближение по отказам" if "bounce" in has else "нет отказов",
+            top5_hit="нет разметки целевого товара",reformulation="по визитам и хитам" if logs else "нет последовательности событий")
+        report=dict(availability=availability,file=path.name,**stats,skip_reasons=dict(reasons),recognized=sorted(known),ignored=sorted(unknown),
+                    visits=len(visits),fields=sorted(has),logs=logs,missing=missing)
+        if imported_ids:
+            db.executemany("INSERT OR REPLACE INTO analytics_observation VALUES (?,?,?,?)",((i,*flags) for i,flags in observations.items()))
+            db.executemany("INSERT OR IGNORE INTO analytics_import_ids VALUES (?)",((i,) for i in imported_ids))
+            db.execute("INSERT OR REPLACE INTO kv VALUES ('settings:history_source','import',?)",(time(),))
+            db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:import-report:"+path.name,dump(report),time()))
+            db.execute("DELETE FROM analytics_reports")
+            db.execute("UPDATE analytics_revision SET revision=revision+1")
+            if stats["searches"] or stats["events"]:
+                db.execute("INSERT OR REPLACE INTO kv VALUES ('settings:active_replay','',?)",(time(),))
+    return report

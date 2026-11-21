@@ -10,6 +10,9 @@ import yaml
 def audit(j):
     stories=yaml.safe_load((ROOT/"mock/spec/querylog.yaml").read_text())["seeded_anomalies"]
     proposals=listing(j)
+    from pathlib import Path
+    truth=Path(j.path).parent/"mock_truth.jsonl"
+    story_ids={r["search_id"]:r.get("story") for r in map(json.loads,truth.open())} if truth.exists() else {}
     result={}
     for story in stories:
         found=[]
@@ -32,7 +35,9 @@ def audit(j):
             elif kind=="fix_card":
                 ok=bool(overlap and payload["card_ids"]) and payload["field"] in story["missing_attribute"].replace("qty_brackets","qty_range")
             elif kind=="merch_rule":
-                ok=bool(overlap) and it["action"]["kind"] in ("boost","pin")
+                matched=overlap or any(story_ids.get(sid)==story["id"] for sid in evidence.get("search_ids",{}).values())
+                ok=matched and it["action"]["kind"] in ("boost","pin","redirect") and any(
+                    c.get("trial_search_id") for c in evidence.get("checks",{}).values())
             elif kind=="rising_demand":
                 ok=bool(overlap) and evidence["previous_searches"]>0 and evidence["growth_pct"]>0
             else:

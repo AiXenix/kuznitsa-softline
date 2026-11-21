@@ -8,7 +8,7 @@ def register(subparsers):
             p.add_argument("--today")
             p.add_argument("--seed",type=int,default=20261126)
         if name=="import-history":
-            p.add_argument("file")
+            p.add_argument("file",nargs="+")
             p.add_argument("--mapping")
         if name=="replay":
             p.add_argument("--limit",type=int,default=3000)
@@ -35,13 +35,16 @@ def run(args,cfg):
             out=export(e,cfg.data/"mock_metrika")
         elif name=="import-history":
             from kuznitsa.ingest.history import ingest
-            out=ingest(e,args.file,args.mapping)
+            out=[ingest(e,f,args.mapping) for f in args.file]
         elif name=="insights":
             from .insights import discover
             out=discover(e)
         else:
             from .replay import run
             out=run(e,args.mode,args.limit)
+        if name in ("gen-history","import-history","insights","replay"):
+            from .dashboard import warm
+            warm(e)
     elif name=="kpi":
         from .kpi import report
         out=report(journal)

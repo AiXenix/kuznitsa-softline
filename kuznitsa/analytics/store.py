@@ -8,7 +8,7 @@ import logging
 import os
 import zlib
 from pydantic_core import to_json
-from .failures import classify
+from .failures import classify,CANONICAL
 
 
 def dump(value):
@@ -56,6 +56,31 @@ class Journal:
             CREATE INDEX IF NOT EXISTS events_search ON events(search_id,type);
             CREATE INDEX IF NOT EXISTS searches_session ON searches(session_id,ts);
             """)
+            db.executescript("""
+                CREATE TABLE IF NOT EXISTS analytics_reports(key TEXT PRIMARY KEY,body TEXT);
+                CREATE TABLE IF NOT EXISTS analytics_revision(revision INTEGER);
+                INSERT INTO analytics_revision SELECT 0 WHERE NOT EXISTS(SELECT 1 FROM analytics_revision);
+                CREATE TABLE IF NOT EXISTS analytics_import_ids(id TEXT PRIMARY KEY);
+                CREATE TABLE IF NOT EXISTS analytics_observation(id TEXT PRIMARY KEY,orders INTEGER,revenue INTEGER,clicks INTEGER);
+                CREATE VIEW IF NOT EXISTS active_history AS SELECT * FROM searches WHERE source='history'
+                AND CASE (SELECT value FROM kv WHERE key='settings:history_source')
+                    WHEN 'mock' THEN search_id GLOB 's_mock_*'
+                    WHEN 'import' THEN search_id IN (SELECT id FROM analytics_import_ids)
+                    ELSE 1 END;
+                CREATE VIEW IF NOT EXISTS active_replay AS SELECT * FROM replays WHERE id=coalesce(
+                    (SELECT value FROM kv WHERE key='settings:active_replay'),(SELECT id FROM replays ORDER BY created DESC LIMIT 1));
+                CREATE INDEX IF NOT EXISTS searches_engine_mode ON searches(engine,mode,search_id,llm_calls);
+                CREATE INDEX IF NOT EXISTS search_recent ON searches(ts DESC) WHERE source IN ('ui','api','gallery','compare');
+            """)
+            for table,condition in (("searches","NEW.source='history'"),("events","EXISTS(SELECT 1 FROM searches WHERE search_id=NEW.search_id AND source='history')")):
+                for op in ("INSERT","DELETE","UPDATE"):
+                    expr=condition.replace("NEW.","OLD.") if op=="DELETE" else condition
+                    db.execute(f"""CREATE TRIGGER IF NOT EXISTS invalidate_{table}_{op} AFTER {op} ON {table} WHEN {expr}
+                        BEGIN DELETE FROM analytics_reports; UPDATE analytics_revision SET revision=revision+1; END""")
+            for old in db.execute("SELECT name FROM sqlite_master WHERE type='trigger' AND (name GLOB 'invalidate_replays_*' OR name GLOB 'invalidate_replay_results_*')").fetchall():
+                db.execute(f'DROP TRIGGER "{old[0]}"')
+            db.execute("""CREATE TRIGGER IF NOT EXISTS replay_progress AFTER INSERT ON replay_results
+                       BEGIN DELETE FROM analytics_reports WHERE key='summary:'||NEW.run_id; END""")
             columns = {r[1] for r in db.execute("PRAGMA table_info(searches)")}
             for name, kind in [("response_z","BLOB"),("prev_search_id","TEXT")]:
                 if name not in columns:
@@ -129,7 +154,12 @@ class Journal:
         row = rows[0]
         blob = row.pop("response_z")
         if blob:
-            return json.loads(zlib.decompress(blob))
+            response=json.loads(zlib.decompress(blob))
+            understood=response.get("understood",{})
+            if "zero_reason" not in understood:
+                reason=classify(response,row["n_cards"],understood.get("reason")) if row["zero"] else None
+                understood["zero_reason"]=CANONICAL.get(reason,reason)
+            return response | {"ts":row["ts"],"n_cards":row["n_cards"]}
         return {**row, "trace":json.loads(row["trace_json"] or "[]"), "archived_summary":True}
 
     def search(self,ts,req,r,count,reason,relaxed):

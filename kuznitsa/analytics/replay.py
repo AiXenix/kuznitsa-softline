@@ -24,7 +24,7 @@ def products(response):
 
 def compare(engine, q, **kwargs):
     r=engine.search(Request(q=q,mode="fast",source="eval",**kwargs))
-    return dict(search_id=r["search_id"],cards=[dict(card_id=c["card_id"],title=c["title"],
+    return dict(n_cards=engine.journal.detail(r["search_id"])["n_cards"],search_id=r["search_id"],cards=[dict(card_id=c["card_id"],title=c["title"],
                 tier=c["score"]["tier"],position=c["position"]) for c in products(r)],banners=r["banners"])
 
 
@@ -33,32 +33,37 @@ def prepare(engine,mode,limit):
         raise ValueError("Размер прогона от 1 до 3000 фраз")
     j=engine.journal
     data=Path(j.path).parent
+    dataset=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'")
     labels={}
     path=data/"mock_truth.jsonl"
-    if path.exists():
+    if path.exists() and (not dataset or dataset[0]["value"]=="mock"):
         with path.open() as stream:
             for line in stream:
                 t=json.loads(line)
                 labels[t["search_id"]]=t
+    from .kpi import facts,loss_by_search
+    losses,_=loss_by_search(facts(j))
     groups=defaultdict(list)
     digest=hashlib.sha256()
-    for r in j.rows("SELECT search_id,q_raw,top_cards_json,n_cards FROM searches WHERE source='history' ORDER BY search_id"):
+    for r in j.rows("SELECT search_id,q_raw,top_cards_json,n_cards FROM active_history ORDER BY search_id"):
+        r["session_loss_low"]=round(losses.get(r["search_id"],(0,0))[1],4)
         groups[r["q_raw"]].append(r)
         digest.update(dump([r,labels.get(r["search_id"])]).encode())
     catalog=data/"catalog.jsonl"
     revision=engine.controls.version()
-    digest.update(dump(["paired-v2",mode,limit,revision,catalog.stat().st_mtime_ns if catalog.exists() else 0]).encode())
+    digest.update(dump(["paired-b2",mode,limit,revision,catalog.stat().st_mtime_ns if catalog.exists() else 0]).encode())
     ident=digest.hexdigest()[:24]
     selected=sorted(groups,key=lambda q:(-len(groups[q]),q))[:limit]
     with j.transaction() as db:
+        db.execute("""INSERT OR IGNORE INTO kv SELECT 'settings:active_replay',coalesce((SELECT id FROM replays ORDER BY created DESC LIMIT 1),''),?""",(time(),))
         db.execute("INSERT OR IGNORE INTO replays VALUES (?,?,?,?,?)",(ident,mode,digest.hexdigest(),len(selected),time()))
-    return ident,selected,groups,labels,revision
+    return ident,selected,groups,labels,revision,dataset
 
 
 def execute(engine,mode,plan):
     engine=experiment_engine(engine)
     j=engine.journal
-    ident,selected,groups,labels,revision=plan
+    ident,selected,groups,labels,revision,dataset=plan
     done={r["q"] for r in j.rows("SELECT q FROM replay_results WHERE run_id=?",(ident,))}
     for q in selected:
         if q in done:
@@ -75,6 +80,7 @@ def execute(engine,mode,plan):
             rows=groups[q]
             oldzero=sum(r["n_cards"]==0 for r in rows)
             hit3=before5=after5=labeled=0
+            cases={}
             for r in rows:
                 target=labels.get(r["search_id"],{})
                 family=target.get("target_family")
@@ -84,13 +90,37 @@ def execute(engine,mode,plan):
                 wanted=engine.catalog.by["family"].get(family,set()) if family else engine.catalog.by["category"].get(category,set())
                 labeled+=1
                 before=json.loads(r["top_cards_json"] or "[]")
-                before5+=bool(wanted.intersection(before[:5]))
-                after5+=bool(wanted.intersection(cards[:5]))
-                hit3+=bool(not wanted.intersection(before[:3]) and wanted.intersection(cards[:3]))
-            result=dict(q=q,frequency=len(rows),before_zero=oldzero,after_zero=0 if cards else len(rows),
+                def correct(ids,offer_ids):
+                    if not target.get("retail"):
+                        return bool(wanted.intersection(ids))
+                    for oid in offer_ids:
+                        o=engine.catalog.offers_by_id.get(oid)
+                        if o and o.available and not o.price_on_request and o.price and o.card_id in wanted and o.lic.action=="new" and o.lic.audience=="business" and o.lic.term_months in (12,None):
+                            return True
+                    return False
+                old=correct(before[:5],target.get("legacy_offers",[]))
+                new=correct(cards[:5],[c.get("offer",{}).get("offer_id") for c in products(response)[:5]])
+                cases[r["search_id"]]=[old,new]
+                before5+=old
+                after5+=new
+                hit3+=int(not correct(before[:3],target.get("legacy_offers",[])[:3]) and correct(cards[:3],[c.get("offer",{}).get("offer_id") for c in products(response)[:3]]))
+            result=dict(q=q,cases=cases,recovered_rub=sum(r["session_loss_low"] for r in rows if r["n_cards"]==0 and cards),analogs=any(b["type"]=="analogs" and b.get("items") for b in response["blocks"]),frequency=len(rows),before_zero=oldzero,after_zero=0 if cards else len(rows),
                         recovered=oldzero if cards else 0,improved_top3=hit3,before_top5=before5,after_top5=after5,
                         labeled=labeled,search_id=response["search_id"],first=cards[:3])
             db.execute("INSERT INTO replay_results VALUES (?,?,?)",(ident,q,dump(result)))
+
+
+    with j.transaction() as db:
+        if dataset!=j.rows("SELECT value,updated FROM kv WHERE key='settings:history_source'") or engine.controls.version()!=revision:
+            db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",("settings:replay:"+ident,
+                       "Во время прогона изменилась история или правила. Запустите сравнение для нового снимка.",time()))
+            return
+        db.execute("DELETE FROM kv WHERE key=?",("settings:replay:"+ident,))
+        active=db.execute("SELECT value FROM kv WHERE key='settings:active_replay'").fetchone()
+        if not active or active[0]!=ident:
+            db.execute("INSERT OR REPLACE INTO kv VALUES ('settings:active_replay',?,?)",(ident,time()))
+            db.execute("DELETE FROM analytics_reports")
+            db.execute("UPDATE analytics_revision SET revision=revision+1")
 
 
 def run(engine,mode="fast",limit=3000):
@@ -100,19 +130,26 @@ def run(engine,mode="fast",limit=3000):
 
 
 def summary(j,ident):
+    from .cache import cached
+    return cached(j,"summary:" + ident,lambda:_summary(j,ident))
+
+
+def _summary(j,ident):
     runs=j.rows("SELECT * FROM replays WHERE id=?",(ident,))
     if not runs:
         raise KeyError(ident)
     rows=[json.loads(x["result"]) for x in j.rows("SELECT result FROM replay_results WHERE run_id=? ORDER BY q",(ident,))]
     totals={k:sum(r[k] for r in rows) for k in ("frequency","before_zero","after_zero","improved_top3","recovered","before_top5","after_top5","labeled")}
-    from .kpi import facts, loss_by_search
-    history=[r for r in facts(j) if r["source"]=="history"]
-    loss,_=loss_by_search(history)
-    recovered_queries={r["q"] for r in rows if r["recovered"]}
-    recovered_rub=sum(loss.get(r["search_id"],(0,0))[1] for r in history
-                      if r["zero"] and r["q"] in recovered_queries)
+    if all("recovered_rub" in r for r in rows):
+        recovered_rub=sum(r["recovered_rub"] for r in rows)
+    else:
+        from .kpi import facts,loss_by_search
+        history=facts(j)
+        loss,_=loss_by_search(history)
+        phrases={r["q"] for r in rows if r["recovered"]}
+        recovered_rub=sum(loss.get(r["search_id"],(0,0))[1] for r in history if r["zero"] and r["q"] in phrases)
     note=j.rows("SELECT value FROM kv WHERE key=?",("settings:replay:"+ident,))
-    return dict(id=ident,note=note[0]["value"] if note else None,status="completed" if len(rows)==runs[0]["limit_n"] else "partial",processed=len(rows),total=runs[0]["limit_n"],mode=runs[0]["mode"],**totals,
+    return dict(id=ident,note=note[0]["value"] if note else None,status="completed" if len(rows)==runs[0]["limit_n"] and not note else "partial",processed=len(rows),total=runs[0]["limit_n"],mode=runs[0]["mode"],**totals,
                 estimated_rub=round(recovered_rub,2),
                 formula="Осторожная оценка потерь по KPI для сессий, в которых последний неудачный поиск был пуст и при повторе нашлись карточки. Прогноз, фактических заказов после повтора нет.",
-                examples=sorted((r for r in rows if r["recovered"]),key=lambda r:-r["frequency"])[:12])
+                examples=sorted(({k:v for k,v in r.items() if k!="cases"} for r in rows if r["recovered"]),key=lambda r:-r["frequency"])[:12])

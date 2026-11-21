@@ -1,10 +1,9 @@
 from collections import Counter, defaultdict
-from datetime import datetime
 from statistics import median
-from zoneinfo import ZoneInfo
 from .failures import NOISE
 
 RECOVERY = {
+    "unknown_term":(.8,.55),"not_in_catalog":(.55,.3),"qty_out_of_range":(.7,.45),"no_available_offer":(.45,.25),
     "vocabulary_gap":(.8,.55),"typo_unfixed":(.8,.55),"ranking_issue":(.7,.45),"content_gap":(.7,.45),
     "filters_too_strict":(.7,.45),"sku_not_found":(.5,.3),"ambiguous":(.5,.3),"price_on_request_only":(.45,.25),
     "not_in_catalog_known":(.55,.3),"not_in_catalog_unknown":(.25,.1),"vendor_left":(.35,.2)}
@@ -17,7 +16,7 @@ def facts(j):
     return j.read_report("""SELECT s.search_id,s.ts,coalesce(nullif(s.session_id,''),s.search_id) session_id,s.client_id,
         s.segment,s.source,s.engine,s.intent,s.category_ctx category,s.q_raw q,coalesce(s.fail_reason,case
         when min(case when e.type='click' then e.position end)>5 then 'ranking_issue' end) reason,s.zero,
-        s.q_corrected!=s.q_norm corrected,s.blocks_json,s.filters_json,s.top_cards_json,
+        s.q_corrected normalized_query,s.q_corrected!=s.q_norm corrected,s.blocks_json,s.filters_json,s.top_cards_json,
         count(case when e.type='click' then 1 end) clicks,
         min(case when e.type='click' then e.position end) best_position,
         sum(case when e.type='click' then e.position else 0 end) positions,
@@ -31,8 +30,8 @@ def facts(j):
         max(case when e.type='correction_accept' then 1 else 0 end) accepted,
         sum(case when e.type='order' then coalesce(e.value,0) else 0 end) revenue,
         sum(case when e.type='order' then coalesce(e.margin_value,0) else 0 end) margin
-        FROM searches s LEFT JOIN events e USING(search_id)
-        WHERE source IN ('history','ui','replay') GROUP BY s.search_id""")
+        FROM active_history s LEFT JOIN events e USING(search_id)
+        GROUP BY s.search_id""")
 
 
 def failed(r):
@@ -85,63 +84,14 @@ def loss_by_search(rows):
     return result,excluded
 
 
-def metrics(rows):
-    n=len(rows)
-    def total(k):
-        return sum(r[k] or 0 for r in rows)
-    observed=[r for r in rows if r["source"]!="replay"]
-    traffic=len(observed)
-    failed_n=sum(bool(failed(r)) for r in observed)
-    return dict(searches=n,sessions=len({r["session_id"] for r in rows}),zero_rate=total("zero")/(n or 1),
-        behavioral_searches=traffic,failed=failed_n,exit_after_failure=sum(r["exits"] for r in observed if failed(r))/(failed_n or 1),
-        conversion=total("orders")/(traffic or 1),cart_rate=total("carts")/(traffic or 1),ctr=sum(r["clicks"]>0 for r in observed)/(traffic or 1),
-        ctr_top3=sum(0<(r["best_position"] or 0)<=3 for r in observed)/(traffic or 1),mean_click_position=total("positions")/(total("clicks") or 1),
-        mrr=sum(1/r["best_position"] for r in observed if r["best_position"])/(traffic or 1),
-        first_click_s=total("first_click_s")/(sum(r["clicks"]>0 for r in rows) or 1),reformulation_rate=total("reformulations")/(traffic or 1),
-        correction_rate=total("corrected")/(n or 1),accept_rate=total("accepted")/(total("corrected") or 1),
-        suggestion_rate=total("suggested")/(n or 1),revenue_rub=round(total("revenue"),2),margin_rub=round(total("margin"),2))
-
-
 def report(j, **filters):
-    all_rows=facts(j)
-    latest=j.rows("SELECT id FROM replays ORDER BY created DESC LIMIT 1")
-    if latest:
-        current={r["id"] for r in j.rows("SELECT json_extract(result,'$.search_id') id FROM replay_results WHERE run_id=?",(latest[0]["id"],))}
-        all_rows=[r for r in all_rows if r["source"]!="replay" or r["search_id"] in current]
-    loss,excluded=loss_by_search(all_rows)
-    if filters.get("day"):
-        for r in all_rows:
-            r["day"]=str(datetime.fromtimestamp(r["ts"],ZoneInfo("Europe/Moscow")).date())
-    rows=[r for r in all_rows if all(r.get(k)==v for k,v in filters.items() if v)]
-    groups=defaultdict(lambda:defaultdict(list))
-    tz=ZoneInfo("Europe/Moscow")
-    for r in rows:
-        for k in ("engine","segment","category","intent"):
-            groups[k][r[k] or "unknown"].append(r)
-        groups["day"][str(datetime.fromtimestamp(r["ts"],tz).date())].append(r)
-    totals=metrics(rows)
-    existing=assortment=conservative=0
-    for r in rows:
-        base,low=loss.get(r["search_id"],(0,0))
-        if r["reason"] in ("not_in_catalog_known","not_in_catalog_unknown","vendor_left"):
-            assortment+=base
-        else:
-            existing+=base
-        conservative+=low
-    lost=dict(expected_rub=round(existing+assortment),conservative_rub=round(conservative),
-              recoverable_existing_catalog_rub=round(existing),assortment_and_bridge_gap_rub=round(assortment),
-              excluded_noise_sessions=len({r["session_id"] for r in rows if r["reason"] in NOISE}),
-              formula_note=FORMULA,coefficients=RECOVERY)
-    tiles=[dict(key=k,label=label,value=round(totals[k]*scale,2),unit=unit) for k,label,scale,unit in [
-        ("searches","Поиски",1,"шт."),("zero_rate","Без результата",100,"%"),("exit_after_failure","Уходы после неудачи",100,"%"),
-        ("conversion","Из поиска в заказ",100,"%"),("revenue_rub","Выручка из поиска",1,"₽")]]
-    comparison=None
-    if latest:
-        comparison=j.rows("""SELECT sum(json_extract(result,'$.frequency')) searches,
-            sum(json_extract(result,'$.before_zero')) before_zero,sum(json_extract(result,'$.after_zero')) after_zero,
-            sum(json_extract(result,'$.improved_top3')) improved_top3 FROM replay_results WHERE run_id=?""",(latest[0]["id"],))[0]
-        comparison["run_id"]=latest[0]["id"]
-    return dict(totals=totals,lost_orders=lost,tiles=tiles,comparison=comparison,slices={k:[dict(key=v,**metrics(g)) for v,g in sorted(d.items())] for k,d in groups.items()})
+    import json
+    from .cache import cached
+    from .rollup import summarize,DIMENSIONS
+    filters={k:v for k,v in filters.items() if v and k in DIMENSIONS}
+    if filters.get("engine")=="legacy":
+        del filters["engine"]
+    return cached(j,"kpi-b2.1:"+json.dumps(filters,sort_keys=True),lambda:summarize(j,filters))
 
 
 def queries(rows,kind,limit=50):

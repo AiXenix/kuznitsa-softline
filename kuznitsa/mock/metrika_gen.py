@@ -27,11 +27,11 @@ def export(engine,dest):
     j=engine.journal
     rng=random.Random(20261130)
     events=defaultdict(list)
-    for r in j.rows("SELECT e.* FROM events e JOIN searches s USING(search_id) WHERE s.source='history' ORDER BY e.ts,event_id"):
+    for r in j.rows("SELECT e.* FROM events e JOIN active_history s USING(search_id) ORDER BY e.ts,event_id"):
         events[r["search_id"]].append(r)
     visits=defaultdict(list)
     for r in j.rows("""SELECT search_id,q_raw,n_cards,zero,ts,client_id,segment,session_id,category_ctx,prev_search_id,top_cards_json
-                       FROM searches WHERE source='history' ORDER BY ts,search_id"""):
+                       FROM active_history ORDER BY ts,search_id"""):
         visits[r["session_id"] or r["search_id"]].append(r)
     phrases=defaultdict(lambda:dict(n=0,visits=set(),clients=set(),bounce=0,depth=0,duration=0,zero=0,cart=0,lead=0,order=0,sales=0))
     watch=10**18

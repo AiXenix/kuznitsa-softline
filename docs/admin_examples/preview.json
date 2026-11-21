@@ -1,77 +1,140 @@
 {
+  "margin_delta_rub": 2856.89,
   "items": [
     {
-      "q": "антивирус",
+      "q": "аналог teamviewer",
       "before": [
         {
-          "card_id": "pro32_endpoint",
-          "title": "PRO32 Endpoint Security",
-          "tier": 2,
-          "margin_rub": 528.94
+          "card_id": "rudesktop:standard",
+          "title": "RuDesktop Standard",
+          "tier": 1,
+          "margin_rub": 190.08
         },
         {
-          "card_id": "kaspersky_kesb:advanced",
-          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "tier": 2,
-          "margin_rub": 579.12
+          "card_id": "rudesktop:pro",
+          "title": "RuDesktop Professional",
+          "tier": 1,
+          "margin_rub": 509.72
         },
         {
-          "card_id": "drweb_enterprise_security_suite",
-          "title": "Dr.Web Enterprise Security Suite",
-          "tier": 2,
-          "margin_rub": 325.01
+          "card_id": "assistant_remote:pro",
+          "title": "Ассистент Профессиональный",
+          "tier": 1,
+          "margin_rub": 6249.62
         },
         {
-          "card_id": "kaspersky_ksos",
-          "title": "Kaspersky Small Office Security",
-          "tier": 2,
-          "margin_rub": 597.36
+          "card_id": "assistant_remote:standard",
+          "title": "Ассистент Стандартный",
+          "tier": 1,
+          "margin_rub": 3142.97
         },
         {
-          "card_id": "kaspersky_kesb:standard",
-          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
-          "tier": 2,
-          "margin_rub": 342.13
+          "card_id": "assistant_remote:corp",
+          "title": "Ассистент Корпоративный",
+          "tier": 1,
+          "margin_rub": 14810.19
+        },
+        {
+          "card_id": "rudesktop:uem",
+          "title": "RuDesktop UEM",
+          "tier": 1,
+          "margin_rub": 343.55
+        },
+        {
+          "card_id": "kontur_dostup:remote_work",
+          "title": "Контур.Доступ Удалёнка",
+          "tier": 1,
+          "margin_rub": 17956.19
+        },
+        {
+          "card_id": "kontur_dostup:support",
+          "title": "Контур.Доступ Поддержка",
+          "tier": 1,
+          "margin_rub": 2998.88
+        },
+        {
+          "card_id": "rms_remote:pro",
+          "title": "RMS Удалённый доступ Профессиональная",
+          "tier": 1,
+          "margin_rub": 9763.81
+        },
+        {
+          "card_id": "rms_remote:starter",
+          "title": "RMS Удалённый доступ Начальная",
+          "tier": 1,
+          "margin_rub": 3712.1
         }
       ],
       "after": [
         {
-          "card_id": "pro32_endpoint",
-          "title": "PRO32 Endpoint Security",
-          "tier": 2,
-          "margin_rub": 528.94
+          "card_id": "rudesktop:standard",
+          "title": "RuDesktop Standard",
+          "tier": 1,
+          "margin_rub": 190.08
         },
         {
-          "card_id": "kaspersky_kesb:advanced",
-          "title": "Kaspersky Endpoint Security для бизнеса Расширенный",
-          "tier": 2,
-          "margin_rub": 579.12
+          "card_id": "rudesktop:pro",
+          "title": "RuDesktop Professional",
+          "tier": 1,
+          "margin_rub": 509.72
         },
         {
-          "card_id": "drweb_enterprise_security_suite",
-          "title": "Dr.Web Enterprise Security Suite",
-          "tier": 2,
-          "margin_rub": 325.01
+          "card_id": "kontur_dostup:remote_work",
+          "title": "Контур.Доступ Удалёнка",
+          "tier": 1,
+          "margin_rub": 17956.19
         },
         {
-          "card_id": "kaspersky_ksos",
-          "title": "Kaspersky Small Office Security",
-          "tier": 2,
-          "margin_rub": 597.36
+          "card_id": "kontur_dostup:support",
+          "title": "Контур.Доступ Поддержка",
+          "tier": 1,
+          "margin_rub": 2998.88
         },
         {
-          "card_id": "kaspersky_kesb:standard",
-          "title": "Kaspersky Endpoint Security для бизнеса Стандартный",
-          "tier": 2,
-          "margin_rub": 342.13
+          "card_id": "rms_remote:pro",
+          "title": "RMS Удалённый доступ Профессиональная",
+          "tier": 1,
+          "margin_rub": 9763.81
+        },
+        {
+          "card_id": "assistant_remote:pro",
+          "title": "Ассистент Профессиональный",
+          "tier": 1,
+          "margin_rub": 6249.62
+        },
+        {
+          "card_id": "assistant_remote:standard",
+          "title": "Ассистент Стандартный",
+          "tier": 1,
+          "margin_rub": 3142.97
+        },
+        {
+          "card_id": "rms_remote:starter",
+          "title": "RMS Удалённый доступ Начальная",
+          "tier": 1,
+          "margin_rub": 3712.1
+        },
+        {
+          "card_id": "assistant_remote:corp",
+          "title": "Ассистент Корпоративный",
+          "tier": 1,
+          "margin_rub": 14810.19
+        },
+        {
+          "card_id": "pro32_connect:enterprise",
+          "title": "PRO32 Connect Enterprise",
+          "tier": 1,
+          "margin_rub": 10872.13
         }
       ],
-      "moved": 0,
+      "moved": 8,
       "band_inversions": 0,
-      "margin_delta_rub": 0.0
+      "margin_top5_before_rub": 24902.58,
+      "margin_top5_after_rub": 31418.68,
+      "margin_delta_rub": 2856.8914999999997
     }
   ],
-  "moved": 0,
+  "moved": 8,
   "band_inversions": 0,
   "formula": "Сумма удельной маржи первых пяти позиций с весом 1 / позиция"
 }

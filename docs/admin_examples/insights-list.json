@@ -1,0 +1,452 @@
+{
+  "items": [
+    {
+      "id": "add_product-46a4eebd20d8",
+      "type": "add_product",
+      "title": "Проверить поставку · Лицензии Cursor",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.84,
+      "impact": {
+        "expected_rub": 598475,
+        "conservative_rub": 411451,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "add_product-4e2295dd929e",
+      "type": "add_product",
+      "title": "Проверить поставку · Лицензии Obsidian",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.82,
+      "impact": {
+        "expected_rub": 102205,
+        "conservative_rub": 40882,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "add_product-77568cd3aec8",
+      "type": "add_product",
+      "title": "Проверить поставку · Яндекс Трекер",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.84,
+      "impact": {
+        "expected_rub": 830883,
+        "conservative_rub": 453209,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "add_synonym-3082dd513fa1",
+      "type": "add_synonym",
+      "title": "Связать «ндв» с запросом «сертифицированный фстэк»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.71,
+      "impact": {
+        "expected_rub": 216519,
+        "conservative_rub": 148857,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "add_synonym-4b5a3684173a",
+      "type": "add_synonym",
+      "title": "Связать «unf» с запросом «1С:Управление нашей фирмой 8»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.09,
+      "impact": {
+        "expected_rub": 2256,
+        "conservative_rub": 1551,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "add_synonym-57f1770cf0da",
+      "type": "add_synonym",
+      "title": "Связать «резервилка» с запросом «Кибер Бэкап»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.8,
+      "impact": {
+        "expected_rub": 140474,
+        "conservative_rub": 96576,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "fix_card-4ba19f63d833",
+      "type": "fix_card",
+      "title": "Дополнить данные о реестре в категории «Офисные пакеты»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.67,
+      "impact": {
+        "expected_rub": 293865,
+        "conservative_rub": 202032,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "fix_card-ae82884e265b",
+      "type": "fix_card",
+      "title": "Дополнить совместимость с ОС в категории «Межсетевые экраны, NGFW и VPN»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.83,
+      "impact": {
+        "expected_rub": 986845,
+        "conservative_rub": 678456,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "fix_card-cf6669b92ca1",
+      "type": "fix_card",
+      "title": "Дополнить диапазоны лицензирования в категории «Антивирусы и защита рабочих мест»",
+      "role": "content_manager",
+      "status": "new",
+      "confidence": 0.91,
+      "impact": {
+        "expected_rub": 838129,
+        "conservative_rub": 576214,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "hot_lead-1d03134da542",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «ПАО «Меридиан 223»»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.13,
+      "impact": {
+        "expected_rub": 3963,
+        "conservative_rub": 2378,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "hot_lead-233f4819ca1f",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «ГК «ВолгаПром 211»»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.17,
+      "impact": {
+        "expected_rub": 20338,
+        "conservative_rub": 13686,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "hot_lead-9f8d1c8f82da",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «АО «Арктика 224»»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.13,
+      "impact": {
+        "expected_rub": 11772,
+        "conservative_rub": 8093,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "hot_lead-c8ed4fa9205e",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «АО «Прогресс 217»»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.2,
+      "impact": {
+        "expected_rub": 6341,
+        "conservative_rub": 4360,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "hot_lead-f7f29923a489",
+      "type": "hot_lead",
+      "title": "Связаться с клиентом «АО «Уралмашприбор» — машиностроительный завод, 5000 рабочих мест»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.23,
+      "impact": {
+        "expected_rub": 26812,
+        "conservative_rub": 17648,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-043122dcd2c2",
+      "type": "merch_rule",
+      "title": "Поднять «1С:Бухгалтерия 8 Базовая» по запросу «1C»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.92,
+      "impact": {
+        "expected_rub": 123606,
+        "conservative_rub": 74163,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-09114534b14e",
+      "type": "merch_rule",
+      "title": "Показывать «Kaspersky Small Office Security» по запросу «антивирь в бухгалтерию на десяток машин»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.55,
+      "impact": {
+        "expected_rub": 68266,
+        "conservative_rub": 46933,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-300365b7f582",
+      "type": "merch_rule",
+      "title": "Поднять «Ассистент Стандартный» по запросу «удаленный доступ»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.79,
+      "impact": {
+        "expected_rub": 77343,
+        "conservative_rub": 46406,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-77825c8c0787",
+      "type": "merch_rule",
+      "title": "Показывать «1С:Кабинет сотрудника Локальный» по запросу «1С:Кабинет сотрудника Облачный»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.29,
+      "impact": {
+        "expected_rub": 549,
+        "conservative_rub": 329,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-8685ad9b8e63",
+      "type": "merch_rule",
+      "title": "Показывать «nanoCAD BIM ВК» по запросу «autocad лицензия цена»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.76,
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-88bf008bec1f",
+      "type": "merch_rule",
+      "title": "Поднять «Контур.Фокус Базовый» по запросу «SKB Kontur»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.63,
+      "impact": {
+        "expected_rub": 14581,
+        "conservative_rub": 8748,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-d61da11facea",
+      "type": "merch_rule",
+      "title": "Показывать «Dr.Web Малый бизнес» по запросу «защитить десять касс от вирусов»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.56,
+      "impact": {
+        "expected_rub": 53437,
+        "conservative_rub": 36738,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-ebf6c375faea",
+      "type": "merch_rule",
+      "title": "Показывать «nanoCAD BIM ВК» по запросу «купить автокад 2025»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.76,
+      "impact": {
+        "expected_rub": 0,
+        "conservative_rub": 0,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-f099c10290b0",
+      "type": "merch_rule",
+      "title": "Показывать «HRlink КЭДО On-Premise» по запросу «HRlink КЭДО Облачная»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.41,
+      "impact": {
+        "expected_rub": 5811,
+        "conservative_rub": 3487,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "merch_rule-faabde0d4b5c",
+      "type": "merch_rule",
+      "title": "Показывать «1С:Кабинет сотрудника Локальный» по запросу «личный кабинет сотрудника 1с»",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.33,
+      "impact": {
+        "expected_rub": 8817,
+        "conservative_rub": 6062,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "renewal_campaign-d85ac9d3ff8f",
+      "type": "renewal_campaign",
+      "title": "Предложить продление лицензий со сроком до 60 дней",
+      "role": "ecom_manager",
+      "status": "new",
+      "confidence": 0.05,
+      "impact": {
+        "expected_rub": 27183760,
+        "conservative_rub": 0,
+        "metric_label": "Стоимость продлений по каталогу",
+        "formula_note": "Сумма минимальных цен доступных годовых SKU продления той же редакции × число единиц или пакетов. Онлайн-оценка включает договоры до 2,5 млн ₽ с проверенным количеством. Остальные договоры выделены для расчёта менеджером. Нижняя граница без подтверждённых заказов — 0 ₽."
+      }
+    },
+    {
+      "id": "rising_demand-27623587c343",
+      "type": "rising_demand",
+      "title": "Развить подборку «Схемы, диаграммы и интеллект-карты»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.52,
+      "impact": {
+        "expected_rub": 58959,
+        "conservative_rub": 37876,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "rising_demand-4f95416988f2",
+      "type": "rising_demand",
+      "title": "Развить подборку «Серверные операционные системы»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.87,
+      "impact": {
+        "expected_rub": 785497,
+        "conservative_rub": 521487,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "rising_demand-868cf65b960d",
+      "type": "rising_demand",
+      "title": "Развить подборку «Межсетевые экраны, NGFW и VPN»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.91,
+      "impact": {
+        "expected_rub": 1368865,
+        "conservative_rub": 923795,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "rising_demand-8d1310b3e736",
+      "type": "rising_demand",
+      "title": "Разобрать растущий спрос · Генеративный ИИ, корпоративные LLM и ИИ-ассистенты · Рабочее место",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.71,
+      "impact": {
+        "expected_rub": 108767,
+        "conservative_rub": 43507,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "rising_demand-ab7fbc57e199",
+      "type": "rising_demand",
+      "title": "Развить подборку «Машинные переводчики, CAT-системы и словари»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.5,
+      "impact": {
+        "expected_rub": 29944,
+        "conservative_rub": 20037,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "rising_demand-af62ebcf3de3",
+      "type": "rising_demand",
+      "title": "Развить подборку «Среды разработки (IDE), компиляторы и SDK»",
+      "role": "product_manager",
+      "status": "new",
+      "confidence": 0.66,
+      "impact": {
+        "expected_rub": 301531,
+        "conservative_rub": 207302,
+        "metric_label": "Оценка потенциала",
+        "formula_note": "Сумма оценок неудачных сессий из KPI, отнесённых к этим запросам. Предложения могут пересекаться."
+      }
+    },
+    {
+      "id": "weights_advice-9a129038d9a0",
+      "type": "weights_advice",
+      "title": "Увеличить вес маржи",
+      "role": "head_ecom",
+      "status": "new",
+      "confidence": 1.0,
+      "impact": {
+        "expected_rub": 298521.1,
+        "conservative_rub": 0,
+        "metric_label": "Изменение взвешенной маржи на выборке",
+        "formula_note": "Сумма удельной маржи первых пяти позиций с весом 1 / позиция"
+      }
+    }
+  ]
+}

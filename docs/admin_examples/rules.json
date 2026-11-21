@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id": "81b23dcd2fe84c35b95d4219c08d1450",
+      "id": "6f59b1d69cda4a57b8bf5354cd3add9c",
       "kind": "synonym",
       "conditions": {},
       "action": {
@@ -12,7 +12,7 @@
       "enabled": true
     },
     {
-      "id": "c92046059c7646088dd53cc0ae858f9a",
+      "id": "af62304a15c64720a3adeddd06d850be",
       "kind": "banner",
       "conditions": {
         "segment": "smb"
