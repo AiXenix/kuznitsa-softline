@@ -1,0 +1,326 @@
+{
+  "Veltari Lumova": {
+    "category": "endpoint_security",
+    "use_cases": [
+      "uc_ransomware_protection"
+    ],
+    "roles": [
+      "office_worker"
+    ]
+  },
+  "Onvella Lumova": {
+    "category": "endpoint_security"
+  },
+  "Veltari Darova": {
+    "category": "dlp"
+  },
+  "Onvella Darova": {
+    "category": "dlp",
+    "use_cases": [
+      "uc_prevent_data_leak_dlp"
+    ],
+    "roles": [
+      "infosec_engineer"
+    ]
+  },
+  "Veltari Vinova": {
+    "category": "server_os"
+  },
+  "Onvella Vinova": {
+    "category": "server_os"
+  },
+  "Veltari Seliva": {
+    "category": "mobile_os",
+    "use_cases": [
+      "uc_mobile_os_aurora"
+    ],
+    "roles": [
+      "sysadmin"
+    ]
+  },
+  "Onvella Seliva": {
+    "category": "mobile_os"
+  },
+  "Veltari Lumolen": {
+    "category": "office_suite"
+  },
+  "Onvella Lumolen": {
+    "category": "office_suite",
+    "use_cases": [
+      "uc_office_replace_ms"
+    ],
+    "roles": [
+      "office_worker"
+    ]
+  },
+  "Veltari Darolen": {
+    "category": "whiteboards_notes"
+  },
+  "Onvella Darolen": {
+    "category": "whiteboards_notes"
+  },
+  "Veltari Vinolen": {
+    "category": "server_virtualization",
+    "use_cases": [
+      "uc_replace_vmware_virt"
+    ],
+    "roles": [
+      "sysadmin"
+    ]
+  },
+  "Onvella Vinolen": {
+    "category": "server_virtualization"
+  },
+  "Veltari Selilen": {
+    "category": "containers_kubernetes"
+  },
+  "Onvella Selilen": {
+    "category": "containers_kubernetes",
+    "use_cases": [
+      "uc_k8s_enterprise_platform"
+    ],
+    "roles": [
+      "devops_sre_engineer"
+    ]
+  },
+  "Veltari Lumotor": {
+    "category": "rdbms"
+  },
+  "Onvella Lumotor": {
+    "category": "rdbms"
+  },
+  "Veltari Darotor": {
+    "category": "bi_analytics",
+    "use_cases": [
+      "uc_bi_dashboards_director"
+    ],
+    "roles": [
+      "economist_financier"
+    ]
+  },
+  "Onvella Darotor": {
+    "category": "bi_analytics"
+  },
+  "Veltari Vinotor": {
+    "category": "backup_recovery"
+  },
+  "Onvella Vinotor": {
+    "category": "backup_recovery",
+    "use_cases": [
+      "uc_ransomware_protection"
+    ],
+    "roles": [
+      "video_editor_motion"
+    ]
+  },
+  "Veltari Selitor": {
+    "category": "archivers"
+  },
+  "Onvella Selitor": {
+    "category": "archivers"
+  },
+  "Veltari Lumopi": {
+    "category": "vks_webinars",
+    "use_cases": [
+      "uc_vks_replace_zoom"
+    ],
+    "roles": [
+      "remote_employee"
+    ]
+  },
+  "Onvella Lumopi": {
+    "category": "vks_webinars"
+  },
+  "Veltari Daropi": {
+    "category": "ip_telephony"
+  },
+  "Onvella Daropi": {
+    "category": "ip_telephony",
+    "use_cases": [
+      "uc_ip_telephony_sales"
+    ],
+    "roles": [
+      "sales_manager"
+    ]
+  },
+  "Veltari Vinopi": {
+    "category": "remote_desktop"
+  },
+  "Onvella Vinopi": {
+    "category": "remote_desktop"
+  },
+  "Veltari Selipi": {
+    "category": "pam_jump_hosts",
+    "use_cases": [
+      "uc_control_admins_contractors"
+    ],
+    "roles": [
+      "devops_sre_engineer"
+    ]
+  },
+  "Onvella Selipi": {
+    "category": "pam_jump_hosts"
+  },
+  "Veltari Lumoruk": {
+    "category": "accounting"
+  },
+  "Onvella Lumoruk": {
+    "category": "accounting",
+    "use_cases": [
+      "uc_ocr_invoices_1c"
+    ],
+    "roles": [
+      "accountant"
+    ]
+  },
+  "Veltari Daroruk": {
+    "category": "retail_pos_cash"
+  },
+  "Onvella Daroruk": {
+    "category": "retail_pos_cash"
+  },
+  "Veltari Vinoruk": {
+    "category": "crm_systems",
+    "use_cases": [
+      "uc_crm_sales_funnel"
+    ],
+    "roles": [
+      "sales_manager"
+    ]
+  },
+  "Onvella Vinoruk": {
+    "category": "crm_systems"
+  },
+  "Veltari Seliruk": {
+    "category": "logistics_tms"
+  },
+  "Onvella Seliruk": {
+    "category": "logistics_tms",
+    "use_cases": [
+      "uc_edo_transport_waybills"
+    ],
+    "roles": [
+      "logistics_dispatcher"
+    ]
+  },
+  "Veltari Lumove": {
+    "category": "cad_2d"
+  },
+  "Onvella Lumove": {
+    "category": "cad_2d"
+  },
+  "Veltari Darove": {
+    "category": "gis_mapping",
+    "use_cases": [
+      "uc_gis_mapping_analysis"
+    ],
+    "roles": [
+      "gis_cartographer"
+    ]
+  },
+  "Onvella Darove": {
+    "category": "gis_mapping"
+  },
+  "Veltari Vinove": {
+    "category": "video_editing"
+  },
+  "Onvella Vinove": {
+    "category": "video_editing",
+    "use_cases": [
+      "uc_video_editing_corporate"
+    ],
+    "roles": [
+      "video_editor_motion"
+    ]
+  },
+  "Veltari Selive": {
+    "category": "raster_photo"
+  },
+  "Onvella Selive": {
+    "category": "raster_photo"
+  },
+  "Veltari Lumota": {
+    "category": "ocr_capture",
+    "use_cases": [
+      "uc_pdf_to_word_convert"
+    ],
+    "roles": [
+      "accountant"
+    ]
+  },
+  "Onvella Lumota": {
+    "category": "ocr_capture"
+  },
+  "Veltari Darota": {
+    "category": "translation_dictionaries"
+  },
+  "Onvella Darota": {
+    "category": "translation_dictionaries",
+    "use_cases": [
+      "uc_offline_translator_corp"
+    ],
+    "roles": [
+      "translator_editor"
+    ]
+  },
+  "Veltari Vinota": {
+    "category": "ide_compilers"
+  },
+  "Onvella Vinota": {
+    "category": "ide_compilers"
+  },
+  "Veltari Selita": {
+    "category": "testing_qa",
+    "use_cases": [
+      "uc_tms_qa_test_management"
+    ],
+    "roles": [
+      "qa_tester"
+    ]
+  },
+  "Onvella Selita": {
+    "category": "testing_qa"
+  },
+  "Veltari Lumonu": {
+    "category": "iaas_cloud_platforms"
+  },
+  "Onvella Lumonu": {
+    "category": "iaas_cloud_platforms",
+    "use_cases": [
+      "uc_onec_cloud_fresh"
+    ],
+    "roles": [
+      "sysadmin"
+    ]
+  },
+  "Veltari Daronu": {
+    "category": "llm_gen_ai"
+  },
+  "Onvella Daronu": {
+    "category": "llm_gen_ai"
+  },
+  "Veltari Vinonu": {
+    "category": "lms_elearning",
+    "use_cases": [
+      "uc_lms_corp_onboarding"
+    ],
+    "roles": [
+      "recruiter_hrbp"
+    ]
+  },
+  "Onvella Vinonu": {
+    "category": "lms_elearning"
+  },
+  "Veltari Selinu": {
+    "category": "tech_support"
+  },
+  "Onvella Selinu": {
+    "category": "tech_support",
+    "use_cases": [
+      "uc_os_dual_migration_pilot"
+    ],
+    "roles": [
+      "onec_developer"
+    ]
+  }
+}
