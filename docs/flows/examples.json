@@ -1,0 +1,1405 @@
+{
+  "version": 1,
+  "by_flow": {
+    "product": [
+      {
+        "q": "1с лицензии на 10 человек",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "1С:Предприятие 8 Клиентские лицензии КОРП",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 4.14,
+        "source": "dev-0041",
+        "category_ctx": null
+      },
+      {
+        "q": "Kaspersky Endpoint Security для бизнеса",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 5.27,
+        "source": "dev-0051",
+        "category_ctx": null
+      },
+      {
+        "q": "Astra Linux Special Edition",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 5.03,
+        "source": "dev-0052",
+        "category_ctx": null
+      },
+      {
+        "q": "1С:Бухгалтерия 8",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "1С:Бухгалтерия 8 Базовая",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 3.89,
+        "source": "dev-0053",
+        "category_ctx": null
+      },
+      {
+        "q": "МойОфис Стандартный 2",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "product",
+        "first_card": "МойОфис Стандартный 2 Для бизнеса",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 12.11,
+        "source": "dev-0057",
+        "category_ctx": null
+      }
+    ],
+    "vendor": [
+      {
+        "q": "все продукты Лаборатории Касперского",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "vendor",
+        "first_card": "Kaspersky ASAP Cloud",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.62,
+        "source": "dev-0054",
+        "category_ctx": null
+      },
+      {
+        "q": "продукты СКБ Контур",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "vendor",
+        "first_card": "Контур.Экстерн Оптимальный плюс",
+        "blocks": [
+          "products"
+        ],
+        "ms": 3.34,
+        "source": "dev-0055",
+        "category_ctx": null
+      },
+      {
+        "q": "Positive Technologies",
+        "profile": "ent_factory",
+        "mode": "fast",
+        "intent": "vendor",
+        "first_card": "Positive Technologies MaxPatrol SIEM",
+        "blocks": [
+          "my_licenses",
+          "products"
+        ],
+        "ms": 3.17,
+        "source": "dev-0056",
+        "category_ctx": null
+      },
+      {
+        "q": "rfcgthcrbq",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "vendor",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.19,
+        "source": "dev-0191",
+        "category_ctx": null
+      },
+      {
+        "q": "уыукпфеу",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "vendor",
+        "first_card": "UserGate NGFW ПАК",
+        "blocks": [
+          "products"
+        ],
+        "ms": 1.68,
+        "source": "dev-0199",
+        "category_ctx": null
+      }
+    ],
+    "category": [
+      {
+        "q": "антивирус на 30 пк",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.53,
+        "source": "dev-0001",
+        "category_ctx": null
+      },
+      {
+        "q": "офисный пакет",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "Microsoft Office Home and Business",
+        "blocks": [
+          "products"
+        ],
+        "ms": 3.97,
+        "source": "dev-0006",
+        "category_ctx": null
+      },
+      {
+        "q": "удаленный доступ",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "Ассистент Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.7,
+        "source": "dev-0011",
+        "category_ctx": null
+      },
+      {
+        "q": "резервное копирование",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "Кибер Бэкап Стандартный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 2.95,
+        "source": "dev-0016",
+        "category_ctx": null
+      },
+      {
+        "q": "видеоконференцсвязь",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "category",
+        "first_card": "IVA MCU",
+        "blocks": [
+          "products"
+        ],
+        "ms": 19.36,
+        "source": "dev-0021",
+        "category_ctx": null
+      }
+    ],
+    "sku": [
+      {
+        "q": "KL4867RAQFR",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 4.52,
+        "source": "dev-0066",
+        "category_ctx": null
+      },
+      {
+        "q": "FQC-10572",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Microsoft Windows 11 Pro",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 3.22,
+        "source": "dev-0067",
+        "category_ctx": null
+      },
+      {
+        "q": "KL4867",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 3.81,
+        "source": "dev-0068",
+        "category_ctx": null
+      },
+      {
+        "q": "артикул 4601546092816",
+        "profile": "accounting_firm",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "1С:Бухгалтерия 8 Базовая",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 3.62,
+        "source": "dev-0069",
+        "category_ctx": null
+      },
+      {
+        "q": "номер в реестре 369",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "sku",
+        "first_card": "Техподдержка Группы Астра Стандартная",
+        "blocks": [
+          "not_in_catalog",
+          "products"
+        ],
+        "ms": 55.75,
+        "source": "dev-0070",
+        "category_ctx": null
+      }
+    ],
+    "task": [
+      {
+        "q": "чем открыть dwg",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "task",
+        "first_card": "Платформа nanoCAD Базовая",
+        "blocks": [
+          "products"
+        ],
+        "ms": 4.69,
+        "source": "dev-0145",
+        "category_ctx": null
+      },
+      {
+        "q": "чтобы сотрудники не сливали базу клиентов",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "task",
+        "first_card": "InfoWatch Traffic Monitor",
+        "blocks": [
+          "products"
+        ],
+        "ms": 3.54,
+        "source": "dev-0146",
+        "category_ctx": null
+      },
+      {
+        "q": "запретить копирование на флешки",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "task",
+        "first_card": "Dallas Lock 8.0-C",
+        "blocks": [
+          "products"
+        ],
+        "ms": 8.02,
+        "source": "dev-0147",
+        "category_ctx": null
+      },
+      {
+        "q": "подписывать кадровые документы с удаленщиками",
+        "profile": "it_company",
+        "mode": "fast",
+        "intent": "task",
+        "first_card": "СБИС Saby ЭДО",
+        "blocks": [
+          "products"
+        ],
+        "ms": 5.08,
+        "source": "dev-0148",
+        "category_ctx": null
+      },
+      {
+        "q": "распознать сканы паспортов и накладных в текст",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "task",
+        "first_card": "ContentCapture Standard",
+        "blocks": [
+          "products"
+        ],
+        "ms": 2.85,
+        "source": "dev-0149",
+        "category_ctx": null
+      }
+    ],
+    "analog": [
+      {
+        "q": "российский аналог microsoft office",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "analog",
+        "first_card": "МойОфис Профессиональный Корпоративная",
+        "blocks": [
+          "analogs"
+        ],
+        "ms": 5.79,
+        "source": "dev-0111",
+        "category_ctx": null
+      },
+      {
+        "q": "замена autocad из реестра",
+        "profile": "design_bureau",
+        "mode": "fast",
+        "intent": "analog",
+        "first_card": "Платформа nanoCAD Базовая",
+        "blocks": [
+          "analogs"
+        ],
+        "ms": 3.4,
+        "source": "dev-0112",
+        "category_ctx": null
+      },
+      {
+        "q": "аналог vmware vsphere российский",
+        "profile": "ent_factory",
+        "mode": "fast",
+        "intent": "analog",
+        "first_card": "zVirt Standard",
+        "blocks": [
+          "analogs"
+        ],
+        "ms": 4.6,
+        "source": "dev-0113",
+        "category_ctx": null
+      },
+      {
+        "q": "чем заменить zoom для компании",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "analog",
+        "first_card": "SaluteJazz On-Premise",
+        "blocks": [
+          "analogs"
+        ],
+        "ms": 4.72,
+        "source": "dev-0114",
+        "category_ctx": null
+      },
+      {
+        "q": "российский аналог jira и confluence",
+        "profile": "it_company",
+        "mode": "fast",
+        "intent": "analog",
+        "first_card": "Yonote",
+        "blocks": [
+          "analogs"
+        ],
+        "ms": 4.22,
+        "source": "dev-0115",
+        "category_ctx": null
+      }
+    ],
+    "industry": [
+      {
+        "q": "по для строительной компании",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "ГРАНД-Смета Локальная",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 7.66,
+        "source": "dev-0165",
+        "category_ctx": null
+      },
+      {
+        "q": "по для стоматологии",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "Инфоклиника On-Premise",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 10.21,
+        "source": "seen",
+        "category_ctx": null
+      },
+      {
+        "q": "софт в аптеку",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "АТОЛ Frontol 6 Start",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 9.44,
+        "source": "seen",
+        "category_ctx": null
+      },
+      {
+        "q": "по для ветеринарной клиники",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "Битрикс24 Облако Базовый",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 8.98,
+        "source": "seen",
+        "category_ctx": null
+      },
+      {
+        "q": "по для школы",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "industry",
+        "first_card": "Альт Образование",
+        "blocks": [
+          "kit"
+        ],
+        "ms": 7.37,
+        "source": "seen",
+        "category_ctx": null
+      }
+    ],
+    "role_kit": [
+      {
+        "q": "комплект по для бухгалтера",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "1С:Бухгалтерия 8 Базовая",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 11.9,
+        "source": "dev-0161",
+        "category_ctx": null
+      },
+      {
+        "q": "рабочее место госслужащего из реестра",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Astra Linux Special Edition «Смоленск»",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 13.39,
+        "source": "dev-0162",
+        "category_ctx": null
+      },
+      {
+        "q": "набор программ для конструктора",
+        "profile": "ent_factory",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "АСКОН КОМПАС Строитель",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 14.21,
+        "source": "dev-0163",
+        "category_ctx": null
+      },
+      {
+        "q": "базовый набор по для офиса на 20 человек",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 14.0,
+        "source": "dev-0164",
+        "category_ctx": null
+      },
+      {
+        "q": "сколько стоит перевести офис на 50 пк на российское по",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "role_kit",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "kit",
+          "crosssell"
+        ],
+        "ms": 11.83,
+        "source": "dev-0190",
+        "category_ctx": null
+      }
+    ],
+    "compliance": [
+      {
+        "q": "окпд2 58.29.11",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "compliance",
+        "first_card": "Astra Linux Special Edition «Смоленск»",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 9.46,
+        "source": "dev-0071",
+        "category_ctx": null
+      },
+      {
+        "q": "ктру 58.29.29.000",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "compliance",
+        "first_card": "ГИС Панорама Мини",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 30.76,
+        "source": "dev-0072",
+        "category_ctx": null
+      },
+      {
+        "q": "офис без ндс из реестра",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "compliance",
+        "first_card": "МойОфис Стандартный Для бизнеса",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 5.94,
+        "source": "dev-0101",
+        "category_ctx": null
+      },
+      {
+        "q": "антивирус без ндс для юрлиц",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "compliance",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 7.61,
+        "source": "dev-0102",
+        "category_ctx": null
+      },
+      {
+        "q": "антивирус из реестра минцифры",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "compliance",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 5.04,
+        "source": "dev-0129",
+        "category_ctx": null
+      }
+    ],
+    "renewal": [
+      {
+        "q": "каспер продление на 30 компов",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "renewal",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 9.49,
+        "source": "dev-0076",
+        "category_ctx": null
+      },
+      {
+        "q": "продлёнка др веб 100 пк",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "renewal",
+        "first_card": "Dr.Web Enterprise Security Suite Защита рабочих станций",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 9.1,
+        "source": "dev-0077",
+        "category_ctx": null
+      },
+      {
+        "q": "продлить р7 офис на 25 пользователей",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "renewal",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 8.6,
+        "source": "dev-0078",
+        "category_ctx": null
+      },
+      {
+        "q": "пролонгация кибер бэкап 5 серверов",
+        "profile": "retail_logistics",
+        "mode": "fast",
+        "intent": "renewal",
+        "first_card": "Кибер Бэкап Расширенный",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 4.37,
+        "source": "dev-0079",
+        "category_ctx": null
+      },
+      {
+        "q": "продлить 1с итс проф на год",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "renewal",
+        "first_card": "1С:ИТС ПРОФ",
+        "blocks": [
+          "products",
+          "crosssell"
+        ],
+        "ms": 6.53,
+        "source": "dev-0080",
+        "category_ctx": null
+      }
+    ],
+    "license_ops": [
+      {
+        "q": "долицензирование kes на 15 пк",
+        "profile": "ent_factory",
+        "mode": "fast",
+        "intent": "license_ops",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 8.01,
+        "source": "dev-0085",
+        "category_ctx": null
+      },
+      {
+        "q": "докупить 5 мест мой офис",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "license_ops",
+        "first_card": "МойОфис Стандартный Для бизнеса",
+        "blocks": [
+          "products"
+        ],
+        "ms": 2.58,
+        "source": "dev-0086",
+        "category_ctx": null
+      },
+      {
+        "q": "апгрейд 1с бухгалтерия базовая на проф",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "license_ops",
+        "first_card": "1С:Бухгалтерия 8 Базовая",
+        "blocks": [
+          "products"
+        ],
+        "ms": 3.59,
+        "source": "dev-0087",
+        "category_ctx": null
+      },
+      {
+        "q": "переход с eset на касперский со скидкой 50 пк",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "license_ops",
+        "first_card": "Kaspersky Symphony Security",
+        "blocks": [
+          "products"
+        ],
+        "ms": 7.21,
+        "source": "dev-0088",
+        "category_ctx": null
+      },
+      {
+        "q": "миграция с microsoft office на р7 со скидкой",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "license_ops",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "products"
+        ],
+        "ms": 3.35,
+        "source": "dev-0089",
+        "category_ctx": null
+      }
+    ],
+    "spec_list": [
+      {
+        "q": "астра линукс 20 шт\nр7 офис 20 шт\nкасперский 20 узлов",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 14.43,
+        "source": "dev-0167",
+        "category_ctx": null
+      },
+      {
+        "q": "1. криптопро 5.0 - 5 шт\n2. рутокен эцп 3.0 - 5 шт\n3. контур диадок - 1 шт\n4. 1с бухгалтерия проф - 1 шт",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "КриптоПро CSP Серверная",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 5.52,
+        "source": "dev-0168",
+        "category_ctx": null
+      },
+      {
+        "q": "Добрый день! Выставьте счет:\n- Astra Linux SE Воронеж 25 шт\n- Р7-Офис Проф 25 лицензий\n- Kaspersky Endpoint Security продление 25 узлов",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 8.13,
+        "source": "dev-0169",
+        "category_ctx": null
+      },
+      {
+        "q": "КL4867RАQFR 30 шт\nМойОфис Стандартный 30 мест\nКибер Бэкап 2 сервера",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Расширенный",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 5.98,
+        "source": "dev-0170",
+        "category_ctx": null
+      },
+      {
+        "q": "1. nanoCAD 24 сетевая - 4 шт\n2. Renga Professional - 2 шт\n3. Гранд-Смета - 1 шт\n4. Р7-Офис - 10 шт\n5. Кибер Бэкап - 1 сервер",
+        "profile": "design_bureau",
+        "mode": "fast",
+        "intent": "spec_list",
+        "first_card": "Платформа nanoCAD Pro",
+        "blocks": [
+          "spec"
+        ],
+        "ms": 8.04,
+        "source": "dev-0171",
+        "category_ctx": null
+      }
+    ],
+    "compare": [
+      {
+        "q": "чем отличается астра орел воронеж смоленск",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "compare",
+        "first_card": "Astra Linux Special Edition «Орёл»",
+        "blocks": [
+          "compare"
+        ],
+        "ms": 2.02,
+        "source": "dev-0239",
+        "category_ctx": null
+      },
+      {
+        "q": "р7 офис или мой офис что лучше",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "compare",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "compare"
+        ],
+        "ms": 4.02,
+        "source": "dev-0241",
+        "category_ctx": null
+      },
+      {
+        "q": "astra linux vs ред ос",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "compare",
+        "first_card": "Astra Linux Special Edition «Смоленск»",
+        "blocks": [
+          "compare"
+        ],
+        "ms": 4.58,
+        "source": "dev-0242",
+        "category_ctx": null
+      },
+      {
+        "q": "dr web против касперского для бизнеса",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "compare",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "compare"
+        ],
+        "ms": 4.55,
+        "source": "dev-0243",
+        "category_ctx": null
+      },
+      {
+        "q": "битрикс24 или amocrm",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "compare",
+        "first_card": "Битрикс24 Облако Базовый",
+        "blocks": [
+          "compare"
+        ],
+        "ms": 3.51,
+        "source": "dev-0244",
+        "category_ctx": null
+      }
+    ],
+    "question": [
+      {
+        "q": "входит ли р7 офис в реестр российского по",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "question",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 2.92,
+        "source": "dev-0139",
+        "category_ctx": null
+      },
+      {
+        "q": "что такое cal лицензия",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "question",
+        "first_card": "СУБД Tantor SE",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 5.0,
+        "source": "dev-0236",
+        "category_ctx": null
+      },
+      {
+        "q": "чем отличается oem от box и esd",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "question",
+        "first_card": "Microsoft Office Home and Business",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 13.9,
+        "source": "dev-0237",
+        "category_ctx": null
+      },
+      {
+        "q": "нужна ли лицензия фсб чтобы купить криптопро",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "question",
+        "first_card": "КриптоПро CSP Клиентская",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 2.22,
+        "source": "dev-0238",
+        "category_ctx": null
+      },
+      {
+        "q": "почему по из реестра без ндс",
+        "profile": "accounting_firm",
+        "mode": "fast",
+        "intent": "question",
+        "first_card": "Kaspersky Endpoint Security для бизнеса Стандартный",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 9.22,
+        "source": "dev-0240",
+        "category_ctx": null
+      }
+    ],
+    "broad": [
+      {
+        "q": "сертификат",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "broad",
+        "first_card": "Техподдержка Группы Астра Стандартная",
+        "blocks": [
+          "clarify",
+          "products",
+          "vendors"
+        ],
+        "ms": 30.74,
+        "source": "dev-0225",
+        "category_ctx": null
+      },
+      {
+        "q": "ключ",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "broad",
+        "first_card": "Ключ-АСТРОМ",
+        "blocks": [
+          "clarify",
+          "products",
+          "vendors"
+        ],
+        "ms": 10.37,
+        "source": "dev-0226",
+        "category_ctx": null
+      },
+      {
+        "q": "защита сети",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "broad",
+        "first_card": "Kaspersky Industrial CyberSecurity for Nodes",
+        "blocks": [
+          "clarify",
+          "products",
+          "vendors"
+        ],
+        "ms": 59.72,
+        "source": "dev-0267",
+        "category_ctx": null
+      },
+      {
+        "q": "софт",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "broad",
+        "first_card": "Техподдержка РЕД СОФТ Стандартная",
+        "blocks": [
+          "clarify",
+          "products",
+          "vendors"
+        ],
+        "ms": 25.22,
+        "source": "dev-0271",
+        "category_ctx": null
+      },
+      {
+        "q": "программы для бизнеса",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "broad",
+        "first_card": "Project Expert Professional",
+        "blocks": [
+          "clarify",
+          "products",
+          "vendors"
+        ],
+        "ms": 77.18,
+        "source": "dev-0272",
+        "category_ctx": null
+      }
+    ],
+    "out_of_catalog": [
+      {
+        "q": "autocad купить",
+        "profile": "design_bureau",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "Платформа nanoCAD Базовая",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "lead"
+        ],
+        "ms": 3.67,
+        "source": "dev-0117",
+        "category_ctx": null
+      },
+      {
+        "q": "vmware vsphere лицензия",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "zVirt Standard",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "lead"
+        ],
+        "ms": 12.19,
+        "source": "dev-0118",
+        "category_ctx": null
+      },
+      {
+        "q": "adobe photoshop для юрлиц",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "ФотоМАСТЕР Профи",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "lead"
+        ],
+        "ms": 5.32,
+        "source": "dev-0119",
+        "category_ctx": null
+      },
+      {
+        "q": "veeam backup enterprise",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "Кибер Бэкап Стандартный",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "lead"
+        ],
+        "ms": 6.86,
+        "source": "dev-0120",
+        "category_ctx": null
+      },
+      {
+        "q": "figma для команды",
+        "profile": "it_company",
+        "mode": "fast",
+        "intent": "out_of_catalog",
+        "first_card": "Pixso Professional",
+        "blocks": [
+          "not_in_catalog",
+          "analogs",
+          "lead"
+        ],
+        "ms": 4.79,
+        "source": "dev-0274",
+        "category_ctx": null
+      }
+    ],
+    "off_topic": [
+      {
+        "q": "купить ноутбук для офиса",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "off_topic",
+        "first_card": null,
+        "blocks": [
+          "categories",
+          "clarify"
+        ],
+        "ms": 1.34,
+        "source": "dev-0278",
+        "category_ctx": null
+      },
+      {
+        "q": "принтер лазерный hp",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "off_topic",
+        "first_card": null,
+        "blocks": [
+          "categories",
+          "clarify"
+        ],
+        "ms": 4.15,
+        "source": "dev-0279",
+        "category_ctx": null
+      },
+      {
+        "q": "скачать windows 11 бесплатно с ключом",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "off_topic",
+        "first_card": null,
+        "blocks": [
+          "answer",
+          "categories"
+        ],
+        "ms": 1.51,
+        "source": "dev-0281",
+        "category_ctx": null
+      },
+      {
+        "q": "активатор kms office",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "off_topic",
+        "first_card": null,
+        "blocks": [
+          "answer",
+          "categories"
+        ],
+        "ms": 4.17,
+        "source": "dev-0282",
+        "category_ctx": null
+      },
+      {
+        "q": "кряк для автокада",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "off_topic",
+        "first_card": null,
+        "blocks": [
+          "answer",
+          "categories"
+        ],
+        "ms": 1.41,
+        "source": "dev-0283",
+        "category_ctx": null
+      }
+    ],
+    "account": [
+      {
+        "q": "мои лицензии",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "account",
+        "first_card": null,
+        "blocks": [
+          "my_licenses"
+        ],
+        "ms": 1.31,
+        "source": "dev-0103",
+        "category_ctx": null
+      },
+      {
+        "q": "что у нас скоро истекает",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "account",
+        "first_card": null,
+        "blocks": [
+          "my_licenses"
+        ],
+        "ms": 1.44,
+        "source": "dev-0104",
+        "category_ctx": null
+      },
+      {
+        "q": "повторить прошлый заказ антивируса",
+        "profile": "edu_university",
+        "mode": "fast",
+        "intent": "account",
+        "first_card": "Dr.Web Enterprise Security Suite Комплексная защита",
+        "blocks": [
+          "products",
+          "answer",
+          "my_licenses"
+        ],
+        "ms": 4.62,
+        "source": "dev-0106",
+        "category_ctx": null
+      },
+      {
+        "q": "мои лицензии организации",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "account",
+        "first_card": null,
+        "blocks": [
+          "my_licenses"
+        ],
+        "ms": 1.4,
+        "source": "author",
+        "category_ctx": null
+      },
+      {
+        "q": "покажи мои покупки",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "account",
+        "first_card": null,
+        "blocks": [
+          "my_licenses"
+        ],
+        "ms": 1.19,
+        "source": "author",
+        "category_ctx": null
+      }
+    ],
+    "service": [
+      {
+        "q": "курсы администрирования ред ос",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "service",
+        "first_card": "Курсы РЕД ОС Администрирование",
+        "blocks": [
+          "services"
+        ],
+        "ms": 2.02,
+        "source": "dev-0175",
+        "category_ctx": null
+      },
+      {
+        "q": "техподдержка астра линукс премиум",
+        "profile": "gov_clinic",
+        "mode": "fast",
+        "intent": "service",
+        "first_card": "Техподдержка Группы Астра Стандартная",
+        "blocks": [
+          "services"
+        ],
+        "ms": 6.73,
+        "source": "dev-0176",
+        "category_ctx": null
+      },
+      {
+        "q": "курсы администрирования astra linux",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "service",
+        "first_card": "Курсы Astra Linux ALD Pro и Брест",
+        "blocks": [
+          "services"
+        ],
+        "ms": 5.58,
+        "source": "author",
+        "category_ctx": null
+      },
+      {
+        "q": "обучение работе с ред ос",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "service",
+        "first_card": "Курсы РЕД ОС Администрирование",
+        "blocks": [
+          "services"
+        ],
+        "ms": 1.46,
+        "source": "author",
+        "category_ctx": null
+      },
+      {
+        "q": "курсы по криптопро",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "service",
+        "first_card": "Курсы Astra Linux ALD Pro и Брест",
+        "blocks": [
+          "services"
+        ],
+        "ms": 4.63,
+        "source": "author",
+        "category_ctx": null
+      }
+    ],
+    "promo": [
+      {
+        "q": "пилот астра линукс бесплатно",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "promo",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 5.75,
+        "source": "dev-0187",
+        "category_ctx": null
+      },
+      {
+        "q": "скидки на антивирусы для юрлиц",
+        "profile": "smb_trade",
+        "mode": "fast",
+        "intent": "promo",
+        "first_card": "Kaspersky Small Office Security",
+        "blocks": [
+          "promo"
+        ],
+        "ms": 8.6,
+        "source": "dev-0188",
+        "category_ctx": null
+      },
+      {
+        "q": "скидка на криптопро",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "promo",
+        "first_card": "КриптоПро CSP Клиентская",
+        "blocks": [
+          "promo"
+        ],
+        "ms": 5.64,
+        "source": "author",
+        "category_ctx": null
+      },
+      {
+        "q": "пилот астра линукс",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "promo",
+        "first_card": "Astra Linux Special Edition «Воронеж»",
+        "blocks": [
+          "answer",
+          "products"
+        ],
+        "ms": 5.57,
+        "source": "author",
+        "category_ctx": null
+      },
+      {
+        "q": "пробная версия р7 офис",
+        "profile": "guest",
+        "mode": "fast",
+        "intent": "promo",
+        "first_card": "Р7-Офис Профессиональный",
+        "blocks": [
+          "promo"
+        ],
+        "ms": 5.23,
+        "source": "author",
+        "category_ctx": null
+      }
+    ]
+  }
+}
