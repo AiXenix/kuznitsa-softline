@@ -55,7 +55,6 @@ export function weights(parent,params){
   });
 }
 function pair(p,item){
-  if(!valid(item.before)||!valid(item.after))return;
   const card=add(p,'article',null,'pair');
   add(card,'h3',caption('',item.key,item.label));
   const rate=['rate','ratio','fraction'].includes(item.unit), percent=rate || ['percent','%','pct'].includes(item.unit);
@@ -64,14 +63,49 @@ function pair(p,item){
   const formatValue=n=>item.unit==='rub'?shortRub(n):fmt(n*scale)+unit;
   const low=['lower','less','down','min'].includes(item.better);
   const high=['higher','more','up','max'].includes(item.better);
-  add(card,'strong',item.delta_text || (delta>0?'+':'')+(item.unit==='rub'?shortRub(delta):fmt(delta)+(percent?' п. п.':unit)), 'delta '+(item.tone || ((low && delta>0)||(high && delta<0)?'bad':'good')));
+  const text=item.delta_text || (delta>0?'+':'')+(item.unit==='rub'?shortRub(delta):fmt(delta)+(percent?' п. п.':unit));
+  const tone=item.tone || ((low && delta>0)||(high && delta<0)?'bad':'good');
+  const value=add(card,'strong',null,'delta '+tone);
+  const parts=text.match(/^([+−-]?[\d.,]+(?:[ \u00a0\u202f]\d{3})*)\s+([^\d].*)$/u);
+  if(parts){
+    value.classList.add('numericDelta');
+    value.append(parts[1]+' ');
+    add(value,'small',parts[2]);
+  }else value.textContent=text;
 
   const max=percent?100/scale:Math.max(item.before,item.after);
   for(const [name,n,color] of [[item.before_label || 'Обычный поиск по словам',item.before,'#869895'],[item.after_label || 'Кузница',item.after,'#087969']]){
     const row=add(card,'div',null,'barLabel');add(row,'span',name);add(row,'b',formatValue(n));
     bar(card,n,max,color);
   }
-  line(card,[item.scope_text || [valid(item.n_before)?'До · '+fmt(item.n_before):'',valid(item.n_after)?'после · '+fmt(item.n_after):''].filter(Boolean).join(' / '),item.note].filter(Boolean).join(' / '),'muted','small');
+}
+
+// Keep the common sample visible and retain metric-specific qualifications in the disclosure.
+function calculationBasis(box,pairs,reportNote,sample){
+  const scopes=pairs.map(i=>(i.scope_text || '').split(' · ').filter(Boolean));
+  const prefix=[];
+  for(const part of scopes[0] || []){
+    if(!scopes.every(scope=>scope[prefix.length]===part))break;
+    prefix.push(part);
+  }
+  line(box,prefix.join(' · '),'muted');
+  const notes=new Map();
+  for(const [index,item] of pairs.entries()){
+    const counts=[valid(item.n_before)?'До · '+fmt(item.n_before):'',valid(item.n_after)?'после · '+fmt(item.n_after):''].filter(Boolean).join(' / ');
+    const scope=item.scope_text?scopes[index].slice(prefix.length).join(' · '):counts;
+    const note=[scope,item.note===reportNote?'':item.note].filter(Boolean).join('. ');
+    if(!note)continue;
+    if(!notes.has(note))notes.set(note,[]);
+    notes.get(note).push(caption('',item.key,item.label));
+  }
+  const basis=details(box,'Как рассчитано');
+  line(basis,sample);
+  line(basis,reportNote);
+  for(const [note,labels] of notes){
+    const row=add(basis,'p');
+    if(labels.length<pairs.length)add(row,'strong',labels.join(', ')+'. ');
+    row.append(note);
+  }
 }
 async function replay(p,id){
   if(!id)return {};
@@ -86,20 +120,12 @@ export function head(p,params=new URLSearchParams()){
     const pairs=rows(k.pairs).length?k.pairs:[
       {label:'Пустая выдача',unit:'rate',better:'lower',before:ratio(r.before_zero ?? c.before_zero,count),after:ratio(r.after_zero ?? c.after_zero,count)},
       {label:'Цель в первой пятёрке',unit:'rate',better:'higher',before:ratio(r.before_top5,r.labeled),after:ratio(r.after_top5,r.labeled)}];
-    const grid=add(box,'div',null,'adminTiles');
-    // Older reports repeat the baseline explanation at the start of each note.
-    const notes=pairs.map(i=>i.note || '');
-    const first=notes[0]?.match(/[^.!?]+[.!?](?:\s+|$)/g) || [];
-    let shared='';
-    for(const sentence of first){if(notes.length<2 || !notes.every(n=>n.startsWith(shared+sentence.trimEnd())))break;shared+=sentence;}
-    for(const item of pairs){
-      const note=(item.note || '').slice(shared.trimEnd().length).trim();
-      pair(grid,{...item,before_label:item.before_label || k.before_label,note:note===k.note?'':note});
-    }
-    line(box,k.note || shared.trim(),'muted');
+    const grid=add(box,'div',null,'adminTiles comparisonTiles');
+    const shown=pairs.filter(i=>valid(i.before) && valid(i.after));
+    for(const item of shown)pair(grid,{...item,before_label:item.before_label || k.before_label});
     if(valid(r.recovered))tile(grid,'Возвращено поисков',fmt(r.recovered),'Появились подходящие предложения');
     if(!grid.childElementCount)empty(box,'Запустите парный прогон истории.');
-    line(box,['Парный прогон на одной истории',valid(r.processed)?fmt(r.processed)+' фраз':'',valid(count)?fmt(count)+' поисков':'',valid(r.labeled)?'с разметкой цели · '+fmt(r.labeled):''].filter(Boolean).join(' · '),'muted');
+    calculationBasis(box,shown,k.note,['Парный прогон на одной истории',valid(r.processed)?fmt(r.processed)+' фраз':'',valid(count)?fmt(count)+' поисков':'',valid(r.labeled)?'с разметкой цели · '+fmt(r.labeled):''].filter(Boolean).join(' · '));
   });
   loadBox(section(p,'Потенциал возврата заказов'),async box=>{
     const k=await adminApi('kpi'), lost=k.lost_orders || {};
