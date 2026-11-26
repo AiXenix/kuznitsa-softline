@@ -52,14 +52,24 @@ def model_section(engine, req, name, nearest, sid, calls, platform):
         return selected
 
 
-def native_members(index, section):
-    label = index.class_names[section]
-    # В фиде импортозамещение может иметь отдельный класс с тем же назначением.
-    def meaning(text):
-        return set(words(text))-{"российский","решение","импортозамещение","отечественный","программа"}
-    required = meaning(label)-{"windows","linux","unix","macos"}
-    return [k for k, title in index.class_names.items() if k!=section and k in index.analogs.domestic_sections
-            and required and meaning(title)==required]
+def nearby_sections(index, sections):
+    """Соседство задаёт товарное дерево. В плоском прайсе нужен общий термин класса."""
+    def branch(section):
+        offer = index.cat.cards[index.groups[section][0]].offers[0]
+        root = normalize(offer.category_path[0]) if offer.category_path else ""
+        return offer.domain, root
+
+    if not sections:
+        return []
+    roots = {branch(k) for k in sections}
+    neutral = {"","по","software","hardware","cloud","service","оборудование","программное обеспечение"}
+    common = {"программа","решение","лицензия","российский","импортозамещение","система","редактор","утилита","менеджер","управление"}
+    terms = set().union(*(index.class_terms[k] for k in sections))-common
+    def overlap(k):
+        return len(terms & index.class_terms[k])
+    siblings = [k for k in index.classes if k not in sections and branch(k) in roots
+                and (branch(k)[1] not in neutral or overlap(k))]
+    return sorted(siblings,key=lambda k:(-overlap(k),index.classes[k]))
 
 
 # В названиях международных линеек назначение часто записано по-английски.
@@ -82,7 +92,7 @@ def purpose_words(text):
     return terms
 
 
-def choose(index, name, row, sections, seeds, source, russian, platform=None, registry=False, budget=None):
+def choose(index, name, row, sections, seeds, source, russian, platform=None, registry=False, budget=None, eligible=None, limit=None):
     """Сначала по одному представителю каждой рекомендации, затем её варианты и класс."""
     ranked, seen = [], set()
     blocked = set(source)
@@ -95,6 +105,8 @@ def choose(index, name, row, sections, seeds, source, russian, platform=None, re
         if budget is not None and not any(o.price is not None and o.price<=budget for o in index.cat.cards[cid].offers):
             return
         if russian and not (marked or cid in index.analogs.domestic):
+            return
+        if eligible and not eligible(cid):
             return
         seen.add(cid)
         ranked.append((cid, fill))
@@ -137,7 +149,7 @@ def choose(index, name, row, sections, seeds, source, russian, platform=None, re
         if re.search(r"\b(?:для|for)\s+"+re.escape(name)+r"\b", normalize(card.title)):
             continue
         add(cid, fill=bool(seeds))
-        if row and len(ranked)>=4:
+        if row and len(ranked)>=4 or limit is not None and len(ranked)>=limit:
             break
     return ranked
 
@@ -180,6 +192,8 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
     from .feed_query import matching_variants
     index = engine.catalog.feed
     name = row["names"][0] if row else subject
+    written=re.search(re.escape(subject),req.q,re.I) if not row else None
+    display_name=written[0] if written else name
     russian = bool(DOMESTIC.search(normalize(req.q)) or req.filters.get("registry"))
     calls, sections, seeds, source = [], [], [], []
     sid = "s_"+uuid4().hex
@@ -223,10 +237,54 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
             selected = known or model or possible
             if selected:
                 sections = [selected]
-    if russian:
-        sections = list(dict.fromkeys([*sections, *(k for s in sections for k in native_members(index,s))]))
     registry=bool(req.filters.get("registry"))
-    choices = choose(index, normalize(name), row, sections, seeds, source, russian, platform, registry, budget)
+    conditions={k:v for k,v in req.filters.items() if k in {"registry","audience"}}
+    if budget is not None:
+        conditions["price_max"]=budget
+    selections={}
+    checked={}
+    def eligible(cid):
+        if not conditions and not qty:
+            return True
+        if cid not in checked:
+            # Если происхождение подтверждает только реестр, всем условиям
+            # должно отвечать одно и то же предложение внутри карточки.
+            required=conditions
+            if russian and cid in index.analogs.registered and cid not in index.analogs.declared_domestic:
+                required={**conditions,"registry":True}
+            match=matching_variants(index,[cid],profile,qty,False,required)
+            selections.update(match)
+            checked[cid]=bool(match)
+        return checked[cid]
+
+    scoped=req.filters.get("category",[]) + ([req.category] if req.category else [])
+    initial=[k for k in scoped if k in index.classes] if scoped else sections
+    def candidates(stage, targets, limit=None):
+        return choose(index,normalize(name),row,stage,targets,source,russian,platform,registry,budget,eligible,limit)
+    choices=candidates(initial,seeds if not scoped else [])
+    visited=list(initial)
+    expanded=False
+    if len(choices)<4:
+        siblings=nearby_sections(index,list(dict.fromkeys([*sections,*initial])))
+        stages=([k for k in sections if k not in visited],
+                [k for k in siblings if k in index.analogs.domestic_sections],siblings)
+        seen={cid for cid,_ in choices}
+        for stage in stages:
+            fresh=[k for k in stage if k not in visited]
+            if not fresh:
+                continue
+            visited.extend(fresh)
+            for cid,_ in candidates(fresh,[],4):
+                if cid not in seen:
+                    choices.append((cid,True))
+                    seen.add(cid)
+                    expanded=True
+                if len(choices)>=4:
+                    break
+            if len(choices)>=4:
+                break
+    if expanded or scoped or not sections:
+        sections=list(dict.fromkeys(index.card_sections[cid] for cid,_ in choices)) or visited
     clarify = not sections and not choices
     options = []
     if clarify:
@@ -242,6 +300,8 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
                     continue
                 if platform in index.platform_offers and cid not in index.platform_offers[platform]:
                     continue
+                if not eligible(cid):
+                    continue
                 examples.append((cid,True))
                 if len(examples)==4:
                     break
@@ -254,18 +314,16 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
             if len(groups)==3 and sum(map(len,groups))>=4:
                 break
         choices = [(g[i][0],True) for i in range(4) for g in groups if len(g)>i][:4]
-    selections = {}
-    if qty or budget is not None:
-        selections = matching_variants(index,[cid for cid,_ in choices],profile,qty,False,
-                    {"price_max":budget} if budget is not None else {})
-        if budget is not None:
-            choices = [c for c in choices if c[0] in selections]
     section = sections[0] if sections else index.card_sections[choices[0][0]] if choices and not clarify else None
     label = index.classes.get(section,"")
     title = ("Нет в каталоге. " if missing else "")+"Похожие по назначению"+(f": {label}" if label else "")
+    if russian:
+        title=f"Российские аналоги {display_name}"
     note = (f"В каталоге нет «{name}». " if missing else "")+(
         "Уточните назначение, чтобы подобрать замену." if clarify else
         f"Подбираем {'российские ' if russian else ''}замены для «{name}»"+(f" в разделе «{label}»." if label else "."))
+    if expanded:
+        note+=" Для добора проверены соседние разделы с теми же условиями."
     if not choices and not clarify:
         note+=" Подходящих замен в продаже не найдено."
     elif 0<len(choices)<4 and not clarify:
@@ -282,6 +340,8 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
         card = display(engine,cid,profile,preferred,selections.get(cid))
         if fill and not clarify:
             reason=f"Близкий товар для {name} из раздела «{category}»"
+        if russian and not clarify:
+            reason=f"Российский аналог {display_name}: {category}"+(" · близкий товар" if fill else "")
         card.update(reason=reason, fill=fill, label=reason)
         card["score"]["why"].insert(0,reason)
         items.append(card)
@@ -305,6 +365,7 @@ def search(engine, req, profile, trace, priorities, record, subject, row=None, e
     else:
         blocks.append(dict(type="analogs",title=title,category_id=section,items=[dict(card=c,reason=c["reason"]) for c in items]))
     filters = {"category":sections} if sections else {}
+    if "audience" in conditions:filters["audience"]=conditions["audience"]
     if russian:filters["domestic"]=True
     if req.filters.get("registry"):filters["registry"]=True
     if budget is not None:filters["price_max"]=budget

@@ -132,7 +132,7 @@ def matching_variants(index,ids,profile,qty,renewal,conditions=None,*,nodes=Fals
         if not selection and renewal and profile.client_id=="guest" and "audience" not in filters:
             selection=select(card,profile,{**filters,"audience":"home"},{},qty)
         if not selection and filters.get("audience") and "price_max" not in filters and not qty and not renewal:
-            offer=next((o for o in card.offers if all(getattr(o.lic,k)==v for k,v in filters.items())),None)
+            offer=next((o for o in card.offers if all(getattr(o.lic,k,getattr(o,k,None))==v for k,v in filters.items())),None)
             if offer:selection=(offer,None,None)
         if selection:selected[cid]=selection
     return selected

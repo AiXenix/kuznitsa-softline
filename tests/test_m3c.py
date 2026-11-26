@@ -208,9 +208,12 @@ def test_price_ceiling_in_feed_keeps_hardware_and_software(snapshot):
                                 ("антивирус на 3 пк до 35 ₽","av",35),("комп до 1","70187",1)):
             r=engine.search(Request(q=q,mode="fast"))
             b=r["blocks"][0]
-            assert b["type"]=="products" and b["category_id"]==section
             assert r["understood"]["filters"]["price_max"]==limit
-            assert bool(b["items"])==(limit>1)
+            if limit==1:
+                assert b["type"]=="clarify" and b["options"][0]["apply"]["category"]==section
+                assert not any(block["type"]=="products" for block in r["blocks"])
+                continue
+            assert b["type"]=="products" and b["category_id"]==section and b["items"]
             for c in b["items"]:
                 assert 0 < (c["calc"]["total"] or c["offer"]["price"]) <= limit
     finally:

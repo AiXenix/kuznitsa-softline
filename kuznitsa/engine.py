@@ -259,8 +259,10 @@ class Engine:
                 decorate(item,self.catalog.offers_by_id[item["offer"]["offer_id"]])
             if req.page==1 and len(cards)<4:
                 anchors=[dict(c,card_id=c["card_ref"]) for c in cards]
-                extra=fill(self,anchors,profile,not cards,q=req.q,blocks=result["blocks"])
+                extra=fill(self,anchors,profile,q=req.q,blocks=result["blocks"])
                 if extra:result["blocks"].append(dict(type="products",title=extra[0]["label"],items=extra,total=len(extra)))
+        from .plans.response_guard import guard
+        guard(self,req,result)
         if record:self.journal.search(self.clock(),req,result,len(offers),zero,False)
         result["timing_ms"]["total"]=round((self.timer()-trace.start)*1000,2)
         if not req.explain:
@@ -1584,6 +1586,9 @@ class Engine:
             if more:
                 title="Примеры из предложенных разделов" if clarify_feed else more[0]["label"]
                 blocks.append(dict(type="products",title=title,items=more,total=len(more)))
+        if persist:
+            from .plans.response_guard import guard
+            guard(self,req,result)
         t.add("log","Журнал и стоимость","Запись поиска в журнал. Расходы на внешние модели · 0 ₽")
         started=self.timer()
         if persist and record:

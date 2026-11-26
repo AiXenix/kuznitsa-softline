@@ -96,15 +96,16 @@ class AnalogIndex:
             offer = next((o for o in card.offers if o.registry), None)
             if offer:
                 self.registered[cid] = offer
-        self.domestic = set(self.registered)
+        self.declared_domestic = set()
         self.domestic_sections = {k for k,label in index.class_names.items()
                                   if re.search(r"\(\s*импортозамещение\s*\)",label)}
         for section in self.domestic_sections:
-            self.domestic.update(index.groups[section])
+            self.declared_domestic.update(index.groups[section])
         for _, targets in self.bound.values():
             for target, matches in targets:
                 if target.get("russian"):
-                    self.domestic.update(matches)
+                    self.declared_domestic.update(matches)
+        self.domestic = self.declared_domestic.union(self.registered)
 
     def lookup(self, text, fuzzy=True):
         if not self.names:

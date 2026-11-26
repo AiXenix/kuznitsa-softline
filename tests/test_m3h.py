@@ -116,6 +116,8 @@ def test_origin_is_filter_inside_os_class(feed,q):
     assert result["understood"]["intent"]=="analog" and all(b["type"]!="not_in_catalog" for b in result["blocks"])
     block=analogs(result)
     ids=[item["card"]["card_id"] for item in block["items"]]
+    assert block["title"]=="Российские аналоги Windows"
+    assert all(item["reason"].startswith("Российский аналог Windows: ") for item in block["items"])
     assert ids[:2]==["Astra Linux","РЕД ОС"] and set(ids)=={"Astra Linux","РЕД ОС","ОС Рябина","ОС Медведь"}
 
 
@@ -167,4 +169,6 @@ def test_registry_filter_requires_a_registered_offer(feed):
 
 def test_no_foreign_fill_if_no_domestic_matches(feed):
     result=search(feed,"отечественный аналог WaveLoom")
-    assert analogs(result)["items"]==[] and "не найдено" in result["understood"]["agent_note"]
+    assert not any(b["type"]=="analogs" for b in result["blocks"])
+    assert next(b for b in result["blocks"] if b["type"]=="clarify")["options"]
+    assert "не найдено" in result["understood"]["agent_note"]

@@ -239,7 +239,7 @@ def search(engine,req,profile,trace,priorities,record):
     replacement_for=feed_analogs.requested(base)
     row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
     if (replacement_for or row and not row["in_catalog"]) and not (
-            req.category or req.exclude or req.filters.keys()-{"price_max","registry"} or "\n" in req.q):
+            req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         return feed_analogs.search(engine,req,profile,trace,priorities,record,replacement_for or base,
                                   row,explicit=bool(replacement_for),qty=qty,budget=budget)
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
@@ -624,6 +624,8 @@ def order(engine,req,profile,trace,priorities,intent,section,items):
 
 
 def finish(engine,req,trace,record,result,items,count,calls):
+    from .response_guard import guard
+    guard(engine,req,result)
     if calls and not calls[-1].get("ok"):
         result["mode"]="fast"
         result["notes"].append("Раздел выбран быстрым поиском: категоризатор недоступен.")
