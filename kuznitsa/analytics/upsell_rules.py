@@ -33,17 +33,22 @@ def validate(body):
             raise ValueError("Источник должен быть kb или vendor_site с адресом сайта")
     for key in ("when","offer"):
         group=rule.get(key)
-        fields={"classes","families","vendors"}
+        fields={"classes","families","vendors","audience"}
         if key=="when":
             fields.add("query_words")
         if not isinstance(group,dict) or group.keys()-fields:
             raise ValueError("Проверьте условия "+key)
         clean={}
         for k,values in group.items():
+            if k=="audience":
+                if values not in ("home","business"):
+                    raise ValueError("Укажите аудиторию home или business")
+                clean[k]=values
+                continue
             if not isinstance(values,list) or any(type(v) not in (str,int) or not str(v).strip() for v in values):
                 raise ValueError("Ожидается список идентификаторов в "+k)
             clean[k]=list(dict.fromkeys(str(v).strip() for v in values))
-        if not any(clean.values()):
+        if not any(v for k,v in clean.items() if k!="audience"):
             raise ValueError("Нужно хотя бы одно условие в "+key)
         rule[key]=clean
     return rule

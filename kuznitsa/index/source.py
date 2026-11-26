@@ -71,6 +71,12 @@ def declared_offer(o):
         unit=a.get("unit","").lower()
         for k,prefix in (("device","устрой"),("user","польз"),("core","яд"),("server","сервер"),("device","пк"),("company","организац")):
             if unit.startswith(prefix):missing["metric"]=k
+    if o.domain=="software" and o.description:
+        # В исходном фиде число узлов указывается также как ёмкость одной лицензии.
+        # «Минимальная покупка» относится к числу таких лицензий в заказе.
+        cap=re.search(r"(?:^|•)\s*К-во узлов\s+(\d+)\s*шт\.?(?:\s*•|$)",o.description,re.I)
+        if cap and int(cap[1])>1 and not o.lic.pack and not o.lic.qty_max and o.lic.qty_min in (None,int(cap[1])):
+            missing.update(metric="device",pack=int(cap[1]),qty_min=1)
     if missing:vals["lic"]=o.lic.model_copy(update=missing)
     return o.model_copy(update=vals) if vals else o
 

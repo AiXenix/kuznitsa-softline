@@ -118,7 +118,9 @@ class Engine:
                 lex.nearest_typo=typo_matcher(w for w in lex.words if len(w)>=4)
                 from .understand.spell_index import spell_terms
                 lex.roman=spell_terms(lex)
-                self._phrases = PhraseRules(r for r in rules if r["kind"] == "text")
+                dictionary=[dict(rule_id="kb:"+phrase,kind="text",phrase=phrase,to=row["maps_to"]["text"])
+                            for phrase,row in self.kb.rows["slang"].items() if row["maps_to"].get("text")]
+                self._phrases = PhraseRules([*dictionary,*(r for r in rules if r["kind"] == "text")])
                 recent=()
                 if isinstance(self.journal,Journal):
                     recent=[r["q_norm"] for r in self.journal.rows(
@@ -257,7 +259,7 @@ class Engine:
                 decorate(item,self.catalog.offers_by_id[item["offer"]["offer_id"]])
             if req.page==1 and len(cards)<4:
                 anchors=[dict(c,card_id=c["card_ref"]) for c in cards]
-                extra=fill(self,anchors,profile,not cards)
+                extra=fill(self,anchors,profile,not cards,q=req.q,blocks=result["blocks"])
                 if extra:result["blocks"].append(dict(type="products",title=extra[0]["label"],items=extra,total=len(extra)))
         if record:self.journal.search(self.clock(),req,result,len(offers),zero,False)
         result["timing_ms"]["total"]=round((self.timer()-trace.start)*1000,2)
@@ -1566,10 +1568,12 @@ class Engine:
             if primary:
                 shown={c["card_id"] for c in visible}
                 other=shown-{c["card_id"] for c in primary["items"]}
-                together,reserved=recommend(self,norm,primary["items"],profile,intent,other)
+                def complete(reserved):
+                    return fill(self,visible,profile,reserved=reserved,q=req.q,blocks=blocks)
+                together,reserved=recommend(self,norm,primary["items"],profile,intent,other,complete=complete)
                 if together:blocks.append(together)
                 for i,c in enumerate(primary["items"],1):c["position"]=i
-            more=fill(self,visible,profile,intent=="off_topic",reserved)
+            more=[] if primary else fill(self,visible,profile,intent=="off_topic",reserved,q=req.q,blocks=blocks)
             if more:
                 blocks.append(dict(type="products",title=more[0]["label"],items=more,total=len(more)))
         t.add("log","Журнал и стоимость","Запись поиска в журнал. Расходы на внешние модели · 0 ₽")

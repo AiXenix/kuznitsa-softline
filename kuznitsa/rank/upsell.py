@@ -8,6 +8,14 @@ from kuznitsa.text import normalize
 from kuznitsa.optional import optional_module
 
 
+def audience(text):
+    home=re.search(r"\b(?:для дома|домашн\w*|для семьи|home)\b",text,re.I)
+    business=re.search(r"\b(?:организаци\w*|корпоративн\w*|бизнес\w*|business)\b",text,re.I)
+    if home and not business:return "home"
+    if business and not home:return "business"
+    return None
+
+
 class Recommendations:
     def __init__(self,index,kb,cfg):
         self.index=index
@@ -16,13 +24,29 @@ class Recommendations:
         if isinstance(self.base,dict):self.base=self.base.get("rules",[])
         self.legacy=[]
         aliases=defaultdict(set)
+        index.line_popularity={}
         for fid,row in kb.rows["families"].items():
             for name in (row.get("name"),row.get("title"),*row.get("aliases",[])[:3]):
                 if name:
                     matches=index.products(name.lower())
                     if matches:
-                        aliases[fid].update(matches[:3])
-                        break
+                        # Связь с семейством требует полного названия линейки.
+                        phrase=normalize(name)
+                        confirmed=[]
+                        for cid in matches[:16]:
+                            title=normalize(index.cat.cards[cid].title).removeprefix("программа ")
+                            if title!=phrase and not title.startswith(phrase+" "):continue
+                            confirmed.append(cid)
+                            canonical=normalize(row["name"]).partition(" (")[0]
+                            if phrase==canonical:
+                                # Основное название, затем версия без обозначения дополнительного модуля.
+                                tail=title[len(phrase):].strip()
+                                rank=(row.get("popularity") or 0,not tail or bool(re.fullmatch(r"[v\d. -]+",tail)),
+                                      -len(tail),index.quality[cid])
+                                index.line_popularity[cid]=max(rank,index.line_popularity.get(cid,rank))
+                        if confirmed:
+                            aliases[fid].update(confirmed)
+                            break
         for fid,members in aliases.items():
             index.tags["families"][fid].update(members)
             category=kb.rows["families"][fid].get("category")
@@ -73,6 +97,12 @@ class Recommendations:
         self.version=None
         self.compiled=self.compile(self.base or [])
 
+    def target_offer(self,cid,expected):
+        card=self.index.cat.cards[cid]
+        label=audience(self.index.classes[self.index.card_sections[cid]])
+        if label and label!=expected:return None
+        return next((o for o in card.offers if (o.lic.audience or label)==expected),None)
+
     def members(self,selectors):
         sets=[]
         for k in ("classes","categories","families","vendors"):
@@ -88,17 +118,24 @@ class Recommendations:
             when=rule["when"]
             offer=rule["offer"]
             members=self.members(offer)
-            if not members and offer.get("families"):
-                members=self.members({k:offer[k] for k in ("families","vendors") if k in offer})
-            if not members and offer.get("classes"):
-                members=self.members({"classes":offer["classes"]})
-                if members and offer.get("families"):
-                    rule=dict(rule,reason="Сопутствующий товар из рекомендованного раздела")
+            anchors=self.members(when)
+            if not anchors or not members:continue
+            if offer.get("audience"):
+                members={i for i in members if self.target_offer(i,offer["audience"])}
+            if not offer.get("families"):
+                # Один класс фида может содержать и серверы документооборота, и редакторы PDF.
+                # Термины назначения из правила уточняют выбор внутри его целевого класса.
+                source_text=" ".join(str(v) for k in ("query_words","families","vendors") for v in when.get(k,[])).casefold()
+                purpose={t.casefold() for t in re.findall(r"\b[A-Za-z][A-Za-z0-9-]{2,}\b",rule["reason"])
+                         if t.casefold() not in source_text}
+                if purpose:
+                    named={i for i in members if any(term in self.index.cat.cards[i].title.casefold() for term in purpose)}
+                    if named:members=named
             targets=sorted(members,key=lambda i:(self.index.quality[i],i),reverse=True)
-            if targets:result.append((self.members(when),when.get("query_words",[]),targets,rule))
+            result.append((anchors,when.get("query_words",[]),targets,rule))
         return sorted(result,key=lambda r:-float(r[3].get("weight",0)))
 
-    def picks(self,journal,q,ids,limit):
+    def picks(self,journal,q,ids,limit,blocked=()):
         if self.provider:
             version,rules=self.provider.active_rules(journal)
             if self.version!=version:
@@ -108,11 +145,16 @@ class Recommendations:
         anchor=self.index.cat.cards[ids[0]].offers[0]
         vendor=normalize(anchor.vendor or "")
         classes={anchor.class_id,anchor.category_id,anchor.attrs.get("kb_category")}-{None}
+        requested=audience(q) or audience(self.index.classes[self.index.card_sections[ids[0]]])
         found=[]
-        seen=set(ids)
+        seen=set(ids)|set(blocked)
+        # Широкий префикс может охватывать разные классы и вендоров.
+        # Правило должно относиться к основным результатам запроса.
+        anchor_ids=ids[:min(3,len(ids))]
         for members,words,targets,rule in self.compiled:
+            if rule["when"].get("audience") and rule["when"]["audience"]!=requested:continue
             if words and not any(str(w).lower() in q for w in words):continue
-            if any(rule["when"].get(k) for k in ("classes","categories","families","vendors")) and ids[0] not in members:continue
+            if ids[0] not in members or any(cid not in members for cid in anchor_ids):continue
             for target in targets:
                 bound=self.bindings.get(target)
                 if (bound and anchor.domain=="software" and not any(v==vendor for v,_ in bound)
@@ -126,8 +168,8 @@ class Recommendations:
         return found
 
 
-def interleave(q,cards,extra):
-    slots=list(range(1,len(cards)+1))
+def interleave(q,cards,extra,start=1):
+    slots=list(range(start,len(cards)+1))
     Random(blake2s(q.encode()).digest()).shuffle(slots)
     for i,item in sorted(zip(slots,extra[:len(cards)//2]),reverse=True):
         cards.insert(i,item)

@@ -21,7 +21,7 @@ FIELDS={g:set(fields.split()) for g,fields in FIELDS.items()}
 NESTED={k:set(fields.split()) for k,fields in {
     "editions":"id name title aliases", "license":"models audiences terms_months metrics packs actions bands",
     "price_rub":"unit low typical high", "slots":"category families products must note",
-    "maps_to":"attr value platform category vendor family", "effect":"filter boost",
+    "maps_to":"attr value platform category vendor family text class_id line_id", "effect":"filter boost",
     "russian_analogs":"family note", "when":"categories families", "suggest":"category families reason",
 }.items()}
 

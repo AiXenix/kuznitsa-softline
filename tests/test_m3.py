@@ -135,7 +135,7 @@ def test_live_upsell_rule_changes(feed,monkeypatch):
     monkeypatch.setattr(rules,"compiled",rules.compiled)
     monkeypatch.setattr(rules,"version",None)
     def items():
-        return {i.get("rule_id") for b in feed.search(Request(q="astra linux",mode="fast"))["blocks"] for i in b["items"]}
+        return {i.get("rule_id") for b in feed.search(Request(q="astra linux",mode="fast"))["blocks"] for i in b.get("items",[])}
     assert "store_rule" in items()
     state[:]=[2,[]]
     assert "store_rule" not in items()

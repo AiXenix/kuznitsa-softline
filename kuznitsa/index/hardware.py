@@ -33,3 +33,19 @@ def suitability(offer, categories, multifunction):
         if "ssd" in str(attrs.get("Тип носителя","")).lower() or re.match(r"[1-9]",str(attrs.get("Объем установленного SSD",""))):
             reasons.append("Накопитель SSD")
     return reasons
+
+
+def hardware_kind(value):
+    """Класс в словаре поставщика и слова названий разделов для этого класса."""
+    groups={
+        "desktop":("пк","комп","компьютер","десктоп"), "laptop":("ноутбук","ноут"),
+        "switch":("коммутатор","свитч"), "router":("роутер","маршрутизатор"),
+        "printer_mfp":("mfp","мфу","принтер"), "monitor":("монитор",),
+        "ups":("ибп","бесперебойник","бесперебойный"), "ssd":("ssd","твердотельный"),
+        "ram":("memory","память","озу"), "gpu":("graphics_card","video_card","видеокарта"),
+    }
+    key=str(value).casefold().strip()
+    for kind,labels in groups.items():
+        if key in (kind,*labels):
+            return kind,labels
+    return key,(key,)
