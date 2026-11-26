@@ -185,7 +185,7 @@ class Engine:
             card["score"]["tier_label"]=TIERS[card["score"]["tier"]]
             card["variants"] = [public_offer(offer)]
             return card
-        c=self.catalog.cards[ident]
+        c=self.catalog.cards[self.catalog.card_aliases.get(ident,ident)]
         profile=self.clients[profile_id]
         f={k:v for k,v in dict(term_months=term,action=action).items() if v}
         selection=select(c,profile,f,{},dict(value=qty) if qty else None)

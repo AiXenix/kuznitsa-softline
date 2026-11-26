@@ -8,6 +8,7 @@ from kuznitsa.plans.procurement import offer_codes
 from kuznitsa.text import sku_key,normalize
 from .cache import lexical
 from .filters import OfferFilters
+from .hardware import model_title
 from scipy.stats import rankdata
 from .dense import Dense
 
@@ -29,6 +30,9 @@ class Card:
 class Catalog:
     def __init__(self,cfg,kb):
         groups = defaultdict(list)
+        hardware_models={}
+        title_vendors=defaultdict(set)
+        self.card_aliases={}
         self.offer_names={}
         self.source_codes={}
         self.source_variants={}
@@ -60,6 +64,14 @@ class Catalog:
                 if any(str(o.attrs.get(k,"")).lower() in ("false","нет","no","0") for k in ("active","sold")):
                     archive(o.name,[o.name,o.family_name,*identifiers(o),*strings(o.attrs.get("aliases"))],o.category_id,o.vendor_id,o.family_id)
                     continue
+                if o.domain=="hardware" and not o.group_id and o.vendor:
+                    key=(normalize(o.vendor),normalize(model_title(o)))
+                    original=o.card_id
+                    title_vendors[key[1]].add(key[0])
+                    primary=hardware_models.setdefault(key,original)
+                    if primary!=original:
+                        self.card_aliases[original]=primary
+                        o._hardware_card=primary
                 for code in o.source_ids:
                     source_offers[code.casefold()][o.offer_id]=o
                 for code in identifiers(o):
@@ -113,6 +125,10 @@ class Catalog:
             title = " ".join(filter(None,[f.get("title") or o.family_name or o.name,ed]))
             if o.domain:
                 title=o.family_name or (o.category_path or [o.name])[-1]
+            if o.domain=="hardware" and not o.group_id:
+                title=model_title(o)
+                if len(title_vendors[normalize(title)])>1 and o.vendor:
+                    title=f"{title} · {o.vendor}"
             vendor = kb.rows["vendors"].get(o.vendor_id,{})
             card = Card(ident,title,o.family_id or ident,o.vendor_id,o.category_id,offers,f,
                         min((x.price for x in offers if x.price is not None),default=None),

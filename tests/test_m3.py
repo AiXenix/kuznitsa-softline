@@ -30,6 +30,12 @@ def feed(cfg,tmp_path_factory):
         software_classes=[650])],allow_unicode=True))
     (root/"slang_device.yaml").write_text(yaml.safe_dump([dict(term="стоечник",type="slang",
         maps_to=dict(attr="hardware_class",value="server"))],allow_unicode=True))
+    (root/"roles.yaml").write_text(yaml.safe_dump([dict(id="bookkeeper",title="Бухгалтер",
+        aliases=["бухгалтер","бухгалтерия"],slots=[dict(category="endpoint_security",families=[],
+        products=["Kaspersky Small Office Security"],note="Защита рабочего места")])],allow_unicode=True))
+    (root/"hardware_hints_extra.yaml").write_text(yaml.safe_dump([dict(id="mobile_pc",hardware_class="laptop",
+        hardware_feed_classes=[70824],trigger_words=["ноутбук"],prompt="Искали ПО для ноутбука?",
+        software_classes=[650])],allow_unicode=True))
     def classify(request):
         criteria=json.loads(request.content)["questions"]["section"]["criteria"]
         key=next(k for k,title in criteria.items() if "Антивирусы для организаций" in title)
@@ -142,3 +148,54 @@ def test_server_software(feed,q,prefix):
         first=response["blocks"][0]["items"][0]
         assert first["domain"]=="software" and prefix in first["title"].casefold()
         assert not any(c["key"]=="domain" for c in response["understood"]["chips"])
+
+def test_variants_of_one_server(feed):
+    items=feed.search(Request(q="сервер",mode="fast"))["blocks"][0]["items"]
+    servers=[c for c in items if not c.get("fill") and c.get("kind")!="upsell"]
+    assert len({c["title"] for c in servers})==len(servers)==2
+    card=next(c for c in servers if "3470S2A" in c["title"])
+    assert card["variants_count"]==3
+    from kuznitsa.index.hardware import model_title
+    first=feed.catalog.cards[card["card_id"]].offers[0]
+    for tail in (" — комплектация Enterprise"," (цвет: серый)",", артикул X-001",", RAM 32 GB"," (64 ГБ ОЗУ)"):
+        assert model_title(first.model_copy(update={"family_name":card["title"]+tail}))==card["title"]
+    for old,canonical in feed.catalog.card_aliases.items():
+        if canonical==card["card_id"]:
+            assert feed.card(old)["card_id"]==canonical
+    original_ids={o.offer_id for o in feed.catalog.cards[card["card_id"]].offers}
+    assert original_ids=={v["offer_id"] for v in feed.card(card["card_id"])["variants"]}
+
+
+def test_device_precedes_profession(feed):
+    for mode in ("fast","smart"):
+        result=feed.search(Request(q="ноутбук в бухгалтерию",mode=mode))
+        products=result["blocks"][0]["items"]
+        assert products[0]["domain"]=="hardware" and "Ноутбук" in products[0]["title"]
+        assert any("Бухгалтер" in c["reason"] for c in products if c.get("kind")=="upsell")
+        assert any("Бухгалтер" in chip["label"] for chip in result["understood"]["chips"])
+
+
+def test_competitor_dependency(cfg,tmp_path):
+    data=copytree(DATA,tmp_path/"store")
+    root=copytree(cfg.kb,tmp_path/"kb")
+    template=json.loads((data/"catalog.jsonl").read_text().splitlines()[0])
+    def row(ident,title,vendor,category):
+        return dict(template,offer_id=ident,family_name=title,name=title,vendor=vendor,vendor_id=vendor,
+                    group_id=ident,family_id=ident,class_id=category,category_id=category)
+    additions=[row("alpha","Alpha Suite","Alpha","suite"),row("beta","Beta Suite","Beta","suite"),
+               row("specific","Shield for Alpha Suite","Shield","protection"),
+               row("embedded","Shield Alpha Suite Connector","Shield","protection"),
+               row("generic","Universal Shield","Shield","other_protection")]
+    with (data/"catalog.jsonl").open("a") as out:
+        for r in additions:print(json.dumps(r),file=out)
+    rules=[dict(id=k,when=dict(classes=["suite"]),offer=dict(families=[k]),
+                reason="Защита",weight=.9) for k in ("specific","embedded","generic")]
+    (root/"upsell_r9.yaml").write_text(yaml.safe_dump(rules))
+    with pytest.MonkeyPatch.context() as env:
+        env.setenv("KZ_KB_DIR",str(root))
+        e=Engine.open(replace(cfg,data=data,kb=root))
+        try:
+            picks=e.catalog.feed.recommend.picks
+            assert {c for c,r in picks(e.journal,"beta suite",["beta"],3)}=={"generic"}
+            assert {c for c,r in picks(e.journal,"alpha suite",["alpha"],3)}=={"generic","specific","embedded"}
+        finally:e.close()

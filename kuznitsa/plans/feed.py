@@ -3,7 +3,8 @@ import re
 from uuid import uuid4
 from itertools import chain
 from kuznitsa.config import WEIGHTS
-from kuznitsa.text import normalize
+from kuznitsa.text import normalize,tokens
+from kuznitsa.index.hardware import suitability
 from kuznitsa.index.feed import HARDWARE,QUESTION,TASKS,COMPLEX,words
 from kuznitsa.rank.business import ranked
 from kuznitsa.rank.upsell import interleave
@@ -59,10 +60,38 @@ def fill(engine,items,profile,popular=False,reserved=()):
     return extra
 
 
-def recommend(engine,q,items,profile,intent,blocked=()):
+def recommend(engine,q,items,profile,intent,blocked=(),role=None):
     """Распределить рекомендации между основной лентой и отдельным блоком."""
     ids=[c["card_id"] for c in items]
     picks=engine.catalog.feed.recommend.picks(engine.journal,q,[*ids,*blocked],6+len(ids)//2)
+    if role:
+        index=engine.catalog.feed
+        role_picks=[]
+        used=set(ids)|set(blocked)
+        slots=role.get("slots",[])
+        if any(s["category"]=="accounting" for s in slots):
+            core=("accounting","office_suite","endpoint_security")
+            slots=sorted(slots,key=lambda s:core.index(s["category"]) if s["category"] in core else len(core))
+        for slot in slots:
+            ordered=[]
+            for product in slot.get("products",[]):
+                ordered.extend(index.products(normalize(product),domain="software")[:3])
+            for fid in slot.get("families",[]):
+                ordered.extend(sorted(index.tags["families"].get(fid,()),key=index.quality.get,reverse=True))
+            if slot["category"]=="accounting":
+                ordered.extend(index.products("бухгалтер",domain="software"))
+            candidates=index.tags["classes"].get(slot["category"],())
+            ordered.extend(sorted(candidates,key=index.quality.get,reverse=True))
+            if slot["category"]=="accounting":
+                # Общий префикс «1С» встречается также у CRM и систем совместной работы.
+                ordered=[i for i in ordered if {"бухгалтер","бухгалтерия","учет"} & set(words(index.cat.cards[i].title))]
+            cid=next((i for i in ordered if i not in used and i not in index.recommend.bindings
+                      and index.cat.cards[i].offers[0].domain=="software"),None)
+            if cid:
+                used.add(cid)
+                role_picks.append((cid,dict(id="role_"+role["id"]+"_"+slot["category"],
+                                            reason=role["title"]+" · "+slot.get("note", "ПО для рабочего места"))))
+        picks=role_picks+[(i,r) for i,r in picks if i not in used]
     extra=[]
     picks=picks[:max(0,len(engine.catalog.cards)-4)]
     for cid,rule in picks:
@@ -70,7 +99,7 @@ def recommend(engine,q,items,profile,intent,blocked=()):
         card.update(kind="upsell",label="Вам может пригодиться",reason=rule["reason"],rule_id=rule["id"])
         extra.append(card)
     split=min(len(ids)//2,len(extra)//2 if intent=="product" else len(extra))
-    if split:interleave(q,items,extra[-split:])
+    if split:interleave(q,items,extra[-split:] if intent=="product" else extra[:split])
     together=None
     if intent=="product" and len(extra)>split:
         rows=[dict(card=c,reason=c["reason"],rule_id=c["rule_id"]) for c in extra[:min(6,len(extra)-split)]]
@@ -88,7 +117,22 @@ def search(engine,req,profile,trace,priorities,record):
     if req.verbatim:q=norm
     hardware=next((w for w in words(q) if w in HARDWARE),None)
     device=index.hardware.get(norm)
-    bare=bool(device or hardware and len(q.split())==1)
+    role=None
+    device_name=norm
+    parts=re.split(r"\s+(?:для|в)\s+",norm,maxsplit=1)
+    if len(parts)==2 and not re.search(r"\b(?:по|софт|программ\w*|лицензи\w*|антивирус\w*)\b",parts[0]):
+        head=parts[0].split()
+        for start in range(len(head)):
+            name=" ".join(head[start:])
+            if name not in index.hardware and name not in HARDWARE:
+                continue
+            role=next((engine.kb.rows["roles"][key] for _,_,matches in engine.lex.match(tokens(parts[1]))
+                       for kind,key,_ in matches if kind=="role"),None)
+            if role:
+                device_name=name
+                device=index.hardware.get(name)
+            break
+    bare=bool(role or device or hardware and len(q.split())==1)
     hint=next((v for p,v in TASKS if re.search(p,q)),None)
     note=""
     missing=False
@@ -164,8 +208,19 @@ def search(engine,req,profile,trace,priorities,record):
         if options and req.mode=="smart" and engine.decisions:
             model_section=index.decide(engine,q,options,sid,req,calls,focus)
             section=model_section or section
+    role_reasons={}
     if section:
         members=index.groups[section]
+        if role:
+            categories={s["category"] for s in role.get("slots",[])}
+            for cid in members:
+                card=index.cat.cards[cid]
+                choices=[(o,suitability(o,categories,device_name=="мфу")) for o in card.offers]
+                offer,reasons=max(choices,key=lambda pair:(len(pair[1]),pair[0].available))
+                preferred[cid]=offer
+                role_reasons[cid]=reasons
+            members=sorted(members,key=lambda cid:(len(role_reasons[cid]),preferred[cid].available),reverse=True)
+            note="Рабочее место · "+role["title"]
         if question and not note:
             for key in engine.knowledge.nearest("category",hint or q)[:1]:
                 row=engine.kb.rows["categories"][key]
@@ -193,7 +248,9 @@ def search(engine,req,profile,trace,priorities,record):
     if question:trace.add("intent","Выбор раздела",title,calls=calls)
     start=(req.page-1)*req.page_size
     items=[display(engine,c,profile,preferred.get(c)) for c in ids[start:start+req.page_size]]
-    for i,c in enumerate(items,1):c["position"]=i
+    for i,c in enumerate(items,1):
+        c["position"]=i
+        c["score"]["why"].extend(role_reasons.get(c["card_id"],()))
     ctx=dict(q_raw=req.q,q_norm=norm,intent=intent,category_id=section,segment=profile.segment,
              profile_id=profile.client_id,mode=req.mode,channel=req.source,region=profile.region)
     if engine.controls.redirect(ctx):return None
@@ -203,7 +260,7 @@ def search(engine,req,profile,trace,priorities,record):
     merch=engine.controls.merch(ctx,items)
     items=merch["cards"]
     main=[c["card_id"] for c in items]
-    together,recommended=recommend(engine,q,items,profile,intent)
+    together,recommended=recommend(engine,q,items,profile,intent,role=role)
     more=fill(engine,[c for c in items if c.get("kind")!="upsell"],profile,reserved=recommended) if req.page==1 else []
     items.extend(more)
     for i,c in enumerate(items,1):c["position"]=i
@@ -214,7 +271,7 @@ def search(engine,req,profile,trace,priorities,record):
     if together:blocks.append(together)
     trace.add("upsell","Сопутствующие товары",f"В основной ленте · {sum(c.get('kind')=='upsell' for c in items)}. "
               f"В блоке рекомендаций · {len(together['items']) if together else 0}",status="ok" if recommended else "skip")
-    chips=[]
+    chips=[dict(key="role",label="Роль: "+role["title"],removable=False)] if role else []
     if bare:
         targets=[str(k) for k in (device or {}).get("software_classes",()) if str(k) in index.groups]
         label=(device or {}).get("prompt") or f"Искали ПО для {HARDWARE.get(hardware,norm)}?"

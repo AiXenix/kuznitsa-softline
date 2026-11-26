@@ -20,11 +20,11 @@ def strings(value):
 def read_offer(line):
     row=json.loads(line)
     attrs={k:v for k,v in (row.get("attrs") or {}).items() if v is not None}
-    for field in ("domain","group_id","class_id","oldprice"):
+    for field in ("class_id","oldprice"):
         value = row.get(field) or attrs.get(field)
         if value is not None:
             row[field] = str(value) if field != "oldprice" else value
-    if row.get("domain"):
+    if row.get("domain") or attrs.get("domain"):
         row["image"] = row.get("image") or row.get("picture") or attrs.get("picture")
         if not row.get("price"):
             row.update(price=None,price_on_request=True)

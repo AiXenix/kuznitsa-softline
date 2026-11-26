@@ -1,5 +1,5 @@
 from typing import Literal
-from pydantic import BaseModel, Field, ConfigDict, field_validator, PrivateAttr
+from pydantic import BaseModel, Field, ConfigDict, field_validator, model_validator, PrivateAttr
 
 
 Action = Literal["new","renewal","upgrade","crossgrade","addon","support"]
@@ -63,8 +63,26 @@ class Offer(BaseModel):
     url: str | None = None
     image: str | None = None
 
+    @model_validator(mode="before")
+    @classmethod
+    def feed_identity(cls, row):
+        if not isinstance(row, dict):
+            return row
+        attrs = row.get("attrs")
+        if not isinstance(attrs, dict):
+            return row
+        domain = row.get("domain") or attrs.get("domain")
+        if not domain:
+            return row
+        group = row.get("group_id") or attrs.get("group_id")
+        return {**row, "domain": domain, "group_id": str(group) if group else None}
+
+    _hardware_card: str | None = PrivateAttr(default=None)
+
     @property
     def card_id(self):
+        if self.domain=="hardware" and self._hardware_card:
+            return self._hardware_card
         if self.domain:
             if self.group_id:
                 return self.group_id
