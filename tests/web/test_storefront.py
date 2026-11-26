@@ -135,3 +135,15 @@ def test_document_routes(client, monkeypatch, tmp_path):
     for prefix in ("/docs/", "/web-data/documents/"):
         for name in ("external.md", "masked.md", "%2e%2e%2fprivate.md", "index.json", "missing.md"):
             assert client.get(prefix + name).status_code == 404
+
+
+def test_feed_class_labels(tmp_path):
+    from types import SimpleNamespace
+    from kuznitsa.pages import catalog_sections
+
+    core = SimpleNamespace(catalog=SimpleNamespace(feed=SimpleNamespace(classes={"1": "Серверы"})),
+                           journal=SimpleNamespace(path=tmp_path / "journal.sqlite"))
+    request = SimpleNamespace(app=SimpleNamespace(state=SimpleNamespace(engine=core)))
+    (tmp_path / "feed_classes.json").write_text('{"2":{"path":["ПО","Антивирусы"]}}')
+    assert catalog_sections(request) == {"1": "Серверы"}
+    assert catalog_sections(request, all_classes=True) == {"1": "Серверы", "2": "Антивирусы"}

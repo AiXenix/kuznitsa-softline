@@ -47,7 +47,7 @@ def test_console_http_contract(cfg, monkeypatch):
         assert api.get(period).status_code == 403
 
 
-@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js", "c4_render.browser.js", "c5_render.browser.js", "c6_render.browser.js"])
+@pytest.mark.parametrize("fixture_script", ["admin_render.browser.js", "c3_render.browser.js", "c4_render.browser.js", "c5_render.browser.js", "c6_render.browser.js", "c8_render.browser.js"])
 def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
     chrome = shutil.which("google-chrome") or shutil.which("chromium")
     if not chrome:
@@ -71,6 +71,8 @@ def test_console_renderers_with_journal_examples(tmp_path, fixture_script):
         data = {"xlsx": base64.b64encode(content.getvalue()).decode("ascii")}
     if fixture_script == "c6_render.browser.js":
         data = json.loads((ROOT / "web/fixtures/refinement.json").read_text())
+    if fixture_script == "c8_render.browser.js":
+        data = json.loads((Path(__file__).parent / "upsell-rules.json").read_text())
     html = tmp_path / "console.html"
     html.write_text('<body><output></output><main></main><script id="fixtures" type="application/json">'
                     + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + '</script><script type="module">'

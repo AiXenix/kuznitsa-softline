@@ -5,7 +5,7 @@ const pending=new Map();
 export function resetData(path){if(path)pending.delete(path);else pending.clear();}
 export async function adminApi(path,method='GET',body){
   const token=sessionStorage.getItem('kzAdminKey');
-  if(method!=='GET' && path!=='priorities/preview' && !token)throw Error('Нужен ключ доступа. Введите его в шапке консоли.');
+  if(method!=='GET' && !['priorities/preview','upsell/preview'].includes(path) && !token)throw Error('Нужен ключ доступа. Введите его в шапке консоли.');
   const cached=pending.get(path);
   if(method==='GET' && cached)return cached;
   const load=async()=>{
@@ -15,7 +15,7 @@ export async function adminApi(path,method='GET',body){
     catch{if(signal?.aborted)throw Error('Сервер не ответил за минуту.');throw Error('Нет связи со служебным API. Проверьте подключение.');}
     if(!r.ok){
       const data=await r.json().catch(()=>null);
-      const text=r.status===403?'Доступ закрыт. Проверьте ключ в шапке.':data?.error?.message || 'Данные недоступны.';
+      const text=r.status===403?'Доступ закрыт. Проверьте ключ в шапке.':data?.error?.message || (typeof data?.detail==='string' && data.detail) || 'Данные недоступны.';
       const err=Error('HTTP '+r.status+' · '+text);err.status=r.status;throw err;
     }
     if(method!=='GET')resetData();

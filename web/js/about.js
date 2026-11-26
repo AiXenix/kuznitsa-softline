@@ -28,7 +28,7 @@ export async function about(main){
     const tr=add(t,'tr');row.forEach(v=>add(tr,'td',v));
   }
   const cost=section('Стоимость запроса'), quality=section('Качество на проверочном наборе');
-  line(section('Данные стенда'),'Каталог, цены, клиенты и журнал синтетические. Адаптер загружает данные организаторов без изменения движка.');
+  line(section('Данные стенда'),'Адаптер загружает предложения и цены из фида магазина. В разделе «Данные» консоли можно посмотреть состав каталога, историю и отчёт импорта.');
   const [meta,health,c,e]=await Promise.all(['/api/meta','/health','/api/admin/cost','/api/admin/eval'].map(url=>api(url).catch(()=>null)));
   setMeta(meta || {});
   const examples=new Map();

@@ -26,7 +26,7 @@ try{
   const product={title:'Длинное название семейства',offer:{name:'Название семейства, продление',available:false,offer_id:'o',action:'renewal',term_months:12},score:{tier_label:'Точное соответствие',why:['По условиям запроса','По отрасли']}};
   result(main,{blocks:[{type:'products',items:[product]}]},{act:(type,c)=>action=[type,c]});
   check(main.querySelector('.cardHead').innerText.includes('Точное соответствие') && main.querySelector('.whyFirst').textContent==='По условиям запроса','Уровень и причина');
-  check(main.querySelector('.conditions').textContent.includes('Продление') && main.querySelector('.purchase').textContent.includes('Нет в продаже'),'Лицензия и наличие');
+  check(main.querySelector('.conditions').textContent.includes('Продление') && main.querySelector('.purchase').textContent.includes('Под заказ'),'Лицензия и наличие');
   main.querySelector('.purchase button').click();check(action[0]==='lead' && action[1]===product,'Заявка по карточке');
   main.replaceChildren();result(main,{});trace(main,{cost:{llm_calls:0,cached:2,rub:0,saved_rub:.0123},trace:[{step:'log',detail:{}}]});
   check(main.innerText.includes('оба из кэша') && main.innerText.includes('без кэша') && !main.querySelector('pre'),'Кэш и стоимость');
@@ -38,8 +38,8 @@ try{
   };
   suggestions(input,panel,()=>({}),q=>chosen=q);
   input.value='кас';input.dispatchEvent(new Event('input'));await new Promise(resolve=>setTimeout(resolve,200));
-  const groups=[...panel.querySelectorAll('[role=group]')].map(g=>g.getAttribute('aria-label').split(' ')[1]);
-  check(groups.join(',')==='corrections,queries,licenses,products,categories,vendors,extra','Порядок групп');
+  const groups=[...panel.querySelectorAll('[role=group]')].map(g=>g.getAttribute('aria-label'));
+  check(groups.join(',')==='Возможно, вы искали,Запросы,Товары,Разделы,Группа licenses,Группа vendors,Группа extra','Порядок групп');
   check(panel.querySelector('mark').textContent==='Кас' && panel.innerText.includes('для офиса') && panel.innerText.includes('Исправлено'),'Текст подсказки');
   for(const key of ['ArrowDown','Enter','Escape'])input.dispatchEvent(new KeyboardEvent('keydown',{key}));
   check(chosen==='защита' && signal.aborted && panel.hidden,'Клавиши, запрос и отмена');

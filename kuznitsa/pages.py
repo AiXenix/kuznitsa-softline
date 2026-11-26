@@ -1,4 +1,5 @@
 """Public storefront pages, registered before the fallback in app.py."""
+import json
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -117,3 +118,20 @@ def document_list():
 def document_source(name: str):
     return FileResponse(document_path(name), media_type="text/plain",
                         headers={"Cache-Control": "no-cache"})
+
+
+@router.get("/web-data/catalog-sections")
+def catalog_sections(request: Request, all_classes: bool = False):
+    """Public class names. The editor also offers classes outside the active selection."""
+    engine = request.app.state.engine
+    feed = getattr(engine.catalog, "feed", None)
+    active = getattr(feed, "classes", {})
+    journal = getattr(engine.journal, "path", None)
+    if not all_classes or not journal:
+        return active
+    try:
+        imported = json.loads(Path(journal).with_name("feed_classes.json").read_text())
+    except (OSError, ValueError):
+        return active
+    labels = {key: row["path"][-1] for key, row in imported.items() if row.get("path")}
+    return labels | active

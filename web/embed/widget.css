@@ -1,8 +1,14 @@
 :host {display:block;min-width:0}
-.widget {--ink:#142f34;--muted:#52666b;--paper:#f5f6f1;--card:white;--line:#cfd8d3;--teal:#00665b;--navy:#10373c;--mint:#dbf3e7;--copper:#ffba7e;--radius:12px;color:var(--ink);background:white;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:1rem;font:16px/1.45 system-ui,sans-serif;text-align:left;letter-spacing:normal}
+.widget {color:var(--ink);background:white;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:12px;padding:1rem;font:16px/1.45 Inter,Arial,sans-serif;text-align:left;letter-spacing:normal}
 .widget label {display:block;font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
 .widget .bar {border:1px solid var(--line)}
 .widget .notice:empty {display:none}
 .widget .understood {margin-top:.65rem}
 .widget form>label:has(select){font-size:.87rem;font-weight:500;margin:.5rem 0}
 .widget select{font:inherit;padding:.24rem .45rem;border:1px solid var(--line);border-radius:5px}
+
+.widget .understood,.widget .whyFirst {display:none}
+.widget .primary {color:white;background:#a50f2d}
+.widgetBrand {display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.65rem}
+.widgetBrand img {width:110px;max-width:38%;height:auto}
+.widgetBrand label {margin:0}

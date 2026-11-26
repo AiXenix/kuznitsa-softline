@@ -1,0 +1,6 @@
+[
+  {"id":"astra_backup","when":{"query_words":["astra linux"]},"offer":{"classes":["1033"]},"reason":"Резервная копия помогает восстановить рабочее место после сбоя","weight":0.9,"enabled":true,"source":"kb"},
+  {"id":"astra_endpoint","when":{"query_words":["astra linux"]},"offer":{"classes":["650"]},"reason":"Средства защиты для корпоративных рабочих мест","weight":0.8,"enabled":true,"source":"kb"},
+  {"id":"astra_information","when":{"query_words":["astra linux"]},"offer":{"classes":["687"]},"reason":"Защита информации на рабочем месте","weight":0.7,"enabled":true,"source":"kb"},
+  {"id":"server_backup","when":{"query_words":["сервер"]},"offer":{"classes":["1033"]},"reason":"Резервное копирование серверных данных","weight":0.6,"enabled":true,"source":"kb"}
+]

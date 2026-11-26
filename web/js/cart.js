@@ -5,8 +5,12 @@ import {record} from './events.js';
 export function cart() {
   const drawer=$('drawer'), body=$('cartBody'), basket=$('basket');
   let ordering=false;
+  try{state.cart=JSON.parse(sessionStorage.getItem('shop:cart') || '[]');}catch{state.cart=[];}
+  function persist(){try{sessionStorage.setItem('shop:cart',JSON.stringify(state.cart));}catch{/* Storage can be unavailable in private browsing. */}}
   basket.hidden=false;
-  function count() {basket.textContent=state.cart.length ? 'Корзина · '+state.cart.length : 'Корзина';}
+  basket.replaceChildren();const basketLabel=add(basket,'span');
+  function count(){basketLabel.textContent=state.cart.length?'Корзина · '+state.cart.length:'Корзина';}
+  count();
   function display() {
     body.replaceChildren();
     if(!state.cart.length) stateBox(body,'Корзина пока пуста.');
@@ -24,7 +28,7 @@ export function cart() {
         while(state.cart.length) {
           const {r,card,block,session}=state.cart[0];
           await record(r,'order',card,block,session);
-          state.cart.shift();count();
+          state.cart.shift();persist();count();
         }
         ordering=false;body.replaceChildren();stateBox(body,'Демонстрационный заказ оформлен.');
       } catch(err){ordering=false;display();stateBox(body,err.message,'error');}
@@ -32,7 +36,12 @@ export function cart() {
   }
   basket.onclick=()=>{$('drawerTitle').textContent='Корзина';display();drawer.showModal();};
   return (r,block,session)=>({
-    click:(c,action)=>record(r,'click',c,block,session,action).catch(err=>{$('notice').textContent=err.message;}),
+    click:(c,action)=>{
+      if(action==='card' && r?.search_id && c.card_id){
+        sessionStorage.setItem('shop:ref:'+c.card_id,JSON.stringify({search_id:r.search_id,profile:r.profile,block,rule_id:c.rule_id,position:c.position,session}));
+      }
+      return record(r,'click',c,block,session,action).catch(err=>{$('notice').textContent=err.message;});
+    },
     act:async(type,c,b)=>{
       if(type==='lead'){
         $('drawerTitle').textContent='Заявка менеджеру';body.replaceChildren();
@@ -51,7 +60,7 @@ export function cart() {
       b.disabled=true;
       try {
         await record(r,type,c,block,session);
-        if(type==='cart'){state.cart.push({r,card:c,block,session});count();}
+        if(type==='cart'){state.cart.push({r:{search_id:r.search_id,profile:r.profile,standalone:r.standalone},card:c,block,session});persist();count();}
         b.textContent=type==='cart' ? 'В корзине' : 'Запрос принят';
         $('notice').textContent=type==='cart' ? 'Лицензия добавлена в корзину.' : 'Запрос поставки сохранён.';
       }catch(err){b.disabled=false;$('notice').textContent=err.message;}

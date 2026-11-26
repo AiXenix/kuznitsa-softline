@@ -1,0 +1,145 @@
+@font-face {font-family:Inter;src:url('../assets/fonts/inter-latin.woff2') format('woff2');font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face {font-family:Inter;src:url('../assets/fonts/inter-cyrillic.woff2') format('woff2');font-weight:100 900;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+.shop,.widget {--ink:#121519;--muted:#60646c;--line:#dedfe2;--paper:#f2f2f2;--teal:#a50f2d;--navy:#353942;--mint:#fbebef;--copper:#a50f2d;--radius:10px;font-family:Inter,Arial,sans-serif}
+.shop {background:white}
+.shop .wrap {width:min(1160px,94%)}
+.shop header {background:white;border-color:#eee}
+.shop header .top {display:block;padding:0;min-height:0}
+.shopTop,.shopSearch,.shopActions,.departments,.judgeHead {display:flex;align-items:center;gap:1rem}
+.shopTop {height:58px;border-bottom:1px solid #eee;font-size:.83rem}
+.shopTop img {display:block;width:136px;height:40px;object-fit:contain}
+.storeName {border-left:1px solid #ccc;padding-left:1rem;color:#666}
+.gear {font-size:1.2rem;margin-left:auto;border:0;background:#f2f2f2;border-radius:50%;padding:.3rem .55rem}
+.shopSearch {padding:.8rem 0;gap:.7rem}
+.catalogBtn,.shop .primary,.widget .primary,.shop .buy {background:#a50f2d;color:white;border:0}
+.catalogBtn {padding:.7rem 1rem;white-space:nowrap}
+.shop #search {flex:1;min-width:0}
+.shop .bar,.widget .bar {border:1px solid #a50f2d;border-radius:6px;padding:2px;align-items:stretch}
+.shop .bar input {font-size:.95rem}
+.shop .bar .primary,.widget .bar .primary {background:#a50f2d;color:white;border-radius:4px;padding:.4rem .85rem}
+.shop .bar .voice {font-size:.8rem}
+.shopActions {gap:.15rem}
+.shopActions button {background:none;border:0;font-size:.85rem;padding:.4rem;white-space:nowrap}
+.shopActions button:before {display:block;font-size:1.2rem;line-height:1}
+.shopActions button:nth-child(1):before {content:'⇄'}
+.shopActions button:nth-child(2):before {content:'♙'}
+.shopActions button:nth-child(3):before {content:'♡'}
+.shopActions button:nth-child(4):before {content:'▤'}
+.shop .departments {gap:.8rem;flex-wrap:nowrap;overflow:auto;scrollbar-width:thin;padding:.25rem 0 .65rem}
+.shop .departments a {font-weight:500;color:#353942;white-space:nowrap;padding:.25rem 0;font-size:.88rem;flex:none}
+.shop .departments a:first-child {color:#a50f2d;font-weight:bold}
+.catalogMenu {padding:.8rem;background:#f6f6f6;max-height:45vh;overflow:auto}
+.shop main {padding-block:1.25rem 3rem}
+.shop .workspace {display:block}
+.shop .traceJump,.shop footer :is(a,button){display:none}
+.shopBanners {display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.shopBanners a {display:block;aspect-ratio:574/301;background-image:url('/web/assets/home.jpg');background-size:250.87% 299%;border-radius:8px}
+.workspaceAd {background-position:15.70% 34.89%}
+.cloudAd {background-position:83.37% 34.89%}
+.shop #results>h1 {font-size:2rem;margin:2rem 0 1rem}
+.shop .departmentTiles {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.departmentTiles a {display:grid;grid-template-columns:3rem 1fr;align-items:center;gap:0 .9rem;color:var(--ink)}
+.departmentTiles a span {grid-row:span 2;background:#f9eaed;color:#a50f2d;padding:.4rem;text-align:center;border-radius:8px;font-size:1.5rem}
+.departmentTiles a small {font-weight:normal;color:var(--muted)}
+.shop .judge {position:fixed;z-index:18;top:0;right:0;bottom:0;width:min(480px,100%);padding:1rem;background:#fff;box-shadow:-5px 0 35px #25293233;overflow:auto;overscroll-behavior:contain}
+.shop.presenting .judge {bottom:var(--show-height,4rem)}
+.judgeHead {position:sticky;top:-1rem;background:white;z-index:2;justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:1rem;padding:.6rem 0}
+.judgeHead h2 {margin:0}
+.judge .settings {gap:.6rem}
+.judge .tools {display:flex;flex-wrap:wrap}
+.judge .trace {position:static;max-height:none}
+.judge .trace .sectionHead {flex-wrap:wrap}
+.judge .trace .sectionHead h2 {font-size:1.25rem}
+.judge .trace .sectionHead button {font-size:.75rem}
+.shop .judge.traceWide,.shop .judge:has(#comparison:not([hidden])) {width:min(1100px,100%)}
+.judge.traceWide .trace {position:fixed;inset:1rem;overflow:auto;z-index:3}
+.presenting .judge.traceWide .trace {bottom:calc(var(--show-height,4rem) + 1rem)}
+.judge nav {border-top:1px solid var(--line);padding-top:.5rem}
+.shop .block {border:0;padding:0;margin:1.25rem 0}
+.shop .block h2 {font-size:1.5rem}
+.productGrid {display:grid;gap:.85rem}
+:is(.shop,.widget) .productGrid {grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));align-items:stretch}
+:is(.shop,.widget) .offerTile {position:relative;min-width:0;border:1px solid #e1e1e1;border-radius:8px;padding:1rem;background:white;display:flex;flex-direction:column}
+:is(.shop,.widget) .offerTile:has(.upsellLabel) {background:#fffcfd;border-color:#efd3da}
+:is(.shop,.widget) .offerTile .catalogCard {display:flex;flex:1;flex-direction:column;align-items:stretch;gap:.45rem;background:transparent;border:0;padding:0;margin:0}
+.productPic {position:relative;height:96px;display:grid;place-items:center;background:#fafafa;border-radius:6px}
+.productPic img {position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:white}
+.pack {display:grid;place-items:center;width:3.3rem;height:3.8rem;color:#696d79;font:700 1.2rem/1 Inter,Arial,sans-serif;background:linear-gradient(118deg,#ebeef1,#d3d9df);border-left:5px solid #bbc2cb;border-radius:2px;transform:skewY(-4deg)}
+.upsellLabel,.fillLabel,.deal {display:inline-block;align-self:start;border-radius:4px;background:#fae7eb;color:#8b1530;padding:.2rem .44rem;font-size:.75rem}
+.fillLabel {background:#f2f2f2;color:#535760}
+.offerReason {font-size:.8rem;color:#646770;margin:.25rem 0}
+.oldPrice {font-size:.84rem;color:#666;margin-inline:.45rem}
+.saveProduct {position:absolute;right:.8rem;top:.8rem;z-index:1;display:flex;gap:.15rem}
+.offerTile:has(.upsellLabel,.fillLabel) .saveProduct {position:static;align-self:end}
+.saveProduct button {border:0;padding:.12rem .35rem;font-size:1.12rem}
+.saveProduct [aria-pressed=true] {background:#fbe4ea;color:#a50f2d}
+:is(.shop,.widget) .offerTile :is(.identity,.whyFirst,.cardHead .badge,.description>.muted,.disclosures) {display:none}
+:is(.shop,.widget) .offerTile .productTitle {color:#121519;font-weight:650;text-decoration:none;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+:is(.shop,.widget) .offerTile .productTitle:hover {color:#a50f2d;text-decoration:underline}
+:is(.shop,.widget) .offerTile .description {display:block}
+:is(.shop,.widget) .offerTile .purchase {margin-top:auto;display:block;max-width:100%;overflow:visible}
+:is(.shop,.widget) .offerTile .price {font-size:1.15rem;color:#121519;margin:.4rem 0}
+:is(.shop,.widget) .offerTile .purchase button {margin:0;width:100%}
+:is(.shop,.widget) .offerTile .conditions {font-size:.77rem}
+:is(.shop,.widget) #suggestions {z-index:12;padding:.65rem;max-height:min(65vh,34rem);border-color:#ddd}
+:is(.shop,.widget) .option {display:flex;align-items:center;gap:.6rem;justify-content:normal}
+.option>span {flex:1;min-width:0}
+.option .productPic {flex:none;width:40px;height:40px}
+.option .pack {width:24px;height:28px;font-size:.65rem}
+.option .suggestPrice {white-space:nowrap;color:#121519;font-size:.84rem}
+.shop .option mark,.widget .option mark {color:#a50f2d;background:transparent;font-weight:bold}
+@media (min-width:1050px){.shop.judgeOpen:not(:has(.traceWide)) #pageScroll {margin-right:480px}}
+@media (max-width:850px){
+ .shop .shopSearch {display:grid;grid-template-columns:auto 1fr}
+ .shop #search {grid-column:1/-1;grid-row:2}
+ .shop .shopActions {justify-self:end}
+ .shop .departmentTiles {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:540px){
+ .shop .top {display:block!important}
+ .shop .shopTop {height:44px}.shopTop img {width:104px}
+ .shop .shopActions {gap:0}.shopActions button {font-size:.69rem;padding:.3rem}
+ .catalogBtn {padding:.5rem .6rem;font-size:.83rem}
+ .shop .shopSearch {gap:.45rem;padding:.4rem 0}
+ .shop .departments {display:flex;flex-wrap:nowrap;overflow:auto}
+ .shop .bar input {font-size:.84rem}.shop .bar .primary {min-width:4rem}
+ .shopBanners {grid-template-columns:1fr}.cloudAd {display:none!important}
+ .shop .departmentTiles {grid-template-columns:1fr}
+ .shop .departmentTiles a {padding:.7rem}
+ .shop .judge .settings {display:grid;grid-template-columns:1fr}
+ .shop #suggestions {max-height:55dvh}
+}
+
+.productPic img {opacity:0}.productPic img.ready {opacity:1}
+:is(.shop,.widget) .offerTile .cardHead {align-self:stretch}
+:is(.shop,.widget) .offerTile .purchase {text-align:left}
+.shop.judgeOpen .offerTile :is(.whyFirst,.disclosures) {display:block}
+.offerTile:has(.upsellLabel,.fillLabel) .saveProduct {position:absolute;top:3.3rem}
+.shop .exportRow {float:right}
+.shop .productGrid {clear:both}
+.shop .block>h2:has(+.exportRow) {display:inline-block}
+.shop .block>.exportRow {margin:0}
+.storeDetail {position:relative;max-width:850px;margin:1.25rem auto}
+.storeDetail .productPic {grid-column:1/-1;height:170px}
+.storeDetail .saveProduct {top:1rem;right:1rem}
+.storeDetail .cardHead {grid-column:2/-1}
+.shopActions button:nth-child(n):before {content:none}
+.shopActions svg {display:block;margin:auto;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.shop .bar .primary,.widget .bar .primary {order:2}
+.shop .bar .mic,.widget .bar .mic {border:0}
+:is(.shop,.widget) #suggestions .groupTitle {color:#353942;font-size:.76rem;font-weight:700;border-bottom:1px solid #eee;padding-bottom:.3rem;margin:.3rem 0}
+:is(.shop,.widget) #suggestions .option {font-size:.92rem;min-height:28px;padding:.24rem .4rem}
+:is(.shop,.widget) #suggestions .option>small {margin-left:auto}
+@media(min-width:850px){
+ .shop #suggestions {columns:2;column-gap:1.2rem}
+ .shop #suggestions [role=group] {break-inside:avoid}
+}
+.upsellEditor .adminForm {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+.upsellEditor label {display:block;font-size:.86rem}
+.upsellEditor input[type=checkbox] {display:block;width:1.25rem;height:1.25rem}
+.upsellEditor fieldset {min-width:0;border:1px solid var(--line);border-radius:6px}
+.upsellEditor legend {font-weight:650}
+.upsellEditor>label {margin:.55rem 0}
+@media(max-width:600px){.upsellEditor .adminForm {grid-template-columns:1fr}}
+.upsellTools {display:flex;flex-wrap:wrap;gap:1rem;align-items:end;margin-bottom:.7rem}
+.upsellTools label {display:grid;gap:.2rem;min-width:min(100%,16rem);font-size:.85rem}
