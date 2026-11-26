@@ -1,0 +1,3534 @@
+# feed_analogs.yaml — карта аналогов для умного поиска store.softline.ru (каталог фида 2026-11, real-cards.tsv)
+#
+# Назначение: если товара нет в каталоге или покупатель прямо просит аналог/замену
+# («аналог TeamViewer», «чем заменить AutoCAD», «российский аналог Photoshop»),
+# поиск показывает близкие по назначению товары, которые реально продаются в магазине.
+#
+# Формат — список записей YAML (UTF-8):
+#
+# - id: teamviewer                      # латиница snake_case, уникален в файле
+#   names: [TeamViewer, тимвьюер, тим вьюер]   # как пишут покупатели: оригинал, кириллица, сокращения;
+#                                       # без однословных общих слов; каждое написание — только в одной записи
+#   kind: remote_access                 # короткий тип продукта латиницей
+#   in_catalog: true                    # есть ли сам продукт в real-cards.tsv (TeamViewer — есть)
+#   sections: ["Другие решения удаленного доступа", "Российские решения удаленного доступа (Импортозамещение)"]
+#                                       # заголовки разделов фида буква в букву (последний элемент path
+#                                       # в real-categories.tsv), только разделы с предложениями
+#   analogs:                            # конкретные карточки каталога по приоритету (обычно 3–8 шт.)
+#     - {title: "AnyDesk", vendor: "AnyDesk"}
+#     # title  — подстрока названия карточки (регистр не важен); вместе с vendor однозначно
+#     #          находит карточку или одну линейку карточек в real-cards.tsv
+#     # vendor — поле vendor карточки буква в букву
+#     - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+#     # russian: true — российский продукт (для запросов «российский аналог», «импортозамещение»)
+#   note: "Удалённый доступ к рабочему столу"   # короткое пояснение для выдачи
+#
+# Правила:
+# - для in_catalog: false аналоги — замена отсутствующему продукту; для in_catalog: true — конкурирующие
+#   продукты из каталога (сам продукт в analogs не входит);
+# - аналоги только реально близкие по назначению; если подходящих карточек нет — analogs: [],
+#   а sections показывают, в каком разделе искать («в каталоге нет, смотрите раздел …»);
+# - все title/vendor/sections проверены скриптом по real-cards.tsv и real-categories.tsv.
+
+# ============================================================================
+# ГРАФИКА, ФОТО, ДИЗАЙН ИНТЕРФЕЙСОВ, ДИАГРАММЫ
+# ============================================================================
+
+- id: luminar_neo
+  names: ["Luminar Neo", "Luminar", "Люминар", "Люминар Нео", "Skylum Luminar", "Skylum"]
+  kind: photo_editor
+  in_catalog: false
+  sections: ["Программы для обработки цифрового фото", "Графические редакторы"]
+  analogs:
+    - {title: "Adobe Lightroom", vendor: "Adobe Systems"}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "AliveColors", vendor: "«АКВИС»", russian: true}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+    - {title: "PaintShop Pro", vendor: "Corel Corporation"}
+  note: "Фоторедактор Skylum с ИИ-обработкой; в каталоге нет — близкие фоторедакторы"
+
+- id: pixelmator_pro
+  names: ["Pixelmator Pro", "Pixelmator", "Пиксельматор"]
+  kind: raster_editor
+  in_catalog: false
+  sections: ["Графические редакторы", "Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "Adobe Systems Adobe Photoshop", vendor: "Adobe Systems"}
+    - {title: "AliveColors", vendor: "«АКВИС»", russian: true}
+    - {title: "Adobe Lightroom", vendor: "Adobe Systems"}
+    - {title: "PaintShop Pro", vendor: "Corel Corporation"}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+  note: "Растровый редактор для macOS; в каталоге нет"
+
+- id: affinity_photo
+  names: ["Affinity Photo", "Аффинити Фото", "Serif Affinity Photo"]
+  kind: raster_editor
+  in_catalog: false
+  sections: ["Графические редакторы", "Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "Adobe Systems Adobe Photoshop", vendor: "Adobe Systems"}
+    - {title: "AliveColors", vendor: "«АКВИС»", russian: true}
+    - {title: "PaintShop Pro", vendor: "Corel Corporation"}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+  note: "Растровый редактор Serif/Canva; в каталоге нет"
+
+- id: affinity_designer
+  names: ["Affinity Designer", "Аффинити Дизайнер", "Affinity", "Аффинити"]
+  kind: vector_editor
+  in_catalog: false
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "Adobe Illustrator", vendor: "Adobe Systems"}
+    - {title: "CorelDRAW Graphics Suite", vendor: "Corel Corporation"}
+    - {title: "CorelDRAW Essentials", vendor: "Corel Corporation"}
+    - {title: "Photo & Graphic Designer", vendor: "Magix"}
+  note: "Векторный редактор Serif/Canva; в каталоге нет"
+
+- id: affinity_publisher
+  names: ["Affinity Publisher", "Аффинити Паблишер"]
+  kind: desktop_publishing
+  in_catalog: false
+  sections: ["Издательские системы", "Графические редакторы"]
+  analogs:
+    - {title: "Adobe InDesign", vendor: "Adobe Systems"}
+    - {title: "QuarkXPress", vendor: "Quark, Inc"}
+  note: "Программа вёрстки Serif/Canva; в каталоге нет"
+
+- id: capture_one
+  names: ["Capture One", "CaptureOne", "Капчер Ван", "Phase One Capture One"]
+  kind: raw_converter
+  in_catalog: false
+  sections: ["Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "Adobe Lightroom", vendor: "Adobe Systems"}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+    - {title: "Daminion", vendor: "Daminion"}
+  note: "RAW-конвертер и каталогизатор фото; в каталоге нет"
+
+- id: dxo_photolab
+  names: ["DxO PhotoLab", "DxO", "ДиИксО"]
+  kind: raw_converter
+  in_catalog: false
+  sections: ["Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "Adobe Lightroom", vendor: "Adobe Systems"}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "FilmConvert", vendor: "Rubber Monkey"}
+  note: "RAW-конвертер DxO; в каталоге нет"
+
+- id: acdsee
+  names: ["ACDSee", "ACDSee Photo Studio", "АСДСи", "АЦДСи"]
+  kind: photo_manager
+  in_catalog: false
+  sections: ["Программы для обработки цифрового фото", "Программы просмотра"]
+  analogs:
+    - {title: "Adobe Lightroom", vendor: "Adobe Systems"}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "Daminion", vendor: "Daminion"}
+    - {title: "Picvario", vendor: "Picvario", russian: true}
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+  note: "Просмотр, каталогизация и обработка фото; в каталоге нет"
+
+- id: gimp
+  names: ["GIMP", "Гимп", "GIMP 2"]
+  kind: raster_editor
+  in_catalog: false
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "AliveColors", vendor: "«АКВИС»", russian: true}
+    - {title: "PaintShop Pro", vendor: "Corel Corporation"}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+    - {title: "Adobe Systems Adobe Photoshop", vendor: "Adobe Systems"}
+  note: "Бесплатный растровый редактор; в магазине — коммерческие аналоги"
+
+- id: inkscape
+  names: ["Inkscape", "Инкскейп", "Инкскап"]
+  kind: vector_editor
+  in_catalog: false
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "CorelDRAW Graphics Suite", vendor: "Corel Corporation"}
+    - {title: "CorelDRAW Essentials", vendor: "Corel Corporation"}
+    - {title: "Adobe Illustrator", vendor: "Adobe Systems"}
+    - {title: "Photo & Graphic Designer", vendor: "Magix"}
+  note: "Бесплатный векторный редактор; в магазине — коммерческие аналоги"
+
+- id: canva
+  names: ["Canva", "Канва", "Canva Pro"]
+  kind: online_design
+  in_catalog: false
+  sections: ["Графические редакторы", "Шаблоны и клипарты"]
+  analogs:
+    - {title: "Designs.ai", vendor: "Inmagine"}
+    - {title: "Pixso AI Design Generation", vendor: "Pixso"}
+    - {title: "CorelDRAW Essentials", vendor: "Corel Corporation"}
+    - {title: "Adobe Creative Cloud", vendor: "Adobe Systems"}
+  note: "Онлайн-конструктор дизайна по шаблонам; в каталоге нет"
+
+- id: sketch
+  names: ["Sketch", "Sketch App", "Bohemian Sketch", "Скетч для macOS"]
+  kind: ui_design
+  in_catalog: false
+  sections: ["Графические редакторы", "Программное обеспечение для веб-дизайна"]
+  analogs:
+    - {title: "Pixso Enterprise", vendor: "Pixso"}
+    - {title: "Adobe XD", vendor: "Adobe Systems"}
+    - {title: "Avocode", vendor: "Avocode, Inc."}
+    - {title: "Adobe Illustrator", vendor: "Adobe Systems"}
+  note: "Дизайн интерфейсов для macOS; не путать со SketchUp (3D)"
+
+- id: figma
+  names: ["Figma", "Фигма", "Figma Professional", "Figma Organization"]
+  kind: ui_design
+  in_catalog: false
+  sections: ["Графические редакторы", "Программное обеспечение для веб-дизайна"]
+  analogs:
+    - {title: "Pixso Enterprise", vendor: "Pixso"}
+    - {title: "Pixso 2.0", vendor: "Pixso"}
+    - {title: "Adobe XD", vendor: "Adobe Systems"}
+    - {title: "Avocode", vendor: "Avocode, Inc."}
+  note: "Совместный дизайн интерфейсов; ушла из РФ, ближайшая замена в каталоге — Pixso"
+
+- id: lucidchart
+  names: ["Lucidchart", "Люсидчарт", "draw.io", "diagrams.net", "дроу ио"]
+  kind: diagramming
+  in_catalog: false
+  sections: ["Схемы и диаграммы", "Программное обеспечение для проекционного дизайна"]
+  analogs:
+    - {title: "Wondershare EdrawMax", vendor: "Wondershare"}
+    - {title: "SmartDraw", vendor: "SmartDraw"}
+    - {title: "Microsoft Visio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Visual Paradigm Online", vendor: "Visual Paradigm"}
+  note: "Онлайн-редакторы схем и диаграмм (Lucidchart, draw.io); в каталоге нет"
+
+- id: mindmanager
+  names: ["MindManager", "Mindjet", "МайндМенеджер"]
+  kind: mind_mapping
+  in_catalog: false
+  sections: ["Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "Xmind", vendor: "XMind Ltd."}
+    - {title: "MindMeister", vendor: "Meisterlabs"}
+    - {title: "EdrawMind", vendor: "Wondershare"}
+    - {title: "NovaMind", vendor: "NovaMind"}
+  note: "Ментальные карты; в каталоге нет"
+
+# --- есть в каталоге ---
+
+- id: adobe_photoshop
+  names: ["Adobe Photoshop", "Photoshop", "Фотошоп", "фотожоп", "Адоб Фотошоп"]
+  kind: raster_editor
+  in_catalog: true
+  sections: ["Графические редакторы", "Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "AliveColors", vendor: "«АКВИС»", russian: true}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "PaintShop Pro", vendor: "Corel Corporation"}
+    - {title: "Photo & Graphic Designer", vendor: "Magix"}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+  note: "Растровый редактор; российская замена — AliveColors (АКВИС), ФотоМАСТЕР"
+
+- id: adobe_illustrator
+  names: ["Adobe Illustrator", "Illustrator", "Иллюстратор", "Адоб Иллюстратор"]
+  kind: vector_editor
+  in_catalog: true
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "CorelDRAW Graphics Suite", vendor: "Corel Corporation"}
+    - {title: "CorelDRAW Essentials", vendor: "Corel Corporation"}
+    - {title: "Photo & Graphic Designer", vendor: "Magix"}
+  note: "Векторный редактор"
+
+- id: coreldraw
+  names: ["CorelDRAW", "Corel Draw", "Корел", "Корел Дро", "КорелДро"]
+  kind: vector_editor
+  in_catalog: true
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "Adobe Illustrator", vendor: "Adobe Systems"}
+    - {title: "Photo & Graphic Designer", vendor: "Magix"}
+    - {title: "Adobe Creative Cloud", vendor: "Adobe Systems"}
+  note: "Векторный редактор Corel"
+
+- id: adobe_indesign
+  names: ["Adobe InDesign", "InDesign", "Индизайн", "Ин Дизайн"]
+  kind: desktop_publishing
+  in_catalog: true
+  sections: ["Графические редакторы", "Издательские системы"]
+  analogs:
+    - {title: "QuarkXPress", vendor: "Quark, Inc"}
+    - {title: "Adobe FrameMaker", vendor: "Adobe Systems"}
+  note: "Вёрстка полиграфии и публикаций"
+
+- id: adobe_lightroom
+  names: ["Adobe Lightroom", "Lightroom", "Лайтрум", "Лайтрум Классик", "Lightroom Classic"]
+  kind: photo_editor
+  in_catalog: true
+  sections: ["Программы для обработки цифрового фото"]
+  analogs:
+    - {title: "PhotoDirector", vendor: "CyberLink Corporation"}
+    - {title: "ФотоМАСТЕР", vendor: "AMS Software", russian: true}
+    - {title: "Adobe Photoshop Elements", vendor: "Adobe Systems"}
+    - {title: "Daminion", vendor: "Daminion"}
+  note: "Обработка и каталогизация фото"
+
+- id: adobe_xd
+  names: ["Adobe XD", "Адоб XD", "Adobe Experience Design"]
+  kind: ui_design
+  in_catalog: true
+  sections: ["Графические редакторы"]
+  analogs:
+    - {title: "Pixso Enterprise", vendor: "Pixso"}
+    - {title: "Pixso 2.0", vendor: "Pixso"}
+    - {title: "Avocode", vendor: "Avocode, Inc."}
+  note: "Прототипирование и дизайн интерфейсов"
+
+- id: adobe_creative_cloud
+  names: ["Adobe Creative Cloud", "Creative Cloud", "Креатив Клауд", "Adobe CC", "Адоб CC"]
+  kind: creative_suite
+  in_catalog: true
+  sections: ["Графические редакторы", "Видеоредакторы"]
+  analogs:
+    - {title: "CorelDRAW Graphics Suite", vendor: "Corel Corporation"}
+    - {title: "Cyberlink Director Suite 365", vendor: "CyberLink Corporation"}
+    - {title: "Мовавика Максимум", vendor: "ООО «ВидеоСофт»", russian: true}
+  note: "Подписка на все приложения Adobe; альтернативы — пакеты Corel и CyberLink"
+
+- id: ms_visio
+  names: ["Microsoft Visio", "MS Visio", "Visio", "Визио"]
+  kind: diagramming
+  in_catalog: true
+  sections: ["Офисные пакеты программ Microsoft Office", "Схемы и диаграммы"]
+  analogs:
+    - {title: "Wondershare EdrawMax", vendor: "Wondershare"}
+    - {title: "SmartDraw", vendor: "SmartDraw"}
+    - {title: "Visual Paradigm Online", vendor: "Visual Paradigm"}
+  note: "Схемы и диаграммы"
+
+- id: xmind
+  names: ["XMind", "Иксмайнд", "Хмайнд"]
+  kind: mind_mapping
+  in_catalog: true
+  sections: ["Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "MindMeister", vendor: "Meisterlabs"}
+    - {title: "EdrawMind", vendor: "Wondershare"}
+    - {title: "NovaMind", vendor: "NovaMind"}
+  note: "Ментальные карты"
+
+# ============================================================================
+# ВИДЕО, ЗАПИСЬ ЭКРАНА, VFX
+# ============================================================================
+
+- id: final_cut_pro
+  names: ["Final Cut Pro", "Final Cut", "Final Cut Pro X", "Файнал Кат", "FCPX"]
+  kind: video_editor
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Adobe Premiere Pro", vendor: "Adobe Systems"}
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "Pinnacle Studio", vendor: "Corel Corporation"}
+    - {title: "Wondershare Filmora", vendor: "Wondershare"}
+  note: "Профессиональный видеомонтаж Apple (macOS); в каталоге нет"
+
+- id: davinci_resolve
+  names: ["DaVinci Resolve", "DaVinci", "Давинчи", "Да Винчи Резолв", "Resolve Studio", "Давинчи Резолв"]
+  kind: video_editor
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Adobe Premiere Pro", vendor: "Adobe Systems"}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "Pinnacle Studio", vendor: "Corel Corporation"}
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "Magic Bullet Suite", vendor: "MAXON Computer GmbH"}
+    - {title: "FilmConvert", vendor: "Rubber Monkey"}
+  note: "Монтаж и цветокоррекция Blackmagic; в каталоге нет"
+
+- id: vegas_pro
+  names: ["Vegas Pro", "Sony Vegas", "MAGIX Vegas", "Вегас", "Сони Вегас", "Вегас Про"]
+  kind: video_editor
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "MAGIX Video Deluxe", vendor: "Magix"}
+    - {title: "Adobe Premiere Pro", vendor: "Adobe Systems"}
+    - {title: "Pinnacle Studio", vendor: "Corel Corporation"}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+  note: "Видеоредактор (бывший Sony Vegas); в каталоге нет"
+
+- id: imovie
+  names: ["iMovie", "Ай Муви", "Аймуви"]
+  kind: video_editor
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "ВидеоМОНТАЖ", vendor: "AMS Software", russian: true}
+    - {title: "Wondershare Filmora", vendor: "Wondershare"}
+    - {title: "Adobe Premiere Elements", vendor: "Adobe Systems"}
+    - {title: "Icecream Video Editor", vendor: "Icecream Apps"}
+  note: "Простой видеомонтаж Apple; в каталоге нет"
+
+- id: capcut
+  names: ["CapCut", "Капкат", "Кап Кат"]
+  kind: video_editor
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Wondershare Filmora", vendor: "Wondershare"}
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "ВидеоМОНТАЖ", vendor: "AMS Software", russian: true}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "Icecream Video Editor", vendor: "Icecream Apps"}
+  note: "Бесплатный видеоредактор ByteDance; в каталоге нет"
+
+- id: obs_studio
+  names: ["OBS Studio", "OBS", "ОБС", "Open Broadcaster Software"]
+  kind: streaming
+  in_catalog: false
+  sections: ["Видеоредакторы", "Утилиты"]
+  analogs:
+    - {title: "VMIX", vendor: "StudioСoast Pty Ltd"}
+    - {title: "Wirecast", vendor: "DigiBox"}
+    - {title: "Livestream Studio", vendor: "Livestream"}
+    - {title: "Мовавика Запись", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "Camtasia", vendor: "TechSmith Corporation"}
+  note: "Бесплатная запись экрана и стриминг; в магазине — коммерческие программы трансляций и записи"
+
+- id: bandicam
+  names: ["Bandicam", "Бандикам"]
+  kind: screen_recorder
+  in_catalog: false
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Мовавика Запись", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "Экранная Студия", vendor: "AMS Software", russian: true}
+    - {title: "Camtasia", vendor: "TechSmith Corporation"}
+    - {title: "FlashBack Pro", vendor: "Blueberry Software"}
+    - {title: "CyberLink Screen Recorder", vendor: "CyberLink Corporation"}
+    - {title: "Icecream Screen Recorder", vendor: "Icecream Apps"}
+  note: "Запись экрана и игр; в каталоге нет"
+
+- id: nuke
+  names: ["Nuke", "Foundry Nuke", "Нюк", "NukeX"]
+  kind: compositing
+  in_catalog: false
+  sections: ["Видеоредакторы", "Программное обеспечение для 3D графики", "Базовые программы"]
+  analogs:
+    - {title: "Autodesk Flame", vendor: "Autodesk"}
+    - {title: "GenArts Silhouette", vendor: "Boris FX"}
+    - {title: "Adobe After Effects", vendor: "Adobe Systems"}
+    - {title: "Imagineer Systems mocha", vendor: "Imagineer Systems Ltd."}
+    - {title: "Boris FX Suite", vendor: "Boris FX"}
+  note: "Композитинг и VFX (Foundry); в каталоге нет"
+
+- id: vlc
+  names: ["VLC", "VLC media player", "ВЛЦ", "Влц плеер"]
+  kind: media_player
+  in_catalog: false
+  sections: ["Плееры"]
+  analogs:
+    - {title: "PowerDVD", vendor: "CyberLink Corporation"}
+    - {title: "РАПО Сарма", vendor: "ООО «Компания РАПО»", russian: true}
+    - {title: "CinePlay", vendor: "Digital Rebellion"}
+  note: "Бесплатный медиаплеер; в магазине — коммерческие плееры"
+
+# --- есть в каталоге ---
+
+- id: adobe_premiere_pro
+  names: ["Adobe Premiere Pro", "Premiere Pro", "Премьер Про", "Адоб Премьер", "Premiere"]
+  kind: video_editor
+  in_catalog: true
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Мовавика Видео", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "ВидеоМОНТАЖ", vendor: "AMS Software", russian: true}
+    - {title: "Pinnacle Studio", vendor: "Corel Corporation"}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "MAGIX Video Deluxe", vendor: "Magix"}
+    - {title: "Wondershare Filmora", vendor: "Wondershare"}
+  note: "Профессиональный видеомонтаж"
+
+- id: adobe_after_effects
+  names: ["Adobe After Effects", "After Effects", "Афтер Эффектс", "Афтерэффектс", "AE CC"]
+  kind: compositing
+  in_catalog: true
+  sections: ["Видеоредакторы", "Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Boris FX Suite", vendor: "Boris FX"}
+    - {title: "Autodesk Flame", vendor: "Autodesk"}
+    - {title: "GenArts Silhouette", vendor: "Boris FX"}
+    - {title: "Maxon C4D", vendor: "MAXON Computer GmbH"}
+  note: "Моушн-дизайн и визуальные эффекты"
+
+- id: adobe_animate
+  names: ["Adobe Animate", "Adobe Flash Professional", "Адоб Анимейт", "Флеш Профешнл"]
+  kind: animation_2d
+  in_catalog: true
+  sections: ["Видеоредакторы", "Графические редакторы"]
+  analogs:
+    - {title: "SWiSH miniMax", vendor: "SWiSHzone.com Pty"}
+    - {title: "Adobe After Effects", vendor: "Adobe Systems"}
+  note: "2D-анимация"
+
+- id: camtasia
+  names: ["Camtasia", "Camtasia Studio", "Камтазия", "Камтасия"]
+  kind: screen_recorder
+  in_catalog: true
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Мовавика Запись", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "Экранная Студия", vendor: "AMS Software", russian: true}
+    - {title: "FlashBack Pro", vendor: "Blueberry Software"}
+    - {title: "CyberLink Screen Recorder", vendor: "CyberLink Corporation"}
+    - {title: "Wondershare DemoCreator", vendor: "Wondershare"}
+    - {title: "ScreenFlow", vendor: "DigiBox"}
+  note: "Запись экрана и монтаж видеоуроков"
+
+- id: movavi
+  names: ["Movavi", "Мовави", "Movavi Video Editor", "Мовавика", "Movavi Video Suite"]
+  kind: video_editor
+  in_catalog: true
+  sections: ["Видеоредакторы", "Конвертеры и кодировщики"]
+  analogs:
+    - {title: "ВидеоМОНТАЖ", vendor: "AMS Software", russian: true}
+    - {title: "Wondershare Filmora", vendor: "Wondershare"}
+    - {title: "PowerDirector", vendor: "CyberLink Corporation"}
+    - {title: "Pinnacle Studio", vendor: "Corel Corporation"}
+    - {title: "Adobe Premiere Elements", vendor: "Adobe Systems"}
+  note: "В каталоге Movavi продаётся под российским брендом «Мовавика» (ООО «ВидеоСофт»)"
+
+- id: vmix
+  names: ["vMix", "вМикс", "ВиМикс"]
+  kind: streaming
+  in_catalog: true
+  sections: ["Видеоредакторы"]
+  analogs:
+    - {title: "Wirecast", vendor: "DigiBox"}
+    - {title: "Livestream Studio", vendor: "Livestream"}
+  note: "Видеомикшер и программа трансляций"
+
+# ============================================================================
+# АУДИО И МУЗЫКА
+# ============================================================================
+
+- id: reason
+  names: ["Reason", "Reason 13", "Reason 12", "Reason Studios", "Propellerhead Reason", "Ризон"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+  note: "Музыкальная студия (DAW) Reason Studios; в каталоге нет — другие программы для создания музыки"
+
+- id: fl_studio
+  names: ["FL Studio", "Fruity Loops", "Фрути Лупс", "ФЛ Студио", "Image-Line FL Studio"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+  note: "DAW Image-Line; в каталоге нет"
+
+- id: logic_pro
+  names: ["Logic Pro", "Logic Pro X", "Лоджик Про", "Apple Logic"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+  note: "DAW Apple (macOS); в каталоге нет"
+
+- id: pro_tools
+  names: ["Pro Tools", "Avid Pro Tools", "Протулс", "Про Тулс"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "iZotope RX Post Production Suite", vendor: "iZotope"}
+  note: "Студийная запись и сведение Avid; в каталоге нет (есть плагины McDSP/iZotope для него)"
+
+- id: cubase
+  names: ["Cubase", "Steinberg Cubase", "Кубейс", "Кубэйс", "Nuendo", "Нуэндо"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+  note: "DAW Steinberg (Cubase/Nuendo); в каталоге нет"
+
+- id: studio_one
+  names: ["Studio One", "PreSonus Studio One", "Студио Ван"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+  note: "DAW PreSonus; в каталоге нет"
+
+- id: reaper
+  names: ["Reaper", "Cockos Reaper", "Рипер"]
+  kind: daw
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+  note: "Недорогая DAW Cockos; в каталоге нет"
+
+- id: audacity
+  names: ["Audacity", "Аудасити", "Одасити"]
+  kind: audio_editor
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+    - {title: "iZotope RX", vendor: "iZotope"}
+    - {title: "Cyberlink MyEdit", vendor: "CyberLink Corporation"}
+  note: "Бесплатный аудиоредактор; в магазине — коммерческие аудиоредакторы"
+
+- id: sound_forge
+  names: ["Sound Forge", "Саунд Фордж", "MAGIX Sound Forge"]
+  kind: audio_editor
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+    - {title: "iZotope RX", vendor: "iZotope"}
+    - {title: "Cyberlink MyEdit", vendor: "CyberLink Corporation"}
+  note: "Аудиоредактор MAGIX; в каталоге нет"
+
+- id: qlab
+  names: ["QLab", "Figure 53 QLab", "Кьюлаб"]
+  kind: show_playback
+  in_catalog: false
+  sections: ["Аудиоредакторы", "Видеоредакторы"]
+  analogs:
+    - {title: "Ableton Live", vendor: "Ableton"}
+    - {title: "VMIX", vendor: "StudioСoast Pty Ltd"}
+  note: "Воспроизведение звука и видео по сценарию в театре (macOS); прямого аналога нет, частично заменяют Ableton Live и vMix"
+
+- id: auto_tune
+  names: ["Auto-Tune", "Antares Auto-Tune", "Автотюн", "Melodyne", "Мелодайн"]
+  kind: vocal_processing
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "iZotope Nectar", vendor: "iZotope"}
+    - {title: "iZotope VocalSynth", vendor: "iZotope"}
+    - {title: "iZotope Vocal Bundle", vendor: "iZotope"}
+  note: "Коррекция высоты тона вокала (Auto-Tune, Melodyne); в каталоге нет"
+
+- id: waves_plugins
+  names: ["Waves Audio", "плагины Waves", "Waves Mercury", "Вейвс", "FabFilter", "ФабФильтр"]
+  kind: audio_plugins
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "iZotope Ozone", vendor: "iZotope"}
+    - {title: "iZotope Neutron", vendor: "iZotope"}
+    - {title: "McDSP Everything Pack", vendor: "McDowell Signal Processing, LLC"}
+    - {title: "iZotope Exponential Audio Everything Bundle", vendor: "iZotope"}
+    - {title: "iZotope Mix & Master Bundle", vendor: "iZotope"}
+  note: "Плагины сведения и мастеринга (Waves, FabFilter); в каталоге — iZotope и McDSP"
+
+- id: native_instruments
+  names: ["Native Instruments", "Komplete", "NI Komplete", "Нейтив Инструментс"]
+  kind: audio_plugins
+  in_catalog: false
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "iZotope Everything Bundle", vendor: "iZotope"}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+    - {title: "iZotope BreakTweaker", vendor: "iZotope"}
+  note: "Виртуальные инструменты и эффекты NI; в каталоге — продукты iZotope (входит в ту же группу)"
+
+# --- есть в каталоге ---
+
+- id: ableton_live
+  names: ["Ableton Live", "Ableton", "Аблетон", "Абелтон"]
+  kind: daw
+  in_catalog: true
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "iZotope Music Production Suite", vendor: "iZotope"}
+    - {title: "Adobe Audition", vendor: "Adobe Systems"}
+  note: "Музыкальная студия (DAW)"
+
+- id: adobe_audition
+  names: ["Adobe Audition", "Audition", "Адоб Аудишн", "Аудишн"]
+  kind: audio_editor
+  in_catalog: true
+  sections: ["Аудиоредакторы"]
+  analogs:
+    - {title: "iZotope RX", vendor: "iZotope"}
+    - {title: "Cyberlink MyEdit", vendor: "CyberLink Corporation"}
+    - {title: "SONAR", vendor: "Cakewalk, Inc."}
+    - {title: "Ableton Live", vendor: "Ableton"}
+  note: "Аудиоредактор и многодорожечная запись"
+
+# ============================================================================
+# ОФИС, ПОЧТА, КОММУНИКАЦИИ, СОВМЕСТНАЯ РАБОТА
+# ============================================================================
+
+- id: ms_word
+  names: ["Microsoft Word", "MS Word", "Word 2021", "Ворд", "Майкрософт Ворд"]
+  kind: word_processor
+  in_catalog: false
+  sections: ["Офисные пакеты программ Microsoft Office", "Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "Microsoft Office Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "МойОфис Настольный офис", vendor: "МойОфис", russian: true}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+  note: "Отдельной карточки Word нет — он входит в Microsoft Office и Microsoft 365; российские редакторы — Р7-Офис, МойОфис"
+
+- id: ms_excel
+  names: ["Microsoft Excel", "MS Excel", "Excel 2021", "Эксель", "Ексель", "Майкрософт Эксель"]
+  kind: spreadsheet
+  in_catalog: false
+  sections: ["Офисные пакеты программ Microsoft Office", "Российское офисное ПО (Импортозамещение)", "Утилиты для Excel"]
+  analogs:
+    - {title: "Microsoft Office Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "МойОфис Настольный офис", vendor: "МойОфис", russian: true}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+  note: "Отдельной карточки Excel нет — он входит в Microsoft Office и Microsoft 365"
+
+- id: ms_outlook
+  names: ["Microsoft Outlook", "MS Outlook", "Outlook", "Аутлук", "Оутлук"]
+  kind: email_client
+  in_catalog: false
+  sections: ["Почтовые клиенты", "Офисные пакеты программ Microsoft Office"]
+  analogs:
+    - {title: "Microsoft Office Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "The Bat!", vendor: "Ritlabs"}
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "Aqua Mail", vendor: "MobiSystems"}
+  note: "Отдельной карточки Outlook нет — входит в Microsoft Office; почтовые клиенты — The Bat!, МойОфис, Р7"
+
+- id: ms_teams
+  names: ["Microsoft Teams", "MS Teams", "Тимс", "Майкрософт Тимс"]
+  kind: messenger
+  in_catalog: false
+  sections: ["Программное обеспечение для онлайн общения", "Связь", "Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "МойОфис Сквадус", vendor: "МойОфис", russian: true}
+    - {title: "eXpress", vendor: "eXpress", russian: true}
+    - {title: "TrueConf Server", vendor: "TrueConf", russian: true}
+    - {title: "МТС Линк", vendor: "МТС Линк", russian: true}
+    - {title: "SaluteJazz", vendor: "SberDevices", russian: true}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Microsoft 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Отдельно Teams не продаётся (входит в подписки Microsoft 365); российские замены — корпоративные мессенджеры и ВКС"
+
+- id: zoom
+  names: ["Zoom", "Зум", "Zoom Meetings", "Zoom Workplace", "Зоом", "Webex", "Cisco Webex", "Вебекс"]
+  kind: video_conferencing
+  in_catalog: false
+  sections: ["Программное обеспечение для онлайн общения", "Связь", "ПО для IP-телефонии"]
+  analogs:
+    - {title: "TrueConf Server", vendor: "TrueConf", russian: true}
+    - {title: "МТС Линк", vendor: "МТС Линк", russian: true}
+    - {title: "SaluteJazz", vendor: "SberDevices", russian: true}
+    - {title: "Контур.Толк", vendor: "СКБ Контур", russian: true}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Yealink Meeting Server", vendor: "Yealink"}
+  note: "Видеоконференции (Zoom, Webex); в каталоге нет — российские сервисы ВКС"
+
+- id: google_workspace
+  names: ["Google Workspace", "G Suite", "Гугл Воркспейс", "Google Docs", "Google Sheets", "Гугл Докс", "Гугл таблицы", "Google Meet"]
+  kind: collaboration_suite
+  in_catalog: false
+  sections: ["Российское офисное ПО (Импортозамещение)", "Офисные пакеты программ Microsoft Office"]
+  analogs:
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "VK Tech Тариф", vendor: "VK Tech", russian: true}
+    - {title: "МойОфис Сквадус офис", vendor: "МойОфис", russian: true}
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "Microsoft 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Облачный офис Google (почта, документы, диск, встречи); в каталоге нет"
+
+- id: notion
+  names: ["Notion", "Ноушен", "Ношн", "Notion AI"]
+  kind: knowledge_workspace
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Программное обеспечение для ведения дел", "Системы автоматизации"]
+  analogs:
+    - {title: "Weeek", vendor: "ООО «ВИИИК»", russian: true}
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Minervasoft Minerva", vendor: "Minervasoft", russian: true}
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Monday Work", vendor: "MondayCom"}
+    - {title: "Smartsheet", vendor: "Smartsheet"}
+  note: "Заметки, база знаний и задачи в одном сервисе; ушёл из РФ"
+
+- id: evernote
+  names: ["Evernote", "Эверноут", "Эвернот"]
+  kind: notes
+  in_catalog: false
+  sections: ["Программное обеспечение для ведения дел", "Программы органайзеры"]
+  analogs:
+    - {title: "LeaderTask", vendor: "Органайзер ЛидерТаск", russian: true}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Microsoft 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Заметки и органайзер; в каталоге нет"
+
+- id: trello
+  names: ["Trello", "Трелло", "Трело"]
+  kind: task_board
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Системы автоматизации", "Управление бизнесом (SaaS)"]
+  analogs:
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Weeek", vendor: "ООО «ВИИИК»", russian: true}
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Аспро.Agile", vendor: "Аспро", russian: true}
+    - {title: "MeisterTask", vendor: "Meisterlabs"}
+    - {title: "Monday Work", vendor: "MondayCom"}
+  note: "Канбан-доски задач (Atlassian); в каталоге нет"
+
+- id: asana
+  names: ["Asana", "Асана", "Асана таск"]
+  kind: project_management
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "Monday Work", vendor: "MondayCom"}
+    - {title: "Smartsheet", vendor: "Smartsheet"}
+    - {title: "Weeek", vendor: "ООО «ВИИИК»", russian: true}
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Celoxis", vendor: "Celoxis"}
+  note: "Управление задачами и проектами команды; в каталоге нет"
+
+- id: wrike
+  names: ["Wrike", "Райк", "Врайк", "ClickUp", "КликАп"]
+  kind: project_management
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Weeek", vendor: "ООО «ВИИИК»", russian: true}
+    - {title: "Smartsheet", vendor: "Smartsheet"}
+    - {title: "Monday Work", vendor: "MondayCom"}
+    - {title: "Celoxis", vendor: "Celoxis"}
+  note: "Сервисы управления проектами (Wrike, ClickUp); в каталоге нет"
+
+- id: jira
+  names: ["Jira", "Джира", "Atlassian Jira", "Jira Software"]
+  kind: issue_tracker
+  in_catalog: false
+  sections: ["Системы автоматизации", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Devprom ALM", vendor: "Devprom", russian: true}
+    - {title: "Аспро.Agile", vendor: "Аспро", russian: true}
+    - {title: "Monday Dev", vendor: "MondayCom"}
+    - {title: "Targetprocess", vendor: "Targetprocess"}
+  note: "Таск-трекер для разработки; Atlassian ушла из РФ (в каталоге только дополнения Comala)"
+
+- id: confluence
+  names: ["Confluence", "Конфлюенс", "Atlassian Confluence"]
+  kind: knowledge_base
+  in_catalog: false
+  sections: ["Программное обеспечение для работы с документами", "Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "Minervasoft Minerva", vendor: "Minervasoft", russian: true}
+    - {title: "«Инвейдерс Знания»", vendor: "The Invaders"}
+    - {title: "Microsoft SharePoint Server", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Корпоративный портал Incomand", vendor: "ООО «ЕМДЕВ»", russian: true}
+  note: "Корпоративная wiki и база знаний; в каталоге только дополнения Comala"
+
+- id: miro
+  names: ["Miro", "Миро", "RealtimeBoard", "Miro Board"]
+  kind: whiteboard
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Pixso BoardMix", vendor: "Pixso"}
+    - {title: "Pixso Whiteboard", vendor: "Pixso"}
+    - {title: "sBoard", vendor: "sBoard"}
+    - {title: "MindMeister", vendor: "Meisterlabs"}
+  note: "Онлайн-доска для совместной работы; ушла из РФ"
+
+- id: primavera
+  names: ["Primavera", "Oracle Primavera", "Primavera P6", "Примавера"]
+  kind: project_management
+  in_catalog: false
+  sections: ["Программное обеспечение для ведения дел", "Офисные пакеты программ Microsoft Office"]
+  analogs:
+    - {title: "Spider Project", vendor: "Спайдер Проджект", russian: true}
+    - {title: "Microsoft Project Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Intaver RiskyProject", vendor: "Intaver Institute Inc."}
+    - {title: "Celoxis", vendor: "Celoxis"}
+  note: "Календарно-сетевое планирование крупных проектов; в каталоге нет"
+
+- id: ulysses
+  names: ["Ulysses", "Улисс", "Ulysses App", "Scrivener", "Скривенер"]
+  kind: writing_app
+  in_catalog: false
+  sections: ["Текстовые редакторы", "Программное обеспечение для работы с документами"]
+  analogs:
+    - {title: "SunRav BookOffice", vendor: "SunRav Software"}
+    - {title: "Movie Magic Screenwriter", vendor: "Write Brothers, Inc."}
+    - {title: "Dramatica Pro", vendor: "Write Brothers, Inc."}
+    - {title: "Writer`s Dream Kit", vendor: "Write Brothers, Inc."}
+  note: "Редакторы для авторов длинных текстов (Ulysses, Scrivener); в каталоге нет"
+
+- id: grammarly
+  names: ["Grammarly", "Грамарли", "Граммарли"]
+  kind: grammar_checker
+  in_catalog: false
+  sections: ["Текстовые редакторы", "Другие утилиты для работы с текстом"]
+  analogs:
+    - {title: "Litera5", vendor: "Орфограмматика", russian: true}
+  note: "Проверка грамматики и стиля; для русского текста — Орфограмматика Litera5"
+
+- id: google_translate
+  names: ["Google Translate", "Гугл переводчик", "Гугл транслейт", "DeepL", "Дипл", "ДипЛ переводчик"]
+  kind: translator
+  in_catalog: false
+  sections: ["Переводчики", "Словари"]
+  analogs:
+    - {title: "PROMT Master NMT", vendor: "PROMT", russian: true}
+    - {title: "PROMT Professional NMT", vendor: "PROMT", russian: true}
+    - {title: "PROMT Neural Translation Server", vendor: "PROMT", russian: true}
+    - {title: "SYSTRAN 8 Translator", vendor: "SYSTRAN"}
+    - {title: "Lingvo by Content AI", vendor: "Content AI (ООО «Контент ИИ», ранее ABBYY Россия)", russian: true}
+  note: "Онлайн-переводчики (Google, DeepL); в каталоге — программы машинного перевода"
+
+- id: trados
+  names: ["Trados", "SDL Trados", "Trados Studio", "Традос", "RWS Trados"]
+  kind: cat_tool
+  in_catalog: false
+  sections: ["Переводчики"]
+  analogs: []
+  note: "CAT-система для переводчиков; аналогов-CAT в каталоге нет, смотрите раздел «Переводчики»"
+
+- id: tableau
+  names: ["Tableau", "Таблау", "Tableau Desktop"]
+  kind: bi
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Аналитические платформы", "Системы автоматизации (SaaS)"]
+  analogs:
+    - {title: "Microsoft Power BI", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Qlik Sense", vendor: "Qlik"}
+    - {title: "POLYMATICA", vendor: "SLSoft", russian: true}
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+    - {title: "BoardMaps", vendor: "Дэшборд Системс", russian: true}
+    - {title: "Stimulsoft Dashboards.WEB", vendor: "Stimulsoft"}
+  note: "BI-аналитика и дашборды (Salesforce); ушла из РФ"
+
+- id: crystal_reports
+  names: ["Crystal Reports", "Кристал Репортс", "SAP Crystal Reports"]
+  kind: reporting
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Программное обеспечение для работы с документами", "VCL"]
+  analogs:
+    - {title: "FastReport .NET", vendor: "Быстрые отчеты", russian: true}
+    - {title: "FastReport VCL", vendor: "Быстрые отчеты", russian: true}
+    - {title: "Stimulsoft Reports.NET", vendor: "Stimulsoft"}
+    - {title: "Developer Express Reporting", vendor: "Developer Express"}
+    - {title: "Telerik Report Server", vendor: "Telerik"}
+  note: "Генератор отчётов; в каталоге нет"
+
+- id: mailchimp
+  names: ["Mailchimp", "Мейлчимп", "Майлчимп"]
+  kind: email_marketing
+  in_catalog: false
+  sections: ["Почтовые утилиты", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Mailganer", vendor: "IPKozhemyakin", russian: true}
+    - {title: "Freshmarketer", vendor: "Freshworks"}
+  note: "Email-рассылки; ушёл из РФ"
+
+- id: zapier
+  names: ["Zapier", "Запьер", "Заппиер"]
+  kind: integration_platform
+  in_catalog: false
+  sections: ["Системы автоматизации", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Albato", vendor: "Albato", russian: true}
+    - {title: "Microsoft Power Automate", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Nintex Workflow", vendor: "Nintex USA LLC."}
+  note: "No-code интеграция сервисов; в каталоге нет"
+
+- id: google_drive
+  names: ["Google Drive", "Гугл Диск", "Гугл драйв", "OneDrive", "Ван Драйв", "Microsoft OneDrive"]
+  kind: cloud_storage
+  in_catalog: false
+  sections: ["Управление бизнесом (SaaS)", "Управление бизнесом (IaaS)", "Программы для защиты информации"]
+  analogs:
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Софтлайн Диск", vendor: "Softline", russian: true}
+    - {title: "Кибер Файлы", vendor: "Киберпротект", russian: true}
+    - {title: "ЭВРИТЕГ Диск", vendor: "ООО «ЭвриТег»", russian: true}
+    - {title: "Dropbox Inc. Dropbox Bus", vendor: "Dropbox Inc."}
+    - {title: "FileCloud", vendor: "CodeLathe"}
+  note: "Облачное хранилище (Google Drive, OneDrive); в каталоге нет"
+
+- id: docusign
+  names: ["DocuSign", "Докусайн"]
+  kind: e_signature
+  in_catalog: false
+  sections: ["Программное обеспечение для работы с документами", "Управление бизнесом (SaaS)", "Программы для защиты информации"]
+  analogs:
+    - {title: "Sign.Me Сайн.Смарт", vendor: "Sign.Me", russian: true}
+    - {title: "Sign.Me Сайн.Квал", vendor: "Sign.Me", russian: true}
+    - {title: "Digt КриптоАРМ", vendor: "Digt", russian: true}
+    - {title: "Nintex Sign", vendor: "Nintex USA LLC."}
+  note: "Электронное подписание документов; ушёл из РФ"
+
+- id: foxit_pdf
+  names: ["Foxit PDF Editor", "Foxit", "Фоксит", "Foxit PhantomPDF", "Nitro PDF", "Nitro Pro", "PDF-XChange Editor", "PDF-XChange"]
+  kind: pdf_editor
+  in_catalog: false
+  sections: ["Программное обеспечение для работы с документами", "Текстовые редакторы"]
+  analogs:
+    - {title: "Master Pdf Editor", vendor: "Code Industry", russian: true}
+    - {title: "ContentReader PDF", vendor: "Content AI (ООО «Контент ИИ», ранее ABBYY Россия)", russian: true}
+    - {title: "PDF Commander", vendor: "AMS Software", russian: true}
+    - {title: "Wondershare PDFelement", vendor: "Wondershare"}
+    - {title: "Qoppa PDF Studio", vendor: "Qoppa Software"}
+    - {title: "Adobe Acrobat Standard", vendor: "Adobe Systems"}
+  note: "PDF-редакторы (Foxit, Nitro, PDF-XChange); в каталоге нет"
+
+# --- есть в каталоге ---
+
+- id: microsoft_office
+  names: ["Microsoft Office", "MS Office", "Майкрософт Офис", "Мс офис", "Office 2021", "Office 2024", "Office 2019", "Офис 2021", "Microsoft Office Professional Plus"]
+  kind: office_suite
+  in_catalog: true
+  sections: ["Офисные пакеты программ Microsoft Office", "Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "МойОфис Настольный офис", vendor: "МойОфис", russian: true}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+    - {title: "OpenOffice.org", vendor: "Linux Center"}
+  note: "Офисный пакет; российские замены — Р7-Офис, МойОфис"
+
+- id: microsoft_365
+  names: ["Microsoft 365", "Office 365", "M365", "O365", "Майкрософт 365", "Офис 365"]
+  kind: collaboration_suite
+  in_catalog: true
+  sections: ["Офисные пакеты программ Microsoft Office", "Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "VK Tech Тариф", vendor: "VK Tech", russian: true}
+    - {title: "МойОфис Сквадус офис", vendor: "МойОфис", russian: true}
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "Софтлайн Офис", vendor: "Softline", russian: true}
+  note: "Облачный офис с почтой и Teams; российские замены — Яндекс 360, VK WorkSpace, МойОфис"
+
+- id: ms_powerpoint
+  names: ["Microsoft PowerPoint", "PowerPoint", "Пауэрпоинт", "Поверпоинт"]
+  kind: presentation
+  in_catalog: true
+  sections: ["Офисные пакеты программ Microsoft Office", "Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+  note: "Презентации"
+
+- id: ms_project
+  names: ["Microsoft Project", "MS Project", "Project Professional", "Майкрософт Проджект", "МС Проджект"]
+  kind: project_management
+  in_catalog: true
+  sections: ["Офисные пакеты программ Microsoft Office", "Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "Spider Project", vendor: "Спайдер Проджект", russian: true}
+    - {title: "Простой Софт Управление проектами", vendor: "Простой Софт", russian: true}
+    - {title: "Celoxis", vendor: "Celoxis"}
+    - {title: "Smartsheet", vendor: "Smartsheet"}
+    - {title: "Wondershare EdrawProj", vendor: "Wondershare"}
+    - {title: "TurboProject", vendor: "IMSI/Design, LLC"}
+  note: "Планирование проектов, диаграммы Ганта"
+
+- id: ms_exchange
+  names: ["Microsoft Exchange", "Exchange Server", "MS Exchange", "Эксчейндж", "Эксчендж"]
+  kind: mail_server
+  in_catalog: true
+  sections: ["Серверное ПО", "Почтовые утилиты", "Российская коммуникационная платформа (Импортозамещение)"]
+  analogs:
+    - {title: "CommuniGate", vendor: "АО «СБК»", russian: true}
+    - {title: "Почтовый сервер Tegu", vendor: "Лаборатория МБК", russian: true}
+    - {title: "IceWarp Почтовый сервер", vendor: "IceWarp"}
+    - {title: "MDaemon Messaging Server", vendor: "MDaemon Technologies, Ltd."}
+    - {title: "Axigen Business", vendor: "Axigen"}
+    - {title: "Hexamail Server Lite", vendor: "Hexamail"}
+  note: "Корпоративный почтовый сервер; российские замены — CommuniGate Pro, Tegu"
+
+- id: ms_sharepoint
+  names: ["Microsoft SharePoint", "SharePoint", "Шарепоинт", "Шарпоинт"]
+  kind: portal_ecm
+  in_catalog: true
+  sections: ["Программное обеспечение для ведения дел", "Программное обеспечение для работы с документами"]
+  analogs:
+    - {title: "Docsvision", vendor: "Docsvision", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "1С-Битрикс24", vendor: "1С-Битрикс", russian: true}
+    - {title: "Корпоративный портал Incomand", vendor: "ООО «ЕМДЕВ»", russian: true}
+    - {title: "Haulmont ЕСМ ТЕЗИС", vendor: "Haulmont", russian: true}
+  note: "Корпоративный портал и документы"
+
+- id: skype_for_business
+  names: ["Skype for Business", "Skype", "Скайп", "Lync", "Скайп для бизнеса"]
+  kind: video_conferencing
+  in_catalog: true
+  sections: ["Серверное ПО", "Программное обеспечение для онлайн общения"]
+  analogs:
+    - {title: "TrueConf Server", vendor: "TrueConf", russian: true}
+    - {title: "eXpress", vendor: "eXpress", russian: true}
+    - {title: "МТС Линк", vendor: "МТС Линк", russian: true}
+    - {title: "МойОфис Сквадус", vendor: "МойОфис", russian: true}
+    - {title: "CommuniGate", vendor: "АО «СБК»", russian: true}
+  note: "Корпоративные звонки, чаты и конференции"
+
+- id: slack
+  names: ["Slack", "Слак", "Слэк"]
+  kind: messenger
+  in_catalog: true
+  sections: ["Программное обеспечение для онлайн общения"]
+  analogs:
+    - {title: "МойОфис Сквадус", vendor: "МойОфис", russian: true}
+    - {title: "eXpress", vendor: "eXpress", russian: true}
+    - {title: "РОСЧАТ", vendor: "Информтехника", russian: true}
+    - {title: "ВКУРСЕ VKurse", vendor: "ВКУРСЕ"}
+    - {title: "Bopup Messenger", vendor: "B Labs"}
+  note: "Корпоративный мессенджер; российские замены — Squadus, eXpress, РОСЧАТ"
+
+- id: dropbox
+  names: ["Dropbox", "Дропбокс", "Dropbox Business"]
+  kind: cloud_storage
+  in_catalog: true
+  sections: ["Программное обеспечение для управления бизнесом", "Управление бизнесом (IaaS)"]
+  analogs:
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Софтлайн Диск", vendor: "Softline", russian: true}
+    - {title: "Кибер Файлы", vendor: "Киберпротект", russian: true}
+    - {title: "ЭВРИТЕГ Диск", vendor: "ООО «ЭвриТег»", russian: true}
+    - {title: "FileCloud", vendor: "CodeLathe"}
+  note: "Облачное хранилище и обмен файлами"
+
+- id: monday
+  names: ["monday.com", "Monday Work Management", "Monday CRM", "Мандэй", "Мандей"]
+  kind: project_management
+  in_catalog: true
+  sections: ["Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Weeek", vendor: "ООО «ВИИИК»", russian: true}
+    - {title: "Kaiten", vendor: "Kaiten", russian: true}
+    - {title: "Яндекс Трекер", vendor: "Яндекс", russian: true}
+    - {title: "Smartsheet", vendor: "Smartsheet"}
+    - {title: "Celoxis", vendor: "Celoxis"}
+  note: "Платформа управления работой и проектами"
+
+- id: abbyy_finereader
+  names: ["ABBYY FineReader", "FineReader", "Файнридер", "Абби Файнридер", "ABBYY", "Абби"]
+  kind: ocr
+  in_catalog: true
+  sections: ["Программы для распознавания текста и речи"]
+  analogs:
+    - {title: "IRISReadiris", vendor: "Irislink"}
+    - {title: "Wondershare PDFelement", vendor: "Wondershare"}
+    - {title: "Adobe Acrobat Professional", vendor: "Adobe Systems"}
+    - {title: "Master Pdf Editor", vendor: "Code Industry", russian: true}
+  note: "Распознавание текста; в каталоге продаётся как Content AI FineReader (бывш. ABBYY Россия)"
+
+- id: abbyy_lingvo
+  names: ["ABBYY Lingvo", "Lingvo", "Лингво", "Абби Лингво"]
+  kind: dictionary
+  in_catalog: true
+  sections: ["Словари", "Переводчики"]
+  analogs:
+    - {title: "PROMT Master NMT", vendor: "PROMT", russian: true}
+    - {title: "SYSTRAN 8 Translator", vendor: "SYSTRAN"}
+    - {title: "TranslateIt!", vendor: "TranslateIt!"}
+  note: "Электронный словарь; в каталоге как Lingvo by Content AI"
+
+- id: adobe_acrobat
+  names: ["Adobe Acrobat", "Acrobat Pro", "Acrobat Reader", "Адоб Акробат", "Adobe Reader"]
+  kind: pdf_editor
+  in_catalog: true
+  sections: ["Программное обеспечение для работы с документами"]
+  analogs:
+    - {title: "Master Pdf Editor", vendor: "Code Industry", russian: true}
+    - {title: "ContentReader PDF", vendor: "Content AI (ООО «Контент ИИ», ранее ABBYY Россия)", russian: true}
+    - {title: "PDF Commander", vendor: "AMS Software", russian: true}
+    - {title: "Wondershare PDFelement", vendor: "Wondershare"}
+    - {title: "Qoppa PDF Studio", vendor: "Qoppa Software"}
+    - {title: "Icecream PDF Editor", vendor: "Icecream Apps"}
+  note: "Редактирование PDF; российские замены — Master PDF Editor, ContentReader PDF, PDF Commander"
+
+- id: power_bi
+  names: ["Power BI", "Microsoft Power BI", "Пауэр БИ", "Повер би", "PowerBI"]
+  kind: bi
+  in_catalog: true
+  sections: ["Программное обеспечение для управления бизнесом", "Аналитические платформы"]
+  analogs:
+    - {title: "POLYMATICA", vendor: "SLSoft", russian: true}
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+    - {title: "BoardMaps", vendor: "Дэшборд Системс", russian: true}
+    - {title: "Qlik Sense", vendor: "Qlik"}
+    - {title: "Stimulsoft Dashboards.WEB", vendor: "Stimulsoft"}
+  note: "BI и дашборды"
+
+- id: qlik_sense
+  names: ["Qlik Sense", "QlikView", "Qlik", "Клик Сенс", "Кликвью"]
+  kind: bi
+  in_catalog: true
+  sections: ["Системы автоматизации (SaaS)", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "POLYMATICA", vendor: "SLSoft", russian: true}
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+    - {title: "BoardMaps", vendor: "Дэшборд Системс", russian: true}
+    - {title: "Microsoft Power BI", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "BI-платформа"
+
+# ============================================================================
+# БИЗНЕС-ПРИЛОЖЕНИЯ: ERP, CRM, 1С, HELPDESK/ITSM, СЭД, САЙТЫ, RPA
+# ============================================================================
+
+- id: onec_enterprise
+  names: ["1С:Предприятие", "1С Предприятие", "Одинэс", "1С 8.3"]
+  kind: erp_platform
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для бухгалтерии", "Складские программы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "ИЛАДА Рули24 Предприятие", vendor: "ИЛАДА", russian: true}
+    - {title: "Lognex МойСклад", vendor: "Lognex", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "Я люблю ИП Декларация по УСН", vendor: "Я люблю ИП", russian: true}
+  note: "Продуктов 1С в каталоге нет (есть только решения для 1С); по задаче: учёт и ERP — Рули24, торговля и склад — МойСклад"
+
+- id: onec_accounting
+  names: ["1С:Бухгалтерия", "1С Бухгалтерия", "1с бух", "1С:Бухгалтерия предприятия", "1С БП"]
+  kind: accounting
+  in_catalog: false
+  sections: ["Программное обеспечение для бухгалтерии"]
+  analogs:
+    - {title: "Я люблю ИП Декларация по УСН", vendor: "Я люблю ИП", russian: true}
+    - {title: "Я люблю ИП Бот-бухгалтер", vendor: "Я люблю ИП", russian: true}
+  note: "1С в каталоге нет; для ИП на УСН — онлайн-бухгалтерия «Я люблю ИП»"
+
+- id: onec_trade
+  names: ["1С:Управление торговлей", "1С УТ", "1С:УНФ", "1С Управление нашей фирмой", "1С:Розница", "1С Розница"]
+  kind: trade_management
+  in_catalog: false
+  sections: ["Программное обеспечение для торговли", "Складские программы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Lognex МойСклад", vendor: "Lognex", russian: true}
+    - {title: "СофтБаланс ДАЛИОН", vendor: "СофтБаланс", russian: true}
+    - {title: "Айтида Retail", vendor: "ООО «Айтида»", russian: true}
+    - {title: "Mobile SMARTS Склад", vendor: "Клеверенс Софт", russian: true}
+  note: "Учёт торговли и склада; 1С в каталоге нет"
+
+- id: onec_erp
+  names: ["1С:ERP", "1С ERP", "1С:Комплексная автоматизация", "1С КА", "1С:ERP Управление предприятием"]
+  kind: erp
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "ИЛАДА Рули24 Предприятие", vendor: "ИЛАДА", russian: true}
+    - {title: "ИЛАДА Рули24 Управление производством", vendor: "ИЛАДА", russian: true}
+    - {title: "Monely ERP", vendor: "Monely Inc."}
+    - {title: "Microsoft Dynamics 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "ERP-система; 1С в каталоге нет"
+
+- id: onec_zup
+  names: ["1С:ЗУП", "1С ЗУП", "1С:Зарплата и управление персоналом", "1С Зарплата", "1С кадры"]
+  kind: hrm_payroll
+  in_catalog: false
+  sections: ["Программы для кадрового учета", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "БОСС. Кадровые системы", vendor: "БОСС. Кадровые системы", russian: true}
+    - {title: "Геликон Про Капитал CSE", vendor: "Геликон Про", russian: true}
+    - {title: "ИЛАДА Рули24 Управление персоналом", vendor: "ИЛАДА", russian: true}
+    - {title: "Мираполис Mirapolis HCM", vendor: "Мираполис", russian: true}
+    - {title: "HRlink", vendor: "HRLink", russian: true}
+  note: "Кадры и зарплата; 1С в каталоге нет"
+
+- id: onec_docflow
+  names: ["1С:Документооборот", "1С Документооборот", "1С:ДО", "1С ДО"]
+  kind: document_management
+  in_catalog: false
+  sections: ["Программное обеспечение для работы с документами", "CRM/ERP-системы", "ESM/CSP-системы"]
+  analogs:
+    - {title: "Directum RX", vendor: "DIRECTUM", russian: true}
+    - {title: "Docsvision", vendor: "Docsvision", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "Haulmont ЕСМ ТЕЗИС", vendor: "Haulmont", russian: true}
+    - {title: "SLSoft Цитрос СЭД", vendor: "SLSoft", russian: true}
+    - {title: "«МОТИВ Complete»", vendor: "MOTIWARE", russian: true}
+  note: "Электронный документооборот; 1С в каталоге нет"
+
+- id: sap_erp
+  names: ["SAP ERP", "SAP S/4HANA", "S/4HANA", "SAP R/3", "САП ЕРП", "SAP Business One"]
+  kind: erp
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "ИЛАДА Рули24 Предприятие", vendor: "ИЛАДА", russian: true}
+    - {title: "ИЛАДА Рули24 Управление финансами", vendor: "ИЛАДА", russian: true}
+    - {title: "Monely ERP", vendor: "Monely Inc."}
+    - {title: "Microsoft Dynamics 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "ERP SAP; ушла из РФ, в каталоге нет"
+
+- id: salesforce
+  names: ["Salesforce", "Сейлсфорс", "Salesforce CRM", "Sales Cloud"]
+  kind: crm
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "1С-Битрикс24", vendor: "1С-Битрикс", russian: true}
+    - {title: "CRM Мегаплан", vendor: "Мегаплан", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "Freshsales", vendor: "Freshworks"}
+    - {title: "Monday CRM", vendor: "MondayCom"}
+    - {title: "Microsoft Dynamics 365", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "CRM Salesforce; ушла из РФ"
+
+- id: amocrm
+  names: ["amoCRM", "Амо CRM", "АмоЦРМ", "Kommo"]
+  kind: crm
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "1С-Битрикс24", vendor: "1С-Битрикс", russian: true}
+    - {title: "CRM Мегаплан", vendor: "Мегаплан", russian: true}
+    - {title: "Аспро.Cloud", vendor: "Аспро", russian: true}
+    - {title: "Freshsales", vendor: "Freshworks"}
+    - {title: "Monday CRM", vendor: "MondayCom"}
+  note: "Облачная CRM для продаж; в каталоге нет"
+
+- id: hubspot
+  names: ["HubSpot", "Хабспот", "HubSpot CRM"]
+  kind: crm
+  in_catalog: false
+  sections: ["CRM/ERP-системы", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "1С-Битрикс24", vendor: "1С-Битрикс", russian: true}
+    - {title: "Freshsales", vendor: "Freshworks"}
+    - {title: "Freshmarketer", vendor: "Freshworks"}
+    - {title: "Monday CRM", vendor: "MondayCom"}
+    - {title: "CRM Мегаплан", vendor: "Мегаплан", russian: true}
+  note: "CRM и маркетинг; в каталоге нет"
+
+- id: zendesk
+  names: ["Zendesk", "Зендеск", "Zendesk Support"]
+  kind: helpdesk
+  in_catalog: false
+  sections: ["Программное обеспечение для управления бизнесом", "Системы автоматизации"]
+  analogs:
+    - {title: "Freshdesk", vendor: "Freshworks"}
+    - {title: "Юздеск", vendor: "Юздеск", russian: true}
+    - {title: "HelpDeskEddy", vendor: "HelpDeskEddy", russian: true}
+    - {title: "Monday Service", vendor: "MondayCom"}
+    - {title: "Zoho ManageEngine SupportCenter", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Служба поддержки клиентов; ушёл из РФ"
+
+- id: servicenow
+  names: ["ServiceNow", "Сервис Нау", "СервисНау"]
+  kind: itsm
+  in_catalog: false
+  sections: ["Системы автоматизации", "Программное обеспечение для ведения дел"]
+  analogs:
+    - {title: "SimpleOne", vendor: "SimpleOne", russian: true}
+    - {title: "ИнфраМенеджер ITSM", vendor: "ИнфраМенеджер", russian: true}
+    - {title: "vsDesk", vendor: "vsDesk", russian: true}
+    - {title: "Итилиум Service desk", vendor: "Итилиум", russian: true}
+    - {title: "Freshservice", vendor: "Freshworks"}
+    - {title: "Zoho Manageengine Servicedesk Plus", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "ITSM-платформа; ушла из РФ"
+
+- id: shopify
+  names: ["Shopify", "Шопифай", "WooCommerce", "Вукоммерс"]
+  kind: ecommerce_platform
+  in_catalog: false
+  sections: ["Программное обеспечение для создания сайтов", "Системы автоматизации"]
+  analogs:
+    - {title: "Симтек CS-Cart", vendor: "Симтек", russian: true}
+    - {title: "Управление сайтом", vendor: "1С-Битрикс", russian: true}
+    - {title: "Сотбит: Маркетплейс", vendor: "Сотбит", russian: true}
+  note: "Платформы интернет-магазинов; в каталоге нет"
+
+- id: wordpress
+  names: ["WordPress", "Вордпресс", "Joomla", "Джумла", "Drupal", "Друпал"]
+  kind: cms
+  in_catalog: false
+  sections: ["Программное обеспечение для создания сайтов"]
+  analogs:
+    - {title: "Управление сайтом", vendor: "1С-Битрикс", russian: true}
+    - {title: "NetCat", vendor: "NetCat", russian: true}
+    - {title: "DIAFAN.CMS", vendor: "Diafan", russian: true}
+    - {title: "SiteEdit Business", vendor: "Edgestile"}
+    - {title: "Kentico CMS", vendor: "Kentico Software"}
+    - {title: "DotNetNuke Evoq", vendor: "DotNetNuke Corp."}
+  note: "Бесплатные CMS; в магазине — коммерческие системы управления сайтом"
+
+- id: wix
+  names: ["Wix", "Викс", "Tilda", "Тильда", "Tilda Publishing"]
+  kind: site_builder
+  in_catalog: false
+  sections: ["Программное обеспечение для создания сайтов", "Управление бизнесом (SaaS)"]
+  analogs:
+    - {title: "LPgenerator", vendor: "LPgenerator LLC", russian: true}
+    - {title: "Edgestile SiteEdit Start Plus", vendor: "Edgestile"}
+    - {title: "Управление сайтом", vendor: "1С-Битрикс", russian: true}
+    - {title: "NetCat", vendor: "NetCat", russian: true}
+  note: "Конструкторы сайтов (Wix, Tilda); в каталоге нет"
+
+- id: automation_anywhere
+  names: ["Automation Anywhere", "Аутомейшн Энивэр", "Blue Prism"]
+  kind: rpa
+  in_catalog: false
+  sections: ["Системы автоматизации"]
+  analogs:
+    - {title: "UiPath Studio", vendor: "UiPath"}
+    - {title: "SLSoft ROBIN", vendor: "SLSoft", russian: true}
+    - {title: "Nintex RPA", vendor: "Nintex USA LLC."}
+    - {title: "Automate Enterprise", vendor: "HelpSystems"}
+    - {title: "Microsoft Power Automate", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Роботизация процессов (RPA); в каталоге нет"
+
+# --- есть в каталоге ---
+
+- id: dynamics_365
+  names: ["Microsoft Dynamics 365", "Dynamics 365", "Dynamics CRM", "Динамикс", "MS Dynamics"]
+  kind: crm_erp
+  in_catalog: true
+  sections: ["Программное обеспечение для управления бизнесом", "CRM/ERP-системы"]
+  analogs:
+    - {title: "1С-Битрикс24", vendor: "1С-Битрикс", russian: true}
+    - {title: "CRM Мегаплан", vendor: "Мегаплан", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "ИЛАДА Рули24 Предприятие", vendor: "ИЛАДА", russian: true}
+    - {title: "Freshsales", vendor: "Freshworks"}
+  note: "CRM/ERP Microsoft"
+
+- id: bitrix24
+  names: ["Битрикс24", "Bitrix24", "Битрикс 24", "Б24"]
+  kind: crm
+  in_catalog: true
+  sections: ["Программное обеспечение для создания сайтов", "CRM/ERP-системы"]
+  analogs:
+    - {title: "CRM Мегаплан", vendor: "Мегаплан", russian: true}
+    - {title: "ELMA365", vendor: "ELMA", russian: true}
+    - {title: "Аспро.Cloud", vendor: "Аспро", russian: true}
+    - {title: "Monday CRM", vendor: "MondayCom"}
+    - {title: "Freshsales", vendor: "Freshworks"}
+  note: "CRM и корпоративный портал"
+
+- id: bitrix_site
+  names: ["1С-Битрикс", "1С-Битрикс: Управление сайтом", "Битрикс", "Bitrix", "Bitrix CMS"]
+  kind: cms
+  in_catalog: true
+  sections: ["Программное обеспечение для создания сайтов"]
+  analogs:
+    - {title: "NetCat", vendor: "NetCat", russian: true}
+    - {title: "DIAFAN.CMS", vendor: "Diafan", russian: true}
+    - {title: "Симтек CS-Cart", vendor: "Симтек", russian: true}
+    - {title: "Kentico Xperience", vendor: "Kentico Software"}
+    - {title: "SiteEdit Business", vendor: "Edgestile"}
+  note: "CMS для сайтов и интернет-магазинов"
+
+- id: uipath
+  names: ["UiPath", "ЮайПас", "Юайпат", "UiPath Studio"]
+  kind: rpa
+  in_catalog: true
+  sections: ["Системы автоматизации"]
+  analogs:
+    - {title: "SLSoft ROBIN", vendor: "SLSoft", russian: true}
+    - {title: "Nintex RPA", vendor: "Nintex USA LLC."}
+    - {title: "Automate Enterprise", vendor: "HelpSystems"}
+    - {title: "Microsoft Power Automate", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Роботизация процессов (RPA)"
+
+- id: power_automate
+  names: ["Power Automate", "Microsoft Power Automate", "Microsoft Flow", "Пауэр Аутомейт"]
+  kind: workflow_automation
+  in_catalog: true
+  sections: ["Программное обеспечение для управления бизнесом", "Системы автоматизации"]
+  analogs:
+    - {title: "Albato", vendor: "Albato", russian: true}
+    - {title: "SLSoft ROBIN", vendor: "SLSoft", russian: true}
+    - {title: "Nintex Workflow", vendor: "Nintex USA LLC."}
+    - {title: "UiPath Studio", vendor: "UiPath"}
+  note: "Автоматизация процессов и интеграций"
+
+# ============================================================================
+# РАЗРАБОТКА ПО
+# ============================================================================
+
+- id: jetbrains
+  names: ["JetBrains", "Джетбрейнс", "JetBrains All Products Pack", "All Products Pack", "JetBrains Toolbox", "Джетбрейнс тулбокс"]
+  kind: ide
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "Microsoft Visual Studio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Embarcadero RAD Studio", vendor: "Embarcadero"}
+    - {title: "Amplicode", vendor: "Haulmont", russian: true}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+  note: "Среды разработки JetBrains; ушла из РФ, в каталоге нет"
+
+- id: intellij_idea
+  names: ["IntelliJ IDEA", "IntelliJ", "Интеллидж", "Интелидж Идея", "IDEA Ultimate"]
+  kind: ide
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "Amplicode", vendor: "Haulmont", russian: true}
+    - {title: "Microsoft Visual Studio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Linux Eclipse", vendor: "Linux Center"}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+  note: "IDE для Java/Kotlin (JetBrains); в каталоге нет"
+
+- id: pycharm
+  names: ["PyCharm", "Пайчарм", "PyCharm Professional"]
+  kind: ide
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+    - {title: "Microsoft Visual Studio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Active Python Business Edition", vendor: "ActiveState Software"}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+  note: "IDE для Python (JetBrains); в каталоге нет"
+
+- id: phpstorm
+  names: ["PhpStorm", "ПхпШторм", "ПиЭйчПи Шторм", "WebStorm", "ВебШторм"]
+  kind: ide
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "NuSphere PhpED", vendor: "NuSphere Corporation"}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+    - {title: "Adobe Dreamweaver", vendor: "Adobe Systems"}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+  note: "IDE для PHP и веба (JetBrains); в каталоге нет"
+
+- id: rider
+  names: ["JetBrains Rider", "ReSharper", "Решарпер", "CLion", "Силайон"]
+  kind: ide
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "Microsoft Visual Studio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Microsoft Visual Studio Enterprise", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Developer Express CodeRush", vendor: "Developer Express"}
+    - {title: "Embarcadero C++Builder", vendor: "Embarcadero"}
+  note: "Инструменты JetBrains для .NET и C++ (Rider, ReSharper, CLion); в каталоге нет"
+
+- id: datagrip
+  names: ["DataGrip", "Датагрип", "DBeaver", "Дбивер", "ДиБивер"]
+  kind: db_management_tool
+  in_catalog: false
+  sections: ["Программы для работы с базами данных"]
+  analogs:
+    - {title: "Navicat Premium", vendor: "Navicat"}
+    - {title: "EMS SQL Management Studio for PostgreSQL", vendor: "EMS"}
+    - {title: "Altova DatabaseSpy", vendor: "Altova"}
+    - {title: "Red Gate SQL Toolbelt", vendor: "Red Gate Software"}
+  note: "Универсальные клиенты СУБД (DataGrip, DBeaver); в каталоге нет"
+
+- id: toad
+  names: ["Toad for Oracle", "Quest Toad", "Тоад", "PL/SQL Developer"]
+  kind: db_management_tool
+  in_catalog: false
+  sections: ["Программы для работы с базами данных"]
+  analogs:
+    - {title: "Navicat for Oracle", vendor: "Navicat"}
+    - {title: "EMS SQL Manager for Oracle", vendor: "EMS"}
+    - {title: "Red Gate Schema Compare for Oracle", vendor: "Red Gate Software"}
+    - {title: "Conquest СlearSQL", vendor: "Conquest"}
+  note: "Инструменты разработчика Oracle; в каталоге нет"
+
+- id: teamcity
+  names: ["TeamCity", "ТимСити", "Jenkins", "Дженкинс"]
+  kind: ci_cd
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "VSoftTechnologies Continua CI", vendor: "VSoft Technologies Pty Ltd"}
+    - {title: "VSoft Technologies FinalBuilder", vendor: "VSoft Technologies Pty Ltd"}
+    - {title: "Microsoft Azure DevOps Server", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "CI/CD-серверы (TeamCity, Jenkins); в каталоге нет"
+
+- id: vscode
+  names: ["Visual Studio Code", "VS Code", "VSCode", "Вскод", "Вижуал Студио Код"]
+  kind: code_editor
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Текстовые редакторы"]
+  analogs:
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+    - {title: "IDM Computer Solutions, Inc. UltraEdit", vendor: "IDM Computer Solutions, Inc."}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+    - {title: "Microsoft Visual Studio Professional", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Бесплатный редактор кода; в магазине — коммерческие редакторы и IDE"
+
+- id: sublime_text
+  names: ["Sublime Text", "Саблайм", "Notepad++", "Нотпад плюс плюс"]
+  kind: code_editor
+  in_catalog: false
+  sections: ["Текстовые редакторы", "Программы для разработки ПО"]
+  analogs:
+    - {title: "IDM Computer Solutions, Inc. UltraEdit", vendor: "IDM Computer Solutions, Inc."}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+  note: "Текстовые редакторы для кода (Sublime Text, Notepad++); в каталоге нет"
+
+- id: postman
+  names: ["Postman", "Постман", "Postman API Platform"]
+  kind: api_client
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Серверное ПО"]
+  analogs:
+    - {title: "NativeRest", vendor: "NativeRest", russian: true}
+    - {title: "Telerik Fiddler Everywhere", vendor: "Telerik"}
+    - {title: "Proxyman", vendor: "Proxyman LLC"}
+    - {title: "BrowserStack Requestly", vendor: "BrowserStack"}
+  note: "Тестирование API; Postman ограничил работу в РФ"
+
+- id: github
+  names: ["GitHub", "Гитхаб", "GitHub Enterprise"]
+  kind: vcs_hosting
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Российские базы данных (Импортозамещение)"]
+  analogs:
+    - {title: "РЕСОЛЮТ GitFlic", vendor: "ООО «РЕСОЛЮТ»", russian: true}
+    - {title: "Группа Астра GitFlic", vendor: "Группа Астра", russian: true}
+    - {title: "RhodeCode Enterprise", vendor: "RhodeCode"}
+    - {title: "Microsoft Azure DevOps Server", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Seapine Surround SCM", vendor: "Seapine Software"}
+  note: "Хостинг Git-репозиториев; российская замена — GitFlic"
+
+- id: gitlab
+  names: ["GitLab", "Гитлаб", "GitLab EE", "Bitbucket", "Битбакет"]
+  kind: vcs_hosting
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Российские базы данных (Импортозамещение)"]
+  analogs:
+    - {title: "РЕСОЛЮТ GitFlic", vendor: "ООО «РЕСОЛЮТ»", russian: true}
+    - {title: "Группа Астра GitFlic", vendor: "Группа Астра", russian: true}
+    - {title: "RhodeCode Enterprise", vendor: "RhodeCode"}
+    - {title: "Microsoft Azure DevOps Server", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "Devprom ALM", vendor: "Devprom", russian: true}
+  note: "Git-платформы (GitLab, Bitbucket); ограничили работу в РФ"
+
+- id: oracle_java
+  names: ["Oracle Java", "Java SE", "Oracle JDK", "Java SE Subscription", "Джава"]
+  kind: java_runtime
+  in_catalog: false
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "Axiom JDK (версия", vendor: "Axiom JDK", russian: true}
+    - {title: "AzulSystems Zulu Enterprise", vendor: "AzulSystems"}
+    - {title: "AzulSystems Azul Zing", vendor: "AzulSystems"}
+  note: "Коммерческая Java от Oracle; российская сборка — Axiom JDK"
+
+- id: weblogic
+  names: ["WebLogic", "Oracle WebLogic", "Веблоджик", "Apache Tomcat", "Томкат", "WildFly", "JBoss"]
+  kind: app_server
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Серверное ПО"]
+  analogs:
+    - {title: "Axiom JDK LiberCat", vendor: "Axiom JDK", russian: true}
+    - {title: "TMaxSoft JEUS", vendor: "TMaxSoft"}
+    - {title: "Caucho Resin", vendor: "Caucho Technology"}
+  note: "Серверы Java-приложений; российский — LiberCat (на базе Tomcat)"
+
+- id: kubernetes
+  names: ["Kubernetes", "Кубернетес", "K8s", "OpenShift", "Red Hat OpenShift", "Опеншифт", "Docker Enterprise"]
+  kind: container_platform
+  in_catalog: false
+  sections: ["Программное обеспечение для интернета", "Программы для разработки ПО"]
+  analogs:
+    - {title: "Платформа контейнеризации «Боцман»", vendor: "Группа Астра", russian: true}
+  note: "Контейнерные платформы; в каталоге — российская платформа «Боцман» (Группа Астра)"
+
+# --- есть в каталоге ---
+
+- id: visual_studio
+  names: ["Microsoft Visual Studio", "Visual Studio", "Вижуал Студио", "MS Visual Studio", "VS Enterprise"]
+  kind: ide
+  in_catalog: true
+  sections: ["Программы для разработки ПО", "Офисные пакеты программ Microsoft Office"]
+  analogs:
+    - {title: "Embarcadero RAD Studio", vendor: "Embarcadero"}
+    - {title: "Embarcadero C++Builder", vendor: "Embarcadero"}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+  note: "Среда разработки Microsoft"
+
+- id: azure_devops
+  names: ["Azure DevOps", "Azure DevOps Server", "TFS", "Team Foundation Server", "Азур ДевОпс"]
+  kind: alm
+  in_catalog: true
+  sections: ["Управление бизнесом (SaaS)", "Программы для разработки ПО"]
+  analogs:
+    - {title: "РЕСОЛЮТ GitFlic", vendor: "ООО «РЕСОЛЮТ»", russian: true}
+    - {title: "Devprom ALM", vendor: "Devprom", russian: true}
+    - {title: "RhodeCode Enterprise", vendor: "RhodeCode"}
+    - {title: "VSoftTechnologies Continua CI", vendor: "VSoft Technologies Pty Ltd"}
+  note: "Репозитории, задачи и CI/CD Microsoft"
+
+- id: adobe_dreamweaver
+  names: ["Adobe Dreamweaver", "Dreamweaver", "Дримвивер", "Дримвьювер"]
+  kind: web_ide
+  in_catalog: true
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "NuSphere PhpED", vendor: "NuSphere Corporation"}
+    - {title: "UEStudio", vendor: "IDM Computer Solutions, Inc."}
+    - {title: "ActiveKomodo IDE", vendor: "ActiveState Software"}
+  note: "Редактор сайтов и веб-кода"
+
+- id: nginx
+  names: ["NGINX", "NGINX Plus", "Нджинкс", "Энджинкс", "Нгинкс"]
+  kind: web_server
+  in_catalog: true
+  sections: ["Серверное ПО", "Сетевые утилиты", "Контроллер доставки приложений"]
+  analogs:
+    - {title: "WebServer Angie PRO", vendor: "WebServer", russian: true}
+    - {title: "F5 Networks F5 BIG-IP", vendor: "F5 Networks"}
+    - {title: "Snapt Application Delivery Controller", vendor: "Snapt"}
+  note: "Веб-сервер и балансировщик; российский форк — Angie PRO"
+
+# ============================================================================
+# БАЗЫ ДАННЫХ
+# ============================================================================
+
+- id: oracle_database
+  names: ["Oracle Database", "Oracle DB", "СУБД Oracle", "Оракл", "Oracle", "Оракл БД"]
+  kind: dbms
+  in_catalog: false
+  sections: ["Российские базы данных (Импортозамещение)", "Системы управления базами данных (Импортозамещение)", "Программы для работы с базами данных"]
+  analogs:
+    - {title: "Postgres Pro Enterprise", vendor: "Postgres Professional", russian: true}
+    - {title: "Tantor", vendor: "Группа Астра", russian: true}
+    - {title: "СУБД Ред База Данных", vendor: "РЕД СОФТ", russian: true}
+    - {title: "СУБД Линтер", vendor: "Релэкс", russian: true}
+    - {title: "TMaxSoft Tibero", vendor: "TMaxSoft"}
+    - {title: "EnterpriseDB Corporation EDB", vendor: "EnterpriseDB Corporation"}
+  note: "Лицензий Oracle Database в каталоге нет (только утилиты); замены — Postgres Pro, Tantor, Tibero"
+
+- id: mysql
+  names: ["MySQL", "Май эс кью эль", "Майскл", "MariaDB", "МарияДБ"]
+  kind: dbms
+  in_catalog: false
+  sections: ["Российские базы данных (Импортозамещение)", "Программы для работы с базами данных"]
+  analogs:
+    - {title: "Postgres Pro Standard", vendor: "Postgres Professional", russian: true}
+    - {title: "Tantor", vendor: "Группа Астра", russian: true}
+    - {title: "СУБД Ред База Данных", vendor: "РЕД СОФТ", russian: true}
+    - {title: "Percona MySQL Support", vendor: "Percona Inc."}
+  note: "Лицензий MySQL в каталоге нет (только утилиты и поддержка Percona)"
+
+- id: ibm_db2
+  names: ["IBM Db2", "DB2", "ДБ2", "IBM Db2 LUW"]
+  kind: dbms
+  in_catalog: false
+  sections: ["Российские базы данных (Импортозамещение)", "Программы для работы с базами данных"]
+  analogs:
+    - {title: "Postgres Pro Enterprise", vendor: "Postgres Professional", russian: true}
+    - {title: "Tantor", vendor: "Группа Астра", russian: true}
+    - {title: "СУБД Линтер", vendor: "Релэкс", russian: true}
+    - {title: "Microsoft SQL Server", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "СУБД IBM; в каталоге нет"
+
+- id: firebird
+  names: ["Firebird", "Файрбёрд", "Фаербирд", "Firebird SQL"]
+  kind: dbms
+  in_catalog: false
+  sections: ["Системы управления базами данных (Импортозамещение)", "Программы для работы с базами данных"]
+  analogs:
+    - {title: "СУБД Ред База Данных", vendor: "РЕД СОФТ", russian: true}
+    - {title: "IBSurgeon HQbird", vendor: "IBSurgeon"}
+    - {title: "Embarcadero InterBase", vendor: "Embarcadero"}
+  note: "Бесплатная СУБД; коммерческие сборки — Ред База Данных (форк Firebird), HQbird"
+
+- id: postgresql
+  names: ["PostgreSQL", "Постгрес", "Постгре", "Постгрескл", "PgSQL"]
+  kind: dbms
+  in_catalog: false
+  sections: ["Российские базы данных (Импортозамещение)", "Системы управления базами данных (Импортозамещение)"]
+  analogs:
+    - {title: "Postgres Pro Standard", vendor: "Postgres Professional", russian: true}
+    - {title: "Postgres Pro Enterprise", vendor: "Postgres Professional", russian: true}
+    - {title: "Tantor", vendor: "Группа Астра", russian: true}
+    - {title: "EnterpriseDB Corporation EDB", vendor: "EnterpriseDB Corporation"}
+  note: "Свободная СУБД; в каталоге — коммерческие сборки PostgreSQL с поддержкой"
+
+- id: ms_access
+  names: ["Microsoft Access", "MS Access", "Аксесс", "Акцесс"]
+  kind: desktop_dbms
+  in_catalog: false
+  sections: ["Программы для разработки ПО", "Программы для работы с базами данных"]
+  analogs:
+    - {title: "FileMaker Professional", vendor: "FileMaker, Inc."}
+    - {title: "4D Developer Professional", vendor: "4D"}
+    - {title: "ИСУБД CronosPRO", vendor: "Кронос-Информ", russian: true}
+    - {title: "Prostoysoft Tables", vendor: "Простой Софт", russian: true}
+  note: "Настольная СУБД; отдельно не продаётся (входит в Office профессиональный)"
+
+- id: ms_sql_server
+  names: ["Microsoft SQL Server", "MS SQL", "MS SQL Server", "SQL Server", "Эскуэль сервер", "МС СКЛ"]
+  kind: dbms
+  in_catalog: true
+  sections: ["Серверное ПО", "Российские базы данных (Импортозамещение)", "Системы управления базами данных (Импортозамещение)"]
+  analogs:
+    - {title: "Postgres Pro Enterprise", vendor: "Postgres Professional", russian: true}
+    - {title: "Postgres Pro Standard", vendor: "Postgres Professional", russian: true}
+    - {title: "Tantor", vendor: "Группа Астра", russian: true}
+    - {title: "СУБД Ред База Данных", vendor: "РЕД СОФТ", russian: true}
+    - {title: "СУБД Линтер", vendor: "Релэкс", russian: true}
+    - {title: "Embarcadero InterBase", vendor: "Embarcadero"}
+  note: "СУБД Microsoft; российские замены — Postgres Pro, Tantor, Ред База Данных, Линтер"
+
+- id: filemaker
+  names: ["FileMaker", "Claris FileMaker", "ФайлМейкер"]
+  kind: desktop_dbms
+  in_catalog: true
+  sections: ["Программы для разработки ПО"]
+  analogs:
+    - {title: "4D Developer Professional", vendor: "4D"}
+    - {title: "ИСУБД CronosPRO", vendor: "Кронос-Информ", russian: true}
+    - {title: "Prostoysoft Tables", vendor: "Простой Софт", russian: true}
+  note: "Настольная СУБД и конструктор приложений"
+
+# ============================================================================
+# ИНФРАСТРУКТУРА: РЕЗЕРВНОЕ КОПИРОВАНИЕ, ВИРТУАЛИЗАЦИЯ, ОС, КАТАЛОГИ, МОНИТОРИНГ, ОБЛАКА
+# ============================================================================
+
+- id: veeam
+  names: ["Veeam", "Veeam Backup", "Veeam Backup & Replication", "Виам", "Вием бэкап"]
+  kind: backup
+  in_catalog: false
+  sections: ["Программное обеспечение для резервного копирования"]
+  analogs:
+    - {title: "Кибер Бэкап", vendor: "Киберпротект", russian: true}
+    - {title: "RuBackup", vendor: "Группа Астра", russian: true}
+    - {title: "Vinchin Backup & Recovery", vendor: "Vinchin"}
+    - {title: "Altaro VM Backup", vendor: "Altaro"}
+    - {title: "Arcserve Unified Data Protection", vendor: "Arcserve"}
+    - {title: "Bacula Enterprise", vendor: "BackupSolutions"}
+    - {title: "Хайстекс Лицензия на бэкап", vendor: "Хайстекс", russian: true}
+  note: "Резервное копирование виртуальных сред; Veeam ушёл из РФ — российские замены Кибер Бэкап, RuBackup"
+
+- id: acronis
+  names: ["Acronis", "Акронис", "Acronis Cyber Protect", "Acronis True Image", "Acronis Backup"]
+  kind: backup
+  in_catalog: false
+  sections: ["Программное обеспечение для резервного копирования"]
+  analogs:
+    - {title: "Кибер Бэкап", vendor: "Киберпротект", russian: true}
+    - {title: "Новософт Handy Backup", vendor: "Новософт", russian: true}
+    - {title: "Paragon Hard Disk Manager", vendor: "Paragon Software Group"}
+    - {title: "O&O DiskImage", vendor: "O&O Software GmbH"}
+    - {title: "NovaBACKUP", vendor: "NovaStor"}
+    - {title: "RuBackup", vendor: "Группа Астра", russian: true}
+  note: "Российское подразделение Acronis стало «Киберпротект» — его Кибер Бэкап есть в каталоге"
+
+- id: veritas_netbackup
+  names: ["Veritas NetBackup", "Veritas Backup Exec", "Backup Exec", "Веритас", "Commvault", "Коммволт"]
+  kind: backup
+  in_catalog: false
+  sections: ["Программное обеспечение для резервного копирования"]
+  analogs:
+    - {title: "Кибер Бэкап", vendor: "Киберпротект", russian: true}
+    - {title: "RuBackup", vendor: "Группа Астра", russian: true}
+    - {title: "Bacula Enterprise", vendor: "BackupSolutions"}
+    - {title: "Arcserve Backup", vendor: "Arcserve"}
+    - {title: "Atempo Time Navigator", vendor: "Atempo"}
+  note: "Корпоративное резервное копирование (Veritas, Commvault); ушли из РФ"
+
+- id: easeus
+  names: ["EaseUS", "ИзиЮс", "EaseUS Todo Backup", "EaseUS Partition Master", "AOMEI", "Аомей", "Macrium Reflect"]
+  kind: disk_utility
+  in_catalog: false
+  sections: ["Программное обеспечение для резервного копирования", "Программное обеспечение для восстановления данных"]
+  analogs:
+    - {title: "Paragon Hard Disk Manager", vendor: "Paragon Software Group"}
+    - {title: "Киберпротект Кибер Бэкап Старт", vendor: "Киберпротект", russian: true}
+    - {title: "O&O DiskImage", vendor: "O&O Software GmbH"}
+    - {title: "Новософт Handy Backup", vendor: "Новософт", russian: true}
+    - {title: "Wondershare Recoverit", vendor: "Wondershare"}
+  note: "Утилиты бэкапа и разделов дисков (EaseUS, AOMEI, Macrium); в каталоге нет"
+
+- id: r_studio
+  names: ["R-Studio", "Р-Студио", "R-Undelete", "EaseUS Data Recovery", "Disk Drill", "Диск Дрилл"]
+  kind: data_recovery
+  in_catalog: false
+  sections: ["Программное обеспечение для восстановления данных"]
+  analogs:
+    - {title: "Ontrack EasyRecovery", vendor: "Ontrack"}
+    - {title: "AMS Software Феникс", vendor: "AMS Software", russian: true}
+    - {title: "Wondershare Recoverit", vendor: "Wondershare"}
+    - {title: "DataNumen Inc. Data Recovery", vendor: "DataNumen Inc."}
+    - {title: "O&O DiskRecovery", vendor: "O&O Software GmbH"}
+    - {title: "Recuva Business Edition", vendor: "Piriform Ltd"}
+  note: "Восстановление удалённых файлов; в каталоге нет"
+
+- id: citrix
+  names: ["Citrix", "Цитрикс", "Ситрикс", "Citrix Virtual Apps and Desktops", "XenApp", "XenDesktop", "Citrix Workspace"]
+  kind: vdi
+  in_catalog: false
+  sections: ["Российская виртуализация (Импортозамещение)", "Программы для виртуализации", "Системы автоматизации (SaaS)"]
+  analogs:
+    - {title: "Termidesk", vendor: "Группа Астра", russian: true}
+    - {title: "TIONIX VDI", vendor: "ТИОНИКС", russian: true}
+    - {title: "Orion soft Термит", vendor: "Orion soft", russian: true}
+    - {title: "VMware Horizon", vendor: "VMware"}
+    - {title: "GO-Global", vendor: "GraphOn Corp."}
+    - {title: "Cendio ThinLinc", vendor: "Cendio"}
+    - {title: "Microsoft Remote Desktop Services", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Виртуальные рабочие места и публикация приложений; Citrix ушёл из РФ"
+
+- id: hyper_v
+  names: ["Hyper-V", "Хайпер-В", "Хайпер V", "Microsoft Hyper-V"]
+  kind: virtualization
+  in_catalog: false
+  sections: ["Российская виртуализация (Импортозамещение)", "Программы для виртуализации"]
+  analogs:
+    - {title: "Orion soft Zvirt", vendor: "Orion soft", russian: true}
+    - {title: "ROSA Virtualization", vendor: "РОСА", russian: true}
+    - {title: "SpaceVM", vendor: "Space Экосистема виртуализации", russian: true}
+    - {title: "Альт Виртуализация", vendor: "BaseALT", russian: true}
+    - {title: "VMmanager", vendor: "Группа Астра", russian: true}
+    - {title: "VMware vSphere", vendor: "VMware"}
+  note: "Отдельно не продаётся — входит в Windows Server; российские гипервизоры — zVirt, SpaceVM, РОСА"
+
+- id: proxmox
+  names: ["Proxmox", "Proxmox VE", "Проксмокс", "Проксмокс VE"]
+  kind: virtualization
+  in_catalog: false
+  sections: ["Российская виртуализация (Импортозамещение)", "Программы для виртуализации"]
+  analogs:
+    - {title: "Альт Виртуализация 11, редакция PVE", vendor: "BaseALT", russian: true}
+    - {title: "Orion soft Zvirt", vendor: "Orion soft", russian: true}
+    - {title: "VMmanager", vendor: "Группа Астра", russian: true}
+    - {title: "SpaceVM", vendor: "Space Экосистема виртуализации", russian: true}
+    - {title: "VMware vSphere", vendor: "VMware"}
+  note: "Открытая платформа виртуализации; ближайший аналог — Альт Виртуализация редакция PVE (на базе Proxmox)"
+
+- id: parallels_desktop
+  names: ["Parallels Desktop", "Parallels Desktop for Mac", "Параллелс", "Параллельс"]
+  kind: desktop_virtualization
+  in_catalog: false
+  sections: ["Программы для виртуализации", "Системные программы для macOS"]
+  analogs:
+    - {title: "VMware Fusion", vendor: "VMware"}
+    - {title: "VMware Workstation", vendor: "VMware"}
+    - {title: "WINE@Etersoft", vendor: "Etersoft", russian: true}
+  note: "Запуск Windows на Mac; в каталоге только Parallels Mac Management — замена VMware Fusion"
+
+- id: virtualbox
+  names: ["VirtualBox", "Виртуалбокс", "Оракл виртуалбокс", "Oracle VM VirtualBox"]
+  kind: desktop_virtualization
+  in_catalog: false
+  sections: ["Программы для виртуализации"]
+  analogs:
+    - {title: "VMware Workstation", vendor: "VMware"}
+    - {title: "VMware Fusion", vendor: "VMware"}
+  note: "Бесплатная настольная виртуализация; в магазине — VMware Workstation/Fusion"
+
+- id: active_directory
+  names: ["Active Directory", "Актив Директори", "Microsoft AD", "MS AD", "Контроллер домена Windows"]
+  kind: directory_service
+  in_catalog: false
+  sections: ["Российские операционные системы (Импортозамещение)", "Операционные системы Windows"]
+  analogs:
+    - {title: "ALD Pro", vendor: "Группа Астра", russian: true}
+    - {title: "BaseALT Альт Домен", vendor: "BaseALT", russian: true}
+    - {title: "РОСА Dynamic Directory", vendor: "РОСА", russian: true}
+    - {title: "Microsoft Windows Server Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "Служба каталогов — роль Windows Server; российские замены — ALD Pro, Альт Домен, РОСА DD"
+
+- id: ansible
+  names: ["Ansible", "Ансибл", "Red Hat Ansible", "Ansible Tower", "Chef Infra", "SaltStack"]
+  kind: config_management
+  in_catalog: false
+  sections: ["Системы автоматизации"]
+  analogs:
+    - {title: "Группа Астра Astra Automation", vendor: "Группа Астра", russian: true}
+    - {title: "Puppet Enterprise", vendor: "Puppet Labs"}
+    - {title: "Zoho ManageEngine Desktop", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Автоматизация конфигураций; российский аналог — Astra Automation"
+
+- id: zabbix
+  names: ["Zabbix", "Заббикс", "Grafana", "Графана", "Prometheus monitoring"]
+  kind: monitoring
+  in_catalog: false
+  sections: ["Сетевые утилиты", "Серверное ПО", "Системы автоматизации"]
+  analogs:
+    - {title: "Paessler AG PRTG", vendor: "Paessler AG"}
+    - {title: "Ipswitch WhatsUp Gold Premium", vendor: "Ipswitch, Inc."}
+    - {title: "AdRem NetCrunch Premium", vendor: "AdRem Software"}
+    - {title: "Zoho ManageEngine OpManager", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "10-Strike Software Мониторинг Сети", vendor: "10-Strike Software", russian: true}
+    - {title: "Астра Мониторинг", vendor: "Группа Астра", russian: true}
+  note: "Бесплатный мониторинг; в магазине — коммерческие системы мониторинга"
+
+- id: splunk
+  names: ["Splunk", "Сплунк", "Спланк", "IBM QRadar", "QRadar", "Кьюрадар"]
+  kind: siem
+  in_catalog: false
+  sections: ["Программы для защиты информации", "Сетевые утилиты", "Серверное ПО"]
+  analogs:
+    - {title: "Zoho ManageEngine Log360", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "Zoho ManageEngine EventLog Analyzer", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "SolarWinds Log & Event Manager", vendor: "SolarWinds"}
+    - {title: "AlienVault USM", vendor: "AlienVault"}
+    - {title: "Nagios Log Server", vendor: "Nagios Enterprises, LLC."}
+  note: "Сбор логов и SIEM (Splunk, QRadar); ушли из РФ"
+
+- id: aws
+  names: ["AWS", "Amazon Web Services", "Амазон веб сервисес", "Amazon S3", "Google Cloud", "Гугл Клауд", "GCP"]
+  kind: public_cloud
+  in_catalog: false
+  sections: ["Управление бизнесом (IaaS)", "Облачные платформы (Импортозамещение)"]
+  analogs:
+    - {title: "Облачная платформа Softline", vendor: "Softline", russian: true}
+    - {title: "Облачное хранилище S3", vendor: "Softline", russian: true}
+  note: "Публичные облака (AWS, Google Cloud); недоступны в РФ — российские облачные платформы"
+
+- id: total_commander
+  names: ["Total Commander", "Тотал Коммандер", "Тоталкоммандер", "Directory Opus", "Far Manager", "Фар менеджер"]
+  kind: file_manager
+  in_catalog: false
+  sections: ["Файловые менеджеры"]
+  analogs:
+    - {title: "Commander One", vendor: "Eltima Software"}
+    - {title: "MobiSystems File Commander", vendor: "MobiSystems"}
+  note: "Двухпанельные файловые менеджеры; в каталоге нет (Total Commander есть только в описании раздела)"
+
+- id: seven_zip
+  names: ["7-Zip", "7zip", "Севен зип", "7зип", "WinZip", "Винзип", "Bandizip"]
+  kind: archiver
+  in_catalog: false
+  sections: ["Архиваторы"]
+  analogs:
+    - {title: "RARSoft WinRAR", vendor: "RARSoft"}
+    - {title: "СЕТЕРЕ Архиватор", vendor: "SETERE"}
+  note: "Архиваторы (7-Zip, WinZip); в каталоге — WinRAR и СЕТЕРЕ Архиватор"
+
+- id: filezilla
+  names: ["FileZilla", "Файлзилла", "WinSCP", "ВинСКП", "CuteFTP"]
+  kind: ftp_client
+  in_catalog: false
+  sections: ["Download-менеджеры", "Сетевые утилиты", "Серверное ПО"]
+  analogs:
+    - {title: "TurboSoft, Inc. TurboFTP", vendor: "TurboSoft, Inc."}
+    - {title: "South River WebDrive", vendor: "South River Technologies"}
+    - {title: "SolarWinds Serv-U", vendor: "SolarWinds"}
+    - {title: "CompleteFTP", vendor: "Enterprise Distributed Technologies"}
+  note: "FTP/SFTP-клиенты и серверы; в каталоге нет"
+
+- id: wireshark
+  names: ["Wireshark", "Вайршарк", "Вайршарк анализатор"]
+  kind: network_analyzer
+  in_catalog: false
+  sections: ["Сетевые утилиты"]
+  analogs:
+    - {title: "Colasoft Capsa", vendor: "Colasoft"}
+    - {title: "Colasoft nChronos", vendor: "Colasoft"}
+    - {title: "Ipswitch Network Traffic Analysis", vendor: "Ipswitch, Inc."}
+    - {title: "SolarWinds NetFlow Traffic Analyzer", vendor: "SolarWinds"}
+  note: "Анализатор сетевого трафика; в каталоге нет"
+
+- id: suse
+  names: ["SUSE Linux Enterprise", "SUSE", "SLES", "Сусе", "Сузе Линукс"]
+  kind: os_server
+  in_catalog: false
+  sections: ["Российские операционные системы (Импортозамещение)", "Операционные системы Linux & Unix"]
+  analogs:
+    - {title: "BaseALT Альт Сервер", vendor: "BaseALT", russian: true}
+    - {title: "Astra Linux Special Edition", vendor: "Группа Астра", russian: true}
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+    - {title: "Red Hat Enterprise Linux Server", vendor: "Red Hat"}
+  note: "Корпоративный Linux SUSE; ушёл из РФ"
+
+# --- есть в каталоге ---
+
+- id: vmware_vsphere
+  names: ["VMware vSphere", "vSphere", "ESXi", "VMware ESXi", "Вмваре", "Вмвар", "vCenter"]
+  kind: virtualization
+  in_catalog: true
+  sections: ["Программы для виртуализации", "Российская виртуализация (Импортозамещение)"]
+  analogs:
+    - {title: "Orion soft Zvirt", vendor: "Orion soft", russian: true}
+    - {title: "SpaceVM", vendor: "Space Экосистема виртуализации", russian: true}
+    - {title: "ROSA Virtualization", vendor: "РОСА", russian: true}
+    - {title: "Альт Виртуализация", vendor: "BaseALT", russian: true}
+    - {title: "СКАЛА-Р", vendor: "СКАЛА-Р", russian: true}
+    - {title: "VMmanager", vendor: "Группа Астра", russian: true}
+    - {title: "Горизонт-ВС", vendor: "ООО «ИЦ «Баррикады»", russian: true}
+    - {title: "Red Hat Virtualization", vendor: "Red Hat"}
+  note: "Серверная виртуализация; российские замены — zVirt, SpaceVM, РОСА, Альт, СКАЛА-Р"
+
+- id: vmware_horizon
+  names: ["VMware Horizon", "Horizon View", "Хорайзон", "Хоризон"]
+  kind: vdi
+  in_catalog: true
+  sections: ["Системы автоматизации (SaaS)", "Российская виртуализация (Импортозамещение)"]
+  analogs:
+    - {title: "Termidesk", vendor: "Группа Астра", russian: true}
+    - {title: "TIONIX VDI", vendor: "ТИОНИКС", russian: true}
+    - {title: "Orion soft Термит", vendor: "Orion soft", russian: true}
+    - {title: "GO-Global", vendor: "GraphOn Corp."}
+    - {title: "Cendio ThinLinc", vendor: "Cendio"}
+    - {title: "Microsoft Remote Desktop Services", vendor: "Программы и лицензии Microsoft Corporation"}
+  note: "VDI и публикация приложений"
+
+- id: vmware_workstation
+  names: ["VMware Workstation", "Workstation Pro", "VMware Player", "VMware Fusion", "Вмваре воркстейшн"]
+  kind: desktop_virtualization
+  in_catalog: true
+  sections: ["Программы для виртуализации"]
+  analogs: []
+  note: "Настольная виртуализация; других программ этого класса в каталоге нет (для Mac — VMware Fusion той же линейки)"
+
+- id: ms_rds
+  names: ["Remote Desktop Services", "Терминальный сервер Windows", "RDS CAL", "Microsoft RDS"]
+  kind: terminal_server
+  in_catalog: true
+  sections: ["Серверное ПО", "Программы для виртуализации", "Российская виртуализация (Импортозамещение)"]
+  analogs:
+    - {title: "Termidesk", vendor: "Группа Астра", russian: true}
+    - {title: "TIONIX VDI", vendor: "ТИОНИКС", russian: true}
+    - {title: "GO-Global", vendor: "GraphOn Corp."}
+    - {title: "Cendio ThinLinc", vendor: "Cendio"}
+  note: "Терминальный доступ к Windows"
+
+- id: windows
+  names: ["Windows 10", "Windows 11", "Виндовс", "Винда", "Microsoft Windows", "Win 10", "Win 11", "Windows Pro"]
+  kind: os_desktop
+  in_catalog: true
+  sections: ["Операционные системы Windows", "Windows 11: лицензии Home и Pro", "Российские операционные системы (Импортозамещение)"]
+  analogs:
+    - {title: "Astra Linux Special Edition", vendor: "Группа Астра", russian: true}
+    - {title: "BaseALT Альт Рабочая станция", vendor: "BaseALT", russian: true}
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+    - {title: "РОСА «ХРОМ»", vendor: "РОСА", russian: true}
+    - {title: "UBLinux", vendor: "Юбитех", russian: true}
+    - {title: "ОС ОСнова", vendor: "АО «НППКТ»", russian: true}
+    - {title: "Uncom OS", vendor: "Uncom", russian: true}
+  note: "ОС для рабочих мест; российские замены — Astra Linux, Альт, РЕД ОС, РОСА"
+
+- id: windows_server
+  names: ["Windows Server", "Виндовс Сервер", "Win Server", "Windows Server 2022", "Windows Server 2019", "Винсервер"]
+  kind: os_server
+  in_catalog: true
+  sections: ["Операционные системы Windows", "Российские операционные системы (Импортозамещение)"]
+  analogs:
+    - {title: "Astra Linux Special Edition", vendor: "Группа Астра", russian: true}
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+    - {title: "BaseALT Альт Сервер", vendor: "BaseALT", russian: true}
+    - {title: "РОСА «КОБАЛЬТ»", vendor: "РОСА", russian: true}
+    - {title: "ОС ОСнова", vendor: "АО «НППКТ»", russian: true}
+    - {title: "ALD Pro", vendor: "Группа Астра", russian: true}
+    - {title: "Red Hat Enterprise Linux Server", vendor: "Red Hat"}
+  note: "Серверная ОС; российские замены — Astra Linux, РЕД ОС, Альт Сервер (+ALD Pro вместо AD)"
+
+- id: rhel
+  names: ["Red Hat Enterprise Linux", "RHEL", "Ред Хат", "Red Hat Linux", "Редхат", "CentOS", "Центос"]
+  kind: os_server
+  in_catalog: true
+  sections: ["Операционные системы Linux & Unix", "Российские операционные системы (Импортозамещение)"]
+  analogs:
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+    - {title: "Astra Linux Special Edition", vendor: "Группа Астра", russian: true}
+    - {title: "BaseALT Альт Сервер", vendor: "BaseALT", russian: true}
+    - {title: "РОСА «КОБАЛЬТ»", vendor: "РОСА", russian: true}
+    - {title: "ОС ОСнова", vendor: "АО «НППКТ»", russian: true}
+  note: "Корпоративный Linux (RHEL, CentOS); российские замены — РЕД ОС, Astra Linux, Альт, РОСА"
+
+- id: ubuntu
+  names: ["Ubuntu", "Убунту", "Debian", "Дебиан", "Linux Mint", "Линукс Минт"]
+  kind: os_desktop
+  in_catalog: true
+  sections: ["Операционные системы Linux & Unix", "Российские операционные системы (Импортозамещение)"]
+  analogs:
+    - {title: "Astra Linux Special Edition", vendor: "Группа Астра", russian: true}
+    - {title: "BaseALT Альт Рабочая станция", vendor: "BaseALT", russian: true}
+    - {title: "UBLinux", vendor: "Юбитех", russian: true}
+    - {title: "РОСА «ХРОМ»", vendor: "РОСА", russian: true}
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+  note: "Свободные дистрибутивы (в каталоге — коробочные версии); с поддержкой — российские Linux"
+
+- id: sccm
+  names: ["SCCM", "System Center Configuration Manager", "MECM", "Microsoft System Center", "Систем центр"]
+  kind: endpoint_management
+  in_catalog: true
+  sections: ["Расширения системы", "Системы автоматизации"]
+  analogs:
+    - {title: "РОСА «Центр управления»", vendor: "РОСА", russian: true}
+    - {title: "Группа Астра Astra Automation", vendor: "Группа Астра", russian: true}
+    - {title: "Zoho ManageEngine Endpoint Central", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "Zoho ManageEngine Desktop", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "Puppet Enterprise", vendor: "Puppet Labs"}
+  note: "Управление парком ПК и развёртывание ПО"
+
+- id: intune
+  names: ["Microsoft Intune", "Intune", "Интюн", "Интун"]
+  kind: mdm
+  in_catalog: true
+  sections: ["Коммуникации (SaaS)", "Защита информации для смартфонов", "Системы автоматизации"]
+  analogs:
+    - {title: "Код безопасности Secret MDM", vendor: "Код безопасности", russian: true}
+    - {title: "Kaspersky Secure Mobility Management", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "ООО «НИИ СОКБ»", vendor: "ООО «НИИ СОКБ ЦР»", russian: true}
+    - {title: "Zoho ManageEngine Mobile Device Manager", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "VMware Workspace ONE", vendor: "VMware"}
+  note: "Управление мобильными устройствами (MDM/UEM)"
+
+- id: paragon_hdm
+  names: ["Paragon Hard Disk Manager", "Paragon", "Парагон", "Paragon Backup"]
+  kind: disk_utility
+  in_catalog: true
+  sections: ["Программное обеспечение для резервного копирования"]
+  analogs:
+    - {title: "Киберпротект Кибер Бэкап Старт", vendor: "Киберпротект", russian: true}
+    - {title: "Новософт Handy Backup", vendor: "Новософт", russian: true}
+    - {title: "O&O DiskImage", vendor: "O&O Software GmbH"}
+    - {title: "NovaBACKUP", vendor: "NovaStor"}
+  note: "Бэкап и управление дисками"
+
+- id: winrar
+  names: ["WinRAR", "Винрар", "Вин рар"]
+  kind: archiver
+  in_catalog: true
+  sections: ["Архиваторы"]
+  analogs:
+    - {title: "СЕТЕРЕ Архиватор", vendor: "SETERE"}
+  note: "Архиватор"
+
+- id: ccleaner
+  names: ["CCleaner", "Сиклинер", "Си клинер", "ЦКлинер"]
+  kind: system_cleaner
+  in_catalog: true
+  sections: ["Программы для настройки системы"]
+  analogs:
+    - {title: "IObit Advanced SystemCare", vendor: "IObit"}
+    - {title: "Kerish Doctor", vendor: "Kerish Products"}
+    - {title: "ItHelper версия Optimizer", vendor: "ООО «Софт Программ»", russian: true}
+    - {title: "Uniblue PowerSuite", vendor: "Uniblue Systems Limited"}
+  note: "Очистка и оптимизация Windows"
+
+# ============================================================================
+# ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ
+# ============================================================================
+
+- id: eset_nod32
+  names: ["ESET", "ESET NOD32", "NOD32", "НОД32", "Нод 32", "Есет", "ESET Smart Security", "ESET Internet Security"]
+  kind: antivirus_home
+  in_catalog: false
+  sections: ["Антивирусы для дома", "Антивирусы для организаций"]
+  analogs:
+    - {title: "Kaspersky Standard", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Plus", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Security Space", vendor: "Доктор Веб", russian: true}
+    - {title: "PRO32 Total Security", vendor: "PRO32"}
+    - {title: "BullGuard Internet Security", vendor: "BullGuard"}
+  note: "Антивирус ESET; ушёл из РФ"
+
+- id: eset_protect
+  names: ["ESET PROTECT", "ESET Endpoint Security", "ESET Endpoint Antivirus", "ESET для бизнеса", "Есет для бизнеса"]
+  kind: endpoint_security
+  in_catalog: false
+  sections: ["Антивирусы для организаций"]
+  analogs:
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Small Office Security", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Enterprise Security Suite", vendor: "Доктор Веб", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "F-Secure Business Suite", vendor: "F-Secure"}
+    - {title: "Emsisoft Business Security", vendor: "Emsisoft"}
+  note: "Корпоративная антивирусная защита ESET; ушла из РФ"
+
+- id: avast
+  names: ["Avast", "Аваст", "Avast Premium Security", "Avast One", "AVG", "АВГ", "AVG Internet Security"]
+  kind: antivirus_home
+  in_catalog: false
+  sections: ["Антивирусы для дома"]
+  analogs:
+    - {title: "Kaspersky Standard", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Security Space", vendor: "Доктор Веб", russian: true}
+    - {title: "PRO32 Total Security", vendor: "PRO32"}
+    - {title: "BullGuard Internet Security", vendor: "BullGuard"}
+    - {title: "UnitedGuard 360 Total Security", vendor: "UnitedGuard"}
+  note: "Антивирусы Avast/AVG (Gen Digital); в каталоге нет"
+
+- id: norton_360
+  names: ["Norton 360", "Norton Antivirus", "Norton Security", "Нортон", "Нортон 360"]
+  kind: antivirus_home
+  in_catalog: false
+  sections: ["Антивирусы для дома"]
+  analogs:
+    - {title: "Kaspersky Premium", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Plus", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Security Space", vendor: "Доктор Веб", russian: true}
+    - {title: "PRO32 Ultimate Security", vendor: "PRO32"}
+    - {title: "BullGuard Internet Security", vendor: "BullGuard"}
+  note: "Домашний антивирус Norton; в каталоге только корпоративные продукты Symantec"
+
+- id: mcafee
+  names: ["McAfee", "Макафи", "McAfee Endpoint Security", "McAfee Total Protection", "Trellix"]
+  kind: endpoint_security
+  in_catalog: false
+  sections: ["Антивирусы для организаций", "Антивирусы для дома"]
+  analogs:
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Enterprise Security Suite", vendor: "Доктор Веб", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "Kaspersky Premium", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Symantec Endpoint Protection", vendor: "NortonLifeLock"}
+  note: "Антивирусы McAfee/Trellix; в каталоге нет (упоминается только в описании разделов)"
+
+- id: bitdefender
+  names: ["Bitdefender", "Битдефендер", "Bitdefender Total Security", "Bitdefender GravityZone"]
+  kind: antivirus_home
+  in_catalog: false
+  sections: ["Антивирусы для дома", "Антивирусы для организаций"]
+  analogs:
+    - {title: "Kaspersky Standard", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Premium", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Security Space", vendor: "Доктор Веб", russian: true}
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "F-Secure Business Suite", vendor: "F-Secure"}
+  note: "Антивирус Bitdefender; в каталоге нет"
+
+- id: malwarebytes
+  names: ["Malwarebytes", "Малварбайтс", "Малвербайтс", "Anti-Malware Malwarebytes"]
+  kind: antimalware
+  in_catalog: false
+  sections: ["Антивирусы для дома", "Антивирусы для организаций"]
+  analogs:
+    - {title: "IObit Malware Fighter", vendor: "IObit"}
+    - {title: "Dr.Web Katana", vendor: "Доктор Веб", russian: true}
+    - {title: "ShieldApps Anti Malware", vendor: "ShieldApps"}
+    - {title: "Emsisoft Business Security", vendor: "Emsisoft"}
+    - {title: "Kaspersky Standard", vendor: "«Лаборатория Касперского»", russian: true}
+  note: "Антивредоносный сканер; в каталоге нет"
+
+- id: sophos
+  names: ["Sophos", "Софос", "Sophos Intercept X", "Trend Micro", "Тренд Микро", "Trend Micro Apex One"]
+  kind: endpoint_security
+  in_catalog: false
+  sections: ["Антивирусы для организаций"]
+  analogs:
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky EDR для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Enterprise Security Suite", vendor: "Доктор Веб", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "F-Secure Elements EDR", vendor: "F-Secure"}
+  note: "Корпоративная защита конечных точек (Sophos, Trend Micro); в каталоге нет"
+
+- id: crowdstrike
+  names: ["CrowdStrike", "CrowdStrike Falcon", "Краудстрайк", "SentinelOne", "Сентинел Ван"]
+  kind: edr
+  in_catalog: false
+  sections: ["Антивирусы для организаций", "Программы для защиты информации"]
+  analogs:
+    - {title: "Kaspersky EDR для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "Kaspersky Symphony MDR", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "F-Secure Elements EDR", vendor: "F-Secure"}
+    - {title: "Palo Alto Networks, Inc. Cortex XDR", vendor: "Palo Alto Networks, Inc."}
+  note: "EDR/XDR-платформы; в каталоге нет"
+
+- id: fortinet
+  names: ["Fortinet", "FortiGate", "Фортинет", "Фортигейт", "Check Point", "Чек Поинт", "Чекпоинт", "Cisco ASA", "Cisco Firepower"]
+  kind: ngfw
+  in_catalog: false
+  sections: ["Межсетевые экраны", "Интернет и Сеть", "Антивирусы для организаций"]
+  analogs:
+    - {title: "ПАК UserGate NGFW", vendor: "UserGate", russian: true}
+    - {title: "Айдеко Ideco NGFW", vendor: "Ideco", russian: true}
+    - {title: "Traffic Inspector Next Generation", vendor: "Смарт-Cофт", russian: true}
+    - {title: "Код безопасности АПКШ «Континент»", vendor: "Код безопасности", russian: true}
+    - {title: "А-реал Консалтинг ИКС", vendor: "А-реал Консалтинг", russian: true}
+    - {title: "Endian Utm", vendor: "Endian"}
+    - {title: "SmoothWall Ltd Smoothwall UTM", vendor: "SmoothWall Ltd"}
+  note: "Межсетевые экраны нового поколения (Fortinet, Check Point, Cisco); ушли из РФ"
+
+- id: kerio_control
+  names: ["Kerio Control", "Kerio", "Керио", "Керио Контрол"]
+  kind: utm
+  in_catalog: false
+  sections: ["Межсетевые экраны", "Интернет и Сеть"]
+  analogs:
+    - {title: "Айдеко Ideco NGFW", vendor: "Ideco", russian: true}
+    - {title: "Смарт-Cофт Traffic Inspector", vendor: "Смарт-Cофт", russian: true}
+    - {title: "ПАК UserGate NGFW", vendor: "UserGate", russian: true}
+    - {title: "А-реал Консалтинг ИКС", vendor: "А-реал Консалтинг", russian: true}
+    - {title: "Qbik New Zealand Limited WinGate", vendor: "Qbik New Zealand Limited"}
+  note: "Шлюз безопасности для малого бизнеса (GFI Kerio); в каталоге нет"
+
+- id: cisco_anyconnect
+  names: ["Cisco AnyConnect", "AnyConnect", "ЭниКоннект", "Cisco Secure Client", "OpenVPN Access Server", "Опенвпн"]
+  kind: vpn
+  in_catalog: false
+  sections: ["Интернет и Сеть", "Программы для защиты информации"]
+  analogs:
+    - {title: "«Континент АП/ZTN»", vendor: "Код безопасности", russian: true}
+    - {title: "С-Терра СиЭсПи С-Терра", vendor: "С-Терра СиЭсПи", russian: true}
+    - {title: "МагПро OpenVPN ГОСТ", vendor: "Криптоком", russian: true}
+    - {title: "LirVPN", vendor: "ЛИССИ-Софт", russian: true}
+    - {title: "Palo Alto Networks, Inc. GlobalProtect", vendor: "Palo Alto Networks, Inc."}
+  note: "VPN-клиенты для удалённого доступа; российские — Континент, С-Терра, МагПро OpenVPN ГОСТ"
+
+- id: vipnet
+  names: ["ViPNet", "ВипНет", "ViPNet Client", "ИнфоТеКС", "InfoTeCS"]
+  kind: vpn
+  in_catalog: false
+  sections: ["Программы для защиты информации", "Интернет и Сеть"]
+  analogs:
+    - {title: "Код безопасности АПКШ «Континент»", vendor: "Код безопасности", russian: true}
+    - {title: "С-Терра Шлюз", vendor: "С-Терра СиЭсПи", russian: true}
+    - {title: "Программа КриптоПро NGate", vendor: "КриптоПро", russian: true}
+    - {title: "«Континент АП/ZTN»", vendor: "Код безопасности", russian: true}
+  note: "Сертифицированные VPN ИнфоТеКС; в каталоге только КриптоАРМ ViPNet — замены: Континент, С-Терра, NGate"
+
+- id: tenable_nessus
+  names: ["Nessus", "Tenable Nessus", "Несус", "Tenable", "Qualys", "Квалис", "OpenVAS"]
+  kind: vulnerability_scanner
+  in_catalog: false
+  sections: ["Программы для защиты информации", "Интернет и Сеть"]
+  analogs:
+    - {title: "Positive Technologies XSpider", vendor: "Positive Technologies", russian: true}
+    - {title: "АЛТЭКС-СОФТ RedCheck", vendor: "АЛТЭКС-СОФТ", russian: true}
+    - {title: "Эшелон «СКАНЕР-ВС»", vendor: "НПО «Эшелон»", russian: true}
+    - {title: "SAINT", vendor: "SAINT Corporation"}
+    - {title: "Tripwire, Inc. IP360", vendor: "Tripwire, Inc."}
+    - {title: "Zoho ManageEngine Vulnerability", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Сканеры уязвимостей (Nessus, Qualys); российские — XSpider, RedCheck, Сканер-ВС"
+
+- id: acunetix
+  names: ["Acunetix", "Акунетикс", "Burp Suite", "Бёрп сьют", "Invicti"]
+  kind: web_scanner
+  in_catalog: false
+  sections: ["Интернет и Сеть", "Антивирусное ПО"]
+  analogs:
+    - {title: "Netsparker", vendor: "Netsparker"}
+    - {title: "N-Stalker Web Application Security Scanner", vendor: "N-Stalker"}
+    - {title: "ImmuniWeb", vendor: "ImmuniWeb"}
+    - {title: "ИРББИ Irbby Web Scanner", vendor: "ИРББИ"}
+    - {title: "Synopsys WhiteHat Sentinel", vendor: "Synopsys"}
+  note: "Сканеры безопасности веб-приложений (Acunetix, Burp Suite); в каталоге нет"
+
+- id: devicelock
+  names: ["DeviceLock", "ДевайсЛок", "Смарт Лайн DeviceLock", "DeviceLock DLP"]
+  kind: device_control
+  in_catalog: false
+  sections: ["Программное обеспечение для контроля доступа", "Программы для защиты информации"]
+  analogs:
+    - {title: "Код безопасности Secret Net Studio", vendor: "Код безопасности", russian: true}
+    - {title: "ANCUD Фильтр USB устройств", vendor: "ANCUD", russian: true}
+    - {title: "Staffcop Enterprise", vendor: "Атом Безопасность", russian: true}
+    - {title: "EgoSecure Access Control", vendor: "EgoSecure"}
+    - {title: "Zoho ManageEngine Device Control", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Контроль USB-устройств и DLP; в каталоге нет (есть только в описании раздела)"
+
+- id: infowatch
+  names: ["InfoWatch", "ИнфоВотч", "Инфовоч", "InfoWatch Traffic Monitor", "SearchInform", "Серчинформ", "Солар Дозор", "Solar Dozor"]
+  kind: dlp
+  in_catalog: false
+  sections: ["Программы для защиты информации", "Программное обеспечение для контроля персонала"]
+  analogs:
+    - {title: "Staffcop Enterprise", vendor: "Атом Безопасность", russian: true}
+    - {title: "Стахановец", vendor: "Стахановец", russian: true}
+    - {title: "ИНСАЙДЕР", vendor: "Инсайдер", russian: true}
+    - {title: "Zoho ManageEngine Endpoint DLP", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "EgoSecure Data Protection", vendor: "EgoSecure"}
+  note: "Российские DLP-системы (InfoWatch, SearchInform, Solar Dozor) в каталоге отсутствуют; ближайшие — Staffcop, Стахановец"
+
+- id: teramind
+  names: ["Teramind", "Терамайнд", "ActivTrak", "Hubstaff", "Хабстафф", "Time Doctor"]
+  kind: employee_monitoring
+  in_catalog: false
+  sections: ["Программное обеспечение для контроля персонала", "Сетевые утилиты"]
+  analogs:
+    - {title: "Staffcop Enterprise", vendor: "Атом Безопасность", russian: true}
+    - {title: "Стахановец", vendor: "Стахановец", russian: true}
+    - {title: "ИНСАЙДЕР", vendor: "Инсайдер", russian: true}
+    - {title: "LanAgent", vendor: "LanAgent", russian: true}
+    - {title: "Yaware TimeTracker", vendor: "Yaware"}
+    - {title: "EfficientLab ProdoTime", vendor: "EfficientLab, LLC."}
+  note: "Мониторинг и учёт рабочего времени сотрудников; в каталоге нет"
+
+- id: kickidler
+  names: ["Kickidler", "Кикидлер", "Киккидлер"]
+  kind: employee_monitoring
+  in_catalog: false
+  sections: ["Программное обеспечение для контроля персонала"]
+  analogs:
+    - {title: "Staffcop Enterprise", vendor: "Атом Безопасность", russian: true}
+    - {title: "Стахановец", vendor: "Стахановец", russian: true}
+    - {title: "ИНСАЙДЕР", vendor: "Инсайдер", russian: true}
+    - {title: "LanAgent", vendor: "LanAgent", russian: true}
+  note: "Российская система контроля сотрудников; в каталоге нет"
+
+- id: password_manager
+  names: ["1Password", "ВанПассворд", "LastPass", "ЛастПасс", "KeePass", "Кипасс", "Bitwarden", "Битварден"]
+  kind: password_manager
+  in_catalog: false
+  sections: ["Программы для защиты информации"]
+  analogs:
+    - {title: "Kaspersky Password Manager", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Cloud Password Manager", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Zoho ManageEngine PasswordManager", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "ShieldApps Password Shield", vendor: "ShieldApps"}
+  note: "Менеджеры паролей (1Password, LastPass, KeePass, Bitwarden); в каталоге нет"
+
+- id: cyberark
+  names: ["CyberArk PAM", "CyberArk Privileged Access", "Киберарк", "BeyondTrust", "Delinea"]
+  kind: pam
+  in_catalog: false
+  sections: ["Программное обеспечение для контроля доступа", "Программы для защиты информации"]
+  analogs:
+    - {title: "Zoho ManageEngine Privileged Access Manager", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "Zoho ManageEngine Access Manager Plus", vendor: "Zoho Corporation Pvt. Ltd."}
+    - {title: "Zoho ManageEngine Key Manager Plus", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Управление привилегированным доступом (PAM); в каталоге нет"
+
+- id: okta
+  names: ["Okta", "Окта", "Okta SSO", "Auth0", "Cisco Duo", "Duo Security"]
+  kind: identity_sso
+  in_catalog: false
+  sections: ["Программное обеспечение для контроля доступа"]
+  analogs:
+    - {title: "Identity Blitz Blitz Identity Provider", vendor: "Identity Blitz", russian: true}
+    - {title: "Avanpost Web SSO", vendor: "Avanpost", russian: true}
+    - {title: "Multifactor", vendor: "MULTIFACTOR", russian: true}
+    - {title: "Актив Рутокен MFA", vendor: "Актив", russian: true}
+    - {title: "SecurEnvoy Ltd SecurAccess", vendor: "SecurEnvoy Ltd"}
+  note: "Единый вход и многофакторная аутентификация (Okta, Duo); в каталоге нет"
+
+- id: proofpoint
+  names: ["Proofpoint", "Пруфпоинт", "Cisco Secure Email", "Barracuda Email Security"]
+  kind: email_security
+  in_catalog: false
+  sections: ["Антивирусы для организаций", "Интернет и Сеть", "Антивирусное ПО"]
+  analogs:
+    - {title: "Kaspersky Security для почтовых серверов", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Positive Technologies Email Gateway", vendor: "Positive Technologies", russian: true}
+    - {title: "Mimecast Email Security", vendor: "Mimecast"}
+    - {title: "Symantec Messaging Gateway", vendor: "NortonLifeLock"}
+    - {title: "Clearswift SECURE Email Gateway", vendor: "Clearswift Ltd."}
+  note: "Защита корпоративной почты от спама и фишинга; в каталоге нет"
+
+- id: cloudflare
+  names: ["Cloudflare", "Клаудфлер", "Клаудфлэр", "Qrator", "Кратор"]
+  kind: ddos_protection
+  in_catalog: false
+  sections: ["Интернет и Сеть"]
+  analogs:
+    - {title: "StormWall Защита", vendor: "StormWall", russian: true}
+    - {title: "Kaspersky DDoS Prevention", vendor: "«Лаборатория Касперского»", russian: true}
+  note: "Защита сайтов от DDoS; в каталоге — StormWall и Kaspersky DDoS Prevention"
+
+# --- есть в каталоге ---
+
+- id: kaspersky_endpoint
+  names: ["Kaspersky Endpoint Security", "KES", "КЕС", "Касперский для бизнеса", "Kaspersky для бизнеса", "Каспер эндпоинт"]
+  kind: endpoint_security
+  in_catalog: true
+  sections: ["Антивирусы для организаций"]
+  analogs:
+    - {title: "Dr.Web Enterprise Security Suite", vendor: "Доктор Веб", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "PRO32 Endpoint Security", vendor: "PRO32"}
+    - {title: "F-Secure Business Suite", vendor: "F-Secure"}
+    - {title: "Symantec Endpoint Protection", vendor: "NortonLifeLock"}
+    - {title: "Emsisoft Business Security", vendor: "Emsisoft"}
+  note: "Корпоративный антивирус; российские альтернативы — Dr.Web, MaxPatrol EPP"
+
+- id: kaspersky_home
+  names: ["Kaspersky", "Касперский", "Каспер", "Антивирус Касперского", "Kaspersky Premium", "Kaspersky Total Security"]
+  kind: antivirus_home
+  in_catalog: true
+  sections: ["Антивирусы для дома"]
+  analogs:
+    - {title: "Dr.Web Security Space", vendor: "Доктор Веб", russian: true}
+    - {title: "PRO32 Total Security", vendor: "PRO32"}
+    - {title: "BullGuard Internet Security", vendor: "BullGuard"}
+    - {title: "UnitedGuard 360 Total Security", vendor: "UnitedGuard"}
+  note: "Домашний антивирус Касперского"
+
+- id: dr_web
+  names: ["Dr.Web", "Доктор Веб", "Др Веб", "DrWeb", "Drweb Security Space"]
+  kind: antivirus
+  in_catalog: true
+  sections: ["Антивирусы для организаций", "Антивирусы для дома"]
+  analogs:
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Kaspersky Standard", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "PRO32 Total Security", vendor: "PRO32"}
+  note: "Антивирус «Доктор Веб»"
+
+- id: symantec_endpoint
+  names: ["Symantec Endpoint Protection", "Symantec", "Симантек", "Broadcom Symantec"]
+  kind: endpoint_security
+  in_catalog: true
+  sections: ["Антивирусы для организаций", "Программы для защиты информации"]
+  analogs:
+    - {title: "Kaspersky Endpoint Security для бизнеса", vendor: "«Лаборатория Касперского»", russian: true}
+    - {title: "Dr.Web Enterprise Security Suite", vendor: "Доктор Веб", russian: true}
+    - {title: "MaxPatrol Endpoint Protection", vendor: "Positive Technologies", russian: true}
+    - {title: "F-Secure Business Suite", vendor: "F-Secure"}
+    - {title: "Emsisoft Enterprise Security", vendor: "Emsisoft"}
+  note: "Корпоративная защита Symantec (Broadcom)"
+
+- id: palo_alto
+  names: ["Palo Alto Networks", "Palo Alto", "Пало Альто", "PAN-OS"]
+  kind: ngfw
+  in_catalog: true
+  sections: ["Программы для защиты информации", "Интернет и Сеть"]
+  analogs:
+    - {title: "ПАК UserGate NGFW", vendor: "UserGate", russian: true}
+    - {title: "Айдеко Ideco NGFW", vendor: "Ideco", russian: true}
+    - {title: "Код безопасности АПКШ «Континент»", vendor: "Код безопасности", russian: true}
+    - {title: "Traffic Inspector Next Generation", vendor: "Смарт-Cофт", russian: true}
+    - {title: "С-Терра Шлюз", vendor: "С-Терра СиЭсПи", russian: true}
+  note: "NGFW и сервисы безопасности Palo Alto"
+
+# ============================================================================
+# УДАЛЁННЫЙ ДОСТУП
+# ============================================================================
+
+- id: ammyy_admin
+  names: ["Ammyy Admin", "Амми Админ", "Ammyy", "Амми"]
+  kind: remote_access
+  in_catalog: false
+  sections: ["Российские решения удаленного доступа (Импортозамещение)", "Другие решения удаленного доступа"]
+  analogs:
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "AnyDesk", vendor: "AnyDesk"}
+  note: "Удалённый доступ к ПК; в каталоге нет"
+
+- id: splashtop
+  names: ["Splashtop", "Сплэштоп", "Сплештоп", "Chrome Remote Desktop", "Удаленный рабочий стол Chrome"]
+  kind: remote_access
+  in_catalog: false
+  sections: ["Другие решения удаленного доступа", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "AnyDesk", vendor: "AnyDesk"}
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "TeamViewer GmbH TeamViewer", vendor: "TeamViewer GmbH"}
+  note: "Удалённый доступ (Splashtop, Chrome Remote Desktop); в каталоге нет"
+
+- id: logmein
+  names: ["LogMeIn", "ЛогМиИн", "GoTo Resolve", "LogMeIn Rescue", "LogMeIn Pro"]
+  kind: remote_access
+  in_catalog: false
+  sections: ["Другие решения удаленного доступа", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "TeamViewer GmbH TeamViewer", vendor: "TeamViewer GmbH"}
+    - {title: "AnyDesk", vendor: "AnyDesk"}
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "Zoho ManageEngine Remote Access Plus", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Удалённая поддержка пользователей; в каталоге нет"
+
+- id: realvnc
+  names: ["RealVNC", "VNC Connect", "VNC", "ВНЦ", "TightVNC", "UltraVNC"]
+  kind: remote_access
+  in_catalog: false
+  sections: ["Сетевые утилиты", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "SmartCode VNC Manager", vendor: "SmartCode Solutions"}
+    - {title: "Фаматек Radmin", vendor: "Фаматек", russian: true}
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+    - {title: "TeamViewer GmbH TeamViewer", vendor: "TeamViewer GmbH"}
+  note: "Удалённый доступ по протоколу VNC; в каталоге нет"
+
+- id: rustdesk
+  names: ["RustDesk", "РастДеск", "Раст деск", "Getscreen", "Getscreen.me", "Гетскрин"]
+  kind: remote_access
+  in_catalog: false
+  sections: ["Российские решения удаленного доступа (Импортозамещение)", "Другие решения удаленного доступа"]
+  analogs:
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+    - {title: "AnyDesk", vendor: "AnyDesk"}
+  note: "Удалённый доступ (RustDesk, Getscreen); в каталоге нет"
+
+# --- есть в каталоге ---
+
+- id: teamviewer
+  names: ["TeamViewer", "Тимвьюер", "Тим вьюер", "Тимвивер", "Тим Вивер"]
+  kind: remote_access
+  in_catalog: true
+  sections: ["Другие решения удаленного доступа", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "AnyDesk", vendor: "AnyDesk"}
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+    - {title: "Фаматек Radmin", vendor: "Фаматек", russian: true}
+  note: "Удалённый доступ к рабочему столу; российские замены — RuDesktop, Ассистент, RMS, LiteManager"
+
+- id: anydesk
+  names: ["AnyDesk", "Энидеск", "Эни деск", "Анидеск"]
+  kind: remote_access
+  in_catalog: true
+  sections: ["Другие решения удаленного доступа", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "TeamViewer GmbH TeamViewer", vendor: "TeamViewer GmbH"}
+    - {title: "RuDesktop", vendor: "RuDesktop", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+  note: "Удалённый доступ к рабочему столу"
+
+- id: radmin
+  names: ["Radmin", "Радмин", "Remote Administrator"]
+  kind: remote_access
+  in_catalog: true
+  sections: ["Сетевые утилиты", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "LiteManager", vendor: "LiteManagerTeam", russian: true}
+    - {title: "САФИБ АССИСТЕНТ", vendor: "Ассистент", russian: true}
+    - {title: "SolarWinds DameWare Mini Remote Control", vendor: "SolarWinds"}
+    - {title: "NetSupport Manager", vendor: "NetSupport Limited"}
+  note: "Удалённое администрирование ПК (Фаматек)"
+
+- id: dameware
+  names: ["DameWare", "Дамевар", "Дэймвэр", "DameWare Remote Support"]
+  kind: remote_access
+  in_catalog: true
+  sections: ["Серверное ПО", "Российские решения удаленного доступа (Импортозамещение)"]
+  analogs:
+    - {title: "Фаматек Radmin", vendor: "Фаматек", russian: true}
+    - {title: "TektonIT RMS", vendor: "TektonIT", russian: true}
+    - {title: "NetSupport Manager", vendor: "NetSupport Limited"}
+    - {title: "Netop Remote Control", vendor: "Netop"}
+    - {title: "Zoho ManageEngine Remote Access Plus", vendor: "Zoho Corporation Pvt. Ltd."}
+  note: "Удалённая поддержка и администрирование (SolarWinds)"
+
+# ============================================================================
+# САПР, BIM, 3D, РЕНДЕР, РАСЧЁТЫ, ГИС, ЭЛЕКТРОНИКА, ЧПУ
+# ============================================================================
+
+- id: catia
+  names: ["CATIA", "Катия", "Dassault CATIA", "3DEXPERIENCE CATIA"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk Inventor", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "Appius-PLM", vendor: "APPIUS", russian: true}
+  note: "Тяжёлая САПР Dassault для машиностроения; в каталоге нет"
+
+- id: siemens_nx
+  names: ["Siemens NX", "Unigraphics", "Юниграфикс", "NX CAD", "Solid Edge", "Солид Эдж"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk Inventor", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "SolidCAM", vendor: "SolidCAM"}
+  note: "САПР Siemens (NX, Solid Edge); ушли из РФ"
+
+- id: ptc_creo
+  names: ["PTC Creo", "Creo", "Крео", "Pro/ENGINEER", "ПроИнженер"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk Inventor", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+  note: "САПР PTC; в каталоге нет (из PTC есть только Mathcad)"
+
+- id: t_flex
+  names: ["T-FLEX CAD", "T-FLEX", "Т-Флекс", "ТиФлекс", "Топ Системы T-FLEX"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "nanoCAD Механика", vendor: "Нанософт Разработка", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+  note: "Российская САПР «Топ Системы»; в каталоге нет — другие российские САПР"
+
+- id: shapr3d
+  names: ["Shapr3D", "Шейпер 3Д", "Шапр3д", "Shapr 3D"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики", "Программы для машиностроения"]
+  analogs:
+    - {title: "PlasticSoftware Plasticity", vendor: "PlasticSoftware"}
+    - {title: "Autodesk Fusion 360", vendor: "Autodesk"}
+    - {title: "Alibre Design", vendor: "Alibre Inc."}
+    - {title: "v25 Home", vendor: "АСКОН", russian: true}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+  note: "Простое твердотельное 3D-моделирование для iPad/Mac/Windows; в каталоге нет"
+
+- id: rhino
+  names: ["Rhinoceros", "Rhino 3D", "Rhino 8", "Райно", "Рино 3д"]
+  kind: cad_3d
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики", "Программы для дизайна, визуализации и анимации"]
+  analogs:
+    - {title: "PlasticSoftware Plasticity", vendor: "PlasticSoftware"}
+    - {title: "Autodesk Alias", vendor: "Autodesk"}
+    - {title: "Autodesk Fusion 360", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "Power NURBS", vendor: "NPower Software LLC"}
+  note: "NURBS-моделирование McNeel; в каталоге нет"
+
+- id: blender
+  names: ["Blender", "Блендер 3д", "Blender 3D", "Блендер3D"]
+  kind: 3d_modeling
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Autodesk 3ds Max", vendor: "Autodesk"}
+    - {title: "Maxon C4D", vendor: "MAXON Computer GmbH"}
+    - {title: "Autodesk Maya LT", vendor: "Autodesk"}
+    - {title: "Strata Design 3D", vendor: "Strata"}
+    - {title: "ZBrush", vendor: "MAXON Computer GmbH"}
+  note: "Бесплатный 3D-пакет; в магазине — коммерческие программы 3D-графики"
+
+- id: houdini
+  names: ["Houdini", "SideFX Houdini", "Гудини", "Хоудини"]
+  kind: 3d_vfx
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Phoenix FD", vendor: "cebas Visual Technology Inc."}
+    - {title: "Sitni Sati FumeFX", vendor: "Sitni Sati"}
+    - {title: "thinkingParticles", vendor: "cebas Visual Technology Inc."}
+    - {title: "Maxon C4D", vendor: "MAXON Computer GmbH"}
+    - {title: "Autodesk Maya LT", vendor: "Autodesk"}
+  note: "Процедурная 3D-графика и симуляции SideFX; в каталоге нет"
+
+- id: keyshot
+  names: ["KeyShot", "КейШот", "Luxion KeyShot"]
+  kind: renderer
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики", "Программы для дизайна, визуализации и анимации"]
+  analogs:
+    - {title: "Chaos Group V-Ray", vendor: "Chaos Group"}
+    - {title: "SolidWorks Visualize", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk VRED", vendor: "Autodesk"}
+    - {title: "D5 Render", vendor: "Dimension 5 Techs"}
+    - {title: "MAXON Computer GmbH Redshift", vendor: "MAXON Computer GmbH"}
+  note: "Фотореалистичная визуализация изделий; в каталоге нет"
+
+- id: lumion
+  names: ["Lumion", "Люмион", "Enscape", "Энскейп", "Twinmotion", "Твинмоушн", "Corona Renderer", "Корона рендер"]
+  kind: renderer
+  in_catalog: false
+  sections: ["Программы для дизайна, визуализации и анимации", "Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "D5 Render", vendor: "Dimension 5 Techs"}
+    - {title: "Graphisoft Artlantis", vendor: "Graphisoft"}
+    - {title: "Chaos Group V-Ray", vendor: "Chaos Group"}
+    - {title: "AAA Studio FurryBall", vendor: "AAA Studio"}
+    - {title: "U-Render", vendor: "U-RENDER visual technology GmbH"}
+  note: "Архитектурная визуализация (Lumion, Enscape, Twinmotion, Corona); в каталоге нет"
+
+- id: tekla
+  names: ["Tekla Structures", "Tekla", "Текла", "Trimble Tekla"]
+  kind: bim_steel
+  in_catalog: false
+  sections: ["Строительное программное обеспечение"]
+  analogs:
+    - {title: "Autodesk Advance Steel", vendor: "Autodesk"}
+    - {title: "Нанософт nanoCAD Металлоконструкции", vendor: "Нанософт Разработка", russian: true}
+    - {title: "CSoft СПДС Металлоконструкции", vendor: "CSoft Development", russian: true}
+    - {title: "Renga Professional", vendor: "Renga", russian: true}
+  note: "BIM для металлических и ЖБ конструкций; в каталоге нет"
+
+- id: etabs
+  names: ["ETABS", "SAP2000", "САП2000", "CSI ETABS", "Етабс"]
+  kind: structural_analysis
+  in_catalog: false
+  sections: ["Строительное программное обеспечение"]
+  analogs:
+    - {title: "Лира-САПФИР", vendor: "Лира сервис", russian: true}
+    - {title: "SCAD Soft SCAD Office", vendor: "SCAD Soft", russian: true}
+    - {title: "ЕВРОСОФТ Stark ES", vendor: "ЕВРОСОФТ", russian: true}
+    - {title: "МОНОМАХ-САПР", vendor: "Лира сервис", russian: true}
+    - {title: "Autodesk Robot Structural Analysis", vendor: "Autodesk"}
+  note: "Расчёт строительных конструкций (CSI); в каталоге нет"
+
+- id: ansys
+  names: ["ANSYS", "Ансис", "Ansys Mechanical", "Ansys Fluent", "Abaqus", "Абакус"]
+  kind: cae
+  in_catalog: false
+  sections: ["Программы для машиностроения", "Базовые программы", "Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "APM WinMachine", vendor: "НТЦ «АПМ»", russian: true}
+    - {title: "APM FEM", vendor: "АСКОН", russian: true}
+    - {title: "APM Multiphysics", vendor: "НТЦ «АПМ»", russian: true}
+    - {title: "ООО «ТОР» ELCUT", vendor: "ООО «ТОР»", russian: true}
+    - {title: "SOLIDWORKS Flow", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk CFD", vendor: "Autodesk"}
+  note: "Инженерный анализ МКЭ (ANSYS, Abaqus); ушли из РФ"
+
+- id: comsol
+  names: ["COMSOL", "COMSOL Multiphysics", "Комсол"]
+  kind: cae
+  in_catalog: false
+  sections: ["Базовые программы", "Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "APM Multiphysics", vendor: "НТЦ «АПМ»", russian: true}
+    - {title: "ООО «ТОР» ELCUT", vendor: "ООО «ТОР»", russian: true}
+    - {title: "Autodesk CFD", vendor: "Autodesk"}
+    - {title: "Lumerical FDTD", vendor: "Lumerical Solutions, Inc."}
+  note: "Мультифизическое моделирование; в каталоге нет (упоминается только в описании раздела)"
+
+- id: matlab
+  names: ["MATLAB", "Матлаб", "MathWorks", "Simulink", "Симулинк"]
+  kind: math
+  in_catalog: false
+  sections: ["Расчетные системы и Научное программное обеспечение", "Программы для научных расчетов"]
+  analogs:
+    - {title: "Wolfram Mathematica", vendor: "Wolfram Research"}
+    - {title: "Maplesoft MapleSim", vendor: "Maplesoft"}
+    - {title: "Mathcad", vendor: "PTC"}
+    - {title: "Ch Professional", vendor: "SoftIntegration, Inc"}
+  note: "Матлаб и Simulink (MathWorks) ушли из РФ; в каталоге — Mathematica, MapleSim, Mathcad"
+
+- id: spss
+  names: ["SPSS", "IBM SPSS", "СПСС", "SPSS Statistics"]
+  kind: statistics
+  in_catalog: false
+  sections: ["Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "StatSoft Analyst", vendor: "StatSoft"}
+    - {title: "StatSoft Data Scientist", vendor: "StatSoft"}
+    - {title: "Minitab Inc. Minitab", vendor: "Minitab Inc."}
+    - {title: "OriginLab", vendor: "OriginLab Corporation"}
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+  note: "Статистический анализ IBM; в каталоге нет"
+
+- id: stata
+  names: ["Stata", "Стата", "EViews", "Иьюз", "Eviews эконометрика"]
+  kind: statistics
+  in_catalog: false
+  sections: ["Программы для научных расчетов", "Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "Timberlake Consultants Limited OxMetrics", vendor: "Timberlake Consultants Limited"}
+    - {title: "Timberlake Consultants Limited PcGive", vendor: "Timberlake Consultants Limited"}
+    - {title: "Minitab Inc. Minitab", vendor: "Minitab Inc."}
+    - {title: "StatSoft Analyst", vendor: "StatSoft"}
+  note: "Эконометрика и статистика (Stata, EViews); в каталоге нет"
+
+- id: sas
+  names: ["SAS Institute", "SAS Enterprise Guide", "SAS Viya", "САС аналитика"]
+  kind: analytics
+  in_catalog: false
+  sections: ["Расчетные системы и Научное программное обеспечение", "Программное обеспечение для управления бизнесом"]
+  analogs:
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+    - {title: "POLYMATICA", vendor: "SLSoft", russian: true}
+    - {title: "StatSoft Data Scientist", vendor: "StatSoft"}
+    - {title: "Minitab Inc. Minitab", vendor: "Minitab Inc."}
+  note: "Аналитическая платформа SAS; ушла из РФ"
+
+- id: arcgis
+  names: ["ArcGIS", "АркГИС", "Esri ArcGIS", "ArcMap", "ArcGIS Pro"]
+  kind: gis
+  in_catalog: false
+  sections: ["Геоинформационные системы (ГИС)", "Редакторы карт"]
+  analogs:
+    - {title: "Профессиональная ГИС «Панорама»", vendor: "Панорама КБ", russian: true}
+    - {title: "NextGIS Web", vendor: "NextGIS", russian: true}
+    - {title: "ГИС «ИнГео»", vendor: "Центр системных исследований «Интегро»", russian: true}
+    - {title: "ГИС INTEGRO", vendor: "ГИС INTEGRO", russian: true}
+    - {title: "Golden Software Surfer", vendor: "Golden Software"}
+  note: "ГИС Esri; ушла из РФ — российские ГИС Панорама, NextGIS, ИнГео"
+
+- id: qgis
+  names: ["QGIS", "КуГИС", "Quantum GIS", "MapInfo", "МапИнфо", "MapInfo Pro"]
+  kind: gis
+  in_catalog: false
+  sections: ["Геоинформационные системы (ГИС)", "Редакторы карт"]
+  analogs:
+    - {title: "NextGIS Web", vendor: "NextGIS", russian: true}
+    - {title: "ГИС Панорама Мини", vendor: "Панорама КБ", russian: true}
+    - {title: "Профессиональная ГИС «Панорама»", vendor: "Панорама КБ", russian: true}
+    - {title: "Golden Software MapViewer", vendor: "Golden Software"}
+  note: "Настольные ГИС (QGIS, MapInfo); в каталоге нет"
+
+- id: pix4d
+  names: ["Pix4D", "Пикс4Д", "Agisoft Metashape", "Metashape", "Меташейп", "Agisoft PhotoScan"]
+  kind: photogrammetry
+  in_catalog: false
+  sections: ["Инфраструктура: изыскания, генплан, транспорт", "Программы для картографии и фотограмметрии", "Лазерное сканирование"]
+  analogs:
+    - {title: "ТИМ КРЕДО ФОТОГРАММЕТРИЯ", vendor: "Кредо-Диалог", russian: true}
+    - {title: "Панорама Фото", vendor: "Панорама КБ", russian: true}
+    - {title: "nanoCAD Облака точек", vendor: "Нанософт Разработка", russian: true}
+    - {title: "Autodesk ReCap Pro", vendor: "Autodesk"}
+  note: "Фотограмметрия и обработка аэросъёмки (Pix4D, Agisoft Metashape); в каталоге нет"
+
+- id: kicad
+  names: ["KiCad", "КиКад", "DipTrace", "ДипТрейс", "P-CAD", "Пикад"]
+  kind: ecad
+  in_catalog: false
+  sections: ["Программы для машиностроения", "Системы автоматизации"]
+  analogs:
+    - {title: "ЭРЕМЕКС Delta", vendor: "ЭРЕМЕКС", russian: true}
+    - {title: "Altium Designer", vendor: "Altium"}
+    - {title: "Cadence OrCAD", vendor: "Cadence Design Systems Inc."}
+  note: "САПР печатных плат (KiCad, DipTrace, P-CAD); российская — Delta Design"
+
+- id: eplan
+  names: ["EPLAN", "EPLAN Electric P8", "Еплан", "Иплан"]
+  kind: electrical_cad
+  in_catalog: false
+  sections: ["Программы для машиностроения", "Строительное программное обеспечение"]
+  analogs:
+    - {title: "АСКОН КОМПАС-Электрик", vendor: "АСКОН", russian: true}
+    - {title: "CSoft Development ElectriCS Professional", vendor: "CSoft Development", russian: true}
+    - {title: "Zuken E3.series", vendor: "Zuken"}
+    - {title: "SOLIDWORKS Electrical", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk AutoCAD Electrical", vendor: "Autodesk"}
+  note: "Проектирование электрических схем EPLAN; ушёл из РФ"
+
+- id: mastercam
+  names: ["Mastercam", "Мастеркам", "Мастер кам", "NX CAM", "Gibbscam"]
+  kind: cam
+  in_catalog: false
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "СПРУТ-Технология СПРУТКАМ", vendor: "СПРУТ-Технология", russian: true}
+    - {title: "DeltaCAM", vendor: "ЭРЕМЕКС", russian: true}
+    - {title: "SolidCAM", vendor: "SolidCAM"}
+    - {title: "SOLIDWORKS CAMWorks", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk PowerMill", vendor: "Autodesk"}
+    - {title: "Autodesk FeatureCAM", vendor: "Autodesk"}
+  note: "CAM-системы для ЧПУ; в каталоге нет"
+
+- id: bricscad
+  names: ["BricsCAD", "Брикскад", "Брикс кад", "progeCAD", "ПроджеКАД"]
+  kind: cad_2d
+  in_catalog: false
+  sections: ["Базовые программы"]
+  analogs:
+    - {title: "Нанософт Платформа nanoCAD", vendor: "Нанософт Разработка", russian: true}
+    - {title: "АСКОН КОМПАС-График", vendor: "АСКОН", russian: true}
+    - {title: "ZWCAD", vendor: "ZWSOFT"}
+    - {title: "GstarCAD", vendor: "GreatStar Technology Development"}
+    - {title: "ActCAD", vendor: "ActCAD"}
+  note: "DWG-совместимые САПР (BricsCAD, progeCAD); в каталоге нет"
+
+- id: allplan
+  names: ["Allplan", "Олплан", "Vectorworks", "Вектерворкс", "Векторворкс"]
+  kind: bim
+  in_catalog: false
+  sections: ["Программы для архитекторов", "Строительное программное обеспечение"]
+  analogs:
+    - {title: "Renga Professional", vendor: "Renga", russian: true}
+    - {title: "Нанософт nanoCAD BIM Строительство", vendor: "Нанософт Разработка", russian: true}
+    - {title: "Graphisoft Archicad", vendor: "Graphisoft"}
+    - {title: "Autodesk Revit", vendor: "Autodesk"}
+  note: "BIM-системы Nemetschek (Allplan, Vectorworks); в каталоге нет"
+
+- id: chief_architect
+  names: ["Chief Architect", "Чиф Архитект", "Sweet Home 3D", "Свит Хоум 3Д"]
+  kind: interior_design
+  in_catalog: false
+  sections: ["Программное обеспечение для 3D графики", "Программы для архитекторов"]
+  analogs:
+    - {title: "Планоплан", vendor: "Планоплан (Planoplan)", russian: true}
+    - {title: "AMS Software Дизайн Интерьера 3D", vendor: "AMS Software", russian: true}
+    - {title: "AMS Software Мой Дом 3D", vendor: "AMS Software", russian: true}
+    - {title: "TurboFLOORPLAN", vendor: "IMSI/Design, LLC"}
+    - {title: "SketchUp Pro", vendor: "Trimble"}
+  note: "Проектирование домов и интерьеров; в каталоге нет"
+
+- id: pro100
+  names: ["PRO100", "Про100", "Про 100", "К3-Мебель", "К3 мебель", "Базис-Мебельщик"]
+  kind: furniture_design
+  in_catalog: false
+  sections: ["Программы для мебельного производства"]
+  analogs:
+    - {title: "Базис 10", vendor: "Базис-Центр", russian: true}
+    - {title: "bCAD", vendor: "ПолиСОФТ Консалтинг", russian: true}
+    - {title: "Robert Denk WoodWorks", vendor: "Robert Denk"}
+  note: "Проектирование мебели (PRO100, К3-Мебель); в каталоге — Базис и bCAD"
+
+# --- есть в каталоге ---
+
+- id: autocad
+  names: ["AutoCAD", "Автокад", "Автокад LT", "AutoCAD LT", "Autodesk AutoCAD"]
+  kind: cad_2d
+  in_catalog: true
+  sections: ["Базовые программы"]
+  analogs:
+    - {title: "Нанософт Платформа nanoCAD", vendor: "Нанософт Разработка", russian: true}
+    - {title: "АСКОН КОМПАС-График", vendor: "АСКОН", russian: true}
+    - {title: "ZWCAD", vendor: "ZWSOFT"}
+    - {title: "GstarCAD", vendor: "GreatStar Technology Development"}
+    - {title: "ActCAD", vendor: "ActCAD"}
+    - {title: "SolidWorks DraftSight", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "IMSI/Design, LLC TurboCAD Platinum", vendor: "IMSI/Design, LLC"}
+    - {title: "Bentley MicroStation", vendor: "Bentley Systems"}
+  note: "Базовая САПР для чертежей DWG; российская замена — nanoCAD, КОМПАС-График"
+
+- id: revit
+  names: ["Revit", "Ревит", "Autodesk Revit", "Revit LT"]
+  kind: bim
+  in_catalog: true
+  sections: ["Строительное программное обеспечение", "Программы для архитекторов"]
+  analogs:
+    - {title: "Renga Professional", vendor: "Renga", russian: true}
+    - {title: "Нанософт nanoCAD BIM Строительство", vendor: "Нанософт Разработка", russian: true}
+    - {title: "CSoft Development Model StudioCS", vendor: "CSoft Development", russian: true}
+    - {title: "Graphisoft Archicad", vendor: "Graphisoft"}
+  note: "BIM-проектирование зданий; российская замена — Renga, nanoCAD BIM, Model Studio CS"
+
+- id: archicad
+  names: ["Archicad", "Архикад", "Graphisoft Archicad", "Архикад 27"]
+  kind: bim
+  in_catalog: true
+  sections: ["Программы для архитекторов"]
+  analogs:
+    - {title: "Renga Professional", vendor: "Renga", russian: true}
+    - {title: "Нанософт nanoCAD BIM Строительство", vendor: "Нанософт Разработка", russian: true}
+    - {title: "Autodesk Revit", vendor: "Autodesk"}
+  note: "BIM для архитекторов"
+
+- id: sketchup
+  names: ["SketchUp", "Скетчап", "Скечап", "SketchUp Pro", "Sketch Up"]
+  kind: 3d_modeling
+  in_catalog: true
+  sections: ["Программы для дизайна, визуализации и анимации", "Программы для архитекторов"]
+  analogs:
+    - {title: "Планоплан", vendor: "Планоплан (Planoplan)", russian: true}
+    - {title: "AMS Software Дизайн Интерьера 3D", vendor: "AMS Software", russian: true}
+    - {title: "Graphisoft Archicad Solo", vendor: "Graphisoft"}
+    - {title: "IMSI/Design, LLC TurboCAD Platinum", vendor: "IMSI/Design, LLC"}
+  note: "Простое 3D-моделирование архитектуры и интерьеров"
+
+- id: solidworks
+  names: ["SolidWorks", "Солидворкс", "Солид воркс", "SOLIDWORKS 3D CAD"]
+  kind: cad_3d
+  in_catalog: true
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "Autodesk Inventor", vendor: "Autodesk"}
+    - {title: "Autodesk Fusion 360", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "Alibre Design", vendor: "Alibre Inc."}
+  note: "3D-САПР для машиностроения; российская замена — КОМПАС-3D"
+
+- id: inventor
+  names: ["Autodesk Inventor", "Inventor Professional", "Инвентор", "Автодеск Инвентор"]
+  kind: cad_3d
+  in_catalog: true
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk Fusion 360", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "Alibre Design", vendor: "Alibre Inc."}
+  note: "3D-САПР Autodesk для машиностроения"
+
+- id: fusion_360
+  names: ["Fusion 360", "Фьюжн 360", "Фужн 360", "Autodesk Fusion"]
+  kind: cad_3d
+  in_catalog: true
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+    - {title: "Alibre Design", vendor: "Alibre Inc."}
+    - {title: "PlasticSoftware Plasticity", vendor: "PlasticSoftware"}
+    - {title: "АСКОН КОМПАС-3D", vendor: "АСКОН", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+  note: "Облачная САПР/CAM Autodesk"
+
+- id: civil_3d
+  names: ["Civil 3D", "AutoCAD Civil 3D", "Сивил 3Д", "Цивил 3Д"]
+  kind: civil_cad
+  in_catalog: true
+  sections: ["Инфраструктура: изыскания, генплан, транспорт"]
+  analogs:
+    - {title: "Нанософт nanoCAD GeoniCS", vendor: "Нанософт Разработка", russian: true}
+    - {title: "CSoft Development CSoft GeoniCS", vendor: "CSoft Development", russian: true}
+    - {title: "Кредо-Диалог ТИМ КРЕДО", vendor: "Кредо-Диалог", russian: true}
+    - {title: "Топоматик Robur", vendor: "НПФ «Топоматик»", russian: true}
+    - {title: "IndorCAD", vendor: "ИндорСофт", russian: true}
+  note: "Проектирование генпланов, дорог и сетей; российские — GeoniCS, КРЕДО, Топоматик Robur, IndorCAD"
+
+- id: navisworks
+  names: ["Navisworks", "Нависворкс", "Autodesk Navisworks"]
+  kind: bim_coordination
+  in_catalog: true
+  sections: ["Программы для архитекторов", "Программы для документооборота"]
+  analogs:
+    - {title: "CSoft Development CADLib Модель и Архив", vendor: "CSoft Development", russian: true}
+    - {title: "Pilot-BIM", vendor: "АСКОН", russian: true}
+    - {title: "Graphisoft Solibri", vendor: "Graphisoft"}
+  note: "Сводная BIM-модель и проверка коллизий"
+
+- id: autodesk_vault
+  names: ["Autodesk Vault", "Vault PDM", "Автодеск Волт"]
+  kind: plm_pdm
+  in_catalog: true
+  sections: ["Программы для документооборота"]
+  analogs:
+    - {title: "Pilot-ICE", vendor: "АСКОН", russian: true}
+    - {title: "CSoft Development CSoft TDMS", vendor: "CSoft Development", russian: true}
+    - {title: "Vitro Software Vitro-CAD", vendor: "Vitro Software", russian: true}
+    - {title: "Appius-PLM", vendor: "APPIUS", russian: true}
+    - {title: "SOLIDWORKS PDM", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+  note: "Управление инженерными данными (PDM)"
+
+- id: robot_structural
+  names: ["Robot Structural Analysis", "Autodesk Robot", "Робот Структурал"]
+  kind: structural_analysis
+  in_catalog: true
+  sections: ["Программы для архитекторов", "Строительное программное обеспечение"]
+  analogs:
+    - {title: "Лира-САПФИР", vendor: "Лира сервис", russian: true}
+    - {title: "SCAD Soft SCAD Office", vendor: "SCAD Soft", russian: true}
+    - {title: "ЕВРОСОФТ Stark ES", vendor: "ЕВРОСОФТ", russian: true}
+    - {title: "МОНОМАХ-САПР", vendor: "Лира сервис", russian: true}
+  note: "Расчёт строительных конструкций"
+
+- id: autodesk_3ds_max
+  names: ["3ds Max", "3D Max", "3Д Макс", "Тридэ макс", "Autodesk 3ds Max", "3дс макс"]
+  kind: 3d_modeling
+  in_catalog: true
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Maxon C4D", vendor: "MAXON Computer GmbH"}
+    - {title: "Autodesk Maya LT", vendor: "Autodesk"}
+    - {title: "Strata Design 3D", vendor: "Strata"}
+  note: "3D-моделирование и визуализация"
+
+- id: maya
+  names: ["Autodesk Maya", "Maya LT", "Майя 3Д", "Autodesk Maya LT"]
+  kind: 3d_animation
+  in_catalog: true
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Autodesk 3ds Max", vendor: "Autodesk"}
+    - {title: "Maxon C4D", vendor: "MAXON Computer GmbH"}
+    - {title: "Autodesk MotionBuilder", vendor: "Autodesk"}
+  note: "3D-анимация (в каталоге — Maya LT)"
+
+- id: cinema_4d
+  names: ["Cinema 4D", "Синема 4Д", "C4D", "Maxon Cinema 4D"]
+  kind: 3d_modeling
+  in_catalog: true
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Autodesk 3ds Max", vendor: "Autodesk"}
+    - {title: "Autodesk Maya LT", vendor: "Autodesk"}
+    - {title: "Strata Design 3D", vendor: "Strata"}
+  note: "3D-графика и моушн-дизайн (в каталоге — Maxon C4D, Maxon One)"
+
+- id: zbrush
+  names: ["ZBrush", "Зебраш", "Збраш", "ZBrushCore"]
+  kind: sculpting
+  in_catalog: true
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "Autodesk Mudbox", vendor: "Autodesk"}
+  note: "3D-скульптинг"
+
+- id: vray
+  names: ["V-Ray", "Ви-Рей", "Врей", "Chaos V-Ray", "VRay"]
+  kind: renderer
+  in_catalog: true
+  sections: ["Программное обеспечение для 3D графики"]
+  analogs:
+    - {title: "MAXON Computer GmbH Redshift", vendor: "MAXON Computer GmbH"}
+    - {title: "Autodesk Arnold", vendor: "Autodesk"}
+    - {title: "D5 Render", vendor: "Dimension 5 Techs"}
+    - {title: "AAA Studio FurryBall", vendor: "AAA Studio"}
+    - {title: "cebas finalRender", vendor: "cebas Visual Technology Inc."}
+    - {title: "U-Render", vendor: "U-RENDER visual technology GmbH"}
+  note: "Рендер-движок Chaos"
+
+- id: altium
+  names: ["Altium Designer", "Altium", "Альтиум", "Альтиум Дизайнер"]
+  kind: ecad
+  in_catalog: true
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "ЭРЕМЕКС Delta", vendor: "ЭРЕМЕКС", russian: true}
+    - {title: "Cadence OrCAD", vendor: "Cadence Design Systems Inc."}
+  note: "САПР печатных плат; российская замена — Delta Design (ЭРЕМЕКС)"
+
+- id: mathcad
+  names: ["Mathcad", "Маткад", "PTC Mathcad", "Мат кад"]
+  kind: math
+  in_catalog: true
+  sections: ["Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "Wolfram Mathematica", vendor: "Wolfram Research"}
+    - {title: "Maplesoft MapleSim", vendor: "Maplesoft"}
+  note: "Инженерные расчёты"
+
+- id: statistica
+  names: ["Statistica", "Статистика StatSoft", "Statistica Basic", "StatSoft Statistica"]
+  kind: statistics
+  in_catalog: true
+  sections: ["Расчетные системы и Научное программное обеспечение"]
+  analogs:
+    - {title: "Minitab Inc. Minitab", vendor: "Minitab Inc."}
+    - {title: "OriginLab", vendor: "OriginLab Corporation"}
+    - {title: "Loginom", vendor: "Loginom", russian: true}
+  note: "Статистический анализ данных"
+
+# --- российские САПР в каталоге (для запросов «аналог nanoCAD/КОМПАС») ---
+
+- id: nanocad
+  names: ["nanoCAD", "НаноКАД", "nanoCAD Платформа", "Нанософт"]
+  kind: cad_2d
+  in_catalog: true
+  sections: ["Базовые программы", "Строительное программное обеспечение"]
+  analogs:
+    - {title: "АСКОН КОМПАС-График", vendor: "АСКОН", russian: true}
+    - {title: "Autodesk AutoCAD", vendor: "Autodesk"}
+    - {title: "ZWCAD", vendor: "ZWSOFT"}
+    - {title: "GstarCAD", vendor: "GreatStar Technology Development"}
+  note: "Российская САПР (Нанософт)"
+
+- id: kompas_3d
+  names: ["КОМПАС-3D", "Компас 3Д", "KOMPAS-3D", "АСКОН КОМПАС"]
+  kind: cad_3d
+  in_catalog: true
+  sections: ["Программы для машиностроения"]
+  analogs:
+    - {title: "nanoCAD Механика", vendor: "Нанософт Разработка", russian: true}
+    - {title: "SOLIDWORKS 3D CAD", vendor: "Dassault Systèmes SOLIDWORKS Corp."}
+    - {title: "Autodesk Inventor", vendor: "Autodesk"}
+    - {title: "ZW3D", vendor: "ZWSOFT"}
+  note: "Российская 3D-САПР (АСКОН)"
+
+# ============================================================================
+# ОБУЧЕНИЕ, НАУКА, ТЕЛЕФОНИЯ, ЭТИКЕТКИ, ПРОЧЕЕ
+# ============================================================================
+
+- id: moodle
+  names: ["Moodle", "Мудл", "Мудл СДО", "Canvas LMS", "Blackboard Learn"]
+  kind: lms
+  in_catalog: false
+  sections: ["Программное обеспечение для интернета", "Программы для бизнес-образования", "Прочие программы"]
+  analogs:
+    - {title: "HyperMethod eLearning Server", vendor: "ГиперМетод", russian: true}
+    - {title: "СДО «Прометей»", vendor: "ООО «Виртуальные технологии в образовании»", russian: true}
+    - {title: "Мираполис Mirapolis HCM", vendor: "Мираполис", russian: true}
+    - {title: "Teachbase", vendor: "ООО «Интернет школа»", russian: true}
+    - {title: "Unicraft", vendor: "Unicraft", russian: true}
+    - {title: "IDEX iMpact LMS", vendor: "IDEX"}
+  note: "Системы дистанционного обучения (LMS); в каталоге нет"
+
+- id: ispring
+  names: ["iSpring Suite", "iSpring", "Айспринг", "iSpring Learn", "Articulate Storyline", "Articulate 360", "Артикулейт"]
+  kind: elearning_authoring
+  in_catalog: false
+  sections: ["Обучающие программы", "Программное обеспечение для интернета", "Тесты"]
+  analogs:
+    - {title: "Adobe Captivate", vendor: "Adobe Systems"}
+    - {title: "ГиперМетод eAuthor", vendor: "ГиперМетод", russian: true}
+    - {title: "Adobe Systems Adobe Presenter", vendor: "Adobe Systems"}
+    - {title: "SunRav TestOfficePro", vendor: "SunRav Software"}
+    - {title: "Teachbase", vendor: "ООО «Интернет школа»", russian: true}
+  note: "Создание электронных курсов и тестов (iSpring, Articulate); в каталоге нет"
+
+- id: duolingo
+  names: ["Duolingo", "Дуолинго", "Babbel", "Бэббел", "Lingualeo", "Лингвалео"]
+  kind: language_learning
+  in_catalog: false
+  sections: ["Обучающие программы", "Программы для изучения языков"]
+  analogs:
+    - {title: "Rosetta Stone", vendor: "Rosetta Stone Inc."}
+    - {title: "ООО «Экзамен-Медиа» Английский язык", vendor: "ООО «Экзамен-Медиа»", russian: true}
+  note: "Приложения для изучения языков; в каталоге — Rosetta Stone"
+
+- id: mendeley
+  names: ["Mendeley", "Менделей", "Zotero", "Зотеро", "Citavi"]
+  kind: reference_manager
+  in_catalog: false
+  sections: ["Поиск"]
+  analogs:
+    - {title: "EndNote 20", vendor: "EndNote"}
+  note: "Менеджеры библиографии (Mendeley, Zotero, Citavi); в каталоге — EndNote"
+
+- id: asterisk
+  names: ["Asterisk", "Астериск", "FreePBX", "3CX", "3СХ"]
+  kind: ip_pbx
+  in_catalog: false
+  sections: ["ПО для IP-телефонии", "Коммуникации (SaaS)"]
+  analogs:
+    - {title: "Yeastar IP-АТС", vendor: "Yeastar"}
+    - {title: "Brekeke PBX", vendor: "Brekeke Software, Inc."}
+    - {title: "«Первый БИТ» БИТ.АТС", vendor: "«Первый БИТ»", russian: true}
+    - {title: "Манго Телеком Сертификат", vendor: "Mango Office", russian: true}
+    - {title: "VoipSwitch Inc. Class 5 Softswitch", vendor: "VoipSwitch Inc."}
+  note: "IP-АТС (Asterisk, FreePBX, 3CX); в каталоге нет"
+
+- id: bartender
+  names: ["BarTender", "Бартендер", "Seagull BarTender", "ZebraDesigner"]
+  kind: label_design
+  in_catalog: false
+  sections: ["Другие графические утилиты", "Схемы и диаграммы"]
+  analogs:
+    - {title: "NiceLabel Designers", vendor: "NiceLabel"}
+    - {title: "TEKLYNX CODESOFT", vendor: "Teklynx Newco SAS"}
+    - {title: "TEKLYNX LABEL MATRIX", vendor: "Teklynx Newco SAS"}
+    - {title: "Loftware Label Manager", vendor: "Loftware, Inc."}
+    - {title: "«Юнион Лейбл»", vendor: "ООО «Интер АйДи - Системный Интегратор»", russian: true}
+  note: "Дизайн и печать этикеток (BarTender, ZebraDesigner); в каталоге нет"
+
+- id: lightshot
+  names: ["Lightshot", "Лайтшот", "ShareX", "Шарикс", "Greenshot"]
+  kind: screenshot_tool
+  in_catalog: false
+  sections: ["Другие графические утилиты"]
+  analogs:
+    - {title: "TechSmith SnagIt", vendor: "TechSmith Corporation"}
+    - {title: "Мовавика Запись", vendor: "ООО «ВидеоСофт»", russian: true}
+  note: "Бесплатные программы скриншотов; в магазине — Snagit"
+
+# --- есть в каталоге ---
+
+- id: adobe_captivate
+  names: ["Adobe Captivate", "Captivate", "Каптивейт", "Адоб Каптивейт"]
+  kind: elearning_authoring
+  in_catalog: true
+  sections: ["Обучающие программы"]
+  analogs:
+    - {title: "ГиперМетод eAuthor", vendor: "ГиперМетод", russian: true}
+    - {title: "Adobe Systems Adobe Presenter", vendor: "Adobe Systems"}
+    - {title: "SunRav TestOfficePro", vendor: "SunRav Software"}
+  note: "Создание интерактивных курсов"
+
+- id: snagit
+  names: ["Snagit", "Снагит", "TechSmith Snagit", "Снаг ит"]
+  kind: screenshot_tool
+  in_catalog: true
+  sections: ["Другие графические утилиты"]
+  analogs:
+    - {title: "Мовавика Запись", vendor: "ООО «ВидеоСофт»", russian: true}
+    - {title: "Экранная Студия", vendor: "AMS Software", russian: true}
+    - {title: "FlashBack Express", vendor: "Blueberry Software"}
+  note: "Скриншоты и запись экрана"
+
+- id: rosetta_stone
+  names: ["Rosetta Stone", "Розетта Стоун", "Розета стоун"]
+  kind: language_learning
+  in_catalog: true
+  sections: ["Обучающие программы"]
+  analogs:
+    - {title: "ООО «Экзамен-Медиа» Английский язык", vendor: "ООО «Экзамен-Медиа»", russian: true}
+  note: "Изучение иностранных языков"
+
+- id: trueconf
+  names: ["TrueConf", "ТруКонф", "Тру Конф", "TrueConf Server"]
+  kind: video_conferencing
+  in_catalog: true
+  sections: ["Программное обеспечение для онлайн общения"]
+  analogs:
+    - {title: "МТС Линк", vendor: "МТС Линк", russian: true}
+    - {title: "SaluteJazz", vendor: "SberDevices", russian: true}
+    - {title: "Контур.Толк", vendor: "СКБ Контур", russian: true}
+    - {title: "Yealink Meeting Server", vendor: "Yealink"}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+  note: "Российская платформа видеоконференций"
+
+- id: r7_office
+  names: ["Р7-Офис", "Р7 Офис", "R7 Office", "Эр7 офис"]
+  kind: office_suite
+  in_catalog: true
+  sections: ["Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "МойОфис Стандартный", vendor: "МойОфис", russian: true}
+    - {title: "МойОфис Настольный офис", vendor: "МойОфис", russian: true}
+    - {title: "Microsoft Office Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+  note: "Российский офисный пакет"
+
+- id: myoffice
+  names: ["МойОфис", "Мой Офис", "MyOffice", "МойОфис Стандартный"]
+  kind: office_suite
+  in_catalog: true
+  sections: ["Российское офисное ПО (Импортозамещение)"]
+  analogs:
+    - {title: "Р7-Офис", vendor: "АО «Р7»", russian: true}
+    - {title: "Яндекс 360 для бизнеса", vendor: "Яндекс", russian: true}
+    - {title: "Microsoft Office Standard", vendor: "Программы и лицензии Microsoft Corporation"}
+    - {title: "MobiSystems OfficeSuite", vendor: "MobiSystems"}
+  note: "Российский офисный пакет «Новые облачные технологии»"
+
+- id: astra_linux
+  names: ["Astra Linux", "Астра Линукс", "Astra Linux SE", "Астра Линукс СЕ"]
+  kind: os_desktop
+  in_catalog: true
+  sections: ["Российские операционные системы (Импортозамещение)"]
+  analogs:
+    - {title: "BaseALT Альт Рабочая станция", vendor: "BaseALT", russian: true}
+    - {title: "Операционная система РЕД ОС", vendor: "РЕД СОФТ", russian: true}
+    - {title: "РОСА «ХРОМ»", vendor: "РОСА", russian: true}
+    - {title: "ОС ОСнова", vendor: "АО «НППКТ»", russian: true}
+    - {title: "UBLinux", vendor: "Юбитех", russian: true}
+  note: "Российская ОС (Группа Астра)"
