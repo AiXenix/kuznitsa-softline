@@ -1,5 +1,6 @@
 from bisect import bisect_left
 from collections import Counter,defaultdict
+from functools import lru_cache
 from time import perf_counter
 import re
 
@@ -10,6 +11,7 @@ from kuznitsa.understand.spell_index import roman
 from kuznitsa.text import normalize,tokens
 
 
+@lru_cache(262144)
 def key(text):
     return re.sub(r"[^а-яa-z0-9]+"," ",normalize(text)).strip()
 
