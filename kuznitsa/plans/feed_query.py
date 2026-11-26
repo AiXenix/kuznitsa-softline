@@ -4,9 +4,10 @@ from kuznitsa.index.feed import words
 from kuznitsa.text import normalize
 from kuznitsa.rank.variants import select
 
-QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|уз(?:ел|ла|лов)|устройств\w*|компьютер\w*|мест\w*|лицензи\w*|пк)\b")
+QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|уз(?:ел|лы|ла|лов|лах)|устройств\w*|комп(?:ьютер\w*|ов|а)?|сервак\w*|процессор\w*|мест\w*|лицензи\w*|пк)\b")
+PRICE_LIMIT=re.compile(r"\b(?:не дороже|до|в пределах)\s+(\d+(?: \d{3})*(?:[.,]\d{1,2})?)\s*(тыс\w*|млн|[кk])?\s*(?:руб(?:лей|ля|ль)?\.?|₽|р\.)?\s*$")
 RENEW=re.compile(r"\b(?:продл(?:ить|ение|ения)|renewal)\b")
-HOME=re.compile(r"\b(?:домашн\w*|для дома|для семьи)\b")
+HOME=re.compile(r"\b(?:домашн\w*|домой|для дома|для семьи)\b")
 HELP=re.compile(r"^(?:как |чем |что (?:взять|поможет|подойд[её]т)|каки[еим]|нужн[ао] |хочу )")
 # Лексические мосты между действием и существительным в дереве магазина.
 PURPOSES=[
@@ -19,16 +20,39 @@ PURPOSES=[
     (r"удаленн.*(?:помощ|поддерж|подключ)|(?:помо|помощ|подключ|управл).*удален","удаленный доступ"),
 ]
 
+def split_budget(q):
+    match=PRICE_LIMIT.search(q)
+    if not match:return q,None
+    scale=match[2]
+    amount=float(match[1].replace(" ","").replace(",","."))
+    return q[:match.start()].strip(" ,"),amount*(1_000_000 if scale=="млн" else 1000 if scale else 1)
+
+
 def split_conditions(q):
     m=QUANTITY.search(q)
     qty=None
     if m and int(m[1]):
         unit=m[2]
         metric="user" if unit.startswith(("польз","сотруд")) else None if unit.startswith(("лиценз","мест")) else "device"
+        if unit.startswith("сервак"):metric="server"
+        if unit.startswith("процессор"):metric="cpu"
         qty=dict(value=int(m[1]),metric=metric)
         q=q[:m.start()]+" "+q[m.end():]
     renewal=bool(RENEW.search(q))
     return " ".join(RENEW.sub("",q).strip(" ,;:-").split()),qty,renewal
+
+
+def license_request(engine,text):
+    """Распознать отдельный запрос о программе поставки или единице лицензирования."""
+    match=re.fullmatch(r"(?:лицензи[яиюй]\s+)?на\s+(?:\d+\s*)?([а-яa-z]+)",text)
+    if match:
+        term,kind=match[1],"metric"
+    elif " " not in text:
+        term,kind=text,"license_type"
+    else:
+        return None
+    return next(((kind,value) for _,_,found in engine.lex.match([term])
+                 for name,value,_ in found if name==kind),None)
 
 
 def vendor_class(index,q):
@@ -49,15 +73,16 @@ def vendor_class(index,q):
     return None,None
 
 
-def matching_variants(index,ids,profile,qty,renewal,conditions=None):
+def matching_variants(index,ids,profile,qty,renewal,conditions=None,*,nodes=False):
     filters=dict(conditions or {})
     if qty and qty["metric"]:filters["metric"]=qty["metric"]
+    if nodes and qty and qty["metric"]=="device":filters["metric"]=["device","server"]
     if renewal:filters["action"]="renewal"
     selected={}
     for cid in ids:
         card=index.cat.cards[cid]
         selection=select(card,profile,filters,{},qty)
-        if not selection and filters.get("audience") and not qty and not renewal:
+        if not selection and filters.get("audience") and "price_max" not in filters and not qty and not renewal:
             offer=next((o for o in card.offers if all(getattr(o.lic,k)==v for k,v in filters.items())),None)
             if offer:selection=(offer,None,None)
         if selection:selected[cid]=selection

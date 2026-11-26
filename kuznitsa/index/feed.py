@@ -28,7 +28,13 @@ def words(s):
 
 def class_words(text):
     generic={"программа","программный","обеспечение","система","решение","по","работа","утилита"}
-    return frozenset(words(text))-generic
+    roots={"текстовый":"текст","сетевой":"сеть","видеоредактирование":"видеоредактор"}
+    terms=set()
+    for word in words(text):
+        word=roots.get(word,word)
+        media=re.fullmatch(r"(видео|аудио|фото)(редактор|конвертер|плеер)",word)
+        terms.update(media.groups() if media else [word])
+    return frozenset(terms)-generic
 
 
 class FeedIndex:
@@ -39,6 +45,7 @@ class FeedIndex:
         self.postings=defaultdict(set)
         self.terms={}
         self.raw_terms=defaultdict(set)
+        self.license_offers=defaultdict(dict)
         self.quality={}
         self.tags=defaultdict(lambda:defaultdict(set))
         self.aliases=ALIASES.copy()
@@ -55,6 +62,13 @@ class FeedIndex:
             line=lines.get(o.group_id,[""])[0] if o.group_id else ""
             if line:
                 c.title=line
+            if o.domain in {"software","cloud","service"}:
+                for variant in c.offers:
+                    if variant.lic.metric:
+                        self.license_offers["metric",variant.lic.metric].setdefault(cid,variant)
+                    program=variant.attrs.get("license_program")
+                    if isinstance(program,str) and program:
+                        self.license_offers["license_type",program.casefold().strip()].setdefault(cid,variant)
             name=words(c.title)
             keys=set(name+words(o.vendor or "")+words(line))
             if o.group_id and not line:
@@ -92,10 +106,13 @@ class FeedIndex:
             target=row["maps_to"]
             value=target.get("text") or target.get("query") or target.get("platform")
             if value:self.aliases.setdefault(normalize(phrase),str(value).replace("_"," "))
+        vendor_spelling=defaultdict(set)
+        for name,members in self.tags["vendors"].items():
+            vendor_spelling[" ".join(words(name))].update(members)
         for ident,row in kb.rows["vendors"].items():
             for alias in (row.get("name"),row.get("name_ru"),*row.get("aliases",[])):
                 if alias:
-                    self.tags["vendors"][ident].update(self.tags["vendors"].get(str(alias).casefold(),()))
+                    self.tags["vendors"][ident].update(vendor_spelling.get(" ".join(words(str(alias))),()))
         from kuznitsa.rank.upsell import Recommendations
         self.recommend=Recommendations(self,kb,cfg)
         self.slang={}
@@ -106,7 +123,11 @@ class FeedIndex:
                 if target is None:continue
                 members=self.tags[field].get(str(target).casefold())
                 if members:
-                    self.slang[normalize(phrase)]=(field,tuple(sorted(members,key=lambda i:(self.quality[i],i),reverse=True)))
+                    label=kb.rows["families"].get(target,{}).get("name") if field=="families" else None
+                    exact=normalize(label) if label else None
+                    ordered=sorted(members,key=lambda i:(exact is not None and normalize(cat.cards[i].title)==exact,
+                                                          self.quality[i],i),reverse=True)
+                    self.slang[normalize(phrase)]=(field,tuple(ordered))
                     break
         rows=kb.rows["hardware_hints"].values()
         self.hardware={}
@@ -130,10 +151,12 @@ class FeedIndex:
             definition=hardware_definition(target.get("value",""))
             # Часть сокращений относится к более узкому классу, указанному в примечании.
             match=re.search(r"фид\s+([\d, ]+)",row.get("note",""))
-            keys=re.findall(r"\d+",match[1]) if match else []
+            keys=[k for k in re.findall(r"\d+",match[1]) if k in self.groups
+                  and cat.cards[self.groups[k][0]].offers[0].domain=="hardware"] if match else []
             if keys or definition:
                 base=self.hardware.get(normalize(term),definition)
-                self.hardware[normalize(term)]={**base,"hardware_feed_classes":keys or base["hardware_feed_classes"]}
+                self.hardware[normalize(term)]={**base,"hardware_class":target["value"],
+                    "hardware_feed_classes":keys or base["hardware_feed_classes"]}
         for alias,kind in {"ноут":"laptop","нетбук":"laptop","сервак":"server","комп":"desktop",
                            "мфушка":"printer_mfp","принтак":"printer_mfp","свитч":"switch","моник":"monitor",
                            "бесперебойник":"ups"}.items():
@@ -161,6 +184,8 @@ class FeedIndex:
             for phrase in [row.get("product"),*row.get("aliases",[])]:
                 if phrase:self.replacements[normalize(phrase)]=row
         self.task_rows=kb.rows["use_cases"]
+        from .feed_repair import FeedRecovery
+        self.recovery=FeedRecovery(self,kb)
 
     def correct(self,q):
         if q in HARDWARE:return q
@@ -170,7 +195,7 @@ class FeedIndex:
             if a in q:q=re.sub(r"\b"+re.escape(a)+r"\b",b,q)
         return q
 
-    def products(self,q,prefix=False,domain=None):
+    def products(self,q,prefix=False,domain=None,fuzzy=True):
         terms=list(words(q))
         if not terms:return ()
         pools=[]
@@ -183,7 +208,7 @@ class FeedIndex:
                 i=bisect_left(self.prefix_vocab,partial)
                 end=bisect_right(self.prefix_vocab,partial+chr(0x10ffff))
                 group=group.union(*(self.raw_terms[v] for v in self.prefix_vocab[i:end]))
-            if not group and len(w)>=5:
+            if fuzzy and not group and len(w)>=5:
                 best=process.extractOne(w,self.vocab,scorer=fuzz.ratio,score_cutoff=85)
                 if best:group=self.postings[best[0]]
             if group:pools.append(group)
@@ -216,11 +241,17 @@ class FeedIndex:
         corrected=" ".join(next(w for w in opts if w in self.terms[best]) for opts in alternatives)
         return self.products(corrected),corrected
 
-    def class_match(self,q):
+    def matching_sections(self,q):
         signature=class_words(q)
         candidates=self.class_aliases.get(signature,[])
-        if candidates:return max(candidates,key=lambda k:len(self.groups[k]))
-        return None
+        if not candidates and len(signature)>=2:
+            # «Защита смартфонов» также соответствует «Защита информации для смартфонов».
+            supersets=[s for s in self.class_aliases if signature < s and len(s)==len(signature)+1]
+            candidates=[cid for s in supersets for cid in self.class_aliases[s]]
+        return sorted(candidates,key=lambda k:len(self.groups[k]),reverse=True)
+
+    def class_match(self,q):
+        return next(iter(self.matching_sections(q)),None)
 
     def sections(self,q,hint=""):
         words_hint=set(words(hint or q))

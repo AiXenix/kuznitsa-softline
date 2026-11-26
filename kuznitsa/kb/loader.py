@@ -22,10 +22,11 @@ class Knowledge:
     warnings: list = field(default_factory=list)
     auto: dict = field(default_factory=lambda: dict(vendors=0,categories=0,families=0))
     import_links: dict = field(default_factory=lambda: {g:{} for g in ("roles","industries","analogs","use_cases")})
+    upsell: dict = field(default_factory=dict)
     systems: dict = field(default_factory=dict)
     dangling: list = field(default_factory=list)
 
-    sources: dict = field(default_factory=lambda: {g:dict(base=0,extensions=0,auto=0) for g in [*GROUPS,"for_whom","system_compat"]})
+    sources: dict = field(default_factory=lambda: {g:dict(base=0,extensions=0,auto=0) for g in [*GROUPS,"for_whom","system_compat","upsell"]})
 
     def report(self):
         return dict(counts={g:sum(v.values()) for g,v in self.sources.items()}, errors=self.errors, warnings=self.warnings, auto=self.auto,
@@ -103,6 +104,13 @@ def load(root: Path, data_dir=None):
             if p.is_file():
                 extension=bool(re.search(r"_r\d+",p.stem)) if group=="families" else p.stem!=group
                 _merge(kb,group,p,_read(kb,p),"extensions" if extension else "base",origins)
+    path=root/"upsell_r9.yaml"
+    if path.is_file():
+        from .upsell import load_rules
+        stat=path.stat()
+        kb.upsell,_,warnings=load_rules(path,stat.st_mtime_ns,stat.st_size)
+        kb.warnings.extend(warnings)
+        kb.sources["upsell"]["extensions"]=len(kb.upsell)
     if data_dir and (p:=data_dir/"kb_auto.yaml").is_file():
         data=_read(kb,p)
         if isinstance(data,dict):

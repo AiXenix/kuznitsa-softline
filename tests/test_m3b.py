@@ -168,14 +168,14 @@ def test_new_slang_and_audience_rules(cfg,tmp_path,monkeypatch):
         def picks(q):
             return {r["id"]:cid for cid,r in index.recommend.picks(e.journal,q,ids,8)}
         match=picks("антивирус")
-        assert set(match)=={"for_home","legacy"}
+        assert set(match)=={"for_home","legacy","unrelated"}
         assert index.recommend.target_offer(match["for_home"],"home").lic.audience=="home"
         assert set(picks("для организации"))=={"for_business","legacy"}
         assert validate(rules[0])["when"]["audience"]=="home"
         with pytest.raises(ValueError):
             validate(dict(rules[0],when={"classes":["3775"],"audience":"unknown"}))
         change(e.journal,"update",{"enabled":False},"for_home","проверка")
-        assert set(picks("антивирус"))=={"legacy"}
+        assert set(picks("антивирус"))=={"legacy","unrelated"}
     finally:
         e.close()
 

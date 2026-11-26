@@ -3,14 +3,22 @@ from collections import defaultdict
 from hashlib import blake2s
 from random import Random
 import re
-import yaml
 from kuznitsa.text import normalize
+from kuznitsa.kb.upsell import query_matches
 from kuznitsa.optional import optional_module
 
 
+def audience_values(value):
+    return value if isinstance(value,list) else [value]
+
+
+def title_words(name):
+    return " ".join(re.findall(r"\w+",name.casefold().replace("ё","е")))
+
+
 def audience(text):
-    home=re.search(r"\b(?:для дома|домашн\w*|для семьи|home)\b",text,re.I)
-    business=re.search(r"\b(?:организаци\w*|корпоративн\w*|бизнес\w*|business)\b",text,re.I)
+    home=re.search(r"\b(?:для дома|домашн\w*|для семьи|домой|home|family|personal)\b",text,re.I)
+    business=re.search(r"\b(?:организаци\w*|корпоративн\w*|бизнес\w*|business|enterprise|corporate|small office)\b",text,re.I)
     if home and not business:return "home"
     if business and not home:return "business"
     return None
@@ -19,9 +27,7 @@ def audience(text):
 class Recommendations:
     def __init__(self,index,kb,cfg):
         self.index=index
-        path=cfg.kb/"upsell_r9.yaml"
-        self.base=yaml.safe_load(path.read_text()) if path.exists() else []
-        if isinstance(self.base,dict):self.base=self.base.get("rules",[])
+        self.base=list(kb.upsell.values())
         self.legacy=[]
         aliases=defaultdict(set)
         index.line_popularity={}
@@ -93,23 +99,70 @@ class Recommendations:
                             bound.update(found)
                             break
             if bound:self.bindings[cid]=bound
+        self.family_names=defaultdict(list)
+        self.family_ids=defaultdict(set)
+        for cid,card in index.cat.cards.items():
+            title=title_words(card.title).removeprefix("программа ")
+            vendor=title_words(card.offers[0].vendor or "")
+            for name in {title,title.removeprefix(vendor+" ")}:
+                if name:self.family_names[name.partition(" ")[0]].append((name+" ",cid))
+            for key in (card.family,card.offers[0].group_id):
+                if key:self.family_ids[str(key).casefold()].add(cid)
+        for key,members in aliases.items():
+            self.family_ids[key].update(members)
         self.provider=optional_module("kuznitsa.analytics.upsell_rules")
         self.version=None
         self.compiled=self.compile(self.base or [])
 
-    def target_offer(self,cid,expected):
+    def card_audience(self,cid):
+        section=self.index.card_sections[cid]
+        label=audience(self.index.classes[section])
+        # Корпоративная мобильная защита и администрирование устройств в дереве магазина.
+        if section in {"121467","5984"}:return "business"
+        return label or audience(self.index.cat.cards[cid].title)
+
+    def target_offer(self,cid,expected,price_max=None):
         card=self.index.cat.cards[cid]
-        label=audience(self.index.classes[self.index.card_sections[cid]])
-        if label and label!=expected:return None
-        return next((o for o in card.offers if (o.lic.audience or label)==expected),None)
+        label=self.card_audience(cid)
+        expected=audience_values(expected) if expected else []
+        if expected and label and label not in expected:return None
+        unknown=None
+        for o in card.offers:
+            if price_max is not None and (o.price is None or o.price>price_max):continue
+            if not expected:return o
+            actual=audience(o.name) or label or o.lic.audience
+            if actual in expected:return o
+            if actual is None and unknown is None:unknown=o
+        return unknown
 
     def members(self,selectors):
         sets=[]
         for k in ("classes","categories","families","vendors"):
             if selectors.get(k):
+                if k=="families" and selectors.get("strict"):
+                    named=set()
+                    for label in selectors[k]:
+                        named.update(self.family_ids.get(str(label).casefold(),()))
+                        phrase=title_words(str(label))
+                        if phrase:
+                            named.update(cid for name,cid in self.family_names.get(phrase.partition(" ")[0],())
+                                         if name.startswith(phrase+" "))
+                    sets.append(named)
+                    continue
                 lookup=self.index.tags["classes" if k=="categories" else k]
                 sets.append(set().union(*(lookup.get(str(v).casefold(),()) for v in selectors[k])))
         return set.intersection(*sets) if sets else set()
+
+    def eligible_targets(self,offer):
+        if offer.get("strict") and not (offer.get("families") or offer.get("vendors")):
+            return set()
+        members=self.members(offer)
+        excluded=[w.casefold() for w in offer.get("exclude_words",())]
+        if excluded:
+            members={cid for cid in members if not any(w in self.index.cat.cards[cid].title.casefold() for w in excluded)}
+        if offer.get("audience"):
+            members={cid for cid in members if self.target_offer(cid,offer["audience"])}
+        return members
 
     def compile(self,rules):
         result=[]
@@ -117,11 +170,13 @@ class Recommendations:
             if not rule.get("enabled",True):continue
             when=rule["when"]
             offer=rule["offer"]
-            members=self.members(offer)
+            members=self.eligible_targets(offer)
             anchors=self.members(when)
-            if not anchors or not members:continue
-            if offer.get("audience"):
-                members={i for i in members if self.target_offer(i,offer["audience"])}
+            if not members:continue
+            if not anchors:
+                if any(when.get(k) for k in ("classes","categories","vendors","families")) or not when.get("query_words"):
+                    continue
+                anchors=None
             if not offer.get("families"):
                 # Один класс фида может содержать и серверы документооборота, и редакторы PDF.
                 # Термины назначения из правила уточняют выбор внутри его целевого класса.
@@ -131,7 +186,15 @@ class Recommendations:
                 if purpose:
                     named={i for i in members if any(term in self.index.cat.cards[i].title.casefold() for term in purpose)}
                     if named:members=named
-            targets=sorted(members,key=lambda i:(self.index.quality[i],i),reverse=True)
+            def target_rank(cid):
+                confirmed=False
+                if offer.get("audience"):
+                    variant=self.target_offer(cid,offer["audience"])
+                    label=self.card_audience(cid)
+                    confirmed=bool(variant and (audience(variant.name) or label or variant.lic.audience) in audience_values(offer["audience"]))
+                return confirmed,self.index.quality[cid],cid
+
+            targets=sorted(members,key=target_rank,reverse=True)
             result.append((anchors,when.get("query_words",[]),targets,rule))
         return sorted(result,key=lambda r:-float(r[3].get("weight",0)))
 
@@ -145,22 +208,28 @@ class Recommendations:
         anchor=self.index.cat.cards[ids[0]].offers[0]
         vendor=normalize(anchor.vendor or "")
         classes={anchor.class_id,anchor.category_id,anchor.attrs.get("kb_category")}-{None}
-        requested=audience(q) or audience(self.index.classes[self.index.card_sections[ids[0]]])
+        explicit=audience(q)
+        requested=explicit or self.card_audience(ids[0])
         found=[]
         seen=set(ids)|set(blocked)
         # Широкий префикс может охватывать разные классы и вендоров.
         # Правило должно относиться к основным результатам запроса.
         anchor_ids=ids[:min(3,len(ids))]
         for members,words,targets,rule in self.compiled:
-            if rule["when"].get("audience") and rule["when"]["audience"]!=requested:continue
-            if words and not any(str(w).lower() in q for w in words):continue
-            if ids[0] not in members or any(cid not in members for cid in anchor_ids):continue
+            if requested and rule["when"].get("audience") and requested not in audience_values(rule["when"]["audience"]):continue
+            if members is not None and any(cid not in members for cid in anchor_ids):continue
+            if words and not query_matches(words,q):continue
             for target in targets:
                 bound=self.bindings.get(target)
                 if (bound and anchor.domain=="software" and not any(v==vendor for v,_ in bound)
                         and any(k in classes for _,k in bound)):
                     continue
                 if target not in seen:
+                    if explicit=="home":
+                        expected=rule["offer"].get("audience")
+                        if expected and "home" not in audience_values(expected):continue
+                        if not self.target_offer(target,"home"):continue
+                        rule=rule|{"offer":rule["offer"]|{"audience":"home"}}
                     seen.add(target)
                     found.append((target,rule))
                     break

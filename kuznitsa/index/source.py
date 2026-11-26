@@ -54,7 +54,7 @@ def read_offer(line):
 
 def declared_offer(o):
     a=o.attrs
-    if not a:return o
+    if not a and o.domain!="software":return o
     vals={}
     if o.registry is None and a.get("registry_no","").casefold() not in ("","нет","0","false"):vals["registry"]=True
     if not o.certs:
@@ -69,8 +69,11 @@ def declared_offer(o):
         if not getattr(o.lic,name) and val.isdigit() and int(val)>0:missing[name]=int(val)
     if not o.lic.metric:
         unit=a.get("unit","").lower()
-        for k,prefix in (("device","устрой"),("user","польз"),("core","яд"),("server","сервер"),("device","пк"),("company","организац")):
+        for k,prefix in (("device","устрой"),("user","польз"),("core","яд"),("cpu","процессор"),("server","сервер"),("device","пк"),("company","организац")):
             if unit.startswith(prefix):missing["metric"]=k
+        if o.domain=="software" and "metric" not in missing:
+            basis=re.search(r"\b(?:(?:лицензия на (?:1 |один )?|на (?:1 |один ))(?:физический )?(процессор|сервер)|per (processor|server))\b",o.name,re.I)
+            if basis:missing["metric"]="cpu" if (basis[1] or basis[2]).lower() in {"процессор","processor"} else "server"
     if o.domain=="software" and o.description:
         # В исходном фиде число узлов указывается также как ёмкость одной лицензии.
         # «Минимальная покупка» относится к числу таких лицензий в заказе.

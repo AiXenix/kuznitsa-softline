@@ -1,74 +1,20 @@
 """Базовые правила Neon, правки магазина и события допродаж."""
 from copy import copy
-from functools import lru_cache
-import hashlib
 import json
-from time import time
-from urllib.parse import urlsplit
-
-import yaml
 import os
 from pathlib import Path
+from time import time
 from kuznitsa.config import ROOT
+from kuznitsa.kb.upsell import load_rules,query_matches,validate
+from kuznitsa.rank.upsell import audience,audience_values
 from kuznitsa.schema import Request
 from kuznitsa.text import normalize
 from .store import dump, result_cards
 
 
-def validate(body):
-    allowed = {"id","when","offer","reason","weight","source","enabled"}
-    if not isinstance(body,dict) or body.keys()-allowed:
-        raise ValueError("Неизвестное поле правила")
-    rule = dict(enabled=True,source="kb",weight=1.) | body
-    for key in ("id","reason","source"):
-        if not isinstance(rule.get(key),str) or not rule[key].strip():
-            raise ValueError("Заполните поле "+key)
-    if len(rule["id"])>160 or "/" in rule["id"]:
-        raise ValueError("Недопустимый идентификатор")
-    if type(rule["weight"]) not in (int,float) or not 0<=rule["weight"]<=1 or type(rule["enabled"]) is not bool:
-        raise ValueError("Укажите вес от 0 до 1 и логический признак включения")
-    if rule["source"]!="kb":
-        source=urlsplit(rule["source"].removeprefix("vendor_site:"))
-        if not rule["source"].startswith("vendor_site:") or source.scheme not in ("https","http") or not source.hostname:
-            raise ValueError("Источник должен быть kb или vendor_site с адресом сайта")
-    for key in ("when","offer"):
-        group=rule.get(key)
-        fields={"classes","families","vendors","audience"}
-        if key=="when":
-            fields.add("query_words")
-        if not isinstance(group,dict) or group.keys()-fields:
-            raise ValueError("Проверьте условия "+key)
-        clean={}
-        for k,values in group.items():
-            if k=="audience":
-                if values not in ("home","business"):
-                    raise ValueError("Укажите аудиторию home или business")
-                clean[k]=values
-                continue
-            if not isinstance(values,list) or any(type(v) not in (str,int) or not str(v).strip() for v in values):
-                raise ValueError("Ожидается список идентификаторов в "+k)
-            clean[k]=list(dict.fromkeys(str(v).strip() for v in values))
-        if not any(v for k,v in clean.items() if k!="audience"):
-            raise ValueError("Нужно хотя бы одно условие в "+key)
-        rule[key]=clean
-    return rule
-
-
-@lru_cache(8)
 def base(path,mtime,size):
-    if not size:
-        return {},0
-    raw=path.read_bytes()
-    data=yaml.safe_load(raw) or []
-    if isinstance(data,dict):
-        data=data["rules"]
-    rules={}
-    for row in data:
-        rule=validate(row)
-        if rule["id"] in rules:
-            raise ValueError("Повторяется идентификатор базового правила")
-        rules[rule["id"]]=rule
-    return rules,int.from_bytes(hashlib.sha256(raw).digest()[:6],"big")
+    rules,stamp,_=load_rules(path,mtime,size)
+    return rules,stamp
 
 
 def snapshot(j):
@@ -204,18 +150,33 @@ def preview(engine,q,rule):
                     note="Результат быстрого поиска с черновиком и действующими правилами.")
     response=engine.preview(req,priorities=None)
     main=[engine.catalog.cards[c["card_id"]] for c in result_cards(response) if c["card_id"] in engine.catalog.cards and c.get("kind")!="upsell" and not c.get("fill")]
-    def matches(card,side):
+    def matches(card,side,*,target=False):
         offer=card.offers[0]
         actual={"classes":[card.category,offer.attrs.get("class_id")],
                 "families":[card.family,card.category,offer.attrs.get("line_id")],"vendors":[card.vendor,offer.vendor]}
-        return any(str(v).casefold()==str(x).casefold() for k,vs in actual.items() for v in vs if v for x in side.get(k,[]))
+        if any(w.casefold() in card.title.casefold() for w in side.get("exclude_words",[])):
+            return False
+        expected=side.get("audience")
+        if target and expected and not any(
+            (audience(o.name) or o.lic.audience) in [None,*audience_values(expected)] for o in card.offers
+        ):
+            return False
+        if side.get("strict"):
+            actual["families"]=[card.family,offer.attrs.get("line_id"),card.title]
+        checks=[{str(v).casefold() for v in vs if v}.intersection(str(x).casefold() for x in side[k])
+                for k,vs in actual.items() if side.get(k)]
+        return bool(checks) and (all(checks) if side.get("strict") else any(checks))
     when=draft["when"]
-    phrase_match=any(normalize(w) in normalize(q) for w in when.get("query_words",[]))
-    matched=draft["enabled"] and main and (phrase_match or matches(main[0],when))
+    words=when.get("query_words")
+    scope=any(when.get(k) for k in ("classes","families","vendors"))
+    requested=audience(q) or (audience(main[0].title) if main else None)
+    matched=(draft["enabled"] and main and (not words or query_matches(words,normalize(q)))
+             and (not scope or matches(main[0],when))
+             and (not requested or not when.get("audience") or requested in audience_values(when["audience"])))
     excluded={c.id for c in main}
     items=[]
     if matched:
-        candidates=(c for c in engine.catalog.cards.values() if c.id not in excluded and matches(c,draft["offer"]))
+        candidates=(c for c in engine.catalog.cards.values() if c.id not in excluded and matches(c,draft["offer"],target=True))
         for c in sorted(candidates,key=lambda c:(-max(o.popularity for o in c.offers),c.id))[:min(1,len(excluded)//2)]:
             items.append(dict(card_id=c.id,title=c.title,rule_id=draft["id"],reason=draft["reason"]))
     return dict(q=q,matched=bool(matched),main_count=len(excluded),items=items,note="Кандидаты одного правила на текущей выдаче. Места в ленте расставляет витринный движок.")

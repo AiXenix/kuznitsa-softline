@@ -39,7 +39,7 @@ try{
   check(groups[2].querySelector('.deal') && groups[2].querySelector('.suggestPrice'),'Цена и акция при наборе');
   groups[0].querySelector('.option').click();check(selection.category==='650','Раздел из подсказки');
 
-  let current={...rule,counters:{impressions:17,clicks:3,carts:1}},preview,updated;
+  let current={...rule,offer:{...rule.offer,strict:true,families:['Vault'],exclude_words:['Enterprise'],audience:['home']},counters:{impressions:17,clicks:3,carts:1}},preview,updated;
   window.fetch=async(url,o)=>{
     if(url.startsWith('/web-data/catalog-sections'))return Response.json({'1033':'Резервное копирование'});
     if(url.endsWith('/upsell/preview')){preview=JSON.parse(o.body);return Response.json({matched:true,items:[extra]});}
@@ -52,6 +52,7 @@ try{
   find('Изменить').click();find('Предпросмотр').click();await tick();
   check(preview.rule.id===rule.id && preview.q==='astra linux' && main.textContent.includes('Условия совпали'),'Предпросмотр черновика');
   find('Сохранить').click();await tick();check(updated.reason===rule.reason && updated.weight===rule.weight && !updated.counters,'Тело PUT по контракту B');
+  check(updated.offer.strict===true && updated.offer.exclude_words.join(',')==='Enterprise' && updated.offer.audience.join(',')==='home','Ограничения сохранились после редактирования');
   find('Включено').click();await tick();check(updated.enabled===false && find('Выключено'),'Отключение правила');
   resetData();main.replaceChildren();window.fetch=async url=>{
     if(url.endsWith('/upsell'))return Response.json({}, {status:404});

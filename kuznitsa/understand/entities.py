@@ -33,7 +33,7 @@ def extract(words,lex,kb):
                 continue
             if k=="audience" and v=="home" and words[i].startswith("персональн") and end<len(words) and words[end].startswith("данн"):
                 continue
-            if k=="metric" and not number_before(words,i) and not any(w in words for w in ("cal","ядерная","ядер")):
+            if k=="metric" and not number_before(words,i) and not (i and words[i-1]=="на") and not any(w in words for w in ("cal","ядерная","ядер")):
                 continue
             if k in {"category","vendor","platform"} and "family" in kinds:
                 continue
@@ -46,7 +46,7 @@ def extract(words,lex,kb):
                 effect = kb.rows["compliance"].get(v,{}).get("effect",{}).get("filter",{})
                 for key,value in effect.items():
                     assign(target,key,value)
-            elif k in MULTI or k in {"action","model","audience","delivery","registry","deployment","origin","metric"}:
+            elif k in MULTI or k in {"action","model","audience","delivery","registry","deployment","origin","metric","license_type"}:
                 assign(target,k,{"yes":True,"no":False}.get(v,v) if k=="registry" else v)
             if k=="edition" and v=="pro" and any(x[0]=="edition" and str(x[1]).lower()=="pro" and x[1]!=v for x in matches):
                 continue

@@ -32,7 +32,7 @@
 
 - id: office_pdf_editor
   when: {classes: [1145], families: [], vendors: [], query_words: []}
-  offer: {classes: [180, 127], families: ["Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master PDF Editor", "Corel PDF Fusion"], vendors: [], strict: true}
+  offer: {classes: [180, 127], families: ["Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master Pdf Editor", "Corel PDF Fusion"], vendors: [], strict: true}
   reason: "К офисному пакету часто добавляют редактор PDF для договоров и форм"
   weight: 0.85
   source: "kb"
@@ -120,7 +120,7 @@
 
 - id: astra_ald_pro
   when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
-  offer: {classes: [2942, 369], families: ["ALD Pro"], vendors: [], strict: true}
+  offer: {classes: [222320, 2942, 369], families: ["ALD Pro"], vendors: [], strict: true}
   reason: "ALD Pro управляет доменом, политиками и парком рабочих станций на Astra Linux"
   weight: 0.94
   source: "vendor_site:https://astralinux.ru/ready/"
@@ -141,7 +141,7 @@
 
 - id: astra_secret_net_lsp
   when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
-  offer: {classes: [687], families: ["Secret Net LSP"], vendors: [], strict: true}
+  offer: {classes: [687], families: ["Код безопасности: Secret Net LSP"], vendors: [], strict: true}
   reason: "Secret Net LSP усиливает защиту Astra Linux от НСД и сертифицирован в Ready for Astra"
   weight: 0.88
   source: "vendor_site:https://astralinux.ru/ready/"
@@ -204,7 +204,7 @@
 
 - id: redos_red_db
   when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
-  offer: {classes: [402838], families: ["Ред База Данных"], vendors: ["РЕД СОФТ"], strict: true}
+  offer: {classes: [402838], families: ["СУБД Ред База Данных"], vendors: ["РЕД СОФТ"], strict: true}
   reason: "Ред База Данных входит в единый стек РЕД СОФТ вместе с РЕД ОС"
   weight: 0.76
   source: "kb"
@@ -348,7 +348,7 @@
 
 - id: ru_db_security
   when: {classes: [233020, 402838], families: [], vendors: [], query_words: []}
-  offer: {classes: [687, 4742], families: ["Secret Net Studio", "Secret Net LSP", "Dallas Lock"], vendors: [], strict: true}
+  offer: {classes: [687, 4742], families: ["Secret Net Studio", "Код безопасности: Secret Net LSP", "Dallas Lock"], vendors: [], strict: true}
   reason: "Серверы баз данных защищают средствами разграничения доступа и аудита ИБ"
   weight: 0.78
   source: "kb"
@@ -369,7 +369,7 @@
 
 - id: server_sw_monitoring
   when: {classes: [369], families: [], vendors: [], query_words: []}
-  offer: {classes: [3205, 7864], families: ["WhatsUp Gold", "PRTG", "NetCrunch", "Advanced Host Monitor", "SQL Monitor"], vendors: [], strict: true}
+  offer: {classes: [3205, 7864], families: ["WhatsUp Gold", "Paessler AG PRTG Network Monitor", "NetCrunch", "Advanced Host Monitor", "SQL Monitor"], vendors: [], strict: true}
   reason: "Мониторинг и диагностика серверов помогают заранее выявлять сбои сервисов"
   weight: 0.74
   source: "kb"
@@ -387,7 +387,7 @@
 
 - id: ru_virt_security
   when: {classes: [222321], families: [], vendors: [], query_words: []}
-  offer: {classes: [687, 650], families: ["Kaspersky Security для виртуальных и облачных сред", "vGate", "Secret Net LSP"], vendors: [], strict: true, exclude_words: ["VMware", "Hyper-V"]}
+  offer: {classes: [687, 650], families: ["Kaspersky Security для виртуальных и облачных сред", "vGate", "Код безопасности: Secret Net LSP"], vendors: [], strict: true, exclude_words: ["VMware", "Hyper-V"]}
   reason: "Виртуальные машины и гипервизоры защищают специализированными средствами ИБ"
   weight: 0.88
   source: "kb"
@@ -415,7 +415,7 @@
 
 - id: virt_security
   when: {classes: [2500], families: ["vSphere", "vCenter", "Red Hat Virtualization"], vendors: [], query_words: []}
-  offer: {classes: [687], families: ["Kaspersky Security для виртуальных и облачных сред"], vendors: ["Kaspersky"], strict: true}
+  offer: {classes: [687], families: ["Kaspersky Security для виртуальных и облачных сред"], vendors: ["«Лаборатория Касперского»"], strict: true}
   reason: "Безагентская или лёгкая защита виртуальных сред снижает нагрузку на хосты"
   weight: 0.86
   source: "kb"
@@ -482,7 +482,7 @@
 
 - id: onec_reporting
   when: {classes: [12792], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс", "бухгалтерия"]}
-  offer: {classes: [12792, 180, 127], families: ["ETAXREPORT", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master PDF Editor"], vendors: [], strict: true}
+  offer: {classes: [12792, 180, 127], families: ["e-BS ETAXREPORT", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master Pdf Editor"], vendors: [], strict: true}
   reason: "К учётной программе добавляют сервис электронной отчётности и редактор PDF для актов и сверок"
   weight: 0.86
   source: "kb"
@@ -545,7 +545,7 @@
 
 - id: retail_marking_service
   when: {classes: [11763, 11781], families: [], vendors: [], query_words: []}
-  offer: {classes: [444578], families: ["Честный знак"], vendors: [], strict: true}
+  offer: {classes: [444578], families: ["Юридическое сопровождение внедрения маркировки «Честный знак»"], vendors: [], strict: true}
   reason: "Юридическое и методологическое сопровождение помогает корректно внедрить «Честный знак»"
   weight: 0.72
   source: "kb"
@@ -584,7 +584,7 @@
 
 - id: cad_viewers
   when: {classes: [8842, 6718, 5768, 8816], families: [], vendors: [], query_words: []}
-  offer: {classes: [9892, 180, 127], families: ["ABViewer", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master PDF Editor"], vendors: [], strict: true}
+  offer: {classes: [9892, 180, 127], families: ["ABViewer", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master Pdf Editor"], vendors: [], strict: true}
   reason: "Просмотрщики DWG/DXF и PDF-редакторы нужны смежникам и руководителям без полной лицензии САПР"
   weight: 0.84
   source: "kb"
@@ -619,7 +619,7 @@
 
 - id: nanocad_point_cloud
   when: {classes: [5768, 6718], families: ["nanoCAD"], vendors: ["Нанософт"], query_words: ["нанокад", "nanocad"]}
-  offer: {classes: [410746], families: ["nanoCAD Облака точек"], vendors: ["Нанософт"], strict: true}
+  offer: {classes: [410746], families: ["nanoCAD Облака точек"], vendors: ["Нанософт Разработка"], strict: true}
   reason: "Модуль «nanoCAD Облака точек» добавляет работу с данными лазерного сканирования"
   weight: 0.82
   source: "kb"
@@ -837,7 +837,7 @@
 
 - id: cryptopro_pdf_docs
   when: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"], query_words: ["криптопро", "крипто про", "cryptopro"]}
-  offer: {classes: [687, 180, 127], families: ["КриптоПро PDF", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master PDF Editor"], vendors: [], strict: true}
+  offer: {classes: [687, 180, 127], families: ["КриптоПро PDF", "Adobe Acrobat Standard", "Adobe Acrobat Professional", "ContentReader PDF", "Master Pdf Editor"], vendors: [], strict: true}
   reason: "Редактор PDF позволяет подписывать и проверять электронные документы с КриптоПро"
   weight: 0.84
   source: "kb"
@@ -999,7 +999,7 @@
 
 - id: remote_access_usb_redirect
   when: {classes: [327029, 327030], families: [], vendors: [], query_words: []}
-  offer: {classes: [38945, 3205, 12989], families: ["USB over Network", "USB Network Gate"], vendors: [], strict: true}
+  offer: {classes: [38945, 3205, 12989], families: ["USB over Network", "Eltima USB Network Gate"], vendors: [], strict: true}
   reason: "ПО проброса USB по сети подключает токены ЭП и принтеры к удалённому компьютеру"
   weight: 0.78
   source: "kb"
@@ -1296,7 +1296,7 @@
 
 - id: r10_ru_office_pdf_editor
   when: {classes: [222323], families: [], vendors: [], query_words: []}
-  offer: {classes: [180, 127], families: ["ContentReader PDF", "Master PDF Editor"], vendors: [], strict: true}
+  offer: {classes: [180, 127], families: ["ContentReader PDF", "Master Pdf Editor"], vendors: [], strict: true}
   reason: "К российскому офисному пакету добавляют отечественный редактор PDF для договоров и форм"
   weight: 0.85
   source: "kb"

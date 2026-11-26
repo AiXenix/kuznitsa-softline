@@ -222,12 +222,11 @@
 - {term: "ваком", type: translit, maps_to: {attr: hardware_class, value: graphics_tablet}, note: "Графические планшеты Wacom и др. (фид 98055)"}
 - {term: "нас", type: translit, maps_to: {attr: hardware_class, value: nas_storage}, note: "Сетевые накопители NAS (фид 98190)"}
 - {term: "nas", type: abbr, maps_to: {attr: hardware_class, value: nas_storage}, note: "Сетевые накопители NAS (фид 98190)"}
-- {term: "схд", type: abbr, maps_to: {attr: hardware_class, value: nas_storage}, note: "Системы хранения данных (фид 98412)"}
 - {term: "айпи телефон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "IP-телефоны (фид 84772)"}
 - {term: "сип телефон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "SIP / IP-телефоны (фид 84772)"}
 - {term: "спикерфон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "Спикерфоны и конференц-связь (фид 85126, 157991)"}
 - {term: "айпи камера", type: translit, maps_to: {attr: hardware_class, value: ip_camera}, note: "IP-видеокамеры (фид 98673)"}
-- {term: "вебка", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Веб-камеры (фид 89623)"}
+- {term: "вебка", type: slang, maps_to: {attr: hardware_class, value: webcam_conf}, note: "Веб-камеры (фид 89623)"}
 - {term: "клава", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Клавиатуры и мыши (фид 82833)"}
 - {term: "мышка", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Компьютерные мыши (фид 82833)"}
 - {term: "докстанция", type: translit, maps_to: {attr: hardware_class, value: laptop_accessories}, note: "Док-станции для ноутбуков (фид 84382)"}

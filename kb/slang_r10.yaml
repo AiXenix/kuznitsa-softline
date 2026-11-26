@@ -495,7 +495,6 @@
 # ============================================================================
 
 # --- Компьютеры ---
-- {term: "ноут", type: slang, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
 - {term: "ноуты", type: slang, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
 - {term: "ноутик", type: slang, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
 - {term: "ноутбучек", type: slang, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}

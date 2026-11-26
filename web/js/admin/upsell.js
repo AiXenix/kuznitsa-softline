@@ -1,12 +1,17 @@
 import {add,button,line,rows} from '../dom.js';
 import {api} from '../api.js';
 import {caption} from '../labels.js';
-import {adminApi,field,fmt,loadBox,section,table,taskButton} from './common.js';
+import {adminApi,field,fmt,loadBox,options,section,table,taskButton} from './common.js';
 
 const groups={classes:['Классы','category'],families:['Линейки','family'],vendors:['Производители','vendor'],query_words:['Слова запроса','']};
+const audiences={'':'Любая аудитория',home:'Для дома',business:'Для организаций','business,home':'Для дома и организаций'};
 
 function describe(side,classes){
-  return Object.entries(groups).flatMap(([key,[,kind]])=>rows(side?.[key]).map(v=>key==='classes' && classes[v]?classes[v]:kind?caption(kind,v):v)).join(', ');
+  const labels=Object.entries(groups).flatMap(([key,[,kind]])=>rows(side?.[key]).map(v=>key==='classes' && classes[v]?classes[v]:kind?caption(kind,v):v));
+  if(side?.audience)labels.push(audiences[[].concat(side.audience).sort().join(',')]);
+  if(side?.strict)labels.push('Только указанные линейки и производители');
+  if(side?.exclude_words?.length)labels.push('Исключить из названия · '+side.exclude_words.join(', '));
+  return labels.join(', ');
 }
 export function upsell(view){
   const list=section(view,'Правила допродаж'),editor=section(view,'Редактор правила');
@@ -29,10 +34,27 @@ export function upsell(view){
         sides[side][key]=field(box,name+' (через запятую)',rows(r[side]?.[key]).join(', '));
         if(key==='classes')sides[side][key].setAttribute('list',list.id);
       }
+      const selected=[].concat(r[side]?.audience || []).sort().join(',');
+      sides[side].audience=options(box,'Аудитория',audiences,selected,()=>{});
+      if(side==='offer'){
+        sides.offer.strict=field(box,'Только указанные линейки и производители','','checkbox');
+        sides.offer.strict.checked=r.offer?.strict===true;
+        sides.offer.exclude_words=field(box,'Исключить из названия (через запятую)',rows(r.offer?.exclude_words).join(', '));
+      }
     }
     function draft(){
       const rule={id:id.value.trim(),reason:reason.value.trim(),source:r.source || 'kb',weight:Number(weight.value),enabled:enabled.checked};
-      for(const [side,fields] of Object.entries(sides))rule[side]=Object.fromEntries(Object.entries(fields).map(([k,i])=>[k,i.value.split(',').map(v=>v.trim()).filter(Boolean)]));
+      for(const [side,fields] of Object.entries(sides)){
+        rule[side]={};
+        for(const [key,input] of Object.entries(fields)){
+          if(key==='strict'){
+            if(input.checked)rule[side].strict=true;
+          }else{
+            const values=input.value.split(',').map(v=>v.trim()).filter(Boolean);
+            if(values.length)rule[side][key]=values;
+          }
+        }
+      }
       return rule;
     }
     const q=field(editor,'Поисковый запрос',rows(r.when?.query_words)[0]);
