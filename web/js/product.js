@@ -45,11 +45,13 @@ function conditions(o={}){
 function priceLine(p,c,cls){
   const value=price(c);if(!value)return;
   const node=add(p,'p',null,cls);node.title=value;
-  const parts=value.split(/\s+=\s+/);
+  const rate=value.match(/^(.*₽)\s+((?:за|на|в)\s+.+)$/iu);
+  const parts=(rate?rate[1]:value).split(/\s+=\s+/);
   for(const [i,part] of parts.entries()){
     if(i)node.append(document.createTextNode(' '));
     add(node,'span',(i?'= ':'')+part,'pricePart');
   }
+  if(rate)add(node,'small',rate[2],'priceUnit');
 }
 export function mini(p,c) {
   const a=add(p,'article',null,'mini');

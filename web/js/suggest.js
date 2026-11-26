@@ -2,8 +2,8 @@ import {api} from './api.js';
 import {picture,merchandise} from './retail.js';
 import {add,rows,money} from './dom.js';
 export function suggestions(input,p,params,launch,origin='',onCard) {
-  const groups=['corrections','queries','products','categories','upsell','licenses','vendors'];
-  const titles={corrections:'Возможно, вы искали',queries:'Запросы',products:'Товары',categories:'Разделы',upsell:'Возможно, вам понадобится'};
+  const groups=['corrections','categories','queries','products','upsell','licenses','vendors'];
+  const titles={corrections:'Возможно, вы имели в виду',queries:'Запросы',products:'Товары',categories:'Разделы',upsell:'Возможно, вам понадобится'};
   const caps={products:4,categories:3,upsell:2};
   let version=0,controller,timer,options=[],active=-1;
   function close() {
@@ -20,7 +20,7 @@ export function suggestions(input,p,params,launch,origin='',onCard) {
         const r=await api(origin+'/api/suggest?'+new URLSearchParams({...params(),q:input.value}),null,{signal:controller.signal});
         if(id!==version) return;
         p.replaceChildren();
-        if(r.corrected && r.corrected!==input.value) add(p,'p','Исправлено: '+r.corrected);
+        if(r.corrected && r.corrected!==input.value && !rows(r.groups).some(g=>g.type==='corrections' && rows(g.items).some(i=>i.text || i.title))) add(p,'p','Исправлено: '+r.corrected);
         const order=g=>groups.includes(g.type)?groups.indexOf(g.type):groups.length;
         const seen={};
         for(const g of rows(r.groups).sort((a,b)=>order(a)-order(b))) {
@@ -49,7 +49,7 @@ export function suggestions(input,p,params,launch,origin='',onCard) {
             o.id='suggest-'+options.length;o.onmousedown=e=>e.preventDefault();
             o.onclick=()=>{
               const id=record.card_id || (['sku','card','product'].includes(item.kind) && typeof item.meta==='string'?item.meta:null);
-              const category=record.category_id || (g.type==='categories' && typeof item.meta==='string'?item.meta:null);
+              const category=record.category_id || (g.type==='categories' && ['string','number'].includes(typeof item.meta)?String(item.meta):null);
               close();
               if(product && id){
                 const profile=params().profile_id;

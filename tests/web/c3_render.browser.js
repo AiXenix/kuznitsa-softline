@@ -39,8 +39,8 @@ try{
   suggestions(input,panel,()=>({}),q=>chosen=q);
   input.value='кас';input.dispatchEvent(new Event('input'));await new Promise(resolve=>setTimeout(resolve,200));
   const groups=[...panel.querySelectorAll('[role=group]')].map(g=>g.getAttribute('aria-label'));
-  check(groups.join(',')==='Возможно, вы искали,Запросы,Товары,Разделы,Группа licenses,Группа vendors,Группа extra','Порядок групп');
-  check(panel.querySelector('mark').textContent==='Кас' && panel.innerText.includes('для офиса') && panel.innerText.includes('Исправлено'),'Текст подсказки');
+  check(groups.join(',')==='Возможно, вы имели в виду,Разделы,Запросы,Товары,Группа licenses,Группа vendors,Группа extra','Порядок групп');
+  check(panel.querySelector('mark').textContent==='Кас' && panel.innerText.includes('для офиса') && panel.innerText.includes('Возможно, вы имели в виду'),'Текст подсказки');
   for(const key of ['ArrowDown','Enter','Escape'])input.dispatchEvent(new KeyboardEvent('keydown',{key}));
   check(chosen==='защита' && signal.aborted && panel.hidden,'Клавиши, запрос и отмена');
   out.textContent='passed';

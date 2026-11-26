@@ -1,4 +1,4 @@
-import {add,button,link,rows} from './dom.js';
+import {add,button,link,rows,actionIcon} from './dom.js';
 
 const departments=[
   ['Офисные программы','офисный пакет','▤'],['Антивирусы','антивирус','◇'],
@@ -62,11 +62,6 @@ export function merchandising(main){
     menu.replaceChildren();
     for(const c of rows(items))link(menu,c.title,'/?'+new URLSearchParams({q:c.title,category:c.id}));
   },open:()=>show(true)};
-}
-function actionIcon(button,path){
-  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg'),shape=document.createElementNS(ns,'path');
-  svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
-  shape.setAttribute('d',path);svg.append(shape);button.prepend(svg);
 }
 function readList(key){
   try{return JSON.parse(sessionStorage.getItem('shop:'+key)) || [];}catch{return [];}
