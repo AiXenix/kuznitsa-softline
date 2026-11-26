@@ -237,6 +237,8 @@ class FeedIndex:
         from .feed_repair import FeedRecovery
         self.recovery=FeedRecovery(self,kb)
         from .feed_analogs import AnalogIndex
+        from .feed_editions import resolve
+        self.edition=lru_cache(512)(lambda text:resolve(self,text))
         self.analogs=AnalogIndex(self,kb.rows["feed_analogs"])
 
     def correct(self,q):

@@ -114,15 +114,15 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None):
     return extra
 
 
-def recommend(engine,q,items,profile,intent,blocked=(),role=None,complete=None,price_max=None):
+def recommend(engine,q,items,profile,intent,blocked=(),role=None,complete=None,price_max=None,edition_audience=None):
     """Распределить рекомендации между основной лентой и отдельным блоком."""
     ids=[c["card_id"] for c in items]
-    picks=engine.catalog.feed.recommend.picks(engine.journal,q,ids,6+max(len(ids),4)//2,blocked)
+    picks=engine.catalog.feed.recommend.picks(engine.journal,q,ids,6+max(len(ids),4)//2,blocked,edition_audience)
     if intent=="product" and len(picks)==1:
         # Если правило предлагает целый класс, отдельному блоку и плитке
         # могут подойти две разные карточки этого класса.
         used_targets=set(blocked)|{picks[0][0]}
-        picks+=engine.catalog.feed.recommend.picks(engine.journal,q,ids,2,used_targets)
+        picks+=engine.catalog.feed.recommend.picks(engine.journal,q,ids,2,used_targets,edition_audience)
     if role:
         index=engine.catalog.feed
         role_picks=[]
@@ -226,6 +226,19 @@ def task_sections(engine,q,hint):
 def search(engine,req,profile,trace,priorities,record):
     index=engine.catalog.feed
     norm=normalize(req.q)
+    if norm in {"про","pro"} and not req.verbatim and not req.category:
+        question="У какого продукта нужна редакция Pro?"
+        trace.add("intent","Уточнение продукта",question)
+        groups=list(dict.fromkeys(index.card_sections[c] for c in index.products("pro",domain="software",fuzzy=False)))
+        options=[dict(label=index.classes[k],apply=dict(q=index.classes[k],category=k)) for k in groups[:3]]
+        result=dict(search_id="s_"+uuid4().hex,engine="kuznitsa",engine_version="1.0",mode=req.mode,
+            query=dict(raw=req.q,normalized=norm,corrected=norm,corrections=[],did_you_mean=None),
+            understood=dict(intent="broad",intent_title=TITLES["broad"],intent_conf=.9,intent_source="rules",
+                            filters={},exclude={},qty=None,entities=[],chips=[],zero_reason=None,agent_note=question),
+            blocks=[dict(type="clarify",title="Уточните продукт",question=question,options=options)],
+            facets=[],notes=[],banners=[],relax_hints=[],related_queries=[],profile=profile_info(profile),
+            cost=cost_summary([],engine.usd_rub),trace=trace.steps,timing_ms={})
+        return finish(engine,req,trace,record,result,[],0,[])
     if req.category and req.category not in index.classes:return
     subject,budget=split_budget(norm)
     if req.filters.get("price_max") is not None:
@@ -237,8 +250,9 @@ def search(engine,req,profile,trace,priorities,record):
     base,qty,renewal=split_conditions(parsed)
     original_subject=base
     replacement_for=feed_analogs.requested(base)
+    edition=index.edition(base) if not (req.verbatim or req.category or replacement_for) else None
     row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
-    if (replacement_for or row and not row["in_catalog"]) and not (
+    if not edition and (replacement_for or row and not row["in_catalog"]) and not (
             req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         return feed_analogs.search(engine,req,profile,trace,priorities,record,replacement_for or base,
                                   row,explicit=bool(replacement_for),qty=qty,budget=budget)
@@ -364,6 +378,10 @@ def search(engine,req,profile,trace,priorities,record):
             question=False
             hint=None
             note="Варианты указанного продукта с учётом назначения."
+    if edition:
+        ids,q,note=edition.cards,edition.query,edition.note
+        section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=vendor=None
+        bare=question=False
     calls=[]
     model_section=None
     sid="s_"+uuid4().hex
@@ -488,7 +506,7 @@ def search(engine,req,profile,trace,priorities,record):
             return feed_analogs.search(engine,req,profile,trace,priorities,record,original_subject,known=known,row=row,
                                       qty=qty,budget=budget)
         return None
-    elif base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
+    elif not edition and base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
         variants=[index.cat.cards[i] for i in ids[:8]]
         if (len(variants)>=3 and len({c.vendor for c in variants})==1
@@ -566,12 +584,23 @@ def search(engine,req,profile,trace,priorities,record):
     nearby=[]
     def complete(reserved):
         if license_filter or budget is not None or req.page!=1:return []
+        if edition:
+            anchor=index.card_sections[edition.cards[0]]
+            shown=set(main)|set(reserved)
+            extra=[]
+            for cid in dict.fromkeys([*edition.neighbors,*index.groups[anchor]]):
+                if len(main)+len(extra)>=4:break
+                if cid in shown:continue
+                card=display(engine,cid,profile)
+                card.update(fill=True,label="Близкие варианты продукта" if cid in edition.neighbors else "Другие товары этого раздела")
+                extra.append(card)
+            return extra
         extra=fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
         if intent=="renewal":
             nearby.extend(extra)
             return []
         return extra
-    together,recommended=recommend(engine,norm,items,profile,intent,role=role,complete=complete,price_max=budget)
+    together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=budget,edition_audience=edition.audience if edition else None)
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     if missing:
@@ -600,6 +629,7 @@ def search(engine,req,profile,trace,priorities,record):
         understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=.9,intent_source="jev" if model_section else "rules",filters=dict(category=[section]) if section else {},
         exclude={},qty=qty,entities=[],chips=chips,zero_reason="not_in_catalog" if missing else None,agent_note=note or title),blocks=blocks,facets=[],notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
         profile=profile_info(profile),cost=cost_summary(calls,engine.usd_rub),trace=trace.steps,timing_ms={})
+    if edition and edition.audience:result["understood"]["filters"]["audience"]=edition.audience
     if qualified and selections:result["understood"]["filters"].update(conditions)
     if vendor:result["understood"]["filters"]["vendor"]=[vendor]
     if license_filter:result["understood"]["filters"][license_filter[0]]=license_filter[1]
@@ -646,8 +676,11 @@ def suggestions(engine,raw,norm,profile,start):
         c=display(engine,cid,profile,preferred)
         return dict(text=c["title"],kind="product",meta=cid,card_id=cid,picture=c["picture"],image=c["picture"],
                     oldprice=c["offer"]["oldprice"],price=c["offer"]["price"],price_on_request=c["offer"]["price_on_request"],badges=c["badges"],q=c["title"])
+    if norm in {"про","pro"}:
+        return dict(q=raw,corrected=None,groups=[],ms=round((perf_counter()-start)*1000,2))
+    edition=index.edition(norm)
     row=index.analogs.lookup(norm)
-    if row and not row["in_catalog"]:
+    if not edition and row and not row["in_catalog"]:
         sections,seeds=feed_analogs.row_candidates(index,row)
         choices=feed_analogs.choose(index,norm,row,sections,seeds,[],False)
         if choices:
@@ -674,7 +707,10 @@ def suggestions(engine,raw,norm,profile,start):
             section=index.class_by_name.get(query) or index.class_match(query)
             if query=="офисные пакеты":
                 section=next((k for k,v in index.class_names.items() if query in v),section)
-        if license_filter:
+        if edition:
+            ids=list(edition.cards[:4])
+            known=True
+        elif license_filter:
             ids=sorted(license_hits,key=index.quality.get,reverse=True)[:4]
             known=True
         elif section:
@@ -715,7 +751,7 @@ def suggestions(engine,raw,norm,profile,start):
             groups.append(dict(type="categories",title="Разделы",items=[dict(text=v,q=v,meta=k,kind="category") for k,v in matching]))
         previous=engine.suggestions.prefix(norm,profile.segment,set())
         groups.extend(g for g in previous if g["type"]=="queries")
-        picks=index.recommend.picks(engine.journal,norm,ids,2)
+        picks=index.recommend.picks(engine.journal,edition.query if edition else norm,ids,2,edition_audience=edition.audience if edition else None)
         if picks:
             groups.append(dict(type="upsell",title="Возможно, вам понадобится",items=[
                 dict(entry(cid,index.recommend.target_offer(cid,rule["offer"]["audience"]) if rule["offer"].get("audience") else None),

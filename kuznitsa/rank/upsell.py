@@ -104,7 +104,12 @@ class Recommendations:
         for cid,card in index.cat.cards.items():
             title=title_words(card.title).removeprefix("программа ")
             vendor=title_words(card.offers[0].vendor or "")
-            for name in {title,title.removeprefix(vendor+" ")}:
+            # В карточке может стоять короткое имя издателя, в поле vendor — юридическое.
+            publisher_words=set(vendor.split())
+            tail=title.split()
+            while len(tail)>1 and tail[0] in publisher_words:
+                tail=tail[1:]
+            for name in {title,title.removeprefix(vendor+" ")," ".join(tail)}:
                 if name:self.family_names[name.partition(" ")[0]].append((name+" ",cid))
             for key in (card.family,card.offers[0].group_id):
                 if key:self.family_ids[str(key).casefold()].add(cid)
@@ -121,7 +126,7 @@ class Recommendations:
         if section in {"121467","5984"}:return "business"
         return label or audience(self.index.cat.cards[cid].title)
 
-    def target_offer(self,cid,expected,price_max=None):
+    def target_offer(self,cid,expected,price_max=None,*,confirmed=False):
         card=self.index.cat.cards[cid]
         label=self.card_audience(cid)
         expected=audience_values(expected) if expected else []
@@ -130,19 +135,22 @@ class Recommendations:
         for o in card.offers:
             if price_max is not None and (o.price is None or o.price>price_max):continue
             if not expected:return o
+            if o.lic.audience and o.lic.audience not in expected:continue
             actual=audience(o.name) or label or o.lic.audience
             if actual in expected:return o
             if actual is None and unknown is None:unknown=o
-        return unknown
+        return None if confirmed else unknown
 
-    def members(self,selectors):
+    def members(self,selectors,anchor=False):
         sets=[]
         for k in ("classes","categories","families","vendors"):
             if selectors.get(k):
-                if k=="families" and selectors.get("strict"):
+                if k=="families" and (selectors.get("strict") or anchor):
                     named=set()
                     for label in selectors[k]:
-                        named.update(self.family_ids.get(str(label).casefold(),()))
+                        key=str(label).casefold()
+                        named.update(self.family_ids.get(key,()))
+                        if anchor:named.update(self.index.tags["families"].get(key,()))
                         phrase=title_words(str(label))
                         if phrase:
                             named.update(cid for name,cid in self.family_names.get(phrase.partition(" ")[0],())
@@ -171,7 +179,7 @@ class Recommendations:
             when=rule["when"]
             offer=rule["offer"]
             members=self.eligible_targets(offer)
-            anchors=self.members(when)
+            anchors=self.members(when,anchor=True)
             if not members:continue
             if not anchors:
                 if any(when.get(k) for k in ("classes","categories","vendors","families")) or not when.get("query_words"):
@@ -198,7 +206,7 @@ class Recommendations:
             result.append((anchors,when.get("query_words",[]),targets,rule))
         return sorted(result,key=lambda r:-float(r[3].get("weight",0)))
 
-    def picks(self,journal,q,ids,limit,blocked=()):
+    def picks(self,journal,q,ids,limit,blocked=(),edition_audience=None):
         if self.provider:
             version,rules=self.provider.active_rules(journal)
             if self.version!=version:
@@ -208,7 +216,7 @@ class Recommendations:
         anchor=self.index.cat.cards[ids[0]].offers[0]
         vendor=normalize(anchor.vendor or "")
         classes={anchor.class_id,anchor.category_id,anchor.attrs.get("kb_category")}-{None}
-        explicit=audience(q)
+        explicit=edition_audience or audience(q)
         requested=explicit or self.card_audience(ids[0])
         found=[]
         seen=set(ids)|set(blocked)
@@ -218,18 +226,18 @@ class Recommendations:
         for members,words,targets,rule in self.compiled:
             if requested and rule["when"].get("audience") and requested not in audience_values(rule["when"]["audience"]):continue
             if members is not None and any(cid not in members for cid in anchor_ids):continue
-            if words and not query_matches(words,q):continue
+            if words and not (query_matches(words,q) or edition_audience and query_matches(words,normalize(self.index.cat.cards[ids[0]].title))):continue
             for target in targets:
                 bound=self.bindings.get(target)
                 if (bound and anchor.domain=="software" and not any(v==vendor for v,_ in bound)
                         and any(k in classes for _,k in bound)):
                     continue
                 if target not in seen:
-                    if explicit=="home":
+                    if explicit=="home" or edition_audience:
                         expected=rule["offer"].get("audience")
-                        if expected and "home" not in audience_values(expected):continue
-                        if not self.target_offer(target,"home"):continue
-                        rule=rule|{"offer":rule["offer"]|{"audience":"home"}}
+                        if expected and explicit not in audience_values(expected):continue
+                        if not self.target_offer(target,explicit,confirmed=bool(edition_audience)):continue
+                        rule=rule|{"offer":rule["offer"]|{"audience":explicit}}
                     seen.add(target)
                     found.append((target,rule))
                     break
