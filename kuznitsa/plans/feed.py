@@ -1,11 +1,13 @@
 """Подбор по страницам товаров и классам настоящего магазина."""
 import re
 from uuid import uuid4
-from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject
+from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from kuznitsa.config import WEIGHTS
+from kuznitsa.index.feed_language import version_forms,edition_form
+from kuznitsa.understand.quantities import spoken_numbers
 from kuznitsa.text import normalize,tokens
 from kuznitsa.index.hardware import suitability,hardware_head
-from kuznitsa.index.feed import HARDWARE,QUESTION,TASKS,COMPLEX,words
+from kuznitsa.index.feed import HARDWARE,QUESTION,TASKS,COMPLEX,words,class_words
 from kuznitsa.rank.business import ranked
 from kuznitsa.rank.upsell import interleave, audience as class_audience
 from kuznitsa.llm.recovery import cost_summary
@@ -226,14 +228,18 @@ def search(engine,req,profile,trace,priorities,record):
     if req.filters.get("price_max") is not None:
         budget=min(budget,req.filters["price_max"]) if budget is not None else req.filters["price_max"]
     if "price_max" in req.ignore:budget=None
-    base,qty,renewal=split_conditions(subject)
+    parsed=subject if req.verbatim else version_forms(spoken_numbers(subject))
+    if parsed!=subject and index.recovery.full_name(subject)[0]:
+        parsed=subject
+    base,qty,renewal=split_conditions(parsed)
     original_subject=base
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
     if req.sort or req.weights or req.filters.keys()-{"price_max"} or req.exclude or set(req.ignore)-{"price_max"} or (COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
-    if not req.verbatim and not literal[0]:
-        base=product_subject(index,base)
+    server_section=software_scope(index,base) if not literal[0] else None
+    if not (req.verbatim or literal[0] or server_section or req.category or index.class_match(base)):
+        base=named_subject(engine,product_subject(index,base))
     mapped,_=engine._phrases.apply(base)
-    q=index.correct(mapped)
+    q=edition_form(index,index.correct(mapped))
     if req.verbatim:q=base
     hardware=next((w for w in words(q) if w in HARDWARE),None)
     device_name=hardware_head(index,base)
@@ -252,8 +258,8 @@ def search(engine,req,profile,trace,priorities,record):
     question=bool(task_section or QUESTION.search(q) or purpose or HELP.search(q) or any(w.endswith(("ть","ться")) for w in words(q)))
     hint=purpose or hint
     if hardware and not bare and q.startswith("по для "):hint="серверное ПО" if hardware=="сервер" else "операционные системы"
-    ids=index.products(q,domain="hardware" if bare else "software" if hardware else None,fuzzy=False)
-    section=req.category or index.class_match(base) or index.class_match(q)
+    ids=index.products(q,domain="hardware" if bare else "software" if hardware else None,fuzzy=False,segment=profile.segment)
+    section=req.category or server_section or index.class_match(base) or index.class_match(q)
     vendor,combined=vendor_class(index,base)
     if not combined:vendor,combined=vendor_class(index,q)
     section=combined or section
@@ -353,11 +359,32 @@ def search(engine,req,profile,trace,priorities,record):
     vendor_gap=False
     if section:
         members=index.groups[section]
+        if qty and not vendor:
+            members=sorted(members,key=index.browse_quality.get,reverse=True)
+        if server_section:
+            members=sorted(members,key=lambda cid:index.server_offers.get(cid,(0,None))[0],reverse=True)
+            for cid in members:
+                if cid in index.server_offers:preferred[cid]=index.server_offers[cid][1]
+            note=("Сначала лицензии на сервер и предложения с указанием сервера в названии."
+                  if preferred else "Класс ПО найден. Серверное исполнение нужно уточнить у поставщика.")
         if vendor:
             matches=[cid for cid in members if index.card_vendors[cid]==vendor]
             vendor_gap=not matches
             if vendor_gap:
-                note="В этом разделе нет товаров указанного производителя. Показаны другие производители раздела."
+                options=index.language.vendor_cards[vendor]
+                root=index.cat.cards[members[0]].offers[0]
+                label=index.classes[section]
+                nearby=index.sections(label)
+                similarity=index.tree.similarity(index.cat.dense.encode(label),options) if index.tree.matrix is not None else {}
+                class_terms=index.class_terms[section]
+                def closeness(cid):
+                    other=index.cat.cards[cid].offers[0]
+                    key=index.card_sections[cid]
+                    return (other.domain==root.domain,other.category_path[:1]==root.category_path[:1],
+                            len(nearby)-nearby.index(key) if key in nearby else 0,
+                            len(class_terms & index.terms[cid]),similarity.get(cid,0.),index.quality[cid])
+                members=sorted(options,key=closeness,reverse=True)
+
             else:
                 members=matches
         if role:
@@ -414,45 +441,56 @@ def search(engine,req,profile,trace,priorities,record):
     if ids and (qty or renewal or constraints) and not selections:
         nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
         selections=matching_variants(index,ids,profile,qty,renewal,constraints,nodes=nodes)
-        if qty and not selections and section and not req.category and base not in index.class_by_name:
+        if (qty and not selections and section and not (req.category or server_section or vendor_gap)
+                and class_words(base) not in index.class_aliases):
             for other in index.matching_sections(q):
                 if other==section:continue
                 candidates=[cid for cid in index.groups[other] if not vendor or index.card_vendors[cid]==vendor]
                 selections=matching_variants(index,candidates,profile,qty,renewal,constraints,nodes=nodes)
                 if selections:
                     section=other
+                    ids=candidates
                     break
         if selections:
-            ordered=sorted(selections,key=lambda cid:selections[cid][0].price is None)
+            # В широком классе оставляем порядок популярных линеек. Наличие
+            # цены у отдельной ступени не делает редкий продукт основным.
+            ordered=list(selections) if section else sorted(selections,key=lambda cid:selections[cid][0].price is None)
             if qty and section and budget is None and not renewal:
-                others=[cid for cid in index.groups[section] if cid not in selections
-                        and (not vendor or index.card_vendors[cid]==vendor)]
+                others=[cid for cid in ids if cid not in selections and (vendor_gap or index.card_sections[cid]==section)]
                 if others:
-                    note="Сначала показаны варианты на указанное количество. Для остальных условия поставки нужно уточнить."
+                    note="Тираж учтён при подборе лицензий. Варианты без подтверждения количества отмечены отдельно."
                 ordered.extend(others)
+                if not vendor:
+                    ordered.sort(key=lambda cid:(index.browse_quality[cid][0],cid in selections),reverse=True)
             ids=ordered
             if renewal:intent="renewal"
         elif budget is not None:
             ids=[]
             note="В указанном бюджете предложений с подтверждённой ценой нет."
-        elif qty and section:
-            note="Раздел найден. В фиде нет лицензии с подтверждёнными условиями на указанное количество."
+        elif qty and not renewal:
+            note="Товары найдены. В фиде нет лицензии с подтверждёнными условиями на указанное количество."
         else:
             note="Для выбранной линейки нет предложения с указанными условиями. Ниже близкие варианты."
             missing=True
             intent="out_of_catalog"
     title=index.classes.get(section) or TITLES[intent]
+    if vendor_gap:
+        gap=f"В разделе «{index.classes[section]}» товаров этого производителя нет."
+        note=" ".join(filter(None,(gap,note)))
+        if ids:
+            vendor_name=index.cat.cards[ids[0]].offers[0].vendor
+            title=f"Ближайшие товары производителя {vendor_name}"
     trace.add("retrieve","Поиск по фиду",title,candidates=len(ids))
     if question:trace.add("intent","Выбор раздела",title,calls=calls)
     start=(req.page-1)*req.page_size
     items=[display(engine,c,profile,preferred.get(c),selections.get(c)) for c in ids[start:start+req.page_size]]
     for i,c in enumerate(items,1):
         c["position"]=i
-        if qty and section and c["card_id"] not in selections and not renewal:
+        if qty and c["card_id"] not in selections and not renewal:
             c["badges"].append(dict(kind="quantity",label="Тираж требует уточнения"))
             c["score"]["why"].append("Количество по этой лицензии требует уточнения у поставщика")
         if vendor_gap:
-            c.update(fill=True,label="Другой производитель в этом разделе")
+            c.update(fill=True,label="Другой раздел этого производителя")
             c["score"]["why"].append(note)
         c["score"]["why"].extend(role_reasons.get(c["card_id"],()))
     ctx=dict(q_raw=req.q,q_norm=norm,intent=intent,category_id=section,segment=profile.segment,
@@ -489,6 +527,8 @@ def search(engine,req,profile,trace,priorities,record):
     trace.add("upsell","Сопутствующие товары",f"В основной ленте · {sum(c.get('kind')=='upsell' for c in items)}. "
               f"В блоке рекомендаций · {len(together['items']) if together else 0}",status="ok" if recommended else "skip")
     chips=[dict(key="role",label="Роль: "+role["title"],removable=False)] if role else []
+    if server_section:
+        chips.append(dict(key="platform",label="ПО для сервера",removable=False))
     if bare:
         targets=[str(k) for k in (device or {}).get("software_classes",()) if str(k) in index.groups]
         label=(device or {}).get("prompt") or f"Искали ПО для {HARDWARE.get(hardware,norm)}?"

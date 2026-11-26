@@ -2,6 +2,7 @@
 import re
 from kuznitsa.index.feed import words
 from kuznitsa.text import normalize
+from kuznitsa.index.feed_language import edition_form
 from kuznitsa.rank.variants import select
 
 QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|уз(?:ел|лы|ла|лов|лах)|устройств\w*|комп(?:ьютер\w*|ов|а)?|сервак\w*|процессор\w*|мест\w*|лицензи\w*|пк)\b")
@@ -70,6 +71,7 @@ def vendor_class(index,q):
                 section=next((str(k) for k in device.get("hardware_feed_classes",[]) if str(k) in index.groups),None)
             if not section and re.fullmatch(r"антивирус\w*",label):
                 section=index.class_by_name.get("антивирусы для организаций")
+            if not section:section=index.language.section(index,label)
             if section:return group,section
     return None,None
 
@@ -118,9 +120,7 @@ def product_context(engine,text):
                 for label in (family.get("name"),family.get("title")):
                     if label:candidates.extend(index.products(normalize(label)))
                 candidates.extend(sorted(index.tags["families"].get(key,()),key=index.quality.get,reverse=True))
-    phrase=re.sub(r"^ms\s+","microsoft ",phrase)
-    if phrase.endswith(" se"):
-        phrase=phrase[:-3]+" special edition"
+    phrase=edition_form(index,phrase)
     hits=index.products(phrase)
     spoken,_=index.sound_products(phrase)
     # Затемнение названия нечётким соседом («Фотошоу» и «Фотошоп»)
@@ -128,7 +128,7 @@ def product_context(engine,text):
     literal=[cid for cid in hits if set(words(phrase))<=index.terms[cid]]
     vendor=index.vendor_names.get(head) or index.vendor_names.get(" ".join(words(head)))
     brand=sorted(index.cat.by["vendor"].get(vendor,()),key=index.quality.get,reverse=True) if vendor else ()
-    supported=tuple(dict.fromkeys(candidates or brand or spoken or literal or hits))
+    supported=tuple(dict.fromkeys(literal or candidates or brand or spoken or hits))
     if not supported:return None
     tail=text[split.start():]
     context={}
@@ -145,4 +145,36 @@ def product_subject(index,base):
     if (candidate and candidate!=base and not re.match(r"^(?:для|по|от|с|на|под|и|чтобы)\b",candidate)
             and candidate not in index.hardware and not index.class_match(base)):
         return candidate
+    return base
+
+SERVER_TAIL=re.compile(r"\s+(?:на|для)\s+сервер(?:е|а|ах|ы|ов)?$")
+
+
+def software_scope(index,base):
+    """Класс программы и, отдельно, назначение для сервера."""
+    tail=SERVER_TAIL.search(base)
+    if not tail:return None
+    head=base[:tail.start()]
+    label=re.sub(r"^(?:софт|по|программ(?:ы|а|ное обеспечение))\s+для\s+","",head)
+    if not index.class_match(label) and index.products(label,fuzzy=False):return None
+    return index.language.section(index,label)
+
+
+def named_subject(engine,base):
+    """Проверить часть после названия класса до маршрутизации по классу."""
+    index=engine.catalog.feed
+    for rest in index.language.class_prefixes(index,base):
+        if rest.startswith(("для ","под ","на ","в ","от ")):continue
+        head=CONTEXT.split(rest,maxsplit=1)[0]
+        mapped,_=engine._phrases.apply(head)
+        name=edition_form(index,index.correct(mapped))
+        # Голое имя производителя в запросе о классе — ограничение по вендору.
+        if not re.search(r"[а-яa-z]",name):continue
+        if (head in index.vendor_names or " ".join(words(head)) in index.vendor_names) and vendor_class(index,base)[0]:
+            kind=index.slang.get(head,(None,()))[0]
+            if kind!="families" and not index.recovery.full_name(name)[0]:continue
+        ids=index.products(name,fuzzy=False) or index.slang.get(head,(None,()))[1]
+        if not ids:ids=index.sound_products(name)[0]
+        if not ids:continue
+        return rest
     return base

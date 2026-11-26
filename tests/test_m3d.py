@@ -96,9 +96,11 @@ def test_two_word_vendor_with_only_one_product(shop):
 
 
 def test_class_is_kept_when_vendor_only_sells_in_another_section(shop):
-    b=shop("виртуальные машины SoftWorks")["blocks"][0]
-    assert b["category_id"]=="virt"
-    assert all(c.get("fill") and c["card_id"].startswith("vm") for c in b["items"])
+    r=shop("виртуальные машины SoftWorks")
+    b=r["blocks"][0]
+    assert b["category_id"]=="virt" and "нет" in r["understood"]["agent_note"]
+    assert b["items"][0]["card_id"] in {"desk","noise","arch","access","home","pc"}
+    assert all(c.get("fill") and not c["card_id"].startswith("vm") for c in b["items"])
 
 
 def test_section_alias_wins_over_partial_product(shop):

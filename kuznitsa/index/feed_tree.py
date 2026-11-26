@@ -20,10 +20,14 @@ class TreeVectors:
 
     def neighbors(self,anchor,members):
         if self.matrix is None or anchor not in self.leaves:return {}
+        return self.similarity(self.matrix[self.leaves[anchor]],members)
+
+    def similarity(self,vector,members):
+        if self.matrix is None:return {}
         hits=[cid for cid in members if cid in self.leaves]
         if not hits:return {}
         rows=self.matrix[[self.leaves[cid] for cid in hits]]
-        scores=np.einsum("ij,j->i",rows,self.matrix[self.leaves[anchor]])
+        scores=np.einsum("ij,j->i",rows,vector)
         return dict(zip(hits,scores))
 
     def scores(self,vector):

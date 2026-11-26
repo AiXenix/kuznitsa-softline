@@ -27,7 +27,7 @@ def words(s):
 
 
 def class_words(text):
-    generic={"программа","программный","обеспечение","система","решение","по","работа","утилита"}
+    generic={"программа","софт","приложение","программный","обеспечение","система","решение","по","работа","утилита"}
     roots={"текстовый":"текст","сетевой":"сеть","видеоредактирование":"видеоредактор"}
     terms=set()
     for word in words(text):
@@ -46,6 +46,8 @@ class FeedIndex:
         self.terms={}
         self.raw_terms=defaultdict(set)
         self.license_offers=defaultdict(dict)
+        self.server_offers={}
+        self.browse_quality={}
         self.quality={}
         self.tags=defaultdict(lambda:defaultdict(set))
         self.aliases=ALIASES.copy()
@@ -63,7 +65,13 @@ class FeedIndex:
             if line:
                 c.title=line
             if o.domain in {"software","cloud","service"}:
+                best_server,server_available=0,False
                 for variant in c.offers:
+                    server_score=2 if variant.lic.metric=="server" else int(bool(re.search(r"\b(?:server|сервер(?:н\w*|а|ов)?)\b",variant.name,re.I)))
+                    if (server_score and variant.lic.action in (None,"new") and variant.lic.audience in (None,"business")
+                            and (server_score,variant.available) > (best_server,server_available)):
+                        self.server_offers[cid]=(server_score,variant)
+                        best_server,server_available=server_score,variant.available
                     if variant.lic.metric:
                         self.license_offers["metric",variant.lic.metric].setdefault(cid,variant)
                     program=variant.attrs.get("license_program")
@@ -78,6 +86,10 @@ class FeedIndex:
             self.terms[cid]=keys
             for w in keys:self.postings[w].add(cid)
             self.quality[cid]=(o.available,o.price is not None,len(c.offers),-len(c.title))
+            # Технические дополнения остаются в разделе за самостоятельными линейками.
+            auxiliary=bool(set(name) & {"клиент","client","агент","agent","модуль","плагин","plugin","connector","поддержка"})
+            self.browse_quality[cid]=(not auxiliary,max(v.popularity for v in c.offers),
+                                      o.available,len(c.offers),o.price is not None)
             for k,values in {"classes":[section,c.category,o.attrs.get("kb_category")],"families":[c.family,o.group_id,c.category,c.title,line],
                              "vendors":[o.vendor,c.vendor]}.items():
                 for v in values:
@@ -198,6 +210,8 @@ class FeedIndex:
             if actual:
                 for name in [row.get("name"),row.get("name_ru"),*row.get("aliases",[])]:
                     if name:self.vendor_names.setdefault(" ".join(words(name)),actual)
+        from .feed_language import FeedLanguage
+        self.language=FeedLanguage(self,kb)
         self.unsold_sections={normalize(name):parent for key,(name,parent) in lines.items()
                               if key not in cat.cards and parent in self.groups}
         self.unsold_brands=defaultdict(list)
@@ -219,7 +233,7 @@ class FeedIndex:
             if a in q:q=re.sub(r"\b"+re.escape(a)+r"\b",b,q)
         return q
 
-    def products(self,q,prefix=False,domain=None,fuzzy=True):
+    def products(self,q,prefix=False,domain=None,fuzzy=True,segment=None):
         terms=list(words(q))
         if not terms:return ()
         pools=[]
@@ -239,6 +253,11 @@ class FeedIndex:
         if len(pools)!=len(terms):return ()
         ids=set.intersection(*pools)
         if domain:ids={i for i in ids if self.cat.cards[i].offers[0].domain==domain}
+        named_year=any(re.fullmatch(r"20[012]\d",w) for w in terms)
+        named_audience={"семья","дом","учеба","бизнес","personal","student","home","business"}.intersection(terms)
+        edition_terms=({"учеба","student","personal","персональный"} if segment in {"edu","individual"}
+                       else {"бизнес","business"})
+        prefer_edition=bool(segment and named_year and not named_audience)
         def score(i):
             c=self.cat.cards[i]
             name=words(c.title)
@@ -248,7 +267,8 @@ class FeedIndex:
             first=min((name.index(w) for w in terms if w in name),default=99)
             consumer=int("family" in name or "семья" in name)
             starts=prefix and any(t.startswith(terms[-1]) for t in name[:2])
-            return (exact,primary,starts,all(w in name for w in terms),-first,self.quality[i][0],
+            fitting_release=prefer_edition and bool(edition_terms.intersection(name))
+            return (exact,primary,starts,all(w in name for w in terms),-first,fitting_release,self.quality[i][0],
                     name[:len(terms)]==tuple(terms),version,consumer,*self.quality[i][1:],i)
         return tuple(sorted(ids,key=score,reverse=True))
 
