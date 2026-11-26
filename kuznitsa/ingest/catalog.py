@@ -38,6 +38,9 @@ def import_catalog(files, out, kb, mapping=None, report_path=None, dry_run=False
     if ai not in {"off","embed","jev"} or not isfinite(ai_budget_usd) or ai_budget_usd<0:
         raise ValueError("Проверьте режим и бюджет раскладки")
     cfg=config or Config(data=out,kb=kb)
+    from . import softline_feed
+    if len(files)==1 and not mapping and softline_feed.matches(files[0]):
+        return softline_feed.import_feed(files[0],out,load(kb).rows,cfg,ai,ai_budget_usd,dry_run,report_path,transport)
     from .product_rules import apply as product_rules
     observations={}
     other_categories=set()

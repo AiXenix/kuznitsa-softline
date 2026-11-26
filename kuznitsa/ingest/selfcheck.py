@@ -48,7 +48,8 @@ def probes(o,kb,rng):
     yield "exact",o.name,o.edition if mentions else None
     yield "short",title,o.edition
     if o.sku:
-        yield "sku",o.sku,o.edition
+        kind="source_id" if o.attrs.get("feed_offer_id")==o.sku and len(o.source_ids)==1 else "sku"
+        yield kind,o.sku,o.edition
     if o.vendor:
         yield "vendor_family"," ".join([o.vendor,family]),None
     choices=[i for i in range(len(title)-1) if title[i:i+2].isalpha() and title[i]!=title[i+1]]
@@ -68,6 +69,8 @@ def probes(o,kb,rng):
         unit={"организация":"организацию","пользователь":"пользователя","виртуальная машина":"виртуальную машину","площадка":"площадку"}.get(unit,unit)
         yield "quantity",f"{title} на {num} {unit}",o.edition
     cat=kb["categories"].get(o.category_id,{}).get("title") or next(iter(o.category_path[-1:]),None)
+    if o.attrs.get("class_id") and len(o.category_path)>1:
+        cat=o.category_path[1]
     if cat and o.vendor:
         yield "class_vendor",f"{cat} {o.vendor}",None
 

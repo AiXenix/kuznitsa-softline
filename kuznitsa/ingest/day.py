@@ -39,6 +39,9 @@ def identify(path,explicit=None,parser=None,diagnostics=None):
         if diagnostics is not None:
             diagnostics.update(reason=reason,confidence=confidence,best_guess=role)
         return role,list(columns)
+    from .softline_feed import matches
+    if matches(path):
+        return decision("catalog",["id","group_id","name","categoryId","param"],"YML витрины store.softline.ru",1.)
     if path.suffix.lower() in {".md",".rst"}:
         return decision("documentation",[],"Сопроводительный текст",.95)
     if path.suffix.lower()==".json":
@@ -124,7 +127,8 @@ def coverage(engine,cfg):
     kb=engine.kb.rows
     counts=Counter()
     vendors,classes,missing=Counter(),Counter(),Counter()
-    vocab={lemma(w) for w in engine.lex.words}
+    history_words=engine.journal.rows("SELECT q_raw,count(*) n FROM active_history GROUP BY q_raw")
+    vocab={lemma(w) for w in engine.lex.words} if history_words else set()
     @lru_cache(32000)
     def vocabulary(value):
         return tuple(lemma(w) for w in tokens(value))
@@ -136,6 +140,8 @@ def coverage(engine,cfg):
             recognized=[]
             for field,group in [("vendor","vendors"),("family","families"),("category","categories")]:
                 ident=o.get(field+"_id") or ""
+                if field=="category":
+                    ident=o.get("attrs",{}).get("kb_category") or ident
                 ok=not ident.startswith("auto_") and ident in kb[group]
                 counts[field]+=ok
                 recognized.append(ok)
@@ -144,10 +150,12 @@ def coverage(engine,cfg):
                 vendors[o.get("vendor") or "Без производителя"]+=1
             if not recognized[2]:
                 classes[" / ".join(o.get("category_path",[])) or "Без класса"]+=1
+            if not history_words:
+                continue
             for value in [o["name"],o.get("sku"),o.get("vendor"),o.get("family_name"),o.get("description"),
                           *o.get("category_path",[]),*o.get("attrs",{}).values()]:
                 vocab.update(vocabulary(str(value or "")))
-    for row in engine.journal.rows("SELECT q_raw,count(*) n FROM active_history GROUP BY q_raw"):
+    for row in history_words:
         for w in set(tokens(row["q_raw"])):
             if lemma(w) not in vocab:
                 missing[w]+=row["n"]
@@ -183,6 +191,24 @@ def markdown(r):
                 "","| Самопроверка | Проб | Топ-3 | Топ-5 |","|---|---:|---:|---:|"]
         for k,v in r["selfcheck"]["groups"]["all"].items():
             lines.append(f"| {k} | {v['n']} | {v['top3']:.1%} | {v['top5']:.1%} |")
+    if "feed" in r:
+        feed=r["feed"]
+        ai=r["catalog"]["ai"]
+        lines+=["","## Фид store.softline.ru","",
+                f"Карточек — {feed['cards']:,}. Разделов — {feed['categories']:,}. Классов — {feed['classes']}.",
+                "| Раскладка | Сопоставлено классов | Предложений в этих классах |","|---|---:|---:|"]
+        for label,stats in (("Локальная",ai["local"]),(ai["mode"],ai["selected"])):
+            lines.append(f"| {label} | {stats['classes']} | {stats['offers']} |")
+        if "cache_lifetime_usd" in ai:
+            lines+=["",f"Jev · ответов из кэша {ai['cached']}, отправлено {ai['sent']}. "
+                   f"Расход этого запуска ${ai['usd']:.6f}. Накопленный расход кэша ${ai['cache_lifetime_usd']:.6f}."]
+    if "verification" in r:
+        verified=r["verification"]
+        lines+=["","Проверка на запросах организаторов · "
+                f"топ-1 {verified['top1']} из {verified['queries']}, "
+                f"топ-5 {verified['top5']} из {verified['queries']}. "
+                "[Выдача по запросам](official_results.json) · "
+                "[Сверка с XML](feed_check.json)"]
     if r.get("agent",{}).get("items"):
         lines+=["","## Предложения агента",""]
         lines.extend("- "+item["title"] for item in r["agent"]["items"])
@@ -237,6 +263,7 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
             os.link(cached,cache/cached.name)
         except OSError:
             pass
+    previous_data=cfg.data
     cfg=replace(cfg,data=out,cache=cache)
     report=dict(input=str(folder),out=str(out),files=[],timings={})
     last=started
@@ -270,8 +297,14 @@ def day(folder,cfg,out=None,ai="embed",budget=.5,n=300,mapping=None,replay_limit
         if not cats:
             raise ValueError("Не удалось распознать каталог по столбцам товаров")
         stage("detect")
+        if ai=="jev" and len(cats)==1:
+            from .softline_feed import matches,copy_decisions
+            if matches(cats[0]):
+                copy_decisions(previous_data/"import_ai.sqlite",out/"import_ai.sqlite")
         catalog=import_catalog(cats,out,cfg.kb,mapping=mapping,ai=ai,ai_budget_usd=budget,config=cfg)
         report["catalog"]={k:catalog[k] for k in ("rows","offers","inactive","rejected","duplicates","ai","currency","merge","attributes")}
+        if "feed" in catalog:
+            report["feed"]=catalog["feed"]
         if not catalog["offers"]:
             raise ValueError("Нет пригодных предложений. Проверьте признаки снятия с продажи, заголовки и цены.")
         stage("catalog")
