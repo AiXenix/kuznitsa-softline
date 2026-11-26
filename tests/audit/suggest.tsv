@@ -1,0 +1,101 @@
+# Открытый набор аудита подсказок. Ожидания сверены с настоящим фидом store.softline.ru.
+# Формат: ввод<TAB>проверки. Описание проверок — в scripts/check_suggest.py.
+#
+# бренд по первым буквам: главные продукты линейки первыми
+касп	top=kaspersky (standard|plus|premium|endpoint security|small office);not4=виртуальных|хранения
+каспер	top=kaspersky (standard|plus|premium|endpoint security|small office);not4=виртуальных|хранения
+касперский	top=kaspersky (standard|plus|premium|small office);not2=виртуальных|хранения;uniq
+касперский 10 пк	top=kaspersky
+kasp	top=kaspersky (standard|plus|premium|endpoint security|small office)
+kaspersky st	first=kaspersky standard
+купить каспер	top=kaspersky
+win	first=windows
+винд	top=windows 11
+виндовс	top=windows 11
+windows 11 p	first=windows 11 pro
+windows ser	top=windows server
+windows 10	top=windows 10
+windows	top=windows 11;uniq
+оф	top=office|офис;not=кресло|офд
+office	top=microsoft office|microsoft 365;not4=flexispace|orgchart|lookout
+office 2021	top=office.*2021
+офис	top=microsoft office|р7|мойофис
+microsoft off	first=microsoft office
+micr	top=microsoft (office|windows|365);not4=microsurvey|microolap|escan
+авток	top=autocad
+автокад	top=autocad
+autoc	top=autocad;not2=macintosh|modplus
+кри	top=криптопро
+криптопро	top2=криптопро csp
+фотош	top=adobe photoshop
+фотошоп	first=adobe photoshop
+adobe ph	first=adobe photoshop
+компас	first=компас-3d
+dr	top=dr\.?web
+др веб	top=dr\.?web
+dr.web sec	first=dr\.?web security space
+astra	first=astra linux
+р7	top=р7
+мойо	top=мойофис
+1с	top=1с
+битрикс	top=битрикс24
+visio	first=microsoft visio
+usergate	first=usergate
+secret	top=secret net
+рутокен	top=рутокен
+teamv	top=teamviewer
+anyd	top=anydesk
+corel	top=coreldraw
+arch	top=archicad
+revit	top=autodesk revit
+sql	top=sql server
+vmw	top=vmware
+яндекс	top=яндекс 360
+нанок	top=nanocad;not=сетев|адаптер
+постгрес	top=postgres
+ворд	top=microsoft (office|365)
+эксель	top=microsoft (office|365)
+#
+# тип товара по первым буквам: раздел и ходовые продукты
+антив	top=kaspersky|dr\.?web|pro32;cat=антивирус
+антиви	top=kaspersky|dr\.?web|pro32
+антивирус для	any=антивирус
+антивирус для дома	top=kaspersky (standard|plus|premium)|dr\.?web security space
+антивирус	top=kaspersky|dr\.?web|pro32;cat=антивирус;uniq
+резерв	top=бэкап|backup;not=zyxel|сертификат
+бэкап	top=бэкап
+впн	top=vpn|ngate|континент|с-терра;not=сканер-вс|ревизор
+эцп	top=криптопро|рутокен|криптоарм;not4=виртуальных|стахановец
+почт	top=почт|mail|tegu|communigate|mdaemon
+сапр	top=nanocad|компас|autocad
+линукс	top=astra linux|альт|ред ос
+pdf	top=pdf|acrobat
+видеомон	top=видеомонтаж|мовавика|filmora
+офисный пакет	any=офисн
+#
+# периферия
+ноут	top=ноутбук
+ноутбук len	top=ноутбук.*lenovo
+монитор 27	top=монитор.*27
+принтер hp	top=hp
+мышь log	top=мышь.*logitech
+сервер de	any=сервер
+клав	top=клавиатур
+мони	top=монитор
+прин	top=принтер|мфу
+кресло	top=кресло
+#
+# раскладка, опечатки, пустой результат
+rfcg	fix=касп;top=kaspersky (standard|plus|premium|endpoint security|small office)
+rfcgthcrbq	top=kaspersky
+цшт	first=windows
+цштвщцы	top=windows 11
+fdnjrfl	top=autocad
+ghbynth	top=принтер|мфу
+ajnj	fix=фото
+касперскй	top=kaspersky
+виндоус	top=windows
+автакад	top=autocad
+антивирсу	top=kaspersky|dr\.?web|pro32
+кас 10	top=kaspersky
+xyzq	empty
