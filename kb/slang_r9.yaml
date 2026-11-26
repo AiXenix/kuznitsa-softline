@@ -1,0 +1,247 @@
+# Расширение словаря жаргона, сокращений, транслита и опечаток под настоящий каталог
+# store.softline.ru (ход 9, спецификация 30.1–30.5).
+# Формат: kb/SCHEMA.md (дополнение к kb/slang.yaml, kb/slang_r3.yaml, kb/slang_audience_r3.yaml;
+# существующие термины не дублируются).
+# Типы: slang | abbr | translit | typo | obsolete
+# Цели maps_to: {category: id} | {vendor: id} | {family: id} | {platform: x} | {attr: ..., value: ...}
+
+# ============================================================================
+# 1. КЛЮЧЕВЫЕ ТЕРМИНЫ КАТАЛОГА И КОНТРОЛЬНЫХ ЗАПРОСОВ (30.1, 30.3)
+# ============================================================================
+
+# --- Офисные пакеты и Microsoft 365 ---
+- {term: "офис", type: slang, maps_to: {category: office_suite}, note: "Офисные пакеты (MS Office, МойОфис, Р7-Офис)"}
+- {term: "365", type: abbr, maps_to: {family: microsoft_365}, note: "Microsoft 365 (контрольный запрос 30.3)"}
+- {term: "офис 365", type: slang, maps_to: {family: microsoft_365}, note: "Microsoft 365 / Office 365"}
+- {term: "мс 365", type: abbr, maps_to: {family: microsoft_365}, note: "Microsoft 365"}
+- {term: "м365", type: abbr, maps_to: {family: microsoft_365}, note: "Microsoft 365"}
+- {term: "майкрософт 365", type: translit, maps_to: {family: microsoft_365}, note: "Microsoft 365"}
+- {term: "офис для семьи", type: slang, maps_to: {family: microsoft_365}, note: "Microsoft 365 для семьи"}
+- {term: "мс офис", type: abbr, maps_to: {family: ms_office}, note: "Microsoft Office"}
+- {term: "майкрософт офис", type: translit, maps_to: {family: ms_office}, note: "Microsoft Office"}
+- {term: "офис 2021", type: slang, maps_to: {family: ms_office}, note: "Microsoft Office 2021"}
+- {term: "офис 2024", type: slang, maps_to: {family: ms_office}, note: "Microsoft Office 2024"}
+- {term: "мс ворд", type: translit, maps_to: {family: ms_office}, note: "Microsoft Word"}
+- {term: "мс эксель", type: translit, maps_to: {family: ms_office}, note: "Microsoft Excel"}
+- {term: "эксел", type: typo, maps_to: {family: ms_office}, note: "Опечатка: Excel"}
+- {term: "ексель", type: typo, maps_to: {family: ms_office}, note: "Опечатка: Excel"}
+- {term: "ексел", type: typo, maps_to: {family: ms_office}, note: "Опечатка: Excel"}
+- {term: "иксель", type: typo, maps_to: {family: ms_office}, note: "Опечатка: Excel"}
+- {term: "поверпоинт", type: translit, maps_to: {family: ms_office}, note: "Microsoft PowerPoint"}
+- {term: "пауэрпоинт", type: translit, maps_to: {family: ms_office}, note: "Microsoft PowerPoint"}
+- {term: "аутлук", type: translit, maps_to: {family: ms_office}, note: "Microsoft Outlook"}
+- {term: "мойофис", type: slang, maps_to: {vendor: myoffice}, note: "МойОфис"}
+- {term: "р7 офис", type: slang, maps_to: {family: r7_office}, note: "Р7-Офис"}
+- {term: "р7-офис", type: slang, maps_to: {family: r7_office}, note: "Р7-Офис"}
+
+# --- Операционные системы: Astra Linux, РЕД ОС, Альт, Windows ---
+- {term: "астра", type: slang, maps_to: {vendor: astra_group}, note: "Группа Астра / Astra Linux"}
+- {term: "астра линукс", type: translit, maps_to: {family: astra_linux_se}, note: "Astra Linux Special Edition"}
+- {term: "астра се", type: abbr, maps_to: {family: astra_linux_se}, note: "Astra Linux Special Edition"}
+- {term: "алсе", type: abbr, maps_to: {family: astra_linux_se}, note: "ALSE (Astra Linux Special Edition)"}
+- {term: "ред ос", type: slang, maps_to: {family: red_os}, note: "РЕД ОС"}
+- {term: "альт линукс", type: translit, maps_to: {vendor: basealt}, note: "ОС Альт (Базальт СПО)"}
+- {term: "альт ос", type: slang, maps_to: {vendor: basealt}, note: "ОС Альт (Базальт СПО)"}
+- {term: "вин сервер", type: slang, maps_to: {family: windows_server}, note: "Windows Server"}
+- {term: "виндовс сервер", type: translit, maps_to: {family: windows_server}, note: "Windows Server"}
+- {term: "вин 10", type: slang, maps_to: {family: windows_10}, note: "Windows 10"}
+- {term: "вин 11", type: slang, maps_to: {family: windows_11}, note: "Windows 11"}
+- {term: "виндус", type: typo, maps_to: {platform: windows}, note: "Опечатка: Windows"}
+- {term: "винда 10", type: slang, maps_to: {family: windows_10}, note: "Windows 10"}
+- {term: "винда 11", type: slang, maps_to: {family: windows_11}, note: "Windows 11"}
+- {term: "виндоус сервер 2022", type: translit, maps_to: {family: windows_server}, note: "Windows Server 2022"}
+
+# --- Антивирусы и ИБ: Kaspersky, Dr.Web, КриптоПро, MaxPatrol, Сканер-ВС ---
+- {term: "антивир", type: typo, maps_to: {category: endpoint_security}, note: "Сокращение/опечатка: антивирус"}
+- {term: "анти вирус", type: typo, maps_to: {category: endpoint_security}, note: "Раздельное написание: антивирус"}
+- {term: "касп", type: slang, maps_to: {vendor: kaspersky}, note: "Kaspersky"}
+- {term: "каспер", type: slang, maps_to: {vendor: kaspersky}, note: "Kaspersky"}
+- {term: "касперский", type: translit, maps_to: {vendor: kaspersky}, note: "Kaspersky"}
+- {term: "касперски", type: translit, maps_to: {vendor: kaspersky}, note: "Kaspersky"}
+- {term: "касперовский", type: typo, maps_to: {vendor: kaspersky}, note: "Опечатка: Kaspersky"}
+- {term: "каспер смолл офис", type: slang, maps_to: {family: kaspersky_ksos}, note: "Kaspersky Small Office Security"}
+- {term: "касперский для малого офиса", type: slang, maps_to: {family: kaspersky_ksos}, note: "Kaspersky Small Office Security"}
+- {term: "драйвер", type: slang, maps_to: {vendor: drweb}, note: "Разговорная автозамена/сленг для Dr.Web"}
+- {term: "доктор веб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "д-р веб", type: abbr, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "др веб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "др.веб", type: translit, maps_to: {vendor: drweb}, note: "Dr.Web"}
+- {term: "дрвэб", type: typo, maps_to: {vendor: drweb}, note: "Опечатка: Dr.Web"}
+- {term: "про32", type: translit, maps_to: {category: endpoint_security}, note: "PRO32"}
+- {term: "макафи", type: translit, maps_to: {category: endpoint_security}, note: "McAfee (присутствует в фиде 650/687)"}
+- {term: "симантек", type: translit, maps_to: {category: endpoint_security}, note: "Symantec (присутствует в фиде 650/687)"}
+- {term: "крипта", type: slang, maps_to: {vendor: cryptopro}, note: "КриптоПро"}
+- {term: "криптопро 5", type: slang, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 5.0"}
+- {term: "криптопро 5.0", type: slang, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 5.0"}
+- {term: "крипто про 5", type: typo, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 5.0"}
+- {term: "крипто про csp", type: typo, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP"}
+- {term: "крипто про csp 5.0", type: typo, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 5.0 (контрольный запрос 30.3)"}
+- {term: "криптопро цсп 5", type: translit, maps_to: {family: cryptopro_csp}, note: "КриптоПро CSP 5.0"}
+- {term: "макс патрол", type: translit, maps_to: {vendor: positive_technologies}, note: "MaxPatrol (Positive Technologies)"}
+- {term: "макспатрол", type: translit, maps_to: {vendor: positive_technologies}, note: "MaxPatrol (Positive Technologies)"}
+- {term: "макс патроль", type: typo, maps_to: {vendor: positive_technologies}, note: "Опечатка: MaxPatrol"}
+- {term: "макспатроль", type: typo, maps_to: {vendor: positive_technologies}, note: "Опечатка: MaxPatrol"}
+- {term: "max patrol", type: typo, maps_to: {vendor: positive_technologies}, note: "MaxPatrol с пробелом (контрольный запрос 30.3)"}
+- {term: "макс патрол сием", type: translit, maps_to: {family: pt_maxpatrol_siem}, note: "MaxPatrol SIEM"}
+- {term: "макс патрол вм", type: translit, maps_to: {family: pt_maxpatrol_vm}, note: "MaxPatrol VM"}
+- {term: "сканер вс", type: slang, maps_to: {category: vuln_mgmt_pentest}, note: "Сканер-ВС (НПО Эшелон)"}
+- {term: "сканер-вс", type: abbr, maps_to: {category: vuln_mgmt_pentest}, note: "Сканер-ВС (НПО Эшелон, контрольный запрос 30.3)"}
+- {term: "сканервс", type: typo, maps_to: {category: vuln_mgmt_pentest}, note: "Сканер-ВС слитно"}
+- {term: "scanner vs", type: translit, maps_to: {category: vuln_mgmt_pentest}, note: "Сканер-ВС латиницей"}
+- {term: "эшелон", type: slang, maps_to: {category: vuln_mgmt_pentest}, note: "НПО Эшелон (Сканер-ВС)"}
+- {term: "рутокен", type: translit, maps_to: {vendor: aktiv_rutoken}, note: "Рутокен (Актив)"}
+- {term: "джакарта", type: translit, maps_to: {family: aladdin_jacarta}, note: "JaCarta (Аладдин Р.Д.)"}
+- {term: "якарта", type: typo, maps_to: {family: aladdin_jacarta}, note: "Опечатка: JaCarta"}
+- {term: "девайслок", type: translit, maps_to: {category: dlp}, note: "Смарт Лайн DeviceLock (фид 4742)"}
+- {term: "трафик инспектор", type: translit, maps_to: {category: ngfw_vpn}, note: "Traffic Inspector / Traffic Inspector NG (фид 233731)"}
+- {term: "керио контрол", type: translit, maps_to: {category: ngfw_vpn}, note: "Kerio Control (фид 3656)"}
+- {term: "стаффкоп", type: translit, maps_to: {family: staffcop_enterprise}, note: "Staffcop Enterprise"}
+- {term: "стафкоп", type: typo, maps_to: {family: staffcop_enterprise}, note: "Опечатка: Staffcop"}
+- {term: "стахановец", type: slang, maps_to: {family: stakhanovets}, note: "Стахановец (фид 46673)"}
+- {term: "ланагент", type: translit, maps_to: {category: employee_monitoring}, note: "LanAgent (фид 46673)"}
+
+# --- Почта, ВКС, МТС Линк, удалённый доступ ---
+- {term: "мдаемон", type: typo, maps_to: {category: mail_servers}, note: "MDaemon Messaging Server (фид 1267, 7413)"}
+- {term: "мдэмон", type: translit, maps_to: {category: mail_servers}, note: "MDaemon Messaging Server"}
+- {term: "мдемон", type: typo, maps_to: {category: mail_servers}, note: "MDaemon Messaging Server"}
+- {term: "мдаемон активсинк", type: translit, maps_to: {category: mail_servers}, note: "MDaemon ActiveSync (фид 7413)"}
+- {term: "зе бат", type: translit, maps_to: {category: email_clients_calendars}, note: "The Bat! (фид 1267)"}
+- {term: "коммунигейт", type: translit, maps_to: {family: communigate_pro}, note: "CommuniGate Pro (фид 222324)"}
+- {term: "комьюнигейт", type: translit, maps_to: {family: communigate_pro}, note: "CommuniGate Pro"}
+- {term: "мтс", type: abbr, maps_to: {family: mts_link_meetings}, note: "МТС Линк в каталоге ПО (контрольный запрос 30.3)"}
+- {term: "мтс линк", type: slang, maps_to: {family: mts_link_meetings}, note: "МТС Линк (бывш. Webinar.ru)"}
+- {term: "мтслинк", type: typo, maps_to: {family: mts_link_meetings}, note: "МТС Линк слитно"}
+- {term: "майчат", type: translit, maps_to: {category: corporate_messengers}, note: "MyChat (фид 7437)"}
+- {term: "энидеск", type: translit, maps_to: {family: anydesk}, note: "AnyDesk (контрольный запрос 30.3)"}
+- {term: "ани деск", type: typo, maps_to: {family: anydesk}, note: "AnyDesk раздельно"}
+- {term: "эни деск", type: typo, maps_to: {family: anydesk}, note: "AnyDesk раздельно"}
+- {term: "тимвивер", type: typo, maps_to: {family: teamviewer}, note: "Опечатка: TeamViewer"}
+- {term: "тим вьювер", type: typo, maps_to: {family: teamviewer}, note: "TeamViewer раздельно"}
+- {term: "радмин", type: translit, maps_to: {category: remote_desktop}, note: "Фаматек Radmin (фид 3205)"}
+- {term: "радамин", type: typo, maps_to: {category: remote_desktop}, note: "Опечатка: Radmin"}
+- {term: "лайтменеджер", type: translit, maps_to: {category: remote_desktop}, note: "LiteManager (фид 327029)"}
+- {term: "рудесктоп", type: translit, maps_to: {family: rudesktop}, note: "RuDesktop (фид 327029)"}
+- {term: "гетскрин", type: translit, maps_to: {category: remote_desktop}, note: "Getscreen.me (фид 327029)"}
+- {term: "амми админ", type: translit, maps_to: {category: remote_desktop}, note: "Ammyy Admin (фид 327030)"}
+
+# --- 1С, учёт, СЭД, бэкап, виртуализация, СУБД ---
+- {term: "1эс", type: slang, maps_to: {vendor: onec}, note: "1С"}
+- {term: "один эс", type: translit, maps_to: {vendor: onec}, note: "1С"}
+- {term: "одинэс", type: slang, maps_to: {vendor: onec}, note: "1С"}
+- {term: "1c", type: typo, maps_to: {vendor: onec}, note: "1С с латинской буквой c"}
+- {term: "директум", type: translit, maps_to: {category: sed_ecm}, note: "Directum RX (фид 354900)"}
+- {term: "директум рх", type: translit, maps_to: {category: sed_ecm}, note: "Directum RX"}
+- {term: "кибер бэкап", type: slang, maps_to: {family: cyber_backup}, note: "Кибер Бэкап (контрольный запрос 30.3)"}
+- {term: "кибербэкап", type: typo, maps_to: {family: cyber_backup}, note: "Кибер Бэкап слитно"}
+- {term: "киберпротект", type: slang, maps_to: {vendor: cyberprotect}, note: "Киберпротект"}
+- {term: "рубекап", type: typo, maps_to: {family: rubackup}, note: "RuBackup (фид 1033)"}
+- {term: "ру бэкап", type: translit, maps_to: {family: rubackup}, note: "RuBackup"}
+- {term: "рубэкап", type: translit, maps_to: {family: rubackup}, note: "RuBackup"}
+- {term: "парагон", type: translit, maps_to: {category: backup_recovery}, note: "Paragon Hard Disk Manager / NTFS (фид 1033, 5584)"}
+- {term: "эр студио", type: translit, maps_to: {category: data_recovery}, note: "R-Studio восстановление данных (фид 5922)"}
+- {term: "брест виртуализация", type: slang, maps_to: {category: server_virtualization}, note: "ПК СВ «Брест» (фид 222321)"}
+- {term: "зверт", type: typo, maps_to: {family: orion_zvirt}, note: "zVirt без ё"}
+- {term: "скала р", type: slang, maps_to: {category: server_virtualization}, note: "СКАЛА-Р (фид 222321)"}
+- {term: "вмваре", type: translit, maps_to: {vendor: vmware_broadcom}, note: "VMware"}
+- {term: "параллелс", type: translit, maps_to: {category: desktop_hypervisors}, note: "Parallels Desktop для macOS (фид 5615)"}
+- {term: "постгрес про", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro (фид 233020)"}
+- {term: "линтер", type: slang, maps_to: {category: rdbms}, note: "СУБД ЛИНТЕР (фид 233020, 402838)"}
+- {term: "ред бд", type: abbr, maps_to: {category: rdbms}, note: "Ред База Данных (фид 402838)"}
+- {term: "оракл", type: translit, maps_to: {family: oracle_db}, note: "Oracle Database"}
+- {term: "макроскоп", type: translit, maps_to: {category: industry_specialized}, note: "MACROSCOP ПО видеонаблюдения (фид 23001)"}
+
+# --- САПР, ГИС, сметы, графика, видео, разработка ---
+- {term: "аутокад", type: typo, maps_to: {family: autocad}, note: "Опечатка: AutoCAD"}
+- {term: "авто кад", type: typo, maps_to: {family: autocad}, note: "AutoCAD раздельно"}
+- {term: "автокад лт", type: translit, maps_to: {family: autocad}, note: "AutoCAD LT"}
+- {term: "нано кад", type: typo, maps_to: {family: nanocad_platform}, note: "nanoCAD раздельно"}
+- {term: "компас", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D (АСКОН)"}
+- {term: "компас-3д", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D"}
+- {term: "компас 3d", type: slang, maps_to: {family: kompas_3d}, note: "КОМПАС-3D"}
+- {term: "аскон", type: slang, maps_to: {family: kompas_3d}, note: "АСКОН (КОМПАС-3D, Pilot-ICE)"}
+- {term: "пилот айс", type: translit, maps_to: {category: mcad_plm}, note: "Pilot-ICE (фид 8983)"}
+- {term: "гранд смета", type: slang, maps_to: {family: grand_smeta}, note: "ПК Гранд-СМЕТА (фид 8983)"}
+- {term: "смета визард", type: translit, maps_to: {category: estimates_construction}, note: "SmetaWIZARD (фид 8983)"}
+- {term: "смета ру", type: translit, maps_to: {category: estimates_construction}, note: "Smeta.RU (фид 8983)"}
+- {term: "кредо", type: slang, maps_to: {category: cad_specialized}, note: "ТИМ КРЕДО (фид 8740)"}
+- {term: "базис мебельщик", type: slang, maps_to: {category: cad_specialized}, note: "Базис 10 (фид 44209)"}
+- {term: "скад", type: translit, maps_to: {category: cae_simulation}, note: "SCAD Office (фид 5683)"}
+- {term: "гис панорама", type: slang, maps_to: {family: gis_panorama}, note: "ГИС Панорама (фид 5674)"}
+- {term: "адоб", type: translit, maps_to: {family: adobe_creative_cloud}, note: "Adobe"}
+- {term: "адоби", type: translit, maps_to: {family: adobe_creative_cloud}, note: "Adobe"}
+- {term: "корел", type: translit, maps_to: {family: coreldraw}, note: "CorelDRAW / Corel"}
+- {term: "корел дро", type: translit, maps_to: {family: coreldraw}, note: "CorelDRAW"}
+- {term: "иллюстратор", type: translit, maps_to: {family: adobe_illustrator}, note: "Adobe Illustrator"}
+- {term: "индизайн", type: translit, maps_to: {category: dtp_publishing}, note: "Adobe InDesign (фид 241)"}
+- {term: "лайтрум", type: translit, maps_to: {category: raster_photo}, note: "Adobe Lightroom (фид 186)"}
+- {term: "афтер эффектс", type: translit, maps_to: {category: video_editing}, note: "Adobe After Effects (фид 495)"}
+- {term: "вирей", type: translit, maps_to: {category: 3d_rendering_animation}, note: "V-Ray (фид 828)"}
+- {term: "вирэй", type: translit, maps_to: {category: 3d_rendering_animation}, note: "V-Ray"}
+- {term: "бартендер", type: translit, maps_to: {category: graphics_media}, note: "BarTender печать штрихкодов (фид 622)"}
+- {term: "лингво", type: translit, maps_to: {category: translation_dictionaries}, note: "ABBYY Lingvo / словари (фид 42)"}
+- {term: "винрар", type: translit, maps_to: {family: winrar}, note: "WinRAR (фид 717)"}
+- {term: "тотал коммандер", type: translit, maps_to: {family: total_commander}, note: "Total Commander (фид 14574)"}
+- {term: "джетбрейнс", type: translit, maps_to: {family: jetbrains_all_products}, note: "JetBrains (фид 414)"}
+- {term: "айспринг", type: translit, maps_to: {family: ispring_suite}, note: "iSpring Suite / LMS (фид 24230, 38838)"}
+
+# ============================================================================
+# 2. ОБОРУДОВАНИЕ КАТАЛОГА STORE.SOFTLINE.RU (attr: hardware_class)
+# ============================================================================
+
+- {term: "рэк сервер", type: translit, maps_to: {attr: hardware_class, value: server}, note: "Rack-серверы (фид 86563)"}
+- {term: "рэк-сервер", type: translit, maps_to: {attr: hardware_class, value: server}, note: "Rack-серверы (фид 86563)"}
+- {term: "стоечный сервер", type: slang, maps_to: {attr: hardware_class, value: server}, note: "Rack-серверы (фид 86563)"}
+- {term: "серверная стойка", type: slang, maps_to: {attr: hardware_class, value: server}, note: "Стойки серверные (фид 87317)"}
+- {term: "лэптоп", type: translit, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
+- {term: "лаптоп", type: translit, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
+- {term: "ноут бук", type: typo, maps_to: {attr: hardware_class, value: laptop}, note: "Ноутбуки (фид 70824)"}
+- {term: "моноблок", type: slang, maps_to: {attr: hardware_class, value: all_in_one}, note: "Моноблоки (фид 73180)"}
+- {term: "минипк", type: abbr, maps_to: {attr: hardware_class, value: mini_pc}, note: "МиниПК (фид 73062)"}
+- {term: "мини пк", type: abbr, maps_to: {attr: hardware_class, value: mini_pc}, note: "МиниПК (фид 73062)"}
+- {term: "неттоп", type: translit, maps_to: {attr: hardware_class, value: mini_pc}, note: "МиниПК / неттопы (фид 73062)"}
+- {term: "десктоп", type: translit, maps_to: {attr: hardware_class, value: desktop}, note: "Десктопы (фид 70187)"}
+- {term: "системник", type: slang, maps_to: {attr: hardware_class, value: desktop}, note: "Системный блок / десктоп (фид 70187)"}
+- {term: "моник", type: slang, maps_to: {attr: hardware_class, value: monitor}, note: "Мониторы (фид 80843)"}
+- {term: "свитч", type: translit, maps_to: {attr: hardware_class, value: switch}, note: "Коммутаторы (фид 85741)"}
+- {term: "свич", type: typo, maps_to: {attr: hardware_class, value: switch}, note: "Коммутаторы (фид 85741)"}
+- {term: "пое коммутатор", type: translit, maps_to: {attr: hardware_class, value: switch}, note: "PoE-коммутаторы (фид 85741)"}
+- {term: "роутер", type: translit, maps_to: {attr: hardware_class, value: router}, note: "Роутеры Wi-Fi и проводные (фид 85353, 86192)"}
+- {term: "вайфай роутер", type: translit, maps_to: {attr: hardware_class, value: router}, note: "Wi-Fi роутеры (фид 85353)"}
+- {term: "точка доступа", type: slang, maps_to: {attr: hardware_class, value: wifi_ap}, note: "Точки доступа Wi-Fi (фид 86348)"}
+- {term: "сфп", type: translit, maps_to: {attr: hardware_class, value: switch}, note: "SFP-трансиверы и медиаконвертеры (фид 86456)"}
+- {term: "патчкорд", type: translit, maps_to: {attr: hardware_class, value: switch}, note: "Сетевые кабели (фид 85719)"}
+- {term: "ибп", type: abbr, maps_to: {attr: hardware_class, value: ups}, note: "Источники бесперебойного питания (фид 82080)"}
+- {term: "упс", type: translit, maps_to: {attr: hardware_class, value: ups}, note: "ИБП / UPS (фид 82080)"}
+- {term: "ups", type: abbr, maps_to: {attr: hardware_class, value: ups}, note: "ИБП / UPS (фид 82080)"}
+- {term: "бесперебойник", type: slang, maps_to: {attr: hardware_class, value: ups}, note: "ИБП (фид 82080)"}
+- {term: "мфу", type: abbr, maps_to: {attr: hardware_class, value: printer_mfp}, note: "Принтеры и МФУ (фид 93995)"}
+- {term: "лазерник", type: slang, maps_to: {attr: hardware_class, value: printer_mfp}, note: "Лазерный принтер / МФУ (фид 93995)"}
+- {term: "плоттер", type: translit, maps_to: {attr: hardware_class, value: plotter}, note: "Плоттеры (фид 98113)"}
+- {term: "шредер", type: translit, maps_to: {attr: hardware_class, value: office_tech}, note: "Уничтожители бумаги (фид 97732)"}
+- {term: "расходка", type: slang, maps_to: {attr: hardware_class, value: printer_consumables}, note: "Расходные материалы для печати (фид 94694)"}
+- {term: "ваком", type: translit, maps_to: {attr: hardware_class, value: graphics_tablet}, note: "Графические планшеты Wacom и др. (фид 98055)"}
+- {term: "нас", type: translit, maps_to: {attr: hardware_class, value: nas_storage}, note: "Сетевые накопители NAS (фид 98190)"}
+- {term: "nas", type: abbr, maps_to: {attr: hardware_class, value: nas_storage}, note: "Сетевые накопители NAS (фид 98190)"}
+- {term: "схд", type: abbr, maps_to: {attr: hardware_class, value: nas_storage}, note: "Системы хранения данных (фид 98412)"}
+- {term: "айпи телефон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "IP-телефоны (фид 84772)"}
+- {term: "сип телефон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "SIP / IP-телефоны (фид 84772)"}
+- {term: "спикерфон", type: translit, maps_to: {attr: hardware_class, value: ip_phone}, note: "Спикерфоны и конференц-связь (фид 85126, 157991)"}
+- {term: "айпи камера", type: translit, maps_to: {attr: hardware_class, value: ip_camera}, note: "IP-видеокамеры (фид 98673)"}
+- {term: "вебка", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Веб-камеры (фид 89623)"}
+- {term: "клава", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Клавиатуры и мыши (фид 82833)"}
+- {term: "мышка", type: slang, maps_to: {attr: hardware_class, value: peripherals}, note: "Компьютерные мыши (фид 82833)"}
+- {term: "докстанция", type: translit, maps_to: {attr: hardware_class, value: laptop_accessories}, note: "Док-станции для ноутбуков (фид 84382)"}
+- {term: "док станция", type: translit, maps_to: {attr: hardware_class, value: laptop_accessories}, note: "Док-станции для ноутбуков (фид 84382)"}
+- {term: "тсд", type: abbr, maps_to: {attr: hardware_class, value: pos_tsd}, note: "Терминалы сбора данных (фид 91840)"}
+- {term: "сканер шк", type: abbr, maps_to: {attr: hardware_class, value: pos_tsd}, note: "Сканеры штрихкодов (фид 91872)"}
+- {term: "пос терминал", type: translit, maps_to: {attr: hardware_class, value: pos_tsd}, note: "POS-моноблоки и мобильные POS (фид 91820, 259933)"}
+- {term: "ссд", type: translit, maps_to: {attr: hardware_class, value: components}, note: "Накопители SSD (фид 79574)"}
+- {term: "ssd", type: abbr, maps_to: {attr: hardware_class, value: components}, note: "Накопители SSD (фид 79574)"}
+- {term: "хдд", type: translit, maps_to: {attr: hardware_class, value: components}, note: "Жёсткие диски HDD (фид 78997)"}
+- {term: "hdd", type: abbr, maps_to: {attr: hardware_class, value: components}, note: "Жёсткие диски HDD (фид 78997)"}
+- {term: "озу", type: abbr, maps_to: {attr: hardware_class, value: components}, note: "Оперативная память (фид 76963)"}
+- {term: "оперативка", type: slang, maps_to: {attr: hardware_class, value: components}, note: "Оперативная память (фид 76963)"}
+- {term: "видюха", type: slang, maps_to: {attr: hardware_class, value: components}, note: "Видеокарты (фид 77963)"}
+- {term: "материнка", type: slang, maps_to: {attr: hardware_class, value: components}, note: "Материнские платы (фид 75936)"}
+- {term: "проц", type: slang, maps_to: {attr: hardware_class, value: components}, note: "Процессоры (фид 74232)"}
+- {term: "флешка", type: slang, maps_to: {attr: hardware_class, value: storage_media}, note: "USB-флешки (фид 90395)"}

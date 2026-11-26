@@ -1,0 +1,1283 @@
+# Правила допродаж («Вам может пригодиться» / «Часто покупают вместе»)
+# для настоящего каталога store.softline.ru (спецификация 30.5).
+#
+# Классы в `when.classes` и `offer.classes` — целочисленные id уровня 2 из
+# `design/proposals/neon4/real-categories.tsv` (только классы с > 0 предложений).
+# Названия в `families` и `vendors` соответствуют фиду store.softline.ru.
+# Источник: `kb` или `vendor_site:<url>` (только подтверждённые/канонические страницы вендоров).
+
+# ==============================================================================
+# 1. ОФИСНЫЕ ПАКЕТЫ (14 правил)
+# ==============================================================================
+
+- id: office_antivirus
+  when: {classes: [1145, 222323, 870], families: [], vendors: [], query_words: []}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "К офисному пакету обычно берут антивирус для защиты рабочих мест"
+  weight: 0.90
+  source: "kb"
+
+- id: office_backup
+  when: {classes: [1145, 222323, 870], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование сохранит рабочие документы при сбое или шифровальщике"
+  weight: 0.80
+  source: "kb"
+
+- id: office_pdf_editor
+  when: {classes: [1145, 222323], families: [], vendors: [], query_words: []}
+  offer: {classes: [180], families: [], vendors: []}
+  reason: "К офисному пакету часто добавляют редактор PDF для договоров и форм"
+  weight: 0.85
+  source: "kb"
+
+- id: office_ocr
+  when: {classes: [1145, 222323], families: [], vendors: [], query_words: []}
+  offer: {classes: [6], families: [], vendors: []}
+  reason: "ПО распознавания переводит бумажные сканы в редактируемые офисные документы"
+  weight: 0.75
+  source: "kb"
+
+- id: ms_office_home_biz_antivirus
+  when: {classes: [1145], families: ["Microsoft Office для дома и бизнеса"], vendors: ["Microsoft"], query_words: ["для дома и бизнеса", "home and business", "office 2021", "office 2024"]}
+  offer: {classes: [650, 3775], families: [], vendors: ["Kaspersky", "Dr.Web"]}
+  reason: "Вместе с Microsoft Office для дома и бизнеса обычно берут антивирус"
+  weight: 0.92
+  source: "kb"
+
+- id: ms_office_excel_utils
+  when: {classes: [1145], families: [], vendors: ["Microsoft"], query_words: ["excel", "эксель", "office"]}
+  offer: {classes: [26650], families: [], vendors: []}
+  reason: "Надстройки и утилиты для Excel ускоряют работу с большими таблицами и отчётами"
+  weight: 0.70
+  source: "kb"
+
+- id: ms_office_visio_project
+  when: {classes: [1145], families: [], vendors: ["Microsoft"], query_words: ["microsoft office", "ms office", "офис"]}
+  offer: {classes: [1145], families: ["Microsoft Visio", "Microsoft Project"], vendors: ["Microsoft"]}
+  reason: "Для схем и календарного планирования офис дополняют Visio и Project"
+  weight: 0.72
+  source: "kb"
+
+- id: ms_office_windows_os
+  when: {classes: [1145], families: [], vendors: ["Microsoft"], query_words: []}
+  offer: {classes: [2050, 445047], families: [], vendors: ["Microsoft"]}
+  reason: "При оснащении новых рабочих мест вместе с Microsoft Office берут лицензию Windows"
+  weight: 0.76
+  source: "kb"
+
+- id: m365_antivirus
+  when: {classes: [1145, 21224], families: ["Microsoft 365"], vendors: ["Microsoft"], query_words: ["365", "microsoft 365", "office 365"]}
+  offer: {classes: [650, 3775, 629], families: [], vendors: []}
+  reason: "К подписке Microsoft 365 обычно добавляют защиту устройств и почты"
+  weight: 0.88
+  source: "kb"
+
+- id: m365_backup
+  when: {classes: [1145, 21224], families: ["Microsoft 365"], vendors: ["Microsoft"], query_words: ["365", "microsoft 365", "office 365"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Независимое резервное копирование страхует облачные файлы и почту"
+  weight: 0.78
+  source: "kb"
+
+- id: ru_office_ru_os
+  when: {classes: [222323], families: [], vendors: ["МойОфис", "Р7-Офис"], query_words: []}
+  offer: {classes: [222320], families: [], vendors: ["Группа Астра", "РЕД СОФТ", "Базальт СПО"]}
+  reason: "Российские офисные пакеты сертифицированы для совместной работы с отечественными ОС"
+  weight: 0.86
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: ru_office_cryptopro
+  when: {classes: [222323], families: [], vendors: [], query_words: []}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "КриптоПро CSP позволяет подписывать офисные документы электронной подписью"
+  weight: 0.78
+  source: "kb"
+
+- id: ru_office_comm_platform
+  when: {classes: [222323], families: [], vendors: [], query_words: []}
+  offer: {classes: [222324], families: [], vendors: []}
+  reason: "В контуре импортозамещения офис дополняют российской коммуникационной платформой"
+  weight: 0.72
+  source: "kb"
+
+- id: ru_office_sed
+  when: {classes: [222323], families: [], vendors: [], query_words: []}
+  offer: {classes: [354900], families: ["Directum RX"], vendors: ["Directum"]}
+  reason: "Офисный пакет интегрируется с системой электронного документооборота"
+  weight: 0.68
+  source: "kb"
+
+# ==============================================================================
+# 2. ОПЕРАЦИОННЫЕ СИСТЕМЫ: ASTRA LINUX, РЕД ОС, АЛЬТ, WINDOWS, LINUX, MACOS (22 правила)
+# ==============================================================================
+
+- id: astra_ald_pro
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [2942, 369], families: ["ALD Pro"], vendors: ["Группа Астра"]}
+  reason: "ALD Pro управляет доменом, политиками и парком рабочих станций на Astra Linux"
+  weight: 0.94
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_linux_av
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [650], families: [], vendors: ["Kaspersky", "Dr.Web"]}
+  reason: "К Astra Linux берут антивирус для Linux, совместимый с режимами защиты ОС"
+  weight: 0.92
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_rubackup
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [1033], families: ["RuBackup"], vendors: ["Группа Астра", "Рубэкап"]}
+  reason: "RuBackup — штатная система резервного копирования из экосистемы Группы Астра"
+  weight: 0.90
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_secret_net_lsp
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [687], families: ["Secret Net LSP", "Secret Net Studio"], vendors: ["Код Безопасности"]}
+  reason: "Secret Net LSP усиливает защиту Astra Linux от НСД и сертифицирован в Ready for Astra"
+  weight: 0.88
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_ru_office
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [222323], families: [], vendors: ["МойОфис", "Р7-Офис"]}
+  reason: "Для рабочих мест на Astra Linux сразу подбирают совместимый российский офисный пакет"
+  weight: 0.86
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_cryptopro
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "КриптоПро CSP обеспечивает работу с ЭП и ГОСТ-шифрованием в среде Astra Linux"
+  weight: 0.84
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_brest_virt
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [222321], families: ["Брест", "ПК СВ «Брест»"], vendors: ["Группа Астра"]}
+  reason: "ПК СВ «Брест» разворачивает защищённую виртуализацию на базе Astra Linux"
+  weight: 0.82
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: astra_cyber_backup
+  when: {classes: [222320], families: ["Astra Linux Special Edition"], vendors: ["Группа Астра"], query_words: ["astra", "астра", "астра линукс"]}
+  offer: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"]}
+  reason: "Кибер Бэкап поддерживает резервное копирование рабочих станций и серверов Astra Linux"
+  weight: 0.80
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: redos_antivirus
+  when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
+  offer: {classes: [650], families: [], vendors: ["Kaspersky", "Dr.Web"]}
+  reason: "Для РЕД ОС доступны сертифицированные антивирусные решения для Linux"
+  weight: 0.90
+  source: "vendor_site:https://redos.red-soft.ru/product/compatibility/"
+
+- id: redos_ru_office
+  when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
+  offer: {classes: [222323], families: [], vendors: ["Р7-Офис", "МойОфис"]}
+  reason: "Р7-Офис и МойОфис подтвердили совместимость с РЕД ОС для офисных рабочих мест"
+  weight: 0.86
+  source: "vendor_site:https://redos.red-soft.ru/product/compatibility/"
+
+- id: redos_cryptopro
+  when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "КриптоПро CSP требуется для работы с электронной подписью и госпорталами в РЕД ОС"
+  weight: 0.84
+  source: "vendor_site:https://redos.red-soft.ru/product/compatibility/"
+
+- id: redos_backup
+  when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
+  offer: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"]}
+  reason: "Кибер Бэкап обеспечивает резервное копирование систем под управлением РЕД ОС"
+  weight: 0.80
+  source: "vendor_site:https://redos.red-soft.ru/product/compatibility/"
+
+- id: redos_red_db
+  when: {classes: [222320], families: ["РЕД ОС"], vendors: ["РЕД СОФТ"], query_words: ["ред ос", "red os", "редос"]}
+  offer: {classes: [402838], families: ["Ред База Данных"], vendors: ["РЕД СОФТ"]}
+  reason: "Ред База Данных входит в единый стек РЕД СОФТ вместе с РЕД ОС"
+  weight: 0.76
+  source: "kb"
+
+- id: alt_linux_av
+  when: {classes: [222320], families: ["Альт Рабочая станция", "Альт Сервер", "Альт СП"], vendors: ["Базальт СПО"], query_words: ["альт", "alt linux", "альт линукс"]}
+  offer: {classes: [650], families: [], vendors: ["Kaspersky", "Dr.Web"]}
+  reason: "К ОС «Альт» подбирают совместимую антивирусную защиту для рабочих мест и серверов"
+  weight: 0.88
+  source: "vendor_site:https://www.basealt.ru/compatibility/"
+
+- id: alt_linux_ru_office
+  when: {classes: [222320], families: ["Альт Рабочая станция", "Альт СП"], vendors: ["Базальт СПО"], query_words: ["альт", "alt linux", "альт рабочая станция"]}
+  offer: {classes: [222323], families: [], vendors: ["МойОфис", "Р7-Офис"]}
+  reason: "Отечественный офисный пакет закрывает базовые задачи пользователей ОС «Альт»"
+  weight: 0.84
+  source: "vendor_site:https://www.basealt.ru/compatibility/"
+
+- id: alt_linux_virt
+  when: {classes: [222320], families: ["Альт Сервер"], vendors: ["Базальт СПО"], query_words: ["альт сервер", "alt server"]}
+  offer: {classes: [222321], families: ["Альт Сервер Виртуализации"], vendors: ["Базальт СПО"]}
+  reason: "Для серверного парка на ОС «Альт» часто добавляют Альт Сервер Виртуализации"
+  weight: 0.78
+  source: "kb"
+
+- id: ru_os_remote_access
+  when: {classes: [222320], families: [], vendors: [], query_words: []}
+  offer: {classes: [327029], families: [], vendors: []}
+  reason: "Российское ПО удалённого доступа упрощает техподдержку рабочих мест на Linux"
+  weight: 0.76
+  source: "kb"
+
+- id: windows_desktop_office
+  when: {classes: [2050, 445047], families: [], vendors: ["Microsoft"], query_words: ["windows 10", "windows 11", "винда", "виндоус"]}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "К операционной системе Windows обычно сразу берут офисный пакет"
+  weight: 0.90
+  source: "kb"
+
+- id: windows_desktop_av
+  when: {classes: [2050, 445047], families: [], vendors: ["Microsoft"], query_words: ["windows 10", "windows 11", "винда", "виндоус"]}
+  offer: {classes: [650, 3775], families: [], vendors: []}
+  reason: "Антивирус защищает рабочую станцию на Windows от вирусов и шифровальщиков"
+  weight: 0.90
+  source: "kb"
+
+- id: windows_desktop_backup
+  when: {classes: [2050, 445047], families: [], vendors: ["Microsoft"], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование позволяет быстро восстановить ОС и пользовательские файлы"
+  weight: 0.76
+  source: "kb"
+
+- id: linux_unix_server_av
+  when: {classes: [5184], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 687], families: [], vendors: []}
+  reason: "Серверы на Linux защищают специализированным антивирусом и средствами ИБ"
+  weight: 0.82
+  source: "kb"
+
+- id: macos_system_av
+  when: {classes: [5615], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 3775], families: [], vendors: ["Kaspersky", "Dr.Web"]}
+  reason: "Для рабочих станций macOS в корпоративной сети также нужна антивирусная защита"
+  weight: 0.76
+  source: "kb"
+
+# ==============================================================================
+# 3. СЕРВЕРНОЕ ПО И СУБД (14 правил)
+# ==============================================================================
+
+- id: win_server_cal
+  when: {classes: [2050, 369], families: ["Windows Server"], vendors: ["Microsoft"], query_words: ["windows server", "вин сервер", "винсервер"]}
+  offer: {classes: [369, 2050], families: ["Microsoft Core CAL", "Windows Server CAL"], vendors: ["Microsoft"]}
+  reason: "Для законного подключения пользователей и устройств к Windows Server нужны клиентские лицензии CAL"
+  weight: 0.95
+  source: "kb"
+
+- id: win_server_rds_cal
+  when: {classes: [2050, 369], families: ["Windows Server"], vendors: ["Microsoft"], query_words: ["windows server", "вин сервер", "терминальный сервер", "rds"]}
+  offer: {classes: [369, 2050], families: ["Windows Server RDS CAL", "Microsoft Core CAL"], vendors: ["Microsoft"]}
+  reason: "Для удалённых рабочих столов на Windows Server требуются лицензии RDS CAL"
+  weight: 0.88
+  source: "kb"
+
+- id: win_server_antivirus
+  when: {classes: [2050, 369], families: ["Windows Server"], vendors: ["Microsoft"], query_words: ["windows server", "вин сервер", "винсервер"]}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Серверный антивирус защищает Windows Server и общие файловые ресурсы"
+  weight: 0.90
+  source: "kb"
+
+- id: win_server_backup
+  when: {classes: [2050, 369], families: ["Windows Server"], vendors: ["Microsoft"], query_words: ["windows server", "вин сервер", "винсервер"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "К Windows Server обязательно добавляют резервное копирование системы и ролей"
+  weight: 0.90
+  source: "kb"
+
+- id: win_server_sql
+  when: {classes: [2050, 369], families: ["Windows Server"], vendors: ["Microsoft"], query_words: ["windows server", "вин сервер"]}
+  offer: {classes: [369, 710], families: ["Microsoft SQL Server Standard Edition", "Microsoft SQL Server CAL"], vendors: ["Microsoft"]}
+  reason: "На Windows Server часто разворачивают Microsoft SQL Server для бизнес-приложений"
+  weight: 0.74
+  source: "kb"
+
+- id: ms_sql_cal
+  when: {classes: [369, 710], families: ["Microsoft SQL Server Standard Edition", "Microsoft SQL Server Enterprise Edition"], vendors: ["Microsoft"], query_words: ["sql server", "ms sql", "mssql"]}
+  offer: {classes: [369], families: ["Microsoft SQL Server CAL"], vendors: ["Microsoft"]}
+  reason: "При лицензировании SQL Server по схеме «Сервер + CAL» нужны клиентские лицензии SQL CAL"
+  weight: 0.93
+  source: "kb"
+
+- id: ms_sql_backup
+  when: {classes: [369, 710], families: ["Microsoft SQL Server Standard Edition", "Microsoft SQL Server Enterprise Edition"], vendors: ["Microsoft"], query_words: ["sql server", "ms sql", "mssql"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование с поддержкой баз данных защищает SQL Server от потери транзакций"
+  weight: 0.88
+  source: "kb"
+
+- id: ms_sql_monitor
+  when: {classes: [369, 710], families: ["Microsoft SQL Server Standard Edition", "Microsoft SQL Server Enterprise Edition"], vendors: ["Microsoft"], query_words: ["sql server", "ms sql", "mssql"]}
+  offer: {classes: [7864], families: ["Red Gate SQL Monitor"], vendors: []}
+  reason: "Инструменты диагностики помогают отслеживать нагрузку и узкие места в СУБД"
+  weight: 0.72
+  source: "kb"
+
+- id: postgres_pro_backup
+  when: {classes: [233020, 402838], families: ["Postgres Pro Enterprise", "Postgres Pro Standard", "Postgres Pro Certified", "Postgres Pro для 1С"], vendors: ["Postgres Professional"], query_words: ["postgres", "постгрес", "пгпро"]}
+  offer: {classes: [1033], families: ["Кибер Бэкап", "RuBackup"], vendors: ["Киберпротект", "Группа Астра"]}
+  reason: "Для промышленной работы Postgres Pro настраивают регулярное резервное копирование БД"
+  weight: 0.88
+  source: "vendor_site:https://postgrespro.ru/products/postgrespro"
+
+- id: postgres_pro_ru_os
+  when: {classes: [233020, 402838], families: ["Postgres Pro Enterprise", "Postgres Pro Standard", "Postgres Pro Certified"], vendors: ["Postgres Professional"], query_words: ["postgres", "постгрес"]}
+  offer: {classes: [222320], families: [], vendors: ["Группа Астра", "РЕД СОФТ", "Базальт СПО"]}
+  reason: "Postgres Pro сертифицирована и оптимизирована для работы на российских серверных ОС"
+  weight: 0.84
+  source: "vendor_site:https://astralinux.ru/ready/"
+
+- id: ru_db_security
+  when: {classes: [233020, 402838], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 4742], families: [], vendors: []}
+  reason: "Серверы баз данных защищают средствами разграничения доступа и аудита ИБ"
+  weight: 0.78
+  source: "kb"
+
+- id: oracle_db_tools
+  when: {classes: [710], families: ["Oracle Database 12c Enterprise Edition", "Oracle Database Standard Edition 2"], vendors: ["Oracle"], query_words: ["oracle"]}
+  offer: {classes: [710], families: ["Allround Automations PL/SQL Developer"], vendors: []}
+  reason: "Для разработки и администрирования Oracle Database часто берут PL/SQL Developer"
+  weight: 0.74
+  source: "kb"
+
+- id: oracle_db_backup
+  when: {classes: [710], families: [], vendors: ["Oracle"], query_words: ["oracle"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Системы бэкапа обеспечивают горячее резервирование баз данных Oracle"
+  weight: 0.84
+  source: "kb"
+
+- id: server_sw_monitoring
+  when: {classes: [369], families: [], vendors: [], query_words: []}
+  offer: {classes: [3205, 7864], families: [], vendors: []}
+  reason: "Мониторинг и диагностика серверов помогают заранее выявлять сбои сервисов"
+  weight: 0.74
+  source: "kb"
+
+# ==============================================================================
+# 4. ВИРТУАЛИЗАЦИЯ И ОБЛАКА (12 правил)
+# ==============================================================================
+
+- id: ru_virt_backup
+  when: {classes: [222321], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: ["Кибер Бэкап", "RuBackup"], vendors: ["Киберпротект", "Группа Астра"]}
+  reason: "К российской платформе виртуализации подбирают совместимое резервное копирование ВМ"
+  weight: 0.92
+  source: "vendor_site:https://cyberprotect.ru/products/backup/"
+
+- id: ru_virt_security
+  when: {classes: [222321], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 650], families: [], vendors: []}
+  reason: "Виртуальные машины и гипервизоры защищают специализированными средствами ИБ"
+  weight: 0.88
+  source: "kb"
+
+- id: ru_virt_ru_os
+  when: {classes: [222321], families: [], vendors: [], query_words: []}
+  offer: {classes: [222320], families: [], vendors: []}
+  reason: "Для развёртывания виртуальных машин потребуются лицензии гостевых российских ОС"
+  weight: 0.84
+  source: "kb"
+
+- id: ru_virt_remote_access
+  when: {classes: [222321], families: [], vendors: [], query_words: []}
+  offer: {classes: [327029, 38945], families: [], vendors: []}
+  reason: "Для VDI и удалённых сессий часто требуются клиенты удалённого доступа и проброс USB"
+  weight: 0.76
+  source: "kb"
+
+- id: virt_backup
+  when: {classes: [2500], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование на уровне гипервизора ускоряет восстановление виртуальных машин"
+  weight: 0.90
+  source: "kb"
+
+- id: virt_security
+  when: {classes: [2500], families: [], vendors: [], query_words: []}
+  offer: {classes: [687], families: ["Kaspersky Security для виртуальных и облачных сред"], vendors: ["Kaspersky"]}
+  reason: "Безагентская или лёгкая защита виртуальных сред снижает нагрузку на хосты"
+  weight: 0.86
+  source: "kb"
+
+- id: virt_monitoring
+  when: {classes: [2500], families: [], vendors: [], query_words: []}
+  offer: {classes: [1140, 3205], families: ["Veeam Management Pack", "Ipswitch WhatsUp Gold TotalView Edition"], vendors: []}
+  reason: "Мониторинг виртуальной инфраструктуры помогает контролировать ресурсы кластера"
+  weight: 0.74
+  source: "kb"
+
+- id: virt_ha_extensions
+  when: {classes: [2500], families: [], vendors: [], query_words: []}
+  offer: {classes: [5202], families: [], vendors: []}
+  reason: "Модули высокой доступности и балансировки повышают отказоустойчивость кластера"
+  weight: 0.70
+  source: "kb"
+
+- id: virt_usb_redirect
+  when: {classes: [2500, 222321], families: [], vendors: [], query_words: ["vdi", "rdp", "виртуализация"]}
+  offer: {classes: [38945], families: [], vendors: []}
+  reason: "Утилиты проброса внешних устройств позволяют подключать токены и сканеры в VDI"
+  weight: 0.72
+  source: "kb"
+
+- id: iaas_backup
+  when: {classes: [257509, 254755], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "К облачной инфраструктуре IaaS подключают резервное копирование виртуальных серверов"
+  weight: 0.84
+  source: "kb"
+
+- id: iaas_security
+  when: {classes: [257509, 254755], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 233731], families: [], vendors: []}
+  reason: "Для защиты облачного периметра и данных добавляют виртуальный NGFW и СЗИ"
+  weight: 0.80
+  source: "kb"
+
+- id: saas_business_av
+  when: {classes: [3550, 10164, 21224], families: [], vendors: [], query_words: []}
+  offer: {classes: [629, 650], families: [], vendors: []}
+  reason: "Облачные бизнес-сервисы дополняют защитой рабочих станций сотрудников"
+  weight: 0.74
+  source: "kb"
+
+# ==============================================================================
+# 5. 1С, БУХГАЛТЕРИЯ, СКЛАД, ТОРГОВЛЯ, КАДРЫ И СЭД (15 правил)
+# ==============================================================================
+
+- id: onec_cryptopro
+  when: {classes: [12792, 11781, 11763, 41962], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс", "бухгалтерия"]}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "КриптоПро CSP необходим для электронной подписи отчётности и ЭДО прямо из 1С"
+  weight: 0.94
+  source: "vendor_site:https://www.cryptopro.ru/products/csp"
+
+- id: onec_tokens
+  when: {classes: [12792], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс", "эцп", "бухгалтерия"]}
+  offer: {classes: [4742], families: ["JaCarta", "Рутокен"], vendors: ["Аладдин Р.Д.", "Актив"]}
+  reason: "Защищённый токен нужен для безопасного хранения ключей электронной подписи бухгалтера"
+  weight: 0.88
+  source: "vendor_site:https://www.cryptopro.ru/products/csp"
+
+- id: onec_reporting
+  when: {classes: [12792], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс", "бухгалтерия"]}
+  offer: {classes: [12792, 180, 444578], families: [], vendors: []}
+  reason: "К учётной системе обычно берут сервисы электронной отчётности и работы с документами"
+  weight: 0.86
+  source: "kb"
+
+- id: onec_backup
+  when: {classes: [12792, 11781, 11763, 41962], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Автоматический бэкап защитит базы 1С и бухгалтерский архив от сбоя диска и вирусов"
+  weight: 0.90
+  source: "kb"
+
+- id: onec_postgres
+  when: {classes: [12792, 11781], families: [], vendors: ["1С"], query_words: ["1с", "сервер 1с", "1с ерп", "1с бухгалтерия"]}
+  offer: {classes: [233020], families: ["Postgres Pro для 1С"], vendors: ["Postgres Professional"]}
+  reason: "Postgres Pro для 1С — сертифицированная СУБД для многопользовательской работы 1С"
+  weight: 0.86
+  source: "vendor_site:https://postgrespro.ru/products/postgrespro"
+
+- id: onec_antivirus
+  when: {classes: [12792, 41962], families: [], vendors: ["1С"], query_words: ["1с", "1c", "1эс", "бухгалтерия"]}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Антивирус защищает рабочее место бухгалтера и финансовые данные от шифровальщиков"
+  weight: 0.86
+  source: "kb"
+
+- id: onec_ocr
+  when: {classes: [12792], families: [], vendors: ["1С"], query_words: ["1с", "бухгалтерия", "первичка"]}
+  offer: {classes: [6, 180], families: [], vendors: []}
+  reason: "ПО распознавания ускоряет ввод бумажных накладных, актов и счетов-фактур"
+  weight: 0.78
+  source: "kb"
+
+- id: accounting_office
+  when: {classes: [12792, 11773], families: [], vendors: [], query_words: []}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "Для выгрузки актов, сверок и финансовых таблиц к бухгалтерскому ПО нужен офисный пакет"
+  weight: 0.78
+  source: "kb"
+
+- id: warehouse_tsd_scanner
+  when: {classes: [11781], families: [], vendors: [], query_words: []}
+  offer: {classes: [91840, 91872], families: [], vendors: []}
+  reason: "ТСД и сканеры штрихкодов ускоряют приёмку, отгрузку и инвентаризацию на складе"
+  weight: 0.88
+  source: "kb"
+
+- id: warehouse_label_printer
+  when: {classes: [11781], families: [], vendors: [], query_words: []}
+  offer: {classes: [91774, 622], families: ["BarTender"], vendors: []}
+  reason: "Принтер этикеток и ПО печати штрихкодов нужны для маркировки складских позиций"
+  weight: 0.84
+  source: "kb"
+
+- id: retail_pos_equipment
+  when: {classes: [11763], families: [], vendors: [], query_words: []}
+  offer: {classes: [91820, 91872, 91774], families: [], vendors: []}
+  reason: "К торговому ПО сразу подбирают POS-моноблок, сканер штрихкодов и чековый принтер"
+  weight: 0.88
+  source: "kb"
+
+- id: retail_marking_service
+  when: {classes: [11763, 11781], families: [], vendors: [], query_words: []}
+  offer: {classes: [444578], families: [], vendors: []}
+  reason: "Юридическое и методологическое сопровождение помогает корректно внедрить «Честный знак»"
+  weight: 0.72
+  source: "kb"
+
+- id: hr_kedo_cryptopro
+  when: {classes: [41962], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 4742], families: ["КриптоПро CSP", "JaCarta", "Рутокен"], vendors: ["КриптоПро", "Аладдин Р.Д.", "Актив"]}
+  reason: "Для кадрового ЭДО и сдачи отчётности в СФР требуются СКЗИ и носители ЭП"
+  weight: 0.84
+  source: "kb"
+
+- id: sed_cryptopro
+  when: {classes: [354900, 769], families: ["Directum RX"], vendors: [], query_words: []}
+  offer: {classes: [687, 4742], families: ["КриптоПро CSP"], vendors: ["КриптоПро", "Аладдин Р.Д.", "Актив"]}
+  reason: "Для юридически значимого документооборота в СЭД нужны КриптоПро и ключевые носители"
+  weight: 0.88
+  source: "kb"
+
+- id: finance_planning_office
+  when: {classes: [11529], families: [], vendors: [], query_words: []}
+  offer: {classes: [1145, 26650], families: [], vendors: []}
+  reason: "Программы бизнес-планирования и финмоделирования часто работают в связке с Excel"
+  weight: 0.76
+  source: "kb"
+
+# ==============================================================================
+# 6. САПР, BIM, ГИС, СМЕТЫ И ИНЖЕНЕРНОЕ ПО (16 правил)
+# ==============================================================================
+
+- id: cad_pdm_docflow
+  when: {classes: [8842, 6718, 5768, 8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [8983], families: ["Pilot-ICE", "CIMCO PDM"], vendors: []}
+  reason: "PDM и инженерный документооборот упорядочивают версии чертежей и согласование проектов"
+  weight: 0.88
+  source: "kb"
+
+- id: cad_viewers
+  when: {classes: [8842, 6718, 5768, 8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [9892, 180], families: ["ABViewer"], vendors: []}
+  reason: "Просмотрщики DWG/DXF и PDF-редакторы нужны смежникам и руководителям без полной лицензии САПР"
+  weight: 0.84
+  source: "kb"
+
+- id: cad_workstation_gpu
+  when: {classes: [8842, 6718, 5768, 8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [77963, 70187, 80843], families: [], vendors: []}
+  reason: "Для комфортного 3D-проектирования берут производительный ПК, видеокарту и крупный монитор"
+  weight: 0.82
+  source: "kb"
+
+- id: cad_plotter
+  when: {classes: [6718, 8816, 8740], families: [], vendors: [], query_words: []}
+  offer: {classes: [98113], families: [], vendors: []}
+  reason: "Широкоформатный плоттер позволяет печатать строительные и проектные чертежи форматов A1–A0"
+  weight: 0.78
+  source: "kb"
+
+- id: cad_backup
+  when: {classes: [8842, 6718, 5768, 8816, 8983], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование защищает инженерные архивы и многомесячные проекты САПР"
+  weight: 0.82
+  source: "kb"
+
+- id: kompas_pilot_ice
+  when: {classes: [8842], families: ["КОМПАС-3D V25"], vendors: ["АСКОН"], query_words: ["компас", "kompas", "аскон"]}
+  offer: {classes: [8983], families: ["Pilot-ICE"], vendors: ["АСКОН"]}
+  reason: "Pilot-ICE организует коллективную работу и архив чертежей для команд на КОМПАС-3D"
+  weight: 0.90
+  source: "kb"
+
+- id: nanocad_point_cloud
+  when: {classes: [5768, 6718], families: ["nanoCAD"], vendors: ["Нанософт"], query_words: ["нанокад", "nanocad"]}
+  offer: {classes: [410746], families: ["nanoCAD Облака точек"], vendors: ["Нанософт"]}
+  reason: "Модуль «nanoCAD Облака точек» добавляет работу с данными лазерного сканирования"
+  weight: 0.82
+  source: "kb"
+
+- id: construction_cad_estimates
+  when: {classes: [6718, 8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [8983], families: ["ПК Гранд-СМЕТА", "Визардсофт SmetaWIZARD", "Smeta.RU"], vendors: []}
+  reason: "Строительные проекты сразу обсчитывают в сметных программах"
+  weight: 0.86
+  source: "kb"
+
+- id: construction_cad_fire_safety
+  when: {classes: [6718, 8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [35626], families: ["Fenix+ 3", "CSoft Project StudioCS ОПС"], vendors: []}
+  reason: "Для прохождения экспертизы проектной документации нужен расчёт пожарных рисков и ОПС"
+  weight: 0.74
+  source: "kb"
+
+- id: arch_cad_visualization
+  when: {classes: [8816], families: [], vendors: [], query_words: []}
+  offer: {classes: [8962, 828], families: ["Artlantis", "V-Ray"], vendors: []}
+  reason: "Программы визуализации превращают архитектурную модель в фотореалистичную презентацию"
+  weight: 0.84
+  source: "kb"
+
+- id: cad_raster_vectorizers
+  when: {classes: [5768, 6718, 8740], families: [], vendors: [], query_words: []}
+  offer: {classes: [5683], families: ["Autodesk AutoCAD Raster Design", "ТИМ КРЕДО ТРАНСФОРМ"], vendors: []}
+  reason: "Векторизаторы переводят отсканированные бумажные чертежи и планы в формат САПР"
+  weight: 0.76
+  source: "kb"
+
+- id: cad_calc_cae
+  when: {classes: [8842, 5768], families: [], vendors: [], query_words: []}
+  offer: {classes: [265370, 9494], families: [], vendors: []}
+  reason: "Расчётные системы и инженерные калькуляторы проверяют прочность и физические режимы изделий"
+  weight: 0.76
+  source: "kb"
+
+- id: gis_cartography
+  when: {classes: [5674], families: [], vendors: [], query_words: []}
+  offer: {classes: [262028, 262026, 5683], families: [], vendors: []}
+  reason: "К ГИС-платформе часто добавляют модули картографии, кадастра и векторизации снимков"
+  weight: 0.82
+  source: "kb"
+
+- id: gis_infra_credo
+  when: {classes: [8740], families: [], vendors: [], query_words: []}
+  offer: {classes: [5674, 410746], families: [], vendors: []}
+  reason: "Проекты изысканий и генплана дополняют ГИС и обработкой облаков точек"
+  weight: 0.78
+  source: "kb"
+
+- id: furniture_cad_render
+  when: {classes: [44209], families: [], vendors: [], query_words: []}
+  offer: {classes: [828, 8962], families: [], vendors: []}
+  reason: "3D-визуализация помогает показывать заказчикам готовые мебельные интерьеры"
+  weight: 0.76
+  source: "kb"
+
+- id: cad_antivirus
+  when: {classes: [5768, 6718, 8842], families: [], vendors: [], query_words: []}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Защита рабочих станций инженеров предотвращает утечку и шифрование чертежей"
+  weight: 0.72
+  source: "kb"
+
+# ==============================================================================
+# 7. ГРАФИКА, ДИЗАЙН, МУЛЬТИМЕДИА, PDF И OCR (12 правил)
+# ==============================================================================
+
+- id: graphics_3d_render
+  when: {classes: [241], families: [], vendors: [], query_words: []}
+  offer: {classes: [828], families: [], vendors: []}
+  reason: "К графическим редакторам часто берут ПО для 3D-моделирования и рендеринга"
+  weight: 0.80
+  source: "kb"
+
+- id: graphics_photo_edit
+  when: {classes: [241], families: [], vendors: [], query_words: []}
+  offer: {classes: [186], families: [], vendors: []}
+  reason: "Каталогизация и пакетная цветокоррекция фото дополняют основной графический редактор"
+  weight: 0.76
+  source: "kb"
+
+- id: graphics_tablet
+  when: {classes: [241, 828, 186], families: [], vendors: [], query_words: []}
+  offer: {classes: [98055], families: [], vendors: []}
+  reason: "Графический планшет ускоряет ретушь, иллюстрацию и скульптуринг"
+  weight: 0.82
+  source: "kb"
+
+- id: graphics_monitor_gpu
+  when: {classes: [241, 828, 495], families: [], vendors: [], query_words: []}
+  offer: {classes: [80843, 77963], families: [], vendors: []}
+  reason: "Монитор с точной цветопередачей и мощная видеокарта ускоряют работу с графикой и видео"
+  weight: 0.78
+  source: "kb"
+
+- id: graphics_pdf_dtp
+  when: {classes: [241, 352], families: [], vendors: [], query_words: []}
+  offer: {classes: [180], families: ["Adobe Acrobat Professional", "Adobe Acrobat Standard"], vendors: []}
+  reason: "Редактор PDF необходим для предпечатной проверки макетов и передачи в типографию"
+  weight: 0.82
+  source: "kb"
+
+- id: video_audio_edit
+  when: {classes: [495], families: [], vendors: [], query_words: []}
+  offer: {classes: [527, 224], families: [], vendors: []}
+  reason: "К видеоредактору часто добавляют аудиоредактор для чистки звука и конвертер форматов"
+  weight: 0.82
+  source: "kb"
+
+- id: video_ssd_storage
+  when: {classes: [495, 828], families: [], vendors: [], query_words: []}
+  offer: {classes: [79574, 90092, 98190], families: [], vendors: []}
+  reason: "Быстрый SSD или сетевой накопитель нужен для хранения тяжёлых исходников и рендеров"
+  weight: 0.80
+  source: "kb"
+
+- id: pdf_ocr
+  when: {classes: [180], families: [], vendors: [], query_words: []}
+  offer: {classes: [6], families: [], vendors: []}
+  reason: "Распознавание текста переводит сканированные PDF в документы с поиском и правкой"
+  weight: 0.84
+  source: "kb"
+
+- id: pdf_cryptopro
+  when: {classes: [180], families: [], vendors: [], query_words: []}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "КриптоПро CSP позволяет ставить квалифицированную электронную подпись в PDF"
+  weight: 0.80
+  source: "kb"
+
+- id: ocr_scanner
+  when: {classes: [6], families: [], vendors: [], query_words: []}
+  offer: {classes: [94641], families: [], vendors: []}
+  reason: "Потоковый или документный сканер ускоряет оцифровку бумажных архивов в ПО OCR"
+  weight: 0.82
+  source: "kb"
+
+- id: ocr_text_converters
+  when: {classes: [6], families: [], vendors: [], query_words: []}
+  offer: {classes: [18, 180], families: [], vendors: []}
+  reason: "Редакторы PDF и текстовые конвертеры помогают оформлять и сравнивать распознанные документы"
+  weight: 0.74
+  source: "kb"
+
+- id: diagrams_office
+  when: {classes: [20725, 131716], families: [], vendors: [], query_words: []}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "Диаграммы и схемы обычно вставляют в презентации и регламенты офисного пакета"
+  weight: 0.70
+  source: "kb"
+
+# ==============================================================================
+# 8. АНТИВИРУСЫ, ИБ, MAXPATROL, СКАНЕР-ВС, КРИПТОПРО И ЭП (20 правил)
+# ==============================================================================
+
+- id: av_org_backup
+  when: {classes: [650], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование дополняет антивирус и гарантирует восстановление после атак шифровальщиков"
+  weight: 0.90
+  source: "kb"
+
+- id: av_org_ngfw
+  when: {classes: [650], families: [], vendors: [], query_words: []}
+  offer: {classes: [233731, 3656], families: [], vendors: []}
+  reason: "Межсетевой экран закрывает периметр сети в дополнение к защите рабочих станций"
+  weight: 0.84
+  source: "kb"
+
+- id: av_org_dlp_monitoring
+  when: {classes: [650], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 46673], families: [], vendors: []}
+  reason: "Для комплексной ИБ к антивирусу добавляют защиту от утечек данных и контроль персонала"
+  weight: 0.78
+  source: "kb"
+
+- id: ksos_office
+  when: {classes: [650], families: ["Kaspersky Small Office Security"], vendors: ["Kaspersky"], query_words: ["small office", "ksos", "ксос"]}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "Малые офисы часто закупают офисный пакет вместе с Kaspersky Small Office Security"
+  weight: 0.84
+  source: "vendor_site:https://www.kaspersky.ru/small-to-medium-business-security"
+
+- id: ksos_backup
+  when: {classes: [650], families: ["Kaspersky Small Office Security"], vendors: ["Kaspersky"], query_words: ["small office", "ksos", "ксос"]}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование защищает рабочие ПК и файловый сервер небольшого офиса"
+  weight: 0.86
+  source: "kb"
+
+- id: av_home_office
+  when: {classes: [3775], families: [], vendors: [], query_words: []}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "К домашнему антивирусу часто берут офисный пакет для учёбы и работы из дома"
+  weight: 0.80
+  source: "kb"
+
+- id: av_home_mobile
+  when: {classes: [3775], families: [], vendors: [], query_words: []}
+  offer: {classes: [4008, 121467], families: [], vendors: []}
+  reason: "Вместе с защитой ПК часто подключают защиту смартфонов и планшетов"
+  weight: 0.76
+  source: "kb"
+
+- id: cryptopro_tokens
+  when: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"], query_words: ["криптопро", "крипто про", "cryptopro", "csp"]}
+  offer: {classes: [4742], families: ["JaCarta", "Рутокен"], vendors: ["Аладдин Р.Д.", "Актив"]}
+  reason: "Для хранения закрытых ключей КриптоПро CSP требуются сертифицированные USB-токены"
+  weight: 0.94
+  source: "vendor_site:https://www.cryptopro.ru/products/csp"
+
+- id: cryptopro_pdf_docs
+  when: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"], query_words: ["криптопро", "крипто про", "cryptopro", "csp"]}
+  offer: {classes: [180], families: [], vendors: []}
+  reason: "Редактор PDF позволяет подписывать и проверять электронные документы с КриптоПро"
+  weight: 0.84
+  source: "kb"
+
+- id: cryptopro_mobile
+  when: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"], query_words: ["криптопро", "крипто про", "cryptopro", "csp"]}
+  offer: {classes: [121467], families: ["КриптоПро «Защищенная мобильность»"], vendors: ["КриптоПро"]}
+  reason: "Для работы с ЭП и защищёнными каналами на смартфонах берут КриптоПро «Защищённая мобильность»"
+  weight: 0.74
+  source: "kb"
+
+- id: cryptopro_av
+  when: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"], query_words: ["криптопро", "крипто про", "cryptopro", "csp"]}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Рабочие места с ключами ЭП и клиент-банком обязательно защищают антивирусом"
+  weight: 0.82
+  source: "kb"
+
+- id: tokens_cryptopro
+  when: {classes: [4742], families: ["JaCarta", "Рутокен"], vendors: ["Аладдин Р.Д.", "Актив"], query_words: ["jacarta", "джакарта", "рутокен", "rutoken"]}
+  offer: {classes: [687], families: ["КриптоПро CSP"], vendors: ["КриптоПро"]}
+  reason: "Для работы с ЭП на токенах JaCarta и Рутокен на ПК устанавливают криптопровайдер КриптоПро CSP"
+  weight: 0.94
+  source: "vendor_site:https://www.cryptopro.ru/products/csp"
+
+- id: maxpatrol_av_edr
+  when: {classes: [687, 4352], families: ["MaxPatrol"], vendors: ["Positive Technologies"], query_words: ["maxpatrol", "max patrol", "макспатрол", "макс патрол"]}
+  offer: {classes: [650, 233731], families: [], vendors: []}
+  reason: "Вместе с MaxPatrol выстраивают защиту конечных точек и межсетевое экранирование"
+  weight: 0.84
+  source: "kb"
+
+- id: maxpatrol_security_training
+  when: {classes: [687, 4352], families: ["MaxPatrol"], vendors: ["Positive Technologies"], query_words: ["maxpatrol", "max patrol", "макспатрол", "макс патрол"]}
+  offer: {classes: [171505, 38838], families: [], vendors: []}
+  reason: "Повышение осведомлённости сотрудников снижает число инцидентов, фиксируемых в SOC"
+  weight: 0.74
+  source: "kb"
+
+- id: scanner_vs_infosec
+  when: {classes: [687, 4352], families: ["Сканер-ВС"], vendors: ["НПО Эшелон", "Эшелон"], query_words: ["сканер-вс", "сканер вс", "сканервс"]}
+  offer: {classes: [650, 233731, 4742], families: [], vendors: []}
+  reason: "Для закрытия уязвимостей, найденных Сканер-ВС, применяют СЗИ, антивирусы и межсетевые экраны"
+  weight: 0.84
+  source: "kb"
+
+- id: ngfw_av
+  when: {classes: [233731], families: [], vendors: [], query_words: []}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Межсетевой экран дополняют антивирусной защитой конечных рабочих станций и серверов"
+  weight: 0.86
+  source: "kb"
+
+- id: ngfw_access_control
+  when: {classes: [233731], families: [], vendors: [], query_words: []}
+  offer: {classes: [4742], families: [], vendors: []}
+  reason: "К межсетевому экрану и VPN добавляют средства двухфакторной аутентификации"
+  weight: 0.80
+  source: "kb"
+
+- id: infosec_152fz_legal
+  when: {classes: [687, 46673], families: [], vendors: [], query_words: []}
+  offer: {classes: [444578, 171505], families: [], vendors: []}
+  reason: "Технические средства защиты ПДн дополняют юридическим сопровождением по 152-ФЗ и обучением"
+  weight: 0.72
+  source: "kb"
+
+- id: mobile_sec_mdm
+  when: {classes: [4008, 121467], families: [], vendors: [], query_words: []}
+  offer: {classes: [5984], families: [], vendors: []}
+  reason: "MDM-платформа позволяет централизованно управлять корпоративными смартфонами и политиками ИБ"
+  weight: 0.76
+  source: "kb"
+
+- id: ssl_site_mail
+  when: {classes: [6788, 1267, 222324], families: [], vendors: [], query_words: []}
+  offer: {classes: [40863], families: [], vendors: []}
+  reason: "Для шифрования трафика веб-порталов и почтовых серверов выпускают SSL-сертификаты"
+  weight: 0.74
+  source: "kb"
+
+# ==============================================================================
+# 9. РЕЗЕРВНОЕ КОПИРОВАНИЕ, ВОССТАНОВЛЕНИЕ И УТИЛИТЫ (8 правил)
+# ==============================================================================
+
+- id: cyber_backup_av
+  when: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"], query_words: ["кибер бэкап", "кибербэкап", "cyber backup"]}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Кибер Бэкап работает в паре с антивирусом для комплексной защиты от шифровальщиков"
+  weight: 0.88
+  source: "vendor_site:https://cyberprotect.ru/products/backup/"
+
+- id: cyber_backup_nas_storage
+  when: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"], query_words: ["кибер бэкап", "кибербэкап", "cyber backup"]}
+  offer: {classes: [98190, 98412], families: [], vendors: []}
+  reason: "Для хранения резервных копий Кибер Бэкап обычно выделяют отдельный NAS или СХД"
+  weight: 0.86
+  source: "vendor_site:https://cyberprotect.ru/products/backup/"
+
+- id: backup_nas_storage
+  when: {classes: [1033], families: [], vendors: [], query_words: []}
+  offer: {classes: [98190, 98412, 90092], families: [], vendors: []}
+  reason: "Отдельное хранилище NAS, СХД или внешний диск изолирует резервные копии от основного сервера"
+  weight: 0.86
+  source: "kb"
+
+- id: backup_ups
+  when: {classes: [1033], families: [], vendors: [], query_words: []}
+  offer: {classes: [82080], families: [], vendors: []}
+  reason: "ИБП предотвращает обрыв резервного копирования и повреждение архивов при скачках сети"
+  weight: 0.74
+  source: "kb"
+
+- id: backup_data_recovery
+  when: {classes: [1033], families: [], vendors: [], query_words: []}
+  offer: {classes: [5922], families: [], vendors: []}
+  reason: "Утилиты восстановления данных выручают при сбое носителей, не попавших в расписание бэкапа"
+  weight: 0.68
+  source: "kb"
+
+- id: data_recovery_backup
+  when: {classes: [5922], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "После восстановления потерянных файлов обычно сразу настраивают регулярное резервное копирование"
+  weight: 0.88
+  source: "kb"
+
+- id: disk_wipe_infosec
+  when: {classes: [33460, 5593], families: [], vendors: [], query_words: []}
+  offer: {classes: [687, 4742], families: [], vendors: []}
+  reason: "Гарантированное удаление данных дополняют контролем носителей и защитой информации"
+  weight: 0.72
+  source: "kb"
+
+- id: file_manager_archiver
+  when: {classes: [14574], families: [], vendors: [], query_words: []}
+  offer: {classes: [717], families: [], vendors: []}
+  reason: "К файловому менеджеру удобно добавить коммерческий архиватор для обмена большими папками"
+  weight: 0.72
+  source: "kb"
+
+# ==============================================================================
+# 10. УДАЛЁННЫЙ ДОСТУП, ВКС, МТС ЛИНК, ПОЧТА, ТЕЛЕФОНИЯ, ОБУЧЕНИЕ, РАЗРАБОТКА (15 правил)
+# ==============================================================================
+
+- id: anydesk_av
+  when: {classes: [327030], families: ["AnyDesk"], vendors: ["AnyDesk"], query_words: ["anydesk", "анидеск", "энидеск"]}
+  offer: {classes: [650, 4742], families: [], vendors: []}
+  reason: "При организации удалённого доступа через AnyDesk усиливают защиту ПК и контроль входа"
+  weight: 0.86
+  source: "kb"
+
+- id: remote_access_av
+  when: {classes: [327029, 327030], families: [], vendors: [], query_words: []}
+  offer: {classes: [650], families: [], vendors: []}
+  reason: "Удалённые рабочие места и серверы администрирования требуют актуального антивируса"
+  weight: 0.84
+  source: "kb"
+
+- id: remote_access_usb_redirect
+  when: {classes: [327029, 327030], families: [], vendors: [], query_words: []}
+  offer: {classes: [38945], families: [], vendors: []}
+  reason: "ПО проброса USB позволяет использовать токены ЭП и принтеры в удалённой сессии"
+  weight: 0.78
+  source: "kb"
+
+- id: remote_access_staff_control
+  when: {classes: [327029, 327030], families: [], vendors: [], query_words: []}
+  offer: {classes: [46673], families: [], vendors: []}
+  reason: "Для контроля продуктивности и безопасности удалённых команд добавляют мониторинг персонала"
+  weight: 0.74
+  source: "kb"
+
+- id: remote_access_vks
+  when: {classes: [327029, 327030], families: [], vendors: [], query_words: []}
+  offer: {classes: [7437, 222324, 22298], families: [], vendors: []}
+  reason: "Для синхронной работы распределённых команд к удалённому доступу добавляют ВКС и мессенджер"
+  weight: 0.76
+  source: "kb"
+
+- id: mts_link_hardware
+  when: {classes: [7437, 38838, 22298], families: ["МТС Линк", "МТС Линк Курсы"], vendors: ["МТС Линк"], query_words: ["мтс", "мтс линк", "вебинар"]}
+  offer: {classes: [89623, 88831, 85126, 157991], families: [], vendors: []}
+  reason: "Для встреч и вебинаров в МТС Линк обычно берут веб-камеры, гарнитуры и спикерфоны"
+  weight: 0.90
+  source: "kb"
+
+- id: mts_link_lms_courses
+  when: {classes: [7437, 22298], families: ["МТС Линк"], vendors: ["МТС Линк"], query_words: ["мтс", "мтс линк"]}
+  offer: {classes: [38838, 24230], families: ["МТС Линк Курсы", "iSpring Suite"], vendors: []}
+  reason: "Вебинары часто дополняют платформой онлайн-курсов и конструктором тестов"
+  weight: 0.80
+  source: "kb"
+
+- id: vks_comm_headset_cam
+  when: {classes: [7437, 222324, 22298], families: [], vendors: [], query_words: []}
+  offer: {classes: [88831, 89623, 85126], families: [], vendors: []}
+  reason: "Качественная гарнитура, веб-камера или спикерфон улучшают звук и видео на созвонах"
+  weight: 0.84
+  source: "kb"
+
+- id: mail_server_antispam
+  when: {classes: [1267, 7413, 222324], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 687], families: [], vendors: []}
+  reason: "Почтовый сервер защищают антивирусом и фильтрацией спама и фишинговых вложений"
+  weight: 0.88
+  source: "kb"
+
+- id: mdaemon_activesync
+  when: {classes: [1267], families: ["MDaemon Messaging Server"], vendors: ["MDaemon", "Alt-N Technologies"], query_words: ["mdaemon", "мдаемон", "мдэмон"]}
+  offer: {classes: [7413], families: ["MDaemon ActiveSync"], vendors: []}
+  reason: "Модуль MDaemon ActiveSync синхронизирует почту, контакты и календари с мобильными устройствами"
+  weight: 0.90
+  source: "kb"
+
+- id: mail_server_backup
+  when: {classes: [1267, 222324], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "Резервное копирование почтового сервера сохраняет корпоративную переписку при сбое"
+  weight: 0.84
+  source: "kb"
+
+- id: ip_telephony_phones
+  when: {classes: [6035, 7388], families: [], vendors: [], query_words: []}
+  offer: {classes: [84772, 84931, 88831], families: [], vendors: []}
+  reason: "К программной IP-АТС подбирают настольные IP-телефоны, VoIP-шлюзы и гарнитуры операторов"
+  weight: 0.88
+  source: "kb"
+
+- id: lms_vks_webinars
+  when: {classes: [38838, 5958, 24230], families: [], vendors: [], query_words: []}
+  offer: {classes: [7437, 89623, 88831], families: [], vendors: []}
+  reason: "Дистанционное обучение дополняют сервисом вебинаров, веб-камерами и гарнитурами"
+  weight: 0.78
+  source: "kb"
+
+- id: dev_tools_db_git
+  when: {classes: [414], families: [], vendors: [], query_words: []}
+  offer: {classes: [710, 233020, 3252], families: [], vendors: []}
+  reason: "Командам разработки к IDE часто нужны СУБД, Git-репозиторий и библиотеки компонентов"
+  weight: 0.78
+  source: "kb"
+
+- id: it_asset_remote_av
+  when: {classes: [23336], families: [], vendors: [], query_words: []}
+  offer: {classes: [327029, 3205, 650], families: [], vendors: []}
+  reason: "Системы учёта ПК дополняют средствами удалённого администрирования и централизованной защиты"
+  weight: 0.74
+  source: "kb"
+
+# ==============================================================================
+# 11. ОБОРУДОВАНИЕ → ПО И СОПУТСТВУЮЩИЕ ТОВАРЫ (28 правил)
+# ==============================================================================
+
+- id: hw_server_os
+  when: {classes: [86563, 87417, 87268], families: [], vendors: [], query_words: []}
+  offer: {classes: [222320, 2050, 5184], families: [], vendors: []}
+  reason: "Для запуска нового сервера потребуется лицензия серверной операционной системы"
+  weight: 0.94
+  source: "kb"
+
+- id: hw_server_virt
+  when: {classes: [86563, 87417], families: [], vendors: [], query_words: []}
+  offer: {classes: [222321, 2500], families: [], vendors: []}
+  reason: "ПО виртуализации позволяет разместить несколько виртуальных серверов на одном физическом узле"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_server_backup
+  when: {classes: [86563, 87417, 87268], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: [], vendors: []}
+  reason: "К серверному оборудованию сразу берут систему резервного копирования"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_server_ups
+  when: {classes: [86563, 87417, 87317], families: [], vendors: [], query_words: []}
+  offer: {classes: [82080], families: [], vendors: []}
+  reason: "ИБП защищает сервер и данные от внезапного отключения электричества"
+  weight: 0.92
+  source: "kb"
+
+- id: hw_server_av
+  when: {classes: [86563, 87417], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 687], families: [], vendors: []}
+  reason: "Серверный антивирус и средства защиты информации закрывают сервер от атак"
+  weight: 0.84
+  source: "kb"
+
+- id: hw_server_options_rack
+  when: {classes: [86563, 87417], families: [], vendors: [], query_words: []}
+  offer: {classes: [87956, 87324, 87317], families: [], vendors: []}
+  reason: "Для монтажа и расширения сервера подбирают стойку, рельсы и серверные опции"
+  weight: 0.80
+  source: "kb"
+
+- id: hw_laptop_av
+  when: {classes: [70824], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 3775], families: [], vendors: []}
+  reason: "К новому ноутбуку обычно сразу берут антивирус для защиты данных в поездках и офисе"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_laptop_office
+  when: {classes: [70824], families: [], vendors: [], query_words: []}
+  offer: {classes: [1145, 222323], families: [], vendors: []}
+  reason: "Офисный пакет нужен для работы с документами, таблицами и презентациями на ноутбуке"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_laptop_bag_mouse
+  when: {classes: [70824], families: [], vendors: [], query_words: []}
+  offer: {classes: [83844, 82833], families: [], vendors: []}
+  reason: "Сумка или чехол защитят ноутбук в дороге, а мышь ускорит повседневную работу"
+  weight: 0.88
+  source: "kb"
+
+- id: hw_laptop_dock_stand
+  when: {classes: [70824], families: [], vendors: [], query_words: []}
+  offer: {classes: [84382, 83741, 84206], families: [], vendors: []}
+  reason: "Док-станция, USB-хаб и подставка превращают ноутбук в полноценное стационарное рабочее место"
+  weight: 0.78
+  source: "kb"
+
+- id: hw_laptop_os
+  when: {classes: [70824], families: [], vendors: [], query_words: []}
+  offer: {classes: [222320, 2050, 445047], families: [], vendors: []}
+  reason: "Если ноутбук поставляется без ОС, потребуется лицензия Windows или российской ОС"
+  weight: 0.82
+  source: "kb"
+
+- id: hw_desktop_os_office
+  when: {classes: [70187, 73062, 73180], families: [], vendors: [], query_words: []}
+  offer: {classes: [222320, 2050, 1145, 222323], families: [], vendors: []}
+  reason: "К новому ПК, моноблоку или мини-ПК обычно берут операционную систему и офисный пакет"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_desktop_av
+  when: {classes: [70187, 73062, 73180], families: [], vendors: [], query_words: []}
+  offer: {classes: [650, 3775], families: [], vendors: []}
+  reason: "Антивирус защищает новый рабочий компьютер с первого дня эксплуатации"
+  weight: 0.88
+  source: "kb"
+
+- id: hw_desktop_monitor_kb
+  when: {classes: [70187, 73062], families: [], vendors: [], query_words: []}
+  offer: {classes: [80843, 82833], families: [], vendors: []}
+  reason: "К системному блоку или мини-ПК потребуются монитор, клавиатура и мышь"
+  weight: 0.92
+  source: "kb"
+
+- id: hw_desktop_ups
+  when: {classes: [70187, 73180], families: [], vendors: [], query_words: []}
+  offer: {classes: [82080, 82661], families: [], vendors: []}
+  reason: "ИБП или сетевой фильтр защитят рабочее место от скачков напряжения и потери файлов"
+  weight: 0.80
+  source: "kb"
+
+- id: hw_monitor_mount_cable
+  when: {classes: [80843], families: [], vendors: [], query_words: []}
+  offer: {classes: [93276, 80081], families: [], vendors: []}
+  reason: "Кронштейн освобождает место на столе, а запасной кабель HDMI/DP упростит подключение"
+  weight: 0.82
+  source: "kb"
+
+- id: hw_switch_transceiver_cable
+  when: {classes: [85741], families: [], vendors: [], query_words: []}
+  offer: {classes: [86456, 85719, 86328], families: [], vendors: []}
+  reason: "К коммутатору обычно докупают SFP-трансиверы, медиаконвертеры и патч-корды"
+  weight: 0.90
+  source: "kb"
+
+- id: hw_switch_monitoring_ngfw
+  when: {classes: [85741, 86192], families: [], vendors: [], query_words: []}
+  offer: {classes: [3205, 233731], families: [], vendors: []}
+  reason: "Для контроля сети и фильтрации трафика к сетевому оборудованию добавляют мониторинг и NGFW"
+  weight: 0.82
+  source: "kb"
+
+- id: hw_switch_ups
+  when: {classes: [85741, 86192], families: [], vendors: [], query_words: []}
+  offer: {classes: [82080], families: [], vendors: []}
+  reason: "ИБП сохраняет связь в офисе и серверной при кратковременных отключениях питания"
+  weight: 0.84
+  source: "kb"
+
+- id: hw_wifi_ap_switch
+  when: {classes: [86348, 85353], families: [], vendors: [], query_words: []}
+  offer: {classes: [85741, 85588], families: [], vendors: []}
+  reason: "Точки доступа удобно питать от PoE-коммутатора, а стационарные ПК подключать через Wi-Fi-адаптеры"
+  weight: 0.80
+  source: "kb"
+
+- id: hw_printer_consumables
+  when: {classes: [93995], families: [], vendors: [], query_words: []}
+  offer: {classes: [94694, 98141], families: [], vendors: []}
+  reason: "К принтеру или МФУ сразу берут запасные картриджи, тонер и расходные материалы"
+  weight: 0.94
+  source: "kb"
+
+- id: hw_printer_ocr_pdf
+  when: {classes: [93995, 94641], families: [], vendors: [], query_words: []}
+  offer: {classes: [6, 180], families: [], vendors: []}
+  reason: "ПО распознавания текста и редактор PDF автоматизируют обработку сканов с МФУ и сканера"
+  weight: 0.82
+  source: "kb"
+
+- id: hw_ups_batteries
+  when: {classes: [82080], families: [], vendors: [], query_words: []}
+  offer: {classes: [82014, 131130, 82661], families: [], vendors: []}
+  reason: "Для обслуживания ИБП берут сменные батареи, карты управления и сетевые фильтры"
+  weight: 0.88
+  source: "kb"
+
+- id: hw_nas_hdd_backup
+  when: {classes: [98190, 98412], families: [], vendors: [], query_words: []}
+  offer: {classes: [78997, 1033], families: [], vendors: []}
+  reason: "Для запуска NAS или СХД потребуются накопители HDD и ПО централизованного бэкапа"
+  weight: 0.92
+  source: "kb"
+
+- id: hw_ip_cam_vms
+  when: {classes: [98673, 137938], families: [], vendors: [], query_words: []}
+  offer: {classes: [23001], families: ["MACROSCOP ML", "MACROSCOP LS", "MACROSCOP NVR"], vendors: ["MACROSCOP"]}
+  reason: "ПО видеонаблюдения объединяет IP-камеры, запись архива и видеоаналитику"
+  weight: 0.92
+  source: "kb"
+
+- id: hw_ip_phone_pbx
+  when: {classes: [84772, 84982, 84931], families: [], vendors: [], query_words: []}
+  offer: {classes: [6035, 88831], families: [], vendors: []}
+  reason: "К IP-телефонам подбирают программную АТС и профессиональные гарнитуры"
+  weight: 0.86
+  source: "kb"
+
+- id: hw_pos_trade_sw
+  when: {classes: [91820, 91840, 91872, 91774], families: [], vendors: [], query_words: []}
+  offer: {classes: [11763, 11781, 91732], families: [], vendors: []}
+  reason: "POS-оборудование и ТСД внедряют вместе с кассовым или складским ПО и аксессуарами"
+  weight: 0.88
+  source: "kb"
+
+- id: hw_pc_parts_upgrade
+  when: {classes: [75936, 74232], families: [], vendors: [], query_words: []}
+  offer: {classes: [76963, 79574, 78570, 74887], families: [], vendors: []}
+  reason: "При сборке или апгрейде ПК к плате и процессору подбирают ОЗУ, SSD, охлаждение и БП"
+  weight: 0.84
+  source: "kb"
