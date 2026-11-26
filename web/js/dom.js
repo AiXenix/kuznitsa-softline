@@ -51,3 +51,9 @@ export const counted = (title, count) => [title, count == null ? '' : num(count)
 export function stateBox(parent, text, kind='empty') {
   return add(parent, 'p', text, 'state ' + kind);
 }
+
+export function actionIcon(button,path){
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg'),shape=document.createElementNS(ns,'path');
+  svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
+  shape.setAttribute('d',path);svg.append(shape);button.prepend(svg);
+}

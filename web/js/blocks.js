@@ -32,7 +32,8 @@ function collection(parent,b,ctx) {
     const tile=add(grid,'div',null,'offerTile'),c=item.card || item;
     if(b.type!=='crosssell' && (item.kind || c.kind)==='upsell')line(tile,'Вам может пригодиться','upsellLabel','strong');
     else if(item.fill || c.fill)line(tile,item.label || c.label || 'Похожие товары','fillLabel','strong');
-    line(tile,item.reason || c.reason || item.note,'offerReason');
+    const reason=line(tile,item.reason || c.reason || item.note,'offerReason');
+    if(reason)reason.title=reason.textContent;
     card(tile,item.card && item.rule_id ? {...c,rule_id:item.rule_id}:c,ctx);
     line(tile,item.text);
   }
@@ -102,7 +103,14 @@ export function block(parent,b,actions={}) {
   if (!b) return;
   const ctx = {...actions};
   const p = add(parent,'section',null,'block');p.dataset.type=b.type;
-  add(p,'h2',counted(b.type==='crosssell'?'Часто покупают вместе':ctx.retail && b.type==='products' && b.title==='Поиск продукта'?'Результаты поиска':b.title || caption('block',b.type,titles[b.type] || 'Блок не поддержан'),b.type==='products' ? b.total : null));
+  const title=b.type==='crosssell'?'Часто покупают вместе':ctx.retail && b.title==='Поиск продукта'?'Результаты поиска':b.title || caption('block',b.type,titles[b.type] || 'Блок не поддержан');
+  const items=rows(b.items);
+  const similar=items.filter(i=>(i.fill || i.card?.fill) && (i.label || i.card?.label)!=='Популярное').length;
+  if(ctx.retail && b.type==='products' && similar){
+    const found=b.total ?? items.filter(i=>!(i.fill || i.card?.fill) && (i.kind || i.card?.kind)!=='upsell').length;
+    const noun=new Intl.PluralRules('ru').select(similar)==='one'?'похожий товар':'похожих';
+    add(p,'h2','Найдено: '+num(found)+' · ещё '+num(similar)+' '+noun);
+  }else add(p,'h2',counted(title,b.type==='products'?b.total:null));
   if (!(Object.hasOwn(titles,b.type))) {if (b.title) line(p,'Блок не поддержан'); return;}
   if(b.type!=='analogs' || b.source?.status!=='unavailable')line(p,b.text);
   switch (b.type) {

@@ -10,7 +10,7 @@ const tick=()=>new Promise(r=>setTimeout(r,200));
 try{
   const rule=JSON.parse(document.querySelector('#fixtures').textContent)[0];
   const offer={offer_id:'sku',available:true,price:80,oldprice:100};
-  const product={card_id:'os',title:'Операционная система',offer};
+  const product={card_id:'os',title:'Операционная система',calc:{text:'от 3 124,03 ₽ за лицензию в год'},offer};
   const extra={...product,card_id:'backup',title:'Резервное копирование'};
   const response={search_id:'s',understood:{chips:[{key:'domain',label:'Искали ПО для сервера?',q:'ПО для сервера'}]},
     blocks:[{type:'products',items:[product,{card:extra,kind:'upsell',rule_id:rule.id,reason:rule.reason},{...product,fill:true,offer:{price:0,available:false}}]},
@@ -18,6 +18,8 @@ try{
   let patch;
   result(main,response,{retail:true,apply:p=>patch=p});
   const tiles=main.querySelectorAll('.offerTile');
+  check(tiles[0].querySelector('.priceUnit').textContent==='за лицензию в год' && !tiles[0].querySelector('.pricePart').textContent.includes('лицензию'),'Отдельная строка единицы цены');
+  check(main.querySelector('[data-type=products] h2').textContent==='Найдено: 1 · ещё 1 похожий товар','Счёт основной выдачи без допродаж');
   check(tiles.length===4 && tiles[1].textContent.includes(rule.reason) && tiles[2].querySelector('.fillLabel'),'Рекомендации и добор');
   check(tiles[0].querySelector('del').textContent.includes('100') && tiles[0].querySelector('.deal').textContent==='Акция −20 %','Акция');
   check(tiles[2].textContent.includes('Цена по запросу') && tiles[2].textContent.includes('Под заказ'),'Наличие и нулевая цена');
@@ -33,9 +35,9 @@ try{
   input.value='к';input.dispatchEvent(new Event('input'));await tick();check(calls===0,'Порог подсказок');
   input.value='ка';input.dispatchEvent(new Event('input'));await tick();
   const groups=[...panel.querySelectorAll('[role=group]')];
-  check(groups.map(g=>g.querySelectorAll('.option').length).join(',')==='8,4,3,2','Лимиты товарных групп');
-  check(groups[1].querySelector('.deal') && groups[1].querySelector('.suggestPrice'),'Цена и акция при наборе');
-  groups[2].querySelector('.option').click();check(selection.category==='650','Раздел из подсказки');
+  check(groups.map(g=>g.querySelectorAll('.option').length).join(',')==='3,8,4,2','Лимиты товарных групп');
+  check(groups[2].querySelector('.deal') && groups[2].querySelector('.suggestPrice'),'Цена и акция при наборе');
+  groups[0].querySelector('.option').click();check(selection.category==='650','Раздел из подсказки');
 
   let current={...rule,counters:{impressions:17,clicks:3,carts:1}},preview,updated;
   window.fetch=async(url,o)=>{

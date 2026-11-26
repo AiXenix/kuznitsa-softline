@@ -25,7 +25,7 @@
 .shopActions button:nth-child(2):before {content:'♙'}
 .shopActions button:nth-child(3):before {content:'♡'}
 .shopActions button:nth-child(4):before {content:'▤'}
-.shop .departments {gap:.8rem;flex-wrap:nowrap;overflow:auto;scrollbar-width:thin;padding:.25rem 0 .65rem}
+.shop .departments {gap:.4rem .8rem;flex-wrap:wrap;padding:.25rem 0 .65rem}
 .shop .departments a {font-weight:500;color:#353942;white-space:nowrap;padding:.25rem 0;font-size:.88rem;flex:none}
 .shop .departments a:first-child {color:#a50f2d;font-weight:bold}
 .catalogMenu {padding:.8rem;background:#f6f6f6;max-height:45vh;overflow:auto}
@@ -61,16 +61,15 @@
 :is(.shop,.widget) .productGrid {grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));align-items:stretch}
 :is(.shop,.widget) .offerTile {position:relative;min-width:0;border:1px solid #e1e1e1;border-radius:8px;padding:1rem;background:white;display:flex;flex-direction:column}
 :is(.shop,.widget) .offerTile:has(.upsellLabel) {background:#fffcfd;border-color:#efd3da}
-:is(.shop,.widget) .offerTile .catalogCard {display:flex;flex:1;flex-direction:column;align-items:stretch;gap:.45rem;background:transparent;border:0;padding:0;margin:0}
+:is(.shop,.widget) .offerTile .catalogCard {display:flex;flex:1;position:relative;flex-direction:column;align-items:stretch;gap:.45rem;background:transparent;border:0;padding:0;margin:0}
 .productPic {position:relative;height:96px;display:grid;place-items:center;background:#fafafa;border-radius:6px}
 .productPic img {position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:white}
 .pack {display:grid;place-items:center;width:3.3rem;height:3.8rem;color:#696d79;font:700 1.2rem/1 Inter,Arial,sans-serif;background:linear-gradient(118deg,#ebeef1,#d3d9df);border-left:5px solid #bbc2cb;border-radius:2px;transform:skewY(-4deg)}
 .upsellLabel,.fillLabel,.deal {display:inline-block;align-self:start;border-radius:4px;background:#fae7eb;color:#8b1530;padding:.2rem .44rem;font-size:.75rem}
 .fillLabel {background:#f2f2f2;color:#535760}
-.offerReason {font-size:.8rem;color:#646770;margin:.25rem 0}
+.offerReason {display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:.8rem;color:#646770;margin:.25rem 0}
 .oldPrice {font-size:.84rem;color:#666;margin-inline:.45rem}
 .saveProduct {position:absolute;right:.8rem;top:.8rem;z-index:1;display:flex;gap:.15rem}
-.offerTile:has(.upsellLabel,.fillLabel) .saveProduct {position:static;align-self:end}
 .saveProduct button {border:0;padding:.12rem .35rem;font-size:1.12rem}
 .saveProduct [aria-pressed=true] {background:#fbe4ea;color:#a50f2d}
 :is(.shop,.widget) .offerTile :is(.identity,.whyFirst,.cardHead .badge,.description>.muted,.disclosures) {display:none}
@@ -88,7 +87,6 @@
 .option .pack {width:24px;height:28px;font-size:.65rem}
 .option .suggestPrice {white-space:nowrap;color:#121519;font-size:.84rem}
 .shop .option mark,.widget .option mark {color:#a50f2d;background:transparent;font-weight:bold}
-@media (min-width:1050px){.shop.judgeOpen:not(:has(.traceWide)) #pageScroll {margin-right:480px}}
 @media (max-width:850px){
  .shop .shopSearch {display:grid;grid-template-columns:auto 1fr}
  .shop #search {grid-column:1/-1;grid-row:2}
@@ -101,7 +99,7 @@
  .shop .shopActions {gap:0}.shopActions button {font-size:.69rem;padding:.3rem}
  .catalogBtn {padding:.5rem .6rem;font-size:.83rem}
  .shop .shopSearch {gap:.45rem;padding:.4rem 0}
- .shop .departments {display:flex;flex-wrap:nowrap;overflow:auto}
+ .shop .departments {display:flex;flex-wrap:wrap;overflow:visible}
  .shop .bar input {font-size:.84rem}.shop .bar .primary {min-width:4rem}
  .shopBanners {grid-template-columns:1fr}.cloudAd {display:none!important}
  .shop .departmentTiles {grid-template-columns:1fr}
@@ -114,7 +112,6 @@
 :is(.shop,.widget) .offerTile .cardHead {align-self:stretch}
 :is(.shop,.widget) .offerTile .purchase {text-align:left}
 .shop.judgeOpen .offerTile :is(.whyFirst,.disclosures) {display:block}
-.offerTile:has(.upsellLabel,.fillLabel) .saveProduct {position:absolute;top:3.3rem}
 .shop .exportRow {float:right}
 .shop .productGrid {clear:both}
 .shop .block>h2:has(+.exportRow) {display:inline-block}
@@ -131,8 +128,8 @@
 :is(.shop,.widget) #suggestions .option {font-size:.92rem;min-height:28px;padding:.24rem .4rem}
 :is(.shop,.widget) #suggestions .option>small {margin-left:auto}
 @media(min-width:850px){
- .shop #suggestions {columns:2;column-gap:1.2rem}
- .shop #suggestions [role=group] {break-inside:avoid}
+ .shop #suggestions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem 1.2rem}
+ .shop #suggestions>p {grid-column:1/-1}
 }
 .upsellEditor .adminForm {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
 .upsellEditor label {display:block;font-size:.86rem}
