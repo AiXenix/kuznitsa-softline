@@ -49,3 +49,22 @@ def hardware_kind(value):
         if key in (kind,*labels):
             return kind,labels
     return key,(key,)
+
+
+def hardware_head(index, text):
+    """Отделить определение устройства от назначения и от запроса о программе."""
+    from kuznitsa.text import morphology
+    if text in index.hardware:return text
+    head=re.split(r"\s+(?:для|в|под)\s+",text,maxsplit=1)[0]
+    if head in index.hardware:
+        return head
+    terms=head.split()
+    if len(terms)>8:return None
+    for start in range(len(terms)):
+        for end in range(len(terms),start,-1):
+            name=" ".join(terms[start:end])
+            if name not in index.hardware:continue
+            modifiers=terms[:start]+terms[end:]
+            if all(any(p.tag.POS in ("ADJF","PRTF") for p in morphology().parse(t)) for t in modifiers):
+                return name
+    return None

@@ -17,6 +17,15 @@ def validate(group,row):
     for field in ("editions","slots","russian_analogs"):
         if not all(isinstance(v,dict) for v in row.get(field,[])):
             raise ValueError(field)
+    if group=="feed_tasks":
+        sections=row.get("sections")
+        if not isinstance(sections,list) or not sections or not all(isinstance(v,str) and v.strip() for v in sections):
+            raise ValueError("sections")
+        if any(not isinstance(text,str) or not text.strip()
+               for key in ("aliases","phrases") for text in row.get(key,[])):
+            raise ValueError("phrases / aliases")
+        if not row.get("aliases") and not row.get("phrases"):
+            raise ValueError("phrases / aliases")
     if group=="hardware_hints":
         for k in ("hardware_class","prompt"):
             if not isinstance(row.get(k),str) or not row[k]:raise ValueError(k)

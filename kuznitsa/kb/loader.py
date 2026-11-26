@@ -10,7 +10,7 @@ def many(v):
     return v if isinstance(v,list) else [] if v is None else [v]
 
 
-GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang crosssell okved hardware_hints".split()
+GROUPS = "vendors categories families roles industries use_cases faq analogs compliance slang crosssell okved hardware_hints feed_tasks".split()
 
 
 

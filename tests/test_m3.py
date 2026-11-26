@@ -100,8 +100,10 @@ def test_missing_line_and_outside_catalog(feed):
     assert missing["blocks"][0]["type"]=="not_in_catalog"
     assert "Кибер Бэкап" in missing["blocks"][1]["items"][0]["card"]["title"]
     noise=feed.search(Request(q="зимняя резина r16",mode="fast"))
-    popular=next(b for b in noise["blocks"] if b.get("title")=="Популярное")
-    assert len(popular["items"])==4 and all(c["fill"] for c in popular["items"])
+    clarify=noise["blocks"][0]
+    assert clarify["type"]=="clarify" and len(clarify["options"]) in (2,3)
+    examples=next(b for b in noise["blocks"] if b["type"]=="products")
+    assert len(examples["items"])==4 and all(c["fill"] for c in examples["items"])
 
 
 def test_feed_http_card_and_suggest(feed):

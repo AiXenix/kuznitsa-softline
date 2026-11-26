@@ -6,7 +6,8 @@ from kuznitsa.rank.variants import select
 
 QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|уз(?:ел|лы|ла|лов|лах)|устройств\w*|комп(?:ьютер\w*|ов|а)?|сервак\w*|процессор\w*|мест\w*|лицензи\w*|пк)\b")
 PRICE_LIMIT=re.compile(r"\b(?:не дороже|до|в пределах)\s+(\d+(?: \d{3})*(?:[.,]\d{1,2})?)\s*(тыс\w*|млн|[кk])?\s*(?:руб(?:лей|ля|ль)?\.?|₽|р\.)?\s*$")
-RENEW=re.compile(r"\b(?:продл(?:ить|ение|ения)|renewal)\b")
+LICENSE=r"лицензи(?:я|ю|и|й|ей)"
+RENEW=re.compile(rf"\b(?:{LICENSE}\s+(?:на\s+)?)?(?:продл(?:ить|ение|ения)|renewal)(?:\s+(?:свою\s+)?{LICENSE})?\b")
 HOME=re.compile(r"\b(?:домашн\w*|домой|для дома|для семьи)\b")
 HELP=re.compile(r"^(?:как |чем |что (?:взять|поможет|подойд[её]т)|каки[еим]|нужн[ао] |хочу )")
 # Лексические мосты между действием и существительным в дереве магазина.
@@ -82,6 +83,8 @@ def matching_variants(index,ids,profile,qty,renewal,conditions=None,*,nodes=Fals
     for cid in ids:
         card=index.cat.cards[cid]
         selection=select(card,profile,filters,{},qty)
+        if not selection and renewal and profile.client_id=="guest" and "audience" not in filters:
+            selection=select(card,profile,{**filters,"audience":"home"},{},qty)
         if not selection and filters.get("audience") and "price_max" not in filters and not qty and not renewal:
             offer=next((o for o in card.offers if all(getattr(o.lic,k)==v for k,v in filters.items())),None)
             if offer:selection=(offer,None,None)
@@ -134,3 +137,12 @@ def product_context(engine,text):
     term=TERM.search(tail)
     if term:context["term_months"]=int(term[1])*(1 if term[2].startswith("мес") else 12)
     return supported,context
+
+# Снимаем вводное родовое название только перед названием продукта.
+WRAPPER=re.compile(r"^(?:(?:операционная система|программа|платформа|система|софт|приложение|сервис|утилита|решение)\s+)+")
+def product_subject(index,base):
+    candidate=WRAPPER.sub("",base).strip("«»\" ")
+    if (candidate and candidate!=base and not re.match(r"^(?:для|по|от|с|на|под|и|чтобы)\b",candidate)
+            and candidate not in index.hardware and not index.class_match(base)):
+        return candidate
+    return base

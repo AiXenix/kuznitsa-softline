@@ -1401,7 +1401,7 @@ class Engine:
             if owned_rows:
                 blocks.append(dict(type="my_licenses",title="Ваши лицензии",items=owned_rows))
 
-        if plan=="off_topic":
+        if plan=="off_topic" and not self.catalog.is_feed:
             common=Counter(c.category for c in self.catalog.cards.values())
             blocks.append(dict(type="categories",title="Категории программ",items=[dict(id=k,title=self.names["category"].get(k,k),count=n) for k,n in common.most_common(5) if k]))
         if unlisted_task and not cards:
@@ -1573,9 +1573,17 @@ class Engine:
                 together,reserved=recommend(self,norm,primary["items"],profile,intent,other,complete=complete)
                 if together:blocks.append(together)
                 for i,c in enumerate(primary["items"],1):c["position"]=i
-            more=[] if primary else fill(self,visible,profile,intent=="off_topic",reserved,q=req.q,blocks=blocks)
+            clarify_feed=intent=="off_topic" and not visible and reason!="piracy"
+            if clarify_feed:
+                blocks.clear()
+                zero="unknown_term"
+                result["understood"].update(intent="broad",intent_title=TITLES["broad"],subtype=None,
+                    zero_reason=zero,agent_note="Уточните раздел каталога, чтобы продолжить поиск.")
+                t.add("clarify","Уточнение раздела","У запроса нет подтверждённого совпадения в каталоге")
+            more=[] if primary else fill(self,visible,profile,reserved=reserved,q=req.q,blocks=blocks)
             if more:
-                blocks.append(dict(type="products",title=more[0]["label"],items=more,total=len(more)))
+                title="Примеры из предложенных разделов" if clarify_feed else more[0]["label"]
+                blocks.append(dict(type="products",title=title,items=more,total=len(more)))
         t.add("log","Журнал и стоимость","Запись поиска в журнал. Расходы на внешние модели · 0 ₽")
         started=self.timer()
         if persist and record:

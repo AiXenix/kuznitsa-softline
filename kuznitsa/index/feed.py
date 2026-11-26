@@ -99,9 +99,6 @@ class FeedIndex:
         self.class_names={k:normalize(v) for k,v in self.classes.items()}
         self.class_by_name={v:k for k,v in self.class_names.items()}
         self.class_terms={k:set(words(v)) for k,v in self.classes.items()}
-        self.class_vec=cat.dense.cached_embeddings(cfg,[
-            self.classes[k]+". "+", ".join(cat.cards[i].title for i in self.groups[k][:4])
-            for k in self.class_ids]) if hasattr(cat.dense,"model") else None
         for phrase,row in kb.rows["slang"].items():
             target=row["maps_to"]
             value=target.get("text") or target.get("query") or target.get("platform")
@@ -166,7 +163,34 @@ class FeedIndex:
         for key,title in self.class_names.items():
             signature=class_words(title)
             if signature:self.class_aliases.setdefault(signature,[]).append(key)
-        self.vendor_names={normalize(c.offers[0].vendor):c.vendor for c in cat.cards.values() if c.offers[0].vendor}
+        class_tasks=defaultdict(list)
+        self.task_cues=[]
+        self.section_phrases={}
+        for row in kb.rows["feed_tasks"].values():
+            target=next((self.class_by_name[normalize(label)] for label in row["sections"]
+                         if normalize(label) in self.class_by_name),None)
+            if target is None:continue
+            class_tasks[target].extend(row.get("phrases",[]))
+            for phrase in row.get("aliases",[]):
+                self.section_phrases[frozenset(words(phrase))]=target
+            for phrase in row.get("phrases",[]):
+                cue=frozenset(words(phrase))
+                if cue:self.task_cues.append((cue,target))
+        self.task_cues.sort(key=lambda pair:len(pair[0]),reverse=True)
+        self.class_vec=None
+        if hasattr(cat.dense,"model"):
+            documents=[]
+            for section in self.class_ids:
+                group=self.groups[section]
+                card=cat.cards[group[0]]
+                category=kb.rows["categories"].get(card.category,{})
+                description=category.get("description","")
+                examples=", ".join(cat.cards[cid].title for cid in group[:4])
+                documents.append(". ".join(filter(None,(self.classes[section],description,
+                                    ", ".join(class_tasks[section]),examples))))
+            self.class_vec=cat.dense.cached_embeddings(cfg,documents)
+        self.card_vendors={cid:c.vendor or normalize(c.offers[0].vendor or "") for cid,c in cat.cards.items()}
+        self.vendor_names={normalize(c.offers[0].vendor):self.card_vendors[cid] for cid,c in cat.cards.items() if c.offers[0].vendor}
         self.vendor_names.update({" ".join(words(name)):ident for name,ident in self.vendor_names.items()})
         for vid,row in kb.rows["vendors"].items():
             actual=next((self.vendor_names[" ".join(words(name))] for name in [row.get("name"),row.get("name_ru"),*row.get("aliases",[])]
@@ -251,12 +275,18 @@ class FeedIndex:
         return sorted(candidates,key=lambda k:len(self.groups[k]),reverse=True)
 
     def class_match(self,q):
-        return next(iter(self.matching_sections(q)),None)
+        return (self.class_by_name.get(normalize(q)) or self.section_phrases.get(frozenset(words(q)))
+                or next(iter(self.matching_sections(q)),None))
+
+    def task_class(self,q):
+        terms=set(words(q))
+        return next((section for cue,section in self.task_cues if cue<=terms),None)
 
     def sections(self,q,hint=""):
         words_hint=set(words(hint or q))
-        emb=np.einsum("ij,j->i",self.class_vec,self.cat.dense.encode(q)) if self.class_vec is not None else np.zeros(len(self.class_ids))
-        leaf=self.tree.scores(self.cat.dense.encode(q)) if self.class_vec is not None else {}
+        vector=self.cat.dense.encode(q) if self.class_vec is not None else None
+        emb=np.einsum("ij,j->i",self.class_vec,vector) if vector is not None else np.zeros(len(self.class_ids))
+        leaf=self.tree.scores(vector) if vector is not None else {}
         scores={}
         exact=normalize(hint or q)
         for i,k in enumerate(self.class_ids):
