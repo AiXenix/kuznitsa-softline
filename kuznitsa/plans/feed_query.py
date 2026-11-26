@@ -142,13 +142,38 @@ CONTEXT = re.compile(r"\s+(?:для|под|чтобы|на|в)\s+",re.I)
 TERM = re.compile(r"\b(\d{1,2})\s*(мес\w*|год\w*|лет)\b")
 AUDIENCES = [("home",r"для дома|домашн|личн\w* использ"),("edu",r"школ|университет|учебн|образован"),
              ("gov",r"госучрежден|госорган|государствен"),("business",r"компани|организац|офис|бухгалтер")]
+FUNCTION_WORDS={"защита":"protection","безопасность":"security","управление":"management",
+                "резервирование":"backup","мониторинг":"monitor"}
+
+
+def described_line(index,text):
+    """Ищем марку до описания функции, затем уточняем её по классу и названию."""
+    parts=text.split()
+    for pos in range(1,min(5,len(parts))):
+        tail=" ".join(parts[pos:])
+        terms=words(tail)
+        if not terms or terms[0] not in FUNCTION_WORDS:continue
+        head=" ".join(parts[:pos])
+        if index.class_match(head) or head in index.hardware:continue
+        name=index.correct(head)
+        ids=index.products(name,fuzzy=False)
+        if not ids:ids,name=index.sound_products(head)
+        ids=[cid for cid in ids if set(words(name))<=set(words(index.cat.cards[cid].title))]
+        if not ids:continue
+        section=index.task_class(tail) or index.class_match(tail)
+        features=set(terms)|{FUNCTION_WORDS[terms[0]]}
+        return sorted(ids,key=lambda cid:(index.card_sections[cid]==section,
+                            len(features.intersection(words(index.cat.cards[cid].title)))),reverse=True)
+    return ()
 
 
 def product_context(engine,text):
     """Выделить продаваемую линейку перед описанием применения."""
     index=engine.catalog.feed
     split=CONTEXT.search(text)
-    if not split:return None
+    if not split:
+        named=described_line(index,text)
+        return (named,{}) if named else None
     head=text[:split.start()]
     if head in index.hardware or index.class_match(head) or re.fullmatch(r"антивирус\w*|программ\w*|софт|средств\w*",head):
         return None
@@ -166,7 +191,8 @@ def product_context(engine,text):
                 candidates.extend(sorted(index.tags["families"].get(key,()),key=index.quality.get,reverse=True))
     phrase=edition_form(index,phrase)
     hits=index.products(phrase)
-    spoken,_=index.sound_products(phrase)
+    spoken,_=index.sound_products(head)
+    if not spoken and head!=phrase:spoken,_=index.sound_products(phrase)
     # Затемнение названия нечётким соседом («Фотошоу» и «Фотошоп»)
     # особенно заметно, когда за маркой идёт описание работы.
     literal=[cid for cid in hits if set(words(phrase))<=index.terms[cid]]
@@ -183,7 +209,7 @@ def product_context(engine,text):
     return supported,context
 
 # Снимаем вводное родовое название только перед названием продукта.
-WRAPPER=re.compile(r"^(?:(?:операционная система|программа|платформа|система|софт|приложение|сервис|утилита|решение)\s+)+")
+WRAPPER=re.compile(r"^(?:(?:операционная система|программ[аы]|платформ[аы]|систем[аы]|софт|приложени[ея]|сервис(?:ы)?|утилит[аы]|решени[ея])\s+)+")
 def product_subject(index,base):
     candidate=WRAPPER.sub("",base).strip("«»\" ")
     if (candidate and candidate!=base and not re.match(r"^(?:для|по|от|с|на|под|и|чтобы)\b",candidate)

@@ -19,6 +19,8 @@ TASKS = [(r"вирус|антивир", "антивирусы для орган�
 STOP={"и","по","для","на","в","от","купить"}
 QUESTION=re.compile(r"^(что использовать|что выбрать|что подойдет|како(?:й|е|ую) (?:программ|приложен|софт|инструмент)|чем |как проверить|программ\w* для|как защитить)")
 COMPLEX=re.compile(r"\n|;|\b(продлен\w*|продлить|до|мест|лицензий|сравни\w*|комплект|аналог|заменить|реестр\w*|куплен\w*|заказ\w*)\b")
+PLATFORM_FIELD=re.compile(r"\bплатформа:\s*([^•;\n]+)",re.I)
+PLATFORM_WORD=re.compile(r"\b(mac(?:\s?os\w*)?|windows|linux)\b",re.I)
 
 
 @lru_cache(50000)
@@ -47,6 +49,7 @@ class FeedIndex:
         self.raw_terms=defaultdict(set)
         self.license_offers=defaultdict(dict)
         self.server_offers={}
+        self.platform_offers=defaultdict(dict)
         self.browse_quality={}
         self.quality={}
         self.tags=defaultdict(lambda:defaultdict(set))
@@ -67,6 +70,12 @@ class FeedIndex:
             if o.domain in {"software","cloud","service"}:
                 best_server,server_available=0,False
                 for variant in c.offers:
+                    platform_field=PLATFORM_FIELD.search(variant.description or "")
+                    labels=" ".join(variant.platforms)
+                    if platform_field:labels+=" "+platform_field[1]
+                    for platform in PLATFORM_WORD.findall(labels.lower()):
+                        key="macos" if platform.startswith("mac") else platform
+                        self.platform_offers[key].setdefault(cid,variant)
                     server_score=2 if variant.lic.metric=="server" else int(bool(re.search(r"\b(?:server|сервер(?:н\w*|а|ов)?)\b",variant.name,re.I)))
                     if (server_score and variant.lic.action in (None,"new") and variant.lic.audience in (None,"business")
                             and (server_score,variant.available) > (best_server,server_available)):
@@ -168,7 +177,7 @@ class FeedIndex:
                     "hardware_feed_classes":keys or base["hardware_feed_classes"]}
         for alias,kind in {"ноут":"laptop","нетбук":"laptop","сервак":"server","комп":"desktop",
                            "мфушка":"printer_mfp","принтак":"printer_mfp","свитч":"switch","моник":"monitor",
-                           "бесперебойник":"ups"}.items():
+                           "бесперебойник":"ups","ssd":"ssd"}.items():
             definition=hardware_definition(kind)
             if definition:self.hardware.setdefault(alias,definition)
         self.class_aliases={}
@@ -217,6 +226,9 @@ class FeedIndex:
         self.unsold_brands=defaultdict(list)
         for name,parent in self.unsold_sections.items():
             if words(name):self.unsold_brands[words(name)[0]].append(parent)
+        self.software_sections=[k for k,members in self.groups.items()
+                                if cat.cards[members[0]].offers[0].domain in {"software","cloud","service"}]
+        self.platform_sections={k:{self.card_sections[cid] for cid in group} for k,group in self.platform_offers.items()}
         self.replacements={}
         for row in kb.rows["analogs"].values():
             for phrase in [row.get("product"),*row.get("aliases",[])]:
@@ -303,7 +315,7 @@ class FeedIndex:
         terms=set(words(q))
         return next((section for cue,section in self.task_cues if cue<=terms),None)
 
-    def sections(self,q,hint=""):
+    def sections(self,q,hint="",software_only=False,platform=None):
         words_hint=set(words(hint or q))
         vector=self.cat.dense.encode(q) if self.class_vec is not None else None
         emb=np.einsum("ij,j->i",self.class_vec,vector) if vector is not None else np.zeros(len(self.class_ids))
@@ -313,7 +325,9 @@ class FeedIndex:
         for i,k in enumerate(self.class_ids):
             common=len(words_hint & self.class_terms[k])/max(len(words_hint),1)
             scores[k]=.6*float(emb[i])+.4*leaf.get(k,0)+common+(exact==self.class_names[k])
-        return sorted(scores,key=scores.get,reverse=True)[:8]
+        pool=self.software_sections if software_only else self.class_ids
+        if platform in self.platform_sections:pool=[k for k in pool if k in self.platform_sections[platform]]
+        return sorted(pool,key=scores.get,reverse=True)[:8]
 
     def decide(self,e,q,options,sid,req,calls,focus=()):
         labels={}

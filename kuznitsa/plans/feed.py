@@ -4,7 +4,8 @@ from uuid import uuid4
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class
 from kuznitsa.config import WEIGHTS
-from kuznitsa.index.feed_language import version_forms,edition_form,sold_as
+from kuznitsa.index.feed_language import version_forms,edition_form,sold_as,spoken_initials
+from kuznitsa.index.feed_repair import identity_terms
 from kuznitsa.understand.quantities import spoken_numbers
 from kuznitsa.text import normalize,tokens
 from kuznitsa.index.hardware import suitability,hardware_head
@@ -40,7 +41,7 @@ def decorate(card,offer):
     if not offer.available:badges.append(dict(kind="on_order",label="Под заказ"))
 
 
-def fill(engine,items,profile,reserved=(),q="",blocks=None):
+def fill(engine,items,profile,reserved=(),q="",blocks=None,sections_hint=None,compatible=None):
     index=engine.catalog.feed
     seen={c["card_id"] for c in items}
     if len(seen)>=4:return []
@@ -68,7 +69,7 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None):
         vendors=engine.catalog.by["vendor"].get(anchor.vendor,())
         pool.extend(sorted((cid for cid in vendors if index.cat.cards[cid].offers[0].domain==o.domain
                             and query_terms.intersection(words(index.cat.cards[cid].title))),key=related,reverse=True))
-    eligible=[cid for cid in dict.fromkeys(pool) if cid not in seen and cid not in reserved]
+    eligible=[cid for cid in dict.fromkeys(pool) if cid not in seen and cid not in reserved and (not compatible or cid in compatible)]
     sections=[]
     if len(eligible)<4-len(seen):
         query=q or (items[0]["title"] if items else "")
@@ -81,12 +82,12 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None):
             nearest=index.sections(query)
             options=list(dict.fromkeys([*(k for k in nearest if k in siblings),*siblings,*nearest]))
         else:
-            options=index.sections(query)
+            options=index.sections(query) if sections_hint is None else sections_hint
         # Чередуем товары соседних разделов. Ни один раздел не занимает весь добор.
         blocked=seen|set(reserved)|set(eligible)
         candidates=[]
         for k in options:
-            remaining=[cid for cid in index.groups[k] if cid not in blocked]
+            remaining=[cid for cid in index.groups[k] if cid not in blocked and (not compatible or cid in compatible)]
             if remaining:
                 sections.append(k)
                 candidates.append(remaining)
@@ -102,7 +103,7 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None):
                 options=[dict(label=index.classes[k],apply=dict(q=index.classes[k],category=k)) for k in sections[:3]]))
     extra=[]
     for cid in eligible:
-        card=display(engine,cid,profile)
+        card=display(engine,cid,profile,compatible.get(cid) if compatible else None)
         label="Похожие товары"
         if not items and sections:
             label="Из раздела «"+index.classes[index.card_sections[cid]]+"»"
@@ -229,7 +230,7 @@ def search(engine,req,profile,trace,priorities,record):
     if req.filters.get("price_max") is not None:
         budget=min(budget,req.filters["price_max"]) if budget is not None else req.filters["price_max"]
     if "price_max" in req.ignore:budget=None
-    parsed=subject if req.verbatim else version_forms(spoken_numbers(subject))
+    parsed=subject if req.verbatim else version_forms(spoken_numbers(spoken_initials(index,subject)))
     if parsed!=subject and index.recovery.full_name(subject)[0]:
         parsed=subject
     base,qty,renewal=split_conditions(parsed)
@@ -241,7 +242,8 @@ def search(engine,req,profile,trace,priorities,record):
     if req.sort or req.weights or req.filters.keys()-{"price_max"} or req.exclude or set(req.ignore)-{"price_max"} or (COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
     absent_acronym=None
     acronym=()
-    if not (literal[0] or req.verbatim or req.category):
+    device_name=hardware_head(index,base)
+    if not (literal[0] or req.verbatim or req.category or device_name):
         acronym=index.language.acronym_cards(index,base)
         absent_acronym=next((index.language.absent_acronyms[w] for w in words(base)
                              if not acronym and w in index.language.absent_acronyms),None)
@@ -255,7 +257,10 @@ def search(engine,req,profile,trace,priorities,record):
             explicit_class=index.class_by_name.get("антивирусы для организаций")
     if not (explicit_class or literal[0] or req.verbatim):
         explicit_class=index.language.qualified_class(index,base)
-    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class):
+    identity=identity_terms(base) if not (literal[0] or explicit_class or req.category or device_name) else ()
+    identity_pool=index.recovery.identity_cards(identity) if identity else None
+    unknown_name=identity_pool is not None and not identity_pool
+    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name):
         direct=index.products(base,fuzzy=False)
         if not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title)):
             base=named_subject(engine,product_subject(index,base))
@@ -264,7 +269,6 @@ def search(engine,req,profile,trace,priorities,record):
     q=edition_form(index,index.correct(mapped))
     if req.verbatim:q=base
     hardware=next((w for w in words(q) if w in HARDWARE),None)
-    device_name=hardware_head(index,base)
     device=index.hardware.get(device_name)
     role=None
     parts=re.split(r"\s+(?:для|в)\s+",base,maxsplit=1)
@@ -312,11 +316,11 @@ def search(engine,req,profile,trace,priorities,record):
         ids,q,repaired_kind=literal
         question=False
         hint=None
-    if not license_filter and not ids and not section and not bare and not question and not req.verbatim:
+    if not license_filter and not ids and not section and not bare and not question and not req.verbatim and not unknown_name:
         sounds,corrected=index.sound_products(q)
         if not sounds and q!=base:sounds,corrected=index.sound_products(base)
         if sounds:ids,q=sounds,corrected
-    if not ids and not section and not bare and not license_filter and not req.verbatim and not (question or hint):
+    if not ids and not section and not bare and not license_filter and not req.verbatim and not (question or hint or unknown_name):
         recovered,spelling,repaired_kind=index.recovery.lookup(engine,base)
         if recovered:ids,q=recovered,spelling
     if not repaired_kind and not section and not bare and not req.verbatim and base in index.slang and (not ids or index.slang[base][0] in {"vendors","families"}):
@@ -324,7 +328,8 @@ def search(engine,req,profile,trace,priorities,record):
         if field=="classes" and not section:
             section=index.cat.cards[ids[0]].offers[0].class_id
     qualified=None
-    if acronym and not license_filter:
+    class_alias=frozenset(words(base)) in index.section_phrases
+    if acronym and not license_filter and not class_alias:
         # Явные версия и редакция продолжают определять порядок внутри семейства.
         family=set(acronym)
         ids=[cid for cid in ids if cid in family] or acronym
@@ -345,7 +350,7 @@ def search(engine,req,profile,trace,priorities,record):
                 question=False
                 hint=None
                 note="Линейка производителя для малого офиса."
-    if not (bare or section or req.verbatim) and (not ids or question):
+    if not (bare or section or req.verbatim or unknown_name) and (not ids or question):
         qualified=product_context(engine,base)
         if qualified:
             ids,conditions=qualified
@@ -371,7 +376,7 @@ def search(engine,req,profile,trace,priorities,record):
                 note="Найдены серверные продукты, в названии которых указана совместимость с системой."
     focus=()
     preferred=dict(license_hits)
-    if not section and not req.category and not absent_acronym and (question or hint and not ids):
+    if not section and not req.category and not absent_acronym and not unknown_name and (question or hint and not ids):
         options,focus,preferred,note=task_sections(engine,q,hint)
         section=options[0] if options else None
         if options and req.mode=="smart" and engine.decisions and len(options)>1:
@@ -379,6 +384,13 @@ def search(engine,req,profile,trace,priorities,record):
             section=model_section or section
     replacement=index.replacements.get(norm) or index.replacements.get(q)
     unsold=index.unsold_sections.get(q)
+    unsupported=False
+    if identity_pool is not None and not (section or bare or license_filter or absent_acronym):
+        ids=[cid for cid in ids if cid in identity_pool]
+        unsupported=not ids
+        if unsupported:
+            q=original_subject
+            unsold=index.unsold_sections.get(q)
     # Упоминание чужой марки в названии модуля не подтверждает продажу самой программы.
     if ids and not qualified and not section and (replacement or q in index.unsold_brands):
         named=tuple(cid for cid in ids if sold_as(index.cat.cards[cid],q))
@@ -389,6 +401,8 @@ def search(engine,req,profile,trace,priorities,record):
             if parents and not unsold:
                 unsold=max(dict.fromkeys(parents),key=parents.count)
     uncertain=False
+    alternatives=None
+    compatible=None
     role_reasons={}
     vendor_gap=False
     if supplier and ids and not section:
@@ -465,17 +479,33 @@ def search(engine,req,profile,trace,priorities,record):
     elif not ids and not license_filter:
         if not replacement:
             if (not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base))
-                    and (unsold or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q))):
-                options=index.sections(q)
-                known=unsold
+                    and (unsold or unsupported or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q))):
+                known=unsold or (index.unsold_sections.get(" ".join(identity)) if identity else None)
+                possible=index.language.possible_section(q) if unsupported and not known else None
+                platform_match=re.search(r"\b(?:для|под|на|for) (mac(?:os)?|windows|linux)\b",q) if unsupported else None
+                platform=platform_match[1] if platform_match else None
+                if platform=="mac":platform="macos"
+                compatible=index.platform_offers.get(platform)
+                options=index.sections(" ".join(identity) if unsupported else q,software_only=unsupported,platform=platform)
+                if possible and compatible and possible not in index.platform_sections[platform]:possible=None
+                if possible:options=list(dict.fromkeys([possible,*options]))[:8]
                 if not known and req.mode=="smart" and engine.decisions and options:
                     model_section=index.decide(engine,q,options,sid,req,calls)
-                section=known or model_section
+                section=known or model_section or possible
                 uncertain=section is None
+                alternatives=options
                 ids=index.groups[section] if section else []
                 missing=True
-                note=f"В каталоге нет «{req.q}». "+(f"Варианты из раздела «{index.classes[section]}»."
+                note=f"В каталоге нет «{req.q}». "+(f"Возможный раздел для замены — «{index.classes[section]}»."
                         if section else "Уточните назначение программы, чтобы подобрать замену.")
+                if platform:
+                    matched=[cid for cid in ids if compatible and cid in compatible]
+                    if matched:
+                        ids=matched
+                        preferred.update((cid,compatible[cid]) for cid in matched)
+                    if compatible and (matched or not section):
+                        note+=" Платформа указана поставщиком."
+                    else:note+=" Совместимость с указанной платформой нужно уточнить."
             else:return None
         else:
             ids=list(dict.fromkeys(cid for target in replacement["russian_analogs"]
@@ -563,15 +593,22 @@ def search(engine,req,profile,trace,priorities,record):
     items=merch["cards"]
     main=[c["card_id"] for c in items]
     clarify=[]
-    renewal_neighbors=[]
+    nearby=[]
     def complete(reserved):
         if license_filter or budget is not None or req.page!=1:return []
-        extra=fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
+        extra=fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify,
+                   sections_hint=alternatives,compatible=compatible)
         if intent=="renewal":
-            renewal_neighbors.extend(extra)
+            nearby.extend(extra)
             return []
         return extra
-    together,recommended=recommend(engine,norm,items,profile,intent,role=role,complete=complete,price_max=budget)
+    if missing and unsupported:
+        together,recommended=None,()
+        for card in complete(()):
+            if section and index.card_sections[card["card_id"]]!=section:nearby.append(card)
+            else:items.append(card)
+    else:
+        together,recommended=recommend(engine,norm,items,profile,intent,role=role,complete=complete,price_max=budget)
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     if missing:
@@ -582,9 +619,8 @@ def search(engine,req,profile,trace,priorities,record):
     if uncertain:
         blocks=[blocks[0],*clarify,dict(type="products",title="Популярное в ближайших разделах",items=items,total=len(items))]
     else:blocks.extend(clarify)
-    if renewal_neighbors:
-        blocks.append(dict(type="products",title="Другие товары из близких разделов",
-                           items=renewal_neighbors,total=len(renewal_neighbors)))
+    if nearby:
+        blocks.append(dict(type="products",title="Другие товары из близких разделов",items=nearby,total=len(nearby)))
     if together:blocks.append(together)
     trace.add("upsell","Сопутствующие товары",f"В основной ленте · {sum(c.get('kind')=='upsell' for c in items)}. "
               f"В блоке рекомендаций · {len(together['items']) if together else 0}",status="ok" if recommended else "skip")

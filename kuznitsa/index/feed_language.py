@@ -7,6 +7,7 @@ from kuznitsa.text import lemma, morphology, normalize
 from kuznitsa.understand.spell_index import cyrillic, roman
 from kuznitsa.understand.quantities import NUMBERS
 from .feed import STOP, words, class_words
+from .feed_repair import QUALIFIERS
 
 
 ORDINALS=dict(zip("первый второй третий четвертый пятый шестой седьмой восьмой девятый десятый".split(),range(1,11)))
@@ -15,6 +16,16 @@ VERSION_NUMBER=r"(?:\d+(?:\.\d+)*|[а-я]+)"
 DESCRIPTORS=("ос","скзи","криптопровайдер","антивирус","сканер уязвимостей","дистрибутив","вебинар","видеоконференция",
              "подписка","семейная подписка","лицензия","офисный пакет","защита рабочих станций")
 EDITION_WORDS={"home and business":"для дома и бизнеса"," se":" special edition"," epp":" endpoint protection platform"}
+LETTER_NAMES=dict(zip("эй би си ди и эф джи эйч ай джей кей эл эм эн оу пи кью ар эс ти ю ви икс уай зед".split(),
+                      "abcdefghijklmnopqrstuvxyz"))
+SPELLED=re.compile(r"\b(?:"+"|".join(LETTER_NAMES)+r")(?:[ -]+(?:"+"|".join(LETTER_NAMES)+r")){1,5}\b")
+
+
+def spoken_initials(index,text):
+    def expand(match):
+        short="".join(LETTER_NAMES[w] for w in re.split("[ -]+",match[0]))
+        return short if short in index.language.acronyms or short in index.postings else match[0]
+    return SPELLED.sub(expand,text)
 CORPORATE={"inc","ltd","limited","corporation","corp","llc","gmbh","software","ооо","ао","зао"}
 
 
@@ -60,12 +71,14 @@ def version_forms(text):
     text=re.sub(rf"\b{VERSION_WORD}\s+(?P<number>{VERSION_NUMBER})\b",number,text)
     text=re.sub(rf"\b(?P<number>{VERSION_NUMBER})\s+{VERSION_WORD}\b",number,text)
     text=re.sub(r"\bv\.?\s*(?=\d)","",text)
+    text=re.sub(r"\b(?:выпуск(?:а)?|релиз(?:а)?)\s+((?:19|20)\d\d)\b",r"\1",text)
     text=re.sub(r"\b((?:19|20)\d\d)\s+(?:года?\b|г\.)",r"\1",text)
     return text
 
 
 def edition_form(index,text):
     literal=text
+    text=re.sub(r"\bhome\s*&\s*business\b","home and business",text)
     text=re.sub(r"^ms (?=\w)","microsoft ",text)
     for source,dest in EDITION_WORDS.items():
         text=re.sub(re.escape(source)+r"\b",dest,text)
@@ -93,6 +106,14 @@ class FeedLanguage:
                     signature=class_words(label)
                     if signature:targets[signature].add(target)
         self.category_alias={k:next(iter(v)) for k,v in targets.items() if len(v)==1}
+        topics=defaultdict(set)
+        for phrase,section in index.section_phrases.items():
+            if len(phrase)!=2:continue
+            subject=phrase-{"editor","art","graphics","design","редактор","графика"}
+            if len(subject)==1:
+                word=next(iter(subject))
+                if re.fullmatch(r"[a-z]{4,}|\d+d",word):topics[word].add(section)
+        self.name_topics={word:next(iter(keys)) for word,keys in topics.items() if len(keys)==1}
         by_short=defaultdict(set)
         self.vendor_cards=defaultdict(list)
         for cid,vid in index.card_vendors.items():
@@ -164,6 +185,12 @@ class FeedLanguage:
     def section(self,index,label):
         return index.class_match(label) or self.category_alias.get(class_words(label))
 
+    def possible_section(self,text):
+        """Слово из отраслевого названия ('audio editor', '3D графика') подсказывает класс замены."""
+        matches={section for word in words(text) for cue,section in self.name_topics.items()
+                 if word.startswith(cue) or word.endswith(cue)}
+        return next(iter(matches)) if len(matches)==1 else None
+
     def qualified_class(self,index,label):
         # «Архиваторы чертежей» сохраняют раздел, «архиваторы RARSoft» — издателя.
         head,sep,last=label.rpartition(" ")
@@ -175,7 +202,7 @@ class FeedLanguage:
 
     def acronym_cards(self,index,text):
         parts=words(text)
-        groups=[self.acronyms[w] for w in parts if w in self.acronyms]
+        groups=[self.acronyms[w] for w in parts if w not in QUALIFIERS and w in self.acronyms]
         if not groups:return ()
         matches=set.intersection(*groups)
         brands={index.vendor_names[w] for w in parts if w in index.vendor_names}

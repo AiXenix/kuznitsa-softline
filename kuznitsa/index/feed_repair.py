@@ -6,6 +6,7 @@ import re
 from kuznitsa.text import lemma,normalize,tokens
 from kuznitsa.understand.repair import LAYOUT,repair,typo_matcher
 from kuznitsa.understand.spell_index import roman
+from rapidfuzz.fuzz import ratio
 
 
 def compact(text):
@@ -20,6 +21,22 @@ def roman_keys(text):
 # Обозначения редакций, которые встречаются в русских и английских названиях.
 EDITIONS={"специальный":"special","стандартный":"standard","профессиональный":"professional",
           "pro":"professional","профессиональная":"professional"}
+QUALIFIERS=frozenset("pro professional plus premium standard business home mac macos windows server suite studio edition neo".split())
+
+
+def identity_terms(text):
+    """Для имени с версией, платформой или редакцией выделяем марку из исходного запроса."""
+    from .feed import words
+    parts=words(text)
+    qualifiers={w for w in parts if w in QUALIFIERS or re.fullmatch(r"v?\d+",w)}
+    if not qualifiers:return ()
+    terms=[w for w in parts if w not in qualifiers and w not in {"for","and","on","под","audio","software"}]
+    # У кириллического имени проверяем короткую именную часть перед английской
+    # редакцией. Длинные русские описания остаются в разборе классов и задач.
+    if any(re.search("[а-я]",w) for w in terms):
+        if len(terms)>2 or parts[-1] not in qualifiers:return ()
+        if set(terms)&{"нужный","хотеть","как","какой","чем","что","программа","лицензия","софт"}:return ()
+    return tuple(terms)
 
 
 class FeedRecovery:
@@ -63,6 +80,25 @@ class FeedRecovery:
                 self.descriptions.append((len(terms),ids))
         self.confirmed=lru_cache(512)(self.confirmed)
         self.full_name=lru_cache(512)(self.full_name)
+        self.identity_cards=lru_cache(512)(self.identity_cards)
+
+    def identity_cards(self,terms):
+        """Артикул и слова редакции не подтверждают название чужой линейки."""
+        index=self.index
+        result=set()
+        for word in terms:
+            variants={word,lemma(word.translate(LAYOUT)),*index.sounds.lookup(word)}
+            if len(word)>=5 and word not in index.postings:
+                variants.update(w for w,_,_ in self.spell(word,6,2) if ratio(word,w)>=84)
+            for form in variants:
+                result.update(index.postings.get(form,()))
+            result.update(index.slang.get(word,(None,()))[1])
+            if word in index.aliases:
+                result.update(index.products(index.aliases[word],fuzzy=False))
+            result.update(index.language.acronyms.get(word,()))
+            vendor=index.vendor_names.get(word)
+            if vendor:result.update(index.language.vendor_cards[vendor])
+        return result
 
     @staticmethod
     def feature(word):
