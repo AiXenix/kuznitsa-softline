@@ -2139,7 +2139,7 @@
   note: "Терминальный доступ к Windows"
 
 - id: windows
-  names: ["Windows 10", "Windows 11", "Виндовс", "Винда", "Microsoft Windows", "Win 10", "Win 11", "Windows Pro"]
+  names: ["Windows", "Windows 10", "Windows 11", "Виндовс", "Винда", "Microsoft Windows", "Win 10", "Win 11", "Windows Pro"]
   kind: os_desktop
   in_catalog: true
   sections: ["Операционные системы Windows", "Windows 11: лицензии Home и Pro", "Российские операционные системы (Импортозамещение)"]
