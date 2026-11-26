@@ -10,7 +10,7 @@ export function result(p,r,ctx={}) {
     return line(parent,title,'chip','span');
   }
   if (Object.keys(u).length) {
-    const panel=add(p,'section',null,'understood');
+    const panel=add(ctx.understanding || p,'section',null,'understood');
     add(panel,'h2','Понято так');
     line(panel,u.intent_title,'intent');
     const chips=add(panel,'div',null,'chips');
@@ -45,8 +45,13 @@ export function result(p,r,ctx={}) {
       action(panel,'Начать заново',{context:'off'});
     }
   }
+  const domainHint=u.domain_hint || r.domain_hint || rows(u.chips).find(c=>c.label?.startsWith('Искали ПО'));
+  if(domainHint){
+    const title=typeof domainHint==='string'?domainHint:domainHint.label || domainHint.text;
+    action(p,title || 'Искали ПО для сервера?',domainHint.apply || {q:domainHint.q || 'ПО для сервера'});
+  }
   for(const b of rows(r.banners)) line(p,b.text,'banner');
-  for(const n of rows(r.notes)) line(p,label(n),'hint');
+  for(const n of rows(r.notes)) line(ctx.understanding || p,label(n),'hint');
   const facets=rows(r.facets).filter(f=>rows(f.values).length);
   if(facets.length && ctx.apply) {
     const d=details(p,'Уточнить выдачу');

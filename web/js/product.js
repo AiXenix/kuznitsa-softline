@@ -1,6 +1,9 @@
 import {caption,readable} from './labels.js';
 import {add,line,button,details,rows,label,num,money} from './dom.js';
 
+import {merchandise,picture} from './retail.js';
+import {saveButtons} from './shop.js';
+
 const factors={rel:'Релевантность',pop:'Популярность',margin:'Маржа',pers:'Персонализация'};
 const names={renewal:'Продление',new:'Новая',addon:'Докупка',upgrade:'Обновление',crossgrade:'Переход',business:'Организация',gov:'Госучреждение',edu:'Образование',home:'Дом',esd:'Электронная',box:'Коробка',perpetual:'Бессрочно'};
 const columns=[
@@ -22,13 +25,14 @@ function table(p,c,others) {
   }
 }
 function price(c) {
-  if(c.offer?.price_on_request)return 'Цена по запросу';
+  if(merchandise(c).quote)return 'Цена по запросу';
+  if(c.domain==='hardware' && !c.calc?.qty && merchandise(c).price!=null)return money(merchandise(c).price);
   if(c.calc?.text)return c.calc.text.replace(/(\d)[ \u202f](?=\d{3}(?:\D|$))/g,'$1 ').replace(/\s+₽/g,' ₽');
   const {qty,unit_price,total}=c.calc || {};
   if(qty!=null && unit_price!=null && total!=null)return num(qty)+' × '+money(unit_price)+' = '+money(total);
   if(total!=null)return money(total);
   const from=c.price_from ?? unit_price;
-  return from==null?money(c.offer?.price):'от '+money(from);
+  return from==null?money(merchandise(c).price):'от '+money(from);
 }
 function conditions(o={}){
   if(!o)return [];
@@ -62,6 +66,8 @@ export function card(p,c,ctx) {
   const identity=add(a,'div',null,'identity');
   line(identity,c.position,'rank','span');
   const vendor=caption('vendor',c.vendor?.id || label(c.vendor),label(c.vendor));
+  const retail=merchandise(c);
+  if(ctx.retail){picture(a,retail.picture,vendor);if(!ctx.shopOrigin)saveButtons(a,c);}
   if(vendor){
     const words=vendor.split(/\s+/);
     const mark=add(identity,'b',(words.length>1 ? words[0].slice(0,1)+words[1].slice(0,1) : vendor.slice(0,2)).toUpperCase(),'monogram');
@@ -76,7 +82,8 @@ export function card(p,c,ctx) {
   const info=details(disclosures,'Лицензия и варианты');
   info.hidden=!c.offer && !rows(c.variants).length;
   let viaTitle=false;
-  if(info.hidden)line(h,c.title,null,'span');
+  if(ctx.retail && !ctx.detail && !ctx.shopOrigin && c.card_id){const a=add(h,'a',c.title,'productTitle');a.href='/card/'+encodeURIComponent(c.card_id)+(ctx.profile && ctx.profile!=='guest'?'?'+new URLSearchParams({profile:ctx.profile}):'');a.onclick=()=>ctx.click?.(c,'card');}
+  else if(info.hidden)line(h,c.title,null,'span');
   else button(h,c.title,()=>{viaTitle=true;ctx.click?.(c,'card');info.open=!info.open;},'productTitle');
   if(ctx.click)info.ontoggle=()=>{if(info.open && !viaTitle)ctx.click(c,'variants');viaTitle=false;};
   h.title=c.title || '';
@@ -87,10 +94,12 @@ export function card(p,c,ctx) {
   if(tags.childElementCount)tags.title=c.offer?.name || '';
   const desc=line(body,c.summary,'muted');if(desc)desc.title=c.summary;
   const badges=add(body,'div',null,'chips');
-  for(const b of rows(c.badges))line(badges,label(b),/left|restrict|limit|exceed/.test(b.kind)||/ограничен|ушёл|предел/i.test(label(b))?'badge warn':'badge','span');
-  const unavailable=!c.offer?.offer_id || c.offer.available===false;
-  const quote=unavailable || c.offer.price_on_request;
-  if(unavailable)line(buy,'Нет в продаже','badge warn','span');
+  for(const b of rows(c.badges).filter(b=>!['promo','on_order','on_request'].includes(b.kind)))line(badges,label(b),/left|restrict|limit|exceed/.test(b.kind)||/ограничен|ушёл|предел/i.test(label(b))?'badge warn':'badge','span');
+  const onOrder=(c.offer?.available ?? c.available)===false;
+  const unavailable=!c.offer?.offer_id || onOrder;
+  const quote=unavailable || retail.quote;
+  if(unavailable)line(buy,onOrder?'Под заказ':'Нет в продаже','badge warn','span');
+  if(retail.discount!=null){line(buy,'Акция −'+retail.discount+' %','deal','span');line(buy,money(retail.old),'oldPrice','del');}
   priceLine(buy,c,quote?'price quote':'price');
   if(ctx.act)button(buy,c.action?.type==='repeat_order'?(c.action.label || 'Повторить'):quote?'Запросить счёт':'В корзину',e=>ctx.act(quote?'lead':'cart',c,e.currentTarget),quote?'request':'buy');
   if(rows(c.calc?.items).length){

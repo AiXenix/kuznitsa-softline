@@ -1,3 +1,5 @@
+import {card} from './product.js';
+import {merchandising,shopHome} from './shop.js';
 import {spreadsheet} from './download.js';
 import {upload,voice} from './input.js';
 import {caption,loadMeta} from './labels.js';
@@ -21,10 +23,11 @@ for (const a of document.querySelectorAll('header nav a')) {
 async function store() {
   main.append($('storefront').content.cloneNode(true));
   const input=$('query'), results=$('results'), timeline=$('trace'), profile=$('profile'), category=$('category');
-  let version=0, chain=[], comparisonProfiles=[];
+  let displayed,version=0, chain=[], comparisonProfiles=[];
   const spec=$('specForm'),specText=$('specText');
   const interactions=cart();
-  const workspace=timeline.closest('.workspace'), mobile=matchMedia('(max-width:800px)');
+  const shop=merchandising(main);
+  const workspace=timeline.closest('.judge'), mobile=matchMedia('(max-width:800px)');
   function collapse(closed){
     workspace.classList.toggle('traceClosed',closed);timeline.hidden=closed;
     if(closed){$('traceWidth').textContent='Развернуть';$('traceWidth').setAttribute('aria-pressed','false');}
@@ -37,14 +40,14 @@ async function store() {
   restoreTrace();mobile.addEventListener('change',restoreTrace);
   $('traceCollapse').onclick=()=>{workspace.classList.remove('traceWide');collapse(!timeline.hidden);localStorage.setItem('traceClosed-'+mobile.matches,String(timeline.hidden));};
   $('traceWidth').onclick=e=>{
-    const expanded=timeline.closest('.workspace').classList.toggle('traceWide');
+    const expanded=workspace.classList.toggle('traceWide');
     e.currentTarget.setAttribute('aria-pressed',String(expanded));
     e.currentTarget.textContent=expanded ? 'Свернуть' : 'Развернуть';
     if(expanded)$('traceWidth').focus({preventScroll:true});
   };
   const params=()=>({profile_id:profile.value,mode:$('mode').value,category:category.value,session_id:state.session});
   function save(req,kind='',replace=false,profiles=[]) {
-    const base=new URL(location.href);
+    const base=new URL(location.href);base.pathname='/';
     if(kind==='profiles' && profiles.length)base.searchParams.set('profiles',profiles.join(','));
     else if(kind!=='profiles')base.searchParams.delete('profiles');
     if(!replace){base.searchParams.delete('action');base.searchParams.delete('scenario');}
@@ -61,7 +64,18 @@ async function store() {
       if(document.querySelector('.traceWide')) $('traceWidth').click();
     }
   });
-  const close=suggestions(input,$('suggestions'),params,q=>run(q,{}, {},{suggest:true}));
+  const close=suggestions(input,$('suggestions'),params,(q,criteria={})=>{
+    if(criteria.category){
+      if(![...category.options].some(o=>o.value===criteria.category))category.add(new Option(q,criteria.category));
+      category.value=criteria.category;
+    }
+    return run(q,criteria, {},{suggest:true});
+  },'',(card,group)=>{
+    const r=displayed || {standalone:true,profile:{id:profile.value}};
+    record(r,'suggest_click',card,group).catch(()=>{});
+    if(displayed)interactions(r,group,state.session).click(card,'card');
+    else sessionStorage.removeItem('shop:ref:'+card.card_id);
+  });
   let submittedList='';
   const currentQ=()=>spec.hidden ? submittedList || input.value.trim() : specText.value.trim();
   input.addEventListener('input',()=>{submittedList='';});
@@ -76,7 +90,7 @@ async function store() {
   }
   async function run(q,patch={},previous={},navigation={}) {
     if(!q.trim())return;
-    close();leave();editor(q);
+    close();leave();displayed=null;editor(q);
     $('comparison').hidden=true;
     const now=++version;
     const request={...previous,...settings(q),...patch};
@@ -85,14 +99,14 @@ async function store() {
     if(!navigation.restore && !navigation.file)save(request);
     window.scrollTo(0,0);document.getElementById('pageScroll')?.scrollTo(0,0);
     $('notice').textContent='Идёт поиск…';
-    results.replaceChildren();timeline.replaceChildren();
+    results.replaceChildren();shop.understanding.replaceChildren();timeline.replaceChildren();
     stateBox(results,'Подбираем предложения…','loading');
     timeline.textContent='Ожидаем ответ движка.';
     results.setAttribute('aria-busy','true');
     try {
       const r=navigation.saved || (navigation.file?await upload(navigation.file,request):await api('/api/search',request));
       if(now!==version)return;
-      results.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);
+      results.replaceChildren();shop.understanding.replaceChildren();timeline.replaceChildren();watch(r,request.session_id);displayed=r;
       if(r.profile?.short || r.profile?.segment_title){responseProfiles.set(profile.value,r.profile);profileInfo();}
       if(r.upload){
         const u=r.upload, skipped=rows(u.skipped);
@@ -106,7 +120,7 @@ async function store() {
       }
       record(r,'impression').catch(err=>line(results,err.message,'error'));
       if(navigation.suggest)record(r,'suggest_click',{},'suggest').catch(err=>line(results,err.message,'error'));
-      result(results,r,{categories:state.meta.categories,
+      result(results,r,{retail:true,understanding:shop.understanding,categories:state.meta.categories,
         related:q=>{record(r,'reformulate',{},'related').catch(err=>line(results,err.message,'error'));run(q);},
         apply:change=>{
           if(change.q){
@@ -195,9 +209,20 @@ async function store() {
     close();if(field===profile){sessionStorage.kzSession=state.session=freshSession();profileInfo();}
     if(currentQ()) run(currentQ());
   };
-  stateBox(results,'Загружаем каталог…','loading');
+  if(location.pathname==='/' && !location.search)shopHome(results);
+  else stateBox(results,'Загружаем каталог…','loading');
   const m=await loadMeta();state.meta=m;
   for(const p of rows(m.profiles)) if(p.id!=='guest') profile.add(new Option(p.short || p.title.split(/ [—–] /)[0],p.id));
+  shop.categories(m.categories);
+  api('/web-data/catalog-sections').then(classes=>{
+    const options=Object.entries(classes).map(([id,title])=>({id,title})).sort((a,b)=>a.title.localeCompare(b.title,'ru'));
+    if(options.length){
+      shop.categories(options);
+      const existing=new Set([...category.options].map(o=>o.value));
+      for(const c of options)if(!existing.has(c.id))category.add(new Option(c.title,c.id));
+      if(!category.value && state.request.category)category.value=state.request.category;
+    }
+  }).catch(()=>{});
   for(const c of rows(m.categories)) category.add(new Option(c.title,c.id));
   $('stats').textContent=[m.catalog?.cards==null?'':num(m.catalog.cards)+' карточек',m.catalog?.offers==null?'':num(m.catalog.offers)+' вариантов лицензий'].filter(Boolean).join(' · ');
   const url=new URLSearchParams(location.search), scenario=rows(m.scenarios).find(s=>s.id===url.get('scenario'));
@@ -206,12 +231,26 @@ async function store() {
   const selected=url.get('profile') || demo.profile;
   if(scenario || url.has('step')) sessionStorage.kzSession=state.session=freshSession();
   if([...profile.options].some(o=>o.value===selected)) profile.value=selected;
+  if(saved.category && ![...category.options].some(o=>o.value===saved.category))category.add(new Option(saved.q || saved.category,saved.category));
   category.value=saved.category || demo.category || '';
   chain=[...rows(demo.chain)];comparisonProfiles=url.has('profiles') ? url.get('profiles').split(',') : rows(demo.compare);
   const example=url.get('q');
   if(example && example===chain[0])chain.shift();else if(example)chain=[];
   const q=example || demo.q || chain.shift() || (scenario && scenario.examples?.[0]);
   profileInfo();
+  if(location.pathname.startsWith('/card/')){
+    const id=location.pathname.slice('/card/'.length),c=await api('/api/card/'+id+'?'+new URLSearchParams({profile_id:profile.value}));
+    results.replaceChildren();link(results,'← В каталог','/');
+    const detail=add(results,'section',null,'storeDetail');
+    let ref;
+    try{ref=JSON.parse(sessionStorage.getItem('shop:ref:'+c.card_id));}catch{/* Direct visit. */}
+    if(ref?.profile?.id!==profile.value || ref?.session!==state.session)ref=null;
+    card(detail,{...c,rule_id:ref?.rule_id,position:ref?.position},{
+      retail:true,detail:true,...interactions(ref || {standalone:true,profile:{id:profile.value}},ref?.block || 'products',state.session)
+    });
+    document.title=(c.title || 'Товар')+' · Софтлайн';
+    return;
+  }
   if(url.get('show')==='1' && url.get('action')==='upload'){
     const sample=await fetch('/web/demo/specification.csv');
     if(!sample.ok)throw Error('Не удалось открыть файл спецификации для показа.');
@@ -230,22 +269,12 @@ async function store() {
     const kind=saved.compare || (comparisonProfiles.length?'profiles':'');
     save({...settings(q),...saved.criteria},kind,true);
     await run(q,{...saved.criteria,source:scenario?'gallery':'ui'}, {},{restore:true});
-    if(kind)openCompare(kind,true);
+    if(kind){shop.open();openCompare(kind,true);}
     return;
   }
   if(version)return;
-  results.replaceChildren();
-  add(results,'h2','Что вы подбираете?');
-  const examples=add(results,'div',null,'exampleGrid');
-  const groups=new Set();
-  for(const s of rows(m.scenarios)) {
-    if(groups.has(s.group) || !s.demo?.q)continue;
-    groups.add(s.group);
-    const a=link(examples,s.demo.q,'/?scenario='+encodeURIComponent(s.id));line(a,s.group_title,'muted','small');
-    if(groups.size===6)break;
-  }
-  link(results,'Все сценарии поиска →','/scenarios');
+  shopHome(results);
 }
-(location.pathname==='/' ? store() : import('./pages.js').then(({page})=>page(main))).catch(err=>stateBox(main,err.message,'error'));
+((location.pathname==='/' || location.pathname.startsWith('/card/')) ? store() : import('./pages.js').then(({page})=>page(main))).catch(err=>stateBox(main,err.message,'error'));
 
 presentation().catch(err=>line(main,err.message,'error'));

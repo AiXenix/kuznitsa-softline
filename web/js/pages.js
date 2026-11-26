@@ -85,12 +85,6 @@ import {documents} from './documents.js';
 import {flows} from './flows.js';
 export async function page(main) {
   if(location.pathname==='/docs' || location.pathname.startsWith('/docs/'))return documents(main);
-  if(location.pathname.startsWith('/card/')){
-    const c=await api('/api/card/'+location.pathname.split('/').pop());
-    heading(main,'Карточка каталога');card(main,c,{});
-    if(c.title)link(main,'Подобрать лицензию на витрине','/?'+new URLSearchParams({q:c.title}));
-    return;
-  }
   if(location.pathname==='/admin' || location.pathname.startsWith('/inspect/'))await loadMeta().catch(()=>null);
   switch(location.pathname) {
     case '/scenarios':return gallery(main);

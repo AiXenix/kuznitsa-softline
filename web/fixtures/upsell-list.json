@@ -1,0 +1,49 @@
+{
+  "version": "ab88793f4b1.3",
+  "items": [
+    {
+      "enabled": true,
+      "source": "kb",
+      "weight": 0.4,
+      "id": "security",
+      "offer": {
+        "families": [
+          "shield"
+        ]
+      },
+      "reason": "Защита рабочих мест с офисным пакетом",
+      "when": {
+        "query_words": [
+          "офис"
+        ]
+      },
+      "counters": {
+        "impressions": 1,
+        "clicks": 1,
+        "carts": 1
+      }
+    },
+    {
+      "enabled": false,
+      "source": "kb",
+      "weight": 0.8,
+      "id": "manual",
+      "when": {
+        "query_words": [
+          "офис"
+        ]
+      },
+      "offer": {
+        "families": [
+          "shield"
+        ]
+      },
+      "reason": "Защита рабочих мест с офисным пакетом",
+      "counters": {
+        "impressions": 0,
+        "clicks": 0,
+        "carts": 0
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Кузница Softline · Каталог программ</title>
-<link rel="stylesheet" href="/web/css/store.css">
+<link rel="stylesheet" href="/web/css/store.css"><link rel="stylesheet" href="/web/css/shop.css">
 <script type="module" src="/web/js/store.js"></script>
 </head>
 <body>
@@ -12,11 +12,11 @@
 <nav aria-label="Разделы"><a href="/">Каталог</a><a href="/scenarios">Сценарии</a><a href="/admin">Аналитика</a><a href="/embed">Виджет</a><a href="/docs">Документы</a><a href="/about">О решении</a></nav>
 <button id="basket" hidden>Корзина</button></div></header>
 <main class="wrap" id="main" tabindex="-1"></main>
-<footer><div class="wrap"><strong>AiXenix</strong><span>Демонстрационный стенд хакатона. Каталог, цены и клиенты — синтетические.</span><a href="/styleguide">Образцы интерфейса</a></div></footer></div>
+<footer><div class="wrap"><strong>AiXenix</strong><span>Демонстрационный стенд хакатона. Каталог программ и оборудования.</span><a href="/styleguide">Образцы интерфейса</a></div></footer></div>
 <dialog id="drawer" aria-labelledby="drawerTitle"><form method="dialog"><button autofocus>Закрыть</button></form><h2 id="drawerTitle">Корзина</h2><div id="cartBody"></div></dialog>
 <template id="storefront">
 <section class="hero"><small>Каталог для организаций</small><h1>Программное обеспечение</h1><p id="stats"></p>
-<form id="search"><div class="bar"><input type="search" id="query" aria-label="Поисковый запрос" role="combobox" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false" placeholder="Название, артикул или задача" maxlength="1500" required autocomplete="off"><button class="primary">Найти</button>
+<form id="search"><div class="bar"><input type="search" id="query" aria-label="Поисковый запрос" role="combobox" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false" placeholder="Продукт, производитель или артикул (SKU)" maxlength="1500" required autocomplete="off"><button class="primary">Найти</button>
 <div id="suggestions" role="listbox" aria-label="Подсказки" hidden></div></div>
 <div class="settings"><label>Профиль клиента<select id="profile"><option value="guest">Гость</option></select></label><label>Категория<select id="category"><option value="">Все категории</option></select></label><label>Режим поиска<select id="mode"><option value="smart">Умный</option><option value="fast">Быстрый</option><option value="naive">Обычный</option></select></label></div></form>
 <div id="profileInfo"></div></section>
