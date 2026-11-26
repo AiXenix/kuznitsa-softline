@@ -106,8 +106,13 @@ class Catalog:
         for ident,offers in groups.items():
             o = offers[0]
             f = kb.rows["families"].get(o.family_id,{})
+            if o.domain:
+                offers.sort(key=lambda x:(not x.available,x.price is None,x.lic.action not in (None,"new"),x.price or 0,x.offer_id))
+                o=offers[0]
             ed = next((x.get("title",x.get("name")) for x in f.get("editions",[]) if x["id"]==o.edition),o.edition)
             title = " ".join(filter(None,[f.get("title") or o.family_name or o.name,ed]))
+            if o.domain:
+                title=o.family_name or (o.category_path or [o.name])[-1]
             vendor = kb.rows["vendors"].get(o.vendor_id,{})
             card = Card(ident,title,o.family_id or ident,o.vendor_id,o.category_id,offers,f,
                         min((x.price for x in offers if x.price is not None),default=None),
@@ -138,10 +143,14 @@ class Catalog:
             for ident,row in kb.rows[group].items():
                 text=". ".join([row.get("title",ident),*map(str,row.get("phrases",[])[:3]+row.get("questions",[])[:3]+row.get("synonyms",[])[:3])])
                 knowledge.append(((kind,ident),text))
-        self.dense = Dense(cfg,[". ".join(d[k] for k in ("title","vendor","category","summary","keywords")) for d in docs],knowledge)
+        self.is_feed=any(c.offers[0].domain for c in self.cards.values())
+        self.dense = Dense(cfg,[] if self.is_feed else [". ".join(d[k] for k in ("title","vendor","category","summary","keywords")) for d in docs],knowledge)
 
         from .sections import Sections
         self.sections=Sections(self,cfg)
+        if self.is_feed:
+            from .feed import FeedIndex
+            self.feed=FeedIndex(self,kb,cfg)
 
     def prefix_skus(self,text,limit=8):
         from bisect import bisect_left

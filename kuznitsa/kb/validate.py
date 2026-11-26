@@ -17,6 +17,12 @@ def validate(group,row):
     for field in ("editions","slots","russian_analogs"):
         if not all(isinstance(v,dict) for v in row.get(field,[])):
             raise ValueError(field)
+    if group=="hardware_hints":
+        for k in ("hardware_class","prompt"):
+            if not isinstance(row.get(k),str) or not row[k]:raise ValueError(k)
+        for k in ("hardware_feed_classes","trigger_words","software_classes"):
+            if not isinstance(row.get(k),list) or not row[k] or not all(isinstance(v,(str,int)) for v in row[k]):
+                raise ValueError(k)
     if group=="compliance":
         effect=row.get("effect",{})
         if not isinstance(effect,dict) or not isinstance(effect.get("filter",{}),dict):

@@ -95,7 +95,7 @@ def create_app(engine=None,cfg=None):
         return dict(labels=labels(core()),profiles=[profile_info(c) for c in core().clients.values() if c.demo],
                     categories=[dict(id=k,title=r.get("title",k)) for k,r in core().kb.rows["categories"].items() if not r.get("parent")],
                     modes=["fast","smart","naive"],mode_titles=MODE_TITLES,weights=WEIGHTS,catalog=health()["catalog"],scenarios=list(scenarios.values()) or [dict(id="product",title="Поиск продукта",examples=[next(iter(core().catalog.cards.values())).title] if core().catalog.cards else [])],
-                    disclaimer="Каталог, цены и клиенты — демонстрационные.")
+                    disclaimer="Предложения из фида store.softline.ru." if core().catalog.is_feed else "Каталог, цены и клиенты — демонстрационные.")
     @app.post("/api/search")
     def search(req:Request,request:HttpRequest):
         if req.source=="eval" and request.headers.get("X-Admin-Token"):

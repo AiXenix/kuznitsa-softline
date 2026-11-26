@@ -23,6 +23,10 @@ class License(BaseModel):
 class Offer(BaseModel):
     offer_id: str
     name: str
+    group_id: str | None = None
+    domain: Literal["hardware","software","service","cloud"] | None = None
+    class_id: str | None = None
+    oldprice: float | None = None
     sku: str | None = None
     vendor: str | None = None
     vendor_id: str | None = None
@@ -61,6 +65,10 @@ class Offer(BaseModel):
 
     @property
     def card_id(self):
+        if self.domain:
+            if self.group_id:
+                return self.group_id
+            return self.family_id if self.family_id==f"sku_{self.source_id}" else self.offer_id
         return ":".join(filter(None, [self.family_id or self.offer_id, self.edition]))
 
 

@@ -148,6 +148,9 @@ def suggest(engine,q,profile_id="guest",category=None):
     engine._rules()
     norm=key(q)
     profile=engine.clients.get(profile_id)
+    if getattr(engine.catalog,"is_feed",False):
+        from kuznitsa.plans.feed import suggestions
+        return suggestions(engine,q,norm,profile or engine.clients["guest"],start)
     groups,corrected=engine.suggestions.complete(norm,profile) if norm else ([],None)
     if corrected:
         groups.insert(0,dict(type="corrections",title="Исправление написания",items=[dict(kind="correction",text=corrected,q=corrected,meta="repair")]))

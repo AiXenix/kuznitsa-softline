@@ -20,6 +20,14 @@ def strings(value):
 def read_offer(line):
     row=json.loads(line)
     attrs={k:v for k,v in (row.get("attrs") or {}).items() if v is not None}
+    for field in ("domain","group_id","class_id","oldprice"):
+        value = row.get(field) or attrs.get(field)
+        if value is not None:
+            row[field] = str(value) if field != "oldprice" else value
+    if row.get("domain"):
+        row["image"] = row.get("image") or row.get("picture") or attrs.get("picture")
+        if not row.get("price"):
+            row.update(price=None,price_on_request=True)
     # Поддерживаем обе версии канонической схемы D и старые выгрузки только с attrs.
     if row.get("source_ids") or attrs.get("source_ids"):
         row["source_ids"]=list(dict.fromkeys([*strings(row.get("source_ids")),*strings(attrs.get("source_ids"))]))
@@ -95,7 +103,7 @@ class SupplierNames:
         self.task_words = {}
         self.by_word = defaultdict(set)
         for card in cards.values():
-            for o in card.offers:
+            for o in (card.offers[:1] if card.offers[0].domain else card.offers):
                 for task in strings(o.attrs.get("task")):
                     self.tasks[normalize(task)].add(card.id)
                 for alias in strings(o.attrs.get("aliases")):

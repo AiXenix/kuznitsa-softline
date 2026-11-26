@@ -77,7 +77,8 @@ class Engine:
                 if ident and name:
                     self.names[k].setdefault(ident,name)
         cat.legacy_category_names=self.names["category"]
-        naive.prepare(cat)
+        if not cat.is_feed:
+            naive.prepare(cat)
         self.exact_titles={normalize(c.title) for c in cat.cards.values()}
         self.exact_titles.update(normalize(c.kb["title"]) for c in cat.cards.values() if c.kb.get("title"))
         self._rules()
@@ -188,9 +189,14 @@ class Engine:
         profile=self.clients[profile_id]
         f={k:v for k,v in dict(term_months=term,action=action).items() if v}
         selection=select(c,profile,f,{},dict(value=qty) if qty else None)
+        if not selection and c.offers[0].domain and not (qty or term or action):
+            selection=(c.offers[0],None,None)
         if not selection:
             return dict(card_id=c.id,title=c.title,offer=None,calc=None,variants=[public_offer(o) for o in c.offers],variants_count=len(c.offers))
         card=ranked(c,selection,1,True,profile,WEIGHTS,self.kb)
+        if c.offers[0].domain:
+            from .plans.feed import decorate
+            decorate(card,selection[0])
         card["variants"]=[public_offer(o) for o in c.offers]
         return card
 
@@ -220,7 +226,12 @@ class Engine:
         trace = Trace(self.timer)
         if req.mode == "naive":
             return self._naive(req, profile, trace, record)
-        return self._search(req, profile, trace, self._rules(),priorities=compiled,record=record)
+        rules=self._rules()
+        if self.catalog.is_feed:
+            from .plans.feed import search
+            result=search(self,req,profile,trace,compiled,record)
+            if result is not None:return result
+        return self._search(req, profile, trace, rules,priorities=compiled,record=record)
 
     def _naive(self, req, profile, trace, record=True):
         offers = naive.match(self.catalog, req.q, limit=None)
@@ -240,6 +251,14 @@ class Engine:
         result["understood"]["zero_reason"]=zero
         for card in cards:
             card["score"]["tier_label"]=TIERS[card["score"]["tier"]]
+        if self.catalog.is_feed:
+            from .plans.feed import decorate,fill
+            for item in cards:
+                decorate(item,self.catalog.offers_by_id[item["offer"]["offer_id"]])
+            if req.page==1 and len(cards)<4:
+                anchors=[dict(c,card_id=c["card_ref"]) for c in cards]
+                extra=fill(self,anchors,profile,not cards)
+                if extra:result["blocks"].append(dict(type="products",title=extra[0]["label"],items=extra,total=len(extra)))
         if record:self.journal.search(self.clock(),req,result,len(offers),zero,False)
         result["timing_ms"]["total"]=round((self.timer()-trace.start)*1000,2)
         if not req.explain:
@@ -1504,7 +1523,7 @@ class Engine:
                 vendor=self.kb.rows["vendors"].get(cards[0]["vendor"]["id"],{})
                 if vendor.get("market_status") in ("restricted","left"):
                     notes.append(f"Для продукции {vendor['name']} действуют ограничения поставки. Доступность следует подтвердить.")
-        if persist and not nearby:
+        if persist and not nearby and not self.catalog.is_feed:
             extra=companions(self,intent,cards,profile,weights,f,exc)
             if extra:
                 shown={i["card"]["card_id"] for b in blocks if b["type"]=="analogs" for i in b["items"]}
@@ -1535,6 +1554,24 @@ class Engine:
                     related_queries=next_queries(self,cards,norm,blocks),notes=notes,trace=t.steps,
                     cost=cost_summary(calls,self.usd_rub),timing_ms=dict(total=round((self.timer()-t.start)*1000,2)),
                     profile=profile_info(profile))
+        if self.catalog.is_feed and persist and req.page==1:
+            from .plans.feed import fill,decorate,recommend
+            from .evaluation import cards_from
+            visible=cards_from(blocks)
+            for item in visible:
+                offer=self.catalog.offers_by_id.get((item.get("offer") or {}).get("offer_id"))
+                if offer:decorate(item,offer)
+            reserved=set()
+            primary=next((b for b in blocks if b["type"]=="products" and b["items"]),None)
+            if primary:
+                shown={c["card_id"] for c in visible}
+                other=shown-{c["card_id"] for c in primary["items"]}
+                together,reserved=recommend(self,norm,primary["items"],profile,intent,other)
+                if together:blocks.append(together)
+                for i,c in enumerate(primary["items"],1):c["position"]=i
+            more=fill(self,visible,profile,intent=="off_topic",reserved)
+            if more:
+                blocks.append(dict(type="products",title=more[0]["label"],items=more,total=len(more)))
         t.add("log","Журнал и стоимость","Запись поиска в журнал. Расходы на внешние модели · 0 ₽")
         started=self.timer()
         if persist and record:

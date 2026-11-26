@@ -23,6 +23,7 @@ class Sections:
         self.members={}
         for i,card in enumerate(catalog.cards.values()):
             o=card.offers[0]
+            if o.domain:continue
             if not card.category or not o.category_path or not (o.source_id or o.source_ids or o.attrs.get("series") or not card.kb):
                 continue
             paths[card.category][tuple(o.category_path)].append(i)
