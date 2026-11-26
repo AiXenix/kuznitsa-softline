@@ -1,0 +1,215 @@
+# Второй открытый набор аудита поиска: широкие сценарии (замены, роли, совместимость, масштаб, бюджет, реестр,
+# периферия, услуги, продление и переход, английские запросы, длинные формулировки закупок, бренды, опечатки).
+# Ожидания сверены с настоящим фидом store.softline.ru. Формат и проверки — как в cases.tsv (scripts/check_audit.py).
+#
+# аналог: покупатель просит замену названному продукту
+аналог	чем заменить teamviewer	top=anydesk|radmin|ассистент|rudesktop|rms|litemanager;min=4
+аналог	российский аналог photoshop	min=3;not=adobe
+аналог	замена vmware	top=zvirt|rosa virtualization|ред виртуализац|vmmanager|брест|basis|space|hostvm;not4=vmware
+аналог	аналог veeam	top=бэкап|backup;min=4
+аналог	чем заменить microsoft office	top=р7|мойофис|настольный офис|яндекс 360;min=4
+аналог	аналог figma	top=pixso;min=3
+аналог	российский аналог autocad	top=nanocad|компас;not=autodesk|autocad lt
+аналог	аналог slack	top=express|толк|вкурсе|сквадус|squadus|мессенджер|workspace;min=4
+аналог	замена oracle database	top=postgres|tantor|ред база|линтер|субд;min=4
+аналог	аналог active directory	top=ald pro|ред адм|альт домен|dynamic directory;min=3
+аналог	альтернатива windows	top=astra linux|ред ос|альт|роса;not4=windows
+аналог	импортозамещение exchange	top=tegu|communigate|rupost|mailion|почт|workspace|яндекс 360;not=postgres|эликонт|rosa
+аналог	аналог acrobat	top=pdf|contentreader;min=4
+аналог	замена cisco anyconnect	top=vpn|ngate|с-терра|континент|lirtunnel;min=3
+#
+# роль: покупатель называет профессию или тип организации
+роль	программы для бухгалтера	not=бэкап|backup;min=3
+роль	софт для дизайнера	top=photoshop|coreldraw|illustrator|pixso|creative cloud|paintshop|графическ;min=4
+роль	программы для архитектора	top=archicad|renga|nanocad|архитектур|revit;min=4
+роль	софт для системного администратора	top=10-страйк|мониторинг|удаленн|ald pro|управлени|администр;min=4
+роль	софт для юриста	min=4
+роль	программы для инженера-конструктора	top=компас|nanocad|autocad|t-flex|solidworks|inventor;not=altova
+роль	софт для видеомонтажа	top=видеомонтаж|мовавика|filmora|premiere|pinnacle|powerdirector|vegas
+роль	программы для строительной компании	top=смет|renga|nanocad|лира|bim|гранд|строит;min=4
+роль	софт для отдела кадров	top=кадр|персонал|hr|хантфлоу|босс;min=4
+роль	программы для программиста	top=visual studio|rad studio|embarcadero|gitflic|delphi;min=4
+роль	софт для малого бизнеса	top=small office|битрикс24|мойсклад|office|365|р7|crm|мойофис;not=datareon|akeydor
+роль	программы для школы	top=образован|школ|учеб;min=4
+#
+# совместимость: продукт под названную систему или платформу
+совместимость	антивирус для linux	top=kaspersky endpoint|dr\.?web|pro32;min=4
+совместимость	офис для mac	top=for mac|для mac;min=3
+совместимость	сапр для astra linux	top=nanocad|компас|t-flex|сапр|cad;not=dcimanager|боцман|gitflic|tantor|workspad
+совместимость	касперский для android	top=standard|plus|premium|mobility;not4=виртуальных|хранения|embedded
+совместимость	антивирус для windows server	top=server security|для бизнеса|сервер;not4=mail security|систем хранения
+совместимость	офисный пакет для linux	top=р7|мойофис|настольный офис|officesuite;not=акустич|юридич|искусств
+совместимость	антивирус для mac	top=kaspersky|dr\.?web|pro32;not4=mail security|систем хранения
+совместимость	криптопро для linux	top2=криптопро csp
+совместимость	почтовый клиент для linux	top=bat|mailion|почт|органайзер;not=scanitto|officesuite
+совместимость	vpn клиент для windows	top=vpn|с-терра клиент|континент|ngate;not=мегаплан|ntp|клиент плюс
+#
+# масштаб: число мест и размер покупателя
+масштаб	антивирус на 100 компьютеров	top=kaspersky endpoint security|dr\.?web;min=4
+масштаб	антивирус для дома на 3 устройства	top=kaspersky (standard|plus|premium)|security space|pro32 (total|ultimate);not4=endpoint|для бизнеса
+масштаб	офис для малого бизнеса	top=для дома и бизнеса|365|р7|мойофис;not4=flexispace|scad|pro32
+масштаб	windows для организации 50 пк	first=windows 11 pro;not4=rights management
+масштаб	касперский для бизнеса 20 узлов	first=kaspersky (endpoint security|small office)
+масштаб	dr.web для дома	first=security space
+масштаб	р7 офис на 50 мест	top=р7;present
+масштаб	astra linux 100 лицензий	first=astra linux;present
+#
+# бюджет: граница цены и «дешевле»
+бюджет	антивирус до 2000 рублей	pricemax=2000;top=kaspersky|dr\.?web|pro32
+бюджет	ноутбук до 60000	pricemax=60000;top=ноутбук;min=3
+бюджет	монитор до 15000 руб	pricemax=15000;top=монитор
+бюджет	бесплатный антивирус	note=бесплатн;top=kaspersky|dr\.?web|pro32
+бюджет	недорогой офисный пакет	asc;not=visio|project
+бюджет	windows 11 pro цена	present;first=windows 11 pro
+бюджет	мышь до 1000	pricemax=1000;top=мышь
+бюджет	принтер до 20 тыс	pricemax=20000;min=4
+бюджет	дешевый ноутбук для офиса	asc;top=ноутбук
+бюджет	самая дешевая лицензия касперского	asc;top=kaspersky
+#
+# реестр: требования к российскому происхождению и сертификации
+реестр	офисный пакет из реестра отечественного по	top=р7|мойофис|настольный офис;not=microsoft|lookout
+реестр	ос из реестра минцифры	top=astra|ред ос|альт|роса|основа;not4=виртуализац|ald pro
+реестр	отечественная субд	top=postgres pro|tantor|ред база|линтер
+реестр	российская операционная система	top=astra linux|ред ос|альт;not4=ald pro|granulex
+реестр	отечественный антивирус	first=kaspersky|dr\.?web;not=eset|avast|norton|bitdefender
+реестр	российская вкс	top=trueconf|толк|iva|видеомост|vinteo|dion|jazz
+реестр	сертифицированная ос фстэк	top=astra linux special|альт сп|ред ос
+реестр	российский сапр	top=nanocad|компас|t-flex|renga;not=altium|wine
+реестр	отечественная виртуализация	top=rosa virtualization|zvirt|ред виртуализац|vmmanager|брест
+реестр	российский мессенджер для компании	top=express|толк|вкурсе|squadus|сквадус
+реестр	гост шифрование	first=крипто|vipnet|скзи
+#
+# железо2: периферия и комплектующие с параметрами
+железо2	монитор 27 дюймов	top=монитор.*27
+железо2	ssd 1 тб	top=твердотельн|ssd;not=microsoft|sql
+железо2	ноутбук 16 гб i7	top=ноутбук;not=диск|накопитель
+железо2	картридж для hp laserjet	top=картридж;not4=пленка|обложки|пружины
+железо2	мфу лазерное цветное	top=color|цветн;not4=designjet
+железо2	роутер wi-fi 6	top=роутер;not=ventafax;min=6
+железо2	коммутатор 24 порта	top=коммутатор
+железо2	ибп 1000 ва	top=ибп.*1000
+железо2	веб-камера	top=вебкамера|веб-камера
+железо2	наушники с микрофоном	first=гарнитура|наушники
+железо2	жёсткий диск 4 тб	top=жесткий диск;not4=твердотельн
+железо2	оперативная память ddr5 32gb	top=ddr5;not4=ddr4
+железо2	видеокарта rtx	top=rtx
+железо2	сервер dell	top=сервер;not4=жесткий диск
+железо2	моноблок	top=моноблок
+железо2	флешка 64 гб	top=флешка;not=dr\.fone|powerdvd;min=6
+железо2	графический планшет	first=графический планшет;not=акустич|canon
+железо2	проектор	first=проектор;not=колонки
+железо2	nas	top=сетевое хранилище|nas
+железо2	мышь беспроводная logitech	first=^мышь.*logitech
+#
+# услуги: обучение, внедрение, поддержка
+услуги	обучение astra linux	min=3
+услуги	курсы по информационной безопасности	top=курс|course|awareness|обучен;not4=qmulo
+услуги	внедрение битрикс24	min=3;top=битрикс
+услуги	техподдержка касперский	top=поддержк|support|expert services;notnote=этого производителя нет
+услуги	аудит информационной безопасности	top=аудит|сканер|ревизор|redcheck|maxpatrol|уязвим
+услуги	курсы excel	min=3
+услуги	сертификат на техподдержку	top=сертификат
+#
+# переход: продление, докупка, смена продукта
+переход	продление dr.web	present;top=dr\.?web
+переход	продлить лицензию касперского	present;first=kaspersky (standard|plus|premium|endpoint security|small office)
+переход	продление криптопро	present;top=криптопро
+переход	переход с windows на astra linux	min=3;top=astra linux
+переход	миграция с microsoft office на р7	top=р7;nofix
+переход	upgrade windows 10 pro	present;top=windows 1[01]
+переход	расширение лицензии kaspersky	top=kaspersky;not4=express course|threat intelligence
+переход	докупить лицензии dr.web	top=dr\.?web;not=windows
+#
+# англ: запрос на английском
+англ	antivirus	top=kaspersky|dr\.?web|pro32
+англ	office suite for business	present;top=office|р7|мойофис|365;not=lookout|магазин
+англ	backup	top=backup|бэкап
+англ	kaspersky endpoint security	first=kaspersky endpoint security
+англ	cad software	top=autocad|nanocad|компас|cad;not=northwoods|/n software
+англ	pdf editor	top=pdf
+англ	windows 11 pro license	present;first=windows 11 pro
+англ	firewall	top=usergate|ideco|ngfw|межсетев|континент
+англ	virtualization	top=virtualization|виртуализац|vsphere|zvirt
+англ	project management	present;min=4
+англ	password manager	top=password manager|пассворк|пароль;not4=footprint|виртуальных
+англ	video editor	top=video editor|видеомонтаж|premiere|filmora|мовавика
+#
+# длинный: формулировки из закупок и разговорные просьбы
+длинный	нужен антивирус для организации на 25 рабочих станций и 2 сервера сроком на 1 год	top=kaspersky endpoint security|dr\.?web (enterprise|desktop|server);not4=mail security|систем хранения
+длинный	поставка лицензий офисного пакета из реестра российского по на 30 рабочих мест	top=р7|мойофис|настольный офис;not=microsoft|эликонт
+длинный	право на использование операционной системы astra linux special edition для рабочей станции	first=astra linux special edition
+длинный	лицензия на право использования скзи криптопро csp версии 5.0 бессрочная	first=криптопро csp 5
+длинный	средство защиты информации от несанкционированного доступа для 10 арм	top=secret net|страж|dallas|блокхост|аккорд
+длинный	программное обеспечение для резервного копирования виртуальных машин	top=бэкап|backup|акура;not=msdn|стройсофт
+длинный	неисключительные права на использование антивируса касперского для бизнеса стандартный	first=kaspersky endpoint security для бизнеса
+длинный	система электронного документооборота для 50 пользователей	top=directum|тезис|docsvision|документооборот|мотив|elma;not4=гранд-смет
+длинный	подскажите пожалуйста какой антивирус лучше поставить на домашний компьютер	top=kaspersky (standard|plus|premium)|security space;notnote=корпоративн
+длинный	ищу программу чтобы делать презентации и таблицы	top=office|р7|мойофис|365;not4=visio|project
+длинный	чем открыть файл dwg	top=nanocad|autocad|abviewer|dwg|компас;not=easypano|автограф|юнион
+длинный	как защитить компанию от вирусов-шифровальщиков	top=kaspersky|dr\.?web|бэкап|backup|edr;not4=криптопро|стахановец
+длинный	нужно подписывать документы электронной подписью	top=криптопро csp|криптоарм|рутокен|подпис;not4=kaspersky|стахановец
+длинный	хочу монтировать видео для ютуба	top=видеомонтаж|мовавика|filmora|premiere|powerdirector|pinnacle;not4=tourweaver|re:vision
+#
+# бренд2: бренд или линейка — первым идёт главный продукт
+бренд2	dr.web	top=security space;min=4
+бренд2	доктор веб	top=security space;min=4
+бренд2	astra linux	first=astra linux
+бренд2	р7 офис	first=р7
+бренд2	мойофис	first=мойофис
+бренд2	adobe	top=photoshop|acrobat|creative cloud
+бренд2	photoshop	first=adobe photoshop
+бренд2	компас 3d	top2=компас-3d v;notnote=этого производителя нет
+бренд2	битрикс24	first=битрикс24
+бренд2	usergate	first=usergate ngfw
+бренд2	код безопасности	top=secret net studio|континент|соболь
+бренд2	secret net studio	first=secret net studio
+бренд2	рутокен	first=рутокен
+бренд2	vmware	top=vsphere
+бренд2	trueconf	first=trueconf
+бренд2	postgres pro	first=postgres pro
+бренд2	ред ос	first=ред ос
+бренд2	альт линукс	top=альт (рабочая станция|сервер|сп)
+бренд2	windows server 2022	top=windows server (standard|datacenter|essentials)
+бренд2	visio	first=microsoft visio
+бренд2	project	first=microsoft project
+бренд2	power bi	first=power bi
+бренд2	консультант плюс	absent;not=клиент плюс|отдел кадров плюс|kaspersky
+бренд2	corel	first=coreldraw
+бренд2	архикад	top=archicad;not=автокаталог|сетка заявок|фитнес
+бренд2	revit	first=autodesk revit
+бренд2	3ds max	first=3ds max
+бренд2	winrar	first=winrar;not=dr\.fone
+бренд2	acronis	absent;top=кибер бэкап
+бренд2	кибер бэкап	first=кибер бэкап
+бренд2	ideco	first=ideco
+бренд2	континент	first=континент
+бренд2	dallas lock	absent;top=secret net|страж;not=словари|mdaemon|ventafax
+бренд2	directum	first=directum
+бренд2	мегаплан	first=мегаплан
+бренд2	abbyy	top=finereader|contentreader|abbyy
+#
+# опечатка2: ошибки, транслит, раскладка
+опечатка2	касперскй	top=kaspersky
+опечатка2	майкрасофт офис	top=microsoft office
+опечатка2	виндовс 11 про	first=windows 11 pro
+опечатка2	фотошоб	first=adobe photoshop
+опечатка2	афтокад	top=autocad;not2=macintosh|modplus
+опечатка2	др вэб	top=dr\.?web
+опечатка2	астра линукс	first=astra linux;notnote=этого производителя нет
+опечатка2	криптапро	top2=криптопро csp
+опечатка2	ворд	present;top=word
+опечатка2	эксель	present;top=excel
+опечатка2	аутлук	present;top=outlook
+опечатка2	kasperskiy	top=kaspersky;not4=виртуальных|хранения
+опечатка2	fotoshop	present;top=photoshop
+опечатка2	micosoft ofice	top=microsoft office
+опечатка2	rfcgthcrbq	fix=касперск|kaspersky;not4=виртуальных|хранения
+опечатка2	jabc	fix=офис|office
+опечатка2	фгещсфв	fix=autocad;top=autocad
+опечатка2	антивирс для организаци	top=kaspersky|dr\.?web|pro32;not=mdaemon|escan|bullguard
+опечатка2	резервное копированее	top=бэкап|backup|резервное копирование;not4=сертификат
+опечатка2	компас3д	first=компас-3d
+опечатка2	нанокад	first=nanocad|платформа nanocad;not4=lustre
+опечатка2	битрикс 24	present;first=битрикс24
+опечатка2	тимвьювер	first=teamviewer
+опечатка2	энидеск	first=anydesk;not4=эликонт|интегрированная
