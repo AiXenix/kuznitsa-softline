@@ -1,0 +1,25 @@
+{
+  "totals": {
+    "impressions": 1,
+    "clicks": 1,
+    "carts": 1
+  },
+  "by_rule": {
+    "security": {
+      "impressions": 1,
+      "clicks": 1,
+      "carts": 1
+    }
+  },
+  "best_pairs": [
+    {
+      "q": "офис",
+      "card_id": "shield:pro",
+      "impressions": 1,
+      "clicks": 1,
+      "carts": 1,
+      "title": "North Shield Pro"
+    }
+  ],
+  "note": "События витрины за всё время. Пара означает добавление предложенной карточки в корзину."
+}

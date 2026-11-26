@@ -11,7 +11,7 @@ def digest(j,role=None):
         return dict(note=kpi["note"],items=[dict(role=r,scope=kpi["scope"],text=kpi["note"],
                     findings=[dict(text=kpi["note"],href="/api/admin/ingest")]) for r in roles])
     totals=kpi["totals"]
-    scope=kpi["scope_text"]
+    scope=" ".join(filter(None,[kpi.get("history_note"),kpi["scope_text"]]))
     def fact(text,href):
         return dict(text=re.sub(r"(?<=\d),(?=\d{3}(?:\D|$))"," ",text),href=href)
     rate=f"{totals['zero_rate']*100:.1f}".replace(".",",")
@@ -32,6 +32,13 @@ def digest(j,role=None):
         clicks=fact("Переходы в карточки отсутствуют в выгрузке. Подключите события кликов для оценки CTR.","/api/admin/ingest")
     options=dict(customer=[zero,clicks,categories],ecom_manager=[orders,clicks,zero],head_ecom=[revenue,loss,orders],
                  content_manager=[zero,clicks,loss],product_manager=[categories,loss,zero])
+    if role in (None,"head_ecom"):
+        from .upsell_rules import analytics
+        cross=analytics(j)["totals"]
+        if any(cross.values()):
+            options["head_ecom"].append(fact(f"На витрине допродажи показаны {cross['impressions']} раз. "
+                f"Кликов — {cross['clicks']}, добавлений в корзину — {cross['carts']}. Проверьте ведущие пары.",
+                "/api/admin/upsell/analytics"))
     from .insights import listing
     proposals = listing(j)
     items=[]

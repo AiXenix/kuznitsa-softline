@@ -6,6 +6,7 @@ def register(subparsers):
         p=subparsers.add_parser(name)
         if name=="gen-history":
             p.add_argument("--today")
+            p.add_argument("--feed",action="store_true",help="Модель спроса на импортированном фиде")
             p.add_argument("--seed",type=int,default=20261126)
         if name=="import-history":
             p.add_argument("file",nargs="+")
@@ -29,6 +30,8 @@ def run(args,cfg):
         e=Engine.open(cfg,journal=journal,controls=RuleControls(journal))
         if name=="gen-history":
             from kuznitsa.mock.querylog_gen import generate
+            if args.feed or (cfg.data/"feed_classes.json").is_file():
+                from .feed_history import generate
             out=generate(e,args.seed,args.today)
         elif name=="gen-metrika":
             from kuznitsa.mock.metrika_gen import export

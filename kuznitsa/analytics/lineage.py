@@ -32,17 +32,22 @@ def code_stamp(paths):
     return hashlib.sha256(dump([sha(ROOT/p) for p in paths]).encode()).hexdigest()
 
 
-def generator_stamp():
-    return code_stamp(("kuznitsa/mock/querylog_gen.py","kuznitsa/plans/naive.py","kuznitsa/text.py"))
+def generator_stamp(model=None):
+    paths=("kuznitsa/mock/querylog_gen.py","kuznitsa/plans/naive.py","kuznitsa/text.py")
+    if model=="feed":
+        paths+=("kuznitsa/analytics/feed_history.py",)
+    return code_stamp(paths)
 
 
-def save_mock(db,directory,truth,seed,day):
+def save_mock(db,directory,truth,seed,day,model=None):
     path=directory/"mock_truth.jsonl"
     with NamedTemporaryFile(dir=directory,delete=False) as stream:
         stream.write(("\n".join(truth)+"\n").encode())
     Path(stream.name).replace(path)
-    receipt=dict(generator=generator_stamp(),truth=sha(path),catalog=sha(directory/"catalog.jsonl"),
+    receipt=dict(generator=generator_stamp(model),truth=sha(path),catalog=sha(directory/"catalog.jsonl"),
                  rows=len(truth),seed=seed,day=str(day))
+    if model:
+        receipt["model"]=model
     db.execute("INSERT OR REPLACE INTO kv VALUES (?,?,?)",(HISTORY_KEY,dump(receipt),time()))
 
 
@@ -62,7 +67,7 @@ def snapshot(j):
             receipt=json.loads(kv.get(HISTORY_KEY,{}).get("value","null"))
         except (TypeError,ValueError):
             return None,STALE_HISTORY
-        if not isinstance(receipt,dict) or receipt.get("generator")!=generator_stamp() or receipt.get("catalog")!=catalog or not receipt.get("truth") or receipt["truth"]!=sha(directory/"mock_truth.jsonl"):
+        if not isinstance(receipt,dict) or receipt.get("generator")!=generator_stamp(receipt.get("model")) or receipt.get("catalog")!=catalog or not receipt.get("truth") or receipt["truth"]!=sha(directory/"mock_truth.jsonl"):
             return None,STALE_HISTORY
         stamp["history"]=receipt
     else:

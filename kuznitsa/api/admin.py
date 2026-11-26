@@ -21,7 +21,7 @@ from kuznitsa.understand.intent import TITLES
 
 
 def authorize(request:Request,x_admin_token:str=Header(default="")):
-    read_only = request.method=="GET" or (request.method=="POST" and request.url.path=="/api/admin/priorities/preview")
+    read_only = request.method=="GET" or (request.method=="POST" and request.url.path in {"/api/admin/priorities/preview","/api/admin/upsell/preview"})
     if read_only and os.getenv("KZ_ADMIN_OPEN")=="1":
         return
     token=os.getenv("KZ_ADMIN_TOKEN")
@@ -360,3 +360,63 @@ def priority_delete(request: Request, ident: str):
 @router.post("/priorities/{ident}/toggle")
 def priority_toggle(request: Request, ident: str):
     return priority_result(priorities.change,request.app.state.engine.journal,"toggle",None,ident)
+
+
+from kuznitsa.analytics import upsell_rules
+
+
+@router.get("/upsell")
+def upsell_list(request:Request):
+    return upsell_rules.listing(request.app.state.engine.journal)
+
+
+@router.get("/upsell/analytics")
+def upsell_analytics(request:Request):
+    engine=request.app.state.engine
+    result=upsell_rules.analytics(engine.journal)
+    for pair in result["best_pairs"]:
+        card=engine.catalog.cards.get(pair["card_id"])
+        pair["title"]=card.title if card else pair["card_id"]
+    return result
+
+
+@router.get("/upsell/audit")
+def upsell_audit(request:Request):
+    return upsell_rules.audit(request.app.state.engine.journal)
+
+
+@router.post("/upsell/preview")
+def upsell_preview(request:Request,body:dict):
+    engine=request.app.state.engine
+    q=body.get("q")
+    if not isinstance(q,str) or not q.strip():
+        raise HTTPException(422,"Введите запрос")
+    rule=body.get("rule")
+    if rule is None:
+        rule=upsell_rules.snapshot(engine.journal)[1].get(str(body.get("rule_id","")))
+        if rule is None:
+            raise HTTPException(404,"Правило не найдено")
+    return checked(upsell_rules.preview,engine,q,rule)
+
+
+def edit_upsell(request,op,body,ident=None):
+    try:
+        return checked(upsell_rules.change,request.app.state.engine.journal,op,body,ident,
+                       request.headers.get("X-Admin-Author","admin"))
+    except KeyError:
+        raise HTTPException(404,"Правило не найдено")
+
+
+@router.post("/upsell",status_code=201)
+def upsell_create(request:Request,body:dict):
+    return edit_upsell(request,"create",body)
+
+
+@router.put("/upsell/{ident}")
+def upsell_update(request:Request,ident:str,body:dict):
+    return edit_upsell(request,"update",body,ident)
+
+
+@router.delete("/upsell/{ident}")
+def upsell_disable(request:Request,ident:str):
+    return edit_upsell(request,"disable",dict(enabled=False),ident)

@@ -1,0 +1,20 @@
+{
+  "rule": {
+    "enabled": true,
+    "source": "kb",
+    "weight": 0.8,
+    "id": "manual",
+    "when": {
+      "query_words": [
+        "офис"
+      ]
+    },
+    "offer": {
+      "families": [
+        "shield"
+      ]
+    },
+    "reason": "Защита рабочих мест с офисным пакетом"
+  },
+  "revision": 1
+}
