@@ -106,6 +106,17 @@ def report(j, **filters):
         del filters["engine"]
     def build():
         result = summarize(j, filters)
+        if j.rows("SELECT 1 FROM kv WHERE key='settings:mock_build' AND json_extract(value,'$.model')='feed' AND EXISTS(SELECT 1 FROM kv WHERE key='settings:history_source' AND value='mock')"):
+            from .feed_history import NOTE
+            totals=result["totals"]
+            exits=round((totals["exit_after_failure"] or 0)*totals["searches"])
+            failures=totals["failed"] or 0
+            result["failure_exits"]=dict(exits=exits,failed_searches=failures,
+                rate=exits/failures if failures else None,
+                label="Уходы среди неудачных поисков",denominator="Неудачные поиски в данном срезе")
+            result["history_note"] = NOTE
+            result["note"] = NOTE + " " + (result.get("note") or "")
+            result["coverage_notes"].insert(0,NOTE)
         if not j.rows("SELECT 1 FROM kv WHERE key='settings:history_source' AND value='import'"):
             return result
         amount_note = "Сумма переданных в истории денежных значений для заказов, связанных с поиском."
@@ -133,7 +144,7 @@ def report(j, **filters):
         apply_to_funnel(j, result, filters)
         return result
 
-    return cached(j,"kpi-b5.2:"+json.dumps(filters,sort_keys=True),build)
+    return cached(j,"kpi-b6.1:"+json.dumps(filters,sort_keys=True),build)
 
 
 def queries(rows,kind,limit=50):

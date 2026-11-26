@@ -1,0 +1,111 @@
+{
+  "items": [
+    {
+      "rev": 3,
+      "id": "manual",
+      "op": "disable",
+      "ts": 1795684731.4311383,
+      "author": "manager",
+      "before": {
+        "enabled": true,
+        "source": "kb",
+        "weight": 0.8,
+        "id": "manual",
+        "when": {
+          "query_words": [
+            "офис"
+          ]
+        },
+        "offer": {
+          "families": [
+            "shield"
+          ]
+        },
+        "reason": "Защита рабочих мест с офисным пакетом"
+      },
+      "after": {
+        "enabled": false,
+        "source": "kb",
+        "weight": 0.8,
+        "id": "manual",
+        "when": {
+          "query_words": [
+            "офис"
+          ]
+        },
+        "offer": {
+          "families": [
+            "shield"
+          ]
+        },
+        "reason": "Защита рабочих мест с офисным пакетом"
+      }
+    },
+    {
+      "rev": 2,
+      "id": "security",
+      "op": "update",
+      "ts": 1795684731.4235656,
+      "author": "manager",
+      "before": {
+        "enabled": true,
+        "source": "kb",
+        "weight": 0.8,
+        "id": "security",
+        "offer": {
+          "families": [
+            "shield"
+          ]
+        },
+        "reason": "Защита рабочих мест с офисным пакетом",
+        "when": {
+          "query_words": [
+            "офис"
+          ]
+        }
+      },
+      "after": {
+        "enabled": true,
+        "source": "kb",
+        "weight": 0.4,
+        "id": "security",
+        "offer": {
+          "families": [
+            "shield"
+          ]
+        },
+        "reason": "Защита рабочих мест с офисным пакетом",
+        "when": {
+          "query_words": [
+            "офис"
+          ]
+        }
+      }
+    },
+    {
+      "rev": 1,
+      "id": "manual",
+      "op": "create",
+      "ts": 1795684731.3997395,
+      "author": "manager",
+      "before": null,
+      "after": {
+        "enabled": true,
+        "source": "kb",
+        "weight": 0.8,
+        "id": "manual",
+        "when": {
+          "query_words": [
+            "офис"
+          ]
+        },
+        "offer": {
+          "families": [
+            "shield"
+          ]
+        },
+        "reason": "Защита рабочих мест с офисным пакетом"
+      }
+    }
+  ]
+}
