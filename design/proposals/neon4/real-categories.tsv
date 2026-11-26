@@ -1,0 +1,552 @@
+level	id	parent_id	path	offers	top_lines
+1	652		Антивирусы и безопасность	35260	
+2	687	652	Антивирусы и безопасность / Программы для защиты информации	14647	McAfee Data Loss Prevention Endpoint; McAfee Complete Data Protection; McAfee Complete Data Protection Advanced; Symantec Protection Suite Enterprise Edition; Kaspersky Security для виртуальных и облачных сред; Panda Adaptive Defense
+2	650	652	Антивирусы и безопасность / Антивирусы для организаций	11038	McAfee Endpoint Protection; McAfee Endpoint Protection – Advanced Suite; McAfee VirusScan Enterprise for Linux; McAfee Complete EndPoint Protection – Business; McAfee Complete EndPoint Protection – Enterprise; Symantec Ghost Solution Suite
+2	3656	652	Антивирусы и безопасность / Интернет и Сеть	5836	Kaspersky Security for xSP; Kaspersky Anti-Virus for xSP; Kaspersky DDoS Protection; Kaspersky Systems Management; Novell ZENworks Endpoint Security Management; Kerio® Control 9.2
+2	4742	652	Антивирусы и безопасность / Программное обеспечение для контроля доступа	2408	JaCarta; JaCarta WebPass; JaCarta U2F; JaCarta SecurLogon; c360 Field Level Security for Microsoft Dynamics CRM 4.0; Смарт Лайн DeviceLock
+2	4352	652	Антивирусы и безопасность / Другие программы	457	Panda SIEMFeeder; Pervasive AuditMaster 8; Anthasoft AnthaDeployment Manager; Work Examiner Standard; Work Examiner Professional; SAINT ASV
+2	233731	652	Антивирусы и безопасность / Межсетевые экраны	246	Traffic Inspector Anti-Virus powered by Kaspersky; Traffic Inspector; Traffic Inspector Next Generation FSTEC; Traffic Inspector Next Generation; Traffic Inspector Anti-Spam powered by Kaspersky; FortiCare Services
+2	46673	652	Антивирусы и безопасность / Программное обеспечение для контроля персонала	181	FileControl; Staffcop Enterprise; FastPass Flex; Стахановец «Легкий Контроль»; CleverControl; LanAgent Standard
+2	3775	652	Антивирусы и безопасность / Антивирусы для дома	137	Kaspersky Internet Security для всех устройств; Kaspersky Anti-Virus; Kaspersky Total Security для всех устройств; Kaspersky Safe Kids; Trend Micro Antivirus+ Security; Trend Micro Internet Security
+2	33460	652	Антивирусы и безопасность / Программы для удаления информации	121	PC Cleaning Utility; ShieldApps Hard Disk Shield; ItHelper версия Optimizer; ItHelper версия Optimizer с GPT; ItHelper версия Безопасная сеть; ItHelper версия Безопасная сеть с GPT
+2	121467	652	Антивирусы и безопасность / Защита информации для смартфонов	104	Secret MDM; КриптоПро «Защищенная мобильность»; ShieldApps Mobile Cyber Privacy Suite; Kaspersky Secure Mobility Management
+2	40863	652	Антивирусы и безопасность / SSL сертификаты	85	DigiCert; Entrust Wildcard; Entrust EV; Entrust OV San; Entrust UC; Entrust Standard
+2	399065	652	Антивирусы и безопасность / Антивирусы для Windows	0	
+2	404053	652	Антивирусы и безопасность / Российские антивирусы (Импортозамещение)	0	SafeTech CA
+1	371		Сеть и интернет	21021	
+2	3205	371	Сеть и интернет / Сетевые утилиты	9306	Microsoft Skype for Business Online; Фаматек Radmin 3.5; Paragon Deployment Manager; Netop Remote Control 11.5; Ipswitch WhatsUp Gold TotalView Edition; O&O Enterprise Management Console
+2	369	371	Сеть и интернет / Серверное ПО	7735	Microsoft Core CAL; Microsoft SQL Server Enterprise Edition; Microsoft SQL Server Standard Edition; Microsoft SQL Server CAL; Microsoft Core Infrastructure Server Suite Datacenter; Microsoft Core Infrastructure Server Suite Standard
+2	7413	371	Сеть и интернет / Почтовые утилиты	1298	ActiveXperts Email Component; Adiscon SimpleMail; GlobalSCAPE Mail Express; MDaemon ActiveSync; Duplicate eMail Remover 3.0; Actual Contacts for Outlook 2.4
+2	6035	371	Сеть и интернет / ПО для IP-телефонии	645	Ideco PBX; Brekeke PBX; PsPhone; MiaRec Business; Loway QueueMetrics; Loway WombatDialer
+2	7437	371	Сеть и интернет / Программное обеспечение для онлайн общения	337	ActiveXperts SMS Component; ePochta SMS; MyChat; Network Assistant; KWizCom Discussion Board Feature; B Labs Bopup Messenger
+2	1267	371	Сеть и интернет / Почтовые клиенты	328	ePochta Autoresponder; ePochta Subscription Manager; MDaemon Messaging Server; Infacta Group Mail; ADVSoft MailDetective; The Bat!
+2	6788	371	Сеть и интернет / Программное обеспечение для создания сайтов	319	Extensis Portfolio NetPublish 2016; SiteEdit Standard; SiteEdit Business; SiteEdit Start Plus; CMS SiteEdit Junior; WebSite X5 PROFESSIONAL (электронная версия)
+2	7388	371	Сеть и интернет / Связь	276	ActiveXperts SMS Messaging Server; Kerio® Operator 2.5; VentaFax 7.5; VentaFax Venta4Net 7.5; VentaFax Venta4Net Plus 7.5; WinTariff
+2	222324	371	Сеть и интернет / Российская коммуникационная платформа (Импортозамещение)	241	CommuniGate Pro; CommuniGate Pro MessagePlus. Базовый функционал; CommuniGate Pro Corporate; CommuniGate Pro Unified; Платформа CraftTalk; CommuniGate Pro Relay ClusterReady
+2	23001	371	Сеть и интернет / ПО для видеонаблюдения	126	WebCam Looker; Cyberlink YouCam; MACROSCOP ML; MACROSCOP LS; MACROSCOP NVR; Интеллектуальные модули Macroscop
+2	112603	371	Сеть и интернет / Программное обеспечение для интернета вещей	105	AggreGate; TeamViewer IoT
+2	226621	371	Сеть и интернет / Аналитические платформы	83	AnketologBox; МоделРиск; Тамара; FOQUZ. Электронная подписка на 1 год; FOQUZ Опросы на сайте
+2	22293	371	Сеть и интернет / Поиск	60	IDM UltraFinder; 10-Strike Network File Search; 10-Strike Network File Search Pro; Анализ результатов поиска; Search Quality Analysis; Search Strategy Consulting Service
+2	270232	371	Сеть и интернет / Решения дополненной и виртуальной реальности AR/VR	47	TeamViewer Pilot (Assist AR); TeamViewer Frontline; VR для бизнеса; VR для образования; EV Toolbox
+2	13166	371	Сеть и интернет / Другие приложения	26	CMS SiteEdit Forum; KSsoft Remote Monitoring Agents (RMA); MACROSCOP ST; BlindScanner; Cloudiway Mail and File Migration; Cloudiway Site Migration
+2	40098	371	Сеть и интернет / Программное обеспечение для SEO, интернет-маркетинга	23	Kentico EMS; Пополнение баланса сервиса SeoRate
+2	14552	371	Сеть и интернет / Download-менеджеры	18	Globalscape CuteFTP; TurboFTP Server; TurboFTP SDK; TurboFTP; Eltima Folx PRO для Мас; KineticD Null FTP Client
+2	45456	371	Сеть и интернет / Программное обеспечение для мобильной связи	12	Eltima SyncMate Expert; Eltima Serial Splitter Mobile; Код активации услуги ОФД от OFD.ru
+2	39113	371	Сеть и интернет / Программное обеспечение для родительского контроля	11	NetPolice Pro; KinderGate «Родительский Контроль»; Parental Control Eyespro; Parental Control Kroha; Kroha Снимки экрана
+2	28721	371	Сеть и интернет / Программное обеспечение Java	6	Enterprise DT edtFTPj
+2	100104	371	Сеть и интернет / Контроллер доставки приложений	6	F5 BIG-IP Virtual Edition (VE); Контроллер доставки приложений BIG-IP; Платформа VIPRION; ALOHA Virtual Appliance; HAProxy Enterprise Edition
+2	10712	371	Сеть и интернет / Браузеры и утилиты	5	ePochta Web Spider; Спутник; Яндекс Браузер
+2	44660	371	Сеть и интернет / WWW-утилиты	5	Dart PowerWEB Zoom for ASP.NET; KioWare Browser Software 7
+2	591	371	Сеть и интернет / HTML-редакторы	3	KWizCom Tagging Feature
+2	9926	371	Сеть и интернет / Программное обеспечение для email рассылок	0	Advanced Mass Sender; ePochta Extractor; ePochta Harvester; ePochta Verifier; ePochta Mailer; ePochta Newsgroup Extractor
+2	223606	371	Сеть и интернет / Российские корпоративные мессенджеры (Импортозамещение)	0	Dialog; CommuniGate Pro IM; CommuniGate Pro PlugIn Kaspersky AntiSpam; CommuniGate Pro PlugIn Kaspersky AntiSpam
+2	223608	371	Сеть и интернет / Российская IP-телефония (Импортозамещение)	0	CommuniGate Pro VoIP
+2	329103	371	Сеть и интернет / Виртуальный офис	0	
+2	436216	371	Сеть и интернет / Техническая поддержка программного обеспечения	0	
+1	182		Управление бизнесом, CRM/ERP	15797	
+2	2942	182	Управление бизнесом, CRM/ERP / Системы автоматизации	7484	Microsoft Forefront Identity Manager; JaCarta Management System (JMS); Novell GroupWise; Novell ZENworks Suite; Novell ZENworks Asset Management; Novell ZENworks Configuration Management 11 SP4
+2	1140	182	Управление бизнесом, CRM/ERP / Программное обеспечение для управления бизнесом	2817	Panda Systems Management; Panda Remote Control; Business Studio; TransTrade International; CarServiceMP; Veeam Management Pack
+2	180	182	Управление бизнесом, CRM/ERP / Программное обеспечение для работы с документами	2117	ContentCapture; Adobe Acrobat Standard; Adobe Acrobat Professional; Adobe RoboHelp Server; Corel PDF Fusion; FinePrint pdfFactory
+2	769	182	Управление бизнесом, CRM/ERP / Программное обеспечение для ведения дел	1827	Microsoft SharePoint Online; PayDox Кейс-менеджмент; AutoИнтеллект; SolarWinds Web Help Desk 12; Мастер Доставки; TicketTrade
+2	3101	182	Управление бизнесом, CRM/ERP / CRM/ERP-системы	683	Microsoft Forefront Identity Manager External Connector; c360 Customer Portal; c360 Sales Productivity Pack; c360 Core Productivity Pack; c360 Group Calendar for Microsoft Dynamics CRM; c360 Web Connect for Microsoft Dynamics CRM
+2	354900	182	Управление бизнесом, CRM/ERP / ESM/CSP-системы	603	Directum RX
+2	23336	182	Управление бизнесом, CRM/ERP / Программное обеспечение для учета компьютеров	189	ScriptLogic Asset Manager; AuditPro Microsoft SMS/SCCM Connector; AuditPro Базовая версия; AuditPro Asset Management; Hardware Inspector; Hardware Inspector Client/Server
+2	11529	182	Управление бизнесом, CRM/ERP / Программы для бизнес-планирования	42	Альт-Прогноз 3; Альт-Инвест; Альт-Финансы Сумм 2; Альт-Финансы 2; Альт-Инвест Сумм 7; Globalscape BAM
+2	444578	182	Управление бизнесом, CRM/ERP / Правовое и кадровое обслуживание	18	Юридическое сопровождение бизнеса по персональным данным по 152-ФЗ; Юридическое сопровождение внедрения маркировки «Честный знак»; Юридическое ведение договорной работы в компании; Юридическое сопровождение корпоративного управления: проведение, реструктуризация активов; Юридическое сопровождение участия в госзакупке по 44-ФЗ и 223-ФЗ (пакет); Юридические услуги по маркировке рекламы по 1 кампании (пакет)
+2	440359	182	Управление бизнесом, CRM/ERP / Искусственный интеллект	11	Wondershare ReelMate
+2	7736	182	Управление бизнесом, CRM/ERP / Программы органайзеры	6	KWizCom List Notifications Feature; Exchange Central 4; RealTime Service 6; Resource Central 3; WebTeam Central 5; Планировщик
+1	416		Программы для программирования	13907	
+2	414	416	Программы для программирования / Программы для разработки ПО	7118	Adobe Dreamweaver; Red Hat OpenStack Platform; ActiveXperts Network Component; ActiveXperts Serial Port Component; JetBrains IntelliJ IDEA; JetBrains ReSharper
+2	710	416	Программы для программирования / Программы для работы с базами данных	5541	Corel Paradox Standalone; Oracle MySQL; Oracle Database 12c Options; Oracle Database 12c Enterprise Edition; Oracle Database Standard Edition 2; Allround Automations PL/SQL Developer
+2	3252	416	Программы для программирования / Другие библиотеки	1029	DevExpress TestCafe Subscription; Lahey Winteracter; Lahey GINO; Lahey plusFORT; Intel Integrated Performance Primitives; Intel VTune Amplifier XE
+2	233020	416	Программы для программирования / Российские базы данных (Импортозамещение)	140	Postgres Pro Enterprise; Postgres Pro Standard; Postgres Pro Certified (ФСТЭК); Postgres Pro для 1С; СУБД Линтер Стандарт; РЕСОЛЮТ GitFlic
+2	8250	416	Программы для программирования / VCL	65	DevExpress VCL Subscription; DevExpress ExpressQuantumPack Subscription; DevExpress ExpressGridPack Subscription; DevExpress ExpressNavigationPack Subscription; FastReport VCL; TeeChart VCL/FMX
+2	14256	416	Программы для программирования / ActiveX	14	SmartCode ViewerX VNC Viewer ActiveX; 3-Heights PDF Viewer; Black Ice Fax C++/ActiveX Development Toolkit; Steema TeeChart Pro ActiveX
+2	9791	416	Программы для программирования / CGI-скрипты	0	FastScript
+2	228248	416	Программы для программирования / Машинное обучение	0	DGX Station; DGX A100
+1	5676		Программы САПР и ГИС	13147	
+2	6718	5676	Программы САПР и ГИС / Строительное программное обеспечение	3352	Еврософт Старкон; Еврософт Stark ES; Еврософт Mеталл; Еврософт Одиссей; Autodesk AutoCAD MEP; Autodesk AutoCAD Plant 3D
+2	8983	5676	Программы САПР и ГИС / Программы для документооборота	2918	Pilot-ICE; Визардсофт SmetaWIZARD; ПК Гранд-СМЕТА; ИСС Гранд-СтройИнфо; CIMCO PDM; Программное обеспечение «Стройсофт» Smeta.RU
+2	8842	5676	Программы САПР и ГИС / Программы для машиностроения	2042	Autodesk AutoCAD Electrical; Autodesk AutoCAD Mechanical; Autodesk Vehicle Tracking; Autodesk Alias SpeedForm 2019; Autodesk Fusion 360; КОМПАС-3D V25
+2	5768	5676	Программы САПР и ГИС / Базовые программы	1730	Panorama Imagery Service; Autodesk CFD – Premium; Autodesk Architecture Engineering Construction Collection; Autodesk Media and Entertainment Collection; Платформа COMSOL Multiphysics®; ЭСПРИ
+2	265370	5676	Программы САПР и ГИС / Расчетные системы и Научное программное обеспечение	665	Wolfram Mathematica; Wolfram gridMathematica; Maplesoft MapleSim; СтатСофт Дейта Сайнтист; СтатСофт Моделер; Модуль «CAD-импорт» для программы COMSOL Multiphysics®
+2	8962	5676	Программы САПР и ГИС / Программы для дизайна, визуализации и анимации	625	Autodesk Alias Design 2019; ConceptDraw PRO; Artlantis; Power Translators; Power Revit to Max; Power ScanToNURBS
+2	8740	5676	Программы САПР и ГИС / Инфраструктура: изыскания, генплан, транспорт	575	ТИМ КРЕДО ДАТ; ТИМ КРЕДО ТРАНСКОР; ТИМ КРЕДО НИВЕЛИР; КРЕДО ТОПОПЛАН; КРЕДО ОБЪЕМЫ; КРЕДО ДОРОГИ
+2	5674	5676	Программы САПР и ГИС / Геоинформационные системы (ГИС)	361	Профессиональная ГИС «Панорама»; Панорама Настольная ГИС Карта; Панорама GIS Toolkit; Панорама ГИС Конструктор; Панорама Муниципальная ГИС Земля и недвижимость; Панорама GIS WebServer
+2	8816	5676	Программы САПР и ГИС / Программы для архитекторов	220	Autodesk AutoCAD Architecture; Autodesk Robot Structural Analysis Professional; Autodesk Dynamo Studio 2017; Archicad  STAR(T) Edition; MEP Modeler; CSoft Project StudioCS Архитектура
+2	5683	5676	Программы САПР и ГИС / Редакторы и векторизаторы	183	Панорама-редактор; Autodesk AutoCAD Raster Design; ТИМ КРЕДО ТРАНСФОРМ; SCAD Консул; SCAD Сезам; SCAD Тонус
+2	35626	5676	Программы САПР и ГИС / Программы для пожарной безопасности	122	SunoCAD; FireGuard; Fenix+ 3; Fenix Server; CSoft Project StudioCS ОПС; Технософт ПВ-Безопасность для Windows 3.X
+2	262025	5676	Программы САПР и ГИС / Программы для сельского хозяйства	79	ГИС Панорама АГРО; ГИС Панорама АВТО; ГИС Панорама ЗЕМЛЕДЕЛИЕ; Комплект программ «АРМ агронома»; Панорама АРМ кадастрового инженера
+2	410746	5676	Программы САПР и ГИС / Лазерное сканирование	76	nanoCAD Облака точек
+2	9494	5676	Программы САПР и ГИС / Инженерные калькуляторы	74	Технософт Теплос 2.1; Технософт Технолог 3.1; XTOOLS; XBAL; XDIAG; XROD
+2	44209	5676	Программы САПР и ГИС / Программы для мебельного производства	68	Cut Optimization WoodWorks; Базис 10; bCAD; ИТМ
+2	262026	5676	Программы САПР и ГИС / Программы для кадастра и градостроительства	32	Комплект программ «АРМ градостроителя»; Топография
+2	262028	5676	Программы САПР и ГИС / Программы для картографии и фотограмметрии	22	Конвертор крупномасштабных карт в формат DXF; Комплекс автоматизированного дешифрирования и векторизации данных ДЗЗ; ГИС «ИнГео»
+2	109881	5676	Программы САПР и ГИС / Программное обеспечение для технической поддержки	3	Autodesk Premium; ГеММа-3D.Постпроцессор
+2	262027	5676	Программы САПР и ГИС / Геология и маркшейдерия	0	
+1	188		Программное обеспечение для графики и дизайна	5692	
+2	241	188	Программное обеспечение для графики и дизайна / Графические редакторы	2000	Adobe Creative Cloud Professional for Teams; Adobe Illustrator; Adobe Photoshop; Adobe InDesign; Corel ParticleShop; Xara Page & Layout Designer 11
+2	828	188	Программное обеспечение для графики и дизайна / Программное обеспечение для 3D графики	1920	Strata Foto 3D; Chaos Group V-Ray; Chaos Group Pdplayer; Chaos Group Phoenix FD; Toon Boom Flip Boom Classic; Toon Boom Storyboard Pro 3D
+2	622	188	Программное обеспечение для графики и дизайна / Другие графические утилиты	937	Adobe Stock; TechSmith SnagIt; Seagull Scientific BarTender; Loftware Label Manager; Loftware RFID; IDAutomation Font Package
+2	186	188	Программное обеспечение для графики и дизайна / Программы для обработки цифрового фото	219	ACDSee Photo Editor 11; Adobe Photoshop Elements; Adobe Lightroom; Corel AfterShot Pro; CyberLink PhotoDirector 11; Фото на документы
+2	352	188	Программное обеспечение для графики и дизайна / Издательские системы	201	FinePrint; Markzware FlightCheck Pro 7.7; Markzware ID2Q 6; Markzware MarkzTools 8; Markzware Q2ID; Markzware PDF2DTP
+2	33541	188	Программное обеспечение для графики и дизайна / Шаблоны и клипарты	141	SWiSH Templates; Teaсup PatternPack; Wondershare DemoCreator; Wondershare Virbo
+2	20725	188	Программное обеспечение для графики и дизайна / Схемы и диаграммы	133	TEKLYNX SENTINEL Print Pack S/6; TEKLYNX LABELVIEW; TEKLYNX LABEL MATRIX; FusionCharts; combit List & Label; Highstock JS
+2	131716	188	Программное обеспечение для графики и дизайна / Программное обеспечение для проекционного дизайна	67	Pogumax Designer; Wondershare Anireel; Wondershare EdrawMax; Wondershare EdrawInfo; Wondershare OrgCharting; Wondershare PixStudio
+2	5562	188	Программное обеспечение для графики и дизайна / Программное обеспечение для веб-дизайна	62	Xara Web Designer; Xara Web Designer Premium; QuarkXPress 2021; Quark CopyDesk
+2	9892	188	Программное обеспечение для графики и дизайна / Программы просмотра	12	ABViewer; IrfanView; Kolor SARL XnView
+1	719		Программное обеспечение для работы с файлами и дисками	5337	
+2	1033	719	Программное обеспечение для работы с файлами и дисками / Программное обеспечение для резервного копирования	3908	Nero BackItUp; Paragon Hard Disk Manager for Business; O&O DiskImage 15; O&O AutoBackup; O&O Power Pack; Pervasive Backup Agent 3
+2	5922	719	Программное обеспечение для работы с файлами и дисками / Программное обеспечение для восстановления данных	444	Ontrack EasyRecovery 11; O&O BlueCon 17; O&O DiskRecovery; O&O MediaRecovery; Auslogics File Recovery; R-studio
+2	14574	719	Программное обеспечение для работы с файлами и дисками / Файловые менеджеры	345	GlobalSCAPE WAFS Server; SolarWinds Kiwi Log Viewer 2; Total Commander; Dart PowerTCP FTP for ActiveX; Eltima Commander One Professional Pack; Northern Storage Suite
+2	5584	719	Программное обеспечение для работы с файлами и дисками / Другие утилиты	333	Microsoft NTFS for Linux by Paragon Software; Microsoft NTFS for Mac by Paragon Software; Paragon ExtFS for Mac OS X; HFS+ for Windows by Paragon Software; Paragon Hard Disk Manager for Mac; O&O Defrag 23
+2	5593	719	Программное обеспечение для работы с файлами и дисками / Программы для очистки диска	153	O&O SafeErase; IDM UltraSentry; WipeDrive; Jetico BCWipe; Files Inspector Pro; Ashampoo WinOptimizer
+2	717	719	Программное обеспечение для работы с файлами и дисками / Архиваторы	104	WInZip Mac; Архиватор WinRAR 7; ASPack; Microinvest Архиватор Pro; Dart PowerTCP Zip Compression for ActiveX; NXPowerLite Desktop Edition
+2	7927	719	Программное обеспечение для работы с файлами и дисками / Каталогизаторы	25	O&O DiskStat
+2	24735	719	Программное обеспечение для работы с файлами и дисками / Программы для поиска документов	24	Архивариус 3000; Belkasoft Evidence Center 2014; Belkasoft Acquisition & Analysis Suite; RCO for Oracle; RCO for BackOffice
+2	25363	719	Программное обеспечение для работы с файлами и дисками / Программы для работы с CD	1	H+H Virtual CD; Alcohol 52%
+2	52025	719	Программное обеспечение для работы с файлами и дисками / Работа с DBF	0	WhiteTown CDBF – DBF Viewer and Editor; WhiteTown CDBFlite; WhiteTown DBF to CSV Converter; WhiteTown CSV to DBF Converter; WhiteTown DBF to XLS Converter; WhiteTown XLS to DBF Converter
+1	2502		Системные программы	5232	
+2	5202	2502	Системные программы / Расширения системы	1457	Red Hat High Availability; Red Hat Load Balancer; Red Hat Resilient Storage; Red Hat Scalable File System; O&O CleverCache 7; ElcomSoft System Recovery
+2	11794	2502	Системные программы / Программы для настройки системы	1376	Auslogics BoostSpeed; ScriptLogic Desktop Authority MSI Studio; AVG PC Tune Up; Eltima Manage Registry ActiveX Control; Uniblue DriverScanner; Uniblue PowerSuite
+2	222321	2502	Системные программы / Российская виртуализация (Импортозамещение)	700	ROSA Virtualization; Программный комплекс «Средства виртуализации «БРЕСТ»»; Альт Сервер Виртуализации 9; СКАЛА-Р; zVirt; Termit
+2	38945	2502	Системные программы / Внешние устройства	450	USB Safely Remove; Eltima USB Analyzer; FabulaTech USB for Remote Desktop; FabulaTech Webcam for Remote Desktop; FabulaTech Printer for Remote Desktop; FabulaTech Scanner for Remote Desktop
+2	2500	2502	Системные программы / Программы для виртуализации	424	Red Hat Virtualization; VMware Workstation 16 Pro for Linux and Windows; VMware vSphere 7; VMware Fusion 12 Pro (for the Mac); VMware vCenter Server 7; VMware vCenter Site Recovery Manager
+2	7864	2502	Системные программы / Программы для диагностики системы	383	O&O DriveLED; Red Gate SQL Monitor; ASTRA32 — Advanced System Information Tool; Avira System Speedup; Catch Limited Enterprise Tester 6.1; Eltima Serial Port Monitor
+2	12989	2502	Системные программы / Другие системные утилиты	232	Ibik АСТЕР; ScriptLogic Desktop Authority Patch Deployment for Desktops; ScriptLogic Patch Authority Ultimate; Reflection for the Web; Reflection Enterprise Suite; Anyplace Control
+2	402838	2502	Системные программы / Системы управления базами данных (Импортозамещение)	202	СУБД Линтер Бастион; СУБД Ред База Данных; Postgres Pro Enterprise; Postgres Pro AC Enterprise для 1С:Предприятие; Postgres Pro Enterprise (сертифицированная версия); Postgres Pro Enterprise для 1С:Предприятие (сертифицированная версия)
+2	53921	2502	Системные программы / Программы изменения интерфейса	8	FabulaTech Serial Port Mapper; SCSM Mandatory Fields 2012
+1	226		Мультимедиа	2563	
+2	495	226	Мультимедиа / Видеоредакторы	1316	Adobe Presenter; Adobe After Effects; Adobe Animate / Flash Professional; Adobe Premiere Pro; Pinnacle STUDIO Ultimate; Nero Video
+2	527	226	Мультимедиа / Аудиоредакторы	543	Adobe Audition; АудиоМАСТЕР; Red Giant Trapcode Sound Keys 1.3; Red Giant PluralEyes 4.0; McDSP Emerald Pack; McDSP Classic Pack
+2	224	226	Мультимедиа / Конвертеры и кодировщики	477	Nero Recode; CyberLink MediaEspresso; Movavi Video Converter; Movavi Video Suite; SWiSH Video; Audio Transcoder
+2	1020	226	Мультимедиа / Утилиты	160	Roxio Creator NXT; Nero MediaHome; Indigo Rose AutoPlay Media Studio; Indigo Rose Autorun MAX!; Мои диски; Eltima Airy Youtube Downloader
+2	793	226	Мультимедиа / Плееры	30	Corel WinDVD Pro 12; RadioBOSS; CyberLink PowerDVD 22; Eltima SWF & FLV Player PRO; Pistonsoft Multi Room Music System; synedra View Professional
+2	1044	226	Мультимедиа / Программы для записи CD и DVD	20	Nero Platinum 2022; Nero Burning ROM 2022; Cyberlink Power2Go 13; Alcohol 120%; balesio ALLCapture; Livestream Studio Software
+2	347275	226	Мультимедиа / Сервисы развлечений	17	ivi+; ЛитРес Абонемент
+1	872		Офисные программы	2319	
+2	1145	872	Офисные программы / Офисные пакеты программ Microsoft Office	1433	Microsoft Office Профессиональный 2021; Microsoft Office Home and Business 2016; Microsoft Exchange Online; Microsoft Project Online; Microsoft Office Professional Plus (Open Value); Microsoft Visio Standard (Open Value)
+2	222323	872	Офисные программы / Российское офисное ПО (Импортозамещение)	775	МойОфис Стандартный; МойОфис Профессиональный; МойОфис Частное Облако; МойОфис Почта (первые редакции); АльтерОС; МойОфис Защищенное облако
+2	870	872	Офисные программы / Другое офисное ПО	63	Corel WordPerfect Office X8; HarePoint Workflow Extensions 2.3; Lookout OfficeCalendar; РИТ СЕРВИС «АПС-Печать Конструктор»; 4Team Sync2 2.5; 4Team SendLater 3.3
+2	26650	872	Офисные программы / Утилиты для Excel	48	Palisade DecisionTools Suite; Palisade NeuralTools; Palisade StatTools; Palisade PrecisionTree; Palisade Evolver; Palisade BigPicture
+1	2052		Операционные системы	2230	
+2	222320	2052	Операционные системы / Российские операционные системы (Импортозамещение)	1630	МСВСфера АРМ; Альт Сервер 9; Альт Рабочая станция 9; Альт Образование 9; ROSA Enterprise Linux Server; ROSA Enterprise Desktop
+2	2050	2052	Операционные системы / Операционные системы Windows	342	Операционная система Microsoft Windows MultiPoint Server Premium; Операционная система Microsoft Windows 10 Pro; Операционная система Microsoft Windows 10 HOME; Microsoft Windows 10 Enterprise; Microsoft Windows Server CAL (Open Value); Microsoft Windows E3 (Open Value)
+2	5184	2052	Операционные системы / Операционные системы Linux & Unix	256	Red Hat Enterprise Linux Desktop; Red Hat Enterprise Linux Server; Red Hat Enterprise Linux for IBM POWER; Slackware Linux; Linux Frenzy; NetBSD
+2	445047	2052	Операционные системы / Windows 11: лицензии Home и Pro	2	Microsoft Windows 11 Pro (Профессиональная); Microsoft Windows 11 Home (Домашняя)
+1	80842		Компьютерная периферия	1913	
+2	82833	80842	Компьютерная периферия / Клавиатуры, мыши, комплекты	610	
+2	82080	80842	Компьютерная периферия / ИБП (Источники бесперебойного питания)	495	
+2	82014	80842	Компьютерная периферия / Сменные батареи для ИБП	247	
+2	80843	80842	Компьютерная периферия / Мониторы	246	
+2	82661	80842	Компьютерная периферия / Сетевые фильтры и стабилизаторы	150	
+2	131130	80842	Компьютерная периферия / Аксессуары для ИБП	149	
+2	83736	80842	Компьютерная периферия / Силовые модули для ИБП	16	
+2	82822	80842	Компьютерная периферия / KVM-переключатели	0	
+2	274779	80842	Компьютерная периферия / KVM-консоли	0	
+2	396488	80842	Компьютерная периферия / Устройства для майнинга	0	
+1	4291		Программы для образования и науки	1825	
+2	13502	4291	Программы для образования и науки / Программы для научных расчетов	767	Timberlake PcGive; Timberlake G@RCH; Timberlake STAMP; Timberlake OxMetrics; Timberlake SsfPack; MathMagic Personal Edition
+2	62564	4291	Программы для образования и науки / Обучающие программы	636	Kidspiration; EasybitsAS Magic Desktop; «Виртуальный осмотр места происшествия»; Moviestorm Krucible годовая; Moviestorm Kar2ouche годовая; AlertDriving Driver Training
+2	38838	4291	Программы для образования и науки / Программы для бизнес-образования	107	ВККБ БИЗНЕС-КУРС; iMpact LMS; StopPhish. Тариф Расширенный; StopPhish. Тариф Базовый; iSpring LMS; МТС Линк Курсы 50
+2	6699	4291	Программы для образования и науки / Прочие программы	99	Jolly School Track; Akeydor Radix SmartClass; Courselle; Net Control 2 Classroom; Net Control 2 SmallClass; Net Control 2 Pro
+2	63998	4291	Программы для образования и науки / Учебные справочники	85	Азбука; MobiSystems Словари
+2	4289	4291	Программы для образования и науки / Программы для ВУЗов	76	PROMT ВУЗ; АСУ УЗ Universys Web Server; Система управления учебным процессом «Магеллан»; Examus Verbal; «Экзамус Прокторинг»
+2	24230	4291	Программы для образования и науки / Тесты	37	ПО «Аттестация»; VeralTest Express; VeralTest Professional; iSpring Suite; Psychometric Expert; SunRav TestOfficePro
+2	45622	4291	Программы для образования и науки / Программы для изучения языков	10	Babylon Corporate Edition 10; Babylon Premium Dictionaries; Babylon Premium Writing Solutions; Babylon Corporate Glossary Builder; Babylon Human Voice; Babylon for Mac 2012 V3
+2	40171	4291	Программы для образования и науки / Программы для медицины	8	Учет пациентов; Digital Human Organism; Единый медицинский портал; Электронная Система Медицинских Осмотров; ПАК «Визионеро»
+2	9915	4291	Программы для образования и науки / Расписание занятий	0	aSc Расписания
+2	13551	4291	Программы для образования и науки / Решение задач	0	
+2	67067	4291	Программы для образования и науки / Программы для подготовки к экзаменам	0	«Виртуальный обыск (выемка)»
+1	74231		Комплектующие	1573	
+2	75936	74231	Комплектующие / Материнские платы	236	
+2	80081	74231	Комплектующие / Кабели, переходники, разъемы	214	
+2	78570	74231	Комплектующие / Системы охлаждения	213	
+2	76963	74231	Комплектующие / Оперативная память	189	
+2	79574	74231	Комплектующие / Внутренние твердотельные накопители (SSD)	163	
+2	75448	74231	Комплектующие / Корпуса	148	
+2	74887	74231	Комплектующие / Блоки питания	134	
+2	74232	74231	Комплектующие / Процессоры	119	
+2	78997	74231	Комплектующие / Жесткие диски	94	
+2	77963	74231	Комплектующие / Видеокарты	51	
+2	77913	74231	Комплектующие / Оптические приводы	6	
+2	80777	74231	Комплектующие / Контроллеры	6	
+2	80791	74231	Комплектующие / Звуковые карты	0	
+1	93994		Офисная техника	1234	
+2	94694	93994	Офисная техника / Расходные материалы	690	
+2	93995	93994	Офисная техника / Принтеры и МФУ	287	
+2	98141	93994	Офисная техника / Аксессуары к офисной технике	83	
+2	94641	93994	Офисная техника / Сканеры	61	
+2	97732	93994	Офисная техника / Шредеры	61	
+2	97682	93994	Офисная техника / Резаки	15	
+2	97600	93994	Офисная техника / Брошюраторы	12	
+2	97635	93994	Офисная техника / Ламинаторы	11	
+2	98113	93994	Офисная техника / Плоттеры	11	
+2	98055	93994	Офисная техника / Графические планшеты	3	
+2	97859	93994	Офисная техника / Калькуляторы	0	
+2	99420	93994	Офисная техника / Книжные сканеры	0	
+1	85224		Сетевое оборудование	1041	
+2	85741	85224	Сетевое оборудование / Коммутаторы	415	
+2	86456	85224	Сетевое оборудование / Медиаконвертеры, трансиверы	163	
+2	86348	85224	Сетевое оборудование / Точки доступа	144	
+2	85353	85224	Сетевое оборудование / Wi-Fi роутеры	99	
+2	86247	85224	Сетевое оборудование / Сетевые карты	62	
+2	86328	85224	Сетевое оборудование / Сопутствующее оборудование	46	
+2	86192	85224	Сетевое оборудование / Проводные роутеры	44	
+2	85588	85224	Сетевое оборудование / Адаптеры Wi-Fi	38	
+2	85225	85224	Сетевое оборудование / 3G/LTE-роутеры	10	
+2	85292	85224	Сетевое оборудование / ADSL-оборудование	6	
+2	85650	85224	Сетевое оборудование / Антенны	5	
+2	86551	85224	Сетевое оборудование / Адаптеры Bluetooth	4	
+2	85719	85224	Сетевое оборудование / Кабели	3	
+2	85546	85224	Сетевое оборудование / Адаптеры PowerLine	2	
+2	86182	85224	Сетевое оборудование / Принт-серверы	0	
+2	86556	85224	Сетевое оборудование / Модемы	0	
+2	364073	85224	Сетевое оборудование / Головные станции	0	
+1	631		Облачные решения (SaaS)	989	
+2	10164	631	Облачные решения (SaaS) / Системы автоматизации (SaaS)	381	VMware vRealize Automation; Navicat Cloud; Moab Cloud Suite; Twixl Distribution Platform; PROLIN Smart Suite; Автоматизированная система судебного делопроизводства
+2	3550	631	Облачные решения (SaaS) / Управление бизнесом (SaaS)	260	Microsoft Azure; ActiveDesk; ООО «БОАС» HelpDesk; MindMeister Edu Campus; MindMeister Business; MindMeister Pro
+2	21224	631	Облачные решения (SaaS) / Работа с документами (SaaS)	104	FreshDoc. Конструктор документов; SparkWeave; Бизнес аккаунт Dropbox; CloudKit 365; NiceLabel Cloud; Программное обеспечение MSDN Platforms
+2	7964	631	Облачные решения (SaaS) / Сетевые утилиты (SaaS)	103	Clearswift SECURE Encryption Portal; Moab Cloud Essentials Suite; Akeydor WiseMo; Anturis; Ipswitch MOVEit Cloud; Be.Cloud
+2	629	631	Облачные решения (SaaS) / Антивирусное ПО	79	McAfee SaaS Endpoint Protection; McAfee SaaS Endpoint and Email Protection Suite; McAfee Security for Business; Panda Cloud Email Protection; Panda Fusion; WebSAINT PRO
+2	22298	631	Облачные решения (SaaS) / Коммуникации (SaaS)	32	IQBuzz; CloudMigrator365; RedHelper; Microsoft Intune; CloudMigrator G Suite; Amplement
+2	254755	631	Облачные решения (SaaS) / Облачные платформы (Импортозамещение)	28	Защищенное рабочее место для сотрудников
+2	62839	631	Облачные решения (SaaS) / E-mail рассылка (SaaS)	2	Mimecast Unified Email Management (UEM)
+2	11291	631	Облачные решения (SaaS) / CRM системы	0	«Простой бизнес» (электронная версия)
+2	45368	631	Облачные решения (SaaS) / Хостинг	0	
+2	327762	631	Облачные решения (SaaS) / Сертификаты	0	
+1	8		Программы для работы с текстом	786	
+2	6	8	Программы для работы с текстом / Программы для распознавания текста и речи	518	Сontent AI Screenshot Reader; ABBY FineReader Pro for Mac; Решение Сontent AI для обработки ДУЛ; RiDoc; IRISReadiris Pro; IRISCompressor
+2	127	8	Программы для работы с текстом / Текстовые редакторы	189	Content AI Comparator; Adobe InCopy; IDM UltraEdit; @Text Replacer; WhiteSmoke V8; WhiteSmoke Anywhere
+2	42	8	Программы для работы с текстом / Словари	37	Сontent AI Lingvo x6 English; Lingvo by Content AI Выпуск x6 Многоязычная; Lingvo x6 Европейская; Информатик Контекст 7.0; SDL MultiTerm Extract; TranslateIt! для Mac
+2	18	8	Программы для работы с текстом / Текстовые конвертеры	22	3-Heights PDF to Image Converter; 3-Heights PDF to PDF/A Converter; 3-Heights Document Converter; Solid Converter PDF; Solid PDF to Word; Solid Automator
+2	4177	8	Программы для работы с текстом / Переводчики	19	AnyMem 2.0; WinLexic; Trident Pragma; Verifika; SYSTRAN 8 Translator; Словари
+2	5139	8	Программы для работы с текстом / Другие утилиты для работы с текстом	1	ОРФО 2016 для Windows; Extensis FontDoctor 10; AnyCount 8; ClipCount 2; Provalis Research WordStat 9; Icecream Ebook Reader PRO
+1	19145		Карты, навигация, путешествия	525	
+2	36070	19145	Карты, навигация, путешествия / Карты и сервисы	345	Абрис+; Леспроект PLP2015; Navionics+; Navionics Platinum+; Navionics HotMaps Platinum; C-MAP 4D for Raymarine
+2	19143	19145	Карты, навигация, путешествия / Редакторы карт	180	Golden Software Surfer; Golden Software Grapher; Golden Software MapViewer; Golden Software Didger; Golden Software Strater; Golden Software Voxler
+2	28726	19145	Карты, навигация, путешествия / GPS трекеры	0	
+1	88199		Смартфоны и гаджеты	352	
+2	88831	88199	Смартфоны и гаджеты / Наушники и микрофоны	192	
+2	89539	88199	Смартфоны и гаджеты / Аксессуары для смартфонов	97	
+2	89623	88199	Смартфоны и гаджеты / Вебкамеры	18	
+2	89916	88199	Смартфоны и гаджеты / Чехлы для смартфонов	15	
+2	89883	88199	Смартфоны и гаджеты / Зарядные устройства	13	
+2	89912	88199	Смартфоны и гаджеты / Очки виртуальной реальности	9	
+2	88200	88199	Смартфоны и гаджеты / Игровые манипуляторы	6	
+2	88308	88199	Смартфоны и гаджеты / Смартфоны	2	
+2	89407	88199	Смартфоны и гаджеты / Ebooks	0	
+2	89442	88199	Смартфоны и гаджеты / Аудиоплееры	0	
+2	89896	88199	Смартфоны и гаджеты / Аккумуляторы	0	
+2	90077	88199	Смартфоны и гаджеты / Док-станции	0	
+2	131350	88199	Смартфоны и гаджеты / Робототехника	0	
+2	269072	88199	Смартфоны и гаджеты / Игры для PC / PS / X-BOX / NINTENDO	0	
+2	277185	88199	Смартфоны и гаджеты / Аксессуары для планшетов	0	
+2	330165	88199	Смартфоны и гаджеты / Аксессуары для игровых приставок	0	
+2	332913	88199	Смартфоны и гаджеты / Аксессуары для Ebooks	0	
+1	5960		Программное обеспечение для дистанционного обучения	287	
+2	5958	5960	Программное обеспечение для дистанционного обучения / Программное обеспечение для интернета	133	Netop Vision Pro 8.5; Netop MyVision 4.2; Virtual Room; HyperMethod eLearning Server 4G; HyperMethod eAuthor CBT; HyperMethod iNstructor
+2	69983	5960	Программное обеспечение для дистанционного обучения / Программное обеспечение для управления в организации	78	IT-курсы для предприятий; «Секреты управления» – e-learning курсы; Курсы «Безопасность и охрана труда» (e-Nano); Онлайн-тренажер «Эксперт по управлению операционными рисками»; Unicraft; Cypher Learning MATRIX
+2	70007	5960	Программное обеспечение для дистанционного обучения / Курсы по личному развитию	27	Курсы «Личная эффективность»; iSpring Professional 12; LogMeIn GoToTraining; iSpring Learn; iSpring Suite Конструктор курсов; iSpring Suite
+2	171505	5960	Программное обеспечение для дистанционного обучения / Курсы по информационной безопасности	18	Kaspersky Express Course; Kaspersky Mobile Quest [Dis]Connected; Курс Kaspersky Endpoint Security and Management с сертификатом вендора; Пентестер: этичный хакинг и анализ систем безопасности; Тестирование на проникновение и анализ безопасности. Базовый уровень; Тестирование на проникновение и анализ безопасности. Профессиональный уровень
+2	70056	5960	Программное обеспечение для дистанционного обучения / Курсы для HR	12	Курс Competentum «Управление кадрами»
+2	70027	5960	Программное обеспечение для дистанционного обучения / Курсы для отдела продаж	11	Курсы Competentum  «Продажи»
+2	70071	5960	Программное обеспечение для дистанционного обучения / Программное обеспечение для управления проектами	5	Курс Competentum «Управление проектами»; Create Version; Teach Version; Курс Разработчик Python, с нуля до знаний Middle; Курс Умное управление: Искусственный интеллект в проектном менеджменте; Курс Разработка бизнес приложений в среде Java и Spring
+2	70021	5960	Программное обеспечение для дистанционного обучения / Курсы по маркетингу	2	Курс Competentum «Маркетинг»
+2	69353	5960	Программное обеспечение для дистанционного обучения / Финансовое и банковое программное обеспечение	1	Стратегические карты; Матрица бизнес-процессов банка; Курсы Competentum «Финансы»; Курс Управление проектами по разработке программных продуктов
+2	69406	5960	Программное обеспечение для дистанционного обучения / Тайм-менеджмент	0	
+1	84771		Телефония	279	
+2	84772	84771	Телефония / IP-телефоны	105	
+2	84982	84771	Телефония / Телефоны DECT	72	
+2	85134	84771	Телефония / Аксессуары для телефонов	38	
+2	157991	84771	Телефония / Конференц-связь	27	
+2	85213	84771	Телефония / Проводные телефоны	14	
+2	84931	84771	Телефония / VoIP-шлюзы	12	
+2	85126	84771	Телефония / Спикерфоны	7	
+2	84942	84771	Телефония / Системные телефоны и факсы	2	
+2	84974	84771	Телефония / Консоли для телефонов	2	
+2	84926	84771	Телефония / VoIP-адаптеры	0	
+2	85194	84771	Телефония / АТС	0	
+2	304881	84771	Телефония / Видеотелефон	0	
+1	91731		Торговое оборудование	279	
+2	91732	91731	Торговое оборудование / POS-аксессуары	69	
+2	91872	91731	Торговое оборудование / Сканеры штрихкодов	44	
+2	91774	91731	Торговое оборудование / Принтеры	38	
+2	91840	91731	Торговое оборудование / Терминалы сбора данных	33	
+2	283969	91731	Торговое оборудование / Счетчики банкнот, монет	24	
+2	284345	91731	Торговое оборудование / Весы складские	24	
+2	283903	91731	Торговое оборудование / Детекторы банкнот	23	
+2	91820	91731	Торговое оборудование / Моноблоки	14	
+2	259933	91731	Торговое оборудование / Мобильные POS-терминалы	5	
+2	91754	91731	Торговое оборудование / Денежные ящики	3	
+2	364748	91731	Торговое оборудование / Рекламные и интерактивные панели	2	
+2	91761	91731	Торговое оборудование / Дисплеи покупателя	0	
+2	91767	91731	Торговое оборудование / Мониторы	0	
+2	91803	91731	Торговое оборудование / Программируемые клавиатуры	0	
+2	91807	91731	Торговое оборудование / Процессорные блоки	0	
+2	91827	91731	Торговое оборудование / Набор-комплекты	0	
+2	91835	91731	Торговое оборудование / Считыватели магнитных карт	0	
+2	91910	91731	Торговое оборудование / Фискальные накопители	0	
+2	273645	91731	Торговое оборудование / Кассовое ПО	0	
+2	283890	91731	Торговое оборудование / Фискальные регистраторы	0	
+1	4010		Программы для смартфонов	263	
+2	54901	4010	Программы для смартфонов / Программы для коммуникации для смартфонов	117	Damaka Xavy; SMS Connector for WinGate 8; Talk&Translate; CraftTalk Чат-Бот; CraftTalk: Омниканальная чат-платформа; Altova MobileTogether Server
+2	4008	4010	Программы для смартфонов / Защита данных на смартфоне	114	Kaspersky Internet Security для Android; Panda Mobile Security; Sophos Mobile Control; F-Secure Mobile Security for Business; Elcomsoft Phone Password Breaker; ElcomSoft iOS Forensic Toolkit
+2	7792	4010	Программы для смартфонов / Бизнес-приложения, менеджеры, органайзеры	10	Novell ZENworks Mobile Management 2.8; Novell ZENworks Mobile Workspace; CommonTime mNotes; CommonTime Mobility Framework; CommonTime mSuite; CommonTime mDesigner Studio
+2	24797	4010	Программы для смартфонов / Другие программы для смартфонов	9	Foxit Mobile Reader; Foxit PDF Reader Mobile; Withings Health Mate; Filmora Mobile
+2	11511	4010	Программы для смартфонов / Средства разработки	8	Infragistics Android 16.1; TMS IntraWeb iPhone Controls Pack; Клеверенс: Mobile SMARTS
+2	5984	4010	Программы для смартфонов / Системные программы	5	Elcomsoft Phone Viewer; Elcomsoft Explorer for WhatsApp; DataViz RoadSync; Zextras Suite Mobile; SOTI MobiControl; SOTI Assist
+2	36059	4010	Программы для смартфонов / Карты и навигация	0	
+1	11765		Бухгалтерия. Склад. Кадры	249	
+2	11781	11765	Бухгалтерия. Склад. Кадры / Складские программы	105	ДТД-СКЛАД (электронная версия); Учет товаров и услуг 5.30; БЭСТ-5.Складской учет; Компонент 2017; DataMobile; Wood Traffic
+2	41962	11765	Бухгалтерия. Склад. Кадры / Программы для кадрового учета	64	Кадры Плюс; БОСС-Кадровик; Информационная система подбора персонала «Персей»; Персонал Про; Персонал ВУЗ; E-Staff Рекрутер
+2	11763	11765	Бухгалтерия. Склад. Кадры / Программное обеспечение для торговли	34	МАКРОАНАЛИЗ (электронная версия); Деньги-Товар-Деньги (электронная версия); Стол заказов автозапчастей; Тирика-Магазин; «АПЕК – Торговля и склад»; БЭСТ-Маркетинг
+2	12792	11765	Бухгалтерия. Склад. Кадры / Программное обеспечение для бухгалтерии	23	Учет доходов и расходов; e-BS ETAXREPORT; Инфо-Бухгалтер 10.2; Турбо9 Упрощенка; Турбо9 Бухгалтерия; Турбо9 Счетовод
+2	11773	11765	Бухгалтерия. Склад. Кадры / Финансовое программное обеспечение	18	Экономический анализ (электронная версия); Маркетинг-аналитика (электронная версия); AuditIT «Ваш финансовый аналитик»; КИАС финансовый контроллинг
+2	358609	11765	Бухгалтерия. Склад. Кадры / Управление логистикой	5	IT Vectura Transportation Management System; IT Vectura Warehouse Management System; IT Vectura Yard Logistic; CONSID.CTMS
+2	24722	11765	Бухгалтерия. Склад. Кадры / Расчет зарплаты	0	БЭСТ-5. Управление персоналом и Зарплата
+1	173634		Бытовая техника	239	
+2	323058	173634	Бытовая техника / Духовые шкафы	63	
+2	399337	173634	Бытовая техника / Посудомоечные машины	33	
+2	324924	173634	Бытовая техника / Варочные панели	31	
+2	173915	173634	Бытовая техника / Блендеры	24	
+2	173830	173634	Бытовая техника / Пылесосы	17	
+2	174050	173634	Бытовая техника / Чайники	13	
+2	235010	173634	Бытовая техника / Микроволновые печи	12	
+2	193184	173634	Бытовая техника / Холодильники	7	
+2	174449	173634	Бытовая техника / Кофемашины	6	
+2	174641	173634	Бытовая техника / Кухонные комбайны	5	
+2	175095	173634	Бытовая техника / Швейные машины	4	
+2	180319	173634	Бытовая техника / Отпариватели	4	
+2	182129	173634	Бытовая техника / Тостеры	4	
+2	174935	173634	Бытовая техника / Утюги	3	
+2	332705	173634	Бытовая техника / Аксессуары для бытовой техники	3	
+2	447619	173634	Бытовая техника / Мясорубки	3	
+2	174450	173634	Бытовая техника / Хлебопечи	2	
+2	175092	173634	Бытовая техника / Фены	2	
+2	175536	173634	Бытовая техника / Паровые станции	1	
+2	281524	173634	Бытовая техника / Обогреватели	1	
+2	331348	173634	Бытовая техника / Сушилки для овощей и фруктов	1	
+2	180314	173634	Бытовая техника / Увлажнители воздуха	0	
+2	181265	173634	Бытовая техника / Термопоты	0	
+2	182127	173634	Бытовая техника / Воздухоочистители	0	
+2	182128	173634	Бытовая техника / Измельчители	0	
+2	309524	173634	Бытовая техника / Вентиляторы	0	
+2	323568	173634	Бытовая техника / Вытяжки	0	
+2	324303	173634	Бытовая техника / Стиральные машины	0	
+2	325900	173634	Бытовая техника / Плиты	0	
+2	330980	173634	Бытовая техника / Кофемолки	0	
+2	331495	173634	Бытовая техника / Грили	0	
+2	408700	173634	Бытовая техника / Мультиварки	0	
+2	447718	173634	Бытовая техника / Кондиционеры	0	
+1	137215		Мебель, товары для офиса	214	
+2	137214	137215	Мебель, товары для офиса / Кресла и стулья	204	
+2	319006	137215	Мебель, товары для офиса / Стеллажи	10	
+2	282763	137215	Мебель, товары для офиса / Вешалки	0	
+2	318252	137215	Мебель, товары для офиса / Столы	0	
+1	83740		Аксессуары к компьютерной технике	206	
+2	84502	83740	Аксессуары к компьютерной технике / Прочие аксессуары	67	
+2	84437	83740	Аксессуары к компьютерной технике / Аккумуляторы и батареи для компьютерной техники	33	
+2	83844	83740	Аксессуары к компьютерной технике / Сумки и чехлы для ноутбуков	30	
+2	84382	83740	Аксессуары к компьютерной технике / Док-станции для ноутбуков	29	
+2	84206	83740	Аксессуары к компьютерной технике / USB-концентраторы	24	
+2	83741	83740	Аксессуары к компьютерной технике / Подставки для ноутбуков	14	
+2	84326	83740	Аксессуары к компьютерной технике / Источники питания для ноутбуков	7	
+2	84253	83740	Аксессуары к компьютерной технике / Чехлы для планшетов	2	
+2	143873	83740	Аксессуары к компьютерной технике / Клавиатуры, мыши, комплекты	0	
+2	180414	83740	Аксессуары к компьютерной технике / Пленки защиты информации	0	
+1	327028		Программы для удаленного доступа	180	
+2	327030	327028	Программы для удаленного доступа / Другие решения удаленного доступа	109	Ammyy Admin; TeamViewer; AnyDesk
+2	327029	327028	Программы для удаленного доступа / Российские решения удаленного доступа (Импортозамещение)	71	RMS Удаленный доступ 7.1; LiteManager; АССИСТЕНТ; Getscreen.ru; F5 IoT; RuDesktop
+1	257507		Облачные решения (IaaS)	172	
+2	257509	257507	Облачные решения (IaaS) / Управление бизнесом (IaaS)	172	Облачная платформа Softline; BILLmanager 6 Enterprise; UEMaaS; Софтлайн Бизнес Коммуникации; Софтлайн Диск; Clouden
+2	262881	257507	Облачные решения (IaaS) / Облачные платформы	0	Публичное облако VK Cloud; Частное облако Private Cloud; Coster; Clouder; РУСТЭК ЕСУ; РУСТЭК Cloud Platform
+1	91915		Фото-, видео-, аудиотехника	138	
+2	93761	91915	Фото-, видео-, аудиотехника / Колонки	73	
+2	93276	91915	Фото-, видео-, аудиотехника / Кронштейны	49	
+2	92427	91915	Фото-, видео-, аудиотехника / Телевизоры	11	
+2	128242	91915	Фото-, видео-, аудиотехника / Телеприставки	2	
+2	91916	91915	Фото-, видео-, аудиотехника / Проекторы	1	
+2	92137	91915	Фото-, видео-, аудиотехника / Экраны	1	
+2	246388	91915	Фото-, видео-, аудиотехника / Видеоплееры	1	
+2	93590	91915	Фото-, видео-, аудиотехника / Аксессуары для фотоаппаратов	0	
+2	93663	91915	Фото-, видео-, аудиотехника / Аккумуляторы для фотоаппаратов	0	
+2	93673	91915	Фото-, видео-, аудиотехника / Вспышки	0	
+2	93687	91915	Фото-, видео-, аудиотехника / Объективы	0	
+2	93993	91915	Фото-, видео-, аудиотехника / Игровые приставки	0	
+2	144737	91915	Фото-, видео-, аудиотехника / Видеокамеры	0	
+2	164502	91915	Фото-, видео-, аудиотехника / Аудиомагнитолы	0	
+2	247538	91915	Фото-, видео-, аудиотехника / Синтезаторы	0	
+2	247554	91915	Фото-, видео-, аудиотехника / Цифровые фортепиано	0	
+2	247556	91915	Фото-, видео-, аудиотехника / Аксессуары для музыкальных инструментов	0	
+2	247576	91915	Фото-, видео-, аудиотехника / Микшерные пульты	0	
+2	300901	91915	Фото-, видео-, аудиотехника / Осветительное оборудование	0	
+2	328576	91915	Фото-, видео-, аудиотехника / Аксессуары для проекторов	0	
+1	98672		Системы безопасности	132	
+2	98673	98672	Системы безопасности / IP-видеокамеры	57	
+2	137173	98672	Системы безопасности / Домофоны	26	
+2	137938	98672	Системы безопасности / Видеорегистраторы	16	
+2	309546	98672	Системы безопасности / Аксессуары для систем безопасности	11	
+2	137927	98672	Системы безопасности / Умный дом	8	
+2	98836	98672	Системы безопасности / Крепления	7	
+2	98826	98672	Системы безопасности / Аналоговые видеокамеры	5	
+2	123755	98672	Системы безопасности / Устройства контроля доступа	1	
+2	442877	98672	Системы безопасности / Средства радио-электронной борьбы (РЭБ)	1	
+2	165407	98672	Системы безопасности / Системы уничтожения данных	0	
+2	181563	98672	Системы безопасности / Экранирующие устройства	0	
+2	309552	98672	Системы безопасности / Микрофон для видеонаблюдения	0	
+2	366369	98672	Системы безопасности / Средства контроля и позиционирования персонала	0	
+1	90091		Портативные носители информации	120	
+2	90395	90091	Портативные носители информации / Флешки USB	60	
+2	90092	90091	Портативные носители информации / Внешние HDD	31	
+2	90813	90091	Портативные носители информации / Карты памяти	21	
+2	90897	90091	Портативные носители информации / HDD external case	5	
+2	90941	90091	Портативные носители информации / Док-станции для накопителей	3	
+2	90896	90091	Портативные носители информации / Оптические диски	0	
+1	269372		Электроинструменты	104	
+2	269373	269372	Электроинструменты / Дрели	24	
+2	269375	269372	Электроинструменты / Шлифовальные машинки	21	
+2	269379	269372	Электроинструменты / Электропилы	17	
+2	269802	269372	Электроинструменты / Шуруповерты	12	
+2	269374	269372	Электроинструменты / Перфораторы	10	
+2	269376	269372	Электроинструменты / Электролобзики	9	
+2	273330	269372	Электроинструменты / Аксессуары и наборы	4	
+2	269377	269372	Электроинструменты / Фены технические	2	
+2	272093	269372	Электроинструменты / Электроточила	2	
+2	272098	269372	Электроинструменты / Электрорубанки	2	
+2	269380	269372	Электроинструменты / Фрезеры	1	
+2	269378	269372	Электроинструменты / Клеевые пистолеты	0	
+2	272738	269372	Электроинструменты / Лазерные уровни	0	
+1	86562		Серверы и опции	78	
+2	87417	86562	Серверы и опции / Шасси и платформы	41	
+2	86563	86562	Серверы и опции / Rack-серверы	21	
+2	87956	86562	Серверы и опции / Серверные опции	10	
+2	87324	86562	Серверы и опции / Монтажные комплекты, ЗИП	4	
+2	87268	86562	Серверы и опции / Микросерверы	1	
+2	87317	86562	Серверы и опции / Стойки серверные	1	
+2	87093	86562	Серверы и опции / Tower-серверы	0	
+2	87276	86562	Серверы и опции / Blade-серверы	0	
+2	87316	86562	Серверы и опции / Платформы и компоненты	0	
+2	87329	86562	Серверы и опции / Контроллеры, адаптеры, модули	0	
+1	70186		Компьютеры	76	
+2	70824	70186	Компьютеры / Ноутбуки	49	
+2	73180	70186	Компьютеры / Моноблоки	10	
+2	73062	70186	Компьютеры / МиниПК	9	
+2	70187	70186	Компьютеры / Десктопы	8	
+2	73832	70186	Компьютеры / Тонкие клиенты	0	
+2	73859	70186	Компьютеры / Собственное производство	0	
+2	193235	70186	Компьютеры / Компьютеры для дома и офиса	0	
+2	193236	70186	Компьютеры / Рабочие станции	0	
+2	201953	70186	Компьютеры / Компьютеры для геймеров и киберспорта	0	
+2	428076	70186	Компьютеры / Одноплатные компьютеры	0	
+1	440598		ИИ	63	
+2	445131	440598	ИИ / Готовые ИИ-модели и алгоритмы	53	Удаленный рабочий стол с GPT; Нейроюрист; Jay Copilot; Нейросеть ЛИКА. максимум; Нейросеть ЛИКА. стандарт; Jay Copilot с Jay Guard
+2	445132	440598	ИИ / Отраслевые решения	8	Scout Argument; VoiceLab — AI-платформа анализа коммуникаций
+2	445129	440598	ИИ / Обучение и консалтинг в сфере ИИ	2	ИИ-агенты для бизнеса и ИИ-ассистенты (цифровые сотрудники); Учебно-практический пакет по искусственному интеллекту
+2	445130	440598	ИИ / Инфраструктура и вычисления для ИИ	0	ДримАгент
+1	98189		Системы хранения данных	51	
+2	98190	98189	Системы хранения данных / Сетевые хранилища (NAS)	34	
+2	98412	98189	Системы хранения данных / Сетевые системы хранения данных	9	
+2	98448	98189	Системы хранения данных / Опции к системам хранения	8	
+1	436293		Сервисные решения	44	
+2	436294	436293	Сервисные решения / Техническая поддержка программного обеспечения	34	Сертификат на техническую поддержку программного обеспечения Microsoft; Сертификат на комплексную техническую поддержку продуктов виртуализации, резервному копированию, баз данных и антивирусного ПО; Сертификат на техническую поддержку СУБД; Сертификат на техническую поддержку Российского Программного Обеспечения; Сервис непрерывного обследования Softline High Safety
+2	436361	436293	Сервисные решения / Техническая поддержка оборудования	10	Сертификат  на техническую поддержку оборудования «IT-Эксперт рядом»; Сертификат на техническую поддержку СХД и серверов; Сертификат на техническую поддержку сетевого оборудования
+1	284556		Дом и дача	28	
+2	284661	284556	Дом и дача / Триммеры садовые	12	
+2	286786	284556	Дом и дача / Опрыскиватели	4	
+2	284557	284556	Дом и дача / Генераторы	3	
+2	284659	284556	Дом и дача / Минимойки	3	
+2	284584	284556	Дом и дача / Снегоуборщики	2	
+2	284635	284556	Дом и дача / Воздуходувки	2	
+2	284658	284556	Дом и дача / Газонокосилки	2	
+2	284660	284556	Дом и дача / Мотопомпы	0	
+2	286778	284556	Дом и дача / Подметальные машины	0	
+2	286808	284556	Дом и дача / Товары для полива	0	
+2	369281	284556	Дом и дача / Фильтры для воды	0	
+1	73908		3D Оборудование	25	
+2	74002	73908	3D Оборудование / 3D Расходники и комплектующие	21	
+2	74117	73908	3D Оборудование / 3D Сканеры	4	
+2	73909	73908	3D Оборудование / 3D Принтеры	0	
+2	74146	73908	3D Оборудование / 3D Гаджеты	0	
+2	74157	73908	3D Оборудование / 3D Манипуляторы	0	
+2	74183	73908	3D Оборудование / 3D Фрезеры	0	
+1	90950		Портативные компьютеры	22	
+2	91451	90950	Портативные компьютеры / Внешние аккумуляторы	21	
+2	91552	90950	Портативные компьютеры / Аксессуары для планшетов	1	
+2	90951	90950	Портативные компьютеры / Планшеты	0	
+1	68389		Электронные книги	19	
+2	69346	68389	Электронные книги / Бизнес-литература	13	Библиотека документов по управлению операционными рисками; Графические модели бизнес-процессов и процедур; Библиотека документов по управлению бизнес-процессами; Библиотека документов по управлению качеством; Показатели KPI бизнес-процессов; Аналитические модели
+2	308015	68389	Электронные книги / Электронные библиотеки	6	Кулинарные рецепты
+2	68387	68389	Электронные книги / Техническая литература	0	«Вся Япония»; «Европа+Америка»; «Грузовики»; «СпецТехника»; «Все легковые»; АвтоКаталоги Тарифы
+1	183033		Здоровье	9	
+2	183291	183033	Здоровье / Машинки для стрижки волос	3	
+2	184316	183033	Здоровье / Триммеры	3	
+2	186151	183033	Здоровье / Ирригаторы	2	
+2	183435	183033	Здоровье / Электробритвы	1	
+2	182126	183033	Здоровье / Эпиляторы	0	
+2	183533	183033	Здоровье / Массажеры	0	
+2	183790	183033	Здоровье / Выпрямители для волос	0	
+2	183791	183033	Здоровье / Щипцы для завивки волос	0	
+2	184847	183033	Здоровье / Электрические зубные щетки	0	
+2	185458	183033	Здоровье / Насадки для зубных щеток и ирригаторов	0	
+2	215888	183033	Здоровье / Расчески	0	
+2	238862	183033	Здоровье / Весы	0	
+1	639		Программы для macOS	8	
+2	5615	639	Программы для macOS / Системные программы для macOS	8	Paragon Camptune X; Paragon Hard Disk Manager Business; Parallels Desktop 16; Parallels Desktop 17; Parallels Desktop for Mac; Parallels Desktop 26
+2	637	639	Программы для macOS / Антивирусное ПО для macOS	0	McAfee Endpoint Protection for Mac; Kaspersky Internet Security для Mac (электронная версия); McAfee VirusScan for Mac
+2	5177	639	Программы для macOS / Электронные словари	0	ОРФО для Mac; ОРФО для LibreOffice
+2	41711	639	Программы для macOS / Графические редакторы для macOS	0	Red Giant Key Correct; Red Giant Magic Bullet Colorista IV
+2	276692	639	Программы для macOS / Сервисное обслуживание	0	AppleCare Protection Plan
+1	131349		Спорт и активный отдых	6	
+2	89530	131349	Спорт и активный отдых / Умные часы	3	
+2	89853	131349	Спорт и активный отдых / Экшн-камеры	3	
+2	90084	131349	Спорт и активный отдых / Спортивные часы	0	
+2	93714	131349	Спорт и активный отдых / Бинокли	0	
+2	128865	131349	Спорт и активный отдых / Квадрокоптеры	0	
+2	131405	131349	Спорт и активный отдых / Электротранспорт	0	
+2	144122	131349	Спорт и активный отдых / Аксессуары для экшн-камер	0	
+2	146767	131349	Спорт и активный отдых / Тренажеры	0	
+2	146773	131349	Спорт и активный отдых / Мониторы функций	0	
+2	146779	131349	Спорт и активный отдых / Аксессуары для фитнеса	0	
+2	330263	131349	Спорт и активный отдых / Аксессуары для квадрокоптеров	0	
+2	407991	131349	Спорт и активный отдых / Сапборды	0	
+1	444914		Рекламные материалы	6	
+2	444915	444914	Рекламные материалы / Сувенирная продукция	6	
+1	291443		Цифровые сертификаты	0	
+2	291463	291443	Цифровые сертификаты / Подарочные сертификаты	0	
+2	444502	291443	Цифровые сертификаты / Юридическое сопровождение	0	
+2	444503	291443	Цифровые сертификаты / Кадровое сопровождение	0	
+1	399740		Искусственный интеллект	0	
+2	399741	399740	Искусственный интеллект / Решения для ритейла	0	
+2	399742	399740	Искусственный интеллект / Решения для производства	0	
+1	98456		Распродажа	0	
+1	235318		Автотовары	0	
+2	89684	235318	Автотовары / Автомобильные видеорегистраторы	0	
+2	235323	235318	Автотовары / Автосигнализации	0	
+2	235324	235318	Автотовары / Парковочные радары	0	
+2	235332	235318	Автотовары / Камеры заднего вида	0	
+2	235504	235318	Автотовары / Автомобильные мониторы	0	
+2	246988	235318	Автотовары / Автоинверторы	0	
+2	270589	235318	Автотовары / Транспондеры	0	
+1	246721		Товары для туризма	0	
+2	246722	246721	Товары для туризма / Мультитулы	0	
+2	246723	246721	Товары для туризма / Ножи	0	
+2	246724	246721	Товары для туризма / Фонари	0	
+2	246725	246721	Товары для туризма / Термосы и термокружки	0	
+2	246726	246721	Товары для туризма / Фляги	0	
+2	246727	246721	Товары для туризма / Пилы, топоры, лопаты	0	
+2	274669	246721	Товары для туризма / Наборы посуды	0	
+2	274670	246721	Товары для туризма / Аксессуары для туризма	0	
+1	340431		Восстановленная техника	0	
+2	340432	340431	Восстановленная техника / МФУ – восстановленные	0	
+2	341873	340431	Восстановленная техника / Восстановленные ноутбуки	0	
+2	349838	340431	Восстановленная техника / Восстановленные планшеты	0	
+2	349846	340431	Восстановленная техника / Восстановленные точки доступа	0	
+2	349850	340431	Восстановленная техника / Восстановленные наушники	0	
+2	349857	340431	Восстановленная техника / Восстановленные клавиатуры и мыши	0	
+2	349861	340431	Восстановленная техника / Восстановленные блоки питания	0	
+1	353554		Техника из реестра Минпромторга	0	
+2	353555	353554	Техника из реестра Минпромторга / Моноблоки из реестра Минпромторга	0	
+2	353776	353554	Техника из реестра Минпромторга / Мониторы из реестра Минпромторга	0	
+2	354351	353554	Техника из реестра Минпромторга / Десктопы из реестра Минпромторга	0	
+2	354438	353554	Техника из реестра Минпромторга / МиниПК из реестра Минпромторга	0	

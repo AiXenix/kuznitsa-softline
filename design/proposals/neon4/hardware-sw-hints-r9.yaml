@@ -1,0 +1,177 @@
+# Подписи «Искали ПО для …?» для классов оборудования каталога store.softline.ru
+# (спецификация 30.4, п. 1 — намерение «железо или ПО»).
+#
+# Когда запрос содержит голое название класса оборудования (например «сервер»,
+# «ноутбук», «коммутатор»), движок показывает карточки `domain=hardware` первыми
+# и добавляет кликабельную подсказку `prompt` для быстрого перехода к соответствующим
+# классам ПО (`software_classes` — id уровня 2 из `real-categories.tsv`).
+
+# ==============================================================================
+# 1. БАЗОВЫЕ КЛАССЫ ОБОРУДОВАНИЯ ИЗ ЗАДАНИЯ (7 классов)
+# ==============================================================================
+
+- id: hw_hint_server
+  hardware_class: server
+  hardware_feed_classes: [86563, 87417, 87268, 87317]
+  trigger_words: ["сервер", "серверы", "рэк сервер", "рэк-сервер", "стоечный сервер", "микросервер", "сервак"]
+  prompt: "Искали ПО для сервера?"
+  software_classes: [369, 222320, 2050, 222321, 2500, 650, 1033]
+  software_query_hint: "серверное ПО, серверные ОС, виртуализация, бэкап и защита серверов"
+  sw_examples: ["Windows Server", "Astra Linux Special Edition", "MS SQL Server", "Кибер Бэкап", "zVirt"]
+
+- id: hw_hint_laptop
+  hardware_class: laptop
+  hardware_feed_classes: [70824]
+  trigger_words: ["ноутбук", "ноутбуки", "ноут", "ноуты", "лэптоп", "лаптоп", "ноут бук"]
+  prompt: "Искали ПО для ноутбука?"
+  software_classes: [650, 3775, 1145, 222323, 222320, 2050, 445047, 1033]
+  software_query_hint: "антивирус, офисный пакет, ОС и резервное копирование для ноутбука"
+  sw_examples: ["Kaspersky", "Dr.Web", "Microsoft Office", "МойОфис", "Р7-Офис", "Windows 11"]
+
+- id: hw_hint_switch
+  hardware_class: switch
+  hardware_feed_classes: [85741]
+  trigger_words: ["коммутатор", "коммутаторы", "свитч", "свич", "пое коммутатор", "switch"]
+  prompt: "Искали ПО для управления и защиты сети?"
+  software_classes: [3205, 233731, 3656]
+  software_query_hint: "мониторинг сети, сетевые утилиты и межсетевые экраны"
+  sw_examples: ["WhatsUp Gold", "Traffic Inspector Next Generation", "Kerio Control", "Radmin"]
+
+- id: hw_hint_all_in_one
+  hardware_class: all_in_one
+  hardware_feed_classes: [73180]
+  trigger_words: ["моноблок", "моноблоки", "all-in-one"]
+  prompt: "Искали ПО для моноблока?"
+  software_classes: [222320, 2050, 445047, 1145, 222323, 650, 3775]
+  software_query_hint: "операционная система, офисный пакет и антивирус для рабочего места"
+  sw_examples: ["Astra Linux Special Edition", "РЕД ОС", "Microsoft Office", "Р7-Офис", "Kaspersky"]
+
+- id: hw_hint_monitor
+  hardware_class: monitor
+  hardware_feed_classes: [80843]
+  trigger_words: ["монитор", "мониторы", "моник", "дисплей"]
+  prompt: "Искали ПО для графики, видео или работы с экранами?"
+  software_classes: [241, 828, 495, 12989]
+  software_query_hint: "графические и видеоредакторы, 3D-визуализация, многомониторные утилиты"
+  sw_examples: ["Adobe Photoshop", "CorelDRAW", "V-Ray", "АСТЕР"]
+
+- id: hw_hint_printer
+  hardware_class: printer_mfp
+  hardware_feed_classes: [93995]
+  trigger_words: ["принтер", "принтеры", "мфу", "лазерник", "лазерный принтер"]
+  prompt: "Искали ПО для печати, сканирования и PDF?"
+  software_classes: [6, 180, 38945, 622]
+  software_query_hint: "распознавание сканов, работа с PDF, проброс принтеров в RDP и печать этикеток"
+  sw_examples: ["ContentCapture", "Adobe Acrobat", "FabulaTech Printer for Remote Desktop", "BarTender"]
+
+- id: hw_hint_ups
+  hardware_class: ups
+  hardware_feed_classes: [82080]
+  trigger_words: ["ибп", "упс", "ups", "бесперебойник", "источник бесперебойного питания"]
+  prompt: "Искали ПО для мониторинга инфраструктуры и резервного копирования?"
+  software_classes: [3205, 7864, 1033]
+  software_query_hint: "мониторинг серверов и сети, диагностика систем и резервное копирование"
+  sw_examples: ["WhatsUp Gold", "Кибер Бэкап", "RuBackup"]
+
+# ==============================================================================
+# 2. ДОПОЛНИТЕЛЬНЫЕ КЛАССЫ ОБОРУДОВАНИЯ ФИДА (11 классов)
+# ==============================================================================
+
+- id: hw_hint_desktop
+  hardware_class: desktop
+  hardware_feed_classes: [70187]
+  trigger_words: ["десктоп", "системник", "системный блок", "компьютер", "рабочая станция"]
+  prompt: "Искали ПО для компьютера?"
+  software_classes: [222320, 2050, 445047, 1145, 222323, 650, 3775]
+  software_query_hint: "операционная система, офисный пакет и антивирус для ПК"
+  sw_examples: ["Astra Linux", "Windows 11", "Microsoft Office", "МойОфис", "Kaspersky"]
+
+- id: hw_hint_mini_pc
+  hardware_class: mini_pc
+  hardware_feed_classes: [73062]
+  trigger_words: ["минипк", "мини пк", "мини-пк", "неттоп"]
+  prompt: "Искали ПО для мини-ПК?"
+  software_classes: [222320, 2050, 1145, 222323, 650, 327029]
+  software_query_hint: "лёгкая ОС, офис, антивирус и клиент удалённого доступа"
+  sw_examples: ["РЕД ОС", "Альт Рабочая станция", "Р7-Офис", "RuDesktop"]
+
+- id: hw_hint_router_wifi
+  hardware_class: router
+  hardware_feed_classes: [85353, 86192, 86348, 85225]
+  trigger_words: ["роутер", "маршрутизатор", "вайфай роутер", "точка доступа", "wi-fi роутер"]
+  prompt: "Искали ПО для защиты и контроля сети?"
+  software_classes: [233731, 3656, 3205]
+  software_query_hint: "межсетевые экраны, фильтрация трафика и мониторинг сети"
+  sw_examples: ["Traffic Inspector", "Kerio Control", "WhatsUp Gold"]
+
+- id: hw_hint_nas_storage
+  hardware_class: nas_storage
+  hardware_feed_classes: [98190, 98412]
+  trigger_words: ["nas", "нас", "схд", "сетевое хранилище", "хранилище данных"]
+  prompt: "Искали ПО для резервного копирования и восстановления данных?"
+  software_classes: [1033, 5922, 687]
+  software_query_hint: "резервное копирование, восстановление данных и защита файловых хранилищ"
+  sw_examples: ["Кибер Бэкап", "RuBackup", "R-Studio"]
+
+- id: hw_hint_scanner
+  hardware_class: scanner
+  hardware_feed_classes: [94641]
+  trigger_words: ["сканер", "сканеры", "документный сканер", "потоковый сканер"]
+  prompt: "Искали ПО для распознавания сканов и работы с PDF?"
+  software_classes: [6, 180, 38945]
+  software_query_hint: "OCR-распознавание документов, PDF-редакторы и проброс сканера в RDP"
+  sw_examples: ["ContentCapture", "ContentReader PDF", "Adobe Acrobat", "FabulaTech Scanner for Remote Desktop"]
+
+- id: hw_hint_plotter
+  hardware_class: plotter
+  hardware_feed_classes: [98113]
+  trigger_words: ["плоттер", "плоттеры", "широкоформатный принтер"]
+  prompt: "Искали САПР для создания и просмотра чертежей?"
+  software_classes: [5768, 6718, 8816, 8842, 9892]
+  software_query_hint: "системы САПР, проектирование и просмотрщики чертежей DWG/DXF"
+  sw_examples: ["КОМПАС-3D", "nanoCAD", "AutoCAD", "Archicad", "ABViewer"]
+
+- id: hw_hint_ip_phone
+  hardware_class: ip_phone
+  hardware_feed_classes: [84772, 84982, 84931]
+  trigger_words: ["ip-телефон", "ip телефон", "айпи телефон", "сип телефон", "voip шлюз"]
+  prompt: "Искали ПО для IP-телефонии и корпоративной связи?"
+  software_classes: [6035, 7388, 222324]
+  software_query_hint: "программные IP-АТС, запись звонков и коммуникационные платформы"
+  sw_examples: ["Ideco PBX", "Kerio Operator", "CommuniGate Pro"]
+
+- id: hw_hint_ip_camera
+  hardware_class: ip_camera
+  hardware_feed_classes: [98673, 137938]
+  trigger_words: ["ip-камера", "ip камера", "айпи камера", "видеокамера", "видеорегистратор"]
+  prompt: "Искали ПО для видеонаблюдения?"
+  software_classes: [23001]
+  software_query_hint: "программные комплексы IP-видеонаблюдения и видеоаналитики"
+  sw_examples: ["MACROSCOP ML", "MACROSCOP LS", "MACROSCOP NVR"]
+
+- id: hw_hint_pos_tsd
+  hardware_class: pos_tsd
+  hardware_feed_classes: [91820, 91840, 91872, 91774, 259933]
+  trigger_words: ["тсд", "терминал сбора данных", "сканер штрихкодов", "сканер шк", "pos-моноблок", "пос терминал", "принтер этикеток", "чековый принтер"]
+  prompt: "Искали ПО для торговли, склада и маркировки?"
+  software_classes: [11763, 11781, 622]
+  software_query_hint: "кассовое и складское ПО, автоматизация ТСД и печать штрихкодов"
+  sw_examples: ["DataMobile", "Тирика-Магазин", "БЭСТ-5 Склад", "BarTender"]
+
+- id: hw_hint_graphics_tablet
+  hardware_class: graphics_tablet
+  hardware_feed_classes: [98055]
+  trigger_words: ["графический планшет", "ваком", "wacom", "дигитайзер"]
+  prompt: "Искали ПО для графики, ретуши и 3D-дизайна?"
+  software_classes: [241, 828, 186]
+  software_query_hint: "графические редакторы, обработка фото и 3D-моделирование"
+  sw_examples: ["Adobe Photoshop", "Adobe Illustrator", "CorelDRAW", "V-Ray"]
+
+- id: hw_hint_webcam_conf
+  hardware_class: webcam_conf
+  hardware_feed_classes: [89623, 157991, 85126]
+  trigger_words: ["вебкамера", "вебка", "веб-камера", "спикерфон", "конференц-связь"]
+  prompt: "Искали ПО для видеоконференций и вебинаров?"
+  software_classes: [7437, 222324, 22298]
+  software_query_hint: "платформы ВКС, вебинаров и корпоративных коммуникаций"
+  sw_examples: ["МТС Линк", "CommuniGate Pro", "MyChat"]
