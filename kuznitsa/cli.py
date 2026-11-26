@@ -48,6 +48,8 @@ def main(argv=None):
     if args.cmd in ("kb-check","build-mock"):
         kb=load(cfg.kb,cfg.data if args.cmd=="kb-check" else None)
         if args.cmd=="kb-check":
+            from .index.feed_analogs import check_snapshot
+            check_snapshot(kb,cfg.data)
             show(kb.report())
             return int(bool(kb.syntax))
         print(f"Предложений · {build(cfg,kb,args.seed,args.today)}")

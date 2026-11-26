@@ -1,0 +1,41 @@
+- id: luminar
+  names: [Luminar Neo, Луминар Нео]
+  kind: photo
+  in_catalog: false
+  sections: [Программы для обработки цифрового фото]
+  analogs:
+    - {title: ФотоМАСТЕР, vendor: AMS Software, russian: true}
+    - {title: Домашняя Фотостудия}
+- id: reason
+  names: [Reason, Ризон]
+  kind: music
+  in_catalog: false
+  sections: [Аудиоредакторы]
+  analogs: [{title: Ableton Live}, {title: SONAR X2 Studio}]
+- id: total_commander
+  names: [Total Commander, Тотал Коммандер]
+  kind: file_manager
+  in_catalog: false
+  sections: [Файловые менеджеры]
+  analogs: [{title: File Commander}, {title: Eltima Commander One}]
+- id: teamviewer
+  names: [TeamViewer, Тимвьюер]
+  kind: remote_access
+  in_catalog: false
+  sections: [Другие решения удаленного доступа, Российские решения удаленного доступа (Импортозамещение)]
+  analogs:
+    - {title: AnyDesk, vendor: AnyDesk}
+    - {title: RuDesktop, russian: true}
+    - {title: АССИСТЕНТ, russian: true}
+- id: autocad
+  names: [AutoCAD, Автокад]
+  kind: cad
+  in_catalog: false
+  sections: [Базовые программы]
+  analogs: [{title: Платформа nanoCAD}, {title: КОМПАС-3D}, {title: Bricsys BricsCAD Pro}, {title: ZWCAD}]
+- id: windows
+  names: [Windows, Виндовс]
+  kind: os
+  in_catalog: true
+  sections: [Российские операционные системы (Импортозамещение), Операционные системы Linux & Unix]
+  analogs: [{title: Astra Linux, russian: true}, {title: РЕД ОС, russian: true}, {title: Fedora}]

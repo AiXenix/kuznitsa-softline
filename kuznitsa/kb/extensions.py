@@ -5,6 +5,7 @@ FIELDS={
     "vendors":"id name name_ru country origin market_status aliases categories notes",
     "categories":"id parent title title_short softline_path synonyms slang description typical_queries",
     "okved":"code title industry",
+    "feed_analogs":"id names kind in_catalog sections analogs note",
     "feed_tasks":"id sections phrases aliases",
     "hardware_hints":"id hardware_class hardware_feed_classes trigger_words prompt software_classes software_query_hint sw_examples",
     "roles":"id parent title aliases slots",
@@ -55,6 +56,8 @@ def prune_families(kb,origins):
     for group,rows in kb.rows.items():
         for ident,row in list(rows.items()):
             remove=False
+            if group=="feed_analogs":
+                continue  # Здесь analogs ссылается на названия карточек фида.
             for key in ("families","related_families","replaces","analogs"):
                 clean_list(row,key,ident)
             if row.get("upgrade_to") and not exists(row["upgrade_to"],ident+".upgrade_to"):

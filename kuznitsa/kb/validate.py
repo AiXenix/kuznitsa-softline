@@ -8,6 +8,22 @@ LIST_FIELDS = ("aliases synonyms slang phrases typical_queries questions categor
 
 
 def validate(group,row):
+    if group=="feed_analogs":
+        for key in ("names","sections"):
+            values=row.get(key)
+            if not isinstance(values,list) or not values or not all(isinstance(v,str) and v.strip() for v in values):
+                raise ValueError(key)
+        if not isinstance(row.get("in_catalog"),bool) or not isinstance(row.get("kind"),str):
+            raise ValueError("in_catalog / kind")
+        targets=row.get("analogs")
+        if not isinstance(targets,list):
+            raise ValueError("analogs")
+        for target in targets:
+            if (not isinstance(target,dict) or target.keys()-{"title","vendor","russian"}
+                    or not isinstance(target.get("title"),str) or not target["title"].strip()
+                    or not isinstance(target.get("vendor",""),str) or not isinstance(target.get("russian",False),bool)):
+                raise ValueError("analogs.title / vendor / russian")
+        return
     for field in ("name","name_ru","title","vendor","category","parent","summary","description","origin","market_status"):
         if row.get(field) is not None and not isinstance(row[field],str):
             raise ValueError(field)

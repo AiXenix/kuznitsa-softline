@@ -1,6 +1,7 @@
 """Подбор по страницам товаров и классам настоящего магазина."""
 import re
 from uuid import uuid4
+from . import feed_analogs
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class
 from kuznitsa.config import WEIGHTS
@@ -41,7 +42,7 @@ def decorate(card,offer):
     if not offer.available:badges.append(dict(kind="on_order",label="Под заказ"))
 
 
-def fill(engine,items,profile,reserved=(),q="",blocks=None,sections_hint=None,compatible=None):
+def fill(engine,items,profile,reserved=(),q="",blocks=None):
     index=engine.catalog.feed
     seen={c["card_id"] for c in items}
     if len(seen)>=4:return []
@@ -69,7 +70,7 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None,sections_hint=None,co
         vendors=engine.catalog.by["vendor"].get(anchor.vendor,())
         pool.extend(sorted((cid for cid in vendors if index.cat.cards[cid].offers[0].domain==o.domain
                             and query_terms.intersection(words(index.cat.cards[cid].title))),key=related,reverse=True))
-    eligible=[cid for cid in dict.fromkeys(pool) if cid not in seen and cid not in reserved and (not compatible or cid in compatible)]
+    eligible=[cid for cid in dict.fromkeys(pool) if cid not in seen and cid not in reserved]
     sections=[]
     if len(eligible)<4-len(seen):
         query=q or (items[0]["title"] if items else "")
@@ -82,12 +83,12 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None,sections_hint=None,co
             nearest=index.sections(query)
             options=list(dict.fromkeys([*(k for k in nearest if k in siblings),*siblings,*nearest]))
         else:
-            options=index.sections(query) if sections_hint is None else sections_hint
+            options=index.sections(query)
         # Чередуем товары соседних разделов. Ни один раздел не занимает весь добор.
         blocked=seen|set(reserved)|set(eligible)
         candidates=[]
         for k in options:
-            remaining=[cid for cid in index.groups[k] if cid not in blocked and (not compatible or cid in compatible)]
+            remaining=[cid for cid in index.groups[k] if cid not in blocked]
             if remaining:
                 sections.append(k)
                 candidates.append(remaining)
@@ -103,7 +104,7 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None,sections_hint=None,co
                 options=[dict(label=index.classes[k],apply=dict(q=index.classes[k],category=k)) for k in sections[:3]]))
     extra=[]
     for cid in eligible:
-        card=display(engine,cid,profile,compatible.get(cid) if compatible else None)
+        card=display(engine,cid,profile)
         label="Похожие товары"
         if not items and sections:
             label="Из раздела «"+index.classes[index.card_sections[cid]]+"»"
@@ -235,6 +236,12 @@ def search(engine,req,profile,trace,priorities,record):
         parsed=subject
     base,qty,renewal=split_conditions(parsed)
     original_subject=base
+    replacement_for=feed_analogs.requested(base)
+    row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
+    if (replacement_for or row and not row["in_catalog"]) and not (
+            req.category or req.exclude or req.filters.keys()-{"price_max","registry"} or "\n" in req.q):
+        return feed_analogs.search(engine,req,profile,trace,priorities,record,replacement_for or base,
+                                  row,explicit=bool(replacement_for),qty=qty,budget=budget)
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
     supplier=None
     if not req.verbatim and not literal[0]:
@@ -400,9 +407,6 @@ def search(engine,req,profile,trace,priorities,record):
             parents=index.unsold_brands.get(q)
             if parents and not unsold:
                 unsold=max(dict.fromkeys(parents),key=parents.count)
-    uncertain=False
-    alternatives=None
-    compatible=None
     role_reasons={}
     vendor_gap=False
     if supplier and ids and not section:
@@ -477,42 +481,13 @@ def search(engine,req,profile,trace,priorities,record):
         relevant=[i for i in focus if i in members]
         ids=list(dict.fromkeys([*relevant,*members])) if relevant else members
     elif not ids and not license_filter:
-        if not replacement:
-            if (not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base))
-                    and (unsold or unsupported or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q))):
-                known=unsold or (index.unsold_sections.get(" ".join(identity)) if identity else None)
-                possible=index.language.possible_section(q) if unsupported and not known else None
-                platform_match=re.search(r"\b(?:для|под|на|for) (mac(?:os)?|windows|linux)\b",q) if unsupported else None
-                platform=platform_match[1] if platform_match else None
-                if platform=="mac":platform="macos"
-                compatible=index.platform_offers.get(platform)
-                options=index.sections(" ".join(identity) if unsupported else q,software_only=unsupported,platform=platform)
-                if possible and compatible and possible not in index.platform_sections[platform]:possible=None
-                if possible:options=list(dict.fromkeys([possible,*options]))[:8]
-                if not known and req.mode=="smart" and engine.decisions and options:
-                    model_section=index.decide(engine,q,options,sid,req,calls)
-                section=known or model_section or possible
-                uncertain=section is None
-                alternatives=options
-                ids=index.groups[section] if section else []
-                missing=True
-                note=f"В каталоге нет «{req.q}». "+(f"Возможный раздел для замены — «{index.classes[section]}»."
-                        if section else "Уточните назначение программы, чтобы подобрать замену.")
-                if platform:
-                    matched=[cid for cid in ids if compatible and cid in compatible]
-                    if matched:
-                        ids=matched
-                        preferred.update((cid,compatible[cid]) for cid in matched)
-                    if compatible and (matched or not section):
-                        note+=" Платформа указана поставщиком."
-                    else:note+=" Совместимость с указанной платформой нужно уточнить."
-            else:return None
-        else:
-            ids=list(dict.fromkeys(cid for target in replacement["russian_analogs"]
-                for cid in sorted(index.tags["families"].get(target["family"],()),key=index.quality.get,reverse=True)))
-            if not ids:return None
-            missing=True
-            note=f"В каталоге нет «{replacement['product']}». Ниже — доступные замены."
+        if (replacement or not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base))
+                and (unsold or unsupported or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q)
+                     or re.fullmatch(r"[A-Z][A-Za-z]{3,}",req.q.strip()) and re.search("[aeiou]",q))):
+            known=unsold or (index.unsold_sections.get(" ".join(identity)) if identity else None)
+            return feed_analogs.search(engine,req,profile,trace,priorities,record,original_subject,known=known,row=row,
+                                      qty=qty,budget=budget)
+        return None
     elif base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
         variants=[index.cat.cards[i] for i in ids[:8]]
@@ -583,32 +558,20 @@ def search(engine,req,profile,trace,priorities,record):
             c.update(fill=True,label="Другой раздел этого производителя")
             c["score"]["why"].append(note)
         c["score"]["why"].extend(role_reasons.get(c["card_id"],()))
-    ctx=dict(q_raw=req.q,q_norm=norm,intent=intent,category_id=section,segment=profile.segment,
-             profile_id=profile.client_id,mode=req.mode,channel=req.source,region=profile.region)
-    if engine.controls.redirect(ctx):return None
-    from kuznitsa.rank.priorities import apply
-    applied,moves=apply(items,priorities,ctx,engine.catalog,engine.clock())
-    trace.add("business","Порядок карточек","Совпадение названия, наличие и условия поставки",priorities=applied,moves=moves)
-    merch=engine.controls.merch(ctx,items)
+    merch=order(engine,req,profile,trace,priorities,intent,section,items)
+    if merch is None:return None
     items=merch["cards"]
     main=[c["card_id"] for c in items]
     clarify=[]
     nearby=[]
     def complete(reserved):
         if license_filter or budget is not None or req.page!=1:return []
-        extra=fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify,
-                   sections_hint=alternatives,compatible=compatible)
+        extra=fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
         if intent=="renewal":
             nearby.extend(extra)
             return []
         return extra
-    if missing and unsupported:
-        together,recommended=None,()
-        for card in complete(()):
-            if section and index.card_sections[card["card_id"]]!=section:nearby.append(card)
-            else:items.append(card)
-    else:
-        together,recommended=recommend(engine,norm,items,profile,intent,role=role,complete=complete,price_max=budget)
+    together,recommended=recommend(engine,norm,items,profile,intent,role=role,complete=complete,price_max=budget)
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     if missing:
@@ -616,9 +579,7 @@ def search(engine,req,profile,trace,priorities,record):
                 dict(type="analogs",title="Доступные замены",items=[dict(card=c,reason=note if not c.get("fill") else c["label"]) for c in items])]
         if absent_acronym:
             blocks[1]=dict(type="products",title="Другие продукты производителя",items=items,total=len(ids))
-    if uncertain:
-        blocks=[blocks[0],*clarify,dict(type="products",title="Популярное в ближайших разделах",items=items,total=len(items))]
-    else:blocks.extend(clarify)
+    blocks.extend(clarify)
     if nearby:
         blocks.append(dict(type="products",title="Другие товары из близких разделов",items=nearby,total=len(nearby)))
     if together:blocks.append(together)
@@ -649,13 +610,27 @@ def search(engine,req,profile,trace,priorities,record):
     if renewal:result["understood"]["filters"]["action"]="renewal"
     if qty:
         chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
+    return finish(engine,req,trace,record,result,items,len(main),calls)
+
+
+def order(engine,req,profile,trace,priorities,intent,section,items):
+    ctx=dict(q_raw=req.q,q_norm=normalize(req.q),intent=intent,category_id=section,segment=profile.segment,
+             profile_id=profile.client_id,mode=req.mode,channel=req.source,region=profile.region)
+    if engine.controls.redirect(ctx):return None
+    from kuznitsa.rank.priorities import apply
+    applied,moves=apply(items,priorities,ctx,engine.catalog,engine.clock())
+    trace.add("business","Порядок карточек","Совпадение названия, наличие и условия поставки",priorities=applied,moves=moves)
+    return engine.controls.merch(ctx,items)
+
+
+def finish(engine,req,trace,record,result,items,count,calls):
     if calls and not calls[-1].get("ok"):
         result["mode"]="fast"
         result["notes"].append("Раздел выбран быстрым поиском: категоризатор недоступен.")
     result["timing_ms"]["total"]=round(1000*(engine.timer()-trace.start),2)
     if record:
         if engine.sessions:engine.sessions.save(req,result,items)
-        engine.journal.search(engine.clock(),req,result,len(main),result["understood"]["zero_reason"],False)
+        engine.journal.search(engine.clock(),req,result,count,result["understood"]["zero_reason"],False)
     if not req.explain:result["trace"]=[]
     return result
 
@@ -665,6 +640,17 @@ def suggestions(engine,raw,norm,profile,start):
     index=engine.catalog.feed
     groups=[]
     corrected=norm
+    def entry(cid,preferred=None):
+        c=display(engine,cid,profile,preferred)
+        return dict(text=c["title"],kind="product",meta=cid,card_id=cid,picture=c["picture"],image=c["picture"],
+                    oldprice=c["offer"]["oldprice"],price=c["offer"]["price"],price_on_request=c["offer"]["price_on_request"],badges=c["badges"],q=c["title"])
+    row=index.analogs.lookup(norm)
+    if row and not row["in_catalog"]:
+        sections,seeds=feed_analogs.row_candidates(index,row)
+        choices=feed_analogs.choose(index,norm,row,sections,seeds,[],False)
+        if choices:
+            groups.append(dict(type="analogs",title="Аналоги в каталоге",items=[entry(cid) for cid,_ in choices[:3]]))
+        return dict(q=raw,corrected=None,groups=groups,ms=round((perf_counter()-start)*1000,2))
     if len(norm)>=2:
         license_filter=license_request(engine,norm)
         license_hits=index.license_offers.get(license_filter,{})
@@ -719,10 +705,6 @@ def suggestions(engine,raw,norm,profile,start):
                 ids=list(dict.fromkeys([*lines.values(),*hits[:4]]))[:4]
         if corrected!=norm and not known:
             groups.append(dict(type="corrections",title="Возможно, вы искали",items=[dict(text=corrected,q=corrected,kind="correction",meta="repair")]))
-        def entry(cid,preferred=None):
-            c=display(engine,cid,profile,preferred)
-            return dict(text=c["title"],kind="product",meta=cid,card_id=cid,picture=c["picture"],image=c["picture"],
-                        oldprice=c["offer"]["oldprice"],price=c["offer"]["price"],price_on_request=c["offer"]["price_on_request"],badges=c["badges"],q=c["title"])
         if ids:
             groups.append(dict(type="products",title="Товары",items=[entry(i,license_hits.get(i)) for i in ids]))
         sections=list(dict.fromkeys(index.card_sections[i] for i in ids))

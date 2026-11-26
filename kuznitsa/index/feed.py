@@ -236,6 +236,8 @@ class FeedIndex:
         self.task_rows=kb.rows["use_cases"]
         from .feed_repair import FeedRecovery
         self.recovery=FeedRecovery(self,kb)
+        from .feed_analogs import AnalogIndex
+        self.analogs=AnalogIndex(self,kb.rows["feed_analogs"])
 
     def correct(self,q):
         if q in HARDWARE:return q
