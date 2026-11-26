@@ -262,7 +262,8 @@ class FeedIndex:
             c=self.cat.cards[i]
             name=words(c.title)
             exact=tuple(terms)==name
-            primary=not re.search(r"поддержк|обучен|курс |сертификат|миграц|продлен",c.title,re.I)
+            primary=(not re.search(r"поддержк|обучен|курс |сертификат|миграц|продлен",c.title,re.I)
+                     and ("cal" not in name or "cal" in terms))
             version=max((int(y) for y in name if re.fullmatch(r"20[012]\d",y)),default=0)
             first=min((name.index(w) for w in terms if w in name),default=99)
             consumer=int("family" in name or "семья" in name)

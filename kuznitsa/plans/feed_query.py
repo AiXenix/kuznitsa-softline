@@ -1,6 +1,6 @@
 """Условия запроса, которые можно проверить по строкам фида."""
 import re
-from kuznitsa.index.feed import words
+from kuznitsa.index.feed import STOP, words
 from kuznitsa.text import normalize
 from kuznitsa.index.feed_language import edition_form
 from kuznitsa.rank.variants import select
@@ -9,6 +9,7 @@ QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(польз
 PRICE_LIMIT=re.compile(r"\b(?:не дороже|до|в пределах)\s+(\d+(?: \d{3})*(?:[.,]\d{1,2})?)\s*(тыс\w*|млн|[кk])?\s*(?:руб(?:лей|ля|ль)?\.?|₽|р\.)?\s*$")
 LICENSE=r"лицензи(?:я|ю|и|й|ей)"
 RENEW=re.compile(rf"\b(?:{LICENSE}\s+(?:на\s+)?)?(?:продл(?:ить|ение|ения)|renewal)(?:\s+(?:свою\s+)?{LICENSE})?\b")
+PURCHASE=re.compile(rf"^(?:(?:найти|купить|нуж(?:ен|на|но|ны)|{LICENSE}(?:\s+на)?)\s+)+|[\s,]+{LICENSE}$")
 HOME=re.compile(r"\b(?:домашн\w*|домой|для дома|для семьи)\b")
 HELP=re.compile(r"^(?:как |чем |что (?:взять|поможет|подойд[её]т)|каки[еим]|нужн[ао] |хочу )")
 # Лексические мосты между действием и существительным в дереве магазина.
@@ -57,6 +58,22 @@ def license_request(engine,text):
                  for name,value,_ in found if name==kind),None)
 
 
+def purchase_subject(text):
+    return PURCHASE.sub("",text).strip(" ,") or text
+
+
+def supplier_clause(index,text):
+    """Выделяем «от» только перед подтверждённым названием издателя."""
+    head,sep,tail=text.partition(" от ")
+    if sep:
+        parts=tail.split()
+        for end in range(len(parts),0,-1):
+            if parts[end-1] in STOP:continue
+            vendor=index.vendor_names.get(" ".join(words(" ".join(parts[:end]))))
+            if vendor:return " ".join([head,*parts[end:]]),vendor
+    return text,None
+
+
 def vendor_class(index,q):
     parts=q.split()
     for length in range(min(len(parts)-1,5),0,-1):
@@ -65,6 +82,7 @@ def vendor_class(index,q):
             group=index.vendor_names.get(alias) or index.vendor_names.get(" ".join(words(alias)))
             if not group:continue
             label=" ".join(rest)
+            label=re.sub(r"^(?:решени\w*|софт|программ\w*|по) для ","",label)
             section=index.class_match(label)
             if not section:
                 device=index.hardware.get(label,{})
@@ -74,6 +92,32 @@ def vendor_class(index,q):
             if not section:section=index.language.section(index,label)
             if section:return group,section
     return None,None
+
+
+def software_for_class(engine,vendor,label):
+    """Класс-омоним у издателя ПО: проверяем продукты из тематических задач БЗ."""
+    index=engine.catalog.feed
+    key=set(words(label))
+    if not key:return []
+    categories={k for k,row in engine.kb.rows["categories"].items()
+                if key<=set(words(row.get("title_short") or row.get("title","")))}
+    names={name for row in index.task_rows.values() if categories.intersection(row.get("categories",[]))
+           for name in row.get("products",[])}
+    found=set()
+    for name in names:
+        terms=set(words(name))
+        for cid in index.products(name,fuzzy=False):
+            card=index.cat.cards[cid]
+            if index.card_vendors[cid]==vendor and card.offers[0].domain=="software" and terms<=set(words(card.title)):
+                found.add(cid)
+    return sorted(found,key=lambda cid:(index.quality[cid],cid),reverse=True)
+
+
+def mixed_subject(index,text):
+    if re.search("[a-z]",text) and re.search("[а-я]",text) and not index.products(text,fuzzy=False):
+        ids,corrected=index.sound_products(text)
+        if ids:return corrected
+    return text
 
 
 def matching_variants(index,ids,profile,qty,renewal,conditions=None,*,nodes=False):

@@ -2,8 +2,9 @@
 import re
 from uuid import uuid4
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
+from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class
 from kuznitsa.config import WEIGHTS
-from kuznitsa.index.feed_language import version_forms,edition_form
+from kuznitsa.index.feed_language import version_forms,edition_form,sold_as
 from kuznitsa.understand.quantities import spoken_numbers
 from kuznitsa.text import normalize,tokens
 from kuznitsa.index.hardware import suitability,hardware_head
@@ -234,10 +235,31 @@ def search(engine,req,profile,trace,priorities,record):
     base,qty,renewal=split_conditions(parsed)
     original_subject=base
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
+    supplier=None
+    if not req.verbatim and not literal[0]:
+        base,supplier=supplier_clause(index,purchase_subject(base))
     if req.sort or req.weights or req.filters.keys()-{"price_max"} or req.exclude or set(req.ignore)-{"price_max"} or (COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
+    absent_acronym=None
+    acronym=()
+    if not (literal[0] or req.verbatim or req.category):
+        acronym=index.language.acronym_cards(index,base)
+        absent_acronym=next((index.language.absent_acronyms[w] for w in words(base)
+                             if not acronym and w in index.language.absent_acronyms),None)
+        if absent_acronym:base=normalize(absent_acronym[0])
     server_section=software_scope(index,base) if not literal[0] else None
-    if not (req.verbatim or literal[0] or server_section or req.category or index.class_match(base)):
-        base=named_subject(engine,product_subject(index,base))
+    explicit_class=index.class_match(base)
+    if supplier and not explicit_class:
+        subject_class=re.split(r"\s+для\s+",base,maxsplit=1)[0]
+        explicit_class=index.class_match(subject_class)
+        if not explicit_class and re.fullmatch(r"антивирус\w*",subject_class):
+            explicit_class=index.class_by_name.get("антивирусы для организаций")
+    if not (explicit_class or literal[0] or req.verbatim):
+        explicit_class=index.language.qualified_class(index,base)
+    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class):
+        direct=index.products(base,fuzzy=False)
+        if not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title)):
+            base=named_subject(engine,product_subject(index,base))
+        base=mixed_subject(index,base)
     mapped,_=engine._phrases.apply(base)
     q=edition_form(index,index.correct(mapped))
     if req.verbatim:q=base
@@ -259,10 +281,17 @@ def search(engine,req,profile,trace,priorities,record):
     hint=purpose or hint
     if hardware and not bare and q.startswith("по для "):hint="серверное ПО" if hardware=="сервер" else "операционные системы"
     ids=index.products(q,domain="hardware" if bare else "software" if hardware else None,fuzzy=False,segment=profile.segment)
-    section=req.category or server_section or index.class_match(base) or index.class_match(q)
+    section=req.category or server_section or explicit_class or index.class_match(base) or index.class_match(q)
     vendor,combined=vendor_class(index,base)
     if not combined:vendor,combined=vendor_class(index,q)
+    vendor=supplier or vendor
     section=combined or section
+    if supplier and not section:
+        supplier_ids=[cid for cid in ids if index.card_vendors[cid]==supplier]
+        if supplier_ids:
+            ids=supplier_ids
+            bare=question=False
+            hint=None
     license_filter=license_request(engine,norm)
     license_hits=index.license_offers.get(license_filter,{})
     if license_filter:
@@ -295,8 +324,14 @@ def search(engine,req,profile,trace,priorities,record):
         if field=="classes" and not section:
             section=index.cat.cards[ids[0]].offers[0].class_id
     qualified=None
+    if acronym and not license_filter:
+        # Явные версия и редакция продолжают определять порядок внутри семейства.
+        family=set(acronym)
+        ids=[cid for cid in ids if cid in family] or acronym
+        section=server_section=hint=device=role=None
+        bare=question=False
     from kuznitsa.understand.audience import audience as buyer_audience,PURPOSE
-    if not section and buyer_audience(norm)=="micro_office":
+    if not section and not acronym and buyer_audience(norm)=="micro_office":
         brand=parts[0]
         field,brand_ids=index.slang.get(brand,(None,()))
         vid=index.vendor_names.get(brand)
@@ -336,7 +371,7 @@ def search(engine,req,profile,trace,priorities,record):
                 note="Найдены серверные продукты, в названии которых указана совместимость с системой."
     focus=()
     preferred=dict(license_hits)
-    if not section and not req.category and (question or hint and not ids):
+    if not section and not req.category and not absent_acronym and (question or hint and not ids):
         options,focus,preferred,note=task_sections(engine,q,hint)
         section=options[0] if options else None
         if options and req.mode=="smart" and engine.decisions and len(options)>1:
@@ -346,8 +381,7 @@ def search(engine,req,profile,trace,priorities,record):
     unsold=index.unsold_sections.get(q)
     # Упоминание чужой марки в названии модуля не подтверждает продажу самой программы.
     if ids and not qualified and not section and (replacement or q in index.unsold_brands):
-        named=tuple(cid for cid in ids if words(index.cat.cards[cid].title)[:len(words(q))]==words(q)
-                    or words(index.cat.cards[cid].offers[0].vendor or "")==words(q))
+        named=tuple(cid for cid in ids if sold_as(index.cat.cards[cid],q))
         if named:ids=named
         elif replacement or q in index.unsold_brands:
             ids=()
@@ -357,7 +391,21 @@ def search(engine,req,profile,trace,priorities,record):
     uncertain=False
     role_reasons={}
     vendor_gap=False
-    if section:
+    if supplier and ids and not section:
+        confirmed=[cid for cid in ids if index.card_vendors[cid]==supplier]
+        if confirmed:
+            ids=confirmed
+        else:
+            # Издатель в условии обязателен и после исправления названия.
+            section=index.card_sections[ids[0]]
+            vendor=supplier
+    if absent_acronym:
+        name,vendor=absent_acronym
+        section=None
+        ids=sorted(index.language.vendor_cards[vendor],key=index.quality.get,reverse=True)
+        note=f"Отдельной лицензии «{name}» в каталоге нет. Ниже другие продукты производителя."
+        missing=True
+    elif section:
         members=index.groups[section]
         if qty and not vendor:
             members=sorted(members,key=index.browse_quality.get,reverse=True)
@@ -369,6 +417,12 @@ def search(engine,req,profile,trace,priorities,record):
                   if preferred else "Класс ПО найден. Серверное исполнение нужно уточнить у поставщика.")
         if vendor:
             matches=[cid for cid in members if index.card_vendors[cid]==vendor]
+            if not matches and not req.category and index.cat.cards[members[0]].offers[0].domain=="hardware":
+                software=software_for_class(engine,vendor,index.classes[section])
+                if software:
+                    section=index.card_sections[software[0]]
+                    matches=[cid for cid in software if index.card_sections[cid]==section]
+                    note="Программы этого издателя для указанной задачи."
             vendor_gap=not matches
             if vendor_gap:
                 options=index.language.vendor_cards[vendor]
@@ -387,6 +441,11 @@ def search(engine,req,profile,trace,priorities,record):
 
             else:
                 members=matches
+                if supplier and buyer_audience(norm)=="business":
+                    purpose=set(words(norm))|{"business","бизнес"}
+                    if "офис" in purpose:purpose.add("office")
+                    members=sorted(members,key=lambda cid:len(set(words(index.cat.cards[cid].title)) & purpose),
+                                   reverse=True)
         if role:
             categories={s["category"] for s in role.get("slots",[])}
             for cid in members:
@@ -424,7 +483,7 @@ def search(engine,req,profile,trace,priorities,record):
             if not ids:return None
             missing=True
             note=f"В каталоге нет «{replacement['product']}». Ниже — доступные замены."
-    elif base==original_subject and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
+    elif base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
         variants=[index.cat.cards[i] for i in ids[:8]]
         if (len(variants)>=3 and len({c.vendor for c in variants})==1
@@ -442,6 +501,7 @@ def search(engine,req,profile,trace,priorities,record):
         nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
         selections=matching_variants(index,ids,profile,qty,renewal,constraints,nodes=nodes)
         if (qty and not selections and section and not (req.category or server_section or vendor_gap)
+                and frozenset(words(base)) not in index.section_phrases and not index.language.qualified_class(index,base)
                 and class_words(base) not in index.class_aliases):
             for other in index.matching_sections(q):
                 if other==section:continue
@@ -517,6 +577,8 @@ def search(engine,req,profile,trace,priorities,record):
     if missing:
         blocks=[dict(type="not_in_catalog",title="Нет в каталоге",reason="gap",text=note),
                 dict(type="analogs",title="Доступные замены",items=[dict(card=c,reason=note if not c.get("fill") else c["label"]) for c in items])]
+        if absent_acronym:
+            blocks[1]=dict(type="products",title="Другие продукты производителя",items=items,total=len(ids))
     if uncertain:
         blocks=[blocks[0],*clarify,dict(type="products",title="Популярное в ближайших разделах",items=items,total=len(items))]
     else:blocks.extend(clarify)

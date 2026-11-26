@@ -3,7 +3,7 @@ from collections import defaultdict
 from functools import lru_cache
 import re
 from rapidfuzz import fuzz,process
-from kuznitsa.understand.spell_index import cyrillic
+from kuznitsa.understand.spell_index import cyrillic, roman
 
 
 def sound_key(s):
@@ -27,14 +27,18 @@ def pronunciations(word):
 class Sounds:
     def __init__(self,vocab):
         self.index=defaultdict(set)
+        self.latin=defaultdict(set)
         for word in vocab:
             if re.fullmatch("[a-z]{2,}",word):
                 for p in pronunciations(word):
                     self.index[sound_key(p)].add(word)
+            elif re.fullmatch("[а-я]{2,}",word):
+                self.latin[roman(word)].add(word)
         self.keys=sorted(self.index)
         self.lookup=lru_cache(2048)(self.lookup)
 
     def lookup(self,word):
+        if word in self.latin:return sorted(self.latin[word])
         if not re.fullmatch("[а-я]{2,}",word):return ()
         key=sound_key(word)
         if key in self.index:return sorted(self.index[key])
