@@ -1,0 +1,268 @@
+# Открытый набор аудита поиска. Запросы придуманы ведущим аудита, ожидания сверены с настоящим фидом store.softline.ru.
+# Формат: группа<TAB>запрос<TAB>проверки. Описание проверок — в scripts/check_audit.py.
+#
+# наличие: товар есть в фиде, ответ не должен говорить, что его нет
+наличие	Adobe Acrobat Pro	present;top=acrobat
+наличие	autocad 2025	present;top=autocad
+наличие	автокад лт	present;top=autocad
+наличие	виндоус 11	present;top=windows 11
+наличие	корел дро	present;top=coreldraw
+наличие	мс sql	present;top=sql server
+наличие	вин рар	present;top=winrar
+наличие	фш	present;top=photoshop
+наличие	всё от adobe	present;top=adobe|photoshop|acrobat|creative cloud;min=4
+наличие	продукты Аскон	present;top=компас;min=4
+наличие	вижуал студио	present;top=visual studio
+наличие	касперский 10 пк 1 год	present;top=kaspersky
+наличие	dr.web 5 пк 3 года	present;top=dr\.?web
+наличие	adobe creative cloud годовая подписка	present;top=creative cloud
+наличие	академическая лицензия autocad	present;top=autocad
+наличие	adobe acrobat pro dc подписка на год для команд	present;top=acrobat
+наличие	обновление компас-3d	present;top=компас-3d
+наличие	бессрочная лицензия office	present;top=office
+наличие	office без подписки	present;top=office
+наличие	электронная лицензия office	present;top=office
+наличие	x64 windows 11 home	present;top=windows 11 home
+наличие	windows дешевле 15000	present;top=windows
+наличие	ключ активации windows 11	present;top=windows 11
+наличие	office365 e3	present;top=365
+наличие	MS Windows Server Standard 2022 16 core	present;top=windows server
+наличие	апгрейд windows 10 до 11	present;top=windows 11;nofilter=price_max
+наличие	windows 11 pro oem	present;first=windows 11 pro
+наличие	windows 11 pro для юрлиц	present;first=windows 11 pro
+наличие	скачать winrar	present;top=winrar
+наличие	купить фотошоп	present;top=photoshop
+наличие	хочу купить фотошоп навсегда без подписки	present;top=photoshop
+наличие	коробочная версия касперский	present;top=kaspersky;not=express course
+наличие	купить лицензию dr.web на 3 года	present;top=dr\.?web
+наличие	kaspersky endpoint security 50 лицензий продление	present;top=kaspersky endpoint security
+наличие	цена autocad	present;top=autocad
+наличие	microsoft office 2021	present;top=office (standard|профессиональный) 2021
+наличие	coreldraw graphics suite 2024	present;top=coreldraw
+наличие	windows 10 pro	present;top=windows 10
+наличие	лицензия на visual studio professional	present;top=visual studio
+наличие	winrar 5 лицензий	present;top=winrar
+#
+# нет: товара в фиде действительно нет, нужен честный ответ и замены
+нет	ESET NOD32	absent;top=kaspersky|dr\.?web|pro32
+нет	veeam backup	absent;top=backup|бэкап
+нет	jetbrains	absent
+нет	zoom	absent;top=jazz|trueconf|толк|линк
+нет	figma	absent;min=3
+нет	jira	absent;min=3
+нет	notion	absent
+нет	1с бухгалтерия	absent
+нет	windows 7	absent;top=windows 1[01]
+нет	tableau	absent;top=qlik|power bi|polymatica|loginom
+нет	cisco anyconnect	absent
+нет	steam	absent;nofix
+нет	аналог zoom	top=jazz|trueconf|толк|линк
+нет	аналог teamviewer	top=anydesk|radmin|ассистент|rms|litemanager
+нет	аналог autocad дешевле	top=nanocad|компас|zwcad|gstarcad|actcad|t-flex|bricscad
+#
+# задача: покупатель называет задачу, а не продукт
+задача	резервное копирование сервера	top=backup|бэкап;not=rack|depo|heat sink
+задача	виртуализация серверов	top=virtualization|zvirt|vmmanager|vsphere|виртуализац;not=rack|depo
+задача	почтовый сервер для компании	top=icewarp|exchange|mdaemon|communigate|tegu|почтов;not=rack|depo
+задача	шифрование дисков на ноутбуках	top=secret disk|encryption|шифров;not=hdd|ssd|жесткий|ноутбук
+задача	защита от утечек данных	top=staffcop|стахановец|инсайдер|dlp|zecurion|infowatch|searchinform|device;not=терминал сбора
+задача	защита веб-приложений	top=stormwall|waf|firewall|ngfw|континент|usergate|traffic inspector;not=камер
+задача	3d моделирование	top=компас-3d|3ds max|fusion|inventor|maya|t-flex|nanocad|renga|sketchup;not=нервюр
+задача	программа для чертежей	top=nanocad|компас|autocad|zwcad|t-flex|gstarcad|actcad
+задача	двухфакторная аутентификация	top=multifactor|mfa|avanpost|jacarta|рутокен|indeed;not=турникет|замок|домофон
+задача	управление проектами	top=kaiten|weeek|трекер|битрикс24|project|projecto|мегаплан;not=dental
+задача	сканер уязвимостей	top=xspider|redcheck|сканер-вс|maxpatrol|vulnerab
+задача	электронная подпись	top2=криптопро csp|криптоарм|рутокен|jacarta;not4=kaspersky|стахановец
+задача	мониторинг сети	top=мониторинг сети|netcrunch|whatsup|opmanager|10-страйк|lanstate
+задача	антиспам для почты	top=anti.?spam|mail security|email gateway|email security|почтовых серверов|spamfighter
+задача	удалённый доступ к компьютеру сотрудника	top=anydesk|teamviewer|radmin|ассистент|rms|litemanager;min=4
+задача	видеоконференции	top=trueconf;top=jazz|толк|линк;not4=callshark|getlocus
+задача	замена active directory	top=ald pro|альт домен|dynamic directory
+задача	учёт рабочего времени сотрудников	top=стахановец|staffcop|инсайдер
+задача	service desk	top=итилиум|simpleone|servicedesk|help ?desk;not4=deskproto|railclone|ландшафт
+задача	crm для отдела продаж	top=битрикс24|мегаплан|elma365|monday;not4=гис|хантфлоу
+задача	электронный документооборот	top=directum|docsvision|тезис
+задача	распознавание текста	top=contentreader|finereader|ocr
+задача	редактор pdf	top=pdf|acrobat
+задача	переводчик	top=promt|lingvo
+задача	видеомонтаж	top=premiere|filmora|powerdirector|pinnacle|видеомонтаж
+задача	бизнес-аналитика	top=qlik|power bi|polymatica|loginom
+задача	субд	top=postgres|tantor|линтер|sql server
+задача	российская операционная система	top=astra linux|ред ос|альт|роса|ublinux
+задача	межсетевой экран	top=traffic inspector|континент|ideco|usergate|ngfw|firewall
+задача	защита почтового сервера	top=почтовых серверов|mail security|email|anti.?spam
+задача	менеджер паролей	top=password manager
+задача	инвентаризация компьютеров	top=инвентаризац|network inventory|severcart
+задача	антивирус для бизнеса	top=kaspersky|dr\.?web|pro32;min=4
+задача	офисный пакет	top=р7|мойофис;top=microsoft office|microsoft 365;not4=visio|project;min=4
+задача	офисный пакет для школы	top=р7|мойофис|office|альт образование
+задача	бухгалтерия и учёт	sec=бухгалтер;not=посетител
+задача	импортозамещение	min=4;top=astra|ред ос|альт|р7|мойофис|роса|kaspersky|postgres
+задача	152-фз	top=secret net|криптопро|континент|vipnet|страж|сканер-вс|redcheck|соболь|dallas;not=юридическ
+задача	кии	nofix;not=аккумулятор|зарядн;top=secret net|континент|maxpatrol|kaspersky|сканер-вс|redcheck|соболь|страж|usergate|xspider
+задача	dlp	top2=staffcop|стахановец|dlp|zecurion|infowatch|инсайдер
+задача	siem	top=siem|kuma|maxpatrol|event tracker
+задача	vpn для удалённых сотрудников	top=ngate|vpn|континент|vipnet
+задача	защита от шифровальщиков	top=kaspersky|dr\.?web|pro32|backup|бэкап;not4=криптопро ключ|стахановец
+задача	система управления базами данных	top=postgres|tantor|линтер|sql server
+задача	backup software for servers	top=backup|бэкап;not4=dr\.fone|altova
+задача	antivirus for small business	top=kaspersky|dr\.?web|pro32|small office
+задача	office suite	top=р7|мойофис|microsoft office|microsoft 365
+задача	remote desktop software	top=anydesk|teamviewer|radmin|ассистент|rms|remote desktop
+задача	video conferencing	top=trueconf|jazz|толк|линк
+задача	endpoint protection 50 devices	first=kaspersky|dr\.?web|pro32|endpoint
+#
+# вопрос: вопрос обычными словами
+вопрос	что поставить вместо active directory?	top=ald pro|альт домен|dynamic directory
+вопрос	чем проверить сайт на уязвимости?	top=xspider|redcheck|сканер-вс|maxpatrol|vulnerab
+вопрос	сколько стоит касперский на 10 компьютеров?	top=kaspersky;not=калькулятор
+вопрос	у нас сервер 1с, чем его бэкапить	top=backup|бэкап
+вопрос	чем заменить microsoft office?	top=р7|мойофис
+вопрос	какой антивирус выбрать для дома?	top=kaspersky (standard|plus|premium)|security space|pro32|dr\.?web
+вопрос	нужна программа для защиты почты от спама и фишинга	top=anti.?spam|mail security|email|почтовых
+вопрос	дизайнеру нужен софт для работы	top=photoshop|illustrator|coreldraw|creative cloud|indesign|alivecolors|pixso;min=4
+вопрос	софт для стоматологии	top=dental
+вопрос	открываем новый офис на 15 человек, что нужно из софта?	min=4;top=microsoft office|microsoft 365|р7|мойофис|windows 1[01]|kaspersky|dr\.?web|astra;not4=officecalendar|mobioffice|scanitto|перфекционист
+вопрос	нам нужно закрыть требования по кии	min=3;not=аккумулятор|зарядн
+вопрос	как защитить компьютеры от вирусов?	top=kaspersky|dr\.?web|pro32
+вопрос	чем открыть pdf?	top=pdf|acrobat
+вопрос	где купить лицензию на windows?	top=windows
+вопрос	какая программа нужна для видеозвонков с клиентами?	top=trueconf|jazz|мтс линк|контур\.толк
+вопрос	на чём вести задачи команды разработки?	top=kaiten|weeek|трекер|битрикс24|devprom|projecto|мегаплан
+#
+# главное: по названию бренда и линейки первыми идут основные продукты
+главное	касперский	first=kaspersky (standard|plus|premium|endpoint security|small office);not=express course|symphony mdr|ask the analyst|digital footprint
+главное	купить касперский	first=kaspersky (standard|plus|premium|endpoint security|small office)
+главное	продление касперского	top2=kaspersky (standard|plus|premium|endpoint security|small office)
+главное	Microsoft	top=windows 1[01]|windows server;top=office|365;not=rights management|audit and control
+главное	windows	top=windows 11;not=rights management
+главное	office	first=microsoft office;not=audit and control|flexispace
+главное	nanoCAD	first=платформа nanocad|^(нанософт )?nanocad( \d+)?$
+главное	SQL Server 2022	first=^(microsoft )?sql server
+главное	microsoft sql server	first=^(microsoft )?sql server
+главное	AutoCAD	first=^(autodesk )?autocad( 20\d\d)?$
+главное	автокад	first=^(autodesk )?autocad( 20\d\d)?$
+главное	КриптоПро CSP	first=криптопро csp 5
+главное	криптопро	top=криптопро csp 5
+главное	microsoft 365 25 пользователей	top=бизнес|business|корпоратив|enterprise|f3|^microsoft 365$;not1=family|семь|персональн
+главное	офис на 3 компьютера	top=office|офис;not4=visio|project
+главное	dr.web	top=security space|desktop security|enterprise security|^(доктор веб )?dr\.?web$
+главное	adobe	top=photoshop|creative cloud|acrobat
+главное	компас	first=компас-3d
+главное	visual studio	first=visual studio
+главное	р7 офис	top=р7-офис
+главное	мойофис	top=мойофис
+главное	1с битрикс	top=битрикс
+главное	directum	top=directum
+главное	trueconf	first=trueconf
+главное	positive technologies	top=xspider|maxpatrol|email gateway;not=patriot|триммер
+главное	teamviewer	first=teamviewer
+главное	exchange	first=microsoft exchange
+#
+# написание: опечатки, раскладка, сокращения, транслитерация
+написание	цштвщцы 11	top=windows 11;not4=mdaemon|awareness
+написание	ajnjijg	top=photoshop
+написание	rfcgthcrbq	top=kaspersky
+написание	w11	top=windows 11
+написание	win srv	top=windows server
+написание	o365	top=^microsoft 365
+написание	скзи	first=криптопро|vipnet|континент
+написание	эксель	top=office|365|excel
+написание	ворд	top=office|365|word
+написание	аутлук	top=office|365|outlook|exchange
+написание	finereader	top=contentreader|finereader
+написание	файнридер	top=contentreader|finereader
+написание	что есть у Positive Technologies	top=xspider|maxpatrol|email gateway
+написание	касперски	top=kaspersky
+написание	каспер	top=kaspersky
+написание	доктор веб	top=dr\.?web
+написание	майкрософт офис	top=office
+написание	фотошоп	top=photoshop
+написание	криптопро цсп	top=криптопро csp
+написание	астра линукс	top=astra linux
+написание	нанокад	top=nanocad
+написание	виндовс сервер	top=windows server
+написание	антивирусс	top=kaspersky|dr\.?web|pro32;not=mdaemon|wingate
+написание	антивирус антивирус антивирус	top=kaspersky|dr\.?web|pro32;not=mdaemon
+написание	😀 антивирус	top=kaspersky|dr\.?web|pro32;not=mdaemon
+написание	ssd 1tb	top=ssd|накопитель;not=core infrastructure
+написание	kaspersky endpoint secutiry	top=kaspersky endpoint security
+написание	майкрасофт виндовс 11 про	top=windows 11 pro
+#
+# условия: цена, срок, платформа, исключения, сортировка
+условия	антивирус до 3000 рублей	top=kaspersky|dr\.?web|pro32|антивирус|security;pricemax=3000
+условия	офис кроме microsoft	top=р7|мойофис;not=microsoft
+условия	антивирус не касперский	top=dr\.?web|pro32;not=kaspersky
+условия	антивирус для mac	top=kaspersky|dr\.?web|pro32|mac
+условия	антивирус для android	top=mobile|android|kaspersky|dr\.?web
+условия	ноутбук от 50000 до 80000	top=ноутбук;pricemin=50000;pricemax=80000
+условия	самый дешёвый антивирус	top=kaspersky|dr\.?web|pro32|антивирус|security;asc
+условия	самый дорогой ноутбук	top=ноутбук;desc
+условия	касперский на 2 года	top2=kaspersky (standard|plus|premium|endpoint security|small office)
+условия	cad до 100000	pricemax=100000
+условия	windows server cal 20 пользователей	top=cal
+условия	office для mac	top=mac|office
+условия	техподдержка astra linux	top=astra
+условия	принтер hp	top=hp;notnote=производителя нет
+условия	российский офисный пакет	top=р7|мойофис;not=microsoft
+условия	отечественный антивирус	top=kaspersky|dr\.?web|pro32;not=eset|f-secure|norton|bullguard
+условия	kaspersky endpoint security 25 узлов 2 года	top=kaspersky endpoint security
+условия	монитор до 20000	top=монитор;pricemax=20000
+#
+# сравнение: в ответе видны оба продукта
+сравнение	kaspersky standard или plus	present;top=kaspersky standard;top=kaspersky plus
+сравнение	windows 11 home vs pro	present;top=windows 11 home;top=windows 11 pro
+сравнение	сравнить dr.web и kaspersky	top=dr\.?web;top=kaspersky
+сравнение	что лучше dr.web или kaspersky?	top=dr\.?web;top=kaspersky
+сравнение	р7 офис или мойофис	top=р7;top=мойофис
+сравнение	autocad или nanocad	top=autocad;top=nanocad
+сравнение	сравнить dr.web и eset	top=dr\.?web
+#
+# мусор: бессмысленный или посторонний запрос не должен давать случайные товары
+мусор	asdfghjkl	max=0
+мусор	!!!	max=0
+мусор	12345	max=0
+мусор	купить квартиру	max=0
+мусор	<script>alert(1)</script>	max=0
+мусор	' OR 1=1 --	max=0
+мусор	пицца	max=0;nofix
+мусор	погода в москве	max=0
+мусор	рецепт борща	max=0
+мусор	a	max=0
+#
+# железо: оборудование по категории и бренду
+железо	ноутбук	top=ноутбук;min=4
+железо	мышь logitech	top=logitech
+железо	монитор 27	top=монитор
+железо	рутокен	top=рутокен
+железо	jacarta	top=jacarta
+железо	веб-камера	top=камера|webcam
+железо	роутер	top=роутер|маршрутизатор|router
+железо	ибп	top=ибп|ups
+железо	картридж hp	top=картридж
+железо	принтер	top=принтер|мфу|laserjet|i-sensys|designjet|pantum|kyocera|epson
+железо	сервер	top=сервер
+железо	ssd	top=ssd|накопитель
+железо	клавиатура	top2=клавиатур;not4=^мышь
+#
+# эталон: контрольные примеры организаторов и то, что уже работало
+эталон	astra linux	first=astra linux special edition
+эталон	Microsoft Office для дома и бизнеса	first=для дома и бизнеса|home (and|&) business
+эталон	kaspersky small office security	first=small office security
+эталон	крипто про csp 5.0	first=крипто.?про.*csp
+эталон	anydesk	first=anydesk
+эталон	кибер бэкап	first=кибер ?бэкап
+эталон	сканер-вс	first=сканер.?вс
+эталон	мтс	first=мтс ?линк
+эталон	max patrol	first=max ?patrol
+эталон	365	first=(microsoft|office) 365
+эталон	винда хоум	first=windows 11 home
+эталон	win10pro	top=windows 10
+эталон	Dr.Web Enterprise Security Suite	first=dr\.?web
+эталон	Windows 11 Pro	first=windows 11 pro
+эталон	Adobe Photoshop	first=photoshop
+эталон	КОМПАС-3D	first=компас-3d
+эталон	антивирус	top=kaspersky|dr\.?web|pro32;min=4
+эталон	office для дома и учёбы	top=office
+эталон	аналог photoshop	min=3;not=^(adobe )?photoshop$
+эталон	figma аналоги	min=3
