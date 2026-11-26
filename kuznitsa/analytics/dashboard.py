@@ -71,6 +71,7 @@ def warm(e):
 
 def _warm(e):
     j=e.journal
+    history_days(j)
     if kpi.report(j).get("data_status")=="incompatible":
         return
     packed=bool(j.rows("SELECT 1 FROM analytics_reports WHERE key='packed'"))
@@ -130,6 +131,16 @@ def search_reference(engine,q):
 
 
 def history_days(journal):
-    snapshot=kpi.report(journal)
-    days=[{key:r[key] for key in ("key","searches","zero_rate")} for r in snapshot["slices"]["day"]]
-    return dict(items=days,period=dict(start=days[0]["key"] if days else None,end=days[-1]["key"] if days else None))
+    """Календарь всей истории магазина, включая фразы за пределами парного прогона."""
+    def build():
+        days = journal.rows("""
+            SELECT date(ts, 'unixepoch', '+3 hours') AS key, count(*) AS searches,
+                   avg(zero) AS zero_rate
+            FROM active_history
+            WHERE ts IS NOT NULL
+            GROUP BY key HAVING key IS NOT NULL ORDER BY key
+        """)
+        return dict(items=days, period=dict(start=days[0]["key"] if days else None,
+                                            end=days[-1]["key"] if days else None))
+
+    return cached(journal, "history-days:all", build)
