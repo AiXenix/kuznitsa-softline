@@ -56,6 +56,10 @@ try{
   location.hash='head';await tick();if(!main.innerText.includes('Показатель B2'))throw Error('B2 pairs missing');
   if(!main.innerText.includes('Сокращение задержки') || !main.innerText.includes('Исходная выборка') || !main.querySelector('.delta.good') || !main.innerText.includes('Парные наблюдения'))throw Error('Pair units or evidence missing');
   if(!main.innerText.includes('Внешние вызовы · 4') || !main.innerText.includes('950 ₽'))throw Error('Cost report');
+  const comparison=main.querySelector('.comparisonTiles').parentElement;
+  const basis=comparison.querySelector('details');
+  if(basis.open || comparison.querySelector('.pair').textContent.includes('Парные наблюдения'))throw Error('Пояснение повторилось в плитке');
+  basis.querySelector('summary').click();
   if(main.innerText.split(fixtures.kpi.note).length!==2)throw Error('Общее пояснение должно быть одно');
   main.querySelector('.keyBox .download').click();await tick();
   if(!hits.has('/api/admin/digest?role=head_ecom&format=xlsx') || !main.querySelector('.keyBox').innerText.includes('Выгрузка XLSX пока недоступна'))throw Error('Загрузка отчёта роли и ответ прежнего API');
