@@ -88,5 +88,15 @@ def warning(j,ident=None):
     try:
         stored=json.loads(receipt[0]["value"]) if receipt else None
     except (TypeError,ValueError):
-        return STALE_REPLAY
-    return None if current==stored else STALE_REPLAY
+        stored = None
+    if current == stored:
+        return None
+    if not j.rows("SELECT 1 FROM active_history LIMIT 1"):
+        return ("В активном журнале нет поисков магазина. Проверьте источник снимка при выкладке "
+                "и KZ_DATA_DIR службы. Для сравнения нужен снимок с историей и завершённым replay.")
+    if not isinstance(stored, dict):
+        return STALE_REPLAY + " В журнале нет читаемой записи о сборке этого прогона."
+    fields = {"mode": "источник истории", "history": "сборка истории",
+              "catalog": "содержимое каталога", "method": "код метода сравнения"}
+    changed = [name for key, name in fields.items() if stored.get(key) != current.get(key)]
+    return STALE_REPLAY + (" Расхождение — " + ", ".join(changed) + "." if changed else "")
