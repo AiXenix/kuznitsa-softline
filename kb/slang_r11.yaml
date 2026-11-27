@@ -31,6 +31,8 @@
 - {term: "корелдрав", type: typo, maps_to: {text: "CorelDRAW"}, note: "CorelDRAW слитно кириллицей"}
 - {term: "акад", type: abbr, maps_to: {text: "Autodesk AutoCAD"}, note: "Сокращение AutoCAD"}
 - {term: "автодеск автокад", type: translit, maps_to: {text: "Autodesk AutoCAD"}, note: "Autodesk AutoCAD"}
+- {term: "3d max", type: typo, maps_to: {text: "Autodesk 3Ds Max"}, note: "Autodesk 3ds Max без s"}
+- {term: "3d макс", type: translit, maps_to: {text: "Autodesk 3Ds Max"}, note: "Autodesk 3ds Max смешанный"}
 - {term: "finereader", type: obsolete, maps_to: {text: "ContentReader PDF"}, note: "ABBYY FineReader в РФ — ContentReader PDF"}
 - {term: "винрар 7", type: translit, maps_to: {text: "WinRAR 7"}, note: "WinRAR 7 кириллицей"}
 

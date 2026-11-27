@@ -35,6 +35,11 @@ ALIASES = {
     "вижуал студио": "visual studio", "визуал студио": "visual studio",
     "экселька": "microsoft office excel", "эксель": "microsoft office excel",
     "ворд": "microsoft office word",
+    "аутлук": "microsoft office outlook",
+    "пауэрпоинт": "microsoft office powerpoint", "поверпоинт": "microsoft office powerpoint",
+    "мс офис": "microsoft office", "ms office": "microsoft office",
+    "3d max": "autodesk 3ds max", "3д макс": "autodesk 3ds max", "3d макс": "autodesk 3ds max",
+    "архикад": "archicad",
     "эксчендж": "microsoft exchange", "ексчендж": "microsoft exchange", "эксчейндж": "microsoft exchange",
     "касперский": "kaspersky", "каспер": "kaspersky", "кав": "kaspersky",
     "дрвеб": "dr web", "доктор веб": "dr web",
@@ -324,6 +329,10 @@ class FeedIndex:
         terms_tuple=tuple(terms)
         qset=frozenset(terms)
         n_terms=len(terms)
+        vnames=getattr(self,"vendor_names",())
+        f_vendors=flagships.vendor_aliases if flagships else ()
+        joined=" ".join(terms)
+        vendor_query=(q in vnames or joined in vnames or q in self.tags["vendors"] or q in f_vendors or joined in f_vendors)
         def score(i):
             c=self.cat.cards[i]
             name=words(c.title)
@@ -349,7 +358,7 @@ class FeedIndex:
                          and (segment=="individual" or bool(named_audience & {"семья","дом","home"})))
             starts=prefix and any(t.startswith(terms[-1]) for t in name[:2])
             fitting_release=prefer_edition and bool(edition_terms.intersection(name))
-            return (primary,exact,starts,all(w in name for w in terms),f_rank>0,f_rank,-first,
+            return (primary,exact,starts,vendor_query or all(w in name for w in terms),f_rank>0,f_rank,-first,
                     fitting_release,self.quality[i][0],starts_line,version,consumer,*self.quality[i][1:],i)
         return tuple(sorted(ids,key=score,reverse=True))
 

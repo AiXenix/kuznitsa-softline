@@ -232,11 +232,19 @@ def prefer_flagships_for_vendor(index, engine, q: str, ids: list[str], *, norm: 
     vid = _resolve_direct_vendor(index, q)
     if not vid:
         return ids
+    top = index.cat.cards[ids[0]]
+    asked = set(words(q))
+    # Запрос называет линейку («3ds max», «revit»), а не вендора: её карточки идут раньше прочих флагманов вендора.
+    by_line = asked <= set(words(top.title)) and not asked <= set(words(top.vendor or ""))
+
+    def named(cid):
+        return by_line and asked <= set(words(index.cat.cards[cid].title))
+
     ranks = index.flagships.rank
     pool = list(ids)
     seen = set(pool)
     for cid in index.language.vendor_cards.get(vid, ()):
-        if cid not in seen and ranks.get(cid, 0) > 0:
+        if cid not in seen and ranks.get(cid, 0) > 0 and (not by_line or named(cid)):
             pool.append(cid)
             seen.add(cid)
     if not any(index.card_vendors.get(cid) == vid and ranks.get(cid, 0) > 0 for cid in pool):
@@ -244,6 +252,7 @@ def prefer_flagships_for_vendor(index, engine, q: str, ids: list[str], *, norm: 
     return sorted(
         pool,
         key=lambda cid: (
+            named(cid),
             index.card_vendors.get(cid) == vid and ranks.get(cid, 0) > 0,
             ranks.get(cid, 0) if index.card_vendors.get(cid) == vid else 0,
         ),

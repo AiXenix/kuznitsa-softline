@@ -395,7 +395,7 @@ def search(engine,req,profile,trace,priorities,record):
     if hw_query and hw_query.suppress_cond_platform:
         cond.platform=None
     noise_clean=None
-    if not replacement_for and not (hw_query and hw_query.has_constraints) and not req.verbatim and not req.category and not feed_noise.FEED_COMPLEX.search(base):
+    if not replacement_for and not (hw_query and hw_query.has_constraints) and not req.verbatim and not req.category and base not in index.vendor_names and not feed_noise.FEED_COMPLEX.search(base):
         noise_clean=feed_noise.extract_conditions_and_noise(engine,index,base,existing_qty=qty)
         if noise_clean.changed:
             base=noise_clean.subject
@@ -406,7 +406,7 @@ def search(engine,req,profile,trace,priorities,record):
     colloquial=feed_guard.resolve_colloquial_product(engine,base,segment=profile.segment) if not (req.verbatim or req.category or replacement_for or hw_strict or mig) else None
     edition=index.edition(base) if not (req.verbatim or req.category or replacement_for or colloquial or hw_strict) else None
     row=feed_guard.lookup_analog(index,replacement_for or base,fuzzy=not req.verbatim)
-    if not edition and not colloquial and not hw_strict and (replacement_for or row and not row["in_catalog"]) and not (
+    if not edition and not colloquial and not hw_strict and (replacement_for or row and not row["in_catalog"] and not index.flagships.has_catalog_alias(base)) and not (
             req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         analog_target=replacement_for or (cond.raw_for_analogs if cond.platform else base)
         return feed_analogs.search(engine,req,profile,trace,priorities,record,analog_target,
@@ -442,8 +442,9 @@ def search(engine,req,profile,trace,priorities,record):
     identity_pool=index.recovery.identity_cards(identity) if identity else None
     unknown_name=identity_pool is not None and not identity_pool
     if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name or (hw_query and hw_query.has_constraints)):
+        aliased=index.correct(base)
         direct=index.products(base,fuzzy=False)
-        if not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title)):
+        if not (aliased!=base and index.products(aliased,fuzzy=False)) and (not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title))):
             candidate_base=named_subject(engine,product_subject(index,base))
             if candidate_base and not feed_noise.is_edition_only(candidate_base):
                 base=candidate_base
@@ -464,13 +465,14 @@ def search(engine,req,profile,trace,priorities,record):
     missing=False
     task_section=index.task_class(q)
     purpose=next((label for pattern,label in PURPOSES if re.search(pattern,q)),None)
-    question=bool(task_section or QUESTION.search(q) or purpose or HELP.search(q) or any(w.endswith(("ть","ться")) for w in words(q)))
+    question=bool(task_section or QUESTION.search(q) or purpose or HELP.search(q) or index.recovery.has_verb(q))
     hint=purpose or hint
     if hardware and not bare and q.startswith("по для "):hint="серверное ПО" if hardware=="сервер" else "операционные системы"
     ids=index.products(q,domain="hardware" if bare else "software" if hardware else None,fuzzy=False,segment=profile.segment)
     section=req.category or server_section or explicit_class or index.class_match(base) or index.class_match(q)
-    vendor,combined=vendor_class(index,base)
-    if not combined:vendor,combined=vendor_class(index,q)
+    direct_product=bool(ids and not bare and sold_as(index.cat.cards[ids[0]],q))
+    vendor,combined=(None,None) if direct_product else vendor_class(index,base)
+    if not combined and not direct_product:vendor,combined=vendor_class(index,q)
     vendor=supplier or vendor
     if "vendor" in plan.ignore:vendor=supplier=None
     section=combined or section
@@ -510,6 +512,9 @@ def search(engine,req,profile,trace,priorities,record):
         if not sounds and q!=base:sounds,corrected=index.sound_products(base)
         if sounds and not feed_guard.is_destructive_repair(index,base,corrected,sounds,kind="sound"):
             ids,q=sounds,corrected
+    if not ids and not section and not bare and not license_filter and not req.verbatim and not (question or unknown_name):
+        rep_sec,rep_q,rep_kind=index.recovery.repair_class(base)
+        if rep_sec:section,q,repaired_kind,hint=rep_sec,rep_q,rep_kind,None
     if not ids and not section and not bare and not license_filter and not req.verbatim and not (question or hint or unknown_name):
         recovered,spelling,repaired_kind=index.recovery.lookup(engine,base)
         if recovered and not feed_guard.is_destructive_repair(index,base,spelling,recovered,kind=repaired_kind):

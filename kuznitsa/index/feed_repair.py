@@ -2,6 +2,7 @@
 from collections import defaultdict
 from functools import lru_cache
 import re
+import unicodedata
 
 from kuznitsa.text import lemma, morphology, normalize, tokens
 from kuznitsa.understand.repair import LAYOUT, repair, typo_matcher
@@ -42,8 +43,31 @@ ABSENT_BRANDS = frozenset({
     "android", "ubuntu", "debian", "centos", "anydesk", "teamviewer",
 })
 
-EMOJI_OR_JUNK = re.compile(r"[^\w\s+\-.,/:;?!&\"'«»()₽$€%#№@*\n]+")
+EMOJI_OR_JUNK = re.compile(r"[^\w\s+\-.,/:;?!&\"'«»()\[\]{}₽$€%#№@*\n]+")
 _DUP_WORDS = re.compile(r"\b([^\W\d_][\w-]*)(?:\s+\1)+\b", re.I)
+_MS_DOLLAR = re.compile(r"\bm\$(?=\s|$)")
+_WRAP_BRACKETS = re.compile(r"[()\[\]{}«»„“”‘’]+")
+_DECOR_QUOTES = re.compile(r"(?<!\d)[\"']+")
+_BANG_Q = re.compile(r"[?!]+")
+_TRAIL_COLON = re.compile(r":(?=\s|$)")
+_DECOR_COMMA = re.compile(r"(?<!\d),(?!\d)(?!\s*(?:чем|как|что|какой|какая)\b)")
+_TRAIL_DOT = re.compile(r"(?<!\.)\.(?=\s|$)")
+_TRAIL_SEMI = re.compile(r";+\s*$")
+_HAS_ALNUM = re.compile(r"[а-яa-z0-9]")
+
+
+def strip_invisible_and_accents(text):
+    """NFKC + удаление невидимых символов (Cf) и комбинируемых диакритик (Mn, напр. ударение U+0301)."""
+    nfkc = unicodedata.normalize("NFKC", text)
+    out = []
+    changed = nfkc != text
+    for ch in nfkc:
+        cat = unicodedata.category(ch)
+        if cat in ("Cf", "Mn"):
+            changed = True
+            continue
+        out.append(ch)
+    return ("".join(out) if changed else nfkc), changed
 
 
 def identity_terms(text):
@@ -80,6 +104,13 @@ class FeedRecovery:
     def __init__(self, index, kb):
         self.index = index
         self._known_class = frozenset().union(*index.class_terms.values()) if index.class_terms else frozenset()
+        class_vocab = set(self._known_class)
+        for name in index.class_names.values():
+            class_vocab.update(w for w in re.findall(r"[а-яa-z0-9]+", name) if len(w) >= 3)
+        for phrase in index.section_phrases:
+            class_vocab.update(w for w in phrase if len(w) >= 3)
+        self._class_vocab = frozenset(class_vocab)
+        self.class_spell = typo_matcher(w for w in self._class_vocab if len(w) >= 4 and w.isalpha())
         self.spell = typo_matcher(w for w in index.vocab if len(w) >= 4)
         self.absent_words = set(ABSENT_BRANDS)
         for row in kb.rows.get("feed_analogs", {}).values():
@@ -154,11 +185,34 @@ class FeedRecovery:
                 return True
         return False
 
+    def has_verb(self, text):
+        """Истинный русский глагол в запросе: неизвестные опечатки/раскладку («касперскй», «фгещсфв») не путаем с глаголом."""
+        morph = morphology()
+        for raw in re.findall(r"[а-я]+", normalize(text)):
+            if len(raw) > 2 and morph.word_is_known(raw) and lemma(raw).endswith(("ть", "ться")):
+                return True
+        return False
+
     def clean_query(self, norm):
-        """Убирает эмодзи/шум, склеивает повторы слов и чинит удвоенную последнюю согласную («антивирусс»)."""
-        cleaned = EMOJI_OR_JUNK.sub(" ", norm)
+        """Единая нормализация ввода: NFKC, снятие невидимых символов, ударений, эмодзи, обрамляющих скобок/кавычек и шумовой пунктуации.
+
+        Сохраняет содержательные знаки: «c++», «c#», «1с», «.net», «wi-fi 6», «24/7», «dr.web», «x64», артикулы, «27\"», «10,5».
+        """
+        if not norm:
+            return norm
+        stripped, had_invisible = strip_invisible_and_accents(norm)
+        cleaned = normalize(stripped) if had_invisible else stripped
+        cleaned = _MS_DOLLAR.sub("ms", cleaned)
+        cleaned = EMOJI_OR_JUNK.sub(" ", cleaned)
+        cleaned = _WRAP_BRACKETS.sub(" ", cleaned)
+        cleaned = _DECOR_QUOTES.sub(" ", cleaned)
+        cleaned = _BANG_Q.sub(" ", cleaned)
+        cleaned = _TRAIL_COLON.sub(" ", cleaned)
+        cleaned = _DECOR_COMMA.sub(" ", cleaned)
+        cleaned = _TRAIL_DOT.sub(" ", cleaned)
+        cleaned = _TRAIL_SEMI.sub("", cleaned)
         cleaned = " ".join(cleaned.split())
-        if not cleaned:
+        if not cleaned or not _HAS_ALNUM.search(cleaned):
             return norm
         # Схлопываем подряд идущие одинаковые слова («антивирус антивирус антивирус» → «антивирус»).
         cleaned = _DUP_WORDS.sub(r"\1", cleaned)
@@ -184,6 +238,62 @@ class FeedRecovery:
                     continue
             words_out.append(tok)
         return " ".join(words_out) if changed else cleaned
+
+    def repair_class(self, base):
+        """Восстановление названия раздела каталога при ошибке раскладки («jabc» → «офис») или опечатках («антивирс для организаци», «резервное копированее»)."""
+        index = self.index
+        if not base or len(base) > 120:
+            return None, base, None
+        raw_tokens = re.findall(r"[а-яa-z0-9-]+", base)
+        if not raw_tokens or len(raw_tokens) > 6:
+            return None, base, None
+        if len(raw_tokens) == 1 and self.is_protected(raw_tokens[0]):
+            return None, base, None
+        # 1. Ошибка раскладки для раздела / алиаса раздела («jabc» → «офис» → «офисные пакеты»).
+        layout = base.translate(LAYOUT)
+        if layout != base and not any(self.is_protected(w) for w in raw_tokens):
+            mapped = index.correct(layout)
+            sec = index.class_match(mapped) or index.class_match(layout)
+            if not sec and mapped in ("антивирус", "антивирусы"):
+                sec = index.class_by_name.get("антивирусы для организаций")
+            if sec:
+                return sec, layout, "layout"
+        # 2. Пословная починка опечаток по словарю слов разделов каталога.
+        from .feed import STOP
+        repaired_tokens = []
+        changed = False
+        for w in raw_tokens:
+            lw = lemma(w)
+            if (w in STOP or len(w) < 4 or not w.isalpha()
+                    or w in self._class_vocab or lw in self._class_vocab
+                    or self.is_protected(w)):
+                repaired_tokens.append(w)
+                continue
+            dist = 1 if len(w) < 8 else 2
+            matches = self.class_spell(w, 6, dist)
+            picked = None
+            for cand, d, _ in matches:
+                if len(w) <= 5:
+                    same_head = (w[0] == cand[0]) or (w[:2] == cand[:2][::-1])
+                    if not same_head:
+                        continue
+                picked = cand
+                break
+            if picked and picked != w:
+                repaired_tokens.append(picked)
+                changed = True
+            else:
+                repaired_tokens.append(w)
+        if not changed:
+            return None, base, None
+        repaired = " ".join(repaired_tokens)
+        mapped = index.correct(repaired)
+        sec = index.class_match(repaired) or index.class_match(mapped)
+        if not sec and mapped in ("антивирус", "антивирусы"):
+            sec = index.class_by_name.get("антивирусы для организаций")
+        if sec:
+            return sec, repaired, "typo"
+        return None, base, None
 
     def identity_cards(self, terms):
         """Артикул и слова редакции не подтверждают название чужой линейки."""

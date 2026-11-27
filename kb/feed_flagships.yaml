@@ -43,6 +43,7 @@
     - "Операционная система Microsoft Windows 10 Enterprise (CSP)"
     - "Microsoft Office Excel 2021"
     - "Microsoft Office Word 2021"
+    - "Microsoft Office Outlook 2021"
     - "Microsoft Office PowerPoint 2021"
     - "Microsoft Office Access 2021"
     - "Microsoft Visio Standard 2024"
@@ -536,3 +537,31 @@
     - "СёрчИнформ SIEM"
     - "СёрчИнформ FileAuditor"
     - "СёрчИнформ ProfileСenter"
+
+- id: graphisoft
+  vendors:
+    - "Graphisoft"
+  lines:
+    - "Archicad 26"
+    - "Graphisoft Archicad 26 Forward"
+    - "Archicad Solo"
+    - "Archicad STAR(T) Edition"
+
+- id: ontrack
+  vendors:
+    - "Ontrack"
+  lines:
+    - "Ontrack EasyRecovery 11"
+
+- id: oo_software
+  vendors:
+    - "O&O Software GmbH"
+  lines:
+    - "O&O DiskRecovery"
+    - "O&O DiskImage 16"
+
+- id: ams_software
+  vendors:
+    - "AMS Software"
+  lines:
+    - "ФЕНИКС"

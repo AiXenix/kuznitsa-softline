@@ -3,7 +3,7 @@ import re
 import yaml
 
 from kuznitsa.text import normalize
-from .feed import words
+from .feed import ALIASES, EXACT_ONLY_ALIASES, words
 from .feed_language import sold_as
 
 GENERIC_PREFIXES = frozenset({
@@ -19,11 +19,12 @@ GLOBAL_DEMOTE = (
     "express course",
     "обучающие курсы",
     "сертификаты технической поддержки",
+    "сертификат на ",
     "дополнительные компоненты",
     "комплекты документации",
     "пробная версия",
     "для подключения к фау",
-    "поддержка",
+    "поддержк",
     "обучен",
     "курс ",
     "миграц",
@@ -38,7 +39,7 @@ ADDON_WORDS = frozenset({
 _FOR_TAIL_RE = re.compile(r"\b(?:for|для)\s+(.+)$")
 _AUX_TITLE_RE = re.compile(r"поддержк|обучен|курс |сертификат|миграц|продлен", re.I)
 _YEAR_RE = re.compile(r"20[012]\d")
-_DEMOTE_EXPLICIT = frozenset({"курс", "обучение", "поддержка", "коннектор", "connector"})
+_DEMOTE_EXPLICIT = frozenset({"курс", "обучение", "поддержка", "коннектор", "connector", "сертификат"})
 
 HOME_EXPLICIT = re.compile(
     r"\b(?:домашн\w*|домой|для дома|для семьи|семья|семейн\w*|персональн\w*|home|family|personal|student|уч[её]б\w*)\b",
@@ -86,10 +87,14 @@ class FeedFlagships:
         self._load_yaml(cfg)
         self._compute_cards()
         self._apply_quality()
+        index.flagships = self
+        index.products.cache_clear()
         self._bridge_kb_families(kb)
+        self._align_alias_slang()
 
     def _load_yaml(self, cfg):
         self._entries = []
+        self.vendor_aliases = set()
         kb_dir = getattr(cfg, "kb", None)
         path = (kb_dir / "feed_flagships.yaml") if kb_dir else None
         if not path or not path.is_file():
@@ -100,6 +105,8 @@ class FeedFlagships:
             vendor_words = {tuple(words(v)) for v in row.get("vendors", []) if v}
             lines = [normalize(t) for t in row.get("lines", []) if t]
             demote = [normalize(d) for d in row.get("demote", []) if d]
+            self.vendor_aliases.update(vendors)
+            self.vendor_aliases.update(" ".join(vw) for vw in vendor_words if vw)
             self._entries.append((vendors, vendor_words, lines, demote))
 
     def _match_vendor(self, vendor_norm, vendor_w):
@@ -270,6 +277,36 @@ class FeedFlagships:
             ))
             index.slang[key] = ("families", ordered)
 
+    def _align_alias_slang(self):
+        """Уточняет семейные записи index.slang по конкретным алиасам (ворд/эксель/аутлук) и неполным однокарточным семействам (нанокад/архикад)."""
+        index = self.index
+        for phrase, target in ALIASES.items():
+            if phrase in EXACT_ONLY_ALIASES or phrase not in index.slang:
+                continue
+            field, members = index.slang[phrase]
+            if field != "families":
+                continue
+            direct = index.products(target, fuzzy=False)
+            if not direct:
+                continue
+            # 1) Конкретный компонент внутри широкого семейства (ворд/эксель/аутлук → Word/Excel/Outlook вместо всего ms_office).
+            # 2) Неполная привязка семейства (1 карточка в slang при наличии всей линейки в products: нанокад, архикад).
+            top_words = set(words(index.cat.cards[members[0]].title)) if members else set()
+            direct_words = set(words(index.cat.cards[direct[0]].title))
+            target_words = set(words(target))
+            is_refinement = bool(target_words and not (target_words <= top_words) and (target_words <= direct_words))
+            if is_refinement or (len(direct) < len(members) and set(direct) <= set(members)) or (len(members) < 4 and len(direct) > len(members)):
+                index.slang[phrase] = ("families", tuple(direct))
+
+    def has_catalog_alias(self, base):
+        """Если алиас ведёт к реальной флагманской линейке в каталоге («ворд» → Word 2021), не подменяем её заглушкой «нет в каталоге»."""
+        index = self.index
+        aliased = index.correct(base)
+        if aliased == base:
+            return False
+        hits = index.products(aliased, fuzzy=False)
+        return bool(hits and self.rank.get(hits[0], 0) > 0 and sold_as(index.cat.cards[hits[0]], aliased))
+
     def is_addon(self, cid, query_terms):
         """Определяет сторонние модули, плагины и утилиты «for <product> / для <product>»."""
         if self.rank.get(cid, 0) > 0:
@@ -289,7 +326,7 @@ class FeedFlagships:
         if cid not in self.demoted:
             return False
         qset = query_terms if isinstance(query_terms, (set, frozenset)) else frozenset(query_terms)
-        # Если пользователь явно попросил CAL / курс / поддержку — не штрафуем.
+        # Если пользователь явно попросил CAL / курс / поддержку / сертификат — не штрафуем.
         if cid in self._has_cal and "cal" in qset:
             return False
         if qset & _DEMOTE_EXPLICIT:
