@@ -7,6 +7,7 @@ Metric = Literal["device","user","concurrent","server","core","cpu","vm","mailbo
 Audience = Literal["business","gov","edu","home","nonprofit","med","micro_office","enterprise","server","mobile","industrial"]
 Delivery = Literal["esd","box","paper","media","service"]
 Model = Literal["subscription","perpetual"]
+Sort = Literal["price_asc","price_desc"]
 
 
 class License(BaseModel):
@@ -132,7 +133,7 @@ class Request(BaseModel):
     filters: dict = {}
     exclude: dict = {}
     weights: dict[str,float] | None = None
-    sort: str | None = None
+    sort: Sort | None = None
     source: Literal["ui","widget","gallery","compare","api","replay","eval","history"] = "api"
     explain: bool = True
 

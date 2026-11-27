@@ -1,7 +1,7 @@
 """Подбор по страницам товаров и классам настоящего магазина."""
 import re
 from uuid import uuid4
-from . import feed_analogs, feed_compare, feed_conditions, feed_guard, feed_noise
+from . import feed_analogs, feed_compare, feed_conditions, feed_guard, feed_noise, feed_request
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution
 from kuznitsa.config import WEIGHTS
@@ -226,35 +226,42 @@ def task_sections(engine,q,hint):
     return options,focus,preferred,note
 
 
-def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution):
+def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=None):
     index=engine.catalog.feed
+    plan=plan or feed_request.extract(engine,norm,req)
     sid="s_"+uuid4().hex
     section=solution.sections[0] if solution.sections else None
     ids=list(solution.cards)
     note=solution.note
     title=solution.title
     intent="category" if section else "product"
+    preferred={}
     selections={}
-    constraints={"price_max":budget} if budget is not None else {}
+    text_budget=budget if plan.price_max is None else None
+    constraints={"price_max":text_budget} if text_budget is not None else {}
     use_qty=None if solution.kit else qty
     if ids and (use_qty or constraints):
         nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
         selections=matching_variants(index,ids,profile,use_qty,False,constraints,nodes=nodes)
         if selections:
             ordered=[cid for cid in ids if cid in selections]
-            if use_qty and budget is None:
+            if use_qty and text_budget is None:
                 others=[cid for cid in ids if cid not in selections]
                 if others:
                     note=note or "Тираж учтён при подборе лицензий. Варианты без подтверждения количества отмечены отдельно."
                 ordered.extend(others)
             ids=ordered
-        elif budget is not None:
+        elif text_budget is not None:
             ids=[]
             note="В указанном бюджете предложений с подтверждённой ценой нет."
+    ids,sol_base,section,note,relax_hints,_=feed_request.apply(
+        engine,req,profile,plan,ids,section,preferred,selections,use_qty,False,note)
     trace.add("retrieve","Поиск по задаче",title,candidates=len(ids))
     trace.add("intent","Выбор решения",title)
     start=(req.page-1)*req.page_size
-    items=[display(engine,c,profile,None,selections.get(c)) for c in ids[start:start+req.page_size]]
+    page_ids=ids[start:start+req.page_size]
+    feed_request.prepare_page_offers(index,page_ids,plan,profile,preferred,selections,use_qty,False)
+    items=[display(engine,c,profile,preferred.get(c),selections.get(c)) for c in page_ids]
     for i,c in enumerate(items,1):
         c["position"]=i
         if use_qty and c["card_id"] not in selections:
@@ -263,21 +270,22 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
     merch=order(engine,req,profile,trace,priorities,intent,section,items)
     if merch is None:return None
     items=merch["cards"]
+    feed_request.finish_items_sort(items,plan.sort)
     main=[c["card_id"] for c in items]
     clarify=[]
     def complete(reserved):
-        if budget is not None or req.page!=1:return []
+        if budget is not None or not feed_request.allow_fill(req,plan):return []
         return fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
-    together,recommended=recommend(engine,norm,items,profile,intent,complete=complete,price_max=budget)
+    if feed_request.allow_upsell(req,plan,items):
+        together,recommended=recommend(engine,norm,items,profile,intent,complete=complete,price_max=budget)
+    else:
+        together,recommended=None,set()
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     blocks.extend(clarify)
     if together:blocks.append(together)
     chips=[]
-    if budget is not None:
-        chips.append(dict(key="price_max",label=f"До {budget:g} ₽",removable=True))
-    if qty:
-        chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
+    facets=feed_request.build_facets(index,engine,plan,sol_base,ids)
     result=dict(search_id=sid,engine="kuznitsa",engine_version="1.0",mode=req.mode,
         query=dict(raw=req.q,normalized=norm,corrected=base,corrections=[],did_you_mean=None),
         understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=.9,intent_source="rules",
@@ -285,10 +293,11 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
                         exclude={},qty=qty,entities=[],chips=chips,
                         zero_reason="filters_too_strict" if (budget is not None and not ids) else None,
                         agent_note=note or title),
-        blocks=blocks,facets=[],notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
+        blocks=blocks,facets=facets,notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
         profile=profile_info(profile),cost=cost_summary([],engine.usd_rub),trace=trace.steps,timing_ms={})
-    if budget is not None:
-        result["understood"]["filters"]["price_max"]=budget
+    feed_request.populate_result(index,engine,plan,result,chips,relax_hints)
+    if qty:
+        chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
     return finish(engine,req,trace,record,result,items,len(main),[])
 
 
@@ -313,13 +322,14 @@ def search(engine,req,profile,trace,priorities,record):
     if not req.category and not req.filters and feed_noise.is_garbage_syntax(req.q,norm,index,engine.catalog):
         result=feed_guard.build_garbage_result(engine,req,profile,trace,norm)
         return finish(engine,req,trace,record,result,[],0,[],profile=profile)
-    if not (req.verbatim or req.category or req.filters or req.exclude or req.sort or req.weights or "\n" in req.q):
+    if not (req.verbatim or req.category or req.weights or "\n" in req.q) and not feed_request.unsupported(req):
         vendor_hit=feed_noise.detect_vendor_catalog(index,engine,norm)
         if vendor_hit:
-            return feed_guard.build_vendor_result(engine,req,profile,trace,priorities,record,norm,*vendor_hit)
+            return feed_request.build_vendor_result(engine,req,profile,trace,priorities,record,norm,*vendor_hit)
     compared=feed_compare.search(engine,req,profile,trace,priorities,record,norm)
     if compared is not None:return compared
-    cond=feed_conditions.extract(engine,norm,req)
+    plan=feed_request.extract(engine,norm,req)
+    cond=plan.cond
     subject,budget=cond.subject,cond.price_max
     # «Дешевле N» в тексте — мягкий потолок: при пустом пересечении остаются самые доступные варианты.
     soft_budget=budget is not None and req.filters.get("price_max") is None and bool(re.search(r"\bдешевле\b",norm))
@@ -328,9 +338,9 @@ def search(engine,req,profile,trace,priorities,record):
         parsed=subject
     base,qty,renewal=split_conditions(parsed)
     original_subject=base
-    solution=resolve_solution(engine,req,norm,base,renewal=renewal)
+    solution=resolve_solution(engine,feed_request.for_solution(req),norm,base,renewal=renewal)
     if solution:
-        return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution)
+        return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=plan)
     if not req.verbatim:
         cleaned=strip_question(base)
         if cleaned!=base:
@@ -361,7 +371,7 @@ def search(engine,req,profile,trace,priorities,record):
     supplier=None
     if not req.verbatim and not literal[0] and not vq_ids:
         base,supplier=supplier_clause(index,purchase_subject(base))
-    if (req.sort and req.sort not in ("price_asc","price_desc")) or req.weights or req.filters.keys()-{"price_max","price_min","origin","registry"} or req.exclude or set(req.ignore)-{"price_max","price_min","sort","exclude","origin","registry","platform","action"} or (feed_noise.FEED_COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
+    if feed_request.unsupported(req) or (feed_noise.FEED_COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
     absent_acronym=None
     acronym=()
     device_name=hardware_head(index,base)
@@ -413,6 +423,7 @@ def search(engine,req,profile,trace,priorities,record):
     vendor,combined=vendor_class(index,base)
     if not combined:vendor,combined=vendor_class(index,q)
     vendor=supplier or vendor
+    if "vendor" in plan.ignore:vendor=supplier=None
     section=combined or section
     if supplier and not section:
         supplier_ids=[cid for cid in ids if index.card_vendors[cid]==supplier]
@@ -710,9 +721,8 @@ def search(engine,req,profile,trace,priorities,record):
             missing=True
             intent="out_of_catalog"
     if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
-    if ids and (cond.active or cond.price_min is not None or cond.price_max is not None):
-        ids,section,note,_=feed_conditions.apply_conditions(
-            engine,req,profile,cond,ids,section,preferred,selections,qty,renewal,note)
+    ids,facet_base,section,note,relax_hints,_=feed_request.apply(
+        engine,req,profile,plan,ids,section,preferred,selections,qty,renewal,note)
     title=index.classes.get(section) or TITLES[intent]
     if vendor_gap:
         gap=f"В разделе «{index.classes[section]}» товаров этого производителя нет."
@@ -723,7 +733,9 @@ def search(engine,req,profile,trace,priorities,record):
     trace.add("retrieve","Поиск по фиду",title,candidates=len(ids))
     if question:trace.add("intent","Выбор раздела",title,calls=calls)
     start=(req.page-1)*req.page_size
-    items=[display(engine,c,profile,preferred.get(c),selections.get(c)) for c in ids[start:start+req.page_size]]
+    page_ids=ids[start:start+req.page_size]
+    feed_request.prepare_page_offers(index,page_ids,plan,profile,preferred,selections,qty,renewal)
+    items=[display(engine,c,profile,preferred.get(c),selections.get(c)) for c in page_ids]
     for i,c in enumerate(items,1):
         c["position"]=i
         if qty and c["card_id"] not in selections and not renewal:
@@ -736,14 +748,12 @@ def search(engine,req,profile,trace,priorities,record):
     merch=order(engine,req,profile,trace,priorities,intent,section,items)
     if merch is None:return None
     items=merch["cards"]
-    if cond.sort in ("price_asc","price_desc") and items:
-        rev=cond.sort=="price_desc"
-        items.sort(key=lambda c:(c.get("price_from") is None,(-c["price_from"] if rev else c["price_from"]) if c.get("price_from") is not None else 0.0))
+    feed_request.finish_items_sort(items,plan.sort)
     main=[c["card_id"] for c in items]
     clarify=[]
     nearby=[]
     def complete(reserved):
-        if license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or req.page!=1:return []
+        if license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or not feed_request.allow_fill(req,plan):return []
         if edition:
             anchor=index.card_sections[edition.cards[0]]
             shown=set(main)|set(reserved)
@@ -760,7 +770,12 @@ def search(engine,req,profile,trace,priorities,record):
             nearby.extend(extra)
             return []
         return extra
-    together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=None if budget_relaxed else budget,edition_audience=edition.audience if edition else None)
+    if feed_request.allow_upsell(req,plan,items):
+        together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=None if budget_relaxed else budget,edition_audience=edition.audience if edition else None)
+    else:
+        if feed_request.allow_fill(req,plan):
+            items.extend(complete(set()))
+        together,recommended=None,set()
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     if missing:
@@ -787,13 +802,14 @@ def search(engine,req,profile,trace,priorities,record):
     changes=[{"from":norm,"to":q,"kind":repaired_kind or "catalog"}] if base!=q or (base!=original_subject and not (noise_clean and noise_clean.changed)) else []
     result=dict(search_id=sid,engine="kuznitsa",engine_version="1.0",mode=req.mode,query=dict(raw=req.q,normalized=norm,corrected=q,corrections=changes,did_you_mean=None),
         understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=.9,intent_source="jev" if model_section else "rules",filters=dict(category=[section]) if section else {},
-        exclude={},qty=qty,entities=[],chips=chips,zero_reason="not_in_catalog" if missing else None,agent_note=note or title),blocks=blocks,facets=[],notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
+        exclude={},qty=qty,entities=[],chips=chips,zero_reason="not_in_catalog" if missing else None,agent_note=note or title),blocks=blocks,
+        facets=feed_request.build_facets(index,engine,plan,facet_base,ids,disabled=bool(missing)),notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
         profile=profile_info(profile),cost=cost_summary(calls,engine.usd_rub),trace=trace.steps,timing_ms={})
     if edition and edition.audience:result["understood"]["filters"]["audience"]=edition.audience
     if qualified and selections:result["understood"]["filters"].update(conditions)
     if vendor:result["understood"]["filters"]["vendor"]=[vendor]
     if license_filter:result["understood"]["filters"][license_filter[0]]=license_filter[1]
-    feed_conditions.populate_result(cond,result,chips)
+    feed_request.populate_result(index,engine,plan,result,chips,relax_hints)
     if budget is not None and not ids:result["understood"]["zero_reason"]="filters_too_strict"
     if renewal:result["understood"]["filters"]["action"]="renewal"
     if noise_clean and noise_clean.changed:
