@@ -99,3 +99,160 @@
 - Прогон `audit_run.sh /home/bb/kuznitsa-softline-n1 smart --group мусор --fails`: **10 из 10 (100.0 %)**, `p50 274 мс`, `p95 815 мс`; тесты `tests/test_m3e.py` и `tests/test_m3j.py` в режимах `fast` и `smart` — зелёные.
 - По всем трём целевым группам N1 достигнут максимум (`наличие` 40/40, `нет` 15/15, `мусор` 10/10, `эталон` 20/20).
 - Оставшиеся провалы аудита (88 из 244) относятся к смежным потокам: задачи и вопросы (N2), главное/написание/раскладки (N3), условия/сравнения/исключения/сортировка (N4).
+
+---
+
+# Второй заход
+
+Базовая точка перед правками второго захода — обновлённый `main` (`3afefbc`, после слияния N1–N4 первого захода):
+- `tests/audit/cases.tsv` (`fast`): **242 из 244 (99.2 %)** (`наличие` 40/40, `нет` 15/15, `задача` 50/50, `вопрос` 15/16, `главное` 27/27, `написание` 28/28, `условия` 17/18, `сравнение` 7/7, `мусор` 10/10, `железо` 13/13, `эталон` 20/20).
+- `tests/audit/cases2.tsv` (`fast`): **126 из 186 (67.7 %)** против **86 из 186 (46.2 %)** в `/home/bb/kz-tools/audit2-base.txt`; три целевые группы N1 — **49 из 62** (`бренд2` 28/36, `англ` 9/12, `аналог` 12/14).
+
+---
+
+## 1. Причины провалов и общие правила
+
+1. **Разговорные и сокращённые названия реальных товаров (`бренд2`):**
+   - `ворд`, `эксель`, `аутлук`, `пауэрпоинт` ошибочно попадали в `kb/feed_analogs.yaml` (`in_catalog: false`), хотя в снимке `real/v1` (`feed_categories.json`) эти карточки есть (`Microsoft Office Word 2021`, `Microsoft Office Excel 2021`, `Microsoft Office Outlook 2021`, `Microsoft Office PowerPoint 2021`; в `real-cards.tsv` их заголовки обрезаны до `Microsoft`).
+   - Сленг и символы вроде `m$ office`, `мс офис`, `битрикс 24`, `fotoshop`, а также английские обёртки (`windows 11 pro license`, `upgrade windows 10 pro`, `windows 11 pro 64-bit (x64) OEM`) не снимались до поиска продукта.
+   - `продление криптопро`: карточки `КриптоПро` есть в каталоге, но у предложений не размечен `action=renewal`, из-за чего конвейер возвращал `not_in_catalog` (`reason="gap"`).
+   - `dallas lock`, `консультант плюс`, `гарант`, `acronis` отсутствуют в `/home/bb/kz-tools/real-cards.tsv` и `real/v1`, но либо подменялись устаревшим КБ-алиасом (`acronis` → `cyber_backup`), либо матчились по слову `плюс` (`Клиент Плюс`), либо не имели записи в аналогах.
+   - `corel` и `код безопасности` (запрос имени вендора) опускали флагманы вендора ниже вспомогательных позиций; к тому же `LEAD_ACTION` ранее срезал слово `код` в `код безопасности`.
+   - `winrar` подмешивал на 4-ю позицию чужеродную `fill`-карточку из другого раздела (`Wondershare Dr.Fone`).
+   - **Общее решение (без хардкода запросов):** словарь `kb/feed_colloquial_n1.yaml` (`spoken_products`) + проверка существования и релевантности в `FeedIndex` (`feed_guard.resolve_colloquial_product`), преднормализация `m$` (`feed_noise.pre_normalize`), английские обёртки и закупочный шум в `feed_noise.py`, словарные записи отсутствующих продуктов в `kb/feed_analogs_n1.yaml`, защита `resolve_feed_product` от подмены `in_catalog: false` КБ-алиасом, корректная обработка `renewal` с `reason="gap"` при найденной линейке, `_prune_cross_section_fill` для полных каталогов (`>= 500` карточек) и `prefer_flagships_for_vendor` строго для прямых имён вендоров из `index.vendor_names` без аудиторного/платформенного контекста.
+
+2. **Английские названия классов и задач (`англ`):**
+   - `antivirus`, `firewall`, `cad software`, `office suite for business`, `project management`, `database`, `backup software` и др. не переводились в русские классы каталога, когда `resolve_solution` не давал совпадения.
+   - **Общее решение:** таблица `english_classes` (~80 классов и задач ПО) в `kb/feed_colloquial_n1.yaml` + `feed_noise.translate_english_class`, вызываемая после `resolve_solution` (чтобы не конфликтовать с английскими решениями N2, например `video conferencing`) и повторно после снятия шума в `extract_conditions_and_noise`.
+
+3. **Аналоги и импортозамещение (`аналог`):**
+   - В `real/v1` у карточек срезан префикс вендора (`Платформа nanoCAD 26`, `КОМПАС-График V25`), поэтому привязки `Нанософт Платформа nanoCAD` / `АСКОН КОМПАС-График` в `index.analogs.bound` давали `matches == []`, и `российский аналог autocad` выдавал Renga/ГИС вместо nanoCAD/КОМПАС.
+   - `импортозамещение exchange`: `feed_conditions` срезал слово «импортозамещение» до `feed_analogs`, а `exchange` не находил запись `ms_exchange`.
+   - **Общее решение:** одноразовая починка пустых привязок аналогов `feed_guard.ensure_analog_bindings`, поиск аналога по уникальному отличительному слову (`feed_guard.lookup_analog`) и выделение конструкций «импортозамещение <продукт>» до `feed_conditions` (`feed_noise.extract_import_sub_analog` + `feed_guard.search_import_sub_analog`).
+
+4. **Остаток провалов в чужих модулях (не редактировались):**
+   - Оставшиеся 3 провала в `бренд2` — `photoshop`, `revit`, `3ds max` (а также `фотошоб` в `опечатка2`): на первом месте оказываются общие флагманы вендора (`Adobe Creative Cloud Professional for Teams`, `Autodesk AutoCAD`), а целевой продукт (`Adobe Photoshop`, `Autodesk Revit`, `Autodesk 3Ds Max`) стоит на 2–3-й позиции. Причина в ранжировании флагманов внутри чужих модулей (`index/feed_flagships.py` / `index/feed.py`), которые по правилам потока не редактировались.
+
+---
+
+## 2. Изменённые и добавленные файлы
+
+Чужие модули (`feed_conditions.py`, `feed_compare.py`, `feed_query.py`, `feed_solutions.py`, `index/feed_flagships.py`, `index/feed_repair.py`, `index/hardware.py`) **не изменялись**.
+
+- **`kb/feed_colloquial_n1.yaml`** (новый): словари `spoken_products` (разговорные/сокращённые названия продуктов → канонические имена с проверкой по каталогу) и `english_classes` (английские классы и задачи ПО → русские формулировки каталога).
+- **`kb/feed_analogs_n1.yaml`** (новый, подхватывается `kb/loader.py`): записи отсутствующих в `real-cards.tsv` продуктов `dallas_lock`, `consultant_plus`, `garant_sprav` с реальными заменами из каталога.
+- **`kuznitsa/plans/feed_noise.py`**: `pre_normalize`, `load_colloquial_kb`, `translate_english_class`, `extract_import_sub_analog`, правка `LEAD_ACTION` (`код активации` вместо голого `код`), английские и закупочные обёртки, русские слова редакций в `EDITION_ONLY_WORDS`, `KEYBOARD_MASH_TOKENS` в `is_garbage_syntax`.
+- **`kuznitsa/plans/feed_guard.py`**: `ensure_analog_bindings`, `lookup_analog`, `search_import_sub_analog`, `resolve_colloquial_product`, `_resolve_direct_vendor` + `prefer_flagships_for_vendor`, `handle_unmatched_query`, `_prune_cross_section_fill`, обработка `renewal` (`reason="gap"`) и запрет подмены `in_catalog: false` в `verify_response` / `resolve_feed_product`.
+- **`kuznitsa/plans/feed.py`**: минимальные вставки вызовов (+26 / −2 строки).
+- **`tests/test_n1_round2.py`** (новый): 36 unit- и интеграционных тестов второго захода.
+
+---
+
+## 3. Результаты прогонов
+
+### Второй открытый набор (`tests/audit/cases2.tsv`, `fast`)
+
+Официальный прогон `bash /home/bb/kz-tools/audit_run.sh /home/bb/kuznitsa-softline-n1 fast --cases tests/audit/cases2.tsv --fails`:
+
+| Группа | Старый код (`audit2-base.txt`) | Новый `main` (`3afefbc`) | После N1 (2-й заход) | Изменение к `main` |
+|---|---:|---:|---:|---:|
+| **`бренд2`** | 27 / 36 | 28 / 36 | **33 / 36** | **+5** |
+| **`англ`** | 6 / 12 | 9 / 12 | **12 / 12** | **+3** |
+| **`аналог`** | 12 / 14 | 12 / 14 | **14 / 14** | **+2** |
+| **Три целевые группы N1** | **45 / 62** | **49 / 62** | **59 / 62** | **+10 (цель ≥ 55)** |
+| `роль` | 5 / 12 | 6 / 12 | 6 / 12 | 0 |
+| `совместимость` | 2 / 10 | 7 / 10 | 7 / 10 | 0 |
+| `масштаб` | 4 / 8 | 8 / 8 | 8 / 8 | 0 |
+| `бюджет` | 5 / 10 | 8 / 10 | 8 / 10 | 0 |
+| `реестр` | 5 / 11 | 8 / 11 | 8 / 11 | 0 |
+| `железо2` | 7 / 20 | 12 / 20 | 12 / 20 | 0 |
+| `услуги` | 1 / 7 | 2 / 7 | 2 / 7 | 0 |
+| `переход` | 1 / 8 | 3 / 8 | **6 / 8** | +3 |
+| `длинный` | 3 / 14 | 10 / 14 | 10 / 14 | 0 |
+| `опечатка2` | 8 / 24 | 13 / 24 | **17 / 24** | +4 |
+| **ИТОГО `cases2.tsv`** | **86 / 186 (46.2 %)** | **126 / 186 (67.7 %)** | **143 / 186 (76.9 %)** | **+17, 0 регрессий** |
+
+### Первый открытый набор (`tests/audit/cases.tsv`, `fast`)
+
+| Показатель | Новый `main` (`3afefbc`) | После N1 (2-й заход) | Цель |
+|---|---:|---:|---:|
+| Итого `cases.tsv` | 242 / 244 (99.2 %) | **242 / 244 (99.2 %)** | ≥ 242 / 244 |
+| `наличие` | 40 / 40 | **40 / 40** | 40 / 40 |
+| `нет` | 15 / 15 | **15 / 15** | 15 / 15 |
+| `мусор` | 10 / 10 | **10 / 10** | 10 / 10 |
+| `эталон` | 20 / 20 | **20 / 20** | 20 / 20 |
+| Скорость `fast` (in-process `real/v1`) | p50 14 мс, p95 57 мс | **p50 13.6 мс, p95 57.8 мс** | p95 ≤ 60 мс |
+
+*(Примечание: при HTTP-прогоне поверх загруженного сервера с `load average ~16` сетевые задержки добавляли ~5 мс: p50 27 мс, p95 63 мс; чистая задержка движка in-process на `real/v1` — p50 13.6 мс, p95 57.8 мс.)*
+
+### Пустой и знаковый ввод (`check_request.py`, группа «оформление»)
+
+Все **7 из 7** проверок «пустой ввод» (`""`, `"   "`, `"!!!"`, `"???"`, `"😀"`, `"."`, `"*"`), а также одиночные буквы (`"а"`, `"z"`) и клавиатурный мусор (`"qwertyuiop"`) возвращают `intent="broad"`, `zero_reason="unknown_term"`, блок `clarify` и **0 товарных/аналоговых карточек** (парные проверки группы «оформление» для N3 не изменялись).
+
+---
+
+## 4. Остаток старого конвейера (`plans/feed.py::search -> None` → `Engine._search`)
+
+Замер без параметров `sort`, `filters`, `exclude` и сессионного уточнения (N7/N8 исключены):
+
+### `tests/audit/cases.tsv`: **5 → 0**
+- **Было на `main` (5):** `asdfghjkl`, `купить квартиру`, `пицца`, `погода в москве`, `рецепт борща` (все 5 из группы `мусор`).
+- **После N1 (0):** все 5 закрыты на входе в `plans/feed.py` (`is_garbage_syntax` + `handle_unmatched_query`).
+
+### `tests/audit/cases2.tsv`: **14 → 9**
+- **Закрыто в N1 (5):**
+  1. `[роль] софт для малого бизнеса`
+  2. `[железо2] роутер wi-fi 6`
+  3. `[железо2] флешка 64 гб`
+  4. `[переход] расширение лицензии kaspersky`
+  5. `[длинный] право на использование операционной системы astra linux special edition для рабочей станции`
+- **Оставшиеся 9 (участок соседних потоков — роли/услуги/железо/миграция):**
+  1. `[роль] софт для юриста`
+  2. `[роль] софт для отдела кадров`
+  3. `[масштаб] офис для малого бизнеса` *(проходит аудит через legacy)*
+  4. `[железо2] монитор 27 дюймов` *(проходит аудит через legacy)*
+  5. `[железо2] ноутбук 16 гб i7`
+  6. `[услуги] обучение astra linux`
+  7. `[услуги] курсы excel`
+  8. `[переход] переход с windows на astra linux`
+  9. `[переход] миграция с microsoft office на р7`
+
+---
+
+## 5. Проверка на 26 собственных перефразировках (`real/v1`, `fast`)
+
+| # | Запрос | Intent | `absent` | Топ-3 карточек в ответе |
+|---:|---|---|---:|---|
+| 1 | `купить ворд` | `product` | Нет | Microsoft Office Word 2021; Microsoft Office Word for Mac 2021; Dr.Web Enterprise Security Suite |
+| 2 | `майкрософт эксель цена` | `product` | Нет | Microsoft Office Excel 2021; Microsoft Office Excel for Mac 2021; Dr.Web Enterprise Security Suite |
+| 3 | `аутлук для бизнеса` | `product` | Нет | Microsoft Office 2024 для дома и бизнеса; Microsoft Office 2024 для дома и учёбы; Microsoft Office Professional Plus 2021 |
+| 4 | `пауэрпоинт` | `product` | Нет | Microsoft Office PowerPoint 2021; Microsoft Office Publisher 2021; Microsoft Exchange Server 2019 |
+| 5 | `корел дро` | `product` | Нет | CorelDRAW Graphics Suite 2026; CorelDRAW Graphics Suite. Подписка 365-Day; CorelDRAW Essentials 2024 |
+| 6 | `m$ office` | `category` | Нет | Microsoft Office 2024 для дома и бизнеса; ContentReader PDF 16 Business; Microsoft Office 2024 для дома и учёбы |
+| 7 | `m$ windows 11 pro` | `product` | Нет | Microsoft Windows 11 Pro (Профессиональная); Microsoft Windows 11 Home (Домашняя); Microsoft Windows 10 Pro (GGWA) |
+| 8 | `windows 11 pro 64-bit (x64) OEM` | `product` | Нет | Microsoft Windows 11 Pro (Профессиональная); Microsoft Windows 11 Home (Домашняя); Dr.Web Enterprise Security Suite |
+| 9 | `upgrade windows 10 pro` | `product` | Нет | Microsoft Windows 10 Pro (GGWA); Microsoft Windows 10 Enterprise; Операционная система Microsoft Windows 10 Enterprise (CSP) |
+| 10 | `windows 10 pro license` | `product` | Нет | Microsoft Windows 10 Pro (GGWA); Microsoft Windows 10 Enterprise; Операционная система Microsoft Windows 10 Enterprise (CSP) |
+| 11 | `компас 3д` | `product` | Нет | КОМПАС-3D V25; КОМПАС-График V25; КОМПАС-3D HOME |
+| 12 | `арчикад` | `product` | Нет | Archicad 26; Archicad STAR(T) Edition; Плоттер HP Inc. Designjet T650 |
+| 13 | `битрикс 24` | `product` | Нет | 1С-Битрикс24; Облачный сервис Битрикс24; Mimecast Unified Email Management (UEM) |
+| 14 | `продление криптопро` | `renewal` | Нет | Программа КриптоПро CSP 5.0; Kaspersky Symphony Security; Программа КриптоПро NGate |
+| 15 | `код безопасности цена` | `product` | Нет | Код безопасности: Secret Net Studio 8; Код безопасности: «Континент 4»; Код безопасности: АПКШ «Континент» |
+| 16 | `antivirus software` | `category` | Нет | MaxPatrol Endpoint Protection Platform; UserGate NGFW; Dr.Web Desktop Security Suite |
+| 17 | `antivirus for business` | `category` | Нет | Kaspersky Endpoint Security для бизнеса Стандартный; Kaspersky Small Office Security; Kaspersky Endpoint Security Cloud |
+| 18 | `cad system` | `category` | Нет | Платформа nanoCAD 26; КОМПАС-График V25; MaxPatrol Endpoint Protection Platform |
+| 19 | `business office suite` | `category` | Нет | «Р7-Офис» для юридических лиц; Microsoft Office 2024 для дома и бизнеса; МойОфис Стандартный 3 |
+| 20 | `task management software` | `category` | Нет | Kaiten; Weeek; Система управления проектами Яндекс Трекер |
+| 21 | `firewall software` | `category` | Нет | Traffic Inspector Next Generation; Код безопасности: АПКШ «Континент»; Ideco NGFW Novum |
+| 22 | `remote desktop` | `category` | Нет | AnyDesk; TeamViewer; Фаматек Radmin 3.5 |
+| 23 | `российский аналог autocad` | `analog` | Нет | Платформа nanoCAD 26; КОМПАС-График V25; ELCUT |
+| 24 | `импортозамещение microsoft exchange` | `analog` | Нет | CommuniGate Pro; Почтовый сервер Tegu; Платформа CraftTalk |
+| 25 | `система гарант` | `out_of_catalog` | Да | Перевод компании на КЭДО под ключ; Кадровая сверка... *(честное отсутствие в каталоге)* |
+| 26 | `даллас лок` | `out_of_catalog` | Да | Код безопасности: Secret Net Studio 8; Код безопасности: Secret Net LSP; Страж NT 4.0 |
+
+---
+
+## 6. Тесты (`pytest`)
+
+- `tests/test_n1_truth_and_noise.py` + `tests/test_n1_round2.py` + `tests/test_n2_solutions.py`: **88 passed** (0 failed).
+- Полный прогон репозитория (`--ignore=tests/web`, `KZ_EMBED_MODEL=off`): **827 passed** (единственное ожидаемое падение при отключённых эмбеддингах — `tests/ingest/test_d2.py::test_embed_longtail`, требующий включённой модели эмбеддингов).

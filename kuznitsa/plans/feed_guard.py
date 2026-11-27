@@ -2,7 +2,8 @@
 import re
 from uuid import uuid4
 
-from kuznitsa.index.feed import STOP, words
+from kuznitsa.index.feed import QUESTION, STOP, words
+from kuznitsa.index.feed_analogs import key as analog_key
 from kuznitsa.index.feed_language import sold_as
 from kuznitsa.llm.recovery import cost_summary
 from kuznitsa.plans.presentation import profile_info
@@ -12,9 +13,12 @@ from kuznitsa.understand.intent import TITLES
 from kuznitsa.understand.spell_index import cyrillic, roman
 from . import feed_analogs
 from .feed_noise import (
+    FEED_COMPLEX,
     GARBAGE_NOTE,
+    _clean_spaces,
     extract_conditions_and_noise,
     is_garbage_syntax,
+    load_colloquial_kb,
     normalize_spoken_brands,
     resolve_vendor,
 )
@@ -48,6 +52,237 @@ OFFICE_SUITE_MARKERS = frozenset({
     "standard", "профессиональный", "professional", "home", "дом",
     "business", "бизнес", "ltsc", "для", "студент", "учеб",
 })
+
+
+def ensure_analog_bindings(index) -> None:
+    """Чинит привязки feed_analogs, когда в снимке заголовок карточки без префикса вендора (например, Платформа nanoCAD)."""
+    analogs = getattr(index, "analogs", None)
+    if not analogs or getattr(analogs, "_n1_repaired", False):
+        return
+    titles = [
+        (cid, analog_key(card.title), analog_key(card.offers[0].vendor or ""))
+        for cid, card in index.cat.cards.items()
+    ]
+    changed_domestic = False
+    for _ident, (_sections, targets) in analogs.bound.items():
+        for i, (target, matches) in enumerate(targets):
+            if matches:
+                continue
+            v_key = analog_key(target.get("vendor", ""))
+            t_words = analog_key(target["title"]).split()
+            if not v_key or len(t_words) < 2:
+                continue
+            v_words = set(v_key.split())
+            new_matches: list[str] = []
+            for drop in range(1, min(4, len(t_words))):
+                dropped = t_words[:drop]
+                # Снимаем ведущие слова только если они действительно относятся к имени вендора.
+                if not all(
+                    dw in v_words or any(vw.startswith(dw[:4]) or dw.startswith(vw[:4]) for vw in v_words if len(vw) >= 4 and len(dw) >= 4)
+                    for dw in dropped
+                ):
+                    break
+                sub = " ".join(t_words[drop:])
+                if len(sub) < 3:
+                    continue
+                found = [cid for cid, name, brand in titles if sub in name and brand == v_key]
+                if found:
+                    new_matches = found
+                    break
+            if new_matches:
+                targets[i] = (target, new_matches)
+                if target.get("russian"):
+                    analogs.declared_domestic.update(new_matches)
+                    changed_domestic = True
+    if changed_domestic:
+        analogs.domestic = analogs.declared_domestic.union(analogs.registered)
+    analogs._n1_repaired = True
+
+
+def lookup_analog(index, text: str, *, fuzzy: bool = True) -> dict | None:
+    """Поиск записи аналогов с починкой привязок, учётом разговорного словаря и уникального ядра названия."""
+    ensure_analog_bindings(index)
+    row = index.analogs.lookup(text, fuzzy=fuzzy)
+    if row:
+        return row
+    spoken, _ = load_colloquial_kb()
+    s = _clean_spaces(normalize(text))
+    mapped = spoken.get(s)
+    if mapped:
+        row = index.analogs.lookup(mapped, fuzzy=fuzzy)
+        if row:
+            return row
+    k = analog_key(text)
+    if k and " " not in k and len(k) >= 5:
+        hits = [
+            r
+            for r in index.analogs.rows.values()
+            if any(k in analog_key(alias).split() for alias in r.get("names", ()))
+        ]
+        if len(hits) == 1:
+            return hits[0]
+    return None
+
+
+def search_import_sub_analog(
+    engine,
+    req,
+    profile,
+    trace,
+    priorities,
+    record,
+    norm: str,
+    target: str,
+    *,
+    qty=None,
+    budget=None,
+) -> dict | None:
+    """Маршрутизирует «импортозамещение <продукт>» в российские аналоги конкретного продукта."""
+    index = engine.catalog.feed
+    row = lookup_analog(index, target, fuzzy=True)
+    if not row:
+        return None
+    req_ru = req.model_copy(update={"q": f"российский аналог {target}"})
+    result = feed_analogs.search(
+        engine, req_ru, profile, trace, priorities, record, target, row,
+        explicit=True, qty=qty, budget=budget,
+    )
+    if result is not None:
+        result["query"]["raw"] = req.q
+        result["query"]["normalized"] = norm
+    return result
+
+
+def resolve_colloquial_product(engine, text: str, *, segment=None) -> tuple[list[str], str, str] | None:
+    """Разрешает разговорное название продукта по словарю kb/feed_colloquial_n1.yaml с обязательной проверкой по FeedIndex."""
+    index = engine.catalog.feed
+    spoken, _ = load_colloquial_kb()
+    s = _clean_spaces(normalize(text))
+    if not s or s not in spoken:
+        return None
+    target_norm = _clean_spaces(normalize(spoken[s]))
+    if not target_norm:
+        return None
+    cids = index.products(target_norm, fuzzy=False, segment=segment)
+    target_words = set(words(target_norm))
+    exact_title = [
+        cid for cid in cids if target_words and target_words <= set(words(index.cat.cards[cid].title))
+    ]
+    if exact_title:
+        confirmed = exact_title
+    else:
+        ed = index.edition(target_norm)
+        if ed:
+            return list(ed.cards), ed.query, ed.note
+        confirmed = [cid for cid in cids if sold_as(index.cat.cards[cid], target_norm)]
+    if not confirmed:
+        return None
+
+    def rank(cid: str):
+        title = index.cat.cards[cid].title
+        t_norm = normalize(title)
+        is_kit = bool(re.match(r"^(?:комплект\w*|сертификат\w*|набор\w*)\b", t_norm))
+        is_course = bool(re.search(r"\b(?:express\s+course|курс|обучен|тренинг)\b", t_norm))
+        exact_prefix = t_norm.startswith(target_norm)
+        return (not is_kit, not is_course, exact_prefix, index.quality.get(cid, (0,)), cid)
+
+    ordered = sorted(dict.fromkeys(confirmed), key=rank, reverse=True)
+    return ordered, target_norm, ""
+
+
+_VENDOR_CONTEXT_RE = re.compile(
+    r"\b(?:для|дома|дом|бизнес\w*|организац\w*|малого|linux|mac|macos|android|ios|сервер\w*|server)\b",
+    re.I,
+)
+
+
+def _resolve_direct_vendor(index, text: str) -> str | None:
+    """Находит вендора только по точному имени или однозначному префиксу в index.vendor_names (не по названиям продуктов)."""
+    norm = _clean_spaces(normalize(text))
+    if not norm:
+        return None
+    candidates = [norm, " ".join(words(norm))]
+    if re.search("[а-я]", norm):
+        candidates.append(roman(norm))
+    if re.fullmatch("[a-z0-9 ]+", norm):
+        candidates.append(" ".join(words(cyrillic(norm))))
+    for key in candidates:
+        if key and key in index.vendor_names:
+            return index.vendor_names[key]
+    for key in candidates:
+        kw = words(key) if key else ()
+        if not kw:
+            continue
+        pref_vids = {
+            v
+            for name, v in index.vendor_names.items()
+            if words(name)[:len(kw)] == kw
+        }
+        if len(pref_vids) == 1:
+            return next(iter(pref_vids))
+    return None
+
+
+def prefer_flagships_for_vendor(index, engine, q: str, ids: list[str], *, norm: str = "") -> list[str]:
+    """Для запроса по имени вендора (например, «corel», «код безопасности») поднимает флагманские линейки выше вспомогательных."""
+    if not ids or len(words(q)) > 2:
+        return ids
+    if norm and _VENDOR_CONTEXT_RE.search(norm):
+        return ids
+    vid = _resolve_direct_vendor(index, q)
+    if not vid:
+        return ids
+    ranks = index.flagships.rank
+    pool = list(ids)
+    seen = set(pool)
+    for cid in index.language.vendor_cards.get(vid, ()):
+        if cid not in seen and ranks.get(cid, 0) > 0:
+            pool.append(cid)
+            seen.add(cid)
+    if not any(index.card_vendors.get(cid) == vid and ranks.get(cid, 0) > 0 for cid in pool):
+        return ids
+    return sorted(
+        pool,
+        key=lambda cid: (
+            index.card_vendors.get(cid) == vid and ranks.get(cid, 0) > 0,
+            ranks.get(cid, 0) if index.card_vendors.get(cid) == vid else 0,
+        ),
+        reverse=True,
+    )
+
+
+def handle_unmatched_query(engine, req, profile, trace, record, norm: str, base: str) -> dict | None:
+    """Закрывает уход беспредметных/оффтопных запросов в старый конвейер, когда нет ни совпадений в фиде, ни сущностей в KB."""
+    from .feed import finish
+
+    if (
+        req.category
+        or req.filters
+        or req.exclude
+        or req.sort
+        or req.weights
+        or req.verbatim
+        or req.session_id
+        or "\n" in req.q
+    ):
+        return None
+    if FEED_COMPLEX.search(norm) or QUESTION.search(norm):
+        return None
+    index = engine.catalog.feed
+    if norm in engine.catalog.source_codes or base in engine.catalog.source_codes:
+        return None
+    toks = tokens(norm)
+    substantive_kinds = {"family", "vendor", "category", "role", "industry", "use_case", "compliance", "platform"}
+    if toks and any(
+        kind in substantive_kinds
+        for _, _, matches in engine.lex.match(toks)
+        for kind, _, _ in matches
+    ):
+        return None
+    if index.products(base, fuzzy=False):
+        return None
+    result = build_garbage_result(engine, req, profile, trace, norm)
+    return finish(engine, req, trace, record, result, [], 0, [], profile=profile)
 
 
 def popular_section_options(index, limit: int = 3) -> list[dict]:
@@ -204,6 +439,7 @@ def rank_vendor_cards(index, cids) -> list[str]:
         key=lambda cid: (
             index.cat.cards[cid].offers[0].domain == "software",
             not re.search(r"\b(?:course|курс|обучен|тренинг)\b", index.cat.cards[cid].title, re.I),
+            index.flagships.rank.get(cid, 0),
             index.browse_quality.get(cid, (0,)),
             index.quality.get(cid, (0,)),
             cid,
@@ -393,13 +629,18 @@ def _sold_or_all(index, cids, name: str) -> list[str]:
 
 
 def resolve_feed_product(engine, text: str, *, segment=None, _depth: int = 0) -> tuple[list[str], str, str] | None:
-    """Единая лестница подтверждения товара в реальном фиде (редакция, аналоги in_catalog, КБ-алиасы, год, тир)."""
+    """Единая лестница подтверждения товара в реальном фиде (редакция, словарь, аналоги in_catalog, КБ-алиасы, год, тир)."""
     if _depth > 5:
         return None
     index = engine.catalog.feed
     s = normalize_spoken_brands(" ".join(normalize(text).split()))
     if not s:
         return None
+
+    # 0. Разговорное название продукта с проверкой по каталогу.
+    colloquial = resolve_colloquial_product(engine, s, segment=segment)
+    if colloquial:
+        return colloquial
 
     # 1. Прямая редакция в фиде.
     ed = index.edition(s)
@@ -421,7 +662,7 @@ def resolve_feed_product(engine, text: str, *, segment=None, _depth: int = 0) ->
             return res
 
     # 4. Строки kb/feed_analogs.yaml с in_catalog=True (Корел Дро, MS SQL, Вижуал Студио, Вин рар, Автокад LT...).
-    row = index.analogs.lookup(s, fuzzy=True)
+    row = lookup_analog(index, s, fuzzy=True)
     if row and row.get("in_catalog"):
         for candidate in row.get("names") or ():
             cand_norm = normalize(str(candidate))
@@ -439,6 +680,9 @@ def resolve_feed_product(engine, text: str, *, segment=None, _depth: int = 0) ->
             res = resolve_feed_product(engine, primary, segment=segment, _depth=_depth + 1)
             if res:
                 return res
+    elif row and not row.get("in_catalog"):
+        # Товар явно помечен как отсутствующий в каталоге — не подменяем его устаревшим алиасом KB (например, acronis -> cyber_backup).
+        return None
 
     # 5. Полное совпадение с семейством/вендором в лексиконе КБ (например, «фш» -> Adobe Photoshop).
     toks = tokens(s)
@@ -530,6 +774,38 @@ def _strip_empty_blocks(blocks: list[dict]) -> None:
             blocks.remove(block)
 
 
+def _prune_cross_section_fill(index, blocks: list[dict], understood: dict, page: int) -> None:
+    """Убирает чужеродные fill-карточки из других разделов, когда в основном разделе продукта уже >= 3 карточек."""
+    if page != 1 or understood.get("intent") != "product" or len(index.cat.cards) < 500:
+        return
+    for block in blocks:
+        if block.get("type") != "products":
+            continue
+        items = block.get("items") or []
+        real = [c for c in items if not c.get("fill") and c.get("kind") != "upsell"]
+        if not real:
+            continue
+        anchor_sec = index.card_sections.get(real[0]["card_id"])
+        if not anchor_sec:
+            continue
+        same_sec = [
+            c
+            for c in items
+            if c.get("kind") != "upsell" and index.card_sections.get(c["card_id"]) == anchor_sec
+        ]
+        if len(same_sec) >= 3:
+            pruned = [
+                c
+                for c in items
+                if not (c.get("fill") and index.card_sections.get(c["card_id"]) != anchor_sec)
+            ]
+            if len(pruned) != len(items):
+                for i, c in enumerate(pruned, 1):
+                    c["position"] = i
+                block["items"] = pruned
+        break
+
+
 def _has_lexical_grounding(engine, norm: str, cards: list[dict]) -> bool:
     """Проверяет, есть ли хоть какая-то лексическая опора у ответа старого конвейера в тексте карточек или индексе."""
     index = engine.catalog.feed
@@ -585,7 +861,12 @@ def _replace_with_feed_cards(engine, req, profile, result: dict, cids: list[str]
     from .feed import display
 
     index = engine.catalog.feed
-    cids = prefer_software_over_courses(index, resolved_q, prefer_suite_for_office_year(index, resolved_q, cids))
+    cids = prefer_flagships_for_vendor(
+        index,
+        engine,
+        resolved_q,
+        prefer_software_over_courses(index, resolved_q, prefer_suite_for_office_year(index, resolved_q, cids)),
+    )
     start = (req.page - 1) * req.page_size
     items = [display(engine, cid, profile) for cid in cids[start:start + req.page_size]]
     for i, c in enumerate(items, 1):
@@ -617,12 +898,45 @@ def verify_response(engine, req, profile, result: dict, *, from_legacy: bool = F
 
     _strip_empty_blocks(blocks)
 
-    # 1. Защита от ложного «нет в каталоге» (в том числе от старого vendor_left на реальном фиде).
+    # 0. Если линейка найдена в каталоге, но у предложений не размечен action=renewal (например, «продление криптопро»),
+    # не объявляем товар отсутствующим в каталоге — показываем линейку с честным примечанием об уточнении продления.
     claims_absent = (
         any(b.get("type") == "not_in_catalog" for b in blocks)
         or understood.get("zero_reason") == "not_in_catalog"
         or understood.get("intent") == "out_of_catalog"
     )
+    if (
+        claims_absent
+        and understood.get("filters", {}).get("action") == "renewal"
+        and any(b.get("type") == "not_in_catalog" and b.get("reason") == "gap" for b in blocks)
+    ):
+        found_cards = [
+            row["card"]
+            for b in blocks
+            if b.get("type") == "analogs"
+            for row in (b.get("items") or ())
+            if isinstance(row, dict) and row.get("card") and not row["card"].get("fill")
+        ]
+        if found_cards:
+            for i, c in enumerate(found_cards, 1):
+                c["position"] = i
+            note = "Товары линейки найдены. Условия продления нужно уточнить у поставщика."
+            other_blocks = [b for b in blocks if b.get("type") not in ("not_in_catalog", "analogs")]
+            result["blocks"] = [
+                dict(type="products", title=TITLES["renewal"], category_id=None, total=len(found_cards), items=found_cards),
+                *other_blocks,
+            ]
+            understood.update(
+                intent="renewal",
+                intent_title=TITLES["renewal"],
+                zero_reason=None,
+                reason=None,
+                agent_note=note,
+            )
+            _strip_empty_blocks(result["blocks"])
+            return result
+
+    # 1. Защита от ложного «нет в каталоге» (в том числе от старого vendor_left на реальном фиде).
     if (
         claims_absent
         and not allow_missing_gen
@@ -633,7 +947,14 @@ def verify_response(engine, req, profile, result: dict, *, from_legacy: bool = F
         and understood.get("filters", {}).get("action") != "renewal"
     ):
         cleaned = extract_conditions_and_noise(engine, index, norm)
-        resolved = resolve_feed_product(engine, cleaned.subject, segment=profile.segment)
+        analog_row = lookup_analog(index, cleaned.subject, fuzzy=False)
+        if analog_row and not analog_row.get("in_catalog"):
+            # Товар явно отсутствует по карте аналогов: отменяем «нет» только если в фиде реально продаётся карточка с таким именем.
+            direct = index.products(cleaned.subject, fuzzy=False, segment=profile.segment)
+            confirmed = [cid for cid in direct if sold_as(index.cat.cards[cid], cleaned.subject)]
+            resolved = (confirmed, cleaned.subject, "") if confirmed else None
+        else:
+            resolved = resolve_feed_product(engine, cleaned.subject, segment=profile.segment)
         if resolved:
             cids, rq, note = resolved
             _replace_with_feed_cards(engine, req, profile, result, cids, rq, note)
@@ -690,26 +1011,26 @@ def verify_response(engine, req, profile, result: dict, *, from_legacy: bool = F
                 if c.get("kind") != "upsell" and not c.get("fill")
             ]
             if visible and not _has_lexical_grounding(engine, norm, visible):
-                if is_garbage_syntax(req.q, norm, index, engine.catalog) or not _has_lexical_grounding(engine, norm, visible):
-                    blocks[:] = [
-                        dict(
-                            type="clarify",
-                            title="Уточните раздел",
-                            question=GARBAGE_NOTE,
-                            options=popular_section_options(index, 3),
-                        )
-                    ]
-                    understood.update(
-                        intent="broad",
-                        intent_title=TITLES["broad"],
-                        subtype=None,
-                        zero_reason="unknown_term",
-                        agent_note=GARBAGE_NOTE,
+                blocks[:] = [
+                    dict(
+                        type="clarify",
+                        title="Уточните раздел",
+                        question=GARBAGE_NOTE,
+                        options=popular_section_options(index, 3),
                     )
-                    result["query"]["corrections"] = []
-                    result["query"]["corrected"] = norm
-                    result["related_queries"] = popular_queries(engine, 6)
-                    return result
+                ]
+                understood.update(
+                    intent="broad",
+                    intent_title=TITLES["broad"],
+                    subtype=None,
+                    zero_reason="unknown_term",
+                    agent_note=GARBAGE_NOTE,
+                )
+                result["query"]["corrections"] = []
+                result["query"]["corrected"] = norm
+                result["related_queries"] = popular_queries(engine, 6)
+                return result
 
+    _prune_cross_section_fill(index, blocks, understood, req.page)
     _strip_empty_blocks(blocks)
     return result

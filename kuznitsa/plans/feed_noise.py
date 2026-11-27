@@ -1,6 +1,9 @@
 """Очистка покупательского шума, извлечение условий и проверка мусорных запросов на фиде."""
 from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 import re
+import yaml
 
 from kuznitsa.index.feed import STOP, words
 from kuznitsa.text import normalize, tokens
@@ -27,6 +30,10 @@ SQL_INJECTION = re.compile(
     r"|;\s*(?:delete|drop|insert|update|select)\b",
     re.I,
 )
+KEYBOARD_MASH_TOKENS = (
+    "qwerty", "asdf", "zxcv", "qazw", "wsx", "edc", "rfv", "tgb", "yhn", "ujm",
+    "йцук", "фыва", "ячсм",
+)
 
 UPGRADE_TO = re.compile(
     r"^(?:апгрейд|upgrade|обновлен\w*|обновить|переход)\s+(?:с\s+)?(.+?)\s+(\d+(?:\.\d+)?)\s+(?:до|на)\s+(\d+(?:\.\d+)?)\b(.*)$"
@@ -49,6 +56,15 @@ ANALOG_MODIFIERS = re.compile(
     re.I,
 )
 
+IMPORT_SUB_ANALOG = re.compile(
+    r"^(?:импортозамещен\w*|замещен\w*)\s+(?:по\s+|программ\w*\s+|сервер\w*\s+)?(.+)$",
+    re.I,
+)
+GENERIC_IMPORT_SUB_TARGETS = frozenset({
+    "по", "софт", "софта", "программ", "программы", "программа",
+    "офис", "офиса", "ит", "it", "инфраструктуры", "инфраструктура",
+})
+
 VENDOR_CATALOG_PATTERNS = (
     re.compile(r"^(?:все|всё)\s+(?:от|у|продукты|программы|решения|товары)\s+(?:компании\s+|вендора\s+|производителя\s+)?(.+)$"),
     re.compile(r"^(?:продукты|программы|решения|товары|линейка|линейки|по|софт|каталог|ассортимент)\s+(?:от\s+|компании\s+|вендора\s+|производителя\s+)?(.+)$"),
@@ -56,14 +72,20 @@ VENDOR_CATALOG_PATTERNS = (
     re.compile(r"^(.+?)\s+(?:каталог|все\s+продукты|все\s+программы|все\s+товары)$"),
 )
 
-# Покупательский шум и условия.
+# Покупательский шум, англоязычные обёртки и закупочные префиксы.
 LEAD_ACTION = re.compile(
     r"^(?:(?:хочу\s+)?(?:купить|приобрести|заказать|скачать|загрузить|установить|поставить|найти|подобрать|получить|оформить)"
     r"|цена|цены|стоимость|прайс(?:-лист)?|сколько\s+стоит|поч[её]м"
-    r"|ключ(?:и)?(?:\s+активации)?|код(?:\s+активации)?|серийный\s+номер|активация"
+    r"|ключ(?:и)?(?:\s+активации)?|код\s+активации|серийный\s+номер|активация"
+    r"|право\s+на\s+использование(?:\s+(?:программ\w*|операционн\w*\s+систем\w*|по))?"
+    r"|расширени\w*\s+лицензи\w*(?:\s+на)?"
+    r"|докупить\s+лицензи\w*(?:\s+на)?"
+    r"|buy|download|price(?:\s+of)?|license(?:\s+for)?|licence(?:\s+for)?|key(?:\s+for)?"
     r")\s+(?:(?:на|для|от)\s+)?"
 )
-TRAIL_ACTION = re.compile(r"\s+(?:купить|скачать|цена|цены|стоимость|прайс)$")
+TRAIL_ACTION = re.compile(
+    r"\s+(?:купить|скачать|цена|цены|стоимость|прайс|price|buy|download|license|licence|key)$"
+)
 UPGRADE_ACTION = re.compile(r"^(?:обновлен\w*|обновить|апгрейд|upgrade)\s+(?:(?:на|до)\s+)?")
 
 TERM_NUM = re.compile(r"\b(?:на\s+)?(\d{1,2})\s*(год\w*|лет|мес\w*)\b")
@@ -92,19 +114,43 @@ SPOKEN_BRAND_TOKENS = (
     (re.compile(r"\bвиндов[сз]\b"), "windows"),
     (re.compile(r"\bвинда\b"), "windows"),
     (re.compile(r"\boffice\s*365\b"), "office 365"),
-    (re.compile(r"^(?:мс|ms)\s+(?=(?:sql|office|windows|visio|project|exchange|visual|365)\b)"), "microsoft "),
+    (re.compile(r"^(?:мс|ms)\s+(?=(?:sql|office|windows|visio|project|exchange|visual|365|word|excel|outlook|powerpoint)\b)"), "microsoft "),
     (re.compile(r"\b(автокад|autocad)\s+лт\b"), r"\1 lt"),
 )
 
 # Слова-редакции/квалификаторы, которые сами по себе не образуют название продукта.
 EDITION_ONLY_WORDS = frozenset({
-    "pro", "про", "home", "хоум", "standard", "стандарт", "enterprise",
+    "pro", "про", "проф", "home", "хоум", "standard", "стандарт", "enterprise",
     "ultimate", "professional", "профессиональный", "business", "бизнес",
     "basic", "starter", "lite", "lt", "dc", "cc", "e1", "e3", "e5", "f1", "f3",
     "oem", "esd", "box", "fpp", "x64", "x86", "core", "cores", "plus", "premium",
+    "плюс", "премиум", "лайт", "базовый", "базовая", "расширенный", "расширенная",
+    "корпоративный", "корпоративная", "оптимальный", "домашний", "персональный",
+    "персональная", "учебный", "учебная",
     "edu", "academic", "team", "teams", "suite", "cloud", "online", "desktop",
     "юрлиц", "юрлицам", "физлиц", "физлицам", "для", "на", "от", "под",
 })
+
+COLLOQUIAL_KB_PATH = Path(__file__).resolve().parents[2] / "kb" / "feed_colloquial_n1.yaml"
+
+
+@lru_cache(1)
+def load_colloquial_kb() -> tuple[dict[str, str], dict[str, str]]:
+    """Загружает словарь разговорных продуктов и английских классов ПО из kb/feed_colloquial_n1.yaml."""
+    if not COLLOQUIAL_KB_PATH.is_file():
+        return {}, {}
+    data = yaml.load(COLLOQUIAL_KB_PATH.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader) or {}
+    spoken = {
+        _clean_spaces(normalize(str(k))): str(v).strip()
+        for k, v in (data.get("spoken_products") or {}).items()
+        if k and v
+    }
+    english = {
+        _clean_spaces(normalize(str(k))): _clean_spaces(normalize(str(v)))
+        for k, v in (data.get("english_classes") or {}).items()
+        if k and v
+    }
+    return spoken, english
 
 
 @dataclass
@@ -120,6 +166,47 @@ def _clean_spaces(text: str) -> str:
     return " ".join(text.strip(" ,;:-").split())
 
 
+def pre_normalize(raw_q: str, norm_q: str) -> str:
+    """Раннее раскрытие типовых сленговых маркеров с пунктуацией (m$ office -> microsoft office)."""
+    out = norm_q
+    if re.search(r"\b(?:m|м)\$\s+", raw_q or "", re.I):
+        out = re.sub(r"\b(?:m|м)\$?\s+", "microsoft ", out, count=1)
+    elif re.search(r"\b(?:m|м)\$\s+", out, re.I):
+        out = re.sub(r"\b(?:m|м)\$\s+", "microsoft ", out, count=1)
+    return _clean_spaces(out)
+
+
+def translate_english_class(text: str) -> str | None:
+    """Переводит английское название класса/задачи ПО в эквивалентный русский запрос по словарю KB."""
+    s = _clean_spaces(normalize(text))
+    if not s or not re.search(r"[a-z]", s):
+        return None
+    _, english = load_colloquial_kb()
+    if s in english:
+        return english[s]
+    # Снятие английского хвоста "software" / "system" / "tool" / "tools" при совпадении ядра в словаре.
+    stripped = re.sub(r"\s+(?:software|system|systems|tool|tools|app|apps|program|programs|solution|solutions)$", "", s)
+    if stripped != s and stripped in english:
+        return english[stripped]
+    return None
+
+
+def extract_import_sub_analog(index, text: str) -> str | None:
+    """Распознаёт «импортозамещение <продукт>» (не общее «импортозамещение ПО»)."""
+    from .feed_guard import lookup_analog
+
+    s = _clean_spaces(normalize(text))
+    m = IMPORT_SUB_ANALOG.match(s)
+    if not m:
+        return None
+    tail = clean_analog_subject(m.group(1))
+    if not tail or tail in GENERIC_IMPORT_SUB_TARGETS:
+        return None
+    if lookup_analog(index, tail, fuzzy=True):
+        return tail
+    return None
+
+
 def is_edition_only(text: str) -> bool:
     """True, если строка состоит только из слов-редакций/квалификаторов и чисел (без имени продукта)."""
     terms = words(text)
@@ -129,7 +216,7 @@ def is_edition_only(text: str) -> bool:
 
 
 def is_garbage_syntax(raw_q: str, norm_q: str, index, catalog) -> str | None:
-    """Быстрая синтаксическая проверка на HTML, SQL-инъекции, голые знаки, одну букву и пустые числа."""
+    """Быстрая синтаксическая проверка на HTML, SQL-инъекции, пустой/знаковый ввод, одну букву, mash и пустые числа."""
     raw = (raw_q or "").strip()
     if not raw:
         return "symbols"
@@ -140,6 +227,10 @@ def is_garbage_syntax(raw_q: str, norm_q: str, index, catalog) -> str | None:
     alnum = re.findall(r"[а-яёa-z0-9]+", norm_q, re.I)
     if len(alnum) == 1 and len(alnum[0]) == 1 and alnum[0].isalpha():
         return "single_char"
+    if len(alnum) == 1 and len(alnum[0]) >= 6 and alnum[0].isalpha():
+        tok = alnum[0].lower()
+        if any(m in tok for m in KEYBOARD_MASH_TOKENS):
+            return "keyboard_mash"
     if re.fullmatch(r"\d+", norm_q):
         if not (
             norm_q in catalog.source_codes
@@ -300,24 +391,33 @@ def extract_conditions_and_noise(engine, index, text: str, existing_qty=None) ->
     qty = existing_qty
     changed = False
 
-    # Если исходная строка уже точно совпадает с классом, редакцией или прямым запросом типа лицензии — не ломаем её.
-    if not s or index.class_match(s) or index.edition(s) or license_request(engine, s):
+    # Если исходная строка уже точно совпадает с классом, редакцией, прямым запросом лицензии или вендором — не ломаем её.
+    if (
+        not s
+        or index.class_match(s)
+        or index.edition(s)
+        or license_request(engine, s)
+        or resolve_vendor(index, engine, s)
+    ):
         return CleanQuery(s, filters, qty, chips, False)
 
     def strip_rx(rx, current):
         candidate = _clean_spaces(rx.sub(" ", current))
         return candidate if candidate and re.search(r"[а-яёa-z0-9]", candidate) else current
 
-    # 1. Ведущие/хвостовые глаголы действия («скачать», «купить», «цена», «ключ активации»).
+    # 1. Ведущие/хвостовые глаголы действия и обёртки («скачать», «купить», «цена», «ключ активации», «license»).
     for _ in range(2):
         nxt = strip_rx(LEAD_ACTION, s)
         if nxt != s:
             s, changed = nxt, True
         else:
             break
-    nxt = strip_rx(TRAIL_ACTION, s)
-    if nxt != s:
-        s, changed = nxt, True
+    for _ in range(2):
+        nxt = strip_rx(TRAIL_ACTION, s)
+        if nxt != s:
+            s, changed = nxt, True
+        else:
+            break
 
     # 2. Обновление / апгрейд (без «до N», которое обработал parse_upgrade_query).
     if UPGRADE_ACTION.search(s):

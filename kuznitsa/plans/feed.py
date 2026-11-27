@@ -318,6 +318,7 @@ def search(engine,req,profile,trace,priorities,record):
     ctx=feed_context.try_search(engine,req,profile,trace,priorities,record)
     if ctx is not None:return ctx
     norm=normalize(req.q)
+    if not req.verbatim:norm=feed_noise.pre_normalize(req.q,norm)
     if not req.verbatim:norm=index.recovery.clean_query(norm)
     if norm in {"про","pro"} and not req.verbatim and not req.category:
         question="У какого продукта нужна редакция Pro?"
@@ -367,9 +368,17 @@ def search(engine,req,profile,trace,priorities,record):
     _,os_tag,os_label=(None,None,None) if (mig or req.verbatim or req.category) else extract_os_compat(base)
     os_compat=(os_tag,os_label) if os_tag else None
     sol_req=feed_request.for_solution(req)
+    import_sub=feed_noise.extract_import_sub_analog(index,norm) if not (mig or req.verbatim or req.category) else None
+    if import_sub and not (req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
+        return feed_guard.search_import_sub_analog(engine,req,profile,trace,priorities,record,norm,import_sub,qty=qty,budget=budget)
     solution=resolve_solution(engine,sol_req,norm,base,renewal=renewal,os_compat=os_compat)
     if solution and solution.kit and (cond.origin or cond.registry) and base!=norm:
         solution=resolve_solution(engine,sol_req,base,base,renewal=renewal,os_compat=os_compat)
+    if not solution and not (mig or req.verbatim or req.category):
+        eng_ru=feed_noise.translate_english_class(base)
+        if eng_ru:
+            base=eng_ru;original_subject=base
+            solution=resolve_solution(engine,sol_req,eng_ru,base,renewal=renewal,os_compat=os_compat)
     if not solution and not mig:
         solution=resolve_service_query(engine,sol_req,norm,base,cond=cond)
     if solution:
@@ -391,9 +400,13 @@ def search(engine,req,profile,trace,priorities,record):
         if noise_clean.changed:
             base=noise_clean.subject
             qty=noise_clean.qty
-    edition=index.edition(base) if not (req.verbatim or req.category or replacement_for or (hw_query and hw_query.has_constraints)) else None
-    row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
-    if not edition and not (hw_query and hw_query.has_constraints) and (replacement_for or row and not row["in_catalog"]) and not (
+        eng_ru2=feed_noise.translate_english_class(base)
+        if eng_ru2:base=eng_ru2;original_subject=base
+    hw_strict=bool(hw_query and hw_query.has_constraints)
+    colloquial=feed_guard.resolve_colloquial_product(engine,base,segment=profile.segment) if not (req.verbatim or req.category or replacement_for or hw_strict or mig) else None
+    edition=index.edition(base) if not (req.verbatim or req.category or replacement_for or colloquial or hw_strict) else None
+    row=feed_guard.lookup_analog(index,replacement_for or base,fuzzy=not req.verbatim)
+    if not edition and not colloquial and not hw_strict and (replacement_for or row and not row["in_catalog"]) and not (
             req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         analog_target=replacement_for or (cond.raw_for_analogs if cond.platform else base)
         return feed_analogs.search(engine,req,profile,trace,priorities,record,analog_target,
@@ -546,6 +559,12 @@ def search(engine,req,profile,trace,priorities,record):
             unknown_name=False
             identity_pool=None
             resolved_from_feed=True
+    if colloquial and not license_filter:
+        ids,q,colloquial_note=colloquial
+        if colloquial_note and not note:note=colloquial_note
+        edition=section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=vendor=None
+        bare=question=unknown_name=False
+        resolved_from_feed=True
     if edition:
         ids,q,note=edition.cards,edition.query,edition.note
         section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=vendor=None
@@ -607,6 +626,8 @@ def search(engine,req,profile,trace,priorities,record):
             identity_pool=None
             resolved_from_feed=True
     if ids and not section:
+        if not qualified and not edition:
+            ids=feed_guard.prefer_flagships_for_vendor(index,engine,q,ids,norm=norm)
         ids=feed_guard.prefer_suite_for_office_year(index,q,ids)
         ids=feed_guard.prefer_software_over_courses(index,q,ids)
     role_reasons={}
@@ -709,7 +730,7 @@ def search(engine,req,profile,trace,priorities,record):
                 missing_block=dict(type="not_in_catalog",title="Нет в каталоге",reason="not_in_catalog",text=missing_note),
             )
             return finish(engine,req,trace,record,result,[],0,[],profile=profile)
-        return None
+        return feed_guard.handle_unmatched_query(engine,req,profile,trace,record,norm,base)
     elif not edition and base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
         variants=[index.cat.cards[i] for i in ids[:8]]
@@ -763,6 +784,7 @@ def search(engine,req,profile,trace,priorities,record):
             note="Товары найдены. В фиде нет лицензии с подтверждёнными условиями на указанное количество."
         elif renewal:
             note="Для выбранной линейки нет отдельного предложения на продление. Ниже актуальные лицензии продукта."
+            intent="renewal"
         else:
             note="Для выбранной линейки нет предложения с указанными условиями. Ниже близкие варианты."
             missing=True

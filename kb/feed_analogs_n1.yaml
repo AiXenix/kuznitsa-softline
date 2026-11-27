@@ -1,0 +1,30 @@
+# Дополнения N1 к карте аналогов фида (проверены по real-cards.tsv и снимку real/v1).
+# Каждая запись с in_catalog: false соответствует товару, которого нет в каталоге.
+
+- id: dallas_lock
+  names: ["Dallas Lock", "Даллас Лок", "DallasLock", "СЗИ Dallas Lock", "СЗИ НСД Dallas Lock"]
+  kind: endpoint_dlp_nsd
+  in_catalog: false
+  sections: ["Программы для защиты информации"]
+  analogs:
+    - {title: "Secret Net Studio", vendor: "Код безопасности", russian: true}
+    - {title: "Secret Net LSP", vendor: "Код безопасности", russian: true}
+    - {title: "Страж NT", vendor: "Рубинтех", russian: true}
+    - {title: "Соболь", vendor: "Код безопасности", russian: true}
+  note: "СЗИ от несанкционированного доступа (СЗИ НСД); российские замены в каталоге — Secret Net Studio, Страж NT, ПАК «Соболь»"
+
+- id: consultant_plus
+  names: ["Консультант Плюс", "КонсультантПлюс", "Консультант+", "Consultant Plus", "ConsultantPlus"]
+  kind: legal_reference
+  in_catalog: false
+  sections: ["Правовое и кадровое обслуживание"]
+  analogs: []
+  note: "Справочно-правовой системы «КонсультантПлюс» в каталоге нет"
+
+- id: garant_sprav
+  names: ["Гарант", "СПС Гарант", "Система Гарант", "Информационно-правовой портал Гарант"]
+  kind: legal_reference
+  in_catalog: false
+  sections: ["Правовое и кадровое обслуживание"]
+  analogs: []
+  note: "Справочно-правовой системы «Гарант» в каталоге нет"
