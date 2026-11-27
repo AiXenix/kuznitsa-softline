@@ -1,0 +1,31 @@
+# Расширение словаря русских написаний брендов и продуктов для подсказок при наборе (N5).
+# Формат: kb/SCHEMA.md (дополнение к kb/slang*.yaml без повтора существующих term).
+# Продукты сверены с real-cards.tsv.
+
+# --- Postgres Pro ---
+- {term: "постгре", type: slang, maps_to: {family: postgres_pro}, note: "Postgres Pro"}
+- {term: "постгрескл", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro / PostgreSQL"}
+- {term: "постгрес кл", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro"}
+- {term: "постгрес стандарт", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro Standard"}
+- {term: "постгрес энтерпрайз", type: translit, maps_to: {family: postgres_pro}, note: "Postgres Pro Enterprise"}
+
+# --- Microsoft SQL Server ---
+- {term: "скуль", type: slang, maps_to: {family: ms_sql_server}, note: "Microsoft SQL Server"}
+- {term: "эскьюэль", type: translit, maps_to: {family: ms_sql_server}, note: "Microsoft SQL Server"}
+- {term: "sql сервер", type: translit, maps_to: {family: ms_sql_server}, note: "Microsoft SQL Server"}
+- {term: "мс скл сервер", type: abbr, maps_to: {family: ms_sql_server}, note: "Microsoft SQL Server"}
+
+# --- Графика, САПР, удалённый доступ ---
+- {term: "фотошоп про", type: translit, maps_to: {text: "Adobe Photoshop Pro"}, note: "Adobe Photoshop Pro"}
+- {term: "корел драв", type: translit, maps_to: {text: "CorelDRAW"}, note: "CorelDRAW"}
+- {term: "нанокад платформа", type: slang, maps_to: {family: nanocad_platform}, note: "Платформа nanoCAD"}
+- {term: "нанокад бим", type: translit, maps_to: {family: nanocad_bim}, note: "nanoCAD BIM"}
+- {term: "тимвьюер", type: translit, maps_to: {text: "TeamViewer"}, note: "TeamViewer"}
+
+# --- Криптография, ИБ, антивирусы, офис ---
+- {term: "криптопро ключ", type: slang, maps_to: {text: "КриптоПро Ключ"}, note: "КриптоПро Ключ"}
+- {term: "криптоарм гост", type: slang, maps_to: {family: cryptoarm_gost}, note: "КриптоАРМ ГОСТ"}
+- {term: "доктор веб секьюрити спейс", type: translit, maps_to: {family: drweb_security_space}, note: "Dr.Web Security Space"}
+- {term: "др веб секьюрити спейс", type: translit, maps_to: {family: drweb_security_space}, note: "Dr.Web Security Space"}
+- {term: "мойофис стандартный", type: slang, maps_to: {family: myoffice_standard}, note: "МойОфис Стандартный"}
+- {term: "яндекс 360", type: slang, maps_to: {family: yandex_360}, note: "Яндекс 360 для бизнеса"}

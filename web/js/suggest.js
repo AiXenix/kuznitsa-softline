@@ -2,9 +2,9 @@ import {api} from './api.js';
 import {picture,merchandise} from './retail.js';
 import {add,rows,money} from './dom.js';
 export function suggestions(input,p,params,launch,origin='',onCard) {
-  const groups=['corrections','categories','queries','products','upsell','licenses','vendors'];
-  const titles={corrections:'Возможно, вы имели в виду',queries:'Запросы',products:'Товары',categories:'Разделы',upsell:'Возможно, вам понадобится'};
-  const caps={products:4,categories:3,upsell:2};
+  const groups=['corrections','categories','queries','products','analogs','upsell','licenses','vendors'];
+  const titles={corrections:'Возможно, вы имели в виду',queries:'Запросы',products:'Товары',analogs:'Аналоги в каталоге',categories:'Разделы',upsell:'Возможно, вам понадобится'};
+  const caps={products:4,analogs:3,categories:3,upsell:2};
   let version=0,controller,timer,options=[],active=-1;
   function close() {
     clearTimeout(timer);controller?.abort();version++;active=-1;options=[];p.hidden=true;
@@ -33,7 +33,7 @@ export function suggestions(input,p,params,launch,origin='',onCard) {
           for(const item of items) {
             const text=item.text || item.title;
             const meta=typeof item.meta==='object' && item.meta ? item.meta:{};
-            const product=['products','upsell'].includes(g.type),record={...meta,...item},retail=merchandise(record);
+            const product=['products','analogs','upsell'].includes(g.type),record={...meta,...item},retail=merchandise(record);
             const o=add(group,'div',null,'option');
             if(product)picture(o,retail.picture,record.vendor?.title || text);
             const name=add(o,'span');
@@ -44,7 +44,7 @@ export function suggestions(input,p,params,launch,origin='',onCard) {
             if(product && (retail.quote || retail.price!=null))add(o,'b',retail.quote?'По запросу':money(retail.price),'suggestPrice');
             const promo=rows(record.badges).find(b=>b.kind==='promo')?.label;
             if(promo || retail.discount!=null)add(name,'small',promo || 'Акция −'+retail.discount+' %','deal');
-            if(!product)add(o,'small',({products:'продукт',categories:'категория',vendors:'вендор',licenses:'ваша лицензия',corrections:'исправление',my:'ваша лицензия',queries:'запрос',answers:'ответ'})[g.type] || g.title);
+            if(!product)add(o,'small',({products:'продукт',analogs:'аналог',categories:'категория',vendors:'вендор',licenses:'ваша лицензия',corrections:'исправление',my:'ваша лицензия',queries:'запрос',answers:'ответ'})[g.type] || g.title);
             o.setAttribute('role','option');
             o.id='suggest-'+options.length;o.onmousedown=e=>e.preventDefault();
             o.onclick=()=>{

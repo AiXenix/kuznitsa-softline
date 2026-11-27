@@ -26,6 +26,10 @@ class SuggestIndex:
         self.aliases=defaultdict(set)
         self.translit={}
         self.family_rank={}
+        self.feed_suggest=None
+        if catalog and getattr(catalog,"is_feed",False) and getattr(catalog,"feed",None) and kb:
+            from kuznitsa.plans.feed_suggest import FeedSuggestIndex
+            self.feed_suggest=FeedSuggestIndex(catalog.feed,kb,lex)
         if catalog:
             for fid,cids in catalog.by["family"].items():
                 offers=[o for cid in cids for o in catalog.cards[cid].offers]
@@ -151,7 +155,7 @@ def suggest(engine,q,profile_id="guest",category=None):
     norm=key(q)
     profile=engine.clients.get(profile_id)
     if getattr(engine.catalog,"is_feed",False):
-        from kuznitsa.plans.feed import suggestions
+        from kuznitsa.plans.feed_suggest import suggestions
         return suggestions(engine,q,norm,profile or engine.clients["guest"],start)
     groups,corrected=engine.suggestions.complete(norm,profile) if norm else ([],None)
     if corrected:
