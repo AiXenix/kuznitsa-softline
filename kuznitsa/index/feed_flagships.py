@@ -316,4 +316,8 @@ class FeedFlagships:
             return ids
         if HOME_EXPLICIT.search(query_text or ""):
             return ids
+        if section:
+            # В классе порядок раздела и подтверждённый тираж важнее слова Business или Enterprise
+            # в названии: такие карточки не обгоняют нейтральные, вниз уходят только домашние редакции.
+            return sorted(ids, key=lambda cid: min(self._audience.get(cid, 0), 0), reverse=True)
         return sorted(ids, key=self._audience.get, reverse=True)
