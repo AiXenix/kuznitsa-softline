@@ -57,8 +57,18 @@ BUSINESS_TITLE = re.compile(
 )
 EDITION_QUALIFIERS = frozenset({
     "lt", "лт", "pro", "про", "home", "дом", "server", "сервер",
-    "enterprise", "standard", "стандарт", "e3", "e5", "f3", "plus", "плюс",
+    "enterprise", "standard", "стандарт", "стандартный", "e3", "e5", "f3", "plus", "плюс",
     "premium", "премиум", "cloud", "облачный", "mac", "macos", "linux",
+    "professional", "профессиональный", "business", "бизнес", "edition", "редакция",
+    "basic", "base", "базовый", "расширенный", "универсальный", "корпоративный",
+    "защита", "безопасность", "security", "система", "программа", "сервис",
+    "лицензия", "подписка", "версия", "для", "for", "macintosh", "windows",
+})
+
+_SERVICE_WORDS = frozenset({
+    "продление", "продлить", "renewal", "купить", "покупка", "лицензия", "лицензии",
+    "подписка", "бессрочный", "бессрочная", "на", "год", "года", "лет", "мес", "месяц",
+    "новый", "новая", "электронный", "электронная", "ключ", "по",
 })
 
 
@@ -70,7 +80,7 @@ def _strip_lead(seq, skip):
 
 
 class FeedFlagships:
-    """Ранги главных линеек, распознавание надстроек и мост семейств KB → фид."""
+    """Ранги главных линеек, деприоритизация дополнений и мост семейств KB → фид."""
 
     def __init__(self, index, kb, cfg):
         self.index = index
@@ -80,10 +90,13 @@ class FeedFlagships:
         self.card_year = {}
         self.core_generic = {}
         self.core_product = {}
+        self._card_entry_id = {}
         self._addon_words = {}
         self._for_addon = {}
         self._has_cal = set()
         self._audience = {}
+        self._section_rules = {}
+        self._section_demoted = {}
         self._load_yaml(cfg)
         self._compute_cards()
         self._apply_quality()
@@ -94,6 +107,7 @@ class FeedFlagships:
 
     def _load_yaml(self, cfg):
         self._entries = []
+        self._section_rules = {}
         self.vendor_aliases = set()
         kb_dir = getattr(cfg, "kb", None)
         path = (kb_dir / "feed_flagships.yaml") if kb_dir else None
@@ -101,21 +115,29 @@ class FeedFlagships:
             return
         rows = yaml.load(path.read_text(), Loader=yaml.CSafeLoader) or []
         for row in rows:
+            sec_name = row.get("section")
+            if sec_name:
+                self._section_rules[normalize(sec_name)] = (
+                    tuple(normalize(v) for v in row.get("top_vendors", []) if v),
+                    tuple(normalize(d) for d in row.get("demote_in_section", []) if d),
+                )
+                continue
+            entry_id = normalize(row.get("id", ""))
             vendors = {normalize(v) for v in row.get("vendors", []) if v}
             vendor_words = {tuple(words(v)) for v in row.get("vendors", []) if v}
             lines = [normalize(t) for t in row.get("lines", []) if t]
             demote = [normalize(d) for d in row.get("demote", []) if d]
             self.vendor_aliases.update(vendors)
             self.vendor_aliases.update(" ".join(vw) for vw in vendor_words if vw)
-            self._entries.append((vendors, vendor_words, lines, demote))
+            self._entries.append((entry_id, vendors, vendor_words, lines, demote))
 
     def _match_vendor(self, vendor_norm, vendor_w):
-        for vendors, vwords, lines, demote in self._entries:
+        for entry_id, vendors, vwords, lines, demote in self._entries:
             if vendor_norm in vendors or vendor_w in vwords:
-                return lines, demote
+                return entry_id, lines, demote
             if any(v and (v in vendor_norm or vendor_norm in v) for v in vendors if len(v) >= 4):
-                return lines, demote
-        return (), ()
+                return entry_id, lines, demote
+        return "", (), ()
 
     def _compute_cards(self):
         cat = self.index.cat
@@ -139,7 +161,9 @@ class FeedFlagships:
             if years:
                 self.card_year[cid] = max(years)
 
-            lines, demote = self._match_vendor(vendor_norm, vendor_w)
+            entry_id, lines, demote = self._match_vendor(vendor_norm, vendor_w)
+            if entry_id:
+                self._card_entry_id[cid] = entry_id
             is_demoted = False
             if any(pat in title_norm for pat in GLOBAL_DEMOTE):
                 is_demoted = True
@@ -190,6 +214,54 @@ class FeedFlagships:
             else:
                 self._audience[cid] = 0
 
+    def _vendor_key(self, cid):
+        eid = self._card_entry_id.get(cid)
+        if eid:
+            return eid
+        card = self.index.cat.cards[cid]
+        return normalize(card.vendor or card.offers[0].vendor or "")
+
+    def _apply_section_rules(self):
+        index = self.index
+        self._section_demoted = {}
+        if not self._section_rules:
+            return
+        for sec, group in index.groups.items():
+            sec_norm = index.class_names.get(sec) or normalize(index.classes.get(sec, ""))
+            rule = self._section_rules.get(sec_norm)
+            if not rule:
+                continue
+            top_vendors, demote_pats = rule
+            demoted_cids = set()
+            by_top_vendor = {v: [] for v in top_vendors}
+            mid = []
+            tail = []
+            for cid in group:
+                title_norm = normalize(index.cat.cards[cid].title)
+                if any(p in title_norm for p in demote_pats):
+                    demoted_cids.add(cid)
+                    tail.append(cid)
+                    continue
+                vkey = self._vendor_key(cid)
+                if vkey in by_top_vendor and cid not in self.demoted:
+                    by_top_vendor[vkey].append(cid)
+                else:
+                    mid.append(cid)
+            # Чередуем флагманов приоритетных вендоров в верху раздела (Kaspersky / Dr.Web / PRO32),
+            # затем остальные карточки раздела, и в самом конце — деприоритизированные (NGFW и др.).
+            interleaved = []
+            buckets = [by_top_vendor[v] for v in top_vendors if by_top_vendor[v]]
+            for pos in range(max((len(b) for b in buckets), default=0)):
+                for b in buckets:
+                    if pos < len(b):
+                        interleaved.append(b[pos])
+            group[:] = interleaved + mid + tail
+            if demoted_cids:
+                self._section_demoted[sec] = frozenset(demoted_cids)
+
+    def section_demoted(self, section):
+        return self._section_demoted.get(section, frozenset())
+
     def _apply_quality(self):
         index = self.index
         for cid, card in index.cat.cards.items():
@@ -219,6 +291,7 @@ class FeedFlagships:
             )
         for group in index.groups.values():
             group.sort(key=index.quality.get, reverse=True)
+        self._apply_section_rules()
         index.popular = sorted(index.cat.cards, key=index.quality.get, reverse=True)
         for phrase, (field, members) in list(index.slang.items()):
             ordered = tuple(sorted(members, key=lambda i: (index.quality[i], i), reverse=True))
@@ -289,8 +362,6 @@ class FeedFlagships:
             direct = index.products(target, fuzzy=False)
             if not direct:
                 continue
-            # 1) Конкретный компонент внутри широкого семейства (ворд/эксель/аутлук → Word/Excel/Outlook вместо всего ms_office).
-            # 2) Неполная привязка семейства (1 карточка в slang при наличии всей линейки в products: нанокад, архикад).
             top_words = set(words(index.cat.cards[members[0]].title)) if members else set()
             direct_words = set(words(index.cat.cards[direct[0]].title))
             target_words = set(words(target))
@@ -326,7 +397,6 @@ class FeedFlagships:
         if cid not in self.demoted:
             return False
         qset = query_terms if isinstance(query_terms, (set, frozenset)) else frozenset(query_terms)
-        # Если пользователь явно попросил CAL / курс / поддержку / сертификат — не штрафуем.
         if cid in self._has_cal and "cal" in qset:
             return False
         if qset & _DEMOTE_EXPLICIT:
@@ -337,8 +407,91 @@ class FeedFlagships:
         """+1 бизнес/корпоратив, 0 нейтрально, -1 дом/семья/персональный."""
         return self._audience.get(cid, 0)
 
+    def _named_tier(self, cid, q_terms, qset):
+        """Совпадение очищенного запроса с названием карточки: 3 — целиком/покрывает все слова, 2 — редакция, 1 — содержит все слова, 0 — остальное."""
+        card = self.index.cat.cards[cid]
+        name = words(card.title)
+        core_gen = self.core_generic.get(cid, name)
+        core_prod = self.core_product.get(cid, name)
+        rank = self.rank.get(cid, 0)
+        n = len(q_terms)
+        if (q_terms == name or q_terms == core_gen
+                or (q_terms == core_prod and rank > 0)
+                or (len(core_gen) >= 2 and frozenset(core_gen) == qset)):
+            return 3
+        # Запрос покрывает все значимые слова карточки (напр. с лишним служебным словом), но не короче 2 слов.
+        if len(core_gen) >= 2 and frozenset(core_gen) < qset and len(qset - frozenset(core_gen)) <= 1:
+            return 3
+        if n >= 2 and (core_gen[:n] == q_terms or name[:n] == q_terms or (core_prod[:n] == q_terms and rank > 0)):
+            return 2
+        if n >= 2 and qset <= frozenset(name):
+            return 1
+        return 0
+
+    def prioritize_named(self, ids, q):
+        """Если запрос без служебных слов совпадает с карточкой целиком — она первая, затем её редакции, затем остальная линейка."""
+        if not ids or len(ids) < 2 or not q:
+            return ids
+        q_terms = tuple(w for w in words(q) if w not in _SERVICE_WORDS)
+        if not q_terms:
+            return ids
+        joined = " ".join(q_terms)
+        if len(q_terms) < 2 and (q in self.vendor_aliases or joined in self.vendor_aliases or q in self.index.vendor_names):
+            return ids
+        qset = frozenset(q_terms)
+        tiers = {cid: self._named_tier(cid, q_terms, qset) for cid in ids}
+        if not any(t >= 3 for t in tiers.values()):
+            return ids
+        return sorted(ids, key=lambda cid: tiers[cid], reverse=True)
+
+    def filter_recognized_line(self, ids, q):
+        """При распознанной флагманской линейке («office» → Microsoft Office) убирает чужие карточки с тем же словом из других разделов."""
+        if not ids or len(ids) < 2 or not q:
+            return ids
+        q_terms = tuple(w for w in words(q) if w not in _SERVICE_WORDS)
+        if not q_terms:
+            return ids
+        joined = " ".join(q_terms)
+        if q in self.vendor_aliases or joined in self.vendor_aliases or q in self.index.vendor_names or joined in self.index.vendor_names:
+            return ids
+        if len(q_terms) == 1 and (len(q_terms[0]) < 4 or q_terms[0] in EDITION_QUALIFIERS):
+            return ids
+        n = len(q_terms)
+        index = self.index
+
+        def starts_line(cid):
+            return (
+                self.core_product.get(cid, ())[:n] == q_terms
+                or self.core_generic.get(cid, ())[:n] == q_terms
+            )
+
+        anchor = ids[0]
+        if self.rank.get(anchor, 0) <= 0 or not starts_line(anchor):
+            return ids
+        anchor_vendor = index.cat.cards[anchor].vendor
+        anchor_sec = index.card_sections.get(anchor)
+        same_vendor_count = sum(1 for cid in ids if index.cat.cards[cid].vendor == anchor_vendor and starts_line(cid))
+        if same_vendor_count < 2:
+            return ids
+        kept = []
+        alien = []
+        for cid in ids:
+            card = index.cat.cards[cid]
+            sec = index.card_sections.get(cid)
+            if card.vendor == anchor_vendor or sec == anchor_sec:
+                kept.append(cid)
+            else:
+                alien.append(cid)
+        if not alien:
+            return ids
+        # Если в распознанной линейке достаточно карточек (≥ 4) — убираем случайные совпадения из чужих разделов;
+        # иначе сдвигаем их в самый хвост.
+        if len(kept) >= 4:
+            return kept
+        return kept + alien
+
     def apply_audience_order(self, ids, qty, query_text, *, base_ids=None, selections=None, q=None, section=None, budget=None, renewal=False):
-        """Сохраняет прямую линейку при подборе по тиражу и при qty >= 5 поднимает бизнес-редакции."""
+        """Сохраняет прямую линейку при подборе по тиражу и при qty >= 5 поднимает бизнес-редакции (в разделе — только вниз уходят домашние)."""
         if not ids or not qty:
             return ids
         if base_ids and selections and not section and budget is None and not renewal and q:
@@ -346,8 +499,6 @@ class FeedFlagships:
             if len(q_terms) >= 2:
                 direct = [cid for cid in base_ids if self.core_generic.get(cid, ())[:len(q_terms)] == q_terms]
                 if direct and not any(cid in selections for cid in direct):
-                    # Ни одна карточка основной запрошенной линейки не имеет явного тиража в фиде —
-                    # не позволяем сторонним надстройкам или другим линейкам вытеснить её.
                     ids = direct
         if qty.get("value", 0) < 5:
             return ids

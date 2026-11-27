@@ -217,3 +217,79 @@
 - **Оставшиеся незакрытые позиции в `cases2.tsv`:**
   - `опечатка2`: единственный незакрытый кейс — `энидеск` (требует очистки 4-й позиции в списке аналогов AnyDesk в `feed_analogs`, вне зоны N3).
   - `бренд2`: 3 кейса ложного `absent` (`консультант плюс`, `acronis`, `dallas lock`) — зона N1; 1 кейс ранжирования `corel` (`Corel PaintShop Pro 2023` перед `CorelDRAW Graphics Suite 2026` при однословном запросе вендора) оставлен на следующий заход.
+
+---
+
+# Раунд 3 — «названное — первым»
+
+Сохранена ветка коммита `8db9866` в `FeedFlagships.apply_audience_order`: при заданном разделе (`section`) бизнес-названия больше не поднимаются выше карточек с подтверждённой ступенью — вниз уходят только домашние редакции (`if section: return sorted(ids, key=lambda cid: min(self._audience.get(cid, 0), 0), reverse=True)`).
+
+## 1. Результаты по пяти пунктам (реальный снимок, 11 713 карточек)
+
+### 1.1. Точное название в запросе с продлением или количеством — первым
+- Реализован `FeedFlagships.prioritize_named(ids, q)` и расширено правило `exact` в `FeedIndex.products()` (покрытие всех значимых слов названия без служебных слов «продление/продлить/купить/лицензия/на N …»).
+- Вызов `prioritize_named` после `selections` и `apply_audience_order` не даёт ни флагу `price is None`, ни аудиторному ранжированию при `qty >= 5`, ни порядку флагманов вендора перекрыть явно названный товар: сначала идёт названная карточка, затем её редакции, затем остальная линейка.
+- Проверка на реальном снимке:
+  - `Dr.Web Server Security Suite продление` → #1 `Dr.Web Server Security Suite`, #2 `Dr.Web Server Security Suite Base Price`.
+  - `Kaspersky Total Security для бизнеса продление` → #1 `Kaspersky Total Security для бизнеса`.
+  - `Кибер Бэкап Расширенная редакция на 20 серверов` → #1 `Кибер Бэкап Расширенная редакция`, далее остальные редакции `Кибер Бэкап`.
+
+### 1.2. Слово модели с опечаткой внутри линейки вендора
+- Добавлен метод `FeedRecovery.vendor_model_lookup(base)` на базе `DamerauLevenshtein.distance` (расстояние 1–2, перестановка соседних букв) по словам названий карточек и предложений (`offers`) внутри пула распознанного вендора/бренда; запускается в `FeedRecovery.lookup()` до общего `repair()`.
+- До правки `рутокен lite mirco` уходил в `miro` → `out_of_catalog` (`MobiSystems Словари`).
+- После правки на реальном снимке:
+  - `рутокен lite mirco` → #1 `Рутокен Lite (Rutoken)` (исправление `mirco → micro`).
+  - `jacarta pki ncf` → #1 `JaCarta` (перестановка `ncf → nfc` + совпадение `pki`).
+  - `kaspersky endpoint secruity cloud` → #1 `Kaspersky Endpoint Security Cloud` (перестановка `secruity → security`).
+
+### 1.3. Порядок класса «антивирус» и проверка остальных классов
+- В `kb/feed_flagships.yaml` добавлен вендор `pro32` и секционные правила `section_antivirus_org` / `section_antivirus_home`: в антивирусных разделах чередуются флагманы `Kaspersky / Dr.Web / PRO32`, а нецелевые для класса позиции (`NGFW`, `межсетевой экран`, `MaxPatrol`, `XDR`, `SIEM`) спускаются в конец раздела (ниже середины, позиции 58–59 из 59), не затрагивая прямой поиск по их брендам (`UserGate` → #1 `UserGate NGFW`).
+- В `kuznitsa/plans/feed.py` (`recommend`) для `intent == "category"` плитки допродажи вставляются начиная с позиции `start = 3` (при `len(items) >= 4`) с ограничением `len(items) // 4`, чтобы первые 3 флагмана класса оставались чистыми и в первых 6 позициях не было 3 плиток допродажи.
+- При `qty` в разделе учтена деприоритизация `section_demoted(section)` (`антивирус на 50 пк` → PRO32 / Kaspersky, без NGFW и MaxPatrol).
+- Проверка классов на реальном снимке:
+  - `антивирус` → #1 `Kaspersky Small Office Security`, #2 `Dr.Web Desktop Security Suite`, #3 `PRO32 Endpoint Security Advanced`, #5 `Kaspersky Endpoint Security для бизнеса Стандартный` (`MaxPatrol` на 58/59, `UserGate NGFW` на 59/59).
+  - `какой антивирус выбрать для школы` → #1 `Kaspersky Small Office Security`, #2 `Dr.Web Desktop Security Suite`, #3 `PRO32 Endpoint Security Advanced`, #5 `Kaspersky Endpoint Security для бизнеса Стандартный`, #6 `Dr.Web Enterprise Security Suite`.
+  - `офисный пакет` → `«Р7-Офис» для юридических лиц`, `Microsoft Office 2024 для дома и бизнеса`, `МойОфис Стандартный 3`.
+  - `сапр` → `Платформа nanoCAD 26`, `КОМПАС-График V25`, `КОМПАС-3D V25`, `Autodesk AutoCAD`.
+  - `резервное копирование` → `Кибер Бэкап Стандартная редакция`, `Кибер Бэкап Старт`, `Кибер Бэкап Облачный`, `RuBackup OneClick`.
+  - `операционная система` → `Операционная система РЕД ОС`, `Операционная система Microsoft Windows Server Standard`, `Операционная система Microsoft Windows 10 Enterprise (CSP)`.
+
+### 1.4. Слово-совпадение в чужом названии и чистый хвост после точного попадания
+- В `FeedIndex.products()` приоритет `starts_product` (совпадение с началом продуктового ядра) поднят выше `f_rank`, а в `FeedFlagships.filter_recognized_line(ids, q)` при распознанной флагманской линейке (`office` → `Microsoft Office`) чужие карточки из других разделов и от других вендоров (`Kaspersky Small Office Security`, `PRO32 Office Security Base`) отфильтровываются до применения условий (`apply_conditions`).
+- В `kuznitsa/plans/feed.py` (`fill()`) хвост после точного попадания строится по продуктовому ядру `core_product` (без имени вендора и общих слов редакций): сначала та же линейка того же вендора (без деприоритизированных и дополнений), затем качественные не-деприоритизированные карточки того же раздела.
+- Проверка на реальном снимке:
+  - `office бессрочная лицензия` → #1–5 только `Microsoft Office` (`2024`, `Pro Plus 2021`, `Standard 2021`, `Mac 2021`), без `Kaspersky Small Office Security`.
+  - `автокад lt` → #1 `AutoCAD LT for Macintosh`, далее `Autodesk AutoCAD`, `Autodesk AutoCAD Mechanical`, `Autodesk AutoCAD Electrical` (без `Autodesk CFD` и `Autodesk Flame`).
+  - `архикад` → #1–4 только линейка `Archicad` (`Archicad 26`, `Graphisoft Archicad 26 Forward`, `Archicad Solo`, `Archicad STAR(T) Edition`).
+  - `acrobat` → #1 `Adobe Acrobat Professional`, #2 `Adobe Acrobat Standard`, #4 `ContentReader PDF 16 Business` (без `Adobe Connect` и `4D Write Professional`).
+
+### 1.5. Опечатки в коротком бренде (5–6 букв, 2 ошибки) и в двух словах названия
+- В `FeedRecovery.confirmed()` для многословных запросов (`len(terms) >= 2`) добавлен безопасный второй проход (`allow_two_short=True`), допускающий `DamerauLevenshtein <= 2` в словах ≥ 5 букв (с сохранением первой буквы/перестановки первых двух) строго при пересечении всех слов на реальной карточке каталога; одиночные слова и защищённый список (`steam`, `пицца`, `кии`) не ослаблялись.
+- Проверка 6 контрольных запросов (+ доп. пары с 2 опечатками) на реальном снимке (**5 / 6** на списке задания, **7 / 8** с учётом доп. пар):
+  - `abyy finereader` → #1 `ContentReader PDF 16 Business` ✅
+  - `acrobt pro` → #1 `Adobe Acrobat Professional` ✅
+  - `corle draw` → #1 `CorelDRAW Graphics Suite 2026` ✅
+  - `nanocda bim` → #1 `nanoCAD BIM ВК 26` ✅
+  - `vmwrae workstaiton` → #1 `VMware Workstation 16 Pro for Linux and Windows` ✅
+  - `knigsoft office` → `out_of_catalog` (карточек Kingsoft в каталоге нет)
+  - дополнительно: `adboe photshop` → #1 `Adobe Photoshop` ✅, `corle drwa` → #1 `CorelDRAW Graphics Suite 2026` ✅
+  - защита: `steam` → `out_of_catalog`, `пицца` → `broad` (`clarify`), `кии` → `category`.
+
+## 2. Проверка качества (Раунд 3)
+
+- **Открытый набор №1 (`tests/audit/cases.tsv`, `fast`, реальные эмбеддинги):** **242 / 244 (99.2%)**, `p50 = 6 мс`, `p95 = 46 мс` (0 регрессий к Раунду 2):
+  - `главное`: **27 / 27**; `написание`: **28 / 28**; `эталон`: **20 / 20**;
+  - `наличие` 40/40, `нет` 15/15, `задача` 50/50, `вопрос` 15/16, `условия` 17/18, `сравнение` 7/7, `мусор` 10/10, `железо` 13/13.
+- **Открытый набор №2 (`tests/audit/cases2.tsv`, `fast`, реальные эмбеддинги):** **141 / 186 (75.8%)**, `p50 = 8 мс` (+1 к Раунду 2):
+  - `опечатка2`: **23 / 24**; `бренд2`: **32 / 36**; `масштаб`: **8 / 8**.
+- **`pytest tests/test_n3_*.py`:** **99 passed, 0 failed** (включая 6 новых тестов в `tests/test_n3_round3.py` на `8db9866` и все 5 пунктов).
+- **`kb-check`:** **0 ошибок**.
+
+## 3. Изменённые и добавленные файлы (Раунд 3)
+
+- `kb/feed_flagships.yaml` — добавлен `pro32` и секционные правила `section_antivirus_org` / `section_antivirus_home`.
+- `kuznitsa/index/feed_flagships.py` — сохранена ветка `if section:` из `8db9866` в `apply_audience_order`; добавлены `_apply_section_rules`, `section_demoted`, `prioritize_named`, `filter_recognized_line`.
+- `kuznitsa/index/feed.py` — `starts_product` выше `f_rank` и расширение `exact` в `products()`.
+- `kuznitsa/index/feed_repair.py` — добавлен `vendor_model_lookup` (DL 1–2 внутри вендора) и защищённый многословный второй проход `allow_two_short=True` в `confirmed()`.
+- `kuznitsa/plans/feed.py` — подключение `filter_recognized_line`, `prioritize_named`, `section_demoted`, чистый хвост `fill()` по `core_product` и сдвиг `start = 3` для category-допродажи в `recommend()`.
+- `tests/test_n3_round3.py` — 6 сквозных и модульных тестов на сохранение `8db9866` и все 5 пунктов Раунда 3.

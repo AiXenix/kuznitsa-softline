@@ -50,26 +50,40 @@ def fill(engine,items,profile,reserved=(),q="",blocks=None):
     if items:
         anchor=engine.catalog.cards[items[0]["card_id"]]
         o=anchor.offers[0]
+        from kuznitsa.index.feed_flagships import EDITION_QUALIFIERS
         members=index.groups.get(index.card_sections[anchor.id],())
-        query_terms={w for w in words(anchor.title) if not w.isdecimal()}
+        flagships=index.flagships
+        anchor_core=flagships.core_product.get(anchor.id,words(anchor.title))
+        line_terms={w for w in anchor_core if not w.isdecimal() and len(w)>=3 and w not in EDITION_QUALIFIERS}
         neighbors=index.tree.neighbors(anchor.id,members)
+        # 1. Та же линейка того же вендора (включая соседние разделы САПР/документов), без деприоритизированных и дополнений.
+        vendors=engine.catalog.by["vendor"].get(anchor.vendor,())
+        if line_terms:
+            same_line=[cid for cid in vendors if cid!=anchor.id
+                       and index.cat.cards[cid].offers[0].domain==o.domain
+                       and cid not in flagships.demoted
+                       and not flagships.is_addon(cid,line_terms)
+                       and (line_terms & set(words(index.cat.cards[cid].title)))]
+            same_line.sort(key=lambda cid:(index.card_sections.get(cid)==index.card_sections.get(anchor.id),
+                                           len(line_terms & set(words(index.cat.cards[cid].title))),
+                                           flagships.rank.get(cid,0)>0,index.quality[cid],cid),reverse=True)
+            pool.extend(same_line)
+        # 2. Тот же раздел: качественные не-деприоритизированные карточки (без вытаскивания случайных продуктов вендора).
         def related(cid):
             card=index.cat.cards[cid]
-            overlap=len(query_terms & set(words(card.title)))
-            return (card.vendor==anchor.vendor,overlap,card.category==anchor.category,neighbors.get(cid,0.),index.quality[cid],cid)
+            overlap=len(line_terms & set(words(card.title))) if line_terms else 0
+            clean=cid not in flagships.demoted and not flagships.is_addon(cid,line_terms)
+            return (clean,overlap>0,overlap,flagships.rank.get(cid,0)>0,index.quality[cid],neighbors.get(cid,0.),cid)
         ordered=sorted(members,key=related,reverse=True)
-        # Внутри класса сначала показываем соседние линейки того же вендора,
-        # затем по одному ближайшему представителю остальных.
         others={}
         for cid in ordered:
             other=index.cat.cards[cid].vendor
-            if other==anchor.vendor:pool.append(cid)
-            else:others.setdefault(other,cid)
+            if other==anchor.vendor and cid not in flagships.demoted and (line_terms & set(words(index.cat.cards[cid].title))):
+                pool.append(cid)
+            else:
+                others.setdefault(other,cid)
         pool.extend(others.values())
         pool.extend(ordered)
-        vendors=engine.catalog.by["vendor"].get(anchor.vendor,())
-        pool.extend(sorted((cid for cid in vendors if index.cat.cards[cid].offers[0].domain==o.domain
-                            and query_terms.intersection(words(index.cat.cards[cid].title))),key=related,reverse=True))
     eligible=[cid for cid in dict.fromkeys(pool) if cid not in seen and cid not in reserved]
     sections=[]
     if len(eligible)<4-len(seen):
@@ -167,6 +181,8 @@ def recommend(engine,q,items,profile,intent,blocked=(),role=None,complete=None,p
     max_share=float(policy.get("max_share",0.375))
     min_first_pos=int(policy.get("min_first_position",3))
     start=max(1,min_first_pos-1)
+    # В выдаче класса первые три места остаются за товарами по запросу.
+    if intent=="category" and len(items)>=4:start=max(start,3)
     max_by_share=int(len(items)*max_share)
     if max_by_share==0 and len(items)>=start+1 and max_per_page>0 and max_share>0:
         max_by_share=1
@@ -677,6 +693,7 @@ def search(engine,req,profile,trace,priorities,record):
         ids=feed_guard.prefer_requested_version(index,q,ids)
         ids=feed_guard.prefer_suite_for_office_year(index,q,ids)
         ids=feed_guard.prefer_software_over_courses(index,q,ids)
+        ids=index.flagships.filter_recognized_line(ids,q)
     role_reasons={}
     vendor_gap=False
     if supplier and ids and not section:
@@ -698,7 +715,8 @@ def search(engine,req,profile,trace,priorities,record):
     elif section:
         members=index.groups[section]
         if qty and not vendor:
-            members=sorted(members,key=index.browse_quality.get,reverse=True)
+            sec_dem=index.flagships.section_demoted(section)
+            members=sorted(members,key=lambda cid:(cid not in sec_dem,index.browse_quality[cid]),reverse=True)
         if server_section:
             members=sorted(members,key=lambda cid:index.server_offers.get(cid,(0,None))[0],reverse=True)
             for cid in members:
@@ -820,7 +838,8 @@ def search(engine,req,profile,trace,priorities,record):
                     note="Тираж учтён при подборе лицензий. Варианты без подтверждения количества отмечены отдельно."
                 ordered.extend(others)
                 if not vendor:
-                    ordered.sort(key=lambda cid:(index.browse_quality[cid][0],cid in selections),reverse=True)
+                    sec_dem=index.flagships.section_demoted(section)
+                    ordered.sort(key=lambda cid:(cid not in sec_dem,index.browse_quality[cid][0],cid in selections),reverse=True)
             ids=ordered
             if renewal:intent="renewal"
         elif budget is not None:
@@ -839,6 +858,7 @@ def search(engine,req,profile,trace,priorities,record):
             missing=True
             intent="out_of_catalog"
     if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
+    if ids and not section:ids=index.flagships.prioritize_named(ids,q)
     if ids and feed_conditions.is_mixed_home_business(norm):
         ids,section,note=feed_conditions.apply_mixed_audience(engine,index,norm,ids,section,preferred,selections,note)
     ids,facet_base,section,note,relax_hints,budget_relaxed=feed_request.apply(

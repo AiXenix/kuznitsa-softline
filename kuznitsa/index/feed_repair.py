@@ -7,6 +7,7 @@ import unicodedata
 from kuznitsa.text import lemma, morphology, normalize, tokens
 from kuznitsa.understand.repair import LAYOUT, repair, typo_matcher
 from kuznitsa.understand.spell_index import roman
+from rapidfuzz.distance import DamerauLevenshtein
 from rapidfuzz.fuzz import ratio
 
 
@@ -158,6 +159,7 @@ class FeedRecovery:
                     for form in roman_keys(w):
                         self.russian_terms[form] = w
                 self.descriptions.append((len(terms), ids))
+        self._card_offer_words = {}
         self.confirmed = lru_cache(512)(self.confirmed)
         self.full_name = lru_cache(512)(self.full_name)
         self.identity_cards = lru_cache(512)(self.identity_cards)
@@ -305,7 +307,7 @@ class FeedRecovery:
             if mapped != word:
                 variants.update(index.sounds.lookup(mapped))
             if len(word) >= 5 and word not in index.postings and not self.is_protected(word):
-                variants.update(w for w, _, _ in self.spell(word, 6, 2) if ratio(word, w) >= 84)
+                variants.update(w for w, _, _ in self.spell(word, 8, 2) if ratio(word, w) >= 75)
             for form in variants:
                 result.update(index.postings.get(form, ()))
                 if form in index.aliases:
@@ -336,33 +338,193 @@ class FeedRecovery:
                     return order, self.index.cat.cards[order[0]].title, kind
         return (), raw, None
 
-    def _safe_spell(self, term):
+    def _safe_spell(self, term, *, allow_two_short=False):
         """Безопасная правка опечаток: не ломает защищённые слова и короткие бренды («steam» ↛ «team»)."""
         if self.is_protected(term):
             return ()
         index = self.index
         if len(term) <= 5:
+            max_d = 2 if (allow_two_short and len(term) == 5) else 1
             candidates = []
-            for w, _, _ in self.spell(term, 6, 1):
+            for w, d, _ in self.spell(term, 8, max_d):
                 if len(w) < 4:
                     continue
-                # На коротких словах требуем совпадения первой буквы (или перестановки первых двух)
-                # и достаточную частотность в каталоге.
                 same_head = (term[0] == w[0]) or (len(term) >= 2 and len(w) >= 2 and term[:2] == w[:2][::-1])
-                if same_head and len(index.postings.get(w, ())) >= 5:
+                if not same_head:
+                    continue
+                if d == 2 and DamerauLevenshtein.distance(term, w) > 2:
+                    continue
+                if len(index.postings.get(w, ())) >= (3 if allow_two_short else 5):
                     candidates.append(w)
             return tuple(candidates)
-        distance = 1 if len(term) < 8 else 2
-        return tuple(w for w, _, _ in self.spell(term, 6, distance))
+        if len(term) < 8:
+            max_d = 2 if allow_two_short else 1
+            candidates = []
+            for w, d, _ in self.spell(term, 8, max_d):
+                if d >= 2:
+                    same_head = (term[0] == w[0]) or (term[:2] == w[:2][::-1])
+                    if not same_head or DamerauLevenshtein.distance(term, w) > 2:
+                        continue
+                candidates.append(w)
+            return tuple(candidates)
+        return tuple(w for w, _, _ in self.spell(term, 8, 2))
 
-    def confirmed(self, phrase):
+    def _offer_words(self, cid):
+        cached = self._card_offer_words.get(cid)
+        if cached is not None:
+            return cached
+        card = self.index.cat.cards[cid]
+        bag = set(self.index.terms.get(cid, ()))
+        for o in card.offers[:60]:
+            for w in re.findall(r"[а-яa-z0-9]+", normalize(o.name)):
+                bag.add(w)
+                bag.add(lemma(w))
+        frozen = frozenset(bag)
+        self._card_offer_words[cid] = frozen
+        return frozen
+
+    @staticmethod
+    def _dl_match(w, vocab_words):
+        """Нечёткое сопоставление слова модели со словарём карточки (DL-расстояние 1–2, перестановка соседних букв)."""
+        n = len(w)
+        if n < 3:
+            return None, 99
+        max_d = 1 if n <= 5 else 2
+        best_w, best_d = None, 99
+        for cw in vocab_words:
+            if len(cw) < 3 or abs(len(cw) - n) > max_d:
+                continue
+            d = DamerauLevenshtein.distance(w, cw)
+            if d > max_d:
+                continue
+            if n <= 3:
+                # Для 3-буквенных слов (ncf ↔ nfc) допускаем только перестановку тех же букв (DL=1).
+                if d != 1 or sorted(w) != sorted(cw):
+                    continue
+            elif n <= 4:
+                if d != 1 or (w[0] != cw[0] and sorted(w) != sorted(cw)):
+                    continue
+            elif n == 5:
+                if d != 1:
+                    continue
+            else:
+                if d == 2 and ratio(w, cw) < 72:
+                    continue
+            if d < best_d or (d == best_d and best_w is not None and len(cw) > len(best_w)):
+                best_w, best_d = cw, d
+        return best_w, best_d
+
+    def vendor_model_lookup(self, base):
+        """Внутри распознанного вендора/бренда нечётко сопоставляет слова модели (jacarta pki ncf, рутокен lite mirco, kaspersky endpoint secruity cloud)."""
+        from .feed import STOP, words as feed_words
         index = self.index
-        raw_terms = tokens(normalize(phrase))
-        from .feed import STOP
-        terms = [lemma(w) for w in raw_terms if w not in STOP]
-        raw_filtered = [w for w in raw_terms if w not in STOP]
-        if not terms:
-            return (), phrase
+        raw_terms = [w for w in re.findall(r"[а-яa-z0-9]+", normalize(base)) if w not in STOP]
+        if len(raw_terms) < 2 or len(raw_terms) > 8:
+            return (), base, None
+        # Не перехватываем явно отсутствующие бренды из аналогов.
+        analogs = getattr(index, "analogs", None)
+        if analogs:
+            row = analogs.lookup(base, fuzzy=False)
+            if row and not row.get("in_catalog"):
+                return (), base, None
+
+        # Определяем пул карточек распознанного вендора/бренда по префиксу (1–2 слова).
+        pool = None
+        prefix_len = 0
+        for plen in (2, 1):
+            if plen >= len(raw_terms):
+                continue
+            pref = " ".join(raw_terms[:plen])
+            pref_corr = index.correct(pref)
+            vid = index.vendor_names.get(pref) or index.vendor_names.get(pref_corr)
+            if vid:
+                cand = index.language.vendor_cards.get(vid) or index.tags["vendors"].get(vid)
+                if cand:
+                    pool = cand
+                    prefix_len = plen
+                    break
+            for key in (pref, pref_corr):
+                if key in index.slang and index.slang[key][0] in {"vendors", "families"}:
+                    pool = index.slang[key][1]
+                    prefix_len = plen
+                    break
+            if pool:
+                break
+            direct = index.products(pref_corr, fuzzy=False)
+            if direct and len(direct) <= 200:
+                pool = direct
+                prefix_len = plen
+                break
+        if not pool or prefix_len == 0:
+            return (), base, None
+
+        rem = raw_terms[prefix_len:]
+        if not rem:
+            return (), base, None
+        # Не запускаем, если оставшееся слово — защищённый внешний бренд вне каталога (напр. «microsoft teams»).
+        if any(w in self.absent_words for w in rem):
+            return (), base, None
+
+        scored = []
+        best_fixed_map = {}
+        for cid in pool:
+            card = index.cat.cards[cid]
+            title_w = frozenset(feed_words(card.title)) | frozenset(re.findall(r"[а-яa-z0-9]+", normalize(card.title)))
+            offer_w = self._offer_words(cid)
+            exact_title = 0
+            fuzzy_title = 0
+            exact_offer = 0
+            fuzzy_offer = 0
+            total_dist = 0
+            matched_all = True
+            fixed_tokens = {}
+            for w in rem:
+                lw = lemma(w)
+                if w in title_w or lw in title_w:
+                    exact_title += 1
+                    fixed_tokens[w] = w
+                elif w in offer_w or lw in offer_w:
+                    exact_offer += 1
+                    fixed_tokens[w] = w
+                elif not self.is_hard_protected(w) and len(w) >= 3:
+                    cw, d = self._dl_match(w, title_w)
+                    if cw is not None:
+                        fuzzy_title += 1
+                        total_dist += d
+                        fixed_tokens[w] = cw
+                    else:
+                        cw, d = self._dl_match(w, offer_w)
+                        if cw is not None:
+                            fuzzy_offer += 1
+                            total_dist += d
+                            fixed_tokens[w] = cw
+                        else:
+                            matched_all = False
+                            break
+                else:
+                    matched_all = False
+                    break
+            if not matched_all or (fuzzy_title + fuzzy_offer) == 0:
+                continue
+            scored.append((
+                exact_title + fuzzy_title,
+                exact_title,
+                exact_offer,
+                -total_dist,
+                index.quality[cid],
+                cid,
+                fixed_tokens,
+            ))
+        if not scored:
+            return (), base, None
+        scored.sort(key=lambda item: item[:6], reverse=True)
+        ordered = tuple(item[5] for item in scored)
+        best_fixed_map = scored[0][6]
+        fixed_q = " ".join([*raw_terms[:prefix_len], *(best_fixed_map.get(w, w) for w in rem)])
+        return ordered, fixed_q, "typo"
+
+    def _confirmed_pass(self, raw_filtered, terms, *, allow_two_short=False):
+        index = self.index
         pools = []
         for raw_w, term in zip(raw_filtered, terms):
             variants = {term}
@@ -370,14 +532,14 @@ class FeedRecovery:
                 variants.add(EDITIONS[term])
             if not any(v in index.postings for v in variants) and len(term) >= 4 and term.isalpha():
                 if not self.is_protected(raw_w) and not self.is_protected(term):
-                    variants.update(self._safe_spell(term))
+                    variants.update(self._safe_spell(term, allow_two_short=allow_two_short))
             pool = set().union(*(index.postings.get(v, ()) for v in variants))
             if not pool:
-                return (), phrase
+                return (), None
             pools.append((variants, pool))
         hits = set.intersection(*(p for _, p in pools))
         if not hits:
-            return (), phrase
+            return (), None
 
         def rank(cid):
             title = tokens(index.cat.cards[cid].title)
@@ -392,6 +554,24 @@ class FeedRecovery:
                             for term, (variants, _) in zip(terms, pools))
         return ordered, spelling
 
+    def confirmed(self, phrase):
+        raw_terms = tokens(normalize(phrase))
+        from .feed import STOP
+        terms = [lemma(w) for w in raw_terms if w not in STOP]
+        raw_filtered = [w for w in raw_terms if w not in STOP]
+        if not terms:
+            return (), phrase
+        ordered, spelling = self._confirmed_pass(raw_filtered, terms, allow_two_short=False)
+        if ordered:
+            return ordered, spelling
+        # Для многословных запросов (бренд + редакция / два слова с опечатками) допускаем 2 ошибки в слове ≥ 5 букв
+        # при обязательном пересечении всех слов на реальной карточке каталога.
+        if len(terms) >= 2:
+            ordered, spelling = self._confirmed_pass(raw_filtered, terms, allow_two_short=True)
+            if ordered:
+                return ordered, spelling
+        return (), phrase
+
     def lookup(self, engine, base):
         index = self.index
         if len(base) > 150 or len(base.split()) > 10:
@@ -402,6 +582,11 @@ class FeedRecovery:
         base_tokens = tokens(base)
         if len(base_tokens) == 1 and self.is_protected(base_tokens[0]):
             return (), base, None
+        # Внутри распознанной линейки вендора сначала нечётко сопоставляем оставшиеся слова модели
+        # (чтобы «рутокен lite mirco» не уходил в «miro», а «jacarta pki ncf» находил PKI/NFC).
+        vm_ids, vm_q, vm_kind = self.vendor_model_lookup(base)
+        if vm_ids:
+            return vm_ids, vm_q, vm_kind
         forms = [(base, "typo"), (base.translate(LAYOUT), "layout")]
         if any(ch.isalpha() for ch in base):
             fixed, changes = repair(base, engine.lex)

@@ -339,7 +339,8 @@ class FeedIndex:
             core_gen=flagships.core_generic.get(i,name) if flagships else name
             core_prod=flagships.core_product.get(i,name) if flagships else name
             f_rank=flagships.rank.get(i,0) if flagships else 0
-            exact=(terms_tuple==name or terms_tuple==core_gen or (terms_tuple==core_prod and f_rank>0))
+            exact=(terms_tuple==name or terms_tuple==core_gen or (terms_tuple==core_prod and f_rank>0)
+                   or (len(core_gen)>=2 and frozenset(core_gen)==qset))
             is_addon=flagships.is_addon(i,qset) if flagships else False
             is_demoted=flagships.is_demoted(i,qset) if flagships else False
             aux_hit=(i in flagships.aux_title) if flagships else bool(_AUX_TITLE_RE.search(c.title))
@@ -354,11 +355,12 @@ class FeedIndex:
             )
             starts_line=(core_gen[:n_terms]==terms_tuple or core_prod[:n_terms]==terms_tuple
                          or name[:n_terms]==terms_tuple)
+            starts_product=(not vendor_query and (core_prod[:n_terms]==terms_tuple or core_gen[:n_terms]==terms_tuple))
             consumer=int(("family" in name or "семья" in name)
                          and (segment=="individual" or bool(named_audience & {"семья","дом","home"})))
             starts=prefix and any(t.startswith(terms[-1]) for t in name[:2])
             fitting_release=prefer_edition and bool(edition_terms.intersection(name))
-            return (primary,exact,starts,vendor_query or all(w in name for w in terms),f_rank>0,f_rank,-first,
+            return (primary,exact,starts,vendor_query or all(w in name for w in terms),starts_product,f_rank>0,f_rank,-first,
                     fitting_release,self.quality[i][0],starts_line,version,consumer,*self.quality[i][1:],i)
         return tuple(sorted(ids,key=score,reverse=True))
 

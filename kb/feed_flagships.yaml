@@ -116,6 +116,17 @@
   demote:
     - "Base Price"
 
+- id: pro32
+  vendors:
+    - "PRO32"
+  lines:
+    - "PRO32 Endpoint Security Advanced"
+    - "PRO32 Endpoint Security Standard"
+    - "PRO32 Office Security Base"
+    - "PRO32 Total Security"
+    - "PRO32 Ultimate Security"
+    - "PRO32 Mobile Security"
+
 - id: adobe
   vendors:
     - "Adobe Systems"
@@ -392,7 +403,7 @@
   lines:
     - "1С-Битрикс24"
     - "Облачный сервис Битрикс24"
-    - "1С-Битрикc: Управление сайтом"
+    - "1С-Битрикс: Управление сайтом"
     - "1С-Битрикс: Enterprise"
   demote:
     - "1С-Битрикс24.Маркет"
@@ -565,3 +576,27 @@
     - "AMS Software"
   lines:
     - "ФЕНИКС"
+
+# Приоритеты и деприоритизация внутри разделов каталога (N3 R3).
+- id: section_antivirus_org
+  section: "Антивирусы для организаций"
+  top_vendors:
+    - "kaspersky"
+    - "drweb"
+    - "pro32"
+  demote_in_section:
+    - "ngfw"
+    - "межсетевой экран"
+    - "maxpatrol"
+    - "xdr"
+    - "siem"
+
+- id: section_antivirus_home
+  section: "Антивирусы для дома"
+  top_vendors:
+    - "kaspersky"
+    - "drweb"
+    - "pro32"
+  demote_in_section:
+    - "ngfw"
+    - "межсетевой экран"
