@@ -1,0 +1,5 @@
+build/dist/
+build/shots*/
+build/pages/
+build/serve.*
+build/acts*.json

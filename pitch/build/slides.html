@@ -1,0 +1,293 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 34 22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h29M22 3l9 8-9 8"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"/></symbol>
+  <symbol id="i-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+</svg>
+
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide s-title" id="s-title" data-title="Титул" data-time="15">
+  <div class="tl">
+    <div class="kicker a">Хакатон «ИИкузница» · умный поиск на сайте</div>
+    <h1 class="a" style="--i:1">Поиск, который<br><em>понимает</em> покупателя<br>— и <em>допродаёт</em></h1>
+    <p class="lead a" style="--i:2">Для интернет-магазина store.softline.ru: смысл запроса, жаргон, опечатки и&nbsp;сопутствующие товары&nbsp;— за&nbsp;миллисекунды.</p>
+  </div>
+  <div class="facts a" style="--i:3">
+    <div><b>136 040</b>предложений в каталоге</div>
+    <div><b>11 713</b>карточек товаров</div>
+    <div><b>≈ 15 мс</b>медиана быстрого режима</div>
+  </div>
+  <div class="keys-hint"><kbd>→</kbd> дальше <kbd>F</kbd> на весь экран <kbd>P</kbd> суфлёр <kbd>H</kbd> все клавиши</div>
+  <div class="side">
+    <div class="hero-cap">Покупатель пишет как привык</div>
+    <div class="hero">
+      <div class="sbar"><span class="q"><span data-el="hq"></span><i class="caret"></i></span><span class="btn">Найти</span></div>
+      <div class="hero-und" data-el="hund"></div>
+      <div class="rows" data-el="hrows"></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Добрый день! Мы — команда AiXenix. Наша задача — умный поиск для интернет-магазина Softline. За пять минут покажу поиск, который понимает покупателя и сам предлагает, что купить вместе. Он уже работает на настоящем каталоге: сто тридцать шесть тысяч предложений.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section class="slide s-problem" id="s-problem" data-title="Проблема" data-time="30">
+  <div class="kicker">Проблема</div>
+  <h1>Покупатель пишет по-своему.<br><em>Поиск по словам его не понимает</em></h1>
+  <div class="pb-grid">
+    <div class="pb" data-step="1">
+      <div class="cap">Покупатель ищет</div>
+      <div class="qs"><span class="qpill"><svg><use href="#i-search"/></svg>сервер</span></div>
+      <div class="arrow"><svg><use href="#i-down"/></svg></div>
+      <div class="cap">Поиск по словам нашёл</div>
+      <div class="found" data-first="сервер|naive"></div>
+      <div class="verdict"><span class="xmark"><svg><use href="#i-x"/></svg></span>ПО для Java вместо серверов: слово нашлось в описании</div>
+    </div>
+    <div class="pb" data-step="2">
+      <div class="cap">Покупатель ищет</div>
+      <div class="qs"><span class="qpill"><svg><use href="#i-search"/></svg>офис</span></div>
+      <div class="arrow"><svg><use href="#i-down"/></svg></div>
+      <div class="cap">Поиск по словам нашёл</div>
+      <div class="found" data-first="офис|naive"></div>
+      <div class="verdict"><span class="xmark"><svg><use href="#i-x"/></svg></span>Офисные кресла вместо Microsoft Office</div>
+    </div>
+    <div class="pb" data-step="3">
+      <div class="cap">Покупатель ищет</div>
+      <div class="qs sm"><span class="qpill"><svg><use href="#i-search"/></svg>винда</span><span class="qpill"><svg><use href="#i-search"/></svg>мдаемон</span><span class="qpill"><svg><use href="#i-search"/></svg>антивирь</span></div>
+      <div class="arrow"><svg><use href="#i-down"/></svg></div>
+      <div class="cap">Поиск по словам нашёл</div>
+      <div class="zero"><b>0</b><span>совпадений</span></div>
+      <div class="verdict"><span class="xmark"><svg><use href="#i-x"/></svg></span>Жаргон, транслит, опечатка — пустая выдача</div>
+    </div>
+  </div>
+  <div class="quote" data-step="4">
+    <p>«Часто клиенты не могут найти в интернет-магазине позицию… тем самым мы теряем клиентов»<small>из постановки задачи</small></p>
+    <div class="big"><b>≈ 500</b>поисков в день</div>
+  </div>
+  <div class="fnote">Поиск по словам — контрольный поиск на том же каталоге: совпадение слов запроса с названием и описанием товара.</div>
+  <aside class="notes">
+    <p data-at="0">Покупатель не пишет так, как товар назван в каталоге. А обычный поиск просто сравнивает слова.</p>
+    <p data-at="1">Пишем «сервер» — получаем программу для Java: слово «сервер» нашлось в её описании.</p>
+    <p data-at="2">Пишем «офис» — получаем офисные кресла.</p>
+    <p data-at="3">А «винда», «мдаемон», «антивирь» — вообще ноль результатов.</p>
+    <p data-at="4">Каждый такой ответ — потерянный клиент. При пятистах поисках в день это заметные деньги.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section class="slide s-live" id="s-live" data-title="Живое сравнение" data-time="60" data-steps="3">
+  <div class="lv-top"><div class="kicker">Живой стенд · один каталог — два поиска</div><div class="status" data-el="status"><i></i><span>снимок ответов стенда</span></div></div>
+  <div class="lv-bar" data-nonav>
+    <form class="sbar"><span class="ico"><svg><use href="#i-search"/></svg></span><input type="text" autocomplete="off" spellcheck="false" placeholder="Введите запрос"><button class="btn" type="submit">Найти</button></form>
+    <div class="tip">Можно ввести любой запрос жюри:<br>Enter — искать, Esc — вернуться к показу</div>
+    <button class="back" type="button">← вернуться к обзору</button>
+  </div>
+  <div class="chips" data-nonav></div>
+  <div class="cols">
+    <div class="col"><div class="col-h">Обычный поиск по словам<span data-el="nmeta"></span></div><div class="und" data-el="nund"></div><div class="rows" data-el="nrows"></div></div>
+    <div class="col ours"><div class="col-h">Кузница Softline<span data-el="smeta"></span></div><div class="und" data-el="sund"></div><div class="rows" data-el="srows"></div></div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Это не картинки, а живой стенд. Слева обычный поиск по словам, справа наш, каталог один и тот же. «Сервер»: слева программы для Java, справа — стоечные серверы и уточнение «Искали ПО для сервера?».</p>
+    <p data-at="1">«Офис»: слева кресла, справа — Microsoft Office.</p>
+    <p data-at="2">«Мдаемон» русскими буквами: слева пусто, справа — MDaemon. Опечатки и транслит исправляются сами.</p>
+    <p data-at="3">И классика: забыли переключить раскладку. Набор букв превратился в Kaspersky, ответ — за десятки миллисекунд. Назовите любой запрос — введу прямо сейчас.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section class="slide s-under" id="s-under" data-title="Что понимает поиск" data-time="35">
+  <div class="kicker">Что понимает поиск</div>
+  <h1>Понимает запрос так, <em>как его пишут люди</em></h1>
+  <div class="un-grid">
+    <div class="un" data-step="1" data-q="сервер"><svg class="go"><use href="#i-go"/></svg><div class="tag">Смысл</div><h3>Железо или программа</h3>
+      <div class="ex"><q>сервер</q><p>Rack-серверы</p></div><div class="ex"><q>по для сервера</q><p>Альт Сервер, серверное ПО</p></div></div>
+    <div class="un" data-step="1" data-q="винда хоум"><svg class="go"><use href="#i-go"/></svg><div class="tag">Жаргон</div><h3>Говорит на языке клиента</h3>
+      <div class="ex"><q>винда хоум</q><p>Microsoft Windows 11 Home</p></div><div class="ex"><q>антивирь</q><p>Антивирусы для организаций</p></div></div>
+    <div class="un" data-step="1" data-q="астра линкус"><svg class="go"><use href="#i-go"/></svg><div class="tag">Опечатки и транслит</div><h3>Исправляет сам</h3>
+      <div class="ex"><q>астра линкус</q><p>Astra Linux Special Edition</p></div><div class="ex"><q>мдаемон</q><p>MDaemon</p></div></div>
+    <div class="un" data-step="1" data-q="rfcgthcrbq"><svg class="go"><use href="#i-go"/></svg><div class="tag">Раскладка</div><h3>Забыли переключить язык</h3>
+      <div class="ex"><q>rfcgthcrbq</q><p>Kaspersky</p></div><div class="ex"><q>3д макс</q><p>Autodesk 3ds Max</p></div></div>
+    <div class="un" data-step="2" data-q="KW9-00664"><svg class="go"><use href="#i-go"/></svg><div class="tag">Артикул</div><h3>Код производителя</h3>
+      <div class="ex"><q>KW9-00664</q><p>Microsoft Windows 11 Home — точное попадание</p></div></div>
+    <div class="un" data-step="2" data-q="антивирус на 20 компьютеров"><svg class="go"><use href="#i-go"/></svg><div class="tag">Количество</div><h3>Сразу считает сумму</h3>
+      <div class="ex"><q>антивирус на 20 компьютеров</q><p>20 × 3 004,02 ₽ = 60 080,40 ₽</p></div></div>
+    <div class="un" data-step="2" data-q="аналог автокад"><svg class="go"><use href="#i-go"/></svg><div class="tag">Продление и замена</div><h3>Понимает намерение</h3>
+      <div class="ex"><q>продление криптопро</q><p>Лицензии КриптоПро CSP</p></div><div class="ex"><q>аналог автокад</q><p>nanoCAD, КОМПАС-График</p></div></div>
+    <div class="un" data-step="2" data-q="чем открыть pdf"><svg class="go"><use href="#i-go"/></svg><div class="tag">Вопрос</div><h3>Задача своими словами</h3>
+      <div class="ex"><q>чем открыть pdf</q><p>Adobe Acrobat, Master PDF Editor</p></div><div class="ex"><q>чем заменить фотошоп</q><p>AliveColors, ФотоМАСТЕР</p></div></div>
+  </div>
+  <div class="un-tip">Плитку можно нажать — запрос уйдёт на живой стенд.</div>
+  <aside class="notes">
+    <p data-at="0">Что именно поиск понимает.</p>
+    <p data-at="1">Смысл: «сервер» — это железо, «ПО для сервера» — программы. Жаргон: «винда хоум» — это Windows 11 Home. Опечатки, транслит и неверную раскладку.</p>
+    <p data-at="2">Артикул производителя. Количество: «антивирус на 20 компьютеров» — сразу считает стоимость на двадцать мест. Продление лицензии и замену. И вопросы своими словами: «чем открыть PDF». Любую плитку можно нажать — запрос уйдёт на стенд.</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section class="slide s-upsell" id="s-upsell" data-title="Допродажа и аналоги" data-time="40">
+  <div class="kicker">Допродажа и аналоги</div>
+  <h1>Нашёл товар — предложил, <em>что купить вместе</em></h1>
+  <div class="up-wrap">
+    <div class="up-panel a">
+      <div class="up-q"><span class="qpill"><svg><use href="#i-search"/></svg>astra linux</span><span data-el="usrc"></span><span class="ms" data-el="ums"></span></div>
+      <div class="up-main rows" data-el="umain"></div>
+      <div class="up-sub">Часто покупают вместе<span>— у каждой рекомендации написано, почему она здесь</span></div>
+      <div class="up-list rows" data-el="ulist"></div>
+    </div>
+    <div class="up-side">
+      <div class="rule" data-step="1"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>Не засоряет выдачу:</b> в основном списке — не больше 3 мест из 8, «Часто покупают вместе» — отдельным блоком</div></div>
+      <div class="rule" data-step="1"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>Не лезет вперёд:</b> не раньше третьего места и не подряд</div></div>
+      <div class="rule" data-step="1"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>238 правил</b> «что ищут → что предложить → почему». Менеджер правит их в консоли сам</div></div>
+      <div class="nic" data-step="2">
+        <div class="hd2"><span class="qpill"><svg><use href="#i-search"/></svg>luminar</span><b>Нет в каталоге</b></div>
+        <div class="txt" data-el="ntxt"></div>
+        <div class="an" data-el="nan"></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Вторая половина задачи — допродажа. Ищем Astra Linux: на первом месте сам продукт, причём по акции. Ниже — «Часто покупают вместе»: антивирус для Linux, резервное копирование, средство защиты, офисный пакет. И у каждой рекомендации написано, почему она здесь.</p>
+    <p data-at="1">Допродажа не засоряет выдачу: в основном списке — не больше трёх мест из восьми, не раньше третьего места и не подряд, а «Часто покупают вместе» идёт отдельным блоком. Правил сейчас двести тридцать восемь, менеджер правит их сам, без программиста.</p>
+    <p data-at="2">А если товара нет в каталоге — например, Luminar, — поиск честно говорит «нет» и предлагает аналоги. Клиент не уходит с пустой страницы.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section class="slide s-suggest" id="s-suggest" data-title="Подсказки при вводе" data-time="20" data-steps="1">
+  <div class="kicker">Бонус · подсказки при вводе</div>
+  <h1>Подсказывает, <em>пока покупатель печатает</em></h1>
+  <div class="sg-wrap">
+    <div class="sg-box" data-nonav>
+      <form class="sbar"><span class="ico"><svg><use href="#i-search"/></svg></span><input type="text" autocomplete="off" spellcheck="false" placeholder="Начните печатать"><button class="btn" type="submit">Найти</button></form>
+      <div class="sg-drop" data-el="drop"></div>
+    </div>
+    <div class="sg-facts">
+      <div class="sg-ms a"><b data-el="sgms">3</b><span>мс — столько стенд<br>думал над этой подсказкой</span></div>
+      <div class="rule a" style="--i:1"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>Раскладку и опечатки</b> исправляет уже на вводе: «rfcg»&nbsp;→&nbsp;«касп»</div></div>
+      <div class="rule a" style="--i:2"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>Товары с ценой,</b> разделы и готовые запросы — в один клик</div></div>
+      <div class="rule a" style="--i:3"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>Допродажа</b> прямо в подсказке: «Возможно, вам понадобится»</div></div>
+      <div class="rule a" style="--i:4"><span class="n"><svg><use href="#i-ok"/></svg></span><div><b>91 из 91</b> проверки подсказок пройдено</div></div>
+      <div class="sg-try" data-nonav>Попробовать: </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Бонусная часть задачи — подсказки при вводе. Четыре буквы в неверной раскладке, и поиск уже понял, что это Касперский: товары с ценами, разделы, готовые запросы и снова допродажа.</p>
+    <p data-at="1">«Антив» — то же самое. Подсказка считается за несколько миллисекунд.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section class="slide s-how" id="s-how" data-title="Как устроено" data-time="40">
+  <div class="kicker">Как устроено</div>
+  <h1>Конвейер из простых шагов. <em>Нейросеть — только там, где она нужна</em></h1>
+  <div class="pipe">
+    <div class="flow"></div>
+    <div class="node a" style="--i:0"><div class="no">1</div><h3>Чистка</h3><p>Раскладка, опечатки, транслит</p><code>мдаемон → mdaemon</code></div>
+    <div class="node a" style="--i:1"><div class="no">2</div><h3>Словари</h3><p>Жаргон, синонимы, артикулы</p><code>винда → microsoft windows</code></div>
+    <div class="node a" style="--i:2"><div class="no">3</div><h3>Намерение</h3><p>Товар, раздел, замена, продление или вопрос</p><code>сервер → Rack-серверы</code></div>
+    <div class="node a" style="--i:3"><div class="no">4</div><h3>Поиск</h3><p>По словам, по буквенным фрагментам и по смыслу</p><code>11 713 карточек</code></div>
+    <div class="node a" style="--i:4"><div class="no">5</div><h3>Ответ</h3><p>Не меньше 4 товаров, допродажа, аналоги</p><code>+ «Часто покупают вместе»</code></div>
+  </div>
+  <div class="llm" data-step="1">
+    <div><div class="t">Только для сложных вопросов</div><h3>ИИ-категоризатор<br>на языковой модели</h3></div>
+    <div class="exm"><q>«как учить сотрудников удалённо»</q><br>правила: <s>удалённый доступ, AnyDesk</s><br>ИИ: <b>учебные курсы — Unicraft, IT-курсы для предприятий</b></div>
+    <div class="cost"><b>0,004 ₽</b>за вопрос · до 0,6 с<br>повтор — из кэша, бесплатно</div>
+  </div>
+  <div class="kpis" data-step="2">
+    <div class="kpi"><b>≈ 15 мс</b><span>медиана ответа<br>в быстром режиме</span></div>
+    <div class="kpi"><b>0 ₽</b><span>обычный запрос —<br>без нейросети</span></div>
+    <div class="kpi"><b>1 сервер</b><span>без видеокарты,<br>обычный процессор</span></div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Как это устроено. Запрос проходит конвейер: чистим — раскладка, опечатки, транслит; переводим жаргон по словарям; определяем намерение — товар, раздел, замена, продление; ищем сразу тремя способами — по словам, по буквенным фрагментам и по смыслу; собираем ответ и добавляем допродажу.</p>
+    <p data-at="1">Нейросеть подключается только для сложных вопросов. «Как учить сотрудников удалённо»: правила подумали бы про удалённый доступ, модель понимает, что это обучение персонала. Четыре тысячных рубля за вопрос, повтор — из кэша.</p>
+    <p data-at="2">Итог: в быстром режиме медиана ответа — пятнадцать миллисекунд, обычный запрос бесплатен, хватает одного сервера без видеокарты.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section class="slide s-quality" id="s-quality" data-title="Качество" data-time="30" data-steps="1">
+  <div class="kicker">Качество</div>
+  <h1>Качество <em>измеряем</em>, а не оцениваем на глаз</h1>
+  <div class="ql-wrap">
+    <div class="ql-nums">
+      <div class="qn a" style="--i:0"><b>10 / 10</b><span>примеров организаторов<small>astra linux, 365, кибер бэкап, мтс…</small></span></div>
+      <div class="qn a" style="--i:1"><b><i class="num" data-to="96.5" data-dec="1" style="font-style:normal">96,5</i> %</b><span>свой отложенный набор<small>400 запросов 15 типов · быстрый режим — 94,8 %</small></span></div>
+      <div class="qn a" style="--i:2"><b><i class="num" data-to="1137" style="font-style:normal">1 137</i></b><span>автотестов<small>защищают от поломок при доработках</small></span></div>
+      <div class="qn a" style="--i:3"><b><i class="num" data-to="97.5" data-dec="1" style="font-style:normal">97,5</i> %</b><span>ответов — 4 товара и больше<small>390 из 400 запросов набора</small></span></div>
+      <div class="ql-note" data-step="1"><b>Слабые места знаем:</b> задачи своими словами (20 из 27) и «класс + количество» (22 из 27). Это первая задача следующего захода.</div>
+    </div>
+    <div class="bars">
+      <h4>Верных ответов по типам запросов · быстрый режим, без нейросети</h4>
+      <div data-el="bars"></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Качество мы измеряем, а не оцениваем на глаз. Десять примеров организаторов — десять из десяти. Свой отложенный набор — четыреста запросов пятнадцати типов, которые разработка не видела: девяносто шесть с половиной процента. Тысяча сто тридцать семь автотестов.</p>
+    <p data-at="1">Честно о слабых местах: хуже всего — задачи, описанные своими словами, и запросы «класс плюс количество». Мы знаем, где ошибаемся и что чинить дальше.</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section class="slide s-analytics" id="s-analytics" data-title="Консоль аналитики" data-time="20">
+  <div class="kicker">Управление</div>
+  <h1>Поиском можно управлять: <em>консоль аналитики</em></h1>
+  <div class="an-wrap">
+    <div class="browser a"><div class="tb"><i></i><i></i><i></i><span>kuznitsa.45-141-37-218.sslip.io:8443/admin</span></div><img alt="" src="__ADM__"></div>
+    <div class="an-side">
+      <div class="mt a" style="--i:1"><div class="nm">Пустые выдачи</div><div class="vs"><s>28,6 %</s><svg><use href="#i-right"/></svg><b>0,5 %</b></div></div>
+      <div class="mt a" style="--i:2"><div class="nm">Нужный товар в первой пятёрке</div><div class="vs"><s>70,9 %</s><svg><use href="#i-right"/></svg><b>85 %</b></div></div>
+      <div class="mt a" style="--i:3"><div class="nm">Из поиска в заказ</div><div class="vs"><s>7,8 %</s><svg><use href="#i-right"/></svg><b>9,4 %</b></div></div>
+      <div class="an-fn a" style="--i:4">Расчёт на модельном журнале: 45 000 поисков, парный прогон обычного поиска и нашего. Журналов магазина у нас не было — на настоящих данных консоль посчитает то же самое.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Поиском можно управлять. В консоли видно, что ищут и не находят, и какие правила допродажи работают. На модельном журнале — настоящих журналов магазина у нас не было — пустых выдач стало меньше: с двадцати девяти процентов до половины процента. На реальных данных консоль посчитает то же самое.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section class="slide s-final" id="s-final" data-title="Итог" data-time="10">
+  <div class="fl">
+    <div class="kicker a">Итог</div>
+    <h1 class="a" style="--i:1">Понимает.<br>Допродаёт.<br><em>Отвечает за миллисекунды.</em></h1>
+    <div class="recap">
+      <div class="a" style="--i:2"><span class="tick"><svg><use href="#i-ok"/></svg></span><span><b>10 из 10</b> примеров организаторов, 96,5 % на своём наборе</span></div>
+      <div class="a" style="--i:3"><span class="tick"><svg><use href="#i-ok"/></svg></span><span><b>Допродажа и аналоги</b> — по правилам и с объяснением</span></div>
+      <div class="a" style="--i:4"><span class="tick"><svg><use href="#i-ok"/></svg></span><span><b>Работает уже сейчас</b> на настоящем каталоге магазина</span></div>
+    </div>
+  </div>
+  <div class="thanks a" style="--i:5">Спасибо! <span>Готов ответить на вопросы</span></div>
+  <div class="side">
+    <div class="qr a" style="--i:2"><b>Попробуйте сами</b>__QR__<span>kuznitsa.45-141-37-218.sslip.io:8443</span></div>
+    <p>Команда AiXenix · aixenix.com</p>
+  </div>
+  <aside class="notes">
+    <p data-at="0">Итого: поиск понимает покупателя, допродаёт и отвечает за миллисекунды. Стенд открыт — QR-код на экране, попробуйте свои запросы. Спасибо! Готов ответить на вопросы.</p>
+  </aside>
+</section>
+
+</div>
+
+<div id="hud-timer"></div>
+<div id="numbuf"></div>
+<div id="toast"></div>
+<div id="black"></div>
+<div id="help"><div class="box"><h2>Клавиши</h2><table>
+  <tr><td>→ · Пробел · PgDn · клик</td><td>следующий шаг</td></tr>
+  <tr><td>← · PgUp · Backspace</td><td>назад</td></tr>
+  <tr><td>F</td><td>на весь экран</td></tr>
+  <tr><td>P</td><td>окно суфлёра: текст выступления, таймер, отставание</td></tr>
+  <tr><td>T</td><td>таймер на слайде · R — сбросить таймер</td></tr>
+  <tr><td>B</td><td>тёмный экран</td></tr>
+  <tr><td>цифры + Enter</td><td>перейти к слайду по номеру</td></tr>
+  <tr><td>Esc</td><td>выйти из поля ввода · закрыть справку</td></tr>
+  <tr><td>H</td><td>эта справка</td></tr>
+</table></div></div>
