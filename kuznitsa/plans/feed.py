@@ -295,6 +295,7 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
 def search(engine,req,profile,trace,priorities,record):
     index=engine.catalog.feed
     norm=normalize(req.q)
+    if not req.verbatim:norm=index.recovery.clean_query(norm)
     if norm in {"про","pro"} and not req.verbatim and not req.category:
         question="У какого продукта нужна редакция Pro?"
         trace.add("intent","Уточнение продукта",question)
@@ -356,8 +357,9 @@ def search(engine,req,profile,trace,priorities,record):
         if missing_gen:
             return feed_guard.build_missing_generation_result(engine,req,profile,trace,priorities,record,norm,*missing_gen)
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
+    vq_vendor,vq_ids=index.language.vendor_question(index,base) if not (req.verbatim or req.category) else (None,())
     supplier=None
-    if not req.verbatim and not literal[0]:
+    if not req.verbatim and not literal[0] and not vq_ids:
         base,supplier=supplier_clause(index,purchase_subject(base))
     if (req.sort and req.sort not in ("price_asc","price_desc")) or req.weights or req.filters.keys()-{"price_max","price_min","origin","registry"} or req.exclude or set(req.ignore)-{"price_max","price_min","sort","exclude","origin","registry","platform","action"} or (feed_noise.FEED_COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
     absent_acronym=None
@@ -495,6 +497,10 @@ def search(engine,req,profile,trace,priorities,record):
     if edition:
         ids,q,note=edition.cards,edition.query,edition.note
         section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=vendor=None
+        bare=question=False
+    if vq_ids and not edition and not license_filter:
+        ids,vendor=vq_ids,vq_vendor
+        section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=None
         bare=question=False
     calls=[]
     model_section=None
@@ -661,6 +667,7 @@ def search(engine,req,profile,trace,priorities,record):
         selections=matching_variants(index,ids,profile,qty,renewal,conditions|constraints)
         if selections:ids=list(selections)
         else:note="Линейка найдена. Условия лицензирования для этого назначения нужно уточнить."
+    base_ids=ids
     if ids and (qty or renewal) and not selections:
         nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
         selections=matching_variants(index,ids,profile,qty,renewal,constraints,nodes=nodes)
@@ -702,6 +709,7 @@ def search(engine,req,profile,trace,priorities,record):
             note="Для выбранной линейки нет предложения с указанными условиями. Ниже близкие варианты."
             missing=True
             intent="out_of_catalog"
+    if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
     if ids and (cond.active or cond.price_min is not None or cond.price_max is not None):
         ids,section,note,_=feed_conditions.apply_conditions(
             engine,req,profile,cond,ids,section,preferred,selections,qty,renewal,note)

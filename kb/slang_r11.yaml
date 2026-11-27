@@ -1,0 +1,58 @@
+# Расширение словаря сокращений, сленга, транслита и переименованных продуктов (N3 / ход 11).
+# Не дублирует существующие термины из kb/slang.yaml, slang_r3.yaml, slang_audience_r3.yaml, slang_r9.yaml, slang_r10.yaml.
+# Цели maps_to используют {text: "..."} для прямой подстановки в реальные линейки фида store.softline.ru.
+
+# --- Microsoft: Windows, Windows Server, Office, 365, SQL, Exchange, Visual Studio ---
+- {term: "w10", type: abbr, maps_to: {text: "Windows 10"}, note: "Сокращение Windows 10"}
+- {term: "w11", type: abbr, maps_to: {text: "Windows 11"}, note: "Сокращение Windows 11"}
+- {term: "win 10", type: abbr, maps_to: {text: "Windows 10"}, note: "Windows 10 через пробел"}
+- {term: "win 11", type: abbr, maps_to: {text: "Windows 11"}, note: "Windows 11 через пробел"}
+- {term: "win srv", type: abbr, maps_to: {text: "Windows Server"}, note: "Сокращение Windows Server"}
+- {term: "вин серв", type: abbr, maps_to: {text: "Windows Server"}, note: "Сокращение Windows Server"}
+- {term: "o365", type: abbr, maps_to: {text: "Microsoft 365"}, note: "Office 365 / Microsoft 365 латиницей"}
+- {term: "m365", type: abbr, maps_to: {text: "Microsoft 365"}, note: "Microsoft 365 латиницей"}
+- {term: "office 365", type: obsolete, maps_to: {text: "Microsoft 365"}, note: "Переименовано в Microsoft 365"}
+- {term: "office365", type: obsolete, maps_to: {text: "Microsoft 365"}, note: "Office 365 слитно"}
+- {term: "ms office", type: abbr, maps_to: {text: "Microsoft Office"}, note: "MS Office"}
+- {term: "мс sql", type: abbr, maps_to: {text: "Microsoft SQL Server"}, note: "MS SQL Server смешанный"}
+- {term: "ms sql", type: abbr, maps_to: {text: "Microsoft SQL Server"}, note: "MS SQL Server"}
+- {term: "скуль", type: slang, maps_to: {text: "Microsoft SQL Server"}, note: "Жаргон: SQL Server"}
+- {term: "вижуал", type: slang, maps_to: {text: "Microsoft Visual Studio"}, note: "Разговорное: Visual Studio"}
+- {term: "вижуал студио", type: translit, maps_to: {text: "Microsoft Visual Studio"}, note: "Транслит: Visual Studio"}
+- {term: "ексчендж", type: typo, maps_to: {text: "Microsoft Exchange"}, note: "Опечатка: Exchange"}
+- {term: "эксчендж сервер", type: translit, maps_to: {text: "Microsoft Exchange Server"}, note: "Exchange Server"}
+
+# --- Adobe, Corel, Autodesk, RARSoft, Content AI (ранее ABBYY) ---
+- {term: "фш", type: abbr, maps_to: {text: "Adobe Photoshop"}, note: "Аббревиатура Photoshop"}
+- {term: "фотошоп сс", type: translit, maps_to: {text: "Adobe Photoshop"}, note: "Photoshop CC"}
+- {term: "люстра", type: slang, maps_to: {text: "Adobe Illustrator"}, note: "Жаргон дизайнеров: Illustrator"}
+- {term: "премьер", type: slang, maps_to: {text: "Adobe Premiere"}, note: "Разговорное: Premiere"}
+- {term: "корел драв", type: translit, maps_to: {text: "CorelDRAW"}, note: "Транслит: CorelDRAW"}
+- {term: "корелдрав", type: typo, maps_to: {text: "CorelDRAW"}, note: "CorelDRAW слитно кириллицей"}
+- {term: "акад", type: abbr, maps_to: {text: "Autodesk AutoCAD"}, note: "Сокращение AutoCAD"}
+- {term: "автодеск автокад", type: translit, maps_to: {text: "Autodesk AutoCAD"}, note: "Autodesk AutoCAD"}
+- {term: "finereader", type: obsolete, maps_to: {text: "ContentReader PDF"}, note: "ABBYY FineReader в РФ — ContentReader PDF"}
+- {term: "винрар 7", type: translit, maps_to: {text: "WinRAR 7"}, note: "WinRAR 7 кириллицей"}
+
+# --- Kaspersky, Dr.Web ---
+- {term: "кав", type: abbr, maps_to: {text: "Kaspersky"}, note: "KAV — антивирус Касперского"}
+- {term: "ксб", type: abbr, maps_to: {text: "Kaspersky Endpoint Security"}, note: "КСБ / KESB"}
+- {term: "drweb", type: typo, maps_to: {text: "Dr.Web"}, note: "Dr.Web без точки"}
+- {term: "доктор вебер", type: typo, maps_to: {text: "Dr.Web"}, note: "Опечатка: Доктор Веб"}
+
+# --- Российские вендоры, САПР, ИБ, ОС, офисы, ВКС ---
+- {term: "нанокад 26", type: translit, maps_to: {text: "Платформа nanoCAD 26"}, note: "nanoCAD 26"}
+- {term: "нанософт", type: translit, maps_to: {text: "nanoCAD"}, note: "Издатель Нанософт → nanoCAD"}
+- {term: "астра линукс сп", type: abbr, maps_to: {text: "Astra Linux Special Edition"}, note: "Astra Linux SE"}
+- {term: "роса ос", type: slang, maps_to: {text: "РОСА ХРОМ"}, note: "ОС РОСА"}
+- {term: "битрикс", type: slang, maps_to: {text: "1С-Битрикс24"}, note: "Разговорное: Битрикс24"}
+- {term: "битрикс24", type: slang, maps_to: {text: "1С-Битрикс24"}, note: "Битрикс24"}
+- {term: "1с битрикс", type: translit, maps_to: {text: "1С-Битрикс24"}, note: "1С-Битрикс"}
+- {term: "позитив", type: slang, maps_to: {text: "Positive Technologies"}, note: "Кратко: Positive Technologies"}
+- {term: "труконф", type: translit, maps_to: {text: "TrueConf"}, note: "Транслит: TrueConf"}
+- {term: "элма", type: translit, maps_to: {text: "ELMA365"}, note: "Транслит: ELMA"}
+- {term: "солар", type: translit, maps_to: {text: "Solar"}, note: "Транслит: Solar"}
+- {term: "инфовотч", type: translit, maps_to: {text: "InfoWatch"}, note: "Транслит: InfoWatch"}
+- {term: "серчинформ", type: typo, maps_to: {text: "СёрчИнформ"}, note: "СёрчИнформ без ё"}
+- {term: "яндекс 360", type: slang, maps_to: {text: "Яндекс 360 для бизнеса"}, note: "Яндекс 360"}
+- {term: "айдеко", type: translit, maps_to: {text: "Ideco"}, note: "Транслит: Ideco"}

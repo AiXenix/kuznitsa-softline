@@ -596,6 +596,8 @@ def extract(engine, norm, req):
                         or cand in index.vendor_names
                         or cand in index.hardware
                         or index.sound_products(cand)[0]
+                        # Предмет русскими словами («антивирус», «офисный пакет») — не неизвестный бренд.
+                        or not re.search(r"[a-z]", cand)
                     )
                     if known_cand:
                         platform = plat

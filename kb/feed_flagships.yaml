@@ -1,0 +1,538 @@
+# Флагманские продуктовые линейки и деприоритизация второстепенных позиций
+# для ведущих издателей каталога store.softline.ru (N3).
+# Все названия линеек сверены с реальными карточками (real-cards.tsv + feed_categories.json).
+# Порядок в `lines` определяет приоритет внутри бренда и раздела (выше = главнее).
+# Подстроки в `demote` понижают узконишевые, устаревшие, учебные и служебные позиции (CAL, курсы, коннекторы).
+
+- id: microsoft
+  vendors:
+    - "Программы и лицензии Microsoft Corporation"
+    - "Microsoft"
+  lines:
+    - "Microsoft Windows 11 Pro (Профессиональная)"
+    - "Microsoft Windows 11 Home (Домашняя)"
+    - "Microsoft Office 2024 для дома и бизнеса"
+    - "Microsoft Office 2024 для дома и учёбы"
+    - "Microsoft 365 корпоративный (Enterprise)"
+    - "Microsoft 365 бизнес стандарт"
+    - "Облачная платформа Microsoft 365 Business Basic"
+    - "Microsoft 365 Family (для семьи)"
+    - "Microsoft 365 Personal (Персональный)"
+    - "Microsoft 365 F3"
+    - "Microsoft Office Professional Plus 2021"
+    - "Microsoft Office Standard 2021"
+    - "Microsoft Office Standard for Mac 2021"
+    - "Microsoft Office Standard 2019"
+    - "Microsoft Office Professional Plus (Open Value)"
+    - "Операционная система Microsoft Windows Server Standard"
+    - "Microsoft Windows Server Datacenter 2022"
+    - "Microsoft Windows Server Essentials 2022"
+    - "Операционная система Microsoft Windows Server Essentials 2019"
+    - "Microsoft SQL Server Standard Edition"
+    - "Microsoft SQL Server Enterprise Edition"
+    - "Microsoft SQL Server"
+    - "Microsoft SQL Server Standard Edition (Open Value)"
+    - "Microsoft Exchange Server 2019"
+    - "Microsoft Exchange Server Standard 2019"
+    - "Microsoft Exchange Server Enterprise 2019"
+    - "Microsoft Visual Studio"
+    - "Microsoft Visual Studio Professional"
+    - "Visual Studio Enterprise"
+    - "Microsoft Windows 10 Pro (GGWA)"
+    - "Microsoft Windows 10 Enterprise"
+    - "Операционная система Microsoft Windows 10 Enterprise (CSP)"
+    - "Microsoft Office Excel 2021"
+    - "Microsoft Office Word 2021"
+    - "Microsoft Office PowerPoint 2021"
+    - "Microsoft Office Access 2021"
+    - "Microsoft Visio Standard 2024"
+    - "Microsoft Visio Professional 2024"
+    - "Microsoft Project Standard 2024"
+    - "Microsoft Project Professional 2024"
+    - "Microsoft Dynamics 365"
+  demote:
+    - "Rights Management Services"
+    - "External Connector"
+    - "Audit and Control Management"
+    - "Core Infrastructure Server"
+    - "Microsoft System Center"
+    - "Advanced Security Management"
+    - "Advanced Threat Analytics"
+    - "for Team Members"
+    - "Skype for Business"
+    - "CAL"
+
+- id: kaspersky
+  vendors:
+    - "«Лаборатория Касперского»"
+    - "Лаборатория Касперского"
+    - "Kaspersky"
+  lines:
+    - "Kaspersky Standard"
+    - "Kaspersky Plus + Who Calls"
+    - "Kaspersky Premium + Who Calls"
+    - "Kaspersky Small Office Security"
+    - "Kaspersky Endpoint Security для бизнеса Стандартный"
+    - "Kaspersky Endpoint Security для бизнеса Расширенный"
+    - "Kaspersky Endpoint Security для бизнеса Расширенный Плюс"
+    - "Kaspersky Total Security для бизнеса"
+    - "Kaspersky Endpoint Security Cloud"
+    - "Kaspersky Small Office Security по подписке"
+    - "Kaspersky EDR для бизнеса Оптимальный"
+    - "Kaspersky Security для почтовых серверов"
+    - "Kaspersky Security для интернет-шлюзов"
+    - "Kaspersky Symphony Security"
+    - "Kaspersky Password Manager"
+    - "Kaspersky Password Manager для бизнеса"
+    - "Kaspersky Safe Kids"
+  demote:
+    - "для виртуальных и облачных сред"
+    - "для систем хранения данных"
+    - "Express Course"
+    - "for xSP"
+    - "Embedded Systems Security"
+    - "Automated Security Awareness"
+    - "Threat Intelligence"
+    - "Digital Footprint Intelligence"
+    - "Secure Mobility Management"
+    - "для Microsoft Office 365"
+    - "for WinGate"
+
+- id: drweb
+  vendors:
+    - "Доктор Веб"
+    - "Dr.Web"
+  lines:
+    - "Dr.Web Security Space"
+    - "Dr.Web Desktop Security Suite"
+    - "Dr.Web Enterprise Security Suite"
+    - "Dr.Web Server Security Suite"
+    - "Dr.Web Mail Security Suite"
+    - "Dr.Web Gateway Security Suite"
+    - "Dr.Web Mobile Security Suite"
+    - "Dr.Web CureNet!"
+    - "Dr.Web Katana"
+  demote:
+    - "Base Price"
+
+- id: adobe
+  vendors:
+    - "Adobe Systems"
+    - "Adobe"
+  lines:
+    - "Adobe Creative Cloud Professional for Teams"
+    - "Adobe Photoshop"
+    - "Adobe Acrobat Professional"
+    - "Adobe Illustrator"
+    - "Adobe Premiere Pro"
+    - "Adobe After Effects"
+    - "Adobe InDesign"
+    - "Adobe Audition"
+    - "Adobe Animate"
+    - "Adobe Animate Pro"
+    - "Adobe Dreamweaver"
+    - "Adobe Photoshop Elements"
+  demote:
+    - "Adobe Captivate"
+    - "Adobe Connect"
+    - "Adobe Dimension"
+
+- id: autodesk
+  vendors:
+    - "Autodesk"
+  lines:
+    - "Autodesk AutoCAD"
+    - "Autodesk AutoCAD LT"
+    - "AutoCAD LT"
+    - "Autodesk Revit"
+    - "Autodesk 3Ds Max"
+    - "Autodesk Civil 3D"
+    - "Autodesk Inventor"
+    - "Autodesk Maya"
+    - "Autodesk Fusion 360"
+    - "Autodesk AutoCAD Mechanical"
+    - "Autodesk AutoCAD Electrical"
+    - "Autodesk AutoCAD Architecture"
+    - "Autodesk AutoCAD MEP"
+    - "Autodesk AutoCAD Plant 3D"
+  demote:
+    - "Autodesk Arnold"
+    - "Autodesk DOCS"
+    - "Autodesk Vault"
+    - "Autodesk BIM Collaborate"
+    - "Media and Entertainment Collection"
+    - "Robot Structural Analysis"
+    - "Raster Design"
+
+- id: corel
+  vendors:
+    - "Corel Corporation"
+    - "Corel"
+  lines:
+    - "CorelDRAW Graphics Suite 2026"
+    - "CorelDRAW Graphics Suite. Подписка 365-Day"
+    - "CorelDRAW Graphics Suite 2025"
+    - "CorelDRAW Graphics Suite 2024"
+    - "CorelDRAW Standard 2024"
+    - "CorelDRAW Essentials 2024"
+    - "Corel PaintShop Pro 2023"
+    - "Corel Pinnacle Studio 26"
+  demote:
+    - "Parallels Mac Management"
+
+- id: nanosoft
+  vendors:
+    - "Нанософт Разработка"
+    - "Нанософт"
+  lines:
+    - "Платформа nanoCAD 26"
+    - "nanoCAD Механика PRO"
+    - "nanoCAD BIM Строительство"
+    - "nanoCAD BIM Электро 26"
+    - "nanoCAD комплект Инженерия"
+    - "nanoCAD GeoniCS 26"
+  demote:
+    - "nanoCAD Землеустройство"
+    - "nanoCAD Облака точек"
+    - "для Linux"
+
+- id: ascon
+  vendors:
+    - "АСКОН"
+  lines:
+    - "КОМПАС-3D V25"
+    - "КОМПАС-График V25"
+    - "КОМПАС-3D HOME"
+    - "Pilot-ICE"
+    - "Pilot-BIM"
+    - "Pilot-ICE Enterprise"
+    - "Pilot-ECM"
+    - "КОМПАС-Электрик V25"
+  demote:
+    - "Справочник конструктора"
+    - "WINE@Etersoft"
+    - "3D-Storage"
+
+- id: cryptopro
+  vendors:
+    - "КриптоПро"
+  lines:
+    - "Программа КриптоПро CSP 5.0"
+    - "Программа КриптоПро NGate"
+    - "ПАК КриптоПро УЦ 2.0 КС2"
+    - "КриптоПро JCP 2.0"
+    - "КриптоПро CSP TLS"
+    - "Программа КриптоПро TSP"
+    - "КриптоПро Ключ"
+  demote:
+    - "Сертификаты технической поддержки"
+    - "Дополнительные компоненты"
+    - "Средства мониторинга УЦ"
+    - "JavaCSP"
+    - "PKI-Кластер"
+    - "Базовые лицензии ПАК"
+
+- id: astra
+  vendors:
+    - "Группа Астра"
+    - "Астра"
+  lines:
+    - "Astra Linux Special Edition"
+    - "ALD Pro"
+    - "Termidesk"
+    - "Tantor"
+    - "Astra Cloud Platform"
+    - "VMmanager"
+    - "RuBackup OneClick"
+    - "Workspad"
+    - "GitFlic"
+    - "Платформа контейнеризации «Боцман»"
+  demote:
+    - "обучающие курсы"
+    - "Курс "
+    - "ASTRA32"
+
+- id: redsoft
+  vendors:
+    - "РЕД СОФТ"
+  lines:
+    - "Операционная система РЕД ОС"
+    - "РЕД Виртуализация"
+    - "РЕД АДМ"
+    - "СУБД Ред База Данных"
+    - "РЕД BPM"
+  demote:
+    - "РБД Монитор"
+
+- id: basealt
+  vendors:
+    - "BaseALT"
+    - "Базальт СПО"
+  lines:
+    - "Альт Рабочая станция 11"
+    - "Альт Сервер 11"
+    - "Альт СП 10"
+    - "Альт Образование 11"
+    - "«Альт Виртуализация» 11 редакция PVE"
+    - "Альт Домен 11"
+    - "«Альт Домен»"
+    - "Альт Оркестрация 11"
+
+- id: rosa
+  vendors:
+    - "РОСА"
+    - "НТЦ ИТ РОСА"
+  lines:
+    - "РОСА «ХРОМ»"
+    - "РОСА «КОБАЛЬТ»"
+    - "ROSA Virtualization"
+    - "РОСА «Центр управления»"
+    - "Dynamic Directory"
+    - "РОСА «Менеджер ресурсов»"
+
+- id: r7
+  vendors:
+    - "АО «Р7»"
+    - "Р7"
+  lines:
+    - "«Р7-Офис» для юридических лиц"
+    - "Р7-Офис. Для бизнеса"
+    - "Р7-Офис Профессиональный"
+    - "«Р7-Офис» для высших образовательных учреждений"
+    - "Р7-Офис. Для дома"
+    - "Р7-Офис. Для семьи"
+
+- id: myoffice
+  vendors:
+    - "МойОфис"
+  lines:
+    - "МойОфис Стандартный 3"
+    - "МойОфис Профессиональный 2"
+    - "МойОфис Профессиональный"
+    - "МойОфис Стандартный. Сертифицированный"
+    - "Настольный офис"
+    - "Squadus"
+    - "Сквадус Офис"
+    - "МойОфис Почта 3"
+
+- id: positive_technologies
+  vendors:
+    - "Positive Technologies"
+  lines:
+    - "MaxPatrol Endpoint Protection Platform"
+    - "Positive Technologies XSpider"
+    - "Positive Technologies XSpider PRO"
+    - "Positive Technologies Email Gateway"
+
+- id: security_code
+  vendors:
+    - "Код безопасности"
+  lines:
+    - "Код безопасности: Secret Net Studio 8"
+    - "Код безопасности: «Континент 4»"
+    - "Код безопасности: АПКШ «Континент»"
+    - "Код безопасности: ПАК «Соболь» 4.0"
+    - "Код безопасности: Континент TLS"
+    - "Код безопасности: Secret Net LSP"
+    - "Код безопасности: vGate"
+    - "Код безопасности: Jinn-Client 2.0"
+    - "Код безопасности: «Континент АП/ZTN»"
+  demote:
+    - "Комплект для подключения"
+    - "для подключения к ФАУ"
+
+- id: cyberprotect
+  vendors:
+    - "Киберпротект"
+  lines:
+    - "Кибер Бэкап Стандартная редакция"
+    - "Кибер Бэкап Расширенная редакция"
+    - "Кибер Бэкап Старт"
+    - "Кибер Бэкап Облачный"
+    - "Кибер Инфраструктура"
+    - "Кибер Хранилище"
+    - "Кибер Файлы"
+  demote:
+    - "Курс "
+
+- id: postgrespro
+  vendors:
+    - "Postgres Professional"
+  lines:
+    - "Postgres Pro Standard"
+    - "Postgres Pro Enterprise"
+    - "Postgres Pro Certified (ФСТЭК)"
+    - "СУБД Postgres Pro Certified"
+    - "Postgres Pro Enterprise (сертифицированная версия)"
+    - "Postgres Pro для 1С"
+    - "Субд Postgres Pro Shardman"
+
+- id: content_ai
+  vendors:
+    - "Content AI (ООО «Контент ИИ», ранее ABBYY Россия)"
+    - "Content AI"
+  lines:
+    - "ContentReader PDF 16 Business"
+    - "ContentReader PDF 16 Standard"
+    - "ContentReader PDF 16 Corporate"
+    - "ContentReader PDF 15 Business"
+    - "ContentReader PDF 15 Standard"
+    - "ContentReader PDF 15 Corporate"
+
+- id: rarsoft
+  vendors:
+    - "RARSoft"
+  lines:
+    - "Архиватор WinRAR 7"
+
+- id: bitrix
+  vendors:
+    - "1С-Битрикс"
+  lines:
+    - "1С-Битрикс24"
+    - "Облачный сервис Битрикс24"
+    - "1С-Битрикc: Управление сайтом"
+    - "1С-Битрикс: Enterprise"
+  demote:
+    - "1С-Битрикс24.Маркет"
+
+- id: yandex
+  vendors:
+    - "Яндекс"
+  lines:
+    - "Яндекс 360 для бизнеса"
+    - "Яндекс 360 Продвинутый"
+    - "Система управления проектами Яндекс Трекер"
+    - "Yandex DataLens"
+    - "Яндекс Браузер"
+  demote:
+    - "API Яндекс Карт"
+    - "пробная версия"
+    - "Дополнительное дисковое пространство"
+
+- id: directum
+  vendors:
+    - "DIRECTUM"
+  lines:
+    - "Directum RX"
+    - "Directum"
+    - "Directum СЭД+"
+    - "Directum Projects"
+    - "Directum HR Pro"
+
+- id: usergate
+  vendors:
+    - "UserGate"
+  lines:
+    - "UserGate NGFW"
+    - "UserGate Mail Security"
+    - "UserGate Advanced Threat Protection"
+    - "UserGate Stream Antivirus"
+
+- id: trueconf
+  vendors:
+    - "TrueConf"
+  lines:
+    - "TrueConf Server"
+    - "TrueConf Enterprise"
+    - "TrueConf MCU"
+
+- id: ideco
+  vendors:
+    - "Ideco"
+  lines:
+    - "Ideco NGFW Novum"
+
+- id: rudesktop
+  vendors:
+    - "RuDesktop"
+  lines:
+    - "RuDesktop"
+    - "RuDesktop UEM"
+
+- id: aktiv
+  vendors:
+    - "Актив"
+  lines:
+    - "Рутокен ЭЦП 3.0 3120"
+    - "Рутокен ЭЦП (Rutoken)"
+    - "Рутокен ЭЦП 3.0 3100"
+    - "Рутокен ЭЦП 3.0 3250"
+    - "Рутокен Lite (Rutoken)"
+    - "Рутокен MFA"
+  demote:
+    - "Комплекты документации"
+
+- id: aladdin
+  vendors:
+    - "Аладдин Р.Д."
+  lines:
+    - "JaCarta"
+    - "Secret Disk 5"
+    - "Secret Disk Enterprise"
+    - "Secret Disk Server NG"
+    - "JaCarta Management System (JMS)"
+  demote:
+    - "ридер"
+
+- id: kontur
+  vendors:
+    - "СКБ Контур"
+  lines:
+    - "Контур.Толк"
+
+- id: mts_link
+  vendors:
+    - "МТС Линк"
+  lines:
+    - "МТС Линк Стандарт"
+    - "МТС Линк Про"
+    - "МТС Линк Optimum 30"
+
+- id: elma
+  vendors:
+    - "ELMA"
+  lines:
+    - "ELMA365"
+
+- id: vmware
+  vendors:
+    - "VMware"
+  lines:
+    - "VMware vSphere 7"
+    - "VMware vCenter Server 7"
+    - "VMware vSAN"
+    - "VMware Horizon 8"
+    - "VMware Workspace ONE Enterprise"
+    - "VMware vRealize Suite Enterprise"
+
+- id: zoho
+  vendors:
+    - "Zoho Corporation Pvt. Ltd."
+    - "Zoho"
+  lines:
+    - "Zoho Manageengine Servicedesk Plus"
+    - "Zoho ManageEngine Endpoint Central"
+    - "Zoho ManageEngine OpManager"
+    - "Zoho ManageEngine Log360"
+    - "Zoho ManageEngine ADAudit Plus"
+    - "Zoho ManageEngine PasswordManager"
+
+- id: infowatch
+  vendors:
+    - "InfoWatch"
+  lines:
+    - "InfoWatch Traffic Monitor"
+    - "InfoWatch ARMA"
+    - "InfoWatch ARMA NGFW"
+    - "InfoWatch Activity Monitor"
+    - "InfoWatch Vision"
+
+- id: searchinform
+  vendors:
+    - "СёрчИнформ"
+  lines:
+    - "СёрчИнформ КИБ"
+    - "СёрчИнформ SIEM"
+    - "СёрчИнформ FileAuditor"
+    - "СёрчИнформ ProfileСenter"

@@ -12,8 +12,43 @@ from kuznitsa.llm.decisions import choice
 
 HARDWARE = {"сервер":"сервера", "ноутбук":"ноутбука", "моноблок":"моноблока",
             "принтер":"принтера", "коммутатор":"коммутатора", "монитор":"монитора", "ибп":"ИБП"}
-ALIASES = {"винда":"microsoft windows","365":"microsoft 365","офис":"офисные пакеты","астра линукс":"astra linux","мдаемон":"mdaemon","крипто про":"криптопро",
-           "антивирь":"антивирус","макс патрол":"maxpatrol","max patrol":"maxpatrol","кибер бекап":"кибер бэкап"}
+ALIASES = {
+    "винда": "microsoft windows", "365": "microsoft 365", "офис": "офисные пакеты",
+    "астра линукс": "astra linux", "мдаемон": "mdaemon", "крипто про": "криптопро",
+    "антивирь": "антивирус", "макс патрол": "maxpatrol", "max patrol": "maxpatrol",
+    "кибер бекап": "кибер бэкап",
+    "w10": "windows 10", "w11": "windows 11", "win10": "windows 10", "win11": "windows 11",
+    "win 10": "windows 10", "win 11": "windows 11",
+    "win srv": "windows server", "вин сервер": "windows server", "вин серв": "windows server",
+    "виндовс сервер": "windows server", "виндоус сервер": "windows server",
+    "виндоус": "windows", "виндовс": "windows",
+    "o365": "microsoft 365", "о365": "microsoft 365", "m365": "microsoft 365", "м365": "microsoft 365",
+    "office 365": "microsoft 365", "office365": "microsoft 365", "офис 365": "microsoft 365", "офис365": "microsoft 365",
+    "finereader": "contentreader pdf", "файнридер": "contentreader pdf", "abbyy finereader": "contentreader pdf",
+    "автокад лт": "autocad lt", "автокад": "autocad", "акад": "autocad",
+    "фотошоп": "adobe photoshop", "фш": "adobe photoshop",
+    "иллюстратор": "adobe illustrator", "люстра": "adobe illustrator", "премьер": "adobe premiere",
+    "акробат": "adobe acrobat",
+    "корел дро": "coreldraw", "корел": "coreldraw",
+    "вин рар": "winrar", "винрар": "winrar",
+    "мс sql": "microsoft sql server", "ms sql": "microsoft sql server", "скуль": "microsoft sql server",
+    "вижуал студио": "visual studio", "визуал студио": "visual studio",
+    "экселька": "microsoft office excel", "эксель": "microsoft office excel",
+    "ворд": "microsoft office word",
+    "эксчендж": "microsoft exchange", "ексчендж": "microsoft exchange", "эксчейндж": "microsoft exchange",
+    "касперский": "kaspersky", "каспер": "kaspersky", "кав": "kaspersky",
+    "дрвеб": "dr web", "доктор веб": "dr web",
+    "нанокад": "nanocad",
+    "антивирусс": "антивирус",
+}
+EXACT_ONLY_ALIASES = frozenset({"офис", "фш", "кав"})
+_SUBSTRING_ALIASES = tuple(
+    (a, b, re.compile(r"\b" + re.escape(a) + r"\b"))
+    for a, b in sorted(ALIASES.items(), key=lambda pair: len(pair[0]), reverse=True)
+    if not a.isdigit() and a not in EXACT_ONLY_ALIASES
+)
+_SSD_WORD = re.compile(r"\bssd\b")
+_AUX_TITLE_RE = re.compile(r"поддержк|обучен|курс |сертификат|миграц|продлен", re.I)
 TASKS = [(r"вирус|антивир", "антивирусы для организаций"),(r"защит.*почт|почт.*защит","защита почты"),
          (r"чертеж","системы автоматизированного проектирования"),(r"контрагент","проверка контрагентов")]
 STOP={"и","по","для","на","в","от","купить"}
@@ -76,7 +111,7 @@ class FeedIndex:
                     for platform in PLATFORM_WORD.findall(labels.lower()):
                         key="macos" if platform.startswith("mac") else platform
                         self.platform_offers[key].setdefault(cid,variant)
-                    server_score=2 if variant.lic.metric=="server" else int(bool(re.search(r"\b(?:server|сервер(?:н\w*|а|ов)?)\b",variant.name,re.I)))
+                    server_score=2 if variant.lic.metric=="server" else int(bool(re.search(r"\b(?:server|сервер(?:\w*)?)\b",variant.name,re.I)))
                     if (server_score and variant.lic.action in (None,"new") and variant.lic.audience in (None,"business")
                             and (server_score,variant.available) > (best_server,server_available)):
                         self.server_offers[cid]=(server_score,variant)
@@ -221,6 +256,9 @@ class FeedIndex:
                     if name:self.vendor_names.setdefault(" ".join(words(name)),actual)
         from .feed_language import FeedLanguage
         self.language=FeedLanguage(self,kb)
+        from .feed_flagships import FeedFlagships
+        self.flagships=FeedFlagships(self,kb,cfg)
+        self.products.cache_clear()
         self.unsold_sections={normalize(name):parent for key,(name,parent) in lines.items()
                               if key not in cat.cards and parent in self.groups}
         self.unsold_brands=defaultdict(list)
@@ -246,9 +284,11 @@ class FeedIndex:
     def correct(self,q):
         if q in HARDWARE:return q
         if q in self.aliases:return self.aliases[q]
-        for a,b in ALIASES.items():
-            if a.isdigit() or a=="офис":continue
-            if a in q:q=re.sub(r"\b"+re.escape(a)+r"\b",b,q)
+        for a,b,pat in _SUBSTRING_ALIASES:
+            if a in q:q=pat.sub(b,q)
+        if q!="ssd" and "ssd" in q and _SSD_WORD.search(q):
+            expanded=_SSD_WORD.sub("твердотельный накопитель",q)
+            if self.products(expanded,fuzzy=False):return expanded
         return q
 
     def products(self,q,prefix=False,domain=None,fuzzy=True,segment=None):
@@ -265,8 +305,10 @@ class FeedIndex:
                 end=bisect_right(self.prefix_vocab,partial+chr(0x10ffff))
                 group=group.union(*(self.raw_terms[v] for v in self.prefix_vocab[i:end]))
             if fuzzy and not group and len(w)>=5:
-                best=process.extractOne(w,self.vocab,scorer=fuzz.ratio,score_cutoff=85)
-                if best:group=self.postings[best[0]]
+                recovery=getattr(self,"recovery",None)
+                if not (recovery and recovery.is_protected(w)):
+                    best=process.extractOne(w,self.vocab,scorer=fuzz.ratio,score_cutoff=85)
+                    if best:group=self.postings[best[0]]
             if group:pools.append(group)
         if len(pools)!=len(terms):return ()
         ids=set.intersection(*pools)
@@ -276,25 +318,55 @@ class FeedIndex:
         edition_terms=({"учеба","student","personal","персональный"} if segment in {"edu","individual"}
                        else {"бизнес","business"})
         prefer_edition=bool(segment and named_year and not named_audience)
+        flagships=getattr(self,"flagships",None)
+        terms_tuple=tuple(terms)
+        qset=frozenset(terms)
+        n_terms=len(terms)
         def score(i):
             c=self.cat.cards[i]
             name=words(c.title)
-            exact=tuple(terms)==name
-            primary=(not re.search(r"поддержк|обучен|курс |сертификат|миграц|продлен",c.title,re.I)
-                     and ("cal" not in name or "cal" in terms))
-            version=max((int(y) for y in name if re.fullmatch(r"20[012]\d",y)),default=0)
-            first=min((name.index(w) for w in terms if w in name),default=99)
-            consumer=int("family" in name or "семья" in name)
+            core_gen=flagships.core_generic.get(i,name) if flagships else name
+            core_prod=flagships.core_product.get(i,name) if flagships else name
+            f_rank=flagships.rank.get(i,0) if flagships else 0
+            exact=(terms_tuple==name or terms_tuple==core_gen or (terms_tuple==core_prod and f_rank>0))
+            is_addon=flagships.is_addon(i,qset) if flagships else False
+            is_demoted=flagships.is_demoted(i,qset) if flagships else False
+            aux_hit=(i in flagships.aux_title) if flagships else bool(_AUX_TITLE_RE.search(c.title))
+            primary=(not is_demoted and not is_addon
+                     and not aux_hit
+                     and ("cal" not in name or "cal" in qset))
+            version=flagships.card_year.get(i,0) if flagships else max((int(y) for y in name if re.fullmatch(r"20[012]\d",y)),default=0)
+            first=min(
+                min((core_gen.index(w) for w in terms if w in core_gen),default=99),
+                min((core_prod.index(w) for w in terms if w in core_prod),default=99),
+                min((name.index(w) for w in terms if w in name),default=99),
+            )
+            starts_line=(core_gen[:n_terms]==terms_tuple or core_prod[:n_terms]==terms_tuple
+                         or name[:n_terms]==terms_tuple)
+            consumer=int(("family" in name or "семья" in name)
+                         and (segment=="individual" or bool(named_audience & {"семья","дом","home"})))
             starts=prefix and any(t.startswith(terms[-1]) for t in name[:2])
             fitting_release=prefer_edition and bool(edition_terms.intersection(name))
-            return (exact,primary,starts,all(w in name for w in terms),-first,fitting_release,self.quality[i][0],
-                    name[:len(terms)]==tuple(terms),version,consumer,*self.quality[i][1:],i)
+            return (primary,exact,starts,all(w in name for w in terms),f_rank>0,f_rank,-first,
+                    fitting_release,self.quality[i][0],starts_line,version,consumer,*self.quality[i][1:],i)
         return tuple(sorted(ids,key=score,reverse=True))
 
     def sound_products(self,q):
         raw=[w for w in re.findall(r"[\w]+",normalize(q)) if w not in STOP
              and lemma(w) not in ("клиент","лицензия","приложение","продукт")]
-        alternatives=[tuple(dict.fromkeys((lemma(w),*self.sounds.lookup(w),*self.sounds.lookup(lemma(w))))) for w in raw]
+        if not raw:return (),q
+        recovery=getattr(self,"recovery",None)
+        if recovery and (any(recovery.is_hard_protected(w) for w in raw) or (len(raw)==1 and recovery.is_protected(raw[0]))):
+            return (),q
+        alternatives=[]
+        single_word=len(raw)==1
+        for w in raw:
+            lw=lemma(w)
+            # Не подменяем одиночное кириллическое слово каталога созвучным английским («антивирус» ↛ «antivirus»).
+            if single_word and re.fullmatch(r"[а-я]+",w) and (w in self.postings or lw in self.postings):
+                alternatives.append((lw,))
+            else:
+                alternatives.append(tuple(dict.fromkeys((lw,*self.sounds.lookup(w),*self.sounds.lookup(lw)))))
         if not any(len(opts)>1 for opts in alternatives):return (),q
         pools=[set().union(*(self.postings.get(w,()) for w in opts)) for opts in alternatives]
         matches=set.intersection(*pools)
