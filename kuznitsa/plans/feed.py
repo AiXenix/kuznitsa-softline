@@ -3,7 +3,7 @@ import re
 from uuid import uuid4
 from . import feed_analogs
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
-from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class
+from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution
 from kuznitsa.config import WEIGHTS
 from kuznitsa.index.feed_language import version_forms,edition_form,sold_as,spoken_initials
 from kuznitsa.index.feed_repair import identity_terms
@@ -178,6 +178,9 @@ def task_sections(engine,q,hint):
     preferred={}
     focus=()
     note=""
+    hit=index.solutions.match(q)
+    if hit:
+        return list(hit.sections),hit.cards,{},hit.note
     task=index.task_class(q)
     if task:
         # Формулировки задачи в словаре уже связаны с разделами этого снимка.
@@ -223,6 +226,72 @@ def task_sections(engine,q,hint):
     return options,focus,preferred,note
 
 
+def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution):
+    index=engine.catalog.feed
+    sid="s_"+uuid4().hex
+    section=solution.sections[0] if solution.sections else None
+    ids=list(solution.cards)
+    note=solution.note
+    title=solution.title
+    intent="category" if section else "product"
+    selections={}
+    constraints={"price_max":budget} if budget is not None else {}
+    use_qty=None if solution.kit else qty
+    if ids and (use_qty or constraints):
+        nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
+        selections=matching_variants(index,ids,profile,use_qty,False,constraints,nodes=nodes)
+        if selections:
+            ordered=[cid for cid in ids if cid in selections]
+            if use_qty and budget is None:
+                others=[cid for cid in ids if cid not in selections]
+                if others:
+                    note=note or "Тираж учтён при подборе лицензий. Варианты без подтверждения количества отмечены отдельно."
+                ordered.extend(others)
+            ids=ordered
+        elif budget is not None:
+            ids=[]
+            note="В указанном бюджете предложений с подтверждённой ценой нет."
+    trace.add("retrieve","Поиск по задаче",title,candidates=len(ids))
+    trace.add("intent","Выбор решения",title)
+    start=(req.page-1)*req.page_size
+    items=[display(engine,c,profile,None,selections.get(c)) for c in ids[start:start+req.page_size]]
+    for i,c in enumerate(items,1):
+        c["position"]=i
+        if use_qty and c["card_id"] not in selections:
+            c["badges"].append(dict(kind="quantity",label="Тираж требует уточнения"))
+            c["score"]["why"].append("Количество по этой лицензии требует уточнения у поставщика")
+    merch=order(engine,req,profile,trace,priorities,intent,section,items)
+    if merch is None:return None
+    items=merch["cards"]
+    main=[c["card_id"] for c in items]
+    clarify=[]
+    def complete(reserved):
+        if budget is not None or req.page!=1:return []
+        return fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
+    together,recommended=recommend(engine,norm,items,profile,intent,complete=complete,price_max=budget)
+    for i,c in enumerate(items,1):c["position"]=i
+    blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
+    blocks.extend(clarify)
+    if together:blocks.append(together)
+    chips=[]
+    if budget is not None:
+        chips.append(dict(key="price_max",label=f"До {budget:g} ₽",removable=True))
+    if qty:
+        chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
+    result=dict(search_id=sid,engine="kuznitsa",engine_version="1.0",mode=req.mode,
+        query=dict(raw=req.q,normalized=norm,corrected=base,corrections=[],did_you_mean=None),
+        understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=.9,intent_source="rules",
+                        filters=dict(category=[section]) if section else {},
+                        exclude={},qty=qty,entities=[],chips=chips,
+                        zero_reason="filters_too_strict" if (budget is not None and not ids) else None,
+                        agent_note=note or title),
+        blocks=blocks,facets=[],notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
+        profile=profile_info(profile),cost=cost_summary([],engine.usd_rub),trace=trace.steps,timing_ms={})
+    if budget is not None:
+        result["understood"]["filters"]["price_max"]=budget
+    return finish(engine,req,trace,record,result,items,len(main),[])
+
+
 def search(engine,req,profile,trace,priorities,record):
     index=engine.catalog.feed
     norm=normalize(req.q)
@@ -249,6 +318,14 @@ def search(engine,req,profile,trace,priorities,record):
         parsed=subject
     base,qty,renewal=split_conditions(parsed)
     original_subject=base
+    solution=resolve_solution(engine,req,norm,base,renewal=renewal)
+    if solution:
+        return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution)
+    if not req.verbatim:
+        cleaned=strip_question(base)
+        if cleaned!=base:
+            base=cleaned
+            original_subject=base
     replacement_for=feed_analogs.requested(base)
     edition=index.edition(base) if not (req.verbatim or req.category or replacement_for) else None
     row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
@@ -714,7 +791,8 @@ def suggestions(engine,raw,norm,profile,start):
             ids=sorted(license_hits,key=index.quality.get,reverse=True)[:4]
             known=True
         elif section:
-            ids=list(dict.fromkeys([*(i for i in focus if index.card_sections[i]==section),*index.groups[section]]))[:4]
+            sol=index.solutions.match(query)
+            ids=list(dict.fromkeys([*(focus if sol else (i for i in focus if index.card_sections[i]==section)),*index.groups[section]]))[:4]
         else:
             hits=index.products(query,prefix=True)
             if norm in index.slang and (not hits or index.slang[norm][0]=="vendors"):

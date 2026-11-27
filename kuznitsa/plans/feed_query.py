@@ -5,13 +5,28 @@ from kuznitsa.text import normalize
 from kuznitsa.index.feed_language import edition_form
 from kuznitsa.rank.variants import select
 
-QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|уз(?:ел|лы|ла|лов|лах)|устройств\w*|комп(?:ьютер\w*|ов|а)?|сервак\w*|процессор\w*|мест\w*|лицензи\w*|пк)\b")
+QUANTITY=re.compile(r"\b(?:на\s+)?(\d{1,7})\s*(?:рабоч\w*\s+)?(пользовател\w*|сотрудник\w*|человек\w*|узел|узл(?:ы|а|ов|ах)|устройств\w*|комп(?:ьютер\w*|ов|а)?|сервак\w*|процессор\w*|мест\w*|лицензи\w*|пк|devices?|users?|seats?|licen[cs]es?|endpoints?|servers?|pcs?)\b")
 PRICE_LIMIT=re.compile(r"\b(?:не дороже|до|в пределах)\s+(\d+(?: \d{3})*(?:[.,]\d{1,2})?)\s*(тыс\w*|млн|[кk])?\s*(?:руб(?:лей|ля|ль)?\.?|₽|р\.)?\s*$")
 LICENSE=r"лицензи(?:я|ю|и|й|ей)"
 RENEW=re.compile(rf"\b(?:{LICENSE}\s+(?:на\s+)?)?(?:продл(?:ить|ение|ения)|renewal)(?:\s+(?:свою\s+)?{LICENSE})?\b")
 PURCHASE=re.compile(rf"^(?:(?:найти|купить|нуж(?:ен|на|но|ны)|{LICENSE}(?:\s+на)?)\s+)+|[\s,]+{LICENSE}$")
 HOME=re.compile(r"\b(?:домашн\w*|домой|для дома|для семьи)\b")
-HELP=re.compile(r"^(?:как |чем |что (?:взять|поможет|подойд[её]т)|каки[еим]|нужн[ао] |хочу )")
+HELP=re.compile(r"^(?:как |чем |что (?:взять|поможет|подойд[её]т|поставить|нужно)|каки[еи]|какая |какой |нужн[ао] |хочу |на ч[её]м )")
+COMPARE_OR_EXCL=re.compile(r"\b(?:vs|сравн\w*|или|кроме|деш[её]в\w*|дорог\w*)\b|(?:^|\s)не\s+\w+",re.I)
+COMMERCE_QUESTION=re.compile(
+    r"^(?:(?:подскажите|скажите|посоветуйте)[,\s]+)*"
+    r"(?:сколько стоит|какая цена(?:\s+на)?|где купить|где взять|как купить|что есть у|какие продукты у)\s+"
+    r"(?:(?:лицензи[юяией]|подписк[уаи]|программ[уа]|софт)\s+(?:на\s+)?)?",
+    re.I,
+)
+REPLACE_QUESTION=re.compile(
+    r"(?:что\s+(?:можно\s+)?поставить|что\s+(?:можно\s+)?взять|что\s+(?:можно\s+)?выбрать|"
+    r"чем\s+(?:можно\s+)?заменить|замен[ауы]|альтернатив[ауы]|аналог(?:и|а|ов)?)\s+(?:вместо\s+)?(.+?)$|"
+    r"\bвместо\s+(.+?)$",
+    re.I,
+)
+REPLACE_TAIL=re.compile(r"\b(?:в россии|для бизнеса|для компании|для офиса|отечественн\w*|российск\w*)\b",re.I)
+CONTEXT_TOOL_Q=re.compile(r"^(?:у\s+нас|есть|стоит|используем)\b.+?,\s*(?:чем|как|что|какой|какая)\b\s*(.+)$",re.I)
 # Лексические мосты между действием и существительным в дереве магазина.
 PURPOSES=[
     (r"перевести|переводить|переводчик|машинн\w* перевод","переводчики"),
@@ -36,13 +51,89 @@ def split_conditions(q):
     qty=None
     if m and int(m[1]):
         unit=m[2]
-        metric="user" if unit.startswith(("польз","сотруд")) else None if unit.startswith(("лиценз","мест")) else "device"
-        if unit.startswith("сервак"):metric="server"
+        metric="user" if unit.startswith(("польз","сотруд","челов","user","seat")) else None if unit.startswith(("лиценз","мест","licen")) else "device"
+        if unit.startswith(("сервак","server")):metric="server"
         if unit.startswith("процессор"):metric="cpu"
         qty=dict(value=int(m[1]),metric=metric)
         q=q[:m.start()]+" "+q[m.end():]
     renewal=bool(RENEW.search(q))
     return " ".join(RENEW.sub("",q).strip(" ,;:-").split()),qty,renewal
+
+
+def strip_question(text):
+    """Снять вопросительную коммерческую обёртку вокруг названия продукта или вендора."""
+    if not text or COMPARE_OR_EXCL.search(text):
+        return text
+    cleaned=text.strip(" ?!.,;")
+    stripped=COMMERCE_QUESTION.sub("",cleaned).strip(" ?!.,;«»\"")
+    if stripped and stripped!=cleaned:
+        return stripped
+    return text
+
+
+def replacement_subject(text):
+    """Выделить продукт из вопроса о замене («что поставить вместо X», «чем заменить X»)."""
+    if not text:
+        return None
+    cleaned=text.strip(" ?!.,;")
+    m=REPLACE_QUESTION.search(cleaned)
+    if not m:
+        return None
+    raw=(m.group(1) or m.group(2) or "").strip(" ?!.,;«»\"")
+    raw=REPLACE_TAIL.sub("",raw).strip(" ?!.,;«»\"")
+    raw=re.sub(r"^(?:(?:для|на|программы|программе)\s+)+","",raw)
+    return raw or None
+
+
+def resolve_solution(engine,req,norm,base,*,renewal=False):
+    """Распознать курируемую бизнес-задачу до ветки оборудования, опечаток и узких эвристик."""
+    index=engine.catalog.feed
+    if (req.verbatim or req.category or req.sort or req.weights or req.exclude or renewal
+            or req.filters.keys()-{"price_max"} or set(req.ignore)-{"price_max"}
+            or "\n" in req.q or not index.solutions.rows):
+        return None
+    if COMPARE_OR_EXCL.search(norm) or COMPARE_OR_EXCL.search(base):
+        return None
+    # 1. Запрос о замене конкретного продукта на курируемый класс решений (AD, MS Office)
+    rep=replacement_subject(base) or replacement_subject(norm)
+    if rep:
+        hit=index.solutions.match_replacement(rep)
+        if hit:
+            return hit
+        # Остальные запросы «аналог X» / «чем заменить X» обрабатывает feed_analogs
+        return None
+    # 2. Не перехватывать out-of-catalog бренды («veeam backup», «1с бухгалтерия», «zoom»)
+    row=index.analogs.lookup(base,fuzzy=False)
+    if row and not row["in_catalog"]:
+        return None
+    # 3. Конструкция «у нас <контекст>, чем его <задача>»: приоритет у вопросительной части
+    ctx_q=CONTEXT_TOOL_Q.match(base) or CONTEXT_TOOL_Q.match(norm)
+    if ctx_q:
+        hit=index.solutions.match(ctx_q.group(1))
+        if hit:
+            return hit
+    # 4. Поиск самой длинной фразы задачи
+    hit=index.solutions.match(base) or (index.solutions.match(norm) if norm!=base else None)
+    if not hit:
+        return None
+    # 5. Защита: конкретный продаваемый продукт или бренд имеют приоритет над задачей
+    if not hit.exact:
+        if index.edition(base):
+            return None
+        if index.recovery.full_name(base)[0]:
+            return None
+        if product_context(engine,base):
+            return None
+        if vendor_class(index,base)[0]:
+            return None
+        parts=base.split()
+        if len(parts)>=2:
+            for length in range(min(len(parts)-1,3),0,-1):
+                for side in (parts[:length],parts[-length:]):
+                    alias=" ".join(side)
+                    if alias in index.vendor_names or " ".join(words(alias)) in index.vendor_names:
+                        return None
+    return hit
 
 
 def license_request(engine,text):
@@ -90,6 +181,7 @@ def vendor_class(index,q):
             if not section and re.fullmatch(r"антивирус\w*",label):
                 section=index.class_by_name.get("антивирусы для организаций")
             if not section:section=index.language.section(index,label)
+            if not section:section=index.task_class(label)
             if section:return group,section
     return None,None
 
@@ -141,7 +233,7 @@ def matching_variants(index,ids,profile,qty,renewal,conditions=None,*,nodes=Fals
 CONTEXT = re.compile(r"\s+(?:для|под|чтобы|на|в)\s+",re.I)
 TERM = re.compile(r"\b(\d{1,2})\s*(мес\w*|год\w*|лет)\b")
 AUDIENCES = [("home",r"для дома|домашн|личн\w* использ"),("edu",r"школ|университет|учебн|образован"),
-             ("gov",r"госучрежден|госорган|государствен"),("business",r"компани|организац|офис|бухгалтер")]
+             ("gov",r"госучрежд|госорган|государствен"),("business",r"компани|организац|офис|бухгалтер")]
 FUNCTION_WORDS={"защита":"protection","безопасность":"security","управление":"management",
                 "резервирование":"backup","мониторинг":"monitor"}
 
@@ -154,7 +246,7 @@ def described_line(index,text):
         terms=words(tail)
         if not terms or terms[0] not in FUNCTION_WORDS:continue
         head=" ".join(parts[:pos])
-        if index.class_match(head) or head in index.hardware:continue
+        if index.class_match(head) or head in index.hardware or index.solutions.is_exact_phrase(head):continue
         name=index.correct(head)
         ids=index.products(name,fuzzy=False)
         if not ids:ids,name=index.sound_products(head)
@@ -175,7 +267,8 @@ def product_context(engine,text):
         named=described_line(index,text)
         return (named,{}) if named else None
     head=text[:split.start()]
-    if head in index.hardware or index.class_match(head) or re.fullmatch(r"антивирус\w*|программ\w*|софт|средств\w*",head):
+    if (head in index.hardware or index.class_match(head) or index.solutions.is_exact_phrase(head)
+            or re.fullmatch(r"антивирус\w*|программ\w*|софт|средств\w*",head)):
         return None
     mapped,_=engine._phrases.apply(head)
     phrase=index.correct(mapped)

@@ -17,7 +17,7 @@ ALIASES = {"винда":"microsoft windows","365":"microsoft 365","офис":"о
 TASKS = [(r"вирус|антивир", "антивирусы для организаций"),(r"защит.*почт|почт.*защит","защита почты"),
          (r"чертеж","системы автоматизированного проектирования"),(r"контрагент","проверка контрагентов")]
 STOP={"и","по","для","на","в","от","купить"}
-QUESTION=re.compile(r"^(что использовать|что выбрать|что подойдет|како(?:й|е|ую) (?:программ|приложен|софт|инструмент)|чем |как проверить|программ\w* для|как защитить)")
+QUESTION=re.compile(r"^(?:что (?:использовать|выбрать|подойд[её]т|поставить|нужно)|как(?:ой|ое|ую|ая|ие|им) (?:программ|приложен|софт|инструмент|антивирус|систем|по)|чем |на ч[её]м |как (?:проверить|защитить|настроить|организовать|сделать)|программ\w* для|нужн[аоы] программ|сколько стоит|где купить|что есть у )")
 COMPLEX=re.compile(r"\n|;|\b(продлен\w*|продлить|до|мест|лицензий|сравни\w*|комплект|аналог|заменить|реестр\w*|куплен\w*|заказ\w*)\b")
 PLATFORM_FIELD=re.compile(r"\bплатформа:\s*([^•;\n]+)",re.I)
 PLATFORM_WORD=re.compile(r"\b(mac(?:\s?os\w*)?|windows|linux)\b",re.I)
@@ -240,6 +240,8 @@ class FeedIndex:
         from .feed_editions import resolve
         self.edition=lru_cache(512)(lambda text:resolve(self,text))
         self.analogs=AnalogIndex(self,kb.rows["feed_analogs"])
+        from .feed_solutions import SolutionIndex
+        self.solutions=SolutionIndex(self,cfg.kb)
 
     def correct(self,q):
         if q in HARDWARE:return q
@@ -316,6 +318,8 @@ class FeedIndex:
                 or next(iter(self.matching_sections(q)),None))
 
     def task_class(self,q):
+        hit=self.solutions.match(q)
+        if hit and hit.sections:return hit.sections[0]
         terms=set(words(q))
         return next((section for cue,section in self.task_cues if cue<=terms),None)
 
