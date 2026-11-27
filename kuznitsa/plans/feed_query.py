@@ -289,7 +289,7 @@ def restore_platform_subject(norm,base,cond):
             return restored,True
     return base,False
 
-def apply_solution_conditions(engine,req,profile,solution,ids,cond,os_compat,preferred,selections,use_qty,note):
+def apply_solution_conditions(engine,req,profile,solution,ids,cond,os_compat,preferred,selections,use_qty,note,info=None):
     """Применить условия покупки и ОС-совместимость к карточкам курируемого решения."""
     from . import feed_conditions
     index=engine.catalog.feed
@@ -314,8 +314,10 @@ def apply_solution_conditions(engine,req,profile,solution,ids,cond,os_compat,pre
             ids=linux_explicit+[cid for cid in ids if cid not in seen]
     if cond and (cond.active or cond.price_min is not None or cond.price_max is not None) and ids:
         # Передаём section=None, чтобы условия фильтровали только карточки решения без подмешивания соседних разделов
-        ids,_,note,_=feed_conditions.apply_conditions(
+        ids,_,note,relaxed=feed_conditions.apply_conditions(
             engine,req,profile,cond,ids,None,preferred,selections,use_qty,False,note)
+        # Мягкий текстовый потолок цены: вызывающий узнаёт, что показаны ближайшие по цене варианты.
+        if info is not None:info["price_relaxed"]=relaxed
         # Если cond.registry не нашёл флага registry на офферах и apply_conditions откатился к нефильтрованному списку,
         # всё равно отсекаем зарубежные продукты по is_domestic_card.
         if (cond.origin=="russian" or cond.registry) and ids:

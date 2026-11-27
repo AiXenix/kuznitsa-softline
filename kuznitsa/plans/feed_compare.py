@@ -1,9 +1,9 @@
-"""Сравнение двух продуктов или редакций по данным фида."""
+"""Сравнение и одновременный подбор двух продуктов или классов по данным фида."""
 from dataclasses import dataclass
 import re
 from uuid import uuid4
 
-from kuznitsa.index.feed import words
+from kuznitsa.index.feed import STOP, words
 from kuznitsa.index.feed_editions import LEVEL as EDITION_LEVELS
 from kuznitsa.index.feed_language import edition_form, sold_as
 from kuznitsa.llm.recovery import cost_summary
@@ -11,6 +11,17 @@ from kuznitsa.plans.presentation import profile_info
 from kuznitsa.text import normalize
 from kuznitsa.understand.intent import TITLES
 from kuznitsa.understand.quantities import spoken_numbers
+from .feed_query import matching_variants, split_conditions
+
+_COMPARE_QUICK_RE = re.compile(
+    r"\b(?:сравн\w*|лучше|выбрать|разниц\w*|отлич\w*|против|или|vs)\b"
+)
+_MULTI_QUICK_RE = re.compile(r"(?:[&+/,]|(?:\sи\s))")
+_NICHE_RE = re.compile(
+    r"виртуальн|систем\s+хранен|embedded|wingate|модуль|плагин|plugin|add-?on|курс|обучен|тренинг|course|exam",
+    re.I,
+)
+_OFFICE_NON_SUITE_RE = re.compile(r"\b(?:visio|project|onenote|outlook|access|publisher|sharepoint|exchange)\b", re.I)
 
 PREFIX_COMPARE_RE = re.compile(
     r"^(?:сравнить|сравнение|сравни|что\s+лучше(?:\s+выбрать)?|что\s+выбрать|"
@@ -25,6 +36,45 @@ DIFF_RE = re.compile(
 VS_RE = re.compile(r"^(?P<a>.+?)\s+(?:vs\.?|против)\s+(?P<b>.+)$")
 OR_RE = re.compile(r"^(?P<a>.+?)\s+или\s+(?P<b>.+)$")
 
+MULTI_SPLIT_PATTERNS = (
+    ("&", re.compile(r"^(?P<a>.+?)\s*&\s*(?P<b>.+)$")),
+    ("+", re.compile(r"^(?P<a>.+?)(?<!\+)\s*\+\s*(?!\+)(?P<b>.+)$")),
+    ("/", re.compile(r"^(?P<a>.+?)(?<!\d)\s*/\s*(?!\d)(?P<b>.+)$")),
+    (",", re.compile(r"^(?P<a>.+?)\s*,\s*(?P<b>.+)$")),
+    ("и", re.compile(r"^(?P<a>.+?)\s+и\s+(?P<b>.+)$")),
+)
+
+MULTI_EXCLUDE_RE = re.compile(r"(?:\b(?:кроме|без|не|исключая|помимо)\b|(?:^|\s)-[a-zа-яё]{3,})")
+MULTI_PROSE_START_RE = re.compile(
+    r"^(?:что|как|какой|какая|какое|какие|где|сколько|можно\s+ли|нужен\s+ли|"
+    r"аналог|замена|чем\s+заменить|нуж\w*|ищу|подбер\w*|помоги\w*|у\s+нас|"
+    r"переход|миграц\w*|комплект|набор|установ\w*|настрой\w*|внедр\w*)\b"
+)
+MULTI_TECH_RE = re.compile(r"(?:\+\+|\b\d+\s*/\s*\d+\b)")
+
+CONSOLE_MODULE_WORDS = frozenset({
+    "center", "центр", "console", "консоль", "agent", "агент", "module", "модуль",
+    "plugin", "плагин", "addon", "server", "сервер", "admin", "администрирование",
+})
+
+SIDE_ALIASES = {
+    "win": "windows",
+    "вин": "windows",
+    "винда": "windows",
+    "др веб": "dr web",
+    "дрвеб": "dr web",
+    "доктор веб": "dr web",
+    "ms office": "microsoft office",
+    "мс офис": "microsoft office",
+}
+
+MULTI_CLASS_ALIASES = {
+    "офис": "офисный пакет",
+    "офисы": "офисный пакет",
+    "антивирус": "антивирусы для организаций",
+    "антивирусы": "антивирусы для организаций",
+}
+
 CONDITION_TOKENS = frozenset({
     "год", "года", "лет", "мес", "месяц", "месяца", "месяцев",
     "пк", "pk", "мест", "места", "место", "пользователей", "пользователя", "пользователь",
@@ -33,8 +83,11 @@ CONDITION_TOKENS = frozenset({
     "дома", "дом", "офиса", "офис", "бизнеса", "бизнес", "школы", "вуза", "облако", "локально",
     "руб", "рублей", "тыс",
 })
+MULTI_CONDITION_TOKENS = CONDITION_TOKENS - {"офис"}
 PREPOSITIONS = frozenset({"на", "для", "в", "до", "от", "с", "по", "под", "при", "без"})
-QUESTION_START = re.compile(r"^(?:что|как|какой|какая|какое|какие|где|сколько|можно\s+ли|нужен\s+ли|аналог|замена|чем\s+заменить)\b")
+QUESTION_START = re.compile(
+    r"^(?:что|как|какой|какая|какое|какие|где|сколько|можно\s+ли|нужен\s+ли|аналог|замена|чем\s+заменить)\b"
+)
 
 MODEL_LABELS = {
     "subscription": "Подписка",
@@ -61,12 +114,16 @@ class SideMatch:
     cards: tuple[str, ...]
     neighbors: tuple[str, ...]
     analog_row: dict | None = None
+    section: str | None = None
+    label: str | None = None
 
 
 def parse_compare(norm):
     """Разобрать запрос на сравнение. Возвращает (left, right, explicit) или None."""
     cleaned = norm.strip(" ?!.,;:")
     if not cleaned or "\n" in cleaned:
+        return None
+    if not _COMPARE_QUICK_RE.search(cleaned):
         return None
     for rx in (PREFIX_COMPARE_RE, VS_RE):
         m = rx.match(cleaned)
@@ -108,11 +165,45 @@ def parse_compare(norm):
 
 
 def _clean_side(index, engine, text):
-    mapped, _ = engine._phrases.apply(text)
-    return edition_form(index, index.correct(spoken_numbers(mapped))).strip()
+    s = SIDE_ALIASES.get(text.strip(), text.strip())
+    mapped, _ = engine._phrases.apply(s)
+    cleaned = edition_form(index, index.correct(spoken_numbers(mapped))).strip()
+    return SIDE_ALIASES.get(cleaned, cleaned)
 
 
-def _resolve_single(engine, raw_text, profile):
+def _rank_side_cards(index, candidates, cleaned, raw_text):
+    clean_words = set(words(cleaned))
+    is_office_query = bool({"office", "офис"} & clean_words) and not bool(_OFFICE_NON_SUITE_RE.search(cleaned))
+
+    def rank_side(cid):
+        card = index.cat.cards[cid]
+        own = sold_as(card, cleaned) or sold_as(card, raw_text)
+        bq = index.browse_quality.get(cid, (False, 0, False, 0, False))
+        niche = bool(_NICHE_RE.search(card.title))
+        non_suite = is_office_query and bool(_OFFICE_NON_SUITE_RE.search(card.title))
+        title_norm = normalize(card.title)
+        starts = (
+            title_norm.startswith(cleaned)
+            or title_norm.startswith("autodesk " + cleaned)
+            or title_norm.startswith("microsoft " + cleaned)
+        )
+        return (
+            own,
+            not non_suite,
+            starts,
+            bq[0],
+            not niche,
+            card.offers[0].available,
+            card.price_from is not None,
+            bq[1],
+            len(card.offers),
+            -len(card.title),
+        )
+
+    return sorted(dict.fromkeys(candidates), key=rank_side, reverse=True)
+
+
+def _resolve_single(engine, raw_text, profile, *, allow_class=False, allow_fuzzy=True):
     index = engine.catalog.feed
     cleaned = _clean_side(index, engine, raw_text)
     if not cleaned:
@@ -124,9 +215,25 @@ def _resolve_single(engine, raw_text, profile):
     # 2. Точная редакция («kaspersky standard», «kaspersky plus», «windows 11 home», «windows 11 pro»)
     ed = index.edition(cleaned) or index.edition(raw_text)
     if ed and ed.cards:
-        return SideMatch(raw_text, ed.query, ed.cards, ed.neighbors, analog_row=row)
+        sec = index.card_sections.get(ed.cards[0])
+        return SideMatch(raw_text, ed.query, ed.cards, ed.neighbors, analog_row=row, section=sec, label=raw_text)
 
-    # 3. Прямой поиск карточек в фиде (включая слитное написание «мой офис» → «мойофис»)
+    # 2b. В режиме мульти-продукта проверяем явные классы ПО / решения («антивирус», «офис», «резервное копирование»)
+    if allow_class:
+        cls_query = MULTI_CLASS_ALIASES.get(cleaned) or MULTI_CLASS_ALIASES.get(raw_text) or cleaned
+        sol = index.solutions.match(cls_query)
+        if sol and sol.cards and not sol.kit:
+            sec = sol.sections[0] if sol.sections else index.card_sections.get(sol.cards[0])
+            return SideMatch(raw_text, cls_query, tuple(sol.cards), (), analog_row=None, section=sec, label=sol.title)
+        cls_id = index.class_match(cls_query) or index.class_match(raw_text)
+        if cls_id and cls_id in index.groups:
+            members = sorted(index.groups[cls_id], key=index.browse_quality.get, reverse=True)
+            return SideMatch(
+                raw_text, cls_query, tuple(members), (), analog_row=None,
+                section=cls_id, label=index.classes.get(cls_id) or raw_text,
+            )
+
+    # 3. Прямой поиск карточек в фиде (включая слитное написание «мой офис» -> «мойофис»)
     variants = [cleaned, raw_text]
     if " " in cleaned and len(cleaned.split()) == 2:
         variants.append(cleaned.replace(" ", ""))
@@ -164,7 +271,7 @@ def _resolve_single(engine, raw_text, profile):
                 candidates = list(sound_hits)
                 cleaned = sound_q
                 break
-    if not candidates:
+    if not candidates and allow_fuzzy:
         rec_hits, rec_q, _ = index.recovery.lookup(engine, cleaned)
         if rec_hits:
             candidates = list(rec_hits)
@@ -180,26 +287,14 @@ def _resolve_single(engine, raw_text, profile):
     if not candidates:
         return SideMatch(raw_text, cleaned, (), (), analog_row=row)
 
-    # Ранжирование: приоритет карточкам, продающимся под этим именем (sold_as), а не плагинам/надстройкам («ModPlus AutoCAD»)
-    def rank_side(cid):
-        card = index.cat.cards[cid]
-        own = sold_as(card, cleaned) or sold_as(card, raw_text)
-        bq = index.browse_quality.get(cid, (False, 0, False, 0, False))
-        # Основная редакция выше редких/узкоспециализированных модулей
-        niche = bool(re.search(r"виртуальн|систем\s+хранен|embedded|wingate|модуль|плагин|plugin|add-?on", card.title, re.I))
-        title_norm = normalize(card.title)
-        starts = title_norm.startswith(cleaned) or title_norm.startswith("autodesk " + cleaned) or title_norm.startswith("microsoft " + cleaned)
-        return (own, starts, bq[0], not niche, card.offers[0].available, card.price_from is not None, bq[1], len(card.offers), -len(card.title))
-
-    ordered = sorted(dict.fromkeys(candidates), key=rank_side, reverse=True)
-    # Соседи из той же линейки / вендора / раздела
+    ordered = _rank_side_cards(index, candidates, cleaned, raw_text)
     anchor = index.cat.cards[ordered[0]]
     sec = index.card_sections[anchor.id]
     neighbors = [
         cid for cid in index.groups.get(sec, ())
         if cid != anchor.id and index.cat.cards[cid].vendor == anchor.vendor
     ]
-    return SideMatch(raw_text, cleaned, tuple(ordered), tuple(neighbors), analog_row=row)
+    return SideMatch(raw_text, cleaned, tuple(ordered), tuple(neighbors), analog_row=row, section=sec, label=raw_text)
 
 
 def _expand_right(engine, left_text, right_text, left_match, profile):
@@ -208,17 +303,14 @@ def _expand_right(engine, left_text, right_text, left_match, profile):
     left_tokens = left_text.split()
     if len(left_tokens) < 2 or len(right_tokens) > 2:
         return _resolve_single(engine, right_text, profile)
-    # Если правая сторона — короткая редакция/версия или не нашлась сама по себе
     short_edition = all(t in EDITION_LEVELS or t.isdigit() for t in right_tokens)
     direct = _resolve_single(engine, right_text, profile)
     if direct.cards and not short_edition:
-        # Проверим, не является ли прямое совпадение совсем посторонним для короткой редакции
         return direct
     if direct.analog_row and not direct.analog_row.get("in_catalog") and not short_edition:
         return direct
 
     left_first = left_match.cards[0] if left_match.cards else None
-    # Пробуем подставить right_tokens вместо последних k токенов left_tokens
     k_order = list(dict.fromkeys([len(right_tokens), 1, 2]))
     for k in k_order:
         if k >= len(left_tokens):
@@ -227,12 +319,133 @@ def _expand_right(engine, left_text, right_text, left_match, profile):
         cand = _resolve_single(engine, candidate_q, profile)
         if cand.cards and (cand.cards[0] != left_first or len(cand.cards) > 1):
             return cand
-    # Также пробуем просто «первый токен левой + правая» (например бренд + редакция)
     candidate_q = " ".join([left_tokens[0], *right_tokens])
     cand = _resolve_single(engine, candidate_q, profile)
     if cand.cards and (cand.cards[0] != left_first or len(cand.cards) > 1):
         return cand
     return direct
+
+
+def _whole_query_is_single_entity(index, base):
+    """Проверить, что вся фраза целиком является одним продуктом, классом или комплектом."""
+    spaced = re.sub(r"\s*[+&/,]\s*", " ", base).strip()
+    candidates = [base] if spaced == base else [base, spaced]
+    for q in candidates:
+        sol = index.solutions.match(q)
+        if (
+            (sol and sol.exact)
+            or index.edition(q)
+            or index.analogs.lookup(q, fuzzy=False)
+            or q in index.slang
+            or q in index.vendor_names
+        ):
+            return True
+        cls_id = index.class_match(q)
+        if cls_id:
+            q_words = {w for w in words(q) if w not in STOP and len(w) >= 2}
+            cls_words = set(index.class_terms.get(cls_id, ()))
+            if q_words and q_words <= cls_words:
+                return True
+        hits = index.products(q, fuzzy=False)
+        if hits:
+            q_words = {w for w in words(q) if w not in STOP and len(w) >= 2}
+            if q_words:
+                for cid in hits[:5]:
+                    card = index.cat.cards[cid]
+                    if _NICHE_RE.search(card.title):
+                        continue
+                    t_words = set(words(card.title))
+                    if q_words <= t_words:
+                        return True
+    return False
+
+
+def parse_multi(index, norm):
+    """Разобрать запрос из двух продуктов/классов через и, +, &, /, запятую.
+
+    Возвращает (left_raw, right_raw, sep, qty, renewal) или None.
+    """
+    cleaned = norm.strip(" ?!.;:")
+    if not cleaned or "\n" in cleaned:
+        return None
+    if not _MULTI_QUICK_RE.search(cleaned):
+        return None
+    if MULTI_TECH_RE.search(cleaned):
+        return None
+    if MULTI_EXCLUDE_RE.search(cleaned):
+        return None
+    if MULTI_PROSE_START_RE.match(cleaned):
+        return None
+
+    base, qty, renewal = split_conditions(cleaned)
+    base = base.strip(" ,;:?")
+    if not base or not _MULTI_QUICK_RE.search(base):
+        return None
+    if _whole_query_is_single_entity(index, base):
+        return None
+
+    for sep, rx in MULTI_SPLIT_PATTERNS:
+        m = rx.match(base)
+        if not m:
+            continue
+        a = m.group("a").strip(" ,;:?")
+        b = m.group("b").strip(" ,;:?")
+        if not a or not b:
+            continue
+        # Не делим перечисления из 3+ элементов или сложные предложения
+        if any(ch in a or ch in b for ch in ("&", "+", "/", ",")):
+            continue
+        if sep != "и" and (" и " in a or " и " in b):
+            continue
+        if sep == "и" and (" и " in a or " и " in b):
+            continue
+        a_parts = a.split()
+        b_parts = b.split()
+        if not (1 <= len(a_parts) <= 4 and 1 <= len(b_parts) <= 4):
+            continue
+        if a_parts[-1] in PREPOSITIONS or b_parts[0] in PREPOSITIONS or b_parts[-1] in PREPOSITIONS:
+            continue
+        if all(p.isdigit() for p in a_parts) or all(p.isdigit() for p in b_parts):
+            continue
+        if set(a_parts) <= MULTI_CONDITION_TOKENS or set(b_parts) <= MULTI_CONDITION_TOKENS:
+            continue
+        return a, b, sep, qty, renewal
+    return None
+
+
+def _is_multi_false_split(index, a_raw, b_raw, sep, left: SideMatch, right: SideMatch) -> bool:
+    """Отсечь ложные разбиения: комплекты железа («клавиатура+мышь»), части одной линейки («KES и Security Center»)."""
+    if not left.cards or not right.cards:
+        return True
+    if left.cards[0] == right.cards[0] and len(right.cards) == 1:
+        return True
+
+    card_a = index.cat.cards[left.cards[0]]
+    card_b = index.cat.cards[right.cards[0]]
+    dom_a = card_a.offers[0].domain
+    dom_b = card_b.offers[0].domain
+
+    # 1. Комплект оборудования («клавиатура+мышь», «мышь и коврик»): обе стороны hardware и есть карточка с обоими словами
+    if dom_a == "hardware" and dom_b == "hardware":
+        combined = f"{a_raw} {b_raw}"
+        a_words = {w for w in words(a_raw) if w not in STOP}
+        b_words = {w for w in words(b_raw) if w not in STOP}
+        for cid in index.products(combined, domain="hardware", fuzzy=False)[:5]:
+            tw = set(words(index.cat.cards[cid].title))
+            if (a_words & tw) and (b_words & tw):
+                return True
+
+    # 2. Части одного продукта/линейки через «и» («Kaspersky Endpoint Security и Security Center»)
+    if sep == "и":
+        a_w = {w for w in words(a_raw) if w not in STOP and len(w) >= 3}
+        b_w = {w for w in words(b_raw) if w not in STOP and len(w) >= 3}
+        if a_w & b_w:
+            return True
+        if card_a.vendor == card_b.vendor and (b_w & CONSOLE_MODULE_WORDS or a_w & CONSOLE_MODULE_WORDS):
+            return True
+        if card_a.vendor == card_b.vendor and left.section == right.section:
+            return True
+    return False
 
 
 def _fmt_rub(value):
@@ -296,12 +509,122 @@ def _compare_rows(columns):
     return rows
 
 
-def search(engine, req, profile, trace, priorities, record, norm):
-    """Обработать запрос на сравнение двух продуктов в фиде. Возвращает ответ или None."""
-    if req.verbatim or req.category:
-        return None
-    parsed = parse_compare(norm)
+def _side_block_title(side: SideMatch, first_card: dict) -> str:
+    if side.label and side.label != side.raw:
+        return side.label
+    if side.raw:
+        return side.raw.strip().capitalize()
+    return first_card["title"]
+
+
+def _search_multi(engine, req, profile, trace, priorities, record, norm):
+    """Обработать запрос с двумя продуктами/классами («win+office», «kaspersky & dr.web», «антивирус и офис на 10 пк»)."""
+    index = engine.catalog.feed
+    parsed = parse_multi(index, norm)
     if not parsed:
+        return None
+    left_raw, right_raw, sep, qty, renewal = parsed
+
+    left = _resolve_single(engine, left_raw, profile, allow_class=True, allow_fuzzy=False)
+    if not left.cards:
+        return None
+    right = _resolve_single(engine, right_raw, profile, allow_class=True, allow_fuzzy=False)
+    if not right.cards:
+        return None
+    if _is_multi_false_split(index, left_raw, right_raw, sep, left, right):
+        return None
+
+    from .feed import display, finish
+
+    nodes = bool(re.search(r"\bуз(?:ел|л\w*)\b", norm))
+
+    def build_side_items(side: SideMatch, blocked_ids: set[str], limit: int):
+        pool = [cid for cid in dict.fromkeys((*side.cards, *side.neighbors)) if cid not in blocked_ids]
+        if not pool:
+            return [], {}, []
+        selections = {}
+        if qty or renewal:
+            selections = matching_variants(index, pool[:40], profile, qty, renewal, {}, nodes=nodes)
+            if selections:
+                matched = [cid for cid in pool if cid in selections]
+                others = [cid for cid in pool if cid not in selections]
+                pool = matched + others
+        chosen = pool[:limit]
+        items = []
+        for pos, cid in enumerate(chosen, 1):
+            card = display(engine, cid, profile, None, selections.get(cid))
+            card["position"] = pos
+            if qty and cid not in selections and not renewal:
+                card["badges"].append(dict(kind="quantity", label="Тираж требует уточнения"))
+            items.append(card)
+        return items, selections, pool
+
+    # 3 карточки на каждый блок -> 6 суммарно (>= 4); если у одного меньше 2, добираем другому до >= 4
+    items_a, _, pool_a = build_side_items(left, set(), 3)
+    used_a = {c["card_id"] for c in items_a}
+    need_b = max(3, 4 - len(items_a))
+    items_b, _, pool_b = build_side_items(right, used_a, need_b)
+    if not items_a or not items_b:
+        return None
+    if len(items_a) + len(items_b) < 4:
+        used_all = used_a | {c["card_id"] for c in items_b}
+        extra_a, _, _ = build_side_items(left, used_all, 4 - len(items_a) - len(items_b))
+        for card in extra_a:
+            card["position"] = len(items_a) + 1
+            items_a.append(card)
+    if len(items_a) + len(items_b) < 4:
+        return None
+
+    title_a = _side_block_title(left, items_a[0])
+    title_b = _side_block_title(right, items_b[0])
+
+    blocks = [
+        dict(type="products", title=title_a, category_id=left.section, total=len(pool_a), items=items_a),
+        dict(type="products", title=title_b, category_id=right.section, total=len(pool_b), items=items_b),
+    ]
+    note = f"В одном запросе указаны два направления — показаны отдельные блоки для «{title_a}» и «{title_b}»."
+    if qty:
+        note += f" Учтено количество: {qty['value']}."
+
+    trace.add("intent", "Несколько продуктов", f"{title_a} + {title_b}")
+    trace.add("retrieve", "Поиск по фиду", f"{title_a}: {len(items_a)}, {title_b}: {len(items_b)}", candidates=len(items_a) + len(items_b))
+
+    chips = [
+        dict(key="multi_1", label=title_a, removable=False),
+        dict(key="multi_2", label=title_b, removable=False),
+    ]
+    if qty:
+        chips.append(dict(key="quantity", label=f"Количество · {qty['value']}"))
+
+    all_items = items_a + items_b
+    sid = "s_" + uuid4().hex
+    result = dict(
+        search_id=sid, engine="kuznitsa", engine_version="1.0", mode=req.mode,
+        query=dict(raw=req.q, normalized=norm, corrected=norm, corrections=[], did_you_mean=None),
+        understood=dict(
+            intent="spec_list", intent_title=TITLES["spec_list"], intent_conf=0.92, intent_source="rules",
+            filters=dict(action="renewal") if renewal else {}, exclude={}, qty=qty, entities=[], chips=chips,
+            zero_reason=None, agent_note=note,
+        ),
+        blocks=blocks, facets=[], notes=[], banners=[], relax_hints=[], related_queries=[],
+        profile=profile_info(profile), cost=cost_summary([], engine.usd_rub), trace=trace.steps, timing_ms={},
+    )
+    return finish(engine, req, trace, record, result, all_items, len(all_items), [], profile=profile)
+
+
+def search(engine, req, profile, trace, priorities, record, norm):
+    """Обработать запрос на сравнение или одновременный подбор двух продуктов в фиде."""
+    if req.verbatim or req.category or req.filters or req.exclude or req.sort or req.weights:
+        return None
+    has_compare_cue = bool(_COMPARE_QUICK_RE.search(norm))
+    has_multi_cue = bool(_MULTI_QUICK_RE.search(norm))
+    if not has_compare_cue and not has_multi_cue:
+        return None
+
+    parsed = parse_compare(norm) if has_compare_cue else None
+    if not parsed:
+        if has_multi_cue:
+            return _search_multi(engine, req, profile, trace, priorities, record, norm)
         return None
     left_raw, right_raw, explicit = parsed
     index = engine.catalog.feed
@@ -394,7 +717,7 @@ def search(engine, req, profile, trace, priorities, record, norm):
             blocks=blocks, facets=[], notes=[], banners=[], relax_hints=[], related_queries=[],
             profile=profile_info(profile), cost=cost_summary([], engine.usd_rub), trace=trace.steps, timing_ms={},
         )
-        return finish(engine, req, trace, record, result, items, len(items), [])
+        return finish(engine, req, trace, record, result, items, len(items), [], profile=profile)
 
     # Случай 2: одна сторона есть в фиде, второй нет («сравнить dr.web и eset»)
     present = left if left.cards else right
@@ -468,4 +791,4 @@ def search(engine, req, profile, trace, priorities, record, norm):
         blocks=blocks, facets=[], notes=[], banners=[], relax_hints=[], related_queries=[],
         profile=profile_info(profile), cost=cost_summary([], engine.usd_rub), trace=trace.steps, timing_ms={},
     )
-    return finish(engine, req, trace, record, result, all_items, len(all_items), [])
+    return finish(engine, req, trace, record, result, all_items, len(all_items), [], profile=profile)

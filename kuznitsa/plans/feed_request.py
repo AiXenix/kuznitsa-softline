@@ -518,7 +518,7 @@ def apply(engine, req, profile, plan: RequestPlan, ids, section, preferred, sele
     has_text_price = (tc.price_min is not None and plan.price_min is None) or (tc.price_max is not None and plan.price_max is None)
     text_for_apply = replace(
         tc,
-        sort=None,
+        sort=None if plan.explicit_sort else tc.sort,
         price_min=tc.price_min if plan.price_min is None else None,
         price_max=tc.price_max if plan.price_max is None else None,
     )
@@ -526,6 +526,7 @@ def apply(engine, req, profile, plan: RequestPlan, ids, section, preferred, sele
         text_for_apply.exclude_vendors or text_for_apply.exclude_terms
         or text_for_apply.origin or text_for_apply.registry
         or text_for_apply.service or text_for_apply.platform
+        or text_for_apply.sort or text_for_apply.free_requested
         or has_text_price
     )
     if ids and text_apply is not None:

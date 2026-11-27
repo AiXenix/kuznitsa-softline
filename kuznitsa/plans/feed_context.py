@@ -252,6 +252,13 @@ def _probe_conditions(engine, tail: str, req):
         rem = _clean_spaces(rem.replace(_PROBE_SENTINEL, " "))
 
     plat = cond.platform
+    if not plat and rem:
+        # Платформа без предмета («для linux»): предмет придёт из прошлого запроса.
+        m_plat = feed_conditions.PLATFORM_RE.search(rem)
+        canon = feed_conditions._canonical_platform(m_plat.group(1)) if m_plat else None
+        if canon:
+            plat = canon
+            rem = _clean_spaces(rem[:m_plat.start()] + " " + rem[m_plat.end():])
     if not plat and rem and _ASTRA_PLAT_RE.fullmatch(rem):
         plat = "linux"
         rem = ""

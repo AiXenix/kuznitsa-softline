@@ -238,9 +238,10 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
     preferred={}
     selections={}
     text_budget=budget if plan.price_max is None else None
+    budget_relaxed=False
     constraints={"price_max":text_budget} if text_budget is not None else {}
     use_qty=None if solution.kit else qty
-    if ids and (use_qty or constraints):
+    if ids and (use_qty or (constraints and cond is None)):
         nodes=bool(re.search(r"\bуз(?:ел|л\w*)\b",norm))
         selections=matching_variants(index,ids,profile,use_qty,False,constraints,nodes=nodes)
         if selections:
@@ -251,16 +252,17 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
                     note=note or "Тираж учтён при подборе лицензий. Варианты без подтверждения количества отмечены отдельно."
                 ordered.extend(others)
             ids=ordered
-        elif text_budget is not None:
+        elif text_budget is not None and cond is None:
             ids=[]
             note="В указанном бюджете предложений с подтверждённой ценой нет."
     extra_chips=[]
     def solution_text(text_cond,ids,section,note):
         # Текстовые условия и совместимость с ОС применяются только к карточкам решения, без соседних разделов.
-        ids,note,found=apply_solution_conditions(engine,req,profile,solution,ids,text_cond,os_compat,preferred,selections,use_qty,note)
+        info={}
+        ids,note,found=apply_solution_conditions(engine,req,profile,solution,ids,text_cond,os_compat,preferred,selections,use_qty,note,info=info)
         extra_chips.extend(found)
-        return ids,section,note,False
-    ids,sol_base,section,note,relax_hints,_=feed_request.apply(
+        return ids,section,note,bool(info.get("price_relaxed"))
+    ids,sol_base,section,note,relax_hints,budget_relaxed=feed_request.apply(
         engine,req,profile,plan,ids,section,preferred,selections,use_qty,False,note,
         text_apply=solution_text if (cond is not None or os_compat) else None)
     trace.add("retrieve","Поиск по задаче",title,candidates=len(ids))
@@ -281,10 +283,12 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
     main=[c["card_id"] for c in items]
     clarify=[]
     def complete(reserved):
-        if budget is not None or not feed_request.allow_fill(req,plan) or os_compat or (cond and (cond.origin or cond.sort or cond.platform or cond.exclude_vendors or cond.exclude_terms or cond.price_min is not None)):return []
+        if (budget is not None and not budget_relaxed) or not feed_request.allow_fill(req,plan) or os_compat:return []
+        if cond is not None and (cond.price_min is not None or cond.sort or cond.platform or cond.exclude_vendors or cond.exclude_terms or cond.origin or cond.registry):return []
         return fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
+    blocked_ids=feed_conditions.excluded_cids(index,cond) if cond is not None else ()
     if feed_request.allow_upsell(req,plan,items):
-        together,recommended=recommend(engine,norm,items,profile,intent,complete=complete,price_max=budget)
+        together,recommended=recommend(engine,norm,items,profile,intent,blocked=blocked_ids,complete=complete,price_max=None if budget_relaxed else budget)
     else:
         together,recommended=None,set()
     for i,c in enumerate(items,1):c["position"]=i
@@ -306,7 +310,7 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
     chips.extend(c for c in extra_chips if all(x.get("key")!=c.get("key") for x in chips))
     if qty:
         chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
-    return finish(engine,req,trace,record,result,items,len(main),[])
+    return finish(engine,req,trace,record,result,items,len(main),[],profile=profile)
 
 
 def search(engine,req,profile,trace,priorities,record):
@@ -341,8 +345,6 @@ def search(engine,req,profile,trace,priorities,record):
     plan=feed_request.extract(engine,norm,req)
     cond=plan.cond
     subject,budget=cond.subject,cond.price_max
-    # «Дешевле N» в тексте — мягкий потолок: при пустом пересечении остаются самые доступные варианты.
-    soft_budget=budget is not None and req.filters.get("price_max") is None and bool(re.search(r"\bдешевле\b",norm))
     parsed=subject if req.verbatim else version_forms(spoken_numbers(spoken_initials(index,subject)))
     if parsed!=subject and index.recovery.full_name(subject)[0]:
         parsed=subject
@@ -366,6 +368,8 @@ def search(engine,req,profile,trace,priorities,record):
     os_compat=(os_tag,os_label) if os_tag else None
     sol_req=feed_request.for_solution(req)
     solution=resolve_solution(engine,sol_req,norm,base,renewal=renewal,os_compat=os_compat)
+    if solution and solution.kit and (cond.origin or cond.registry) and base!=norm:
+        solution=resolve_solution(engine,sol_req,base,base,renewal=renewal,os_compat=os_compat)
     if not solution and not mig:
         solution=resolve_service_query(engine,sol_req,norm,base,cond=cond)
     if solution:
@@ -750,10 +754,8 @@ def search(engine,req,profile,trace,priorities,record):
             ids=ordered
             if renewal:intent="renewal"
         elif budget is not None:
-            if soft_budget or (not section and req.filters.get("price_max") is None):
-                ids=sorted(ids,key=lambda cid:(min((o.price for o in index.cat.cards[cid].offers if o.price),default=float("inf")),cid))
-                note=f"Предложений дешевле {budget:g} ₽ нет. Показаны самые доступные варианты линейки."
-                budget_relaxed=True
+            if req.filters.get("price_max") is None:
+                selections=matching_variants(index,ids,profile,qty,renewal,{},nodes=nodes)
             else:
                 ids=[]
                 note="В указанном бюджете предложений с подтверждённой ценой нет."
@@ -766,7 +768,7 @@ def search(engine,req,profile,trace,priorities,record):
             missing=True
             intent="out_of_catalog"
     if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
-    ids,facet_base,section,note,relax_hints,_=feed_request.apply(
+    ids,facet_base,section,note,relax_hints,budget_relaxed=feed_request.apply(
         engine,req,profile,plan,ids,section,preferred,selections,qty,renewal,note)
     if mig_note and not note:note=mig_note
     title=index.classes.get(section) or TITLES[intent]
@@ -799,7 +801,7 @@ def search(engine,req,profile,trace,priorities,record):
     clarify=[]
     nearby=[]
     def complete(reserved):
-        if (hw_query and hw_query.no_sibling_fill) or license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or not feed_request.allow_fill(req,plan):return []
+        if (hw_query and hw_query.no_sibling_fill) or license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or cond.registry or not feed_request.allow_fill(req,plan):return []
         if edition:
             anchor=index.card_sections[edition.cards[0]]
             shown=set(main)|set(reserved)
@@ -816,8 +818,9 @@ def search(engine,req,profile,trace,priorities,record):
             nearby.extend(extra)
             return []
         return extra
+    blocked_ids=feed_conditions.excluded_cids(index,cond)
     if feed_request.allow_upsell(req,plan,items):
-        together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=None if budget_relaxed else budget,edition_audience=edition.audience if edition else None)
+        together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,blocked=blocked_ids,role=role,complete=complete,price_max=None if budget_relaxed else budget,edition_audience=edition.audience if edition else None)
     else:
         if feed_request.allow_fill(req,plan):
             items.extend(complete(set()))
