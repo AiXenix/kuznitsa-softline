@@ -1,6 +1,7 @@
 """Условия запроса, которые можно проверить по строкам фида."""
 import re
 from kuznitsa.index.feed import STOP, words
+from kuznitsa.index.feed_solutions import SolutionHit
 from kuznitsa.text import normalize
 from kuznitsa.index.feed_language import edition_form
 from kuznitsa.rank.variants import select
@@ -19,6 +20,14 @@ COMMERCE_QUESTION=re.compile(
     r"(?:(?:лицензи[юяией]|подписк[уаи]|программ[уа]|софт)\s+(?:на\s+)?)?",
     re.I,
 )
+COMMERCIAL_ACTION=re.compile(
+    r"^(?:(?:требуется|нужн[аоы]|необходим[аоы])\s+)?(?:(?:докупить|докупка|расшир(?:ить|ение)|увелич(?:ить|ение)(?:\s+(?:числа|количества))?|дополнительн\w*)\s+"
+    r"(?:дополнительн\w*\s+)?(?:лиценз\w*|подпис\w*|мест\w*|узл\w*)\s+(?:(?:на|для)\s+)?|"
+    r"(?:поставка|закупка|приобретение)\s+(?:лиценз\w*|по|программного\s+обеспечения)\s+(?:(?:на|для)\s+)?|"
+    r"(?:передача\s+)?(?:неисключительн\w+\s+)?прав[ао]?\s+на\s+использование\s+|"
+    r"лицензи\w+\s+на\s+право\s+использования\s+)+",
+    re.I,
+)
 REPLACE_QUESTION=re.compile(
     r"(?:что\s+(?:можно\s+)?поставить|что\s+(?:можно\s+)?взять|что\s+(?:можно\s+)?выбрать|"
     r"чем\s+(?:можно\s+)?заменить|замен[ауы]|альтернатив[ауы]|аналог(?:и|а|ов)?)\s+(?:вместо\s+)?(.+?)$|"
@@ -27,6 +36,36 @@ REPLACE_QUESTION=re.compile(
 )
 REPLACE_TAIL=re.compile(r"\b(?:в россии|для бизнеса|для компании|для офиса|отечественн\w*|российск\w*)\b",re.I)
 CONTEXT_TOOL_Q=re.compile(r"^(?:у\s+нас|есть|стоит|используем)\b.+?,\s*(?:чем|как|что|какой|какая)\b\s*(.+)$",re.I)
+MIGRATION_RE=re.compile(
+    r"\b(?:переход\w*|перейти|миграц\w*|мигрир\w*|перевод\w*|перевести|переезд\w*)\s+"
+    r"(?:с|со|из)\s+(?P<src>.+?)\s+на\s+(?P<dst>.+?)$",
+    re.I,
+)
+MIGRATION_ALIASES={"р7":"р7 офис","r7":"р7 офис"}
+OS_COMPAT_RE=re.compile(
+    r"\b(?:для|под|на|for)\s+(?P<os>astra\s+linux|астр\w*\s+линукс\w*|ред\s+ос|red\s+os|"
+    r"альт\s+линукс\w*|alt\s+linux|windows\s+server|виндовс\s+сервер\w*|linux\s+server|сервер\w*\s+linux)\b",
+    re.I,
+)
+SERVICE_PREFIX_RE=re.compile(
+    r"^(?P<kind>обучени\w*|курс(?:ы|ов|ам)?|тренинг\w*|учебн\w+\s+курс\w*|"
+    r"внедрени\w*|настройк\w*|установк\w*\s+и\s+настройк\w*|"
+    r"тех(?:ническ\w+)?\s*поддержк\w*|поддержк\w*|сопровождени\w*)\s+"
+    r"(?:(?:по|для|на)\s+)?(?:(?:работ\w*\s+(?:в|с)|администрировани\w*|настройк\w*|использовани\w*)\s+)?"
+    r"(?:(?:программ\w*|по|ос|продукт\w*)\s+)?(?P<target>.+)$",
+    re.I,
+)
+SERVICE_MARKERS={
+    "training":re.compile(r"курс|обучен|course|awareness|тренинг|учебн",re.I),
+    "support":re.compile(r"поддержк|support|expert\s+services|сертификат|сопровожден",re.I),
+    "implementation":re.compile(r"внедрен|настройк|интеграц|expert\s+services|услуг",re.I),
+}
+GENERIC_HEAD=re.compile(
+    r"^(?:программн\w+\s+обеспечени\w*|операционн\w+\s+систем\w*|"
+    r"систем\w*|программ\w*|платформ\w*|решени\w*|комплекс\w*|средств\w*|сервис\w*|"
+    r"софт\w*|по|утилит\w*|приложени\w*|инструмент\w*|пакет\w*|антивирус\w*)$",
+    re.I,
+)
 # Лексические мосты между действием и существительным в дереве магазина.
 PURPOSES=[
     (r"перевести|переводить|переводчик|машинн\w* перевод","переводчики"),
@@ -61,14 +100,61 @@ def split_conditions(q):
 
 
 def strip_question(text):
-    """Снять вопросительную коммерческую обёртку вокруг названия продукта или вендора."""
+    """Снять вопросительную и коммерческую обёртку вокруг названия продукта или вендора."""
     if not text or COMPARE_OR_EXCL.search(text):
         return text
     cleaned=text.strip(" ?!.,;")
     stripped=COMMERCE_QUESTION.sub("",cleaned).strip(" ?!.,;«»\"")
+    stripped=COMMERCIAL_ACTION.sub("",stripped).strip(" ?!.,;«»\"")
     if stripped and stripped!=cleaned:
         return stripped
     return text
+
+
+def migration_target(text):
+    """Выделить целевой продукт из запроса о переходе/миграции («переход с X на Y»)."""
+    if not text:
+        return None
+    cleaned=text.strip(" ?!.,;")
+    m=MIGRATION_RE.search(cleaned)
+    if not m:
+        return None
+    src=m.group("src").strip(" ?!.,;«»\"")
+    dst=m.group("dst").strip(" ?!.,;«»\"")
+    if not src or not dst:
+        return None
+    # Не перехватываем «переход на российское ПО» без источника (там нет «с X») и апгрейд версий «с 10 на 11»
+    if re.fullmatch(r"\d+(?:\.\d+)?",dst):
+        return None
+    dst_norm=MIGRATION_ALIASES.get(dst.lower(),dst)
+    note=f"Переход с {src} на {dst}: ниже актуальные варианты целевого продукта."
+    return src,dst_norm,note
+
+
+def extract_os_compat(text):
+    """Выделить указание целевой ОС (Astra Linux, РЕД ОС, Альт Линукс, Windows Server), чтобы не путать с вендором."""
+    if not text:
+        return text,None,None
+    m=OS_COMPAT_RE.search(text)
+    if not m:
+        return text,None,None
+    cleaned=" ".join((text[:m.start()]+" "+text[m.end():]).strip(" ,;:-").split())
+    if not cleaned:
+        return text,None,None
+    os_raw=m.group("os").strip()
+    low=os_raw.lower()
+    if "server" in low or "сервер" in low:
+        tag="server"
+    else:
+        tag="linux"
+    label="Astra Linux" if ("astra" in low or "астр" in low) else (
+        "РЕД ОС" if ("ред" in low or "red" in low) else (
+            "Альт Линукс" if ("альт" in low or "alt" in low) else (
+                "Windows Server" if ("windows" in low or "виндовс" in low) else os_raw
+            )
+        )
+    )
+    return cleaned,tag,label
 
 
 def replacement_subject(text):
@@ -85,17 +171,178 @@ def replacement_subject(text):
     return raw or None
 
 
-def resolve_solution(engine,req,norm,base,*,renewal=False):
+def resolve_service_query(engine,req,norm,base,cond=None):
+    """Обработка запросов на обучение/курсы/поддержку/внедрение по конкретному продукту или вендору."""
+    index=engine.catalog.feed
+    if req.verbatim or req.category or "\n" in req.q:
+        return None
+    kind=None
+    target=None
+    if cond and cond.service:
+        kind=cond.service
+        target=base
+    else:
+        m=SERVICE_PREFIX_RE.match(base) or SERVICE_PREFIX_RE.match(norm)
+        if not m:
+            return None
+        raw_kind=m.group("kind").lower()
+        target=m.group("target").strip(" ?!.,;«»\"")
+        if not target:
+            return None
+        if raw_kind.startswith(("обуч","курс","тренинг","учеб")):
+            kind="training"
+        elif raw_kind.startswith(("внедр","настрой","установ")):
+            kind="implementation"
+        else:
+            kind="support"
+
+    marker=SERVICE_MARKERS[kind]
+    # Собираем все карточки, относящиеся к целевому продукту/вендору
+    pool=[]
+    t_norm=normalize(target)
+    t_words=" ".join(words(t_norm))
+    vid=index.vendor_names.get(t_norm) or index.vendor_names.get(t_words)
+    if not vid and t_norm in index.slang:
+        field,slang_ids=index.slang[t_norm]
+        if field=="vendors":
+            pool.extend(slang_ids)
+            if slang_ids:
+                vid=index.card_vendors.get(slang_ids[0])
+        else:
+            pool.extend(slang_ids)
+    if vid:
+        pool.extend(index.language.vendor_cards.get(vid,()))
+        pool.extend(index.cat.by["vendor"].get(vid,()))
+    pool.extend(index.products(t_norm,domain="software",fuzzy=False))
+    if not pool:
+        pool.extend(index.products(index.correct(t_norm),domain="software",fuzzy=False))
+    if not pool:
+        sound_ids,_=index.sound_products(t_norm)
+        pool.extend(sound_ids)
+    # Дедупликация с сохранением приоритета качества
+    pool=list(dict.fromkeys(cid for cid in pool if cid in index.cat.cards and index.cat.cards[cid].offers[0].domain=="software"))
+    if not pool:
+        return None
+
+    direct=[]
+    products=[]
+    for cid in pool:
+        card=index.cat.cards[cid]
+        if marker.search(card.title) or any(marker.search(o.name) for o in card.offers[:15]):
+            direct.append(cid)
+        else:
+            products.append(cid)
+    direct.sort(key=lambda cid:(bool(marker.search(index.cat.cards[cid].title)),index.quality[cid]),reverse=True)
+    products.sort(key=lambda cid:index.quality[cid],reverse=True)
+
+    # Для support/implementation, перехваченных feed_conditions: вмешиваемся только если нашли прямые сервисные карточки
+    # (например, Kaspersky Softline Expert Services для «техподдержка касперский»), чтобы не мешать обычному пути N4.
+    if cond and cond.service and not direct:
+        return None
+
+    if direct:
+        # Для training/support с найденными сервисными карточками ставим их первыми, затем сам продукт
+        ordered=direct[:6]+products[:6]
+        if kind=="support":
+            note=f"Услуги поддержки и сервисы для «{target}», а также основные лицензии продукта."
+            title=f"Техническая поддержка · {target}"
+        elif kind=="training":
+            note=f"Учебные курсы по «{target}» и основные лицензии продукта."
+            title=f"Обучение · {target}"
+        else:
+            note=f"Услуги внедрения для «{target}» и основные лицензии продукта."
+            title=f"Внедрение · {target}"
+        return SolutionHit(id=f"service_{kind}",title=title,note=note,cards=tuple(ordered),sections=(),kit=True,exact=True,phrase_len=2)
+
+    # Прямых курсов/услуг по этому продукту в каталоге нет -> честное пояснение + сам продукт + общие IT-курсы/сервисы каталога
+    nearby=[]
+    if kind=="training":
+        for cid,card in index.cat.cards.items():
+            if card.offers[0].domain!="software" or cid in products:
+                continue
+            tlow=card.title.lower()
+            if "it-курс" in tlow or "электронный курс" in tlow:
+                nearby.append(cid)
+        nearby.sort(key=lambda cid:("it-курс" in index.cat.cards[cid].title.lower(),index.quality[cid]),reverse=True)
+        note=f"Отдельного курса обучения по «{target}» в каталоге фида не выделено — ниже сам продукт и близкие учебные предложения каталога."
+        title=f"Обучение · {target}"
+    elif kind=="implementation":
+        note=f"Отдельной услуги внедрения «{target}» в каталоге фида не выделено — ниже основные лицензии продукта."
+        title=f"Внедрение · {target}"
+    else:
+        note=f"Отдельного сертификата поддержки для «{target}» в каталоге фида не выделено — ниже основные лицензии продукта."
+        title=f"Поддержка · {target}"
+    ordered=products[:4]+nearby[:2]
+    return SolutionHit(id=f"service_{kind}",title=title,note=note,cards=tuple(ordered),sections=(),kit=True,exact=True,phrase_len=2)
+
+
+
+
+def restore_platform_subject(norm,base,cond):
+    """Если feed_conditions снял «на Windows / для Linux» как платформу, оставив пустой/общий каркас («где купить лицензию»), вернуть платформу как предмет запроса."""
+    if not (cond and cond.platform):
+        return base,False
+    stripped=strip_question(base)
+    if not stripped or re.fullmatch(r"(?:лиценз\w*|ключ\w*|подписк\w*|ос|операционн\w+\s+систем\w*|по|программ\w*|софт\w*|продукт\w*)",stripped):
+        restored=strip_question(norm)
+        if restored:
+            return restored,True
+    return base,False
+
+def apply_solution_conditions(engine,req,profile,solution,ids,cond,os_compat,preferred,selections,use_qty,note):
+    """Применить условия покупки и ОС-совместимость к карточкам курируемого решения."""
+    from . import feed_conditions
+    index=engine.catalog.feed
+    ids=list(ids)
+    extra_chips=[]
+    eff_platform=(os_compat[0] if os_compat else None) or (cond.platform if cond else None)
+    if eff_platform=="linux" and ids:
+        if solution.id in ("office_suite","office_suite_ru"):
+            non_ms=[cid for cid in ids if "microsoft" not in index.cat.cards[cid].title.lower()
+                    and "microsoft" not in (index.cat.cards[cid].offers[0].vendor or "").lower()]
+            if non_ms:
+                ids=non_ms
+        elif solution.id in ("mechanical_cad","cad_2d"):
+            non_win=[cid for cid in ids if "autodesk" not in index.cat.cards[cid].title.lower()
+                     and "autodesk" not in (index.cat.cards[cid].offers[0].vendor or "").lower()]
+            if non_win:
+                ids=non_win
+        linux_explicit=[cid for cid in ids if "linux" in index.cat.cards[cid].title.lower()
+                        or cid in index.platform_offers.get("linux",{})]
+        if linux_explicit:
+            seen=set(linux_explicit)
+            ids=linux_explicit+[cid for cid in ids if cid not in seen]
+    if cond and (cond.active or cond.price_min is not None or cond.price_max is not None) and ids:
+        # Передаём section=None, чтобы условия фильтровали только карточки решения без подмешивания соседних разделов
+        ids,_,note,_=feed_conditions.apply_conditions(
+            engine,req,profile,cond,ids,None,preferred,selections,use_qty,False,note)
+        # Если cond.registry не нашёл флага registry на офферах и apply_conditions откатился к нефильтрованному списку,
+        # всё равно отсекаем зарубежные продукты по is_domestic_card.
+        if (cond.origin=="russian" or cond.registry) and ids:
+            dom=[cid for cid in ids if feed_conditions.is_domestic_card(index,engine.kb,engine,cid)]
+            if dom:
+                ids=dom
+    if os_compat and not (cond and cond.platform):
+        extra_chips.append(dict(key="platform",label=f"ОС: {os_compat[1]}",removable=True))
+    return ids,note,extra_chips
+
+def resolve_solution(engine,req,norm,base,*,renewal=False,os_compat=None):
     """Распознать курируемую бизнес-задачу до ветки оборудования, опечаток и узких эвристик."""
     index=engine.catalog.feed
     if (req.verbatim or req.category or req.sort or req.weights or req.exclude or renewal
-            or req.filters.keys()-{"price_max"} or set(req.ignore)-{"price_max"}
+            or req.filters.keys()-{"price_max","price_min","origin","registry"}
+            or set(req.ignore)-{"price_max","price_min","origin","registry","platform"}
             or "\n" in req.q or not index.solutions.rows):
         return None
     if COMPARE_OR_EXCL.search(norm) or COMPARE_OR_EXCL.search(base):
         return None
+    # Не перехватываем запросы о миграции («переход с X на Y») — их обрабатывает migration_target
+    if MIGRATION_RE.search(norm) or MIGRATION_RE.search(base):
+        return None
+    # Снимаем коммерческие/закупочные обёртки («поставка лицензий офисного пакета») для чистого матчинга
+    clean_base=COMMERCIAL_ACTION.sub("",base).strip(" ?!.,;«»\"") or base
     # 1. Запрос о замене конкретного продукта на курируемый класс решений (AD, MS Office)
-    rep=replacement_subject(base) or replacement_subject(norm)
+    rep=replacement_subject(clean_base) or replacement_subject(norm)
     if rep:
         hit=index.solutions.match_replacement(rep)
         if hit:
@@ -103,35 +350,48 @@ def resolve_solution(engine,req,norm,base,*,renewal=False):
         # Остальные запросы «аналог X» / «чем заменить X» обрабатывает feed_analogs
         return None
     # 2. Не перехватывать out-of-catalog бренды («veeam backup», «1с бухгалтерия», «zoom»)
-    row=index.analogs.lookup(base,fuzzy=False)
+    row=index.analogs.lookup(clean_base,fuzzy=False)
     if row and not row["in_catalog"]:
         return None
     # 3. Конструкция «у нас <контекст>, чем его <задача>»: приоритет у вопросительной части
-    ctx_q=CONTEXT_TOOL_Q.match(base) or CONTEXT_TOOL_Q.match(norm)
+    ctx_q=CONTEXT_TOOL_Q.match(clean_base) or CONTEXT_TOOL_Q.match(norm)
     if ctx_q:
         hit=index.solutions.match(ctx_q.group(1))
         if hit:
             return hit
-    # 4. Поиск самой длинной фразы задачи
-    hit=index.solutions.match(base) or (index.solutions.match(norm) if norm!=base else None)
+    # 4. Поиск самой длинной фразы задачи (с учётом ОС-совместимости, чтобы «сапр для astra linux» не путалось с вендором Astra)
+    hit=None
+    if os_compat and os_compat[0]=="linux":
+        # Сначала ищем по предмету без ОС-хвоста («сапр»)
+        os_subj=extract_os_compat(clean_base)[0]
+        hit=index.solutions.match(os_subj)
+    if not hit:
+        hit=index.solutions.match(clean_base) or (index.solutions.match(base) if base!=clean_base else None)
+    if not hit and norm!=base:
+        hit=index.solutions.match(norm)
     if not hit:
         return None
     # 5. Защита: конкретный продаваемый продукт или бренд имеют приоритет над задачей
+    check_text=extract_os_compat(clean_base)[0] if (os_compat and os_compat[0]=="linux") else clean_base
     if not hit.exact:
-        if index.edition(base):
+        if index.edition(check_text):
             return None
-        if index.recovery.full_name(base)[0]:
+        if index.recovery.full_name(check_text)[0]:
             return None
-        if product_context(engine,base):
+        if product_context(engine,check_text):
             return None
-        if vendor_class(index,base)[0]:
+        if vendor_class(index,check_text)[0]:
             return None
-        parts=base.split()
+        parts=check_text.split()
         if len(parts)>=2:
             for length in range(min(len(parts)-1,3),0,-1):
                 for side in (parts[:length],parts[-length:]):
                     alias=" ".join(side)
-                    if alias in index.vendor_names or " ".join(words(alias)) in index.vendor_names:
+                    alias_w=" ".join(words(alias))
+                    # Не уступаем вендору, если само слово является точным названием задачи/класса (например, «видеомонтаж» -> AMS Software)
+                    if index.solutions.is_exact_phrase(alias) or index.solutions.is_exact_phrase(alias_w):
+                        continue
+                    if alias in index.vendor_names or alias_w in index.vendor_names:
                         return None
     return hit
 
@@ -246,7 +506,9 @@ def described_line(index,text):
         terms=words(tail)
         if not terms or terms[0] not in FUNCTION_WORDS:continue
         head=" ".join(parts[:pos])
-        if index.class_match(head) or head in index.hardware or index.solutions.is_exact_phrase(head):continue
+        if (GENERIC_HEAD.fullmatch(head) or index.class_match(head)
+                or head in index.hardware or index.solutions.is_exact_phrase(head)):
+            continue
         name=index.correct(head)
         ids=index.products(name,fuzzy=False)
         if not ids:ids,name=index.sound_products(head)
@@ -267,8 +529,8 @@ def product_context(engine,text):
         named=described_line(index,text)
         return (named,{}) if named else None
     head=text[:split.start()]
-    if (head in index.hardware or index.class_match(head) or index.solutions.is_exact_phrase(head)
-            or re.fullmatch(r"антивирус\w*|программ\w*|софт|средств\w*",head)):
+    if (GENERIC_HEAD.fullmatch(head) or head in index.hardware
+            or index.class_match(head) or index.solutions.is_exact_phrase(head)):
         return None
     mapped,_=engine._phrases.apply(head)
     phrase=index.correct(mapped)

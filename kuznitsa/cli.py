@@ -49,7 +49,9 @@ def main(argv=None):
         kb=load(cfg.kb,cfg.data if args.cmd=="kb-check" else None)
         if args.cmd=="kb-check":
             from .index.feed_analogs import check_snapshot
+            from .index.feed_solutions import check_snapshot as check_solutions
             check_snapshot(kb,cfg.data)
+            check_solutions(kb,cfg.kb,cfg.data)
             show(kb.report())
             return int(bool(kb.syntax))
         print(f"Предложений · {build(cfg,kb,args.seed,args.today)}")

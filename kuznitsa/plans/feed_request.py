@@ -68,6 +68,16 @@ def unsupported(req) -> bool:
     return False
 
 
+def reset_text_conditions(plan: RequestPlan, cond) -> RequestPlan:
+    """Предмет запроса восстановлен (слово платформы оказалось частью названия): из текста остаются цена и порядок."""
+    text = plan.text_cond
+    kept = feed_conditions.Conditions(
+        subject=cond.subject, raw_for_analogs=cond.raw_for_analogs,
+        price_min=text.price_min, price_max=text.price_max, sort=text.sort,
+    )
+    return replace(plan, text_cond=kept, cond=cond)
+
+
 def for_solution(req):
     """Копия запроса без параметров N7, чтобы resolve_solution находил ту же задачу."""
     if unsupported(req):
@@ -492,7 +502,7 @@ def allow_fill(req, plan: RequestPlan) -> bool:
     return req.page == 1 and not plan.has_filters and plan.sort not in ("price_asc", "price_desc")
 
 
-def apply(engine, req, profile, plan: RequestPlan, ids, section, preferred, selections, qty, renewal, note):
+def apply(engine, req, profile, plan: RequestPlan, ids, section, preferred, selections, qty, renewal, note, text_apply=None):
     """Применить текстовые условия, фильтры/исключения параметров и сортировку по всему списку.
 
     Возвращает (ids, base_ids, section, note, relax_hints, price_relaxed).
@@ -518,7 +528,10 @@ def apply(engine, req, profile, plan: RequestPlan, ids, section, preferred, sele
         or text_for_apply.service or text_for_apply.platform
         or has_text_price
     )
-    if ids and need_text_apply:
+    if ids and text_apply is not None:
+        # Поиск по задаче применяет текстовые условия сам — только к карточкам решения.
+        ids, section, note, price_relaxed = text_apply(text_for_apply, ids, section, note)
+    elif ids and need_text_apply:
         ids, section, note, price_relaxed = feed_conditions.apply_conditions(
             engine, req, profile, text_for_apply, ids, section, preferred, selections, qty, renewal, note
         )

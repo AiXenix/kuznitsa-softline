@@ -3,7 +3,7 @@ import re
 from uuid import uuid4
 from . import feed_analogs, feed_compare, feed_conditions, feed_context, feed_guard, feed_noise, feed_request
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
-from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution
+from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution, migration_target, extract_os_compat, resolve_service_query, apply_solution_conditions, restore_platform_subject
 from kuznitsa.config import WEIGHTS
 from kuznitsa.index.feed_language import version_forms,edition_form,sold_as,spoken_initials
 from kuznitsa.index.feed_repair import identity_terms
@@ -226,7 +226,7 @@ def task_sections(engine,q,hint):
     return options,focus,preferred,note
 
 
-def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=None):
+def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=None,cond=None,os_compat=None):
     index=engine.catalog.feed
     plan=plan or feed_request.extract(engine,norm,req)
     sid="s_"+uuid4().hex
@@ -254,8 +254,15 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
         elif text_budget is not None:
             ids=[]
             note="В указанном бюджете предложений с подтверждённой ценой нет."
+    extra_chips=[]
+    def solution_text(text_cond,ids,section,note):
+        # Текстовые условия и совместимость с ОС применяются только к карточкам решения, без соседних разделов.
+        ids,note,found=apply_solution_conditions(engine,req,profile,solution,ids,text_cond,os_compat,preferred,selections,use_qty,note)
+        extra_chips.extend(found)
+        return ids,section,note,False
     ids,sol_base,section,note,relax_hints,_=feed_request.apply(
-        engine,req,profile,plan,ids,section,preferred,selections,use_qty,False,note)
+        engine,req,profile,plan,ids,section,preferred,selections,use_qty,False,note,
+        text_apply=solution_text if (cond is not None or os_compat) else None)
     trace.add("retrieve","Поиск по задаче",title,candidates=len(ids))
     trace.add("intent","Выбор решения",title)
     start=(req.page-1)*req.page_size
@@ -274,7 +281,7 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
     main=[c["card_id"] for c in items]
     clarify=[]
     def complete(reserved):
-        if budget is not None or not feed_request.allow_fill(req,plan):return []
+        if budget is not None or not feed_request.allow_fill(req,plan) or os_compat or (cond and (cond.origin or cond.sort or cond.platform or cond.exclude_vendors or cond.exclude_terms or cond.price_min is not None)):return []
         return fill(engine,items,profile,reserved=reserved,q=req.q,blocks=clarify)
     if feed_request.allow_upsell(req,plan,items):
         together,recommended=recommend(engine,norm,items,profile,intent,complete=complete,price_max=budget)
@@ -296,6 +303,7 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
         blocks=blocks,facets=facets,notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
         profile=profile_info(profile),cost=cost_summary([],engine.usd_rub),trace=trace.steps,timing_ms={})
     feed_request.populate_result(index,engine,plan,result,chips,relax_hints)
+    chips.extend(c for c in extra_chips if all(x.get("key")!=c.get("key") for x in chips))
     if qty:
         chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
     return finish(engine,req,trace,record,result,items,len(main),[])
@@ -339,10 +347,29 @@ def search(engine,req,profile,trace,priorities,record):
     if parsed!=subject and index.recovery.full_name(subject)[0]:
         parsed=subject
     base,qty,renewal=split_conditions(parsed)
+    if not (req.verbatim or req.category):
+        base,reset_plat=restore_platform_subject(norm,base,cond)
+        if reset_plat:
+            cond=feed_conditions.Conditions(subject=base,raw_for_analogs=base,price_min=cond.price_min,price_max=cond.price_max,sort=cond.sort)
+            plan=feed_request.reset_text_conditions(plan,cond)
     original_subject=base
-    solution=resolve_solution(engine,feed_request.for_solution(req),norm,base,renewal=renewal)
+    mig_note=None
+    mig=None if (req.verbatim or req.category) else (migration_target(norm) or migration_target(base))
+    if mig:
+        base=mig[1]
+        original_subject=base
+        mig_note=mig[2]
+        if cond.platform:
+            cond=feed_conditions.Conditions(subject=base,raw_for_analogs=base,price_min=cond.price_min,price_max=cond.price_max,sort=cond.sort)
+            plan=feed_request.reset_text_conditions(plan,cond)
+    _,os_tag,os_label=(None,None,None) if (mig or req.verbatim or req.category) else extract_os_compat(base)
+    os_compat=(os_tag,os_label) if os_tag else None
+    sol_req=feed_request.for_solution(req)
+    solution=resolve_solution(engine,sol_req,norm,base,renewal=renewal,os_compat=os_compat)
+    if not solution and not mig:
+        solution=resolve_service_query(engine,sol_req,norm,base,cond=cond)
     if solution:
-        return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=plan)
+        return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=plan,cond=cond,os_compat=os_compat)
     if not req.verbatim:
         cleaned=strip_question(base)
         if cleaned!=base:
@@ -732,6 +759,8 @@ def search(engine,req,profile,trace,priorities,record):
                 note="В указанном бюджете предложений с подтверждённой ценой нет."
         elif qty and not renewal:
             note="Товары найдены. В фиде нет лицензии с подтверждёнными условиями на указанное количество."
+        elif renewal:
+            note="Для выбранной линейки нет отдельного предложения на продление. Ниже актуальные лицензии продукта."
         else:
             note="Для выбранной линейки нет предложения с указанными условиями. Ниже близкие варианты."
             missing=True
@@ -739,6 +768,7 @@ def search(engine,req,profile,trace,priorities,record):
     if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
     ids,facet_base,section,note,relax_hints,_=feed_request.apply(
         engine,req,profile,plan,ids,section,preferred,selections,qty,renewal,note)
+    if mig_note and not note:note=mig_note
     title=index.classes.get(section) or TITLES[intent]
     if vendor_gap:
         gap=f"В разделе «{index.classes[section]}» товаров этого производителя нет."
