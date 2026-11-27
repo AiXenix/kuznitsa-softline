@@ -1,0 +1,81 @@
+{
+  "query": {
+    "raw": "ноутбк",
+    "corrected": "ноутбук",
+    "corrections": [{"from": "ноутбк", "to": "ноутбук"}],
+    "did_you_mean": "ноутбуки для бизнеса"
+  },
+  "profile": {"id": "guest", "title": "Гость"},
+  "mode": "fast",
+  "understood": {
+    "intent_title": "Подбор в категории",
+    "chips": [
+      {"key": "price_max", "label": "До 120 000 ₽", "removable": true},
+      {"key": "quantity", "label": "Количество · 3"}
+    ]
+  },
+  "facets": [
+    {
+      "key": "vendor",
+      "title": "Производитель",
+      "values": [
+        {"id": "lenovo", "label": "Lenovo", "count": 12},
+        {"id": "asus", "label": "ASUS", "count": 9},
+        {"id": "hp", "label": "HP", "count": 7},
+        {"id": "acer", "label": "Acer", "count": 6},
+        {"id": "msi", "label": "MSI", "count": 5},
+        {"id": "dell", "label": "Dell", "count": 4},
+        {"id": "huawei", "label": "HUAWEI", "count": 4},
+        {"id": "apple", "label": "Apple", "count": 3},
+        {"id": "honor", "label": "HONOR", "count": 2},
+        {"id": "aquarius", "label": "Аквариус", "count": 2}
+      ]
+    },
+    {
+      "key": "category",
+      "title": "Раздел",
+      "values": [
+        {"id": "70824", "label": "Ноутбуки", "count": 38},
+        {"id": "70825", "label": "Ультрабуки", "count": 11},
+        {"id": "70826", "label": "Рабочие станции", "count": 5}
+      ]
+    },
+    {
+      "key": "price_max",
+      "title": "Цена",
+      "values": [
+        {"id": 60000, "label": "До 60 000 ₽", "count": 8},
+        {"id": 120000, "label": "До 120 000 ₽", "count": 26},
+        {"id": 200000, "label": "До 200 000 ₽", "count": 38}
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "products",
+      "title": "Ноутбуки",
+      "total": 38,
+      "items": [
+        {
+          "card_id": "sku_501525",
+          "title": "Ноутбук LENOVO Thinkbook 14 G8 IRL Intel Core 5 210H",
+          "vendor": {"id": "lenovo", "title": "Lenovo"},
+          "offer": {"offer_id": "o1", "price": 109990, "available": true}
+        },
+        {
+          "card_id": "sku_501526",
+          "title": "Ноутбук ASUS ExpertBook B1 15.6 Intel Core i5",
+          "vendor": {"id": "asus", "title": "ASUS"},
+          "offer": {"offer_id": "o2", "price": 74900, "available": true}
+        },
+        {
+          "card_id": "sku_501527",
+          "title": "Ноутбук HP ProBook 450 G10 15.6 FHD",
+          "vendor": {"id": "hp", "title": "HP"},
+          "offer": {"offer_id": "o3", "price": 89500, "available": true}
+        }
+      ]
+    }
+  ],
+  "trace": []
+}

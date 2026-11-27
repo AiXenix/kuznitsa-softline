@@ -500,3 +500,22 @@ body.presenting {height:100dvh;display:flex;flex-direction:column;overflow:hidde
 .priceUnit {display:block;margin-top:.2rem;font-size:.8rem;line-height:1.3;font-weight:450;color:var(--muted);white-space:normal}
 .mic svg {display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .mic.listening {color:var(--teal);background:var(--mint)}
+
+/* Sort, inline understood bar, and visible facet filters */
+.blockHead {display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .85rem;margin:0 0 .55rem}
+.blockHead h2 {margin:0;margin-right:auto;min-width:0}
+.sortSelect {width:auto;max-width:100%;padding:.32rem .65rem;font-size:.88rem;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);cursor:pointer}
+.understoodBar {display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem;margin:0 0 .65rem;padding:.45rem .7rem;background:#f4f7f5;border:1px solid var(--line);border-radius:8px;font-size:.88rem;max-width:100%}
+.understoodBar .understoodText {color:var(--ink);font-size:.88rem}
+.understoodBar .chip {margin:0;padding:.22rem .58rem;font-size:.84rem;max-width:100%}
+.facetBar {display:flex;flex-direction:column;gap:.45rem;margin:0 0 .85rem;padding:.55rem .75rem;background:#fafafa;border:1px solid var(--line);border-radius:8px;max-width:100%}
+.facetApplied {display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+.facetGroup {display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .4rem;min-width:0}
+.facetTitle {font-size:.82rem;font-weight:650;color:var(--muted);white-space:nowrap;margin-right:.15rem}
+.facetValues {display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;min-width:0;flex:1}
+.facetChip {display:inline-block;padding:.2rem .55rem;font-size:.83rem;font-weight:500;border-radius:6px;border:1px solid var(--line);background:white;color:var(--ink);max-width:100%}
+.facetChip.active {background:var(--mint);border-color:var(--teal);color:var(--teal);font-weight:600}
+.facetMore {padding:.2rem .55rem;font-size:.82rem;font-weight:600;border:1px dashed var(--line);background:transparent;color:var(--teal);border-radius:6px}
+#suggestions {max-width:100%;overflow-x:hidden}
+#suggestions [role=group] {min-width:0;max-width:100%}
+.option {min-width:0;max-width:100%}

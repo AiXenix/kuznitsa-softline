@@ -10,10 +10,10 @@
 .shopTop img {display:block;width:136px;height:40px;object-fit:contain}
 .storeName {border-left:1px solid #ccc;padding-left:1rem;color:#666}
 .gear {font-size:1.2rem;margin-left:auto;border:0;background:#f2f2f2;border-radius:50%;padding:.3rem .55rem}
-.shopSearch {padding:.8rem 0;gap:.7rem}
+.shopSearch {padding:.8rem 0;gap:.7rem;min-width:0}
 .catalogBtn,.shop .primary,.widget .primary,.shop .buy {background:#a50f2d;color:white;border:0}
 .catalogBtn {padding:.7rem 1rem;white-space:nowrap}
-.shop #search {flex:1;min-width:0}
+.shop #search {flex:1;min-width:0;max-width:100%}
 .shop .bar,.widget .bar {border:1px solid #a50f2d;border-radius:6px;padding:2px;align-items:stretch}
 .shop .bar input {font-size:.95rem}
 .shop .bar .primary,.widget .bar .primary {background:#a50f2d;color:white;border-radius:4px;padding:.4rem .85rem}
@@ -80,17 +80,27 @@
 :is(.shop,.widget) .offerTile .price {font-size:1.15rem;color:#121519;margin:.4rem 0}
 :is(.shop,.widget) .offerTile .purchase button {margin:0;width:100%}
 :is(.shop,.widget) .offerTile .conditions {font-size:.77rem}
-:is(.shop,.widget) #suggestions {z-index:12;padding:.65rem;max-height:min(65vh,34rem);border-color:#ddd}
-:is(.shop,.widget) .option {display:flex;align-items:center;gap:.6rem;justify-content:normal}
-.option>span {flex:1;min-width:0}
+:is(.shop,.widget) #suggestions {z-index:12;padding:.65rem;max-height:min(65vh,34rem);max-width:100%;overflow-x:hidden;border-color:#ddd}
+:is(.shop,.widget) .option {display:flex;align-items:center;gap:.6rem;justify-content:normal;min-width:0;max-width:100%}
+.option>span {flex:1;min-width:0;overflow-wrap:anywhere}
 .option .productPic {flex:none;width:40px;height:40px}
 .option .pack {width:24px;height:28px;font-size:.65rem}
-.option .suggestPrice {white-space:nowrap;color:#121519;font-size:.84rem}
+.option .suggestPrice {white-space:nowrap;color:#121519;font-size:.84rem;flex:none}
 .shop .option mark,.widget .option mark {color:#a50f2d;background:transparent;font-weight:bold}
+.shop .understoodBar {background:#f8f8f9;border-color:#e2e3e6}
+.shop .understoodBar .chip {background:#fbebef;border-color:#e6b8c4;color:#8b1530}
+.shop .understoodBar .chip:hover {border-color:#a50f2d;color:#a50f2d}
+.shop .facetBar {background:#fafafa;border-color:#e6e7ea}
+.shop .facetChip.active {background:#fbebef;border-color:#a50f2d;color:#8b1530}
+.shop .facetMore {color:#a50f2d;border-color:#d8c2c8}
+.shop .zeroReason {background:#faf6f7;border-left-color:#a50f2d}
+.shop .blockHead .exportRow {float:none;margin:0}
 @media (max-width:850px){
  .shop .shopSearch {display:grid;grid-template-columns:auto 1fr}
  .shop #search {grid-column:1/-1;grid-row:2}
  .shop .shopActions {justify-self:end}
+ .shop .departments {display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:.85rem;padding:.15rem 0 .45rem}
+ .shop .departments::-webkit-scrollbar {display:none}
  .shop .departmentTiles {grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:540px){
@@ -99,13 +109,22 @@
  .shop .shopActions {gap:0}.shopActions button {font-size:.69rem;padding:.3rem}
  .catalogBtn {padding:.5rem .6rem;font-size:.83rem}
  .shop .shopSearch {gap:.45rem;padding:.4rem 0}
- .shop .departments {display:flex;flex-wrap:wrap;overflow:visible}
+ .shop .departments {display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:.75rem;padding:.1rem 0 .4rem}
+ .shop .departments a {font-size:.82rem;padding:.2rem 0}
  .shop .bar input {font-size:.84rem}.shop .bar .primary {min-width:4rem}
  .shopBanners {grid-template-columns:1fr}.cloudAd {display:none!important}
  .shop .departmentTiles {grid-template-columns:1fr}
  .shop .departmentTiles a {padding:.7rem}
  .shop .judge .settings {display:grid;grid-template-columns:1fr}
- .shop #suggestions {max-height:55dvh}
+ .shop #suggestions {max-height:55dvh;left:0;right:0;max-width:100%;padding:.45rem}
+ .shop #suggestions .option {font-size:.84rem;gap:.4rem;padding:.24rem .3rem}
+ .shop .blockHead {gap:.4rem .5rem}
+ .shop .blockHead h2 {font-size:1.25rem;flex:1 1 100%}
+ .shop .sortSelect {font-size:.84rem;padding:.28rem .5rem}
+ .shop .understoodBar {padding:.4rem .55rem;font-size:.82rem}
+ .shop .facetBar {padding:.45rem .55rem}
+ .shop .facetTitle {flex-basis:100%;font-size:.78rem}
+ .shop .facetChip,.shop .facetMore {font-size:.8rem;padding:.18rem .48rem}
 }
 
 .productPic img {opacity:0}.productPic img.ready {opacity:1}
@@ -140,3 +159,8 @@
 @media(max-width:600px){.upsellEditor .adminForm {grid-template-columns:1fr}}
 .upsellTools {display:flex;flex-wrap:wrap;gap:1rem;align-items:end;margin-bottom:.7rem}
 .upsellTools label {display:grid;gap:.2rem;min-width:min(100%,16rem);font-size:.85rem}
+
+@media (max-width:540px){
+ .shop #suggestions .option {font-size:.84rem;gap:.4rem;padding:.24rem .3rem}
+ .shop #suggestions .option>small {font-size:.74rem}
+}

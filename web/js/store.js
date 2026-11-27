@@ -94,6 +94,10 @@ async function store() {
     $('comparison').hidden=true;
     const now=++version;
     const request={...previous,...settings(q),...patch};
+    if(!request.sort)delete request.sort;
+    if(request.filters && !Object.keys(request.filters).length)delete request.filters;
+    if(request.exclude && !Object.keys(request.exclude).length)delete request.exclude;
+    if(request.ignore && !request.ignore.length)delete request.ignore;
     state.request=request;
     main.classList.add('searched');
     if(!navigation.restore && !navigation.file)save(request);
@@ -121,6 +125,7 @@ async function store() {
       record(r,'impression').catch(err=>line(results,err.message,'error'));
       if(navigation.suggest)record(r,'suggest_click',{},'suggest').catch(err=>line(results,err.message,'error'));
       result(results,r,{retail:true,understanding:shop.understanding,categories:state.meta.categories,
+        sort:request.sort || '',filters:request.filters || {},
         related:q=>{record(r,'reformulate',{},'related').catch(err=>line(results,err.message,'error'));run(q);},
         apply:change=>{
           if(change.q){
@@ -128,11 +133,23 @@ async function store() {
             return run(change.q,change);
           }
           const next={page:1,...change};
-          if(change.filters) next.filters={...request.filters,...change.filters};
-          if(change.ignore) {
-            next.ignore=[...new Set([...(request.ignore || []),...change.ignore])];
+          if(change.filters){
             next.filters={...request.filters,...change.filters};
-            change.ignore.forEach(k=>delete next.filters[k]);
+            for(const [k,v] of Object.entries(next.filters))if(v==null || v==='' || (Array.isArray(v) && !v.length))delete next.filters[k];
+            if(request.ignore?.length){
+              const setKeys=new Set(Object.keys(change.filters).filter(k=>change.filters[k]!=null && change.filters[k]!==''));
+              next.ignore=request.ignore.filter(k=>!setKeys.has(k));
+            }
+          }
+          if(change.exclude){
+            next.exclude={...request.exclude,...change.exclude};
+            for(const [k,v] of Object.entries(next.exclude))if(v==null || v==='' || (Array.isArray(v) && !v.length))delete next.exclude[k];
+          }
+          if(change.ignore) {
+            next.ignore=[...new Set([...(next.ignore ?? request.ignore ?? []),...change.ignore])];
+            next.filters={...(next.filters ?? request.filters)};
+            if(next.exclude || request.exclude)next.exclude={...(next.exclude ?? request.exclude)};
+            change.ignore.forEach(k=>{delete next.filters[k];if(next.exclude)delete next.exclude[k];});
           }
           run(q,next,request);
         },
@@ -142,7 +159,9 @@ async function store() {
       if(r.search_id){
         const target=results.querySelector('[data-type="spec"],[data-type="kit"],[data-type="products"]');
         const row=add(target || results,'div',null,'exportRow');
-        if(target)target.querySelector('h2')?.after(row);
+        const head=target?.querySelector('.blockHead');
+        if(head)head.append(row);
+        else if(target)target.querySelector('h2')?.after(row);
         spreadsheet(row,'Скачать КП (XLSX)','/api/export/'+encodeURIComponent(r.search_id)+'?format=xlsx','КП.xlsx');
       }
       const products=rows(r.blocks).find(b=>b.type==='products');

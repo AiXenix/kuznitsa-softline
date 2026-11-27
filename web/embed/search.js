@@ -45,6 +45,10 @@ export function mount(root,origin,options){
     notice.textContent='Подбираем лицензии…';output.replaceChildren();
     try{
       const request={...params,q,mode,...criteria,source};
+      if(!request.sort)delete request.sort;
+      if(request.filters && !Object.keys(request.filters).length)delete request.filters;
+      if(request.exclude && !Object.keys(request.exclude).length)delete request.exclude;
+      if(request.ignore && !request.ignore.length)delete request.ignore;
       let r;
       try{r=await api(origin+'/api/search',request);}
       catch(err){
@@ -60,9 +64,34 @@ export function mount(root,origin,options){
         if(rule_id && c.card_id)event(r,'impression',{...c,rule_id},b.type);
       }
       if(suggested)event(r,'suggest_click');
-      result(output,r,{retail:true,shopOrigin:origin,categories:m.categories,apply:change=>search(change.q || q,{...criteria,...change}),
+      result(output,r,{retail:true,shopOrigin:origin,categories:m.categories,sort:request.sort || '',filters:request.filters || {},
+        apply:change=>{
+          if(change.q)return search(change.q,change);
+          const next={...criteria,page:1,...change};
+          if(change.filters){
+            next.filters={...criteria.filters,...change.filters};
+            for(const [k,v] of Object.entries(next.filters))if(v==null || v==='' || (Array.isArray(v) && !v.length))delete next.filters[k];
+            if(criteria.ignore?.length){
+              const setKeys=new Set(Object.keys(change.filters).filter(k=>change.filters[k]!=null && change.filters[k]!==''));
+              next.ignore=criteria.ignore.filter(k=>!setKeys.has(k));
+            }
+          }
+          if(change.exclude){
+            next.exclude={...criteria.exclude,...change.exclude};
+            for(const [k,v] of Object.entries(next.exclude))if(v==null || v==='' || (Array.isArray(v) && !v.length))delete next.exclude[k];
+          }
+          if(change.ignore){
+            next.ignore=[...new Set([...(next.ignore ?? criteria.ignore ?? []),...change.ignore])];
+            next.filters={...(next.filters ?? criteria.filters)};
+            if(next.exclude || criteria.exclude)next.exclude={...(next.exclude ?? criteria.exclude)};
+            change.ignore.forEach(k=>{delete next.filters[k];if(next.exclude)delete next.exclude[k];});
+          }
+          search(q,next);
+        },
         forBlock:block=>({click:c=>{active=null;event(r,'click',c,block);}})});
-      link(output,'Продолжить в каталоге',origin+'/?'+new URLSearchParams({q,profile:params.profile_id,mode}));
+      const linkParams=new URLSearchParams({q,profile:params.profile_id,mode});
+      if(request.sort)linkParams.set('sort',request.sort);
+      link(output,'Продолжить в каталоге',origin+'/?'+linkParams);
       root.host.dispatchEvent(new CustomEvent('kuznitsa:results',{bubbles:true,detail:{q,search_id:r.search_id}}));
     }catch(err){if(version===generation)notice.textContent=err.message;}
   }

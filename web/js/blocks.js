@@ -7,6 +7,12 @@ const titles = {products:'Подходящие лицензии',kit:'Компл
   vendors:'Производители',my_licenses:'Ваши лицензии',clarify:'Уточните запрос',services:'Услуги',promo:'Предложения',
   lead:'Запрос поставки',crosssell:'С этим обычно берут'};
 
+const SORT_OPTIONS = [
+  ['','Сначала подходящие'],
+  ['price_asc','Сначала дешевле'],
+  ['price_desc','Сначала дороже'],
+];
+
 function offerRow(parent, o) {
   line(parent, [label(o), o?.sku, o?.price_on_request ? 'Цена по запросу' : money(o?.price)].filter(Boolean).join(' · '));
 }
@@ -30,9 +36,16 @@ function collection(parent,b,ctx) {
   const grid=add(parent,'div',null,'productGrid');
   for (const item of rows(b.items)) {
     const tile=add(grid,'div',null,'offerTile'),c=item.card || item;
-    if(b.type!=='crosssell' && (item.kind || c.kind)==='upsell')line(tile,'Вам может пригодиться','upsellLabel','strong');
-    else if(item.fill || c.fill)line(tile,item.label || c.label || 'Похожие товары','fillLabel','strong');
-    const reason=line(tile,item.reason || c.reason || item.note,'offerReason');
+    let tagText='';
+    if(b.type!=='crosssell' && (item.kind || c.kind)==='upsell'){
+      tagText='Вам может пригодиться';
+      line(tile,tagText,'upsellLabel','strong');
+    } else if(item.fill || c.fill){
+      tagText=item.label || c.label || 'Похожие товары';
+      line(tile,tagText,'fillLabel','strong');
+    }
+    const reasonText=item.reason || c.reason || item.note;
+    const reason=reasonText && reasonText.trim()!==tagText.trim() ? line(tile,reasonText,'offerReason') : null;
     if(reason)reason.title=reason.textContent;
     card(tile,item.card && item.rule_id ? {...c,rule_id:item.rule_id}:c,ctx);
     line(tile,item.text);
@@ -106,11 +119,27 @@ export function block(parent,b,actions={}) {
   const title=b.type==='crosssell'?'Часто покупают вместе':ctx.retail && b.title==='Поиск продукта'?'Результаты поиска':b.title || caption('block',b.type,titles[b.type] || 'Блок не поддержан');
   const items=rows(b.items);
   const similar=items.filter(i=>(i.fill || i.card?.fill) && (i.label || i.card?.label)!=='Популярное').length;
-  if(ctx.retail && b.type==='products' && similar){
-    const found=b.total ?? items.filter(i=>!(i.fill || i.card?.fill) && (i.kind || i.card?.kind)!=='upsell').length;
+  const primaryCount=items.filter(i=>!(i.fill || i.card?.fill) && (i.kind || i.card?.kind)!=='upsell').length;
+  let headingText;
+  if(ctx.retail && b.type==='products' && similar && primaryCount){
+    const found=b.total ?? primaryCount;
     const noun=new Intl.PluralRules('ru').select(similar)==='one'?'похожий товар':'похожих';
-    add(p,'h2','Найдено: '+num(found)+' · ещё '+num(similar)+' '+noun);
-  }else add(p,'h2',counted(title,b.type==='products'?b.total:null));
+    headingText='Найдено: '+num(found)+' · ещё '+num(similar)+' '+noun;
+  }else{
+    headingText=counted(title,b.type==='products'?b.total:null);
+  }
+  if(ctx.sortable && ctx.apply){
+    const head=add(p,'div',null,'blockHead');
+    add(head,'h2',headingText);
+    const select=add(head,'select',null,'sortSelect');
+    select.setAttribute('aria-label','Сортировка');
+    for(const [val,labelText] of SORT_OPTIONS)select.add(new Option(labelText,val));
+    select.value=SORT_OPTIONS.some(([v])=>v===ctx.sort)?ctx.sort:'';
+    select.onchange=()=>ctx.apply({sort:select.value || null});
+  }else{
+    add(p,'h2',headingText);
+  }
+  if(ctx.afterHead)ctx.afterHead(p);
   if (!(Object.hasOwn(titles,b.type))) {if (b.title) line(p,'Блок не поддержан'); return;}
   if(b.type!=='analogs' || b.source?.status!=='unavailable')line(p,b.text);
   switch (b.type) {
