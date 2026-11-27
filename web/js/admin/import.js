@@ -33,8 +33,7 @@ export function dataPage(p){
     const history=rows(d.sources).find(s=>s.source==='history');
     if(history)tile(tiles,'Поиски в истории',fmt(history.searches));
     const reports=rows(d.history);
-    add(box,'h3','История поиска и Метрика');
-    if(!reports.length)line(box,'Отчётов загрузки истории и Метрики пока нет.');
+    if(reports.length)add(box,'h3','История поиска и Метрика');
     for(const r of reports){
       const metrika=r.logs || rows(r.recognized).some(field=>String(field).startsWith('ym:'));
       const report=details(box,[r.source_type || (metrika?'Метрика':'История поиска'),r.file].filter(Boolean).join(' · '));
@@ -51,8 +50,11 @@ export function dataPage(p){
   catalogImport(p);review(p);
 }
 export function review(p){
-  loadBox(section(p,'Проверка раскладки каталога'),async box=>{
-    const d=await adminApi('ingest'),ai=d.catalog?.ai;
+  const panel=section(p,'Проверка раскладки каталога');
+  loadBox(panel,async box=>{
+    const d=await adminApi('ingest'),items=rows(d.review);
+    if(!items.some(r=>Array.isArray(r.choice)?r.choice.some(v=>v!=null && String(v).trim()):r.choice!=null && String(r.choice).trim())){panel.remove();return;}
+    const ai=d.catalog?.ai;
     if(ai){
       const cost=ai.cost_rub ?? ai.rub ?? (ai.usd===0?0:null);
       if(cost!=null)line(box,'Цена раскладки · '+rub(cost),'roleLead');
@@ -62,8 +64,7 @@ export function review(p){
       }
       line(box,[ai.sent==null?'':'Внешние вызовы · '+fmt(ai.sent),ai.cached==null?'':'Из кэша · '+fmt(ai.cached)].filter(Boolean).join(' / '));
     }
-    if(!rows(d.review).length){line(box,'В очереди пока нет решений для проверки.');return;}
-    table(box,d.review,[['Объект','object',v=>caption('family',Array.isArray(v)?v.join(' / '):v)],['Поле','question',v=>({category:'Категория',parent:'Раздел',analogs:'Аналоги',roles:'Роли',industries:'Отрасли'})[v] || caption('',v)],
+    table(box,items,[['Объект','object',v=>caption('family',Array.isArray(v)?v.join(' / '):v)],['Поле','question',v=>({category:'Категория',parent:'Раздел',analogs:'Аналоги',roles:'Роли',industries:'Отрасли'})[v] || caption('',v)],
       ['Решение','choice',(v,r)=>r.options?.[v] || caption(r.question,Array.isArray(v)?v.join(', '):v)],['Вероятность','probability',pct]]);
   });
 }

@@ -145,7 +145,8 @@ def test_verified_contracts_promote_their_own_drafts(tmp_path, monkeypatch):
     out.mkdir(parents=True)
     (out / "flows.json").write_text(json.dumps(load("flows")))
     gallery = tmp_path / "docs/scenarios.yaml"
-    gallery.write_text((ROOT / "docs/scenarios.yaml").read_text())
+    gallery.write_text(yaml.safe_dump([dict(id="audience_from_slang", contract="refine", pending=True),
+                                       dict(id="not_sold_nearest", contract="not_sold", pending=False)]))
     monkeypatch.setattr(runner, "ROOT", tmp_path)
     monkeypatch.setattr(runner, "OUT", out)
     result = dict(understood=dict(refined=dict(audience="home", line=None, source="jev", probability=.8),

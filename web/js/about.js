@@ -10,7 +10,7 @@ const pipeline=[
 ];
 export async function about(main){
   document.title='О решении · Кузница Softline';add(main,'h1','Как устроен поиск');
-  link(main,'Как работает поиск · схемы по видам запроса','/flows');
+  link(main,'Как работает поиск — по шагам','/docs/PIPELINE.md');
   link(main,'Документы проекта','/docs');
   const section=title=>{const p=add(main,'section',null,'panel');add(p,'h2',title);return p;};
   const roles=section('Кому помогает');

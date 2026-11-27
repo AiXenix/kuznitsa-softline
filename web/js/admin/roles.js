@@ -47,9 +47,10 @@ export function ecom(p,params){
 }
 const searchColumns=[['Поиски','searches'],['Пустые','zero_rate',pct],['Конверсия','conversion',pct]];
 function supportQuestions(p){
-  loadBox(section(p,'Обращения покупателей'),async box=>{
+  const panel=section(p,'Обращения покупателей');
+  loadBox(panel,async box=>{
     const data=await adminApi('support');
-    if(!data.messages){empty(box,'Загрузите CSV обращений с датой, клиентом и текстом вопроса.');return;}
+    if(!data.messages){panel.remove();return;}
     line(box,'Обращений · '+fmt(data.messages)+'. Клиентов с идентификатором · '+fmt(data.clients)+'.','roleLead');
     for(const [title,items,key,label] of [
       ['Темы обращений',data.topics,'topic','Тема'],
@@ -91,8 +92,11 @@ export function content(p,params){
       add(box,'h3',title);table(box,g.breakdown?.[key],[['Группа','key',v=>caption(key,v)],['Поиски','searches'],['Предыдущее окно','previous'],['Оценка потерь','expected_rub',shortRub]],{limit:8});
     }
   });
-  loadBox(section(p,'Дефекты карточек'),async box=>{
-    const g=await adminApi('gaps');table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || caption('family',r.card_id);return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
+  const defects=section(p,'Дефекты карточек');
+  loadBox(defects,async box=>{
+    const g=await adminApi('gaps');
+    if(!rows(g.card_defects).length){defects.remove();return;}
+    table(box,g.card_defects,[['Карточка','title',(v,r)=>{const a=document.createElement('a');a.href=r.card_id?'/card/'+encodeURIComponent(r.card_id):shop(v);a.textContent=v || caption('family',r.card_id);return a;}],['Пропущенные поля','fields',v=>rows(v).join(', ')],['Показы','impressions']],{limit:12});
   });supportQuestions(p);catalogImport(p);review(p);findings(p,params,'content_manager');
 }
 export function log(p){
