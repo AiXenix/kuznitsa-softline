@@ -1,7 +1,7 @@
 """Подбор по страницам товаров и классам настоящего магазина."""
 import re
 from uuid import uuid4
-from . import feed_analogs
+from . import feed_analogs, feed_guard, feed_noise
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution
 from kuznitsa.config import WEIGHTS
@@ -309,9 +309,17 @@ def search(engine,req,profile,trace,priorities,record):
             cost=cost_summary([],engine.usd_rub),trace=trace.steps,timing_ms={})
         return finish(engine,req,trace,record,result,[],0,[])
     if req.category and req.category not in index.classes:return
-    subject,budget=split_budget(norm)
+    if not req.category and not req.filters and feed_noise.is_garbage_syntax(req.q,norm,index,engine.catalog):
+        result=feed_guard.build_garbage_result(engine,req,profile,trace,norm)
+        return finish(engine,req,trace,record,result,[],0,[],profile=profile)
+    if not (req.verbatim or req.category or req.filters or req.exclude or req.sort or req.weights or "\n" in req.q):
+        vendor_hit=feed_noise.detect_vendor_catalog(index,engine,norm)
+        if vendor_hit:
+            return feed_guard.build_vendor_result(engine,req,profile,trace,priorities,record,norm,*vendor_hit)
+    subject,budget,soft_budget=feed_noise.extract_budget(norm)
     if req.filters.get("price_max") is not None:
         budget=min(budget,req.filters["price_max"]) if budget is not None else req.filters["price_max"]
+        soft_budget=False
     if "price_max" in req.ignore:budget=None
     parsed=subject if req.verbatim else version_forms(spoken_numbers(spoken_initials(index,subject)))
     if parsed!=subject and index.recovery.full_name(subject)[0]:
@@ -327,17 +335,29 @@ def search(engine,req,profile,trace,priorities,record):
             base=cleaned
             original_subject=base
     replacement_for=feed_analogs.requested(base)
+    if replacement_for:
+        replacement_for=feed_noise.clean_analog_subject(replacement_for)
+    noise_clean=None
+    if not replacement_for and not req.verbatim and not req.category and not feed_noise.FEED_COMPLEX.search(base):
+        noise_clean=feed_noise.extract_conditions_and_noise(engine,index,base,existing_qty=qty)
+        if noise_clean.changed:
+            base=noise_clean.subject
+            qty=noise_clean.qty
     edition=index.edition(base) if not (req.verbatim or req.category or replacement_for) else None
     row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
     if not edition and (replacement_for or row and not row["in_catalog"]) and not (
             req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         return feed_analogs.search(engine,req,profile,trace,priorities,record,replacement_for or base,
                                   row,explicit=bool(replacement_for),qty=qty,budget=budget)
+    if not (req.verbatim or req.category or edition or replacement_for):
+        missing_gen=feed_guard.check_missing_generation(index,base)
+        if missing_gen:
+            return feed_guard.build_missing_generation_result(engine,req,profile,trace,priorities,record,norm,*missing_gen)
     literal=index.recovery.full_name(base) if not req.verbatim else ((),base,None)
     supplier=None
     if not req.verbatim and not literal[0]:
         base,supplier=supplier_clause(index,purchase_subject(base))
-    if req.sort or req.weights or req.filters.keys()-{"price_max"} or req.exclude or set(req.ignore)-{"price_max"} or (COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
+    if req.sort or req.weights or req.filters.keys()-{"price_max"} or req.exclude or set(req.ignore)-{"price_max"} or (feed_noise.FEED_COMPLEX.search(base) and not (literal[0] and literal[2]=="layout")) or "\n" in req.q:return
     absent_acronym=None
     acronym=()
     device_name=hardware_head(index,base)
@@ -361,7 +381,9 @@ def search(engine,req,profile,trace,priorities,record):
     if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name):
         direct=index.products(base,fuzzy=False)
         if not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title)):
-            base=named_subject(engine,product_subject(index,base))
+            candidate_base=named_subject(engine,product_subject(index,base))
+            if candidate_base and not feed_noise.is_edition_only(candidate_base):
+                base=candidate_base
         base=mixed_subject(index,base)
     mapped,_=engine._phrases.apply(base)
     q=edition_form(index,index.correct(mapped))
@@ -417,10 +439,14 @@ def search(engine,req,profile,trace,priorities,record):
     if not license_filter and not ids and not section and not bare and not question and not req.verbatim and not unknown_name:
         sounds,corrected=index.sound_products(q)
         if not sounds and q!=base:sounds,corrected=index.sound_products(base)
-        if sounds:ids,q=sounds,corrected
+        if sounds and not feed_guard.is_destructive_repair(index,base,corrected,sounds,kind="sound"):
+            ids,q=sounds,corrected
     if not ids and not section and not bare and not license_filter and not req.verbatim and not (question or hint or unknown_name):
         recovered,spelling,repaired_kind=index.recovery.lookup(engine,base)
-        if recovered:ids,q=recovered,spelling
+        if recovered and not feed_guard.is_destructive_repair(index,base,spelling,recovered,kind=repaired_kind):
+            ids,q=recovered,spelling
+        elif recovered:
+            repaired_kind=None
     if not repaired_kind and not section and not bare and not req.verbatim and base in index.slang and (not ids or index.slang[base][0] in {"vendors","families"}):
         field,ids=index.slang[base]
         if field=="classes" and not section:
@@ -455,6 +481,15 @@ def search(engine,req,profile,trace,priorities,record):
             question=False
             hint=None
             note="Варианты указанного продукта с учётом назначения."
+    resolved_from_feed=False
+    if not (ids or section or bare or license_filter or edition or req.verbatim or absent_acronym or question or hint):
+        resolved=feed_guard.resolve_feed_product(engine,base,segment=profile.segment)
+        if resolved:
+            ids,q,resolved_note=resolved
+            if resolved_note and not note:note=resolved_note
+            unknown_name=False
+            identity_pool=None
+            resolved_from_feed=True
     if edition:
         ids,q,note=edition.cards,edition.query,edition.note
         section=server_section=hint=role=device=qualified=absent_acronym=identity_pool=vendor=None
@@ -494,7 +529,7 @@ def search(engine,req,profile,trace,priorities,record):
             q=original_subject
             unsold=index.unsold_sections.get(q)
     # Упоминание чужой марки в названии модуля не подтверждает продажу самой программы.
-    if ids and not qualified and not section and (replacement or q in index.unsold_brands):
+    if ids and not edition and not resolved_from_feed and not qualified and not section and (replacement or q in index.unsold_brands):
         named=tuple(cid for cid in ids if sold_as(index.cat.cards[cid],q))
         if named:ids=named
         elif replacement or q in index.unsold_brands:
@@ -502,6 +537,18 @@ def search(engine,req,profile,trace,priorities,record):
             parents=index.unsold_brands.get(q)
             if parents and not unsold:
                 unsold=max(dict.fromkeys(parents),key=parents.count)
+    if not ids and not (section or bare or license_filter or edition or req.verbatim or absent_acronym or question or hint):
+        resolved=feed_guard.resolve_feed_product(engine,base,segment=profile.segment)
+        if resolved:
+            ids,q,resolved_note=resolved
+            if resolved_note and not note:note=resolved_note
+            unknown_name=False
+            unsupported=False
+            identity_pool=None
+            resolved_from_feed=True
+    if ids and not section:
+        ids=feed_guard.prefer_suite_for_office_year(index,q,ids)
+        ids=feed_guard.prefer_software_over_courses(index,q,ids)
     role_reasons={}
     vendor_gap=False
     if supplier and ids and not section:
@@ -576,12 +623,21 @@ def search(engine,req,profile,trace,priorities,record):
         relevant=[i for i in focus if i in members]
         ids=list(dict.fromkeys([*relevant,*members])) if relevant else members
     elif not ids and not license_filter:
+        safe_row=None if (row and row.get("in_catalog")) else row
         if (replacement or not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base))
                 and (unsold or unsupported or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q)
                      or re.fullmatch(r"[A-Z][A-Za-z]{3,}",req.q.strip()) and re.search("[aeiou]",q))):
             known=unsold or (index.unsold_sections.get(" ".join(identity)) if identity else None)
-            return feed_analogs.search(engine,req,profile,trace,priorities,record,original_subject,known=known,row=row,
+            return feed_analogs.search(engine,req,profile,trace,priorities,record,original_subject,known=known,row=safe_row,
                                       qty=qty,budget=budget)
+        if not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base)) and feed_guard.is_plausible_absent_brand(req.q,base):
+            missing_note=f"«{req.q.strip()}» в каталоге нет."
+            result=feed_guard.build_garbage_result(
+                engine,req,profile,trace,norm,zero_reason="not_in_catalog",intent="out_of_catalog",
+                note=missing_note,
+                missing_block=dict(type="not_in_catalog",title="Нет в каталоге",reason="not_in_catalog",text=missing_note),
+            )
+            return finish(engine,req,trace,record,result,[],0,[],profile=profile)
         return None
     elif not edition and base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
@@ -592,6 +648,7 @@ def search(engine,req,profile,trace,priorities,record):
             section=variants[0].offers[0].class_id
     intent="out_of_catalog" if missing else "category" if section else "product"
     selections={}
+    budget_relaxed=False
     constraints={"price_max":budget} if budget is not None else {}
     if qualified and conditions:
         selections=matching_variants(index,ids,profile,qty,renewal,conditions|constraints)
@@ -625,8 +682,13 @@ def search(engine,req,profile,trace,priorities,record):
             ids=ordered
             if renewal:intent="renewal"
         elif budget is not None:
-            ids=[]
-            note="В указанном бюджете предложений с подтверждённой ценой нет."
+            if soft_budget or (not section and req.filters.get("price_max") is None):
+                ids=sorted(ids,key=lambda cid:(min((o.price for o in index.cat.cards[cid].offers if o.price),default=float("inf")),cid))
+                note=f"Предложений дешевле {budget:g} ₽ нет. Показаны самые доступные варианты линейки."
+                budget_relaxed=True
+            else:
+                ids=[]
+                note="В указанном бюджете предложений с подтверждённой ценой нет."
         elif qty and not renewal:
             note="Товары найдены. В фиде нет лицензии с подтверждёнными условиями на указанное количество."
         else:
@@ -660,7 +722,7 @@ def search(engine,req,profile,trace,priorities,record):
     clarify=[]
     nearby=[]
     def complete(reserved):
-        if license_filter or budget is not None or req.page!=1:return []
+        if license_filter or (budget is not None and not budget_relaxed) or req.page!=1:return []
         if edition:
             anchor=index.card_sections[edition.cards[0]]
             shown=set(main)|set(reserved)
@@ -677,7 +739,7 @@ def search(engine,req,profile,trace,priorities,record):
             nearby.extend(extra)
             return []
         return extra
-    together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=budget,edition_audience=edition.audience if edition else None)
+    together,recommended=recommend(engine,edition.query if edition else norm,items,profile,intent,role=role,complete=complete,price_max=None if budget_relaxed else budget,edition_audience=edition.audience if edition else None)
     for i,c in enumerate(items,1):c["position"]=i
     blocks=[dict(type="products",title=title,category_id=section,total=len(ids),items=items)]
     if missing:
@@ -701,7 +763,7 @@ def search(engine,req,profile,trace,priorities,record):
         apply={"q":next_query}
         if targets:apply["category"]=targets[0]
         chips.append(dict(key="domain",label=label,q=next_query,apply=apply,software_classes=targets,removable=False))
-    changes=[{"from":norm,"to":q,"kind":repaired_kind or "catalog"}] if base!=q or base!=original_subject else []
+    changes=[{"from":norm,"to":q,"kind":repaired_kind or "catalog"}] if base!=q or (base!=original_subject and not (noise_clean and noise_clean.changed)) else []
     result=dict(search_id=sid,engine="kuznitsa",engine_version="1.0",mode=req.mode,query=dict(raw=req.q,normalized=norm,corrected=q,corrections=changes,did_you_mean=None),
         understood=dict(intent=intent,intent_title=TITLES[intent],intent_conf=.9,intent_source="jev" if model_section else "rules",filters=dict(category=[section]) if section else {},
         exclude={},qty=qty,entities=[],chips=chips,zero_reason="not_in_catalog" if missing else None,agent_note=note or title),blocks=blocks,facets=[],notes=[],banners=merch["banners"],relax_hints=[],related_queries=[],
@@ -715,9 +777,16 @@ def search(engine,req,profile,trace,priorities,record):
         chips.append(dict(key="price_max",label=f"До {budget:g} ₽",removable=True))
         if not ids:result["understood"]["zero_reason"]="filters_too_strict"
     if renewal:result["understood"]["filters"]["action"]="renewal"
+    if noise_clean and noise_clean.changed:
+        for k,v in noise_clean.filters.items():
+            result["understood"]["filters"].setdefault(k,v)
+        seen_chips={c.get("key") for c in chips}
+        for chip in noise_clean.chips:
+            if chip.get("key") not in seen_chips:
+                chips.append(chip)
     if qty:
         chips.append(dict(key="quantity",label=f"Количество · {qty['value']}"))
-    return finish(engine,req,trace,record,result,items,len(main),calls)
+    return finish(engine,req,trace,record,result,items,len(main),calls,profile=profile)
 
 
 def order(engine,req,profile,trace,priorities,intent,section,items):
@@ -730,9 +799,13 @@ def order(engine,req,profile,trace,priorities,intent,section,items):
     return engine.controls.merch(ctx,items)
 
 
-def finish(engine,req,trace,record,result,items,count,calls):
+def finish(engine,req,trace,record,result,items,count,calls,profile=None):
     from .response_guard import guard
     guard(engine,req,result)
+    if engine.catalog.is_feed:
+        if profile is None:
+            profile=engine.clients["guest" if "profile" in req.ignore else req.profile_id]
+        feed_guard.verify_response(engine,req,profile,result,from_legacy=False)
     if calls and not calls[-1].get("ok"):
         result["mode"]="fast"
         result["notes"].append("Раздел выбран быстрым поиском: категоризатор недоступен.")

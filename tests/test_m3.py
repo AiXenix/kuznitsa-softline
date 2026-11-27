@@ -102,8 +102,8 @@ def test_missing_line_and_outside_catalog(feed):
     noise=feed.search(Request(q="зимняя резина r16",mode="fast"))
     clarify=noise["blocks"][0]
     assert clarify["type"]=="clarify" and len(clarify["options"]) in (2,3)
-    examples=next(b for b in noise["blocks"] if b["type"]=="products")
-    assert len(examples["items"])==4 and all(c["fill"] for c in examples["items"])
+    assert not any(b["type"]=="products" for b in noise["blocks"])
+    assert noise["understood"]["zero_reason"]=="unknown_term"
 
 
 def test_feed_http_card_and_suggest(feed):

@@ -1589,6 +1589,9 @@ class Engine:
         if persist:
             from .plans.response_guard import guard
             guard(self,req,result)
+            if self.catalog.is_feed:
+                from .plans.feed_guard import verify_response
+                verify_response(self,req,profile,result,from_legacy=True)
         t.add("log","Журнал и стоимость","Запись поиска в журнал. Расходы на внешние модели · 0 ₽")
         started=self.timer()
         if persist and record:

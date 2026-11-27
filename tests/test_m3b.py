@@ -105,7 +105,8 @@ def test_no_generic_word_as_product(store):
     assert len(cards_from(result["blocks"]))>=4
     result=search(store,"qxwzzzt")
     assert any(b["type"]=="clarify" and len(b["options"]) in (2,3) for b in result["blocks"])
-    assert len(cards_from(result["blocks"]))>=4
+    assert len(cards_from(result["blocks"]))==0
+    assert result["understood"]["zero_reason"]=="unknown_term"
 
 
 def test_prefix_categories_and_fill(store):
