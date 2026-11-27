@@ -21,6 +21,8 @@ from kuznitsa.understand.intent import TITLES
 
 
 def authorize(request:Request,x_admin_token:str=Header(default="")):
+    if os.getenv("KZ_ADMIN_OPEN")=="write":  # временный открытый режим: менять настройки может любой
+        return
     read_only = request.method=="GET" or (request.method=="POST" and request.url.path in {"/api/admin/priorities/preview","/api/admin/upsell/preview"})
     if read_only and os.getenv("KZ_ADMIN_OPEN")=="1":
         return
