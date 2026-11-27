@@ -74,7 +74,8 @@ VENDOR_CATALOG_PATTERNS = (
 
 # Покупательский шум, англоязычные обёртки и закупочные префиксы.
 LEAD_ACTION = re.compile(
-    r"^(?:(?:хочу\s+)?(?:купить|приобрести|заказать|скачать|загрузить|установить|поставить|найти|подобрать|получить|оформить)"
+    r"^(?:(?:(?:можно\s+ли|где\s+можно|где|реально\s+ли|подскажите\s+где|хочу)\s+)?(?:купить|приобрести|заказать|скачать|загрузить|установить|поставить|найти|подобрать|получить|оформить)"
+    r"|есть\s+ли\s+в\s+(?:продаже|наличии)|прода[её]тся\s+ли|имеется\s+ли"
     r"|цена|цены|стоимость|прайс(?:-лист)?|сколько\s+стоит|поч[её]м"
     r"|ключ(?:и)?(?:\s+активации)?|код\s+активации|серийный\s+номер|активация"
     r"|право\s+на\s+использование(?:\s+(?:программ\w*|операционн\w*\s+систем\w*|по))?"
@@ -174,6 +175,19 @@ def pre_normalize(raw_q: str, norm_q: str) -> str:
     elif re.search(r"\b(?:m|м)\$\s+", out, re.I):
         out = re.sub(r"\b(?:m|м)\$\s+", "microsoft ", out, count=1)
     return _clean_spaces(out)
+
+
+@lru_cache(1)
+def load_relax_synonyms() -> dict[str, str]:
+    """Загружает словарь синонимов классов ПО и оборудования для ослабления запросов."""
+    if not COLLOQUIAL_KB_PATH.is_file():
+        return {}
+    raw = yaml.safe_load(COLLOQUIAL_KB_PATH.read_text(encoding="utf-8")) or {}
+    return {
+        _clean_spaces(normalize(str(k))): _clean_spaces(normalize(str(v)))
+        for k, v in (raw.get("relax_synonyms") or {}).items()
+        if k and v
+    }
 
 
 def translate_english_class(text: str) -> str | None:

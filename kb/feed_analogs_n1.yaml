@@ -28,3 +28,54 @@
   sections: ["Правовое и кадровое обслуживание"]
   analogs: []
   note: "Справочно-правовой системы «Гарант» в каталоге нет"
+
+- id: telegram_messenger
+  names: ["Telegram", "Телеграм", "Телеграмм", "Телега"]
+  kind: messenger
+  in_catalog: false
+  sections: ["Программное обеспечение для онлайн общения", "Российская коммуникационная платформа (Импортозамещение)"]
+  analogs:
+    - {title: "eXpress", vendor: "Анлимитед Продакшен", russian: true}
+    - {title: "Контур.Толк", vendor: "СКБ Контур", russian: true}
+    - {title: "ВКУРСЕ CLASSIC", vendor: "ВКУРСЕ", russian: true}
+    - {title: "TrueConf Server", vendor: "TrueConf", russian: true}
+    - {title: "B Labs Bopup Messenger", vendor: "B Labs", russian: false}
+  note: "Мессенджера Telegram в каталоге нет; корпоративные замены — eXpress, Контур.Толк, ВКУРСЕ, TrueConf"
+
+- id: sbis_edo
+  names: ["СБИС", "СБИС++", "СБИС ЭДО", "Тензор СБИС", "Saby", "СБИС Отчетность", "СБИС Отчётность"]
+  kind: edo_reporting
+  in_catalog: false
+  sections: ["Программы для документооборота", "Программное обеспечение для бухгалтерии"]
+  analogs:
+    - {title: "Pilot-ECM", vendor: "АСКОН", russian: true}
+    - {title: "e-BS ETAXREPORT", vendor: "e-BS", russian: true}
+    - {title: "Декларация по УСН", vendor: "БухСофт", russian: true}
+    - {title: "Pilot-ICE", vendor: "АСКОН", russian: true}
+    - {title: "CSoft TDMS", vendor: "CSoft", russian: true}
+  note: "Системы ЭДО и отчётности «СБИС» в каталоге нет; в разделе документооборота и отчётности доступны Pilot-ECM, e-BS ETAXREPORT, Pilot-ICE, CSoft TDMS"
+
+- id: kontur_diadoc
+  names: ["Контур.Диадок", "Контур Диадок", "Диадок", "Контур.Экстерн", "Контур Экстерн", "СКБ Контур Диадок"]
+  kind: edo_reporting
+  in_catalog: false
+  sections: ["Программы для документооборота", "Программное обеспечение для бухгалтерии"]
+  analogs:
+    - {title: "Pilot-ECM", vendor: "АСКОН", russian: true}
+    - {title: "e-BS ETAXREPORT", vendor: "e-BS", russian: true}
+    - {title: "Декларация по УСН", vendor: "БухСофт", russian: true}
+    - {title: "Pilot-ICE", vendor: "АСКОН", russian: true}
+    - {title: "CSoft TDMS", vendor: "CSoft", russian: true}
+  note: "Системы ЭДО «Контур.Диадок» в каталоге нет; в разделе документооборота и отчётности доступны Pilot-ECM, e-BS ETAXREPORT, Pilot-ICE, CSoft TDMS"
+
+- id: kompas_3d_lt
+  names: ["КОМПАС-3D LT", "КОМПАС 3D LT", "Компас 3Д ЛТ", "Компас-3Д ЛТ", "КОМПАС 3Д ЛТ"]
+  kind: cad
+  in_catalog: false
+  sections: ["Программы для машиностроения", "Программы для архитекторов", "Строительное программное обеспечение"]
+  analogs:
+    - {title: "КОМПАС-3D HOME", vendor: "АСКОН", russian: true}
+    - {title: "КОМПАС-3D V25", vendor: "АСКОН", russian: true}
+    - {title: "КОМПАС-График V25", vendor: "АСКОН", russian: true}
+    - {title: "Платформа nanoCAD 26", vendor: "Нанософт", russian: true}
+  note: "Редакции «КОМПАС-3D LT» в каталоге нет; доступны актуальные САПР-редакции КОМПАС-3D HOME, КОМПАС-3D V25, КОМПАС-График V25 и Платформа nanoCAD"

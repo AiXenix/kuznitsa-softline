@@ -674,6 +674,7 @@ def search(engine,req,profile,trace,priorities,record):
     if ids and not section:
         if not qualified and not edition:
             ids=feed_guard.prefer_flagships_for_vendor(index,engine,q,ids,norm=norm)
+        ids=feed_guard.prefer_requested_version(index,q,ids)
         ids=feed_guard.prefer_suite_for_office_year(index,q,ids)
         ids=feed_guard.prefer_software_over_courses(index,q,ids)
     role_reasons={}
@@ -760,6 +761,8 @@ def search(engine,req,profile,trace,priorities,record):
         relevant=[i for i in focus if i in members]
         ids=list(dict.fromkeys([*relevant,*members])) if relevant else members
     elif not ids and not license_filter:
+        recovered_r3=feed_guard.recover_dotted_or_layout(engine,req,profile,trace,priorities,record,norm,base,qty=qty,budget=budget)
+        if recovered_r3 is not None:return recovered_r3
         safe_row=None if (row and row.get("in_catalog")) else row
         if (replacement or not qty and not renewal and not any(t in engine.catalog.source_codes for t in (norm,base))
                 and (unsold or unsupported or re.fullmatch(r"[a-z][a-z0-9.-]*(?: [a-z0-9.-]+)+",q)
@@ -776,7 +779,7 @@ def search(engine,req,profile,trace,priorities,record):
                 missing_block=dict(type="not_in_catalog",title="Нет в каталоге",reason="not_in_catalog",text=missing_note),
             )
             return finish(engine,req,trace,record,result,[],0,[],profile=profile)
-        return feed_guard.handle_unmatched_query(engine,req,profile,trace,record,norm,base)
+        return feed_guard.handle_unmatched_query(engine,req,profile,trace,record,norm,base,priorities=priorities,qty=qty,budget=budget)
     elif not edition and base==original_subject and not acronym and not renewal and not repaired_kind and not qualified and len(ids)>1 and len(words(q))>1 and all(w in words(index.cat.cards[ids[0]].title) for w in words(q)):
         # Семейство с несколькими редакциями в одном разделе и общим брендом.
         variants=[index.cat.cards[i] for i in ids[:8]]

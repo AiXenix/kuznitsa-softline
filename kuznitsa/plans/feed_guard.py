@@ -10,15 +10,18 @@ from kuznitsa.plans.presentation import profile_info
 from kuznitsa.plans.response_guard import COLLECTION
 from kuznitsa.text import normalize, tokens
 from kuznitsa.understand.intent import TITLES
+from kuznitsa.understand.repair import LAYOUT
 from kuznitsa.understand.spell_index import cyrillic, roman
 from . import feed_analogs
 from .feed_noise import (
+    EDITION_ONLY_WORDS,
     FEED_COMPLEX,
     GARBAGE_NOTE,
     _clean_spaces,
     extract_conditions_and_noise,
     is_garbage_syntax,
     load_colloquial_kb,
+    load_relax_synonyms,
     normalize_spoken_brands,
     resolve_vendor,
 )
@@ -260,9 +263,425 @@ def prefer_flagships_for_vendor(index, engine, q: str, ids: list[str], *, norm: 
     )
 
 
-def handle_unmatched_query(engine, req, profile, trace, record, norm: str, base: str) -> dict | None:
-    """Закрывает уход беспредметных/оффтопных запросов в старый конвейер, когда нет ни совпадений в фиде, ни сущностей в KB."""
-    from .feed import finish
+_PUNCT_LAYOUT_KEEP = (frozenset(), frozenset({"."}), frozenset({","}), frozenset({".", ","}))
+_RELAX_SKIP_QUERY_RE = re.compile(r"(?:^(?:софт|программ\w*|по)\s+для\s+|\b(?:обучени\w*|курс\w*|переход\w*|миграци\w*|услуг\w*|аудит\w*|техподдержк\w*)\b)", re.I)
+_RELAX_GENERIC_WORDS = frozenset({
+    "софт", "программа", "программы", "программ", "программное", "обеспечение",
+    "приложение", "приложения", "система", "системы", "средство", "средства",
+    "инструмент", "инструменты", "сервис", "сервисы", "решение", "решения",
+    "лицензия", "лицензии", "версия", "версии", "пакет", "пакеты",
+    "офис", "офиса", "офисный", "бизнес", "бизнеса", "малого", "малый",
+    "компания", "компании", "организация", "организации", "работа", "работы",
+    "отдел", "отдела", "юрист", "юриста", "кадры", "кадров", "бухгалтер", "бухгалтера",
+    "купить", "цена", "нужен", "нужна", "нужны", "подобрать", "выбрать",
+    "хороший", "лучший", "новый", "современный", "российский", "отечественный",
+    "рабочих", "мест", "места", "место", "штук", "шт", "год", "года", "лет",
+    "месяц", "месяцев", "пк", "компьютер", "компьютеров", "устройств", "пользователей",
+    "гигабит", "гигабитный", "двухдиапазонный", "беспроводной", "проводной",
+    "hdmi", "usb", "wifi", "wi", "fi", "ddr4", "ddr5", "ssd", "hdd",
+    "гб", "gb", "тб", "tb", "мб", "mb", "см", "мм", "м", "вт", "w", "ггц", "ghz",
+}) | STOP | EDITION_ONLY_WORDS
+
+
+def _damerau_dist(a: str, b: str, max_d: int = 2) -> int:
+    """Ограниченное расстояние Дамерау-Левенштейна (с транспозициями)."""
+    la, lb = len(a), len(b)
+    if abs(la - lb) > max_d:
+        return max_d + 1
+    if a == b:
+        return 0
+    prev2 = None
+    prev1 = list(range(lb + 1))
+    for i in range(1, la + 1):
+        curr = [i] + [0] * lb
+        ai = a[i - 1]
+        row_min = i
+        for j in range(1, lb + 1):
+            cost = 0 if ai == b[j - 1] else 1
+            val = min(prev1[j] + 1, curr[j - 1] + 1, prev1[j - 1] + cost)
+            if i > 1 and j > 1 and ai == b[j - 2] and a[i - 2] == b[j - 1]:
+                val = min(val, prev2[j - 2] + 1)
+            curr[j] = val
+            if val < row_min:
+                row_min = val
+        if row_min > max_d:
+            return max_d + 1
+        prev2, prev1 = prev1, curr
+    return prev1[lb]
+
+
+def _feed_title_vocab(index) -> set[str]:
+    vocab = getattr(index, "_n1_title_vocab", None)
+    if vocab is None:
+        vocab = set()
+        for card in index.cat.cards.values():
+            for w in words(card.title):
+                if len(w) >= 3:
+                    vocab.add(w)
+        setattr(index, "_n1_title_vocab", vocab)
+    return vocab
+
+
+def _layout_variants_with_punct(raw_q: str) -> list[str]:
+    """Варианты смены раскладки, пробуя '.' и ',' как буквы ('ю'/'б') и как буквальные знаки."""
+    s = raw_q.strip().lower()
+    if not s or not any(c in s for c in ".,"):
+        return []
+    if not re.search(r"[a-zа-яё]", s):
+        return []
+    out: list[str] = []
+    seen = {s}
+    for keep in _PUNCT_LAYOUT_KEEP:
+        chars = [ch if ch in keep else ch.translate(LAYOUT) for ch in s]
+        cand = "".join(chars)
+        if cand not in seen and re.search(r"[a-zа-яё]", cand):
+            seen.add(cand)
+            out.append(cand)
+    # Смешанные названия с точкой (например «fcghj.cloud» -> «аспро.cloud»): переводим только части вне раскладки.
+    if "." in s:
+        parts = s.split(".")
+        if len(parts) == 2 and all(parts):
+            for idx_p in (0, 1):
+                alt = list(parts)
+                alt[idx_p] = parts[idx_p].translate(LAYOUT)
+                cand = ".".join(alt)
+                if cand not in seen:
+                    seen.add(cand)
+                    out.append(cand)
+    return out
+
+
+def _repair_dotted_or_multiword_typo(index, text: str) -> tuple[list[str], str] | None:
+    """Исправляет опечатки в названиях с точкой или из нескольких слов по реальному словарю заголовков фида."""
+    raw = text.strip().lower()
+    has_dot = "." in raw
+    parts = [w for w in re.split(r"[.\s]+", normalize(raw)) if w]
+    if len(parts) < 2 or len(parts) > 5:
+        return None
+    # Быстрая проверка прямого совпадения после разделения по точке.
+    joined = " ".join(parts)
+    direct = index.products(joined, fuzzy=False)
+    if direct and all(w in set(words(index.cat.cards[direct[0]].title)) for w in parts):
+        return list(direct), joined
+
+    known_indices = [i for i, p in enumerate(parts) if p in index.postings]
+    unknown_indices = [i for i, p in enumerate(parts) if p not in index.postings]
+    if not unknown_indices:
+        return None
+
+    # Случай A: часть слов известна в фиде — ищем опечатку среди слов, реально встречающихся в тех же карточках.
+    if known_indices:
+        pool = None
+        for i in known_indices:
+            cids = set(index.postings.get(parts[i], ()))
+            pool = cids if pool is None else (pool & cids)
+        if not pool and len(known_indices) > 1:
+            pool = set()
+            for i in known_indices:
+                pool.update(index.postings.get(parts[i], ()))
+        if pool:
+            co_words: set[str] = set()
+            for cid in pool:
+                for w in words(index.cat.cards[cid].title):
+                    if len(w) >= 3:
+                        co_words.add(w)
+            fixed = list(parts)
+            changed = False
+            for i in unknown_indices:
+                u = parts[i]
+                if len(u) < 3:
+                    continue
+                max_d = 1 if len(u) <= 5 else 2
+                best_w, best_d = None, max_d + 1
+                for w in co_words:
+                    if abs(len(w) - len(u)) > max_d:
+                        continue
+                    if not (u[0] == w[0] or (len(u) >= 2 and len(w) >= 2 and u[:2] == w[1] + w[0])):
+                        continue
+                    d = _damerau_dist(u, w, max_d)
+                    if d < best_d:
+                        best_d, best_w = d, w
+                if best_w:
+                    fixed[i] = best_w
+                    changed = True
+            if changed:
+                repaired = " ".join(fixed)
+                hits = index.products(repaired, fuzzy=False)
+                if hits and all(w in set(words(index.cat.cards[hits[0]].title)) for w in fixed):
+                    return list(hits), repaired
+
+    # Случай B: точка внутри короткого 2-словного названия, где обе части с опечаткой (например «sprie.dco»).
+    if has_dot and len(parts) == 2 and all(len(p) >= 3 for p in parts):
+        vocab = _feed_title_vocab(index)
+        cands_per_part: list[list[str]] = []
+        for p in parts:
+            opts = [p] if p in vocab else []
+            if not opts:
+                for w in vocab:
+                    if abs(len(w) - len(p)) > 1:
+                        continue
+                    if not (p[0] == w[0] or (len(p) >= 2 and len(w) >= 2 and p[:2] == w[1] + w[0])):
+                        continue
+                    if _damerau_dist(p, w, 1) <= 1:
+                        opts.append(w)
+                        if len(opts) >= 8:
+                            break
+            if not opts:
+                return None
+            cands_per_part.append(opts)
+        for w1 in cands_per_part[0]:
+            for w2 in cands_per_part[1]:
+                repaired = f"{w1} {w2}"
+                hits = index.products(repaired, fuzzy=False)
+                if hits and {w1, w2} <= set(words(index.cat.cards[hits[0]].title)):
+                    return list(hits), repaired
+    return None
+
+
+def _build_recovered_products_result(
+    engine, req, profile, trace, priorities, record, norm: str, cids: list[str], repaired_q: str, kind: str
+) -> dict:
+    from .feed import display, finish
+
+    index = engine.catalog.feed
+    cids = prefer_software_over_courses(index, repaired_q, prefer_suite_for_office_year(index, repaired_q, cids))
+    start = (req.page - 1) * req.page_size
+    items = [display(engine, cid, profile) for cid in cids[start:start + req.page_size]]
+    for i, c in enumerate(items, 1):
+        c["position"] = i
+    title = TITLES["product"]
+    trace.add("repair", "Восстановление написания", f"{req.q} -> {repaired_q} ({kind})")
+    result = dict(
+        search_id="s_" + uuid4().hex,
+        engine="kuznitsa",
+        engine_version="1.0",
+        mode=req.mode,
+        query=dict(
+            raw=req.q,
+            normalized=norm,
+            corrected=repaired_q,
+            corrections=[dict(original=req.q, corrected=repaired_q, kind=kind)],
+            did_you_mean=repaired_q if repaired_q != norm else None,
+        ),
+        understood=dict(
+            intent="product",
+            intent_title=title,
+            intent_conf=0.9,
+            intent_source="rules",
+            filters={},
+            exclude={},
+            qty=None,
+            entities=[],
+            chips=[],
+            zero_reason=None,
+            agent_note=title,
+        ),
+        blocks=[dict(type="products", title=title, category_id=None, total=len(cids), items=items)],
+        facets=[],
+        notes=[],
+        banners=[],
+        relax_hints=[],
+        related_queries=[],
+        profile=profile_info(profile),
+        cost=cost_summary([], engine.usd_rub),
+        trace=trace.steps,
+        timing_ms={},
+    )
+    return finish(engine, req, trace, record, result, items, len(cids), [], profile=profile)
+
+
+def recover_dotted_or_layout(
+    engine, req, profile, trace, priorities, record, norm: str, base: str, *, qty=None, budget=None
+) -> dict | None:
+    """Перед объявлением товара отсутствующим проверяет раскладку с точкой/запятой и опечатки по словарю фида."""
+    if req.verbatim or req.category or (req.filters.keys() - {"price_max"}):
+        return None
+    index = engine.catalog.feed
+    # 1. Смена раскладки для названий с '.' или ',' внутри (пробуем знак и как букву, и как знак).
+    for cand in _layout_variants_with_punct(req.q):
+        cn = _clean_spaces(normalize(cand))
+        if not cn:
+            continue
+        # Прямой поиск в фиде
+        hits = index.products(cn, fuzzy=False, segment=profile.segment)
+        cn_words = set(words(cn))
+        if hits and cn_words and cn_words <= set(words(index.cat.cards[hits[0]].title)):
+            return _build_recovered_products_result(engine, req, profile, trace, priorities, record, norm, list(hits), cn, "layout")
+        # Разговорное название (например, «lh.dt,» -> «др.веб» -> Dr.Web)
+        col = resolve_colloquial_product(engine, cn, segment=profile.segment)
+        if col:
+            cids, rq, _ = col
+            return _build_recovered_products_result(engine, req, profile, trace, priorities, record, norm, cids, rq, "layout")
+        # Известный отсутствующий бренд с точкой в другой раскладке (например, «rjyneh.lbfljr» -> «контур.диадок»)
+        row = lookup_analog(index, cn, fuzzy=False)
+        if row and not row.get("in_catalog"):
+            return feed_analogs.search(
+                engine, req, profile, trace, priorities, record, cn, row, explicit=False, qty=qty, budget=budget
+            )
+        # Раскладка + опечатка
+        repaired = _repair_dotted_or_multiword_typo(index, cand)
+        if repaired:
+            cids, rq = repaired
+            return _build_recovered_products_result(engine, req, profile, trace, priorities, record, norm, cids, rq, "layout")
+
+    # 2. Название с точкой или несколькими словами + опечатка (например, «контур.тлок», «dr.web secruity space»).
+    for candidate_src in (req.q, base):
+        repaired = _repair_dotted_or_multiword_typo(index, candidate_src)
+        if repaired:
+            cids, rq = repaired
+            return _build_recovered_products_result(engine, req, profile, trace, priorities, record, norm, cids, rq, "typo")
+    return None
+
+
+def prefer_requested_version(index, q: str, ids: list[str]) -> list[str]:
+    """Если в запросе указано конкретное числовое поколение (windows 10, office 2019), поднимает карточки этой версии."""
+    if not ids or len(ids) < 2:
+        return ids
+    norm = _clean_spaces(normalize(q))
+    m = re.search(r"\b(10|11|201[69]|202[1-6])\b", norm)
+    if not m:
+        return ids
+    ver = m[1]
+    head = _clean_spaces(re.sub(r"\b" + re.escape(ver) + r"\b", " ", norm))
+    if not head:
+        return ids
+    has_ver = [cid for cid in ids if ver in words(normalize(index.cat.cards[cid].title)) and sold_as(index.cat.cards[cid], head)]
+    if not has_ver:
+        return ids
+    return sorted(
+        ids,
+        key=lambda cid: (
+            ver in words(normalize(index.cat.cards[cid].title)) and sold_as(index.cat.cards[cid], head),
+            ver in words(normalize(index.cat.cards[cid].title)),
+        ),
+        reverse=True,
+    )
+
+
+def _find_hardware_section(index, hw_name: str) -> str | None:
+    device = index.hardware.get(hw_name)
+    if device:
+        sec = next((str(k) for k in device.get("hardware_feed_classes", ()) if str(k) in index.groups), None)
+        if sec:
+            return sec
+    hw_words = set(words(hw_name))
+    choices = [
+        k
+        for k, v in index.classes.items()
+        if k in index.groups
+        and (hw_words & set(words(v)))
+        and index.cat.cards[index.groups[k][0]].offers[0].domain == "hardware"
+    ]
+    return min(choices, key=lambda k: len(index.classes[k])) if choices else None
+
+
+def _boost_by_query_tokens(index, cids: list[str], extra_tokens: list[str]) -> list[str]:
+    if not extra_tokens or len(cids) < 2:
+        return cids
+
+    def score(cid: str) -> int:
+        t = normalize(index.cat.cards[cid].title)
+        tw = set(words(t))
+        hits = 0
+        for tok in extra_tokens:
+            if tok in tw or (len(tok) >= 2 and tok in t):
+                hits += 1
+        return hits
+
+    if not any(score(cid) > 0 for cid in cids):
+        return cids
+    return sorted(cids, key=score, reverse=True)
+
+
+def _try_relax_query(engine, index, norm: str, base: str, *, segment=None) -> tuple[list[str], str | None, str] | None:
+    """Ослабление несовпавшего запроса: синоним класса -> самое длинное известное подвыражение -> класс/железо по слову."""
+    from kuznitsa.index.hardware import hardware_head
+
+    if _RELAX_SKIP_QUERY_RE.search(norm):
+        return None
+    base_clean = _clean_spaces(normalize(base))
+    if not base_clean:
+        return None
+    bw = list(words(base_clean))
+    if not bw:
+        return None
+
+    relax_syn = load_relax_synonyms()
+    _SPEC_NUMS = frozenset({"16", "32", "64", "128", "256", "512", "1024", "2048", "4k", "8k"})
+    extra_toks = [
+        w for w in words(base_clean)
+        if len(w) >= 2 and w not in STOP and (not w.isdigit() or w in _SPEC_NUMS)
+    ]
+
+    # 1. Точный синоним класса на всё выражение (например, «средства программирования» -> «программы для разработки по»).
+    syn_target = relax_syn.get(base_clean)
+    if syn_target:
+        sec = index.class_by_name.get(syn_target) or index.class_match(syn_target)
+        if sec and sec in index.groups:
+            members = _boost_by_query_tokens(index, list(index.groups[sec]), extra_toks)
+            return members, sec, base_clean
+
+    if len(bw) < 2:
+        return None
+
+    # 2. Самое длинное известное подвыражение (от len-1 до 1): синоним класса -> железо -> класс -> разговорный продукт -> точный продукт.
+    for length in range(len(bw) - 1, 0, -1):
+        for i in range(len(bw) - length + 1):
+            sub_words = bw[i:i + length]
+            if all(w in _RELAX_GENERIC_WORDS or w.isdigit() for w in sub_words):
+                continue
+            sub = " ".join(sub_words)
+            rem = [w for w in extra_toks if w not in sub_words]
+
+            # 2a. Синоним класса/оборудования (например, «маршрутизатор», «кабель», «флешка», «роутер»)
+            syn = relax_syn.get(sub)
+            if syn:
+                sec = index.class_by_name.get(syn) or index.class_match(syn)
+                if sec and sec in index.groups:
+                    sec_words = set(words(index.classes[sec]))
+                    boost = [w for w in extra_toks if w not in sec_words]
+                    members = _boost_by_query_tokens(index, list(index.groups[sec]), boost)
+                    return members, sec, sub
+
+            # 2b. Аппаратное слово (hardware_head)
+            hw = hardware_head(index, sub)
+            if hw:
+                sec = _find_hardware_section(index, hw)
+                if sec and sec in index.groups:
+                    sec_words = set(words(index.classes[sec]))
+                    boost = [w for w in extra_toks if w not in sec_words]
+                    members = _boost_by_query_tokens(index, list(index.groups[sec]), boost)
+                    return members, sec, sub
+
+            # 2c. Класс/раздел фида
+            sec = index.class_match(sub) or index.language.qualified_class(index, sub)
+            if sec and sec in index.groups:
+                members = _boost_by_query_tokens(index, list(index.groups[sec]), rem)
+                return members, sec, sub
+
+            # 2d. Разговорный продукт из словаря с проверкой по каталогу
+            col = resolve_colloquial_product(engine, sub, segment=segment)
+            if col:
+                cids, _, _ = col
+                return _boost_by_query_tokens(index, cids, rem), None, sub
+
+            # 2e. Точный продукт в каталоге (для одиночного слова требуем длину >= 4 и не родовое слово)
+            if length == 1 and (len(sub) < 4 or sub in _RELAX_GENERIC_WORDS):
+                continue
+            hits = index.products(sub, fuzzy=False, segment=segment)
+            if hits:
+                confirmed = [cid for cid in hits if sold_as(index.cat.cards[cid], sub)]
+                if confirmed:
+                    ordered = prefer_software_over_courses(index, sub, _boost_by_query_tokens(index, confirmed, rem))
+                    return ordered, None, sub
+    return None
+
+
+def handle_unmatched_query(
+    engine, req, profile, trace, record, norm: str, base: str, *, priorities=(), qty=None, budget=None
+) -> dict | None:
+    """Ослабляет несовпавший запрос по части выражения/классу/железу и закрывает уход оффтопа в старый конвейер."""
+    from .feed import display, finish
 
     if (
         req.category
@@ -280,6 +699,58 @@ def handle_unmatched_query(engine, req, profile, trace, record, norm: str, base:
     index = engine.catalog.feed
     if norm in engine.catalog.source_codes or base in engine.catalog.source_codes:
         return None
+
+    # 1. Пробуем ослабление по части запроса (самое длинное известное подвыражение / класс / hardware_head).
+    relaxed = _try_relax_query(engine, index, norm, base, segment=profile.segment)
+    if relaxed:
+        cids, sec, matched_part = relaxed
+        note = f"Показаны товары по части запроса: «{matched_part}»."
+        trace.add("relax", "Ослабление запроса", note)
+        start = (req.page - 1) * req.page_size
+        items = [display(engine, cid, profile) for cid in cids[start:start + req.page_size]]
+        for i, c in enumerate(items, 1):
+            c["position"] = i
+        intent = "category" if sec else "product"
+        title = index.classes[sec] if sec else TITLES[intent]
+        chips = []
+        if sec:
+            chips.append(dict(key="category", label=index.classes[sec], removable=False))
+        if qty:
+            chips.append(dict(key="quantity", label=f"Количество · {qty['value']}"))
+        result = dict(
+            search_id="s_" + uuid4().hex,
+            engine="kuznitsa",
+            engine_version="1.0",
+            mode=req.mode,
+            query=dict(raw=req.q, normalized=norm, corrected=norm, corrections=[], did_you_mean=None),
+            understood=dict(
+                intent=intent,
+                intent_title=TITLES[intent],
+                intent_conf=0.82,
+                intent_source="rules",
+                filters=dict(category=[sec]) if sec else {},
+                exclude={},
+                qty=qty,
+                entities=[],
+                chips=chips,
+                zero_reason=None,
+                relaxed_to=matched_part,
+                agent_note=note,
+            ),
+            blocks=[dict(type="products", title=title, category_id=sec, total=len(cids), items=items)],
+            facets=[],
+            notes=[note],
+            banners=[],
+            relax_hints=[],
+            related_queries=[],
+            profile=profile_info(profile),
+            cost=cost_summary([], engine.usd_rub),
+            trace=trace.steps,
+            timing_ms={},
+        )
+        return finish(engine, req, trace, record, result, items, len(cids), [], profile=profile)
+
+    # 2. Если в запросе есть сущности KB (роль/услуга/миграция), уступаем соседним конвейерам; иначе чистый clarify без карточек.
     toks = tokens(norm)
     substantive_kinds = {"family", "vendor", "category", "role", "industry", "use_case", "compliance", "platform"}
     if toks and any(
@@ -528,9 +999,13 @@ def check_missing_generation(index, text: str) -> tuple[str, str, list[str]] | N
     head, ver = m[1].strip(), m[2].strip()
     if not head or len(words(head)) > 3:
         return None
-    # Если точное название с версией реально продаётся — это не пропуск.
+    # Если точное название с версией реально продаётся или поколение есть в заголовке — это не пропуск.
     direct = index.products(norm, fuzzy=False)
-    if any(sold_as(index.cat.cards[cid], norm) for cid in direct):
+    if any(
+        sold_as(index.cat.cards[cid], norm)
+        or (ver in words(normalize(index.cat.cards[cid].title)) and sold_as(index.cat.cards[cid], head))
+        for cid in direct
+    ):
         return None
     # Ищем саму линейку (например, windows) среди реально продаваемых карточек.
     head_ids = [cid for cid in index.products(head, fuzzy=False) if sold_as(index.cat.cards[cid], head)]
@@ -975,6 +1450,19 @@ def verify_response(engine, req, profile, result: dict, *, from_legacy: bool = F
         intent = understood.get("intent")
         zero_reason = understood.get("zero_reason")
         subtype = understood.get("subtype")
+
+        # 2.0. Отсутствующий бренд без известных аналогов из старого конвейера: убираем нерелевантные карточки-заполнители.
+        if claims_absent and not any(b.get("type") == "analogs" for b in blocks):
+            prod_cards = [
+                c
+                for b in blocks
+                if b.get("type") == "products"
+                for c in (b.get("items") or ())
+            ]
+            if prod_cards and not _has_lexical_grounding(engine, norm, prod_cards):
+                blocks[:] = [b for b in blocks if b.get("type") not in ("products", "crosssell")]
+                _strip_empty_blocks(blocks)
+                return result
 
         # 2a. Явный оффтоп / unknown_term (кроме пиратства) — убираем fill-карточки, оставляем чистый clarify.
         if (zero_reason == "unknown_term" or intent == "off_topic") and subtype != "piracy":
