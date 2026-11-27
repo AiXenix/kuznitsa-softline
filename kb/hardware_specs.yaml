@@ -1,0 +1,674 @@
+# Словарь устройств, параметров, брендов и серий оборудования для разбора запросов и карточек (N9).
+
+devices:
+  - id: laptop_psu
+    feed_classes: ["84326"]
+    section_keywords: ["источники питания для ноутбуков", "адаптер питания для ноутбука", "блок питания для ноутбука"]
+    triggers:
+      - "блок питания для ноутбука"
+      - "блок питания к ноутбуку"
+      - "блоки питания для ноутбуков"
+      - "источник питания для ноутбука"
+      - "адаптер питания для ноутбука"
+      - "адаптер для ноутбука"
+      - "зарядное устройство для ноутбука"
+      - "зарядка для ноутбука"
+      - "бп для ноутбука"
+    bare_number_spec: power_w
+    bare_number_range: [20, 350]
+    gb_role: null
+    is_consumable: true
+
+  - id: laptop_bag
+    feed_classes: ["83844"]
+    section_keywords: ["сумки и чехлы для ноутбуков", "сумка для ноутбука"]
+    triggers:
+      - "сумка для ноутбука"
+      - "сумки для ноутбуков"
+      - "рюкзак для ноутбука"
+      - "рюкзаки для ноутбуков"
+      - "чехол для ноутбука"
+      - "чехлы для ноутбуков"
+    bare_number_spec: diagonal
+    bare_number_range: [11, 19]
+    gb_role: null
+    is_consumable: true
+
+  - id: laptop_stand
+    feed_classes: ["83741"]
+    section_keywords: ["подставки для ноутбуков"]
+    triggers: ["подставка для ноутбука", "подставки для ноутбуков"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: dock
+    feed_classes: ["84382"]
+    section_keywords: ["док-станции для ноутбуков", "док-станция"]
+    triggers: ["док-станция", "док станция", "док-станции", "док станции", "docking station"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: tablet_case
+    feed_classes: ["84253"]
+    section_keywords: ["чехлы для планшетов", "чехол для планшета"]
+    triggers:
+      - "чехол для планшета"
+      - "чехлы для планшетов"
+      - "чехол для ipad"
+      - "чехол на ipad"
+      - "чехол для айпад"
+      - "чехол для айпада"
+      - "чехлы для ipad"
+    bare_number_spec: diagonal
+    bare_number_range: [7, 15]
+    gb_role: null
+    is_consumable: true
+
+  - id: phone_case
+    feed_classes: ["89916"]
+    section_keywords: ["чехлы для смартфонов", "чехол для смартфона"]
+    triggers:
+      - "чехол для смартфона"
+      - "чехлы для смартфонов"
+      - "чехол для телефона"
+      - "чехол для iphone"
+      - "чехол на iphone"
+      - "чехол для айфон"
+      - "чехол для айфона"
+      - "чехол для samsung"
+      - "чехол для galaxy"
+      - "чехол для xiaomi"
+      - "чехол для redmi"
+      - "чехол для huawei"
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: ups_battery
+    feed_classes: ["82014"]
+    section_keywords: ["сменные батареи для ибп", "аккумулятор для ибп"]
+    triggers:
+      - "батарея для ибп"
+      - "батареи для ибп"
+      - "сменная батарея для ибп"
+      - "аккумулятор для ибп"
+      - "акб для ибп"
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: bracket
+    feed_classes: ["93276"]
+    section_keywords: ["кронштейны"]
+    triggers: ["кронштейн", "кронштейны"]
+    bare_number_spec: diagonal
+    bare_number_range: [13, 90]
+    gb_role: null
+    is_consumable: true
+
+  - id: cable
+    feed_classes: ["80081"]
+    section_keywords: ["кабели, переходники, разъемы", "кабель"]
+    triggers: ["кабель", "кабели", "переходник", "переходники", "патч-корд", "патчкорд", "шнур"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: consumable
+    feed_classes: ["94694"]
+    section_keywords: ["расходные материалы", "картридж", "тонер"]
+    triggers:
+      - "картридж"
+      - "картриджи"
+      - "тонер-картридж"
+      - "тонер картридж"
+      - "тонер"
+      - "тонеры"
+      - "фотобарабан"
+      - "драм-картридж"
+      - "драм картридж"
+      - "чернила"
+      - "чернильница"
+      - "расходники"
+      - "расходные материалы"
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: true
+
+  - id: graphics_tablet
+    feed_classes: ["98055"]
+    section_keywords: ["графические планшеты", "графический планшет"]
+    triggers: ["графический планшет", "графические планшеты", "дигитайзер", "перьевой планшет"]
+    bare_number_spec: diagonal
+    bare_number_range: [6, 32]
+    gb_role: null
+    is_consumable: false
+
+  - id: laptop
+    feed_classes: ["70824"]
+    section_keywords: ["ноутбуки", "ноутбук", "laptop"]
+    triggers: ["ноутбук", "ноутбуки", "ноут", "ноуты", "лэптоп", "лаптоп", "ультрабук", "ультрабуки", "нетбук"]
+    bare_number_spec: diagonal
+    bare_number_range: [11, 19]
+    gb_role: auto
+    is_consumable: false
+
+  - id: monitor
+    feed_classes: ["80843"]
+    section_keywords: ["мониторы", "монитор", "monitor"]
+    triggers: ["монитор", "мониторы", "моник", "дисплей"]
+    bare_number_spec: diagonal
+    bare_number_range: [13, 85]
+    gb_role: null
+    is_consumable: false
+
+  - id: external_hdd
+    feed_classes: ["90092", "78997"]
+    section_keywords: ["внешние hdd", "внешние жесткие диски", "внешний диск"]
+    triggers: ["внешний жесткий диск", "внешний жёсткий диск", "внешний hdd", "внешний диск", "внешние диски", "внешний накопитель"]
+    bare_number_spec: storage_gb
+    bare_number_range: [120, 24000]
+    gb_role: storage
+    is_consumable: false
+
+  - id: external_ssd
+    feed_classes: ["90198", "79574"]
+    section_keywords: ["внешние ssd", "внешний ssd"]
+    triggers: ["внешний ssd", "внешний ссд", "портативный ssd"]
+    bare_number_spec: storage_gb
+    bare_number_range: [120, 16000]
+    gb_role: storage
+    is_consumable: false
+
+  - id: ssd
+    feed_classes: ["79574"]
+    section_keywords: ["твердотельные накопители", "ssd"]
+    triggers: ["ssd", "ссд", "твердотельный накопитель", "твердотельные накопители", "ssd накопитель", "ssd диск", "nvme накопитель", "m.2 накопитель"]
+    bare_number_spec: storage_gb
+    bare_number_range: [60, 16000]
+    gb_role: storage
+    is_consumable: false
+
+  - id: hdd
+    feed_classes: ["78997"]
+    section_keywords: ["жесткие диски", "жёсткие диски", "hdd"]
+    triggers: ["жесткий диск", "жёсткий диск", "жесткие диски", "жёсткие диски", "hdd", "винчестер", "хард"]
+    bare_number_spec: storage_gb
+    bare_number_range: [250, 32000]
+    gb_role: storage
+    is_consumable: false
+
+  - id: flash
+    feed_classes: ["90395"]
+    section_keywords: ["флешки usb", "флешка", "usb-флеш"]
+    triggers: ["флешка", "флешки", "флэшка", "флэшки", "usb-флешка", "usb флешка", "usb накопитель", "usb-накопитель", "флеш накопитель", "флеш-накопитель"]
+    bare_number_spec: storage_gb
+    bare_number_range: [4, 2048]
+    gb_role: storage
+    is_consumable: false
+
+  - id: memory_card
+    feed_classes: ["90339", "90395"]
+    section_keywords: ["карты памяти", "карта памяти", "microsd"]
+    triggers: ["карта памяти", "карты памяти", "microsd", "sd карта", "sd-карта"]
+    bare_number_spec: storage_gb
+    bare_number_range: [4, 2048]
+    gb_role: storage
+    is_consumable: false
+
+  - id: ram
+    feed_classes: ["76963"]
+    section_keywords: ["оперативная память", "озу", "ram"]
+    triggers: ["оперативная память", "оперативка", "озу", "модуль памяти", "память ddr3", "память ddr4", "память ddr5", "ddr5", "ddr4", "ddr3", "so-dimm", "sodimm", "dimm"]
+    bare_number_spec: ram_gb
+    bare_number_range: [2, 512]
+    gb_role: ram
+    is_consumable: false
+
+  - id: router
+    feed_classes: ["85353", "86192", "86348", "85225"]
+    section_keywords: ["wi-fi роутеры", "роутеры", "маршрутизаторы"]
+    triggers: ["роутер", "роутеры", "wi-fi роутер", "wifi роутер", "вайфай роутер", "маршрутизатор", "маршрутизаторы", "точка доступа", "точки доступа"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: switch
+    feed_classes: ["85741"]
+    section_keywords: ["коммутаторы", "коммутатор", "switch"]
+    triggers: ["коммутатор", "коммутаторы", "свитч", "свич", "poe коммутатор", "пое коммутатор", "сетевой коммутатор"]
+    bare_number_spec: ports
+    bare_number_range: [4, 64]
+    gb_role: null
+    is_consumable: false
+
+  - id: mfp
+    feed_classes: ["93995"]
+    section_keywords: ["принтеры и мфу", "мфу"]
+    triggers: ["мфу", "мфушка", "многофункциональное устройство", "mfp"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+    implied_specs:
+      device_subtype: "МФУ"
+
+  - id: printer
+    feed_classes: ["93995"]
+    section_keywords: ["принтеры и мфу", "принтеры", "принтер"]
+    triggers: ["принтер", "принтеры", "лазерник", "принтак"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+    implied_specs:
+      device_subtype: "Принтер"
+
+  - id: scanner
+    feed_classes: ["94641"]
+    section_keywords: ["сканеры", "сканер"]
+    triggers: ["сканер", "сканеры", "документный сканер", "потоковый сканер", "планшетный сканер"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: plotter
+    feed_classes: ["98113"]
+    section_keywords: ["плоттеры", "плоттер"]
+    triggers: ["плоттер", "плоттеры", "широкоформатный принтер"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: ups
+    feed_classes: ["82080"]
+    section_keywords: ["ибп", "источники бесперебойного питания"]
+    triggers: ["ибп", "упс", "ups", "бесперебойник", "источник бесперебойного питания", "источники бесперебойного питания"]
+    bare_number_spec: power_va
+    bare_number_range: [300, 20000]
+    gb_role: null
+    is_consumable: false
+
+  - id: psu
+    feed_classes: ["74887"]
+    section_keywords: ["блоки питания", "блок питания"]
+    triggers: ["блок питания", "блоки питания"]
+    bare_number_spec: power_w
+    bare_number_range: [250, 2500]
+    gb_role: null
+    is_consumable: false
+
+  - id: server
+    feed_classes: ["86563", "87417", "87268", "87317"]
+    section_keywords: ["rack-серверы", "серверы", "сервер"]
+    triggers: ["сервер", "серверы", "рэк сервер", "рэк-сервер", "стоечный сервер", "микросервер", "сервак"]
+    bare_number_spec: null
+    gb_role: auto
+    is_consumable: false
+
+  - id: gpu
+    feed_classes: ["77963"]
+    section_keywords: ["видеокарты", "видеокарта"]
+    triggers: ["видеокарта", "видеокарты", "графическая карта", "видюха"]
+    bare_number_spec: ram_gb
+    bare_number_range: [2, 96]
+    gb_role: vram
+    is_consumable: false
+
+  - id: desktop
+    feed_classes: ["70187"]
+    section_keywords: ["компьютеры", "системные блоки", "десктоп"]
+    triggers: ["десктоп", "системник", "системный блок", "системные блоки", "компьютер", "рабочая станция", "пк"]
+    bare_number_spec: null
+    gb_role: auto
+    is_consumable: false
+
+  - id: all_in_one
+    feed_classes: ["73180"]
+    section_keywords: ["моноблоки", "моноблок"]
+    triggers: ["моноблок", "моноблоки", "all-in-one"]
+    bare_number_spec: diagonal
+    bare_number_range: [19, 34]
+    gb_role: auto
+    is_consumable: false
+
+  - id: mini_pc
+    feed_classes: ["73062"]
+    section_keywords: ["мини-пк", "неттопы"]
+    triggers: ["минипк", "мини пк", "мини-пк", "неттоп", "неттопы"]
+    bare_number_spec: null
+    gb_role: auto
+    is_consumable: false
+
+  - id: mouse
+    feed_classes: ["82833"]
+    section_keywords: ["клавиатуры, мыши, комплекты", "мыши", "мышь"]
+    triggers: ["мышь", "мышка", "мыши", "мышки", "компьютерная мышь"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: keyboard
+    feed_classes: ["82833"]
+    section_keywords: ["клавиатуры, мыши, комплекты", "клавиатуры", "клавиатура"]
+    triggers: ["клавиатура", "клавиатуры", "клава"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: headset
+    feed_classes: ["88831"]
+    section_keywords: ["наушники и микрофоны", "гарнитуры"]
+    triggers: ["гарнитура", "гарнитуры", "наушники с микрофоном", "игровая гарнитура"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+    implied_specs:
+      with_mic: true
+
+  - id: headphones
+    feed_classes: ["88831"]
+    section_keywords: ["наушники и микрофоны", "наушники"]
+    triggers: ["наушники", "наушник"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: microphone
+    feed_classes: ["88831"]
+    section_keywords: ["наушники и микрофоны", "микрофоны"]
+    triggers: ["микрофон", "микрофоны"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: webcam
+    feed_classes: ["89623", "157991", "85126"]
+    section_keywords: ["веб-камеры", "вебкамеры"]
+    triggers: ["веб-камера", "веб камера", "вебкамера", "вебкамеры", "вебка", "webcam"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: speakers
+    feed_classes: ["83254"]
+    section_keywords: ["колонки", "акустические системы"]
+    triggers: ["колонки", "колонка", "акустика", "акустическая система"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: projector
+    feed_classes: ["91916"]
+    section_keywords: ["проекторы", "проектор"]
+    triggers: ["проектор", "проекторы"]
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
+  - id: nas
+    feed_classes: ["98190", "98412"]
+    section_keywords: ["сетевые хранилища", "nas", "схд"]
+    triggers: ["nas", "нас", "схд", "сетевое хранилище", "хранилище данных"]
+    bare_number_spec: storage_gb
+    bare_number_range: [1000, 128000]
+    gb_role: storage
+    is_consumable: false
+
+  - id: tablet
+    feed_classes: ["73862"]
+    section_keywords: ["планшеты", "планшет"]
+    triggers: ["планшет", "планшеты"]
+    bare_number_spec: diagonal
+    bare_number_range: [7, 15]
+    gb_role: storage
+    is_consumable: false
+
+  - id: smartphone
+    feed_classes: ["88040"]
+    section_keywords: ["смартфоны", "смартфон"]
+    triggers: ["смартфон", "смартфоны"]
+    bare_number_spec: null
+    gb_role: storage
+    is_consumable: false
+
+known_brands:
+  cisco: Cisco
+  juniper: Juniper
+  aruba: Aruba
+  ubiquiti: Ubiquiti
+  fortinet: Fortinet
+  keenetic: Keenetic
+  netgear: Netgear
+  mikrotik: MikroTik
+  tp link: TP-Link
+  tplink: TP-Link
+  d link: D-Link
+  dlink: D-Link
+  eltex: Eltex
+  qtech: QTECH
+  snr: SNR
+  tenda: Tenda
+  mercusys: Mercusys
+  zyxel: Zyxel
+  dell: Dell
+  hp: HP
+  hewlett packard: HP
+  hpe: HPE
+  lenovo: Lenovo
+  asus: ASUS
+  acer: Acer
+  apple: Apple
+  samsung: Samsung
+  lg: LG
+  philips: Philips
+  benq: BenQ
+  aoc: AOC
+  iiyama: Iiyama
+  viewsonic: ViewSonic
+  msi: MSI
+  gigabyte: Gigabyte
+  palit: Palit
+  asrock: ASRock
+  sapphire: Sapphire
+  zotac: Zotac
+  huawei: Huawei
+  honor: Honor
+  xiaomi: Xiaomi
+  redmi: Redmi
+  digma: DIGMA
+  dahua: Dahua
+  hikvision: Hikvision
+  logitech: Logitech
+  a4tech: A4Tech
+  defender: Defender
+  sven: SVEN
+  razer: Razer
+  steelseries: SteelSeries
+  hyperx: HyperX
+  rapoo: Rapoo
+  genius: Genius
+  oklick: Oklick
+  jabra: Jabra
+  yealink: Yealink
+  poly: Poly
+  plantronics: Plantronics
+  sennheiser: Sennheiser
+  sony: Sony
+  kyocera: Kyocera
+  canon: Canon
+  epson: Epson
+  xerox: Xerox
+  pantum: Pantum
+  brother: Brother
+  ricoh: Ricoh
+  lexmark: Lexmark
+  oki: OKI
+  cactus: Cactus
+  nvprint: NVPrint
+  sakura: Sakura
+  apc: APC
+  ippon: Ippon
+  eaton: Eaton
+  powercom: Powercom
+  cyberpower: CyberPower
+  exegate: Exegate
+  powerman: Powerman
+  kingston: Kingston
+  adata: ADATA
+  sandisk: SanDisk
+  crucial: Crucial
+  corsair: Corsair
+  patriot: Patriot
+  transcend: Transcend
+  netac: Netac
+  goodram: Goodram
+  apacer: Apacer
+  silicon power: Silicon Power
+  lexar: Lexar
+  kioxia: Kioxia
+  wd: WD
+  western digital: Western Digital
+  seagate: Seagate
+  toshiba: Toshiba
+  hgst: HGST
+  intel: Intel
+  amd: AMD
+  nvidia: NVIDIA
+  chieftec: Chieftec
+  zalman: Zalman
+  deepcool: DeepCool
+  thermaltake: Thermaltake
+  be quiet: be quiet!
+  fsp: FSP
+  seasonic: Seasonic
+  cougar: Cougar
+  aerocool: AeroCool
+  accord: Accord
+  wacom: Wacom
+  huion: Huion
+  infocus: InFocus
+  qnap: QNAP
+  synology: Synology
+  supermicro: Supermicro
+  depo: DEPO
+  aquarius: Aquarius
+  nerpa: NERPA
+  graviton: Graviton
+  kraftway: Kraftway
+  fplus: Fplus
+  kvadra: KVADRA
+  ibm: IBM
+  fujitsu: Fujitsu
+  panasonic: Panasonic
+  acer: Acer
+  chuwi: Chuwi
+  tecno: Tecno
+  infinix: Infinix
+  maibenben: Maibenben
+  machenike: Machenike
+  thunderobot: Thunderobot
+
+model_series:
+  - thinkpad
+  - thinkbook
+  - ideapad
+  - yoga
+  - legion
+  - probook
+  - elitebook
+  - pavilion
+  - envy
+  - victus
+  - omen
+  - latitude
+  - inspiron
+  - vostro
+  - optiplex
+  - precision
+  - poweredge
+  - xps
+  - vivobook
+  - zenbook
+  - expertbook
+  - rog
+  - tuf
+  - aspire
+  - swift
+  - nitro
+  - extensa
+  - travelmate
+  - matebook
+  - magicbook
+  - macbook
+  - imac
+  - ipad
+  - iphone
+  - airpods
+  - galaxy
+  - odyssey
+  - ultragear
+  - ultrasharp
+  - proart
+  - laserjet
+  - officejet
+  - deskjet
+  - designjet
+  - ecosys
+  - taskalfa
+  - i-sensys
+  - isensys
+  - pixma
+  - maxify
+  - versalink
+  - workcentre
+  - phaser
+  - archer
+  - deco
+  - omada
+  - smart-ups
+  - back-ups
+  - fury
+  - beast
+  - renegade
+  - barracuda
+  - ironwolf
+  - exos
+  - skyhawk
+  - ultrastar
+  - catalyst
+  - nexus
+  - proliant
+  - mx
+  - g102
+  - g305
+  - g502
+  - k120
+  - mk270
+  - mk295
+  - kamvas
+  - inspiroy
+  - intuos
+
+spec_labels:
+  storage_gb: "Объём"
+  ram_gb: "Память"
+  ram_type: "Тип памяти"
+  diagonal: "Диагональ"
+  resolution: "Разрешение"
+  cpu: "Процессор"
+  gpu: "Графика"
+  wifi: "Wi-Fi"
+  interface: "Интерфейс"
+  print_tech: "Печать"
+  print_color: "Цветность"
+  paper_format: "Формат"
+  power_w: "Мощность"
+  power_va: "Мощность"
+  ports: "Порты"
+  wireless: "Подключение"
+  with_mic: "Микрофон"
+  poe: "PoE"
+  rack_u: "Форм-фактор"
+  series: "Серия"
+  compat: "Совместимость"

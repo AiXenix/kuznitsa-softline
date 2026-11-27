@@ -280,6 +280,8 @@ class FeedIndex:
         self.analogs=AnalogIndex(self,kb.rows["feed_analogs"])
         from .feed_solutions import SolutionIndex
         self.solutions=SolutionIndex(self,cfg.kb)
+        from .hardware_specs import HardwareSpecIndex
+        self.hardware_specs=HardwareSpecIndex(self,cfg.kb)
 
     def correct(self,q):
         if q in HARDWARE:return q

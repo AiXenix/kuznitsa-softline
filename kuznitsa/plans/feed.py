@@ -351,15 +351,18 @@ def search(engine,req,profile,trace,priorities,record):
     replacement_for=feed_analogs.requested(base)
     if replacement_for:
         replacement_for=feed_noise.clean_analog_subject(replacement_for)
+    hw_query=index.hardware_specs.parse_query(req.q,norm,base,req_category=req.category,ignore=req.ignore,cond_platform=cond.platform) if not (req.verbatim or replacement_for) else None
+    if hw_query and hw_query.suppress_cond_platform:
+        cond.platform=None
     noise_clean=None
-    if not replacement_for and not req.verbatim and not req.category and not feed_noise.FEED_COMPLEX.search(base):
+    if not replacement_for and not (hw_query and hw_query.has_constraints) and not req.verbatim and not req.category and not feed_noise.FEED_COMPLEX.search(base):
         noise_clean=feed_noise.extract_conditions_and_noise(engine,index,base,existing_qty=qty)
         if noise_clean.changed:
             base=noise_clean.subject
             qty=noise_clean.qty
-    edition=index.edition(base) if not (req.verbatim or req.category or replacement_for) else None
+    edition=index.edition(base) if not (req.verbatim or req.category or replacement_for or (hw_query and hw_query.has_constraints)) else None
     row=index.analogs.lookup(replacement_for or base, fuzzy=not req.verbatim)
-    if not edition and (replacement_for or row and not row["in_catalog"]) and not (
+    if not edition and not (hw_query and hw_query.has_constraints) and (replacement_for or row and not row["in_catalog"]) and not (
             req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         analog_target=replacement_for or (cond.raw_for_analogs if cond.platform else base)
         return feed_analogs.search(engine,req,profile,trace,priorities,record,analog_target,
@@ -394,7 +397,7 @@ def search(engine,req,profile,trace,priorities,record):
     identity=identity_terms(base) if not (literal[0] or explicit_class or req.category or device_name) else ()
     identity_pool=index.recovery.identity_cards(identity) if identity else None
     unknown_name=identity_pool is not None and not identity_pool
-    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name):
+    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name or (hw_query and hw_query.has_constraints)):
         direct=index.products(base,fuzzy=False)
         if not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title)):
             candidate_base=named_subject(engine,product_subject(index,base))
@@ -427,6 +430,11 @@ def search(engine,req,profile,trace,priorities,record):
     vendor=supplier or vendor
     if "vendor" in plan.ignore:vendor=supplier=None
     section=combined or section
+    if hw_query and hw_query.has_constraints and not server_section:
+        section=hw_query.section or section
+        vendor=None if hw_query.is_consumable else (hw_query.vendor_id or vendor)
+        bare=question=False
+        hint=None
     if supplier and not section:
         supplier_ids=[cid for cid in ids if index.card_vendors[cid]==supplier]
         if supplier_ids:
@@ -598,7 +606,13 @@ def search(engine,req,profile,trace,priorities,record):
                 if cid in index.server_offers:preferred[cid]=index.server_offers[cid][1]
             note=("Сначала лицензии на сервер и предложения с указанием сервера в названии."
                   if preferred else "Класс ПО найден. Серверное исполнение нужно уточнить у поставщика.")
-        if vendor:
+        hw_applied=bool(hw_query and hw_query.has_constraints and section in index.hardware_specs.hardware_sections)
+        if hw_applied:
+            members=rank_hardware_section(index,section,q,members)
+            members,hw_note,hw_vendor_gap=index.hardware_specs.apply(section,members,hw_query,preferred,vendor=vendor)
+            if hw_note:note=" ".join(filter(None,(note,hw_note)))
+            if hw_vendor_gap:vendor=None
+        elif vendor:
             matches=[cid for cid in members if index.card_vendors[cid]==vendor]
             if not matches and not req.category and index.cat.cards[members[0]].offers[0].domain=="hardware":
                 software=software_for_class(engine,vendor,index.classes[section])
@@ -629,7 +643,7 @@ def search(engine,req,profile,trace,priorities,record):
                     if "офис" in purpose:purpose.add("office")
                     members=sorted(members,key=lambda cid:len(set(words(index.cat.cards[cid].title)) & purpose),
                                    reverse=True)
-        if not vendor_gap:
+        if not vendor_gap and not hw_applied:
             members=rank_hardware_section(index,section,q,members)
         if role:
             categories={s["category"] for s in role.get("slots",[])}
@@ -755,7 +769,7 @@ def search(engine,req,profile,trace,priorities,record):
     clarify=[]
     nearby=[]
     def complete(reserved):
-        if license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or not feed_request.allow_fill(req,plan):return []
+        if (hw_query and hw_query.no_sibling_fill) or license_filter or (budget is not None and not budget_relaxed) or cond.price_min is not None or cond.sort or cond.exclude_vendors or cond.exclude_terms or cond.origin or not feed_request.allow_fill(req,plan):return []
         if edition:
             anchor=index.card_sections[edition.cards[0]]
             shown=set(main)|set(reserved)
@@ -812,6 +826,7 @@ def search(engine,req,profile,trace,priorities,record):
     if vendor:result["understood"]["filters"]["vendor"]=[vendor]
     if license_filter:result["understood"]["filters"][license_filter[0]]=license_filter[1]
     feed_request.populate_result(index,engine,plan,result,chips,relax_hints)
+    index.hardware_specs.populate_result(hw_query,result,chips)
     if budget is not None and not ids:result["understood"]["zero_reason"]="filters_too_strict"
     if renewal:result["understood"]["filters"]["action"]="renewal"
     if noise_clean and noise_clean.changed:

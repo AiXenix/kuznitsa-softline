@@ -16,7 +16,7 @@ SUPPORTED_EXCLUDE = frozenset({"vendor", "category"})
 SUPPORTED_IGNORE = frozenset({
     "vendor", "category", "price_min", "price_max", "price", "sort",
     "exclude", "exclude_vendor", "exclude_category",
-    "origin", "registry", "platform", "action", "profile", "refined", "context",
+    "origin", "registry", "platform", "action", "profile", "refined", "context", "specs",
 })
 
 FILTER_LABELS = {
@@ -63,7 +63,7 @@ def unsupported(req) -> bool:
         return True
     if req.exclude.keys() - SUPPORTED_EXCLUDE:
         return True
-    if set(req.ignore) - SUPPORTED_IGNORE:
+    if {key for key in req.ignore if key not in SUPPORTED_IGNORE and not key.startswith("spec:")}:
         return True
     return False
 

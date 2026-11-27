@@ -29,6 +29,12 @@ _SUBTYPE_RULES = (
         re.compile(r"\bклавиатур\w*\b|\bkeyboard\b|\bкомплект\w*\b|\bнабор\w*\b|\bcombo\b", re.I),
     ),
     (
+        re.compile(r"\bнаушник\w*\s+с\s+микрофон\w*\b"),
+        re.compile(r"\bгарнитур\w*\b|\bheadset\b", re.I),
+        re.compile(r"\bнаушник\w*\b|\bheadphone\w*\b", re.I),
+        re.compile(r"^\s*микрофон\w*\b", re.I),
+    ),
+    (
         re.compile(r"\bнаушник\w*\b"),
         re.compile(r"\bнаушник\w*\b|\bheadphone\w*\b", re.I),
         re.compile(r"\bгарнитур\w*\b|\bheadset\b", re.I),
@@ -47,16 +53,34 @@ _SUBTYPE_RULES = (
         re.compile(r"\bгарнитур\w*\b|\bнаушник\w*\b|\bheadset\b|\bheadphone\w*\b", re.I),
     ),
     (
+        re.compile(r"\bтонер\w*\b"),
+        re.compile(r"\bтонер\w*\b|\btoner\b", re.I),
+        re.compile(r"\bкартридж\w*\b|\bcartridge\b", re.I),
+        re.compile(r"\bфотобарабан\w*\b|\bдрам\b|\bпл[её]нк\w*\b|\bобложк\w*\b|\bбумаг\w*\b|\bпружин\w*\b", re.I),
+    ),
+    (
         re.compile(r"\bкартридж\w*\b"),
         re.compile(r"\b(?:тонер-?)?картридж\w*\b|\bcartridge\b", re.I),
         re.compile(r"\bтонер\w*\b|\bчернил\w*\b", re.I),
-        re.compile(r"\bфотобарабан\w*\b|\bдрам\b|\bпл[её]нк\w*\b|\bобложк\w*\b|\bбумаг\w*\b", re.I),
+        re.compile(r"\bфотобарабан\w*\b|\bдрам\b|\bпл[её]нк\w*\b|\bобложк\w*\b|\bбумаг\w*\b|\bпружин\w*\b", re.I),
     ),
     (
         re.compile(r"\b(?:ж[её]стк\w*\s+диск\w*|hdd)\b"),
         re.compile(r"\bж[её]стк\w*\s+диск\w*\b|\bhdd\b", re.I),
         re.compile(r"\bнакопител\w*\b|\bдиск\w*\b", re.I),
-        re.compile(r"\bкабел\w*\b|\bадаптер\w*\b|\bкорпус\w*\b|\bбокс\w*\b", re.I),
+        re.compile(r"\bкабел\w*\b|\bадаптер\w*\b|\bкорпус\w*\b|\bбокс\w*\b|\bтвердотельн\w*\b|\bssd\b", re.I),
+    ),
+    (
+        re.compile(r"\bграфическ\w*\s+планшет\w*\b|\bдигитайзер\w*\b"),
+        re.compile(r"\bграфическ\w*\s+планшет\w*\b|\bдигитайзер\w*\b|\bhuion\b|\bwacom\b", re.I),
+        None,
+        re.compile(r"\bакустич\w*\b|\bколонк\w*\b|\bмыш\w*\b|\bклавиатур\w*\b", re.I),
+    ),
+    (
+        re.compile(r"\bпроектор\w*\b"),
+        re.compile(r"\bпроектор\w*\b|\bprojector\b", re.I),
+        None,
+        re.compile(r"\bакустич\w*\b|\bколонк\w*\b|\bкронштейн\w*\b", re.I),
     ),
     (
         re.compile(r"\bвеб-?камер\w*\b|\bвебкамер\w*\b"),
@@ -71,8 +95,8 @@ _SUBTYPE_RULES = (
         None,
     ),
     (
-        re.compile(r"\bфлеш\w*\b"),
-        re.compile(r"\bфлеш\w*\b|\bflash\b|\busb-?накопител\w*\b", re.I),
+        re.compile(r"\bфлеш\w*\b|\bфлэш\w*\b"),
+        re.compile(r"\bфлеш\w*\b|\bфлэш\w*\b|\bflash\b|\busb-?накопител\w*\b", re.I),
         re.compile(r"\bнакопител\w*\b", re.I),
         None,
     ),
@@ -86,7 +110,7 @@ _SUBTYPE_RULES = (
         re.compile(r"\bмфу\b"),
         re.compile(r"\bмфу\b|\bmfp\b", re.I),
         re.compile(r"\bпринтер\w*\b", re.I),
-        re.compile(r"\bкартридж\w*\b|\bтонер\w*\b", re.I),
+        re.compile(r"\bкартридж\w*\b|\bтонер\w*\b|\bdesignjet\b|\bплоттер\w*\b", re.I),
     ),
     (
         re.compile(r"\bсканер\w*\b"),
@@ -119,6 +143,9 @@ _SUBTYPE_RULES = (
         None,
     ),
 )
+
+# Ошибочно классифицированные товары в маленьких разделах («акустическая система» в «Графические планшеты»).
+_HARD_DROP_MISCLASSIFIED = re.compile(r"\b(?:акустич\w*|колонк\w*)\b", re.I)
 
 _TRADE_QUALIFIER_RE = re.compile(r"\b(?:этикет\w*|чек\w*|штрих-?код\w*|касс\w*|торгов\w*|термо\w*)\b", re.I)
 
@@ -233,7 +260,8 @@ def resolve_hardware_section(index, q, section, vendor):
         title_words = set(words(c.title))
         sec_words = set(index.class_terms.get(sec_id, ()))
         name_hit = bool((q_set & sec_words) or (sec_terms & sec_words))
-        title_hit = bool((q_set - {vendor}) & title_words) or bool(sec_terms & title_words)
+        v_words = set(words(vendor))
+        title_hit = bool((q_set - v_words) & title_words) or bool(sec_terms & title_words)
         if name_hit or title_hit:
             prev = by_sec.get(sec_id, [0, 0])
             prev[0] += 1 if name_hit else 0
@@ -279,11 +307,17 @@ def rank_hardware_section(index, section, query, members):
                 return 2
             if close_rx and close_rx.search(title) and not has_excl:
                 return 2
+            if has_excl and _HARD_DROP_MISCLASSIFIED.search(title):
+                return 0
             return 1
 
-        tiers = {tier(cid) for cid in members}
-        if len(tiers) > 1:
-            return sorted(members, key=tier, reverse=True)
+        tiers = {cid: tier(cid) for cid in members}
+        # Убираем явно ошибочно попавшие чужие товары (например акустика внутри «Графические планшеты»),
+        # если в разделе есть подтверждённые товары точного типа.
+        if max(tiers.values()) >= 3 and 0 in tiers.values():
+            members = [cid for cid in members if tiers[cid] > 0]
+        if len(set(tiers.values())) > 1:
+            return sorted(members, key=tiers.get, reverse=True)
         return members
 
     # Общий фоллбэк для остальных составных разделов оборудования: совпадение слов типа в названии карточки
