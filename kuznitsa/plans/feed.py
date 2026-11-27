@@ -162,12 +162,24 @@ def recommend(engine,q,items,profile,intent,blocked=(),role=None,complete=None,p
         extra.append(card)
     reserved={cid for cid,_ in picks}
     if complete:items.extend(complete(reserved))
-    split=min(len(items)//2,len(extra)//2 if intent=="product" else len(extra))
+    policy=getattr(engine.kb,"upsell_policy",None) or {}
+    max_per_page=int(policy.get("max_per_page",3))
+    max_share=float(policy.get("max_share",0.375))
+    min_first_pos=int(policy.get("min_first_position",3))
+    start=max(1,min_first_pos-1)
+    max_by_share=int(len(items)*max_share)
+    if max_by_share==0 and len(items)>=start+1 and max_per_page>0 and max_share>0:
+        max_by_share=1
+    max_inline=min(max_per_page,len(items)//2,max_by_share) if len(items)>=start else 0
+    if intent=="product":
+        split=min(max_inline,max(1,len(extra)//2) if len(extra)>=2 and max_inline>0 else len(extra))
+    else:
+        split=min(max_inline,len(extra))
     if split:
-        interleave(q,items,extra[-split:] if intent=="product" else extra[:split],start=2 if intent=="product" else 1)
+        interleave(q,items,extra[:split],start=start,max_count=split)
     together=None
     if intent=="product" and len(extra)>split:
-        rows=[dict(card=c,reason=c["reason"],rule_id=c["rule_id"]) for c in extra[:min(6,len(extra)-split)]]
+        rows=[dict(card=c,reason=c["reason"],rule_id=c["rule_id"]) for c in extra[split:split+6]]
         together=dict(type="crosssell",title="Часто покупают вместе",items=rows)
     return together,reserved
 
@@ -255,6 +267,8 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
         elif text_budget is not None and cond is None:
             ids=[]
             note="В указанном бюджете предложений с подтверждённой ценой нет."
+    if ids and feed_conditions.is_mixed_home_business(norm):
+        ids,section,note=feed_conditions.apply_mixed_audience(engine,index,norm,ids,section,preferred,selections,note)
     extra_chips=[]
     def solution_text(text_cond,ids,section,note):
         # Текстовые условия и совместимость с ОС применяются только к карточкам решения, без соседних разделов.
@@ -319,7 +333,8 @@ def search(engine,req,profile,trace,priorities,record):
     if ctx is not None:return ctx
     norm=normalize(req.q)
     if not req.verbatim:norm=feed_noise.pre_normalize(req.q,norm)
-    if not req.verbatim:norm=normalize_vendor_adjectives(index.recovery.clean_query(norm))
+    # Полное название карточки не чистим: повтор слова в нём («WOW WOW-300») — часть названия, а не опечатка.
+    if not req.verbatim and not index.recovery.full_name(norm)[0]:norm=normalize_vendor_adjectives(index.recovery.clean_query(norm))
     if norm in {"про","pro"} and not req.verbatim and not req.category:
         question="У какого продукта нужна редакция Pro?"
         trace.add("intent","Уточнение продукта",question)
@@ -486,6 +501,12 @@ def search(engine,req,profile,trace,priorities,record):
         vendor=None if hw_query.is_consumable else (hw_query.vendor_id or vendor)
         bare=question=False
         hint=None
+    if not req.category and feed_conditions.has_software_head_with_hw_purpose(engine,index,base):
+        if section and index.groups.get(section) and index.cat.cards[index.groups[section][0]].offers[0].domain=="hardware":
+            section=None
+        bare=False
+        device=None
+        device_name=None
     if supplier and not section:
         supplier_ids=[cid for cid in ids if index.card_vendors[cid]==supplier]
         if supplier_ids:
@@ -507,6 +528,12 @@ def search(engine,req,profile,trace,priorities,record):
         section=index.class_by_name.get(hint) or section
     if not section and HOME.search(q) and "антивир" in q:
         section=index.class_by_name.get("антивирусы для дома")
+    if not section and not ids:
+        mixed_sec=feed_conditions.mixed_audience_fallback_section(index,norm)
+        if mixed_sec:
+            section=mixed_sec
+            bare=question=False
+            hint=None
     repaired_kind=None
     if literal[0] and not req.verbatim and not req.category and not license_filter and is_exact_card_title(index,base,literal):
         exact_c=compact(base)
@@ -515,6 +542,8 @@ def search(engine,req,profile,trace,priorities,record):
         q=index.cat.cards[ids[0]].title
         section=server_section=explicit_class=vendor=supplier=device=role=hint=None
         bare=question=False
+        # Названа конкретная карточка: числа из названия — не условия отбора, соседи по разделу дополняют ответ.
+        hw_query=None
     elif literal[0] and not section and not bare and not license_filter and not ids:
         ids,q,repaired_kind=literal
         question=False
@@ -807,6 +836,8 @@ def search(engine,req,profile,trace,priorities,record):
             missing=True
             intent="out_of_catalog"
     if qty and ids:ids=index.flagships.apply_audience_order(ids,qty,norm,base_ids=base_ids,selections=selections,q=q,section=section,budget=budget,renewal=renewal)
+    if ids and feed_conditions.is_mixed_home_business(norm):
+        ids,section,note=feed_conditions.apply_mixed_audience(engine,index,norm,ids,section,preferred,selections,note)
     ids,facet_base,section,note,relax_hints,budget_relaxed=feed_request.apply(
         engine,req,profile,plan,ids,section,preferred,selections,qty,renewal,note)
     if mig_note and not note:note=mig_note

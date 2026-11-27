@@ -1439,7 +1439,16 @@ class Engine:
             if plan=="out_of_catalog":
                 blocks.append(dict(type="analogs",title="Возможные замены",source=dict(title=title,status="unavailable",note=""),items=[dict(card=c,note="Поставщик указал этот продукт как замену" if supplied else "Доступный вариант этой серии" if related_variant else "Близкий продукт по базе знаний") for c in page]))
             else:
-                blocks.append(dict(type="products",title="Подходящие лицензии",total=len(cards),items=page))
+                block_title="Подходящие лицензии"
+                if page:
+                    page_domains=[self.catalog.cards[c["card_id"]].offers[0].domain for c in page if c["card_id"] in self.catalog.cards and self.catalog.cards[c["card_id"]].offers]
+                    if page_domains and page_domains[0]=="hardware":
+                        secs=[self.catalog.feed.card_sections.get(c["card_id"]) for c in page[:4] if self.catalog.is_feed and c["card_id"] in self.catalog.feed.card_sections]
+                        if secs and len(set(secs))==1 and secs[0] in self.catalog.feed.classes:
+                            block_title=self.catalog.feed.classes[secs[0]]
+                        else:
+                            block_title="Подходящие товары"
+                blocks.append(dict(type="products",title=block_title,total=len(cards),items=page))
         elif plan in {"account","spec_list"} or reference_only:
             pass
         elif plan=="off_topic":

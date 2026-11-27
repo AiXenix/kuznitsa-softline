@@ -156,7 +156,14 @@ def is_exact_card_title(index,text,literal=None):
     c_text=compact(clean)
     if not c_text:
         return False
-    return any(compact(index.cat.cards[cid].title)==c_text for cid in literal[0])
+    def squeezed(value):
+        # Повтор слова в названии («WOW WOW-300») при очистке ввода схлопывается: сравниваем без повторов.
+        out=[]
+        for w in words(value):
+            if not out or out[-1]!=w:out.append(w)
+        return compact(" ".join(out))
+    s_text=squeezed(clean)
+    return any(compact(index.cat.cards[cid].title)==c_text or squeezed(index.cat.cards[cid].title)==s_text for cid in literal[0])
 
 
 def _match_brand_alias(index,alias,*,explicit=False):
@@ -647,7 +654,14 @@ def vendor_class(index,q):
                 section=index.class_by_name.get("антивирусы для организаций")
             if not section:section=index.language.section(index,label)
             if not section:section=index.task_class(label)
-            if section:return group,section
+            if section:
+                members=index.groups.get(section,())
+                if members and index.cat.cards[members[0]].offers[0].domain=="hardware":
+                    has_hw_in_sec=any(index.card_vendors.get(cid)==group for cid in members)
+                    if not has_hw_in_sec:
+                        if re.match(r"^(?:для|на|в)\s+",label) or re.search(r"\s+(?:для|на|в)\s+",q):
+                            continue
+                return group,section
     return None,None
 
 
@@ -761,6 +775,14 @@ def product_context(engine,text):
     supported=tuple(dict.fromkeys(literal or candidates or brand or spoken or hits))
     if not supported:return None
     tail=text[split.start():]
+    if re.search(r"\b(?:сервер\w*|server\w*)\b",tail,re.I):
+        srv_hits=[cid for cid in supported if re.search(r"\b(?:сервер\w*|server\w*)\b",index.cat.cards[cid].title,re.I) or cid in index.server_offers]
+        if srv_hits:
+            supported=tuple(dict.fromkeys([*srv_hits,*supported]))
+    elif re.search(r"\b(?:ноутбук\w*|компьютер\w*|пк|рабоч\w*\s+(?:станц\w*|мест\w*)|класс\w*)\b",tail,re.I):
+        non_srv=[cid for cid in supported if not re.search(r"\b(?:сервер\w*|server\w*)\b",index.cat.cards[cid].title,re.I)]
+        if non_srv:
+            supported=tuple(dict.fromkeys([*non_srv,*supported]))
     context={}
     audience=next((key for key,pattern in AUDIENCES if re.search(pattern,tail)),None)
     if audience:context["audience"]=audience

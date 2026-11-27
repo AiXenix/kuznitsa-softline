@@ -102,7 +102,9 @@ class Recommendations:
         self.family_names=defaultdict(list)
         self.family_ids=defaultdict(set)
         for cid,card in index.cat.cards.items():
-            title=title_words(card.title).removeprefix("программа ")
+            title=title_words(card.title)
+            for pref in ("программа ","операционная система ","программный комплекс ","субд "):
+                title=title.removeprefix(pref)
             vendor=title_words(card.offers[0].vendor or "")
             # В карточке может стоять короткое имя издателя, в поле vendor — юридическое.
             publisher_words=set(vendor.split())
@@ -115,6 +117,16 @@ class Recommendations:
                 if key:self.family_ids[str(key).casefold()].add(cid)
         for key,members in aliases.items():
             self.family_ids[key].update(members)
+        self.vendor_aliases=defaultdict(set)
+        for name,members in index.tags["vendors"].items():
+            self.vendor_aliases[title_words(str(name))].update(members)
+        for ident,row in kb.rows["vendors"].items():
+            members=index.tags["vendors"].get(ident,())
+            if not members:continue
+            for alias in (ident,row.get("name"),row.get("name_ru"),*row.get("aliases",[])):
+                if alias:
+                    self.vendor_aliases[str(alias).casefold()].update(members)
+                    self.vendor_aliases[title_words(str(alias))].update(members)
         self.provider=optional_module("kuznitsa.analytics.upsell_rules")
         self.version=None
         self.compiled=self.compile(self.base or [])
@@ -158,7 +170,14 @@ class Recommendations:
                     sets.append(named)
                     continue
                 lookup=self.index.tags["classes" if k=="categories" else k]
-                sets.append(set().union(*(lookup.get(str(v).casefold(),()) for v in selectors[k])))
+                matched=set()
+                for v in selectors[k]:
+                    key=str(v).casefold()
+                    found=lookup.get(key,())
+                    if not found and k=="vendors":
+                        found=self.vendor_aliases.get(key) or self.vendor_aliases.get(title_words(str(v)),())
+                    matched.update(found)
+                sets.append(matched)
         return set.intersection(*sets) if sets else set()
 
     def eligible_targets(self,offer):
@@ -194,13 +213,16 @@ class Recommendations:
                 if purpose:
                     named={i for i in members if any(term in self.index.cat.cards[i].title.casefold() for term in purpose)}
                     if named:members=named
+            class_order={str(v).casefold():i for i,v in enumerate(offer.get("classes",()))}
             def target_rank(cid):
                 confirmed=False
                 if offer.get("audience"):
                     variant=self.target_offer(cid,offer["audience"])
                     label=self.card_audience(cid)
                     confirmed=bool(variant and (audience(variant.name) or label or variant.lic.audience) in audience_values(offer["audience"]))
-                return confirmed,self.index.quality[cid],cid
+                sec=str(self.index.card_sections.get(cid,"")).casefold()
+                cls_prio=-class_order.get(sec,len(class_order)) if class_order else 0
+                return confirmed,cls_prio,self.index.quality[cid],cid
 
             targets=sorted(members,key=target_rank,reverse=True)
             result.append((anchors,when.get("query_words",[]),targets,rule))
@@ -245,8 +267,13 @@ class Recommendations:
         return found
 
 
-def interleave(q,cards,extra,start=1):
+def interleave(q,cards,extra,start=1,max_count=None):
+    limit=len(cards)//2 if max_count is None else min(len(cards)//2,max(0,int(max_count)))
+    if limit<=0 or not extra or start>len(cards):
+        return
     slots=list(range(start,len(cards)+1))
     Random(blake2s(q.encode()).digest()).shuffle(slots)
-    for i,item in sorted(zip(slots,extra[:len(cards)//2]),reverse=True):
+    count=min(limit,len(extra),len(slots))
+    chosen=sorted(slots[:count])
+    for i,item in reversed(list(zip(chosen,extra[:count]))):
         cards.insert(i,item)

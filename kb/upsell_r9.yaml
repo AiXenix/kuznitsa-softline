@@ -230,6 +230,27 @@
   weight: 0.78
   source: "kb"
 
+- id: alt_linux_backup
+  when: {classes: [222320], families: ["Альт Рабочая станция", "Альт Сервер", "Альт СП"], vendors: ["Базальт СПО"], query_words: ["альт", "alt linux", "альт линукс"]}
+  offer: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"], strict: true}
+  reason: "Резервное копирование рабочих станций и серверов на ОС «Альт»"
+  weight: 0.82
+  source: "vendor_site:https://www.basealt.ru/compatibility/"
+
+- id: ru_os_av
+  when: {classes: [222320], families: [], vendors: [], query_words: []}
+  offer: {classes: [650], families: [], vendors: ["Kaspersky", "Dr.Web"], exclude_words: ["Windows", "Microsoft", "Office 365", "Exchange", "SharePoint", "Mac", "Android"]}
+  reason: "К российской ОС обычно берут совместимую антивирусную защиту для рабочих мест"
+  weight: 0.86
+  source: "kb"
+
+- id: ru_os_backup
+  when: {classes: [222320], families: [], vendors: [], query_words: []}
+  offer: {classes: [1033], families: ["Кибер Бэкап"], vendors: ["Киберпротект"], strict: true}
+  reason: "Резервное копирование сохраняет образы ОС и рабочие данные при сбое"
+  weight: 0.81
+  source: "kb"
+
 - id: ru_os_remote_access
   when: {classes: [222320], families: [], vendors: [], query_words: []}
   offer: {classes: [327029], families: [], vendors: []}
@@ -1248,9 +1269,23 @@
 
 - id: hw_ups_batteries
   when: {classes: [82080], families: [], vendors: [], query_words: []}
-  offer: {classes: [82014, 131130, 82661], families: [], vendors: []}
-  reason: "Для обслуживания ИБП берут сменные батареи, карты управления и сетевые фильтры"
-  weight: 0.88
+  offer: {classes: [82014], families: [], vendors: []}
+  reason: "Сменные батареи для планового обслуживания и замены АКБ в ИБП"
+  weight: 0.94
+  source: "kb"
+
+- id: hw_ups_surge
+  when: {classes: [82080], families: [], vendors: [], query_words: []}
+  offer: {classes: [82661], families: [], vendors: []}
+  reason: "Сетевой фильтр защищает подключённое к ИБП оборудование от импульсных помех"
+  weight: 0.84
+  source: "kb"
+
+- id: hw_ups_pdu
+  when: {classes: [82080], families: [], vendors: [], query_words: []}
+  offer: {classes: [131130], families: [], vendors: []}
+  reason: "Блоки розеток PDU и аксессуары для распределения питания от ИБП"
+  weight: 0.80
   source: "kb"
 
 - id: hw_nas_hdd_backup

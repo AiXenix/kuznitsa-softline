@@ -23,6 +23,7 @@ class Knowledge:
     auto: dict = field(default_factory=lambda: dict(vendors=0,categories=0,families=0))
     import_links: dict = field(default_factory=lambda: {g:{} for g in ("roles","industries","analogs","use_cases")})
     upsell: dict = field(default_factory=dict)
+    upsell_policy: dict = field(default_factory=dict)
     systems: dict = field(default_factory=dict)
     dangling: list = field(default_factory=list)
 
@@ -111,6 +112,11 @@ def load(root: Path, data_dir=None):
         kb.upsell,_,warnings=load_rules(path,stat.st_mtime_ns,stat.st_size)
         kb.warnings.extend(warnings)
         kb.sources["upsell"]["extensions"]=len(kb.upsell)
+    policy_path=root/"upsell_policy.yaml"
+    if policy_path.is_file():
+        policy_data=_read(kb,policy_path)
+        if isinstance(policy_data,dict):
+            kb.upsell_policy=policy_data
     if data_dir and (p:=data_dir/"kb_auto.yaml").is_file():
         data=_read(kb,p)
         if isinstance(data,dict):

@@ -1277,3 +1277,162 @@ def populate_result(cond, result, chips):
     if cond.upgrade:
         filters["action"] = "upgrade"
         chips.append(dict(key="action", label="Апгрейд", removable=True))
+
+
+# ---------------------------------------------------------------------------
+# Раунд 3: защита «программный продукт + для/на/в <железо>» и смешанная аудитория
+# ---------------------------------------------------------------------------
+
+_PURPOSE_SPLIT_RE = re.compile(r"\s+(?:для|на|в)\s+", re.I)
+_HW_PURPOSE_TAIL_RE = re.compile(
+    r"\b(?:компьютер\w*|ноутбук\w*|сервер\w*|пк|офис\w*|класс\w*|рабоч\w*\s+(?:станц\w*|мест\w*))\b",
+    re.I,
+)
+_MIXED_HOME_RE = re.compile(
+    r"\b(?:домашн\w*|для\s+дома|для\s+семьи|домой|семейн\w*|личн\w*)\b",
+    re.I,
+)
+_MIXED_BIZ_RE = re.compile(
+    r"\b(?:ип|фирм\w*|компан\w*|организац\w*|офис\w*|бизнес\w*|ооо|предприят\w*|контор\w*)\b",
+    re.I,
+)
+_OFFICE_EDITION_HOME_BIZ_RE = re.compile(r"для\s+дома\s+и\s+(?:бизнеса|уч[её]бы)", re.I)
+_SMALL_OFFICE_TITLE_RE = re.compile(r"small\s+office|малый\s+(?:офис|бизнес)|для\s+малого", re.I)
+_AV_QUERY_RE = re.compile(r"\b(?:антивирус\w*|защит\w*)\b", re.I)
+
+
+def has_software_head_with_hw_purpose(engine, index, text):
+    """True, если в запросе распознан программный продукт/линейка/вендор ПО до «для/на/в <железо>»."""
+    if not text:
+        return False
+    m = _PURPOSE_SPLIT_RE.search(text)
+    if not m:
+        return False
+    head = text[: m.start()].strip()
+    tail = text[m.end() :].strip()
+    if not head or not tail or not _HW_PURPOSE_TAIL_RE.search(tail):
+        return False
+    if head in index.hardware or index.class_match(head):
+        return False
+    if re.fullmatch(r"(?:по|софт|программ\w*|решени\w*|средств\w*|антивирус\w*)", head, re.I):
+        return False
+    # 1. Прямое совпадение программных карточек по голове запроса
+    mapped, _ = engine._phrases.apply(head)
+    cand = index.correct(mapped) if mapped else head
+    sw_hits = index.products(cand, domain="software", fuzzy=False)
+    if not sw_hits and cand != head:
+        sw_hits = index.products(head, domain="software", fuzzy=False)
+    if sw_hits:
+        return True
+    # 2. Сленг / семейство / фонетическое совпадение ПО
+    slang_entry = index.slang.get(head) or index.slang.get(cand)
+    if slang_entry and slang_entry[1]:
+        if any(index.cat.cards[cid].offers[0].domain == "software" for cid in slang_entry[1][:3]):
+            return True
+    sound_ids, _ = index.sound_products(head)
+    if sound_ids and any(index.cat.cards[cid].offers[0].domain == "software" for cid in sound_ids[:3]):
+        return True
+    # 3. Программный вендор (например, «касперский для серверов»)
+    vid = index.vendor_names.get(head) or index.vendor_names.get(" ".join(words(head)))
+    if vid:
+        vcards = index.language.vendor_cards.get(vid, ())
+        if vcards and all(index.cat.cards[cid].offers[0].domain == "software" for cid in vcards[:5]):
+            return True
+    return False
+
+
+def is_mixed_home_business(norm):
+    """Запрос одновременно называет домашнюю аудиторию и покупку на небольшую компанию/ИП."""
+    if not norm or _OFFICE_EDITION_HOME_BIZ_RE.search(norm):
+        return False
+    return bool(_MIXED_HOME_RE.search(norm) and _MIXED_BIZ_RE.search(norm))
+
+
+def mixed_audience_fallback_section(index, norm):
+    """Раздел для запросов смешанной аудитории вроде «домашняя защита на 4 устройства для ИП»."""
+    if not is_mixed_home_business(norm) or not _AV_QUERY_RE.search(norm):
+        return None
+    return (
+        index.class_by_name.get("антивирусы для дома и семьи")
+        or index.class_by_name.get("антивирусы для дома")
+        or ("3775" if "3775" in index.groups else None)
+        or index.class_by_name.get("антивирусы для организаций")
+        or ("650" if "650" in index.groups else None)
+    )
+
+
+def apply_mixed_audience(engine, index, norm, ids, section, preferred, selections, note):
+    """Для противоречивой аудитории («домашний» + «ИП/небольшая фирма») ставит в топ-4
+    ведущие домашние редакции (Kaspersky Standard/Plus, Dr.Web Security Space) вместе с малым бизнес-пакетом."""
+    if not is_mixed_home_business(norm):
+        return ids, section, note
+    home_sec = (
+        index.class_by_name.get("антивирусы для дома и семьи")
+        or index.class_by_name.get("антивирусы для дома")
+        or ("3775" if "3775" in index.groups else None)
+    )
+    biz_sec = index.class_by_name.get("антивирусы для организаций") or ("650" if "650" in index.groups else None)
+    is_av = section in {home_sec, biz_sec} or bool(_AV_QUERY_RE.search(norm))
+    if not is_av or not home_sec or not biz_sec:
+        return ids, section, note
+
+    flagships = getattr(index, "flagships", None)
+    def _rank_key(cid):
+        r = flagships.rank.get(cid, 0) if flagships else 0
+        demoted = (cid in flagships.demoted) if flagships else False
+        return (not demoted, r > 0, r, index.quality.get(cid, ()))
+
+    home_pool = sorted(index.groups.get(home_sec, ()), key=_rank_key, reverse=True)
+    biz_pool = sorted(index.groups.get(biz_sec, ()), key=_rank_key, reverse=True)
+    smb_pool = [cid for cid in biz_pool if _SMALL_OFFICE_TITLE_RE.search(index.cat.cards[cid].title)]
+    if not smb_pool:
+        smb_pool = biz_pool[:2]
+
+    # Выбираем ведущие домашние редакции с разнообразием брендов (Kaspersky Standard/Plus, Dr.Web Security Space)
+    top_home = []
+    seen_vendors = set()
+    for cid in home_pool:
+        if len(top_home) >= 3:
+            break
+        v = index.card_vendors.get(cid)
+        if v not in seen_vendors:
+            top_home.append(cid)
+            seen_vendors.add(v)
+    for cid in home_pool:
+        if len(top_home) >= 3:
+            break
+        if cid not in top_home:
+            top_home.append(cid)
+
+    top_smb = smb_pool[:1]
+    # Первые 4 основных карточки: [дом1, дом2, малый бизнес, дом3] — при любой позиции upsell >= 3
+    # в первых 4 позициях выдачи гарантированно присутствуют и домашние редакции, и малый бизнес-пакет.
+    head = []
+    if top_home:
+        head.extend(top_home[:2])
+    if top_smb:
+        head.extend(top_smb)
+    if len(top_home) > 2:
+        head.append(top_home[2])
+
+    merged = list(dict.fromkeys([*head, *home_pool, *smb_pool, *ids]))
+    # Обеспечиваем корректный оффер для домашних карточек даже при корпоративном профиле
+    for cid in top_home:
+        if cid not in selections and cid not in preferred:
+            card = index.cat.cards[cid]
+            home_offer = next((o for o in card.offers if o.available and o.lic.audience in ("home", None)), None)
+            if home_offer is None and card.offers:
+                home_offer = card.offers[0]
+            if home_offer is not None:
+                preferred[cid] = home_offer
+    for cid in top_smb:
+        if cid not in selections and cid not in preferred:
+            card = index.cat.cards[cid]
+            biz_offer = next((o for o in card.offers if o.available and o.lic.audience in ("business", None)), None)
+            if biz_offer is None and card.offers:
+                biz_offer = card.offers[0]
+            if biz_offer is not None:
+                preferred[cid] = biz_offer
+
+    mixed_note = "Запрос сочетает домашнее использование и покупку на небольшую организацию — показаны домашние редакции и решение для малого бизнеса."
+    return merged, home_sec, mixed_note
