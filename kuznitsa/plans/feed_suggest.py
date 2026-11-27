@@ -7,7 +7,7 @@ import re
 
 from kuznitsa.index.feed import QUESTION, STOP, TASKS, class_words, words
 from kuznitsa.index.feed_language import sold_as
-from kuznitsa.index.hardware import hardware_head
+from kuznitsa.index.hardware import hardware_head, rank_hardware_section
 from kuznitsa.plans import feed_analogs
 from kuznitsa.plans.feed import display, task_sections
 from kuznitsa.plans.feed_query import HELP, HOME, PURPOSES, license_request, split_conditions
@@ -948,7 +948,9 @@ class FeedSuggestIndex:
         if hw_key and hw_key in index.hardware and " " not in q:
             secs = tuple(str(k) for k in index.hardware[hw_key].get("hardware_feed_classes", []) if str(k) in index.groups)
             if secs:
-                return ("section", self._section_cards(secs, query_terms=tuple(q.split()))[:4], secs, {})
+                # Порядок тот же, что в выдаче: первая подсказка совпадает с первой карточкой поиска.
+                members = rank_hardware_section(index, secs[0], q, list(index.groups[secs[0]]))
+                return ("section", tuple(members[:4]), secs, {})
 
         # B. Точный запрос задачи/цели (PURPOSES / TASKS / feed_tasks / вопросы вроде «что от вирусов»).
         if HOME.search(q) and "антивир" in q:
