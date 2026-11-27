@@ -16,7 +16,7 @@ const inline = (s) => esc(s)
   .replace(/▶ КЛИК/g, '<span class="click">▶ КЛИК</span>');
 
 const lines = fs.readFileSync(src, 'utf8').replace(/\r/g, '').split('\n');
-let html = '', list = null, table = null, para = [];
+let html = '', list = null, table = null, para = [], pre = null;
 const flush = () => {
   if (para.length) { html += '<p>' + inline(para.join(' ')) + '</p>\n'; para = []; }
   if (list) { html += '<' + list.t + '>' + list.items.map((x) => '<li>' + inline(x) + '</li>').join('') + '</' + list.t + '>\n'; list = null; }
@@ -27,6 +27,11 @@ const flush = () => {
 };
 for (const l of lines) {
   let m;
+  if (/^```/.test(l)) { // блок кода — схема как есть
+    if (pre) { html += '<pre>' + esc(pre.join('\n')) + '</pre>\n'; pre = null; } else { flush(); pre = []; }
+    continue;
+  }
+  if (pre) { pre.push(l); continue; }
   if (!l.trim()) { flush(); continue; }
   if ((m = l.match(/^(#{1,3}) (.*)$/))) { flush(); const n = m[1].length; html += '<h' + n + '>' + inline(m[2]) + '</h' + n + '>\n'; continue; }
   if (/^\|/.test(l)) { if (!table) { flush(); table = []; } table.push(l.replace(/^\||\|$/g, '').split('|').map((c) => c.trim())); continue; }
@@ -52,6 +57,7 @@ p{margin:0 0 2.2mm}ul,ol{margin:0 0 3mm;padding-left:6mm}li{margin:0 0 1.2mm}
 i{color:#5b6070}b{font-weight:700}
 a{color:#a50f2d;text-decoration:none;word-break:break-all}
 code{font:9.5pt Consolas,monospace;background:#f3f4f6;border-radius:3px;padding:0 1.2mm}
+pre{font:8.6pt/1.4 Consolas,monospace;background:#f6f6f7;border-left:3px solid #a50f2d;border-radius:4px;padding:3mm 4mm;margin:2mm 0 4mm;white-space:pre;break-inside:avoid}
 table{border-collapse:collapse;width:100%;margin:1mm 0 4mm;font-size:9.5pt;break-inside:auto}
 th{background:#a50f2d;color:#fff;text-align:left;font-weight:600;padding:1.6mm 2.2mm}
 td{border-bottom:1px solid #e3e5e9;padding:1.4mm 2.2mm;vertical-align:top}tr{break-inside:avoid}

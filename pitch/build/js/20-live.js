@@ -38,7 +38,7 @@ var liveSeq = 0, jump = null; // jump — запрос, с которым при
 
 function undChips(d, q) {
   var a = [], fb = firstBlock(d);
-  if (d.corr && norm(d.corr) !== norm(q)) a.push(['u', 'понял как: ' + d.corr]);
+  if (d.corr && norm(q).indexOf(norm(d.corr)) < 0) a.push(['u', 'понял как: ' + d.corr]); // «аналог винды» → «винды» не показываем
   if (d.intent === 'out_of_catalog') a.push(['u g', 'нет в каталоге → аналоги']);
   else if (d.intent === 'category' && fb) a.push(['u g', 'раздел: ' + fb.title]);
   else if (d.it) a.push(['u g', d.it.toLowerCase()]);
