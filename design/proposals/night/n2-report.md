@@ -295,3 +295,101 @@
   - [`kuznitsa/cli.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/cli.py) (`+2` строки: подключение `feed_solutions.check_snapshot` в `kb-check`)
   - [`tests/test_n2_round2.py`](file:///home/bb/kuznitsa-softline-n2/tests/test_n2_round2.py) (новый файл, 11 тестов)
   - [`design/proposals/night/n2-report.md`](file:///home/bb/kuznitsa-softline-n2/design/proposals/night/n2-report.md) (раздел «Второй заход»)
+
+---
+
+# Раунд 3 — «Задача не должна заслонять товар»
+
+**Репозиторий:** `/home/bb/kuznitsa-softline-n2` (поверх локального коммита `44d342a checkpoint r2`, без `git commit`, `kuznitsa/plans/feed_conditions.py` не изменялся)  
+**Снимок и режим проверки:** `real/v1`, `fast` (без LLM)
+
+**Итог раунда 3:**
+- Все 5 пунктов задания воспроизведены до правки и закрыты минимальными общими правилами: **65 / 65** контрольных запросов раунда 3 на `real/v1` (бренд в задаче — 8/8, точное название — 6/6, OCR vs перевод — 7/7, 12 задач × 3 формулировки — 36/36, жаргон — 7/7).
+- **Набор №1 (`tests/audit/cases.tsv`):** **244 / 244 (100.0%)**, `p50 6.2 мс`, `p95 25.7 мс` — **0 регрессий** (все 11 групп 100%, включая «название»/«бренд»: `наличие` 40/40, `главное` 27/27, `написание` 28/28, `задача` 50/50, `вопрос` 16/16, `эталон` 20/20).
+- **Набор №2 (`tests/audit/cases2.tsv`):** **151 / 186 (81.2%)**, целевые 6 групп N2 — **59 / 59 (100.0%)**, `p50 7.9 мс`, `p95 33.2 мс` — **0 регрессий** к раунду 2 по всем 13 группам.
+- **Тесты и БЗ:** новый набор [`tests/test_n2_round3.py`](file:///home/bb/kuznitsa-softline-n2/tests/test_n2_round3.py) (**40 passed**); `kb-check` на `real/v1` — exit 0, `errors: []`, **0 предупреждений** по `feed_solutions` (99 курируемых решений).
+
+---
+
+## 1. Что воспроизведено и как исправлено (пункты 1–5)
+
+### 1.1. В запросе назван бренд или линейка — они идут первыми
+- **Воспроизведение до правки:** `«система резервного копирования от rubackup»` выдавала `Кибер Бэкап` первым; `«почтовый сервер от communigate»` — `IceWarp Почтовый сервер` / `Почтовый сервер Tegu` (у карточки `CommuniGate Pro` в `real/v1` поле `vendor='АО «СБК»'`, поэтому сопоставление только по `vendor_names` не находило бренд); `«платформа защиты конечных точек от positive technologies»` — `Kaspersky Endpoint Security` вместо `MaxPatrol Endpoint Protection Platform`; `«антивирус производства доктор веб»` — `Kaspersky` вместо `Dr.Web`.
+- **Решение:**
+  - В [`kuznitsa/index/feed_solutions.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/index/feed_solutions.py) добавлено поле `brand: object = None` в `SolutionHit`.
+  - В [`kuznitsa/plans/feed_query.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed_query.py) добавлены `extract_solution_brand()` и `_match_brand_alias()`: распознают конструкции `«от [компании|вендора] X»`, `«производства X»`, `«разработки X»`, а также прямое упоминание вендора или продуктовой линейки рядом с задачей (например, `«почтовый сервер communigate»`). Добавлен стоп-список существительных угроз и родовых слов (`BRAND_NOISE_RU`, `BRAND_NOISE_LATIN`: *атака, вирус, утечка, спам, вторжение, поломка* и др.), чтобы фразы вроде `«закрыть сеть офиса от атак»` не принимали *«атак»* за бренд (`StormWall … от DDoS-атак`).
+  - В `apply_solution_conditions()` карточки запрошенного вендора/линейки поднимаются в начало списка решения (с чипом `Производитель: …`); если у вендора в этом решении карточек нет (`«почтовый сервер от аскон»`), сохраняется общий список категории и выводится честная пометка *«У производителя «АСКОН» нет решений в категории «Почтовые серверы для компаний» — ниже основные варианты каталога.»*.
+
+### 1.2. Точное название товара сильнее решения и раздела
+- **Воспроизведение до правки:** часть полных названий карточек из фида, содержащих слово-класс (`«Почтовый сервер Tegu»`, `«IceWarp Почтовый сервер»`, `«RMS Удаленный доступ 7.1»`, `«СЕТЕРЕ Архиватор»`, `«3iTech Речевая аналитика»`, `«EMS SQL Backup for SQL Server»`), перехватывалась `resolve_solution()` или веткой раздела/вендора — целевая карточка не выходила на 1-м месте (или сопровождалась ложным `vendor_gap`).
+- **Решение:**
+  - В [`kuznitsa/plans/feed_query.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed_query.py) добавлена `is_exact_card_title(index, text, literal)`: проверяет точное совпадение по `compact()` (без учёта регистра, ё/е и знаков) с карточкой из `index.recovery.full_name`, исключая общие фразы решений, названия разделов, железа и голые имена вендоров.
+  - В `resolve_solution()` при `is_exact_card_title(...)` выполняется ранний выход (`return None`).
+  - В [`kuznitsa/plans/feed.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed.py) перед веткой раздела добавлена проверка `is_exact_card_title(index, base, literal)` (при `not req.verbatim and not req.category and not license_filter`): точная карточка ставится строго первой с `intent="product"` и очисткой побочных ограничений раздела/вендора.
+- **Проверка на `real/v1`:** все 6 карточек (`Почтовый сервер Tegu`, `IceWarp Почтовый сервер`, `RMS Удаленный доступ 7.1`, `СЕТЕРЕ Архиватор`, `3iTech Речевая аналитика`, `EMS SQL Backup for SQL Server`) выходят на 1-м месте с `intent="product"`.
+
+### 1.3. Распознавание текста ≠ перевод
+- **Воспроизведение до правки:** формулировки `«распознать скан документа и сохранить в word»`, `«сканы в редактируемый текст»`, `«оцифровать бумажные документы»`, `«перевести скан в word»`, `«перевести pdf в word»` уходили в `Переводчики и электронные словари` (`PROMT Master NMT`).
+- **Решение:**
+  - В [`kb/feed_solutions.yaml`](file:///home/bb/kuznitsa-softline-n2/kb/feed_solutions.yaml) расширено решение `ocr` (`ContentReader PDF 16 Business / 15 Standard / 16 Corporate`, синонимы распознавания сканов, оцифровки бумажных документов и преобразования PDF в Word/редактируемый текст).
+  - В [`kuznitsa/plans/feed_query.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed_query.py) добавлена защита `OCR_CUE` в `resolve_solution()`: если сработало решение `translator`, но рядом есть признаки сканирования/OCR (`скан`, `отсканирован`, `распознать`, `оцифровать`, `бумажн`, `ocr`, `pdf в word/текст`), выбор перенаправляется в `ocr`. Обычный перевод языка (`«перевести текст с английского на русский»`) по-прежнему отдаёт `PROMT Master NMT`.
+
+### 1.4. 12 задач, которые раньше уходили мимо
+В [`kb/feed_solutions.yaml`](file:///home/bb/kuznitsa-softline-n2/kb/feed_solutions.yaml) добавлено новое решение `doc_converter` (*«Конвертеры документов и форматов файлов»*) и расширены фразы/пины/исключения для 11 существующих решений (всего 99 решений, 0 предупреждений `check_snapshot` на `real/v1`). Каждая задача проверена на 3 собственных формулировках (**36 / 36** на `real/v1`):
+
+| Задача | Примеры проверенных запросов (по 3 на каждую) | Топ-3 на `real/v1` |
+|---|---|---|
+| CRM | `вести историю клиентов и сделок`, `где вести базу клиентов и воронки продаж` | `1С-Битрикс24`, `CRM Мегаплан: Бизнес`, `CRM Мегаплан: Клиенты и продажи` |
+| Аудиоредакторы | `обрезать и свести звук для подкаста`, `программа записать подкаст` | `Adobe Audition`, `Ableton Live 10`, `SONAR X2 Producer` |
+| Родительский контроль | `ограничить детям доступ в интернет`, `как закрыть ребёнку доступ к нежелательным сайтам` | `Kaspersky Safe Kids`, `Parental Control Kroha`, `Kroha Снимки экрана` |
+| Архиваторы | `сжать файлы в архив`, `чем распаковать архив rar`, `разархивировать zip файлы` | `Архиватор WinRAR 7`, `NXPowerLite Desktop Edition`, `СЕТЕРЕ Архиватор` |
+| Бэкап при поломке диска | `не потерять данные при поломке диска`, `как защитить файлы от поломки жесткого диска` | `Кибер Бэкап Стандартная редакция / Старт / Облачный` (убрана выдача `O&O SafeErase`) |
+| Межсетевой экран / атаки | `закрыть сеть офиса от атак`, `какой межсетевой экран поставить в офис` | `Traffic Inspector Next Generation`, `АПКШ «Континент»`, `Ideco NGFW Novum` |
+| Видеонаблюдение | `видеонаблюдение`, `система видеонаблюдения для офиса`, `запись с камер видеонаблюдения` | `Интегрированная система безопасности «Интеллект»`, `ST Macroscop`, `LS Macroscop` |
+| Конвертер документов | `конвертировать документы из формата в формат`, `преобразовать pdf в другой формат` | `3-Heights Document Converter`, `3-Heights PDF to PDF/A Converter`, `Icecream PDF Converter PRO` |
+| Удалённый рабочий стол | `подключаться к рабочему компьютеру из дома`, `работать за офисным пк из дома` | `AnyDesk`, `TeamViewer`, `Фаматек Radmin 3.5` (убрана выдача десктопов `ПК DEPO`) |
+| Домашние антивирусы | `проверить домашний компьютер на вирусы`, `почистить домашний ноутбук от вирусов` | `Kaspersky Standard`, `Kaspersky Plus + Who Calls`, `Kaspersky Premium + Who Calls` (без корпоративных) |
+| Инвентаризация ИТ-активов | `учёт компьютеров и ПО в компании`, `учёт ИТ активов в компании` | `«10-Страйк: Инвентаризация Компьютеров»`, `Total Network Inventory`, `Severcart` |
+| Терминальный сервер | `терминальный сервер`, `сервер терминалов для удалённых пользователей`, `терминальная ферма` | `Termidesk`, `Termidesk Connect`, `TIONIX VDI Security` (убрана выдача `Rack-сервер DEPO`) |
+
+### 1.5. Жаргон в задаче и прилагательные от вендора
+- **Жаргонные глаголы** добавлены в [`kb/feed_solutions.yaml`](file:///home/bb/kuznitsa-softline-n2/kb/feed_solutions.yaml):
+  - `«виртуалки поднять на сервере»`, `«на чём гонять виртуалки»` → `zVirt`, `VMmanager`, `«Альт Виртуализация» 11 редакция PVE`.
+  - `«чем бэкапить серверы»` → `Кибер Бэкап Стандартная редакция / Старт / Облачный`.
+  - `«программа чтобы шарить экран»` → `TrueConf Server`, `SaluteJazz`, `Контур.Толк`.
+- **Прилагательные от вендоров** нормализуются функцией `normalize_vendor_adjectives()` в [`kuznitsa/plans/feed_query.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed_query.py) (вызывается в [`kuznitsa/plans/feed.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed.py) при `not req.verbatim`):
+  - `«адобовский иллюстратор»` → `(product) Adobe Illustrator, Adobe Illustrator Pro, Adobe InDesign`.
+  - `«майкрософтовский офис»` → `Microsoft Office 2024 для дома и бизнеса, Microsoft Office 2024 для дома и учёбы, Microsoft Office Professional Plus 2021`.
+  - `«касперовский антивирус»` → `Kaspersky Small Office Security, Kaspersky Endpoint Security для бизнеса Стандартный / Расширенный`.
+
+---
+
+## 2. Проверка отсутствия регрессий (`real/v1`, `fast`)
+
+| Набор / Группа | После R2 | После R3 | Дельта | Латентность R3 |
+|---|---:|---:|---:|---|
+| **`cases.tsv` (все 11 групп)** | **244 / 244** | **244 / 244 (100.0%)** | **0** | `p50 6.2 мс, p95 25.7 мс` |
+| — `наличие` / `главное` / `написание` | 40/40 · 27/27 · 28/28 | 40/40 · 27/27 · 28/28 | 0 | — |
+| — `задача` / `вопрос` / `эталон` | 50/50 · 16/16 · 20/20 | 50/50 · 16/16 · 20/20 | 0 | — |
+| **`cases2.tsv` (6 целевых групп N2)** | **59 / 59** | **59 / 59 (100.0%)** | **0** | — |
+| — `роль` / `совместимость` / `масштаб` | 12/12 · 10/10 · 8/8 | 12/12 · 10/10 · 8/8 | 0 | — |
+| — `услуги` / `переход` / `длинный` | 7/7 · 8/8 · 14/14 | 7/7 · 8/8 · 14/14 | 0 | — |
+| **`cases2.tsv` (все 13 групп)** | **151 / 186** | **151 / 186 (81.2%)** | **0** | `p50 7.9 мс, p95 33.2 мс` |
+
+---
+
+## 3. Тесты, валидация БЗ и изменённые файлы (раунд 3)
+
+- **Новые тесты:** [`tests/test_n2_round3.py`](file:///home/bb/kuznitsa-softline-n2/tests/test_n2_round3.py) — **40 passed** (бренд/линейка в задаче + честное отсутствие + защита `от атак`; 6 точных названий товаров в двух регистрах; OCR vs переводчик; 12 новых/уточнённых задач; жаргонные глаголы и прилагательные от вендоров).
+- **Прогон `pytest` (`KZ_MODEL_DIR=/home/bb/kuznitsa-softline/var/models`):**
+  - `tests/test_*.py` + `tests/{mock,quote,web}`: **817 passed, 0 failed** (`tests/test_n2_*.py`: 67 passed).
+  - `tests/ingest`: **48 passed, 0 failed**.
+  - `tests/analytics` (`-k "not test_fresh_history_paired_and_recovery"`): **41 passed, 0 failed** (итого **906 passed, 0 failed**).
+- **Валидация БЗ (`python -m kuznitsa.cli kb-check` на `real/v1`):** exit 0, `errors: []`, **0 предупреждений** по `feed_solutions` (99 курируемых решений).
+- **Изменённые и добавленные файлы раунда 3 (без `git commit`, `feed_conditions.py` не тронут):**
+  - [`kuznitsa/index/feed_solutions.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/index/feed_solutions.py) (`+1` строка: `SolutionHit.brand`)
+  - [`kuznitsa/plans/feed_query.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed_query.py) (`extract_solution_brand`, `_match_brand_alias`, `is_exact_card_title`, `OCR_CUE`, `VENDOR_ADJECTIVES`, `normalize_vendor_adjectives`, сортировка бренда и честная заметка в `apply_solution_conditions`)
+  - [`kuznitsa/plans/feed.py`](file:///home/bb/kuznitsa-softline-n2/kuznitsa/plans/feed.py) (`+15/-3` строк: вызов `normalize_vendor_adjectives()` и приоритет `is_exact_card_title()` до ветки раздела)
+  - [`kb/feed_solutions.yaml`](file:///home/bb/kuznitsa-softline-n2/kb/feed_solutions.yaml) (99 решений: `ocr`, новое `doc_converter`, 11 уточнённых задач, жаргон)
+  - [`tests/test_n2_round3.py`](file:///home/bb/kuznitsa-softline-n2/tests/test_n2_round3.py) (новый файл, 40 тестов)
+  - [`design/proposals/night/n2-report.md`](file:///home/bb/kuznitsa-softline-n2/design/proposals/night/n2-report.md) (раздел «Раунд 3»)

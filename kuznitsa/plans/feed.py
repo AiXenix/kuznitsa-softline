@@ -3,10 +3,10 @@ import re
 from uuid import uuid4
 from . import feed_analogs, feed_compare, feed_conditions, feed_context, feed_guard, feed_noise, feed_request
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
-from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution, migration_target, extract_os_compat, resolve_service_query, apply_solution_conditions, restore_platform_subject
+from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution, migration_target, extract_os_compat, resolve_service_query, apply_solution_conditions, restore_platform_subject, normalize_vendor_adjectives, is_exact_card_title
 from kuznitsa.config import WEIGHTS
 from kuznitsa.index.feed_language import version_forms,edition_form,sold_as,spoken_initials
-from kuznitsa.index.feed_repair import identity_terms
+from kuznitsa.index.feed_repair import compact, identity_terms
 from kuznitsa.understand.quantities import spoken_numbers
 from kuznitsa.text import normalize,tokens
 from kuznitsa.index.hardware import suitability,hardware_head,resolve_hardware_section,rank_hardware_section
@@ -319,7 +319,7 @@ def search(engine,req,profile,trace,priorities,record):
     if ctx is not None:return ctx
     norm=normalize(req.q)
     if not req.verbatim:norm=feed_noise.pre_normalize(req.q,norm)
-    if not req.verbatim:norm=index.recovery.clean_query(norm)
+    if not req.verbatim:norm=normalize_vendor_adjectives(index.recovery.clean_query(norm))
     if norm in {"про","pro"} and not req.verbatim and not req.category:
         question="У какого продукта нужна редакция Pro?"
         trace.add("intent","Уточнение продукта",question)
@@ -508,7 +508,14 @@ def search(engine,req,profile,trace,priorities,record):
     if not section and HOME.search(q) and "антивир" in q:
         section=index.class_by_name.get("антивирусы для дома")
     repaired_kind=None
-    if literal[0] and not section and not bare and not license_filter and not ids:
+    if literal[0] and not req.verbatim and not req.category and not license_filter and is_exact_card_title(index,base,literal):
+        exact_c=compact(base)
+        exact_ids=[cid for cid in literal[0] if compact(index.cat.cards[cid].title)==exact_c] or list(literal[0])
+        ids=list(dict.fromkeys([*exact_ids,*ids]))
+        q=index.cat.cards[ids[0]].title
+        section=server_section=explicit_class=vendor=supplier=device=role=hint=None
+        bare=question=False
+    elif literal[0] and not section and not bare and not license_filter and not ids:
         ids,q,repaired_kind=literal
         question=False
         hint=None

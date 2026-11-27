@@ -37,6 +37,7 @@ class SolutionHit:
     kit: bool
     exact: bool
     phrase_len: int
+    brand: object = None
 
 
 def load_rows(kb_dir):

@@ -1,7 +1,8 @@
 """Условия запроса, которые можно проверить по строкам фида."""
 import re
 from kuznitsa.index.feed import STOP, words
-from kuznitsa.index.feed_solutions import SolutionHit
+from dataclasses import replace
+from kuznitsa.index.feed_solutions import AUX_PIN, SolutionHit
 from kuznitsa.text import normalize
 from kuznitsa.index.feed_language import edition_form
 from kuznitsa.rank.variants import select
@@ -66,6 +67,176 @@ GENERIC_HEAD=re.compile(
     r"софт\w*|по|утилит\w*|приложени\w*|инструмент\w*|пакет\w*|антивирус\w*)$",
     re.I,
 )
+OCR_CUE=re.compile(
+    r"\b(?:скан(?:ы|ов|а|е|у|ом|ами|ах)?|отсканир\w*|распозна\w*|оцифров\w*|бумажн\w*|ocr)\b"
+    r"|\bpdf\s+в\s+(?:word|ворд|текст|docx?|редактируем\w*)",
+    re.I,
+)
+BRAND_CLAUSE_RE=re.compile(
+    r"\s+(?:от(?:\s+компании|\s+вендора)?|производства|разработки|компании|вендора)\s+(.+)$",
+    re.I,
+)
+BRAND_NOISE_LATIN=frozenset({
+    "linux","windows","macos","mac","android","ios","server","cloud","pro","standard",
+    "enterprise","business","home","office","backup","software","system","network",
+    "security","endpoint","protection","mail","email","pdf","word","excel","dwg","sql",
+    "web","ip","vpn","vdi","crm","erp","dlp","siem","waf","ngfw","mdm","ocr","edr",
+    "xdr","pam","idm","sso","mfa","2fa","ssl","tls","rds","rar","zip","cad","bim",
+    "gis","vms","antivirus","firewall","translator","suite","desktop","remote","access",
+    "virtualization","monitoring","audit","converter","document","management","data",
+})
+BRAND_NOISE_RU=frozenset({
+    "российский","отечественный","корпоративный","домашний","облачный","серверный",
+    "виртуальный","удаленный","рабочий","сетевой","малый","средний","крупный","бизнес",
+    "офис","дом","семья","компания","предприятие","организация","сервер","компьютер",
+    "пк","ноутбук","диск","файл","данные","документ","сеть","сайт","почта","система",
+    "программа","платформа","решение","комплекс","средство","сервис","утилита","софт",
+    "по","лицензия","подписка","точка","конечный","станция","защита","резервный",
+    "копирование","машина","экран","доступ","учет","контроль","мониторинг","аудит",
+    "клиент","сделка","продажа","звук","видео","текст","скан","архив","вирус","ребенок",
+    "дети","интернет","формат","подкаст","камера","терминал","терминальный","почтовый",
+    "атака","вирус","утечка","спам","фишинг","вторжение","угроза","сбой","поломка",
+    "потеря","шифровальщик","вымогатель","нсд","кибератака","взлом","ошибка","отказ",
+    "уязвимость","ddos","ddosатак","вредоносный",
+})
+VENDOR_ADJECTIVES=[
+    (re.compile(r"\b(?:адобовск|эдобовск|адобск)\w*\b",re.I),"адоб"),
+    (re.compile(r"\b(?:майкрософтовск|микрософтовск|майковск)\w*\b",re.I),"майкрософт"),
+    (re.compile(r"\bкасперовск\w*\b",re.I),"касперский"),
+    (re.compile(r"\bкореловск\w*\b",re.I),"corel"),
+    (re.compile(r"\bастровск\w*\b",re.I),"astra"),
+    (re.compile(r"\bоракловск\w*\b",re.I),"oracle"),
+    (re.compile(r"\b(?:цисковск|сисковск)\w*\b",re.I),"cisco"),
+    (re.compile(r"\bяндексовск\w*\b",re.I),"яндекс"),
+    (re.compile(r"\bгугловск\w*\b",re.I),"google"),
+    (re.compile(r"\bэпп?ловск\w*\b",re.I),"apple"),
+    (re.compile(r"\b(?:виндовск|виндоусовск)\w*\b",re.I),"windows"),
+    (re.compile(r"\bавтодесковск\w*\b",re.I),"autodesk"),
+    (re.compile(r"\bбитриксов(?:ск)?\w*\b",re.I),"битрикс"),
+    (re.compile(r"\bасконовск\w*\b",re.I),"аскон"),
+    (re.compile(r"\bкриптопрошн\w*\b",re.I),"криптопро"),
+    (re.compile(r"\bдокторвебовск\w*\b",re.I),"доктор веб"),
+    (re.compile(r"\bвмвар(?:ев)?ск\w*\b",re.I),"vmware"),
+    (re.compile(r"\bпозитивовск\w*\b",re.I),"positive technologies"),
+    (re.compile(r"\bакронисовск\w*\b",re.I),"acronis"),
+    (re.compile(r"\bсимантековск\w*\b",re.I),"symantec"),
+    (re.compile(r"\bюзергейтовск\w*\b",re.I),"usergate"),
+    (re.compile(r"\bкиберпротектовск\w*\b",re.I),"киберпротект"),
+]
+
+
+def normalize_vendor_adjectives(text):
+    """Нормализовать жаргонные прилагательные от брендов («адобовский» -> «адоб», «касперовский» -> «касперский»)."""
+    if not text:
+        return text
+    out=text
+    for rx,repl in VENDOR_ADJECTIVES:
+        out=rx.sub(repl,out)
+    return " ".join(out.split())
+
+
+def is_exact_card_title(index,text,literal=None):
+    """Проверить точное совпадение запроса с полным названием карточки фида (без учёта регистра, ё/е и знаков)."""
+    if not text:
+        return False
+    from kuznitsa.index.feed_repair import compact
+    clean=text.strip(" ?!.,;«»\"")
+    if not clean:
+        return False
+    if (index.solutions.is_exact_phrase(clean) or index.class_match(clean)
+            or clean in index.hardware):
+        return False
+    clean_w=" ".join(words(clean))
+    if clean in index.vendor_names or clean_w in index.vendor_names:
+        return False
+    if literal is None:
+        literal=index.recovery.full_name(clean)
+    if not literal[0]:
+        return False
+    c_text=compact(clean)
+    if not c_text:
+        return False
+    return any(compact(index.cat.cards[cid].title)==c_text for cid in literal[0])
+
+
+def _match_brand_alias(index,alias,*,explicit=False):
+    """Сопоставить фрагмент запроса с известным вендором или продуктовой линейкой каталога."""
+    alias=alias.strip(" ?!.,;«»\"")
+    if not alias or len(alias)<2:
+        return None
+    alias_w=" ".join(words(alias))
+    if not explicit:
+        if (index.solutions.is_exact_phrase(alias) or index.solutions.is_exact_phrase(alias_w)
+                or index.class_match(alias) or GENERIC_HEAD.fullmatch(alias)):
+            return None
+        wset=set(words(alias))
+        if not wset or wset<=BRAND_NOISE_RU or wset<=BRAND_NOISE_LATIN:
+            return None
+    vid=index.vendor_names.get(alias) or (index.vendor_names.get(alias_w) if alias_w else None)
+    if vid:
+        return dict(kind="vendor",vendor=vid,label=alias,ids=(),explicit=explicit)
+    if alias in index.slang:
+        field,slang_ids=index.slang[alias]
+        if field in ("vendors","families") and slang_ids:
+            return dict(kind="line",vendor=None,label=alias,ids=tuple(slang_ids),explicit=explicit)
+    if len(alias)<3 or GENERIC_HEAD.fullmatch(alias) or index.class_match(alias) or index.solutions.is_exact_phrase(alias):
+        return None
+    wset=set(words(alias))
+    if not wset or wset<=BRAND_NOISE_RU or wset<=BRAND_NOISE_LATIN or set(alias.split())<=BRAND_NOISE_LATIN:
+        return None
+    if not explicit:
+        if not re.fullmatch(r"[a-z][a-z0-9.+-]{2,}(?:\s+[a-z][a-z0-9.+-]{2,})?",alias):
+            return None
+    prod_ids=index.products(alias,domain="software",fuzzy=False)
+    alias_terms=wset
+    confirmed=[]
+    for cid in prod_ids:
+        if cid not in index.cat.cards:
+            continue
+        tnorm=normalize(index.cat.cards[cid].title)
+        vnorm=normalize(index.cat.cards[cid].offers[0].vendor or "")
+        if f"от {alias}" in tnorm or f"-{alias}" in tnorm:
+            continue
+        if (tnorm.startswith(alias) or alias in vnorm or re.search(r"[a-z]",alias)) and (
+            (alias_terms and alias_terms<=set(words(tnorm))) or alias in tnorm
+        ):
+            confirmed.append(cid)
+    if confirmed:
+        return dict(kind="line",vendor=None,label=alias,ids=tuple(confirmed),explicit=explicit)
+    if explicit:
+        sound_ids,_=index.sound_products(alias)
+        sound_sw=[cid for cid in sound_ids if cid in index.cat.cards and index.cat.cards[cid].offers[0].domain=="software"]
+        if sound_sw:
+            return dict(kind="line",vendor=None,label=alias,ids=tuple(sound_sw),explicit=explicit)
+    return None
+
+
+def extract_solution_brand(index,text):
+    """Выделить вендора или линейку из запроса задачи (после «от»/«производства» либо по имени)."""
+    if not text:
+        return None
+    m=BRAND_CLAUSE_RE.search(text)
+    if m:
+        tail=m.group(1).strip(" ?!.,;«»\"")
+        tail_head=re.split(r"\s+(?:для|на|под|до|в)\s+",tail,maxsplit=1)[0].strip()
+        for cand in (tail_head,tail):
+            parts=cand.split()
+            for end in range(min(len(parts),4),0,-1):
+                if parts[end-1] in STOP:
+                    continue
+                hit=_match_brand_alias(index," ".join(parts[:end]),explicit=True)
+                if hit:
+                    return hit
+    parts=text.split()
+    if len(parts)>=2:
+        for length in range(min(len(parts)-1,3),0,-1):
+            for side in (parts[-length:],parts[:length]):
+                if side[0] in STOP or side[-1] in STOP:
+                    continue
+                hit=_match_brand_alias(index," ".join(side),explicit=False)
+                if hit:
+                    return hit
+    return None
 # Лексические мосты между действием и существительным в дереве магазина.
 PURPOSES=[
     (r"перевести|переводить|переводчик|машинн\w* перевод","переводчики"),
@@ -295,6 +466,37 @@ def apply_solution_conditions(engine,req,profile,solution,ids,cond,os_compat,pre
     index=engine.catalog.feed
     ids=list(ids)
     extra_chips=[]
+    brand=getattr(solution,"brand",None)
+    if brand and ids:
+        if brand["kind"]=="vendor":
+            vid=brand["vendor"]
+            matches=[cid for cid in ids if index.card_vendors.get(cid)==vid]
+            if not matches:
+                seen_m=set()
+                for sec in solution.sections:
+                    for cid in index.groups.get(sec,()):
+                        if cid not in seen_m and index.card_vendors.get(cid)==vid and not AUX_PIN.search(index.cat.cards[cid].title):
+                            seen_m.add(cid)
+                            matches.append(cid)
+        else:
+            bset=set(brand["ids"])
+            bwords=set(words(brand["label"]))
+            matches=[cid for cid in ids if cid in bset or (bwords and bwords<=set(words(index.cat.cards[cid].title)))]
+            if not matches:
+                sec_set=set(solution.sections)
+                matches=[cid for cid in brand["ids"] if index.card_sections.get(cid) in sec_set]
+        if matches:
+            seen_m=set(matches)
+            ids=matches+[cid for cid in ids if cid not in seen_m]
+            disp=(index.cat.cards[matches[0]].offers[0].vendor if brand["kind"]=="vendor" else None) or brand["label"]
+            extra_chips.append(dict(key="vendor",label=f"Производитель: {disp}",removable=True))
+        else:
+            disp=brand["label"]
+            if brand["kind"]=="vendor":
+                vcards=index.language.vendor_cards.get(brand["vendor"],())
+                if vcards:
+                    disp=index.cat.cards[vcards[0]].offers[0].vendor or disp
+            note=f"У производителя «{disp}» нет решений в категории «{solution.title}» — ниже основные варианты каталога."
     eff_platform=(os_compat[0] if os_compat else None) or (cond.platform if cond else None)
     if eff_platform=="linux" and ids:
         if solution.id in ("office_suite","office_suite_ru"):
@@ -373,9 +575,19 @@ def resolve_solution(engine,req,norm,base,*,renewal=False,os_compat=None):
         hit=index.solutions.match(norm)
     if not hit:
         return None
-    # 5. Защита: конкретный продаваемый продукт или бренд имеют приоритет над задачей
+    # OCR имеет приоритет над переводчиками при наличии маркеров скана/распознавания/бумажных документов
+    if hit.id=="translator" and (OCR_CUE.search(clean_base) or OCR_CUE.search(norm)) and "ocr" in index.solutions.bound:
+        hit=index.solutions._hit("ocr",exact=False,phrase_len=hit.phrase_len)
+    # 5. Защита: точное название карточки и конкретные редакции сильнее решения; названный бренд/линейка идут первыми в решении
     check_text=extract_os_compat(clean_base)[0] if (os_compat and os_compat[0]=="linux") else clean_base
+    if is_exact_card_title(index,check_text) or is_exact_card_title(index,base):
+        return None
     if not hit.exact:
+        brand=extract_solution_brand(index,check_text)
+        if brand:
+            if not brand["explicit"] and (index.edition(check_text) or product_context(engine,check_text)):
+                return None
+            return replace(hit,brand=brand)
         if index.edition(check_text):
             return None
         if index.recovery.full_name(check_text)[0]:
@@ -384,17 +596,6 @@ def resolve_solution(engine,req,norm,base,*,renewal=False,os_compat=None):
             return None
         if vendor_class(index,check_text)[0]:
             return None
-        parts=check_text.split()
-        if len(parts)>=2:
-            for length in range(min(len(parts)-1,3),0,-1):
-                for side in (parts[:length],parts[-length:]):
-                    alias=" ".join(side)
-                    alias_w=" ".join(words(alias))
-                    # Не уступаем вендору, если само слово является точным названием задачи/класса (например, «видеомонтаж» -> AMS Software)
-                    if index.solutions.is_exact_phrase(alias) or index.solutions.is_exact_phrase(alias_w):
-                        continue
-                    if alias in index.vendor_names or alias_w in index.vendor_names:
-                        return None
     return hit
 
 
@@ -416,13 +617,15 @@ def purchase_subject(text):
 
 
 def supplier_clause(index,text):
-    """Выделяем «от» только перед подтверждённым названием издателя."""
-    head,sep,tail=text.partition(" от ")
-    if sep:
+    """Выделяем «от»/«производства»/«разработки» только перед подтверждённым названием издателя."""
+    m=re.search(r"\s+(?:от(?:\s+компании|\s+вендора)?|производства|разработки)\s+",text)
+    if m:
+        head,tail=text[:m.start()],text[m.end():]
         parts=tail.split()
         for end in range(len(parts),0,-1):
             if parts[end-1] in STOP:continue
-            vendor=index.vendor_names.get(" ".join(words(" ".join(parts[:end]))))
+            alias=" ".join(parts[:end])
+            vendor=index.vendor_names.get(alias) or index.vendor_names.get(" ".join(words(alias)))
             if vendor:return " ".join([head,*parts[end:]]),vendor
     return text,None
 
