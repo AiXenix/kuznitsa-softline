@@ -1,7 +1,7 @@
 """Подбор по страницам товаров и классам настоящего магазина."""
 import re
 from uuid import uuid4
-from . import feed_analogs, feed_compare, feed_conditions, feed_guard, feed_noise, feed_request
+from . import feed_analogs, feed_compare, feed_conditions, feed_context, feed_guard, feed_noise, feed_request
 from .feed_query import HOME,HELP,PURPOSES,split_conditions,vendor_class,matching_variants,product_context,license_request,split_budget,product_subject,named_subject,software_scope
 from .feed_query import purchase_subject, supplier_clause, mixed_subject, software_for_class, strip_question, resolve_solution
 from kuznitsa.config import WEIGHTS
@@ -303,6 +303,8 @@ def _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,bu
 
 def search(engine,req,profile,trace,priorities,record):
     index=engine.catalog.feed
+    ctx=feed_context.try_search(engine,req,profile,trace,priorities,record)
+    if ctx is not None:return ctx
     norm=normalize(req.q)
     if not req.verbatim:norm=index.recovery.clean_query(norm)
     if norm in {"про","pro"} and not req.verbatim and not req.category:
@@ -846,7 +848,7 @@ def finish(engine,req,trace,record,result,items,count,calls,profile=None):
         result["notes"].append("Раздел выбран быстрым поиском: категоризатор недоступен.")
     result["timing_ms"]["total"]=round(1000*(engine.timer()-trace.start),2)
     if record:
-        if engine.sessions:engine.sessions.save(req,result,items)
+        if engine.sessions:engine.sessions.save(req,result,items,extra=feed_context.snapshot(engine,req,result,items))
         engine.journal.search(engine.clock(),req,result,count,result["understood"]["zero_reason"],False)
     if not req.explain:result["trace"]=[]
     return result

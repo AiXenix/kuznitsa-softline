@@ -26,13 +26,15 @@ class Sessions:
             r=self.db.execute("SELECT value FROM kv WHERE key=? AND updated>=?",(self.key(req),self.clock()-900)).fetchone()
         return json.loads(r[0]) if r else None
 
-    def save(self,req,r,cards):
+    def save(self,req,r,cards,extra=None):
         if not req.session_id:
             return
         u=r["understood"]
         data=dict(id=r["search_id"],q=req.q,filters=u["filters"],exclude=u["exclude"],qty=u["qty"],intent=u["intent"],
                   first_vendor=cards[0]["vendor"]["id"] if cards else None,
                   first_family=cards[0]["card_id"].split(":")[0] if cards else None)
+        if extra is not None:
+            data["feed"]=extra
         with self.lock,self.db:
             self.db.execute("INSERT OR REPLACE INTO kv VALUES(?,?,?)",(self.key(req),json.dumps(data,ensure_ascii=False),self.clock()))
 
