@@ -368,18 +368,23 @@ def search(engine,req,profile,trace,priorities,record):
     _,os_tag,os_label=(None,None,None) if (mig or req.verbatim or req.category) else extract_os_compat(base)
     os_compat=(os_tag,os_label) if os_tag else None
     sol_req=feed_request.for_solution(req)
+    replacement_for=feed_analogs.requested(base)
+    if replacement_for:
+        replacement_for=feed_noise.clean_analog_subject(replacement_for)
+    hw_query=index.hardware_specs.parse_query(req.q,norm,base,req_category=req.category,ignore=req.ignore,cond_platform=cond.platform) if not (req.verbatim or replacement_for) else None
+    hw_blocks=bool(hw_query and hw_query.blocks_solution)
     import_sub=feed_noise.extract_import_sub_analog(index,norm) if not (mig or req.verbatim or req.category) else None
     if import_sub and not (req.exclude or req.filters.keys()-{"price_max","registry","audience","category"} or "\n" in req.q):
         return feed_guard.search_import_sub_analog(engine,req,profile,trace,priorities,record,norm,import_sub,qty=qty,budget=budget)
-    solution=resolve_solution(engine,sol_req,norm,base,renewal=renewal,os_compat=os_compat)
+    solution=None if hw_blocks else resolve_solution(engine,sol_req,norm,base,renewal=renewal,os_compat=os_compat)
     if solution and solution.kit and (cond.origin or cond.registry) and base!=norm:
         solution=resolve_solution(engine,sol_req,base,base,renewal=renewal,os_compat=os_compat)
-    if not solution and not (mig or req.verbatim or req.category):
+    if not solution and not (mig or hw_blocks or req.verbatim or req.category):
         eng_ru=feed_noise.translate_english_class(base)
         if eng_ru:
             base=eng_ru;original_subject=base
             solution=resolve_solution(engine,sol_req,eng_ru,base,renewal=renewal,os_compat=os_compat)
-    if not solution and not mig:
+    if not solution and not (mig or hw_blocks):
         solution=resolve_service_query(engine,sol_req,norm,base,cond=cond)
     if solution:
         return _search_solution(engine,req,profile,trace,priorities,record,norm,base,qty,budget,solution,plan=plan,cond=cond,os_compat=os_compat)
@@ -388,21 +393,21 @@ def search(engine,req,profile,trace,priorities,record):
         if cleaned!=base:
             base=cleaned
             original_subject=base
-    replacement_for=feed_analogs.requested(base)
-    if replacement_for:
-        replacement_for=feed_noise.clean_analog_subject(replacement_for)
-    hw_query=index.hardware_specs.parse_query(req.q,norm,base,req_category=req.category,ignore=req.ignore,cond_platform=cond.platform) if not (req.verbatim or replacement_for) else None
+            replacement_for=feed_analogs.requested(base)
+            if replacement_for:
+                replacement_for=feed_noise.clean_analog_subject(replacement_for)
+            hw_query=index.hardware_specs.parse_query(req.q,norm,base,req_category=req.category,ignore=req.ignore,cond_platform=cond.platform) if not (req.verbatim or replacement_for) else None
     if hw_query and hw_query.suppress_cond_platform:
         cond.platform=None
     noise_clean=None
-    if not replacement_for and not (hw_query and hw_query.has_constraints) and not req.verbatim and not req.category and base not in index.vendor_names and not feed_noise.FEED_COMPLEX.search(base):
+    if not replacement_for and not (hw_query and hw_query.is_active) and not req.verbatim and not req.category and base not in index.vendor_names and not feed_noise.FEED_COMPLEX.search(base):
         noise_clean=feed_noise.extract_conditions_and_noise(engine,index,base,existing_qty=qty)
         if noise_clean.changed:
             base=noise_clean.subject
             qty=noise_clean.qty
         eng_ru2=feed_noise.translate_english_class(base)
         if eng_ru2:base=eng_ru2;original_subject=base
-    hw_strict=bool(hw_query and hw_query.has_constraints)
+    hw_strict=bool(hw_query and hw_query.is_active)
     colloquial=feed_guard.resolve_colloquial_product(engine,base,segment=profile.segment) if not (req.verbatim or req.category or replacement_for or hw_strict or mig) else None
     edition=index.edition(base) if not (req.verbatim or req.category or replacement_for or colloquial or hw_strict) else None
     row=feed_guard.lookup_analog(index,replacement_for or base,fuzzy=not req.verbatim)
@@ -429,7 +434,7 @@ def search(engine,req,profile,trace,priorities,record):
         absent_acronym=next((index.language.absent_acronyms[w] for w in words(base)
                              if not acronym and w in index.language.absent_acronyms),None)
         if absent_acronym:base=normalize(absent_acronym[0])
-    server_section=software_scope(index,base) if not literal[0] else None
+    server_section=software_scope(index,base) if not (literal[0] or (hw_query and hw_query.has_constraints)) else None
     explicit_class=index.class_match(base)
     if supplier and not explicit_class:
         subject_class=re.split(r"\s+для\s+",base,maxsplit=1)[0]
@@ -441,7 +446,7 @@ def search(engine,req,profile,trace,priorities,record):
     identity=identity_terms(base) if not (literal[0] or explicit_class or req.category or device_name) else ()
     identity_pool=index.recovery.identity_cards(identity) if identity else None
     unknown_name=identity_pool is not None and not identity_pool
-    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name or (hw_query and hw_query.has_constraints)):
+    if not (req.verbatim or literal[0] or server_section or req.category or explicit_class or device_name or unknown_name or (hw_query and hw_query.is_active)):
         aliased=index.correct(base)
         direct=index.products(base,fuzzy=False)
         if not (aliased!=base and index.products(aliased,fuzzy=False)) and (not direct or not set(words(base))<=set(words(index.cat.cards[direct[0]].title))):
@@ -476,7 +481,7 @@ def search(engine,req,profile,trace,priorities,record):
     vendor=supplier or vendor
     if "vendor" in plan.ignore:vendor=supplier=None
     section=combined or section
-    if hw_query and hw_query.has_constraints and not server_section:
+    if hw_query and not server_section and (hw_query.has_constraints or (hw_query.force_section and not vendor)):
         section=hw_query.section or section
         vendor=None if hw_query.is_consumable else (hw_query.vendor_id or vendor)
         bare=question=False

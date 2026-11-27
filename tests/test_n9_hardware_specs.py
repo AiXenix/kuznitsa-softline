@@ -156,7 +156,7 @@ def n9_engine(cfg, tmp_path_factory):
     add("hdd_dell_4tb", "Жесткий диск Dell Technologies 4TB SAS", "78997", "Жесткие диски",
         vendor="Dell Technologies", price=24000, attrs={"Ёмкость диска": "4000"})
 
-    # 10. Блоки питания (74887), ИБП (82080), Видеокарты (77963 с греческой ΓБ)
+    # 10. Блоки питания (74887), ИБП (82080), Видеокарты (77963 с греческой ГБ)
     add("psu_500", "Блок питания Accord ACC-500", "74887", "Блоки питания", vendor="Accord", price=2500, attrs={"Мощность": "500"})
     add("psu_650", "Блок питания Chieftec PPS-650FC", "74887", "Блоки питания", vendor="Chieftec", price=6900, attrs={"Мощность": "650"})
     add("ups_600", "ИБП Ippon Back Basic 650", "82080", "ИБП", vendor="Ippon", price=4900, attrs={"Выходная мощность": "650"})
@@ -191,6 +191,45 @@ def n9_engine(cfg, tmp_path_factory):
         vendor="Logitech", price=1600, attrs={"Тип устройства": "Мышь", "Интерфейс": "Радиоканал 2,4 ГГц"})
     add("kb_combo", "Комплект клавиатура+мышь Logitech MK270", "82833", "Клавиатуры, мыши, комплекты",
         vendor="Logitech", price=3100, attrs={"Тип устройства": "Клавиатура+мышь", "Интерфейс": "Радиоканал 2,4 ГГц"})
+
+    # 12b. Карточки Раунда 3: роутеры (гигабит/двухдиапазон), точки доступа (86348), кабели HDMI (80081),
+    #      игровой ноутбук (70824), коммутатор 48 портов PoE (85741), серверный HDD (78997), IP-телефония ПО (6035).
+    add("rt_gb_db", "Wi-Fi роутер TP-LINK Archer AX55", "85353", "Wi-Fi роутеры",
+        vendor="TP-LINK", price=7900, description="LAN 4 × Gigabit Ethernet, Wi-Fi 6",
+        attrs={"Особенности": "двухдиапазонный", "Диапазоны частот": "2.4 ГГц; 5.0 ГГц", "Интерфейс LAN": "Gigabit Ethernet"})
+    add("ap_1", "Точка доступа TP-LINK EAP650", "86348", "Точки доступа",
+        vendor="TP-LINK", price=12500, description="LAN 1 × Gigabit Ethernet, Wi-Fi 6",
+        attrs={"Протоколы Wi-Fi": "802.11ax", "Диапазоны частот": "2.4 ГГц; 5.0 ГГц", "Интерфейс LAN": "Gigabit Ethernet"})
+    add("ap_2", "Точка доступа Ubiquiti UniFi AC Lite", "86348", "Точки доступа",
+        vendor="Ubiquiti", price=11900, description="LAN 1 × Gigabit Ethernet, Wi-Fi 5",
+        attrs={"Протоколы Wi-Fi": "802.11ac", "Диапазоны частот": "2.4 ГГц; 5.0 ГГц", "Интерфейс LAN": "Gigabit Ethernet"})
+    add("cab_hdmi_2", "Buro BHP HDMI 2", "80081", "Кабели, переходники, разъемы",
+        vendor="Buro", price=490, attrs={"Длина кабеля": "200", "Входной интерфейс": "HDMI", "Выходной интерфейс": "HDMI"})
+    add("cab_hdmi_5", "Buro BHP HDMI 5", "80081", "Кабели, переходники, разъемы",
+        vendor="Buro", price=990, attrs={"Длина кабеля": "500", "Входной интерфейс": "HDMI", "Выходной интерфейс": "HDMI"})
+    add("cab_dp_2", "Cablexpert DisplayPort 2м", "80081", "Кабели, переходники, разъемы",
+        vendor="Cablexpert", price=750, attrs={"Длина кабеля": "200", "Входной интерфейс": "DisplayPort", "Выходной интерфейс": "DisplayPort"})
+    add("lap_gaming", "Ноутбук ASUS G16 G614P AMD Ryzen 9", "70824", "Ноутбуки",
+        vendor="ASUS", price=189000, attrs={"Объем установленной ОЗУ": "32", "Серия ноутбука": "ROG Strix G16",
+                                            "Видеопроцессор": "NVIDIA GeForce RTX 5070 Ti", "Ёмкость дискретной видеопамяти": "12"})
+    add("lap_tuf", "Ноутбук ASUS FA808UM TUF Gaming", "70824", "Ноутбуки",
+        vendor="ASUS", price=145000, attrs={"Объем установленной ОЗУ": "16", "Серия ноутбука": "TUF Gaming A18",
+                                            "Видеопроцессор": "NVIDIA GeForce RTX 5060", "Ёмкость дискретной видеопамяти": "8"})
+    add("sw_48_poe", "Коммутатор MikroTik CRS354-48P-4S", "85741", "Коммутаторы",
+        vendor="MikroTik", price=79000, description="Матрица 176 Гбит/с, 4 × 10G port, 48 × Gigabit port",
+        attrs={"ПредоставлениеPoE": "PoE (IEEE 802.3af); PoE Plus (IEEE 802.3at)"})
+    add("sw_48_nopoe", "Коммутатор TP-LINK TL-SG1048", "85741", "Коммутаторы",
+        vendor="TP-LINK", price=31000, description="Матрица 96 Гбит/с, 48 × Gigabit port")
+    add("hdd_barracuda", "Жесткий диск SEAGATE Barracuda 4TB", "78997", "Жесткие диски",
+        vendor="Seagate", price=9500, attrs={"Ёмкость диска": "4000", "Интерфейс": "SATA3", "Скорость вращения": "5400"})
+    add("hdd_usb", "Жесткий диск ADATA HV620S 1TB USB 3.1", "78997", "Жесткие диски",
+        vendor="ADATA", price=5500, attrs={"Ёмкость диска": "1000", "Интерфейс": "USB 3.1"})
+    add("hdd_exos", "Жесткий диск SEAGATE Exos X16 14TB SAS", "78997", "Жесткие диски",
+        vendor="Seagate", price=42000, attrs={"Ёмкость диска": "14000", "Интерфейс": "SAS 12Gb/s", "Скорость вращения": "7200"})
+    add("hdd_ultrastar", "Жесткий диск Western Digital Ultrastar DC HC310 6TB", "78997", "Жесткие диски",
+        vendor="Western Digital", price=28000, attrs={"Ёмкость диска": "6000", "Интерфейс": "SATA3", "Скорость вращения": "7200"})
+    add("sw_pbx", "Brekeke PBX", "6035", "ПО для IP-телефонии",
+        root="Программное обеспечение", domain="software", vendor="Brekeke", price=45000)
 
     # 13. ПО для проверки границы железо/ПО
     add("sw_win_srv", "Microsoft Windows Server 2022 Standard", "369", "Серверное ПО",
@@ -308,7 +347,7 @@ def test_ram_flash_router_switch_printer_psu_ups_gpu(n9_engine):
     ra3 = n9_engine.search(Request(q="принтер a3", mode="fast"))
     assert _core(ra3)[0]["card_id"] == "prn_a3"
 
-    # БП 650 Вт, ИБП 1000 ВА, Видеокарта RTX 8 ГБ (греческая гамма ΓБ)
+    # БП 650 Вт, ИБП 1000 ВА, Видеокарта RTX 8 ГБ (греческая гамма ГБ)
     assert _core(n9_engine.search(Request(q="блок питания 650 вт", mode="fast")))[0]["card_id"] == "psu_650"
     assert _core(n9_engine.search(Request(q="ибп 1000 ва", mode="fast")))[0]["card_id"] == "ups_1000"
     assert _core(n9_engine.search(Request(q="видеокарта rtx 8 гб", mode="fast")))[0]["card_id"] == "gpu_rtx"
@@ -371,3 +410,90 @@ def test_small_sections_subtypes_and_software_guard(n9_engine):
     for sq in ("windows server", "антивирус для ноутбука"):
         rs = n9_engine.search(Request(q=sq, mode="fast"))
         assert _core(rs)[0]["domain"] == "software"
+
+
+def test_r3_routers_variants(n9_engine):
+    # Пункт 1: все формулировки роутеров/маршрутизаторов ведут в раздел роутеров, не в пустой clarify
+    for q in (
+        "wi-fi роутер для офиса",
+        "wifi маршрутизатор гигабитный",
+        "роутер двухдиапазонный",
+        "сетевой роутер",
+        "вай-фай роутер",
+        "router",
+    ):
+        r = n9_engine.search(Request(q=q, mode="fast"))
+        assert r["blocks"][0]["type"] == "products"
+        assert r["blocks"][0]["category_id"] == "85353"
+        assert len(_core(r)) >= 2
+    rgb = n9_engine.search(Request(q="wifi маршрутизатор гигабитный", mode="fast"))
+    assert _core(rgb)[0]["card_id"] == "rt_gb_db"
+    assert rgb["understood"]["filters"]["specs"].get("gigabit") == "Гигабитный"
+    rdb = n9_engine.search(Request(q="роутер двухдиапазонный", mode="fast"))
+    assert _core(rdb)[0]["card_id"] == "rt_gb_db"
+    assert rdb["understood"]["filters"]["specs"].get("dual_band") == "Двухдиапазонный"
+
+
+def test_r3_cable_hdmi_length(n9_engine):
+    # Пункт 2: кабель HDMI 2 м — раздел кабелей, точный 2м HDMI первым + чипы интерфейса и длины
+    r = n9_engine.search(Request(q="кабель hdmi 2 м", mode="fast"))
+    assert r["blocks"][0]["category_id"] == "80081"
+    assert _core(r)[0]["card_id"] == "cab_hdmi_2"
+    assert r["understood"]["filters"]["specs"] == {"interface": "HDMI", "cable_length_m": "2 м"}
+    labels = [ch["label"] for ch in r["understood"]["chips"]]
+    assert "Интерфейс · HDMI" in labels and "Длина · 2 м" in labels
+
+    # Отсутствующая длина (10 м): остаётся в разделе кабелей, ближайший HDMI (5 м) первым + честная заметка
+    r10 = n9_engine.search(Request(q="кабель hdmi 10 м", mode="fast"))
+    assert r10["blocks"][0]["category_id"] == "80081"
+    assert _core(r10)[0]["card_id"] == "cab_hdmi_5"
+    assert "10 м" in r10["understood"]["agent_note"].lower()
+
+
+def test_r3_gaming_laptop(n9_engine):
+    # Пункт 3: игровой ноутбук — игровые с RTX / ROG / TUF первыми выше офисных
+    r = n9_engine.search(Request(q="игровой ноутбук", mode="fast"))
+    assert r["blocks"][0]["category_id"] == "70824"
+    core = _core(r)
+    assert {c["card_id"] for c in core[:2]} == {"lap_gaming", "lap_tuf"}
+    assert r["understood"]["filters"]["specs"] == {"gaming": "Игровой"}
+
+
+def test_r3_headset_for_call_center(n9_engine):
+    # Пункт 4: гарнитура для колл-центра — гарнитуры из 88831, не ПО IP-телефонии
+    r = n9_engine.search(Request(q="гарнитура для колл-центра", mode="fast"))
+    assert r["blocks"][0]["category_id"] == "88831"
+    assert _core(r)[0]["card_id"] == "hs_mic"
+
+
+def test_r3_switch_48_ports_poe(n9_engine):
+    # Пункт 5: коммутатор 48 портов poe — модель с 48 портами и PoE первой
+    r = n9_engine.search(Request(q="коммутатор 48 портов poe", mode="fast"))
+    assert r["blocks"][0]["category_id"] == "85741"
+    assert _core(r)[0]["card_id"] == "sw_48_poe"
+    assert r["understood"]["filters"]["specs"] == {"ports": "48", "poe": "PoE"}
+
+
+def test_r3_server_hdd(n9_engine):
+    # Пункт 6: жесткий диск для сервера — серверные Exos/Ultrastar/SAS первыми, не Barracuda/USB и не «Класс ПО»
+    r = n9_engine.search(Request(q="жесткий диск для сервера", mode="fast"))
+    assert r["blocks"][0]["category_id"] == "78997"
+    core = _core(r)
+    assert {c["card_id"] for c in core[:3]} == {"hdd_dell_4tb", "hdd_exos", "hdd_ultrastar"}
+    assert "класс по" not in r["understood"]["agent_note"].lower()
+    assert r["understood"]["filters"]["specs"] == {"server_grade": "Серверный"}
+
+
+def test_r3_access_points_unified_section(n9_engine):
+    # Пункт 7: все формулировки точек доступа ведут в один аппаратный раздел 86348 (не auto_sl_86348) и работают со спеками
+    for q in ("точка доступа wifi", "точка доступа", "access point", "wi-fi точка"):
+        r = n9_engine.search(Request(q=q, mode="fast"))
+        assert r["blocks"][0]["type"] == "products"
+        assert r["blocks"][0]["category_id"] == "86348"
+        assert r["understood"]["filters"].get("category") == ["86348"]
+        assert {c["card_id"] for c in _core(r)} == {"ap_1", "ap_2"}
+    for q in ("точка доступа wi-fi 6", "access point wi-fi 6"):
+        r6 = n9_engine.search(Request(q=q, mode="fast"))
+        assert r6["blocks"][0]["category_id"] == "86348"
+        assert _core(r6)[0]["card_id"] == "ap_1"
+        assert r6["understood"]["filters"]["specs"] == {"wifi": "Wi-Fi 6"}

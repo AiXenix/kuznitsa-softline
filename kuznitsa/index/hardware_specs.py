@@ -27,7 +27,9 @@ _SOFTWARE_GUARD_RE = re.compile(
     r"распознаван\w*|pdf|редактор\w*|лицензи\w*|подписк\w*|сертификат\w*|"
     r"техподдержк\w*|поддержк\w*|обучен\w*|курс\w*|внедрен\w*|"
     r"офисн\w*\s+пакет\w*|операционн\w*\s+систем\w*|утилит\w*|драйвер\w*|"
-    r"удаленн\w*\s+доступ\w*|средств\w*\s+защит\w*|арм|печат\w*\s+этикеток)\b",
+    r"удаленн\w*\s+доступ\w*|удаленн\w*\s+подключ\w*|подключ\w*\s+к\s+пк|"
+    r"средств\w*\s+защит\w*|арм|печат\w*\s+этикеток|"
+    r"инвентаризац\w*|вирус\w*|зашифров\w*|запрет\w*|провер\w*|почист\w*|учет\w*|учёт\w*|офис\s+на|касперск\w*)\b",
     re.I,
 )
 _PO_FOR_RE = re.compile(r"(?:^|\s)по\s+(?:для|на|под)\b", re.I)
@@ -113,7 +115,28 @@ _INTERFACE_PATTERNS = (
     ("SATA", re.compile(r"\bsata\s*(?:iii|3|2)?\b", re.I)),
     ("SAS", re.compile(r"\bsas\b", re.I)),
     ("SO-DIMM", re.compile(r"\bso-?dimm\b", re.I)),
+    ("VGA", re.compile(r"\bvga\b", re.I)),
+    ("DVI", re.compile(r"\bdvi(?:-?[di])?\b", re.I)),
+    ("RJ-45", re.compile(r"\b(?:rj-?45|ethernet|lan)\b", re.I)),
+    ("3.5 мм", re.compile(r"\b(?:3[.,]5\s*мм|mini-?jack|aux)\b", re.I)),
+    ("USB", re.compile(r"\busb\b", re.I)),
 )
+
+_CABLE_LEN_M_RE = re.compile(r"(?<!\d)(\d+(?:[.,]\d+)?)\s*(?:м(?:етр\w*)?|m)(?:\b|c\b)", re.I)
+_CABLE_LEN_CM_RE = re.compile(r"(?<!\d)(\d{2,4})\s*(?:см|cm)\b", re.I)
+_GAMING_QUERY_RE = re.compile(r"\b(?:игров\w*|геймерск\w*|gaming)\b", re.I)
+_GAMING_SERIES_RE = re.compile(
+    r"\b(?:rog|tuf|legion|nitro|katana|gaming|g16|g15|g14|loq|victus|omen|predator|cyborg|sword|pulse|raider|vector|stealth|alienware|aorus|scar|strix|zephyrus|bloody)\b",
+    re.I,
+)
+_GAMING_GPU_RE = re.compile(r"\b(?:rtx|gtx|geforce|radeon\s+rx|radeon\s+80\d0)\b", re.I)
+_SERVER_GRADE_QUERY_RE = re.compile(r"\b(?:сервер\w*|enterprise|дата-?центр\w*|ц[оа]д)\b", re.I)
+_SERVER_HDD_RE = re.compile(
+    r"\b(?:exos|ultrastar|hat\d+|enterprise|sas|gold|server|сервер\w*|dc\s*hc|mg\d{2}|al\d{2}|data\s*center|pm\d{3,4}|dc\d{3}m|d7-|u\.2|ironwolf\s*pro|red\s*pro)\b",
+    re.I,
+)
+_DUAL_BAND_RE = re.compile(r"\b(?:двухдиапазон\w*|2-?диапазон\w*|dual-?band)\b", re.I)
+_GIGABIT_RE = re.compile(r"\b(?:гигабит\w*|gigabit|1000\s*мбит|1\s*гбит)\b", re.I)
 
 _POE_RE = re.compile(r"\b(?:poe|пое)\b", re.I)
 _WIRELESS_RE = re.compile(r"\b(?:беспроводн\w*|wireless|bluetooth|блютуз|радиоканал\w*)\b", re.I)
@@ -236,6 +259,16 @@ def _format_spec_value(key: str, val) -> str:
         return "С микрофоном"
     if key == "poe":
         return "PoE"
+    if key == "cable_length_m":
+        return f"{int(val) if val == int(val) else val:g} м"
+    if key == "gaming":
+        return "Игровой"
+    if key == "server_grade":
+        return "Серверный"
+    if key == "dual_band":
+        return "Двухдиапазонный"
+    if key == "gigabit":
+        return "Гигабитный"
     if key == "cpu":
         if val.startswith("ryzen"):
             return val.title()
@@ -268,6 +301,11 @@ class OfferSpecs:
     with_mic: bool = False
     poe: bool = False
     rack_u: frozenset[str] = frozenset()
+    cable_length_m: tuple[float, ...] = ()
+    gaming: bool = False
+    server_grade: bool = False
+    dual_band: bool = False
+    gigabit: bool = False
     compat_tokens: frozenset[str] = frozenset()
     compat_brand_tokens: frozenset[str] = frozenset()
     universal: bool = False
@@ -293,6 +331,8 @@ class HardwareQuery:
     hw_qty: dict | None = None
     suppress_cond_platform: bool = False
     no_sibling_fill: bool = True
+    force_section: bool = False
+    blocks_solution: bool = False
 
     @property
     def has_constraints(self) -> bool:
@@ -305,6 +345,10 @@ class HardwareQuery:
             or self.hw_qty
             or self.is_consumable
         )
+
+    @property
+    def is_active(self) -> bool:
+        return self.has_constraints or self.force_section
 
 
 def _fast_tokens(text: str) -> frozenset[str]:
@@ -527,8 +571,14 @@ def _extract_offer_specs(offer, card_title: str, section_name: str) -> OfferSpec
 
     # 8. Interfaces
     interfaces = set()
-    if is_storage_sec or is_monitor_sec or is_ram_sec or is_consumable_sec or is_laptop_sec or is_periph_sec:
-        iface_src = f"{attrs.get('Интерфейс', '')} {attrs.get('Интерфейсы', '')} {attrs.get('Форм-фактор', '')} {full_text}"
+    is_cable_sec = "кабел" in sec_low or "переходник" in sec_low
+    if is_storage_sec or is_monitor_sec or is_ram_sec or is_consumable_sec or is_cable_sec or is_laptop_sec or is_periph_sec:
+        iface_src = (
+            f"{attrs.get('Интерфейс', '')} {attrs.get('Интерфейсы', '')} "
+            f"{attrs.get('Входной интерфейс', '')} {attrs.get('Выходной интерфейс', '')} "
+            f"{attrs.get('Входной разъем', '')} {attrs.get('Выходной разъем', '')} "
+            f"{attrs.get('Форм-фактор', '')} {full_text}"
+        )
         for label, rx in _INTERFACE_PATTERNS:
             if rx.search(iface_src):
                 interfaces.add(label)
@@ -629,6 +679,60 @@ def _extract_offer_specs(offer, card_title: str, section_name: str) -> OfferSpec
     if is_computer_sec or is_ups_sec or is_switch_sec:
         rack_u = frozenset(m.group(1).upper() for m in _RACK_U_RE.finditer(f"{attrs.get('Высота Rackmount', '')} {full_text}"))
 
+    cable_lengths: list[float] = []
+    if is_cable_sec:
+        raw_cl = attrs.get("Длина кабеля")
+        if raw_cl is not None:
+            m_cl = re.search(r"(\d+(?:[.,]\d+)?)", str(raw_cl))
+            if m_cl:
+                lv = _to_float(m_cl.group(1))
+                if lv >= 20:
+                    lv = round(lv / 100.0, 2)
+                if 0.05 <= lv <= 100.0:
+                    cable_lengths.append(lv)
+        for m_cm in _CABLE_LEN_CM_RE.finditer(full_text):
+            lv = round(_to_float(m_cm.group(1)) / 100.0, 2)
+            if 0.05 <= lv <= 100.0:
+                cable_lengths.append(lv)
+        for m_m in _CABLE_LEN_M_RE.finditer(full_text):
+            lv = _to_float(m_m.group(1))
+            if 0.1 <= lv <= 100.0:
+                cable_lengths.append(lv)
+
+    gaming = False
+    if is_computer_sec or is_monitor_sec or is_periph_sec:
+        vram_disc = str(attrs.get("Ёмкость дискретной видеопамяти", "")).strip().casefold()
+        gaming = bool(
+            str(attrs.get("Товар для геймеров", "")).strip().casefold() == "да"
+            or (vram_disc and vram_disc not in ("0", "нет", "no", "false"))
+            or _GAMING_GPU_RE.search(f"{attrs.get('Видеопроцессор', '')} {full_text}")
+            or _GAMING_SERIES_RE.search(f"{attrs.get('Серия ноутбука', '')} {title_name}")
+        )
+
+    server_grade = False
+    if is_storage_sec or is_ram_sec:
+        rpm_str = str(attrs.get("Скорость вращения", "")).strip()
+        iface_str = str(attrs.get("Интерфейс", "")).casefold()
+        is_usb_drive = "usb" in title_tokens or iface_str.startswith("usb")
+        if not is_usb_drive:
+            server_grade = bool(
+                _SERVER_HDD_RE.search(f"{title_name} {desc} {attrs.get('Интерфейс', '')}")
+                or rpm_str in ("10000", "15000")
+                or (is_ram_sec and "ecc" in full_text.casefold())
+            )
+
+    dual_band = False
+    gigabit = False
+    if is_router_sec or is_switch_sec:
+        bands_str = str(attrs.get("Диапазоны частот", "")).casefold()
+        feat_str = str(attrs.get("Особенности", "")).casefold()
+        dual_band = bool(
+            _DUAL_BAND_RE.search(f"{feat_str} {full_text}")
+            or ("2.4" in bands_str and "5" in bands_str)
+        )
+        lan_str = f"{attrs.get('Интерфейс LAN', '')} {attrs.get('Интерфейсы Client', '')} {desc}"
+        gigabit = bool(_GIGABIT_RE.search(lan_str))
+
     # 13. Compatibility (только для расходников и аксессуаров)
     compat_brand_tokens = frozenset()
     compat_tokens = frozenset()
@@ -662,6 +766,11 @@ def _extract_offer_specs(offer, card_title: str, section_name: str) -> OfferSpec
         with_mic=with_mic,
         poe=poe,
         rack_u=rack_u,
+        cable_length_m=tuple(dict.fromkeys(cable_lengths)),
+        gaming=gaming,
+        server_grade=server_grade,
+        dual_band=dual_band,
+        gigabit=gigabit,
         compat_tokens=compat_tokens,
         compat_brand_tokens=compat_brand_tokens,
         universal=universal,
@@ -693,6 +802,11 @@ def _merge_offer_specs(items: list[OfferSpecs]) -> OfferSpecs:
         with_mic=any(s.with_mic for s in items),
         poe=any(s.poe for s in items),
         rack_u=frozenset().union(*(s.rack_u for s in items)),
+        cable_length_m=tuple(dict.fromkeys(v for s in items for v in s.cable_length_m)),
+        gaming=any(s.gaming for s in items),
+        server_grade=any(s.server_grade for s in items),
+        dual_band=any(s.dual_band for s in items),
+        gigabit=any(s.gigabit for s in items),
         compat_tokens=frozenset().union(*(s.compat_tokens for s in items)),
         compat_brand_tokens=frozenset().union(*(s.compat_brand_tokens for s in items)),
         universal=any(s.universal for s in items),
@@ -795,6 +909,24 @@ def _match_single_spec(key: str, target, spec: OfferSpecs) -> tuple[int, float]:
         return (2, 0.0) if spec.poe else (0, 1.0)
     if key == "rack_u":
         return (2, 0.0) if target in spec.rack_u else (0, 1.0)
+    if key == "cable_length_m":
+        t = float(target)
+        if not spec.cable_length_m:
+            return (0, float("inf"))
+        best_dist = min(abs(v - t) for v in spec.cable_length_m)
+        if best_dist <= 0.15:
+            return (2, best_dist)
+        if best_dist <= 0.5:
+            return (1, best_dist)
+        return (0, best_dist)
+    if key == "gaming":
+        return (2, 0.0) if spec.gaming else (0, 1.0)
+    if key == "server_grade":
+        return (2, 0.0) if spec.server_grade else (0, 1.0)
+    if key == "dual_band":
+        return (2, 0.0) if spec.dual_band else (0, 1.0)
+    if key == "gigabit":
+        return (2, 0.0) if spec.gigabit else (0, 1.0)
     return (0, 1.0)
 
 
@@ -1249,6 +1381,35 @@ class HardwareSpecIndex:
         if dev["id"] in ("headphones", "headset") and _WITH_MIC_RE.search(work):
             specs["with_mic"] = True
             work = _WITH_MIC_RE.sub(" ", work, count=1)
+        if dev["id"] == "cable":
+            m_cl_cm = _CABLE_LEN_CM_RE.search(work)
+            if m_cl_cm:
+                lv = round(_to_float(m_cl_cm.group(1)) / 100.0, 2)
+                if 0.05 <= lv <= 100.0:
+                    specs["cable_length_m"] = lv
+                    work = work[:m_cl_cm.start()] + " " + work[m_cl_cm.end():]
+            else:
+                m_cl_m = _CABLE_LEN_M_RE.search(work)
+                if m_cl_m:
+                    lv = _to_float(m_cl_m.group(1))
+                    if 0.1 <= lv <= 100.0:
+                        specs["cable_length_m"] = lv
+                        work = work[:m_cl_m.start()] + " " + work[m_cl_m.end():]
+        if dev["id"] in ("laptop", "desktop", "all_in_one", "monitor", "mouse", "keyboard", "headphones", "headset"):
+            if _GAMING_QUERY_RE.search(work):
+                specs["gaming"] = True
+                work = _GAMING_QUERY_RE.sub(" ", work, count=1)
+        if dev["id"] in ("hdd", "ssd", "ram", "ups", "psu"):
+            if _SERVER_GRADE_QUERY_RE.search(work):
+                specs["server_grade"] = True
+                work = _SERVER_GRADE_QUERY_RE.sub(" ", work, count=1)
+        if dev["id"] in ("router", "access_point", "switch"):
+            if _DUAL_BAND_RE.search(work):
+                specs["dual_band"] = True
+                work = _DUAL_BAND_RE.sub(" ", work, count=1)
+            if _GIGABIT_RE.search(work):
+                specs["gigabit"] = True
+                work = _GIGABIT_RE.sub(" ", work, count=1)
 
         # 16. Производитель и модельный ряд (для не-расходников)
         vendor_id = None
@@ -1342,6 +1503,8 @@ class HardwareSpecIndex:
                 or compat_terms
                 or hw_qty
             ),
+            force_section=dev["id"] in ("router", "access_point", "cable", "headset"),
+            blocks_solution=dev["id"] not in ("server", "desktop", "scanner"),
         )
 
     def apply(
@@ -1493,7 +1656,13 @@ class HardwareSpecIndex:
                     else:
                         total_dist += 1e9
                 # Бонус, если цветность/параметр явно в заголовке карточки (например «Color LaserJet» для «мфу лазерное цветное»).
-                title_bonus = 1 if (hw_query.specs.get("print_color") == "color" and cs.title_has_color) else 0
+                title_bonus = 0
+                if hw_query.specs.get("print_color") == "color" and cs.title_has_color:
+                    title_bonus = 1
+                elif hw_query.specs.get("gaming") and hw_query.device_id == "laptop" and "ноутбук" in cs.title_tokens:
+                    title_bonus = 1
+                elif hw_query.specs.get("server_grade") and ("usb" in cs.title_tokens or "USB 3.0" in cs.interfaces or "USB 2.0" in cs.interfaces):
+                    title_bonus = -1
                 # Для «мфу» / «принтер» сохраняем приоритет точного подтипа внутри совпавших по параметрам.
                 sub_bonus = 0
                 if hw_query.device_subtype:
@@ -1549,6 +1718,7 @@ class HardwareSpecIndex:
                         "power_w": f"С мощностью {mv}",
                         "power_va": f"С мощностью {mv}",
                         "paper_format": f"С форматом {mv}",
+                        "cable_length_m": f"С длиной {mv}",
                     }.get(mk, f"С параметром «{self.spec_labels.get(mk, mk)} · {mv}»")
                     notes.append(f"{phrase} в разделе «{sec_label}» нет, показаны ближайшие.")
                 elif missing_parts:

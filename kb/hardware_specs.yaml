@@ -109,12 +109,12 @@ devices:
     is_consumable: true
 
   - id: cable
-    feed_classes: ["80081"]
-    section_keywords: ["кабели, переходники, разъемы", "кабель"]
-    triggers: ["кабель", "кабели", "переходник", "переходники", "патч-корд", "патчкорд", "шнур"]
+    feed_classes: ["80081", "85719"]
+    section_keywords: ["кабели, переходники, разъемы", "кабели", "кабель"]
+    triggers: ["кабель hdmi", "hdmi кабель", "кабель usb", "usb кабель", "кабель displayport", "кабель vga", "кабель dvi", "кабель питания", "сетевой кабель", "кабель", "кабели", "переходник", "переходники", "патч-корд", "патчкорд", "шнур"]
     bare_number_spec: null
     gb_role: null
-    is_consumable: true
+    is_consumable: false
 
   - id: consumable
     feed_classes: ["94694"]
@@ -227,10 +227,46 @@ devices:
     gb_role: ram
     is_consumable: false
 
+  - id: access_point
+    feed_classes: ["86348"]
+    section_keywords: ["точки доступа", "точка доступа", "access point"]
+    triggers:
+      - "беспроводная точка доступа"
+      - "точка доступа"
+      - "точки доступа"
+      - "access point"
+      - "wi-fi точка"
+      - "wifi точка"
+      - "вай-фай точка"
+      - "вайфай точка"
+      - "точка wi-fi"
+      - "точка wifi"
+      - "точка вайфай"
+      - "аксесс поинт"
+    bare_number_spec: null
+    gb_role: null
+    is_consumable: false
+
   - id: router
-    feed_classes: ["85353", "86192", "86348", "85225"]
-    section_keywords: ["wi-fi роутеры", "роутеры", "маршрутизаторы"]
-    triggers: ["роутер", "роутеры", "wi-fi роутер", "wifi роутер", "вайфай роутер", "маршрутизатор", "маршрутизаторы", "точка доступа", "точки доступа"]
+    feed_classes: ["85353", "86192", "85225"]
+    section_keywords: ["wi-fi роутеры", "проводные роутеры", "роутеры", "маршрутизаторы"]
+    triggers:
+      - "wi-fi маршрутизатор"
+      - "wifi маршрутизатор"
+      - "вай-фай маршрутизатор"
+      - "вайфай маршрутизатор"
+      - "wi-fi роутер"
+      - "wifi роутер"
+      - "вай-фай роутер"
+      - "вайфай роутер"
+      - "сетевой маршрутизатор"
+      - "сетевой роутер"
+      - "проводной роутер"
+      - "маршрутизатор"
+      - "маршрутизаторы"
+      - "роутер"
+      - "роутеры"
+      - "router"
     bare_number_spec: null
     gb_role: null
     is_consumable: false
@@ -672,3 +708,8 @@ spec_labels:
   rack_u: "Форм-фактор"
   series: "Серия"
   compat: "Совместимость"
+  cable_length_m: "Длина"
+  gaming: "Класс"
+  server_grade: "Назначение"
+  dual_band: "Диапазоны"
+  gigabit: "Скорость LAN"
