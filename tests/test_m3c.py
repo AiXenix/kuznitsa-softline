@@ -210,8 +210,11 @@ def test_price_ceiling_in_feed_keeps_hardware_and_software(snapshot):
             b=r["blocks"][0]
             assert r["understood"]["filters"]["price_max"]==limit
             if limit==1:
-                assert b["type"]=="clarify" and b["options"][0]["apply"]["category"]==section
-                assert not any(block["type"]=="products" for block in r["blocks"])
+                # По требованиям N4: при отсутствии товаров в бюджете не обнуляем ответ,
+                # а честно предупреждаем и показываем самые доступные карточки того же раздела.
+                assert b["type"]=="products" and b["category_id"]==section and b["items"]
+                assert "дешевле" in r["understood"]["agent_note"].lower()
+                assert b["items"][0]["offer"]["price"]==10
                 continue
             assert b["type"]=="products" and b["category_id"]==section and b["items"]
             for c in b["items"]:
